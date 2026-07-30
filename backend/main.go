@@ -10,18 +10,16 @@ import (
 
 	"github.com/k8s-tersane/tersane/backend/pkg/api"
 	"github.com/k8s-tersane/tersane/backend/pkg/k8s"
+	"github.com/k8s-tersane/tersane/backend/pkg/netutils"
 	ws "github.com/k8s-tersane/tersane/backend/pkg/websocket"
 )
 
 func main() {
 	fmt.Println("==================================================")
-	fmt.Println(" 🚢 TERSANE (K8s Shipyard) — Backend Server (Faz 2)")
+	fmt.Println(" 🚢 TERSANE (K8s Shipyard 3D) — Backend Server")
 	fmt.Println("==================================================")
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8000"
-	}
+	defaultPort := netutils.ParsePortEnv(os.Getenv("PORT"), 8000)
 
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
@@ -63,14 +61,20 @@ func main() {
 		w.Write([]byte("OK"))
 	})
 
+	// Resolve available port (Auto Port Detect & Fallback: 8000-8020)
+	listener, assignedPort, err := netutils.ResolveAvailablePort(defaultPort, defaultPort+20)
+	if err != nil {
+		fmt.Printf("[fatal] Port resolution failed: %v\n", err)
+		os.Exit(1)
+	}
+
 	server := &http.Server{
-		Addr:    ":" + port,
 		Handler: mux,
 	}
 
 	go func() {
-		fmt.Printf("[http] Tersane WebSocket Server listening on http://0.0.0.0:%s/ws\n", port)
-		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+		fmt.Printf("[http] 🚀 Tersane Backend WebSocket Server listening on http://0.0.0.0:%d/ws\n", assignedPort)
+		if err := server.Serve(listener); err != nil && err != http.ErrServerClosed {
 			fmt.Printf("[fatal] HTTP server error: %v\n", err)
 		}
 	}()

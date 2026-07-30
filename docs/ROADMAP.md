@@ -2,7 +2,7 @@
 
 Bu tablo, projenin canlı ilerleme durumunu gösterir. Tahmini süreler değil, **gerçekleşen durumlar** kaydedilir.
 
-> 📢 **MILESTONE REVİZYONU (2026-07-30):** Proje kapsamı 2D/statik görünümden **Tam 3D Simülasyon, Girilebilir Binalar/Gemiler, Ağ Trafiği Görselleştirmesi ve Otomatik Port Çakışma Çözümü** seviyesine genişletilmiştir. Detaylar için bkz: `/docs/DECISIONS.md` [ADR-004..007].
+> 📢 **MILESTONE REVİZYONU (2026-07-30):** Proje kapsamı 2D/statik görünümden **Tam 3D Simülasyon, Girilebilir Binalar/Gemiler, Ağ Trafiği ve Otomatik Port Çakışma Çözümü** seviyesine genişletilmiştir. Detaylar için bkz: `/docs/DECISIONS.md` [ADR-004..007].
 
 | Faz | Durum | Başlangıç | Bitiş | Sorumlu Agent(lar) | Not |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -13,10 +13,10 @@ Bu tablo, projenin canlı ilerleme durumunu gösterir. Tahmini süreler değil, 
 | **Faz 5: Kaynak Metrikleri (CPU/RAM)** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `backend-agent`, `3d-scene-agent` | metrics.k8s.io entegrasyonu & 3D metrik kartları |
 | **Faz 6: Deployment & Scaling** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `backend-agent`, `ui-ux-agent` | Deployment Informer & Sefer Siparişleri paneli |
 | **Faz 7: Multi-Namespace & Events** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `backend-agent`, `ui-ux-agent`, `doc-agent` | Namespace seçici & K8s Event Informer |
-| **Faz 8: Auto Port Detect & Fallback** | 🔵 **Devam Ediyor** | 2026-07-30 | - | `backend-agent`, `ui-ux-agent`, `qa-agent` | Otomatik boş port bulma geliştirmesi |
-| **Faz 9: Girilebilir Binalar & İç Mekanlar** | 🟡 **Bekliyor** | - | - | `3d-scene-agent`, `ui-ux-agent`, `architecture-agent` | Master Node & Gemi içi ilk şahıs modları |
-| **Faz 10: Ağ Trafiği & Network Policy** | 🟡 **Bekliyor** | - | - | `networking-agent`, `3d-scene-agent`, `backend-agent` | Kube-proxy ağ binası & 3D akış hatları |
-| **Faz 11: Production Build & Helm Chart** | 🟡 **Bekliyor** | - | - | `devops-agent`, `security-agent`, `release-agent` | Multi-stage Dockerfile & Helm Chart |
+| **Faz 8: Auto Port Detect & Fallback** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `backend-agent`, `ui-ux-agent`, `qa-agent` | Otomatik boş port tarama & fallback çözümü |
+| **Faz 9: Girilebilir Binalar & İç Mekanlar** | 🟡 **Bekliyor (Sıradaki)** | - | - | `3d-scene-agent`, `ui-ux-agent`, `architecture-agent` | Master Node & Gemi içi ilk şahıs modları |
+| **Faz 10: Ağ Trafiği & Network Policy** | ⚪ Bekliyor | - | - | `networking-agent`, `3d-scene-agent`, `backend-agent` | Kube-proxy ağ binası & 3D akış hatları |
+| **Faz 11: Production Build & Helm Chart** | ⚪ Bekliyor | - | - | `devops-agent`, `security-agent`, `release-agent` | Multi-stage Dockerfile & Helm Chart |
 
 ---
 

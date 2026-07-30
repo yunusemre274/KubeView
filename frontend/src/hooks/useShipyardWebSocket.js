@@ -1,57 +1,65 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 
-export function useShipyardWebSocket(url = 'ws://localhost:8000/ws') {
+export function useShipyardWebSocket(initialPort = 8000) {
   const [isConnected, setIsConnected] = useState(false)
+  const [activePort, setActivePort] = useState(initialPort)
   const [shipsMap, setShipsMap] = useState({})
+  const [deploymentsList, setDeploymentsList] = useState([])
   const [eventsLog, setEventsLog] = useState([])
   const wsRef = useRef(null)
-  const reconnectTimeoutRef = useRef(null)
+  const portAttemptRef = useRef(initialPort)
+  const maxPortRef = useRef(initialPort + 5)
 
   const connect = useCallback(() => {
-    try {
-      console.log(`[ws-hook] Connecting to WebSocket: ${url}`)
-      const ws = new WebSocket(url)
-      wsRef.current = ws
+    const targetPort = portAttemptRef.current
+    const url = `ws://${window.location.hostname || 'localhost'}:${targetPort}/ws`
 
-      ws.onopen = () => {
-        console.log('[ws-hook] WebSocket connected successfully.')
-        setIsConnected(true)
+    console.log(`[ws-hook] Trying WebSocket connection on port ${targetPort}...`)
+    const ws = new WebSocket(url)
+    wsRef.current = ws
+
+    ws.onopen = () => {
+      console.log(`[ws-hook] ✅ Connected successfully on port ${targetPort}`)
+      setIsConnected(true)
+      setActivePort(targetPort)
+    }
+
+    ws.onmessage = (event) => {
+      try {
+        const message = JSON.parse(event.data)
+        handleMessage(message)
+      } catch (err) {
+        console.error('[ws-hook] Error parsing WS message:', err)
       }
+    }
 
-      ws.onmessage = (event) => {
-        try {
-          const message = JSON.parse(event.data)
-          handleMessage(message)
-        } catch (err) {
-          console.error('[ws-hook] Error parsing WS message:', err)
-        }
-      }
-
-      ws.onclose = () => {
-        console.log('[ws-hook] WebSocket disconnected. Reconnecting in 3 seconds...')
-        setIsConnected(false)
-        reconnectTimeoutRef.current = setTimeout(() => {
+    ws.onclose = () => {
+      setIsConnected(false)
+      // If we haven't connected yet, try next port in range
+      if (portAttemptRef.current < maxPortRef.current && !isConnected) {
+        portAttemptRef.current += 1
+        console.log(`[ws-hook] ⚠️ Port ${targetPort} unreachable. Trying fallback port ${portAttemptRef.current}...`)
+        setTimeout(connect, 500)
+      } else {
+        // Connected before, reconnect on same active port after delay
+        setTimeout(() => {
+          portAttemptRef.current = activePort
           connect()
         }, 3000)
       }
-
-      ws.onerror = (err) => {
-        console.error('[ws-hook] WebSocket error:', err)
-        ws.close()
-      }
-    } catch (err) {
-      console.error('[ws-hook] Connection exception:', err)
     }
-  }, [url])
+
+    ws.onerror = () => {
+      ws.close()
+    }
+  }, [activePort, isConnected])
 
   const handleMessage = (msg) => {
     const { type, payload } = msg
 
     if (type === 'INITIAL_STATE') {
-      console.log('[ws-hook] Received INITIAL_STATE payload:', payload)
       processInitialState(payload)
     } else if (type === 'RESOURCE_EVENT') {
-      console.log('[ws-hook] Received RESOURCE_EVENT:', payload)
       processResourceEvent(payload)
     }
   }
@@ -60,7 +68,6 @@ export function useShipyardWebSocket(url = 'ws://localhost:8000/ws') {
     const { nodes = [], pods = [] } = payload
     const newShips = {}
 
-    // Initialize Ships from Nodes
     nodes.forEach((node) => {
       newShips[node.name] = {
         id: node.name,
@@ -70,7 +77,6 @@ export function useShipyardWebSocket(url = 'ws://localhost:8000/ws') {
       }
     })
 
-    // Assign Pods to Ships
     pods.forEach((pod) => {
       const nodeName = pod.metaphor?.node_name || Object.keys(newShips)[0] || 'unassigned'
       if (!newShips[nodeName]) {
@@ -108,10 +114,18 @@ export function useShipyardWebSocket(url = 'ws://localhost:8000/ws') {
         namespace,
         status
       },
-      ...prev.slice(0, 19) // Keep last 20 events
+      ...prev.slice(0, 19)
     ])
 
-    if (kind === 'Node') {
+    if (kind === 'Deployment') {
+      setDeploymentsList((prev) => {
+        const filtered = prev.filter((d) => d.name !== name)
+        if (action !== 'DELETE') {
+          filtered.push({ name, namespace, replicas: status, status: 'Healthy' })
+        }
+        return filtered
+      })
+    } else if (kind === 'Node') {
       setShipsMap((prev) => {
         const next = { ...prev }
         if (action === 'DELETE') {
@@ -129,7 +143,6 @@ export function useShipyardWebSocket(url = 'ws://localhost:8000/ws') {
     } else if (kind === 'Pod') {
       setShipsMap((prev) => {
         const next = { ...prev }
-        // Ensure ship exists
         if (!next[targetNode]) {
           next[targetNode] = {
             id: targetNode,
@@ -165,15 +178,15 @@ export function useShipyardWebSocket(url = 'ws://localhost:8000/ws') {
   const getPodColor = (status) => {
     switch (status) {
       case 'Running':
-        return '#22c55e' // Green
+        return '#22c55e'
       case 'Pending':
       case 'ContainerCreating':
-        return '#eab308' // Yellow
+        return '#eab308'
       case 'Failed':
       case 'Error':
-        return '#ef4444' // Red
+        return '#ef4444'
       default:
-        return '#3b82f6' // Blue
+        return '#3b82f6'
     }
   }
 
@@ -182,9 +195,6 @@ export function useShipyardWebSocket(url = 'ws://localhost:8000/ws') {
     return () => {
       if (wsRef.current) {
         wsRef.current.close()
-      }
-      if (reconnectTimeoutRef.current) {
-        clearTimeout(reconnectTimeoutRef.current)
       }
     }
   }, [connect])
@@ -198,9 +208,11 @@ export function useShipyardWebSocket(url = 'ws://localhost:8000/ws') {
 
   return {
     isConnected,
+    activePort,
     ships: shipsList,
     totalShips: shipsList.length,
     totalPallets,
-    eventsLog
+    eventsLog,
+    deployments: deploymentsList
   }
 }
