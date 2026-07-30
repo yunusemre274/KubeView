@@ -1,15 +1,15 @@
-# TODO.md — Aktif ve Sıradaki Görevler Listesi (v1.5.0 Release)
+# TODO.md — Aktif ve Sıradaki Görevler Listesi (v1.6.0 Release)
 
-> 🏆 **PROJE TAMAMLANDI:** TODO listesindeki tüm 14 faz görevi başarıyla tamamlanmıştır.
+> 🏆 **PROJE TAMAMLANDI:** TODO listesindeki tüm 15 faz görevi başarıyla tamamlanmıştır.
 
 ---
 
 ## 🔵 Aktif Görevler
-*Şu an aktif görev bulunmamaktadır. Tüm 14 faz başarıyla tamamlandı!*
+*Şu an aktif görev bulunmamaktadır. Tüm 15 faz başarıyla tamamlandı!*
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 14)
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 15)
 - [x] **[GÖREV-101..105]** Salt-okunur RBAC & Go `client-go` backend servisi. (Yapan: `devops-agent` & `backend-agent`)
 - [x] **[GÖREV-201..203]** WebSocket Hub sunucusu ve JSON streaming altyapısı. (Yapan: `backend-agent` & `integration-agent`)
 - [x] **[GÖREV-301..303]** React + Three.js 3D frontend projesi ve 3D liman/gemi sahnesi. (Yapan: `3d-scene-agent`)
@@ -22,9 +22,9 @@
 - [x] **[GÖREV-1001..1003]** Kube-proxy 3D Ağ Binası (`NetworkBuilding.jsx`), 3D canlı ağ akış tüpleri (`NetworkFlowStream.jsx`). (Yapan: `networking-agent`)
 - [x] **[GÖREV-1101..1103]** Multi-stage Dockerfile ve Helm Chart paketlemesi. (Yapan: `devops-agent`)
 - [x] **[GÖREV-1201..1205]** Katman Ayrımı (3D Canvas vs HTML UI Overlay) ve Endüstriyel Tasarım Sistemi. (Yapan: `ui-ux-agent`)
-- [x] **[GÖREV-12.1]** Canlı 3D Liman Motoru, Township Estetiği, Sarı Vinç, Salınan Gemiler ve Kamera Lerp Geçişleri. (Yapan: `3d-scene-agent`)
 - [x] **[GÖREV-1301..1305]** %100 3D Canvas Varsayılan Ekran Yerleşimi, Çift Header Hatası Çözümü (`LESSON-002`) ve Nesne Bazlı K8s Şeması. (Yapan: `ui-ux-agent`)
-- [x] **[GÖREV-1401..1403]** Absolute Overlay Çekmece Mimarsi, CSS Transform Animasyonu, Sıfır Canvas Boyut Değişimi & Siyahlık Önleme (`LESSON-004`). (Yapan: `ui-ux-agent`)
+- [x] **[GÖREV-1401..1403]** Absolute Overlay Çekmece Mimarisi, CSS Transform Animasyonu, Sıfır Canvas Boyut Değişimi & Siyahlık Önleme (`LESSON-004`). (Yapan: `ui-ux-agent`)
+- [x] **[GÖREV-1501..1504]** Etkileşimli 2D Control Plane Dashboard Konsolu, Raycasting Hit-Test Düzeltmesi (`e.stopPropagation()` / `LESSON-005`), Gemilerde Dönen 3D Kubelet İkonu ve Canlı Parçacık Ağ Akış Çizgileri (`NetworkTrafficParticles.jsx`). (Yapan: `3d-scene-agent`, `ui-ux-agent`, `networking-agent`)
 
 ---
 

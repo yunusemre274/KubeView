@@ -2,8 +2,9 @@ import React, { useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Sky } from '@react-three/drei'
 import * as THREE from 'three'
-import { MasterBuildingInterior, ShipInterior } from './3d/BuildingInterior'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight } from 'lucide-react'
+import MasterDashboardOverlay from './MasterDashboardOverlay'
+import NetworkTrafficParticles from './3d/NetworkTrafficParticles'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -31,7 +32,7 @@ function Ocean() {
   )
 }
 
-// 2. Enriched Dock & Shoreline with Land Container Stacks
+// 2. Enriched Dock & Shoreline
 function EnrichedDockAndShore({ onSelectLandStack }) {
   return (
     <group position={[-22, 0.2, 0]}>
@@ -50,7 +51,13 @@ function EnrichedDockAndShore({ onSelectLandStack }) {
         <meshStandardMaterial color="#f59e0b" roughness={0.4} />
       </mesh>
 
-      <group position={[4, 1.1, 16]} onClick={() => onSelectLandStack && onSelectLandStack('pending-stack-1')}>
+      <group
+        position={[4, 1.1, 16]}
+        onClick={(e) => {
+          e.stopPropagation()
+          onSelectLandStack && onSelectLandStack('pending-stack-1')
+        }}
+      >
         <mesh position={[0, 1, 0]} castShadow>
           <boxGeometry args={[2.4, 2, 4.8]} />
           <meshStandardMaterial color="#f59e0b" metalness={0.3} roughness={0.4} />
@@ -58,10 +65,6 @@ function EnrichedDockAndShore({ onSelectLandStack }) {
         <mesh position={[0, 3, 0]} castShadow>
           <boxGeometry args={[2.4, 2, 4.8]} />
           <meshStandardMaterial color="#ef4444" metalness={0.3} roughness={0.4} />
-        </mesh>
-        <mesh position={[2.8, 1, 0]} castShadow>
-          <boxGeometry args={[2.4, 2, 4.8]} />
-          <meshStandardMaterial color="#eab308" metalness={0.3} roughness={0.4} />
         </mesh>
       </group>
     </group>
@@ -75,9 +78,9 @@ function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane }) {
   return (
     <group
       position={position}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-      onClick={() => onSelectCrane(craneData)}
+      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+      onClick={(e) => { e.stopPropagation(); onSelectCrane(craneData); }}
     >
       <mesh position={[-2.5, 6, -2]} castShadow>
         <boxGeometry args={[0.8, 12, 0.8]} />
@@ -134,9 +137,9 @@ function HarborVillage({ onClickBuilding }) {
     <group position={[-22, 1.0, -14]}>
       <mesh
         position={[0, 4, 0]}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        onClick={onClickBuilding}
+        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+        onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+        onClick={(e) => { e.stopPropagation(); onClickBuilding(); }}
         castShadow
       >
         <boxGeometry args={[11, 7, 13]} />
@@ -154,26 +157,12 @@ function HarborVillage({ onClickBuilding }) {
         <meshStandardMaterial color="#ef4444" roughness={0.4} />
       </mesh>
 
-      <mesh position={[0, 4.5, 6.55]}>
-        <boxGeometry args={[8.5, 3.2, 0.1]} />
-        <meshPhysicalMaterial color="#38bdf8" transmission={0.9} roughness={0.1} transparent opacity={0.6} />
-      </mesh>
-
       <group ref={radarRef} position={[0, 10.5, -4]}>
         <mesh position={[0, 0, 0]}>
           <boxGeometry args={[2.8, 0.4, 0.4]} />
           <meshStandardMaterial color="#f59e0b" metalness={0.8} />
         </mesh>
       </group>
-
-      <mesh position={[14, 2.5, -4]} castShadow>
-        <boxGeometry args={[8, 4.5, 8]} />
-        <meshStandardMaterial color="#0284c7" roughness={0.5} />
-      </mesh>
-      <mesh position={[14, 2.5, 6]} castShadow>
-        <boxGeometry args={[8, 4.5, 8]} />
-        <meshStandardMaterial color="#a855f7" roughness={0.5} />
-      </mesh>
     </group>
   )
 }
@@ -192,9 +181,9 @@ function KubeProxyStation({ position = [18, 0.2, -16], onSelectKubeProxy }) {
   return (
     <group
       position={position}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-      onClick={onSelectKubeProxy}
+      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+      onClick={(e) => { e.stopPropagation(); onSelectKubeProxy(); }}
     >
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[9, 1.2, 9]} />
@@ -203,10 +192,6 @@ function KubeProxyStation({ position = [18, 0.2, -16], onSelectKubeProxy }) {
       <mesh position={[0, 3, 0]} castShadow>
         <boxGeometry args={[5.5, 4.8, 5.5]} />
         <meshStandardMaterial color={hovered ? '#38bdf8' : '#0284c7'} metalness={0.7} roughness={0.2} />
-      </mesh>
-      <mesh position={[0, 7.5, 0]}>
-        <cylinderGeometry args={[0.2, 0.5, 4.5, 16]} />
-        <meshStandardMaterial color="#e2e8f0" metalness={0.9} />
       </mesh>
       <group ref={beaconRef} position={[0, 9.8, 0]}>
         <mesh>
@@ -219,22 +204,73 @@ function KubeProxyStation({ position = [18, 0.2, -16], onSelectKubeProxy }) {
   )
 }
 
-// 6. 3D Cargo Box Container (Pod)
-function CargoContainer({ position, color = '#10b981', onClick }) {
+// 6. 3D Kubelet Rotating Radar Icon on Mast (Geminin Dümencisi / Node Agent)
+function KubeletRadar({ position = [0, 8.5, -9.5], onClickKubelet }) {
+  const radarRef = useRef()
+  const [hovered, setHovered] = useState(false)
+
+  useFrame(({ clock }) => {
+    if (radarRef.current) {
+      radarRef.current.rotation.y = clock.getElapsedTime() * 2.5
+    }
+  })
+
+  return (
+    <group
+      position={position}
+      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+      onClick={(e) => { e.stopPropagation(); onClickKubelet(); }}
+    >
+      <mesh position={[0, 0, 0]}>
+        <cylinderGeometry args={[0.15, 0.2, 2.2, 8]} />
+        <meshStandardMaterial color="#64748b" metalness={0.8} />
+      </mesh>
+
+      <group ref={radarRef} position={[0, 1.2, 0]}>
+        <mesh position={[0, 0, 0]} castShadow>
+          <boxGeometry args={[2.2, 0.3, 0.3]} />
+          <meshStandardMaterial
+            color={hovered ? '#fbbf24' : '#10b981'}
+            emissive={hovered ? '#f59e0b' : '#059669'}
+            emissiveIntensity={0.8}
+            metalness={0.6}
+          />
+        </mesh>
+        <mesh position={[0.9, 0, 0]}>
+          <sphereGeometry args={[0.25, 12, 12]} />
+          <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={1.2} />
+        </mesh>
+      </group>
+    </group>
+  )
+}
+
+// 7. 3D Cargo Container (Pod) with Explicit StopPropagation
+function CargoContainer({ position, podData, shipName, onSelectPod }) {
   const [hovered, setHovered] = useState(false)
 
   return (
     <group position={position}>
       <mesh
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        onClick={onClick}
+        onPointerOver={(e) => {
+          e.stopPropagation()
+          setHovered(true)
+        }}
+        onPointerOut={(e) => {
+          e.stopPropagation()
+          setHovered(false)
+        }}
+        onClick={(e) => {
+          e.stopPropagation()
+          onSelectPod(podData, shipName)
+        }}
         castShadow
         receiveShadow
       >
         <boxGeometry args={[2.4, 2.0, 4.8]} />
         <meshStandardMaterial
-          color={hovered ? '#38bdf8' : color}
+          color={hovered ? '#38bdf8' : (podData.color || '#10b981')}
           emissive={hovered ? '#0284c7' : '#000000'}
           emissiveIntensity={hovered ? 0.4 : 0}
           metalness={0.4}
@@ -249,8 +285,8 @@ function CargoContainer({ position, color = '#10b981', onClick }) {
   )
 }
 
-// 7. Cargo Ship (Worker Node)
-function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip }) {
+// 8. Cargo Ship (Worker Node) with Kubelet Radar & Event StopPropagation
+function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet }) {
   const groupRef = useRef()
   const [hovered, setHovered] = useState(false)
 
@@ -272,11 +308,21 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip }
         <meshStandardMaterial color="#dc2626" metalness={0.5} roughness={0.4} />
       </mesh>
 
+      {/* SHIP HULL - Raycast target for Node onClick */}
       <mesh
         position={[0, 1.8, 0]}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        onClick={() => onSelectShip(shipData)}
+        onPointerOver={(e) => {
+          e.stopPropagation()
+          setHovered(true)
+        }}
+        onPointerOut={(e) => {
+          e.stopPropagation()
+          setHovered(false)
+        }}
+        onClick={(e) => {
+          e.stopPropagation()
+          onSelectShip(shipData)
+        }}
         castShadow
         receiveShadow
       >
@@ -300,11 +346,13 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip }
         <meshStandardMaterial color="#f8fafc" roughness={0.2} />
       </mesh>
 
-      <mesh position={[0, 6.5, -9.5]} castShadow>
-        <cylinderGeometry args={[0.7, 0.8, 2.2, 16]} />
-        <meshStandardMaterial color="#ef4444" metalness={0.5} />
-      </mesh>
+      {/* KUBELET RADAR ICON ON MAST */}
+      <KubeletRadar
+        position={[0, 6.5, -9.5]}
+        onClickKubelet={() => onSelectKubelet(shipData)}
+      />
 
+      {/* POD CONTAINERS */}
       {pods.map((pod, idx) => {
         const row = Math.floor(idx / 2)
         const col = idx % 2
@@ -314,8 +362,9 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip }
           <CargoContainer
             key={pod.id || idx}
             position={[x, 3.7, z]}
-            color={pod.color}
-            onClick={() => onSelectPod(pod, shipData.name)}
+            podData={pod}
+            shipName={shipData.name}
+            onSelectPod={onSelectPod}
           />
         )
       })}
@@ -323,7 +372,7 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip }
   )
 }
 
-// 8. Smooth Camera Controller
+// 9. Smooth Camera Lerp Controller
 function CameraController({ targetPosition, targetLookAt }) {
   const { camera, controls } = useThree()
 
@@ -341,8 +390,9 @@ function CameraController({ targetPosition, targetLookAt }) {
 }
 
 export default function ShipyardScene({ ships = [] }) {
-  const [viewMode, setViewMode] = useState('EXTERIOR')
   const [activeSelection, setActiveSelection] = useState(null)
+  const [showMasterDashboard, setShowMasterDashboard] = useState(false)
+  const [showNetworkTraffic, setShowNetworkTraffic] = useState(true)
 
   const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(34, 30, 46))
   const [camTargetLookAt, setCamTargetLookAt] = useState(new THREE.Vector3(0, 2, 0))
@@ -425,10 +475,27 @@ export default function ShipyardScene({ ships = [] }) {
     setActiveSelection({ type: 'POD', data: { ...pod, shipName } })
   }
 
+  const handleSelectKubelet = (ship) => {
+    setActiveSelection({
+      type: 'KUBELET',
+      data: {
+        node_name: ship.name,
+        ip: ship.ip,
+        status: ship.kubelet_status || 'Active (Running)',
+        last_heartbeat: '1.2s ago',
+        readiness_probe: '100% Passing (2/2 probes)',
+        pods: ship.pods || []
+      }
+    })
+  }
+
   const handleSelectMaster = () => {
     setActiveSelection({ type: 'MASTER', data: {} })
-    setCamTargetPos(new THREE.Vector3(-8, 12, 4))
+    setCamTargetPos(new THREE.Vector3(-16, 8, -6))
     setCamTargetLookAt(new THREE.Vector3(-22, 4, -14))
+    setTimeout(() => {
+      setShowMasterDashboard(true)
+    }, 400)
   }
 
   const handleSelectCrane = () => {
@@ -462,7 +529,7 @@ export default function ShipyardScene({ ships = [] }) {
 
   const handleResetCamera = () => {
     setActiveSelection(null)
-    setViewMode('EXTERIOR')
+    setShowMasterDashboard(false)
     setCamTargetPos(new THREE.Vector3(34, 30, 46))
     setCamTargetLookAt(new THREE.Vector3(0, 2, 0))
   }
@@ -478,7 +545,7 @@ export default function ShipyardScene({ ships = [] }) {
         </span>
       </div>
 
-      {/* KATMAN 1: 3D CANVAS STAGE WRAPPER - PERMANENT INSET 0 FULLSCREEN (NEVER RESIZES) */}
+      {/* KATMAN 1: 3D CANVAS STAGE WRAPPER - ABSOLUTE FULLSCREEN */}
       <div className="stage-wrapper">
         <Canvas
           shadows
@@ -492,38 +559,26 @@ export default function ShipyardScene({ ships = [] }) {
 
           <CameraController targetPosition={camTargetPos} targetLookAt={camTargetLookAt} />
 
-          {viewMode === 'EXTERIOR' && (
-            <>
-              <Ocean />
-              <EnrichedDockAndShore onSelectLandStack={handleSelectCrane} />
-              <GantryCrane position={[-12, 1, 6]} craneData={{}} onSelectCrane={handleSelectCrane} />
-              <GantryCrane position={[-12, 1, -16]} craneData={{}} onSelectCrane={handleSelectCrane} />
-              <HarborVillage onClickBuilding={handleSelectMaster} />
-              <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
+          <Ocean />
+          <EnrichedDockAndShore onSelectLandStack={handleSelectCrane} />
+          <GantryCrane position={[-12, 1, 6]} craneData={{}} onSelectCrane={handleSelectCrane} />
+          <GantryCrane position={[-12, 1, -16]} craneData={{}} onSelectCrane={handleSelectCrane} />
+          <HarborVillage onClickBuilding={handleSelectMaster} />
+          <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
 
-              {activeShips.map((ship) => (
-                <CargoShip
-                  key={ship.id}
-                  position={ship.position}
-                  shipData={ship}
-                  onSelectPod={handleSelectPod}
-                  onSelectShip={handleSelectShip}
-                />
-              ))}
-            </>
-          )}
+          {/* LIVE ANIMATED NETWORK PARTICLES */}
+          <NetworkTrafficParticles ships={activeShips} showTraffic={showNetworkTraffic} />
 
-          {viewMode === 'MASTER_BUILDING' && (
-            <MasterBuildingInterior onExit={handleResetCamera} />
-          )}
-
-          {viewMode === 'SHIP_INTERIOR' && (
-            <ShipInterior
-              shipName={activeSelection?.data?.name || 'Gemi Alpha'}
-              pods={activeSelection?.data?.pods || []}
-              onExit={handleResetCamera}
+          {activeShips.map((ship) => (
+            <CargoShip
+              key={ship.id}
+              position={ship.position}
+              shipData={ship}
+              onSelectPod={handleSelectPod}
+              onSelectShip={handleSelectShip}
+              onSelectKubelet={handleSelectKubelet}
             />
-          )}
+          ))}
 
           <OrbitControls
             enablePan={true}
@@ -536,25 +591,30 @@ export default function ShipyardScene({ ships = [] }) {
         </Canvas>
       </div>
 
-      {/* KATMAN 2: MINIMAL BOTTOM VIEW MODE TABS (%5 YÜKSEKLİK) */}
+      {/* KATMAN 2: MINIMAL BOTTOM VIEW MODE TABS */}
       <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 industrial-panel p-1 rounded-xl border-amber-500/40">
         <button
           onClick={handleResetCamera}
-          className={`industrial-btn py-1 text-xs ${viewMode === 'EXTERIOR' && !activeSelection ? 'industrial-btn-active' : ''}`}
+          className={`industrial-btn py-1 text-xs ${!activeSelection && !showMasterDashboard ? 'industrial-btn-active' : ''}`}
         >
           <Eye className="w-3.5 h-3.5" />
           <span>🦅 TÜM LİMAN (KUŞBAKIŞI)</span>
         </button>
 
         <button
-          onClick={() => {
-            setViewMode('MASTER_BUILDING')
-            handleSelectMaster()
-          }}
-          className={`industrial-btn py-1 text-xs ${viewMode === 'MASTER_BUILDING' ? 'industrial-btn-active' : ''}`}
+          onClick={handleSelectMaster}
+          className={`industrial-btn py-1 text-xs ${showMasterDashboard ? 'industrial-btn-active' : ''}`}
         >
           <Building2 className="w-3.5 h-3.5" />
-          <span>🏢 YÖNETİM BİNASI İÇİ</span>
+          <span>🏢 YÖNETİM BİNASINA GİR</span>
+        </button>
+
+        <button
+          onClick={() => setShowNetworkTraffic(!showNetworkTraffic)}
+          className={`industrial-btn py-1 text-xs ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
+        >
+          <Zap className="w-3.5 h-3.5" />
+          <span>⚡ AĞ TRAFİĞİ ({showNetworkTraffic ? 'AÇIK' : 'KAPALI'})</span>
         </button>
 
         {activeShips.map((s, idx) => (
@@ -569,8 +629,16 @@ export default function ShipyardScene({ ships = [] }) {
         ))}
       </div>
 
-      {/* KATMAN 2: ABSOLUTE OVERLAY RIGHT DRAWER (NEVER TOUCHES CANVAS LAYOUT OR TRIGGER RESIZE) */}
-      <aside className={`info-panel-drawer ${activeSelection ? 'drawer-open' : 'drawer-closed'}`}>
+      {/* KATMAN 3: 2D MASTER CONTROL PLANE DASHBOARD OVERLAY */}
+      {showMasterDashboard && (
+        <MasterDashboardOverlay
+          onClose={handleResetCamera}
+          activeShips={activeShips}
+        />
+      )}
+
+      {/* KATMAN 4: ABSOLUTE OVERLAY RIGHT DRAWER */}
+      <aside className={`info-panel-drawer ${activeSelection && !showMasterDashboard ? 'drawer-open' : 'drawer-closed'}`}>
         {activeSelection && (
           <div className="p-4 h-full flex flex-col justify-between overflow-y-auto">
             <div>
@@ -578,12 +646,14 @@ export default function ShipyardScene({ ships = [] }) {
                 <h3 className="font-industrial text-base font-bold text-amber-400 flex items-center gap-2">
                   {activeSelection.type === 'POD' && <Box className="w-5 h-5 text-emerald-400" />}
                   {activeSelection.type === 'SHIP' && <ShipIcon className="w-5 h-5 text-sky-400" />}
+                  {activeSelection.type === 'KUBELET' && <Activity className="w-5 h-5 text-emerald-400" />}
                   {activeSelection.type === 'MASTER' && <Building2 className="w-5 h-5 text-amber-400" />}
                   {activeSelection.type === 'CRANE' && <Activity className="w-5 h-5 text-amber-400" />}
                   {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-5 h-5 text-sky-400" />}
                   <span>
                     {activeSelection.type === 'POD' && '📦 PALET (POD)'}
                     {activeSelection.type === 'SHIP' && '🚢 GEMİ (WORKER NODE)'}
+                    {activeSelection.type === 'KUBELET' && '📡 KUBELET AGENT'}
                     {activeSelection.type === 'MASTER' && '🏢 YÖNETİM (MASTER)'}
                     {activeSelection.type === 'CRANE' && '🏗️ VİNÇ (SCHEDULER)'}
                     {activeSelection.type === 'KUBE_PROXY' && '📻 AĞ (KUBE-PROXY)'}
@@ -646,41 +716,46 @@ export default function ShipyardScene({ ships = [] }) {
                     <span className="text-amber-400 block text-[10px] font-bold">KAPASİTE VS KULLANIM:</span>
                     <div>CPU: <strong className="text-emerald-300">{activeSelection.data.metrics?.cpu_usage || '320m'}</strong> / {activeSelection.data.metrics?.cpu_capacity || '4000m'}</div>
                     <div>RAM: <strong className="text-purple-300">{activeSelection.data.metrics?.memory_usage || '1024Mi'}</strong> / {activeSelection.data.metrics?.mem_capacity || '8192Mi'}</div>
-                </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-sky-400 block text-[10px] font-bold">SERVİSLER:</span>
-                    <div>Kubelet: <strong className="text-emerald-400">Active (Running)</strong></div>
-                    <div>Kube-Proxy: <strong className="text-emerald-400">Active (Running)</strong></div>
                   </div>
-                  <button onClick={() => setViewMode('SHIP_INTERIOR')} className="w-full mt-2 industrial-btn industrial-btn-blue-active justify-center">
-                    🚪 GEMİ İÇİNE GİR
-                  </button>
                 </div>
               )}
 
-              {/* 3. CONTROL TOWER DETAILS */}
+              {/* 3. KUBELET AGENT DETAILS */}
+              {activeSelection.type === 'KUBELET' && (
+                <div className="space-y-4 text-xs font-mono-tech">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">NODE KUBELET AGENT:</span>
+                    <strong className="text-emerald-400 text-sm">{activeSelection.data.node_name}</strong>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
+                    <div className="flex justify-between"><span>Durum:</span><strong className="text-emerald-400">{activeSelection.data.status}</strong></div>
+                    <div className="flex justify-between"><span>Son Heartbeat:</span><strong className="text-sky-300">{activeSelection.data.last_heartbeat}</strong></div>
+                    <div className="flex justify-between"><span>Readiness Probe:</span><strong className="text-amber-300">{activeSelection.data.readiness_probe}</strong></div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700">
+                    <span className="text-sky-400 block text-[10px] font-bold mb-1">YÖNETİLEN POD'LAR:</span>
+                    {activeSelection.data.pods?.map((p) => (
+                      <div key={p.name} className="text-[11px] text-slate-300">● {p.name}</div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 4. MASTER BUILDING DETAILS */}
               {activeSelection.type === 'MASTER' && (
                 <div className="space-y-4 text-xs font-mono-tech">
                   <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
                     <span className="text-amber-400 block text-[10px] font-bold">CONTROL PLANE BİLEŞENLERİ:</span>
                     <div className="flex justify-between"><span>API Server:</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
                     <div className="flex justify-between"><span>etcd (Kaptan):</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
-                    <div className="flex justify-between"><span>Scheduler (Vinç):</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
-                    <div className="flex justify-between"><span>Controller Mgr:</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
                   </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-sky-400 block text-[10px] font-bold">CLUSTER GENELİ NESNELER:</span>
-                    <div className="flex justify-between"><span>Worker Nodes:</span><strong className="text-white">{activeShips.length}</strong></div>
-                    <div className="flex justify-between"><span>Toplam Pods:</span><strong className="text-emerald-300">4</strong></div>
-                    <div className="flex justify-between"><span>Deployments:</span><strong className="text-amber-300">3</strong></div>
-                  </div>
-                  <button onClick={() => setViewMode('MASTER_BUILDING')} className="w-full mt-2 industrial-btn industrial-btn-active justify-center">
-                    🚪 YÖNETİM BİNASINA GİR
+                  <button onClick={handleSelectMaster} className="w-full mt-2 industrial-btn industrial-btn-active justify-center">
+                    🚪 2D DASHBOARD KONSOLUNU AÇ
                   </button>
                 </div>
               )}
 
-              {/* 4. SCHEDULER DETAILS */}
+              {/* 5. SCHEDULER DETAILS */}
               {activeSelection.type === 'CRANE' && (
                 <div className="space-y-4 text-xs font-mono-tech">
                   <div>
@@ -692,12 +767,11 @@ export default function ShipyardScene({ ships = [] }) {
                     <p className="text-slate-300 text-[11px] leading-relaxed">
                       pod <strong className="text-emerald-300">redis-cache-set-0</strong> ➔ <strong className="text-sky-300">node-beta</strong>
                     </p>
-                    <div className="text-[10px] text-amber-400">Skor: 94/100 (LeastRequestedPriority)</div>
                   </div>
                 </div>
               )}
 
-              {/* 5. KUBE-PROXY DETAILS */}
+              {/* 6. KUBE-PROXY DETAILS */}
               {activeSelection.type === 'KUBE_PROXY' && (
                 <div className="space-y-4 text-xs font-mono-tech">
                   <div>

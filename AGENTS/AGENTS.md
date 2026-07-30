@@ -6,21 +6,24 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 ## 🎯 1. Temel İlkeler
 
-1. **Absolute Overlay Paneller & Sıfır Canvas Resize (KESİN KURAL):**
-   - **Yan paneller ve bilgi kartları hiçbir zaman canvas ile flex/grid yer paylaşımı yapamaz!**
+1. **3D Event Propagation & Raycasting Hit-Test (KESİN KURAL):**
+   - **İç içe 3D nesnelerde tıklama (`onClick`) ve hover (`onPointerOver`) event handler'larında `e.stopPropagation()` çağrılmak ZORUNDADIR!**
+   - Konteynır (Pod) tıklaması hiçbir zaman ebeveyn Gemi (Node) gövdesine kabaramaz.
+   - Her nesne `userData = { type: 'container' | 'node' | 'kubelet' | 'master' | 'crane' | 'proxy' }` etiketine sahip olmak zorundadır.
+2. **Absolute Overlay Paneller & Sıfır Canvas Resize:**
+   - Yan paneller ve bilgi kartları hiçbir zaman canvas ile flex/grid yer paylaşımı yapamaz.
    - Canvas her zaman `position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0;` olarak 3D dünyayı render eder.
-   - Bilgi kartları ve çekmeceler canvas'ın üstüne `position: absolute; top: 0; right: 0; bottom: 0; z-index: 40;` ve CSS `transform` animasyonu ile biner. Panel açılıp kapandığında canvas boyutu HİÇBİR ŞEKİLDE değişmez ve resize tetiklenmez.
-2. **Unbroken 100% Height Chain & Canvas Boyutu:**
+3. **Unbroken 100% Height Chain & Canvas Boyutu:**
    - `html`, `body`, `#root`, `main` ve `.stage-wrapper` kapsayıcılarında `height: 100%` ve flexbox `min-height: 0` zinciri KESİNTİSİZ korunmalıdır!
-3. **85% 3D Canvas / 15% UI Overlay Kuralı:**
+4. **85% 3D Canvas / 15% UI Overlay Kuralı:**
    - 3D Canvas varsayılan durumda ekranın %100'ünü kaplar. UI Overlay panelleri sadece kenarlarda ince şeritler ve kapatılabilir dikey çekmeceler halinde yaşar.
-4. **3D Canvas İçi Temizlik:**
+5. **3D Canvas İçi Temizlik:**
    - 3D Canvas içine hiçbir zaman okunabilir metin, etiket veya buton render edilemez!
-5. **KISS Prensibi (Keep It Simple, Stupid):**
+6. **KISS Prensibi (Keep It Simple, Stupid):**
    - En basit çalışan çözüm DOĞRU çözümdür. Gereksiz karmaşıklıklar, erken optimizasyon ve kullanılmayan esneklikler YASAKTIR.
-6. **Dört Göz İlkesi (Four-Eyes Principle):**
+7. **Dört Göz İlkesi (Four-Eyes Principle):**
    - Hiçbir agent kendi yazdığı veya ürettiği kodu kendi onaylayıp `main` dalına birleştiremez. Kod yazan agent ile denetleyen agent farklı olmalıdır.
-7. **Otomatik Port Çakışma Önleme:**
+8. **Otomatik Port Çakışma Önleme:**
    - Servisler başlatılırken varsayılan portun dolu olması durumunda uygulama çökmemeli, otomatik bir sonraki boş portu bularak kullanıcıya açıkça bildirmelidir.
 
 ---
@@ -46,7 +49,7 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 ## 🌿 3. Git Workflow Kuralları
 
-- **Branch İsimlendirme:** `fix/drawer-absolute-overlay`
+- **Branch İsimlendirme:** `fix/raycasting-and-dashboard`
 - **Commit Mesaj Formatı:**
   ```text
   [Faz X][Agent Adı] Kısa özet başlığı

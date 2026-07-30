@@ -4,16 +4,15 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 ---
 
-## [v1.5.0 - Faz 14 Absolute Overlay Çekmece & CSS Transform] - 2026-07-30
+## [v1.6.0 - Faz 15 2D Control Dashboard, Raycasting Fix & Canlı Ağ Parçacıkları] - 2026-07-30
 
-### Düzeltildi / Geliştirildi
-- `ui-ux-agent` tarafından bilgi kartı (sağ panel) pozisyonlaması flex/grid sibling düzeninden **`position: absolute; top: 0; right: 0; bottom: 0; z-index: 40;`** overlay mimarisine geçirildi.
-- Canvas kapsayıcısı (`.stage-wrapper`) kalıcı olarak **`position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0;`** yapıldı.
-- Çekmece açılış/kapanışına yumuşak CSS transform animasyonu (`transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)`) eklendi.
-- Panel açılıp kapandığında 3D Canvas boyutunun asla değişmediği ve sıfır resize/siyahlık yaşandığı doğrulandı.
-- `LESSONS.md` belgesine `[DERS-004]` ve `AGENTS.md` rehberine ilgili kural kaydedildi.
+### Eklendi / Düzeltildi
+- **2D Interactive Control Dashboard:** "Yönetim Binasına Gir" aksiyonunda kamera lerp geçişi ile 3D sahne yerini tam ekran etkileşimli **Control Plane Dashboard** konsoluna (`MasterDashboardOverlay.jsx`) bırakır.
+- **Raycasting Hit-Test Düzeltmesi:** Konteynır (Pod) ve Gemi (Node) tıklamalarının birbirine karışması sorunu tüm interaktif 3D mesh handler'larına `e.stopPropagation()` eklenerek giderildi (`LESSON-005`).
+- **Dönen 3D Kubelet İkonu:** Her geminin direğine dönen 3D Kubelet Radar ikonu (`KubeletRadar`) eklendi ve tıklanabilir Kubelet müfettiş çekmecesi bağlandı.
+- **Canlı Ağ Trafiği Parçacıkları:** Kube-proxy yapısından gemilere ve Master binaya doğru ışıklı parçacıkların aktığı canlı ağ trafiği animasyonu (`NetworkTrafficParticles.jsx`) ve UI açma/kapama butonu eklendi.
 
 ---
 
-## [v1.4.0 - Full Screen 3D & K8s Bilgi Kartı Çekmecesi] - 2026-07-30
-- Çift header hatası çözüldü, nesneye özel K8s veri şeması eklendi.
+## [v1.5.0 - Absolute Overlay Çekmece & CSS Transform] - 2026-07-30
+- Panel layout sıçramaları ve anlık siyahlıklar giderildi.

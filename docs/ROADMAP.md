@@ -2,12 +2,12 @@
 
 Bu tablo, projenin canlı ilerleme durumunu gösterir. Tahmini süreler değil, **gerçekleşen durumlar** kaydedilir.
 
-> 🏆 **PROJE TAMAMLANDI (v1.5.0 Absolute Overlay Drawer Release):** Tüm 14 faz, varsayılan %100 3D Canvas ekran alanı, dikey K8s bilgi kartı çekmecesi, CSS transform ile sıfır layout sıçraması ve siyahlık önleme mimarisi başarıyla tamamlanmıştır.
+> 🏆 **PROJE TAMAMLANDI (v1.6.0 Interactive Control Dashboard, Raycasting Fix & Animated Network Flow Release):** Tüm 15 faz, etkileşimli 2D Control Plane Dashboard konsolu, `e.stopPropagation()` raycasting hit-test düzeltmesi, dönen 3D Kubelet ikonu ve canlı akan ağ trafiği parçacıkları altyapısı ile başarıyla tamamlanmıştır.
 
 | Faz | Durum | Başlangıç | Bitiş | Sorumlu Agent(lar) | Not |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Faz 1-13: Altyapı & K8s Motoru** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | Tüm Agent'lar | Backend, WS, Informer'lar, Port Resolver |
-| **Faz 14: Absolute Overlay Drawer** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `ui-ux-agent`, `3d-scene-agent`, `qa-agent` | Absolute Overlay Çekmece & CSS Transform |
+| **Faz 1-14: Altyapı & Overlay Engine** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | Tüm Agent'lar | Backend, WS, Informer'lar, Port Resolver |
+| **Faz 15: 2D Dashboard & Raycasting Fix** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `3d-scene-agent`, `ui-ux-agent`, `networking-agent` | 2D Dashboard, Raycasting Fix, Kubelet Radar & Network Particles |
 
 ---
 
