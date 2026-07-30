@@ -445,7 +445,6 @@ export default function ShipyardScene({ ships = [] }) {
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
-  // Wider Panoramic Initial Camera View (Genişletilmiş Görüş Açısı: [44, 36, 58])
   const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(44, 36, 58))
   const [camTargetLookAt, setCamTargetLookAt] = useState(new THREE.Vector3(0, 2, 0))
 
@@ -679,8 +678,8 @@ export default function ShipyardScene({ ships = [] }) {
   return (
     <div className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
       
-      {/* UNIFIED TOP HEADER STRIP */}
-      <header className="fixed top-0 left-0 right-0 h-11 bg-slate-900/95 backdrop-blur-md border-b border-amber-500/30 z-50 flex items-center justify-between px-3 shadow-2xl pointer-events-auto overflow-x-auto gap-2">
+      {/* GUARANTEED TOP HEADER STRIP WITH ID top-header-bar */}
+      <header id="top-header-bar">
         
         {/* LEFT SECTION: LOGO & CLUSTER SELECTOR & READ-ONLY TOGGLE */}
         <div className="flex items-center gap-2 shrink-0">
@@ -795,7 +794,7 @@ export default function ShipyardScene({ ships = [] }) {
       </header>
 
       {/* KATMAN 1: 3D CANVAS STAGE WRAPPER */}
-      <div className="stage-wrapper pt-11">
+      <div className="stage-wrapper pt-12">
         <Canvas
           shadows
           camera={{ position: [44, 36, 58], fov: 54 }}
@@ -886,7 +885,7 @@ export default function ShipyardScene({ ships = [] }) {
       />
 
       {/* KATMAN 6: ABSOLUTE OVERLAY RIGHT INSPECTOR DRAWER */}
-      <aside className={`info-panel-drawer pt-11 ${activeSelection && !showMasterDashboard && !showEventLog ? 'drawer-open' : 'drawer-closed'}`}>
+      <aside className={`info-panel-drawer pt-12 ${activeSelection && !showMasterDashboard && !showEventLog ? 'drawer-open' : 'drawer-closed'}`}>
         {activeSelection && (
           <div className="p-4 h-full flex flex-col justify-between overflow-y-auto font-mono-tech text-[11px]">
             <div>

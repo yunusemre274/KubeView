@@ -29,7 +29,7 @@ html, body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow: hidden;
   user-select: none;
-  font-size: 13px; /* Reduced overall base scale by ~25% */
+  font-size: 13px;
 }
 
 #root {
@@ -39,6 +39,30 @@ html, body {
   display: block;
   position: relative;
   overflow: hidden;
+}
+
+/* GUARANTEED TOP HEADER STRIP (ASLA KAYBOLMAYAN HAFİF TAVAN NAVBARI) */
+#top-header-bar {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 48px !important;
+  z-index: 9999 !important;
+  background: rgba(11, 17, 32, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.4) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 12px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  overflow-x: auto !important;
+  gap: 8px !important;
 }
 
 /* 3D Canvas Stage Wrapper */
@@ -64,7 +88,7 @@ html, body {
 /* Right Info Drawer - Absolute Overlay */
 .info-panel-drawer {
   position: absolute;
-  top: 0;
+  top: 48px;
   right: 0;
   bottom: 0;
   width: 360px;
@@ -94,13 +118,13 @@ html, body {
 /* Master Control Plane Dashboard Drawer - Compact Right Side Overlay */
 .master-dashboard-drawer {
   position: absolute;
-  top: 0;
+  top: 48px;
   right: 0;
   bottom: 0;
   width: 420px;
   max-width: 90vw;
   z-index: 45;
-  background: rgba(11, 17, 32, 0.92);
+  background: rgba(11, 17, 32, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-left: 1px solid rgba(245, 158, 11, 0.4);
@@ -178,6 +202,7 @@ html, body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  white-space: nowrap;
 }
 
 .industrial-btn:hover {
