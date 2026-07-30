@@ -9,7 +9,8 @@ import ConfirmationModal from './ConfirmationModal'
 import IngressLighthouse from './3d/IngressLighthouse'
 import NetworkPolicyBarriers from './3d/NetworkPolicyBarriers'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert } from 'lucide-react'
+import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Layers } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -408,6 +409,7 @@ export default function ShipyardScene({ ships = [] }) {
   const [showMasterDashboard, setShowMasterDashboard] = useState(false)
   const [showNetworkTraffic, setShowNetworkTraffic] = useState(true)
   const [showNetworkPolicy, setShowNetworkPolicy] = useState(false)
+  const [showHPA, setShowHPA] = useState(true)
   
   const [isReadOnlyMode, setIsReadOnlyMode] = useState(false)
   const [showEventLog, setShowEventLog] = useState(false)
@@ -415,9 +417,9 @@ export default function ShipyardScene({ ships = [] }) {
   const [activeAnomaly, setActiveAnomaly] = useState(null)
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v1.8.0 Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'Worker Node node-alpha Ready Durumda', type: 'Normal', isUserTriggered: false },
-    { id: 3, time: '23:40:00', message: 'Ingress Gateway Deniz Feneri aktif edildi (Host: tersane.k8s.local)', type: 'Normal', isUserTriggered: false }
+    { id: 1, time: '23:38:10', message: 'Tersane v1.9.0 Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'HorizontalPodAutoscaler (HPA) Otomatik Ekstra Vinç Aktif', type: 'Normal', isUserTriggered: false },
+    { id: 3, time: '23:40:00', message: 'Ingress Gateway Deniz Feneri aktif edildi', type: 'Normal', isUserTriggered: false }
   ])
 
   const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(34, 30, 46))
@@ -502,24 +504,20 @@ export default function ShipyardScene({ ships = [] }) {
   const triggerAnomalySimulation = (anomalyType) => {
     setActiveAnomaly(anomalyType)
     if (anomalyType === 'CrashLoopBackOff') {
-      addEventLog('⚠️ ALARM: Pod web-frontend-deploy-74b89 CrashLoopBackOff moduna girdi (Duman/Alev aktif)', 'Warning', false, 'pod-1')
+      addEventLog('⚠️ ALARM: Pod web-frontend-deploy-74b89 CrashLoopBackOff moduna girdi', 'Warning', false, 'pod-1')
       setCamTargetPos(new THREE.Vector3(12, 10, 16))
       setCamTargetLookAt(new THREE.Vector3(2, 2, 4))
     } else if (anomalyType === 'OOMKilled') {
-      addEventLog('⚠️ ALARM: Pod api-backend-deploy-59d4c OOMKilled (Patlama efekti)', 'Warning', false, 'pod-2')
+      addEventLog('⚠️ ALARM: Pod api-backend-deploy-59d4c OOMKilled', 'Warning', false, 'pod-2')
       setCamTargetPos(new THREE.Vector3(14, 10, 16))
       setCamTargetLookAt(new THREE.Vector3(2, 2, 4))
     } else if (anomalyType === 'NodeNotReady') {
-      addEventLog('⚠️ ALARM: Worker Node node-beta NotReady durumuna geçti (Su alma/eğilme animasyonu)', 'Warning', false, 'node-2')
+      addEventLog('⚠️ ALARM: Worker Node node-beta NotReady durumuna geçti', 'Warning', false, 'node-2')
       setCamTargetPos(new THREE.Vector3(38, 12, 12))
       setCamTargetLookAt(new THREE.Vector3(24, 0, -4))
-    } else if (anomalyType === 'ImagePullBackOff') {
-      addEventLog('⚠️ ALARM: Gantry Crane vinç kargoyu bulamadı (ImagePullBackOff)', 'Warning', false, 'crane-1')
-      setCamTargetPos(new THREE.Vector3(2, 14, 22))
-      setCamTargetLookAt(new THREE.Vector3(-12, 4, 6))
     } else {
       setActiveAnomaly(null)
-      addEventLog('Sistem Normale Döndü (Self-Heal Active)', 'Normal', false)
+      addEventLog('Sistem Normale Döndü', 'Normal', false)
     }
   }
 
@@ -529,11 +527,8 @@ export default function ShipyardScene({ ships = [] }) {
       data: {
         name: 'tersane-ingress-gateway',
         hosts: ['tersane.k8s.local'],
-        rules: [
-          { path: '/', service: 'web-frontend-svc:80' },
-          { path: '/api', service: 'api-backend-svc:8000' }
-        ],
-        tls: 'Enabled (Let\'s Encrypt RSA 4096)'
+        rules: [{ path: '/', service: 'web-frontend-svc:80' }, { path: '/api', service: 'api-backend-svc:8000' }],
+        tls: 'Enabled (Let\'s Encrypt)'
       }
     })
     setCamTargetPos(new THREE.Vector3(42, 16, 32))
@@ -543,12 +538,7 @@ export default function ShipyardScene({ ships = [] }) {
   const handleSelectNetworkPolicy = () => {
     setActiveSelection({
       type: 'NETWORK_POLICY',
-      data: {
-        name: 'default-deny-ingress',
-        policyTypes: ['Ingress', 'Egress'],
-        podSelector: 'app=api-backend-deploy',
-        status: 'Active Security Barrier'
-      }
+      data: { name: 'default-deny-ingress', policyTypes: ['Ingress', 'Egress'], podSelector: 'app=api-backend-deploy' }
     })
     setCamTargetPos(new THREE.Vector3(4, 12, 14))
     setCamTargetLookAt(new THREE.Vector3(-10, 2, 0))
@@ -567,14 +557,7 @@ export default function ShipyardScene({ ships = [] }) {
   const handleSelectKubelet = (ship) => {
     setActiveSelection({
       type: 'KUBELET',
-      data: {
-        node_name: ship.name,
-        ip: ship.ip,
-        status: ship.kubelet_status || 'Active (Running)',
-        last_heartbeat: '1.2s ago',
-        readiness_probe: '100% Passing (2/2 probes)',
-        pods: ship.pods || []
-      }
+      data: { node_name: ship.name, ip: ship.ip, status: 'Active (Running)', last_heartbeat: '1.2s ago', pods: ship.pods || [] }
     })
   }
 
@@ -582,19 +565,13 @@ export default function ShipyardScene({ ships = [] }) {
     setActiveSelection({ type: 'MASTER', data: {} })
     setCamTargetPos(new THREE.Vector3(-16, 8, -6))
     setCamTargetLookAt(new THREE.Vector3(-22, 4, -14))
-    setTimeout(() => {
-      setShowMasterDashboard(true)
-    }, 400)
+    setTimeout(() => { setShowMasterDashboard(true) }, 400)
   }
 
   const handleSelectCrane = () => {
     setActiveSelection({
       type: 'CRANE',
-      data: {
-        scheduler_name: 'default-scheduler',
-        last_decision: 'pod redis-cache-set-0 -> node-beta (Score: 94/100, Reason: LeastRequestedPriority)',
-        pending_queue: 1
-      }
+      data: { scheduler_name: 'default-scheduler', last_decision: 'pod redis-cache-set-0 -> node-beta', pending_queue: 1 }
     })
     setCamTargetPos(new THREE.Vector3(2, 14, 22))
     setCamTargetLookAt(new THREE.Vector3(-12, 4, 6))
@@ -603,14 +580,7 @@ export default function ShipyardScene({ ships = [] }) {
   const handleSelectKubeProxy = () => {
     setActiveSelection({
       type: 'KUBE_PROXY',
-      data: {
-        mode: 'iptables',
-        services: [
-          { name: 'web-frontend-svc', clusterIP: '10.96.0.45', endpoints: ['10.244.0.12:80'] },
-          { name: 'api-backend-svc', clusterIP: '10.96.0.88', endpoints: ['10.244.0.15:8000'] },
-          { name: 'redis-svc', clusterIP: '10.96.0.120', endpoints: ['10.244.1.20:6379'] }
-        ]
-      }
+      data: { mode: 'iptables', services: [{ name: 'web-frontend-svc', clusterIP: '10.96.0.45', endpoints: ['10.244.0.12:80'] }] }
     })
     setCamTargetPos(new THREE.Vector3(32, 12, 0))
     setCamTargetLookAt(new THREE.Vector3(18, 4, -16))
@@ -629,7 +599,7 @@ export default function ShipyardScene({ ships = [] }) {
     setPendingMutation({
       type: 'DELETE_POD',
       title: 'POD SİLME ONAYI',
-      message: `Pod '${pod.name}' silinecek ve Deployment tarafından yeniden başlatılacak. Devam etmek istiyor musunuz?`,
+      message: `Pod '${pod.name}' silinecek ve Deployment tarafından yeniden başlatılacak.`,
       targetName: pod.name
     })
   }
@@ -639,33 +609,31 @@ export default function ShipyardScene({ ships = [] }) {
     setPendingMutation({
       type: 'RESTART_POD',
       title: 'POD YENİDEN BAŞLATMA ONAYI',
-      message: `Pod '${pod.name}' yeniden başlatılacak. Devam etmek istiyor musunuz?`,
+      message: `Pod '${pod.name}' yeniden başlatılacak.`,
       targetName: pod.name
     })
   }
 
   const executePendingMutation = () => {
     if (!pendingMutation) return
-
     if (pendingMutation.type === 'DELETE_POD') {
-      addEventLog(`Pod '${pendingMutation.targetName}' silindi (Kullanıcı Tarafından Tetiklendi)`, 'Warning', true, pendingMutation.targetName)
+      addEventLog(`Pod '${pendingMutation.targetName}' silindi (Kullanıcı Tetikledi)`, 'Warning', true, pendingMutation.targetName)
       setActiveSelection(null)
     } else if (pendingMutation.type === 'RESTART_POD') {
-      addEventLog(`Pod '${pendingMutation.targetName}' yeniden başlatılıyor (Kullanıcı Tarafından Tetiklendi)`, 'Normal', true, pendingMutation.targetName)
+      addEventLog(`Pod '${pendingMutation.targetName}' yeniden başlatılıyor (Kullanıcı Tetikledi)`, 'Normal', true, pendingMutation.targetName)
     }
-
     setPendingMutation(null)
   }
 
   return (
     <div className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
       
-      {/* SOL ÜST MİNİMAL ROZET VE SALT İZLEME MODU */}
+      {/* SOL ÜST MİNİMAL ROZET */}
       <div className="fixed top-3 left-3 z-30 pointer-events-auto flex items-center gap-2">
         <div className="glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-2">
           <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
           <span className="font-industrial text-sm font-bold text-amber-400 tracking-wider">
-            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.8.0</span>
+            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.9.0</span>
           </span>
         </div>
 
@@ -722,9 +690,13 @@ export default function ShipyardScene({ ships = [] }) {
           <HarborVillage onClickBuilding={handleSelectMaster} />
           <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
 
-          {/* FAZ 18: INGRESS LIGHTHOUSE & NETWORK POLICY BARRIERS */}
           <IngressLighthouse position={[28, 0.2, 18]} onSelectIngress={handleSelectIngress} />
           <NetworkPolicyBarriers position={[-10, 1.5, 0]} active={showNetworkPolicy} onSelectNetworkPolicy={handleSelectNetworkPolicy} />
+
+          {/* FAZ 19: ORCHESTRATION HELPERS */}
+          {showHPA && <HPAMobileCrane position={[-4, 1, 6]} />}
+          <NodeAffinityLines start={[2, 1, 4]} end={[-22, 1, 0]} active={true} />
+          <PDBMaintenanceFlag position={[-16, 2, 14]} />
 
           <NetworkTrafficParticles ships={activeShips} showTraffic={showNetworkTraffic} />
 
@@ -751,7 +723,7 @@ export default function ShipyardScene({ ships = [] }) {
         </Canvas>
       </div>
 
-      {/* KATMAN 2: MINIMAL BOTTOM TABS & TOGGLES */}
+      {/* KATMAN 2: MINIMAL BOTTOM TABS */}
       <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 industrial-panel p-1 rounded-xl border-amber-500/40">
         <button
           onClick={handleResetCamera}
@@ -770,11 +742,19 @@ export default function ShipyardScene({ ships = [] }) {
         </button>
 
         <button
+          onClick={() => setShowHPA(!showHPA)}
+          className={`industrial-btn py-1 text-xs ${showHPA ? 'industrial-btn-blue-active' : ''}`}
+        >
+          <Cpu className="w-3.5 h-3.5 text-amber-400" />
+          <span>🤖 HPA VİNÇİ ({showHPA ? 'AKTİF' : 'PASİF'})</span>
+        </button>
+
+        <button
           onClick={() => setShowNetworkPolicy(!showNetworkPolicy)}
           className={`industrial-btn py-1 text-xs ${showNetworkPolicy ? 'bg-red-500/20 text-red-300 border-red-500/50' : ''}`}
         >
           <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
-          <span>🛡️ NETWORK POLICY ({showNetworkPolicy ? 'AKTİF' : 'PASİF'})</span>
+          <span>🛡️ NETWORK POLICY</span>
         </button>
 
         <button
@@ -782,7 +762,7 @@ export default function ShipyardScene({ ships = [] }) {
           className={`industrial-btn py-1 text-xs ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
         >
           <Zap className="w-3.5 h-3.5" />
-          <span>⚡ AĞ TRAFİĞİ ({showNetworkTraffic ? 'AÇIK' : 'KAPALI'})</span>
+          <span>⚡ AĞ TRAFİĞİ</span>
         </button>
 
         <select
@@ -791,11 +771,10 @@ export default function ShipyardScene({ ships = [] }) {
           className="industrial-select text-xs py-1"
         >
           <option value="">⚠️ ANOMALİ SİMÜLASYONU SEÇ</option>
-          <option value="CrashLoopBackOff">🔥 CrashLoopBackOff (Duman/Alev)</option>
-          <option value="OOMKilled">💥 OOMKilled (Patlama Efekti)</option>
-          <option value="NodeNotReady">🌊 Node NotReady (Gemi Su Alma)</option>
-          <option value="ImagePullBackOff">🏗️ ImagePullBackOff (Boş Vinç)</option>
-          <option value="ReadinessFail">🚩 Readiness Fail (Kırmızı Bayrak)</option>
+          <option value="CrashLoopBackOff">🔥 CrashLoopBackOff</option>
+          <option value="OOMKilled">💥 OOMKilled</option>
+          <option value="NodeNotReady">🌊 Node NotReady</option>
+          <option value="ImagePullBackOff">🏗️ ImagePullBackOff</option>
         </select>
       </div>
 
@@ -816,10 +795,6 @@ export default function ShipyardScene({ ships = [] }) {
           setShowEventLog(false)
           if (ev.targetObject === 'pod-1') {
             triggerAnomalySimulation('CrashLoopBackOff')
-          } else if (ev.targetObject === 'pod-2') {
-            triggerAnomalySimulation('OOMKilled')
-          } else if (ev.targetObject === 'node-2') {
-            triggerAnomalySimulation('NodeNotReady')
           }
         }}
       />
@@ -859,43 +834,6 @@ export default function ShipyardScene({ ships = [] }) {
                   <X className="w-5 h-5" />
                 </button>
               </div>
-
-              {/* INGRESS DETAILS */}
-              {activeSelection.type === 'INGRESS' && (
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">INGRESS GATEWAY:</span>
-                    <strong className="text-amber-400 text-sm">{activeSelection.data.name}</strong>
-                  </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-sky-400 font-bold block text-[10px]">ROTA KURALLARI:</span>
-                    {activeSelection.data.rules?.map((r, i) => (
-                      <div key={i} className="text-[11px] text-slate-200">
-                        ● Host: <strong className="text-white">tersane.k8s.local</strong> {r.path} ➔ <span className="text-emerald-400">{r.service}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700">
-                    <span className="text-slate-400 text-[10px]">TLS SERTİFİKASI:</span>
-                    <div className="text-emerald-400 font-bold text-[11px]">{activeSelection.data.tls}</div>
-                  </div>
-                </div>
-              )}
-
-              {/* NETWORK POLICY DETAILS */}
-              {activeSelection.type === 'NETWORK_POLICY' && (
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">GÜVENLİK BARİYERİ (POLICY):</span>
-                    <strong className="text-red-400 text-sm">{activeSelection.data.name}</strong>
-                  </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
-                    <div className="flex justify-between"><span>Policy Türü:</span><strong className="text-amber-300">Ingress, Egress</strong></div>
-                    <div className="flex justify-between"><span>Pod Selector:</span><strong className="text-sky-300">app=api-backend-deploy</strong></div>
-                    <div className="flex justify-between"><span>Erişim Durumu:</span><span className="text-red-400 font-bold">● Isolated (Blocked)</span></div>
-                  </div>
-                </div>
-              )}
 
               {/* POD DETAILS */}
               {activeSelection.type === 'POD' && (

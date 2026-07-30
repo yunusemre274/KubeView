@@ -4,13 +4,14 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 ---
 
-## [v1.9.0 - Faz 18 Ingress Lighthouse & NetworkPolicy Barriers] - 2026-07-30
+## [v1.10.0 - Faz 19 HPA Mobile Crane, Node Affinity & PDB Release] - 2026-07-30
 
 ### Eklendi / Düzeltildi
-- **Ingress / Gateway API Deniz Feneri (`IngressLighthouse.jsx`):** Liman ağzına dönebilen ışık hüzmeli 3D Uluslararası Giriş Deniz Feneri eklendi ve rota kuralları müfettiş çekmecesi bağlandı.
-- **NetworkPolicy Güvenlik Bariyeri (`NetworkPolicyBarriers.jsx`):** Rıhtım ve gemiler arasına belirebilen 3D kırmızı lazer güvenlik bariyerleri ve UI aktif/pasif anahtarı eklendi.
+- **HorizontalPodAutoscaler (HPA) Ekstra Mobil Vinç (`HPAMobileCrane.jsx`):** Pod yük artışında otomatik limana giren ve hareket eden 3D sarı mobil vinç eklendi.
+- **Node Affinity / Anti-Affinity Çizgileri (`NodeAffinityLines.jsx`):** Gemiler ile tercih edilen rıhtımlar arasına 3D magnetik yeşil kılavuz çizgileri kurgulandı.
+- **PodDisruptionBudget (PDB) Bakım Bayrağı (`PDBMaintenanceFlag.jsx`):** Rıhtıma bakıma alınabilir gemi sınırı sarı uyarı bayrağı yerleştirildi.
 
 ---
 
-## [v1.8.0 - Faz 17 Anomali & Alarm Dramatizasyonu Engine] - 2026-07-30
-- CrashLoopBackOff duman/alev, OOMKilled patlama, NodeNotReady gemi su alma animasyonları ve one-shot tetikleyici eklendi.
+## [v1.9.0 - Faz 18 Ingress Lighthouse & NetworkPolicy Barriers] - 2026-07-30
+- 3D Ingress Gateway Deniz Feneri ve 3D NetworkPolicy Kırmızı Lazer Güvenlik Bariyerleri eklendi.
