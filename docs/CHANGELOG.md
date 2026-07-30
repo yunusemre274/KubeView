@@ -4,13 +4,19 @@ Projedeki tüm önemli değişiklikler bu dosyada belgelenir. Format [Keep a Cha
 
 ---
 
+## [v0.6.0 - Faz 6 Tamamlandı] - 2026-07-30
+
+### Eklendi
+- `backend-agent` tarafından `apps/v1` `Deployments` Informer'ı eklendi ve `Sefer Siparişi (Deployment)` paketlerinin WebSocket yayını sağlandı (`backend/pkg/k8s/watcher.go`). (`architecture-agent` onaylı)
+- `frontend-agent` tarafından ekranın sol üstüne "📜 Sefer Siparişleri (Deployments)" listesini ve canlı replica durumlarını render eden `DeploymentPanel.jsx` bileşeni eklendi. (`qa-agent` onaylı)
+
+---
+
 ## [v0.5.0 - Faz 5 Tamamlandı] - 2026-07-30
 
 ### Eklendi
-- `backend-agent` tarafından `k8s.io/metrics` kullanılarak `metrics.k8s.io` API entegrasyonu sağlandı (`backend/pkg/metrics/collector.go`). (`security-agent` onaylı)
-- `integration-agent` tarafından `ResourceMetrics` veri alanları WebSocket `WSMessage` şemalarına eklendi.
-- `frontend-agent` tarafından 3D Gemi (Node) üstüne CPU ve RAM doluluk çubukları (metrics bars) eklendi. (`architecture-agent` onaylı)
-- `frontend-agent` tarafından kargo paletine (Pod) tıklandığında anlık CPU/Memory tüketimini gösteren interaktif detay modalı geliştirildi. (`qa-agent` onaylı)
+- `backend-agent` tarafından `metrics.k8s.io` API entegrasyonu sağlandı (`backend/pkg/metrics/collector.go`).
+- `frontend-agent` tarafından 3D Gemi (Node) üstüne CPU ve RAM doluluk çubukları (metrics bars) ve interaktif Pod detay kartı eklendi.
 
 ---
 
@@ -19,10 +25,3 @@ Projedeki tüm önemli değişiklikler bu dosyada belgelenir. Format [Keep a Cha
 ### Eklendi
 - `frontend-agent` tarafından otomatik yeniden bağlanma destekli `useShipyardWebSocket.js` React hook'u geliştirildi.
 - `frontend-agent` tarafından canlı K8s olaylarını yayınlayan `EventStream.jsx` ("📢 Liman Anonsları") bileşeni yazıldı.
-
----
-
-## [v0.3.0 - Faz 3 Tamamlandı] - 2026-07-30
-
-### Eklendi
-- `frontend-agent` tarafından React 18 ve React Three Fiber tabanlı `/frontend` 3D sahnesi kuruldu.
