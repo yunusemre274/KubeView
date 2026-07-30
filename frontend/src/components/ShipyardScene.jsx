@@ -10,7 +10,7 @@ import IngressLighthouse from './3d/IngressLighthouse'
 import NetworkPolicyBarriers from './3d/NetworkPolicyBarriers'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Layers } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -419,7 +419,7 @@ export default function ShipyardScene({ ships = [] }) {
 
   const [eventsLog, setEventsLog] = useState([
     { id: 1, time: '23:38:10', message: 'Tersane v2.0.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'Cilium Hubble eBPF gelişmiş ağ gözlemcisi aktif', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'Worker Node node-alpha Ready Durumda', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
@@ -436,6 +436,7 @@ export default function ShipyardScene({ ships = [] }) {
       metrics: { cpu_usage: '320m', memory_usage: '1024Mi', cpu_capacity: '4000m', mem_capacity: '8192Mi' },
       kubelet_status: 'Active (Running)',
       kubeproxy_status: 'Active (Running)',
+      labels: ['beta.kubernetes.io/arch=amd64', 'kubernetes.io/os=linux'],
       pods: [
         {
           id: 'pod-1',
@@ -474,6 +475,7 @@ export default function ShipyardScene({ ships = [] }) {
       metrics: { cpu_usage: '180m', memory_usage: '640Mi', cpu_capacity: '4000m', mem_capacity: '8192Mi' },
       kubelet_status: 'Active (Running)',
       kubeproxy_status: 'Active (Running)',
+      labels: ['beta.kubernetes.io/arch=amd64', 'kubernetes.io/os=linux'],
       pods: [
         {
           id: 'pod-4',
@@ -502,7 +504,6 @@ export default function ShipyardScene({ ships = [] }) {
     ])
   }
 
-  // FAZ 20: 3D SCREENSHOT PNG EXPORT FUNCTION
   const handleExportPNG = () => {
     const canvasElement = document.querySelector('.stage-wrapper canvas')
     if (canvasElement) {
@@ -646,12 +647,11 @@ export default function ShipyardScene({ ships = [] }) {
       <div className="fixed top-3 left-3 z-30 pointer-events-auto flex items-center gap-2">
         <div className="glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-2">
           <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
-          <span className="font-industrial text-sm font-bold text-amber-400 tracking-wider">
-            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.0.0 PRO</span>
+          <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
+            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.0.0</span>
           </span>
         </div>
 
-        {/* MULTI-CLUSTER CONTEXTS */}
         <select
           value={activeClusterContext}
           onChange={(e) => {
@@ -660,9 +660,9 @@ export default function ShipyardScene({ ships = [] }) {
           }}
           className="industrial-select text-xs py-1"
         >
-          <option value="minikube">🐳 minikube (Local)</option>
+          <option value="minikube">🐳 minikube</option>
           <option value="docker-desktop">📦 docker-desktop</option>
-          <option value="prod-cluster">☁️ prod-cluster (GKE)</option>
+          <option value="prod-cluster">☁️ prod-cluster</option>
         </select>
 
         <button
@@ -671,21 +671,64 @@ export default function ShipyardScene({ ships = [] }) {
             setIsReadOnlyMode(nextMode)
             addEventLog(`Mod Değiştirildi: ${nextMode ? 'SALT İZLEME MODU' : 'MÜDAHALE MODU'}`, 'Normal', true)
           }}
-          className={`industrial-btn text-xs py-1.5 px-3 flex items-center gap-1.5 shadow-lg ${isReadOnlyMode ? 'bg-sky-500/20 text-sky-300 border-sky-500/50' : 'bg-amber-500/20 text-amber-300 border-amber-500/50'}`}
+          className={`industrial-btn text-xs py-1 px-2.5 flex items-center gap-1 shadow-lg ${isReadOnlyMode ? 'bg-sky-500/20 text-sky-300 border-sky-500/50' : 'bg-amber-500/20 text-amber-300 border-amber-500/50'}`}
         >
           {isReadOnlyMode ? <Lock className="w-3.5 h-3.5 text-sky-400" /> : <Unlock className="w-3.5 h-3.5 text-amber-400" />}
           <span>{isReadOnlyMode ? '🔒 SALT İZLEME' : '🔓 MÜDAHALE AÇIK'}</span>
         </button>
       </div>
 
+      {/* SORUN 5 FIX: PINNED TOP TOOLBAR BAR (EN ÜSTE SABİTLENMİŞ, KÜÇÜLTÜLMÜŞ ARAÇ ÇUBUĞU) */}
+      <div className="fixed top-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1 industrial-panel p-1 rounded-xl border-amber-500/40 shadow-2xl">
+        <button
+          onClick={handleResetCamera}
+          className={`industrial-btn py-0.5 px-2 text-[11px] ${!activeSelection && !showMasterDashboard && !showEventLog ? 'industrial-btn-active' : ''}`}
+        >
+          <Eye className="w-3 h-3" />
+          <span>🦅 KUŞBAKIŞI</span>
+        </button>
+
+        <button
+          onClick={handleSelectMaster}
+          className={`industrial-btn py-0.5 px-2 text-[11px] ${showMasterDashboard ? 'industrial-btn-active' : ''}`}
+        >
+          <Building2 className="w-3 h-3" />
+          <span>🏢 YÖNETİM BİNASI</span>
+        </button>
+
+        <button
+          onClick={() => setShowHPA(!showHPA)}
+          className={`industrial-btn py-0.5 px-2 text-[11px] ${showHPA ? 'industrial-btn-blue-active' : ''}`}
+        >
+          <Cpu className="w-3 h-3 text-amber-400" />
+          <span>🤖 HPA VİNCİ</span>
+        </button>
+
+        <button
+          onClick={() => setShowNetworkPolicy(!showNetworkPolicy)}
+          className={`industrial-btn py-0.5 px-2 text-[11px] ${showNetworkPolicy ? 'bg-red-500/20 text-red-300 border-red-500/50' : ''}`}
+        >
+          <ShieldAlert className="w-3 h-3 text-red-400" />
+          <span>🛡️ POLICY</span>
+        </button>
+
+        <button
+          onClick={() => setShowNetworkTraffic(!showNetworkTraffic)}
+          className={`industrial-btn py-0.5 px-2 text-[11px] ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
+        >
+          <Zap className="w-3 h-3" />
+          <span>⚡ AĞ TRAFİĞİ</span>
+        </button>
+      </div>
+
       {/* SAĞ ÜST PNG EXPORT & OLAY GÜNLÜĞÜ BUTONLARI */}
-      <div className="fixed top-3 right-3 z-30 pointer-events-auto flex items-center gap-2">
+      <div className="fixed top-3 right-3 z-30 pointer-events-auto flex items-center gap-1.5">
         <button
           onClick={handleExportPNG}
-          className="industrial-btn text-xs py-1.5 px-3 flex items-center gap-1.5 shadow-lg border-sky-500/40 text-sky-300 hover:bg-sky-500/20"
+          className="industrial-btn text-xs py-1 px-2.5 flex items-center gap-1 shadow-lg border-sky-500/40 text-sky-300 hover:bg-sky-500/20"
         >
-          <Camera className="w-4 h-4 text-sky-400" />
-          <span>📸 PNG İNDİR</span>
+          <Camera className="w-3.5 h-3.5 text-sky-400" />
+          <span>📸 PNG</span>
         </button>
 
         <button
@@ -693,10 +736,10 @@ export default function ShipyardScene({ ships = [] }) {
             setShowEventLog(!showEventLog)
             setActiveSelection(null)
           }}
-          className={`industrial-btn text-xs py-1.5 px-3 flex items-center gap-1.5 shadow-lg ${showEventLog ? 'industrial-btn-active' : ''}`}
+          className={`industrial-btn text-xs py-1 px-2.5 flex items-center gap-1 shadow-lg ${showEventLog ? 'industrial-btn-active' : ''}`}
         >
-          <Clock className="w-4 h-4 text-amber-400" />
-          <span>📋 OLAY GÜNLÜĞÜ ({eventsLog.length})</span>
+          <Clock className="w-3.5 h-3.5 text-amber-400" />
+          <span>📋 GÜNLÜK ({eventsLog.length})</span>
         </button>
       </div>
 
@@ -759,60 +802,6 @@ export default function ShipyardScene({ ships = [] }) {
         </Canvas>
       </div>
 
-      {/* KATMAN 2: MINIMAL BOTTOM TABS */}
-      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 industrial-panel p-1 rounded-xl border-amber-500/40">
-        <button
-          onClick={handleResetCamera}
-          className={`industrial-btn py-1 text-xs ${!activeSelection && !showMasterDashboard && !showEventLog ? 'industrial-btn-active' : ''}`}
-        >
-          <Eye className="w-3.5 h-3.5" />
-          <span>🦅 TÜM LİMAN (KUŞBAKIŞI)</span>
-        </button>
-
-        <button
-          onClick={handleSelectMaster}
-          className={`industrial-btn py-1 text-xs ${showMasterDashboard ? 'industrial-btn-active' : ''}`}
-        >
-          <Building2 className="w-3.5 h-3.5" />
-          <span>🏢 YÖNETİM BİNASINA GİR</span>
-        </button>
-
-        <button
-          onClick={() => setShowHPA(!showHPA)}
-          className={`industrial-btn py-1 text-xs ${showHPA ? 'industrial-btn-blue-active' : ''}`}
-        >
-          <Cpu className="w-3.5 h-3.5 text-amber-400" />
-          <span>🤖 HPA VİNÇİ ({showHPA ? 'AKTİF' : 'PASİF'})</span>
-        </button>
-
-        <button
-          onClick={() => setShowNetworkPolicy(!showNetworkPolicy)}
-          className={`industrial-btn py-1 text-xs ${showNetworkPolicy ? 'bg-red-500/20 text-red-300 border-red-500/50' : ''}`}
-        >
-          <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
-          <span>🛡️ NETWORK POLICY</span>
-        </button>
-
-        <button
-          onClick={() => setShowNetworkTraffic(!showNetworkTraffic)}
-          className={`industrial-btn py-1 text-xs ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
-        >
-          <Zap className="w-3.5 h-3.5" />
-          <span>⚡ AĞ TRAFİĞİ</span>
-        </button>
-
-        <select
-          onChange={(e) => triggerAnomalySimulation(e.target.value)}
-          value={activeAnomaly || ''}
-          className="industrial-select text-xs py-1"
-        >
-          <option value="">⚠️ ANOMALİ SİMÜLASYONU SEÇ</option>
-          <option value="CrashLoopBackOff">🔥 CrashLoopBackOff</option>
-          <option value="OOMKilled">💥 OOMKilled</option>
-          <option value="NodeNotReady">🌊 Node NotReady</option>
-        </select>
-      </div>
-
       {/* KATMAN 3: 2D MASTER CONTROL PLANE DASHBOARD OVERLAY */}
       {showMasterDashboard && (
         <MasterDashboardOverlay
@@ -846,14 +835,14 @@ export default function ShipyardScene({ ships = [] }) {
       {/* KATMAN 6: ABSOLUTE OVERLAY RIGHT INSPECTOR DRAWER */}
       <aside className={`info-panel-drawer ${activeSelection && !showMasterDashboard && !showEventLog ? 'drawer-open' : 'drawer-closed'}`}>
         {activeSelection && (
-          <div className="p-4 h-full flex flex-col justify-between overflow-y-auto font-mono-tech text-xs">
+          <div className="p-4 h-full flex flex-col justify-between overflow-y-auto font-mono-tech text-[11px]">
             <div>
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700">
-                <h3 className="font-industrial text-base font-bold text-amber-400 flex items-center gap-2">
-                  {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-5 h-5 text-sky-400" />}
-                  {activeSelection.type === 'INGRESS' && <Compass className="w-5 h-5 text-amber-400" />}
-                  {activeSelection.type === 'POD' && <Box className="w-5 h-5 text-emerald-400" />}
-                  {activeSelection.type === 'SHIP' && <ShipIcon className="w-5 h-5 text-sky-400" />}
+              <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-700">
+                <h3 className="font-industrial text-sm font-bold text-amber-400 flex items-center gap-2">
+                  {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-4 h-4 text-sky-400" />}
+                  {activeSelection.type === 'INGRESS' && <Compass className="w-4 h-4 text-amber-400" />}
+                  {activeSelection.type === 'POD' && <Box className="w-4 h-4 text-emerald-400" />}
+                  {activeSelection.type === 'SHIP' && <ShipIcon className="w-4 h-4 text-sky-400" />}
                   <span>
                     {activeSelection.type === 'KUBE_PROXY' && '📻 AĞ (KUBE-PROXY)'}
                     {activeSelection.type === 'INGRESS' && '🚨 INGRESS DENİZ FENERİ'}
@@ -862,42 +851,162 @@ export default function ShipyardScene({ ships = [] }) {
                   </span>
                 </h3>
                 <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* KUBE PROXY DETAILS & CILIUM HUBBLE ACTIVE */}
-              {activeSelection.type === 'KUBE_PROXY' && (
-                <div className="space-y-4">
+              {/* SORUN 6 FIX: POD DETAILS (TAM EKSİKSİZ ŞEMA) */}
+              {activeSelection.type === 'POD' && (
+                <div className="space-y-3">
                   <div>
-                    <span className="text-slate-400 block text-[10px]">AĞ YÖNLENDİRME MERKEZİ:</span>
-                    <strong className="text-sky-400 text-sm">kube-proxy (iptables mode)</strong>
+                    <span className="text-slate-400 block text-[10px]">POD ADI:</span>
+                    <strong className="text-white text-xs break-all">{activeSelection.data.name || 'web-frontend-deploy-74b89'}</strong>
                   </div>
-                  <div className="bg-slate-800/80 p-2.5 rounded border border-emerald-500/40 text-[11px] space-y-1">
-                    <span className="text-emerald-400 font-bold block">🐝 CILIUM HUBBLE eBPF MODE:</span>
-                    <span className="text-slate-300">Gelişmiş eBPF Kernel Trafik Gözlemcisi Aktif</span>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
+                      <strong className="text-sky-400">{activeSelection.data.namespace || 'default'}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">DURUM:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.status || 'Running'}</strong>
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 font-bold block text-[10px]">AĞ & DNS BİLGİSİ:</span>
+                    <div>Pod IP: <strong className="text-slate-200">{activeSelection.data.ip || '10.244.0.12'}</strong></div>
+                    <div>Service IP: <strong className="text-slate-200">{activeSelection.data.service_ip || '10.96.0.45'}</strong></div>
+                    <div className="text-[9px] text-sky-300 break-all">{activeSelection.data.dns || 'web-frontend-svc.default.svc.cluster.local'}</div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-purple-400 font-bold block text-[10px]">İÇİNDEKİ KONTEYNIRLAR:</span>
+                    {(activeSelection.data.containers || [{ name: 'app', image: 'nginx:alpine', status: 'Running', restarts: 0 }]).map((c, idx) => (
+                      <div key={idx} className="text-[10px] text-slate-300">
+                        ● <strong>{c.name}</strong> ({c.image}) - <span className="text-emerald-400">{c.status}</span> (Restarts: {c.restarts})
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">KAYNAK REQ / LIMIT:</span>
+                    <div>CPU: <strong className="text-emerald-300">{activeSelection.data.resources?.cpu_req || '100m'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.cpu_lim || '500m'}</strong></div>
+                    <div>RAM: <strong className="text-purple-300">{activeSelection.data.resources?.mem_req || '128Mi'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.mem_lim || '512Mi'}</strong></div>
+                  </div>
+
+                  <div className="bg-slate-900/90 p-2.5 rounded-lg border border-amber-500/30 space-y-1.5">
+                    <span className="text-amber-400 font-bold block text-[10px]">🛠️ MÜDAHALE AKSİYONLARI:</span>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
+                        onClick={() => triggerRestartPodAction(activeSelection.data)}
+                        className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'industrial-btn-blue-active'}`}
+                      >
+                        <RefreshCw className="w-3 h-3" />
+                        <span>RESTART</span>
+                      </button>
+
+                      <button
+                        disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
+                        onClick={() => triggerDeletePodAction(activeSelection.data)}
+                        className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'bg-red-600 text-white border-red-500 hover:bg-red-700'}`}
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        <span>SİL</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
 
-              {/* WORKER NODE DETAILS & COST ESTIMATE TABLE */}
+              {/* REGRESYON 1 FIX: WORKER NODE DETAILS (TAM EKSİKSİZ ŞEMA + EN ALTA MALİYET) */}
               {activeSelection.type === 'SHIP' && (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div>
                     <span className="text-slate-400 block text-[10px]">NODE ADI:</span>
-                    <strong className="text-white text-sm">{activeSelection.data.name}</strong>
+                    <strong className="text-white text-xs">{activeSelection.data.name}</strong>
                   </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">NODE IP:</span>
+                      <strong className="text-sky-300">{activeSelection.data.ip || '192.168.1.101'}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">SAĞLIK:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.status || 'Ready'}</strong>
+                    </div>
+                  </div>
+
+                  {/* CPU / RAM CAPACITY & USAGE BARS */}
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
+                    <span className="text-amber-400 font-bold block text-[10px]">KAPASİTE VS KULLANIM:</span>
+                    <div>
+                      <div className="flex justify-between text-[10px] text-slate-300">
+                        <span>CPU Kullanımı:</span>
+                        <strong className="text-emerald-400">{activeSelection.data.metrics?.cpu_usage || '320m'} / {activeSelection.data.metrics?.cpu_capacity || '4000m'}</strong>
+                      </div>
+                      <div className="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden mt-1">
+                        <div className="bg-emerald-500 h-full" style={{ width: '28%' }}></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-[10px] text-slate-300">
+                        <span>RAM Kullanımı:</span>
+                        <strong className="text-purple-400">{activeSelection.data.metrics?.memory_usage || '1024Mi'} / {activeSelection.data.metrics?.mem_capacity || '8192Mi'}</strong>
+                      </div>
+                      <div className="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden mt-1">
+                        <div className="bg-purple-500 h-full" style={{ width: '22%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* KUBELET & KUBE-PROXY STATUS */}
                   <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-amber-400 font-bold block text-[10px]">💵 TAHMİNİ STATİK MALİYET:</span>
-                    <div className="flex justify-between"><span>Instance Tipi:</span><strong className="text-white">t3.medium (AWS)</strong></div>
-                    <div className="flex justify-between"><span>Saatlik Ücret:</span><strong className="text-emerald-400">$0.0416 / saat</strong></div>
-                    <div className="flex justify-between"><span>Aylık Ücret:</span><strong className="text-amber-300">~$30.00 / ay</strong></div>
+                    <span className="text-sky-400 font-bold block text-[10px]">NODE SERVİSLERİ & AJANLAR:</span>
+                    <div className="flex justify-between"><span>Kubelet Status:</span><strong className="text-emerald-400">Active (Running)</strong></div>
+                    <div className="flex justify-between"><span>Kube-Proxy Status:</span><strong className="text-emerald-400">Active (iptables)</strong></div>
+                    <div className="flex justify-between"><span>Bağlı Küme:</span><strong className="text-slate-200">{activeClusterContext}</strong></div>
+                  </div>
+
+                  {/* POD LIST ON THIS NODE */}
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-emerald-400 font-bold block text-[10px]">ÜZERİNDEKİ POD'LAR ({activeSelection.data.pods?.length || 2}):</span>
+                    {(activeSelection.data.pods || []).map((p) => (
+                      <div key={p.id} className="text-[10px] text-slate-300 flex justify-between">
+                        <span>● {p.name}</span>
+                        <span className="text-sky-400">[{p.namespace}]</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* NODE LABELS */}
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-slate-400 font-bold block text-[10px]">NODE ETİKETLERİ (LABELS):</span>
+                    {(activeSelection.data.labels || ['beta.kubernetes.io/arch=amd64', 'kubernetes.io/os=linux']).map((lbl, idx) => (
+                      <div key={idx} className="text-[9px] text-slate-400 bg-slate-900/80 px-1.5 py-0.5 rounded border border-slate-800 inline-block mr-1 mb-1">
+                        {lbl}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* EN ALTA AYRI BÖLÜM: TAHMİNİ STATİK MALİYET */}
+                  <div className="bg-slate-900/90 p-2.5 rounded-lg border border-amber-500/40 space-y-1">
+                    <span className="text-amber-400 font-bold block text-[10px] flex items-center gap-1">
+                      <DollarSign className="w-3.5 h-3.5 text-amber-400" /> TAHMİNİ STATİK MALİYET:
+                    </span>
+                    <div className="flex justify-between text-[10px]"><span>Instance Tipi:</span><strong className="text-white">t3.medium (AWS)</strong></div>
+                    <div className="flex justify-between text-[10px]"><span>Saatlik Ücret:</span><strong className="text-emerald-400">$0.0416 / saat</strong></div>
+                    <div className="flex justify-between text-[10px]"><span>Tahmini Aylık:</span><strong className="text-amber-300">~$30.00 / ay</strong></div>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 text-center">
+            <div className="pt-2 border-t border-slate-800 text-[10px] text-slate-500 text-center">
               Kapatmak için yukarıdaki X ikonuna tıklayın
             </div>
           </div>
