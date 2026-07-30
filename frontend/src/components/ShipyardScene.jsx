@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Sky } from '@react-three/drei'
 import * as THREE from 'three'
 import { MasterBuildingInterior, ShipInterior } from './3d/BuildingInterior'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Cpu, HardDrive, Radio, CheckCircle2, AlertTriangle, Layers, Server, Activity, Network, ArrowRight } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -19,7 +19,7 @@ function Ocean() {
 
   return (
     <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]} receiveShadow>
-      <planeGeometry args={[300, 300, 32, 32]} />
+      <planeGeometry args={[320, 320, 32, 32]} />
       <meshStandardMaterial
         color="#0284c7"
         roughness={0.15}
@@ -219,7 +219,7 @@ function KubeProxyStation({ position = [18, 0.2, -16], onSelectKubeProxy }) {
   )
 }
 
-// 6. 3D Cargo Container (Pod)
+// 6. 3D Cargo Box Container (Pod)
 function CargoContainer({ position, color = '#10b981', onClick }) {
   const [hovered, setHovered] = useState(false)
 
@@ -343,7 +343,6 @@ function CameraController({ targetPosition, targetLookAt }) {
 export default function ShipyardScene({ ships = [] }) {
   const [viewMode, setViewMode] = useState('EXTERIOR')
   const [activeSelection, setActiveSelection] = useState(null)
-  const [selectedNamespace, setSelectedNamespace] = useState('all')
 
   const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(34, 30, 46))
   const [camTargetLookAt, setCamTargetLookAt] = useState(new THREE.Vector3(0, 2, 0))
@@ -415,7 +414,6 @@ export default function ShipyardScene({ ships = [] }) {
   ]
 
   const activeShips = ships.length > 0 ? ships : defaultShips
-  const totalPallets = activeShips.reduce((acc, s) => acc + (s.pods?.length || 0), 0)
 
   const handleSelectShip = (ship) => {
     setActiveSelection({ type: 'SHIP', data: ship })
@@ -470,7 +468,7 @@ export default function ShipyardScene({ ships = [] }) {
   }
 
   return (
-    <div className="w-full h-full h-screen min-h-0 flex-1 relative bg-slate-950 overflow-hidden flex flex-col">
+    <div className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
       
       {/* SOL ÜST ULTRA MİNİMAL ROZET (< %3 EKRAN ALANI) */}
       <div className="fixed top-3 left-3 z-30 pointer-events-auto flex items-center gap-2 glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30">
@@ -480,8 +478,8 @@ export default function ShipyardScene({ ships = [] }) {
         </span>
       </div>
 
-      {/* KATMAN 1: 3D CANVASES STAGE WRAPPER (%100 FULL SCREEN UNBROKEN HEIGHT) */}
-      <div className="stage-wrapper w-full h-full flex-1 min-h-0 relative overflow-hidden">
+      {/* KATMAN 1: 3D CANVAS STAGE WRAPPER - PERMANENT INSET 0 FULLSCREEN (NEVER RESIZES) */}
+      <div className="stage-wrapper">
         <Canvas
           shadows
           camera={{ position: [34, 30, 46], fov: 42 }}
@@ -571,161 +569,163 @@ export default function ShipyardScene({ ships = [] }) {
         ))}
       </div>
 
-      {/* KATMAN 2: SAĞ DİKEY BİLGİ KARTI ÇEKMECESİ (%100 HEIGHT, ~%15 WIDTH - SADECE SEÇİMDE AÇILIR) */}
-      {activeSelection && (
-        <aside className="fixed top-0 right-0 bottom-0 z-40 w-80 industrial-panel p-4 border-l border-amber-500/40 shadow-2xl flex flex-col justify-between overflow-y-auto animate-fadeIn">
-          <div>
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700">
-              <h3 className="font-industrial text-base font-bold text-amber-400 flex items-center gap-2">
-                {activeSelection.type === 'POD' && <Box className="w-5 h-5 text-emerald-400" />}
-                {activeSelection.type === 'SHIP' && <ShipIcon className="w-5 h-5 text-sky-400" />}
-                {activeSelection.type === 'MASTER' && <Building2 className="w-5 h-5 text-amber-400" />}
-                {activeSelection.type === 'CRANE' && <Activity className="w-5 h-5 text-amber-400" />}
-                {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-5 h-5 text-sky-400" />}
-                <span>
-                  {activeSelection.type === 'POD' && '📦 PALET (POD)'}
-                  {activeSelection.type === 'SHIP' && '🚢 GEMİ (WORKER NODE)'}
-                  {activeSelection.type === 'MASTER' && '🏢 YÖNETİM (MASTER)'}
-                  {activeSelection.type === 'CRANE' && '🏗️ VİNÇ (SCHEDULER)'}
-                  {activeSelection.type === 'KUBE_PROXY' && '📻 AĞ (KUBE-PROXY)'}
-                </span>
-              </h3>
-              <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
-                <X className="w-5 h-5" />
-              </button>
+      {/* KATMAN 2: ABSOLUTE OVERLAY RIGHT DRAWER (NEVER TOUCHES CANVAS LAYOUT OR TRIGGER RESIZE) */}
+      <aside className={`info-panel-drawer ${activeSelection ? 'drawer-open' : 'drawer-closed'}`}>
+        {activeSelection && (
+          <div className="p-4 h-full flex flex-col justify-between overflow-y-auto">
+            <div>
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700">
+                <h3 className="font-industrial text-base font-bold text-amber-400 flex items-center gap-2">
+                  {activeSelection.type === 'POD' && <Box className="w-5 h-5 text-emerald-400" />}
+                  {activeSelection.type === 'SHIP' && <ShipIcon className="w-5 h-5 text-sky-400" />}
+                  {activeSelection.type === 'MASTER' && <Building2 className="w-5 h-5 text-amber-400" />}
+                  {activeSelection.type === 'CRANE' && <Activity className="w-5 h-5 text-amber-400" />}
+                  {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-5 h-5 text-sky-400" />}
+                  <span>
+                    {activeSelection.type === 'POD' && '📦 PALET (POD)'}
+                    {activeSelection.type === 'SHIP' && '🚢 GEMİ (WORKER NODE)'}
+                    {activeSelection.type === 'MASTER' && '🏢 YÖNETİM (MASTER)'}
+                    {activeSelection.type === 'CRANE' && '🏗️ VİNÇ (SCHEDULER)'}
+                    {activeSelection.type === 'KUBE_PROXY' && '📻 AĞ (KUBE-PROXY)'}
+                  </span>
+                </h3>
+                <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* 1. POD DETAILS */}
+              {activeSelection.type === 'POD' && (
+                <div className="space-y-4 text-xs font-mono-tech">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">POD ADI:</span>
+                    <strong className="text-white text-sm break-all">{activeSelection.data.name}</strong>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
+                      <strong className="text-sky-400">{activeSelection.data.namespace}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">DURUM:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.status}</strong>
+                    </div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 block text-[10px] font-bold">AĞ & DNS BİLGİSİ:</span>
+                    <div>Pod IP: <strong className="text-slate-200">{activeSelection.data.ip || '10.244.0.12'}</strong></div>
+                    <div>Service IP: <strong className="text-slate-200">{activeSelection.data.service_ip || '10.96.0.45'}</strong></div>
+                    <div className="text-[10px] text-sky-300 break-all">{activeSelection.data.dns || 'web-svc.default.svc.cluster.local'}</div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-purple-400 block text-[10px] font-bold">KAYNAK LIMIT/REQUEST:</span>
+                    <div>CPU: <strong className="text-emerald-300">{activeSelection.data.resources?.cpu_req || '100m'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.cpu_lim || '500m'}</strong></div>
+                    <div>RAM: <strong className="text-purple-300">{activeSelection.data.resources?.mem_req || '128Mi'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.mem_lim || '512Mi'}</strong></div>
+                  </div>
+                </div>
+              )}
+
+              {/* 2. WORKER NODE DETAILS */}
+              {activeSelection.type === 'SHIP' && (
+                <div className="space-y-4 text-xs font-mono-tech">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">NODE ADI:</span>
+                    <strong className="text-white text-sm">{activeSelection.data.name}</strong>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">NODE IP:</span>
+                      <strong className="text-sky-300">{activeSelection.data.ip || '192.168.1.101'}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">SAĞLIK:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.status || 'Ready'}</strong>
+                    </div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 block text-[10px] font-bold">KAPASİTE VS KULLANIM:</span>
+                    <div>CPU: <strong className="text-emerald-300">{activeSelection.data.metrics?.cpu_usage || '320m'}</strong> / {activeSelection.data.metrics?.cpu_capacity || '4000m'}</div>
+                    <div>RAM: <strong className="text-purple-300">{activeSelection.data.metrics?.memory_usage || '1024Mi'}</strong> / {activeSelection.data.metrics?.mem_capacity || '8192Mi'}</div>
+                </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 block text-[10px] font-bold">SERVİSLER:</span>
+                    <div>Kubelet: <strong className="text-emerald-400">Active (Running)</strong></div>
+                    <div>Kube-Proxy: <strong className="text-emerald-400">Active (Running)</strong></div>
+                  </div>
+                  <button onClick={() => setViewMode('SHIP_INTERIOR')} className="w-full mt-2 industrial-btn industrial-btn-blue-active justify-center">
+                    🚪 GEMİ İÇİNE GİR
+                  </button>
+                </div>
+              )}
+
+              {/* 3. CONTROL TOWER DETAILS */}
+              {activeSelection.type === 'MASTER' && (
+                <div className="space-y-4 text-xs font-mono-tech">
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 block text-[10px] font-bold">CONTROL PLANE BİLEŞENLERİ:</span>
+                    <div className="flex justify-between"><span>API Server:</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
+                    <div className="flex justify-between"><span>etcd (Kaptan):</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
+                    <div className="flex justify-between"><span>Scheduler (Vinç):</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
+                    <div className="flex justify-between"><span>Controller Mgr:</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 block text-[10px] font-bold">CLUSTER GENELİ NESNELER:</span>
+                    <div className="flex justify-between"><span>Worker Nodes:</span><strong className="text-white">{activeShips.length}</strong></div>
+                    <div className="flex justify-between"><span>Toplam Pods:</span><strong className="text-emerald-300">4</strong></div>
+                    <div className="flex justify-between"><span>Deployments:</span><strong className="text-amber-300">3</strong></div>
+                  </div>
+                  <button onClick={() => setViewMode('MASTER_BUILDING')} className="w-full mt-2 industrial-btn industrial-btn-active justify-center">
+                    🚪 YÖNETİM BİNASINA GİR
+                  </button>
+                </div>
+              )}
+
+              {/* 4. SCHEDULER DETAILS */}
+              {activeSelection.type === 'CRANE' && (
+                <div className="space-y-4 text-xs font-mono-tech">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">BİLEŞEN:</span>
+                    <strong className="text-amber-400 text-sm">kube-scheduler</strong>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
+                    <span className="text-sky-400 block text-[10px] font-bold">SON SEVKİYAT KARARI:</span>
+                    <p className="text-slate-300 text-[11px] leading-relaxed">
+                      pod <strong className="text-emerald-300">redis-cache-set-0</strong> ➔ <strong className="text-sky-300">node-beta</strong>
+                    </p>
+                    <div className="text-[10px] text-amber-400">Skor: 94/100 (LeastRequestedPriority)</div>
+                  </div>
+                </div>
+              )}
+
+              {/* 5. KUBE-PROXY DETAILS */}
+              {activeSelection.type === 'KUBE_PROXY' && (
+                <div className="space-y-4 text-xs font-mono-tech">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">AĞ YÖNLENDİRME MERKEZİ:</span>
+                    <strong className="text-sky-400 text-sm">kube-proxy (iptables mode)</strong>
+                  </div>
+                  <div className="space-y-2">
+                    <span className="text-amber-400 block text-[10px] font-bold">SERVICE -> ENDPOINTS HARİTASI:</span>
+                    {activeSelection.data.services?.map((svc) => (
+                      <div key={svc.name} className="bg-slate-800/60 p-2 rounded border border-slate-700 text-[11px]">
+                        <div className="font-bold text-sky-300">{svc.name}</div>
+                        <div className="text-slate-400">ClusterIP: {svc.clusterIP}</div>
+                        <div className="text-emerald-400 text-[10px] mt-1 flex items-center gap-1">
+                          <ArrowRight className="w-3 h-3" /> {svc.endpoints?.join(', ')}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* 1. POD / CONTAINER DETAILS */}
-            {activeSelection.type === 'POD' && (
-              <div className="space-y-4 text-xs font-mono-tech">
-                <div>
-                  <span className="text-slate-400 block text-[10px]">POD ADI:</span>
-                  <strong className="text-white text-sm break-all">{activeSelection.data.name}</strong>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                    <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
-                    <strong className="text-sky-400">{activeSelection.data.namespace}</strong>
-                  </div>
-                  <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                    <span className="text-slate-400 block text-[10px]">DURUM:</span>
-                    <strong className="text-emerald-400">{activeSelection.data.status}</strong>
-                  </div>
-                </div>
-                <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                  <span className="text-amber-400 block text-[10px] font-bold">AĞ & DNS BİLGİSİ:</span>
-                  <div>Pod IP: <strong className="text-slate-200">{activeSelection.data.ip || '10.244.0.12'}</strong></div>
-                  <div>Service IP: <strong className="text-slate-200">{activeSelection.data.service_ip || '10.96.0.45'}</strong></div>
-                  <div className="text-[10px] text-sky-300 break-all">{activeSelection.data.dns || 'web-svc.default.svc.cluster.local'}</div>
-                </div>
-                <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                  <span className="text-purple-400 block text-[10px] font-bold">KAYNAK LIMIT/REQUEST:</span>
-                  <div>CPU: <strong className="text-emerald-300">{activeSelection.data.resources?.cpu_req || '100m'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.cpu_lim || '500m'}</strong></div>
-                  <div>RAM: <strong className="text-purple-300">{activeSelection.data.resources?.mem_req || '128Mi'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.mem_lim || '512Mi'}</strong></div>
-                </div>
-              </div>
-            )}
-
-            {/* 2. WORKER NODE DETAILS */}
-            {activeSelection.type === 'SHIP' && (
-              <div className="space-y-4 text-xs font-mono-tech">
-                <div>
-                  <span className="text-slate-400 block text-[10px]">NODE ADI:</span>
-                  <strong className="text-white text-sm">{activeSelection.data.name}</strong>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                    <span className="text-slate-400 block text-[10px]">NODE IP:</span>
-                    <strong className="text-sky-300">{activeSelection.data.ip || '192.168.1.101'}</strong>
-                  </div>
-                  <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                    <span className="text-slate-400 block text-[10px]">SAĞLIK:</span>
-                    <strong className="text-emerald-400">{activeSelection.data.status || 'Ready'}</strong>
-                  </div>
-                </div>
-                <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                  <span className="text-amber-400 block text-[10px] font-bold">KAPASİTE VS KULLANIM:</span>
-                  <div>CPU: <strong className="text-emerald-300">{activeSelection.data.metrics?.cpu_usage || '320m'}</strong> / {activeSelection.data.metrics?.cpu_capacity || '4000m'}</div>
-                  <div>RAM: <strong className="text-purple-300">{activeSelection.data.metrics?.memory_usage || '1024Mi'}</strong> / {activeSelection.data.metrics?.mem_capacity || '8192Mi'}</div>
-                </div>
-                <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                  <span className="text-sky-400 block text-[10px] font-bold">SERVİSLER:</span>
-                  <div>Kubelet: <strong className="text-emerald-400">Active (Running)</strong></div>
-                  <div>Kube-Proxy: <strong className="text-emerald-400">Active (Running)</strong></div>
-                </div>
-                <button onClick={() => setViewMode('SHIP_INTERIOR')} className="w-full mt-2 industrial-btn industrial-btn-blue-active justify-center">
-                  🚪 GEMİ İÇİNE GİR
-                </button>
-              </div>
-            )}
-
-            {/* 3. CONTROL TOWER DETAILS */}
-            {activeSelection.type === 'MASTER' && (
-              <div className="space-y-4 text-xs font-mono-tech">
-                <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                  <span className="text-amber-400 block text-[10px] font-bold">CONTROL PLANE BİLEŞENLERİ:</span>
-                  <div className="flex justify-between"><span>API Server:</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
-                  <div className="flex justify-between"><span>etcd (Kaptan):</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
-                  <div className="flex justify-between"><span>Scheduler (Vinç):</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
-                  <div className="flex justify-between"><span>Controller Mgr:</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
-                </div>
-                <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                  <span className="text-sky-400 block text-[10px] font-bold">CLUSTER GENELİ NESNELER:</span>
-                  <div className="flex justify-between"><span>Worker Nodes:</span><strong className="text-white">{activeShips.length}</strong></div>
-                  <div className="flex justify-between"><span>Toplam Pods:</span><strong className="text-emerald-300">4</strong></div>
-                  <div className="flex justify-between"><span>Deployments:</span><strong className="text-amber-300">3</strong></div>
-                </div>
-                <button onClick={() => setViewMode('MASTER_BUILDING')} className="w-full mt-2 industrial-btn industrial-btn-active justify-center">
-                  🚪 YÖNETİM BİNASINA GİR
-                </button>
-              </div>
-            )}
-
-            {/* 4. SCHEDULER CRANE DETAILS */}
-            {activeSelection.type === 'CRANE' && (
-              <div className="space-y-4 text-xs font-mono-tech">
-                <div>
-                  <span className="text-slate-400 block text-[10px]">BİLEŞEN:</span>
-                  <strong className="text-amber-400 text-sm">kube-scheduler</strong>
-                </div>
-                <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
-                  <span className="text-sky-400 block text-[10px] font-bold">SON SEVKİYAT KARARI:</span>
-                  <p className="text-slate-300 text-[11px] leading-relaxed">
-                    pod <strong className="text-emerald-300">redis-cache-set-0</strong> ➔ <strong className="text-sky-300">node-beta</strong>
-                  </p>
-                  <div className="text-[10px] text-amber-400">Skor: 94/100 (LeastRequestedPriority)</div>
-                </div>
-              </div>
-            )}
-
-            {/* 5. KUBE-PROXY DETAILS */}
-            {activeSelection.type === 'KUBE_PROXY' && (
-              <div className="space-y-4 text-xs font-mono-tech">
-                <div>
-                  <span className="text-slate-400 block text-[10px]">AĞ YÖNLENDİRME MERKEZİ:</span>
-                  <strong className="text-sky-400 text-sm">kube-proxy (iptables mode)</strong>
-                </div>
-                <div className="space-y-2">
-                  <span className="text-amber-400 block text-[10px] font-bold">SERVICE -> ENDPOINTS HARİTASI:</span>
-                  {activeSelection.data.services?.map((svc) => (
-                    <div key={svc.name} className="bg-slate-800/60 p-2 rounded border border-slate-700 text-[11px]">
-                      <div className="font-bold text-sky-300">{svc.name}</div>
-                      <div className="text-slate-400">ClusterIP: {svc.clusterIP}</div>
-                      <div className="text-emerald-400 text-[10px] mt-1 flex items-center gap-1">
-                        <ArrowRight className="w-3 h-3" /> {svc.endpoints?.join(', ')}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 font-mono-tech text-center">
+              Kapatmak için yukarıdaki X ikonuna tıklayın
+            </div>
           </div>
-
-          <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 font-mono-tech text-center">
-            Kapatmak için yukarıdaki X ikonuna tıklayın
-          </div>
-        </aside>
-      )}
+        )}
+      </aside>
     </div>
   )
 }

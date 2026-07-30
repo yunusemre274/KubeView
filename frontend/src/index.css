@@ -6,7 +6,7 @@
 
 :root {
   --bg-dark: #070a12;
-  --panel-bg: rgba(15, 23, 42, 0.88);
+  --panel-bg: rgba(15, 23, 42, 0.85);
   --panel-border: rgba(51, 65, 85, 0.7);
   --amber-accent: #f59e0b;
   --amber-glow: rgba(245, 158, 11, 0.25);
@@ -35,27 +35,60 @@ html, body {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-/* 3D Canvas Stage Wrapper */
-.stage-wrapper {
-  width: 100%;
-  height: 100%;
-  flex: 1 1 0%;
-  min-height: 0;
+  display: block;
   position: relative;
   overflow: hidden;
 }
 
-/* R3F Canvas Container & Canvas Element */
+/* 3D Canvas Stage Wrapper - Always Absolute Inset 0 (100% Fullscreen) */
+.stage-wrapper {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+}
+
+/* R3F Canvas Element Styling */
 .stage-wrapper > div,
 .stage-wrapper canvas {
   width: 100% !important;
   height: 100% !important;
   display: block !important;
+}
+
+/* Right Info Drawer - Absolute Overlay (Never resizes Canvas) */
+.info-panel-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 85vw;
+  z-index: 40;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-left: 1px solid var(--panel-border);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  will-change: transform;
+}
+
+.info-panel-drawer.drawer-closed {
+  transform: translateX(100%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.info-panel-drawer.drawer-open {
+  transform: translateX(0);
+  pointer-events: auto;
+  opacity: 1;
 }
 
 /* Industrial Typography */

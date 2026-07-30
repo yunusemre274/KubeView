@@ -6,18 +6,21 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 ## 🎯 1. Temel İlkeler
 
-1. **Unbroken 100% Height Chain & Canvas Boyutu (KESİN KURAL):**
-   - **`html`, `body`, `#root`, `main` ve `.stage-wrapper` kapsayıcılarında `height: 100%` ve flexbox `min-height: 0` zinciri KESİNTİSİZ korunmalıdır!**
-   - Zincirdeki tek bir elemanda bile `height` eksikse canvas varsayılan 300px yüksekliğine düşer. Canvas ve kapsayıcıları `width: 100%; height: 100%;` kurallarına uymak zorundadır.
-2. **85% 3D Canvas / 15% UI Overlay Kuralı:**
+1. **Absolute Overlay Paneller & Sıfır Canvas Resize (KESİN KURAL):**
+   - **Yan paneller ve bilgi kartları hiçbir zaman canvas ile flex/grid yer paylaşımı yapamaz!**
+   - Canvas her zaman `position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0;` olarak 3D dünyayı render eder.
+   - Bilgi kartları ve çekmeceler canvas'ın üstüne `position: absolute; top: 0; right: 0; bottom: 0; z-index: 40;` ve CSS `transform` animasyonu ile biner. Panel açılıp kapandığında canvas boyutu HİÇBİR ŞEKİLDE değişmez ve resize tetiklenmez.
+2. **Unbroken 100% Height Chain & Canvas Boyutu:**
+   - `html`, `body`, `#root`, `main` ve `.stage-wrapper` kapsayıcılarında `height: 100%` ve flexbox `min-height: 0` zinciri KESİNTİSİZ korunmalıdır!
+3. **85% 3D Canvas / 15% UI Overlay Kuralı:**
    - 3D Canvas varsayılan durumda ekranın %100'ünü kaplar. UI Overlay panelleri sadece kenarlarda ince şeritler ve kapatılabilir dikey çekmeceler halinde yaşar.
-3. **3D Canvas İçi Temizlik:**
+4. **3D Canvas İçi Temizlik:**
    - 3D Canvas içine hiçbir zaman okunabilir metin, etiket veya buton render edilemez!
-4. **KISS Prensibi (Keep It Simple, Stupid):**
+5. **KISS Prensibi (Keep It Simple, Stupid):**
    - En basit çalışan çözüm DOĞRU çözümdür. Gereksiz karmaşıklıklar, erken optimizasyon ve kullanılmayan esneklikler YASAKTIR.
-5. **Dört Göz İlkesi (Four-Eyes Principle):**
+6. **Dört Göz İlkesi (Four-Eyes Principle):**
    - Hiçbir agent kendi yazdığı veya ürettiği kodu kendi onaylayıp `main` dalına birleştiremez. Kod yazan agent ile denetleyen agent farklı olmalıdır.
-6. **Otomatik Port Çakışma Önleme:**
+7. **Otomatik Port Çakışma Önleme:**
    - Servisler başlatılırken varsayılan portun dolu olması durumunda uygulama çökmemeli, otomatik bir sonraki boş portu bularak kullanıcıya açıkça bildirmelidir.
 
 ---
@@ -43,7 +46,7 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 ## 🌿 3. Git Workflow Kuralları
 
-- **Branch İsimlendirme:** `fix/canvas-height-chain`
+- **Branch İsimlendirme:** `fix/drawer-absolute-overlay`
 - **Commit Mesaj Formatı:**
   ```text
   [Faz X][Agent Adı] Kısa özet başlığı
