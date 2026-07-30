@@ -65,7 +65,7 @@ func (w *Watcher) GetInitialState() api.InitialStatePayload {
 	}
 }
 
-// StartInformerFactory starts shared informers for Nodes, Pods, and Deployments.
+// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, and Events.
 func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 	var factory informers.SharedInformerFactory
 	if w.namespace == "" {
@@ -107,6 +107,19 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add Deployment event handlers: %w", err)
 	}
 
+	// 4. K8s Core Events Informer (Liman Anonsları)
+	k8sEventInformer := factory.Core().V1().Events().Informer()
+	_, err = k8sEventInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc: func(obj interface{}) {
+			if e, ok := obj.(*corev1.Event); ok {
+				w.handleK8sCoreEvent(e)
+			}
+		},
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add K8s Event handlers: %w", err)
+	}
+
 	factory.Start(ctx.Done())
 
 	fmt.Println("[watcher] Waiting for informer caches to sync...")
@@ -116,7 +129,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 			return fmt.Errorf("failed to sync informer cache for %v", resource)
 		}
 	}
-	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments). Listening for live events...")
+	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, Events). Listening for live events...")
 
 	<-ctx.Done()
 	return nil
@@ -208,6 +221,25 @@ func (w *Watcher) handleDeploymentEvent(action api.ResourceAction, deploy *appsv
 		w.deployments[depKey] = payload
 	}
 	w.mu.Unlock()
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
+func (w *Watcher) handleK8sCoreEvent(evt *corev1.Event) {
+	payload := api.ResourcePayload{
+		Action:    api.ActionAdd,
+		Kind:      api.KindEvent,
+		Namespace: evt.Namespace,
+		Name:      evt.InvolvedObject.Name,
+		Status:    evt.Type,
+		Message:   evt.Message,
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Liman Anonsu (Event)",
+			Compartment:  evt.Namespace,
+			HealthState:  evt.Type,
+		},
+	}
 
 	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
 	w.hub.BroadcastMessage(msg)

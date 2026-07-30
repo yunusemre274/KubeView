@@ -4,24 +4,24 @@ Projedeki tüm önemli değişiklikler bu dosyada belgelenir. Format [Keep a Cha
 
 ---
 
+## [v0.7.0 - Faz 7 Tamamlandı] - 2026-07-30
+
+### Eklendi
+- `frontend-agent` tarafından Navbar üzerine Ambar (Namespace) seçici dropdown eklendi ve 3D simülasyon filtreleme altyapısı hazırlandı (`frontend/src/components/Navbar.jsx`). (`doc-agent` onaylı)
+- `backend-agent` tarafından K8s Core `Events` Informer'ı `watcher.go` dosyasına eklendi ve canlı liman anonslarının WebSocket üzerinden yayınlanması sağlandı (`backend/pkg/k8s/watcher.go`). (`qa-agent` onaylı)
+
+---
+
 ## [v0.6.0 - Faz 6 Tamamlandı] - 2026-07-30
 
 ### Eklendi
-- `backend-agent` tarafından `apps/v1` `Deployments` Informer'ı eklendi ve `Sefer Siparişi (Deployment)` paketlerinin WebSocket yayını sağlandı (`backend/pkg/k8s/watcher.go`). (`architecture-agent` onaylı)
-- `frontend-agent` tarafından ekranın sol üstüne "📜 Sefer Siparişleri (Deployments)" listesini ve canlı replica durumlarını render eden `DeploymentPanel.jsx` bileşeni eklendi. (`qa-agent` onaylı)
+- `backend-agent` tarafından `apps/v1` `Deployments` Informer'ı eklendi.
+- `frontend-agent` tarafından "📜 Sefer Siparişleri (Deployments)" listesini render eden `DeploymentPanel.jsx` eklendi.
 
 ---
 
 ## [v0.5.0 - Faz 5 Tamamlandı] - 2026-07-30
 
 ### Eklendi
-- `backend-agent` tarafından `metrics.k8s.io` API entegrasyonu sağlandı (`backend/pkg/metrics/collector.go`).
-- `frontend-agent` tarafından 3D Gemi (Node) üstüne CPU ve RAM doluluk çubukları (metrics bars) ve interaktif Pod detay kartı eklendi.
-
----
-
-## [v0.4.0 - Faz 4 Tamamlandı] - 2026-07-30
-
-### Eklendi
-- `frontend-agent` tarafından otomatik yeniden bağlanma destekli `useShipyardWebSocket.js` React hook'u geliştirildi.
-- `frontend-agent` tarafından canlı K8s olaylarını yayınlayan `EventStream.jsx` ("📢 Liman Anonsları") bileşeni yazıldı.
+- `backend-agent` tarafından `metrics.k8s.io` API entegrasyonu sağlandı.
+- `frontend-agent` tarafından 3D Gemi (Node) üstüne CPU ve RAM doluluk çubukları ve interaktif Pod detay kartı eklendi.
