@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Text, Sky } from '@react-three/drei'
+import { OrbitControls, Text, Sky, Html } from '@react-three/drei'
 import * as THREE from 'three'
 
 // Water / Ocean mesh with gentle animation
@@ -15,7 +15,7 @@ function Sea() {
 
   return (
     <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
-      <planeGeometry args={[100, 100]} />
+      <planeGeometry args={[120, 120]} />
       <meshStandardMaterial color="#0b2545" roughness={0.1} metalness={0.8} />
     </mesh>
   )
@@ -24,18 +24,15 @@ function Sea() {
 // Dock / Harbor Pier
 function Dock() {
   return (
-    <group position={[-12, 0.2, 0]}>
-      {/* Pier Base */}
+    <group position={[-14, 0.2, 0]}>
       <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[8, 1.4, 28]} />
+        <boxGeometry args={[8, 1.4, 30]} />
         <meshStandardMaterial color="#334155" roughness={0.7} />
       </mesh>
-      {/* Crane Tower */}
       <mesh position={[0, 4.5, 0]}>
         <boxGeometry args={[1.5, 7.5, 1.5]} />
         <meshStandardMaterial color="#f59e0b" roughness={0.4} />
       </mesh>
-      {/* Crane Arm */}
       <mesh position={[2, 7.5, 0]}>
         <boxGeometry args={[6, 0.8, 1]} />
         <meshStandardMaterial color="#d97706" roughness={0.4} />
@@ -47,9 +44,10 @@ function Dock() {
   )
 }
 
-// 3D Cargo Box (Pod)
-function CargoContainer({ position, label, color = '#22c55e', status = 'Running' }) {
+// 3D Cargo Box (Pod) with Click Detail Modal
+function CargoContainer({ position, label, color = '#22c55e', status = 'Running', metrics, onClick }) {
   const meshRef = useRef()
+  const [hovered, setHovered] = useState(false)
 
   useFrame(({ clock }) => {
     if (status === 'Pending') {
@@ -59,16 +57,25 @@ function CargoContainer({ position, label, color = '#22c55e', status = 'Running'
 
   return (
     <group position={position}>
-      <mesh ref={meshRef} castShadow receiveShadow>
+      <mesh
+        ref={meshRef}
+        castShadow
+        receiveShadow
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
+        onClick={onClick}
+      >
         <boxGeometry args={[1.8, 1.6, 3.6]} />
-        <meshStandardMaterial color={color} metalness={0.3} roughness={0.4} />
+        <meshStandardMaterial
+          color={hovered ? '#38bdf8' : color}
+          metalness={0.3}
+          roughness={0.4}
+        />
       </mesh>
-      {/* Container Ridges/Stripes */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[1.85, 1.4, 3.4]} />
         <meshStandardMaterial color="#0f172a" wireframe />
       </mesh>
-      {/* Label */}
       <Text position={[0, 1.1, 0]} fontSize={0.45} color="#ffffff" anchorX="center" anchorY="middle">
         {label}
       </Text>
@@ -76,8 +83,8 @@ function CargoContainer({ position, label, color = '#22c55e', status = 'Running'
   )
 }
 
-// 3D Cargo Ship (Worker Node)
-function Ship({ position = [0, 0, 0], name = 'Gemi Alpha (Worker Node 1)', pods = [] }) {
+// 3D Cargo Ship (Worker Node) with Metrics Smoke / Bar
+function Ship({ position = [0, 0, 0], name = 'Gemi Alpha', pods = [], metrics, onSelectPod }) {
   const groupRef = useRef()
 
   useFrame(({ clock }) => {
@@ -87,6 +94,9 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha (Worker Node 1)', pods 
     }
   })
 
+  const cpuPercent = metrics?.cpu_percent || 35
+  const memPercent = metrics?.mem_percent || 48
+
   return (
     <group ref={groupRef} position={position}>
       {/* Hull Base */}
@@ -94,7 +104,7 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha (Worker Node 1)', pods 
         <boxGeometry args={[7, 1.8, 18]} />
         <meshStandardMaterial color="#1e293b" metalness={0.6} roughness={0.3} />
       </mesh>
-      {/* Bow (Pointed Front) */}
+      {/* Bow */}
       <mesh position={[0, 0.6, 10]} rotation={[0, Math.PI / 4, 0]} castShadow>
         <boxGeometry args={[4.95, 1.8, 4.95]} />
         <meshStandardMaterial color="#0f172a" metalness={0.6} roughness={0.3} />
@@ -110,14 +120,29 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha (Worker Node 1)', pods 
         <meshStandardMaterial color="#ef4444" />
       </mesh>
 
-      {/* Ship Title Label */}
-      <Text position={[0, 5.5, -6]} fontSize={0.7} color="#38bdf8" anchorX="center">
-        🚢 {name}
-      </Text>
+      {/* Metrics Bar Overlay on Cabin */}
+      <Html position={[0, 6.2, -6]} center distanceFactor={25}>
+        <div className="glass-panel px-3 py-1.5 rounded-lg text-white text-[11px] whitespace-nowrap border border-sky-500/40 shadow-xl flex flex-col gap-1">
+          <div className="font-bold text-sky-300">🚢 {name}</div>
+          <div className="flex items-center gap-2">
+            <span className="text-slate-400">CPU:</span>
+            <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+              <div className="h-full bg-emerald-400" style={{ width: `${Math.min(cpuPercent, 100)}%` }} />
+            </div>
+            <span className="font-mono text-emerald-300">{metrics?.cpu_usage || '240m'}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-slate-400">RAM:</span>
+            <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+              <div className="h-full bg-purple-400" style={{ width: `${Math.min(memPercent, 100)}%` }} />
+            </div>
+            <span className="font-mono text-purple-300">{metrics?.memory_usage || '512Mi'}</span>
+          </div>
+        </div>
+      </Html>
 
       {/* Cargo Deck - Pods Placement */}
       {pods.map((pod, idx) => {
-        // Calculate grid position on deck
         const row = Math.floor(idx / 2)
         const col = idx % 2
         const x = (col - 0.5) * 2.4
@@ -129,6 +154,8 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha (Worker Node 1)', pods 
             label={pod.name}
             color={pod.color}
             status={pod.status}
+            metrics={pod.metrics}
+            onClick={() => onSelectPod(pod, name)}
           />
         )
       })}
@@ -137,24 +164,27 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha (Worker Node 1)', pods 
 }
 
 export default function ShipyardScene({ ships = [] }) {
-  // Statik 3D Demo Verileri (Faz 3)
+  const [selectedPod, setSelectedPod] = useState(null)
+
   const defaultShips = [
     {
       id: 'node-1',
       name: 'node-alpha (Worker Node 1)',
-      position: [2, 0, 0],
+      position: [0, 0, 0],
+      metrics: { cpu_usage: '320m', memory_usage: '1024Mi', cpu_percent: 32, mem_percent: 50 },
       pods: [
-        { id: 'pod-1', name: '📦 nginx-api (Palet A)', color: '#22c55e', status: 'Running' },
-        { id: 'pod-2', name: '📦 redis-cache (Palet B)', color: '#3b82f6', status: 'Running' },
-        { id: 'pod-3', name: '📦 worker-job (Palet C)', color: '#eab308', status: 'Pending' }
+        { id: 'pod-1', name: '📦 nginx-api (Palet A)', color: '#22c55e', status: 'Running', metrics: { cpu_usage: '45m', memory_usage: '128Mi' } },
+        { id: 'pod-2', name: '📦 redis-cache (Palet B)', color: '#3b82f6', status: 'Running', metrics: { cpu_usage: '110m', memory_usage: '256Mi' } },
+        { id: 'pod-3', name: '📦 worker-job (Palet C)', color: '#eab308', status: 'Pending', metrics: { cpu_usage: '0m', memory_usage: '0Mi' } }
       ]
     },
     {
       id: 'node-2',
       name: 'node-beta (Worker Node 2)',
-      position: [12, 0, 0],
+      position: [14, 0, 0],
+      metrics: { cpu_usage: '180m', memory_usage: '640Mi', cpu_percent: 18, mem_percent: 30 },
       pods: [
-        { id: 'pod-4', name: '📦 db-postgres (Palet D)', color: '#a855f7', status: 'Running' }
+        { id: 'pod-4', name: '📦 db-postgres (Palet D)', color: '#a855f7', status: 'Running', metrics: { cpu_usage: '160m', memory_usage: '512Mi' } }
       ]
     }
   ]
@@ -165,7 +195,7 @@ export default function ShipyardScene({ ships = [] }) {
     <div className="w-full h-screen relative">
       <Canvas
         shadows
-        camera={{ position: [20, 18, 28], fov: 45 }}
+        camera={{ position: [22, 20, 30], fov: 45 }}
         className="w-full h-full bg-slate-950"
       >
         <ambientLight intensity={0.7} />
@@ -183,7 +213,14 @@ export default function ShipyardScene({ ships = [] }) {
         <Dock />
 
         {activeShips.map((ship) => (
-          <Ship key={ship.id} position={ship.position} name={ship.name} pods={ship.pods} />
+          <Ship
+            key={ship.id}
+            position={ship.position}
+            name={ship.name}
+            pods={ship.pods}
+            metrics={ship.metrics}
+            onSelectPod={(pod, shipName) => setSelectedPod({ ...pod, shipName })}
+          />
         ))}
 
         <OrbitControls
@@ -192,9 +229,33 @@ export default function ShipyardScene({ ships = [] }) {
           enableRotate={true}
           maxPolarAngle={Math.PI / 2 - 0.05}
           minDistance={10}
-          maxDistance={70}
+          maxDistance={80}
         />
       </Canvas>
+
+      {/* Pod Detail Modal */}
+      {selectedPod && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
+          <div className="relative w-full max-w-sm glass-panel p-6 rounded-2xl text-white border border-sky-500/40 shadow-2xl">
+            <h3 className="text-lg font-bold text-sky-400 pb-2 border-b border-slate-700 flex items-center gap-2">
+              📦 PALET DETAYLARI (POD)
+            </h3>
+            <div className="mt-4 space-y-3 text-sm">
+              <div className="flex justify-between"><span className="text-slate-400">Palet Adı:</span><span className="font-semibold text-white">{selectedPod.name}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Bulunduğu Gemi:</span><span className="font-semibold text-sky-300">{selectedPod.shipName}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Durum:</span><span className="font-bold text-emerald-400">{selectedPod.status}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Anlık CPU:</span><span className="font-mono text-amber-300">{selectedPod.metrics?.cpu_usage || '45m'}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Anlık RAM:</span><span className="font-mono text-purple-300">{selectedPod.metrics?.memory_usage || '128Mi'}</span></div>
+            </div>
+            <button
+              onClick={() => setSelectedPod(null)}
+              className="mt-6 w-full py-2 bg-sky-500 hover:bg-sky-600 rounded-xl font-bold text-slate-950 transition-all"
+            >
+              Kapat
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
