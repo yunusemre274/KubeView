@@ -1,60 +1,60 @@
-# ARCHITECTURE.md — Aktif Mimarisi (Faz 12.1 - Canlı 3D Liman Motoru)
+# ARCHITECTURE.md — Aktif Mimarisi (Faz 13 - Kesin Ekran Yerleşimi & K8s Veri Şeması)
 
-> ⚠️ **UYARI:** Bu dosya SADECE mevcut aktif faz olan **Faz 12.1** ve güncellenmiş Canlı Low-Poly 3D Liman Görsel Simülasyon mimarisini tanımlar. Kod yapısı değiştikçe bu dosya `architecture-agent` tarafından güncellenir.
+> ⚠️ **UYARI:** Bu dosya SADECE mevcut aktif faz olan **Faz 13** ve güncellenmiş Kesin Ekran Yerleşimi ile Nesne Bazlı K8s Bilgi Kartı Şemasını tanımlar. Kod yapısı değiştikçe bu dosya `architecture-agent` tarafından güncellenir.
 
 ---
 
-## 🏛️ Mimari Katman Ayrımı ve Ekran Oranı (85% 3D / 15% UI)
-
-Ekran alanının **en az %85'i 3D WebGL dünyasına** ayrılmıştır. Kullanıcı arayüzü (UI Overlay) yalnızca kenarlarda yer alan ince ve zarif panellerden oluşur.
+## 🏛️ Kesin Ekran Yerleşimi ve Yüzdeler
 
 ```
 +-----------------------------------------------------------------------------------+
-|                            EKRAN (VIEWPORT & CANVAS - %100)                        |
+| EKRAN (VIEWPORT - %100 YÜKSEKLİK & GENİŞLİK)                                      |
 |                                                                                   |
-|  +-----------------------------------------------------------------------------+  |
-|  | Üst Bar (İnce Bilgi Şeridi - %5 Yükseklik)                                  |  |
-|  +-----------------------------------------------------------------------------+  |
+|  [⚓ TERSANE LOGO ROZETİ] -> Sol Üst İnce Rozet (< %3-4 Alan)                     |
 |                                                                                   |
-|   KATMAN 1: CANLI LOW-POLY 3D SAHNE (EKRANIN %85'İ)                                |
-|   - Canlı Mavi Dalgalı Deniz (Animasyonlu Su Yüzeyi)                              |
-|   - Beton Rıhtımlar, Yeşil Kara Parçası & Liman Köyü Binaları                      |
-|   - İkonik Sarı Konteynır Vinci (Gantry Crane)                                    |
-|   - Su Üstünde Yüzen Canlı Kargo Gemileri (Node'lar & Pod Grid)                   |
-|   - Sadece Saf 3D Geometriler (HİÇBİR YÜZEN HTML METİN İÇERMEZ)                   |
+|  KATMAN 1: 3D SAHNE (VARSAYILAN DURUMDA EKRANIN %100'Ü)                           |
+|  - Canlı Mavi Deniz, Zenginleştirilmiş Liman Mimarisi, Çoklu Vinçler, Depolar     |
+|  - Karada Bekleyen Konteynır Yığınları (Pending Pod Metaforu)                     |
+|  - Su Üstünde Salınım Yapan Kargo Gemileri (Node'lar & Pod Grid)                  |
 |                                                                                   |
-|                                                     +--------------------------+  |
-|                                                     | KATMAN 2: DETAY PANELİ   |  |
-|                                                     | (Max 280px Genişlik)     |  |
-|                                                     | (Sadece tıklanınca)      |  |
-|                                                     +--------------------------+  |
+|                                                    +------------------------------+
+|                                                    | KATMAN 2: DİKEY BİLGİ KARTI  |
+|                                                    | (%100 Height, ~%15 Width)    |
+|                                                    | (Sadece tıklanınca açılır)   |
+|                                                    +------------------------------+
 |                                                                                   |
-|  +-----------------------------------------------------------------------------+  |
-|  | Alt Bar (Görünüm & Kamera Sekmeleri - %5 Yükseklik)                         |  |
-|  +-----------------------------------------------------------------------------+  |
+|  [ 🦅 TÜM LİMAN | 🏢 YÖNETİM | 🚢 GEMİ 1 | 🚢 GEMİ 2 ] -> Alt Bar (< %6-8 Height)|
 +-----------------------------------------------------------------------------------+
 ```
 
----
-
-## 🎨 Görsel Kimlik ve 3D Modelleme Standartları (Township / Low-Poly Estetiği)
-
-1. **Canlı Mavi Deniz (Ocean Surface):**
-   - Su yüzeyi sahnenin ana bileşenidir. Dalgalı sinüzoidal yükseklik animasyonu (`useFrame`), turkuaz-lacivert renk geçişi ve canlı ışık yansımaları barındırır.
-2. **Kargo Gemileri (Worker Node'lar):**
-   - Tanınabilir kırmızı/lacivert gemi gövdesi, sivri pruva, beyaz kaptan köşk bloğu, kırmızı baca ve bacadan yükselen duman efekti.
-   - Güvertede renkli konteynır kutuları (yeşil `#10b981`, mavi `#0284c7`, mor `#a855f7`, amber `#f59e0b`) nizami ızgarada sıralanır.
-   - Su üzerinde gerçekçi hafif salınım (bobbing motion) animasyonu.
-3. **İkonik Sarı Konteynır Vinci (Gantry Crane):**
-   - Yüksek kafes yapılı dikey kule + yatay kol + çelik halat formunda parlak sarı/amber renkli liman vinci.
-4. **Master Kontrol Binası & Liman Köyü:**
-   - Kontrol kulesi binası (pencereler, kırmızı çatı, döner radar anteni) + yanında yeşil kara şeridi ve depo binaları.
-5. **İnteraktif Kamera Lerp:**
-   - Tıklanan 3D nesneye kamera yumuşak bir interpolasyon (Lerp/Tween) ile yaklaşır ve sağdaki ince detay çekmecesi açılır.
+- **Varsayılan Durum:** Ekranın **%100'ü 3D canvas** tarafından kullanılır. Kalıcı başlık panelleri, sayaç kutuları veya deployment listeleri ekranda DURMAZ.
+- **Sağ Bilgi Kartı Çekmecesi:** Bir 3D nesneye tıklandığında ekranın en sağında **dikey tam yükseklikte (%100 height)** ve ekran genişliğinin **~%15'i (~280-320px)** kadar bir şerit halinde açılır. Kapatma butonuna (`X`) basılınca 3D sahne tekrar %100 genişliğe döner. 3D sahne çekmece açıkken %85 alanda görünmeye devam eder.
 
 ---
 
-## 🔌 Otomatik Port Çakışma Önleme Stratejisi
+## 📋 Bilgi Kartı İçerik Şeması (K8s Nesne Tipine Göre)
 
-- Backend: Port 8000 doluysa `8000-8020` taranır.
-- Frontend WebSocket Hook: Otomatik port algılama ve fallback istemcisi.
+### 1. Konteynır (Pod/Container) Tıklanınca:
+- **Pod Bilgisi:** Pod Adı, Namespace, Hangi Node Üzerinde Çalıştığı.
+- **Container Listesi:** İsim, İmaj (`image`), Durum (`Running/Pending/CrashLoopBackOff`), Restart Sayısı.
+- **Ağ Bilgisi:** Pod IP Adresi, Bağlı olduğu Service ClusterIP ve FQDN DNS adı (`service.namespace.svc.cluster.local`).
+- **Kaynaklar:** CPU/RAM Kullanımı + Limit/Request değerleri.
+- **Durum:** Pod Durumu ve Son Event Loglar.
+
+### 2. Gemi (Worker Node) Tıklanınca:
+- **Node Bilgisi:** Node Adı, Durum (`Ready/NotReady`), IP Adresi.
+- **Kapasite & Kullanım:** Toplam CPU/RAM Kapasitesi vs O Anki Kullanım Miktarı.
+- **Pod Listesi:** Üzerinde çalışan toplam pod sayısı ve pod isim listesi.
+- **Servis Sağlığı:** Üzerindeki Kubelet ve Kube-proxy durumu.
+
+### 3. Kontrol Kulesi (Master Node) Tıklanınca:
+- **Cluster Özeti:** Toplam Worker Node (Gemi) sayısı ve bağlı kapasite.
+- **Control Plane Bileşen Sağlığı:** API Server, etcd, Scheduler, Controller Manager (Healthy/Unhealthy).
+- **Cluster Nesne Sayıları:** Toplam Pod, Deployment ve Service sayıları.
+- **Cluster Yük Dağılımı:** Genel CPU/RAM kullanım özeti.
+
+### 4. Vinç (Kube-Scheduler) Tıklanınca:
+- **Sevkiyat Kararları:** Son zamanlanan Pod'lar, hangi scheduling kararına göre hangi Node'a atandığı.
+
+### 5. Kube-Proxy Ağ Binası Tıklanınca:
+- **Ağ Yönlendirmeleri:** Aktif Service listesi, ClusterIP haritası ve yönlendirilen Pod Endpoints listesi.

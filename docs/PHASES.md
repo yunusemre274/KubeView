@@ -1,19 +1,21 @@
-# PHASES.md — Geliştirme Fazları (Canlı 3D Liman Motoru)
+# PHASES.md — Geliştirme Fazları (Kesin Ekran Yerleşimi & K8s Veri Şeması)
 
 Proje, KISS (Keep It Simple, Stupid) prensibine uygun olarak küçük, bağımsız ve test edilebilir fazlara bölünmüştür.
 
 ---
 
-## 🟢 Faz 1-11: Altyapı, Informer'lar & WebSocket Stream (Tamamlandı)
-- Node, Pod, Deployment, Event, NetworkPolicy Informer'ları, WebSocket streaming ve Port Resolver tamamlandı.
+## 🟢 Faz 1-12: Altyapı, 3D Modeller & WebSocket Stream (Tamamlandı)
+- Node, Pod, Deployment, Event, NetworkPolicy Informer'ları, WebSocket streaming, Port Resolver ve 3D Modeller tamamlandı.
 
 ---
 
-## 🔵 Faz 12.1: Sahne Kompozisyonu & Canlı 3D Motoru Yeniden İnşası (Aktif)
-- **Hedef:** 3D sahneyi referans görseldeki (Desan Tersanesi) canlı, renkli, Township/Hay Day estetiğindeki low-poly liman simülasyonuna dönüştürmek, ekran oranını %85 3D / %15 UI olarak kurgulamak, dalgalı mavi denizi, ikonik sarı liman vincini, salınım yapan kargo gemilerini ve yumuşak kamera Lerp geçişlerini baştan kurmak.
-- **Aktif Agent'lar:** `3d-scene-agent`, `ui-ux-agent`, `architecture-agent`, `qa-agent`.
+## 🔵 Faz 13: Kesin Ekran Yerleşimi & Nesne Bazlı K8s Bilgi Kartı (Aktif)
+- **Hedef:** Ekranın varsayılan durumda %100 3D canvas olmasını sağlamak, kalıcı üst bar ve sayaç panellerini kaldırmak, çift header hatasını gidermek, tıklanan 3D nesneye özel dikey tam yükseklikte (%100 height, ~%15 width) K8s detay kartı açmak ve liman mimarisini çoklu vinçler, depolar ve karada bekleyen konteynır yığınlarıyla zenginleştirmek.
+- **Aktif Agent'lar:** `ui-ux-agent`, `3d-scene-agent`, `architecture-agent`, `qa-agent`.
 - **Bitti Sayılma Kriterleri:**
-  - [ ] Uygulama ilk açıldığında, kullanıcı hiçbir şeye tıklamadan bile ekranda net bir deniz, en az 2 gemi, en az 1 vinç ve kontrol kulesini AYNI ANDA, geniş bir sahne içinde görebiliyor.
-  - [ ] 3D sahne ekranın en az %80-85'ini kaplıyor.
-  - [ ] Bir gemiye tıklandığında kamera o gemiye yumuşak geçişle (Lerp) yaklaşıyor ve sağda küçük (~280px), kapatılabilir bir panel açılıyor.
-  - [ ] Genel görsel his, referans görseldeki canlı/stilize/"oyun estetiği"ne yakın (Township / Hay Day estetiği, teknik wireframe değil).
+  - [ ] Sayfa ilk açıldığında ekranda kalıcı hiçbir büyük metin paneli yok, sahne ekranın en az %95-100'ünü kaplıyor.
+  - [ ] Herhangi bir nesneye tıklanınca sağda tam yükseklikte (%100 height), ~%15 genişlikte bir kart açılıyor, sahne görünür kalmaya devam ediyor.
+  - [ ] Kart, tıklanan nesnenin GERÇEK tipine göre farklı, doğru bilgi gösteriyor (konteynıra tıklayınca pod/DNS/IP/container bilgisi, master node'a tıklayınca cluster geneli bilgi, vince tıklayınca scheduler bilgisi).
+  - [ ] Kart kapatılabiliyor ve kapanınca sahne tekrar tam ekran oluyor.
+  - [ ] Eski panel/başlık üst üste binme hatası tamamen giderilmiş.
+  - [ ] Liman artık birden fazla bina, birden fazla vinç, karada bekleyen konteynırlarla zenginleşmiş, boş/ıssız görünmüyor.

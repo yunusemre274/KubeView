@@ -4,24 +4,25 @@ Bu belge, Tersane projesinde alınan kritik teknik ve mimari kararların gerekç
 
 ---
 
-## 📌 ADR-001...008 (Önceki Kabul Edilen Kararlar)
-- ADR-001...007 (Go Backend, Informer/Watch, Read-Only RBAC, Tam 3D, etcd Kaptan/Kubelet Dümenci, Auto Port, UI/UX 60 FPS).
-- ADR-008 (Katman Ayrımı 3D Canvas vs HTML UI Overlay).
+## 📌 ADR-001...009 (Önceki Kabul Edilen Kararlar)
+- ADR-001...008 (Go Backend, Informer/Watch, Read-Only RBAC, Tam 3D, etcd Kaptan/Kubelet Dümenci, Auto Port, UI/UX 60 FPS, Katman Ayrımı).
+- ADR-009 (Canlı Low-Poly 3D Liman Simülasyonu ve İnteraktif Kamera Lerp Mimarisi).
 
 ---
 
-## 📌 ADR-009: Canlı Low-Poly 3D Liman Simülasyonu (Township Estetiği) ve İnteraktif Kamera Lerp Mimarisi
+## 📌 ADR-010: Varsayılan %100 3D Sahne, Dikey K8s Bilgi Kartı Çekmecesi ve Zenginleştirilmiş Liman Mimarisi
 - **Tarih:** 2026-07-30
-- **Kararı Alan Agent:** `3d-scene-agent` & `architecture-agent` (Onaylayan: `master-agent`)
+- **Kararı Alan Agent:** `ui-ux-agent` & `architecture-agent` (Onaylayan: `master-agent`)
 - **Durum:** 🟢 **Kabul Edildi**
 
 ### Bağlam
-Önceki 3D sahne oldukça dar bir alanda kalmış, zemin ve deniz görselleri yetersiz görünmüş ve nesneler teknik prototip silüetleri gibi kalmıştı.
+Önceki tasarımda üst header panelleri üst üste binmiş ve sayaç kartları sahneyi daraltmıştı.
 
 ### Alınan Karar
-1. **%85 3D Sahne Oranı:** 3D Canvas ekranın %85'ini kaplayacak şekilde genisletilmiştir.
-2. **Referans Görsele Sadık Estetik (Township Estetiği):** Canlı turkuaz-mavi hareketli su materyali, koyu gri beton rıhtımlar, yeşil ada/kara şeridi, ikonik parlak sarı kafesli konteynır vinçleri ve su üstünde salınan kırmızı/lacivert kargo gemileri render edilecektir.
-3. **Yumuşak Kamera Lerp İnterpolasyonu:** 3D nesnelere tıklanınca kamera `Vector3.lerp` ile nesneye yumuşakça yaklaşacak, sağda ince 280px detay çekmecesi açılacaktır.
+1. **Varsayılan %100 3D Canvas:** Ekranda kalıcı büyük paneller/header'lar tamamen kaldırıldı. Sol üstte sadece %3-4 yer kaplayan minimal logo rozeti bırakıldı.
+2. **Sağ Dikey K8s Bilgi Kartı (%100 Height, ~%15 Width):** Nesneye tıklandığında sağ tarafta tam yükseklikte dikey bir şerit açılır. Kapatılınca sahne tekrar tam ekran olur.
+3. **Nesneye Özel K8s Şeması:** Tıklanan 3D nesnenin tipine göre (Pod/Container, Worker Node, Control Tower Master Node, Crane/Scheduler, Kube-proxy) Kubernetes standartlarına uygun özel veri kartı gösterilir.
+4. **Zenginleştirilmiş Liman Mimarisi:** Çoklu gantry vinçler, karada bekleyen konteynır yığınları (Pending Pods) ve namespace renkli depolar eklendi.
 
 ### Sonuç ve Etki
-- 3D tersane görsel zenginliği canlı oyun simülasyonu seviyesine çıkarıldı.
+- 3D sahne tam ekran ferahlığına kavuştu; K8s bilgi derinliği profesyonel seviyeye yükseltildi.

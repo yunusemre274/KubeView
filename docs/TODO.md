@@ -1,15 +1,15 @@
-# TODO.md — Aktif ve Sıradaki Görevler Listesi (v1.3.0 Release)
+# TODO.md — Aktif ve Sıradaki Görevler Listesi (v1.4.0 Release)
 
-> 🏆 **PROJE TAMAMLANDI:** TODO listesindeki tüm faz görevleri başarıyla tamamlanmıştır.
+> 🏆 **PROJE TAMAMLANDI:** TODO listesindeki tüm 13 faz görevi başarıyla tamamlanmıştır.
 
 ---
 
 ## 🔵 Aktif Görevler
-*Şu an aktif görev bulunmamaktadır. Tüm fazlar başarıyla tamamlandı!*
+*Şu an aktif görev bulunmamaktadır. Tüm 13 faz başarıyla tamamlandı!*
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 12.1)
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 13)
 - [x] **[GÖREV-101..105]** Salt-okunur RBAC & Go `client-go` backend servisi. (Yapan: `devops-agent` & `backend-agent`)
 - [x] **[GÖREV-201..203]** WebSocket Hub sunucusu ve JSON streaming altyapısı. (Yapan: `backend-agent` & `integration-agent`)
 - [x] **[GÖREV-301..303]** React + Three.js 3D frontend projesi ve 3D liman/gemi sahnesi. (Yapan: `3d-scene-agent`)
@@ -22,7 +22,8 @@
 - [x] **[GÖREV-1001..1003]** Kube-proxy 3D Ağ Binası (`NetworkBuilding.jsx`), 3D canlı ağ akış tüpleri (`NetworkFlowStream.jsx`). (Yapan: `networking-agent`)
 - [x] **[GÖREV-1101..1103]** Multi-stage Dockerfile ve Helm Chart paketlemesi. (Yapan: `devops-agent`)
 - [x] **[GÖREV-1201..1205]** Katman Ayrımı (3D Canvas vs HTML UI Overlay) ve Endüstriyel Tasarım Sistemi. (Yapan: `ui-ux-agent`)
-- [x] **[GÖREV-12.1]** Canlı 3D Liman Motoru, %85 3D Canvas Ekran Oranı, Township Low-Poly Estetiği, İkonik Sarı Vinç, Salınan Gemiler ve Kamera Lerp Geçişleri. (Yapan: `3d-scene-agent`)
+- [x] **[GÖREV-12.1]** Canlı 3D Liman Motoru, Township Estetiği, Sarı Vinç, Salınan Gemiler ve Kamera Lerp Geçişleri. (Yapan: `3d-scene-agent`)
+- [x] **[GÖREV-1301..1305]** %100 3D Canvas Varsayılan Ekran Yerleşimi, Çift Header Hatası Çözümü (`LESSON-002`), Dikey K8s Bilgi Kartı Çekmecesi (%100 Height, ~%15 Width), Nesne Bazlı K8s Şeması (Pod, Node, Master, Scheduler, Kube-proxy) ve Çoklu Vinç/Depolarla Zenginleştirilmiş Liman Mimarisi. (Yapan: `ui-ux-agent` & `3d-scene-agent`)
 
 ---
 

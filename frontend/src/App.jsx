@@ -1,9 +1,5 @@
 import React from 'react'
-import Navbar from './components/Navbar'
 import ShipyardScene from './components/ShipyardScene'
-import LegendModal from './components/LegendModal'
-import EventStream from './components/EventStream'
-import DeploymentPanel from './components/DeploymentPanel'
 import { useShipyardWebSocket } from './hooks/useShipyardWebSocket'
 
 export default function App() {
@@ -11,15 +7,14 @@ export default function App() {
 
   return (
     <main className="w-full h-screen relative bg-slate-950 overflow-hidden">
-      <Navbar
+      <ShipyardScene
+        ships={ships}
+        totalShips={totalShips}
+        totalPallets={totalPallets}
         isConnected={isConnected}
-        shipCount={totalShips}
-        palletCount={totalPallets}
+        deployments={deployments}
+        eventsLog={eventsLog}
       />
-      <DeploymentPanel deployments={deployments} />
-      <ShipyardScene ships={ships} />
-      <EventStream events={eventsLog} />
-      <LegendModal />
     </main>
   )
 }
