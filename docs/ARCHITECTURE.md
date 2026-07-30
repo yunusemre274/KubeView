@@ -1,38 +1,38 @@
-# ARCHITECTURE.md — Aktif Mimarisi (Faz 2)
+# ARCHITECTURE.md — Aktif Mimarisi (Faz 3)
 
-> ⚠️ **UYARI:** Bu dosya SADECE mevcut aktif faz olan **Faz 2** mimarisini tanımlar. Gelecek fazların spekülatif mimarisi buraya yazılmaz. Kod yapısı değiştikçe bu dosya `architecture-agent` veya değişiklik yapan ilgili agent tarafından güncellenir.
-
----
-
-## 🏛️ Faz 2 Mimari Bileşenleri
-
-Faz 2 kapsamında sistem 3 ana bileşenden oluşur:
-1. **Kubernetes RBAC Manifestleri:** Uygulamanın API Server'a güvenli ve salt-okunur (read-only) erişmesini sağlayan `ServiceAccount`, `ClusterRole` ve `ClusterRoleBinding` tanımları (`deploy/rbac.yaml`).
-2. **Go Informer Watcher:** `k8s.io/client-go` kütüphanesini kullanarak API Server'a bağlanan, Node ve Pod event'lerini `SharedInformerFactory` ile dinleyen ve yerel bellekte küme snapshot'ını saklayan modül.
-3. **WebSocket Hub & Server:** `gorilla/websocket` kullanarak `/ws` endpoint'i üzerinden bağlı tüm istemcilere canlı K8s event'lerini yayınlayan, yeni bağlanan istemcilere anında ilk küme durumunu (Initial State Dump) fırlatan sunucu.
+> ⚠️ **UYARI:** Bu dosya SADECE mevcut aktif faz olan **Faz 3** mimarisini tanımlar. Gelecek fazların spekülatif mimarisi buraya yazılmaz. Kod yapısı değiştikçe bu dosya `architecture-agent` veya değişiklik yapan ilgili agent tarafından güncellenir.
 
 ---
 
-## 🔄 Veri Akışı (Faz 2)
+## 🏛️ Faz 3 Mimari Bileşenleri
+
+Faz 3 kapsamında sistem 4 ana bileşenden oluşur:
+1. **Kubernetes RBAC Manifestleri:** Read-only `ServiceAccount`, `ClusterRole` ve `ClusterRoleBinding` tanımları (`deploy/rbac.yaml`).
+2. **Go Informer Watcher:** `k8s.io/client-go` Informer'ları ile küme olaylarını dinleyen ve yerel bellekte tutan Go backend modülü.
+3. **WebSocket Hub & Server:** `/ws` endpoint'i üzerinden WebSocket akışı sağlayan HTTP sunucusu.
+4. **React + Three.js 3D Frontend:** React 18, Vite ve React Three Fiber (`@react-three/fiber`, `@react-three/drei`) kullanarak 3D deniz, liman dock alanı, kargo gemisi (Worker Node) ve kargo kutuları (Pod) render eden statik istemci arayüzü (`/frontend`).
+
+---
+
+## 🔄 Veri Akışı (Faz 3)
 
 ```
 +------------------------+      Watch / Informer        +---------------------------+
 | K8s API Server         | <--------------------------> | Go Backend (client-go)    |
-| (Nodes, Pods, Events)  |                              |  - SharedInformerFactory  |
-+------------------------+                              |  - Local State Cache      |
-                                                        +---------------------------+
+| (Nodes, Pods, Events)  |                              |  - Local State Cache      |
++------------------------+                              +---------------------------+
                                                                       |
                                                                       v
                                                         +---------------------------+
-                                                        | WebSocket Hub             |
-                                                        |  - ServeWS (/ws)          |
-                                                        |  - Initial State Dump     |
-                                                        |  - Broadcast Channel      |
+                                                        | WebSocket Hub (/ws)       |
                                                         +---------------------------+
                                                                       |
-                                                                      v (WS Messages)
+                                                                      v (Faz 4'te bağlanacak)
                                                         +---------------------------+
-                                                        | Frontend / WS Clients     |
+                                                        | React Three.js 3D Client  |
+                                                        |  - Canvas / OrbitControls |
+                                                        |  - 3D Ships (Nodes)       |
+                                                        |  - 3D Cargo (Pods)        |
                                                         +---------------------------+
 ```
 
@@ -42,14 +42,15 @@ Faz 2 kapsamında sistem 3 ana bileşenden oluşur:
 
 | Teknoloji | Sürüm | Seçim Gerekçesi |
 | :--- | :--- | :--- |
-| **Go** | `1.22+` | Yüksek eşzamanlılık (Goroutines), düşük bellek tüketimi. |
-| **k8s.io/client-go** | `v0.30+` | API Server ile resmi ve en kararlı event-driven iletişim kütüphanesi. |
-| **gorilla/websocket** | `v1.5.1` | Go ekosisteminde en performanslı ve güvenilir WebSocket sunucu kütüphanesi. |
-| **Kubernetes RBAC** | `rbac.authorization.k8s.io/v1` | Kesin salt-okunur (read-only) erişim kısıtlaması. |
+| **Go** | `1.22+` | Düşük kaynak kullanımı, yüksek performans. |
+| **client-go** | `v0.30+` | API Server ile resmi ve kararlı iletişim. |
+| **gorilla/websocket** | `v1.5.1` | Yüksek performanslı WebSocket sunucusu. |
+| **React** | `18.3+` | Bildirimsel (declarative) bileşen yapısı. |
+| **Three.js / R3F** | `v0.164+ / v8.16+` | WebGL tabanlı 60 FPS 3D render ve kolay bileşen yönetimi. |
 
 ---
 
-## 📁 Proje Dosya ve Klasör Yapısı (Faz 2)
+## 📁 Proje Dosya ve Klasör Yapısı (Faz 3)
 
 ```
 .
@@ -58,23 +59,16 @@ Faz 2 kapsamında sistem 3 ana bileşenden oluşur:
 ├── deploy/                      # Kubernetes manifestleri
 │   └── rbac.yaml                # ServiceAccount, ClusterRole ve Binding
 ├── backend/                     # Go Backend kaynak kodları
-│   ├── go.mod                   # Go modül tanımı
-│   ├── go.sum                   # Bağımlılık kilit dosyası
-│   ├── main.go                  # HTTP & WebSocket sunucusu giriş noktası
-│   └── pkg/
-│       ├── api/
-│       │   └── schema.go        # WSMessage & ShipyardMetaphor JSON şeması
-│       ├── k8s/
-│       │   ├── client.go        # K8s In-cluster & Out-of-cluster client
-│       │   └── watcher.go       # Informer & state cache & broadcast entegrasyonu
-│       └── websocket/
-│           └── hub.go           # WebSocket Hub, client handler ve ping/pong
-├── README.md                    # Proje genel tanıtımı
-└── LICENSE                      # Proje lisans dosyası
+└── frontend/                    # React + Three.js Frontend kaynak kodları
+    ├── package.json             # Bağımlılıklar (React, Three.js, R3F, Lucide)
+    ├── vite.config.js           # Vite sunucu ve derleme konfigürasyonu
+    ├── index.html               # Ana HTML şablonu
+    └── src/
+        ├── index.css            # Tailwind & Glassmorphism stilleri
+        ├── main.jsx             # React giriş noktası
+        ├── App.jsx              # Ana uygulama düzeni
+        └── components/
+            ├── ShipyardScene.jsx # Three.js 3D Canvas, Deniz, Gemi & Kargo render
+            ├── Navbar.jsx        # Durum göstergesi ve üst bar overlay
+            └── LegendModal.jsx   # Metafor rehberi modal overlay
 ```
-
----
-
-## ⚡ Bilinen Kısıtlar ve Teknik Borçlar (Faz 2)
-1. **Frontend UI Henüz Statik 3D Değil:** 3D React Three Fiber sahneleri Faz 3'te eklenecektir.
-2. **Metrik Toplama Devre Dışı:** `metrics-server` entegrasyonu Faz 5'te eklenecektir.

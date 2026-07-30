@@ -5,28 +5,27 @@
 ---
 
 ## 🔵 Aktif Görevler
-- [ ] **[GÖREV-301]** React + Vite + Three.js / React Three Fiber projesinin (`/frontend`) kurulması ve statik liman/gemi 3D sahnesinin oluşturulması.
+- [ ] **[GÖREV-401]** React frontend'de WebSocket istemci hook'unun (`src/hooks/useShipyardWebSocket.js`) yazılması ve canlı state güncelleme mantığının kurulması.
   - **Atanan Agent:** `frontend-agent`
-  - **Denetleyen Agent:** `architecture-agent`
+  - **Denetleyen Agent:** `integration-agent`
 
 ---
 
 ## 🟡 Sıradaki Görevler (Öncelik Sırasıyla)
-1. **[GÖREV-302]** OrbitControls ile kamera hareketi ve statik 3D kargo paletinin (Pod) gemiye yerleştirilmesi.
+1. **[GÖREV-402]** Yeni Pod eklendiğinde kargo yükleme animasyonunun, Pod silindiğinde kaybolma animasyonunun Three.js ile tetiklenmesi.
    - **Atanan Agent:** `frontend-agent`
-2. **[GÖREV-303]** Faz 3 görsel doğrulamasının ve derleme testlerinin `qa-agent` tarafından yapılması.
+2. **[GÖREV-403]** Faz 4 uçtan uca canlı akış animasyon testlerinin `qa-agent` tarafından yapılması.
    - **Atanan Agent:** `qa-agent`
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 & Faz 2)
-- [x] **[GÖREV-101]** RBAC Manifestlerinin (`deploy/rbac.yaml`) hazırlanması. (Yapan: `devops-agent`)
-- [x] **[GÖREV-102]** Go backend proje yapısının kurulması (`go.mod`, `main.go`). (Yapan: `backend-agent`)
-- [x] **[GÖREV-103]** K8s client başlatıcı yazılması (`pkg/k8s/client.go`). (Yapan: `backend-agent`)
-- [x] **[GÖREV-104]** `SharedInformerFactory` ile Node ve Pod event handler'larının yazılması. (Yapan: `backend-agent`)
-- [x] **[GÖREV-201]** WebSocket JSON mesaj şemasının (`pkg/api/schema.go`) tasarlanması. (Yapan: `integration-agent`)
-- [x] **[GÖREV-202]** Gorilla WebSocket Hub sunucusunun (`pkg/websocket/hub.go`) yazılması. (Yapan: `backend-agent`)
-- [x] **[GÖREV-203]** Informer event'lerinin WebSocket üzerinden canlı yayınlanması ve Initial State Dump entegrasyonu. (Yapan: `backend-agent`)
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 3)
+- [x] **[GÖREV-101]** RBAC Manifestlerinin hazırlanması (`deploy/rbac.yaml`). (Yapan: `devops-agent`)
+- [x] **[GÖREV-102..104]** Go `client-go` backend servisi ve Informer watcher yapısı. (Yapan: `backend-agent`)
+- [x] **[GÖREV-201..203]** WebSocket Hub sunucusu ve JSON streaming altyapısı. (Yapan: `backend-agent` & `integration-agent`)
+- [x] **[GÖREV-301]** React + Three.js (R3F) 3D frontend projesinin kurulması (`/frontend`). (Yapan: `frontend-agent`)
+- [x] **[GÖREV-302]** 3D Gemi (Node), Kargo (Pod), Liman sahnesi ve Metafor rehberi modalı. (Yapan: `frontend-agent`)
+- [x] **[GÖREV-303]** Faz 3 görsel doğrulamaları ve kabulü. (Yapan: `qa-agent`)
 
 ---
 
