@@ -1,95 +1,62 @@
-# ARCHITECTURE.md — Aktif Mimarisi (Faz 8 - Auto Port & 3D Vizyon)
+# ARCHITECTURE.md — Aktif Mimarisi (Faz 12 - Katman Ayrımı & Tasarım Sistemi)
 
-> ⚠️ **UYARI:** Bu dosya SADECE mevcut aktif faz olan **Faz 8** ve güncellenmiş 3D vizyonun teknik mimarisini tanımlar. Kod yapısı değiştikçe bu dosya `architecture-agent` tarafından güncellenir.
+> ⚠️ **UYARI:** Bu dosya SADECE mevcut aktif faz olan **Faz 12** ve güncellenmiş 3D/UI mimarisini tanımlar. Kod yapısı değiştikçe bu dosya `architecture-agent` tarafından güncellenir.
 
 ---
 
-## 🏛️ Mimari Katmanlar ve Teknolojiler
+## 🏛️ Mimari Katman Ayrımı (Rendering Layer vs UI Layer)
+
+Tersane platformunda **görsel kafa karışıklığını önlemek** ve **üst üste binen etiket karmaşasını ortadan kaldırmak** amacıyla 3D Dünya ve Kullanıcı Arayüzü iki kesin ve bağımsız katmana ayrılmıştır:
 
 ```
 +-----------------------------------------------------------------------------------+
-|                                KUBERNETES CLUSTER                                 |
+|                            EKRAN (VIEWPORT & CANVAS)                              |
 |                                                                                   |
-|  +------------------+       Watch / Informer        +--------------------------+  |
-|  | K8s API Server   | <---------------------------> | Tersane Backend          |  |
-|  | & NetworkPolicy  | (Nodes, Pods, Deploy, NetPol) | (Go client-go)           |  |
-|  +------------------+                               +--------------------------+  |
-|           ^                                                    |                  |
-|           | Metrics                                     Auto Port Resolution      |
-|  +------------------+                                  (Port 8000 -> 8001...)     |
-|  | metrics-server   |                                          |                  |
-|  +------------------+                                  WebSocket Stream           |
-|                                                                |                  |
-|                                                                v                  |
-|                                                     +--------------------------+  |
-|                                                     | Tersane 3D Engine        |  |
-|                                                     | (React 18 + R3F + WebGL) |  |
-|                                                     |  - Camera Manager        |  |
-|                                                     |  - Interior Scene Loader |  |
-|                                                     +--------------------------+  |
+|  +-----------------------------------------------------------------------------+  |
+|  | KATMAN 2: UI OVERLAY (position: absolute, z-index: 20)                     |  |
+|  |  [Üst Bar: Namespace Selector + Stat Cards + RBAC Rozeti]                  |  |
+|  |  [Sol Panel: Detay Müfettişi / Pod Bilgisi]                                |  |
+|  |  [Sağ Panel: Sefer Siparişleri (Deployments) Listesi]                      |  |
+|  |  [Alt Bar: Kamera / Görünüm Sekme Butonları]                              |  |
+|  +-----------------------------------------------------------------------------+  |
+|                                         |                                         |
+|  +-----------------------------------------------------------------------------+  |
+|  | KATMAN 1: 3D SAHNE (WebGL / Three.js Canvas, z-index: 0)                    |  |
+|  |  - SADECE Saf 3D Geometriler (Gemi, Rıhtım, Vinç, Binalar, Konteynırlar)    |  |
+|  |  - KESİNLİKLE hiçbir HTML metin, etiket veya buton İÇERMEZ!                 |  |
+|  |  - Hover durumunda SADECE hafif 3D glow/mesh highlight efekti verilir.       |  |
+|  +-----------------------------------------------------------------------------+  |
 +-----------------------------------------------------------------------------------+
 ```
 
----
+### Katman 1: 3D Sahne (Pure 3D World)
+- **Teknoloji:** Three.js / React Three Fiber / WebGL.
+- **Sorumluluk:** Sadece gerçekçi, low-poly ve tanınabilir 3D nesneleri (Beton Rıhtım, Kargo Gemisi, Kule, Vinç, Konteynırlar, Su Yüzeyi) render etmek.
+- **Kesin Kural:** 3D canvas içine hiçbir şekilde HTML metin, etiket (HTML overlay inside canvas), metin kutusu veya buton koyulmaz.
 
-## 📷 Kamera Modları ve Geçiş Mekaniği
-
-3D motoru 3 farklı kamera perspektifini destekler:
-1. **Kuşbakışı Genel Mimari Görünüm (Birds-Eye Architectural Mode):** Tüm cluster'ı (liman, yönetim binaları, ağ kuleleri ve gemiler) yukarıdan ve geniş bir açıdan kapsar. Küme bileşenleri arası mantıksal ağ bağlarını gösterir.
-2. **Dış Mekan Görünümü (Exterior Object Mode):** Seçilen binanın veya geminin dış detaylarına (bacalar, metrik çubukları, kargo deck'leri) odaklanan orta mesafe görünümü.
-3. **İç Mekan / Girilebilir Görünüm (Interior First-Person Mode):**
-   - **Master Node Binası İçi:** Kullanıcının girip pencerelerden limandaki canlı gemileri seyrettiği, önündeki kontrol paneli ekranlarını incelediği iç sahne.
-   - **Gemi (Worker Node) İçi:** Kullanıcının gemi ambarına ve kaptan köprüsüne girip dümenciyi (Kubelet) ve kargo paletlerini (Pod) izlediği iç sahne.
+### Katman 2: UI Overlay (HTML/CSS & React Component Layer)
+- **Teknoloji:** React 18 + Vanilla CSS (Endüstriyel Tersane Tema Sistemi).
+- **Sorumluluk:** Tüm okunabilir bilgiler (Namespace seçici, Gemiler/Paletler rozetleri, Sefer Siparişleri kartları, Pod detayları, Sekme butonları) ekranın kenarlarına sabitlenmiş düzenli panellerde gösterilir.
 
 ---
 
-## 🔌 Otomatik Port Çakışma Önleme Stratejisi (Auto Port Detection)
+## 🎨 Endüstriyel Tersane Tasarım Sistemi (Design System)
 
-1. **Arama Aralığı:**
-   - Backend: Varsayılan port `8000`. Port doluysa `8000-8020` aralığı sırayla taranır.
-   - Frontend: Varsayılan port `5173`. Port doluysa `5173-5190` aralığı sırayla taranır.
-2. **Çalışma Mantığı:**
-   - Go backend `net.Listen("tcp", ":port")` denemesi yapar. `EADDRINUSE` (port dolu) hatası alınırsa port numarası +1 artırılarak tekrar denenir.
-3. **Kullanıcı Bilgilendirmesi:**
-   - Kullanılan port terminal çıktısında belirgin banner olarak yazdırılır:
-     `[PORT-RESOLVER] ⚠️ Port 8000 in use. Automatically switched to port 8001.`
-
----
-
-## 🌐 Ağ Trafiği & NetworkPolicy Görselleştirme Altyapısı
-
-- **Kube-proxy Binası:** Ağ trafiğini ve kargo rotalarını düzenleyen bağımsız 3D telsiz/ağ kulesi mimarisi.
-- **Canlı Ağ Hatları:** Pod'lar ve Service'ler arası aktif trafik flow'ları Three.js `Line2` / `TubeGeometry` parçacık efektleri ile renklendirilir.
-- **NetworkPolicy Engellemeleri:** K8s `networking.k8s.io/v1` NetworkPolicy nesneleri okunarak engellenen bağlantılar üzerine kilitli 3D gümrük bariyeri render edilir.
+1. **Renk Paleti:**
+   - Zemin & Arka Plan: Koyu Lacivert / Siyah (`#090d16`, `#111827`)
+   - Birincil Vurgu: Liman Sodyum Işığı Amber/Turuncu (`#f59e0b`, `#d97706`)
+   - İkincil Vurgu: Çelik Mavisi (`#0284c7`, `#0ea5e9`)
+   - Durum Renkleri: Yeşil (`#10b981`), Sarı (`#f59e0b`), Kırmızı (`#ef4444`)
+2. **Tipografi Hiyerarşisi:**
+   - Başlıklar: Condensed Industrial Font (`Oswald`, `sans-serif`)
+   - Metrikler & Kod Metinleri: Monospace (`JetBrains Mono`, `monospace`)
+   - Etiketler & Gövde: Clean Sans (`Inter`, `system-ui`)
+3. **Sabit Spacing Skalası:**
+   - 4px, 8px, 12px, 16px, 24px sabit padding/margin değerleri.
 
 ---
 
-## 📁 Proje Dosya ve Klasör Yapısı (Faz 8)
+## 🔌 Otomatik Port Çakışma Önleme Stratejisi
 
-```
-.
-├── AGENTS/                      # 14 Uzman Ajan Tanım Dosyası (3D, UX, Networking dahil)
-├── docs/                        # Proje Dokümantasyonu ve ADR'lar
-├── deploy/                      # Kubernetes Manifestleri (RBAC, Deployment, Service)
-├── backend/                     # Go Backend
-│   └── pkg/
-│       ├── api/
-│       │   └── schema.go        # WS & Metaphor Şemaları
-│       ├── k8s/
-│       │   └── watcher.go       # Informers (Nodes, Pods, Deployments, Events, NetPol)
-│       ├── netutils/
-│       │   └── port_resolver.go # Otomatik Port Çakışma Çözücü
-│       └── websocket/
-│           └── hub.go
-└── frontend/                    # React 3D Engine
-    └── src/
-        ├── camera/
-        │   └── CameraManager.jsx # Kamera modları ve serbest uçuş kontrolleri
-        ├── components/
-        │   ├── ShipyardScene.jsx # 3D Render Katmanı
-        │   ├── DeploymentPanel.jsx
-        │   ├── EventStream.jsx
-        │   └── Navbar.jsx
-        └── hooks/
-            └── useShipyardWebSocket.js
-```
+- Backend: Port 8000 doluysa `8000-8020` taranır.
+- Frontend WebSocket Hook: Otomatik port algılama ve fallback istemcisi.

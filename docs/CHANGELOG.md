@@ -4,18 +4,16 @@ Projedeki tüm önemli değişiklikler bu dosyada belgelenir. Format [Keep a Cha
 
 ---
 
-## [v1.0.0-3d - Nihai 3D Sürüm Yayını (Official Release)] - 2026-07-30
+## [v1.2.0 - Faz 12 Katman Ayrımı & Endüstriyel Tasarım Sistemi] - 2026-07-30
 
-### Eklendi / Tamamlandı
-- `release-agent` ve `devops-agent` tarafından v1.0.0-3d Tam 3D Simülasyon platformu yayına alındı.
-- Multi-stage Dockerfile (Node 18 frontend build, Go 1.22 backend build, Alpine 3.19 runtime) üretildi.
-- Production Helm Chart (`charts/tersane`) v1.0.0-3d etiketine güncellendi.
-- Tüm 11 fazın kabul testleri `qa-agent` ve `master-agent` tarafından onaylandı.
+### Eklendi / Yeniden Yapılandırıldı
+- `ui-ux-agent` & `3d-scene-agent` tarafından 3D Sahne (Katman 1) ve HTML UI Overlay (Katman 2) kesin olarak iki bağımsız katmana ayrıldı (`/docs/ARCHITECTURE.md` [ADR-008]).
+- 3D Canvas içindeki tüm yüzen metinler ve butonlar kaldırıldı. Nesnelere tıklanınca sol sabit müfettiş panelinde gösterilmeye başlandı.
+- `index.css` dosyasına Google Fonts (`Oswald`, `JetBrains Mono`, `Inter`), özel renk paleti (amber, steel blue, dark navy) ve özel dropdown/kart stillerinden oluşan **Endüstriyel Tersane Tasarım Sistemi** tanımlandı.
+- 3D Liman mimarisi tanınabilir modellerle yenilendi: Beton Rıhtım + Sarı/Siyah Emniyet Çizgisi + Turuncu Liman Vinci + Detaylı Kargo Gemisi Silüeti + Güverte Konteynır Izgarası.
+- `DeploymentPanel.jsx` ayrıştırılmış bağımsız kart düzenine kavuşturuldu.
 
 ---
 
-## [v0.10.0 - Faz 10 Ağ Trafiği Görselleştirme Tamamlandı] - 2026-07-30
-
-### Eklendi
-- `networking-agent` tarafından `backend/pkg/k8s/networking.go` (NetworkPolicy Informer) yazıldı.
-- Kube-proxy 3D Ağ Binası ve canlı 3D ağ akış çizgileri geliştirildi.
+## [v1.0.0-3d - Nihai 3D Sürüm Yayını] - 2026-07-30
+- Multi-stage Dockerfile ve Production Helm Chart güncellendi.

@@ -1,64 +1,68 @@
 import React, { useState } from 'react'
-import { ScrollText, ChevronDown, ChevronUp, Layers, ArrowUpRight } from 'lucide-react'
+import { ScrollText, ChevronRight, ChevronLeft, CheckCircle2 } from 'lucide-react'
 
 export default function DeploymentPanel({ deployments = [] }) {
-  const [isExpanded, setIsExpanded] = useState(true)
+  const [isOpen, setIsOpen] = useState(true)
 
   const defaultDeployments = [
     { name: 'web-frontend-deploy', namespace: 'default', replicas: '3/3', status: 'Healthy' },
     { name: 'api-backend-deploy', namespace: 'default', replicas: '2/2', status: 'Healthy' },
-    { name: 'redis-cache-set', namespace: 'cache', replicas: '1/1', status: 'Healthy' }
+    { name: 'redis-cache-set', namespace: 'production', replicas: '1/1', status: 'Healthy' }
   ]
 
-  const activeDeployments = deployments.length > 0 ? deployments : defaultDeployments
+  const activeList = deployments.length > 0 ? deployments : defaultDeployments
 
   return (
-    <div className="fixed top-24 left-4 z-10 w-72 glass-panel rounded-xl text-slate-100 border border-slate-700/60 shadow-xl overflow-hidden animate-fadeIn">
-      {/* Panel Header */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between p-3.5 bg-slate-900/60 border-b border-slate-800 hover:bg-slate-800/60 transition-all"
-      >
-        <div className="flex items-center gap-2">
-          <ScrollText className="w-4 h-4 text-amber-400" />
-          <h3 className="text-xs font-bold tracking-wider text-amber-300">📜 SEFER SİPARİŞLERİ</h3>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono font-bold">
-            {activeDeployments.length}
-          </span>
-          {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
-        </div>
-      </button>
+    <aside className="fixed top-20 right-4 z-20 pointer-events-auto">
+      <div className="flex items-start gap-2">
+        {/* Toggle Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="industrial-btn py-2 px-2 rounded-xl text-amber-400 border-amber-500/40 shadow-lg"
+          title="Sefer Siparişleri Paneli"
+        >
+          {isOpen ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
+        </button>
 
-      {/* Deployment List */}
-      {isExpanded && (
-        <div className="p-3 space-y-2 max-h-60 overflow-y-auto">
-          {activeDeployments.map((dep, idx) => (
-            <div
-              key={idx}
-              className="p-2.5 rounded-lg bg-slate-900/40 border border-slate-800/80 flex items-center justify-between hover:border-amber-500/40 transition-all group"
-            >
+        {isOpen && (
+          <div className="w-80 industrial-panel p-4 rounded-xl border-amber-500/30 animate-fadeIn">
+            {/* Header */}
+            <div className="flex items-center gap-2 pb-3 mb-3 border-b border-slate-700/80">
+              <ScrollText className="w-5 h-5 text-amber-400" />
               <div>
-                <div className="text-xs font-semibold text-white group-hover:text-amber-300 transition-colors">
-                  {dep.name}
-                </div>
-                <div className="text-[10px] text-slate-400 flex items-center gap-1 mt-0.5">
-                  <Layers className="w-3 h-3 text-slate-500" />
-                  <span>Ambar: {dep.namespace}</span>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="text-xs font-mono font-bold text-emerald-400">
-                  {dep.replicas}
-                </span>
-                <span className="text-[9px] text-slate-400">Replicas</span>
+                <h2 className="font-industrial text-base text-amber-400 font-bold leading-none">
+                  📜 SEFER SİPARİŞLERİ (DEPLOYMENTS)
+                </h2>
+                <p className="text-[10px] text-slate-400 font-mono-tech mt-0.5">
+                  Hedeflenen Kargo ve Palet Talimatnamesi
+                </p>
               </div>
             </div>
-          ))}
-        </div>
-      )}
-    </div>
+
+            {/* List of Discrete Cards */}
+            <div className="space-y-2.5 max-h-[70vh] overflow-y-auto pr-1">
+              {activeList.map((dep, idx) => (
+                <div key={dep.name || idx} className="industrial-card border-slate-700/70">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-mono-tech font-bold text-sky-300 text-xs truncate max-w-[170px]">
+                      {dep.name}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[10px] font-mono-tech px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-md">
+                      <CheckCircle2 className="w-3 h-3" />
+                      {dep.status || 'Healthy'}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono-tech mt-2 pt-2 border-t border-slate-800">
+                    <span>Ambar: <strong className="text-slate-200">{dep.namespace}</strong></span>
+                    <span>Sipariş Palet: <strong className="text-amber-400">{dep.replicas}</strong></span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </aside>
   )
 }

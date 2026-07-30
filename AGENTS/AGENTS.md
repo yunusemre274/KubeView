@@ -1,4 +1,4 @@
-# AGENTS.md — Tüm Ajanlar İçin Ortak Kurallar Rehberi (3D Revize)
+# AGENTS.md — Tüm Ajanlar İçin Ortak Kurallar Rehberi (Katman Ayrımı & UI Standartı)
 
 Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker agent & master agent) uymak zorunda olduğu **kesin ve esnetilemez mühendislik kurallarını** içerir.
 
@@ -6,15 +6,19 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 ## 🎯 1. Temel İlkeler
 
-1. **KISS Prensibi (Keep It Simple, Stupid):**
+1. **3D Canvas & UI Overlay Katman Ayrımı (KESİN KURAL):**
+   - **3D Canvas içine hiçbir zaman okunabilir metin, etiket veya buton render edilemez!**
+   - 3D Sahne (Katman 1) SADECE nesneleri, 3D ışıkları ve modelleri render eder.
+   - Tüm metinler, sayaçlar, butonlar, detay kartları ve paneller Katman 2 olan **HTML UI Overlay** katmanında sabit paneller olarak yaşar.
+2. **KISS Prensibi (Keep It Simple, Stupid):**
    - En basit çalışan çözüm DOĞRU çözümdür. Gereksiz karmaşıklıklar, erken optimizasyon ve kullanılmayan esneklikler YASAKTIR.
-2. **Faz Dışı İş Yapılamaz:**
+3. **Faz Dışı İş Yapılamaz:**
    - `PHASES.md` dosyasında tanımlı olan aktif faz dışında hiçbir koda veya özelliğe başlanmaz.
-3. **Dört Göz İlkesi (Four-Eyes Principle):**
+4. **Dört Göz İlkesi (Four-Eyes Principle):**
    - Hiçbir agent kendi yazdığı veya ürettiği kodu kendi onaylayıp `main` dalına birleştiremez. Kod yazan agent ile denetleyen agent farklı olmalıdır.
-4. **UI/UX Kalitesi ve 60 FPS Standartı:**
-   - Arayüzün sadece "çalışması" yeterli değildir; 60 FPS akıcılıkta, kullanıcıyı yormayan kamera geçişleriyle ve yüksek görsel kalitede çalışması ZORUNLUDUR.
-5. **Otomatik Port Çakışma Önleme:**
+5. **Endüstriyel UI/UX Kalitesi & 60 FPS Standartı:**
+   - Arayüzün sadece "çalışması" yeterli değildir; 60 FPS akıcılıkta, tipografi hiyerarşisine sahip, renk paleti tutarlı ve tarayıcı varsayılanı bileşen içermeyen tasarım sistemiyle çalışması ZORUNLUDUR.
+6. **Otomatik Port Çakışma Önleme:**
    - Servisler başlatılırken varsayılan portun dolu olması durumunda uygulama çökmemeli, otomatik bir sonraki boş portu bularak kullanıcıya açıkça bildirmelidir.
 
 ---
@@ -40,7 +44,7 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 ## 🌿 3. Git Workflow Kuralları
 
-- **Branch İsimlendirme:** `faz/08-auto-port`, `feature/enterable-buildings`
+- **Branch İsimlendirme:** `faz/12-ui-ux-design-system`
 - **Commit Mesaj Formatı:**
   ```text
   [Faz X][Agent Adı] Kısa özet başlığı
@@ -56,7 +60,7 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 1. **OKU:** `PROJECT.md`, `ARCHITECTURE.md`, `TODO.md`, `PHASES.md` (aktif faz), `DECISIONS.md`, `ORG-CHART.md`.
 2. **GÖREV DAĞIT:** `master-agent`, `TODO.md` listesindeki görevi ilgili worker agent'a atar.
-3. **UYGULA:** İlgili worker agent kodu yazar (KISS & 3D ilkelerine uygun).
+3. **UYGULA:** İlgili worker agent kodu yazar (KISS & Katman Ayrımı ilkelerine uygun).
 4. **DENETLE:** `code-review-agent`, `architecture-agent`, `security-agent` veya `ui-ux-agent` denetler.
 5. **DOĞRULA:** `qa-agent`, `PHASES.md` kabul kriterleriyle kodu kıyaslar ve test eder.
 6. **KAYDET:** `TODO.md`, `CHANGELOG.md`, gerekirse `ARCHITECTURE.md` ve `DECISIONS.md` güncellenir.

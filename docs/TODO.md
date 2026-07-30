@@ -1,15 +1,15 @@
-# TODO.md — Aktif ve Sıradaki Görevler Listesi (v1.0.0-3d Release)
+# TODO.md — Aktif ve Sıradaki Görevler Listesi (v1.2.0 Release)
 
-> 🏆 **PROJE TAMAMLANDI:** TODO listesindeki tüm görevler başarıyla tamamlanmıştır.
+> 🏆 **PROJE TAMAMLANDI:** TODO listesindeki tüm 12 faz görevi başarıyla tamamlanmıştır.
 
 ---
 
 ## 🔵 Aktif Görevler
-*Şu an aktif görev bulunmamaktadır. Tüm 11 faz başarıyla tamamlandı!*
+*Şu an aktif görev bulunmamaktadır. Tüm 12 faz başarıyla tamamlandı!*
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 11)
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 12)
 - [x] **[GÖREV-101..105]** Salt-okunur RBAC & Go `client-go` backend servisi. (Yapan: `devops-agent` & `backend-agent`)
 - [x] **[GÖREV-201..203]** WebSocket Hub sunucusu ve JSON streaming altyapısı. (Yapan: `backend-agent` & `integration-agent`)
 - [x] **[GÖREV-301..303]** React + Three.js 3D frontend projesi ve 3D liman/gemi sahnesi. (Yapan: `3d-scene-agent`)
@@ -19,8 +19,9 @@
 - [x] **[GÖREV-701..703]** Ambar (Namespace) seçici dropdown & K8s Event Informer. (Yapan: `backend-agent` & `ui-ux-agent`)
 - [x] **[GÖREV-801..803]** `netutils.ResolveAvailablePort` ve otomatik port fallback taraması. (Yapan: `backend-agent` & `frontend-agent`)
 - [x] **[GÖREV-901..903]** Girilebilir Master Node Yönetim Binası ve Gemi İç Mekanı (`BuildingInterior.jsx`). (Yapan: `3d-scene-agent`)
-- [x] **[GÖREV-1001..1003]** Kube-proxy 3D Ağ Binası (`NetworkBuilding.jsx`), 3D canlı ağ akış tüpleri (`NetworkFlowStream.jsx`) ve NetworkPolicy Informer. (Yapan: `networking-agent`)
-- [x] **[GÖREV-1101..1103]** Production Multi-stage Dockerfile, Helm Chart paketlemesi ve v1.0.0-3d Release. (Yapan: `release-agent` & `devops-agent`)
+- [x] **[GÖREV-1001..1003]** Kube-proxy 3D Ağ Binası (`NetworkBuilding.jsx`), 3D canlı ağ akış tüpleri (`NetworkFlowStream.jsx`). (Yapan: `networking-agent`)
+- [x] **[GÖREV-1101..1103]** Multi-stage Dockerfile ve Helm Chart paketlemesi. (Yapan: `devops-agent`)
+- [x] **[GÖREV-1201..1205]** Katman Ayrımı (3D Canvas vs HTML UI Overlay), Endüstriyel Tasarım Sistemi ve Gerçekçi Low-Poly Liman Modelleri. (Yapan: `ui-ux-agent` & `3d-scene-agent`)
 
 ---
 
