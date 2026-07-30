@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import { ShieldCheck, Cpu, Server, Activity, X, ArrowLeft, Layers, CheckCircle2, Radio, HardDrive } from 'lucide-react'
+import { ShieldCheck, Cpu, Server, Activity, X, ArrowLeft, Layers, CheckCircle2, Radio, HardDrive, Compass } from 'lucide-react'
 
 export default function MasterDashboardOverlay({ onClose, activeShips = [], deployments = [] }) {
   const [activeTab, setActiveTab] = useState('OVERVIEW')
-  const [selectedItem, setSelectedItem] = useState(null)
 
   const controlPlaneStatus = [
     { name: 'kube-apiserver', role: 'API Gateway', status: 'Healthy', latency: '2ms', version: 'v1.28.2' },
     { name: 'etcd (Seyir Defteri)', role: 'Cluster State DB', status: 'Healthy', latency: '4ms', version: 'v3.5.9' },
-    { name: 'kube-scheduler (Vinç)', role: 'Pod Zamanlayıcı', status: 'Healthy', latency: '1ms', version: 'v1.28.2' },
+    { name: 'kube-scheduler (Vinç)', role: 'Pod Zamanlayıcı', status: 'Healthy', latency: '1ms', version: 'v1.28.2', decision: 'pod redis-cache-set-0 -> node-beta (Score: 94/100)' },
     { name: 'kube-controller-manager', role: 'Yaşam Döngüsü', status: 'Healthy', latency: '3ms', version: 'v1.28.2' }
   ]
 
@@ -50,7 +49,7 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], depl
             className={`industrial-btn py-1 text-[11px] justify-center ${activeTab === 'OVERVIEW' ? 'industrial-btn-active' : ''}`}
           >
             <Activity className="w-3.5 h-3.5" />
-            <span>📊 GENEL BAKIK</span>
+            <span>📊 GENEL BAKIŞ</span>
           </button>
 
           <button
@@ -102,21 +101,26 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], depl
               <div className="industrial-panel p-3 rounded-lg space-y-2">
                 <span className="text-amber-400 font-bold block text-[10px]">CONTROL PLANE SAĞLIĞI:</span>
                 {controlPlaneStatus.map((cp) => (
-                  <div key={cp.name} className="bg-slate-900/90 p-2 rounded border border-slate-800 flex items-center justify-between text-[11px]">
-                    <div>
+                  <div key={cp.name} className="bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1 text-[11px]">
+                    <div className="flex items-center justify-between">
                       <strong className="text-sky-300 block">{cp.name}</strong>
-                      <span className="text-[10px] text-slate-400">{cp.role}</span>
+                      <span className="px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                        {cp.status}
+                      </span>
                     </div>
-                    <span className="px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
-                      {cp.status}
-                    </span>
+                    <div className="text-[10px] text-slate-400">{cp.role} ({cp.latency})</div>
+                    {cp.decision && (
+                      <div className="text-[9px] text-amber-300 bg-amber-500/10 p-1 rounded border border-amber-500/30">
+                        ● Son Atama: {cp.decision}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* TAB 2: NODE AGENTS (REGRESYON 2 FIX - KUBELET & SCHEDULER DETAILS) */}
+          {/* TAB 2: NODE AGENTS & KUBE-SCHEDULER DETAILS */}
           {activeTab === 'HEALTH' && (
             <div className="space-y-3">
               <div className="industrial-panel p-3 rounded-lg space-y-2">
@@ -132,6 +136,10 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], depl
                       <strong className="text-emerald-400">Active (Running)</strong>
                     </div>
                     <div className="flex justify-between text-[10px] text-slate-400">
+                      <span>Readiness Probes:</span>
+                      <strong className="text-emerald-400">2/2 Passing (100%)</strong>
+                    </div>
+                    <div className="flex justify-between text-[10px] text-slate-400">
                       <span>Kube-Proxy Status:</span>
                       <strong className="text-emerald-400">Active (iptables)</strong>
                     </div>
@@ -144,9 +152,11 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], depl
               </div>
 
               <div className="industrial-panel p-3 rounded-lg space-y-1.5 text-[11px]">
-                <span className="text-amber-400 font-bold block text-[10px]">🏗️ KUBE-SCHEDULER STATUS:</span>
-                <div>Scheduler Engine: <strong className="text-slate-200">default-scheduler</strong></div>
+                <span className="text-amber-400 font-bold block text-[10px]">🏗️ KUBE-SCHEDULER CANLI KARARLARI:</span>
+                <div>Engine: <strong className="text-slate-200">default-scheduler (v1.28.2)</strong></div>
+                <div>Son Atama Kararı: <strong className="text-sky-300">pod redis-cache-set-0 ➔ node-beta</strong></div>
                 <div>Zamanlama Skoru: <strong className="text-emerald-400">94/100 (LeastRequestedPriority)</strong></div>
+                <div>Bekleyen Pod Kuyruğu: <strong className="text-amber-300">1 pod (pending-stack-1)</strong></div>
               </div>
             </div>
           )}
@@ -157,8 +167,7 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], depl
               {mockDeployments.map((d) => (
                 <div
                   key={d.name}
-                  onClick={() => setSelectedItem(d)}
-                  className="industrial-card p-2.5 rounded-lg border hover:border-purple-500 cursor-pointer space-y-1"
+                  className="industrial-card p-2.5 rounded-lg border space-y-1"
                 >
                   <div className="flex justify-between items-center text-[11px]">
                     <strong className="text-purple-300">{d.name}</strong>

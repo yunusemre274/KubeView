@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useMemo } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Sky } from '@react-three/drei'
 import * as THREE from 'three'
@@ -304,31 +304,57 @@ function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomal
   )
 }
 
-// 8. Cargo Ship (Worker Node)
-function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, activeAnomaly }) {
+// 8. Cargo Ship (Worker Node) With Smooth Patrol Rotation Curve
+function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, activeAnomaly }) {
   const groupRef = useRef()
   const [hovered, setHovered] = useState(false)
   const isNodeNotReady = activeAnomaly === 'NodeNotReady' && shipData.id === 'node-2'
 
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      const t = clock.getElapsedTime()
-      if (isNodeNotReady) {
-        groupRef.current.position.y = position[1] - 0.8 + Math.sin(t * 0.8) * 0.05
-        groupRef.current.rotation.z = -0.18 + Math.sin(t * 0.8) * 0.02
-        groupRef.current.rotation.x = 0.12
-      } else {
-        groupRef.current.position.y = position[1] + Math.sin(t * 1.5 + position[0]) * 0.12
-        groupRef.current.rotation.z = Math.sin(t * 1.1 + position[0]) * 0.02
-        groupRef.current.rotation.x = Math.cos(t * 0.9 + position[0]) * 0.015
-      }
+  // Pre-calculate smooth patrol curve for each ship
+  const patrolCurve = useMemo(() => {
+    const [x, y, z] = basePosition
+    const points = [
+      new THREE.Vector3(x, y, z),
+      new THREE.Vector3(x + 6, y, z + 8),
+      new THREE.Vector3(x + 14, y, z),
+      new THREE.Vector3(x + 8, y, z - 8),
+      new THREE.Vector3(x, y, z)
+    ]
+    return new THREE.CatmullRomCurve3(points, true)
+  }, [basePosition])
+
+  const progressRef = useRef(shipData.id === 'node-2' ? 0.5 : 0.0)
+
+  useFrame((_, delta) => {
+    if (!groupRef.current) return
+
+    const t = progressRef.current
+    if (!isNodeNotReady) {
+      // Advance progress smoothly if healthy
+      progressRef.current += delta * 0.012
+    }
+
+    const pos = patrolCurve.getPointAt(progressRef.current % 1)
+    const tangent = patrolCurve.getTangentAt(progressRef.current % 1)
+
+    if (isNodeNotReady) {
+      // Anomaly: Pause motion, sink and tilt in current position
+      groupRef.current.position.set(pos.x, pos.y - 0.8 + Math.sin(t * 3) * 0.05, pos.z)
+      groupRef.current.rotation.z = -0.18 + Math.sin(t * 3) * 0.02
+      groupRef.current.rotation.x = 0.12
+    } else {
+      // Normal Patrol: Set position & face direction
+      groupRef.current.position.set(pos.x, pos.y + Math.sin(t * 15) * 0.08, pos.z)
+      const angle = Math.atan2(tangent.x, tangent.z)
+      groupRef.current.rotation.y = angle
+      groupRef.current.rotation.z = Math.sin(t * 10) * 0.015
     }
   })
 
   const pods = shipData.pods || []
 
   return (
-    <group ref={groupRef} position={position}>
+    <group ref={groupRef} position={basePosition}>
       <mesh position={[0, 0.4, 0]} castShadow>
         <boxGeometry args={[9, 1.2, 26]} />
         <meshStandardMaterial color={isNodeNotReady ? '#991b1b' : '#dc2626'} metalness={0.5} roughness={0.4} />
@@ -362,6 +388,7 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, 
         <meshStandardMaterial color="#f8fafc" roughness={0.2} />
       </mesh>
 
+      {/* 3D Kubelet Radar Icon on Mast */}
       <KubeletRadar
         position={[0, 6.5, -9.5]}
         onClickKubelet={() => onSelectKubelet(shipData)}
@@ -419,7 +446,7 @@ export default function ShipyardScene({ ships = [] }) {
 
   const [eventsLog, setEventsLog] = useState([
     { id: 1, time: '23:38:10', message: 'Tersane v2.0.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'Worker Node node-alpha Ready Durumda', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'Worker Node Devriye Rotası Aktif', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
@@ -526,6 +553,10 @@ export default function ShipyardScene({ ships = [] }) {
       addEventLog('⚠️ ALARM: Pod api-backend-deploy-59d4c OOMKilled', 'Warning', false, 'pod-2')
       setCamTargetPos(new THREE.Vector3(14, 10, 16))
       setCamTargetLookAt(new THREE.Vector3(2, 2, 4))
+    } else if (anomalyType === 'NodeNotReady') {
+      addEventLog('⚠️ ALARM: Worker Node node-beta NotReady durumunda (Gemi durdu ve batıyor)', 'Warning', false, 'node-2')
+      setCamTargetPos(new THREE.Vector3(38, 12, 12))
+      setCamTargetLookAt(new THREE.Vector3(24, 0, -4))
     } else {
       setActiveAnomaly(null)
       addEventLog('Sistem Normale Döndü', 'Normal', false)
@@ -539,7 +570,7 @@ export default function ShipyardScene({ ships = [] }) {
         name: 'tersane-ingress-gateway',
         hosts: ['tersane.k8s.local'],
         rules: [{ path: '/', service: 'web-frontend-svc:80' }, { path: '/api', service: 'api-backend-svc:8000' }],
-        tls: 'Enabled (Let\'s Encrypt)'
+        tls: 'Enabled (Let\'s Encrypt RSA 4096)'
       }
     })
     setCamTargetPos(new THREE.Vector3(42, 16, 32))
@@ -557,8 +588,6 @@ export default function ShipyardScene({ ships = [] }) {
 
   const handleSelectShip = (ship) => {
     setActiveSelection({ type: 'SHIP', data: ship })
-    setCamTargetPos(new THREE.Vector3(ship.position[0] + 16, 14, ship.position[2] + 22))
-    setCamTargetLookAt(new THREE.Vector3(...ship.position))
   }
 
   const handleSelectPod = (pod, shipName) => {
@@ -568,7 +597,14 @@ export default function ShipyardScene({ ships = [] }) {
   const handleSelectKubelet = (ship) => {
     setActiveSelection({
       type: 'KUBELET',
-      data: { node_name: ship.name, ip: ship.ip, status: 'Active (Running)', last_heartbeat: '1.2s ago', pods: ship.pods || [] }
+      data: {
+        node_name: ship.name,
+        ip: ship.ip,
+        status: 'Active (Running)',
+        last_heartbeat: '1.2s ago',
+        readiness_probe: '2/2 Passing (100%)',
+        pods: ship.pods || []
+      }
     })
   }
 
@@ -582,7 +618,11 @@ export default function ShipyardScene({ ships = [] }) {
   const handleSelectCrane = () => {
     setActiveSelection({
       type: 'CRANE',
-      data: { scheduler_name: 'default-scheduler', last_decision: 'pod redis-cache-set-0 -> node-beta', pending_queue: 1 }
+      data: {
+        scheduler_name: 'default-scheduler (v1.28.2)',
+        last_decision: 'pod redis-cache-set-0 -> node-beta (Score: 94/100, Reason: LeastRequestedPriority)',
+        pending_queue: 1
+      }
     })
     setCamTargetPos(new THREE.Vector3(2, 14, 22))
     setCamTargetLookAt(new THREE.Vector3(-12, 4, 6))
@@ -644,7 +684,7 @@ export default function ShipyardScene({ ships = [] }) {
     <div className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
       
       {/* SOL ÜST MİNİMAL ROZET & MULTI-CLUSTER CONTEXT SEÇİCİ */}
-      <div className="fixed top-3 left-3 z-30 pointer-events-auto flex items-center gap-2">
+      <div className="fixed top-3 left-3 z-40 pointer-events-auto flex items-center gap-2">
         <div className="glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-2">
           <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
           <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
@@ -678,51 +718,62 @@ export default function ShipyardScene({ ships = [] }) {
         </button>
       </div>
 
-      {/* SORUN 5 FIX: PINNED TOP TOOLBAR BAR (EN ÜSTE SABİTLENMİŞ, KÜÇÜLTÜLMÜŞ ARAÇ ÇUBUĞU) */}
-      <div className="fixed top-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1 industrial-panel p-1 rounded-xl border-amber-500/40 shadow-2xl">
+      {/* REGRESYON FIX: PINNED TOP TOOLBAR BAR (Z-50 & POINTER-EVENTS-AUTO KESİN SABİTLENMİŞ ÇUBUK) */}
+      <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50 pointer-events-auto flex items-center gap-1.5 industrial-panel px-3 py-1.5 rounded-xl border-amber-500/50 shadow-2xl bg-slate-900/90 backdrop-blur-md">
         <button
           onClick={handleResetCamera}
-          className={`industrial-btn py-0.5 px-2 text-[11px] ${!activeSelection && !showMasterDashboard && !showEventLog ? 'industrial-btn-active' : ''}`}
+          className={`industrial-btn py-1 px-2.5 text-xs ${!activeSelection && !showMasterDashboard && !showEventLog ? 'industrial-btn-active' : ''}`}
         >
-          <Eye className="w-3 h-3" />
-          <span>🦅 KUŞBAKIŞI</span>
+          <Eye className="w-3.5 h-3.5" />
+          <span>🦅 TÜM LİMAN (KUŞBAKIŞI)</span>
         </button>
 
         <button
           onClick={handleSelectMaster}
-          className={`industrial-btn py-0.5 px-2 text-[11px] ${showMasterDashboard ? 'industrial-btn-active' : ''}`}
+          className={`industrial-btn py-1 px-2.5 text-xs ${showMasterDashboard ? 'industrial-btn-active' : ''}`}
         >
-          <Building2 className="w-3 h-3" />
-          <span>🏢 YÖNETİM BİNASI</span>
+          <Building2 className="w-3.5 h-3.5" />
+          <span>🏢 YÖNETİM BİNASINA GİR</span>
         </button>
 
         <button
           onClick={() => setShowHPA(!showHPA)}
-          className={`industrial-btn py-0.5 px-2 text-[11px] ${showHPA ? 'industrial-btn-blue-active' : ''}`}
+          className={`industrial-btn py-1 px-2.5 text-xs ${showHPA ? 'industrial-btn-blue-active' : ''}`}
         >
-          <Cpu className="w-3 h-3 text-amber-400" />
-          <span>🤖 HPA VİNCİ</span>
+          <Cpu className="w-3.5 h-3.5 text-amber-400" />
+          <span>🤖 HPA VİNCİ ({showHPA ? 'AKTİF' : 'PASİF'})</span>
         </button>
 
         <button
           onClick={() => setShowNetworkPolicy(!showNetworkPolicy)}
-          className={`industrial-btn py-0.5 px-2 text-[11px] ${showNetworkPolicy ? 'bg-red-500/20 text-red-300 border-red-500/50' : ''}`}
+          className={`industrial-btn py-1 px-2.5 text-xs ${showNetworkPolicy ? 'bg-red-500/20 text-red-300 border-red-500/50' : ''}`}
         >
-          <ShieldAlert className="w-3 h-3 text-red-400" />
-          <span>🛡️ POLICY</span>
+          <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
+          <span>🛡️ NETWORK POLICY</span>
         </button>
 
         <button
           onClick={() => setShowNetworkTraffic(!showNetworkTraffic)}
-          className={`industrial-btn py-0.5 px-2 text-[11px] ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
+          className={`industrial-btn py-1 px-2.5 text-xs ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
         >
-          <Zap className="w-3 h-3" />
+          <Zap className="w-3.5 h-3.5" />
           <span>⚡ AĞ TRAFİĞİ</span>
         </button>
+
+        <select
+          onChange={(e) => triggerAnomalySimulation(e.target.value)}
+          value={activeAnomaly || ''}
+          className="industrial-select text-xs py-1"
+        >
+          <option value="">⚠️ ANOMALİ SİMÜLASYONU SEÇ</option>
+          <option value="CrashLoopBackOff">🔥 CrashLoopBackOff</option>
+          <option value="OOMKilled">💥 OOMKilled</option>
+          <option value="NodeNotReady">🌊 Node NotReady</option>
+        </select>
       </div>
 
       {/* SAĞ ÜST PNG EXPORT & OLAY GÜNLÜĞÜ BUTONLARI */}
-      <div className="fixed top-3 right-3 z-30 pointer-events-auto flex items-center gap-1.5">
+      <div className="fixed top-3 right-3 z-40 pointer-events-auto flex items-center gap-1.5">
         <button
           onClick={handleExportPNG}
           className="industrial-btn text-xs py-1 px-2.5 flex items-center gap-1 shadow-lg border-sky-500/40 text-sky-300 hover:bg-sky-500/20"
@@ -770,6 +821,7 @@ export default function ShipyardScene({ ships = [] }) {
           <HarborVillage onClickBuilding={handleSelectMaster} />
           <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
 
+          {/* 3D Ingress Gateway Lighthouse */}
           <IngressLighthouse position={[28, 0.2, 18]} onSelectIngress={handleSelectIngress} />
           <NetworkPolicyBarriers position={[-10, 1.5, 0]} active={showNetworkPolicy} onSelectNetworkPolicy={handleSelectNetworkPolicy} />
 
@@ -779,10 +831,11 @@ export default function ShipyardScene({ ships = [] }) {
 
           <NetworkTrafficParticles ships={activeShips} showTraffic={showNetworkTraffic} />
 
+          {/* Cargo Ships with Smooth Patrol Loop */}
           {activeShips.map((ship) => (
             <CargoShip
               key={ship.id}
-              position={ship.position}
+              basePosition={ship.position}
               shipData={ship}
               onSelectPod={handleSelectPod}
               onSelectShip={handleSelectShip}
@@ -839,11 +892,15 @@ export default function ShipyardScene({ ships = [] }) {
             <div>
               <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-700">
                 <h3 className="font-industrial text-sm font-bold text-amber-400 flex items-center gap-2">
+                  {activeSelection.type === 'KUBELET' && <Activity className="w-4 h-4 text-emerald-400" />}
+                  {activeSelection.type === 'CRANE' && <Cpu className="w-4 h-4 text-amber-400" />}
                   {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-4 h-4 text-sky-400" />}
                   {activeSelection.type === 'INGRESS' && <Compass className="w-4 h-4 text-amber-400" />}
                   {activeSelection.type === 'POD' && <Box className="w-4 h-4 text-emerald-400" />}
                   {activeSelection.type === 'SHIP' && <ShipIcon className="w-4 h-4 text-sky-400" />}
                   <span>
+                    {activeSelection.type === 'KUBELET' && '📡 KUBELET AGENT (MASİF)'}
+                    {activeSelection.type === 'CRANE' && '🏗️ KUBE-SCHEDULER (VİNÇ)'}
                     {activeSelection.type === 'KUBE_PROXY' && '📻 AĞ (KUBE-PROXY)'}
                     {activeSelection.type === 'INGRESS' && '🚨 INGRESS DENİZ FENERİ'}
                     {activeSelection.type === 'POD' && '📦 PALET (POD)'}
@@ -855,7 +912,76 @@ export default function ShipyardScene({ ships = [] }) {
                 </button>
               </div>
 
-              {/* SORUN 6 FIX: POD DETAILS (TAM EKSİKSİZ ŞEMA) */}
+              {/* KUBELET DETAILS */}
+              {activeSelection.type === 'KUBELET' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">KUBELET NODE AJANI:</span>
+                    <strong className="text-emerald-400 text-xs">{activeSelection.data.node_name}</strong>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <div className="flex justify-between"><span>Durum:</span><strong className="text-emerald-400">{activeSelection.data.status}</strong></div>
+                    <div className="flex justify-between"><span>Son Heartbeat:</span><span className="text-sky-300">{activeSelection.data.last_heartbeat}</span></div>
+                    <div className="flex justify-between"><span>Readiness Probes:</span><strong className="text-emerald-400">{activeSelection.data.readiness_probe}</strong></div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">NODE CANLI POD'LARI ({activeSelection.data.pods?.length || 2}):</span>
+                    {activeSelection.data.pods?.map((p) => (
+                      <div key={p.id} className="text-[10px] text-slate-300 flex justify-between">
+                        <span>● {p.name}</span>
+                        <span className="text-emerald-400">{p.status}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* KUBE-SCHEDULER / CRANE DETAILS */}
+              {activeSelection.type === 'CRANE' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">POD ZAMANLAYICI (VİNÇ):</span>
+                    <strong className="text-amber-400 text-xs">{activeSelection.data.scheduler_name}</strong>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">SON ZAMANLAMA KARARI:</span>
+                    <div className="text-slate-200 text-[10px]">{activeSelection.data.last_decision}</div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <div className="flex justify-between"><span>Bekleyen Pod Kuyruğu:</span><strong className="text-amber-300">{activeSelection.data.pending_queue} pod pending</strong></div>
+                  </div>
+                </div>
+              )}
+
+              {/* INGRESS GATEWAY LIGHTHOUSE DETAILS */}
+              {activeSelection.type === 'INGRESS' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">INGRESS GATEWAY DENİZ FENERİ:</span>
+                    <strong className="text-amber-400 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+                  {activeSelection.data.rules?.length > 0 ? (
+                    <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1.5">
+                      <span className="text-sky-400 font-bold block text-[10px]">ROTA KURALLARI:</span>
+                      {activeSelection.data.rules.map((r, i) => (
+                        <div key={i} className="text-[10px] text-slate-200 bg-slate-900/80 p-1.5 rounded border border-slate-800">
+                          ● Host: <strong className="text-white font-mono">tersane.k8s.local</strong> {r.path} ➔ <span className="text-emerald-400">{r.service}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="bg-amber-500/10 p-3 rounded border border-amber-500/30 text-amber-300 text-[10px]">
+                      Bu cluster'da tanımlı Ingress kaynağı bulunamadı.
+                    </div>
+                  )}
+                  <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                    <span className="text-slate-400 text-[10px]">TLS SERTİFİKASI:</span>
+                    <div className="text-emerald-400 font-bold text-[10px]">{activeSelection.data.tls}</div>
+                  </div>
+                </div>
+              )}
+
+              {/* POD DETAILS */}
               {activeSelection.type === 'POD' && (
                 <div className="space-y-3">
                   <div>
@@ -921,7 +1047,7 @@ export default function ShipyardScene({ ships = [] }) {
                 </div>
               )}
 
-              {/* REGRESYON 1 FIX: WORKER NODE DETAILS (TAM EKSİKSİZ ŞEMA + EN ALTA MALİYET) */}
+              {/* WORKER NODE DETAILS */}
               {activeSelection.type === 'SHIP' && (
                 <div className="space-y-3">
                   <div>
@@ -940,7 +1066,6 @@ export default function ShipyardScene({ ships = [] }) {
                     </div>
                   </div>
 
-                  {/* CPU / RAM CAPACITY & USAGE BARS */}
                   <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
                     <span className="text-amber-400 font-bold block text-[10px]">KAPASİTE VS KULLANIM:</span>
                     <div>
@@ -964,7 +1089,6 @@ export default function ShipyardScene({ ships = [] }) {
                     </div>
                   </div>
 
-                  {/* KUBELET & KUBE-PROXY STATUS */}
                   <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
                     <span className="text-sky-400 font-bold block text-[10px]">NODE SERVİSLERİ & AJANLAR:</span>
                     <div className="flex justify-between"><span>Kubelet Status:</span><strong className="text-emerald-400">Active (Running)</strong></div>
@@ -972,7 +1096,6 @@ export default function ShipyardScene({ ships = [] }) {
                     <div className="flex justify-between"><span>Bağlı Küme:</span><strong className="text-slate-200">{activeClusterContext}</strong></div>
                   </div>
 
-                  {/* POD LIST ON THIS NODE */}
                   <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
                     <span className="text-emerald-400 font-bold block text-[10px]">ÜZERİNDEKİ POD'LAR ({activeSelection.data.pods?.length || 2}):</span>
                     {(activeSelection.data.pods || []).map((p) => (
@@ -983,17 +1106,6 @@ export default function ShipyardScene({ ships = [] }) {
                     ))}
                   </div>
 
-                  {/* NODE LABELS */}
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-slate-400 font-bold block text-[10px]">NODE ETİKETLERİ (LABELS):</span>
-                    {(activeSelection.data.labels || ['beta.kubernetes.io/arch=amd64', 'kubernetes.io/os=linux']).map((lbl, idx) => (
-                      <div key={idx} className="text-[9px] text-slate-400 bg-slate-900/80 px-1.5 py-0.5 rounded border border-slate-800 inline-block mr-1 mb-1">
-                        {lbl}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* EN ALTA AYRI BÖLÜM: TAHMİNİ STATİK MALİYET */}
                   <div className="bg-slate-900/90 p-2.5 rounded-lg border border-amber-500/40 space-y-1">
                     <span className="text-amber-400 font-bold block text-[10px] flex items-center gap-1">
                       <DollarSign className="w-3.5 h-3.5 text-amber-400" /> TAHMİNİ STATİK MALİYET:

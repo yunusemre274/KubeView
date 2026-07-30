@@ -6,16 +6,16 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 
 ## 📋 Kayıtlı Dersler
 
-### 🔴 [DERS-006] Obje Değişiminde (Object Replacement) Eski Verilerin Silinmesi ve Regresyon Hatası
-- **Tarih:** 2026-07-30
-- **Sorumlu Agent:** `ui-ux-agent` & `frontend-agent`
-- **Ne Yanlış Gitti?:** Node (Gemi) bilgi kartına yeni maliyet alanı eklenirken ve Pod (Konteynır) kartı güncellenirken, JSX ve state nesneleri mevcut alanlar korunmadan sıradan bir obje ile ezildi (replace edildi). Bu durum Node kartındaki IP, sağlık, CPU/RAM ve Pod listesi verilerinin silinmesine, Pod kartının ise boş kalmasına yol açtı.
-- **Kök Neden:** Yeni özellik eklerken eski props/JSX yapısını genişletmek (spread/merge) yerine doğrudan yeni bileşeni tek başına render etmek.
-- **Nasıl Düzeltildi?:** `ShipyardScene.jsx` ve `MasterDashboardOverlay.jsx` içerisindeki tüm nesne kartı render blokları güncellendi. Node kartına IP, Sağlık, CPU/RAM, Kubelet/Proxy durumu, Pod listesi ve en alta Maliyet Tablosu eksiksiz eklendi. Pod kartı tam veri şemasıyla dolduruldu.
-- **Geleceğe Dönük Kural:** `AGENTS.md` rehberine eklendi: "Yeni bir bilgi alanı/özellik eklenirken, ilgili state/props/veri objesi ASLA sıfırdan REPLACE edilmez — mevcut alanlar korunarak (spread/merge ile) genişletilir. Her değişiklik sonrası tüm kartların eksiksiz veri gösterdiği doğrulanır."
+### 🔴 [DERS-007] Üst Araç Çubuğu (Top Toolbar) Görünürlük ve pointer-events Kaybı
+- **Tarih:** 2026-07-31
+- **Sorumlu Agent:** `ui-ux-agent`
+- **Ne Yanlış Gitti?:** Araç çubuğu ekranın en üstüne sabitlenirken `fixed top-3 left-1/2 -translate-x-1/2` sınıfı verildi ancak `pointer-events-auto` ve yüksek `z-50` katmanı verilmediği için 3D Canvas veya parent div overlay'i altında kalarak tamamen kayboldu/tıklanamaz hale geldi.
+- **Kök Neden:** Canvas üzerindeki sabit DOM elemanlarında `z-index` ve `pointer-events-auto` tanımlarının unutulması.
+- **Nasıl Düzeltildi?:** Araç çubuğu `z-50 pointer-events-auto shadow-2xl bg-slate-900/90 backdrop-blur-md` sınıfları ile tavana sabitlendi ve tıklanabilirliği sağlandı.
+- **Geleceğe Dönük Kural:** `position: fixed/absolute` ile z-index veya konum değişikliği yapılan HER bileşenden sonra, o bileşenin canvas üzerinde GERÇEKTEN görünür ve tıklanabilir kaldığı manuel olarak doğrulanır.
 
 ---
 
-### 🔴 [DERS-005] İç İçe 3D Meshes Raycasting Olay Kabarması (Event Bubbling) Hatası
+### 🔴 [DERS-006] Obje Değişiminde (Object Replacement) Eski Verilerin Silinmesi ve Regresyon Hatası
 - **Tarih:** 2026-07-30
-- **Sorumlu Agent:** `3d-scene-agent` & `ui-ux-agent`
+- **Sorumlu Agent:** `ui-ux-agent` & `frontend-agent`
