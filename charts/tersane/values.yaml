@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/k8s-tersane/tersane
+  pullPolicy: IfNotPresent
+  tag: "v1.0.0"
+
+serviceAccount:
+  create: true
+  name: "tersane-sa"
+
+rbac:
+  create: true
+
+service:
+  type: NodePort
+  port: 8000
+  nodePort: 30800
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+env:
+  watchNamespace: ""
+  port: "8000"

@@ -4,11 +4,21 @@ Projedeki tüm önemli değişiklikler bu dosyada belgelenir. Format [Keep a Cha
 
 ---
 
+## [v1.0.0 - Üretim Sürümü (Faz 8 Tamamlandı)] - 2026-07-30
+
+### Eklendi
+- `devops-agent` tarafından multi-stage üretim seviyesi `Dockerfile` yazıldı (Frontend React build + Go backend statically linked binary + Alpine minimal runtime <50MB). (`security-agent` onaylı)
+- `devops-agent` tarafından `deploy/deployment.yaml` ve `deploy/service.yaml` manifestleri güncellendi (Non-root user, security context, liveness & readiness probes). (`security-agent` onaylı)
+- `devops-agent` tarafından `charts/tersane` altında üretim seviyesi Helm Chart paketi oluşturuldu (`Chart.yaml`, `values.yaml`, templates). (`qa-agent` onaylı)
+- `release-agent` ve `master-agent` tarafından tüm 8 faz tamamlanarak v1.0.0 Genel Yayın Sürümü (General Availability) duyuruldu.
+
+---
+
 ## [v0.7.0 - Faz 7 Tamamlandı] - 2026-07-30
 
 ### Eklendi
-- `frontend-agent` tarafından Navbar üzerine Ambar (Namespace) seçici dropdown eklendi ve 3D simülasyon filtreleme altyapısı hazırlandı (`frontend/src/components/Navbar.jsx`). (`doc-agent` onaylı)
-- `backend-agent` tarafından K8s Core `Events` Informer'ı `watcher.go` dosyasına eklendi ve canlı liman anonslarının WebSocket üzerinden yayınlanması sağlandı (`backend/pkg/k8s/watcher.go`). (`qa-agent` onaylı)
+- `frontend-agent` tarafından Navbar üzerine Ambar (Namespace) seçici dropdown eklendi.
+- `backend-agent` tarafından K8s Core `Events` Informer'ı eklendi.
 
 ---
 

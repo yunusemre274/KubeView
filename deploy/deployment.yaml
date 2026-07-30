@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tersane
+  namespace: default
+  labels:
+    app: tersane
+    app.kubernetes.io/name: tersane
+    app.kubernetes.io/part-of: tersane-shipyard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tersane
+  template:
+    metadata:
+      labels:
+        app: tersane
+    spec:
+      serviceAccountName: tersane-sa
+      containers:
+        - name: tersane
+          image: ghcr.io/k8s-tersane/tersane:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "8000"
+            - name: WATCH_NAMESPACE
+              value: ""
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+            runAsUser: 10001
+            capabilities:
+              drop:
+                - ALL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tersane-service
+  namespace: default
+  labels:
+    app: tersane
+spec:
+  type: NodePort
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30800
+      name: http
+  selector:
+    app: tersane

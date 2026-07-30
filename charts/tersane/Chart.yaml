@@ -1,0 +1,14 @@
+apiVersion: v2
+name: tersane
+description: Helm chart for Tersane - Real-time 3D Kubernetes Shipyard Visualizer
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - kubernetes
+  - visualizer
+  - 3d
+  - shipyard
+  - observability
+maintainers:
+  - name: Tersane Engineering Team
