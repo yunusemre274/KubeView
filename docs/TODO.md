@@ -5,23 +5,23 @@
 ---
 
 ## 🔵 Aktif Görevler
-- [ ] **[GÖREV-901]** Master Node Yönetim Binası ve Gemi (Worker Node) Dümenci Köprüsü için 3D girilebilir iç mekan (interior) sahnelerinin (`frontend/src/components/3d/BuildingInterior.jsx`) geliştirilmesi.
-  - **Atanan Agent:** `3d-scene-agent`
-  - **Denetleyen Agent:** `ui-ux-agent`
+- [ ] **[GÖREV-1001]** Kube-proxy Ağ Binasının 3D sahnede bağımsız telsiz/ağ kulesi olarak çizilmesi ve NetworkPolicy kurallarını okuyan informer'ın (`pkg/k8s/networking.go`) eklenmesi.
+  - **Atanan Agent:** `networking-agent`
+  - **Denetleyen Agent:** `architecture-agent`
 
 ---
 
 ## 🟡 Sıradaki Görevler (Öncelik Sırasıyla)
-1. **[GÖREV-902]** İç mekan görünümünden kuşbakışı genel mimari görünümüne kesintisiz geçiş butonlarının ve kamera animasyonlarının eklenmesi.
-   - **Atanan Agent:** `3d-scene-agent`
-2. **[GÖREV-903]** Faz 9 iç mekan görünüm ve etkileşim doğrulamalarının `qa-agent` tarafından yapılması.
-   - **Atanan Agent:** `qa-agent`
-3. **[GÖREV-1001]** Kube-proxy Ağ Binası ve Pod'lar arası canlı ağ trafiği ışık çizgilerinin render edilmesi.
+1. **[GÖREV-1002]** Pod'lar ve Service'ler arası canlı 3D ağ akış tüplerinin (`NetworkFlowLines.jsx`) ve 3D gümrük bariyerlerinin render edilmesi.
    - **Atanan Agent:** `networking-agent`
+2. **[GÖREV-1003]** Faz 10 ağ trafiği ve NetworkPolicy görselleştirme doğrulamalarının `qa-agent` ile yapılması.
+   - **Atanan Agent:** `qa-agent`
+3. **[GÖREV-1101]** UI/UX cilalama, multi-stage Dockerfile ve Helm Chart paketlemesi.
+   - **Atanan Agent:** `devops-agent`
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 8)
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 9)
 - [x] **[GÖREV-101..105]** Salt-okunur RBAC & Go `client-go` backend servisi. (Yapan: `devops-agent` & `backend-agent`)
 - [x] **[GÖREV-201..203]** WebSocket Hub sunucusu ve JSON streaming altyapısı. (Yapan: `backend-agent` & `integration-agent`)
 - [x] **[GÖREV-301..303]** React + Three.js 3D frontend projesi ve 3D liman/gemi sahnesi. (Yapan: `3d-scene-agent`)
@@ -29,9 +29,10 @@
 - [x] **[GÖREV-501..503]** `metrics.k8s.io` API entegrasyonu & 3D Node CPU/RAM çubukları. (Yapan: `backend-agent`)
 - [x] **[GÖREV-601..603]** Deployment Informer entegrasyonu & `DeploymentPanel.jsx` overlay. (Yapan: `backend-agent` & `ui-ux-agent`)
 - [x] **[GÖREV-701..703]** Ambar (Namespace) seçici dropdown & K8s Event Informer. (Yapan: `backend-agent` & `ui-ux-agent`)
-- [x] **[GÖREV-801]** `netutils.ResolveAvailablePort` otomatik port çakışma önleyici (backend). (Yapan: `backend-agent`)
-- [x] **[GÖREV-802]** `useShipyardWebSocket` port fallback tarama mantığı (frontend). (Yapan: `frontend-agent`)
-- [x] **[GÖREV-803]** Faz 8 port çakışma testleri ve kabulü. (Yapan: `qa-agent`)
+- [x] **[GÖREV-801..803]** `netutils.ResolveAvailablePort` ve otomatik port fallback taraması. (Yapan: `backend-agent` & `frontend-agent`)
+- [x] **[GÖREV-901]** Girilebilir Master Node Yönetim Binası ve Gemi İç Mekanı (`BuildingInterior.jsx`). (Yapan: `3d-scene-agent`)
+- [x] **[GÖREV-902]** Kamera mod değiştiricisi (🦅 Kuşbakışı Mimari, 🏢 Yönetim Binası İçi, 🚢 Gemi İçi). (Yapan: `3d-scene-agent`)
+- [x] **[GÖREV-903]** Faz 9 iç mekan kabul doğrulamaları. (Yapan: `qa-agent`)
 
 ---
 

@@ -4,16 +4,16 @@ Projedeki tüm önemli değişiklikler bu dosyada belgelenir. Format [Keep a Cha
 
 ---
 
-## [v0.8.1 - Faz 8 Auto Port Tamamlandı] - 2026-07-30
+## [v0.9.0 - Faz 9 Girilebilir Binalar Tamamlandı] - 2026-07-30
 
 ### Eklendi
-- `backend-agent` tarafından `netutils.ResolveAvailablePort` modülü yazıldı (`backend/pkg/netutils/port_resolver.go`). Port 8000 doluysa `8000-8020` aralığında otomatik boş port atanır. (`architecture-agent` onaylı)
-- `frontend-agent` tarafından `useShipyardWebSocket.js` hook'una otomatik port tarama ve fallback entegrasyonu eklendi. (`qa-agent` onaylı)
+- `3d-scene-agent` tarafından Master Node Yönetim Binası içi (`MasterBuildingInterior`) ve Gemi Ambarı / Dümenci Köprüsü içi (`ShipInterior`) 3D sahneleri geliştirildi (`frontend/src/components/3d/BuildingInterior.jsx`). (`ui-ux-agent` onaylı)
+- `3d-scene-agent` tarafından binalara ve gemilere tıklanarak iç mekanlarına girme ("🚪 İÇİNE GİR") mekanizması ve Kuşbakışı Mimari kamera mod değiştiricisi eklendi. (`qa-agent` onaylı)
 
 ---
 
-## [v0.8.0 - Kapsam Revizyonu & 3D Vizyon] - 2026-07-30
+## [v0.8.1 - Faz 8 Auto Port Tamamlandı] - 2026-07-30
 
-### Eklendi / Değiştirildi
-- Proje kapsamı Tam 3D Simülasyon, Girilebilir Binalar/Gemiler, Ağ Trafiği ve Otomatik Port Çakışma Önleme seviyesine revize edildi.
-- Metafor tablosu güncellendi: `etcd` = Tersane Kaptanı (Baş Kayıtçı), `Kubelet` = Dümenci / 2. Kaptan.
+### Eklendi
+- `backend-agent` tarafından `netutils.ResolveAvailablePort` modülü yazıldı.
+- `frontend-agent` tarafından `useShipyardWebSocket.js` hook'una otomatik port tarama ve fallback entegrasyonu eklendi.
