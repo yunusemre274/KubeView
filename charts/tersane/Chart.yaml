@@ -1,14 +1,14 @@
 apiVersion: v2
 name: tersane
-description: Helm chart for Tersane - Real-time 3D Kubernetes Shipyard Visualizer
+description: Full 3D Interactive Kubernetes Shipyard Visualization Engine (v1.0.0-3d Release)
 type: application
 version: 1.0.0
-appVersion: "1.0.0"
+appVersion: "1.0.0-3d"
 keywords:
   - kubernetes
-  - visualizer
   - 3d
-  - shipyard
+  - visualization
+  - threejs
   - observability
 maintainers:
-  - name: Tersane Engineering Team
+  - name: Tersane Multi-Agent Team

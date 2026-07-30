@@ -4,16 +4,18 @@ Projedeki tüm önemli değişiklikler bu dosyada belgelenir. Format [Keep a Cha
 
 ---
 
-## [v0.10.0 - Faz 10 Ağ Trafiği Görselleştirme Tamamlandı] - 2026-07-30
+## [v1.0.0-3d - Nihai 3D Sürüm Yayını (Official Release)] - 2026-07-30
 
-### Eklendi
-- `networking-agent` tarafından `backend/pkg/k8s/networking.go` yazıldı; K8s `networking.k8s.io/v1` NetworkPolicy Informer'ı eklendi. (`security-agent` onaylı)
-- `networking-agent` tarafından Kube-proxy 3D Ağ & Telsiz Binası (`NetworkBuilding`) ve canlı 3D ağ akış çizgileri (`NetworkFlowStream`) geliştirildi (`frontend/src/components/3d/NetworkBuilding.jsx`). (`qa-agent` onaylı)
+### Eklendi / Tamamlandı
+- `release-agent` ve `devops-agent` tarafından v1.0.0-3d Tam 3D Simülasyon platformu yayına alındı.
+- Multi-stage Dockerfile (Node 18 frontend build, Go 1.22 backend build, Alpine 3.19 runtime) üretildi.
+- Production Helm Chart (`charts/tersane`) v1.0.0-3d etiketine güncellendi.
+- Tüm 11 fazın kabul testleri `qa-agent` ve `master-agent` tarafından onaylandı.
 
 ---
 
-## [v0.9.0 - Faz 9 Girilebilir Binalar Tamamlandı] - 2026-07-30
+## [v0.10.0 - Faz 10 Ağ Trafiği Görselleştirme Tamamlandı] - 2026-07-30
 
 ### Eklendi
-- `3d-scene-agent` tarafından Master Node Yönetim Binası içi (`MasterBuildingInterior`) ve Gemi Ambarı / Dümenci Köprüsü içi (`ShipInterior`) 3D sahneleri geliştirildi.
-- Kamera mod değiştiricisi eklendi.
+- `networking-agent` tarafından `backend/pkg/k8s/networking.go` (NetworkPolicy Informer) yazıldı.
+- Kube-proxy 3D Ağ Binası ve canlı 3D ağ akış çizgileri geliştirildi.
