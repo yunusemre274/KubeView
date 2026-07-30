@@ -310,7 +310,6 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
   const [hovered, setHovered] = useState(false)
   const isNodeNotReady = activeAnomaly === 'NodeNotReady' && shipData.id === 'node-2'
 
-  // Pre-calculate smooth patrol curve for each ship
   const patrolCurve = useMemo(() => {
     const [x, y, z] = basePosition
     const points = [
@@ -330,7 +329,6 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
 
     const t = progressRef.current
     if (!isNodeNotReady) {
-      // Advance progress smoothly if healthy
       progressRef.current += delta * 0.012
     }
 
@@ -338,12 +336,10 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
     const tangent = patrolCurve.getTangentAt(progressRef.current % 1)
 
     if (isNodeNotReady) {
-      // Anomaly: Pause motion, sink and tilt in current position
       groupRef.current.position.set(pos.x, pos.y - 0.8 + Math.sin(t * 3) * 0.05, pos.z)
       groupRef.current.rotation.z = -0.18 + Math.sin(t * 3) * 0.02
       groupRef.current.rotation.x = 0.12
     } else {
-      // Normal Patrol: Set position & face direction
       groupRef.current.position.set(pos.x, pos.y + Math.sin(t * 15) * 0.08, pos.z)
       const angle = Math.atan2(tangent.x, tangent.z)
       groupRef.current.rotation.y = angle
@@ -388,7 +384,6 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
         <meshStandardMaterial color="#f8fafc" roughness={0.2} />
       </mesh>
 
-      {/* 3D Kubelet Radar Icon on Mast */}
       <KubeletRadar
         position={[0, 6.5, -9.5]}
         onClickKubelet={() => onSelectKubelet(shipData)}
@@ -445,7 +440,7 @@ export default function ShipyardScene({ ships = [] }) {
   const [activeAnomaly, setActiveAnomaly] = useState(null)
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v2.0.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 1, time: '23:38:10', message: 'Tersane v2.1.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
     { id: 2, time: '23:39:05', message: 'Worker Node Devriye Rotası Aktif', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
@@ -683,119 +678,123 @@ export default function ShipyardScene({ ships = [] }) {
   return (
     <div className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
       
-      {/* SOL ÜST MİNİMAL ROZET & MULTI-CLUSTER CONTEXT SEÇİCİ */}
-      <div className="fixed top-3 left-3 z-40 pointer-events-auto flex items-center gap-2">
-        <div className="glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-2">
-          <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
-          <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
-            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.0.0</span>
-          </span>
+      {/* UNIFIED TOP HEADER STRIP (TEK, EKSİKSİZ, ASLA KAYBOLMAYAN VE COLLIDE ETMEYEN TAVAN HEADER) */}
+      <header className="fixed top-0 left-0 right-0 h-11 bg-slate-900/95 backdrop-blur-md border-b border-amber-500/30 z-50 flex items-center justify-between px-3 shadow-2xl pointer-events-auto overflow-x-auto gap-2">
+        
+        {/* LEFT SECTION: LOGO & CLUSTER SELECTOR & READ-ONLY TOGGLE */}
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-amber-500/10 border border-amber-500/30">
+            <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
+            <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
+              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.1.0</span>
+            </span>
+          </div>
+
+          <select
+            value={activeClusterContext}
+            onChange={(e) => {
+              setActiveClusterContext(e.target.value)
+              addEventLog(`Küme Bağlamı Değiştirildi: ${e.target.value}`, 'Normal', true)
+            }}
+            className="industrial-select text-xs py-0.5"
+          >
+            <option value="minikube">🐳 minikube</option>
+            <option value="docker-desktop">📦 docker-desktop</option>
+            <option value="prod-cluster">☁️ prod-cluster</option>
+          </select>
+
+          <button
+            onClick={() => {
+              const nextMode = !isReadOnlyMode
+              setIsReadOnlyMode(nextMode)
+              addEventLog(`Mod Değiştirildi: ${nextMode ? 'SALT İZLEME MODU' : 'MÜDAHALE MODU'}`, 'Normal', true)
+            }}
+            className={`industrial-btn text-xs py-0.5 px-2 flex items-center gap-1 shadow ${isReadOnlyMode ? 'bg-sky-500/20 text-sky-300 border-sky-500/50' : 'bg-amber-500/20 text-amber-300 border-amber-500/50'}`}
+          >
+            {isReadOnlyMode ? <Lock className="w-3 h-3 text-sky-400" /> : <Unlock className="w-3 h-3 text-amber-400" />}
+            <span>{isReadOnlyMode ? '🔒 SALT İZLEME' : '🔓 MÜDAHALE AÇIK'}</span>
+          </button>
         </div>
 
-        <select
-          value={activeClusterContext}
-          onChange={(e) => {
-            setActiveClusterContext(e.target.value)
-            addEventLog(`Küme Bağlamı Değiştirildi: ${e.target.value}`, 'Normal', true)
-          }}
-          className="industrial-select text-xs py-1"
-        >
-          <option value="minikube">🐳 minikube</option>
-          <option value="docker-desktop">📦 docker-desktop</option>
-          <option value="prod-cluster">☁️ prod-cluster</option>
-        </select>
+        {/* CENTER SECTION: CAMERA & VIEW MODE ACTION BUTTONS (ARAÇ ÇUBUĞU BUTONLARI) */}
+        <div className="flex items-center gap-1 shrink-0">
+          <button
+            onClick={handleResetCamera}
+            className={`industrial-btn py-0.5 px-2 text-[11px] ${!activeSelection && !showMasterDashboard && !showEventLog ? 'industrial-btn-active' : ''}`}
+          >
+            <Eye className="w-3 h-3" />
+            <span>🦅 KUŞBAKIŞI</span>
+          </button>
 
-        <button
-          onClick={() => {
-            const nextMode = !isReadOnlyMode
-            setIsReadOnlyMode(nextMode)
-            addEventLog(`Mod Değiştirildi: ${nextMode ? 'SALT İZLEME MODU' : 'MÜDAHALE MODU'}`, 'Normal', true)
-          }}
-          className={`industrial-btn text-xs py-1 px-2.5 flex items-center gap-1 shadow-lg ${isReadOnlyMode ? 'bg-sky-500/20 text-sky-300 border-sky-500/50' : 'bg-amber-500/20 text-amber-300 border-amber-500/50'}`}
-        >
-          {isReadOnlyMode ? <Lock className="w-3.5 h-3.5 text-sky-400" /> : <Unlock className="w-3.5 h-3.5 text-amber-400" />}
-          <span>{isReadOnlyMode ? '🔒 SALT İZLEME' : '🔓 MÜDAHALE AÇIK'}</span>
-        </button>
-      </div>
+          <button
+            onClick={handleSelectMaster}
+            className={`industrial-btn py-0.5 px-2 text-[11px] ${showMasterDashboard ? 'industrial-btn-active' : ''}`}
+          >
+            <Building2 className="w-3 h-3" />
+            <span>🏢 YÖNETİM BİNASI</span>
+          </button>
 
-      {/* REGRESYON FIX: PINNED TOP TOOLBAR BAR (Z-50 & POINTER-EVENTS-AUTO KESİN SABİTLENMİŞ ÇUBUK) */}
-      <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50 pointer-events-auto flex items-center gap-1.5 industrial-panel px-3 py-1.5 rounded-xl border-amber-500/50 shadow-2xl bg-slate-900/90 backdrop-blur-md">
-        <button
-          onClick={handleResetCamera}
-          className={`industrial-btn py-1 px-2.5 text-xs ${!activeSelection && !showMasterDashboard && !showEventLog ? 'industrial-btn-active' : ''}`}
-        >
-          <Eye className="w-3.5 h-3.5" />
-          <span>🦅 TÜM LİMAN (KUŞBAKIŞI)</span>
-        </button>
+          <button
+            onClick={() => setShowHPA(!showHPA)}
+            className={`industrial-btn py-0.5 px-2 text-[11px] ${showHPA ? 'industrial-btn-blue-active' : ''}`}
+          >
+            <Cpu className="w-3 h-3 text-amber-400" />
+            <span>🤖 HPA VİNCİ ({showHPA ? 'AKTİF' : 'PASİF'})</span>
+          </button>
 
-        <button
-          onClick={handleSelectMaster}
-          className={`industrial-btn py-1 px-2.5 text-xs ${showMasterDashboard ? 'industrial-btn-active' : ''}`}
-        >
-          <Building2 className="w-3.5 h-3.5" />
-          <span>🏢 YÖNETİM BİNASINA GİR</span>
-        </button>
+          <button
+            onClick={() => setShowNetworkPolicy(!showNetworkPolicy)}
+            className={`industrial-btn py-0.5 px-2 text-[11px] ${showNetworkPolicy ? 'bg-red-500/20 text-red-300 border-red-500/50' : ''}`}
+          >
+            <ShieldAlert className="w-3 h-3 text-red-400" />
+            <span>🛡️ POLICY</span>
+          </button>
 
-        <button
-          onClick={() => setShowHPA(!showHPA)}
-          className={`industrial-btn py-1 px-2.5 text-xs ${showHPA ? 'industrial-btn-blue-active' : ''}`}
-        >
-          <Cpu className="w-3.5 h-3.5 text-amber-400" />
-          <span>🤖 HPA VİNCİ ({showHPA ? 'AKTİF' : 'PASİF'})</span>
-        </button>
+          <button
+            onClick={() => setShowNetworkTraffic(!showNetworkTraffic)}
+            className={`industrial-btn py-0.5 px-2 text-[11px] ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
+          >
+            <Zap className="w-3 h-3" />
+            <span>⚡ TRAFİK</span>
+          </button>
 
-        <button
-          onClick={() => setShowNetworkPolicy(!showNetworkPolicy)}
-          className={`industrial-btn py-1 px-2.5 text-xs ${showNetworkPolicy ? 'bg-red-500/20 text-red-300 border-red-500/50' : ''}`}
-        >
-          <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
-          <span>🛡️ NETWORK POLICY</span>
-        </button>
+          <select
+            onChange={(e) => triggerAnomalySimulation(e.target.value)}
+            value={activeAnomaly || ''}
+            className="industrial-select text-xs py-0.5"
+          >
+            <option value="">⚠️ ANOMALİ SİMÜLASYONU</option>
+            <option value="CrashLoopBackOff">🔥 CrashLoopBackOff</option>
+            <option value="OOMKilled">💥 OOMKilled</option>
+            <option value="NodeNotReady">🌊 Node NotReady</option>
+          </select>
+        </div>
 
-        <button
-          onClick={() => setShowNetworkTraffic(!showNetworkTraffic)}
-          className={`industrial-btn py-1 px-2.5 text-xs ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
-        >
-          <Zap className="w-3.5 h-3.5" />
-          <span>⚡ AĞ TRAFİĞİ</span>
-        </button>
+        {/* RIGHT SECTION: PNG EXPORT & EVENT LOG BUTTONS */}
+        <div className="flex items-center gap-1.5 shrink-0">
+          <button
+            onClick={handleExportPNG}
+            className="industrial-btn text-xs py-0.5 px-2 flex items-center gap-1 border-sky-500/40 text-sky-300 hover:bg-sky-500/20"
+          >
+            <Camera className="w-3 h-3 text-sky-400" />
+            <span>📸 PNG</span>
+          </button>
 
-        <select
-          onChange={(e) => triggerAnomalySimulation(e.target.value)}
-          value={activeAnomaly || ''}
-          className="industrial-select text-xs py-1"
-        >
-          <option value="">⚠️ ANOMALİ SİMÜLASYONU SEÇ</option>
-          <option value="CrashLoopBackOff">🔥 CrashLoopBackOff</option>
-          <option value="OOMKilled">💥 OOMKilled</option>
-          <option value="NodeNotReady">🌊 Node NotReady</option>
-        </select>
-      </div>
-
-      {/* SAĞ ÜST PNG EXPORT & OLAY GÜNLÜĞÜ BUTONLARI */}
-      <div className="fixed top-3 right-3 z-40 pointer-events-auto flex items-center gap-1.5">
-        <button
-          onClick={handleExportPNG}
-          className="industrial-btn text-xs py-1 px-2.5 flex items-center gap-1 shadow-lg border-sky-500/40 text-sky-300 hover:bg-sky-500/20"
-        >
-          <Camera className="w-3.5 h-3.5 text-sky-400" />
-          <span>📸 PNG</span>
-        </button>
-
-        <button
-          onClick={() => {
-            setShowEventLog(!showEventLog)
-            setActiveSelection(null)
-          }}
-          className={`industrial-btn text-xs py-1 px-2.5 flex items-center gap-1 shadow-lg ${showEventLog ? 'industrial-btn-active' : ''}`}
-        >
-          <Clock className="w-3.5 h-3.5 text-amber-400" />
-          <span>📋 GÜNLÜK ({eventsLog.length})</span>
-        </button>
-      </div>
+          <button
+            onClick={() => {
+              setShowEventLog(!showEventLog)
+              setActiveSelection(null)
+            }}
+            className={`industrial-btn text-xs py-0.5 px-2 flex items-center gap-1 ${showEventLog ? 'industrial-btn-active' : ''}`}
+          >
+            <Clock className="w-3 h-3 text-amber-400" />
+            <span>📋 GÜNLÜK ({eventsLog.length})</span>
+          </button>
+        </div>
+      </header>
 
       {/* KATMAN 1: 3D CANVAS STAGE WRAPPER */}
-      <div className="stage-wrapper">
+      <div className="stage-wrapper pt-11">
         <Canvas
           shadows
           camera={{ position: [34, 30, 46], fov: 42 }}
@@ -886,7 +885,7 @@ export default function ShipyardScene({ ships = [] }) {
       />
 
       {/* KATMAN 6: ABSOLUTE OVERLAY RIGHT INSPECTOR DRAWER */}
-      <aside className={`info-panel-drawer ${activeSelection && !showMasterDashboard && !showEventLog ? 'drawer-open' : 'drawer-closed'}`}>
+      <aside className={`info-panel-drawer pt-11 ${activeSelection && !showMasterDashboard && !showEventLog ? 'drawer-open' : 'drawer-closed'}`}>
         {activeSelection && (
           <div className="p-4 h-full flex flex-col justify-between overflow-y-auto font-mono-tech text-[11px]">
             <div>

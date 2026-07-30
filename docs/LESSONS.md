@@ -6,16 +6,16 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 
 ## 📋 Kayıtlı Dersler
 
-### 🔴 [DERS-007] Üst Araç Çubuğu (Top Toolbar) Görünürlük ve pointer-events Kaybı
+### 🔴 [DERS-008] Çoklu Fixed Çakışması ve Araç Çubuğunun Ekran Genişliğine Sığmaması
 - **Tarih:** 2026-07-31
 - **Sorumlu Agent:** `ui-ux-agent`
-- **Ne Yanlış Gitti?:** Araç çubuğu ekranın en üstüne sabitlenirken `fixed top-3 left-1/2 -translate-x-1/2` sınıfı verildi ancak `pointer-events-auto` ve yüksek `z-50` katmanı verilmediği için 3D Canvas veya parent div overlay'i altında kalarak tamamen kayboldu/tıklanamaz hale geldi.
-- **Kök Neden:** Canvas üzerindeki sabit DOM elemanlarında `z-index` ve `pointer-events-auto` tanımlarının unutulması.
-- **Nasıl Düzeltildi?:** Araç çubuğu `z-50 pointer-events-auto shadow-2xl bg-slate-900/90 backdrop-blur-md` sınıfları ile tavana sabitlendi ve tıklanabilirliği sağlandı.
-- **Geleceğe Dönük Kural:** `position: fixed/absolute` ile z-index veya konum değişikliği yapılan HER bileşenden sonra, o bileşenin canvas üzerinde GERÇEKTEN görünür ve tıklanabilir kaldığı manuel olarak doğrulanır.
+- **Ne Yanlış Gitti?:** Üst bar elemanları 3 ayrı `fixed top-3` bloğu olarak (`left-3`, `left-1/2 -translate-x-1/2`, `right-3`) yerleştirildiğinde toplam genişlik ~1600px seviyesine ulaştı. 1440px veya daha küçük ekran çözünürlüklerinde ortadaki araç çubuğu yan bloklarla çakıştı ve `overflow: hidden` nedeniyle ekranın dışına taşarak görünmez hale geldi.
+- **Kök Neden:** Üst navigasyon elemanlarının bağımsız fixed bloklar yerine tek bir flex header çubuğunda toplanmaması.
+- **Nasıl Düzeltildi?:** Tüm üst elemanlar (Logo, Context seçici, Salt İzleme anahtarı, Kamera görüş butonları, Anomali seçici, PNG Export, Olay günlüğü) `<header className="fixed top-0 left-0 right-0 h-11 bg-slate-900/95 z-50 flex items-center justify-between overflow-x-auto">` şeklinde TEK BİR EKSİKSİZ TAVAN BARI altında birleştirildi.
+- **Geleceğe Dönük Kural:** Üst navigasyon elemanları asla ayrı `left-1/2 -translate-x-1/2` fixed bloklar halinde dağıtılmaz; her zaman tek bir duyarlı tavan flex header şeridinde toplanır.
 
 ---
 
-### 🔴 [DERS-006] Obje Değişiminde (Object Replacement) Eski Verilerin Silinmesi ve Regresyon Hatası
-- **Tarih:** 2026-07-30
-- **Sorumlu Agent:** `ui-ux-agent` & `frontend-agent`
+### 🔴 [DERS-007] Üst Araç Çubuğu (Top Toolbar) Görünürlük ve pointer-events Kaybı
+- **Tarih:** 2026-07-31
+- **Sorumlu Agent:** `ui-ux-agent`
