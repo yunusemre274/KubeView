@@ -6,8 +6,10 @@ import MasterDashboardOverlay from './MasterDashboardOverlay'
 import NetworkTrafficParticles from './3d/NetworkTrafficParticles'
 import EventLogDrawer from './EventLogDrawer'
 import ConfirmationModal from './ConfirmationModal'
+import IngressLighthouse from './3d/IngressLighthouse'
+import NetworkPolicyBarriers from './3d/NetworkPolicyBarriers'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, AlertTriangle } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -74,7 +76,7 @@ function EnrichedDockAndShore({ onSelectLandStack }) {
   )
 }
 
-// 3. Multiple Iconic Yellow Gantry Cranes with ImagePullBackOff Empty Hook Animation
+// 3. Multiple Iconic Yellow Gantry Cranes
 function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane, isImagePullBackOff = false }) {
   const [hovered, setHovered] = useState(false)
   const hookRef = useRef()
@@ -264,7 +266,7 @@ function KubeletRadar({ position = [0, 8.5, -9.5], onClickKubelet }) {
   )
 }
 
-// 7. 3D Cargo Container (Pod) with Anomaly Dramatization Rendering
+// 7. 3D Cargo Container (Pod)
 function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomaly }) {
   const [hovered, setHovered] = useState(false)
   const isCrashLoop = activeAnomaly === 'CrashLoopBackOff' && podData.id === 'pod-1'
@@ -294,7 +296,6 @@ function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomal
         <meshStandardMaterial color="#070a12" wireframe />
       </mesh>
 
-      {/* ANOMALY DRAMATIZATION EFFECTS */}
       {isCrashLoop && <SmokeAndFlameEffect position={[0, 1.2, 0]} />}
       {isOOM && <OOMKilledBurstEffect position={[0, 1.0, 0]} />}
       {isProbeFail && <RedFlagEffect position={[0, 1.2, 0]} />}
@@ -302,7 +303,7 @@ function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomal
   )
 }
 
-// 8. Cargo Ship (Worker Node) with Sinking/Tilting Anomaly Motion
+// 8. Cargo Ship (Worker Node)
 function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, activeAnomaly }) {
   const groupRef = useRef()
   const [hovered, setHovered] = useState(false)
@@ -312,7 +313,6 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, 
     if (groupRef.current) {
       const t = clock.getElapsedTime()
       if (isNodeNotReady) {
-        // Node NotReady Sinking/Tilting motion
         groupRef.current.position.y = position[1] - 0.8 + Math.sin(t * 0.8) * 0.05
         groupRef.current.rotation.z = -0.18 + Math.sin(t * 0.8) * 0.02
         groupRef.current.rotation.x = 0.12
@@ -407,6 +407,7 @@ export default function ShipyardScene({ ships = [] }) {
   const [activeSelection, setActiveSelection] = useState(null)
   const [showMasterDashboard, setShowMasterDashboard] = useState(false)
   const [showNetworkTraffic, setShowNetworkTraffic] = useState(true)
+  const [showNetworkPolicy, setShowNetworkPolicy] = useState(false)
   
   const [isReadOnlyMode, setIsReadOnlyMode] = useState(false)
   const [showEventLog, setShowEventLog] = useState(false)
@@ -414,9 +415,9 @@ export default function ShipyardScene({ ships = [] }) {
   const [activeAnomaly, setActiveAnomaly] = useState(null)
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v1.7.0 Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 1, time: '23:38:10', message: 'Tersane v1.8.0 Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
     { id: 2, time: '23:39:05', message: 'Worker Node node-alpha Ready Durumda', type: 'Normal', isUserTriggered: false },
-    { id: 3, time: '23:40:00', message: 'kube-proxy iptables yönlendirme kuralları aktifleştirildi', type: 'Normal', isUserTriggered: false }
+    { id: 3, time: '23:40:00', message: 'Ingress Gateway Deniz Feneri aktif edildi (Host: tersane.k8s.local)', type: 'Normal', isUserTriggered: false }
   ])
 
   const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(34, 30, 46))
@@ -520,6 +521,37 @@ export default function ShipyardScene({ ships = [] }) {
       setActiveAnomaly(null)
       addEventLog('Sistem Normale Döndü (Self-Heal Active)', 'Normal', false)
     }
+  }
+
+  const handleSelectIngress = () => {
+    setActiveSelection({
+      type: 'INGRESS',
+      data: {
+        name: 'tersane-ingress-gateway',
+        hosts: ['tersane.k8s.local'],
+        rules: [
+          { path: '/', service: 'web-frontend-svc:80' },
+          { path: '/api', service: 'api-backend-svc:8000' }
+        ],
+        tls: 'Enabled (Let\'s Encrypt RSA 4096)'
+      }
+    })
+    setCamTargetPos(new THREE.Vector3(42, 16, 32))
+    setCamTargetLookAt(new THREE.Vector3(28, 4, 18))
+  }
+
+  const handleSelectNetworkPolicy = () => {
+    setActiveSelection({
+      type: 'NETWORK_POLICY',
+      data: {
+        name: 'default-deny-ingress',
+        policyTypes: ['Ingress', 'Egress'],
+        podSelector: 'app=api-backend-deploy',
+        status: 'Active Security Barrier'
+      }
+    })
+    setCamTargetPos(new THREE.Vector3(4, 12, 14))
+    setCamTargetLookAt(new THREE.Vector3(-10, 2, 0))
   }
 
   const handleSelectShip = (ship) => {
@@ -633,7 +665,7 @@ export default function ShipyardScene({ ships = [] }) {
         <div className="glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-2">
           <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
           <span className="font-industrial text-sm font-bold text-amber-400 tracking-wider">
-            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.7.0</span>
+            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.8.0</span>
           </span>
         </div>
 
@@ -690,6 +722,10 @@ export default function ShipyardScene({ ships = [] }) {
           <HarborVillage onClickBuilding={handleSelectMaster} />
           <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
 
+          {/* FAZ 18: INGRESS LIGHTHOUSE & NETWORK POLICY BARRIERS */}
+          <IngressLighthouse position={[28, 0.2, 18]} onSelectIngress={handleSelectIngress} />
+          <NetworkPolicyBarriers position={[-10, 1.5, 0]} active={showNetworkPolicy} onSelectNetworkPolicy={handleSelectNetworkPolicy} />
+
           <NetworkTrafficParticles ships={activeShips} showTraffic={showNetworkTraffic} />
 
           {activeShips.map((ship) => (
@@ -715,7 +751,7 @@ export default function ShipyardScene({ ships = [] }) {
         </Canvas>
       </div>
 
-      {/* KATMAN 2: MINIMAL BOTTOM TABS & ANOMALY SIMULATION DROPDOWN */}
+      {/* KATMAN 2: MINIMAL BOTTOM TABS & TOGGLES */}
       <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 industrial-panel p-1 rounded-xl border-amber-500/40">
         <button
           onClick={handleResetCamera}
@@ -734,6 +770,14 @@ export default function ShipyardScene({ ships = [] }) {
         </button>
 
         <button
+          onClick={() => setShowNetworkPolicy(!showNetworkPolicy)}
+          className={`industrial-btn py-1 text-xs ${showNetworkPolicy ? 'bg-red-500/20 text-red-300 border-red-500/50' : ''}`}
+        >
+          <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
+          <span>🛡️ NETWORK POLICY ({showNetworkPolicy ? 'AKTİF' : 'PASİF'})</span>
+        </button>
+
+        <button
           onClick={() => setShowNetworkTraffic(!showNetworkTraffic)}
           className={`industrial-btn py-1 text-xs ${showNetworkTraffic ? 'industrial-btn-blue-active' : ''}`}
         >
@@ -741,7 +785,6 @@ export default function ShipyardScene({ ships = [] }) {
           <span>⚡ AĞ TRAFİĞİ ({showNetworkTraffic ? 'AÇIK' : 'KAPALI'})</span>
         </button>
 
-        {/* ANOMALY DRAMATIZATION SIMULATOR */}
         <select
           onChange={(e) => triggerAnomalySimulation(e.target.value)}
           value={activeAnomaly || ''}
@@ -797,25 +840,62 @@ export default function ShipyardScene({ ships = [] }) {
             <div>
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700">
                 <h3 className="font-industrial text-base font-bold text-amber-400 flex items-center gap-2">
+                  {activeSelection.type === 'INGRESS' && <Compass className="w-5 h-5 text-amber-400" />}
+                  {activeSelection.type === 'NETWORK_POLICY' && <ShieldAlert className="w-5 h-5 text-red-400" />}
                   {activeSelection.type === 'POD' && <Box className="w-5 h-5 text-emerald-400" />}
                   {activeSelection.type === 'SHIP' && <ShipIcon className="w-5 h-5 text-sky-400" />}
                   {activeSelection.type === 'KUBELET' && <Activity className="w-5 h-5 text-emerald-400" />}
                   {activeSelection.type === 'MASTER' && <Building2 className="w-5 h-5 text-amber-400" />}
-                  {activeSelection.type === 'CRANE' && <Activity className="w-5 h-5 text-amber-400" />}
-                  {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-5 h-5 text-sky-400" />}
                   <span>
+                    {activeSelection.type === 'INGRESS' && '🚨 INGRESS DENİZ FENERİ'}
+                    {activeSelection.type === 'NETWORK_POLICY' && '🛡️ NETWORK POLICY BARİYERİ'}
                     {activeSelection.type === 'POD' && '📦 PALET (POD)'}
                     {activeSelection.type === 'SHIP' && '🚢 GEMİ (WORKER NODE)'}
                     {activeSelection.type === 'KUBELET' && '📡 KUBELET AGENT'}
                     {activeSelection.type === 'MASTER' && '🏢 YÖNETİM (MASTER)'}
-                    {activeSelection.type === 'CRANE' && '🏗️ VİNÇ (SCHEDULER)'}
-                    {activeSelection.type === 'KUBE_PROXY' && '📻 AĞ (KUBE-PROXY)'}
                   </span>
                 </h3>
                 <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
                   <X className="w-5 h-5" />
                 </button>
               </div>
+
+              {/* INGRESS DETAILS */}
+              {activeSelection.type === 'INGRESS' && (
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">INGRESS GATEWAY:</span>
+                    <strong className="text-amber-400 text-sm">{activeSelection.data.name}</strong>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">ROTA KURALLARI:</span>
+                    {activeSelection.data.rules?.map((r, i) => (
+                      <div key={i} className="text-[11px] text-slate-200">
+                        ● Host: <strong className="text-white">tersane.k8s.local</strong> {r.path} ➔ <span className="text-emerald-400">{r.service}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700">
+                    <span className="text-slate-400 text-[10px]">TLS SERTİFİKASI:</span>
+                    <div className="text-emerald-400 font-bold text-[11px]">{activeSelection.data.tls}</div>
+                  </div>
+                </div>
+              )}
+
+              {/* NETWORK POLICY DETAILS */}
+              {activeSelection.type === 'NETWORK_POLICY' && (
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">GÜVENLİK BARİYERİ (POLICY):</span>
+                    <strong className="text-red-400 text-sm">{activeSelection.data.name}</strong>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
+                    <div className="flex justify-between"><span>Policy Türü:</span><strong className="text-amber-300">Ingress, Egress</strong></div>
+                    <div className="flex justify-between"><span>Pod Selector:</span><strong className="text-sky-300">app=api-backend-deploy</strong></div>
+                    <div className="flex justify-between"><span>Erişim Durumu:</span><span className="text-red-400 font-bold">● Isolated (Blocked)</span></div>
+                  </div>
+                </div>
+              )}
 
               {/* POD DETAILS */}
               {activeSelection.type === 'POD' && (
@@ -832,49 +912,6 @@ export default function ShipyardScene({ ships = [] }) {
                     <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
                       <span className="text-slate-400 block text-[10px]">DURUM:</span>
                       <strong className="text-emerald-400">{activeSelection.data.status}</strong>
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-900/90 p-3 rounded-lg border border-amber-500/30 space-y-2">
-                    <span className="text-amber-400 font-bold block text-[10px]">🛠️ MÜDAHALE AKSİYONLARI:</span>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
-                        onClick={() => triggerRestartPodAction(activeSelection.data)}
-                        className={`industrial-btn text-[10px] py-1.5 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'industrial-btn-blue-active'}`}
-                      >
-                        <RefreshCw className="w-3.5 h-3.5" />
-                        <span>RESTART</span>
-                      </button>
-
-                      <button
-                        disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
-                        onClick={() => triggerDeletePodAction(activeSelection.data)}
-                        className={`industrial-btn text-[10px] py-1.5 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'bg-red-600 text-white border-red-500 hover:bg-red-700'}`}
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                        <span>SİL</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* WORKER NODE DETAILS */}
-              {activeSelection.type === 'SHIP' && (
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">NODE ADI:</span>
-                    <strong className="text-white text-sm">{activeSelection.data.name}</strong>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                      <span className="text-slate-400 block text-[10px]">NODE IP:</span>
-                      <strong className="text-sky-300">{activeSelection.data.ip || '192.168.1.101'}</strong>
-                    </div>
-                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                      <span className="text-slate-400 block text-[10px]">SAĞLIK:</span>
-                      <strong className="text-emerald-400">{activeSelection.data.status || 'Ready'}</strong>
                     </div>
                   </div>
                 </div>
