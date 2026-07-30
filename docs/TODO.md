@@ -1,15 +1,15 @@
-# TODO.md — Aktif ve Sıradaki Görevler Listesi (v1.2.0 Release)
+# TODO.md — Aktif ve Sıradaki Görevler Listesi (v1.3.0 Release)
 
-> 🏆 **PROJE TAMAMLANDI:** TODO listesindeki tüm 12 faz görevi başarıyla tamamlanmıştır.
+> 🏆 **PROJE TAMAMLANDI:** TODO listesindeki tüm faz görevleri başarıyla tamamlanmıştır.
 
 ---
 
 ## 🔵 Aktif Görevler
-*Şu an aktif görev bulunmamaktadır. Tüm 12 faz başarıyla tamamlandı!*
+*Şu an aktif görev bulunmamaktadır. Tüm fazlar başarıyla tamamlandı!*
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 12)
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 12.1)
 - [x] **[GÖREV-101..105]** Salt-okunur RBAC & Go `client-go` backend servisi. (Yapan: `devops-agent` & `backend-agent`)
 - [x] **[GÖREV-201..203]** WebSocket Hub sunucusu ve JSON streaming altyapısı. (Yapan: `backend-agent` & `integration-agent`)
 - [x] **[GÖREV-301..303]** React + Three.js 3D frontend projesi ve 3D liman/gemi sahnesi. (Yapan: `3d-scene-agent`)
@@ -21,7 +21,8 @@
 - [x] **[GÖREV-901..903]** Girilebilir Master Node Yönetim Binası ve Gemi İç Mekanı (`BuildingInterior.jsx`). (Yapan: `3d-scene-agent`)
 - [x] **[GÖREV-1001..1003]** Kube-proxy 3D Ağ Binası (`NetworkBuilding.jsx`), 3D canlı ağ akış tüpleri (`NetworkFlowStream.jsx`). (Yapan: `networking-agent`)
 - [x] **[GÖREV-1101..1103]** Multi-stage Dockerfile ve Helm Chart paketlemesi. (Yapan: `devops-agent`)
-- [x] **[GÖREV-1201..1205]** Katman Ayrımı (3D Canvas vs HTML UI Overlay), Endüstriyel Tasarım Sistemi ve Gerçekçi Low-Poly Liman Modelleri. (Yapan: `ui-ux-agent` & `3d-scene-agent`)
+- [x] **[GÖREV-1201..1205]** Katman Ayrımı (3D Canvas vs HTML UI Overlay) ve Endüstriyel Tasarım Sistemi. (Yapan: `ui-ux-agent`)
+- [x] **[GÖREV-12.1]** Canlı 3D Liman Motoru, %85 3D Canvas Ekran Oranı, Township Low-Poly Estetiği, İkonik Sarı Vinç, Salınan Gemiler ve Kamera Lerp Geçişleri. (Yapan: `3d-scene-agent`)
 
 ---
 

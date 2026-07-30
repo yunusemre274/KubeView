@@ -1,4 +1,4 @@
-# AGENTS.md — Tüm Ajanlar İçin Ortak Kurallar Rehberi (Katman Ayrımı & UI Standartı)
+# AGENTS.md — Tüm Ajanlar İçin Ortak Kurallar Rehberi (Canlı 3D Liman Motoru)
 
 Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker agent & master agent) uymak zorunda olduğu **kesin ve esnetilemez mühendislik kurallarını** içerir.
 
@@ -6,18 +6,18 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 ## 🎯 1. Temel İlkeler
 
-1. **3D Canvas & UI Overlay Katman Ayrımı (KESİN KURAL):**
+1. **85% 3D Canvas / 15% UI Overlay Kuralı (KESİN KURAL):**
+   - **3D Canvas ekranın en az %80-85'ini kaplamak zorundadır!**
+   - UI Overlay panelleri sadece ekranın kenarlarında ince şeritler ve kapatılabilir çekmeceler halinde yaşar, hiçbir zaman ekranın %15-20'sinden fazlasını kaplayamaz.
+2. **3D Canvas İçi Temizlik (KESİN KURAL):**
    - **3D Canvas içine hiçbir zaman okunabilir metin, etiket veya buton render edilemez!**
-   - 3D Sahne (Katman 1) SADECE nesneleri, 3D ışıkları ve modelleri render eder.
-   - Tüm metinler, sayaçlar, butonlar, detay kartları ve paneller Katman 2 olan **HTML UI Overlay** katmanında sabit paneller olarak yaşar.
-2. **KISS Prensibi (Keep It Simple, Stupid):**
+   - 3D Sahne (Katman 1) SADECE canlı su, tanınabilir 3D modeller, sarı vinç, binalar ve ışıklandırmaları render eder.
+3. **KISS Prensibi (Keep It Simple, Stupid):**
    - En basit çalışan çözüm DOĞRU çözümdür. Gereksiz karmaşıklıklar, erken optimizasyon ve kullanılmayan esneklikler YASAKTIR.
-3. **Faz Dışı İş Yapılamaz:**
-   - `PHASES.md` dosyasında tanımlı olan aktif faz dışında hiçbir koda veya özelliğe başlanmaz.
 4. **Dört Göz İlkesi (Four-Eyes Principle):**
    - Hiçbir agent kendi yazdığı veya ürettiği kodu kendi onaylayıp `main` dalına birleştiremez. Kod yazan agent ile denetleyen agent farklı olmalıdır.
-5. **Endüstriyel UI/UX Kalitesi & 60 FPS Standartı:**
-   - Arayüzün sadece "çalışması" yeterli değildir; 60 FPS akıcılıkta, tipografi hiyerarşisine sahip, renk paleti tutarlı ve tarayıcı varsayılanı bileşen içermeyen tasarım sistemiyle çalışması ZORUNLUDUR.
+5. **Low-Poly Canlı Oyun Estetiği & 60 FPS Standartı:**
+   - Arayüzün sadece "çalışması" yeterli değildir; 60 FPS akıcılıkta, canlı turkuaz/mavi denizli, sarı vinçli, tanınabilir gemili Township estetiğinde çalışması ZORUNLUDUR.
 6. **Otomatik Port Çakışma Önleme:**
    - Servisler başlatılırken varsayılan portun dolu olması durumunda uygulama çökmemeli, otomatik bir sonraki boş portu bularak kullanıcıya açıkça bildirmelidir.
 
@@ -44,10 +44,10 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 ## 🌿 3. Git Workflow Kuralları
 
-- **Branch İsimlendirme:** `faz/12-ui-ux-design-system`
+- **Branch İsimlendirme:** `faz/12.1-3d-scene-redesign`
 - **Commit Mesaj Formatı:**
   ```text
-  [Faz X][Agent Adı] Kısa özet başlığı
+  [Faz X.Y][Agent Adı] Kısa özet başlığı
 
   - Ne değişti ve neden değişti (1-3 satır açıklama)
   Ref: TODO.md [GÖREV-XXX] / DECISIONS.md [ADR-XXX]
@@ -60,7 +60,7 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 
 1. **OKU:** `PROJECT.md`, `ARCHITECTURE.md`, `TODO.md`, `PHASES.md` (aktif faz), `DECISIONS.md`, `ORG-CHART.md`.
 2. **GÖREV DAĞIT:** `master-agent`, `TODO.md` listesindeki görevi ilgili worker agent'a atar.
-3. **UYGULA:** İlgili worker agent kodu yazar (KISS & Katman Ayrımı ilkelerine uygun).
+3. **UYGULA:** İlgili worker agent kodu yazar (KISS & %85 3D Sahne ilkelerine uygun).
 4. **DENETLE:** `code-review-agent`, `architecture-agent`, `security-agent` veya `ui-ux-agent` denetler.
 5. **DOĞRULA:** `qa-agent`, `PHASES.md` kabul kriterleriyle kodu kıyaslar ve test eder.
 6. **KAYDET:** `TODO.md`, `CHANGELOG.md`, gerekirse `ARCHITECTURE.md` ve `DECISIONS.md` güncellenir.

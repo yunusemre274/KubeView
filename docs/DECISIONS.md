@@ -4,24 +4,24 @@ Bu belge, Tersane projesinde alınan kritik teknik ve mimari kararların gerekç
 
 ---
 
-## 📌 ADR-001...007 (Önceki Kabul Edilen Kararlar)
-- ADR-001 (Go Backend), ADR-002 (Informer/Watch), ADR-003 (Read-Only RBAC), ADR-004 (Tam 3D), ADR-005 (etcd Kaptan/Kubelet Dümenci), ADR-006 (Auto Port), ADR-007 (UI/UX 60 FPS).
+## 📌 ADR-001...008 (Önceki Kabul Edilen Kararlar)
+- ADR-001...007 (Go Backend, Informer/Watch, Read-Only RBAC, Tam 3D, etcd Kaptan/Kubelet Dümenci, Auto Port, UI/UX 60 FPS).
+- ADR-008 (Katman Ayrımı 3D Canvas vs HTML UI Overlay).
 
 ---
 
-## 📌 ADR-008: Katman Ayrımı (3D Canvas vs HTML UI Overlay) ve Endüstriyel Tersane Tasarım Sistemi
+## 📌 ADR-009: Canlı Low-Poly 3D Liman Simülasyonu (Township Estetiği) ve İnteraktif Kamera Lerp Mimarisi
 - **Tarih:** 2026-07-30
-- **Kararı Alan Agent:** `ui-ux-agent` & `architecture-agent` (Onaylayan: `master-agent`)
+- **Kararı Alan Agent:** `3d-scene-agent` & `architecture-agent` (Onaylayan: `master-agent`)
 - **Durum:** 🟢 **Kabul Edildi**
 
 ### Bağlam
-Mevcut arayüzde 3D sahne içindeki metin etiketleri ve butonlar birbirinin üzerine biniyor, okunamıyor ve paneller düz HTML görünümünde kalıyordu.
+Önceki 3D sahne oldukça dar bir alanda kalmış, zemin ve deniz görselleri yetersiz görünmüş ve nesneler teknik prototip silüetleri gibi kalmıştı.
 
 ### Alınan Karar
-1. **Katman 1 (3D Canvas):** 3D WebGL dünyasında KESİNLİKLE metin/buton/HTML etiket render edilmeyecek. Sadece tanınabilir 3D geometriler, su, vinç, binalar ve ışıklandırmalar bulunacak.
-2. **Katman 2 (HTML UI Overlay):** Tüm okunabilir metinler, sayaçlar, butonlar, sekmeler ve listeler ekranın kenarlarına sabitlenmiş düzenli HTML/CSS panellerinde gösterilecek.
-3. **Endüstriyel Tasarım Sistemi:** Özel renk paleti (amber, koyu lacivert, çelik mavisi), `Oswald` / `JetBrains Mono` tipografisi ve sabit spacing ölçeği (4/8/12/16/24px) uygulanacak.
+1. **%85 3D Sahne Oranı:** 3D Canvas ekranın %85'ini kaplayacak şekilde genisletilmiştir.
+2. **Referans Görsele Sadık Estetik (Township Estetiği):** Canlı turkuaz-mavi hareketli su materyali, koyu gri beton rıhtımlar, yeşil ada/kara şeridi, ikonik parlak sarı kafesli konteynır vinçleri ve su üstünde salınan kırmızı/lacivert kargo gemileri render edilecektir.
+3. **Yumuşak Kamera Lerp İnterpolasyonu:** 3D nesnelere tıklanınca kamera `Vector3.lerp` ile nesneye yumuşakça yaklaşacak, sağda ince 280px detay çekmecesi açılacaktır.
 
 ### Sonuç ve Etki
-- Metinlerin üst üste binmesi ve görsel karmaşa %100 engellendi.
-- Uygulama özgün, profesyonel bir endüstriyel liman kimliği kazandı.
+- 3D tersane görsel zenginliği canlı oyun simülasyonu seviyesine çıkarıldı.

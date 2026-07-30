@@ -1,21 +1,19 @@
-# PHASES.md — Geliştirme Fazları (Katman Ayrımı & UI/UX Revizyonu)
+# PHASES.md — Geliştirme Fazları (Canlı 3D Liman Motoru)
 
 Proje, KISS (Keep It Simple, Stupid) prensibine uygun olarak küçük, bağımsız ve test edilebilir fazlara bölünmüştür.
 
 ---
 
-## 🟢 Faz 1-11: Altyapı, 3D Modeller, Informer'lar & WebSocket Akışı (Tamamlandı)
-- Node, Pod, Deployment, Event, NetworkPolicy Informer'ları, WebSocket streaming, 3D binalar/gemiler, iç mekanlar ve port resolver tamamlandı.
+## 🟢 Faz 1-11: Altyapı, Informer'lar & WebSocket Stream (Tamamlandı)
+- Node, Pod, Deployment, Event, NetworkPolicy Informer'ları, WebSocket streaming ve Port Resolver tamamlandı.
 
 ---
 
-## 🔵 Faz 12: UI/UX & 3D Mimari Görsel İyileştirme (Design System & Katman Ayrımı) (Aktif)
-- **Hedef:** 3D Canvas ile HTML UI Overlay katmanlarını kesin olarak ayırmak, endüstriyel liman tasarım sistemini (renk paleti, tipografi, spacing) uygulamak ve 3D nesneleri (gemi, vinç, dok, kule) tanınabilir low-poly modellere dönüştürmek.
-- **Aktif Agent'lar:** `ui-ux-agent`, `3d-scene-agent`, `architecture-agent`, `qa-agent`.
+## 🔵 Faz 12.1: Sahne Kompozisyonu & Canlı 3D Motoru Yeniden İnşası (Aktif)
+- **Hedef:** 3D sahneyi referans görseldeki (Desan Tersanesi) canlı, renkli, Township/Hay Day estetiğindeki low-poly liman simülasyonuna dönüştürmek, ekran oranını %85 3D / %15 UI olarak kurgulamak, dalgalı mavi denizi, ikonik sarı liman vincini, salınım yapan kargo gemilerini ve yumuşak kamera Lerp geçişlerini baştan kurmak.
+- **Aktif Agent'lar:** `3d-scene-agent`, `ui-ux-agent`, `architecture-agent`, `qa-agent`.
 - **Bitti Sayılma Kriterleri:**
-  - [ ] 3D sahne içinde hiçbir okunabilir metin/buton yok, tamamı HTML overlay'de.
-  - [ ] Hiçbir UI elemanı bir diğerinin üzerine binmiyor (farklı pencere boyutlarında test edilmiştir).
-  - [ ] Gemi, liman, vinç, kontrol kulesi ilk bakışta ne olduğu anlaşılacak şekilde tanınabilir.
-  - [ ] Tüm butonlar/dropdown'lar özel stillendirilmiş, tarayıcı varsayılanında hiçbir bileşen yok.
-  - [ ] Tutarlı bir renk paleti ve tipografi sistemi tüm ekranlarda uygulanmış.
-  - [ ] Aktif/pasif durum (sekmeler, seçili nesne) her zaman görsel olarak net.
+  - [ ] Uygulama ilk açıldığında, kullanıcı hiçbir şeye tıklamadan bile ekranda net bir deniz, en az 2 gemi, en az 1 vinç ve kontrol kulesini AYNI ANDA, geniş bir sahne içinde görebiliyor.
+  - [ ] 3D sahne ekranın en az %80-85'ini kaplıyor.
+  - [ ] Bir gemiye tıklandığında kamera o gemiye yumuşak geçişle (Lerp) yaklaşıyor ve sağda küçük (~280px), kapatılabilir bir panel açılıyor.
+  - [ ] Genel görsel his, referans görseldeki canlı/stilize/"oyun estetiği"ne yakın (Township / Hay Day estetiği, teknik wireframe değil).

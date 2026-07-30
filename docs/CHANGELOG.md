@@ -4,16 +4,16 @@ Projedeki tüm önemli değişiklikler bu dosyada belgelenir. Format [Keep a Cha
 
 ---
 
-## [v1.2.0 - Faz 12 Katman Ayrımı & Endüstriyel Tasarım Sistemi] - 2026-07-30
+## [v1.3.0 - Faz 12.1 Canlı 3D Liman Motoru & Township Estetiği] - 2026-07-30
 
-### Eklendi / Yeniden Yapılandırıldı
-- `ui-ux-agent` & `3d-scene-agent` tarafından 3D Sahne (Katman 1) ve HTML UI Overlay (Katman 2) kesin olarak iki bağımsız katmana ayrıldı (`/docs/ARCHITECTURE.md` [ADR-008]).
-- 3D Canvas içindeki tüm yüzen metinler ve butonlar kaldırıldı. Nesnelere tıklanınca sol sabit müfettiş panelinde gösterilmeye başlandı.
-- `index.css` dosyasına Google Fonts (`Oswald`, `JetBrains Mono`, `Inter`), özel renk paleti (amber, steel blue, dark navy) ve özel dropdown/kart stillerinden oluşan **Endüstriyel Tersane Tasarım Sistemi** tanımlandı.
-- 3D Liman mimarisi tanınabilir modellerle yenilendi: Beton Rıhtım + Sarı/Siyah Emniyet Çizgisi + Turuncu Liman Vinci + Detaylı Kargo Gemisi Silüeti + Güverte Konteynır Izgarası.
-- `DeploymentPanel.jsx` ayrıştırılmış bağımsız kart düzenine kavuşturuldu.
+### Eklendi / Baştan İnşa Edildi
+- `3d-scene-agent` & `ui-ux-agent` tarafından 3D Sahne referans görsel estetiğinde (Township / Hay Day low-poly canlı oyun stili) baştan kuruldu (`frontend/src/components/ShipyardScene.jsx`).
+- 3D WebGL Canvas ekranın **%85'ini kaplayacak şekilde** genişletildi.
+- Canlı turkuaz-mavi hareketli su yüzeyi (`Ocean`), yeşil ada/kara şeridi ve beton rıhtım altyapısı eklendi.
+- İkonik parlak sarı kafesli konteynır vinci (`GantryCrane`), kırmızı çatılı kontrol kulesi binası ve su üstünde salınım (bobbing motion) yapan detaylı kargo gemileri (`CargoShip`) render edildi.
+- Tıklanan nesnelere yumuşak kamera yaklaşma (`Vector3.lerp`) ve sağ tarafta 280px genişliğinde kapatılabilir detay çekmecesi eklendi.
 
 ---
 
-## [v1.0.0-3d - Nihai 3D Sürüm Yayını] - 2026-07-30
-- Multi-stage Dockerfile ve Production Helm Chart güncellendi.
+## [v1.2.0 - Katman Ayrımı & Tasarım Sistemi] - 2026-07-30
+- Katman 1 (3D Canvas) ve Katman 2 (UI Overlay) mimari ayrımı yapıldı.

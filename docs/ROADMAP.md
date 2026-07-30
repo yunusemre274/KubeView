@@ -2,12 +2,12 @@
 
 Bu tablo, projenin canlı ilerleme durumunu gösterir. Tahmini süreler değil, **gerçekleşen durumlar** kaydedilir.
 
-> 🏆 **PROJE TAMAMLANDI (v1.2.0 UI/UX & 3D Redesign Release):** Tüm 12 faz, 3D vizyonu, Katman Ayrımı (3D Canvas vs HTML UI Overlay), Endüstriyel Tasarım Sistemi ve Gerçekçi 3D Liman Modelleri başarıyla tamamlanmıştır.
+> 🏆 **PROJE TAMAMLANDI (v1.3.0 Canlı 3D Liman Motoru Release):** Tüm 12.1 faz, 3D vizyonu, %85 3D Canvas ekran oranı, Township canlı oyun estetiği, ikonik sarı liman vinci, salınan kargo gemileri ve yumuşak kamera Lerp etkileşimi başarıyla tamamlanmıştır.
 
 | Faz | Durum | Başlangıç | Bitiş | Sorumlu Agent(lar) | Not |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Faz 1-11: Altyapı & 3D Motor** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | Tüm Agent'lar | Backend, WS, Informer'lar, Port Resolver |
-| **Faz 12: UI/UX & 3D Görsel Revizyon** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `ui-ux-agent`, `3d-scene-agent`, `qa-agent` | Katman Ayrımı, Tasarım Sistemi, 3D Modeller |
+| **Faz 1-11: Altyapı & Backend** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | Tüm Agent'lar | Backend, WS, Informer'lar, Port Resolver |
+| **Faz 12.1: Canlı 3D Liman Motoru** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `3d-scene-agent`, `ui-ux-agent`, `qa-agent` | %85 3D Sahne, Mavi Deniz, Sarı Vinç, Lerp Kamera |
 
 ---
 
