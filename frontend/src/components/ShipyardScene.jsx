@@ -441,11 +441,12 @@ export default function ShipyardScene({ ships = [] }) {
 
   const [eventsLog, setEventsLog] = useState([
     { id: 1, time: '23:38:10', message: 'Tersane v2.1.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'Worker Node Devriye Rotası Aktif', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'Geniş Panoramik Kamera Görüşü Aktif', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
-  const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(34, 30, 46))
+  // Wider Panoramic Initial Camera View (Genişletilmiş Görüş Açısı: [44, 36, 58])
+  const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(44, 36, 58))
   const [camTargetLookAt, setCamTargetLookAt] = useState(new THREE.Vector3(0, 2, 0))
 
   const defaultShips = [
@@ -640,7 +641,7 @@ export default function ShipyardScene({ ships = [] }) {
     setActiveSelection(null)
     setShowMasterDashboard(false)
     setShowEventLog(false)
-    setCamTargetPos(new THREE.Vector3(34, 30, 46))
+    setCamTargetPos(new THREE.Vector3(44, 36, 58))
     setCamTargetLookAt(new THREE.Vector3(0, 2, 0))
   }
 
@@ -678,7 +679,7 @@ export default function ShipyardScene({ ships = [] }) {
   return (
     <div className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
       
-      {/* UNIFIED TOP HEADER STRIP (TEK, EKSİKSİZ, ASLA KAYBOLMAYAN VE COLLIDE ETMEYEN TAVAN HEADER) */}
+      {/* UNIFIED TOP HEADER STRIP */}
       <header className="fixed top-0 left-0 right-0 h-11 bg-slate-900/95 backdrop-blur-md border-b border-amber-500/30 z-50 flex items-center justify-between px-3 shadow-2xl pointer-events-auto overflow-x-auto gap-2">
         
         {/* LEFT SECTION: LOGO & CLUSTER SELECTOR & READ-ONLY TOGGLE */}
@@ -716,7 +717,7 @@ export default function ShipyardScene({ ships = [] }) {
           </button>
         </div>
 
-        {/* CENTER SECTION: CAMERA & VIEW MODE ACTION BUTTONS (ARAÇ ÇUBUĞU BUTONLARI) */}
+        {/* CENTER SECTION: CAMERA & VIEW MODE ACTION BUTTONS */}
         <div className="flex items-center gap-1 shrink-0">
           <button
             onClick={handleResetCamera}
@@ -797,12 +798,12 @@ export default function ShipyardScene({ ships = [] }) {
       <div className="stage-wrapper pt-11">
         <Canvas
           shadows
-          camera={{ position: [34, 30, 46], fov: 42 }}
+          camera={{ position: [44, 36, 58], fov: 54 }}
           style={{ width: '100%', height: '100%', display: 'block' }}
           gl={{ preserveDrawingBuffer: true }}
         >
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[35, 45, 30]} intensity={1.6} castShadow />
+          <ambientLight intensity={0.85} />
+          <directionalLight position={[45, 55, 40]} intensity={1.7} castShadow />
           <pointLight position={[-15, 20, -10]} intensity={0.8} color="#38bdf8" />
           <Sky sunPosition={[120, 35, 100]} />
 
@@ -849,7 +850,7 @@ export default function ShipyardScene({ ships = [] }) {
             enableRotate={true}
             maxPolarAngle={Math.PI / 2 - 0.05}
             minDistance={8}
-            maxDistance={150}
+            maxDistance={200}
           />
         </Canvas>
       </div>
