@@ -4,15 +4,20 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 ---
 
-## [v1.6.0 - Faz 15 2D Control Dashboard, Raycasting Fix & Canlı Ağ Parçacıkları] - 2026-07-30
+## [v1.7.0-scope - Genişletilmiş Pro Kapsam & Otonom Faz Geçiş Kuralları] - 2026-07-30
 
-### Eklendi / Düzeltildi
-- **2D Interactive Control Dashboard:** "Yönetim Binasına Gir" aksiyonunda kamera lerp geçişi ile 3D sahne yerini tam ekran etkileşimli **Control Plane Dashboard** konsoluna (`MasterDashboardOverlay.jsx`) bırakır.
-- **Raycasting Hit-Test Düzeltmesi:** Konteynır (Pod) ve Gemi (Node) tıklamalarının birbirine karışması sorunu tüm interaktif 3D mesh handler'larına `e.stopPropagation()` eklenerek giderildi (`LESSON-005`).
-- **Dönen 3D Kubelet İkonu:** Her geminin direğine dönen 3D Kubelet Radar ikonu (`KubeletRadar`) eklendi ve tıklanabilir Kubelet müfettiş çekmecesi bağlandı.
-- **Canlı Ağ Trafiği Parçacıkları:** Kube-proxy yapısından gemilere ve Master binaya doğru ışıklı parçacıkların aktığı canlı ağ trafiği animasyonu (`NetworkTrafficParticles.jsx`) ve UI açma/kapama butonu eklendi.
+### Eklendi / Güncellendi
+- **METAPHOR.md Oluşturuldu:** 13 yeni K8s kavramının (Ingress, NetworkPolicy, ResourceQuota, HPA, PDB, Taints/Tolerations, Node Affinity, ServiceAccount, RBAC, EndpointSlice, Rolling Update, CRD/Operator, Helm Release) 3D tersane karşılıklarını içeren tek resmi referans belgesi yayınlandı.
+- **AGENTS.md Kuralları Güncellendi:**
+  - Faz içi ve fazlar arası geçişlerde **otonom faz ilerlemesi** kuralı kabul edildi.
+  - Release ve git işlemleri için **tam git yetkilendirmesi** tanımlandı.
+- **DECISIONS.md Kararları Güncellendi:**
+  - `ADR-012`: RBAC salt-okunur moddan sınırlı yazma yetkili moda (`pods/delete`, `deployments/scale`) güncellendi.
+  - `ADR-013`: Olay Günlüğü için son 1 saatlik in-memory ring buffer (KISS prensibi) kabul edildi.
+  - `ADR-014`: PNG Ekran görüntüsü dışa aktarma kabul edildi, web paylaşım linki kapsam dışı bırakıldı.
+- **Yol Haritası Yeniden Sıralandı:** Faz 16 (Mutasyon & Olay Günlüğü) ile başlayan Faz 16-20 genişletme planı `PHASES.md` ve `ROADMAP.md` belgelerine işlendi.
 
 ---
 
-## [v1.5.0 - Absolute Overlay Çekmece & CSS Transform] - 2026-07-30
-- Panel layout sıçramaları ve anlık siyahlıklar giderildi.
+## [v1.6.0 - 2D Control Dashboard, Raycasting Fix & Canlı Ağ Parçacıkları] - 2026-07-30
+- 3D->2D lerp geçişli MasterDashboardOverlay konsolu, raycasting stopPropagation düzeltmesi ve canlı ağ parçacıkları eklendi.
