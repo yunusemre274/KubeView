@@ -1,20 +1,20 @@
-# ARCHITECTURE.md — Aktif Mimarisi (Faz 3)
+# ARCHITECTURE.md — Aktif Mimarisi (Faz 4)
 
-> ⚠️ **UYARI:** Bu dosya SADECE mevcut aktif faz olan **Faz 3** mimarisini tanımlar. Gelecek fazların spekülatif mimarisi buraya yazılmaz. Kod yapısı değiştikçe bu dosya `architecture-agent` veya değişiklik yapan ilgili agent tarafından güncellenir.
+> ⚠️ **UYARI:** Bu dosya SADECE mevcut aktif faz olan **Faz 4** mimarisini tanımlar. Gelecek fazların spekülatif mimarisi buraya yazılmaz. Kod yapısı değiştikçe bu dosya `architecture-agent` veya değişiklik yapan ilgili agent tarafından güncellenir.
 
 ---
 
-## 🏛️ Faz 3 Mimari Bileşenleri
+## 🏛️ Faz 4 Mimari Bileşenleri
 
-Faz 3 kapsamında sistem 4 ana bileşenden oluşur:
+Faz 4 kapsamında sistem uçtan uca canlı akışla birleştirilmiştir:
 1. **Kubernetes RBAC Manifestleri:** Read-only `ServiceAccount`, `ClusterRole` ve `ClusterRoleBinding` tanımları (`deploy/rbac.yaml`).
-2. **Go Informer Watcher:** `k8s.io/client-go` Informer'ları ile küme olaylarını dinleyen ve yerel bellekte tutan Go backend modülü.
-3. **WebSocket Hub & Server:** `/ws` endpoint'i üzerinden WebSocket akışı sağlayan HTTP sunucusu.
-4. **React + Three.js 3D Frontend:** React 18, Vite ve React Three Fiber (`@react-three/fiber`, `@react-three/drei`) kullanarak 3D deniz, liman dock alanı, kargo gemisi (Worker Node) ve kargo kutuları (Pod) render eden statik istemci arayüzü (`/frontend`).
+2. **Go Informer Watcher:** `client-go` Informer'ları ile küme olaylarını dinleyen ve local cache tutan backend modülü (`backend/pkg/k8s/watcher.go`).
+3. **WebSocket Hub & Server:** `/ws` endpoint'i üzerinden WebSocket akışı sağlayan HTTP sunucusu (`backend/pkg/websocket/hub.go`).
+4. **React + Three.js Canlı 3D Visualizer:** WebSocket istemci hook'u (`useShipyardWebSocket.js`) ile canlı verileri alan, Three.js 3D gemilerine/kargo paletlerine anlık yansıtan ve canlı liman anonsları bandını (`EventStream.jsx`) render eden frontend uygulaması (`/frontend`).
 
 ---
 
-## 🔄 Veri Akışı (Faz 3)
+## 🔄 Veri Akışı (Faz 4)
 
 ```
 +------------------------+      Watch / Informer        +---------------------------+
@@ -27,12 +27,12 @@ Faz 3 kapsamında sistem 4 ana bileşenden oluşur:
                                                         | WebSocket Hub (/ws)       |
                                                         +---------------------------+
                                                                       |
-                                                                      v (Faz 4'te bağlanacak)
+                                                                      v (Live WS Delta Events)
                                                         +---------------------------+
                                                         | React Three.js 3D Client  |
-                                                        |  - Canvas / OrbitControls |
-                                                        |  - 3D Ships (Nodes)       |
-                                                        |  - 3D Cargo (Pods)        |
+                                                        |  - useShipyardWebSocket   |
+                                                        |  - Dynamic 3D Render      |
+                                                        |  - EventStream Ticker     |
                                                         +---------------------------+
 ```
 
@@ -45,12 +45,11 @@ Faz 3 kapsamında sistem 4 ana bileşenden oluşur:
 | **Go** | `1.22+` | Düşük kaynak kullanımı, yüksek performans. |
 | **client-go** | `v0.30+` | API Server ile resmi ve kararlı iletişim. |
 | **gorilla/websocket** | `v1.5.1` | Yüksek performanslı WebSocket sunucusu. |
-| **React** | `18.3+` | Bildirimsel (declarative) bileşen yapısı. |
-| **Three.js / R3F** | `v0.164+ / v8.16+` | WebGL tabanlı 60 FPS 3D render ve kolay bileşen yönetimi. |
+| **React & R3F** | `18.3+ / 8.16+` | WebGL tabanlı 60 FPS 3D render ve reaktif state yönetimi. |
 
 ---
 
-## 📁 Proje Dosya ve Klasör Yapısı (Faz 3)
+## 📁 Proje Dosya ve Klasör Yapısı (Faz 4)
 
 ```
 .
@@ -60,15 +59,12 @@ Faz 3 kapsamında sistem 4 ana bileşenden oluşur:
 │   └── rbac.yaml                # ServiceAccount, ClusterRole ve Binding
 ├── backend/                     # Go Backend kaynak kodları
 └── frontend/                    # React + Three.js Frontend kaynak kodları
-    ├── package.json             # Bağımlılıklar (React, Three.js, R3F, Lucide)
-    ├── vite.config.js           # Vite sunucu ve derleme konfigürasyonu
-    ├── index.html               # Ana HTML şablonu
-    └── src/
-        ├── index.css            # Tailwind & Glassmorphism stilleri
-        ├── main.jsx             # React giriş noktası
-        ├── App.jsx              # Ana uygulama düzeni
+    ├── src/
+        ├── hooks/
+        │   └── useShipyardWebSocket.js # Reconnect destekli canlı WebSocket hook'u
         └── components/
-            ├── ShipyardScene.jsx # Three.js 3D Canvas, Deniz, Gemi & Kargo render
-            ├── Navbar.jsx        # Durum göstergesi ve üst bar overlay
-            └── LegendModal.jsx   # Metafor rehberi modal overlay
+            ├── ShipyardScene.jsx # Canlı 3D Canvas render
+            ├── EventStream.jsx   # Canlı Liman Anonsları ticker bileşeni
+            ├── Navbar.jsx        # Üst durum barı
+            └── LegendModal.jsx   # Metafor rehberi modalı
 ```
