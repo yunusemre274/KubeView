@@ -15,8 +15,8 @@ Bu tablo, projenin canlı ilerleme durumunu gösterir. Tahmini süreler değil, 
 | **Faz 7: Multi-Namespace & Events** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `backend-agent`, `ui-ux-agent`, `doc-agent` | Namespace seçici & K8s Event Informer |
 | **Faz 8: Auto Port Detect & Fallback** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `backend-agent`, `ui-ux-agent`, `qa-agent` | Otomatik boş port tarama & fallback çözümü |
 | **Faz 9: Girilebilir Binalar & İç Mekanlar** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `3d-scene-agent`, `ui-ux-agent`, `architecture-agent` | Master Node & Gemi içi girilebilir sahneler |
-| **Faz 10: Ağ Trafiği & Network Policy** | 🟡 **Bekliyor (Sıradaki)** | - | - | `networking-agent`, `3d-scene-agent`, `backend-agent` | Kube-proxy ağ binası & 3D akış hatları |
-| **Faz 11: Production Build & Helm Chart** | ⚪ Bekliyor | - | - | `devops-agent`, `security-agent`, `release-agent` | Multi-stage Dockerfile & Helm Chart |
+| **Faz 10: Ağ Trafiği & Network Policy** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | `networking-agent`, `3d-scene-agent`, `backend-agent` | Kube-proxy ağ binası & 3D canlı akış hatları |
+| **Faz 11: Production Build & Helm Chart** | 🟡 **Bekliyor (Sıradaki)** | - | - | `devops-agent`, `security-agent`, `release-agent` | Multi-stage Dockerfile & Helm Chart (Nihai) |
 
 ---
 

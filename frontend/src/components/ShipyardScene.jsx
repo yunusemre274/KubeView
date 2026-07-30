@@ -3,7 +3,8 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Text, Sky, Html } from '@react-three/drei'
 import * as THREE from 'three'
 import { MasterBuildingInterior, ShipInterior } from './3d/BuildingInterior'
-import { Eye, Building2, Ship as ShipIcon } from 'lucide-react'
+import { NetworkBuilding, NetworkFlowStream } from './3d/NetworkBuilding'
+import { Eye, Building2, Ship as ShipIcon, Radio } from 'lucide-react'
 
 // Water / Ocean mesh
 function Sea() {
@@ -17,7 +18,7 @@ function Sea() {
 
   return (
     <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
-      <planeGeometry args={[140, 140]} />
+      <planeGeometry args={[160, 160]} />
       <meshStandardMaterial color="#0b2545" roughness={0.1} metalness={0.8} />
     </mesh>
   )
@@ -29,13 +30,11 @@ function EnterableMasterBuilding({ onEnterBuilding }) {
 
   return (
     <group position={[-14, 0.2, 0]}>
-      {/* Pier Base */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[10, 1.4, 30]} />
         <meshStandardMaterial color="#334155" roughness={0.7} />
       </mesh>
 
-      {/* Enterable Master Node Building Structure */}
       <mesh
         position={[0, 3.5, -4]}
         onPointerOver={() => setHovered(true)}
@@ -51,13 +50,11 @@ function EnterableMasterBuilding({ onEnterBuilding }) {
         />
       </mesh>
 
-      {/* Glass Windows */}
       <mesh position={[0, 4, 1.1]}>
         <boxGeometry args={[6.5, 2.8, 0.2]} />
         <meshPhysicalMaterial color="#38bdf8" transmission={0.9} roughness={0.1} transparent opacity={0.5} />
       </mesh>
 
-      {/* Crane Tower */}
       <mesh position={[0, 4.5, 6]}>
         <boxGeometry args={[1.5, 7.5, 1.5]} />
         <meshStandardMaterial color="#f59e0b" roughness={0.4} />
@@ -132,7 +129,6 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha', pods = [], metrics, o
 
   return (
     <group ref={groupRef} position={position}>
-      {/* Hull Base */}
       <mesh
         position={[0, 0.6, 0]}
         onPointerOver={() => setHovered(true)}
@@ -144,23 +140,19 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha', pods = [], metrics, o
         <boxGeometry args={[7, 1.8, 18]} />
         <meshStandardMaterial color={hovered ? '#0284c7' : '#1e293b'} metalness={0.6} roughness={0.3} />
       </mesh>
-      {/* Bow */}
       <mesh position={[0, 0.6, 10]} rotation={[0, Math.PI / 4, 0]} castShadow>
         <boxGeometry args={[4.95, 1.8, 4.95]} />
         <meshStandardMaterial color="#0f172a" metalness={0.6} roughness={0.3} />
       </mesh>
-      {/* Bridge / Cabin */}
       <mesh position={[0, 2.5, -6]} castShadow>
         <boxGeometry args={[5, 2.2, 3.5]} />
         <meshStandardMaterial color="#e2e8f0" roughness={0.2} />
       </mesh>
-      {/* Chimney */}
       <mesh position={[0, 4.2, -6.5]} castShadow>
         <cylinderGeometry args={[0.5, 0.6, 1.8, 16]} />
         <meshStandardMaterial color="#ef4444" />
       </mesh>
 
-      {/* Metrics & Enter Button */}
       <Html position={[0, 6.2, -6]} center distanceFactor={25}>
         <div className="glass-panel px-3 py-1.5 rounded-lg text-white text-[11px] whitespace-nowrap border border-sky-500/40 shadow-xl flex flex-col gap-1">
           <div className="font-bold text-sky-300 flex items-center justify-between gap-2">
@@ -189,7 +181,6 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha', pods = [], metrics, o
         </div>
       </Html>
 
-      {/* Cargo Deck - Pods Placement */}
       {pods.map((pod, idx) => {
         const row = Math.floor(idx / 2)
         const col = idx % 2
@@ -211,7 +202,7 @@ function Ship({ position = [0, 0, 0], name = 'Gemi Alpha', pods = [], metrics, o
 }
 
 export default function ShipyardScene({ ships = [] }) {
-  const [viewMode, setViewMode] = useState('EXTERIOR') // 'EXTERIOR' | 'MASTER_BUILDING' | 'SHIP_INTERIOR'
+  const [viewMode, setViewMode] = useState('EXTERIOR')
   const [activeShipForInterior, setActiveShipForInterior] = useState(null)
   const [selectedPod, setSelectedPod] = useState(null)
 
@@ -242,7 +233,7 @@ export default function ShipyardScene({ ships = [] }) {
 
   return (
     <div className="w-full h-screen relative">
-      {/* Mode Selector Top Floating Bar */}
+      {/* View Mode Selector Floating Overlay */}
       <div className="fixed top-24 right-4 z-20 flex items-center gap-2 glass-panel p-2 rounded-xl border border-sky-500/40">
         <button
           onClick={() => setViewMode('EXTERIOR')}
@@ -280,7 +271,7 @@ export default function ShipyardScene({ ships = [] }) {
 
       <Canvas
         shadows
-        camera={{ position: viewMode === 'EXTERIOR' ? [22, 20, 30] : [0, 5, 12], fov: 45 }}
+        camera={{ position: viewMode === 'EXTERIOR' ? [25, 22, 34] : [0, 5, 12], fov: 45 }}
         className="w-full h-full bg-slate-950"
       >
         <ambientLight intensity={0.7} />
@@ -292,6 +283,13 @@ export default function ShipyardScene({ ships = [] }) {
           <>
             <Sea />
             <EnterableMasterBuilding onEnterBuilding={() => setViewMode('MASTER_BUILDING')} />
+            <NetworkBuilding position={[14, 0.2, -12]} />
+
+            {/* Network Traffic Lines from Kube-proxy Building to Ships */}
+            <NetworkFlowStream start={[14, 9, -12]} end={[-14, 4, -4]} color="#f59e0b" />
+            <NetworkFlowStream start={[14, 9, -12]} end={[0, 2, 0]} color="#38bdf8" />
+            <NetworkFlowStream start={[14, 9, -12]} end={[14, 2, 0]} color="#a855f7" />
+
             {activeShips.map((ship) => (
               <Ship
                 key={ship.id}
@@ -327,7 +325,7 @@ export default function ShipyardScene({ ships = [] }) {
           enableRotate={true}
           maxPolarAngle={Math.PI / 2 - 0.05}
           minDistance={5}
-          maxDistance={90}
+          maxDistance={95}
         />
       </Canvas>
 
