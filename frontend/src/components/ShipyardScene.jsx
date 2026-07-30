@@ -4,7 +4,9 @@ import { OrbitControls, Sky } from '@react-three/drei'
 import * as THREE from 'three'
 import MasterDashboardOverlay from './MasterDashboardOverlay'
 import NetworkTrafficParticles from './3d/NetworkTrafficParticles'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap } from 'lucide-react'
+import EventLogDrawer from './EventLogDrawer'
+import ConfirmationModal from './ConfirmationModal'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Plus, Minus, UserCheck } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -204,7 +206,7 @@ function KubeProxyStation({ position = [18, 0.2, -16], onSelectKubeProxy }) {
   )
 }
 
-// 6. 3D Kubelet Rotating Radar Icon on Mast (Geminin Dümencisi / Node Agent)
+// 6. 3D Kubelet Radar Icon
 function KubeletRadar({ position = [0, 8.5, -9.5], onClickKubelet }) {
   const radarRef = useRef()
   const [hovered, setHovered] = useState(false)
@@ -246,25 +248,16 @@ function KubeletRadar({ position = [0, 8.5, -9.5], onClickKubelet }) {
   )
 }
 
-// 7. 3D Cargo Container (Pod) with Explicit StopPropagation
+// 7. 3D Cargo Container (Pod)
 function CargoContainer({ position, podData, shipName, onSelectPod }) {
   const [hovered, setHovered] = useState(false)
 
   return (
     <group position={position}>
       <mesh
-        onPointerOver={(e) => {
-          e.stopPropagation()
-          setHovered(true)
-        }}
-        onPointerOut={(e) => {
-          e.stopPropagation()
-          setHovered(false)
-        }}
-        onClick={(e) => {
-          e.stopPropagation()
-          onSelectPod(podData, shipName)
-        }}
+        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+        onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+        onClick={(e) => { e.stopPropagation(); onSelectPod(podData, shipName); }}
         castShadow
         receiveShadow
       >
@@ -285,7 +278,7 @@ function CargoContainer({ position, podData, shipName, onSelectPod }) {
   )
 }
 
-// 8. Cargo Ship (Worker Node) with Kubelet Radar & Event StopPropagation
+// 8. Cargo Ship (Worker Node)
 function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet }) {
   const groupRef = useRef()
   const [hovered, setHovered] = useState(false)
@@ -308,21 +301,11 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, 
         <meshStandardMaterial color="#dc2626" metalness={0.5} roughness={0.4} />
       </mesh>
 
-      {/* SHIP HULL - Raycast target for Node onClick */}
       <mesh
         position={[0, 1.8, 0]}
-        onPointerOver={(e) => {
-          e.stopPropagation()
-          setHovered(true)
-        }}
-        onPointerOut={(e) => {
-          e.stopPropagation()
-          setHovered(false)
-        }}
-        onClick={(e) => {
-          e.stopPropagation()
-          onSelectShip(shipData)
-        }}
+        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+        onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+        onClick={(e) => { e.stopPropagation(); onSelectShip(shipData); }}
         castShadow
         receiveShadow
       >
@@ -346,13 +329,11 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, 
         <meshStandardMaterial color="#f8fafc" roughness={0.2} />
       </mesh>
 
-      {/* KUBELET RADAR ICON ON MAST */}
       <KubeletRadar
         position={[0, 6.5, -9.5]}
         onClickKubelet={() => onSelectKubelet(shipData)}
       />
 
-      {/* POD CONTAINERS */}
       {pods.map((pod, idx) => {
         const row = Math.floor(idx / 2)
         const col = idx % 2
@@ -393,6 +374,17 @@ export default function ShipyardScene({ ships = [] }) {
   const [activeSelection, setActiveSelection] = useState(null)
   const [showMasterDashboard, setShowMasterDashboard] = useState(false)
   const [showNetworkTraffic, setShowNetworkTraffic] = useState(true)
+  
+  // FAZ 16: MUTATION & RING BUFFER EVENT LOG STATES
+  const [isReadOnlyMode, setIsReadOnlyMode] = useState(false)
+  const [showEventLog, setShowEventLog] = useState(false)
+  const [pendingMutation, setPendingMutation] = useState(null)
+
+  const [eventsLog, setEventsLog] = useState([
+    { id: 1, time: '23:38:10', message: 'Tersane v1.6.0 Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'Worker Node node-alpha Ready Durumda', type: 'Normal', isUserTriggered: false },
+    { id: 3, time: '23:40:00', message: 'kube-proxy iptables yönlendirme kuralları aktifleştirildi', type: 'Normal', isUserTriggered: false }
+  ])
 
   const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(34, 30, 46))
   const [camTargetLookAt, setCamTargetLookAt] = useState(new THREE.Vector3(0, 2, 0))
@@ -465,6 +457,14 @@ export default function ShipyardScene({ ships = [] }) {
 
   const activeShips = ships.length > 0 ? ships : defaultShips
 
+  const addEventLog = (message, type = 'Normal', isUser = false, targetObject = null) => {
+    const timeStr = new Date().toLocaleTimeString('tr-TR')
+    setEventsLog((prev) => [
+      { id: Date.now(), time: timeStr, message, type, isUserTriggered: isUser, targetObject },
+      ...prev.slice(0, 49) // In-memory ring buffer (last 50 events)
+    ])
+  }
+
   const handleSelectShip = (ship) => {
     setActiveSelection({ type: 'SHIP', data: ship })
     setCamTargetPos(new THREE.Vector3(ship.position[0] + 16, 14, ship.position[2] + 22))
@@ -530,19 +530,83 @@ export default function ShipyardScene({ ships = [] }) {
   const handleResetCamera = () => {
     setActiveSelection(null)
     setShowMasterDashboard(false)
+    setShowEventLog(false)
     setCamTargetPos(new THREE.Vector3(34, 30, 46))
     setCamTargetLookAt(new THREE.Vector3(0, 2, 0))
+  }
+
+  // MUTATION HANDLERS
+  const triggerDeletePodAction = (pod) => {
+    if (isReadOnlyMode) return
+    setPendingMutation({
+      type: 'DELETE_POD',
+      title: 'POD SİLME ONAYI',
+      message: `Pod '${pod.name}' silinecek ve Deployment tarafından yeniden başlatılacak. Devam etmek istiyor musunuz?`,
+      targetName: pod.name
+    })
+  }
+
+  const triggerRestartPodAction = (pod) => {
+    if (isReadOnlyMode) return
+    setPendingMutation({
+      type: 'RESTART_POD',
+      title: 'POD YENİDEN BAŞLATMA ONAYI',
+      message: `Pod '${pod.name}' yeniden başlatılacak. Devam etmek istiyor musunuz?`,
+      targetName: pod.name
+    })
+  }
+
+  const executePendingMutation = () => {
+    if (!pendingMutation) return
+
+    if (pendingMutation.type === 'DELETE_POD') {
+      addEventLog(`Pod '${pendingMutation.targetName}' silindi (Kullanıcı Tarafından Tetiklendi)`, 'Warning', true, pendingMutation.targetName)
+      setActiveSelection(null)
+    } else if (pendingMutation.type === 'RESTART_POD') {
+      addEventLog(`Pod '${pendingMutation.targetName}' yeniden başlatılıyor (Kullanıcı Tarafından Tetiklendi)`, 'Normal', true, pendingMutation.targetName)
+    }
+
+    setPendingMutation(null)
   }
 
   return (
     <div className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
       
-      {/* SOL ÜST ULTRA MİNİMAL ROZET (< %3 EKRAN ALANI) */}
-      <div className="fixed top-3 left-3 z-30 pointer-events-auto flex items-center gap-2 glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30">
-        <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
-        <span className="font-industrial text-sm font-bold text-amber-400 tracking-wider">
-          TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.4.0</span>
-        </span>
+      {/* SOL ÜST MİNİMAL ROZET VE SALT İZLEME MODU */}
+      <div className="fixed top-3 left-3 z-30 pointer-events-auto flex items-center gap-2">
+        <div className="glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-2">
+          <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
+          <span className="font-industrial text-sm font-bold text-amber-400 tracking-wider">
+            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.6.0</span>
+          </span>
+        </div>
+
+        {/* SALT İZLEME MODU TOGGLE */}
+        <button
+          onClick={() => {
+            const nextMode = !isReadOnlyMode
+            setIsReadOnlyMode(nextMode)
+            addEventLog(`Mod Değiştirildi: ${nextMode ? 'SALT İZLEME MODU (READ-ONLY)' : 'YAZMA / MÜDAHALE MODU'}`, 'Normal', true)
+          }}
+          className={`industrial-btn text-xs py-1.5 px-3 flex items-center gap-1.5 shadow-lg ${isReadOnlyMode ? 'bg-sky-500/20 text-sky-300 border-sky-500/50' : 'bg-amber-500/20 text-amber-300 border-amber-500/50'}`}
+        >
+          {isReadOnlyMode ? <Lock className="w-3.5 h-3.5 text-sky-400" /> : <Unlock className="w-3.5 h-3.5 text-amber-400" />}
+          <span>{isReadOnlyMode ? '🔒 SALT İZLEME' : '🔓 MÜDAHALE AÇIK'}</span>
+        </button>
+      </div>
+
+      {/* SAĞ ÜST OLAY GÜNLÜĞÜ BUTONU */}
+      <div className="fixed top-3 right-3 z-30 pointer-events-auto">
+        <button
+          onClick={() => {
+            setShowEventLog(!showEventLog)
+            setActiveSelection(null)
+          }}
+          className={`industrial-btn text-xs py-1.5 px-3 flex items-center gap-1.5 shadow-lg ${showEventLog ? 'industrial-btn-active' : ''}`}
+        >
+          <Clock className="w-4 h-4 text-amber-400" />
+          <span>📋 OLAY GÜNLÜĞÜ ({eventsLog.length})</span>
+        </button>
       </div>
 
       {/* KATMAN 1: 3D CANVAS STAGE WRAPPER - ABSOLUTE FULLSCREEN */}
@@ -566,7 +630,6 @@ export default function ShipyardScene({ ships = [] }) {
           <HarborVillage onClickBuilding={handleSelectMaster} />
           <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
 
-          {/* LIVE ANIMATED NETWORK PARTICLES */}
           <NetworkTrafficParticles ships={activeShips} showTraffic={showNetworkTraffic} />
 
           {activeShips.map((ship) => (
@@ -595,7 +658,7 @@ export default function ShipyardScene({ ships = [] }) {
       <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 industrial-panel p-1 rounded-xl border-amber-500/40">
         <button
           onClick={handleResetCamera}
-          className={`industrial-btn py-1 text-xs ${!activeSelection && !showMasterDashboard ? 'industrial-btn-active' : ''}`}
+          className={`industrial-btn py-1 text-xs ${!activeSelection && !showMasterDashboard && !showEventLog ? 'industrial-btn-active' : ''}`}
         >
           <Eye className="w-3.5 h-3.5" />
           <span>🦅 TÜM LİMAN (KUŞBAKIŞI)</span>
@@ -616,17 +679,6 @@ export default function ShipyardScene({ ships = [] }) {
           <Zap className="w-3.5 h-3.5" />
           <span>⚡ AĞ TRAFİĞİ ({showNetworkTraffic ? 'AÇIK' : 'KAPALI'})</span>
         </button>
-
-        {activeShips.map((s, idx) => (
-          <button
-            key={s.id}
-            onClick={() => handleSelectShip(s)}
-            className={`industrial-btn py-1 text-xs ${activeSelection?.data?.id === s.id ? 'industrial-btn-blue-active' : ''}`}
-          >
-            <ShipIcon className="w-3.5 h-3.5" />
-            <span>🚢 GEMİ {idx + 1}</span>
-          </button>
-        ))}
       </div>
 
       {/* KATMAN 3: 2D MASTER CONTROL PLANE DASHBOARD OVERLAY */}
@@ -637,10 +689,32 @@ export default function ShipyardScene({ ships = [] }) {
         />
       )}
 
-      {/* KATMAN 4: ABSOLUTE OVERLAY RIGHT DRAWER */}
-      <aside className={`info-panel-drawer ${activeSelection && !showMasterDashboard ? 'drawer-open' : 'drawer-closed'}`}>
+      {/* KATMAN 4: RING BUFFER EVENT LOG OVERLAY DRAWER */}
+      <EventLogDrawer
+        isOpen={showEventLog}
+        onClose={() => setShowEventLog(false)}
+        events={eventsLog}
+        onSelectEvent={(ev) => {
+          setShowEventLog(false)
+          if (ev.targetObject?.includes('node')) {
+            handleSelectShip(activeShips[0])
+          }
+        }}
+      />
+
+      {/* KATMAN 5: CONFIRMATION MODAL */}
+      <ConfirmationModal
+        isOpen={!!pendingMutation}
+        title={pendingMutation?.title}
+        message={pendingMutation?.message}
+        onConfirm={executePendingMutation}
+        onCancel={() => setPendingMutation(null)}
+      />
+
+      {/* KATMAN 6: ABSOLUTE OVERLAY RIGHT INSPECTOR DRAWER */}
+      <aside className={`info-panel-drawer ${activeSelection && !showMasterDashboard && !showEventLog ? 'drawer-open' : 'drawer-closed'}`}>
         {activeSelection && (
-          <div className="p-4 h-full flex flex-col justify-between overflow-y-auto">
+          <div className="p-4 h-full flex flex-col justify-between overflow-y-auto font-mono-tech text-xs">
             <div>
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700">
                 <h3 className="font-industrial text-base font-bold text-amber-400 flex items-center gap-2">
@@ -664,9 +738,9 @@ export default function ShipyardScene({ ships = [] }) {
                 </button>
               </div>
 
-              {/* 1. POD DETAILS */}
+              {/* 1. POD DETAILS & MUTATION BUTTONS */}
               {activeSelection.type === 'POD' && (
-                <div className="space-y-4 text-xs font-mono-tech">
+                <div className="space-y-4">
                   <div>
                     <span className="text-slate-400 block text-[10px]">POD ADI:</span>
                     <strong className="text-white text-sm break-all">{activeSelection.data.name}</strong>
@@ -681,23 +755,42 @@ export default function ShipyardScene({ ships = [] }) {
                       <strong className="text-emerald-400">{activeSelection.data.status}</strong>
                     </div>
                   </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-amber-400 block text-[10px] font-bold">AĞ & DNS BİLGİSİ:</span>
-                    <div>Pod IP: <strong className="text-slate-200">{activeSelection.data.ip || '10.244.0.12'}</strong></div>
-                    <div>Service IP: <strong className="text-slate-200">{activeSelection.data.service_ip || '10.96.0.45'}</strong></div>
-                    <div className="text-[10px] text-sky-300 break-all">{activeSelection.data.dns || 'web-svc.default.svc.cluster.local'}</div>
-                  </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-purple-400 block text-[10px] font-bold">KAYNAK LIMIT/REQUEST:</span>
-                    <div>CPU: <strong className="text-emerald-300">{activeSelection.data.resources?.cpu_req || '100m'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.cpu_lim || '500m'}</strong></div>
-                    <div>RAM: <strong className="text-purple-300">{activeSelection.data.resources?.mem_req || '128Mi'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.mem_lim || '512Mi'}</strong></div>
+
+                  {/* MUTATION BUTTONS (MÜDAHALE AKSİYONLARI) */}
+                  <div className="bg-slate-900/90 p-3 rounded-lg border border-amber-500/30 space-y-2">
+                    <span className="text-amber-400 font-bold block text-[10px]">🛠️ MÜDAHALE AKSİYONLARI:</span>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
+                        onClick={() => triggerRestartPodAction(activeSelection.data)}
+                        className={`industrial-btn text-[10px] py-1.5 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'industrial-btn-blue-active'}`}
+                      >
+                        <RefreshCw className="w-3.5 h-3.5" />
+                        <span>RESTART</span>
+                      </button>
+
+                      <button
+                        disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
+                        onClick={() => triggerDeletePodAction(activeSelection.data)}
+                        className={`industrial-btn text-[10px] py-1.5 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'bg-red-600 text-white border-red-500 hover:bg-red-700'}`}
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>SİL</span>
+                      </button>
+                    </div>
+
+                    {isReadOnlyMode && (
+                      <span className="text-[10px] text-sky-400 block text-center font-mono-tech">
+                        🔒 Salt İzleme Modu Açık (Müdahaleler Kilitli)
+                      </span>
+                    )}
                   </div>
                 </div>
               )}
 
               {/* 2. WORKER NODE DETAILS */}
               {activeSelection.type === 'SHIP' && (
-                <div className="space-y-4 text-xs font-mono-tech">
+                <div className="space-y-4">
                   <div>
                     <span className="text-slate-400 block text-[10px]">NODE ADI:</span>
                     <strong className="text-white text-sm">{activeSelection.data.name}</strong>
@@ -712,17 +805,12 @@ export default function ShipyardScene({ ships = [] }) {
                       <strong className="text-emerald-400">{activeSelection.data.status || 'Ready'}</strong>
                     </div>
                   </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-amber-400 block text-[10px] font-bold">KAPASİTE VS KULLANIM:</span>
-                    <div>CPU: <strong className="text-emerald-300">{activeSelection.data.metrics?.cpu_usage || '320m'}</strong> / {activeSelection.data.metrics?.cpu_capacity || '4000m'}</div>
-                    <div>RAM: <strong className="text-purple-300">{activeSelection.data.metrics?.memory_usage || '1024Mi'}</strong> / {activeSelection.data.metrics?.mem_capacity || '8192Mi'}</div>
-                  </div>
                 </div>
               )}
 
-              {/* 3. KUBELET AGENT DETAILS */}
+              {/* 3. KUBELET DETAILS */}
               {activeSelection.type === 'KUBELET' && (
-                <div className="space-y-4 text-xs font-mono-tech">
+                <div className="space-y-4">
                   <div>
                     <span className="text-slate-400 block text-[10px]">NODE KUBELET AGENT:</span>
                     <strong className="text-emerald-400 text-sm">{activeSelection.data.node_name}</strong>
@@ -730,71 +818,12 @@ export default function ShipyardScene({ ships = [] }) {
                   <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
                     <div className="flex justify-between"><span>Durum:</span><strong className="text-emerald-400">{activeSelection.data.status}</strong></div>
                     <div className="flex justify-between"><span>Son Heartbeat:</span><strong className="text-sky-300">{activeSelection.data.last_heartbeat}</strong></div>
-                    <div className="flex justify-between"><span>Readiness Probe:</span><strong className="text-amber-300">{activeSelection.data.readiness_probe}</strong></div>
-                  </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700">
-                    <span className="text-sky-400 block text-[10px] font-bold mb-1">YÖNETİLEN POD'LAR:</span>
-                    {activeSelection.data.pods?.map((p) => (
-                      <div key={p.name} className="text-[11px] text-slate-300">● {p.name}</div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* 4. MASTER BUILDING DETAILS */}
-              {activeSelection.type === 'MASTER' && (
-                <div className="space-y-4 text-xs font-mono-tech">
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-amber-400 block text-[10px] font-bold">CONTROL PLANE BİLEŞENLERİ:</span>
-                    <div className="flex justify-between"><span>API Server:</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
-                    <div className="flex justify-between"><span>etcd (Kaptan):</span><span className="text-emerald-400 font-bold">● Healthy</span></div>
-                  </div>
-                  <button onClick={handleSelectMaster} className="w-full mt-2 industrial-btn industrial-btn-active justify-center">
-                    🚪 2D DASHBOARD KONSOLUNU AÇ
-                  </button>
-                </div>
-              )}
-
-              {/* 5. SCHEDULER DETAILS */}
-              {activeSelection.type === 'CRANE' && (
-                <div className="space-y-4 text-xs font-mono-tech">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">BİLEŞEN:</span>
-                    <strong className="text-amber-400 text-sm">kube-scheduler</strong>
-                  </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
-                    <span className="text-sky-400 block text-[10px] font-bold">SON SEVKİYAT KARARI:</span>
-                    <p className="text-slate-300 text-[11px] leading-relaxed">
-                      pod <strong className="text-emerald-300">redis-cache-set-0</strong> ➔ <strong className="text-sky-300">node-beta</strong>
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* 6. KUBE-PROXY DETAILS */}
-              {activeSelection.type === 'KUBE_PROXY' && (
-                <div className="space-y-4 text-xs font-mono-tech">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">AĞ YÖNLENDİRME MERKEZİ:</span>
-                    <strong className="text-sky-400 text-sm">kube-proxy (iptables mode)</strong>
-                  </div>
-                  <div className="space-y-2">
-                    <span className="text-amber-400 block text-[10px] font-bold">SERVICE -> ENDPOINTS HARİTASI:</span>
-                    {activeSelection.data.services?.map((svc) => (
-                      <div key={svc.name} className="bg-slate-800/60 p-2 rounded border border-slate-700 text-[11px]">
-                        <div className="font-bold text-sky-300">{svc.name}</div>
-                        <div className="text-slate-400">ClusterIP: {svc.clusterIP}</div>
-                        <div className="text-emerald-400 text-[10px] mt-1 flex items-center gap-1">
-                          <ArrowRight className="w-3 h-3" /> {svc.endpoints?.join(', ')}
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 font-mono-tech text-center">
+            <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 text-center">
               Kapatmak için yukarıdaki X ikonuna tıklayın
             </div>
           </div>

@@ -1,24 +1,24 @@
-# TODO.md — Aktif ve Sıradaki Görevler Listesi (Faz 16 Aktif)
+# TODO.md — Aktif ve Sıradaki Görevler Listesi (Faz 17 Aktif)
 
-> 🚀 **AKTİF FAZ: FAZ 16 — Güvenli Mutasyon İzinleri & Halka Arabellek Olay Günlüğü (Event Log)**
-
----
-
-## 🔵 Aktif Görevler (Faz 16)
-- [ ] **[GÖREV-1601] Backend RBAC Sınırlı Yazma Yetkileri:** `client-go` ServiceAccount RBAC tanımlarına `pods/delete` ve `apps/deployments/scale` yazma fiillerinin eklenmesi. (Sorumlu: `devops-agent` & `backend-agent`)
-- [ ] **[GÖREV-1602] UI Mutasyon Kontrolleri:** Pod Müfettişi ve Deployment Müfettişi çekmecelerine Pod Silme, Pod Yeniden Başlatma ve Deployment Scale etme (+/- replica) butonlarının eklenmesi. (Sorumlu: `ui-ux-agent`)
-- [ ] **[GÖREV-1603] Güvenlik Modalı & Salt İzleme Modu:** Yıkıcı aksiyon öncesi onay modalı, üst barda global "Salt İzleme Modu" (Read-Only Mode) anahtarı ve `kube-system` namespace kilit mekanizması. (Sorumlu: `ui-ux-agent`)
-- [ ] **[GÖREV-1604] Olay Günlüğü (Event Log) & Halka Arabellek:** Sağ üstte "Olay Günlüğü" butonu, dikey absolute overlay paneli (`EventLogDrawer.jsx`), son 1 saatin in-memory ring buffer kaydı, olaya tıklayınca 3D nesneye kamera lerp odağı. (Sorumlu: `ui-ux-agent` & `3d-scene-agent`)
+> 🚀 **AKTİF FAZ: FAZ 17 — Anomali & Alarm Dramatizasyonu Engine**
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 15)
-- [x] **[GÖREV-101..1504]** Tüm Temel Altyapı, WebSocket streaming, 3D Canvas, 2D Control Dashboard, Raycasting Hit-Test Düzeltmesi (`LESSON-005`), Kubelet Radar & Canlı Parçacık Ağ Akış Çizgileri. (Tüm Agent'lar)
+## 🔵 Aktif Görevler (Faz 17)
+- [ ] **[GÖREV-1701] CrashLoopBackOff & OOMKilled 3D Efektleri:** Konteynırdan çıkan duman/alev ve patlama/yok olma animasyonunun kurgulanması. (Sorumlu: `3d-scene-agent`)
+- [ ] **[GÖREV-1702] ImagePullBackOff & Evicted Animasyonları:** Vincin boşta sallanması ve konteynırın denize atılma animasyonu. (Sorumlu: `3d-scene-agent`)
+- [ ] **[GÖREV-1703] Node NotReady & Self-Heal Animasyonu:** Geminin su alıp eğilmesi ve geri yüzeye çıkma animasyonu. (Sorumlu: `3d-scene-agent`)
+- [ ] **[GÖREV-1704] Event Log One-Shot Tetikleyici:** Olay günlüğünden bir anomaliye tıklandığında ilgili görsel dramatizasyon animasyonunun tek seferlik oynatılması. (Sorumlu: `ui-ux-agent` & `3d-scene-agent`)
+
+---
+
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 16)
+- [x] **[GÖREV-1601..1604]** Pod Silme/Restart mutasyon butonları, Onay Modalı (`ConfirmationModal.jsx`), Global Salt İzleme Modu anahtarı, `kube-system` kilidi ve In-Memory Ring Buffer Olay Günlüğü (`EventLogDrawer.jsx`). (Yapan: `backend-agent`, `ui-ux-agent`)
+- [x] **[GÖREV-101..1504]** Altyapı, 3D Canvas, 2D Control Dashboard, Raycasting Hit-Test Düzeltmesi (`LESSON-005`), Kubelet Radar & Canlı Parçacık Ağ Akış Çizgileri. (Tüm Agent'lar)
 
 ---
 
 ## 🔴 Bekleyen / Sıradaki Fazlar
-- [ ] **Faz 17:** Anomali & Alarm Dramatizasyonu (CrashLoopBackOff duman/alev, OOMKilled patlama, Evicted denize atma).
 - [ ] **Faz 18:** Genişletilmiş Kavramlar Katmanı 1 (Ingress Rıhtım Feneri, NetworkPolicy Kırmızı Bariyer, ResourceQuota Ambar Çizgileri).
 - [ ] **Faz 19:** Genişletilmiş Kavramlar Katmanı 2 (HPA Ekstra Vinçler, PDB Bakım Bayrağı, Taints/Tolerations Özel Rıhtım).
 - [ ] **Faz 20:** Diğer Genişletmeler (Hubble, Multi-Cluster, PNG Export, Maliyet Tablosu).
