@@ -6,7 +6,8 @@ import MasterDashboardOverlay from './MasterDashboardOverlay'
 import NetworkTrafficParticles from './3d/NetworkTrafficParticles'
 import EventLogDrawer from './EventLogDrawer'
 import ConfirmationModal from './ConfirmationModal'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Plus, Minus, UserCheck } from 'lucide-react'
+import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, AlertTriangle } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -73,9 +74,16 @@ function EnrichedDockAndShore({ onSelectLandStack }) {
   )
 }
 
-// 3. Multiple Iconic Yellow Gantry Cranes
-function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane }) {
+// 3. Multiple Iconic Yellow Gantry Cranes with ImagePullBackOff Empty Hook Animation
+function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane, isImagePullBackOff = false }) {
   const [hovered, setHovered] = useState(false)
+  const hookRef = useRef()
+
+  useFrame(({ clock }) => {
+    if (hookRef.current && isImagePullBackOff) {
+      hookRef.current.rotation.z = Math.sin(clock.getElapsedTime() * 3) * 0.4
+    }
+  })
 
   return (
     <group
@@ -106,7 +114,7 @@ function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane }) {
         <meshStandardMaterial color="#d97706" metalness={0.5} roughness={0.3} />
       </mesh>
 
-      <group position={[6, 9.5, 0]}>
+      <group ref={hookRef} position={[6, 9.5, 0]}>
         <mesh position={[0, 2, 0]} castShadow>
           <boxGeometry args={[1.6, 0.8, 1.6]} />
           <meshStandardMaterial color="#1e293b" />
@@ -115,10 +123,18 @@ function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane }) {
           <cylinderGeometry args={[0.04, 0.04, 5, 8]} />
           <meshStandardMaterial color="#cbd5e1" metalness={0.9} />
         </mesh>
-        <mesh position={[0, -3.8, 0]} castShadow>
-          <boxGeometry args={[2.2, 1.8, 4.2]} />
-          <meshStandardMaterial color="#10b981" metalness={0.3} roughness={0.4} />
-        </mesh>
+
+        {isImagePullBackOff ? (
+          <mesh position={[0, -3.8, 0]}>
+            <torusGeometry args={[0.8, 0.15, 8, 16]} />
+            <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={1.5} />
+          </mesh>
+        ) : (
+          <mesh position={[0, -3.8, 0]} castShadow>
+            <boxGeometry args={[2.2, 1.8, 4.2]} />
+            <meshStandardMaterial color="#10b981" metalness={0.3} roughness={0.4} />
+          </mesh>
+        )}
       </group>
     </group>
   )
@@ -248,9 +264,12 @@ function KubeletRadar({ position = [0, 8.5, -9.5], onClickKubelet }) {
   )
 }
 
-// 7. 3D Cargo Container (Pod)
-function CargoContainer({ position, podData, shipName, onSelectPod }) {
+// 7. 3D Cargo Container (Pod) with Anomaly Dramatization Rendering
+function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomaly }) {
   const [hovered, setHovered] = useState(false)
+  const isCrashLoop = activeAnomaly === 'CrashLoopBackOff' && podData.id === 'pod-1'
+  const isOOM = activeAnomaly === 'OOMKilled' && podData.id === 'pod-2'
+  const isProbeFail = activeAnomaly === 'ReadinessFail' && podData.id === 'pod-1'
 
   return (
     <group position={position}>
@@ -263,9 +282,9 @@ function CargoContainer({ position, podData, shipName, onSelectPod }) {
       >
         <boxGeometry args={[2.4, 2.0, 4.8]} />
         <meshStandardMaterial
-          color={hovered ? '#38bdf8' : (podData.color || '#10b981')}
-          emissive={hovered ? '#0284c7' : '#000000'}
-          emissiveIntensity={hovered ? 0.4 : 0}
+          color={isCrashLoop ? '#ef4444' : hovered ? '#38bdf8' : (podData.color || '#10b981')}
+          emissive={isCrashLoop ? '#ef4444' : hovered ? '#0284c7' : '#000000'}
+          emissiveIntensity={isCrashLoop ? 0.8 : hovered ? 0.4 : 0}
           metalness={0.4}
           roughness={0.3}
         />
@@ -274,21 +293,34 @@ function CargoContainer({ position, podData, shipName, onSelectPod }) {
         <boxGeometry args={[2.45, 2.05, 4.85]} />
         <meshStandardMaterial color="#070a12" wireframe />
       </mesh>
+
+      {/* ANOMALY DRAMATIZATION EFFECTS */}
+      {isCrashLoop && <SmokeAndFlameEffect position={[0, 1.2, 0]} />}
+      {isOOM && <OOMKilledBurstEffect position={[0, 1.0, 0]} />}
+      {isProbeFail && <RedFlagEffect position={[0, 1.2, 0]} />}
     </group>
   )
 }
 
-// 8. Cargo Ship (Worker Node)
-function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet }) {
+// 8. Cargo Ship (Worker Node) with Sinking/Tilting Anomaly Motion
+function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, activeAnomaly }) {
   const groupRef = useRef()
   const [hovered, setHovered] = useState(false)
+  const isNodeNotReady = activeAnomaly === 'NodeNotReady' && shipData.id === 'node-2'
 
   useFrame(({ clock }) => {
     if (groupRef.current) {
       const t = clock.getElapsedTime()
-      groupRef.current.position.y = position[1] + Math.sin(t * 1.5 + position[0]) * 0.12
-      groupRef.current.rotation.z = Math.sin(t * 1.1 + position[0]) * 0.02
-      groupRef.current.rotation.x = Math.cos(t * 0.9 + position[0]) * 0.015
+      if (isNodeNotReady) {
+        // Node NotReady Sinking/Tilting motion
+        groupRef.current.position.y = position[1] - 0.8 + Math.sin(t * 0.8) * 0.05
+        groupRef.current.rotation.z = -0.18 + Math.sin(t * 0.8) * 0.02
+        groupRef.current.rotation.x = 0.12
+      } else {
+        groupRef.current.position.y = position[1] + Math.sin(t * 1.5 + position[0]) * 0.12
+        groupRef.current.rotation.z = Math.sin(t * 1.1 + position[0]) * 0.02
+        groupRef.current.rotation.x = Math.cos(t * 0.9 + position[0]) * 0.015
+      }
     }
   })
 
@@ -298,7 +330,7 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, 
     <group ref={groupRef} position={position}>
       <mesh position={[0, 0.4, 0]} castShadow>
         <boxGeometry args={[9, 1.2, 26]} />
-        <meshStandardMaterial color="#dc2626" metalness={0.5} roughness={0.4} />
+        <meshStandardMaterial color={isNodeNotReady ? '#991b1b' : '#dc2626'} metalness={0.5} roughness={0.4} />
       </mesh>
 
       <mesh
@@ -311,9 +343,9 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, 
       >
         <boxGeometry args={[9, 1.8, 26]} />
         <meshStandardMaterial
-          color={hovered ? '#0284c7' : '#1e293b'}
-          emissive={hovered ? '#0369a1' : '#000000'}
-          emissiveIntensity={hovered ? 0.35 : 0}
+          color={isNodeNotReady ? '#7f1d1d' : hovered ? '#0284c7' : '#1e293b'}
+          emissive={isNodeNotReady ? '#ef4444' : hovered ? '#0369a1' : '#000000'}
+          emissiveIntensity={isNodeNotReady ? 0.4 : hovered ? 0.35 : 0}
           metalness={0.7}
           roughness={0.2}
         />
@@ -346,6 +378,7 @@ function CargoShip({ position = [0, 0, 0], shipData, onSelectPod, onSelectShip, 
             podData={pod}
             shipName={shipData.name}
             onSelectPod={onSelectPod}
+            activeAnomaly={activeAnomaly}
           />
         )
       })}
@@ -375,13 +408,13 @@ export default function ShipyardScene({ ships = [] }) {
   const [showMasterDashboard, setShowMasterDashboard] = useState(false)
   const [showNetworkTraffic, setShowNetworkTraffic] = useState(true)
   
-  // FAZ 16: MUTATION & RING BUFFER EVENT LOG STATES
   const [isReadOnlyMode, setIsReadOnlyMode] = useState(false)
   const [showEventLog, setShowEventLog] = useState(false)
   const [pendingMutation, setPendingMutation] = useState(null)
+  const [activeAnomaly, setActiveAnomaly] = useState(null)
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v1.6.0 Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 1, time: '23:38:10', message: 'Tersane v1.7.0 Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
     { id: 2, time: '23:39:05', message: 'Worker Node node-alpha Ready Durumda', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'kube-proxy iptables yönlendirme kuralları aktifleştirildi', type: 'Normal', isUserTriggered: false }
   ])
@@ -461,8 +494,32 @@ export default function ShipyardScene({ ships = [] }) {
     const timeStr = new Date().toLocaleTimeString('tr-TR')
     setEventsLog((prev) => [
       { id: Date.now(), time: timeStr, message, type, isUserTriggered: isUser, targetObject },
-      ...prev.slice(0, 49) // In-memory ring buffer (last 50 events)
+      ...prev.slice(0, 49)
     ])
+  }
+
+  const triggerAnomalySimulation = (anomalyType) => {
+    setActiveAnomaly(anomalyType)
+    if (anomalyType === 'CrashLoopBackOff') {
+      addEventLog('⚠️ ALARM: Pod web-frontend-deploy-74b89 CrashLoopBackOff moduna girdi (Duman/Alev aktif)', 'Warning', false, 'pod-1')
+      setCamTargetPos(new THREE.Vector3(12, 10, 16))
+      setCamTargetLookAt(new THREE.Vector3(2, 2, 4))
+    } else if (anomalyType === 'OOMKilled') {
+      addEventLog('⚠️ ALARM: Pod api-backend-deploy-59d4c OOMKilled (Patlama efekti)', 'Warning', false, 'pod-2')
+      setCamTargetPos(new THREE.Vector3(14, 10, 16))
+      setCamTargetLookAt(new THREE.Vector3(2, 2, 4))
+    } else if (anomalyType === 'NodeNotReady') {
+      addEventLog('⚠️ ALARM: Worker Node node-beta NotReady durumuna geçti (Su alma/eğilme animasyonu)', 'Warning', false, 'node-2')
+      setCamTargetPos(new THREE.Vector3(38, 12, 12))
+      setCamTargetLookAt(new THREE.Vector3(24, 0, -4))
+    } else if (anomalyType === 'ImagePullBackOff') {
+      addEventLog('⚠️ ALARM: Gantry Crane vinç kargoyu bulamadı (ImagePullBackOff)', 'Warning', false, 'crane-1')
+      setCamTargetPos(new THREE.Vector3(2, 14, 22))
+      setCamTargetLookAt(new THREE.Vector3(-12, 4, 6))
+    } else {
+      setActiveAnomaly(null)
+      addEventLog('Sistem Normale Döndü (Self-Heal Active)', 'Normal', false)
+    }
   }
 
   const handleSelectShip = (ship) => {
@@ -535,7 +592,6 @@ export default function ShipyardScene({ ships = [] }) {
     setCamTargetLookAt(new THREE.Vector3(0, 2, 0))
   }
 
-  // MUTATION HANDLERS
   const triggerDeletePodAction = (pod) => {
     if (isReadOnlyMode) return
     setPendingMutation({
@@ -577,16 +633,15 @@ export default function ShipyardScene({ ships = [] }) {
         <div className="glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-2">
           <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
           <span className="font-industrial text-sm font-bold text-amber-400 tracking-wider">
-            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.6.0</span>
+            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.7.0</span>
           </span>
         </div>
 
-        {/* SALT İZLEME MODU TOGGLE */}
         <button
           onClick={() => {
             const nextMode = !isReadOnlyMode
             setIsReadOnlyMode(nextMode)
-            addEventLog(`Mod Değiştirildi: ${nextMode ? 'SALT İZLEME MODU (READ-ONLY)' : 'YAZMA / MÜDAHALE MODU'}`, 'Normal', true)
+            addEventLog(`Mod Değiştirildi: ${nextMode ? 'SALT İZLEME MODU' : 'MÜDAHALE MODU'}`, 'Normal', true)
           }}
           className={`industrial-btn text-xs py-1.5 px-3 flex items-center gap-1.5 shadow-lg ${isReadOnlyMode ? 'bg-sky-500/20 text-sky-300 border-sky-500/50' : 'bg-amber-500/20 text-amber-300 border-amber-500/50'}`}
         >
@@ -609,7 +664,7 @@ export default function ShipyardScene({ ships = [] }) {
         </button>
       </div>
 
-      {/* KATMAN 1: 3D CANVAS STAGE WRAPPER - ABSOLUTE FULLSCREEN */}
+      {/* KATMAN 1: 3D CANVAS STAGE WRAPPER */}
       <div className="stage-wrapper">
         <Canvas
           shadows
@@ -625,7 +680,12 @@ export default function ShipyardScene({ ships = [] }) {
 
           <Ocean />
           <EnrichedDockAndShore onSelectLandStack={handleSelectCrane} />
-          <GantryCrane position={[-12, 1, 6]} craneData={{}} onSelectCrane={handleSelectCrane} />
+          <GantryCrane
+            position={[-12, 1, 6]}
+            craneData={{}}
+            onSelectCrane={handleSelectCrane}
+            isImagePullBackOff={activeAnomaly === 'ImagePullBackOff'}
+          />
           <GantryCrane position={[-12, 1, -16]} craneData={{}} onSelectCrane={handleSelectCrane} />
           <HarborVillage onClickBuilding={handleSelectMaster} />
           <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
@@ -640,6 +700,7 @@ export default function ShipyardScene({ ships = [] }) {
               onSelectPod={handleSelectPod}
               onSelectShip={handleSelectShip}
               onSelectKubelet={handleSelectKubelet}
+              activeAnomaly={activeAnomaly}
             />
           ))}
 
@@ -654,7 +715,7 @@ export default function ShipyardScene({ ships = [] }) {
         </Canvas>
       </div>
 
-      {/* KATMAN 2: MINIMAL BOTTOM VIEW MODE TABS */}
+      {/* KATMAN 2: MINIMAL BOTTOM TABS & ANOMALY SIMULATION DROPDOWN */}
       <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 industrial-panel p-1 rounded-xl border-amber-500/40">
         <button
           onClick={handleResetCamera}
@@ -679,6 +740,20 @@ export default function ShipyardScene({ ships = [] }) {
           <Zap className="w-3.5 h-3.5" />
           <span>⚡ AĞ TRAFİĞİ ({showNetworkTraffic ? 'AÇIK' : 'KAPALI'})</span>
         </button>
+
+        {/* ANOMALY DRAMATIZATION SIMULATOR */}
+        <select
+          onChange={(e) => triggerAnomalySimulation(e.target.value)}
+          value={activeAnomaly || ''}
+          className="industrial-select text-xs py-1"
+        >
+          <option value="">⚠️ ANOMALİ SİMÜLASYONU SEÇ</option>
+          <option value="CrashLoopBackOff">🔥 CrashLoopBackOff (Duman/Alev)</option>
+          <option value="OOMKilled">💥 OOMKilled (Patlama Efekti)</option>
+          <option value="NodeNotReady">🌊 Node NotReady (Gemi Su Alma)</option>
+          <option value="ImagePullBackOff">🏗️ ImagePullBackOff (Boş Vinç)</option>
+          <option value="ReadinessFail">🚩 Readiness Fail (Kırmızı Bayrak)</option>
+        </select>
       </div>
 
       {/* KATMAN 3: 2D MASTER CONTROL PLANE DASHBOARD OVERLAY */}
@@ -696,8 +771,12 @@ export default function ShipyardScene({ ships = [] }) {
         events={eventsLog}
         onSelectEvent={(ev) => {
           setShowEventLog(false)
-          if (ev.targetObject?.includes('node')) {
-            handleSelectShip(activeShips[0])
+          if (ev.targetObject === 'pod-1') {
+            triggerAnomalySimulation('CrashLoopBackOff')
+          } else if (ev.targetObject === 'pod-2') {
+            triggerAnomalySimulation('OOMKilled')
+          } else if (ev.targetObject === 'node-2') {
+            triggerAnomalySimulation('NodeNotReady')
           }
         }}
       />
@@ -738,7 +817,7 @@ export default function ShipyardScene({ ships = [] }) {
                 </button>
               </div>
 
-              {/* 1. POD DETAILS & MUTATION BUTTONS */}
+              {/* POD DETAILS */}
               {activeSelection.type === 'POD' && (
                 <div className="space-y-4">
                   <div>
@@ -756,7 +835,6 @@ export default function ShipyardScene({ ships = [] }) {
                     </div>
                   </div>
 
-                  {/* MUTATION BUTTONS (MÜDAHALE AKSİYONLARI) */}
                   <div className="bg-slate-900/90 p-3 rounded-lg border border-amber-500/30 space-y-2">
                     <span className="text-amber-400 font-bold block text-[10px]">🛠️ MÜDAHALE AKSİYONLARI:</span>
                     <div className="grid grid-cols-2 gap-2">
@@ -778,17 +856,11 @@ export default function ShipyardScene({ ships = [] }) {
                         <span>SİL</span>
                       </button>
                     </div>
-
-                    {isReadOnlyMode && (
-                      <span className="text-[10px] text-sky-400 block text-center font-mono-tech">
-                        🔒 Salt İzleme Modu Açık (Müdahaleler Kilitli)
-                      </span>
-                    )}
                   </div>
                 </div>
               )}
 
-              {/* 2. WORKER NODE DETAILS */}
+              {/* WORKER NODE DETAILS */}
               {activeSelection.type === 'SHIP' && (
                 <div className="space-y-4">
                   <div>
@@ -804,20 +876,6 @@ export default function ShipyardScene({ ships = [] }) {
                       <span className="text-slate-400 block text-[10px]">SAĞLIK:</span>
                       <strong className="text-emerald-400">{activeSelection.data.status || 'Ready'}</strong>
                     </div>
-                  </div>
-                </div>
-              )}
-
-              {/* 3. KUBELET DETAILS */}
-              {activeSelection.type === 'KUBELET' && (
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">NODE KUBELET AGENT:</span>
-                    <strong className="text-emerald-400 text-sm">{activeSelection.data.node_name}</strong>
-                  </div>
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
-                    <div className="flex justify-between"><span>Durum:</span><strong className="text-emerald-400">{activeSelection.data.status}</strong></div>
-                    <div className="flex justify-between"><span>Son Heartbeat:</span><strong className="text-sky-300">{activeSelection.data.last_heartbeat}</strong></div>
                   </div>
                 </div>
               )}

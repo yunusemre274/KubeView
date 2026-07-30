@@ -1,24 +1,24 @@
-# TODO.md — Aktif ve Sıradaki Görevler Listesi (Faz 17 Aktif)
+# TODO.md — Aktif ve Sıradaki Görevler Listesi (Faz 18 Aktif)
 
-> 🚀 **AKTİF FAZ: FAZ 17 — Anomali & Alarm Dramatizasyonu Engine**
-
----
-
-## 🔵 Aktif Görevler (Faz 17)
-- [ ] **[GÖREV-1701] CrashLoopBackOff & OOMKilled 3D Efektleri:** Konteynırdan çıkan duman/alev ve patlama/yok olma animasyonunun kurgulanması. (Sorumlu: `3d-scene-agent`)
-- [ ] **[GÖREV-1702] ImagePullBackOff & Evicted Animasyonları:** Vincin boşta sallanması ve konteynırın denize atılma animasyonu. (Sorumlu: `3d-scene-agent`)
-- [ ] **[GÖREV-1703] Node NotReady & Self-Heal Animasyonu:** Geminin su alıp eğilmesi ve geri yüzeye çıkma animasyonu. (Sorumlu: `3d-scene-agent`)
-- [ ] **[GÖREV-1704] Event Log One-Shot Tetikleyici:** Olay günlüğünden bir anomaliye tıklandığında ilgili görsel dramatizasyon animasyonunun tek seferlik oynatılması. (Sorumlu: `ui-ux-agent` & `3d-scene-agent`)
+> 🚀 **AKTİF FAZ: FAZ 18 — Genişletilmiş Kavramlar Katmanı 1 (Network & Security Isolation)**
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 16)
-- [x] **[GÖREV-1601..1604]** Pod Silme/Restart mutasyon butonları, Onay Modalı (`ConfirmationModal.jsx`), Global Salt İzleme Modu anahtarı, `kube-system` kilidi ve In-Memory Ring Buffer Olay Günlüğü (`EventLogDrawer.jsx`). (Yapan: `backend-agent`, `ui-ux-agent`)
-- [x] **[GÖREV-101..1504]** Altyapı, 3D Canvas, 2D Control Dashboard, Raycasting Hit-Test Düzeltmesi (`LESSON-005`), Kubelet Radar & Canlı Parçacık Ağ Akış Çizgileri. (Tüm Agent'lar)
+## 🔵 Aktif Görevler (Faz 18)
+- [ ] **[GÖREV-1801] Ingress / Gateway API Rıhtım Feneri:** Liman ağzında Uluslararası Giriş Rıhtımı ve ışık yayan Deniz Feneri bileşeni (`IngressLighthouse.jsx`). (Sorumlu: `networking-agent` & `3d-scene-agent`)
+- [ ] **[GÖREV-1802] NetworkPolicy Kırmızı Bariyerler:** İhlal veya kısıtlama durumunda rıhtım ve gemiler arasında beliren 3D kırmızı lazer güvenlik bariyerleri. (Sorumlu: `networking-agent`)
+- [ ] **[GÖREV-1803] ResourceQuota Ambar Çizgileri:** Ambar binası duvarlarında maksimum taşıma kapasitesi doluluk çizgileri ve uyarı panosu. (Sorumlu: `3d-scene-agent`)
+- [ ] **[GÖREV-1804] EndpointSlice Kablo Demetleri:** Kube-proxy ağ binasından gemilere uzanan çoklu Endpoint kablo bağlantıları. (Sorumlu: `networking-agent`)
+
+---
+
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 17)
+- [x] **[GÖREV-1701..1704]** 3D Anomali ve Alarm Efektleri (`CrashLoopBackOff` duman/alev, `OOMKilled` patlama, `NodeNotReady` gemi yan yatma, `ImagePullBackOff` boş vinç, `ReadinessFail` kırmızı bayrak) ve Olay Günlüğü One-Shot tetikleyicisi. (Yapan: `3d-scene-agent`, `ui-ux-agent`)
+- [x] **[GÖREV-1601..1604]** Pod Silme/Restart mutasyonları, ConfirmationModal, Global Salt İzleme Modu ve EventLogDrawer ring buffer. (Yapan: `backend-agent`, `ui-ux-agent`)
+- [x] **[GÖREV-101..1504]** Tüm Core Altyapı, 3D Canvas, 2D Control Dashboard, Raycasting Fix (`LESSON-005`), Kubelet Radar & Canlı Parçacık Ağ Akış Çizgileri. (Tüm Agent'lar)
 
 ---
 
 ## 🔴 Bekleyen / Sıradaki Fazlar
-- [ ] **Faz 18:** Genişletilmiş Kavramlar Katmanı 1 (Ingress Rıhtım Feneri, NetworkPolicy Kırmızı Bariyer, ResourceQuota Ambar Çizgileri).
-- [ ] **Faz 19:** Genişletilmiş Kavramlar Katmanı 2 (HPA Ekstra Vinçler, PDB Bakım Bayrağı, Taints/Tolerations Özel Rıhtım).
+- [ ] **Faz 19:** Genişletilmiş Kavramlar Katmanı 2 (HPA Ekstra Vinçler, PDB Bakım Bayrağı, Taints/Tolerations Özel Rıhtım, Rolling Update).
 - [ ] **Faz 20:** Diğer Genişletmeler (Hubble, Multi-Cluster, PNG Export, Maliyet Tablosu).

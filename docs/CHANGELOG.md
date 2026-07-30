@@ -4,15 +4,19 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 ---
 
-## [v1.7.0 - Faz 16 Güvenli Mutasyon İzinleri & Halka Arabellek Olay Günlüğü] - 2026-07-30
+## [v1.8.0 - Faz 17 Anomali & Alarm Dramatizasyonu Engine] - 2026-07-30
 
 ### Eklendi / Düzeltildi
-- **Güvenli Mutasyon Kontrolleri:** Pod Silme (`🗑️ SİL`) ve Pod Yeniden Başlatma (`🔄 RESTART`) butonları Pod Müfettişi çekmecesine eklendi.
-- **Onay Modalı (`ConfirmationModal.jsx`):** Yıkıcı mutasyon aksiyonlarından önce açılan güvenlik modalı kurgulandı.
-- **Global Salt İzleme Modu:** Üst bara `🔒 SALT İZLEME` / `🔓 MÜDAHALE AÇIK` anahtarı yerleştirildi; açıkken tüm mutasyon butonları kilitlenir. `kube-system` namespace kilit mekanizması aktif edildi.
-- **Halka Arabellek Olay Günlüğü (`EventLogDrawer.jsx`):** Sağ üst barda "📋 OLAY GÜNLÜĞÜ" butonu, in-memory ring buffer (son 50/1 saatlik olay kaydı), kullanıcı müdahaleleri için `👤 Kullanıcı Tetikledi` rozeti ve olaya tıklayınca 3D nesneye kamera odağı sağlandı.
+- **3D Anomali ve Alarm Efektleri (`AnomalyEffects.jsx`):**
+  - `CrashLoopBackOff`: Konteynırdan yükselen 3D duman ve alev parçacıkları (`SmokeAndFlameEffect`).
+  - `OOMKilled`: Konteynırın anlık şişip patlama/yok olma halka efekti (`OOMKilledBurstEffect`).
+  - `Node NotReady`: Worker Node gemisinin su almaya başlayıp yan yatma animasyonu.
+  - `ImagePullBackOff`: Gantry vinç kancasının boşta sallanması.
+  - `Readiness Probe Fail`: Direkte sallanan 3D kırmızı uyarı bayrağı (`RedFlagEffect`).
+- **Olay Günlüğü Tek Seferlik (One-Shot) Tetikleyici:** Olay günlüğündeki bir anomali kaydına tıklandığında kamera lerp odağı ile ilgili 3D efektin bir kez oynatılması sağlandı.
+- **UI Anomali Simülasyon Dropdown:** Alt menüye 3D anomali simülasyon testi seçicisi eklendi.
 
 ---
 
-## [v1.6.0 - 2D Control Dashboard, Raycasting Fix & Canlı Ağ Parçacıkları] - 2026-07-30
-- 3D->2D lerp geçişli MasterDashboardOverlay konsolu, raycasting stopPropagation düzeltmesi ve canlı ağ parçacıkları eklendi.
+## [v1.7.0 - Faz 16 Güvenli Mutasyon İzinleri & Halka Arabellek Olay Günlüğü] - 2026-07-30
+- Pod Silme/Restart mutasyon butonları, ConfirmationModal, Global Salt İzleme Modu ve EventLogDrawer ring buffer eklendi.
