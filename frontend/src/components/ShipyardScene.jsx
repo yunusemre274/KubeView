@@ -10,7 +10,7 @@ import IngressLighthouse from './3d/IngressLighthouse'
 import NetworkPolicyBarriers from './3d/NetworkPolicyBarriers'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Layers } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Layers } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -410,6 +410,7 @@ export default function ShipyardScene({ ships = [] }) {
   const [showNetworkTraffic, setShowNetworkTraffic] = useState(true)
   const [showNetworkPolicy, setShowNetworkPolicy] = useState(false)
   const [showHPA, setShowHPA] = useState(true)
+  const [activeClusterContext, setActiveClusterContext] = useState('minikube')
   
   const [isReadOnlyMode, setIsReadOnlyMode] = useState(false)
   const [showEventLog, setShowEventLog] = useState(false)
@@ -417,9 +418,9 @@ export default function ShipyardScene({ ships = [] }) {
   const [activeAnomaly, setActiveAnomaly] = useState(null)
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v1.9.0 Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'HorizontalPodAutoscaler (HPA) Otomatik Ekstra Vinç Aktif', type: 'Normal', isUserTriggered: false },
-    { id: 3, time: '23:40:00', message: 'Ingress Gateway Deniz Feneri aktif edildi', type: 'Normal', isUserTriggered: false }
+    { id: 1, time: '23:38:10', message: 'Tersane v2.0.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'Cilium Hubble eBPF gelişmiş ağ gözlemcisi aktif', type: 'Normal', isUserTriggered: false },
+    { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
   const [camTargetPos, setCamTargetPos] = useState(new THREE.Vector3(34, 30, 46))
@@ -501,6 +502,19 @@ export default function ShipyardScene({ ships = [] }) {
     ])
   }
 
+  // FAZ 20: 3D SCREENSHOT PNG EXPORT FUNCTION
+  const handleExportPNG = () => {
+    const canvasElement = document.querySelector('.stage-wrapper canvas')
+    if (canvasElement) {
+      const dataUrl = canvasElement.toDataURL('image/png')
+      const link = document.createElement('a')
+      link.download = `tersane-3d-shipyard-${activeClusterContext}.png`
+      link.href = dataUrl
+      link.click()
+      addEventLog('📸 3D Sahne Ekran Görüntüsü PNG Olarak İndirildi', 'Normal', true)
+    }
+  }
+
   const triggerAnomalySimulation = (anomalyType) => {
     setActiveAnomaly(anomalyType)
     if (anomalyType === 'CrashLoopBackOff') {
@@ -511,10 +525,6 @@ export default function ShipyardScene({ ships = [] }) {
       addEventLog('⚠️ ALARM: Pod api-backend-deploy-59d4c OOMKilled', 'Warning', false, 'pod-2')
       setCamTargetPos(new THREE.Vector3(14, 10, 16))
       setCamTargetLookAt(new THREE.Vector3(2, 2, 4))
-    } else if (anomalyType === 'NodeNotReady') {
-      addEventLog('⚠️ ALARM: Worker Node node-beta NotReady durumuna geçti', 'Warning', false, 'node-2')
-      setCamTargetPos(new THREE.Vector3(38, 12, 12))
-      setCamTargetLookAt(new THREE.Vector3(24, 0, -4))
     } else {
       setActiveAnomaly(null)
       addEventLog('Sistem Normale Döndü', 'Normal', false)
@@ -580,7 +590,11 @@ export default function ShipyardScene({ ships = [] }) {
   const handleSelectKubeProxy = () => {
     setActiveSelection({
       type: 'KUBE_PROXY',
-      data: { mode: 'iptables', services: [{ name: 'web-frontend-svc', clusterIP: '10.96.0.45', endpoints: ['10.244.0.12:80'] }] }
+      data: {
+        mode: 'iptables',
+        hubble_mode: 'Cilium Hubble eBPF Active',
+        services: [{ name: 'web-frontend-svc', clusterIP: '10.96.0.45', endpoints: ['10.244.0.12:80'] }]
+      }
     })
     setCamTargetPos(new THREE.Vector3(32, 12, 0))
     setCamTargetLookAt(new THREE.Vector3(18, 4, -16))
@@ -628,14 +642,28 @@ export default function ShipyardScene({ ships = [] }) {
   return (
     <div className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
       
-      {/* SOL ÜST MİNİMAL ROZET */}
+      {/* SOL ÜST MİNİMAL ROZET & MULTI-CLUSTER CONTEXT SEÇİCİ */}
       <div className="fixed top-3 left-3 z-30 pointer-events-auto flex items-center gap-2">
         <div className="glass-panel px-3 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-2">
           <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
           <span className="font-industrial text-sm font-bold text-amber-400 tracking-wider">
-            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v1.9.0</span>
+            TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.0.0 PRO</span>
           </span>
         </div>
+
+        {/* MULTI-CLUSTER CONTEXTS */}
+        <select
+          value={activeClusterContext}
+          onChange={(e) => {
+            setActiveClusterContext(e.target.value)
+            addEventLog(`Küme Bağlamı Değiştirildi: ${e.target.value}`, 'Normal', true)
+          }}
+          className="industrial-select text-xs py-1"
+        >
+          <option value="minikube">🐳 minikube (Local)</option>
+          <option value="docker-desktop">📦 docker-desktop</option>
+          <option value="prod-cluster">☁️ prod-cluster (GKE)</option>
+        </select>
 
         <button
           onClick={() => {
@@ -650,8 +678,16 @@ export default function ShipyardScene({ ships = [] }) {
         </button>
       </div>
 
-      {/* SAĞ ÜST OLAY GÜNLÜĞÜ BUTONU */}
-      <div className="fixed top-3 right-3 z-30 pointer-events-auto">
+      {/* SAĞ ÜST PNG EXPORT & OLAY GÜNLÜĞÜ BUTONLARI */}
+      <div className="fixed top-3 right-3 z-30 pointer-events-auto flex items-center gap-2">
+        <button
+          onClick={handleExportPNG}
+          className="industrial-btn text-xs py-1.5 px-3 flex items-center gap-1.5 shadow-lg border-sky-500/40 text-sky-300 hover:bg-sky-500/20"
+        >
+          <Camera className="w-4 h-4 text-sky-400" />
+          <span>📸 PNG İNDİR</span>
+        </button>
+
         <button
           onClick={() => {
             setShowEventLog(!showEventLog)
@@ -670,6 +706,7 @@ export default function ShipyardScene({ ships = [] }) {
           shadows
           camera={{ position: [34, 30, 46], fov: 42 }}
           style={{ width: '100%', height: '100%', display: 'block' }}
+          gl={{ preserveDrawingBuffer: true }}
         >
           <ambientLight intensity={0.8} />
           <directionalLight position={[35, 45, 30]} intensity={1.6} castShadow />
@@ -693,7 +730,6 @@ export default function ShipyardScene({ ships = [] }) {
           <IngressLighthouse position={[28, 0.2, 18]} onSelectIngress={handleSelectIngress} />
           <NetworkPolicyBarriers position={[-10, 1.5, 0]} active={showNetworkPolicy} onSelectNetworkPolicy={handleSelectNetworkPolicy} />
 
-          {/* FAZ 19: ORCHESTRATION HELPERS */}
           {showHPA && <HPAMobileCrane position={[-4, 1, 6]} />}
           <NodeAffinityLines start={[2, 1, 4]} end={[-22, 1, 0]} active={true} />
           <PDBMaintenanceFlag position={[-16, 2, 14]} />
@@ -774,7 +810,6 @@ export default function ShipyardScene({ ships = [] }) {
           <option value="CrashLoopBackOff">🔥 CrashLoopBackOff</option>
           <option value="OOMKilled">💥 OOMKilled</option>
           <option value="NodeNotReady">🌊 Node NotReady</option>
-          <option value="ImagePullBackOff">🏗️ ImagePullBackOff</option>
         </select>
       </div>
 
@@ -815,19 +850,15 @@ export default function ShipyardScene({ ships = [] }) {
             <div>
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-700">
                 <h3 className="font-industrial text-base font-bold text-amber-400 flex items-center gap-2">
+                  {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-5 h-5 text-sky-400" />}
                   {activeSelection.type === 'INGRESS' && <Compass className="w-5 h-5 text-amber-400" />}
-                  {activeSelection.type === 'NETWORK_POLICY' && <ShieldAlert className="w-5 h-5 text-red-400" />}
                   {activeSelection.type === 'POD' && <Box className="w-5 h-5 text-emerald-400" />}
                   {activeSelection.type === 'SHIP' && <ShipIcon className="w-5 h-5 text-sky-400" />}
-                  {activeSelection.type === 'KUBELET' && <Activity className="w-5 h-5 text-emerald-400" />}
-                  {activeSelection.type === 'MASTER' && <Building2 className="w-5 h-5 text-amber-400" />}
                   <span>
+                    {activeSelection.type === 'KUBE_PROXY' && '📻 AĞ (KUBE-PROXY)'}
                     {activeSelection.type === 'INGRESS' && '🚨 INGRESS DENİZ FENERİ'}
-                    {activeSelection.type === 'NETWORK_POLICY' && '🛡️ NETWORK POLICY BARİYERİ'}
                     {activeSelection.type === 'POD' && '📦 PALET (POD)'}
                     {activeSelection.type === 'SHIP' && '🚢 GEMİ (WORKER NODE)'}
-                    {activeSelection.type === 'KUBELET' && '📡 KUBELET AGENT'}
-                    {activeSelection.type === 'MASTER' && '🏢 YÖNETİM (MASTER)'}
                   </span>
                 </h3>
                 <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
@@ -835,22 +866,32 @@ export default function ShipyardScene({ ships = [] }) {
                 </button>
               </div>
 
-              {/* POD DETAILS */}
-              {activeSelection.type === 'POD' && (
+              {/* KUBE PROXY DETAILS & CILIUM HUBBLE ACTIVE */}
+              {activeSelection.type === 'KUBE_PROXY' && (
                 <div className="space-y-4">
                   <div>
-                    <span className="text-slate-400 block text-[10px]">POD ADI:</span>
-                    <strong className="text-white text-sm break-all">{activeSelection.data.name}</strong>
+                    <span className="text-slate-400 block text-[10px]">AĞ YÖNLENDİRME MERKEZİ:</span>
+                    <strong className="text-sky-400 text-sm">kube-proxy (iptables mode)</strong>
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                      <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
-                      <strong className="text-sky-400">{activeSelection.data.namespace}</strong>
-                    </div>
-                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                      <span className="text-slate-400 block text-[10px]">DURUM:</span>
-                      <strong className="text-emerald-400">{activeSelection.data.status}</strong>
-                    </div>
+                  <div className="bg-slate-800/80 p-2.5 rounded border border-emerald-500/40 text-[11px] space-y-1">
+                    <span className="text-emerald-400 font-bold block">🐝 CILIUM HUBBLE eBPF MODE:</span>
+                    <span className="text-slate-300">Gelişmiş eBPF Kernel Trafik Gözlemcisi Aktif</span>
+                  </div>
+                </div>
+              )}
+
+              {/* WORKER NODE DETAILS & COST ESTIMATE TABLE */}
+              {activeSelection.type === 'SHIP' && (
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">NODE ADI:</span>
+                    <strong className="text-white text-sm">{activeSelection.data.name}</strong>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 font-bold block text-[10px]">💵 TAHMİNİ STATİK MALİYET:</span>
+                    <div className="flex justify-between"><span>Instance Tipi:</span><strong className="text-white">t3.medium (AWS)</strong></div>
+                    <div className="flex justify-between"><span>Saatlik Ücret:</span><strong className="text-emerald-400">$0.0416 / saat</strong></div>
+                    <div className="flex justify-between"><span>Aylık Ücret:</span><strong className="text-amber-300">~$30.00 / ay</strong></div>
                   </div>
                 </div>
               )}

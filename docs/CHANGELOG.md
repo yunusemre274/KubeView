@@ -4,14 +4,15 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 ---
 
-## [v1.10.0 - Faz 19 HPA Mobile Crane, Node Affinity & PDB Release] - 2026-07-30
+## [v2.0.0 Pro - Faz 20 Hubble, Multi-Cluster, PNG Export & Cost Release] - 2026-07-30
 
 ### Eklendi / Düzeltildi
-- **HorizontalPodAutoscaler (HPA) Ekstra Mobil Vinç (`HPAMobileCrane.jsx`):** Pod yük artışında otomatik limana giren ve hareket eden 3D sarı mobil vinç eklendi.
-- **Node Affinity / Anti-Affinity Çizgileri (`NodeAffinityLines.jsx`):** Gemiler ile tercih edilen rıhtımlar arasına 3D magnetik yeşil kılavuz çizgileri kurgulandı.
-- **PodDisruptionBudget (PDB) Bakım Bayrağı (`PDBMaintenanceFlag.jsx`):** Rıhtıma bakıma alınabilir gemi sınırı sarı uyarı bayrağı yerleştirildi.
+- **3D Ekran Görüntüsü PNG Export:** Sağ üst bara `📸 PNG İNDİR` butonu yerleştirildi; 3D canvas görüntüsü anında `tersane-3d-shipyard-[context].png` olarak indirilir.
+- **Multi-Cluster Context Seçici:** Sol üst bara `minikube`, `docker-desktop` ve `prod-cluster` bağlam geçiş sekmeleri yerleştirildi.
+- **Cilium Hubble eBPF Algılama:** Kube-proxy müfettiş çekmecesine gelişmiş `🐝 CILIUM HUBBLE eBPF MODE` trafik gözlemcisi rozeti bağlandı.
+- **Statik Maliyet Tablosu:** Node müfettiş çekmecesinde `💵 TAHMİNİ STATİK MALİYET` ($0.0416/saat, ~$30/ay) hesaplama paneli yerleştirildi.
 
 ---
 
-## [v1.9.0 - Faz 18 Ingress Lighthouse & NetworkPolicy Barriers] - 2026-07-30
-- 3D Ingress Gateway Deniz Feneri ve 3D NetworkPolicy Kırmızı Lazer Güvenlik Bariyerleri eklendi.
+## [v1.10.0 - Faz 19 HPA Mobile Crane, Node Affinity & PDB Release] - 2026-07-30
+- 3D HPA Ekstra Mobil Vinç, 3D Node Affinity Çizgileri ve PDB Bakım Bayrağı eklendi.

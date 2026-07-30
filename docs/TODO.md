@@ -1,24 +1,23 @@
-# TODO.md — Aktif ve Sıradaki Görevler Listesi (Faz 20 Aktif)
+# TODO.md — Aktif ve Sıradaki Görevler Listesi (v2.0.0 Pro Full Release)
 
-> 🚀 **AKTİF FAZ: FAZ 20 — Diğer Genişletmeler (Hubble, Multi-Cluster, PNG Export & Cost Table)**
-
----
-
-## 🔵 Aktif Görevler (Faz 20)
-- [ ] **[GÖREV-2001] PNG Ekran Görüntüsü Dışa Aktarma:** 3D Canvas görüntüsünü anında PNG dosyası olarak yerel bilgisayara indirme ikonu ve fonksiyonu (`html2canvas` / `canvas.toDataURL`). (Sorumlu: `ui-ux-agent`)
-- [ ] **[GÖREV-2002] Multi-Cluster Context Seçici:** Kullanıcının kubeconfig'indeki birden fazla cluster context'ini üst barda sekmeler halinde gösterme (`docker-desktop`, `minikube`, `prod-cluster`). (Sorumlu: `devops-agent` & `ui-ux-agent`)
-- [ ] **[GÖREV-2003] Cilium Hubble / Istio Algılama:** Gelişmiş ağ modunu otomatik algılama ve sessiz fallback mekanizması. (Sorumlu: `networking-agent`)
-- [ ] **[GÖREV-2004] Statik Maliyet Hesabı Tablosu:** Node instance tiplerine göre ($0.0416/saat) tahmini saatlik küme maliyeti gösterim panosu. (Sorumlu: `ui-ux-agent`)
+> 🏆 **TEBRİKLER! TÜM 20 FAZIN TÜM GÖREVLERİ EKSİKSİZ TAMAMLANDI!**
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 19)
+## 🔵 Aktif Görevler
+*Şu an aktif görev bulunmamaktadır. Proje v2.0.0 Pro olarak tüm özellikleri ile hizmete hazırdır.*
+
+---
+
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 20)
+- [x] **[GÖREV-2001..2004]** 3D PNG Ekran görüntüsü indirme (`📸 PNG İNDİR`), Multi-Cluster Context seçici (`minikube`, `docker-desktop`, `prod-cluster`), Cilium Hubble eBPF algılama rozeti ve Node statik maliyet tablosu. (Yapan: `devops-agent`, `ui-ux-agent`)
 - [x] **[GÖREV-1901..1904]** 3D HPA Ekstra Mobil Vinç (`HPAMobileCrane.jsx`), 3D Node Affinity Çizgileri (`NodeAffinityLines.jsx`) ve 3D PDB Bakım Bayrağı (`PDBMaintenanceFlag.jsx`). (Yapan: `3d-scene-agent`, `ui-ux-agent`)
-- [x] **[GÖREV-1801..1804]** Ingress Deniz Feneri ve NetworkPolicy Bariyerleri. (Yapan: `networking-agent`, `3d-scene-agent`)
-- [x] **[GÖREV-1701..1704]** 3D Anomali Efektleri (`CrashLoopBackOff`, `OOMKilled`, `NodeNotReady`). (Yapan: `3d-scene-agent`)
-- [x] **[GÖREV-1601..1604]** Pod Silme/Restart mutasyonları, ConfirmationModal ve EventLogDrawer. (Yapan: `backend-agent`, `ui-ux-agent`)
+- [x] **[GÖREV-1801..1804]** 3D Ingress Gateway Deniz Feneri (`IngressLighthouse.jsx`), 3D NetworkPolicy Kırmızı Lazer Bariyerleri (`NetworkPolicyBarriers.jsx`). (Yapan: `networking-agent`, `3d-scene-agent`)
+- [x] **[GÖREV-1701..1704]** 3D Anomali Efektleri (`CrashLoopBackOff` duman/alev, `OOMKilled` patlama, `NodeNotReady` su alma). (Yapan: `3d-scene-agent`)
+- [x] **[GÖREV-1601..1604]** Pod Silme/Restart mutasyonları, ConfirmationModal, Global Salt İzleme Modu ve EventLogDrawer ring buffer. (Yapan: `backend-agent`, `ui-ux-agent`)
+- [x] **[GÖREV-101..1504]** Tüm Core Altyapı, 3D Canvas, 2D Control Dashboard, Raycasting Fix (`LESSON-005`), Kubelet Radar & Canlı Parçacık Ağ Akış Çizgileri. (Tüm Agent'lar)
 
 ---
 
 ## 🔴 Bekleyen / Sıradaki Fazlar
-*Tüm 20 faz başarıyla tamamlanmak üzeredir!*
+*Tüm 20 faz başarıyla tamamlanmıştır!*
