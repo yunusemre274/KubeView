@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tersane-sa
+  namespace: default
+  labels:
+    app: tersane
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: tersane-reader
+  labels:
+    app: tersane
+rules:
+  - apiGroups: [""]
+    resources: ["nodes", "pods", "services", "namespaces", "events"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets", "statefulsets", "daemonsets"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["nodes", "pods"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tersane-reader-binding
+  labels:
+    app: tersane
+subjects:
+  - kind: ServiceAccount
+    name: tersane-sa
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: tersane-reader
+  apiGroup: rbac.authorization.k8s.io
