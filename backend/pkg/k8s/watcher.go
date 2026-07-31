@@ -7,6 +7,7 @@ import (
 	"time"
 
 	appsv1 "k8s.io/api/apps/v1"
+	batchv1 "k8s.io/api/batch/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
@@ -97,7 +98,7 @@ func (w *Watcher) GetInitialState() api.InitialStatePayload {
 	}
 }
 
-// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, ConfigMaps, Secrets, PVCs, PVs, and Events.
+// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, StatefulSets, DaemonSets, Jobs, CronJobs, ConfigMaps, Secrets, PVCs, PVs, and Events.
 func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 	var factory informers.SharedInformerFactory
 	if w.namespace == "" {
@@ -117,7 +118,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add Node event handlers: %w", err)
 	}
 
-	// 2. Pod Informer
+	// 2. Pod Informer (with OwnerReferences extraction)
 	podInformer := factory.Core().V1().Pods().Informer()
 	_, err = podInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if p, ok := obj.(*corev1.Pod); ok { w.handlePodEvent(api.ActionAdd, p) } },
@@ -139,7 +140,51 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add Deployment event handlers: %w", err)
 	}
 
-	// 4. ConfigMap Informer
+	// 4. StatefulSet Informer
+	stsInformer := factory.Apps().V1().StatefulSets().Informer()
+	_, err = stsInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if sts, ok := obj.(*appsv1.StatefulSet); ok { w.handleStatefulSetEvent(api.ActionAdd, sts) } },
+		UpdateFunc: func(_, newObj interface{}) { if sts, ok := newObj.(*appsv1.StatefulSet); ok { w.handleStatefulSetEvent(api.ActionUpdate, sts) } },
+		DeleteFunc: func(obj interface{}) { if sts, ok := obj.(*appsv1.StatefulSet); ok { w.handleStatefulSetEvent(api.ActionDelete, sts) } },
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add StatefulSet event handlers: %w", err)
+	}
+
+	// 5. DaemonSet Informer
+	dsInformer := factory.Apps().V1().DaemonSets().Informer()
+	_, err = dsInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if ds, ok := obj.(*appsv1.DaemonSet); ok { w.handleDaemonSetEvent(api.ActionAdd, ds) } },
+		UpdateFunc: func(_, newObj interface{}) { if ds, ok := newObj.(*appsv1.DaemonSet); ok { w.handleDaemonSetEvent(api.ActionUpdate, ds) } },
+		DeleteFunc: func(obj interface{}) { if ds, ok := obj.(*appsv1.DaemonSet); ok { w.handleDaemonSetEvent(api.ActionDelete, ds) } },
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add DaemonSet event handlers: %w", err)
+	}
+
+	// 6. Job Informer
+	jobInformer := factory.Batch().V1().Jobs().Informer()
+	_, err = jobInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if job, ok := obj.(*batchv1.Job); ok { w.handleJobEvent(api.ActionAdd, job) } },
+		UpdateFunc: func(_, newObj interface{}) { if job, ok := newObj.(*batchv1.Job); ok { w.handleJobEvent(api.ActionUpdate, job) } },
+		DeleteFunc: func(obj interface{}) { if job, ok := obj.(*batchv1.Job); ok { w.handleJobEvent(api.ActionDelete, job) } },
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add Job event handlers: %w", err)
+	}
+
+	// 7. CronJob Informer
+	cjInformer := factory.Batch().V1().CronJobs().Informer()
+	_, err = cjInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if cj, ok := obj.(*batchv1.CronJob); ok { w.handleCronJobEvent(api.ActionAdd, cj) } },
+		UpdateFunc: func(_, newObj interface{}) { if cj, ok := newObj.(*batchv1.CronJob); ok { w.handleCronJobEvent(api.ActionUpdate, cj) } },
+		DeleteFunc: func(obj interface{}) { if cj, ok := obj.(*batchv1.CronJob); ok { w.handleCronJobEvent(api.ActionDelete, cj) } },
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add CronJob event handlers: %w", err)
+	}
+
+	// 8. ConfigMap Informer
 	cmInformer := factory.Core().V1().ConfigMaps().Informer()
 	_, err = cmInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if cm, ok := obj.(*corev1.ConfigMap); ok { w.handleConfigMapEvent(api.ActionAdd, cm) } },
@@ -150,7 +195,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add ConfigMap event handlers: %w", err)
 	}
 
-	// 5. Secret Informer (Metadata & Key names ONLY!)
+	// 9. Secret Informer (Metadata & Key names ONLY!)
 	secInformer := factory.Core().V1().Secrets().Informer()
 	_, err = secInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if sec, ok := obj.(*corev1.Secret); ok { w.handleSecretEvent(api.ActionAdd, sec) } },
@@ -161,7 +206,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add Secret event handlers: %w", err)
 	}
 
-	// 6. PVC Informer
+	// 10. PVC Informer
 	pvcInformer := factory.Core().V1().PersistentVolumeClaims().Informer()
 	_, err = pvcInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if pvc, ok := obj.(*corev1.PersistentVolumeClaim); ok { w.handlePVCEvent(api.ActionAdd, pvc) } },
@@ -172,7 +217,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add PVC event handlers: %w", err)
 	}
 
-	// 7. PV Informer
+	// 11. PV Informer
 	pvInformer := factory.Core().V1().PersistentVolumes().Informer()
 	_, err = pvInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if pv, ok := obj.(*corev1.PersistentVolume); ok { w.handlePVEvent(api.ActionAdd, pv) } },
@@ -183,7 +228,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add PV event handlers: %w", err)
 	}
 
-	// 8. K8s Core Events Informer (Liman Anonsları)
+	// 12. K8s Core Events Informer (Liman Anonsları)
 	k8sEventInformer := factory.Core().V1().Events().Informer()
 	_, err = k8sEventInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
@@ -205,7 +250,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 			return fmt.Errorf("failed to sync informer cache for %v", resource)
 		}
 	}
-	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, ConfigMaps, Secrets, PVCs, PVs, Events). Listening for live events...")
+	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, StatefulSets, DaemonSets, Jobs, CronJobs, ConfigMaps, Secrets, PVCs, PVs, Events). Listening for live events...")
 
 	<-ctx.Done()
 	return nil
@@ -247,6 +292,14 @@ func (w *Watcher) handlePodEvent(action api.ResourceAction, pod *corev1.Pod) {
 	podKey := fmt.Sprintf("%s/%s", pod.Namespace, pod.Name)
 	status := string(pod.Status.Phase)
 
+	// Extract OwnerReferences (Deployment, StatefulSet, DaemonSet, Job)
+	ownerKind := "Deployment"
+	ownerName := pod.Name
+	if len(pod.OwnerReferences) > 0 {
+		ownerKind = pod.OwnerReferences[0].Kind
+		ownerName = pod.OwnerReferences[0].Name
+	}
+
 	payload := api.ResourcePayload{
 		Action:    action,
 		Kind:      api.KindPod,
@@ -258,6 +311,8 @@ func (w *Watcher) handlePodEvent(action api.ResourceAction, pod *corev1.Pod) {
 			NodeName:     pod.Spec.NodeName,
 			Compartment:  pod.Namespace,
 			HealthState:  w.getHealthState(status),
+			OwnerKind:    ownerKind,
+			OwnerName:    ownerName,
 		},
 	}
 
@@ -297,6 +352,89 @@ func (w *Watcher) handleDeploymentEvent(action api.ResourceAction, deploy *appsv
 		w.deployments[deployKey] = payload
 	}
 	w.mu.Unlock()
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
+func (w *Watcher) handleStatefulSetEvent(action api.ResourceAction, sts *appsv1.StatefulSet) {
+	status := fmt.Sprintf("%d/%d Ready", sts.Status.ReadyReplicas, sts.Status.Replicas)
+
+	payload := api.ResourcePayload{
+		Action:    action,
+		Kind:      api.KindStatefulSet,
+		Namespace: sts.Namespace,
+		Name:      sts.Name,
+		Status:    status,
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Numaralı Sabit Gemi Filosu (StatefulSet)",
+			Compartment:  sts.Namespace,
+			HealthState:  "SAFE",
+		},
+	}
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
+func (w *Watcher) handleDaemonSetEvent(action api.ResourceAction, ds *appsv1.DaemonSet) {
+	status := fmt.Sprintf("%d/%d Ready", ds.Status.NumberReady, ds.Status.DesiredNumberScheduled)
+
+	payload := api.ResourcePayload{
+		Action:    action,
+		Kind:      api.KindDaemonSet,
+		Namespace: ds.Namespace,
+		Name:      ds.Name,
+		Status:    status,
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Gemi Direği Ekipmanı (DaemonSet)",
+			Compartment:  ds.Namespace,
+			HealthState:  "SAFE",
+		},
+	}
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
+func (w *Watcher) handleJobEvent(action api.ResourceAction, job *batchv1.Job) {
+	status := "Running"
+	if job.Status.Succeeded > 0 {
+		status = "Completed"
+	} else if job.Status.Failed > 0 {
+		status = "Failed"
+	}
+
+	payload := api.ResourcePayload{
+		Action:    action,
+		Kind:      api.KindJob,
+		Namespace: job.Namespace,
+		Name:      job.Name,
+		Status:    status,
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Geçici Görev Şalupası (Job)",
+			Compartment:  job.Namespace,
+			HealthState:  w.getHealthState(status),
+		},
+	}
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
+func (w *Watcher) handleCronJobEvent(action api.ResourceAction, cj *batchv1.CronJob) {
+	payload := api.ResourcePayload{
+		Action:    action,
+		Kind:      api.KindCronJob,
+		Namespace: cj.Namespace,
+		Name:      cj.Name,
+		Status:    cj.Spec.Schedule,
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Sefer Tarifesi (CronJob)",
+			Compartment:  cj.Namespace,
+			HealthState:  "SAFE",
+		},
+	}
 
 	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
 	w.hub.BroadcastMessage(msg)
@@ -512,7 +650,7 @@ func (w *Watcher) handleK8sCoreEvent(e *corev1.Event) {
 
 func (w *Watcher) getHealthState(status string) string {
 	switch status {
-	case "Ready", "Running", "SAFE", "Normal", "Bound", "Available":
+	case "Ready", "Running", "Completed", "SAFE", "Normal", "Bound", "Available":
 		return "SAFE"
 	case "Warning", "NotReady", "Pending", "Released":
 		return "WARNING"

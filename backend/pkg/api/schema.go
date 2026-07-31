@@ -27,15 +27,19 @@ const (
 type ResourceKind string
 
 const (
-	KindNode       ResourceKind = "Node"
-	KindPod        ResourceKind = "Pod"
-	KindDeployment ResourceKind = "Deployment"
-	KindService    ResourceKind = "Service"
-	KindEvent      ResourceKind = "Event"
-	KindConfigMap  ResourceKind = "ConfigMap"
-	KindSecret     ResourceKind = "Secret"
-	KindPVC        ResourceKind = "PersistentVolumeClaim"
-	KindPV         ResourceKind = "PersistentVolume"
+	KindNode        ResourceKind = "Node"
+	KindPod         ResourceKind = "Pod"
+	KindDeployment  ResourceKind = "Deployment"
+	KindStatefulSet ResourceKind = "StatefulSet"
+	KindDaemonSet   ResourceKind = "DaemonSet"
+	KindJob         ResourceKind = "Job"
+	KindCronJob     ResourceKind = "CronJob"
+	KindService     ResourceKind = "Service"
+	KindEvent       ResourceKind = "Event"
+	KindConfigMap   ResourceKind = "ConfigMap"
+	KindSecret      ResourceKind = "Secret"
+	KindPVC         ResourceKind = "PersistentVolumeClaim"
+	KindPV          ResourceKind = "PersistentVolume"
 )
 
 // ResourceMetrics contains CPU & RAM metrics data.
@@ -61,7 +65,7 @@ type SecretInfo struct {
 	Name      string   `json:"name"`
 	Namespace string   `json:"namespace"`
 	Type      string   `json:"type"`
-	KeyNames  []string `json:"key_names"` // Only key names (e.g. "username", "password"), NEVER raw values!
+	KeyNames  []string `json:"key_names"`
 	UsedBy    []string `json:"used_by,omitempty"`
 	CreatedAt string   `json:"created_at,omitempty"`
 }
@@ -91,6 +95,49 @@ type PVInfo struct {
 	CreatedAt     string `json:"created_at,omitempty"`
 }
 
+// StatefulSetInfo holds StatefulSet workload details.
+type StatefulSetInfo struct {
+	Name          string   `json:"name"`
+	Namespace     string   `json:"namespace"`
+	Replicas      int32    `json:"replicas"`
+	ReadyReplicas int32    `json:"ready_replicas"`
+	ServiceName   string   `json:"service_name,omitempty"`
+	VolumeClaim   string   `json:"volume_claim,omitempty"`
+	PodNames      []string `json:"pod_names,omitempty"`
+}
+
+// DaemonSetInfo holds DaemonSet workload details.
+type DaemonSetInfo struct {
+	Name           string   `json:"name"`
+	Namespace      string   `json:"namespace"`
+	DesiredNumber  int32    `json:"desired_number"`
+	CurrentNumber  int32    `json:"current_number"`
+	NumberReady    int32    `json:"number_ready"`
+	NodeNames      []string `json:"node_names,omitempty"`
+}
+
+// JobInfo holds Job batch workload details.
+type JobInfo struct {
+	Name        string `json:"name"`
+	Namespace   string `json:"namespace"`
+	Completions int32  `json:"completions"`
+	Succeeded   int32  `json:"succeeded"`
+	Failed      int32  `json:"failed"`
+	Status      string `json:"status"`
+	StartTime   string `json:"start_time,omitempty"`
+	EndTime     string `json:"end_time,omitempty"`
+}
+
+// CronJobInfo holds CronJob scheduled workload details.
+type CronJobInfo struct {
+	Name          string `json:"name"`
+	Namespace     string `json:"namespace"`
+	Schedule      string `json:"schedule"`
+	LastSchedule  string `json:"last_schedule,omitempty"`
+	ActiveJobs    int32  `json:"active_jobs"`
+	Suspend       bool   `json:"suspend"`
+}
+
 // ShipyardMetaphor holds the mapping data to help 3D frontend render shipyard elements easily.
 type ShipyardMetaphor struct {
 	MetaphorRole string          `json:"metaphor_role"` // e.g. "Gemi (Node)", "Palet (Pod)", "Depo (PVC/PV)"
@@ -98,6 +145,9 @@ type ShipyardMetaphor struct {
 	NodeName     string          `json:"node_name,omitempty"`     // Target ship for Pods
 	Compartment  string          `json:"compartment,omitempty"`   // Namespace (Ambar)
 	HealthState  string          `json:"health_state,omitempty"`  // "SAFE", "WARNING", "CRITICAL"
+	OwnerKind    string          `json:"owner_kind,omitempty"`    // "Deployment", "StatefulSet", "DaemonSet", "Job"
+	OwnerName    string          `json:"owner_name,omitempty"`    // e.g. "api-backend-deploy", "redis-cache-set"
+	Ordinal      string          `json:"ordinal,omitempty"`       // e.g. "#0", "#1"
 	Metrics      ResourceMetrics `json:"metrics,omitempty"`
 }
 

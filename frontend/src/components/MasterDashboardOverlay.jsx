@@ -1,190 +1,169 @@
 import React, { useState } from 'react'
-import { ShieldCheck, Cpu, Server, Activity, X, ArrowLeft, Layers, CheckCircle2, Radio, HardDrive, Compass } from 'lucide-react'
+import { X, ShieldAlert, Cpu, Box, Radio, Zap, Anchor, Server, Activity, ArrowRight, Play, RefreshCw, FileText, Calendar, Clock } from 'lucide-react'
 
-export default function MasterDashboardOverlay({ onClose, activeShips = [], deployments = [] }) {
+export default function MasterDashboardOverlay({ onClose, activeShips = [], onTriggerCronJob }) {
   const [activeTab, setActiveTab] = useState('OVERVIEW')
 
-  const controlPlaneStatus = [
-    { name: 'kube-apiserver', role: 'API Gateway', status: 'Healthy', latency: '2ms', version: 'v1.28.2' },
-    { name: 'etcd (Seyir Defteri)', role: 'Cluster State DB', status: 'Healthy', latency: '4ms', version: 'v3.5.9' },
-    { name: 'kube-scheduler (Vinç)', role: 'Pod Zamanlayıcı', status: 'Healthy', latency: '1ms', version: 'v1.28.2', decision: 'pod redis-cache-set-0 -> node-beta (Score: 94/100)' },
-    { name: 'kube-controller-manager', role: 'Yaşam Döngüsü', status: 'Healthy', latency: '3ms', version: 'v1.28.2' }
+  const mockDeployments = [
+    { name: 'web-frontend-deploy', namespace: 'default', replicas: '2/2 Ready', image: 'nginx:alpine' },
+    { name: 'api-backend-deploy', namespace: 'default', replicas: '1/1 Ready', image: 'tersane/backend:v1.0.0' }
   ]
 
-  const mockDeployments = deployments.length > 0 ? deployments : [
-    { name: 'web-frontend-deploy', replicas: '2/2', namespace: 'default', image: 'nginx:alpine', strategy: 'RollingUpdate' },
-    { name: 'api-backend-deploy', replicas: '1/1', namespace: 'default', image: 'tersane/backend:v1.0.0', strategy: 'RollingUpdate' },
-    { name: 'redis-cache-set', replicas: '1/1', namespace: 'production', image: 'redis:7-alpine', strategy: 'Recreate' }
+  const mockCronJobs = [
+    { name: 'db-backup-cronjob', namespace: 'default', schedule: '*/5 * * * *', last_run: '3 dk önce (Succeeded)', next_run: '2 dk sonra' },
+    { name: 'log-cleanup-cronjob', namespace: 'production', schedule: '0 0 * * *', last_run: '12 saat önce (Succeeded)', next_run: '12 saat sonra' }
   ]
-
-  const totalPodsCount = activeShips.reduce((acc, s) => acc + (s.pods?.length || 0), 0)
 
   return (
-    <aside className="master-dashboard-drawer p-4 flex flex-col justify-between overflow-y-auto animate-fadeIn font-mono-tech text-xs">
-      <div>
-        {/* 1. TOP HEADER */}
-        <div className="flex items-center justify-between pb-3 mb-3 border-b border-amber-500/40">
-          <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40">
-              <Server className="w-4 h-4 animate-pulse" />
+    <div className="master-dashboard-overlay pt-12">
+      <div className="industrial-panel h-full flex flex-col justify-between p-4 overflow-y-auto border-l border-slate-700 bg-slate-950/95 backdrop-blur-md">
+        
+        {/* HEADER STRIP */}
+        <div>
+          <div className="flex items-center justify-between pb-3 border-b border-slate-700">
+            <div className="flex items-center gap-2">
+              <Building2Icon className="w-5 h-5 text-amber-400" />
+              <h2 className="font-industrial text-sm font-bold text-amber-400 tracking-wider">
+                YÖNETİM BİNASI & CONTROL PLANE
+              </h2>
             </div>
-            <div>
-              <h3 className="font-industrial text-sm font-bold text-amber-400">🏢 CONTROL PLANE DASHBOARD</h3>
-              <span className="text-[10px] text-sky-400">Kubernetes Master & Node Agents</span>
-            </div>
+            <button
+              onClick={onClose}
+              className="p-1 text-slate-400 hover:text-white rounded hover:bg-slate-800"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+          {/* TAB STRIP */}
+          <div className="flex border-b border-slate-800 my-3 text-[11px] font-industrial">
+            <button
+              onClick={() => setActiveTab('OVERVIEW')}
+              className={`flex-1 py-1.5 text-center border-b-2 font-bold transition ${activeTab === 'OVERVIEW' ? 'border-amber-400 text-amber-400' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
+            >
+              GENEL BAKIŞ
+            </button>
+            <button
+              onClick={() => setActiveTab('NODES')}
+              className={`flex-1 py-1.5 text-center border-b-2 font-bold transition ${activeTab === 'NODES' ? 'border-amber-400 text-amber-400' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
+            >
+              GEMİLER ({activeShips.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('DEPLOYMENTS')}
+              className={`flex-1 py-1.5 text-center border-b-2 font-bold transition ${activeTab === 'DEPLOYMENTS' ? 'border-amber-400 text-amber-400' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
+            >
+              SEFERLER
+            </button>
+            <button
+              onClick={() => setActiveTab('LOAD')}
+              className={`flex-1 py-1.5 text-center border-b-2 font-bold transition ${activeTab === 'LOAD' ? 'border-amber-400 text-amber-400' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
+            >
+              YÜK DAĞILIMI
+            </button>
+          </div>
 
-        {/* 2. TAB BUTTONS */}
-        <div className="grid grid-cols-2 gap-1 mb-4">
-          <button
-            onClick={() => setActiveTab('OVERVIEW')}
-            className={`industrial-btn py-1 text-[11px] justify-center ${activeTab === 'OVERVIEW' ? 'industrial-btn-active' : ''}`}
-          >
-            <Activity className="w-3.5 h-3.5" />
-            <span>📊 GENEL BAKIŞ</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('HEALTH')}
-            className={`industrial-btn py-1 text-[11px] justify-center ${activeTab === 'HEALTH' ? 'industrial-btn-active' : ''}`}
-          >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>⚡ NODE AJANLARI</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('DEPLOYMENTS')}
-            className={`industrial-btn py-1 text-[11px] justify-center ${activeTab === 'DEPLOYMENTS' ? 'industrial-btn-active' : ''}`}
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>📦 SEVKİYATLAR</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('LOAD')}
-            className={`industrial-btn py-1 text-[11px] justify-center ${activeTab === 'LOAD' ? 'industrial-btn-active' : ''}`}
-          >
-            <Cpu className="w-3.5 h-3.5" />
-            <span>⚖️ YÜK DAĞILIMI</span>
-          </button>
-        </div>
-
-        {/* 3. TAB CONTENTS */}
-        <div className="space-y-4">
-          
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'OVERVIEW' && (
-            <div className="space-y-3">
+            <div className="space-y-3 font-mono-tech text-[11px]">
               <div className="grid grid-cols-2 gap-2">
-                <div className="industrial-panel p-2.5 rounded-lg border-emerald-500/30">
-                  <span className="text-[10px] text-slate-400 block">WORKER NODES</span>
-                  <div className="text-base font-bold font-industrial text-emerald-400">{activeShips.length} Gemiler</div>
-                  <span className="text-[9px] text-emerald-400 font-mono-tech">● All Ready</span>
+                <div className="industrial-card p-2.5 rounded-lg border">
+                  <span className="text-slate-400 text-[10px] block">TOPLAM GEMİ (NODE):</span>
+                  <strong className="text-amber-400 text-sm font-bold">{activeShips.length} Active</strong>
                 </div>
-
-                <div className="industrial-panel p-2.5 rounded-lg border-sky-500/30">
-                  <span className="text-[10px] text-slate-400 block">TOPLAM PODS</span>
-                  <div className="text-base font-bold font-industrial text-sky-400">{totalPodsCount} Paletler</div>
-                  <span className="text-[9px] text-sky-400 font-mono-tech">● Active</span>
+                <div className="industrial-card p-2.5 rounded-lg border">
+                  <span className="text-slate-400 text-[10px] block">TOPLAM PALET (POD):</span>
+                  <strong className="text-emerald-400 text-sm font-bold">3 Running</strong>
                 </div>
               </div>
 
-              {/* CONTROL PLANE COMPONENTS */}
-              <div className="industrial-panel p-3 rounded-lg space-y-2">
-                <span className="text-amber-400 font-bold block text-[10px]">CONTROL PLANE SAĞLIĞI:</span>
-                {controlPlaneStatus.map((cp) => (
-                  <div key={cp.name} className="bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1 text-[11px]">
-                    <div className="flex items-center justify-between">
-                      <strong className="text-sky-300 block">{cp.name}</strong>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
-                        {cp.status}
-                      </span>
-                    </div>
-                    <div className="text-[10px] text-slate-400">{cp.role} ({cp.latency})</div>
-                    {cp.decision && (
-                      <div className="text-[9px] text-amber-300 bg-amber-500/10 p-1 rounded border border-amber-500/30">
-                        ● Son Atama: {cp.decision}
-                      </div>
-                    )}
-                  </div>
-                ))}
+              <div className="industrial-panel p-3 rounded-lg space-y-1 text-[11px]">
+                <span className="text-sky-400 font-bold block text-[10px]">🏢 KONTROL KULESİ SAĞLIK BİLGİSİ:</span>
+                <div className="flex justify-between"><span>kube-apiserver:</span><strong className="text-emerald-400">Healthy (v1.28.2)</strong></div>
+                <div className="flex justify-between"><span>etcd cluster:</span><strong className="text-emerald-400">3/3 Sync (Quorum Active)</strong></div>
+                <div className="flex justify-between"><span>kube-controller-mgr:</span><strong className="text-emerald-400">Leader Active</strong></div>
+                <div className="flex justify-between"><span>kube-scheduler:</span><strong className="text-emerald-400">Leader Active</strong></div>
+              </div>
+
+              <div className="industrial-panel p-3 rounded-lg space-y-1 text-[11px]">
+                <span className="text-purple-400 font-bold block text-[10px]">📦 DEPOLAMA VE YAPILANDIRMA:</span>
+                <div className="flex justify-between"><span>Depolama (PVC/PV):</span><strong className="text-purple-300">1 PVC (10Gi Bound)</strong></div>
+                <div className="flex justify-between"><span>Sevkiyat Föyü (ConfigMap):</span><strong className="text-amber-300">1 Active</strong></div>
+                <div className="flex justify-between"><span>Kilitli Kasa (Secret):</span><strong className="text-sky-300">1 Encrypted</strong></div>
               </div>
             </div>
           )}
 
-          {/* TAB 2: NODE AGENTS & KUBE-SCHEDULER DETAILS */}
-          {activeTab === 'HEALTH' && (
-            <div className="space-y-3">
-              <div className="industrial-panel p-3 rounded-lg space-y-2">
-                <span className="text-sky-400 font-bold block text-[10px]">📡 KUBELET & KUBE-PROXY NODE AJANLARI:</span>
-                {activeShips.map((ship) => (
-                  <div key={ship.id} className="bg-slate-900/90 p-2.5 rounded border border-slate-800 space-y-1 text-[11px]">
-                    <div className="flex justify-between items-center">
-                      <strong className="text-white">{ship.name}</strong>
-                      <span className="text-emerald-400 text-[10px] font-bold">Ready</span>
-                    </div>
-                    <div className="flex justify-between text-[10px] text-slate-400">
-                      <span>Kubelet Status:</span>
-                      <strong className="text-emerald-400">Active (Running)</strong>
-                    </div>
-                    <div className="flex justify-between text-[10px] text-slate-400">
-                      <span>Readiness Probes:</span>
-                      <strong className="text-emerald-400">2/2 Passing (100%)</strong>
-                    </div>
-                    <div className="flex justify-between text-[10px] text-slate-400">
-                      <span>Kube-Proxy Status:</span>
-                      <strong className="text-emerald-400">Active (iptables)</strong>
-                    </div>
-                    <div className="flex justify-between text-[10px] text-slate-400">
-                      <span>Son Heartbeat:</span>
-                      <span className="text-sky-300">1.2s ago</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="industrial-panel p-3 rounded-lg space-y-1.5 text-[11px]">
-                <span className="text-amber-400 font-bold block text-[10px]">🏗️ KUBE-SCHEDULER CANLI KARARLARI:</span>
-                <div>Engine: <strong className="text-slate-200">default-scheduler (v1.28.2)</strong></div>
-                <div>Son Atama Kararı: <strong className="text-sky-300">pod redis-cache-set-0 ➔ node-beta</strong></div>
-                <div>Zamanlama Skoru: <strong className="text-emerald-400">94/100 (LeastRequestedPriority)</strong></div>
-                <div>Bekleyen Pod Kuyruğu: <strong className="text-amber-300">1 pod (pending-stack-1)</strong></div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 3: DEPLOYMENTS */}
-          {activeTab === 'DEPLOYMENTS' && (
-            <div className="space-y-2">
-              {mockDeployments.map((d) => (
-                <div
-                  key={d.name}
-                  className="industrial-card p-2.5 rounded-lg border space-y-1"
-                >
-                  <div className="flex justify-between items-center text-[11px]">
-                    <strong className="text-purple-300">{d.name}</strong>
-                    <span className="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold text-[10px]">
-                      {d.replicas}
+          {/* TAB 2: NODES */}
+          {activeTab === 'NODES' && (
+            <div className="space-y-2 font-mono-tech text-[11px]">
+              {activeShips.map((s) => (
+                <div key={s.id} className="industrial-card p-2.5 rounded-lg border space-y-1">
+                  <div className="flex justify-between items-center">
+                    <strong className="text-sky-300">{s.name}</strong>
+                    <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold text-[10px]">
+                      {s.status}
                     </span>
                   </div>
-                  <div className="text-[10px] text-slate-400">Namespace: {d.namespace}</div>
-                  <div className="text-[10px] text-slate-400">Image: {d.image}</div>
+                  <div className="text-[10px] text-slate-400">IP: {s.ip}</div>
+                  <div className="text-[10px] text-slate-400">Kapasite: {s.metrics?.cpu_capacity} CPU / {s.metrics?.mem_capacity} RAM</div>
                 </div>
               ))}
             </div>
           )}
 
+          {/* TAB 3: DEPLOYMENTS & CRONJOB SCHEDULE */}
+          {activeTab === 'DEPLOYMENTS' && (
+            <div className="space-y-3 font-mono-tech text-[11px]">
+              <div className="space-y-1.5">
+                <span className="text-purple-400 font-bold block text-[10px]">📦 AKTİF DEPLOYMENT VE İŞ YÜKLERİ:</span>
+                {mockDeployments.map((d) => (
+                  <div key={d.name} className="industrial-card p-2.5 rounded-lg border space-y-1">
+                    <div className="flex justify-between items-center text-[11px]">
+                      <strong className="text-purple-300">{d.name}</strong>
+                      <span className="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold text-[10px]">
+                        {d.replicas}
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-slate-400">Namespace: {d.namespace} | Image: {d.image}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* CRONJOB SEFER TARİFESİ */}
+              <div className="industrial-panel p-3 rounded-lg space-y-2 border border-amber-500/30">
+                <span className="text-amber-400 font-bold block text-[10px] flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-amber-400" /> ⏰ SEFER TARİFESİ (CRONJOB SCHEDULE):
+                </span>
+
+                {mockCronJobs.map((cj) => (
+                  <div key={cj.name} className="bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1">
+                    <div className="flex justify-between items-center">
+                      <strong className="text-sky-300 text-[10px]">● {cj.name}</strong>
+                      <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[9px]">
+                        {cj.schedule}
+                      </span>
+                    </div>
+                    <div className="text-[9.5px] text-slate-400">Son Sefer: {cj.last_run}</div>
+                    <div className="flex justify-between items-center pt-1 border-t border-slate-800">
+                      <span className="text-[9.5px] text-emerald-400">Sonraki: {cj.next_run}</span>
+                      <button
+                        onClick={() => onTriggerCronJob && onTriggerCronJob(cj.name)}
+                        className="industrial-btn text-[9px] py-0.5 px-2 bg-amber-500/20 text-amber-300 border-amber-500/40 hover:bg-amber-500/30 flex items-center gap-1"
+                      >
+                        <Play className="w-2.5 h-2.5 text-amber-400" />
+                        <span>JET TETİKLE</span>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* TAB 4: LOAD BALANCING */}
           {activeTab === 'LOAD' && (
-            <div className="space-y-3">
+            <div className="space-y-3 font-mono-tech text-[11px]">
               {activeShips.map((s) => {
                 const cpuUsage = parseInt(s.metrics?.cpu_usage || '320')
                 const cpuCap = parseInt(s.metrics?.cpu_capacity || '4000')
@@ -205,11 +184,25 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], depl
             </div>
           )}
         </div>
-      </div>
 
-      <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 text-center">
-        Tersane v2.0.0 Control Panel
+        <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 text-center font-mono-tech">
+          Tersane v2.5.0 Pro Master Control Panel
+        </div>
       </div>
-    </aside>
+    </div>
+  )
+}
+
+function Building2Icon(props) {
+  return (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+      <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+      <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/>
+      <path d="M10 6h4"/>
+      <path d="M10 10h4"/>
+      <path d="M10 14h4"/>
+      <path d="M10 18h4"/>
+    </svg>
   )
 }

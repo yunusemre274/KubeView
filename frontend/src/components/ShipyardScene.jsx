@@ -10,10 +10,11 @@ import IngressLighthouse from './3d/IngressLighthouse'
 import NetworkPolicyBarriers from './3d/NetworkPolicyBarriers'
 import ConfigMapAndSecretMesh from './3d/ConfigMapAndSecretMesh'
 import StorageDepotMesh from './3d/StorageDepotMesh'
+import { StatefulSetShip, DaemonSetEquipment, JobTaskBoatMesh } from './3d/WorkloadHelpers'
 import PodLogViewer from './PodLogViewer'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2 } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2, Repeat, Play, Layers3, Terminal } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -28,7 +29,7 @@ function Ocean() {
   })
 
   return (
-    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]} receiveShadow>
+    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[-0.5, -0.5, 0]} receiveShadow>
       <planeGeometry args={[320, 320, 32, 32]} />
       <meshStandardMaterial
         color="#0284c7"
@@ -307,8 +308,8 @@ function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomal
   )
 }
 
-// 8. Cargo Ship (Worker Node) With Smooth Patrol Rotation Curve
-function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, activeAnomaly }) {
+// 8. Cargo Ship (Worker Node) With Smooth Patrol Rotation Curve & DaemonSet Antenna
+function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, onSelectDaemonSet, activeAnomaly }) {
   const groupRef = useRef()
   const [hovered, setHovered] = useState(false)
   const isNodeNotReady = activeAnomaly === 'NodeNotReady' && shipData.id === 'node-2'
@@ -392,6 +393,13 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
         onClickKubelet={() => onSelectKubelet(shipData)}
       />
 
+      {/* DAEMONSET STANDART EKİPMAN ANTENİ (HER GEMİNİN DİREĞİNDE REPEAT EDER) */}
+      <DaemonSetEquipment
+        position={[0, 6.5, -7.0]}
+        dsData={{ name: 'kube-flannel-ds', namespace: 'kube-system', desired: 2, current: 2, ready: 2 }}
+        onSelectDaemonSet={onSelectDaemonSet}
+      />
+
       {pods.map((pod, idx) => {
         const row = Math.floor(idx / 2)
         const col = idx % 2
@@ -442,10 +450,18 @@ export default function ShipyardScene({ ships = [] }) {
   const [showEventLog, setShowEventLog] = useState(false)
   const [pendingMutation, setPendingMutation] = useState(null)
   const [activeAnomaly, setActiveAnomaly] = useState(null)
+  const [activeJobBoat, setActiveJobBoat] = useState({
+    name: 'db-migration-job-8841',
+    namespace: 'default',
+    completions: '1/1',
+    status: 'Completed',
+    start_time: '11:05:00',
+    end_time: '11:05:42'
+  })
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v2.4.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'PVC & PV Depolama Ambarı Müfettişi Aktif', type: 'Normal', isUserTriggered: false },
+    { id: 1, time: '23:38:10', message: 'Tersane v2.5.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'İş Yükü Tipi Ayrımı (STS, DS, Job, CronJob) Aktif', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
@@ -468,6 +484,8 @@ export default function ShipyardScene({ ships = [] }) {
           id: 'pod-1',
           name: 'web-frontend-deploy-74b89',
           namespace: 'default',
+          owner_kind: 'Deployment',
+          owner_name: 'web-frontend-deploy',
           color: '#10b981',
           status: 'Running',
           ip: '10.244.0.12',
@@ -484,6 +502,8 @@ export default function ShipyardScene({ ships = [] }) {
           id: 'pod-2',
           name: 'api-backend-deploy-59d4c',
           namespace: 'default',
+          owner_kind: 'Deployment',
+          owner_name: 'api-backend-deploy',
           color: '#0284c7',
           status: 'Running',
           ip: '10.244.0.15',
@@ -510,6 +530,9 @@ export default function ShipyardScene({ ships = [] }) {
           id: 'pod-4',
           name: 'redis-cache-set-0',
           namespace: 'production',
+          owner_kind: 'StatefulSet',
+          owner_name: 'redis-cache-set',
+          ordinal: '#0',
           color: '#a855f7',
           status: 'Running',
           ip: '10.244.1.20',
@@ -563,6 +586,71 @@ export default function ShipyardScene({ ships = [] }) {
       setActiveAnomaly(null)
       addEventLog('Sistem Normale Döndü', 'Normal', false)
     }
+  }
+
+  const handleSelectStatefulSet = () => {
+    setActiveSelection({
+      type: 'STATEFULSET',
+      data: {
+        name: 'redis-cache-set',
+        namespace: 'production',
+        replicas: '1/1 Ready',
+        service_name: 'redis-svc',
+        ordinal: '#0',
+        bound_pvc: 'web-data-pvc',
+        pod_names: ['redis-cache-set-0']
+      }
+    })
+    setCamTargetPos(new THREE.Vector3(-4, 12, -12))
+    setCamTargetLookAt(new THREE.Vector3(-14, 2, -22))
+  }
+
+  const handleSelectDaemonSet = (ds) => {
+    setActiveSelection({
+      type: 'DAEMONSET',
+      data: ds || {
+        name: 'kube-flannel-ds',
+        namespace: 'kube-system',
+        desired: 2,
+        current: 2,
+        ready: 2,
+        nodes: ['node-alpha', 'node-beta']
+      }
+    })
+    setCamTargetPos(new THREE.Vector3(14, 16, 16))
+    setCamTargetLookAt(new THREE.Vector3(2, 6, 4))
+  }
+
+  const handleSelectJob = (job) => {
+    setActiveSelection({
+      type: 'JOB',
+      data: job || activeJobBoat
+    })
+    setCamTargetPos(new THREE.Vector3(24, 10, 28))
+    setCamTargetLookAt(new THREE.Vector3(14, 1, 18))
+  }
+
+  const handleTriggerCronJob = (cronJobName) => {
+    const newJobName = `db-backup-job-${Math.floor(1000 + Math.random() * 9000)}`
+    const newJob = {
+      name: newJobName,
+      namespace: 'default',
+      completions: '1/1',
+      status: 'Running',
+      start_time: new Date().toLocaleTimeString('tr-TR'),
+      end_time: 'Devam ediyor...'
+    }
+    setActiveJobBoat(newJob)
+    addEventLog(`⏰ CronJob '${cronJobName}' yeni bir Job başlattı: ${newJobName}`, 'Normal', true)
+    
+    // Smooth camera view to Job Task Boat
+    setCamTargetPos(new THREE.Vector3(24, 10, 28))
+    setCamTargetLookAt(new THREE.Vector3(14, 1, 18))
+
+    setTimeout(() => {
+      setActiveJobBoat((prev) => ({ ...prev, status: 'Completed', end_time: new Date().toLocaleTimeString('tr-TR') }))
+      addEventLog(`✅ Job '${newJobName}' başarıyla tamamlandı (Completed)`, 'Normal', false)
+    }, 4500)
   }
 
   const handleSelectConfigMap = () => {
@@ -767,7 +855,7 @@ export default function ShipyardScene({ ships = [] }) {
           <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-amber-500/10 border border-amber-500/30">
             <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
             <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
-              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.4.0</span>
+              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.5.0</span>
             </span>
           </div>
 
@@ -918,6 +1006,20 @@ export default function ShipyardScene({ ships = [] }) {
             onSelectStorage={handleSelectPVC}
           />
 
+          {/* 3D STATEFULSET SHIP (NUMARALI SABİT DEMİRLİ GEMİ) */}
+          <StatefulSetShip
+            position={[-14, 0, -22]}
+            stsData={{ name: 'redis-cache-set', ordinal: '#0', replicas: '1/1 Ready' }}
+            onSelectStatefulSet={handleSelectStatefulSet}
+          />
+
+          {/* 3D JOB TASK BOAT (GEÇİCİ GÖREV ŞALUPASI) */}
+          <JobTaskBoatMesh
+            position={[14, 0.2, 18]}
+            jobData={activeJobBoat}
+            onSelectJob={handleSelectJob}
+          />
+
           {/* 3D Ingress Gateway Lighthouse */}
           <IngressLighthouse position={[28, 0.2, 18]} onSelectIngress={handleSelectIngress} />
           <NetworkPolicyBarriers position={[-10, 1.5, 0]} active={showNetworkPolicy} onSelectNetworkPolicy={handleSelectNetworkPolicy} />
@@ -937,6 +1039,7 @@ export default function ShipyardScene({ ships = [] }) {
               onSelectPod={handleSelectPod}
               onSelectShip={handleSelectShip}
               onSelectKubelet={handleSelectKubelet}
+              onSelectDaemonSet={handleSelectDaemonSet}
               activeAnomaly={activeAnomaly}
             />
           ))}
@@ -957,6 +1060,7 @@ export default function ShipyardScene({ ships = [] }) {
         <MasterDashboardOverlay
           onClose={handleResetCamera}
           activeShips={activeShips}
+          onTriggerCronJob={handleTriggerCronJob}
         />
       )}
 
@@ -999,6 +1103,9 @@ export default function ShipyardScene({ ships = [] }) {
                   {activeSelection.type === 'SECRET' && <Key className="w-4 h-4 text-amber-400" />}
                   {activeSelection.type === 'PVC' && <Database className="w-4 h-4 text-purple-400" />}
                   {activeSelection.type === 'PV' && <HardDrive className="w-4 h-4 text-purple-400" />}
+                  {activeSelection.type === 'STATEFULSET' && <Layers3 className="w-4 h-4 text-purple-400" />}
+                  {activeSelection.type === 'DAEMONSET' && <Terminal className="w-4 h-4 text-sky-400" />}
+                  {activeSelection.type === 'JOB' && <Play className="w-4 h-4 text-amber-400" />}
                   <span>
                     {activeSelection.type === 'KUBELET' && '📡 KUBELET AGENT (MASİF)'}
                     {activeSelection.type === 'CRANE' && '🏗️ KUBE-SCHEDULER (VİNÇ)'}
@@ -1010,12 +1117,98 @@ export default function ShipyardScene({ ships = [] }) {
                     {activeSelection.type === 'SECRET' && '🔐 KİLİTLİ KASA (SECRET)'}
                     {activeSelection.type === 'PVC' && '🏢 DEPO TALEBİ (PVC)'}
                     {activeSelection.type === 'PV' && '🏭 FİZİKSEL DEPO AMBARI (PV)'}
+                    {activeSelection.type === 'STATEFULSET' && '🔢 NUMARALI SABİT GEMİ (STATEFULSET)'}
+                    {activeSelection.type === 'DAEMONSET' && '🧯 STANDART EKİPMAN (DAEMONSET)'}
+                    {activeSelection.type === 'JOB' && '⚓ GÖREV ŞALUPASI (JOB)'}
                   </span>
                 </h3>
                 <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
                   <X className="w-4 h-4" />
                 </button>
               </div>
+
+              {/* STATEFULSET DETAILS */}
+              {activeSelection.type === 'STATEFULSET' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">STATEFULSET ADI:</span>
+                    <strong className="text-purple-400 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
+                      <strong className="text-sky-400">{activeSelection.data.namespace}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">REPLICA:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.replicas}</strong>
+                    </div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 font-bold block text-[10px]">SIRA & BAĞLI PVC BİLGİSİ:</span>
+                    <div className="flex justify-between"><span>Ordinal Sıra:</span><strong className="text-amber-300">{activeSelection.data.ordinal}</strong></div>
+                    <div className="flex justify-between"><span>Headless Service:</span><strong className="text-sky-300">{activeSelection.data.service_name}</strong></div>
+                    <div className="flex justify-between"><span>Volume Claim:</span><strong className="text-purple-300">{activeSelection.data.bound_pvc}</strong></div>
+                  </div>
+                </div>
+              )}
+
+              {/* DAEMONSET DETAILS */}
+              {activeSelection.type === 'DAEMONSET' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">DAEMONSET ADI:</span>
+                    <strong className="text-sky-400 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1.5 text-center">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[9px]">DESIRED:</span>
+                      <strong className="text-amber-400">{activeSelection.data.desired}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[9px]">CURRENT:</span>
+                      <strong className="text-sky-400">{activeSelection.data.current}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[9px]">READY:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.ready}</strong>
+                    </div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">ÇALIŞTIĞI GEMİLER (NODES):</span>
+                    {activeSelection.data.nodes?.map((n, i) => (
+                      <div key={i} className="text-slate-200 text-[10px]">● {n} (Standart Ekipman Aktif)</div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* JOB DETAILS */}
+              {activeSelection.type === 'JOB' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">GÖREV ŞALUPASI (JOB) ADI:</span>
+                    <strong className="text-amber-400 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">TAMAMLANMA:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.completions}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">DURUM:</span>
+                      <strong className={activeSelection.data.status === 'Failed' ? 'text-red-400' : 'text-emerald-400'}>
+                        {activeSelection.data.status}
+                      </strong>
+                    </div>
+                  </div>
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">ZAMANLAMALAR:</span>
+                    <div className="flex justify-between"><span>Başlangıç:</span><strong className="text-slate-200">{activeSelection.data.start_time}</strong></div>
+                    <div className="flex justify-between"><span>Bitiş:</span><strong className="text-emerald-300">{activeSelection.data.end_time}</strong></div>
+                  </div>
+                </div>
+              )}
 
               {/* PVC DETAILS (PERSISTENTVOLUMECLAIM) */}
               {activeSelection.type === 'PVC' && (
@@ -1266,7 +1459,7 @@ export default function ShipyardScene({ ships = [] }) {
                 </div>
               )}
 
-              {/* POD DETAILS & LOG VIEWER WITH SUB-TABS */}
+              {/* POD DETAILS & LOG VIEWER WITH PARENT OWNER BADGE */}
               {activeSelection.type === 'POD' && (
                 <div className="space-y-3">
                   {/* SUB TAB SELECTOR */}
@@ -1302,6 +1495,14 @@ export default function ShipyardScene({ ships = [] }) {
                       <div>
                         <span className="text-slate-400 block text-[10px]">POD ADI:</span>
                         <strong className="text-white text-xs break-all">{activeSelection.data.name || 'web-frontend-deploy-74b89'}</strong>
+                      </div>
+
+                      {/* PARENT OWNER BADGE */}
+                      <div className="bg-slate-900/90 p-2 rounded border border-purple-500/40 flex items-center justify-between">
+                        <span className="text-slate-400 text-[10px]">YÖNETEN ÜST NESNE (OWNER):</span>
+                        <strong className="text-purple-300 font-bold text-[10px] px-2 py-0.5 rounded bg-purple-500/20 border border-purple-500/30">
+                          {activeSelection.data.owner_kind || 'Deployment'}: {activeSelection.data.owner_name || activeSelection.data.name}
+                        </strong>
                       </div>
 
                       <div className="grid grid-cols-2 gap-2">
