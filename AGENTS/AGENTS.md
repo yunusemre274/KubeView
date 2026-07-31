@@ -12,22 +12,24 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 2. **Uygulama Geneli Tek Paylaşılan WebSocket Singleton Kuralı (SINGLETON WEBSOCKET MANAGER):**
    - **WebSocket bağlantıları asla alt bileşenlerde veya tekrarlayan custom hook'larda ayrı ayrı `new WebSocket()` çağrılarak AÇILAMAZ!**
    - Her zaman uygulama kökünde (`main.jsx`) `ShipyardClusterContext` içerisindeki modül seviyesi `singletonManager` ile TEK BİR KEZ kurulur.
-   - React StrictMode 2x mount etse dahi `singletonManager` socket state ve ref kontrolleri sayesinde backend'e SADECE VE SADECE 1 ADET CANLI SOKET açılır. Tüm alt bileşenler (3D sahne, paneller, grafikler) bu tek paylaşılan Context state'ini salt-okunur tüketir.
-3. **WebSocket & Canlı Yayın Akışı Yaşam Döngüsü Kuralı (STATE LOOP VE UNMOUNT ÖNLEME):**
+3. **R3F Geometri ve Materyal Doğrulama Kuralı (WEBGL CONTEXT LOSS ÖNLEME):**
+   - **Yeni bir 3D React Three Fiber (R3F) bileşeni eklenirken kullanılan tüm JSX `<...Geometry>` ve `<...Material>` etiketlerinin fiilen THREE.js namespace'inde tanımlı intrinsic elementler olduğu doğrulanmalıdır!**
+   - Desteklenmeyen veya Three.js'te bulunmayan özel bir geometri etiketi (örn. `<prismGeometry>`) ASLA doğrudan JSX olarak yazılamaz; aksi halde WebGL renderer context'i çöker (`Context Lost`).
+   - Özel bir biçim gerekiyorsa yerleşik Three.js alternatifleri seçilmeli (örn. 4-segmentli `<coneGeometry args={[4.6, 1.8, 4]}>` ile çatı) veya `extend()` ile R3F namespace'ine bildirilmelidir.
+4. **WebSocket & Canlı Yayın Akışı Yaşam Döngüsü Kuralı (STATE LOOP VE UNMOUNT ÖNLEME):**
    - **WebSocket ve event stream bağlantıları React `useEffect` ve `useCallback` içinde tutulurken asla mutable state değişkenleri (`isConnected`, `activePort`) callback bağımlılık dizilerine (`deps`) eklenmez!**
-   - WebSocket `onmessage` ve JSON parse blokları istisnasız `try/catch` ile sarmalanarak unmount/disconnect döngüleri engellenmelidir.
-4. **Otonom Faz Geçişleri:**
+5. **Otonom Faz Geçişleri:**
    - Bir faz İÇİNDEKİ görevler arasında VE bir fazdan bir sonraki faza geçişte kullanıcı onayı BEKLENMEZ.
-5. **Git Yetkilendirmesi (TAM YETKİ KURALI):**
+6. **Git Yetkilendirmesi (TAM YETKİ KURALI):**
    - `release-agent`, commit, branch, merge ve push işlemlerini TAM YETKİYLE otonom gerçekleştirebilir (`git push --force` yasaktır).
-6. **3D Event Propagation & Raycasting Hit-Test:**
+7. **3D Event Propagation & Raycasting Hit-Test:**
    - İç içe 3D nesnelerde tıklama (`onClick`) ve hover (`onPointerOver`) event handler'larında `e.stopPropagation()` çağrılmak ZORUNDADIR!
-7. **Absolute Overlay Paneller & Sıfır Canvas Resize:**
+8. **Absolute Overlay Paneller & Sıfır Canvas Resize:**
    - Yan paneller ve bilgi kartları hiçbir zaman canvas ile flex/grid yer paylaşımı yapamaz. Canvas her zaman `position: absolute; inset: 0;` olarak render edilir.
-8. **Unbroken 100% Height Chain & Canvas Boyutu:**
+9. **Unbroken 100% Height Chain & Canvas Boyutu:**
    - `html, body, #root, main` ve `.stage-wrapper` kapsayıcılarında `height: 100%` ve flexbox `min-height: 0` zinciri KESİNTİSİZ korunmalıdır.
-9. **KISS Prensibi:**
-   - En basit çalışan çözüm DOĞRU çözümdür. Olay Günlüğü son 1 saatlik in-memory ring buffer ile tutulur.
+10. **KISS Prensibi:**
+    - En basit çalışan çözüm DOĞRU çözümdür. Olay Günlüğü son 1 saatlik in-memory ring buffer ile tutulur.
 
 ---
 

@@ -63,9 +63,9 @@ export default function StorageDepotMesh({
           />
         </mesh>
 
-        {/* Oluklu Çatı (Corrugated Roof) */}
-        <mesh position={[0, 6.0, 0]} rotation={[0, 0, 0]} castShadow>
-          <prismGeometry args={[7, 1.6, 9]} />
+        {/* Oluklu Beşik Çatı (Corrugated Roof - Native 4-Segment Cylinder Prism) */}
+        <mesh position={[0, 6.0, 0]} rotation={[0, Math.PI / 4, 0]} castShadow>
+          <coneGeometry args={[4.6, 1.8, 4]} />
           <meshStandardMaterial color="#475569" metalness={0.7} roughness={0.3} />
         </mesh>
 
@@ -79,7 +79,7 @@ export default function StorageDepotMesh({
         <group position={[0, 5.2, 4.56]}>
           <mesh>
             <boxGeometry args={[4.5, 0.9, 0.1]} />
-            <meshStandardMaterial color="#0f172a" border="#a855f7" />
+            <meshStandardMaterial color="#0f172a" />
           </mesh>
           <pointLight color="#a855f7" intensity={1.5} distance={8} />
         </group>
