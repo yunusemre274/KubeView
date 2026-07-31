@@ -4,6 +4,14 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 ---
 
+## [v2.3.0 - ConfigMap & Secret Güvenli İçerik Müfettişi] - 2026-07-31
+
+### Durum Tespiti Notu
+- **Önceki Durum Tespiti:** Kod tabanında yapılan denetimde ConfigMap (sevkiyat föyü) ve Secret (kilitli kasa) nesnelerinin 3D sahnede veya panellerde henüz hiçbir görsel karşılığının ve içerik müfettişinin bulunmadığı tespit edilmiştir.
+- **Eklenen Özellik:** ConfigMap'ler için tam key-value gösterimi, Secret'lar için ise kesinlikle değer çekmeyen/göstermeyen, sadece key isimleri ve `••••••••` maskeli görsel temsil sunan 3D Sevkiyat Pano'su, 3D Kilitli Çelik Kasa ve Güvenli Müfettiş Çekmecesi kurulmuştur.
+
+---
+
 ## [v2.2.0 - Canlı Pod Log Görüntüleyici] - 2026-07-31
 
 ### Durum Tespiti Notu

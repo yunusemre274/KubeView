@@ -12,6 +12,8 @@ Bu belge, Kubernetes bileşenlerinin Tersane 3D simülasyonundaki tam görsel ve
 | **Worker Node** | **Kargo Gemisi (Filo Üyesi)** | Rıhtıma yanaşan, konteynır (Pod) taşıyan ve vinçle yüklenen yük gemisi | Faz 3 |
 | **Control Plane (Master Node)** | **Yönetim Binası & Kontrol Kulesi** | Kırmızı çatılı, kuleli ve dönebilen radar sistemi olan ana kontrol binası | Faz 9 |
 | **Pod / Container** | **Kargo Konteynırı (Palet)** | Gemi güvertesinde veya karada üst üste dizili renkli çelik konteynır kutusu | Faz 3 |
+| **ConfigMap** | **Sevkiyat Föyü / Talimat Panosu** | Rıhtımda dikili, üzeri iğneli talimat kağıtlarıyla dolu tahta/çelik pano (tüm içerik açık) | Faz 22 |
+| **Secret** | **Kilitli Emniyet Kasası** | Rıhtımda sabitlenmiş, altın kilitli ve sinyal fenerli çelik kasa (sadece key ismi, değerler gizli) | Faz 22 |
 | **Service (ClusterIP / NodePort)** | **Liman Danışma & Ağ Yönlendirme Binası** | Kube-proxy sinyal fenerli ağ binası ve yönlendirme ışık kanalları | Faz 10 |
 | **Deployment / StatefulSet** | **Sefer Sipariş Kartı / Filo Siparişi** | Aynı tipteki gemi ve konteynır gruplarının toplu üretim ve yükleme emri | Faz 6 |
 | **Kubelet** | **Gemi Direğindeki Dönen Radar / Dümenci** | Gemi güvertesinde sürekli dönen ve node sağlığını bildiren radar | Faz 15 |

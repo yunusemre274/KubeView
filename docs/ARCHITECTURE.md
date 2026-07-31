@@ -10,6 +10,7 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - `ShipyardScene.jsx`: Ana 3D canvas kapsayıcısı. `position: absolute; inset: 0; width: 100%; height: 100%;` (Unbroken height chain).
 - `CargoShip.jsx`: Worker Node gemileri. Devriye rotası (CatmullRomCurve3) üzerinde hareket eder.
 - `CargoContainer.jsx`: Pod paletleri. Gemi üstüne parent-child dönüşümüyle bağlıdır.
+- `ConfigMapAndSecretMesh.jsx`: ConfigMap (Sevkiyat Föyü Panosu) ve Secret (Kilitli Çelik Kasa) 3D nesneleri.
 - `IngressLighthouse.jsx`: Ingress / Gateway API Uluslararası Deniz Feneri.
 - `NetworkPolicyBarriers.jsx`: 3D Kırmızı lazer güvenlik bariyerleri.
 - `OrchestrationHelpers.jsx`: HPA Mobil Vinç, Node Affinity Çizgileri, PDB Bakım Bayrağı.
@@ -33,6 +34,11 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - **Client-Go Akışı:** `CoreV1().Pods(ns).GetLogs(pod, &PodLogOptions{Container: c, Follow: true, TailLines: 150})` ile K8s API'sinden canlı stream açar.
 - **Bağlantı Yaşam Döngüsü:** Kullanıcı frontend'de Pod müfettiş çekmecesini veya Loglar sekmesini kapattığında WebSocket istemcisi `ws.close()` çağırır; backend Go `ctx.Cancel()` ile K8s API stream bağlantısını derhal sonlandırır.
 - **Bellek ve Scroll Yönetimi:** Frontend React state'inde en fazla 500 satır tutulur (eski satırlar düşürülür). Kullanıcı yukarı scroll yaptığında otomatik kaydırma duraklatılır, en alta indiğinde tekrar aktifleşir.
+
+### 5. ConfigMap & Secret Inspection Mimarisi ve Güvenlik Sınırları (Faz 22 / v2.3.0)
+- **ConfigMap Açık Gösterim:** `ConfigMapInfo` struct'ı `Data map[string]string` içerir. Tüm key-value bilgileri ve çok satırlı yapılandırma metinleri okunabilir kod blokları halinde gösterilir.
+- **Secret Sıfır Değer Maruziyeti İlkesi (Zero Value Leakage):** Backend `SecretInfo` struct'ı yalnızca `KeyNames []string` tutar; raw `Data` veya `StringData` map verisi Go tür tanımından ve backend iletim şemasından **tamamen çıkarılmıştır**.
+- **Frontend Maskeli Görünüm:** Frontend nesnesi sadece key isimlerini ve `••••••••` maskeli değerleri sunar; `🔒 Değerler güvenlik nedeniyle gösterilmez` uyarısı verir.
 
 ---
 

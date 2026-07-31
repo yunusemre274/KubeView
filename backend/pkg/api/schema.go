@@ -32,6 +32,8 @@ const (
 	KindDeployment ResourceKind = "Deployment"
 	KindService    ResourceKind = "Service"
 	KindEvent      ResourceKind = "Event"
+	KindConfigMap  ResourceKind = "ConfigMap"
+	KindSecret     ResourceKind = "Secret"
 )
 
 // ResourceMetrics contains CPU & RAM metrics data.
@@ -42,9 +44,29 @@ type ResourceMetrics struct {
 	MemPercent  float64 `json:"mem_percent,omitempty"`
 }
 
+// ConfigMapInfo holds sanitized ConfigMap details for frontend inspection.
+type ConfigMapInfo struct {
+	Name      string            `json:"name"`
+	Namespace string            `json:"namespace"`
+	Data      map[string]string `json:"data"`
+	UsedBy    []string          `json:"used_by,omitempty"`
+	CreatedAt string            `json:"created_at,omitempty"`
+}
+
+// SecretInfo holds strictly metadata-only Secret details.
+// SECURITY GUARANTEE: Data/StringData payload maps are intentionally omitted.
+type SecretInfo struct {
+	Name      string   `json:"name"`
+	Namespace string   `json:"namespace"`
+	Type      string   `json:"type"`
+	KeyNames  []string `json:"key_names"` // Only key names (e.g. "username", "password"), NEVER raw values!
+	UsedBy    []string `json:"used_by,omitempty"`
+	CreatedAt string   `json:"created_at,omitempty"`
+}
+
 // ShipyardMetaphor holds the mapping data to help 3D frontend render shipyard elements easily.
 type ShipyardMetaphor struct {
-	MetaphorRole string          `json:"metaphor_role"` // e.g. "Gemi (Node)", "Palet (Pod)", "Kontrol Kulesi (API Server)"
+	MetaphorRole string          `json:"metaphor_role"` // e.g. "Gemi (Node)", "Palet (Pod)", "Sevkiyat Föyü (ConfigMap)", "Kilitli Kasa (Secret)"
 	ContainerID  string          `json:"container_id,omitempty"`
 	NodeName     string          `json:"node_name,omitempty"`     // Target ship for Pods
 	Compartment  string          `json:"compartment,omitempty"`   // Namespace (Ambar)
@@ -69,6 +91,8 @@ type InitialStatePayload struct {
 	ClusterName  string            `json:"cluster_name"`
 	Nodes        []ResourcePayload `json:"nodes"`
 	Pods         []ResourcePayload `json:"pods"`
+	ConfigMaps   []ConfigMapInfo   `json:"config_maps,omitempty"`
+	Secrets      []SecretInfo      `json:"secrets,omitempty"`
 	TotalShips   int               `json:"total_ships"`
 	TotalPallets int               `json:"total_pallets"`
 }

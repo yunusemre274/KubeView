@@ -27,6 +27,8 @@ type Watcher struct {
 	nodes       map[string]api.ResourcePayload
 	pods        map[string]api.ResourcePayload
 	deployments map[string]api.ResourcePayload
+	configMaps  map[string]api.ConfigMapInfo
+	secrets     map[string]api.SecretInfo
 }
 
 // NewWatcher initializes a Watcher instance.
@@ -38,6 +40,8 @@ func NewWatcher(clientset kubernetes.Interface, namespace string, hub *ws.Hub) *
 		nodes:       make(map[string]api.ResourcePayload),
 		pods:        make(map[string]api.ResourcePayload),
 		deployments: make(map[string]api.ResourcePayload),
+		configMaps:  make(map[string]api.ConfigMapInfo),
+		secrets:     make(map[string]api.SecretInfo),
 	}
 }
 
@@ -56,16 +60,28 @@ func (w *Watcher) GetInitialState() api.InitialStatePayload {
 		podList = append(podList, p)
 	}
 
+	cmList := make([]api.ConfigMapInfo, 0, len(w.configMaps))
+	for _, cm := range w.configMaps {
+		cmList = append(cmList, cm)
+	}
+
+	secList := make([]api.SecretInfo, 0, len(w.secrets))
+	for _, s := range w.secrets {
+		secList = append(secList, s)
+	}
+
 	return api.InitialStatePayload{
 		ClusterName:  "k8s-tersane-cluster",
 		Nodes:        nodeList,
 		Pods:         podList,
+		ConfigMaps:   cmList,
+		Secrets:      secList,
 		TotalShips:   len(nodeList),
 		TotalPallets: len(podList),
 	}
 }
 
-// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, and Events.
+// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, ConfigMaps, Secrets, and Events.
 func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 	var factory informers.SharedInformerFactory
 	if w.namespace == "" {
@@ -107,7 +123,29 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add Deployment event handlers: %w", err)
 	}
 
-	// 4. K8s Core Events Informer (Liman Anonsları)
+	// 4. ConfigMap Informer
+	cmInformer := factory.Core().V1().ConfigMaps().Informer()
+	_, err = cmInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if cm, ok := obj.(*corev1.ConfigMap); ok { w.handleConfigMapEvent(api.ActionAdd, cm) } },
+		UpdateFunc: func(_, newObj interface{}) { if cm, ok := newObj.(*corev1.ConfigMap); ok { w.handleConfigMapEvent(api.ActionUpdate, cm) } },
+		DeleteFunc: func(obj interface{}) { if cm, ok := obj.(*corev1.ConfigMap); ok { w.handleConfigMapEvent(api.ActionDelete, cm) } },
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add ConfigMap event handlers: %w", err)
+	}
+
+	// 5. Secret Informer (Metadata & Key names ONLY!)
+	secInformer := factory.Core().V1().Secrets().Informer()
+	_, err = secInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if sec, ok := obj.(*corev1.Secret); ok { w.handleSecretEvent(api.ActionAdd, sec) } },
+		UpdateFunc: func(_, newObj interface{}) { if sec, ok := newObj.(*corev1.Secret); ok { w.handleSecretEvent(api.ActionUpdate, sec) } },
+		DeleteFunc: func(obj interface{}) { if sec, ok := obj.(*corev1.Secret); ok { w.handleSecretEvent(api.ActionDelete, sec) } },
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add Secret event handlers: %w", err)
+	}
+
+	// 6. K8s Core Events Informer (Liman Anonsları)
 	k8sEventInformer := factory.Core().V1().Events().Informer()
 	_, err = k8sEventInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
@@ -129,7 +167,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 			return fmt.Errorf("failed to sync informer cache for %v", resource)
 		}
 	}
-	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, Events). Listening for live events...")
+	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, ConfigMaps, Secrets, Events). Listening for live events...")
 
 	<-ctx.Done()
 	return nil
@@ -198,17 +236,17 @@ func (w *Watcher) handlePodEvent(action api.ResourceAction, pod *corev1.Pod) {
 }
 
 func (w *Watcher) handleDeploymentEvent(action api.ResourceAction, deploy *appsv1.Deployment) {
-	depKey := fmt.Sprintf("%s/%s", deploy.Namespace, deploy.Name)
-	replicas := fmt.Sprintf("%d/%d", deploy.Status.ReadyReplicas, *deploy.Spec.Replicas)
+	deployKey := fmt.Sprintf("%s/%s", deploy.Namespace, deploy.Name)
+	status := fmt.Sprintf("%d/%d Ready", deploy.Status.ReadyReplicas, deploy.Status.Replicas)
 
 	payload := api.ResourcePayload{
 		Action:    action,
 		Kind:      api.KindDeployment,
 		Namespace: deploy.Namespace,
 		Name:      deploy.Name,
-		Status:    replicas,
+		Status:    status,
 		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Sefer Siparişi (Deployment)",
+			MetaphorRole: "Sefer Sipariş Kartı",
 			Compartment:  deploy.Namespace,
 			HealthState:  "SAFE",
 		},
@@ -216,9 +254,9 @@ func (w *Watcher) handleDeploymentEvent(action api.ResourceAction, deploy *appsv
 
 	w.mu.Lock()
 	if action == api.ActionDelete {
-		delete(w.deployments, depKey)
+		delete(w.deployments, deployKey)
 	} else {
-		w.deployments[depKey] = payload
+		w.deployments[deployKey] = payload
 	}
 	w.mu.Unlock()
 
@@ -226,18 +264,97 @@ func (w *Watcher) handleDeploymentEvent(action api.ResourceAction, deploy *appsv
 	w.hub.BroadcastMessage(msg)
 }
 
-func (w *Watcher) handleK8sCoreEvent(evt *corev1.Event) {
+func (w *Watcher) handleConfigMapEvent(action api.ResourceAction, cm *corev1.ConfigMap) {
+	cmKey := fmt.Sprintf("%s/%s", cm.Namespace, cm.Name)
+	cmInfo := api.ConfigMapInfo{
+		Name:      cm.Name,
+		Namespace: cm.Namespace,
+		Data:      cm.Data,
+		CreatedAt: cm.CreationTimestamp.Format(time.RFC3339),
+	}
+
+	w.mu.Lock()
+	if action == api.ActionDelete {
+		delete(w.configMaps, cmKey)
+	} else {
+		w.configMaps[cmKey] = cmInfo
+	}
+	w.mu.Unlock()
+
+	payload := api.ResourcePayload{
+		Action:    action,
+		Kind:      api.KindConfigMap,
+		Namespace: cm.Namespace,
+		Name:      cm.Name,
+		Status:    "Active",
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Sevkiyat Föyü (ConfigMap)",
+			Compartment:  cm.Namespace,
+			HealthState:  "SAFE",
+		},
+		Object: cmInfo,
+	}
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
+func (w *Watcher) handleSecretEvent(action api.ResourceAction, secret *corev1.Secret) {
+	secKey := fmt.Sprintf("%s/%s", secret.Namespace, secret.Name)
+
+	// Extract ONLY key names (e.g. "username", "password", "tls.crt")
+	keys := make([]string, 0, len(secret.Data))
+	for k := range secret.Data {
+		keys = append(keys, k)
+	}
+
+	// SECURITY GUARANTEE: Raw secret values in Data / StringData map are NEVER serialized or transmitted.
+	secInfo := api.SecretInfo{
+		Name:      secret.Name,
+		Namespace: secret.Namespace,
+		Type:      string(secret.Type),
+		KeyNames:  keys,
+		CreatedAt: secret.CreationTimestamp.Format(time.RFC3339),
+	}
+
+	w.mu.Lock()
+	if action == api.ActionDelete {
+		delete(w.secrets, secKey)
+	} else {
+		w.secrets[secKey] = secInfo
+	}
+	w.mu.Unlock()
+
+	payload := api.ResourcePayload{
+		Action:    action,
+		Kind:      api.KindSecret,
+		Namespace: secret.Namespace,
+		Name:      secret.Name,
+		Status:    "Encrypted & Locked",
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Kilitli Kasa (Secret)",
+			Compartment:  secret.Namespace,
+			HealthState:  "SAFE",
+		},
+		Object: secInfo,
+	}
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
+func (w *Watcher) handleK8sCoreEvent(e *corev1.Event) {
 	payload := api.ResourcePayload{
 		Action:    api.ActionAdd,
 		Kind:      api.KindEvent,
-		Namespace: evt.Namespace,
-		Name:      evt.InvolvedObject.Name,
-		Status:    evt.Type,
-		Message:   evt.Message,
+		Namespace: e.Namespace,
+		Name:      e.Name,
+		Status:    e.Type,
+		Message:   fmt.Sprintf("[%s] %s: %s", e.Reason, e.InvolvedObject.Name, e.Message),
 		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Liman Anonsu (Event)",
-			Compartment:  evt.Namespace,
-			HealthState:  evt.Type,
+			MetaphorRole: "Liman Anonsu",
+			Compartment:  e.Namespace,
+			HealthState:  w.getHealthState(e.Type),
 		},
 	}
 
@@ -247,11 +364,13 @@ func (w *Watcher) handleK8sCoreEvent(evt *corev1.Event) {
 
 func (w *Watcher) getHealthState(status string) string {
 	switch status {
-	case "Running", "Ready":
+	case "Ready", "Running", "SAFE", "Normal":
 		return "SAFE"
-	case "Pending", "ContainerCreating":
+	case "Warning", "NotReady", "Pending":
 		return "WARNING"
-	default:
+	case "Failed", "Error", "CrashLoopBackOff", "OOMKilled", "Critical":
 		return "CRITICAL"
+	default:
+		return "SAFE"
 	}
 }

@@ -8,10 +8,11 @@ import EventLogDrawer from './EventLogDrawer'
 import ConfirmationModal from './ConfirmationModal'
 import IngressLighthouse from './3d/IngressLighthouse'
 import NetworkPolicyBarriers from './3d/NetworkPolicyBarriers'
+import ConfigMapAndSecretMesh from './3d/ConfigMapAndSecretMesh'
 import PodLogViewer from './PodLogViewer'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -434,7 +435,7 @@ export default function ShipyardScene({ ships = [] }) {
   const [showNetworkPolicy, setShowNetworkPolicy] = useState(false)
   const [showHPA, setShowHPA] = useState(true)
   const [activeClusterContext, setActiveClusterContext] = useState('minikube')
-  const [podDrawerTab, setPodDrawerTab] = useState('details') // 'details' | 'logs'
+  const [podDrawerTab, setPodDrawerTab] = useState('details')
   
   const [isReadOnlyMode, setIsReadOnlyMode] = useState(false)
   const [showEventLog, setShowEventLog] = useState(false)
@@ -442,8 +443,8 @@ export default function ShipyardScene({ ships = [] }) {
   const [activeAnomaly, setActiveAnomaly] = useState(null)
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v2.1.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'Geniş Panoramik Kamera Görüşü Aktif', type: 'Normal', isUserTriggered: false },
+    { id: 1, time: '23:38:10', message: 'Tersane v2.3.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'ConfigMap & Secret Güvenli Müfettişi Aktif', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
@@ -561,6 +562,42 @@ export default function ShipyardScene({ ships = [] }) {
       setActiveAnomaly(null)
       addEventLog('Sistem Normale Döndü', 'Normal', false)
     }
+  }
+
+  const handleSelectConfigMap = () => {
+    setActiveSelection({
+      type: 'CONFIGMAP',
+      data: {
+        name: 'web-frontend-config',
+        namespace: 'default',
+        used_by: ['web-frontend-deploy-74b89'],
+        created_at: '2026-07-25T10:00:00Z',
+        data: {
+          APP_ENV: 'production',
+          LOG_LEVEL: 'info',
+          MAX_CONNECTIONS: '100',
+          'nginx.conf': 'server {\n  listen 80;\n  server_name localhost;\n  location / {\n    root /usr/share/nginx/html;\n    index index.html;\n  }\n}'
+        }
+      }
+    })
+    setCamTargetPos(new THREE.Vector3(-4, 10, -10))
+    setCamTargetLookAt(new THREE.Vector3(-8, 1, -18))
+  }
+
+  const handleSelectSecret = () => {
+    setActiveSelection({
+      type: 'SECRET',
+      data: {
+        name: 'db-credentials-secret',
+        namespace: 'default',
+        type: 'Opaque',
+        key_names: ['DB_USER', 'DB_PASSWORD', 'API_SECRET_KEY'],
+        used_by: ['api-backend-deploy-59d4c'],
+        created_at: '2026-07-28T14:20:00Z'
+      }
+    })
+    setCamTargetPos(new THREE.Vector3(2, 10, -10))
+    setCamTargetLookAt(new THREE.Vector3(-2, 1, -18))
   }
 
   const handleSelectIngress = () => {
@@ -692,7 +729,7 @@ export default function ShipyardScene({ ships = [] }) {
           <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-amber-500/10 border border-amber-500/30">
             <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
             <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
-              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.2.0</span>
+              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.3.0</span>
             </span>
           </div>
 
@@ -826,6 +863,14 @@ export default function ShipyardScene({ ships = [] }) {
           <HarborVillage onClickBuilding={handleSelectMaster} />
           <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
 
+          {/* 3D ConfigMap Notice Board & 3D Secret Safe Box */}
+          <ConfigMapAndSecretMesh
+            configMapPosition={[-8, 0.2, -18]}
+            secretPosition={[-2, 0.2, -18]}
+            onSelectConfigMap={handleSelectConfigMap}
+            onSelectSecret={handleSelectSecret}
+          />
+
           {/* 3D Ingress Gateway Lighthouse */}
           <IngressLighthouse position={[28, 0.2, 18]} onSelectIngress={handleSelectIngress} />
           <NetworkPolicyBarriers position={[-10, 1.5, 0]} active={showNetworkPolicy} onSelectNetworkPolicy={handleSelectNetworkPolicy} />
@@ -903,6 +948,8 @@ export default function ShipyardScene({ ships = [] }) {
                   {activeSelection.type === 'INGRESS' && <Compass className="w-4 h-4 text-amber-400" />}
                   {activeSelection.type === 'POD' && <Box className="w-4 h-4 text-emerald-400" />}
                   {activeSelection.type === 'SHIP' && <ShipIcon className="w-4 h-4 text-sky-400" />}
+                  {activeSelection.type === 'CONFIGMAP' && <ClipboardList className="w-4 h-4 text-amber-400" />}
+                  {activeSelection.type === 'SECRET' && <Key className="w-4 h-4 text-amber-400" />}
                   <span>
                     {activeSelection.type === 'KUBELET' && '📡 KUBELET AGENT (MASİF)'}
                     {activeSelection.type === 'CRANE' && '🏗️ KUBE-SCHEDULER (VİNÇ)'}
@@ -910,12 +957,106 @@ export default function ShipyardScene({ ships = [] }) {
                     {activeSelection.type === 'INGRESS' && '🚨 INGRESS DENİZ FENERİ'}
                     {activeSelection.type === 'POD' && '📦 PALET (POD)'}
                     {activeSelection.type === 'SHIP' && '🚢 GEMİ (WORKER NODE)'}
+                    {activeSelection.type === 'CONFIGMAP' && '📋 SEVKİYAT FÖYÜ (CONFIGMAP)'}
+                    {activeSelection.type === 'SECRET' && '🔐 KİLİTLİ KASA (SECRET)'}
                   </span>
                 </h3>
                 <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
                   <X className="w-4 h-4" />
                 </button>
               </div>
+
+              {/* CONFIGMAP DETAILS (FULL OPEN DISPLAY) */}
+              {activeSelection.type === 'CONFIGMAP' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">CONFIGMAP ADI:</span>
+                    <strong className="text-amber-400 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
+                      <strong className="text-sky-400">{activeSelection.data.namespace}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">TİP:</span>
+                      <strong className="text-emerald-400">Açık Ayar Metni</strong>
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">KULLANAN POD'LAR:</span>
+                    {activeSelection.data.used_by?.map((podName, idx) => (
+                      <div key={idx} className="text-slate-200 text-[10px]">● {podName}</div>
+                    ))}
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
+                    <span className="text-amber-400 font-bold block text-[10px]">CONFIGMAP KEY-VALUE İÇERİĞİ:</span>
+                    {Object.entries(activeSelection.data.data || {}).map(([key, val]) => (
+                      <div key={key} className="bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1">
+                        <span className="text-sky-300 font-bold block text-[10px]">● Key: {key}</span>
+                        {val.includes('\n') ? (
+                          <pre className="p-1.5 bg-slate-950 text-emerald-300 text-[9.5px] rounded border border-slate-800 overflow-x-auto max-h-32 whitespace-pre font-mono-tech">
+                            {val}
+                          </pre>
+                        ) : (
+                          <div className="text-slate-200 text-[10px] break-all font-mono">Value: {val}</div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* SECRET DETAILS (SAFE METADATA & MASKED VALUES ONLY) */}
+              {activeSelection.type === 'SECRET' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">SECRET ADI:</span>
+                    <strong className="text-amber-400 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
+                      <strong className="text-sky-400">{activeSelection.data.namespace}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">SECRET TİPİ:</span>
+                      <strong className="text-purple-400">{activeSelection.data.type || 'Opaque'}</strong>
+                    </div>
+                  </div>
+
+                  {/* SECURITY NOTICE BADGE */}
+                  <div className="bg-amber-500/10 p-2.5 rounded-lg border border-amber-500/40 flex items-center gap-2">
+                    <Shield className="w-5 h-5 text-amber-400 shrink-0 animate-pulse" />
+                    <div className="text-[10px] text-amber-300 leading-tight">
+                      <strong>🔒 Değerler Güvenlik Nedeniyle Saklıdır:</strong> Secret payloads backend veya frontend'e asla iletilmez.
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">KULLANAN POD'LAR:</span>
+                    {activeSelection.data.used_by?.map((podName, idx) => (
+                      <div key={idx} className="text-slate-200 text-[10px]">● {podName}</div>
+                    ))}
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
+                    <span className="text-amber-400 font-bold block text-[10px]">KEY İSİMLERİ & MASKE GÖRÜNÜMÜ:</span>
+                    {activeSelection.data.key_names?.map((keyName) => (
+                      <div key={keyName} className="bg-slate-900/90 p-2 rounded border border-slate-800 flex justify-between items-center text-[10px]">
+                        <span className="text-sky-300 font-bold">🔑 {keyName}:</span>
+                        <span className="text-slate-500 font-mono tracking-widest bg-slate-950 px-2 py-0.5 rounded border border-slate-800 select-none">
+                          ••••••••
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* KUBELET DETAILS */}
               {activeSelection.type === 'KUBELET' && (

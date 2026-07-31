@@ -4,7 +4,7 @@ Bu belge, Tersane projesinin tüm geliştirme fazlarını, mantıksal bağımlı
 
 ---
 
-## 🟢 Tamamlanan Fazlar (Faz 1 - Faz 21)
+## 🟢 Tamamlanan Fazlar (Faz 1 - Faz 22)
 - **Faz 1-15:** Backend Go Informer'lar, WebSocket streaming, React Three.js 3D liman motoru, girilebilir binalar, Kube-proxy ağ yapısı, Helm paketlemesi.
 - **Faz 13:** Varsayılan %100 3D Canvas, Çift Header Çözümü (`LESSON-002`), Nesne bazlı K8s müfettiş çekmecesi.
 - **Faz 14:** Absolute Overlay Çekmece Mimarisi, CSS Transform animasyonu, sıfır canvas resize (`LESSON-004`).
@@ -13,16 +13,16 @@ Bu belge, Tersane projesinin tüm geliştirme fazlarını, mantıksal bağımlı
 - **Faz 21: Canlı Pod Log Görüntüleyici (`v2.2.0`)**
   - Backend K8s API `pods/log` streaming WebSocket endpoint (`/api/v1/pods/logs/stream`).
   - Frontend `PodLogViewer.jsx` monospace terminal log görüntüleyicisi.
-  - Multi-container pod seçim sekmeleri.
-  - Auto-scroll duraklatma ve "En Alta İniş" tespiti.
-  - Regex tabanlı renkli ERROR/WARN hata vurgulama.
-  - Çekmece ve sekme kapanışlarında WebSocket stream bağlantı sızıntısının engellenmesi.
+- **Faz 22: ConfigMap & Secret Güvenli İçerik Müfettişi (`v2.3.0`)**
+  - ConfigMap için 3D Sevkiyat Panosu ve tam okunabilir key-value içerik müfettişi.
+  - Secret için 3D Kilitli Çelik Kasa ve kesinlikle değer çekmeyen/göstermeyen, sadece key isimleri ve `••••••••` maskeli görsel temsil.
+  - Pod ilişkilerinin gösterilmesi.
 
 ---
 
-## 🟢 Kabul Kriterleri Doğrulaması (Faz 21)
-- [x] Bir container'a tıklanıp "Loglar" sekmesi açıldığında GERÇEK, canlı log verisi akıyor.
-- [x] Birden fazla container'lı bir Pod'da container seçimi çalışıyor.
-- [x] Log paneli kapatılınca arka plandaki stream de kapanıyor (bağlantı sızıntısı yok).
-- [x] Çok satırlı/uzun loglarda panel taşmıyor, kendi dikey/yatay scroll alanına sahip (max 500 satır sınırı).
-- [x] Duraklat/Devam Et ve Temizle butonları sorunsuz çalışıyor.
+## 🟢 Kabul Kriterleri Doğrulaması (Faz 22)
+- [x] ConfigMap'e tıklanınca TÜM key-value içeriği okunabilir şekilde gösteriliyor.
+- [x] Secret'a tıklanınca key İSİMLERİ görünüyor ama DEĞERLER asla gösterilmiyor, `••••••••` maskeli gösterim var.
+- [x] Backend kodunda Secret değerlerini frontend'de gönderen HİÇBİR kod yolu yok (kod denetimi ile doğrulandı).
+- [x] Her iki nesne tipi de hangi Pod'lar tarafından kullanıldığını gösteriyor.
+- [x] Sahnede 3D Sevkiyat Panosu (ConfigMap) ve 3D Kilitli Kasa (Secret) nesneleri var ve tıklanabiliyor.
