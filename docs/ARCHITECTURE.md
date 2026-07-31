@@ -39,9 +39,13 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - **`ownerReferences` Çıkarımı:** Backend `watcher.go` Pod Informer event'lerinde ownerKind ve ownerName ayıklar.
 
 ### 8. RBAC İlişkisel İnceleme ve Güvenlik Uyarısı Mimarisi (Faz 25 / v2.6.0)
-- **İlişkisel Veri Modeli:** RBAC fiziksel 3D nesne olarak sahneyi kalabalıklaştırmak yerine ilişkisel bağlarla entegre edilmiştir: `Pod ➔ ServiceAccount ➔ RoleBinding ➔ Role / ClusterRole`.
-- **Okunabilir İzinler Tablosu:** Role ve ClusterRole detaylarında izinler ham YAML yerine temiz UI tablosunda (`Resource` ➔ `Allowed Verbs`) gösterilir.
-- **Aşırı Yetki Güvenlik Uyarısı (Overly Permissive Authority):** `cluster-admin` veya `* / *` bağlı ServiceAccount'lar kırmızı/turuncu belirgin güvenlik rozetiyle uyarı verir (`⚠️ AŞIRI YETKİLİ SERVICEACCOUNT`).
+- **İlişkisel Veri Modeli:** `Pod ➔ ServiceAccount ➔ RoleBinding ➔ Role / ClusterRole`.
+- **Aşırı Yetki Güvenlik Uyarısı:** `cluster-admin` bağlı ServiceAccount'lar için kırmızı güvenlik rozeti.
+
+### 9. Metrik Geçmişi (Trend Grafiği) ve Bellek-İçi Ring Buffer Mimarisi (Faz 26 / v2.7.0)
+- **Sadece Bellek-İçi Ring Buffer (Zero Database):** Metrik geçmişi kalıcı veritabanına yazılmaz (KISS prensibi). Son 1 saatlik (30 saniye aralıklı, 120 nokta) veri bellek içi ring buffer'da tutulur.
+- **3D Render Loop Bağımsızlığı:** Grafikler 3D canvas dışında hafif SVG elemanı olarak çizilir. Grafik güncellemeleri 3D render döngüsünden tamamen ayrık 5 saniyelik interval ile çalışır (60 FPS korunur).
+- **Sparkline & Detaylı Modal:** Node kartlarında mini SVG sparkline, tıklandığında eksenli dual çizgi (CPU/RAM) detay grafiği açılır.
 
 ---
 

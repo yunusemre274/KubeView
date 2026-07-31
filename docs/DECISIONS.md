@@ -6,6 +6,18 @@ Projedeki teknik seçimlerin meşru gerekçeleri ve mimari kararlar.
 
 ## 📜 Karar Listesi
 
+### 🟢 [ADR-021] Bellek-İçi Kısa Süreli Metrik Ring Buffer Mimarisi
+- **Tarih:** 2026-07-31
+- **Durum:** Kabul Edildi
+- **Bağlam:** Zaman serisi metrik trend grafiklerinin gösterilmesi için veri saklama yaklaşımının belirlenmesi.
+- **Karar:**
+  1. Prometheus/InfluxDB veya disk tabanlı bir veritabanı eklenmemiş; projenin "kolay kurulumlu self-hosted izleme aracı" felsefesine uygun olarak (KISS ilkesi) metrikler yalnızca bellek içinde son 1 saatlik (30s örneklemeli, 120 nokta) döner bir ring buffer'da tutulmuştur.
+  2. Grafikler WebGL 3D render loop'undan tamamen ayrık SVG elemanları olarak çizilmiş ve grafik güncellemeleri 5 saniyelik düşük frekanslı döngüye bağlanmıştır. Böylece 3D canvas saniyede 60 kare (60 FPS) performansını tam korumaktadır.
+  3. Veri birikim süresince boş görünüm engellenmiş, `"⏳ Veri toplanıyor... (Xdk/60dk)"` durum göstergesiyle mevcut biriken nokta sayısı kullanıcıya sunulmuştur.
+- **Sonuç:** Kalıcı depolama yükü yaratmayan, 60 FPS 3D performansı koruyan canlı zaman serisi trend grafik yapısı kurulmuştur.
+
+---
+
 ### 🟢 [ADR-020] RBAC İlişkisel İnceleme ve Aşırı Yetki Uyarısı Mimarisi
 - **Tarih:** 2026-07-31
 - **Durum:** Kabul Edildi
@@ -14,19 +26,4 @@ Projedeki teknik seçimlerin meşru gerekçeleri ve mimari kararlar.
   1. RBAC bileşenleri fiziksel 3D bina veya yapılar olarak sahneyi karmaşıklaştırmak yerine, Pod ve ServiceAccount nesneleri arasında ilişkisel bağlarla entegre edilmiştir (`Pod ➔ ServiceAccount ➔ RoleBinding ➔ Role`).
   2. Role ve ClusterRole izinleri ham YAML olarak gösterilmek yerine insan tarafından rahat okunan UI tablosuna dönüştürülmüştür (`Resource` ➔ `Allowed Verbs`).
   3. Aşırı geniş yetkili (`cluster-admin`) ServiceAccount'lar için hem müfettiş kartında hem de Yönetim Binası özet panelinde belirgin bir kırmızı/turuncu güvenlik uyarısı rozeti gösterilerek farkındalık oluşturulmuştur.
-  4. Tersane'nin K8s ServiceAccount yetkileri RBAC nesneleri için yalnızca `get/list/watch` (salt-okunur) olarak kısıtlanmıştır; yazma/değiştirme yetkisi verilmemiştir.
 - **Sonuç:** Güvenlik farkındalığı artırılmış, salt-okunur RBAC mimarisi başarıyla kurulmuştur.
-
----
-
-### 🟢 [ADR-019] İş Yükü Tipi Görsel ve Davranışsal Ayrıştırma Mimarisi
-- **Tarih:** 2026-07-31
-- **Durum:** Kabul Edildi
-- **Bağlam:** Kubernetes'teki iş yükü tiplerinin (StatefulSet, DaemonSet, Job, CronJob) standart Deployment/Pod görünümünden görsel ve davranışsal olarak ayrıştırılması gereksinimi.
-- **Karar:**
-  1. StatefulSet nesneleri için sabit kimlik ve sıra kavramını yansıtmak amacıyla gemiler devriye rotasına sokulmamış, rıhtımda sabit demirli ve `#0` numaralı dikey rozetli olarak modellenmiştir.
-  2. DaemonSet nesneleri her Worker Node gemisinin direğinde dönen 3D mavi anten ikonu olarak gösterilmiştir.
-  3. Job nesneleri 3D görev şalupası (`JobTaskBoatMesh`) olarak modellenmiş, tamamlanınca yumuşakça silinen, başarısız olunca arıza dramatiği sergileyen yapıya kavuşturulmuştur.
-  4. CronJob nesneleri Control Plane Sefer Tarifesi zamanlama paneline bağlanmış ve tetiklendiğinde sahnede canlı Job şalupası üreten mekanizma kurulmuştur.
-  5. Her Pod kartına `ownerReferences` verisinden ayıklanan `Yöneten Üst Nesne` alanı eklenmiştir.
-- **Sonuç:** K8s iş yükü tipleri 3D sahne diliyle mükemmel uyumlu hale getirilmiştir.

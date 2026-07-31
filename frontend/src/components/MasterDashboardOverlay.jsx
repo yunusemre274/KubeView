@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { X, ShieldAlert, Cpu, Box, Radio, Zap, Anchor, Server, Activity, ArrowRight, Play, RefreshCw, FileText, Calendar, Clock, Shield, Key, Lock, AlertTriangle, CheckCircle2 } from 'lucide-react'
+import { X, ShieldAlert, Cpu, Box, Radio, Zap, Anchor, Server, Activity, ArrowRight, Play, RefreshCw, FileText, Calendar, Clock, Shield, Key, Lock, AlertTriangle, CheckCircle2, TrendingUp } from 'lucide-react'
+import { ClusterTrendChart } from './3d/MetricTrendCharts'
 
-export default function MasterDashboardOverlay({ onClose, activeShips = [], onTriggerCronJob }) {
+export default function MasterDashboardOverlay({ onClose, activeShips = [], onTriggerCronJob, metricsHistory = [] }) {
   const [activeTab, setActiveTab] = useState('OVERVIEW')
 
   const mockDeployments = [
@@ -76,6 +77,9 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], onTr
                   <strong className="text-emerald-400 text-sm font-bold">3 Running</strong>
                 </div>
               </div>
+
+              {/* CLUSTER OVERVIEW TREND CHART */}
+              <ClusterTrendChart history={metricsHistory} />
 
               <div className="industrial-panel p-3 rounded-lg space-y-1 text-[11px]">
                 <span className="text-sky-400 font-bold block text-[10px]">🏢 KONTROL KULESİ SAĞLIK BİLGİSİ:</span>
@@ -188,9 +192,11 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], onTr
             </div>
           )}
 
-          {/* TAB 4: LOAD BALANCING */}
+          {/* TAB 4: LOAD BALANCING & TREND */}
           {activeTab === 'LOAD' && (
             <div className="space-y-3 font-mono-tech text-[11px]">
+              <ClusterTrendChart history={metricsHistory} />
+
               {activeShips.map((s) => {
                 const cpuUsage = parseInt(s.metrics?.cpu_usage || '320')
                 const cpuCap = parseInt(s.metrics?.cpu_capacity || '4000')
@@ -213,7 +219,7 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], onTr
         </div>
 
         <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 text-center font-mono-tech">
-          Tersane v2.6.0 Pro Master Control Panel
+          Tersane v2.7.0 Pro Master Control Panel
         </div>
       </div>
     </div>
