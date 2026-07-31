@@ -3,64 +3,101 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 export function useShipyardWebSocket(initialPort = 8000) {
   const [isConnected, setIsConnected] = useState(false)
   const [activePort, setActivePort] = useState(initialPort)
+  const [connectionError, setConnectionError] = useState(null)
   const [shipsMap, setShipsMap] = useState({})
   const [deploymentsList, setDeploymentsList] = useState([])
   const [eventsLog, setEventsLog] = useState([])
+
   const wsRef = useRef(null)
+  const activePortRef = useRef(initialPort)
   const portAttemptRef = useRef(initialPort)
   const maxPortRef = useRef(initialPort + 5)
+  const isConnectingRef = useRef(false)
+  const reconnectTimeoutRef = useRef(null)
 
   const connect = useCallback(() => {
+    // If a connection is already OPEN or CONNECTING, do not open another socket
+    if (wsRef.current) {
+      const state = wsRef.current.readyState
+      if (state === WebSocket.CONNECTING || state === WebSocket.OPEN) {
+        return
+      }
+    }
+
+    if (isConnectingRef.current) return
+    isConnectingRef.current = true
+
     const targetPort = portAttemptRef.current
-    const url = `ws://${window.location.hostname || 'localhost'}:${targetPort}/ws`
+    const host = window.location.hostname || 'localhost'
+    const url = `ws://${host}:${targetPort}/ws`
 
-    console.log(`[ws-hook] Trying WebSocket connection on port ${targetPort}...`)
-    const ws = new WebSocket(url)
-    wsRef.current = ws
+    try {
+      const ws = new WebSocket(url)
+      wsRef.current = ws
 
-    ws.onopen = () => {
-      console.log(`[ws-hook] ✅ Connected successfully on port ${targetPort}`)
-      setIsConnected(true)
-      setActivePort(targetPort)
-    }
-
-    ws.onmessage = (event) => {
-      try {
-        const message = JSON.parse(event.data)
-        handleMessage(message)
-      } catch (err) {
-        console.error('[ws-hook] Error parsing WS message:', err)
+      ws.onopen = () => {
+        isConnectingRef.current = false
+        setIsConnected(true)
+        setConnectionError(null)
+        activePortRef.current = targetPort
+        setActivePort(targetPort)
       }
-    }
 
-    ws.onclose = () => {
-      setIsConnected(false)
-      // If we haven't connected yet, try next port in range
-      if (portAttemptRef.current < maxPortRef.current && !isConnected) {
-        portAttemptRef.current += 1
-        console.log(`[ws-hook] ⚠️ Port ${targetPort} unreachable. Trying fallback port ${portAttemptRef.current}...`)
-        setTimeout(connect, 500)
-      } else {
-        // Connected before, reconnect on same active port after delay
-        setTimeout(() => {
-          portAttemptRef.current = activePort
-          connect()
-        }, 3000)
+      ws.onmessage = (event) => {
+        try {
+          const message = JSON.parse(event.data)
+          if (message && message.type) {
+            handleMessage(message)
+          }
+        } catch (err) {
+          console.error('[ws-hook] Message processing error:', err)
+          setConnectionError(`Mesaj işleme hatası: ${err.message}`)
+        }
       }
-    }
 
-    ws.onerror = () => {
-      ws.close()
+      ws.onclose = (evt) => {
+        isConnectingRef.current = false
+        setIsConnected(false)
+
+        // Clear existing reconnect timers
+        if (reconnectTimeoutRef.current) {
+          clearTimeout(reconnectTimeoutRef.current)
+        }
+
+        // If we haven't successfully connected on this port, try next port in fallback range
+        if (portAttemptRef.current < maxPortRef.current && !activePortRef.current) {
+          portAttemptRef.current += 1
+          reconnectTimeoutRef.current = setTimeout(connect, 300)
+        } else {
+          // Reconnect on established active port after a short delay
+          reconnectTimeoutRef.current = setTimeout(() => {
+            portAttemptRef.current = activePortRef.current || initialPort
+            connect()
+          }, 3000)
+        }
+      }
+
+      ws.onerror = (err) => {
+        isConnectingRef.current = false
+        setConnectionError(`WebSocket bağlantı hatası (Port ${targetPort})`)
+      }
+    } catch (err) {
+      isConnectingRef.current = false
+      setConnectionError(`Soket oluşturma hatası: ${err.message}`)
     }
-  }, [activePort, isConnected])
+  }, [initialPort])
 
   const handleMessage = (msg) => {
-    const { type, payload } = msg
+    try {
+      const { type, payload } = msg
 
-    if (type === 'INITIAL_STATE') {
-      processInitialState(payload)
-    } else if (type === 'RESOURCE_EVENT') {
-      processResourceEvent(payload)
+      if (type === 'INITIAL_STATE' && payload) {
+        processInitialState(payload)
+      } else if (type === 'RESOURCE_EVENT' && payload) {
+        processResourceEvent(payload)
+      }
+    } catch (err) {
+      console.error('[ws-hook] Failed in handleMessage:', err)
     }
   }
 
@@ -69,15 +106,17 @@ export function useShipyardWebSocket(initialPort = 8000) {
     const newShips = {}
 
     nodes.forEach((node) => {
+      if (!node || !node.name) return
       newShips[node.name] = {
         id: node.name,
         name: `${node.name} (Worker Node)`,
-        status: node.status,
+        status: node.status || 'Ready',
         pods: []
       }
     })
 
     pods.forEach((pod) => {
+      if (!pod || !pod.name) return
       const nodeName = pod.metaphor?.node_name || Object.keys(newShips)[0] || 'unassigned'
       if (!newShips[nodeName]) {
         newShips[nodeName] = {
@@ -89,10 +128,10 @@ export function useShipyardWebSocket(initialPort = 8000) {
       }
 
       newShips[nodeName].pods.push({
-        id: `${pod.namespace}/${pod.name}`,
+        id: `${pod.namespace || 'default'}/${pod.name}`,
         name: `📦 ${pod.name}`,
-        namespace: pod.namespace,
-        status: pod.status,
+        namespace: pod.namespace || 'default',
+        status: pod.status || 'Running',
         color: getPodColor(pod.status)
       })
     })
@@ -104,28 +143,30 @@ export function useShipyardWebSocket(initialPort = 8000) {
     const { action, kind, name, namespace, status, metaphor } = payload
     const targetNode = metaphor?.node_name || 'unassigned'
 
-    setEventsLog((prev) => [
-      {
-        id: Date.now(),
-        timestamp: new Date().toLocaleTimeString(),
-        action,
-        kind,
-        name,
-        namespace,
-        status
-      },
-      ...prev.slice(0, 19)
-    ])
+    if (name) {
+      setEventsLog((prev) => [
+        {
+          id: Date.now(),
+          timestamp: new Date().toLocaleTimeString('tr-TR'),
+          action: action || 'UPDATE',
+          kind: kind || 'Event',
+          name,
+          namespace: namespace || 'default',
+          status: status || 'Normal'
+        },
+        ...prev.slice(0, 49)
+      ])
+    }
 
-    if (kind === 'Deployment') {
+    if (kind === 'Deployment' && name) {
       setDeploymentsList((prev) => {
         const filtered = prev.filter((d) => d.name !== name)
         if (action !== 'DELETE') {
-          filtered.push({ name, namespace, replicas: status, status: 'Healthy' })
+          filtered.push({ name, namespace: namespace || 'default', replicas: status || '1/1 Ready', status: 'Healthy' })
         }
         return filtered
       })
-    } else if (kind === 'Node') {
+    } else if (kind === 'Node' && name) {
       setShipsMap((prev) => {
         const next = { ...prev }
         if (action === 'DELETE') {
@@ -134,13 +175,13 @@ export function useShipyardWebSocket(initialPort = 8000) {
           next[name] = {
             id: name,
             name: `${name} (Worker Node)`,
-            status,
+            status: status || 'Ready',
             pods: next[name]?.pods || []
           }
         }
         return next
       })
-    } else if (kind === 'Pod') {
+    } else if (kind === 'Pod' && name) {
       setShipsMap((prev) => {
         const next = { ...prev }
         if (!next[targetNode]) {
@@ -152,15 +193,15 @@ export function useShipyardWebSocket(initialPort = 8000) {
           }
         }
 
-        const podId = `${namespace}/${name}`
+        const podId = `${namespace || 'default'}/${name}`
         const existingPods = next[targetNode].pods.filter((p) => p.id !== podId)
 
         if (action !== 'DELETE') {
           existingPods.push({
             id: podId,
             name: `📦 ${name}`,
-            namespace,
-            status,
+            namespace: namespace || 'default',
+            status: status || 'Running',
             color: getPodColor(status)
           })
         }
@@ -178,37 +219,50 @@ export function useShipyardWebSocket(initialPort = 8000) {
   const getPodColor = (status) => {
     switch (status) {
       case 'Running':
-        return '#22c55e'
+      case 'SAFE':
+      case 'Completed':
+        return '#10b981'
       case 'Pending':
       case 'ContainerCreating':
-        return '#eab308'
+      case 'WARNING':
+        return '#f59e0b'
       case 'Failed':
       case 'Error':
+      case 'CrashLoopBackOff':
+      case 'OOMKilled':
+      case 'CRITICAL':
         return '#ef4444'
       default:
-        return '#3b82f6'
+        return '#0284c7'
     }
   }
 
   useEffect(() => {
     connect()
+
     return () => {
+      if (reconnectTimeoutRef.current) {
+        clearTimeout(reconnectTimeoutRef.current)
+      }
       if (wsRef.current) {
+        // Close socket on component unmount
         wsRef.current.close()
+        wsRef.current = null
       }
     }
   }, [connect])
 
   const shipsList = Object.values(shipsMap).map((ship, idx) => ({
     ...ship,
-    position: [idx * 10, 0, 0]
+    position: ship.position || [idx * 14 - 10, 0, 0]
   }))
 
-  const totalPallets = Object.values(shipsMap).reduce((acc, ship) => acc + ship.pods.length, 0)
+  const totalPallets = Object.values(shipsMap).reduce((acc, ship) => acc + (ship.pods ? ship.pods.length : 0), 0)
 
   return {
     isConnected,
     activePort,
+    connectionError,
     ships: shipsList,
     totalShips: shipsList.length,
     totalPallets,

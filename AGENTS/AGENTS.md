@@ -10,18 +10,23 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
    - **Yeni bir bilgi alanı veya özellik eklenirken, ilgili state/props/JSX veri objesi ASLA sıfırdan REPLACE EDİLMEZ!**
    - Mevcut alanlar korunarak (`...spread` veya ek JSX blokları ile) genişletilir.
    - Her yeni özellik eklendikten sonra, etkilenen bileşendeki TÜM önceki alanların (Node IP, CPU/RAM, Pod listesi, Kubelet vb.) hâlâ eksiksiz göründüğü manuel doğrulanır.
-2. **Otonom Faz Geçişleri:**
+2. **WebSocket & Canlı Yayın Akışı Yaşam Döngüsü Kuralı (STATE LOOP VE UNMOUNT ÖNLEME):**
+   - **WebSocket ve event stream bağlantıları React `useEffect` ve `useCallback` içinde tutulurken asla mutable state değişkenleri (`isConnected`, `activePort`) callback bağımlılık dizilerine (`deps`) eklenmez!**
+   - Bağlantı soket referansı (`wsRef`), aktif port (`activePortRef`) ve bağlanma durumu (`isConnectingRef`) her zaman `useRef` ile yönetilir.
+   - Socket `onopen` callback'i `setIsConnected(true)` çağırdığında callback kimliği değişmemeli ve `useEffect` cleanup'ı (`ws.close()`) tetiklenmemelidir.
+   - WebSocket `onmessage` ve JSON parse blokları istisnasız `try/catch` ile sarmalanarak unmount/disconnect döngüleri engellenmelidir.
+3. **Otonom Faz Geçişleri:**
    - Bir faz İÇİNDEKİ görevler arasında VE bir fazdan bir sonraki faza geçişte kullanıcı onayı BEKLENMEZ.
    - QA kabul kriterleri karşılanıyorsa `master-agent` otonom olarak sıradaki fazı başlatır.
-3. **Git Yetkilendirmesi (TAM YETKİ KURALI):**
+4. **Git Yetkilendirmesi (TAM YETKİ KURALI):**
    - `release-agent`, commit, branch, merge ve push işlemlerini TAM YETKİYLE otonom gerçekleştirebilir (`git push --force` yasaktır).
-4. **3D Event Propagation & Raycasting Hit-Test:**
+5. **3D Event Propagation & Raycasting Hit-Test:**
    - İç içe 3D nesnelerde tıklama (`onClick`) ve hover (`onPointerOver`) event handler'larında `e.stopPropagation()` çağrılmak ZORUNDADIR!
-5. **Absolute Overlay Paneller & Sıfır Canvas Resize:**
+6. **Absolute Overlay Paneller & Sıfır Canvas Resize:**
    - Yan paneller ve bilgi kartları hiçbir zaman canvas ile flex/grid yer paylaşımı yapamaz. Canvas her zaman `position: absolute; inset: 0;` olarak render edilir.
-6. **Unbroken 100% Height Chain & Canvas Boyutu:**
+7. **Unbroken 100% Height Chain & Canvas Boyutu:**
    - `html, body, #root, main` ve `.stage-wrapper` kapsayıcılarında `height: 100%` ve flexbox `min-height: 0` zinciri KESİNTİSİZ korunmalıdır.
-7. **KISS Prensibi:**
+8. **KISS Prensibi:**
    - En basit çalışan çözüm DOĞRU çözümdür. Olay Günlüğü son 1 saatlik in-memory ring buffer ile tutulur.
 
 ---

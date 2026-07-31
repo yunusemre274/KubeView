@@ -24,33 +24,33 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - `info-panel-drawer`: Sağ taraf 360px dikey nesne müfettiş çekmecesi (`z-40`).
 - `PodLogViewer.jsx`: Monospace terminal log görüntüleyici.
 
-### 4. Log Streaming Mimarisi (Faz 21 / v2.2.0)
+### 4. WebSocket Hook & İstemci Yaşam Döngüsü Mimarisi (`useShipyardWebSocket.js`)
+- **Referans Tabanlı Soket Yönetimi (`useRef`):** Soket nesnesi (`wsRef`), bağlanma durumu (`isConnectingRef`) ve aktif port (`activePortRef`) `useRef` ile yönetilir. Mutable state değişkenleri (`isConnected`) `useCallback` / `useEffect` bağımlılık dizisinden tamamen çıkarılmıştır.
+- **Strict-Mode & Multi-Mount Koruması:** `connect` fonksiyonunun kimliği sabit kalır; `setIsConnected(true)` çağrıldığında `useEffect` cleanup'ı (`wsRef.current.close()`) tetiklenmez.
+- **Sıfır Çökme & Payload Güvenliği:** `ws.onmessage` içerisindeki JSON parse ve payload işleme adımları `try/catch` bloğu içerisindedir; parse hatasında soket kapatılmaz, hata durum bilgisi loglanır.
+
+### 5. Log Streaming Mimarisi (Faz 21 / v2.2.0)
 - **Backend K8s Endpoint:** WebSocket sunucusu `/api/v1/pods/logs/stream` rotasını dinler.
 - **Client-Go Akışı:** `CoreV1().Pods(ns).GetLogs(...)` canlı stream.
 
-### 5. ConfigMap & Secret Inspection Mimarisi (Faz 22 / v2.3.0)
+### 6. ConfigMap & Secret Inspection Mimarisi (Faz 22 / v2.3.0)
 - **ConfigMap Açık Gösterim:** `ConfigMapInfo` struct'ı `Data map[string]string` içerir.
 - **Secret Sıfır Değer Maruziyeti İlkesi (Zero Value Leakage):** Raw `Data` verisi Go tür tanımından tamamen çıkarılmıştır.
 
-### 6. Depolama (PVC/PV) Görselleştirme (Faz 23 / v2.4.0)
+### 7. Depolama (PVC/PV) Görselleştirme (Faz 23 / v2.4.0)
 - **Karada Bağımsız Depo Ambarı:** 3D Depo Ambarı karada `[-28, 0.2, 18]` koordinatında konumlandırılmıştır.
 
-### 7. İş Yükü Tipi Ayrımı (StatefulSet/DaemonSet/Job/CronJob) Mimarisi (Faz 24 / v2.5.0)
+### 8. İş Yükü Tipi Ayrımı (StatefulSet/DaemonSet/Job/CronJob) Mimarisi (Faz 24 / v2.5.0)
 - **`ownerReferences` Çıkarımı:** Backend `watcher.go` Pod Informer event'lerinde ownerKind ve ownerName ayıklar.
 
-### 8. RBAC İlişkisel İnceleme ve Güvenlik Uyarısı Mimarisi (Faz 25 / v2.6.0)
+### 9. RBAC İlişkisel İnceleme ve Güvenlik Uyarısı Mimarisi (Faz 25 / v2.6.0)
 - **İlişkisel Veri Modeli:** `Pod ➔ ServiceAccount ➔ RoleBinding ➔ Role / ClusterRole`.
-- **Aşırı Yetki Güvenlik Uyarısı:** `cluster-admin` bağlı ServiceAccount'lar için kırmızı güvenlik rozeti.
 
-### 9. Metrik Geçmişi (Trend Grafiği) ve Bellek-İçi Ring Buffer Mimarisi (Faz 26 / v2.7.0)
-- **Sadece Bellek-İçi Ring Buffer (Zero Database):** Metrik geçmişi kalıcı veritabanına yazılmaz (KISS prensibi). Son 1 saatlik (30 saniye aralıklı, 120 nokta) veri bellek içi ring buffer'da tutulur.
-- **3D Render Loop Bağımsızlığı:** Grafikler 3D canvas dışında hafif SVG elemanı olarak çizilir.
+### 10. Metrik Geçmişi (Trend Grafiği) ve Bellek-İçi Ring Buffer Mimarisi (Faz 26 / v2.7.0)
+- **Sadece Bellek-İçi Ring Buffer (Zero Database):** Metrik geçmişi son 1 saatlik (30 saniye aralıklı, 120 nokta) veri bellek içi ring buffer'da tutulur.
 
-### 10. Bağlantı Dayanıklılığı & Dinamik Kubeconfig Yeniden Yükleme (v2.8.0)
-- **Dinamik Port Sapması Algılama (Port Drift Recovery):** minikube/kind gibi araçlar yeniden başlatıldığında API Server portu değişir. Backend 3 ardışık bağlantı hatasından sonra diskteki `~/.kube/config` dosyasını otomatik yeniden okur.
-- **Process Restart Gerektirmeyen Yeniden Bağlanma:** Eğer diskten okunan API sunucu adresi farklıysa (`newHost != currentHost`), backend yeni clientset ve informer fabrikası oluşturarak kesintisiz yeni porta bağlanır.
-- **Hata Ayırma ve WebSocket Bildirimi:** Kubeconfig dosyasının diskte olmaması/okunamaması (`ErrKubeconfigUnreadable`) ile ağ bağlantısı reddi (`connection refused`) net biçimde ayrıştırılır ve WebSocket üzerinden UI'ya bildirilir.
-- **Üstel Geri Çekilme (Exponential Backoff):** Reconnection döngüsü `2s, 4s, 8s, ... 30s` üstel geri çekilme mantığını korur.
+### 11. Bağlantı Dayanıklılığı & Dinamik Kubeconfig Yeniden Yükleme (v2.8.0)
+- **Dinamik Port Sapması Algılama (Port Drift Recovery):** Backend 3 ardışık bağlantı hatasından sonra diskteki `~/.kube/config` dosyasını otomatik yeniden okur.
 
 ---
 
