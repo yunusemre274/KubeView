@@ -24,37 +24,38 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - `info-panel-drawer`: Sağ taraf 360px dikey nesne müfettiş çekmecesi (`z-40`).
 - `PodLogViewer.jsx`: Monospace terminal log görüntüleyici.
 
-### 4. WebSocket Hook & İstemci Yaşam Döngüsü Mimarisi (`useShipyardWebSocket.js`)
-- **Referans Tabanlı Soket Yönetimi (`useRef`):** Soket nesnesi (`wsRef`), bağlanma durumu (`isConnectingRef`) ve aktif port (`activePortRef`) `useRef` ile yönetilir. Mutable state değişkenleri (`isConnected`) `useCallback` / `useEffect` bağımlılık dizisinden tamamen çıkarılmıştır.
-- **Strict-Mode & Multi-Mount Koruması:** `connect` fonksiyonunun kimliği sabit kalır; `setIsConnected(true)` çağrıldığında `useEffect` cleanup'ı (`wsRef.current.close()`) tetiklenmez.
-- **Sıfır Çökme & Payload Güvenliği:** `ws.onmessage` içerisindeki JSON parse ve payload işleme adımları `try/catch` bloğu içerisindedir; parse hatasında soket kapatılmaz, hata durum bilgisi loglanır.
+### 4. Tek Paylaşılan Singleton WebSocket Yöneticisi & Provider Mimarisi (`ShipyardClusterContext.jsx`)
+- **Modül Seviyesi Singleton (`singletonManager`):** WebSocket bağlantı yöneticisi React bileşen ağacının dışında (module-level) instantiaten edilir. React StrictMode 2x mount etse dahi `singletonManager.socket` ve `isConnecting` kontrolleri sayesinde backend'e **EXACTLY 1 ADET CANLI WEBSOCKET BAĞLANTISI** açılır.
+- **Merkezi Veri Dağıtımı (React Context Provider):** Bağlantı mesajları (`INITIAL_STATE`, `RESOURCE_EVENT`) merkezi state üzerinde işlenir ve `ShipyardClusterProvider` aracılığıyla 3D sahne, paneller ve tüm alt bileşenlere dağıtılır. Bileşenler kendileri `new WebSocket()` çağırmaz.
+- **Merkezi Retry & Hata Yönetimi:** Exponential backoff reconnect döngüsü tek bir noktadan yönetilir. `onmessage` try/catch ile sarmalanmıştır.
+
+```text
+[Backend WebSocket Server] (ws://localhost:8000/ws)
+           ▲
+           │ EXACTLY 1 Singleton Connection
+           ▼
+[singletonManager] (Module-Level Singleton outside React tree)
+           │
+           ▼ Context Provider
+[ShipyardClusterProvider] (Root Level in main.jsx)
+      ┌────┴──────────────────────────┐
+      ▼                               ▼
+ [App Component]             [ShipyardScene / Panels]
+ (Consumes Shared Context)   (Consumes Shared Context)
+```
 
 ### 5. Log Streaming Mimarisi (Faz 21 / v2.2.0)
 - **Backend K8s Endpoint:** WebSocket sunucusu `/api/v1/pods/logs/stream` rotasını dinler.
-- **Client-Go Akışı:** `CoreV1().Pods(ns).GetLogs(...)` canlı stream.
 
 ### 6. ConfigMap & Secret Inspection Mimarisi (Faz 22 / v2.3.0)
 - **ConfigMap Açık Gösterim:** `ConfigMapInfo` struct'ı `Data map[string]string` içerir.
-- **Secret Sıfır Değer Maruziyeti İlkesi (Zero Value Leakage):** Raw `Data` verisi Go tür tanımından tamamen çıkarılmıştır.
 
 ### 7. Depolama (PVC/PV) Görselleştirme (Faz 23 / v2.4.0)
 - **Karada Bağımsız Depo Ambarı:** 3D Depo Ambarı karada `[-28, 0.2, 18]` koordinatında konumlandırılmıştır.
-
-### 8. İş Yükü Tipi Ayrımı (StatefulSet/DaemonSet/Job/CronJob) Mimarisi (Faz 24 / v2.5.0)
-- **`ownerReferences` Çıkarımı:** Backend `watcher.go` Pod Informer event'lerinde ownerKind ve ownerName ayıklar.
-
-### 9. RBAC İlişkisel İnceleme ve Güvenlik Uyarısı Mimarisi (Faz 25 / v2.6.0)
-- **İlişkisel Veri Modeli:** `Pod ➔ ServiceAccount ➔ RoleBinding ➔ Role / ClusterRole`.
-
-### 10. Metrik Geçmişi (Trend Grafiği) ve Bellek-İçi Ring Buffer Mimarisi (Faz 26 / v2.7.0)
-- **Sadece Bellek-İçi Ring Buffer (Zero Database):** Metrik geçmişi son 1 saatlik (30 saniye aralıklı, 120 nokta) veri bellek içi ring buffer'da tutulur.
-
-### 11. Bağlantı Dayanıklılığı & Dinamik Kubeconfig Yeniden Yükleme (v2.8.0)
-- **Dinamik Port Sapması Algılama (Port Drift Recovery):** Backend 3 ardışık bağlantı hatasından sonra diskteki `~/.kube/config` dosyasını otomatik yeniden okur.
 
 ---
 
 ## 🔄 Veri Akış Şeması
 ```text
-Kube API / State -> WebSocket Sync & Log Stream -> React State -> R3F Canvas Render & HTML Overlay
+Kube API / State -> WebSocket Sync & Log Stream -> Singleton Manager -> React Context -> R3F Canvas & Overlay
 ```
