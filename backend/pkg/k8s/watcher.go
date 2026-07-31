@@ -2,6 +2,7 @@ package k8s
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"sync"
 	"time"
@@ -19,9 +20,13 @@ import (
 
 // Watcher manages shared informers and broadcasts events via WebSocket.
 type Watcher struct {
-	clientset kubernetes.Interface
-	namespace string
-	hub       *ws.Hub
+	clientset      kubernetes.Interface
+	namespace      string
+	hub            *ws.Hub
+	kubeconfigPath string
+	currentHost    string
+
+	consecutiveFailures int
 
 	// Local cache for Initial State Dump
 	mu          sync.RWMutex
@@ -36,21 +41,23 @@ type Watcher struct {
 	roles       map[string]api.RoleInfo
 }
 
-// NewWatcher initializes a Watcher instance.
-func NewWatcher(clientset kubernetes.Interface, namespace string, hub *ws.Hub) *Watcher {
+// NewWatcher initializes a Watcher instance with host and kubeconfig tracking.
+func NewWatcher(clientset kubernetes.Interface, namespace string, hub *ws.Hub, kubeconfigPath string, currentHost string) *Watcher {
 	return &Watcher{
-		clientset:   clientset,
-		namespace:   namespace,
-		hub:         hub,
-		nodes:       make(map[string]api.ResourcePayload),
-		pods:        make(map[string]api.ResourcePayload),
-		deployments: make(map[string]api.ResourcePayload),
-		configMaps:  make(map[string]api.ConfigMapInfo),
-		secrets:     make(map[string]api.SecretInfo),
-		pvcs:        make(map[string]api.PVCInfo),
-		pvs:         make(map[string]api.PVInfo),
-		sas:         make(map[string]api.ServiceAccountInfo),
-		roles:       make(map[string]api.RoleInfo),
+		clientset:      clientset,
+		namespace:      namespace,
+		hub:            hub,
+		kubeconfigPath: kubeconfigPath,
+		currentHost:    currentHost,
+		nodes:          make(map[string]api.ResourcePayload),
+		pods:           make(map[string]api.ResourcePayload),
+		deployments:    make(map[string]api.ResourcePayload),
+		configMaps:     make(map[string]api.ConfigMapInfo),
+		secrets:        make(map[string]api.SecretInfo),
+		pvcs:           make(map[string]api.PVCInfo),
+		pvs:            make(map[string]api.PVInfo),
+		sas:            make(map[string]api.ServiceAccountInfo),
+		roles:          make(map[string]api.RoleInfo),
 	}
 }
 
@@ -114,96 +121,194 @@ func (w *Watcher) GetInitialState() api.InitialStatePayload {
 	}
 }
 
-// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, StatefulSets, DaemonSets, Jobs, CronJobs, ConfigMaps, Secrets, PVCs, PVs, ServiceAccounts, Roles, and Events.
+// StartInformerFactory runs shared informers inside a resilient retry loop with exponential backoff and dynamic kubeconfig re-read.
 func (w *Watcher) StartInformerFactory(ctx context.Context) error {
-	var factory informers.SharedInformerFactory
-	if w.namespace == "" {
-		factory = informers.NewSharedInformerFactory(w.clientset, 10*time.Minute)
-	} else {
-		factory = informers.NewSharedInformerFactoryWithOptions(w.clientset, 10*time.Minute, informers.WithNamespace(w.namespace))
+	backoff := 2 * time.Second
+	maxBackoff := 30 * time.Second
+
+	for {
+		select {
+		case <-ctx.Done():
+			return nil
+		default:
+		}
+
+		fmt.Printf("[watcher] Starting shared informers (API Host: %s, Kubeconfig: %s)...\n", w.currentHost, w.kubeconfigPath)
+
+		var factory informers.SharedInformerFactory
+		if w.namespace == "" {
+			factory = informers.NewSharedInformerFactory(w.clientset, 10*time.Minute)
+		} else {
+			factory = informers.NewSharedInformerFactoryWithOptions(w.clientset, 10*time.Minute, informers.WithNamespace(w.namespace))
+		}
+
+		// Register Informers
+		w.registerInformers(factory)
+
+		informerCtx, cancelInformer := context.WithCancel(ctx)
+		factory.Start(informerCtx.Done())
+
+		// Wait for Cache Sync with timeout
+		syncCtx, syncCancel := context.WithTimeout(informerCtx, 12*time.Second)
+		synced := factory.WaitForCacheSync(syncCtx.Done())
+		syncCancel()
+
+		allSynced := true
+		for resource, ok := range synced {
+			if !ok {
+				allSynced = false
+				fmt.Printf("[watcher] ⚠️ Cache sync failed for resource: %v\n", resource)
+			}
+		}
+
+		if !allSynced {
+			cancelInformer()
+			w.consecutiveFailures++
+			fmt.Printf("[watcher] ⚠️ Informer cache sync failed (%d. consecutive failure, host: %s). Backoff: %v\n", w.consecutiveFailures, w.currentHost, backoff)
+
+			// After 3 consecutive failures, re-read kubeconfig from disk to check for port drift (e.g. minikube restart)
+			if w.consecutiveFailures >= 3 {
+				w.handleKubeconfigDriftReload(ctx)
+			} else {
+				// Broadcast reconnecting event
+				w.hub.BroadcastMessage(api.NewWSMessage(api.TypeResourceEvent, api.ResourcePayload{
+					Action:  api.ActionUpdate,
+					Kind:    api.KindEvent,
+					Name:    "reconnect-attempt",
+					Status:  "Warning",
+					Message: fmt.Sprintf("⚠️ K8s API sunucusuna bağlanılamıyor (%s). Yeniden deneniyor... (%d/3)", w.currentHost, w.consecutiveFailures),
+				}))
+			}
+
+			select {
+			case <-time.After(backoff):
+				backoff *= 2
+				if backoff > maxBackoff {
+					backoff = maxBackoff
+				}
+				continue
+			case <-ctx.Done():
+				return nil
+			}
+		}
+
+		// Informer Cache Synced successfully!
+		w.consecutiveFailures = 0
+		backoff = 2 * time.Second
+		fmt.Printf("[watcher] ✅ Informer cache synced successfully (API Host: %s). Listening for live events...\n", w.currentHost)
+
+		w.hub.BroadcastMessage(api.NewWSMessage(api.TypeResourceEvent, api.ResourcePayload{
+			Action:  api.ActionAdd,
+			Kind:    api.KindEvent,
+			Name:    "k8s-connected",
+			Status:  "Normal",
+			Message: fmt.Sprintf("✅ K8s API sunucusuna bağlantı sağlandı (%s)", w.currentHost),
+		}))
+
+		<-informerCtx.Done()
+	}
+}
+
+// handleKubeconfigDriftReload attempts to re-read kubeconfig from disk to detect port changes (e.g. minikube stop & start).
+func (w *Watcher) handleKubeconfigDriftReload(ctx context.Context) {
+	fmt.Printf("[watcher] ⚠️ 3 ardışık bağlantı hatası tespit edildi. Kubeconfig diskten yeniden okunuyor... (Path: %s)\n", w.kubeconfigPath)
+
+	w.hub.BroadcastMessage(api.NewWSMessage(api.TypeResourceEvent, api.ResourcePayload{
+		Action:  api.ActionUpdate,
+		Kind:    api.KindEvent,
+		Name:    "kubeconfig-re-read",
+		Status:  "Warning",
+		Message: fmt.Sprintf("⚠️ K8s API sunucusuna bağlanılamıyor (%s). Kubeconfig diskten yeniden okunuyor...", w.currentHost),
+	}))
+
+	newClient, _, newHost, hostChanged, err := CheckAndReloadKubeconfig(w.kubeconfigPath, w.currentHost)
+	if err != nil {
+		if errors.Is(err, ErrKubeconfigUnreadable) {
+			fmt.Printf("[watcher] ❌ KUBECONFIG DOSYASI OKUNAMADI VEYA BULUNAMADI: %v\n", err)
+			w.hub.BroadcastMessage(api.NewWSMessage(api.TypeError, map[string]string{
+				"error":   "KUBECONFIG_UNREADABLE",
+				"message": fmt.Sprintf("❌ Kubeconfig dosyası diskte bulunamadı veya okunamadı: %v", err),
+			}))
+		} else {
+			fmt.Printf("[watcher] ⚠️ Kubeconfig yeniden okunurken hata: %v\n", err)
+		}
+		return
 	}
 
+	if hostChanged {
+		fmt.Printf("==============================================================\n")
+		fmt.Printf("[watcher] 🔄 MINIKUBE PORT DEĞİŞİKLİĞİ TESPİT EDİLDİ!\n")
+		fmt.Printf("[watcher] Eski API Host: %s ➔ Yeni API Host: %s\n", w.currentHost, newHost)
+		fmt.Printf("==============================================================\n")
+
+		w.mu.Lock()
+		w.clientset = newClient
+		w.currentHost = newHost
+		w.consecutiveFailures = 0
+		w.mu.Unlock()
+
+		w.hub.BroadcastMessage(api.NewWSMessage(api.TypeResourceEvent, api.ResourcePayload{
+			Action:  api.ActionUpdate,
+			Kind:    api.KindEvent,
+			Name:    "api-host-updated",
+			Status:  "Normal",
+			Message: fmt.Sprintf("🔄 K8s API Server adresi güncellendi (%s). Yeni porta otomatik yeniden bağlanılıyor...", newHost),
+		}))
+	} else {
+		fmt.Printf("[watcher] Kubeconfig diskten okundu. API Host değişmedi (%s). Port henüz aktif değil, bekleniyor...\n", w.currentHost)
+	}
+}
+
+func (w *Watcher) registerInformers(factory informers.SharedInformerFactory) {
 	// 1. Node Informer
 	nodeInformer := factory.Core().V1().Nodes().Informer()
-	_, err := nodeInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+	nodeInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if n, ok := obj.(*corev1.Node); ok { w.handleNodeEvent(api.ActionAdd, n) } },
 		UpdateFunc: func(_, newObj interface{}) { if n, ok := newObj.(*corev1.Node); ok { w.handleNodeEvent(api.ActionUpdate, n) } },
 		DeleteFunc: func(obj interface{}) { if n, ok := obj.(*corev1.Node); ok { w.handleNodeEvent(api.ActionDelete, n) } },
 	})
-	if err != nil {
-		return fmt.Errorf("failed to add Node event handlers: %w", err)
-	}
 
-	// 2. Pod Informer (with OwnerReferences & ServiceAccountName extraction)
+	// 2. Pod Informer
 	podInformer := factory.Core().V1().Pods().Informer()
-	_, err = podInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+	podInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if p, ok := obj.(*corev1.Pod); ok { w.handlePodEvent(api.ActionAdd, p) } },
 		UpdateFunc: func(_, newObj interface{}) { if p, ok := newObj.(*corev1.Pod); ok { w.handlePodEvent(api.ActionUpdate, p) } },
 		DeleteFunc: func(obj interface{}) { if p, ok := obj.(*corev1.Pod); ok { w.handlePodEvent(api.ActionDelete, p) } },
 	})
-	if err != nil {
-		return fmt.Errorf("failed to add Pod event handlers: %w", err)
-	}
 
 	// 3. Deployment Informer
 	deployInformer := factory.Apps().V1().Deployments().Informer()
-	_, err = deployInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+	deployInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if d, ok := obj.(*appsv1.Deployment); ok { w.handleDeploymentEvent(api.ActionAdd, d) } },
 		UpdateFunc: func(_, newObj interface{}) { if d, ok := newObj.(*appsv1.Deployment); ok { w.handleDeploymentEvent(api.ActionUpdate, d) } },
 		DeleteFunc: func(obj interface{}) { if d, ok := obj.(*appsv1.Deployment); ok { w.handleDeploymentEvent(api.ActionDelete, d) } },
 	})
-	if err != nil {
-		return fmt.Errorf("failed to add Deployment event handlers: %w", err)
-	}
 
 	// 4. ServiceAccount Informer
 	saInformer := factory.Core().V1().ServiceAccounts().Informer()
-	_, err = saInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+	saInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if sa, ok := obj.(*corev1.ServiceAccount); ok { w.handleSAEvent(api.ActionAdd, sa) } },
 		UpdateFunc: func(_, newObj interface{}) { if sa, ok := newObj.(*corev1.ServiceAccount); ok { w.handleSAEvent(api.ActionUpdate, sa) } },
 		DeleteFunc: func(obj interface{}) { if sa, ok := obj.(*corev1.ServiceAccount); ok { w.handleSAEvent(api.ActionDelete, sa) } },
 	})
-	if err != nil {
-		return fmt.Errorf("failed to add ServiceAccount event handlers: %w", err)
-	}
 
 	// 5. Role Informer
 	roleInformer := factory.Rbac().V1().Roles().Informer()
-	_, err = roleInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+	roleInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if r, ok := obj.(*rbacv1.Role); ok { w.handleRoleEvent(api.ActionAdd, r) } },
 		UpdateFunc: func(_, newObj interface{}) { if r, ok := newObj.(*rbacv1.Role); ok { w.handleRoleEvent(api.ActionUpdate, r) } },
 		DeleteFunc: func(obj interface{}) { if r, ok := obj.(*rbacv1.Role); ok { w.handleRoleEvent(api.ActionDelete, r) } },
 	})
-	if err != nil {
-		return fmt.Errorf("failed to add Role event handlers: %w", err)
-	}
 
-	// 6. K8s Core Events Informer (Liman Anonsları)
+	// 6. K8s Core Events Informer
 	k8sEventInformer := factory.Core().V1().Events().Informer()
-	_, err = k8sEventInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+	k8sEventInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
 			if e, ok := obj.(*corev1.Event); ok {
 				w.handleK8sCoreEvent(e)
 			}
 		},
 	})
-	if err != nil {
-		return fmt.Errorf("failed to add K8s Event handlers: %w", err)
-	}
-
-	factory.Start(ctx.Done())
-
-	fmt.Println("[watcher] Waiting for informer caches to sync...")
-	synced := factory.WaitForCacheSync(ctx.Done())
-	for resource, ok := range synced {
-		if !ok {
-			return fmt.Errorf("failed to sync informer cache for %v", resource)
-		}
-	}
-	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, ServiceAccounts, Roles, Events). Listening for live events...")
-
-	<-ctx.Done()
-	return nil
 }
 
 func (w *Watcher) handleNodeEvent(action api.ResourceAction, node *corev1.Node) {
@@ -242,7 +347,6 @@ func (w *Watcher) handlePodEvent(action api.ResourceAction, pod *corev1.Pod) {
 	podKey := fmt.Sprintf("%s/%s", pod.Namespace, pod.Name)
 	status := string(pod.Status.Phase)
 
-	// Extract OwnerReferences (Deployment, StatefulSet, DaemonSet, Job)
 	ownerKind := "Deployment"
 	ownerName := pod.Name
 	if len(pod.OwnerReferences) > 0 {

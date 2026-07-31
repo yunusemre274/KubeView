@@ -44,8 +44,13 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 
 ### 9. Metrik Geçmişi (Trend Grafiği) ve Bellek-İçi Ring Buffer Mimarisi (Faz 26 / v2.7.0)
 - **Sadece Bellek-İçi Ring Buffer (Zero Database):** Metrik geçmişi kalıcı veritabanına yazılmaz (KISS prensibi). Son 1 saatlik (30 saniye aralıklı, 120 nokta) veri bellek içi ring buffer'da tutulur.
-- **3D Render Loop Bağımsızlığı:** Grafikler 3D canvas dışında hafif SVG elemanı olarak çizilir. Grafik güncellemeleri 3D render döngüsünden tamamen ayrık 5 saniyelik interval ile çalışır (60 FPS korunur).
-- **Sparkline & Detaylı Modal:** Node kartlarında mini SVG sparkline, tıklandığında eksenli dual çizgi (CPU/RAM) detay grafiği açılır.
+- **3D Render Loop Bağımsızlığı:** Grafikler 3D canvas dışında hafif SVG elemanı olarak çizilir.
+
+### 10. Bağlantı Dayanıklılığı & Dinamik Kubeconfig Yeniden Yükleme (v2.8.0)
+- **Dinamik Port Sapması Algılama (Port Drift Recovery):** minikube/kind gibi araçlar yeniden başlatıldığında API Server portu değişir. Backend 3 ardışık bağlantı hatasından sonra diskteki `~/.kube/config` dosyasını otomatik yeniden okur.
+- **Process Restart Gerektirmeyen Yeniden Bağlanma:** Eğer diskten okunan API sunucu adresi farklıysa (`newHost != currentHost`), backend yeni clientset ve informer fabrikası oluşturarak kesintisiz yeni porta bağlanır.
+- **Hata Ayırma ve WebSocket Bildirimi:** Kubeconfig dosyasının diskte olmaması/okunamaması (`ErrKubeconfigUnreadable`) ile ağ bağlantısı reddi (`connection refused`) net biçimde ayrıştırılır ve WebSocket üzerinden UI'ya bildirilir.
+- **Üstel Geri Çekilme (Exponential Backoff):** Reconnection döngüsü `2s, 4s, 8s, ... 30s` üstel geri çekilme mantığını korur.
 
 ---
 

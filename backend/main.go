@@ -24,8 +24,8 @@ func main() {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
 
-	// Initialize K8s Client
-	clientset, err := k8s.NewKubeClient()
+	// Initialize K8s Client & RestConfig
+	clientset, restConfig, kubeconfigPath, err := k8s.NewKubeClient()
 	if err != nil {
 		fmt.Printf("[fatal] Failed to initialize Kubernetes client: %v\n", err)
 		os.Exit(1)
@@ -45,8 +45,8 @@ func main() {
 	})
 	go hub.Run()
 
-	// Initialize K8s Watcher with WebSocket Hub
-	watcher = k8s.NewWatcher(clientset, watchNamespace, hub)
+	// Initialize K8s Watcher with WebSocket Hub and Kubeconfig Path/Host Tracking
+	watcher = k8s.NewWatcher(clientset, watchNamespace, hub, kubeconfigPath, restConfig.Host)
 	go func() {
 		if err := watcher.StartInformerFactory(ctx); err != nil {
 			fmt.Printf("[error] Watcher stopped with error: %v\n", err)
