@@ -14,6 +14,8 @@ Bu belge, Kubernetes bileşenlerinin Tersane 3D simülasyonundaki tam görsel ve
 | **Pod / Container** | **Kargo Konteynırı (Palet)** | Gemi güvertesinde veya karada üst üste dizili renkli çelik konteynır kutusu | Faz 3 |
 | **ConfigMap** | **Sevkiyat Föyü / Talimat Panosu** | Rıhtımda dikili, üzeri iğneli talimat kağıtlarıyla dolu tahta/çelik pano (tüm içerik açık) | Faz 22 |
 | **Secret** | **Kilitli Emniyet Kasası** | Rıhtımda sabitlenmiş, altın kilitli ve sinyal fenerli çelik kasa (sadece key ismi, değerler gizli) | Faz 22 |
+| **PersistentVolumeClaim (PVC)** | **Depo Tahsis Sözleşmesi** | Kiralanmış depolama alanının istenen kapasite (10Gi) ve erişim modları belgesi | Faz 23 |
+| **PersistentVolume (PV)** | **Kiralanmış Depo Ambarı Yapısı** | Karada gemilerden bağımsız duran, çelik çatılı, 3D kapasite rozetli sanayi ambarı | Faz 23 |
 | **Service (ClusterIP / NodePort)** | **Liman Danışma & Ağ Yönlendirme Binası** | Kube-proxy sinyal fenerli ağ binası ve yönlendirme ışık kanalları | Faz 10 |
 | **Deployment / StatefulSet** | **Sefer Sipariş Kartı / Filo Siparişi** | Aynı tipteki gemi ve konteynır gruplarının toplu üretim ve yükleme emri | Faz 6 |
 | **Kubelet** | **Gemi Direğindeki Dönen Radar / Dümenci** | Gemi güvertesinde sürekli dönen ve node sağlığını bildiren radar | Faz 15 |
@@ -25,7 +27,7 @@ Bu belge, Kubernetes bileşenlerinin Tersane 3D simülasyonundaki tam görsel ve
 | **PodDisruptionBudget (PDB)** | **Maksimum Bakım İzin Bayrağı** | Aynı anda bakıma alınabilecek maksimum gemi sayısını gösteren sarı bayrak | Faz 19 |
 | **Taints / Tolerations** | **Özel İzinli Özel Rıhtım Alanı** | Sadece belirli bayrağa (Toleration) sahip gemilerin yanaşabildiği özel rıhtım | Faz 19 |
 | **Node Affinity / Anti-Affinity** | **Gemi Rıhtım Tercih Çizgileri** | Gemilerin tercih ettiği rıhtımları bağlayan yeşil/kırmızı magnetik çizgiler | Faz 19 |
-| **ServiceAccount** | **Mürettebat Kimlik Kartı & Geçiş Rozeti** | Gemi ve binalarda asılı yetki kimlik kartı ve güvenlik rozetleri | Faz 16 |
+| **ServiceAccount** | **Mürettebat Kimlik Kartı & Geçiş Rozeti** | Gemi ve binalarda asılı yetki kimlik kartı mevkileri | Faz 16 |
 | **RBAC (Role/ClusterRole)** | **Liman Genel Yetki Rozetleri** | Yetkili (sarı), Kısıtlı (yeşil), Salt-okunur (mavi) güvenlik bröşleri | Faz 16 |
 | **EndpointSlice** | **Gişe Bağlantı Hatları Listesi** | Kube-proxy binasından ilgili gemi rıhtımlarına uzanan çoklu kablo demetleri | Faz 18 |
 | **Rolling Update** | **Sıralı Filo Yenileme Animasyonu** | Gemilerin teker teker sırayla yanaşıp eski konteynırları yenileriyle değiştirmesi | Faz 19 |

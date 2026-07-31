@@ -9,10 +9,11 @@ import ConfirmationModal from './ConfirmationModal'
 import IngressLighthouse from './3d/IngressLighthouse'
 import NetworkPolicyBarriers from './3d/NetworkPolicyBarriers'
 import ConfigMapAndSecretMesh from './3d/ConfigMapAndSecretMesh'
+import StorageDepotMesh from './3d/StorageDepotMesh'
 import PodLogViewer from './PodLogViewer'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2 } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -443,8 +444,8 @@ export default function ShipyardScene({ ships = [] }) {
   const [activeAnomaly, setActiveAnomaly] = useState(null)
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v2.3.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'ConfigMap & Secret Güvenli Müfettişi Aktif', type: 'Normal', isUserTriggered: false },
+    { id: 1, time: '23:38:10', message: 'Tersane v2.4.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'PVC & PV Depolama Ambarı Müfettişi Aktif', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
@@ -600,6 +601,43 @@ export default function ShipyardScene({ ships = [] }) {
     setCamTargetLookAt(new THREE.Vector3(-2, 1, -18))
   }
 
+  const handleSelectPVC = () => {
+    setActiveSelection({
+      type: 'PVC',
+      data: {
+        name: 'web-data-pvc',
+        namespace: 'default',
+        status: 'Bound',
+        requested_capacity: '10Gi',
+        bound_pv: 'pv-storage-disk-01',
+        storage_class: 'gp3 (AWS EBS)',
+        access_modes: ['ReadWriteOnce'],
+        used_by_pods: ['web-frontend-deploy-74b89'],
+        created_at: '2026-07-26T12:00:00Z'
+      }
+    })
+    setCamTargetPos(new THREE.Vector3(-18, 12, 28))
+    setCamTargetLookAt(new THREE.Vector3(-28, 2, 18))
+  }
+
+  const handleSelectPV = () => {
+    setActiveSelection({
+      type: 'PV',
+      data: {
+        name: 'pv-storage-disk-01',
+        status: 'Bound',
+        capacity: '10Gi',
+        storage_class: 'gp3 (AWS EBS)',
+        reclaim_policy: 'Retain',
+        bound_pvc: 'default/web-data-pvc',
+        backend_type: 'AWS EBS gp3 (vol-03b9f1a2)',
+        created_at: '2026-07-26T11:45:00Z'
+      }
+    })
+    setCamTargetPos(new THREE.Vector3(-18, 12, 28))
+    setCamTargetLookAt(new THREE.Vector3(-28, 2, 18))
+  }
+
   const handleSelectIngress = () => {
     setActiveSelection({
       type: 'INGRESS',
@@ -729,7 +767,7 @@ export default function ShipyardScene({ ships = [] }) {
           <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-amber-500/10 border border-amber-500/30">
             <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
             <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
-              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.3.0</span>
+              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.4.0</span>
             </span>
           </div>
 
@@ -871,6 +909,15 @@ export default function ShipyardScene({ ships = [] }) {
             onSelectSecret={handleSelectSecret}
           />
 
+          {/* 3D Land-Based Storage Depot (PVC/PV Kiralanmış Ambar) */}
+          <StorageDepotMesh
+            position={[-28, 0.2, 18]}
+            pvcData={{ name: 'web-data-pvc', status: 'Bound', capacity: '10Gi' }}
+            pvData={{ name: 'pv-storage-disk-01', capacity: '10Gi' }}
+            targetPodPosition={[2, 1, 4]}
+            onSelectStorage={handleSelectPVC}
+          />
+
           {/* 3D Ingress Gateway Lighthouse */}
           <IngressLighthouse position={[28, 0.2, 18]} onSelectIngress={handleSelectIngress} />
           <NetworkPolicyBarriers position={[-10, 1.5, 0]} active={showNetworkPolicy} onSelectNetworkPolicy={handleSelectNetworkPolicy} />
@@ -950,6 +997,8 @@ export default function ShipyardScene({ ships = [] }) {
                   {activeSelection.type === 'SHIP' && <ShipIcon className="w-4 h-4 text-sky-400" />}
                   {activeSelection.type === 'CONFIGMAP' && <ClipboardList className="w-4 h-4 text-amber-400" />}
                   {activeSelection.type === 'SECRET' && <Key className="w-4 h-4 text-amber-400" />}
+                  {activeSelection.type === 'PVC' && <Database className="w-4 h-4 text-purple-400" />}
+                  {activeSelection.type === 'PV' && <HardDrive className="w-4 h-4 text-purple-400" />}
                   <span>
                     {activeSelection.type === 'KUBELET' && '📡 KUBELET AGENT (MASİF)'}
                     {activeSelection.type === 'CRANE' && '🏗️ KUBE-SCHEDULER (VİNÇ)'}
@@ -959,12 +1008,102 @@ export default function ShipyardScene({ ships = [] }) {
                     {activeSelection.type === 'SHIP' && '🚢 GEMİ (WORKER NODE)'}
                     {activeSelection.type === 'CONFIGMAP' && '📋 SEVKİYAT FÖYÜ (CONFIGMAP)'}
                     {activeSelection.type === 'SECRET' && '🔐 KİLİTLİ KASA (SECRET)'}
+                    {activeSelection.type === 'PVC' && '🏢 DEPO TALEBİ (PVC)'}
+                    {activeSelection.type === 'PV' && '🏭 FİZİKSEL DEPO AMBARI (PV)'}
                   </span>
                 </h3>
                 <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
                   <X className="w-4 h-4" />
                 </button>
               </div>
+
+              {/* PVC DETAILS (PERSISTENTVOLUMECLAIM) */}
+              {activeSelection.type === 'PVC' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">PVC (DEPO TALEBİ) ADI:</span>
+                    <strong className="text-purple-400 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
+                      <strong className="text-sky-400">{activeSelection.data.namespace}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">DURUM:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.status}</strong>
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 font-bold block text-[10px]">KAPASİTE & STORAGECLASS:</span>
+                    <div className="flex justify-between"><span>İstenen Kapasite:</span><strong className="text-amber-300">{activeSelection.data.requested_capacity}</strong></div>
+                    <div className="flex justify-between"><span>StorageClass:</span><strong className="text-sky-300">{activeSelection.data.storage_class}</strong></div>
+                    <div className="flex justify-between"><span>Erişim Modu:</span><strong className="text-purple-300">{activeSelection.data.access_modes?.join(', ')}</strong></div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">BAĞLI PV (FİZİKSEL AMBAR):</span>
+                    <button
+                      onClick={handleSelectPV}
+                      className="text-emerald-400 hover:underline text-[10px] flex items-center gap-1 font-bold"
+                    >
+                      <Link2 className="w-3 h-3" />
+                      <span>{activeSelection.data.bound_pv}</span>
+                    </button>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 font-bold block text-[10px]">BU DEPOYU KULLANAN POD'LAR:</span>
+                    {activeSelection.data.used_by_pods?.map((podName, idx) => (
+                      <div key={idx} className="text-slate-200 text-[10px] flex justify-between items-center">
+                        <span>● {podName}</span>
+                        <span className="text-emerald-400 font-bold">[MOUNTED]</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* PV DETAILS (PERSISTENTVOLUME) */}
+              {activeSelection.type === 'PV' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">PV (FİZİKSEL DEPO AMBARI) ADI:</span>
+                    <strong className="text-purple-400 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">TOPLAM KAPASİTE:</span>
+                      <strong className="text-amber-300">{activeSelection.data.capacity}</strong>
+                    </div>
+                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                      <span className="text-slate-400 block text-[10px]">DURUM:</span>
+                      <strong className="text-emerald-400">{activeSelection.data.status}</strong>
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">STORAGE BACKEND & POLİTİKA:</span>
+                    <div className="flex justify-between"><span>Backend Tipi:</span><strong className="text-sky-300">{activeSelection.data.backend_type}</strong></div>
+                    <div className="flex justify-between"><span>StorageClass:</span><strong className="text-slate-200">{activeSelection.data.storage_class}</strong></div>
+                    <div className="flex justify-between"><span>Reclaim Policy:</span><strong className="text-purple-300">{activeSelection.data.reclaim_policy}</strong></div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-amber-400 font-bold block text-[10px]">BAĞLI PVC (TALEP):</span>
+                    <button
+                      onClick={handleSelectPVC}
+                      className="text-sky-400 hover:underline text-[10px] flex items-center gap-1 font-bold"
+                    >
+                      <Link2 className="w-3 h-3" />
+                      <span>{activeSelection.data.bound_pvc}</span>
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {/* CONFIGMAP DETAILS (FULL OPEN DISPLAY) */}
               {activeSelection.type === 'CONFIGMAP' && (

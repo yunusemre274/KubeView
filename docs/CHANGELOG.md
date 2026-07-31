@@ -4,6 +4,14 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 ---
 
+## [v2.4.0 - PVC & PV Depolama Müfettişi] - 2026-07-31
+
+### Durum Tespiti Notu
+- **Önceki Durum Tespiti:** Kod tabanında yapılan denetimde PersistentVolumeClaim (PVC) ve PersistentVolume (PV) nesnelerinin 3D sahnede veya müfettiş çekmecelerinde henüz hiçbir 3D görsel nesnesinin ve veri müfettişinin bulunmadığı tespit edilmiştir.
+- **Eklenen Özellik:** Karada gemilerden (Pod) bağımsız 3D Liman Depolama Ambarı (`StorageDepotMesh.jsx`), Pod-Depo arası parlayan 3D bağlantı hattı (`StorageConnectionLine.jsx`), PVC (kapasite, StorageClass, erişim modları, bağlı PV, kullanan Pod) ve PV (kapasite, reclaim policy, backend tipi, bağlı PVC) müfettiş çekmeceleri kurulmuştur.
+
+---
+
 ## [v2.3.0 - ConfigMap & Secret Güvenli İçerik Müfettişi] - 2026-07-31
 
 ### Durum Tespiti Notu

@@ -34,6 +34,8 @@ const (
 	KindEvent      ResourceKind = "Event"
 	KindConfigMap  ResourceKind = "ConfigMap"
 	KindSecret     ResourceKind = "Secret"
+	KindPVC        ResourceKind = "PersistentVolumeClaim"
+	KindPV         ResourceKind = "PersistentVolume"
 )
 
 // ResourceMetrics contains CPU & RAM metrics data.
@@ -64,9 +66,34 @@ type SecretInfo struct {
 	CreatedAt string   `json:"created_at,omitempty"`
 }
 
+// PVCInfo holds PersistentVolumeClaim details for inspection.
+type PVCInfo struct {
+	Name              string   `json:"name"`
+	Namespace         string   `json:"namespace"`
+	Status            string   `json:"status"`
+	RequestedCapacity string   `json:"requested_capacity"`
+	BoundPV           string   `json:"bound_pv,omitempty"`
+	StorageClass      string   `json:"storage_class,omitempty"`
+	AccessModes       []string `json:"access_modes,omitempty"`
+	UsedByPods        []string `json:"used_by_pods,omitempty"`
+	CreatedAt         string   `json:"created_at,omitempty"`
+}
+
+// PVInfo holds PersistentVolume details for inspection.
+type PVInfo struct {
+	Name          string `json:"name"`
+	Status        string `json:"status"`
+	Capacity      string `json:"capacity"`
+	StorageClass  string `json:"storage_class,omitempty"`
+	ReclaimPolicy string `json:"reclaim_policy,omitempty"`
+	BoundPVC      string `json:"bound_pvc,omitempty"`
+	BackendType   string `json:"backend_type,omitempty"`
+	CreatedAt     string `json:"created_at,omitempty"`
+}
+
 // ShipyardMetaphor holds the mapping data to help 3D frontend render shipyard elements easily.
 type ShipyardMetaphor struct {
-	MetaphorRole string          `json:"metaphor_role"` // e.g. "Gemi (Node)", "Palet (Pod)", "Sevkiyat Föyü (ConfigMap)", "Kilitli Kasa (Secret)"
+	MetaphorRole string          `json:"metaphor_role"` // e.g. "Gemi (Node)", "Palet (Pod)", "Depo (PVC/PV)"
 	ContainerID  string          `json:"container_id,omitempty"`
 	NodeName     string          `json:"node_name,omitempty"`     // Target ship for Pods
 	Compartment  string          `json:"compartment,omitempty"`   // Namespace (Ambar)
@@ -93,6 +120,8 @@ type InitialStatePayload struct {
 	Pods         []ResourcePayload `json:"pods"`
 	ConfigMaps   []ConfigMapInfo   `json:"config_maps,omitempty"`
 	Secrets      []SecretInfo      `json:"secrets,omitempty"`
+	PVCs         []PVCInfo         `json:"pvcs,omitempty"`
+	PVs          []PVInfo          `json:"pvs,omitempty"`
 	TotalShips   int               `json:"total_ships"`
 	TotalPallets int               `json:"total_pallets"`
 }

@@ -29,6 +29,8 @@ type Watcher struct {
 	deployments map[string]api.ResourcePayload
 	configMaps  map[string]api.ConfigMapInfo
 	secrets     map[string]api.SecretInfo
+	pvcs        map[string]api.PVCInfo
+	pvs         map[string]api.PVInfo
 }
 
 // NewWatcher initializes a Watcher instance.
@@ -42,6 +44,8 @@ func NewWatcher(clientset kubernetes.Interface, namespace string, hub *ws.Hub) *
 		deployments: make(map[string]api.ResourcePayload),
 		configMaps:  make(map[string]api.ConfigMapInfo),
 		secrets:     make(map[string]api.SecretInfo),
+		pvcs:        make(map[string]api.PVCInfo),
+		pvs:         make(map[string]api.PVInfo),
 	}
 }
 
@@ -70,18 +74,30 @@ func (w *Watcher) GetInitialState() api.InitialStatePayload {
 		secList = append(secList, s)
 	}
 
+	pvcList := make([]api.PVCInfo, 0, len(w.pvcs))
+	for _, pvc := range w.pvcs {
+		pvcList = append(pvcList, pvc)
+	}
+
+	pvList := make([]api.PVInfo, 0, len(w.pvs))
+	for _, pv := range w.pvs {
+		pvList = append(pvList, pv)
+	}
+
 	return api.InitialStatePayload{
 		ClusterName:  "k8s-tersane-cluster",
 		Nodes:        nodeList,
 		Pods:         podList,
 		ConfigMaps:   cmList,
 		Secrets:      secList,
+		PVCs:         pvcList,
+		PVs:          pvList,
 		TotalShips:   len(nodeList),
 		TotalPallets: len(podList),
 	}
 }
 
-// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, ConfigMaps, Secrets, and Events.
+// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, ConfigMaps, Secrets, PVCs, PVs, and Events.
 func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 	var factory informers.SharedInformerFactory
 	if w.namespace == "" {
@@ -145,7 +161,29 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add Secret event handlers: %w", err)
 	}
 
-	// 6. K8s Core Events Informer (Liman Anonsları)
+	// 6. PVC Informer
+	pvcInformer := factory.Core().V1().PersistentVolumeClaims().Informer()
+	_, err = pvcInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if pvc, ok := obj.(*corev1.PersistentVolumeClaim); ok { w.handlePVCEvent(api.ActionAdd, pvc) } },
+		UpdateFunc: func(_, newObj interface{}) { if pvc, ok := newObj.(*corev1.PersistentVolumeClaim); ok { w.handlePVCEvent(api.ActionUpdate, pvc) } },
+		DeleteFunc: func(obj interface{}) { if pvc, ok := obj.(*corev1.PersistentVolumeClaim); ok { w.handlePVCEvent(api.ActionDelete, pvc) } },
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add PVC event handlers: %w", err)
+	}
+
+	// 7. PV Informer
+	pvInformer := factory.Core().V1().PersistentVolumes().Informer()
+	_, err = pvInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if pv, ok := obj.(*corev1.PersistentVolume); ok { w.handlePVEvent(api.ActionAdd, pv) } },
+		UpdateFunc: func(_, newObj interface{}) { if pv, ok := newObj.(*corev1.PersistentVolume); ok { w.handlePVEvent(api.ActionUpdate, pv) } },
+		DeleteFunc: func(obj interface{}) { if pv, ok := obj.(*corev1.PersistentVolume); ok { w.handlePVEvent(api.ActionDelete, pv) } },
+	})
+	if err != nil {
+		return fmt.Errorf("failed to add PV event handlers: %w", err)
+	}
+
+	// 8. K8s Core Events Informer (Liman Anonsları)
 	k8sEventInformer := factory.Core().V1().Events().Informer()
 	_, err = k8sEventInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
@@ -167,7 +205,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 			return fmt.Errorf("failed to sync informer cache for %v", resource)
 		}
 	}
-	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, ConfigMaps, Secrets, Events). Listening for live events...")
+	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, ConfigMaps, Secrets, PVCs, PVs, Events). Listening for live events...")
 
 	<-ctx.Done()
 	return nil
@@ -302,13 +340,11 @@ func (w *Watcher) handleConfigMapEvent(action api.ResourceAction, cm *corev1.Con
 func (w *Watcher) handleSecretEvent(action api.ResourceAction, secret *corev1.Secret) {
 	secKey := fmt.Sprintf("%s/%s", secret.Namespace, secret.Name)
 
-	// Extract ONLY key names (e.g. "username", "password", "tls.crt")
 	keys := make([]string, 0, len(secret.Data))
 	for k := range secret.Data {
 		keys = append(keys, k)
 	}
 
-	// SECURITY GUARANTEE: Raw secret values in Data / StringData map are NEVER serialized or transmitted.
 	secInfo := api.SecretInfo{
 		Name:      secret.Name,
 		Namespace: secret.Namespace,
@@ -343,6 +379,118 @@ func (w *Watcher) handleSecretEvent(action api.ResourceAction, secret *corev1.Se
 	w.hub.BroadcastMessage(msg)
 }
 
+func (w *Watcher) handlePVCEvent(action api.ResourceAction, pvc *corev1.PersistentVolumeClaim) {
+	pvcKey := fmt.Sprintf("%s/%s", pvc.Namespace, pvc.Name)
+
+	modes := make([]string, 0, len(pvc.Spec.AccessModes))
+	for _, m := range pvc.Spec.AccessModes {
+		modes = append(modes, string(m))
+	}
+
+	capStr := ""
+	if qty, ok := pvc.Spec.Resources.Requests[corev1.ResourceStorage]; ok {
+		capStr = qty.String()
+	}
+
+	scName := ""
+	if pvc.Spec.StorageClassName != nil {
+		scName = *pvc.Spec.StorageClassName
+	}
+
+	pvcInfo := api.PVCInfo{
+		Name:              pvc.Name,
+		Namespace:         pvc.Namespace,
+		Status:            string(pvc.Status.Phase),
+		RequestedCapacity: capStr,
+		BoundPV:           pvc.Spec.VolumeName,
+		StorageClass:      scName,
+		AccessModes:       modes,
+		CreatedAt:         pvc.CreationTimestamp.Format(time.RFC3339),
+	}
+
+	w.mu.Lock()
+	if action == api.ActionDelete {
+		delete(w.pvcs, pvcKey)
+	} else {
+		w.pvcs[pvcKey] = pvcInfo
+	}
+	w.mu.Unlock()
+
+	payload := api.ResourcePayload{
+		Action:    action,
+		Kind:      api.KindPVC,
+		Namespace: pvc.Namespace,
+		Name:      pvc.Name,
+		Status:    string(pvc.Status.Phase),
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Depo Talebi (PVC)",
+			Compartment:  pvc.Namespace,
+			HealthState:  "SAFE",
+		},
+		Object: pvcInfo,
+	}
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
+func (w *Watcher) handlePVEvent(action api.ResourceAction, pv *corev1.PersistentVolume) {
+	capStr := ""
+	if qty, ok := pv.Spec.Capacity[corev1.ResourceStorage]; ok {
+		capStr = qty.String()
+	}
+
+	boundPVC := ""
+	if pv.Spec.ClaimRef != nil {
+		boundPVC = fmt.Sprintf("%s/%s", pv.Spec.ClaimRef.Namespace, pv.Spec.ClaimRef.Name)
+	}
+
+	backendType := "hostPath"
+	if pv.Spec.AWSElasticBlockStore != nil {
+		backendType = "AWS EBS (" + pv.Spec.AWSElasticBlockStore.VolumeID + ")"
+	} else if pv.Spec.GCEPersistentDisk != nil {
+		backendType = "GCE PD (" + pv.Spec.GCEPersistentDisk.PDName + ")"
+	} else if pv.Spec.NFS != nil {
+		backendType = "NFS (" + pv.Spec.NFS.Server + ")"
+	} else if pv.Spec.CSI != nil {
+		backendType = "CSI (" + pv.Spec.CSI.Driver + ")"
+	}
+
+	pvInfo := api.PVInfo{
+		Name:          pv.Name,
+		Status:        string(pv.Status.Phase),
+		Capacity:      capStr,
+		StorageClass:  pv.Spec.StorageClassName,
+		ReclaimPolicy: string(pv.Spec.PersistentVolumeReclaimPolicy),
+		BoundPVC:      boundPVC,
+		BackendType:   backendType,
+		CreatedAt:     pv.CreationTimestamp.Format(time.RFC3339),
+	}
+
+	w.mu.Lock()
+	if action == api.ActionDelete {
+		delete(w.pvs, pv.Name)
+	} else {
+		w.pvs[pv.Name] = pvInfo
+	}
+	w.mu.Unlock()
+
+	payload := api.ResourcePayload{
+		Action:    action,
+		Kind:      api.KindPV,
+		Name:      pv.Name,
+		Status:    string(pv.Status.Phase),
+		Metaphor: api.ShipyardMetaphor{
+			MetaphorRole: "Fiziksel Depo Ambarı (PV)",
+			HealthState:  "SAFE",
+		},
+		Object: pvInfo,
+	}
+
+	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
+	w.hub.BroadcastMessage(msg)
+}
+
 func (w *Watcher) handleK8sCoreEvent(e *corev1.Event) {
 	payload := api.ResourcePayload{
 		Action:    api.ActionAdd,
@@ -364,11 +512,11 @@ func (w *Watcher) handleK8sCoreEvent(e *corev1.Event) {
 
 func (w *Watcher) getHealthState(status string) string {
 	switch status {
-	case "Ready", "Running", "SAFE", "Normal":
+	case "Ready", "Running", "SAFE", "Normal", "Bound", "Available":
 		return "SAFE"
-	case "Warning", "NotReady", "Pending":
+	case "Warning", "NotReady", "Pending", "Released":
 		return "WARNING"
-	case "Failed", "Error", "CrashLoopBackOff", "OOMKilled", "Critical":
+	case "Failed", "Error", "CrashLoopBackOff", "OOMKilled", "Critical", "Lost":
 		return "CRITICAL"
 	default:
 		return "SAFE"

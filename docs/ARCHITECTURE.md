@@ -11,6 +11,7 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - `CargoShip.jsx`: Worker Node gemileri. Devriye rotası (CatmullRomCurve3) üzerinde hareket eder.
 - `CargoContainer.jsx`: Pod paletleri. Gemi üstüne parent-child dönüşümüyle bağlıdır.
 - `ConfigMapAndSecretMesh.jsx`: ConfigMap (Sevkiyat Föyü Panosu) ve Secret (Kilitli Çelik Kasa) 3D nesneleri.
+- `StorageDepotMesh.jsx`: Karada gemilerden bağımsız duran 3D Kiralanmış Depo Ambarı (PV/PVC) ve mor/turkuaz bağlantı hattı.
 - `IngressLighthouse.jsx`: Ingress / Gateway API Uluslararası Deniz Feneri.
 - `NetworkPolicyBarriers.jsx`: 3D Kırmızı lazer güvenlik bariyerleri.
 - `OrchestrationHelpers.jsx`: HPA Mobil Vinç, Node Affinity Çizgileri, PDB Bakım Bayrağı.
@@ -35,10 +36,14 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - **Bağlantı Yaşam Döngüsü:** Kullanıcı frontend'de Pod müfettiş çekmecesini veya Loglar sekmesini kapattığında WebSocket istemcisi `ws.close()` çağırır; backend Go `ctx.Cancel()` ile K8s API stream bağlantısını derhal sonlandırır.
 - **Bellek ve Scroll Yönetimi:** Frontend React state'inde en fazla 500 satır tutulur (eski satırlar düşürülür). Kullanıcı yukarı scroll yaptığında otomatik kaydırma duraklatılır, en alta indiğinde tekrar aktifleşir.
 
-### 5. ConfigMap & Secret Inspection Mimarisi ve Güvenlik Sınırları (Faz 22 / v2.3.0)
+### 5. ConfigMap & Secret Inspection Mimarisi (Faz 22 / v2.3.0)
 - **ConfigMap Açık Gösterim:** `ConfigMapInfo` struct'ı `Data map[string]string` içerir. Tüm key-value bilgileri ve çok satırlı yapılandırma metinleri okunabilir kod blokları halinde gösterilir.
 - **Secret Sıfır Değer Maruziyeti İlkesi (Zero Value Leakage):** Backend `SecretInfo` struct'ı yalnızca `KeyNames []string` tutar; raw `Data` veya `StringData` map verisi Go tür tanımından ve backend iletim şemasından **tamamen çıkarılmıştır**.
-- **Frontend Maskeli Görünüm:** Frontend nesnesi sadece key isimlerini ve `••••••••` maskeli değerleri sunar; `🔒 Değerler güvenlik nedeniyle gösterilmez` uyarısı verir.
+
+### 6. Depolama (PVC/PV) Görselleştirme ve Ağ Bağlantı Hatları (Faz 23 / v2.4.0)
+- **Karada Bağımsız Depo Ambarı:** PV yaşam döngüsünün Pod'lardan bağımsız olması ilkesi gereğince 3D Depo Ambarı gemiye bitişik değil, karada `[-28, 0.2, 18]` koordinatında konumlandırılmıştır.
+- **Pod-Depo Bağlantı Hattı:** `StorageConnectionLine` Three.js `QuadraticBezierCurve3` kullanarak 3D Depo Ambarından PVC'yi kullanan Pod'un bulunduğu gemiye kadar uzanan mor/turkuaz parlayan bir çizgi çizer.
+- **Boş Durum Yönetimi:** Kümede hiç PVC/PV yoksa sahnede hayalet depo oluşturulmaz; Master Control Dashboard'da `Depolama: 0 PVC` bilgisi verilir.
 
 ---
 
