@@ -17,6 +17,8 @@ Bu belge, Kubernetes bileşenlerinin Tersane 3D simülasyonundaki tam görsel ve
 | **DaemonSet** | **Gemi Direği Ekipmanı** | Her Worker Node gemisinin direğinde otomatik olarak beliren 3D dönen anten/fener ikonu | Faz 24 |
 | **Job** | **Geçici Görev Şalupası** | Limanda belirip işini yapan, tamamlanınca yumuşakça süzülen 3D görev teknesi | Faz 24 |
 | **CronJob** | **Sefer Tarifesi & Zamanlayıcı** | Yönetim Binası Sefer Tarifesi tablosundaki saat zamanlaması ve sahnede Job üreten zamanlayıcı | Faz 24 |
+| **ServiceAccount** | **Gemi Adamı / Mürettebat Kimlik Kartı** | Pod müfettiş kartında tıklanabilir `🪪 KİMLİK KARTI`, bağlı olduğu Role/Binding ilişkisi | Faz 25 |
+| **Role / ClusterRole** | **Yetki Rozeti & İzin Listesi** | Namespace veya küme genelinde tanımlı izinler tablosu (`Resource` ➔ `Allowed Verbs`) | Faz 25 |
 | **ConfigMap** | **Sevkiyat Föyü / Talimat Panosu** | Rıhtımda dikili, üzeri iğneli talimat kağıtlarıyla dolu tahta/çelik pano (tüm içerik açık) | Faz 22 |
 | **Secret** | **Kilitli Emniyet Kasası** | Rıhtımda sabitlenmiş, altın kilitli ve sinyal fenerli çelik kasa (sadece key ismi, değerler gizli) | Faz 22 |
 | **PersistentVolumeClaim (PVC)** | **Depo Tahsis Sözleşmesi** | Kiralanmış depolama alanının istenen kapasite (10Gi) ve erişim modları belgesi | Faz 23 |
@@ -26,6 +28,3 @@ Bu belge, Kubernetes bileşenlerinin Tersane 3D simülasyonundaki tam görsel ve
 | **kube-scheduler** | **Sarı Liman Gantry Vinci** | Konteynırları karadan gemilere sevk eden ve yükleme kararı veren vinç | Faz 13 |
 | **Ingress / Gateway API** | **Uluslararası Giriş Rıhtımı & Fener** | Liman ağzındaki deniz feneri ve dış sefer rotalarını temsil eden ana giriş kapısı | Faz 18 |
 | **NetworkPolicy** | **Gümrük Güvenlik Bariyerleri** | İhlal durumunda rıhtım ve gemiler arasında beliren kırmızı lazer bariyer | Faz 18 |
-| **ResourceQuota / LimitRange** | **Ambar Kapasite Çizgileri & Uyarı İşareti** | Depo ambar duvarındaki maksimum ağırlık çizgisi ve doluluk barı | Faz 18 |
-| **HorizontalPodAutoscaler (HPA)** | **Otomatik Ekstra Vinç & Yükleyici Ekibi** | Pod yükü arttıkça otomatik sahaya giren ekstra hareketli yükleyici vinç | Faz 19 |
-| **PodDisruptionBudget (PDB)** | **Maksimum Bakım İzin Bayrağı** | Aynı anda bakıma alınabilecek maksimum gemi sayısını gösteren sarı bayrak | Faz 19 |

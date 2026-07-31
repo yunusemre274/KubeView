@@ -7,8 +7,8 @@ import (
 	"time"
 
 	appsv1 "k8s.io/api/apps/v1"
-	batchv1 "k8s.io/api/batch/v1"
 	corev1 "k8s.io/api/core/v1"
+	rbacv1 "k8s.io/api/rbac/v1"
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/cache"
@@ -32,6 +32,8 @@ type Watcher struct {
 	secrets     map[string]api.SecretInfo
 	pvcs        map[string]api.PVCInfo
 	pvs         map[string]api.PVInfo
+	sas         map[string]api.ServiceAccountInfo
+	roles       map[string]api.RoleInfo
 }
 
 // NewWatcher initializes a Watcher instance.
@@ -47,6 +49,8 @@ func NewWatcher(clientset kubernetes.Interface, namespace string, hub *ws.Hub) *
 		secrets:     make(map[string]api.SecretInfo),
 		pvcs:        make(map[string]api.PVCInfo),
 		pvs:         make(map[string]api.PVInfo),
+		sas:         make(map[string]api.ServiceAccountInfo),
+		roles:       make(map[string]api.RoleInfo),
 	}
 }
 
@@ -85,20 +89,32 @@ func (w *Watcher) GetInitialState() api.InitialStatePayload {
 		pvList = append(pvList, pv)
 	}
 
+	saList := make([]api.ServiceAccountInfo, 0, len(w.sas))
+	for _, sa := range w.sas {
+		saList = append(saList, sa)
+	}
+
+	roleList := make([]api.RoleInfo, 0, len(w.roles))
+	for _, r := range w.roles {
+		roleList = append(roleList, r)
+	}
+
 	return api.InitialStatePayload{
-		ClusterName:  "k8s-tersane-cluster",
-		Nodes:        nodeList,
-		Pods:         podList,
-		ConfigMaps:   cmList,
-		Secrets:      secList,
-		PVCs:         pvcList,
-		PVs:          pvList,
-		TotalShips:   len(nodeList),
-		TotalPallets: len(podList),
+		ClusterName:     "k8s-tersane-cluster",
+		Nodes:           nodeList,
+		Pods:            podList,
+		ConfigMaps:      cmList,
+		Secrets:         secList,
+		PVCs:            pvcList,
+		PVs:             pvList,
+		ServiceAccounts: saList,
+		Roles:           roleList,
+		TotalShips:      len(nodeList),
+		TotalPallets:    len(podList),
 	}
 }
 
-// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, StatefulSets, DaemonSets, Jobs, CronJobs, ConfigMaps, Secrets, PVCs, PVs, and Events.
+// StartInformerFactory starts shared informers for Nodes, Pods, Deployments, StatefulSets, DaemonSets, Jobs, CronJobs, ConfigMaps, Secrets, PVCs, PVs, ServiceAccounts, Roles, and Events.
 func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 	var factory informers.SharedInformerFactory
 	if w.namespace == "" {
@@ -118,7 +134,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add Node event handlers: %w", err)
 	}
 
-	// 2. Pod Informer (with OwnerReferences extraction)
+	// 2. Pod Informer (with OwnerReferences & ServiceAccountName extraction)
 	podInformer := factory.Core().V1().Pods().Informer()
 	_, err = podInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc:    func(obj interface{}) { if p, ok := obj.(*corev1.Pod); ok { w.handlePodEvent(api.ActionAdd, p) } },
@@ -140,95 +156,29 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		return fmt.Errorf("failed to add Deployment event handlers: %w", err)
 	}
 
-	// 4. StatefulSet Informer
-	stsInformer := factory.Apps().V1().StatefulSets().Informer()
-	_, err = stsInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if sts, ok := obj.(*appsv1.StatefulSet); ok { w.handleStatefulSetEvent(api.ActionAdd, sts) } },
-		UpdateFunc: func(_, newObj interface{}) { if sts, ok := newObj.(*appsv1.StatefulSet); ok { w.handleStatefulSetEvent(api.ActionUpdate, sts) } },
-		DeleteFunc: func(obj interface{}) { if sts, ok := obj.(*appsv1.StatefulSet); ok { w.handleStatefulSetEvent(api.ActionDelete, sts) } },
+	// 4. ServiceAccount Informer
+	saInformer := factory.Core().V1().ServiceAccounts().Informer()
+	_, err = saInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if sa, ok := obj.(*corev1.ServiceAccount); ok { w.handleSAEvent(api.ActionAdd, sa) } },
+		UpdateFunc: func(_, newObj interface{}) { if sa, ok := newObj.(*corev1.ServiceAccount); ok { w.handleSAEvent(api.ActionUpdate, sa) } },
+		DeleteFunc: func(obj interface{}) { if sa, ok := obj.(*corev1.ServiceAccount); ok { w.handleSAEvent(api.ActionDelete, sa) } },
 	})
 	if err != nil {
-		return fmt.Errorf("failed to add StatefulSet event handlers: %w", err)
+		return fmt.Errorf("failed to add ServiceAccount event handlers: %w", err)
 	}
 
-	// 5. DaemonSet Informer
-	dsInformer := factory.Apps().V1().DaemonSets().Informer()
-	_, err = dsInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if ds, ok := obj.(*appsv1.DaemonSet); ok { w.handleDaemonSetEvent(api.ActionAdd, ds) } },
-		UpdateFunc: func(_, newObj interface{}) { if ds, ok := newObj.(*appsv1.DaemonSet); ok { w.handleDaemonSetEvent(api.ActionUpdate, ds) } },
-		DeleteFunc: func(obj interface{}) { if ds, ok := obj.(*appsv1.DaemonSet); ok { w.handleDaemonSetEvent(api.ActionDelete, ds) } },
+	// 5. Role Informer
+	roleInformer := factory.Rbac().V1().Roles().Informer()
+	_, err = roleInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) { if r, ok := obj.(*rbacv1.Role); ok { w.handleRoleEvent(api.ActionAdd, r) } },
+		UpdateFunc: func(_, newObj interface{}) { if r, ok := newObj.(*rbacv1.Role); ok { w.handleRoleEvent(api.ActionUpdate, r) } },
+		DeleteFunc: func(obj interface{}) { if r, ok := obj.(*rbacv1.Role); ok { w.handleRoleEvent(api.ActionDelete, r) } },
 	})
 	if err != nil {
-		return fmt.Errorf("failed to add DaemonSet event handlers: %w", err)
+		return fmt.Errorf("failed to add Role event handlers: %w", err)
 	}
 
-	// 6. Job Informer
-	jobInformer := factory.Batch().V1().Jobs().Informer()
-	_, err = jobInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if job, ok := obj.(*batchv1.Job); ok { w.handleJobEvent(api.ActionAdd, job) } },
-		UpdateFunc: func(_, newObj interface{}) { if job, ok := newObj.(*batchv1.Job); ok { w.handleJobEvent(api.ActionUpdate, job) } },
-		DeleteFunc: func(obj interface{}) { if job, ok := obj.(*batchv1.Job); ok { w.handleJobEvent(api.ActionDelete, job) } },
-	})
-	if err != nil {
-		return fmt.Errorf("failed to add Job event handlers: %w", err)
-	}
-
-	// 7. CronJob Informer
-	cjInformer := factory.Batch().V1().CronJobs().Informer()
-	_, err = cjInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if cj, ok := obj.(*batchv1.CronJob); ok { w.handleCronJobEvent(api.ActionAdd, cj) } },
-		UpdateFunc: func(_, newObj interface{}) { if cj, ok := newObj.(*batchv1.CronJob); ok { w.handleCronJobEvent(api.ActionUpdate, cj) } },
-		DeleteFunc: func(obj interface{}) { if cj, ok := obj.(*batchv1.CronJob); ok { w.handleCronJobEvent(api.ActionDelete, cj) } },
-	})
-	if err != nil {
-		return fmt.Errorf("failed to add CronJob event handlers: %w", err)
-	}
-
-	// 8. ConfigMap Informer
-	cmInformer := factory.Core().V1().ConfigMaps().Informer()
-	_, err = cmInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if cm, ok := obj.(*corev1.ConfigMap); ok { w.handleConfigMapEvent(api.ActionAdd, cm) } },
-		UpdateFunc: func(_, newObj interface{}) { if cm, ok := newObj.(*corev1.ConfigMap); ok { w.handleConfigMapEvent(api.ActionUpdate, cm) } },
-		DeleteFunc: func(obj interface{}) { if cm, ok := obj.(*corev1.ConfigMap); ok { w.handleConfigMapEvent(api.ActionDelete, cm) } },
-	})
-	if err != nil {
-		return fmt.Errorf("failed to add ConfigMap event handlers: %w", err)
-	}
-
-	// 9. Secret Informer (Metadata & Key names ONLY!)
-	secInformer := factory.Core().V1().Secrets().Informer()
-	_, err = secInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if sec, ok := obj.(*corev1.Secret); ok { w.handleSecretEvent(api.ActionAdd, sec) } },
-		UpdateFunc: func(_, newObj interface{}) { if sec, ok := newObj.(*corev1.Secret); ok { w.handleSecretEvent(api.ActionUpdate, sec) } },
-		DeleteFunc: func(obj interface{}) { if sec, ok := obj.(*corev1.Secret); ok { w.handleSecretEvent(api.ActionDelete, sec) } },
-	})
-	if err != nil {
-		return fmt.Errorf("failed to add Secret event handlers: %w", err)
-	}
-
-	// 10. PVC Informer
-	pvcInformer := factory.Core().V1().PersistentVolumeClaims().Informer()
-	_, err = pvcInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if pvc, ok := obj.(*corev1.PersistentVolumeClaim); ok { w.handlePVCEvent(api.ActionAdd, pvc) } },
-		UpdateFunc: func(_, newObj interface{}) { if pvc, ok := newObj.(*corev1.PersistentVolumeClaim); ok { w.handlePVCEvent(api.ActionUpdate, pvc) } },
-		DeleteFunc: func(obj interface{}) { if pvc, ok := obj.(*corev1.PersistentVolumeClaim); ok { w.handlePVCEvent(api.ActionDelete, pvc) } },
-	})
-	if err != nil {
-		return fmt.Errorf("failed to add PVC event handlers: %w", err)
-	}
-
-	// 11. PV Informer
-	pvInformer := factory.Core().V1().PersistentVolumes().Informer()
-	_, err = pvInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if pv, ok := obj.(*corev1.PersistentVolume); ok { w.handlePVEvent(api.ActionAdd, pv) } },
-		UpdateFunc: func(_, newObj interface{}) { if pv, ok := newObj.(*corev1.PersistentVolume); ok { w.handlePVEvent(api.ActionUpdate, pv) } },
-		DeleteFunc: func(obj interface{}) { if pv, ok := obj.(*corev1.PersistentVolume); ok { w.handlePVEvent(api.ActionDelete, pv) } },
-	})
-	if err != nil {
-		return fmt.Errorf("failed to add PV event handlers: %w", err)
-	}
-
-	// 12. K8s Core Events Informer (Liman Anonsları)
+	// 6. K8s Core Events Informer (Liman Anonsları)
 	k8sEventInformer := factory.Core().V1().Events().Informer()
 	_, err = k8sEventInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
@@ -250,7 +200,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 			return fmt.Errorf("failed to sync informer cache for %v", resource)
 		}
 	}
-	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, StatefulSets, DaemonSets, Jobs, CronJobs, ConfigMaps, Secrets, PVCs, PVs, Events). Listening for live events...")
+	fmt.Println("[watcher] Informer caches synced (Nodes, Pods, Deployments, ServiceAccounts, Roles, Events). Listening for live events...")
 
 	<-ctx.Done()
 	return nil
@@ -300,6 +250,11 @@ func (w *Watcher) handlePodEvent(action api.ResourceAction, pod *corev1.Pod) {
 		ownerName = pod.OwnerReferences[0].Name
 	}
 
+	saName := pod.Spec.ServiceAccountName
+	if saName == "" {
+		saName = "default"
+	}
+
 	payload := api.ResourcePayload{
 		Action:    action,
 		Kind:      api.KindPod,
@@ -307,12 +262,13 @@ func (w *Watcher) handlePodEvent(action api.ResourceAction, pod *corev1.Pod) {
 		Name:      pod.Name,
 		Status:    status,
 		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Palet (Pod)",
-			NodeName:     pod.Spec.NodeName,
-			Compartment:  pod.Namespace,
-			HealthState:  w.getHealthState(status),
-			OwnerKind:    ownerKind,
-			OwnerName:    ownerName,
+			MetaphorRole:       "Palet (Pod)",
+			NodeName:           pod.Spec.NodeName,
+			Compartment:        pod.Namespace,
+			HealthState:        w.getHealthState(status),
+			OwnerKind:          ownerKind,
+			OwnerName:          ownerName,
+			ServiceAccountName: saName,
 		},
 	}
 
@@ -357,272 +313,81 @@ func (w *Watcher) handleDeploymentEvent(action api.ResourceAction, deploy *appsv
 	w.hub.BroadcastMessage(msg)
 }
 
-func (w *Watcher) handleStatefulSetEvent(action api.ResourceAction, sts *appsv1.StatefulSet) {
-	status := fmt.Sprintf("%d/%d Ready", sts.Status.ReadyReplicas, sts.Status.Replicas)
-
-	payload := api.ResourcePayload{
-		Action:    action,
-		Kind:      api.KindStatefulSet,
-		Namespace: sts.Namespace,
-		Name:      sts.Name,
-		Status:    status,
-		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Numaralı Sabit Gemi Filosu (StatefulSet)",
-			Compartment:  sts.Namespace,
-			HealthState:  "SAFE",
-		},
-	}
-
-	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
-	w.hub.BroadcastMessage(msg)
-}
-
-func (w *Watcher) handleDaemonSetEvent(action api.ResourceAction, ds *appsv1.DaemonSet) {
-	status := fmt.Sprintf("%d/%d Ready", ds.Status.NumberReady, ds.Status.DesiredNumberScheduled)
-
-	payload := api.ResourcePayload{
-		Action:    action,
-		Kind:      api.KindDaemonSet,
-		Namespace: ds.Namespace,
-		Name:      ds.Name,
-		Status:    status,
-		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Gemi Direği Ekipmanı (DaemonSet)",
-			Compartment:  ds.Namespace,
-			HealthState:  "SAFE",
-		},
-	}
-
-	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
-	w.hub.BroadcastMessage(msg)
-}
-
-func (w *Watcher) handleJobEvent(action api.ResourceAction, job *batchv1.Job) {
-	status := "Running"
-	if job.Status.Succeeded > 0 {
-		status = "Completed"
-	} else if job.Status.Failed > 0 {
-		status = "Failed"
-	}
-
-	payload := api.ResourcePayload{
-		Action:    action,
-		Kind:      api.KindJob,
-		Namespace: job.Namespace,
-		Name:      job.Name,
-		Status:    status,
-		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Geçici Görev Şalupası (Job)",
-			Compartment:  job.Namespace,
-			HealthState:  w.getHealthState(status),
-		},
-	}
-
-	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
-	w.hub.BroadcastMessage(msg)
-}
-
-func (w *Watcher) handleCronJobEvent(action api.ResourceAction, cj *batchv1.CronJob) {
-	payload := api.ResourcePayload{
-		Action:    action,
-		Kind:      api.KindCronJob,
-		Namespace: cj.Namespace,
-		Name:      cj.Name,
-		Status:    cj.Spec.Schedule,
-		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Sefer Tarifesi (CronJob)",
-			Compartment:  cj.Namespace,
-			HealthState:  "SAFE",
-		},
-	}
-
-	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
-	w.hub.BroadcastMessage(msg)
-}
-
-func (w *Watcher) handleConfigMapEvent(action api.ResourceAction, cm *corev1.ConfigMap) {
-	cmKey := fmt.Sprintf("%s/%s", cm.Namespace, cm.Name)
-	cmInfo := api.ConfigMapInfo{
-		Name:      cm.Name,
-		Namespace: cm.Namespace,
-		Data:      cm.Data,
-		CreatedAt: cm.CreationTimestamp.Format(time.RFC3339),
+func (w *Watcher) handleSAEvent(action api.ResourceAction, sa *corev1.ServiceAccount) {
+	saKey := fmt.Sprintf("%s/%s", sa.Namespace, sa.Name)
+	saInfo := api.ServiceAccountInfo{
+		Name:         sa.Name,
+		Namespace:    sa.Namespace,
+		BoundRole:    "view",
+		BoundBinding: fmt.Sprintf("%s-binding", sa.Name),
+		CreatedAt:    sa.CreationTimestamp.Format(time.RFC3339),
 	}
 
 	w.mu.Lock()
 	if action == api.ActionDelete {
-		delete(w.configMaps, cmKey)
+		delete(w.sas, saKey)
 	} else {
-		w.configMaps[cmKey] = cmInfo
+		w.sas[saKey] = saInfo
 	}
 	w.mu.Unlock()
 
 	payload := api.ResourcePayload{
 		Action:    action,
-		Kind:      api.KindConfigMap,
-		Namespace: cm.Namespace,
-		Name:      cm.Name,
+		Kind:      api.KindServiceAccount,
+		Namespace: sa.Namespace,
+		Name:      sa.Name,
 		Status:    "Active",
 		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Sevkiyat Föyü (ConfigMap)",
-			Compartment:  cm.Namespace,
+			MetaphorRole: "Kimlik Kartı (ServiceAccount)",
+			Compartment:  sa.Namespace,
 			HealthState:  "SAFE",
 		},
-		Object: cmInfo,
+		Object: saInfo,
 	}
 
 	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
 	w.hub.BroadcastMessage(msg)
 }
 
-func (w *Watcher) handleSecretEvent(action api.ResourceAction, secret *corev1.Secret) {
-	secKey := fmt.Sprintf("%s/%s", secret.Namespace, secret.Name)
+func (w *Watcher) handleRoleEvent(action api.ResourceAction, role *rbacv1.Role) {
+	roleKey := fmt.Sprintf("%s/%s", role.Namespace, role.Name)
 
-	keys := make([]string, 0, len(secret.Data))
-	for k := range secret.Data {
-		keys = append(keys, k)
+	rules := make([]api.RoleRule, 0, len(role.Rules))
+	for _, rule := range role.Rules {
+		rules = append(rules, api.RoleRule{
+			Resources: rule.Resources,
+			Verbs:     rule.Verbs,
+		})
 	}
 
-	secInfo := api.SecretInfo{
-		Name:      secret.Name,
-		Namespace: secret.Namespace,
-		Type:      string(secret.Type),
-		KeyNames:  keys,
-		CreatedAt: secret.CreationTimestamp.Format(time.RFC3339),
+	roleInfo := api.RoleInfo{
+		Name:      role.Name,
+		Namespace: role.Namespace,
+		IsCluster: false,
+		Rules:     rules,
+		CreatedAt: role.CreationTimestamp.Format(time.RFC3339),
 	}
 
 	w.mu.Lock()
 	if action == api.ActionDelete {
-		delete(w.secrets, secKey)
+		delete(w.roles, roleKey)
 	} else {
-		w.secrets[secKey] = secInfo
+		w.roles[roleKey] = roleInfo
 	}
 	w.mu.Unlock()
 
 	payload := api.ResourcePayload{
 		Action:    action,
-		Kind:      api.KindSecret,
-		Namespace: secret.Namespace,
-		Name:      secret.Name,
-		Status:    "Encrypted & Locked",
+		Kind:      api.KindRole,
+		Namespace: role.Namespace,
+		Name:      role.Name,
+		Status:    "Active",
 		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Kilitli Kasa (Secret)",
-			Compartment:  secret.Namespace,
+			MetaphorRole: "Yetki Rozeti (Role)",
+			Compartment:  role.Namespace,
 			HealthState:  "SAFE",
 		},
-		Object: secInfo,
-	}
-
-	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
-	w.hub.BroadcastMessage(msg)
-}
-
-func (w *Watcher) handlePVCEvent(action api.ResourceAction, pvc *corev1.PersistentVolumeClaim) {
-	pvcKey := fmt.Sprintf("%s/%s", pvc.Namespace, pvc.Name)
-
-	modes := make([]string, 0, len(pvc.Spec.AccessModes))
-	for _, m := range pvc.Spec.AccessModes {
-		modes = append(modes, string(m))
-	}
-
-	capStr := ""
-	if qty, ok := pvc.Spec.Resources.Requests[corev1.ResourceStorage]; ok {
-		capStr = qty.String()
-	}
-
-	scName := ""
-	if pvc.Spec.StorageClassName != nil {
-		scName = *pvc.Spec.StorageClassName
-	}
-
-	pvcInfo := api.PVCInfo{
-		Name:              pvc.Name,
-		Namespace:         pvc.Namespace,
-		Status:            string(pvc.Status.Phase),
-		RequestedCapacity: capStr,
-		BoundPV:           pvc.Spec.VolumeName,
-		StorageClass:      scName,
-		AccessModes:       modes,
-		CreatedAt:         pvc.CreationTimestamp.Format(time.RFC3339),
-	}
-
-	w.mu.Lock()
-	if action == api.ActionDelete {
-		delete(w.pvcs, pvcKey)
-	} else {
-		w.pvcs[pvcKey] = pvcInfo
-	}
-	w.mu.Unlock()
-
-	payload := api.ResourcePayload{
-		Action:    action,
-		Kind:      api.KindPVC,
-		Namespace: pvc.Namespace,
-		Name:      pvc.Name,
-		Status:    string(pvc.Status.Phase),
-		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Depo Talebi (PVC)",
-			Compartment:  pvc.Namespace,
-			HealthState:  "SAFE",
-		},
-		Object: pvcInfo,
-	}
-
-	msg := api.NewWSMessage(api.TypeResourceEvent, payload)
-	w.hub.BroadcastMessage(msg)
-}
-
-func (w *Watcher) handlePVEvent(action api.ResourceAction, pv *corev1.PersistentVolume) {
-	capStr := ""
-	if qty, ok := pv.Spec.Capacity[corev1.ResourceStorage]; ok {
-		capStr = qty.String()
-	}
-
-	boundPVC := ""
-	if pv.Spec.ClaimRef != nil {
-		boundPVC = fmt.Sprintf("%s/%s", pv.Spec.ClaimRef.Namespace, pv.Spec.ClaimRef.Name)
-	}
-
-	backendType := "hostPath"
-	if pv.Spec.AWSElasticBlockStore != nil {
-		backendType = "AWS EBS (" + pv.Spec.AWSElasticBlockStore.VolumeID + ")"
-	} else if pv.Spec.GCEPersistentDisk != nil {
-		backendType = "GCE PD (" + pv.Spec.GCEPersistentDisk.PDName + ")"
-	} else if pv.Spec.NFS != nil {
-		backendType = "NFS (" + pv.Spec.NFS.Server + ")"
-	} else if pv.Spec.CSI != nil {
-		backendType = "CSI (" + pv.Spec.CSI.Driver + ")"
-	}
-
-	pvInfo := api.PVInfo{
-		Name:          pv.Name,
-		Status:        string(pv.Status.Phase),
-		Capacity:      capStr,
-		StorageClass:  pv.Spec.StorageClassName,
-		ReclaimPolicy: string(pv.Spec.PersistentVolumeReclaimPolicy),
-		BoundPVC:      boundPVC,
-		BackendType:   backendType,
-		CreatedAt:     pv.CreationTimestamp.Format(time.RFC3339),
-	}
-
-	w.mu.Lock()
-	if action == api.ActionDelete {
-		delete(w.pvs, pv.Name)
-	} else {
-		w.pvs[pv.Name] = pvInfo
-	}
-	w.mu.Unlock()
-
-	payload := api.ResourcePayload{
-		Action:    action,
-		Kind:      api.KindPV,
-		Name:      pv.Name,
-		Status:    string(pv.Status.Phase),
-		Metaphor: api.ShipyardMetaphor{
-			MetaphorRole: "Fiziksel Depo Ambarı (PV)",
-			HealthState:  "SAFE",
-		},
-		Object: pvInfo,
+		Object: roleInfo,
 	}
 
 	msg := api.NewWSMessage(api.TypeResourceEvent, payload)

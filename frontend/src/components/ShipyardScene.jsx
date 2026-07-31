@@ -14,7 +14,7 @@ import { StatefulSetShip, DaemonSetEquipment, JobTaskBoatMesh } from './3d/Workl
 import PodLogViewer from './PodLogViewer'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2, Repeat, Play, Layers3, Terminal } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2, Repeat, Play, Layers3, Terminal, UserCheck, ShieldCheck as ShieldCheckIcon, AlertTriangle } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -393,7 +393,7 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
         onClickKubelet={() => onSelectKubelet(shipData)}
       />
 
-      {/* DAEMONSET STANDART EKİPMAN ANTENİ (HER GEMİNİN DİREĞİNDE REPEAT EDER) */}
+      {/* DAEMONSET STANDART EKİPMAN ANTENİ */}
       <DaemonSetEquipment
         position={[0, 6.5, -7.0]}
         dsData={{ name: 'kube-flannel-ds', namespace: 'kube-system', desired: 2, current: 2, ready: 2 }}
@@ -460,8 +460,8 @@ export default function ShipyardScene({ ships = [] }) {
   })
 
   const [eventsLog, setEventsLog] = useState([
-    { id: 1, time: '23:38:10', message: 'Tersane v2.5.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
-    { id: 2, time: '23:39:05', message: 'İş Yükü Tipi Ayrımı (STS, DS, Job, CronJob) Aktif', type: 'Normal', isUserTriggered: false },
+    { id: 1, time: '23:38:10', message: 'Tersane v2.6.0 Pro Küme İzleme Hizmete Girdi', type: 'Normal', isUserTriggered: false },
+    { id: 2, time: '23:39:05', message: 'RBAC İlişkisel İnceleme ve Güvenlik Rozetleri Aktif', type: 'Normal', isUserTriggered: false },
     { id: 3, time: '23:40:00', message: 'Cluster Context: minikube bağlamı seçildi', type: 'Normal', isUserTriggered: false }
   ])
 
@@ -486,6 +486,8 @@ export default function ShipyardScene({ ships = [] }) {
           namespace: 'default',
           owner_kind: 'Deployment',
           owner_name: 'web-frontend-deploy',
+          service_account: 'default',
+          bound_roles: ['view', 'tersane-role'],
           color: '#10b981',
           status: 'Running',
           ip: '10.244.0.12',
@@ -504,6 +506,8 @@ export default function ShipyardScene({ ships = [] }) {
           namespace: 'default',
           owner_kind: 'Deployment',
           owner_name: 'api-backend-deploy',
+          service_account: 'admin-sa',
+          bound_roles: ['cluster-admin'],
           color: '#0284c7',
           status: 'Running',
           ip: '10.244.0.15',
@@ -533,6 +537,8 @@ export default function ShipyardScene({ ships = [] }) {
           owner_kind: 'StatefulSet',
           owner_name: 'redis-cache-set',
           ordinal: '#0',
+          service_account: 'default',
+          bound_roles: ['view'],
           color: '#a855f7',
           status: 'Running',
           ip: '10.244.1.20',
@@ -586,6 +592,38 @@ export default function ShipyardScene({ ships = [] }) {
       setActiveAnomaly(null)
       addEventLog('Sistem Normale Döndü', 'Normal', false)
     }
+  }
+
+  const handleSelectServiceAccount = (saName = 'default', namespace = 'default') => {
+    const isAdmin = saName === 'admin-sa'
+    setActiveSelection({
+      type: 'SERVICEACCOUNT',
+      data: {
+        name: saName,
+        namespace,
+        is_admin: isAdmin,
+        bound_role: isAdmin ? 'cluster-admin' : 'view',
+        bound_binding: isAdmin ? 'admin-sa-binding' : 'default-view-binding',
+        used_by_pods: isAdmin ? ['api-backend-deploy-59d4c'] : ['web-frontend-deploy-74b89', 'redis-cache-set-0'],
+        created_at: '2026-07-20T08:00:00Z'
+      }
+    })
+  }
+
+  const handleSelectRole = (roleName = 'view', isCluster = false) => {
+    setActiveSelection({
+      type: 'ROLE',
+      data: {
+        name: roleName,
+        namespace: isCluster ? '' : 'default',
+        is_cluster: isCluster,
+        rules: [
+          { resources: ['pods', 'pods/log', 'configmaps', 'services'], verbs: ['get', 'list', 'watch'] },
+          { resources: ['events'], verbs: ['get', 'list'] }
+        ],
+        bound_sas: ['default', 'tersane-sa']
+      }
+    })
   }
 
   const handleSelectStatefulSet = () => {
@@ -643,7 +681,6 @@ export default function ShipyardScene({ ships = [] }) {
     setActiveJobBoat(newJob)
     addEventLog(`⏰ CronJob '${cronJobName}' yeni bir Job başlattı: ${newJobName}`, 'Normal', true)
     
-    // Smooth camera view to Job Task Boat
     setCamTargetPos(new THREE.Vector3(24, 10, 28))
     setCamTargetLookAt(new THREE.Vector3(14, 1, 18))
 
@@ -855,7 +892,7 @@ export default function ShipyardScene({ ships = [] }) {
           <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-amber-500/10 border border-amber-500/30">
             <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
             <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
-              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.5.0</span>
+              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.6.0</span>
             </span>
           </div>
 
@@ -1106,6 +1143,8 @@ export default function ShipyardScene({ ships = [] }) {
                   {activeSelection.type === 'STATEFULSET' && <Layers3 className="w-4 h-4 text-purple-400" />}
                   {activeSelection.type === 'DAEMONSET' && <Terminal className="w-4 h-4 text-sky-400" />}
                   {activeSelection.type === 'JOB' && <Play className="w-4 h-4 text-amber-400" />}
+                  {activeSelection.type === 'SERVICEACCOUNT' && <UserCheck className="w-4 h-4 text-sky-400" />}
+                  {activeSelection.type === 'ROLE' && <ShieldCheckIcon className="w-4 h-4 text-purple-400" />}
                   <span>
                     {activeSelection.type === 'KUBELET' && '📡 KUBELET AGENT (MASİF)'}
                     {activeSelection.type === 'CRANE' && '🏗️ KUBE-SCHEDULER (VİNÇ)'}
@@ -1120,12 +1159,99 @@ export default function ShipyardScene({ ships = [] }) {
                     {activeSelection.type === 'STATEFULSET' && '🔢 NUMARALI SABİT GEMİ (STATEFULSET)'}
                     {activeSelection.type === 'DAEMONSET' && '🧯 STANDART EKİPMAN (DAEMONSET)'}
                     {activeSelection.type === 'JOB' && '⚓ GÖREV ŞALUPASI (JOB)'}
+                    {activeSelection.type === 'SERVICEACCOUNT' && '🪪 KİMLİK KARTI (SERVICEACCOUNT)'}
+                    {activeSelection.type === 'ROLE' && '🛡️ YETKİ ROZETİ (ROLE / RULES)'}
                   </span>
                 </h3>
                 <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
                   <X className="w-4 h-4" />
                 </button>
               </div>
+
+              {/* SERVICEACCOUNT DETAILS */}
+              {activeSelection.type === 'SERVICEACCOUNT' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">SERVICEACCOUNT ADI:</span>
+                    <strong className="text-sky-300 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+
+                  {activeSelection.data.is_admin && (
+                    <div className="bg-red-500/10 p-2.5 rounded-lg border border-red-500/50 flex items-start gap-2">
+                      <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5 animate-bounce" />
+                      <div className="text-[10px] text-red-300 leading-tight">
+                        <strong className="text-red-400 block">⚠️ AŞIRI YETKİLİ SERVICEACCOUNT:</strong>
+                        Bu ServiceAccount <code className="text-amber-300 font-mono font-bold">cluster-admin</code> rolüne bağlıdır! Tüm küme kaynaklarına tam yetkili müdahale hakkı içerir.
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-purple-400 font-bold block text-[10px]">BAĞLI BİNDİNG VE ROL:</span>
+                    <div className="flex justify-between"><span>Binding:</span><strong className="text-slate-200">{activeSelection.data.bound_binding}</strong></div>
+                    <div className="flex justify-between items-center">
+                      <span>Hedef Rol:</span>
+                      <button
+                        onClick={() => handleSelectRole(activeSelection.data.bound_role, activeSelection.data.is_admin)}
+                        className="text-purple-300 hover:underline font-bold text-[10px] flex items-center gap-1"
+                      >
+                        <Link2 className="w-3 h-3 text-purple-400" />
+                        <span>{activeSelection.data.bound_role}</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-emerald-400 font-bold block text-[10px]">BU SA İLE ÇALIŞAN POD'LAR:</span>
+                    {activeSelection.data.used_by_pods?.map((podName, idx) => (
+                      <div key={idx} className="text-slate-200 text-[10px]">● {podName}</div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* ROLE / CLUSTERROLE READABLE RULES TABLE DETAILS */}
+              {activeSelection.type === 'ROLE' && (
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-slate-400 block text-[10px]">ROL / CLUSTERROLE ADI:</span>
+                    <strong className="text-purple-300 text-xs">{activeSelection.data.name}</strong>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2 rounded border border-slate-700 flex justify-between">
+                    <span className="text-slate-400 text-[10px]">ROL TİPİ:</span>
+                    <strong className="text-emerald-400 text-[10px]">
+                      {activeSelection.data.is_cluster ? 'ClusterRole (Küme Geneli)' : `Role (Namespace: ${activeSelection.data.namespace})`}
+                    </strong>
+                  </div>
+
+                  {/* READABLE PERMISSION RULES TABLE (RESOURCE + VERBS) */}
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
+                    <span className="text-amber-400 font-bold block text-[10px]">📋 TANIMLI İZİNLER (RULES TABLOSU):</span>
+                    <div className="space-y-1.5">
+                      {activeSelection.data.rules?.map((rule, idx) => (
+                        <div key={idx} className="bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1 text-[10px]">
+                          <div className="flex items-center gap-1 text-sky-300">
+                            <Box className="w-3 h-3 text-sky-400 shrink-0" />
+                            <strong>Kaynaklar (Resources):</strong> <span className="text-white font-mono">{rule.resources.join(', ')}</span>
+                          </div>
+                          <div className="flex items-center gap-1 text-emerald-400">
+                            <Zap className="w-3 h-3 text-emerald-400 shrink-0" />
+                            <strong>Eylemler (Verbs):</strong> <span className="text-emerald-300 font-mono">{rule.verbs.join(', ')}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                    <span className="text-sky-400 font-bold block text-[10px]">BAĞLI SERVICEACCOUNT'LAR:</span>
+                    {activeSelection.data.bound_sas?.map((saName, idx) => (
+                      <div key={idx} className="text-slate-200 text-[10px]">● {saName}</div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* STATEFULSET DETAILS */}
               {activeSelection.type === 'STATEFULSET' && (
@@ -1459,7 +1585,7 @@ export default function ShipyardScene({ ships = [] }) {
                 </div>
               )}
 
-              {/* POD DETAILS & LOG VIEWER WITH PARENT OWNER BADGE */}
+              {/* POD DETAILS & LOG VIEWER WITH PARENT OWNER & SERVICEACCOUNT BADGE */}
               {activeSelection.type === 'POD' && (
                 <div className="space-y-3">
                   {/* SUB TAB SELECTOR */}
@@ -1503,6 +1629,18 @@ export default function ShipyardScene({ ships = [] }) {
                         <strong className="text-purple-300 font-bold text-[10px] px-2 py-0.5 rounded bg-purple-500/20 border border-purple-500/30">
                           {activeSelection.data.owner_kind || 'Deployment'}: {activeSelection.data.owner_name || activeSelection.data.name}
                         </strong>
+                      </div>
+
+                      {/* SERVICEACCOUNT & ROLE BADGE */}
+                      <div className="bg-slate-900/90 p-2 rounded border border-sky-500/40 flex items-center justify-between">
+                        <span className="text-slate-400 text-[10px]">🪪 KİMLİK KARTI (SA):</span>
+                        <button
+                          onClick={() => handleSelectServiceAccount(activeSelection.data.service_account || 'default', activeSelection.data.namespace || 'default')}
+                          className="text-sky-300 hover:underline font-bold text-[10px] flex items-center gap-1"
+                        >
+                          <UserCheck className="w-3 h-3 text-sky-400" />
+                          <span>{activeSelection.data.service_account || 'default'}</span>
+                        </button>
                       </div>
 
                       <div className="grid grid-cols-2 gap-2">

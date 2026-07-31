@@ -6,6 +6,19 @@ Projedeki teknik seçimlerin meşru gerekçeleri ve mimari kararlar.
 
 ## 📜 Karar Listesi
 
+### 🟢 [ADR-020] RBAC İlişkisel İnceleme ve Aşırı Yetki Uyarısı Mimarisi
+- **Tarih:** 2026-07-31
+- **Durum:** Kabul Edildi
+- **Bağlam:** ServiceAccount, Role/ClusterRole ve Binding RBAC güvenlik bileşenlerinin sahnede görselleştirilmesi gereksinimi.
+- **Karar:**
+  1. RBAC bileşenleri fiziksel 3D bina veya yapılar olarak sahneyi karmaşıklaştırmak yerine, Pod ve ServiceAccount nesneleri arasında ilişkisel bağlarla entegre edilmiştir (`Pod ➔ ServiceAccount ➔ RoleBinding ➔ Role`).
+  2. Role ve ClusterRole izinleri ham YAML olarak gösterilmek yerine insan tarafından rahat okunan UI tablosuna dönüştürülmüştür (`Resource` ➔ `Allowed Verbs`).
+  3. Aşırı geniş yetkili (`cluster-admin`) ServiceAccount'lar için hem müfettiş kartında hem de Yönetim Binası özet panelinde belirgin bir kırmızı/turuncu güvenlik uyarısı rozeti gösterilerek farkındalık oluşturulmuştur.
+  4. Tersane'nin K8s ServiceAccount yetkileri RBAC nesneleri için yalnızca `get/list/watch` (salt-okunur) olarak kısıtlanmıştır; yazma/değiştirme yetkisi verilmemiştir.
+- **Sonuç:** Güvenlik farkındalığı artırılmış, salt-okunur RBAC mimarisi başarıyla kurulmuştur.
+
+---
+
 ### 🟢 [ADR-019] İş Yükü Tipi Görsel ve Davranışsal Ayrıştırma Mimarisi
 - **Tarih:** 2026-07-31
 - **Durum:** Kabul Edildi
@@ -17,14 +30,3 @@ Projedeki teknik seçimlerin meşru gerekçeleri ve mimari kararlar.
   4. CronJob nesneleri Control Plane Sefer Tarifesi zamanlama paneline bağlanmış ve tetiklendiğinde sahnede canlı Job şalupası üreten mekanizma kurulmuştur.
   5. Her Pod kartına `ownerReferences` verisinden ayıklanan `Yöneten Üst Nesne` alanı eklenmiştir.
 - **Sonuç:** K8s iş yükü tipleri 3D sahne diliyle mükemmel uyumlu hale getirilmiştir.
-
----
-
-### 🟢 [ADR-018] Karada Bağımsız Depolama Ambarı ve Pod Bağlantı Hattı Mimarisi
-- **Tarih:** 2026-07-31
-- **Durum:** Kabul Edildi
-- **Bağlam:** Kubernetes `PersistentVolume` (PV) kaynaklarının Pod yaşam döngüsünden bağımsız oluşunun 3D sahnede görselleştirilmesi gereksinimi.
-- **Karar:**
-  1. Depolama nesnesi (`StorageDepotMesh.jsx`) rıhtımda gemilere yapışık veya gemi güvertesinde değil, karada `[-28, 0.2, 18]` koordinatlarında bağımsız bir sanayi ambarı olarak modellenmiştir.
-  2. Depoyu kullanan Pod ile depo ambarı arasında `QuadraticBezierCurve3` ile mor/turkuaz parlayan bir 3D veri bağlantı hattı (`StorageConnectionLine`) çekilmiştir.
-- **Sonuç:** PV/PVC kavramsal mimarisi 3D sahne diliyle tam uyumlu hale getirilmiştir.

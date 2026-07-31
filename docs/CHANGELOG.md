@@ -4,6 +4,18 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 ---
 
+## [v2.6.0 - RBAC & Güvenlik Rozetleri Müfettişi] - 2026-07-31
+
+### Durum Tespiti Notu
+- **Önceki Durum Tespiti:** Kod tabanında yapılan denetimde ServiceAccount, Role/ClusterRole, RoleBinding/ClusterRoleBinding nesnelerinin sahnede veya panellerde hiçbir görsel karşılığının bulunmadığı ve Pod kartlarında dahi ServiceAccount bilgisine yer verilmediği tespit edilmiştir.
+- **Eklenen Özellik:**
+  - **Pod Kartı:** Her Pod kartına `🪪 KİMLİK KARTI (SERVICEACCOUNT)` ve bağlı `Role / ClusterRole` isimleri eklendi.
+  - **ServiceAccount Müfettişi:** ServiceAccount adı, namespace, bağlı RoleBinding'ler, hedef roller ve kullanan Pod'lar listesi (tıklanabilir navigasyonlu).
+  - **Role / ClusterRole Müfettişi:** Rol adı, tipi (Role/ClusterRole) ve ham YAML yerine düzgün formatlı **TANIMLI İZİNLER Tablosu** (Resource + Verbs: get/list/watch).
+  - **Master Dashboard RBAC & Güvenlik Rozeti:** Küme geneli RBAC sayıları özeti (`12 SA, 8 Role, 3 ClusterRole, 15 Binding`) ve aşırı yetkili ServiceAccount'lar için `⚠️ AŞIRI YETKİLİ SERVICEACCOUNT (cluster-admin bağlı)` kırmızı güvenlik uyarı rozeti.
+
+---
+
 ## [v2.5.0 - İş Yükü Tipi Ayrımı: StatefulSet, DaemonSet, Job & CronJob] - 2026-07-31
 
 ### Durum Tespiti Notu
@@ -14,19 +26,3 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
   - **Job:** Limanda belirip görevini tamamlayınca yumuşakça süzülen 3D görev şalupası (`JobTaskBoatMesh.jsx`).
   - **CronJob:** Master Dashboard Sefer Tarifesi paneli, zamanlayıcı yönetimi ve canlı Job şalupası tetikleme mekanizması.
   - **Pod Kartı:** Her Pod kartında açık "Yönetilen Tarafından: Deployment / StatefulSet / DaemonSet / Job" bilgisi.
-
----
-
-## [v2.4.0 - PVC & PV Depolama Müfettişi] - 2026-07-31
-
-### Durum Tespiti Notu
-- **Önceki Durum Tespiti:** Kod tabanında yapılan denetimde PersistentVolumeClaim (PVC) ve PersistentVolume (PV) nesnelerinin 3D sahnede veya müfettiş çekmecelerinde henüz hiçbir 3D görsel nesnesinin ve veri müfettişinin bulunmadığı tespit edilmiştir.
-- **Eklenen Özellik:** Karada gemilerden (Pod) bağımsız 3D Liman Depolama Ambarı (`StorageDepotMesh.jsx`), Pod-Depo arası parlayan 3D bağlantı hattı (`StorageConnectionLine.jsx`), PVC (kapasite, StorageClass, erişim modları, bağlı PV, kullanan Pod) ve PV (kapasite, reclaim policy, backend tipi, bağlı PVC) müfettiş çekmeceleri kurulmuştur.
-
----
-
-## [v2.3.0 - ConfigMap & Secret Güvenli İçerik Müfettişi] - 2026-07-31
-
-### Durum Tespiti Notu
-- **Önceki Durum Tespiti:** Kod tabanında yapılan denetimde ConfigMap (sevkiyat föyü) ve Secret (kilitli kasa) nesnelerinin 3D sahnede veya panellerde henüz hiçbir görsel karşılığının ve içerik müfettişinin bulunmadığı tespit edilmiştir.
-- **Eklenen Özellik:** ConfigMap'ler için tam key-value gösterimi, Secret'lar için ise kesinlikle değer çekmeyen/göstermeyen, sadece key isimleri ve `••••••••` maskeli görsel temsil sunan 3D Sevkiyat Pano'su, 3D Kilitli Çelik Kasa ve Güvenli Müfettiş Çekmecesi kurulmuştur.

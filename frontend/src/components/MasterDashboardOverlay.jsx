@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { X, ShieldAlert, Cpu, Box, Radio, Zap, Anchor, Server, Activity, ArrowRight, Play, RefreshCw, FileText, Calendar, Clock } from 'lucide-react'
+import { X, ShieldAlert, Cpu, Box, Radio, Zap, Anchor, Server, Activity, ArrowRight, Play, RefreshCw, FileText, Calendar, Clock, Shield, Key, Lock, AlertTriangle, CheckCircle2 } from 'lucide-react'
 
 export default function MasterDashboardOverlay({ onClose, activeShips = [], onTriggerCronJob }) {
   const [activeTab, setActiveTab] = useState('OVERVIEW')
@@ -90,6 +90,33 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], onTr
                 <div className="flex justify-between"><span>Depolama (PVC/PV):</span><strong className="text-purple-300">1 PVC (10Gi Bound)</strong></div>
                 <div className="flex justify-between"><span>Sevkiyat Föyü (ConfigMap):</span><strong className="text-amber-300">1 Active</strong></div>
                 <div className="flex justify-between"><span>Kilitli Kasa (Secret):</span><strong className="text-sky-300">1 Encrypted</strong></div>
+              </div>
+
+              {/* RBAC VE GÜVENLİK ROZETLERİ PANELDİR */}
+              <div className="industrial-panel p-3 rounded-lg space-y-2 border border-red-500/30 bg-slate-900/90">
+                <span className="text-red-400 font-bold block text-[10px] flex items-center gap-1">
+                  <Shield className="w-3.5 h-3.5 text-red-400 animate-pulse" /> 🛡️ RBAC VE GÜVENLİK ROZETLERİ:
+                </span>
+                
+                <div className="grid grid-cols-2 gap-1.5 text-[9.5px] text-center">
+                  <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
+                    <span className="text-slate-400 block text-[8.5px]">ServiceAccount:</span>
+                    <strong className="text-sky-300">12 Tanımlı</strong>
+                  </div>
+                  <div className="bg-slate-950 p-1.5 rounded border border-slate-800">
+                    <span className="text-slate-400 block text-[8.5px]">Role / ClusterRole:</span>
+                    <strong className="text-purple-300">11 Aktif</strong>
+                  </div>
+                </div>
+
+                {/* OVERLY PERMISSIVE SECURITY WARNING BADGE */}
+                <div className="bg-red-500/10 p-2 rounded border border-red-500/50 flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5 animate-bounce" />
+                  <div className="text-[9.5px] text-red-300 leading-tight">
+                    <strong className="text-red-400 block font-bold">⚠️ AŞIRI YETKİLİ SERVICEACCOUNT DETEKSİYONU:</strong>
+                    SA <code className="text-amber-300 font-mono">admin-sa</code> ➔ <code className="text-red-300 font-mono">cluster-admin</code> rolüne bağlı! Tüm kaynaklara sınırsız müdahale yetkisi içeriyor.
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -186,7 +213,7 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], onTr
         </div>
 
         <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500 text-center font-mono-tech">
-          Tersane v2.5.0 Pro Master Control Panel
+          Tersane v2.6.0 Pro Master Control Panel
         </div>
       </div>
     </div>

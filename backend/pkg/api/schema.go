@@ -27,19 +27,24 @@ const (
 type ResourceKind string
 
 const (
-	KindNode        ResourceKind = "Node"
-	KindPod         ResourceKind = "Pod"
-	KindDeployment  ResourceKind = "Deployment"
-	KindStatefulSet ResourceKind = "StatefulSet"
-	KindDaemonSet   ResourceKind = "DaemonSet"
-	KindJob         ResourceKind = "Job"
-	KindCronJob     ResourceKind = "CronJob"
-	KindService     ResourceKind = "Service"
-	KindEvent       ResourceKind = "Event"
-	KindConfigMap   ResourceKind = "ConfigMap"
-	KindSecret      ResourceKind = "Secret"
-	KindPVC         ResourceKind = "PersistentVolumeClaim"
-	KindPV          ResourceKind = "PersistentVolume"
+	KindNode               ResourceKind = "Node"
+	KindPod                ResourceKind = "Pod"
+	KindDeployment         ResourceKind = "Deployment"
+	KindStatefulSet        ResourceKind = "StatefulSet"
+	KindDaemonSet          ResourceKind = "DaemonSet"
+	KindJob                ResourceKind = "Job"
+	KindCronJob            ResourceKind = "CronJob"
+	KindService            ResourceKind = "Service"
+	KindEvent              ResourceKind = "Event"
+	KindConfigMap          ResourceKind = "ConfigMap"
+	KindSecret             ResourceKind = "Secret"
+	KindPVC                ResourceKind = "PersistentVolumeClaim"
+	KindPV                 ResourceKind = "PersistentVolume"
+	KindServiceAccount     ResourceKind = "ServiceAccount"
+	KindRole               ResourceKind = "Role"
+	KindClusterRole        ResourceKind = "ClusterRole"
+	KindRoleBinding        ResourceKind = "RoleBinding"
+	KindClusterRoleBinding ResourceKind = "ClusterRoleBinding"
 )
 
 // ResourceMetrics contains CPU & RAM metrics data.
@@ -108,12 +113,12 @@ type StatefulSetInfo struct {
 
 // DaemonSetInfo holds DaemonSet workload details.
 type DaemonSetInfo struct {
-	Name           string   `json:"name"`
-	Namespace      string   `json:"namespace"`
-	DesiredNumber  int32    `json:"desired_number"`
-	CurrentNumber  int32    `json:"current_number"`
-	NumberReady    int32    `json:"number_ready"`
-	NodeNames      []string `json:"node_names,omitempty"`
+	Name          string   `json:"name"`
+	Namespace     string   `json:"namespace"`
+	DesiredNumber int32    `json:"desired_number"`
+	CurrentNumber int32    `json:"current_number"`
+	NumberReady   int32    `json:"number_ready"`
+	NodeNames     []string `json:"node_names,omitempty"`
 }
 
 // JobInfo holds Job batch workload details.
@@ -130,25 +135,53 @@ type JobInfo struct {
 
 // CronJobInfo holds CronJob scheduled workload details.
 type CronJobInfo struct {
-	Name          string `json:"name"`
-	Namespace     string `json:"namespace"`
-	Schedule      string `json:"schedule"`
-	LastSchedule  string `json:"last_schedule,omitempty"`
-	ActiveJobs    int32  `json:"active_jobs"`
-	Suspend       bool   `json:"suspend"`
+	Name         string `json:"name"`
+	Namespace    string `json:"namespace"`
+	Schedule     string `json:"schedule"`
+	LastSchedule string `json:"last_schedule,omitempty"`
+	ActiveJobs   int32  `json:"active_jobs"`
+	Suspend      bool   `json:"suspend"`
+}
+
+// ServiceAccountInfo holds ServiceAccount identity details.
+type ServiceAccountInfo struct {
+	Name         string   `json:"name"`
+	Namespace    string   `json:"namespace"`
+	BoundRole    string   `json:"bound_role,omitempty"`
+	BoundBinding string   `json:"bound_binding,omitempty"`
+	UsedByPods   []string `json:"used_by_pods,omitempty"`
+	IsAdmin      bool     `json:"is_admin,omitempty"`
+	CreatedAt    string   `json:"created_at,omitempty"`
+}
+
+// RoleRule represents a single RBAC permission rule.
+type RoleRule struct {
+	Resources []string `json:"resources"`
+	Verbs     []string `json:"verbs"`
+}
+
+// RoleInfo holds Role / ClusterRole details with clean permission rules table.
+type RoleInfo struct {
+	Name        string     `json:"name"`
+	Namespace   string     `json:"namespace,omitempty"` // Empty if ClusterRole
+	IsCluster   bool       `json:"is_cluster"`
+	Rules       []RoleRule `json:"rules"`
+	BoundSAs    []string   `json:"bound_sas,omitempty"`
+	CreatedAt   string     `json:"created_at,omitempty"`
 }
 
 // ShipyardMetaphor holds the mapping data to help 3D frontend render shipyard elements easily.
 type ShipyardMetaphor struct {
-	MetaphorRole string          `json:"metaphor_role"` // e.g. "Gemi (Node)", "Palet (Pod)", "Depo (PVC/PV)"
-	ContainerID  string          `json:"container_id,omitempty"`
-	NodeName     string          `json:"node_name,omitempty"`     // Target ship for Pods
-	Compartment  string          `json:"compartment,omitempty"`   // Namespace (Ambar)
-	HealthState  string          `json:"health_state,omitempty"`  // "SAFE", "WARNING", "CRITICAL"
-	OwnerKind    string          `json:"owner_kind,omitempty"`    // "Deployment", "StatefulSet", "DaemonSet", "Job"
-	OwnerName    string          `json:"owner_name,omitempty"`    // e.g. "api-backend-deploy", "redis-cache-set"
-	Ordinal      string          `json:"ordinal,omitempty"`       // e.g. "#0", "#1"
-	Metrics      ResourceMetrics `json:"metrics,omitempty"`
+	MetaphorRole       string          `json:"metaphor_role"` // e.g. "Gemi (Node)", "Palet (Pod)", "Kimlik Kartı (SA)"
+	ContainerID        string          `json:"container_id,omitempty"`
+	NodeName           string          `json:"node_name,omitempty"`     // Target ship for Pods
+	Compartment        string          `json:"compartment,omitempty"`   // Namespace (Ambar)
+	HealthState        string          `json:"health_state,omitempty"`  // "SAFE", "WARNING", "CRITICAL"
+	OwnerKind          string          `json:"owner_kind,omitempty"`    // "Deployment", "StatefulSet", "DaemonSet", "Job"
+	OwnerName          string          `json:"owner_name,omitempty"`    // e.g. "api-backend-deploy", "redis-cache-set"
+	Ordinal            string          `json:"ordinal,omitempty"`       // e.g. "#0", "#1"
+	ServiceAccountName string          `json:"service_account,omitempty"`
+	Metrics            ResourceMetrics `json:"metrics,omitempty"`
 }
 
 // ResourcePayload represents the detailed payload inside a RESOURCE_EVENT message.
@@ -165,15 +198,17 @@ type ResourcePayload struct {
 
 // InitialStatePayload is sent to newly connected WebSocket clients.
 type InitialStatePayload struct {
-	ClusterName  string            `json:"cluster_name"`
-	Nodes        []ResourcePayload `json:"nodes"`
-	Pods         []ResourcePayload `json:"pods"`
-	ConfigMaps   []ConfigMapInfo   `json:"config_maps,omitempty"`
-	Secrets      []SecretInfo      `json:"secrets,omitempty"`
-	PVCs         []PVCInfo         `json:"pvcs,omitempty"`
-	PVs          []PVInfo          `json:"pvs,omitempty"`
-	TotalShips   int               `json:"total_ships"`
-	TotalPallets int               `json:"total_pallets"`
+	ClusterName  string               `json:"cluster_name"`
+	Nodes        []ResourcePayload    `json:"nodes"`
+	Pods         []ResourcePayload    `json:"pods"`
+	ConfigMaps   []ConfigMapInfo      `json:"config_maps,omitempty"`
+	Secrets      []SecretInfo         `json:"secrets,omitempty"`
+	PVCs         []PVCInfo            `json:"pvcs,omitempty"`
+	PVs          []PVInfo             `json:"pvs,omitempty"`
+	ServiceAccounts []ServiceAccountInfo `json:"service_accounts,omitempty"`
+	Roles        []RoleInfo           `json:"roles,omitempty"`
+	TotalShips   int                  `json:"total_ships"`
+	TotalPallets int                  `json:"total_pallets"`
 }
 
 // WSMessage is the top-level WebSocket envelope.
