@@ -26,36 +26,22 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 
 ### 4. Tek Paylaşılan Singleton WebSocket Yöneticisi & Provider Mimarisi (`ShipyardClusterContext.jsx`)
 - **Modül Seviyesi Singleton (`singletonManager`):** WebSocket bağlantı yöneticisi React bileşen ağacının dışında (module-level) instantiaten edilir. React StrictMode 2x mount etse dahi `singletonManager.socket` ve `isConnecting` kontrolleri sayesinde backend'e **EXACTLY 1 ADET CANLI WEBSOCKET BAĞLANTISI** açılır.
-- **Merkezi Veri Dağıtımı (React Context Provider):** Bağlantı mesajları (`INITIAL_STATE`, `RESOURCE_EVENT`) merkezi state üzerinde işlenir ve `ShipyardClusterProvider` aracılığıyla 3D sahne, paneller ve tüm alt bileşenlere dağıtılır. Bileşenler kendileri `new WebSocket()` çağırmaz.
-- **Merkezi Retry & Hata Yönetimi:** Exponential backoff reconnect döngüsü tek bir noktadan yönetilir. `onmessage` try/catch ile sarmalanmıştır.
+
+### 5. Sahne Yerleşim Mantığı (3D Bounding Dimensions & Tiered Stacking Grid Layout)
+- **Merkezi Boyut Sabitleri (`constants/dimensions.js`):** Tüm 3D nesnelerin fiziksel boyutları (genişlik, yükseklik, derinlik) ve aralık parametreleri (`CONTAINER_DIMENSIONS`, `SHIP_DIMENSIONS`, `GANTRY_CRANE_DIMENSIONS`, `STORAGE_DEPOT_DIMENSIONS`) sabitler olarak tanımlanmıştır.
+- **Dinamik Katmanlı Güverte İstifleme (`calculateContainerDeckPosition`):** Gemi güvertesindeki Pod konteynırları 2 sütunlu X dizilimi, 3 sıralı Z sınırlaması ve güverte kapasitesi dolduğunda Y ekseninde dikey katmanlı (tier-based vertical stacking) istifleme algoritması ile yerleştirilir. Bu sayede 10+ Pod bulunsa dahi konteynırlar birbiriyle veya gemi köprüsüyle asla çakışmaz.
+- **Emniyetli Liman Nesne Temizliği:** Karadaki vinçler, depolar, kuleler ve bağlantı hatları bounding box alanlarına göre hesaplanan emniyetli koordinatlarla yerleştirilmiştir.
 
 ```text
-[Backend WebSocket Server] (ws://localhost:8000/ws)
-           ▲
-           │ EXACTLY 1 Singleton Connection
-           ▼
-[singletonManager] (Module-Level Singleton outside React tree)
-           │
-           ▼ Context Provider
-[ShipyardClusterProvider] (Root Level in main.jsx)
-      ┌────┴──────────────────────────┐
-      ▼                               ▼
- [App Component]             [ShipyardScene / Panels]
- (Consumes Shared Context)   (Consumes Shared Context)
+Tier 2 (Y=8.7)  [Pod 13] [Pod 14]
+Tier 1 (Y=6.2)  [Pod 7]  [Pod 8]  [Pod 9]  [Pod 10] [Pod 11] [Pod 12]
+Tier 0 (Y=3.7)  [Pod 1]  [Pod 2]  [Pod 3]  [Pod 4]  [Pod 5]  [Pod 6]
+                └──────────────── Güverte (Z: -4.5 -> +6.7) ──────────────┘
 ```
-
-### 5. Log Streaming Mimarisi (Faz 21 / v2.2.0)
-- **Backend K8s Endpoint:** WebSocket sunucusu `/api/v1/pods/logs/stream` rotasını dinler.
-
-### 6. ConfigMap & Secret Inspection Mimarisi (Faz 22 / v2.3.0)
-- **ConfigMap Açık Gösterim:** `ConfigMapInfo` struct'ı `Data map[string]string` içerir.
-
-### 7. Depolama (PVC/PV) Görselleştirme (Faz 23 / v2.4.0)
-- **Karada Bağımsız Depo Ambarı:** 3D Depo Ambarı karada `[-28, 0.2, 18]` koordinatında konumlandırılmıştır.
 
 ---
 
 ## 🔄 Veri Akış Şeması
 ```text
-Kube API / State -> WebSocket Sync & Log Stream -> Singleton Manager -> React Context -> R3F Canvas & Overlay
+Kube API / State -> WebSocket Sync -> Singleton Manager -> React Context -> R3F Tiered Grid Render & Overlay
 ```

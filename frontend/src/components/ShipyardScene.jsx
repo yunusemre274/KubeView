@@ -15,6 +15,7 @@ import PodLogViewer from './PodLogViewer'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
 import { MiniSparkline, DetailedTrendChartModal } from './3d/MetricTrendCharts'
+import { calculateContainerDeckPosition } from '../constants/dimensions'
 import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2, Repeat, Play, Layers3, Terminal, UserCheck, ShieldCheck as ShieldCheckIcon, AlertTriangle, TrendingUp } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
@@ -402,14 +403,11 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
       />
 
       {pods.map((pod, idx) => {
-        const row = Math.floor(idx / 2)
-        const col = idx % 2
-        const x = (col - 0.5) * 3.2
-        const z = -3 + row * 5.4
+        const containerPos = calculateContainerDeckPosition(idx)
         return (
           <CargoContainer
             key={pod.id || idx}
-            position={[x, 3.7, z]}
+            position={containerPos}
             podData={pod}
             shipName={shipData.name}
             onSelectPod={onSelectPod}
