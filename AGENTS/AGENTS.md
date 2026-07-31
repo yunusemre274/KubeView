@@ -9,28 +9,29 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 1. **Obje Genişletme & Regresyon Önleme Kuralı (KESİN KURAL):**
    - **Yeni bir bilgi alanı veya özellik eklenirken, ilgili state/props/JSX veri objesi ASLA sıfırdan REPLACE EDİLMEZ!**
    - Mevcut alanlar korunarak (`...spread` veya ek JSX blokları ile) genişletilir.
-2. **Centralized 3D Bounding Dimensions & Tiered Stacking Grid Rule (KESİN ÇAKIŞMASIZLIK KURALI):**
-   - **3D nesne konumlandırmalarında sihirli sayılar (magic numbers) ve tahmini sabitler KULLANILAMAZ!**
+2. **3D Hover Tooltip & Görsel Açıklık Kuralı (ZORUNLU GÖRSEL ETİKET KURALI):**
+   - **Yeni bir 3D görsel nesne eklendiğinde, o nesnenin ne olduğunu açıklayan bir hover tooltip'i (`OBJECT_DESCRIPTIONS` dictionary), 3D metin etiketi (`<Text>`) ve tıklama ile açılan detaylı bilgi kartı ZORUNLU olarak birlikte eklenmelidir!**
+   - Hiçbir nesne kullanıcının "bu ne?" diye soracağı belirsizlikte bırakılamaz.
+3. **Anomali Efektleri Canlı Veri Eşleşme Kuralı:**
+   - **3D anomali efektleri (duman, patlama, batma) statik kukla string ID'lerine (`pod-1`, `node-2`) bağlanamaz!**
+   - Canlı kümeden gelen Pod ve Node verilerinin gerçek nesne isimlerini veya dizilim indekslerini (`index === 0`, `shipIndex === 1`) dinamik hedeflemelidir.
+4. **Centralized 3D Bounding Dimensions & Tiered Stacking Grid Rule:**
    - Tüm nesne bounding boyutları (`WIDTH`, `HEIGHT`, `LENGTH`, `GAP`) `constants/dimensions.js` dosyasında tanımlanır.
-   - Tekrarlayan elemanlar (Pod konteynırları, vinçler, depolar) index tabanlı matematiksel grid fonksiyonları (`calculateContainerDeckPosition`) ile yerleştirilerek sıfır çakışma ve katmanlı dikey (tier-based vertical stacking) istifleme garantilenir.
-3. **Uygulama Geneli Tek Paylaşılan WebSocket Singleton Kuralı (SINGLETON WEBSOCKET MANAGER):**
-   - **WebSocket bağlantıları asla alt bileşenlerde veya tekrarlayan custom hook'larda ayrı ayrı `new WebSocket()` çağrılarak AÇILAMAZ!**
-   - Her zaman uygulama kökünde (`main.jsx`) `ShipyardClusterContext` içerisindeki modül seviyesi `singletonManager` ile TEK BİR KEZ kurulur.
-4. **R3F Geometri ve Materyal Doğrulama Kuralı (WEBGL CONTEXT LOSS ÖNLEME):**
-   - **Yeni bir 3D React Three Fiber (R3F) bileşeni eklenirken kullanılan tüm JSX `<...Geometry>` ve `<...Material>` etiketlerinin fiilen THREE.js namespace'inde tanımlı intrinsic elementler olduğu doğrulanmalıdır!**
-5. **WebSocket & Canlı Yayın Akışı Yaşam Döngüsü Kuralı (STATE LOOP VE UNMOUNT ÖNLEME):**
-   - **WebSocket ve event stream bağlantıları React `useEffect` ve `useCallback` içinde tutulurken asla mutable state değişkenleri (`isConnected`, `activePort`) callback bağımlılık dizilerine (`deps`) eklenmez!**
-6. **Otonom Faz Geçişleri:**
-   - Bir faz İÇİNDEKİ görevler arasında VE bir fazdan bir sonraki faza geçişte kullanıcı onayı BEKLENMEZ.
-7. **Git Yetkilendirmesi (TAM YETKİ KURALI):**
+5. **Uygulama Geneli Tek Paylaşılan WebSocket Singleton Kuralı (SINGLETON WEBSOCKET MANAGER):**
+   - WebSocket bağlantıları her zaman uygulama kökünde (`main.jsx`) `ShipyardClusterContext` içerisindeki modül seviyesi `singletonManager` ile TEK BİR KEZ kurulur.
+6. **R3F Geometri ve Materyal Doğrulama Kuralı (WEBGL CONTEXT LOSS ÖNLEME):**
+   - Kullanılan tüm JSX `<...Geometry>` ve `<...Material>` etiketlerinin fiilen THREE.js namespace'inde tanımlı intrinsic elementler olduğu doğrulanmalıdır.
+7. **WebSocket & Canlı Yayın Akışı Yaşam Döngüsü Kuralı:**
+   - WebSocket ve event stream bağlantıları React `useEffect` ve `useCallback` içinde tutulurken asla mutable state değişkenleri callback bağımlılık dizilerine eklenmez.
+8. **Otonom Faz Geçişleri:**
+   - QA kabul kriterleri karşılanıyorsa `master-agent` otonom olarak sıradaki fazı başlatır.
+9. **Git Yetkilendirmesi (TAM YETKİ KURALI):**
    - `release-agent`, commit, branch, merge ve push işlemlerini TAM YETKİYLE otonom gerçekleştirebilir (`git push --force` yasaktır).
-8. **3D Event Propagation & Raycasting Hit-Test:**
-   - İç içe 3D nesnelerde tıklama (`onClick`) ve hover (`onPointerOver`) event handler'larında `e.stopPropagation()` çağrılmak ZORUNDADIR!
-9. **Absolute Overlay Paneller & Sıfır Canvas Resize:**
-   - Yan paneller ve bilgi kartları hiçbir zaman canvas ile flex/grid yer paylaşımı yapamaz. Canvas her zaman `position: absolute; inset: 0;` olarak render edilir.
-10. **Unbroken 100% Height Chain & Canvas Boyutu:**
-    - `html, body, #root, main` ve `.stage-wrapper` kapsayıcılarında `height: 100%` ve flexbox `min-height: 0` zinciri KESİNTİSİZ korunmalıdır.
-11. **KISS Prensibi:**
+10. **3D Event Propagation & Raycasting Hit-Test:**
+    - İç içe 3D nesnelerde tıklama (`onClick`) ve hover (`onPointerOver`) event handler'larında `e.stopPropagation()` çağrılmak ZORUNDADIR!
+11. **Absolute Overlay Paneller & Sıfır Canvas Resize:**
+    - Yan paneller ve bilgi kartları hiçbir zaman canvas ile flex/grid yer paylaşımı yapamaz. Canvas her zaman `position: absolute; inset: 0;` olarak render edilir.
+12. **KISS Prensibi:**
     - En basit çalışan çözüm DOĞRU çözümdür. Olay Günlüğü son 1 saatlik in-memory ring buffer ile tutulur.
 
 ---

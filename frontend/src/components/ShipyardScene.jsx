@@ -1,6 +1,6 @@
 import React, { useRef, useState, useMemo, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Sky } from '@react-three/drei'
+import { OrbitControls, Sky, Text } from '@react-three/drei'
 import * as THREE from 'three'
 import MasterDashboardOverlay from './MasterDashboardOverlay'
 import NetworkTrafficParticles from './3d/NetworkTrafficParticles'
@@ -16,6 +16,8 @@ import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/A
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
 import { MiniSparkline, DetailedTrendChartModal } from './3d/MetricTrendCharts'
 import { calculateContainerDeckPosition } from '../constants/dimensions'
+import HoverTooltipOverlay from './3d/HoverTooltipOverlay'
+import { OBJECT_DESCRIPTIONS } from '../constants/descriptions'
 import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2, Repeat, Play, Layers3, Terminal, UserCheck, ShieldCheck as ShieldCheckIcon, AlertTriangle, TrendingUp } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
@@ -84,7 +86,7 @@ function EnrichedDockAndShore({ onSelectLandStack }) {
 }
 
 // 3. Multiple Iconic Yellow Gantry Cranes
-function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane, isImagePullBackOff = false }) {
+function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane, isImagePullBackOff = false, onHover }) {
   const [hovered, setHovered] = useState(false)
   const hookRef = useRef()
 
@@ -94,13 +96,28 @@ function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane, isImag
     }
   })
 
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('CRANE')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
+
   return (
     <group
       position={position}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
       onClick={(e) => { e.stopPropagation(); onSelectCrane(craneData); }}
     >
+      <Text position={[0, 13.5, 0]} fontSize={0.65} color="#f59e0b" anchorX="center" outlineWidth={0.06} outlineColor="#0f172a">
+        🤖 SCHEDULER (VİNÇ)
+      </Text>
       <mesh position={[-2.5, 6, -2]} castShadow>
         <boxGeometry args={[0.8, 12, 0.8]} />
         <meshStandardMaterial color={hovered ? '#fbbf24' : '#f59e0b'} metalness={0.4} roughness={0.3} />
@@ -150,7 +167,7 @@ function GantryCrane({ position = [-14, 1, 10], craneData, onSelectCrane, isImag
 }
 
 // 4. Harbor Village & Master Control Building
-function HarborVillage({ onClickBuilding }) {
+function HarborVillage({ onClickBuilding, onHover }) {
   const [hovered, setHovered] = useState(false)
   const radarRef = useRef()
 
@@ -160,12 +177,29 @@ function HarborVillage({ onClickBuilding }) {
     }
   })
 
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('MASTER')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
+
   return (
     <group position={[-22, 1.0, -14]}>
+      {/* 3D Visual Identification Label */}
+      <Text position={[0, 11.8, 0]} fontSize={0.7} color="#ef4444" anchorX="center" outlineWidth={0.06} outlineColor="#0f172a">
+        🏢 CONTROL PLANE (YÖNETİM BİNASI)
+      </Text>
+
       <mesh
         position={[0, 4, 0]}
-        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-        onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
         onClick={(e) => { e.stopPropagation(); onClickBuilding(); }}
         castShadow
       >
@@ -195,7 +229,7 @@ function HarborVillage({ onClickBuilding }) {
 }
 
 // 5. Kube-proxy Station
-function KubeProxyStation({ position = [18, 0.2, -16], onSelectKubeProxy }) {
+function KubeProxyStation({ position = [18, 0.2, -16], onSelectKubeProxy, onHover }) {
   const beaconRef = useRef()
   const [hovered, setHovered] = useState(false)
 
@@ -205,13 +239,30 @@ function KubeProxyStation({ position = [18, 0.2, -16], onSelectKubeProxy }) {
     }
   })
 
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('KUBE_PROXY')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
+
   return (
     <group
       position={position}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
       onClick={(e) => { e.stopPropagation(); onSelectKubeProxy(); }}
     >
+      {/* 3D Visual Identification Label */}
+      <Text position={[0, 11.2, 0]} fontSize={0.65} color="#38bdf8" anchorX="center" outlineWidth={0.06} outlineColor="#0f172a">
+        ⚡ KUBE-PROXY
+      </Text>
+
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[9, 1.2, 9]} />
         <meshStandardMaterial color="#1e293b" roughness={0.5} />
@@ -274,17 +325,29 @@ function KubeletRadar({ position = [0, 8.5, -9.5], onClickKubelet }) {
 }
 
 // 7. 3D Cargo Container (Pod)
-function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomaly }) {
+function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomaly, index = 0, onHover }) {
   const [hovered, setHovered] = useState(false)
-  const isCrashLoop = activeAnomaly === 'CrashLoopBackOff' && podData.id === 'pod-1'
-  const isOOM = activeAnomaly === 'OOMKilled' && podData.id === 'pod-2'
-  const isProbeFail = activeAnomaly === 'ReadinessFail' && podData.id === 'pod-1'
+  const isCrashLoop = activeAnomaly === 'CrashLoopBackOff' && (podData.id === 'pod-1' || index === 0)
+  const isOOM = activeAnomaly === 'OOMKilled' && (podData.id === 'pod-2' || index === 1)
+  const isProbeFail = activeAnomaly === 'ReadinessFail' && (podData.id === 'pod-1' || index === 0)
+
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('POD')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
 
   return (
     <group position={position}>
       <mesh
-        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-        onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
         onClick={(e) => { e.stopPropagation(); onSelectPod(podData, shipName); }}
         castShadow
         receiveShadow
@@ -311,10 +374,22 @@ function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomal
 }
 
 // 8. Cargo Ship (Worker Node) With Smooth Patrol Rotation Curve & DaemonSet Antenna
-function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, onSelectDaemonSet, activeAnomaly }) {
+function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, onSelectDaemonSet, activeAnomaly, shipIndex = 0, onHover }) {
   const groupRef = useRef()
   const [hovered, setHovered] = useState(false)
-  const isNodeNotReady = activeAnomaly === 'NodeNotReady' && shipData.id === 'node-2'
+  const isNodeNotReady = activeAnomaly === 'NodeNotReady' && (shipData.id === 'node-2' || shipIndex === 1 || shipIndex === 0)
+
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('SHIP')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
 
   const patrolCurve = useMemo(() => {
     const [x, y, z] = basePosition
@@ -357,7 +432,13 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
 
   return (
     <group ref={groupRef} position={basePosition}>
-      <mesh position={[0, 0.4, 0]} castShadow>
+      <mesh
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+        onClick={(e) => { e.stopPropagation(); onSelectShip(shipData); }}
+        position={[0, 0.4, 0]}
+        castShadow
+      >
         <boxGeometry args={[9, 1.2, 26]} />
         <meshStandardMaterial color={isNodeNotReady ? '#991b1b' : '#dc2626'} metalness={0.5} roughness={0.4} />
       </mesh>
@@ -400,6 +481,7 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
         position={[0, 6.5, -7.0]}
         dsData={{ name: 'kube-flannel-ds', namespace: 'kube-system', desired: 2, current: 2, ready: 2 }}
         onSelectDaemonSet={onSelectDaemonSet}
+        onHover={onHover}
       />
 
       {pods.map((pod, idx) => {
@@ -407,11 +489,13 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
         return (
           <CargoContainer
             key={pod.id || idx}
+            index={idx}
             position={containerPos}
             podData={pod}
             shipName={shipData.name}
             onSelectPod={onSelectPod}
             activeAnomaly={activeAnomaly}
+            onHover={onHover}
           />
         )
       })}
@@ -437,9 +521,20 @@ function CameraController({ targetPosition, targetLookAt }) {
 }
 
 export default function ShipyardScene({ ships = [] }) {
+  const [hoveredObject, setHoveredObject] = useState(null)
   const [activeSelection, setActiveSelection] = useState(null)
   const [showMasterDashboard, setShowMasterDashboard] = useState(false)
   const [showNetworkTraffic, setShowNetworkTraffic] = useState(true)
+
+  const handleHover = (descKey) => {
+    if (!descKey) {
+      setHoveredObject(null)
+    } else if (typeof descKey === 'string') {
+      setHoveredObject(OBJECT_DESCRIPTIONS[descKey] || null)
+    } else {
+      setHoveredObject(descKey)
+    }
+  }
   const [showNetworkPolicy, setShowNetworkPolicy] = useState(false)
   const [showHPA, setShowHPA] = useState(true)
   const [activeClusterContext, setActiveClusterContext] = useState('minikube')
@@ -1058,10 +1153,11 @@ export default function ShipyardScene({ ships = [] }) {
             craneData={{}}
             onSelectCrane={handleSelectCrane}
             isImagePullBackOff={activeAnomaly === 'ImagePullBackOff'}
+            onHover={handleHover}
           />
-          <GantryCrane position={[-12, 1, -16]} craneData={{}} onSelectCrane={handleSelectCrane} />
-          <HarborVillage onClickBuilding={handleSelectMaster} />
-          <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} />
+          <GantryCrane position={[-12, 1, -16]} craneData={{}} onSelectCrane={handleSelectCrane} onHover={handleHover} />
+          <HarborVillage onClickBuilding={handleSelectMaster} onHover={handleHover} />
+          <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} onHover={handleHover} />
 
           {/* 3D ConfigMap Notice Board & 3D Secret Safe Box */}
           <ConfigMapAndSecretMesh
@@ -1069,33 +1165,37 @@ export default function ShipyardScene({ ships = [] }) {
             secretPosition={[-2, 0.2, -18]}
             onSelectConfigMap={handleSelectConfigMap}
             onSelectSecret={handleSelectSecret}
+            onHover={handleHover}
           />
 
           {/* 3D Land-Based Storage Depot (PVC/PV Kiralanmış Ambar) */}
           <StorageDepotMesh
-            position={[-28, 0.2, 18]}
+            position={[-32, 0.2, 18]}
             pvcData={{ name: 'web-data-pvc', status: 'Bound', capacity: '10Gi' }}
             pvData={{ name: 'pv-storage-disk-01', capacity: '10Gi' }}
             targetPodPosition={[2, 1, 4]}
             onSelectStorage={handleSelectPVC}
+            onHover={handleHover}
           />
 
           {/* 3D STATEFULSET SHIP (NUMARALI SABİT DEMİRLİ GEMİ) */}
           <StatefulSetShip
-            position={[-14, 0, -22]}
+            position={[-14, 0, -26]}
             stsData={{ name: 'redis-cache-set', ordinal: '#0', replicas: '1/1 Ready' }}
             onSelectStatefulSet={handleSelectStatefulSet}
+            onHover={handleHover}
           />
 
           {/* 3D JOB TASK BOAT (GEÇİCİ GÖREV ŞALUPASI) */}
           <JobTaskBoatMesh
-            position={[14, 0.2, 18]}
+            position={[16, 0.2, 22]}
             jobData={activeJobBoat}
             onSelectJob={handleSelectJob}
+            onHover={handleHover}
           />
 
           {/* 3D Ingress Gateway Lighthouse */}
-          <IngressLighthouse position={[28, 0.2, 18]} onSelectIngress={handleSelectIngress} />
+          <IngressLighthouse position={[32, 0.2, 18]} onSelectIngress={handleSelectIngress} onHover={handleHover} />
           <NetworkPolicyBarriers position={[-10, 1.5, 0]} active={showNetworkPolicy} onSelectNetworkPolicy={handleSelectNetworkPolicy} />
 
           {showHPA && <HPAMobileCrane position={[-4, 1, 6]} />}
@@ -1105,9 +1205,10 @@ export default function ShipyardScene({ ships = [] }) {
           <NetworkTrafficParticles ships={activeShips} showTraffic={showNetworkTraffic} />
 
           {/* Cargo Ships with Smooth Patrol Loop */}
-          {activeShips.map((ship) => (
+          {activeShips.map((ship, shipIdx) => (
             <CargoShip
               key={ship.id}
+              shipIndex={shipIdx}
               basePosition={ship.position}
               shipData={ship}
               onSelectPod={handleSelectPod}
@@ -1115,6 +1216,7 @@ export default function ShipyardScene({ ships = [] }) {
               onSelectKubelet={handleSelectKubelet}
               onSelectDaemonSet={handleSelectDaemonSet}
               activeAnomaly={activeAnomaly}
+              onHover={handleHover}
             />
           ))}
 
@@ -1503,6 +1605,9 @@ export default function ShipyardScene({ ships = [] }) {
           </div>
         )}
       </aside>
+
+      {/* KATMAN 7: 3D OBJECT HOVER TOOLTIP OVERLAY */}
+      <HoverTooltipOverlay hoveredObject={hoveredObject} />
     </div>
   )
 }

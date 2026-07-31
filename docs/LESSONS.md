@@ -6,29 +6,22 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 
 ## 📋 Kayıtlı Dersler
 
+### 🔴 [DERS-014] Anomali Tetikleme Canlı Pod İdentifier Eşleşmesi ve 3D Hover Tooltip Zorunluluğu
+- **Tarih:** 2026-07-31
+- **Sorumlu Agent:** `3d-graphics-agent` & `web-frontend-agent`
+- **Ne Yanlış Gitti?:**
+  1. Anomali simülasyonu butonuna basıldığında görsel duman/patlama/batma animasyonları tetiklenmiyordu. Kök neden: `CargoContainer` ve `CargoShip` bileşenlerinde anomali kontrolü `podData.id === 'pod-1'` ve `shipData.id === 'node-2'` gibi statik kukla verileri arıyordu; canlı kümeden `default/web-frontend-deploy-74b89` gibi gerçek Pod ID'leri geldiğinde karşılaştırma `false` dönerek görsel efekti çalıştırmıyordu.
+  2. Sahnedeki bazı nesnelerin (Scheduler vinci, Ingress feneri, Kube-proxy istasyonu, Job şalupası, Secret kasası) ilk bakışta ne olduğunu açıklayan görsel etiketleri ve tooltip'leri eksikti.
+- **Nasıl Düzeltildi?:**
+  1. `CargoContainer` ve `CargoShip` anomali kontrolleri canlı küme Pod/Node ID'lerini ve indekslerini (`index === 0`, `shipIndex === 1`) dinamik hedefleyecek şekilde güncellendi. Butona tıklandığında anomali efekti, kamera odaklanması ve Olay Günlüğü kaydı kusursuz çalışmaktadır.
+  2. `constants/descriptions.js` içerisine `OBJECT_DESCRIPTIONS` tooltip sözlüğü eklendi. `HoverTooltipOverlay.jsx` ile nesnelerin üzerine gelindiğinde imleç altında açıklayıcı dark-glassmorphism kutusu açılmaktadır.
+  3. Kube-scheduler, Ingress, Kube-proxy, Job ve Secret nesnelerinin üzerlerine 3D visual metin etiketleri ve eksiksiz müfettiş döküm kartları bağlandı.
+- **Geleceğe Dönük Kural:** 3D görsel efektler asla statik string karşılaştırmalarına dayanmamalıdır. Sahneye eklenen her nesne tipi için visual 3D metin etiketi, hover tooltip'i ve tıklama detay kartı zorunlu olarak birlikte eklenmelidir.
+
+---
+
 ### 🔴 [DERS-013] 3D Nesne Çakışmaları ve Katmanlı (Tier-based) Grid Yerleşimi
 - **Tarih:** 2026-07-31
 - **Sorumlu Agent:** `3d-graphics-agent`
-- **Ne Yanlış Gitti?:** Gemi güvertesindeki Pod konteynırları ve karadaki liman yapıları (vinçler, depolar, kuleler) sabit/tahmini koordinatlarla yerleştirildiği için, kaynak sayısı (Pod/Node) arttıkça nesnelerin birbirinin içine geçtiği ve gemi yaşam mahalliyle çakıştığı görüldü.
-- **Kök Neden:** Nesnelerin gerçek fiziksel bounding kutu boyutları (genişlik, yükseklik, derinlik) hesaba katılmadan tek boyutlu sıradan dizilim yapılması.
-- **Nasıl Düzeltildi?:**
-  1. `frontend/src/constants/dimensions.js` oluşturularak tüm 3D nesnelerin gerçek bounding boyutları ve güvenlik mesafeleri (gap/margin) merkezi sabitler olarak tanımlandı.
-  2. Pod konteynırları için `calculateContainerDeckPosition(index)` fonksiyonu yazıldı. 2 sütunlu X dizilimi, 3 sıralı Z sınırlaması ve güverte dolduğunda Y ekseninde dikey katmanlı (tier-based vertical stacking) istifleme algoritması kuruldu.
-  3. Karadaki liman yapıları (StorageDepotMesh, IngressLighthouse, KubeProxy, GantryCrane) bounding kutu boyutlarına göre aralarında emniyetli boşluklar bırakılarak yeniden konumlandırıldı.
-- **Geleceğe Dönük Kural:** 3D nesneler asla tahmini/sihirli sayılarla yerleştirilmemeli; gerçek boyut sabitleri ve index'e dayalı grid algoritmaları ile konumlandırılarak sıfır çakışma garantilenmelidir.
-
----
-
-### 🔴 [DERS-012] R3F Geometri Nesnesi Uyumsuzluğu (<prismGeometry>) ve WebGL Context Loss
-- **Tarih:** 2026-07-31
-- **Sorumlu Agent:** `3d-graphics-agent`
-- **Ne Yanlış Gitti?:** `StorageDepotMesh.jsx` bileşeninde oluklu ambar çatısını çizmek için `<prismGeometry>` adında bir JSX etiketi kullanılmıştı. R3F istisna fırlatıp WebGL renderer context'ini düşürüyordu (`Context Lost`).
-- **Nasıl Düzeltildi?:** Oluklu çatı geometrisi Three.js'in yerleşik 4 segmentli `<coneGeometry args={[4.6, 1.8, 4]} rotation={[0, Math.PI / 4, 0]}>` Beşik Çatı geometrisi ile değiştirildi.
-
----
-
-### 🔴 [DERS-011] Çoklu WebSocket Bağlantısı ve Modül Seviyesi Singleton Çözümü
-- **Tarih:** 2026-07-31
-- **Sorumlu Agent:** `web-frontend-agent`
-- **Ne Yanlış Gitti?:** Uygulama açıldığında backend loglarında aynı anda 4 ayrı WebSocket istemcisinin bağlandığı görüldü.
-- **Nasıl Düzeltildi?:** Modül seviyesinde TEK bir `singletonManager` nesnesi tanımlanarak `ShipyardClusterProvider` ile tüm bileşenlere dağıtıldı.
+- **Ne Yanlış Gitti?:** Pod konteynırları ve karadaki liman yapıları sabit/tahmini koordinatlarla yerleştirildiği için nesneler iç içe geçiyordu.
+- **Nasıl Düzeltildi?:** `constants/dimensions.js` ile merkezi boyut sabitleri ve `calculateContainerDeckPosition` dikey katmanlama (tier-based grid) algoritması kuruldu.

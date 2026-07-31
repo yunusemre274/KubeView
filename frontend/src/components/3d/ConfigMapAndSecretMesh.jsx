@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { Text } from '@react-three/drei'
 
 // ConfigMap (Sevkiyat Föyü Panosu) & Secret (Kilitli Çelik Kasa) 3D Meshes
 export default function ConfigMapAndSecretMesh({
   configMapPosition = [-8, 0.2, -18],
   secretPosition = [-2, 0.2, -18],
   onSelectConfigMap,
-  onSelectSecret
+  onSelectSecret,
+  onHover
 }) {
   const [hoveredCM, setHoveredCM] = useState(false)
   const [hoveredSec, setHoveredSec] = useState(false)
@@ -18,15 +20,44 @@ export default function ConfigMapAndSecretMesh({
     }
   })
 
+  const handlePointerOverCM = (e) => {
+    e.stopPropagation()
+    setHoveredCM(true)
+    onHover && onHover('CONFIG_MAP')
+  }
+
+  const handlePointerOutCM = (e) => {
+    e.stopPropagation()
+    setHoveredCM(false)
+    onHover && onHover(null)
+  }
+
+  const handlePointerOverSec = (e) => {
+    e.stopPropagation()
+    setHoveredSec(true)
+    onHover && onHover('SECRET')
+  }
+
+  const handlePointerOutSec = (e) => {
+    e.stopPropagation()
+    setHoveredSec(false)
+    onHover && onHover(null)
+  }
+
   return (
     <group>
       {/* 1. CONFIGMAP 3D MESH — SEVKİYAT FÖYÜ / TALİMAT PANOSU */}
       <group
         position={configMapPosition}
-        onPointerOver={(e) => { e.stopPropagation(); setHoveredCM(true); }}
-        onPointerOut={(e) => { e.stopPropagation(); setHoveredCM(false); }}
+        onPointerOver={handlePointerOverCM}
+        onPointerOut={handlePointerOutCM}
         onClick={(e) => { e.stopPropagation(); onSelectConfigMap && onSelectConfigMap(); }}
       >
+        {/* 3D Visual Identification Label */}
+        <Text position={[0, 5.5, 0]} fontSize={0.55} color="#38bdf8" anchorX="center" outlineWidth={0.05} outlineColor="#0f172a">
+          📋 CONFIGMAP
+        </Text>
+
         {/* Pano Ayakları */}
         <mesh position={[-1.6, 2, 0]} castShadow>
           <boxGeometry args={[0.2, 4, 0.2]} />
@@ -72,10 +103,15 @@ export default function ConfigMapAndSecretMesh({
       {/* 2. SECRET 3D MESH — KİLİTLİ ÇELİK KASA */}
       <group
         position={secretPosition}
-        onPointerOver={(e) => { e.stopPropagation(); setHoveredSec(true); }}
-        onPointerOut={(e) => { e.stopPropagation(); setHoveredSec(false); }}
+        onPointerOver={handlePointerOverSec}
+        onPointerOut={handlePointerOutSec}
         onClick={(e) => { e.stopPropagation(); onSelectSecret && onSelectSecret(); }}
       >
+        {/* 3D Visual Identification Label */}
+        <Text position={[0, 5.2, 0]} fontSize={0.55} color="#fbbf24" anchorX="center" outlineWidth={0.05} outlineColor="#0f172a">
+          🔐 SECRET
+        </Text>
+
         {/* Beton Kaide Base */}
         <mesh position={[0, 0.3, 0]} receiveShadow>
           <boxGeometry args={[4.2, 0.6, 4.2]} />
@@ -102,12 +138,10 @@ export default function ConfigMapAndSecretMesh({
 
         {/* Altın Asma Kilit Simgesi */}
         <group position={[0, 2.3, 1.72]}>
-          {/* Kilit Gövdesi */}
           <mesh position={[0, -0.2, 0]} castShadow>
             <boxGeometry args={[0.8, 0.7, 0.15]} />
             <meshStandardMaterial color="#f59e0b" metalness={0.9} roughness={0.2} />
           </mesh>
-          {/* Kilit Halkası */}
           <mesh position={[0, 0.35, 0]} rotation={[0, 0, 0]}>
             <torusGeometry args={[0.25, 0.06, 8, 16, Math.PI]} />
             <meshStandardMaterial color="#cbd5e1" metalness={0.95} />

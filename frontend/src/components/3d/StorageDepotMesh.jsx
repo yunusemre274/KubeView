@@ -1,14 +1,16 @@
 import React, { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { Text } from '@react-three/drei'
 import * as THREE from 'three'
 
 // 3D Land-Based Storage Warehouse (PVC / PV Kiralanmış Depo Ambarı)
 export default function StorageDepotMesh({
-  position = [-28, 0.2, 18],
+  position = [-32, 0.2, 18],
   pvcData,
   pvData,
   targetPodPosition = [2, 1, 4],
-  onSelectStorage
+  onSelectStorage,
+  onHover
 }) {
   const [hovered, setHovered] = useState(false)
   const beaconRef = useRef()
@@ -19,6 +21,18 @@ export default function StorageDepotMesh({
       beaconRef.current.rotation.y = clock.getElapsedTime() * 1.5
     }
   })
+
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('STORAGE_DEPOT')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
 
   // Calculate curve line from Land Storage Depot to target Pod/Ship
   const connectionCurve = React.useMemo(() => {
@@ -41,10 +55,15 @@ export default function StorageDepotMesh({
       {/* 2. 3D LAND STORAGE WAREHOUSE MESH */}
       <group
         position={position}
-        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-        onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
         onClick={(e) => { e.stopPropagation(); onSelectStorage && onSelectStorage(pvcData, pvData); }}
       >
+        {/* 3D Visual Identification Label */}
+        <Text position={[0, 8.2, 0]} fontSize={0.65} color="#c084fc" anchorX="center" outlineWidth={0.06} outlineColor="#0f172a">
+          🏭 PV / PVC DEPOSU
+        </Text>
+
         {/* Beton Taban Kaide */}
         <mesh position={[0, 0.4, 0]} receiveShadow>
           <boxGeometry args={[7.5, 0.8, 10]} />

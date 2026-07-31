@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { Text } from '@react-three/drei'
 import * as THREE from 'three'
 
 // 1. STATEFULSET SHIP (Numaralı, Sabit Demirli Özel Gemi)
 export function StatefulSetShip({
-  position = [-14, 0, -22],
+  position = [-14, 0, -26],
   stsData,
-  onSelectStatefulSet
+  onSelectStatefulSet,
+  onHover
 }) {
   const [hovered, setHovered] = useState(false)
   const flagRef = useRef()
@@ -17,13 +19,30 @@ export function StatefulSetShip({
     }
   })
 
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('STATEFUL_SET')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
+
   return (
     <group
       position={position}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
       onClick={(e) => { e.stopPropagation(); onSelectStatefulSet && onSelectStatefulSet(stsData); }}
     >
+      {/* 3D Visual Identification Label */}
+      <Text position={[0, 6.8, 0]} fontSize={0.65} color="#c084fc" anchorX="center" outlineWidth={0.06} outlineColor="#0f172a">
+        ⚓ STATEFULSET (#0)
+      </Text>
+
       {/* Gemi Gövdesi (Sabit Demirli) */}
       <mesh position={[0, 0.4, 0]} castShadow>
         <boxGeometry args={[8.5, 1.2, 22]} />
@@ -48,10 +67,10 @@ export function StatefulSetShip({
       </mesh>
 
       {/* Ordinal Numarası Rozet Panosu (#0, #1) */}
-      <group position={[0, 5.2, -7]}>
+      <group position={[0, 4.8, -7]}>
         <mesh castShadow>
-          <boxGeometry args={[3.2, 2.2, 0.4]} />
-          <meshStandardMaterial color="#0f172a" border="#a855f7" />
+          <boxGeometry args={[3.2, 1.8, 0.4]} />
+          <meshStandardMaterial color="#0f172a" />
         </mesh>
         <pointLight color="#a855f7" intensity={2} distance={10} />
       </group>
@@ -75,7 +94,8 @@ export function StatefulSetShip({
 export function DaemonSetEquipment({
   position = [0, 8.5, -7],
   dsData,
-  onSelectDaemonSet
+  onSelectDaemonSet,
+  onHover
 }) {
   const [hovered, setHovered] = useState(false)
   const spinnerRef = useRef()
@@ -86,11 +106,23 @@ export function DaemonSetEquipment({
     }
   })
 
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('DAEMON_SET')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
+
   return (
     <group
       position={position}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
       onClick={(e) => { e.stopPropagation(); onSelectDaemonSet && onSelectDaemonSet(dsData); }}
     >
       <mesh position={[0, 0, 0]}>
@@ -114,9 +146,10 @@ export function DaemonSetEquipment({
 
 // 3. JOB TASK BOAT (Tek Seferlik Görev Teknesi / Şalupa)
 export function JobTaskBoatMesh({
-  position = [14, 0.2, 18],
+  position = [16, 0.2, 22],
   jobData,
-  onSelectJob
+  onSelectJob,
+  onHover
 }) {
   const [hovered, setHovered] = useState(false)
   const boatRef = useRef()
@@ -131,14 +164,31 @@ export function JobTaskBoatMesh({
     }
   })
 
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover && onHover('JOB')
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover && onHover(null)
+  }
+
   return (
     <group
       ref={boatRef}
       position={position}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
       onClick={(e) => { e.stopPropagation(); onSelectJob && onSelectJob(jobData); }}
     >
+      {/* 3D Visual Identification Label */}
+      <Text position={[0, 3.2, 0]} fontSize={0.55} color="#f59e0b" anchorX="center" outlineWidth={0.05} outlineColor="#0f172a">
+        ⛵ JOB (ŞALUPA)
+      </Text>
+
       {/* Küçük Şalupa Gövdesi */}
       <mesh position={[0, 0.5, 0]} castShadow>
         <boxGeometry args={[4.2, 1.0, 9]} />
