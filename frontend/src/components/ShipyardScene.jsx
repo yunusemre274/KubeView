@@ -8,9 +8,10 @@ import EventLogDrawer from './EventLogDrawer'
 import ConfirmationModal from './ConfirmationModal'
 import IngressLighthouse from './3d/IngressLighthouse'
 import NetworkPolicyBarriers from './3d/NetworkPolicyBarriers'
+import PodLogViewer from './PodLogViewer'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -433,6 +434,7 @@ export default function ShipyardScene({ ships = [] }) {
   const [showNetworkPolicy, setShowNetworkPolicy] = useState(false)
   const [showHPA, setShowHPA] = useState(true)
   const [activeClusterContext, setActiveClusterContext] = useState('minikube')
+  const [podDrawerTab, setPodDrawerTab] = useState('details') // 'details' | 'logs'
   
   const [isReadOnlyMode, setIsReadOnlyMode] = useState(false)
   const [showEventLog, setShowEventLog] = useState(false)
@@ -470,7 +472,10 @@ export default function ShipyardScene({ ships = [] }) {
           service_name: 'web-frontend-svc',
           service_ip: '10.96.0.45',
           dns: 'web-frontend-svc.default.svc.cluster.local',
-          containers: [{ name: 'react-app', image: 'nginx:alpine', status: 'Running', restarts: 0 }],
+          containers: [
+            { name: 'react-app', image: 'nginx:alpine', status: 'Running', restarts: 0 },
+            { name: 'sidecar-proxy', image: 'envoyproxy/envoy:v1.28', status: 'Running', restarts: 0 }
+          ],
           resources: { cpu_req: '100m', cpu_lim: '500m', mem_req: '128Mi', mem_lim: '512Mi' }
         },
         {
@@ -586,6 +591,7 @@ export default function ShipyardScene({ ships = [] }) {
   }
 
   const handleSelectPod = (pod, shipName) => {
+    setPodDrawerTab('details')
     setActiveSelection({ type: 'POD', data: { ...pod, shipName } })
   }
 
@@ -686,7 +692,7 @@ export default function ShipyardScene({ ships = [] }) {
           <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-amber-500/10 border border-amber-500/30">
             <Anchor className="w-4 h-4 text-amber-400 animate-pulse" />
             <span className="font-industrial text-xs font-bold text-amber-400 tracking-wider">
-              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.1.0</span>
+              TERSANE <span className="text-[10px] text-sky-400 font-mono-tech">v2.2.0</span>
             </span>
           </div>
 
@@ -980,69 +986,106 @@ export default function ShipyardScene({ ships = [] }) {
                 </div>
               )}
 
-              {/* POD DETAILS */}
+              {/* POD DETAILS & LOG VIEWER WITH SUB-TABS */}
               {activeSelection.type === 'POD' && (
                 <div className="space-y-3">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">POD ADI:</span>
-                    <strong className="text-white text-xs break-all">{activeSelection.data.name || 'web-frontend-deploy-74b89'}</strong>
+                  {/* SUB TAB SELECTOR */}
+                  <div className="flex border-b border-slate-700 pb-2 gap-2">
+                    <button
+                      onClick={() => setPodDrawerTab('details')}
+                      className={`flex-1 py-1 px-2 rounded text-[11px] font-industrial flex items-center justify-center gap-1.5 border transition ${
+                        podDrawerTab === 'details'
+                          ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 font-bold shadow'
+                          : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-slate-200'
+                      }`}
+                    >
+                      <Box className="w-3.5 h-3.5" />
+                      <span>📋 DETAYLAR</span>
+                    </button>
+
+                    <button
+                      onClick={() => setPodDrawerTab('logs')}
+                      className={`flex-1 py-1 px-2 rounded text-[11px] font-industrial flex items-center justify-center gap-1.5 border transition ${
+                        podDrawerTab === 'logs'
+                          ? 'bg-sky-500/20 text-sky-300 border-sky-500/50 font-bold shadow'
+                          : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-slate-200'
+                      }`}
+                    >
+                      <FileText className="w-3.5 h-3.5 text-sky-400" />
+                      <span>📜 LOGLAR</span>
+                    </button>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                      <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
-                      <strong className="text-sky-400">{activeSelection.data.namespace || 'default'}</strong>
-                    </div>
-                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                      <span className="text-slate-400 block text-[10px]">DURUM:</span>
-                      <strong className="text-emerald-400">{activeSelection.data.status || 'Running'}</strong>
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-amber-400 font-bold block text-[10px]">AĞ & DNS BİLGİSİ:</span>
-                    <div>Pod IP: <strong className="text-slate-200">{activeSelection.data.ip || '10.244.0.12'}</strong></div>
-                    <div>Service IP: <strong className="text-slate-200">{activeSelection.data.service_ip || '10.96.0.45'}</strong></div>
-                    <div className="text-[9px] text-sky-300 break-all">{activeSelection.data.dns || 'web-frontend-svc.default.svc.cluster.local'}</div>
-                  </div>
-
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-purple-400 font-bold block text-[10px]">İÇİNDEKİ KONTEYNIRLAR:</span>
-                    {(activeSelection.data.containers || [{ name: 'app', image: 'nginx:alpine', status: 'Running', restarts: 0 }]).map((c, idx) => (
-                      <div key={idx} className="text-[10px] text-slate-300">
-                        ● <strong>{c.name}</strong> ({c.image}) - <span className="text-emerald-400">{c.status}</span> (Restarts: {c.restarts})
+                  {/* TAB 1: DETAILS */}
+                  {podDrawerTab === 'details' && (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-slate-400 block text-[10px]">POD ADI:</span>
+                        <strong className="text-white text-xs break-all">{activeSelection.data.name || 'web-frontend-deploy-74b89'}</strong>
                       </div>
-                    ))}
-                  </div>
 
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-sky-400 font-bold block text-[10px]">KAYNAK REQ / LIMIT:</span>
-                    <div>CPU: <strong className="text-emerald-300">{activeSelection.data.resources?.cpu_req || '100m'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.cpu_lim || '500m'}</strong></div>
-                    <div>RAM: <strong className="text-purple-300">{activeSelection.data.resources?.mem_req || '128Mi'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.mem_lim || '512Mi'}</strong></div>
-                  </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                          <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
+                          <strong className="text-sky-400">{activeSelection.data.namespace || 'default'}</strong>
+                        </div>
+                        <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
+                          <span className="text-slate-400 block text-[10px]">DURUM:</span>
+                          <strong className="text-emerald-400">{activeSelection.data.status || 'Running'}</strong>
+                        </div>
+                      </div>
 
-                  <div className="bg-slate-900/90 p-2.5 rounded-lg border border-amber-500/30 space-y-1.5">
-                    <span className="text-amber-400 font-bold block text-[10px]">🛠️ MÜDAHALE AKSİYONLARI:</span>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
-                        onClick={() => triggerRestartPodAction(activeSelection.data)}
-                        className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'industrial-btn-blue-active'}`}
-                      >
-                        <RefreshCw className="w-3 h-3" />
-                        <span>RESTART</span>
-                      </button>
+                      <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                        <span className="text-amber-400 font-bold block text-[10px]">AĞ & DNS BİLGİSİ:</span>
+                        <div>Pod IP: <strong className="text-slate-200">{activeSelection.data.ip || '10.244.0.12'}</strong></div>
+                        <div>Service IP: <strong className="text-slate-200">{activeSelection.data.service_ip || '10.96.0.45'}</strong></div>
+                        <div className="text-[9px] text-sky-300 break-all">{activeSelection.data.dns || 'web-frontend-svc.default.svc.cluster.local'}</div>
+                      </div>
 
-                      <button
-                        disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
-                        onClick={() => triggerDeletePodAction(activeSelection.data)}
-                        className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'bg-red-600 text-white border-red-500 hover:bg-red-700'}`}
-                      >
-                        <Trash2 className="w-3 h-3" />
-                        <span>SİL</span>
-                      </button>
+                      <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                        <span className="text-purple-400 font-bold block text-[10px]">İÇİNDEKİ KONTEYNIRLAR:</span>
+                        {(activeSelection.data.containers || [{ name: 'app', image: 'nginx:alpine', status: 'Running', restarts: 0 }]).map((c, idx) => (
+                          <div key={idx} className="text-[10px] text-slate-300">
+                            ● <strong>{c.name}</strong> ({c.image}) - <span className="text-emerald-400">{c.status}</span> (Restarts: {c.restarts})
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
+                        <span className="text-sky-400 font-bold block text-[10px]">KAYNAK REQ / LIMIT:</span>
+                        <div>CPU: <strong className="text-emerald-300">{activeSelection.data.resources?.cpu_req || '100m'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.cpu_lim || '500m'}</strong></div>
+                        <div>RAM: <strong className="text-purple-300">{activeSelection.data.resources?.mem_req || '128Mi'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.mem_lim || '512Mi'}</strong></div>
+                      </div>
+
+                      <div className="bg-slate-900/90 p-2.5 rounded-lg border border-amber-500/30 space-y-1.5">
+                        <span className="text-amber-400 font-bold block text-[10px]">🛠️ MÜDAHALE AKSİYONLARI:</span>
+                        <div className="grid grid-cols-2 gap-2">
+                          <button
+                            disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
+                            onClick={() => triggerRestartPodAction(activeSelection.data)}
+                            className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'industrial-btn-blue-active'}`}
+                          >
+                            <RefreshCw className="w-3 h-3" />
+                            <span>RESTART</span>
+                          </button>
+
+                          <button
+                            disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
+                            onClick={() => triggerDeletePodAction(activeSelection.data)}
+                            className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'bg-red-600 text-white border-red-500 hover:bg-red-700'}`}
+                          >
+                            <Trash2 className="w-3 h-3" />
+                            <span>SİL</span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* TAB 2: LIVE LOG STREAM VIEWER */}
+                  {podDrawerTab === 'logs' && (
+                    <PodLogViewer pod={activeSelection.data} />
+                  )}
                 </div>
               )}
 

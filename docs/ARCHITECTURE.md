@@ -21,15 +21,22 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - **Etkileşim:** Tıklama raycasting ile hareketli gemi üzerinde kesintisiz çalışır.
 
 ### 3. HTML/CSS Overlay Katmanı
-- `Top Toolbar`: Screen Top fixed navigation (`top-3 z-50 pointer-events-auto`).
+- `Top Header Bar`: Screen Top fixed navbar (`#top-header-bar`, `z-9999 pointer-events-auto`).
 - `MasterDashboardOverlay.jsx`: Sağ taraf 420px dikey dark-glassmorphism Control Plane paneli (`z-45`).
 - `info-panel-drawer`: Sağ taraf 360px dikey nesne müfettiş çekmecesi (`z-40`).
+- `PodLogViewer.jsx`: Monospace terminal log görüntüleyici (otomatik scroll duraklatmalı, regex renk vurgulamalı, container seçimli).
 - `EventLogDrawer.jsx`: Son 50 olaylık in-memory ring buffer çekmecesi (`z-50`).
 - `ConfirmationModal.jsx`: Güvenlik onay modalı (`z-50`).
+
+### 4. Log Streaming Mimarisi (Faz 21 / v2.2.0)
+- **Backend K8s Endpoint:** WebSocket sunucusu `/api/v1/pods/logs/stream?pod=[pod]&namespace=[ns]&container=[c]&tailLines=150` rotasını dinler.
+- **Client-Go Akışı:** `CoreV1().Pods(ns).GetLogs(pod, &PodLogOptions{Container: c, Follow: true, TailLines: 150})` ile K8s API'sinden canlı stream açar.
+- **Bağlantı Yaşam Döngüsü:** Kullanıcı frontend'de Pod müfettiş çekmecesini veya Loglar sekmesini kapattığında WebSocket istemcisi `ws.close()` çağırır; backend Go `ctx.Cancel()` ile K8s API stream bağlantısını derhal sonlandırır.
+- **Bellek ve Scroll Yönetimi:** Frontend React state'inde en fazla 500 satır tutulur (eski satırlar düşürülür). Kullanıcı yukarı scroll yaptığında otomatik kaydırma duraklatılır, en alta indiğinde tekrar aktifleşir.
 
 ---
 
 ## 🔄 Veri Akış Şeması
 ```text
-Kube API / State -> WebSocket Sync -> React State -> R3F Canvas Render & HTML Overlay
+Kube API / State -> WebSocket Sync & Log Stream -> React State -> R3F Canvas Render & HTML Overlay
 ```

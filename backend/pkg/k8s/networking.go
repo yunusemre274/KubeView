@@ -1,7 +1,6 @@
 package k8s
 
 import (
-	"context"
 	"fmt"
 
 	networkingv1 "k8s.io/api/networking/v1"

@@ -56,6 +56,12 @@ func main() {
 	// Register HTTP / WebSocket routes
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ws", hub.ServeWS)
+	mux.HandleFunc("/api/v1/pods/logs/stream", func(w http.ResponseWriter, r *http.Request) {
+		streamFn := func(streamCtx context.Context, namespace, podName, containerName string, tailLines int64, follow bool, ch chan<- string) error {
+			return k8s.StreamPodLogs(streamCtx, clientset, namespace, podName, containerName, tailLines, follow, ch)
+		}
+		ws.ServePodLogsWS(w, r, streamFn)
+	})
 	mux.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
