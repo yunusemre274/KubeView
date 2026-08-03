@@ -54,7 +54,7 @@ Kubernetes güçlü, ölçeklenebilir ve modern bulut mimarilerinin omurgasını
   - Pod silinmesi / çökmesi ➔ Kargo kutusunun kaybolması / uyarı ışıkları.
   - Node kapalı duruma geçmesi ➔ Geminin limandan ayrılması / arıza moduna geçmesi.
 - 🛡️ **Güvenli ve Hafif:** Sadece salt-okunur (read-only) RBAC yetkileriyle çalışır; cluster state'ine asla müdahale etmez.
-- 🌐 **Kolay Dağıtım:** Tek bir YAML manifesti veya Helm şablonu ile dakikalar içinde canlıya alma.
+- 🌐 **Kolay Dağıtım:** Tek bir `make dev` komutu, K8s YAML manifesti veya Helm şablonu ile dakikalar içinde canlıya alma.
 
 ---
 
@@ -116,12 +116,6 @@ Kubernetes bileşenlerinin **Tersane** dünyasındaki karşılıkları:
 +-----------------------------------------------------------------------------------+
 ```
 
-### Mimari Detaylar
-1. **Kubernetes API Entegrasyonu:** Backend service, `client-go` kütüphanesinin **SharedInformerFactory** özelliğini kullanarak API Server üzerindeki değişiklikleri anlık olarak dinler (watch). Gelen event'ler bellekteki durum haritası (State Map) ile senkronize edilir.
-2. **Metrik Toplama:** Opsiyonel olarak `metrics-server` API'sinden Node ve Pod bazlı CPU/Bellek tüketim oranları belirli aralıklarla çekilir.
-3. **Canlı Akış (WebSocket):** K8s event'leri ve metrik güncellemeleri, JSON formatında WebSocket kanalı üzerinden bağlı frontend istemcilerine push edilir.
-4. **Görselleştirme Katmanı:** React ve Three.js (React Three Fiber) tabanlı frontend istemcisi, WebSocket verilerini alarak 3D ortamda gemi hareketleri, vinç yüklemeleri ve durum renk değişimlerini render eder.
-
 ---
 
 ## 🛠️ Kullanılan Teknolojiler
@@ -142,144 +136,65 @@ Kubernetes bileşenlerinin **Tersane** dünyasındaki karşılıkları:
 
 ---
 
-### 1. Kubernetes Üzerine Deploy Etme (Canlı Ortam)
+### Seçenek A: Tek Komutla Kolay Kurulum (Lokal Geliştirme)
 
-#### Adım 1: RBAC İzinlerini Uygulayın
-Tersane'nin cluster durumunu okuyabilmesi için gerekli read-only yetkilerini tanımlayın:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/k8s-tersane/tersane/main/deploy/rbac.yaml
-```
-
-*Örnek `rbac.yaml` içeriği:*
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: tersane-sa
-  namespace: default
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: tersane-reader
-rules:
-  - apiGroups: [""]
-    resources: ["nodes", "pods", "services", "namespaces", "events"]
-    verbs: ["get", "list", "watch"]
-  - apiGroups: ["apps"]
-    resources: ["deployments", "replicasets", "statefulsets", "daemonsets"]
-    verbs: ["get", "list", "watch"]
-  - apiGroups: ["metrics.k8s.io"]
-    resources: ["nodes", "pods"]
-    verbs: ["get", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: tersane-reader-binding
-subjects:
-  - kind: ServiceAccount
-    name: tersane-sa
-    namespace: default
-roleRef:
-  kind: ClusterRole
-  name: tersane-reader
-  apiGroup: rbac.authorization.k8s.io
-```
-
-#### Adım 2: Deployment ve Service Manifestini Uygulayın
+Tersane'yi bilgisayarınızda tek bir komutla çalıştırmak için:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/k8s-tersane/tersane/main/deploy/deployment.yaml
-```
-
-*Örnek `deployment.yaml` içeriği:*
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: tersane
-  namespace: default
-  labels:
-    app: tersane
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: tersane
-  template:
-    metadata:
-      labels:
-        app: tersane
-    spec:
-      serviceAccountName: tersane-sa
-      containers:
-        - name: tersane
-          image: ghcr.io/k8s-tersane/tersane:latest
-          ports:
-            - containerPort: 8000
-          env:
-            - name: PORT
-              value: "8000"
-            - name: WATCH_NAMESPACE
-              value: "" # Tüm namespace'leri izlemek için boş bırakın
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: tersane-service
-  namespace: default
-spec:
-  type: NodePort
-  ports:
-    - port: 8000
-      targetPort: 8000
-      nodePort: 30800
-  selector:
-    app: tersane
-```
-
-#### Adım 3: Uygulamaya Erişin
-
-- **Option A (Port Forwarding):**
-  ```bash
-  kubectl port-forward svc/tersane-service 8000:8000
-  ```
-  Tarayıcınızdan `http://localhost:8000` adresine gidin.
-
-- **Option B (Minikube):**
-  ```bash
-  minikube service tersane-service --url
-  ```
-
----
-
-### 2. Lokal Geliştirme Ortamı Kurulumu
-
-Projeye katkıda bulunmak veya lokalde geliştirmek için backend ve frontend'i ayrı ayrı çalıştırabilirsiniz:
-
-#### Backend (Go)
-```bash
-# Repoyu klonlayın
 git clone https://github.com/k8s-tersane/tersane.git
-cd tersane/backend
+cd tersane
 
-# Kubeconfig dosyanızın varsayılan konumda (~/.kube/config) olduğundan emin olun
-go run main.go
-# Backend http://localhost:8000 adresinde dinlemeye başlayacaktır.
+# Backend ve Frontend sunucularını paralel başlatır
+make dev
+# veya: ./start.sh
 ```
 
-#### Frontend (React)
+- **Backend (Go API & WS):** `http://localhost:8000`
+- **Frontend (React 3D UI):** `http://localhost:5173`
+
+---
+
+### Seçenek B: Kubernetes / Minikube Üzerine Deploy Etme (YAML Manifest)
+
+Tersane'yi canlı kümeniz üzerinde pod olarak dağıtmak için:
+
+#### Adım 1: Repoyu Klonlayın
 ```bash
-cd ../frontend
+git clone https://github.com/k8s-tersane/tersane.git
+cd tersane
+```
 
-# Bağımlılıkları yükleyin
-npm install
+#### Adım 2: RBAC Read-Only İzinlerini Uygulayın
+```bash
+kubectl apply -f deploy/rbac.yaml
+```
 
-# Geliştirme sunucusunu başlatın
-npm run dev
-# Frontend http://localhost:5173 adresinde çalışacaktır.
+#### Adım 3: Deployment ve Service Manifestini Uygulayın
+```bash
+kubectl apply -f deploy/deployment.yaml
+```
+
+#### Adım 4: Uygulamaya Erişin
+```bash
+# Port Forwarding ile 8000 portunu açın
+kubectl port-forward svc/tersane-service 8000:8000
+```
+Tarayıcınızdan **`http://localhost:8000`** adresine gidin. Backend sunucusu derlenmiş 3D React SPA uygulamasını doğrudan sunacaktır.
+
+---
+
+### Seçenek C: Helm Chart ile Kurulum
+
+Helm kullanarak tek komutla kurulum yapmak için:
+
+```bash
+cd tersane
+
+# Helm Chart kurulumu
+helm install tersane ./charts/tersane
+
+# Port Forwarding ile erişim
+kubectl port-forward svc/tersane 8000:8000
 ```
 
 ---
@@ -292,22 +207,22 @@ Uygulama davranışını aşağıdaki çevre değişkenleri ile özelleştirebil
 | :--- | :--- | :--- |
 | `PORT` | `8000` | Sunucunun çalışacağı HTTP / WebSocket portu |
 | `WATCH_NAMESPACE` | `""` *(Tümü)* | İzlenecek özel namespace (Boş bırakılırsa tüm cluster izlenir) |
-| `ENABLE_METRICS` | `true` | `metrics-server` entegrasyonunun aktiflik durumu |
-| `METRICS_INTERVAL` | `5s` | Metrik verilerinin çekilme sıklığı |
 | `KUBECONFIG` | `~/.kube/config` | Cluster dışı çalışırken kullanılacak Kubeconfig yolu |
-| `LOG_LEVEL` | `info` | Uygulama log seviyesi (`debug`, `info`, `warn`, `error`) |
+| `STATIC_DIR` | `./public` | Production statik frontend derleme dizini |
 
 ---
 
 ## 🗺️ Yol Haritası (Roadmap)
 
-- [x] Node, Pod, Deployment ve Service nesnelerinin temel görselleştirmesi.
-- [x] WebSocket tabanlı canlı durum güncellemeleri.
-- [ ] **StatefulSet & DaemonSet:** Özel dizilimli gemi filoları ve standart ekipman animasyonları.
-- [ ] **HPA (Autoscaler) Görselleştirmesi:** Kargo miktarının artışıyla dinamik palet ekleme efektleri.
+- [x] **Node, Pod, Deployment ve Service** nesnelerinin 3D izometrik görselleştirmesi.
+- [x] **WebSocket Tabanlı Canlı Akış:** K8s event ve pod lifecycle değişimlerinin anlık yayını.
+- [x] **StatefulSet & DaemonSet:** Numaralı sabit gemi filoları ve gemi direği standart ekipmanları.
+- [x] **HPA (Horizontal Pod Autoscaler):** Kargo yoğunluğuna göre dinamik raylı vinç sistemi.
+- [x] **ConfigMap, Secret & Ingress:** Sevkiyat panoları, kilitli kasalar ve deniz feneri yönlendirmeleri.
+- [x] **PV / PVC Depo Ambarları:** Karada kiralanmış ambar yapıları ve pod veri bağlantı hatları.
+- [x] **Zaman Serisi Metrik Grafikleri:** CPU ve Bellek kullanım oranlarının 1 saatlik ring buffer grafiği.
 - [ ] **Çoklu Cluster (Multi-Cluster) Desteği:** Aynı arayüzde birden fazla limanı / tersaneyi geçişli izleme.
 - [ ] **Sesli Anons Entegrasyonu:** Kritik K8s Event'leri için opsiyonel liman telsiz anons ses efekti.
-- [ ] **VR / AR Modu:** WebXR ile 3D tersanede sanal gerçeklik turu.
 
 ---
 
@@ -320,26 +235,8 @@ Katkılarınız projeyi daha da harika hale getirmek için çok değerli!
 3. Dalınıza Push edin (`git push origin feature/HarikaOzellik`).
 4. Bir **Pull Request** açın.
 
-Lütfen kod standartlarına uyduğunuzdan ve testleri çalıştırdığınızdan emin olun.
-
 ---
 
 ## 📄 Lisans
 
 Bu proje **MIT Lisansı** altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakabilirsiniz.
-
----
-
-## 🙏 Teşekkürler & İlham Alınan Projeler
-
-Bu proje geliştirilirken Kubernetes ekosistemindeki yaratıcı görselleştirme araçlarından ilham alınmıştır:
-
-- [Kube-Universe](https://github.com/ explicit/kube-universe) - Kubernetes cluster'larını 3D 3D uzay haritası olarak gösteren görselleştirici.
-- [K3s Observatory](https://github.com/) - Hafif k8s izleme konseptleri.
-- [KubeCraftAdmin](https://github.com/icabrera/kubecraftadmin) - Minecraft dünyasında Kubernetes pod yönetimi fikri.
-
----
-
-<p center="align">
-  <i>Tersane ile Kubernetes öğrenmeyi ve yönetmeyi somut, eğlenceli bir deneyime dönüştürün! 🚢✨</i>
-</p>

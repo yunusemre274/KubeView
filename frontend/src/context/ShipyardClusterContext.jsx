@@ -10,7 +10,7 @@ const singletonManager = {
   isConnecting: false,
   activePort: 8000,
   portAttempt: 8000,
-  maxPort: 8005,
+  maxPort: 8020,
   reconnectTimer: null,
   listeners: new Set(),
 

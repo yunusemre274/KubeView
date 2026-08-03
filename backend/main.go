@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"syscall"
 
 	"github.com/k8s-tersane/tersane/backend/pkg/api"
@@ -13,6 +14,21 @@ import (
 	"github.com/k8s-tersane/tersane/backend/pkg/netutils"
 	ws "github.com/k8s-tersane/tersane/backend/pkg/websocket"
 )
+
+func resolveStaticDir() string {
+	if envDir := os.Getenv("STATIC_DIR"); envDir != "" {
+		if _, err := os.Stat(filepath.Join(envDir, "index.html")); err == nil {
+			return envDir
+		}
+	}
+	candidates := []string{"./public", "/app/public", "../frontend/dist", "public"}
+	for _, dir := range candidates {
+		if _, err := os.Stat(filepath.Join(dir, "index.html")); err == nil {
+			return dir
+		}
+	}
+	return ""
+}
 
 func main() {
 	fmt.Println("==================================================")
@@ -67,6 +83,31 @@ func main() {
 		w.Write([]byte("OK"))
 	})
 
+	// Static File Server (Production / Standalone Bundle Handler)
+	staticDir := resolveStaticDir()
+	if staticDir != "" {
+		fmt.Printf("[http] 🌐 Serving production 3D Frontend assets from: %s\n", staticDir)
+		fileServer := http.FileServer(http.Dir(staticDir))
+		mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+			path := r.URL.Path
+			fullPath := filepath.Join(staticDir, path)
+			fi, err := os.Stat(fullPath)
+			if err != nil || fi.IsDir() {
+				// Serve index.html for SPA routing fallback
+				http.ServeFile(w, r, filepath.Join(staticDir, "index.html"))
+				return
+			}
+			fileServer.ServeHTTP(w, r)
+		})
+	} else {
+		fmt.Println("[http] ℹ️ Static frontend assets not found. Running in API-only / Dev mode.")
+		mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(http.StatusOK)
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			w.Write([]byte(`<!DOCTYPE html><html><head><title>Tersane Backend API</title></head><body style="font-family:sans-serif;background:#0f172a;color:#f8fafc;padding:40px;"><h1>🚢 Tersane K8s Backend API</h1><p>API Server is running in API-only mode.</p><p>Frontend Dev Server: <a href="http://localhost:5173" style="color:#38bdf8;">http://localhost:5173</a></p><p>WebSocket: <code>ws://localhost:8000/ws</code></p></body></html>`))
+		})
+	}
+
 	// Resolve available port (Auto Port Detect & Fallback: 8000-8020)
 	listener, assignedPort, err := netutils.ResolveAvailablePort(defaultPort, defaultPort+20)
 	if err != nil {
@@ -79,7 +120,7 @@ func main() {
 	}
 
 	go func() {
-		fmt.Printf("[http] 🚀 Tersane Backend WebSocket Server listening on http://0.0.0.0:%d/ws\n", assignedPort)
+		fmt.Printf("[http] 🚀 Tersane Backend WebSocket Server listening on http://0.0.0.0:%d\n", assignedPort)
 		if err := server.Serve(listener); err != nil && err != http.ErrServerClosed {
 			fmt.Printf("[fatal] HTTP server error: %v\n", err)
 		}

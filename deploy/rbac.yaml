@@ -5,6 +5,8 @@ metadata:
   namespace: default
   labels:
     app: tersane
+    app.kubernetes.io/name: tersane
+    app.kubernetes.io/part-of: tersane-shipyard
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -12,15 +14,72 @@ metadata:
   name: tersane-reader
   labels:
     app: tersane
+    app.kubernetes.io/name: tersane
+    app.kubernetes.io/part-of: tersane-shipyard
 rules:
+  # Core K8s Resources (Pods, Nodes, Services, Namespaces, Events, ConfigMaps, Secrets, PV/PVCs)
   - apiGroups: [""]
-    resources: ["nodes", "pods", "services", "namespaces", "events"]
+    resources:
+      - nodes
+      - pods
+      - services
+      - namespaces
+      - events
+      - configmaps
+      - secrets
+      - persistentvolumeclaims
+      - persistentvolumes
+      - serviceaccounts
     verbs: ["get", "list", "watch"]
+
+  # Apps API Group (Deployments, ReplicaSets, StatefulSets, DaemonSets)
   - apiGroups: ["apps"]
-    resources: ["deployments", "replicasets", "statefulsets", "daemonsets"]
+    resources:
+      - deployments
+      - replicasets
+      - statefulsets
+      - daemonsets
     verbs: ["get", "list", "watch"]
+
+  # Batch API Group (Jobs, CronJobs)
+  - apiGroups: ["batch"]
+    resources:
+      - jobs
+      - cronjobs
+    verbs: ["get", "list", "watch"]
+
+  # Networking API Group (Ingresses)
+  - apiGroups: ["networking.k8s.io"]
+    resources:
+      - ingresses
+    verbs: ["get", "list", "watch"]
+
+  # Autoscaling API Group (HorizontalPodAutoscalers)
+  - apiGroups: ["autoscaling"]
+    resources:
+      - horizontalpodautoscalers
+    verbs: ["get", "list", "watch"]
+
+  # RBAC Authorization API Group (Roles, RoleBindings, ClusterRoles, ClusterRoleBindings)
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources:
+      - roles
+      - rolebindings
+      - clusterroles
+      - clusterrolebindings
+    verbs: ["get", "list", "watch"]
+
+  # API Extensions (CustomResourceDefinitions)
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources:
+      - customresourcedefinitions
+    verbs: ["get", "list", "watch"]
+
+  # Metrics Server API Group (Node/Pod Resource Usage)
   - apiGroups: ["metrics.k8s.io"]
-    resources: ["nodes", "pods"]
+    resources:
+      - nodes
+      - pods
     verbs: ["get", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -29,6 +88,8 @@ metadata:
   name: tersane-reader-binding
   labels:
     app: tersane
+    app.kubernetes.io/name: tersane
+    app.kubernetes.io/part-of: tersane-shipyard
 subjects:
   - kind: ServiceAccount
     name: tersane-sa

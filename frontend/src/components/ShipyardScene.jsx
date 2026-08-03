@@ -17,8 +17,9 @@ import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/Orch
 import { MiniSparkline, DetailedTrendChartModal } from './3d/MetricTrendCharts'
 import { calculateContainerDeckPosition } from '../constants/dimensions'
 import HoverTooltipOverlay from './3d/HoverTooltipOverlay'
+import OnboardingWelcomeModal from './OnboardingWelcomeModal'
 import { OBJECT_DESCRIPTIONS } from '../constants/descriptions'
-import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2, Repeat, Play, Layers3, Terminal, UserCheck, ShieldCheck as ShieldCheckIcon, AlertTriangle, TrendingUp } from 'lucide-react'
+import { Eye, Building2, Ship as ShipIcon, X, Anchor, ShieldCheck, Box, Activity, Radio, ArrowRight, Zap, Clock, Lock, Unlock, Trash2, RefreshCw, Compass, ShieldAlert, Cpu, Camera, DollarSign, Tag, Layers, Server, FileText, ClipboardList, Key, Shield, Database, HardDrive, Link2, Repeat, Play, Layers3, Terminal, UserCheck, ShieldCheck as ShieldCheckIcon, AlertTriangle, TrendingUp, HelpCircle } from 'lucide-react'
 
 // 1. Vibrant Animated Ocean Surface
 function Ocean() {
@@ -520,7 +521,10 @@ function CameraController({ targetPosition, targetLookAt }) {
   return null
 }
 
-export default function ShipyardScene({ ships = [] }) {
+export default function ShipyardScene({ ships = [], isConnected = false, eventsLog: externalEventsLog = [], deployments: externalDeployments = [] }) {
+  const [showOnboardingModal, setShowOnboardingModal] = useState(() => {
+    return localStorage.getItem('tersane_onboarding_seen') !== 'true'
+  })
   const [hoveredObject, setHoveredObject] = useState(null)
   const [activeSelection, setActiveSelection] = useState(null)
   const [showMasterDashboard, setShowMasterDashboard] = useState(false)
@@ -1028,18 +1032,31 @@ export default function ShipyardScene({ ships = [] }) {
             </span>
           </div>
 
-          <select
-            value={activeClusterContext}
-            onChange={(e) => {
-              setActiveClusterContext(e.target.value)
-              addEventLog(`Küme Bağlamı Değiştirildi: ${e.target.value}`, 'Normal', true)
-            }}
-            className="industrial-select text-xs py-0.5"
-          >
-            <option value="minikube">🐳 minikube</option>
-            <option value="docker-desktop">📦 docker-desktop</option>
-            <option value="prod-cluster">☁️ prod-cluster</option>
-          </select>
+          {/* Connection Status Live Badge */}
+          <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded border text-[10px] font-industrial font-bold ${
+            isConnected ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-red-500/10 text-red-400 border-red-500/30 animate-pulse'
+          }`}>
+            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-400' : 'bg-red-500'}`} />
+            <span>{isConnected ? 'CANLI STREAM' : 'BAĞLANTI KOPUK'}</span>
+          </div>
+
+          <div className="relative flex items-center">
+            <select
+              value={activeClusterContext}
+              onChange={(e) => {
+                setActiveClusterContext(e.target.value)
+                addEventLog(`Küme Bağlamı Seçildi (UI Önizleme): ${e.target.value}`, 'Normal', true)
+              }}
+              className="industrial-select text-xs py-0.5 pr-14"
+            >
+              <option value="minikube">🐳 minikube</option>
+              <option value="docker-desktop">📦 docker-desktop</option>
+              <option value="prod-cluster">☁️ prod-cluster</option>
+            </select>
+            <span className="absolute right-1 text-[9px] px-1 rounded bg-slate-800 text-amber-400/80 font-mono pointer-events-none">
+              ⚡ UI Önizleme
+            </span>
+          </div>
 
           <button
             onClick={() => {
@@ -1108,8 +1125,16 @@ export default function ShipyardScene({ ships = [] }) {
           </select>
         </div>
 
-        {/* RIGHT SECTION: PNG EXPORT & EVENT LOG BUTTONS */}
+        {/* RIGHT SECTION: HELP, PNG EXPORT & EVENT LOG BUTTONS */}
         <div className="flex items-center gap-1.5 shrink-0">
+          <button
+            onClick={() => setShowOnboardingModal(true)}
+            className="industrial-btn text-xs py-0.5 px-2 flex items-center gap-1 border-amber-500/40 text-amber-300 hover:bg-amber-500/20"
+          >
+            <HelpCircle className="w-3 h-3 text-amber-400" />
+            <span>❓ YARDIM</span>
+          </button>
+
           <button
             onClick={handleExportPNG}
             className="industrial-btn text-xs py-0.5 px-2 flex items-center gap-1 border-sky-500/40 text-sky-300 hover:bg-sky-500/20"
@@ -1608,6 +1633,37 @@ export default function ShipyardScene({ ships = [] }) {
 
       {/* KATMAN 7: 3D OBJECT HOVER TOOLTIP OVERLAY */}
       <HoverTooltipOverlay hoveredObject={hoveredObject} />
+
+      {/* KATMAN 8: DISCONNECTED BACKEND ALERT OVERLAY BANNER */}
+      {!isConnected && (
+        <div className="absolute top-14 left-1/2 -translate-x-1/2 z-[90] px-4 py-2.5 rounded-lg bg-red-950/90 border border-red-500/60 backdrop-blur-md shadow-2xl flex items-center gap-3 animate-pulse">
+          <div className="p-1.5 rounded-full bg-red-500/20 text-red-400 shrink-0">
+            <AlertTriangle className="w-4 h-4" />
+          </div>
+          <div className="text-left">
+            <div className="text-[11px] font-bold text-red-200 font-industrial tracking-wider flex items-center gap-2">
+              <span>⚠️ KUBERNETES BACKEND SUNUCUSUNA BAĞLANILAMADI</span>
+              <span className="text-[9px] px-1 py-0.2 rounded bg-red-900 text-red-300 font-mono">PORT 8000-8020</span>
+            </div>
+            <p className="text-[10px] text-slate-300">
+              WebSocket kanalı kapalı. Sunucuyu başlatın: <code className="text-amber-300 bg-slate-900 px-1 py-0.5 rounded font-mono">cd backend && go run main.go</code>
+            </p>
+          </div>
+          <button
+            onClick={() => window.location.reload()}
+            className="ml-2 px-2.5 py-1 rounded text-[11px] bg-red-800 hover:bg-red-700 text-white font-industrial border border-red-500/40 flex items-center gap-1 transition shrink-0"
+          >
+            <RefreshCw className="w-3 h-3" />
+            <span>YENİDEN DENE</span>
+          </button>
+        </div>
+      )}
+
+      {/* KATMAN 9: FIRST-TIME ONBOARDING WELCOME MODAL */}
+      <OnboardingWelcomeModal
+        isOpen={showOnboardingModal}
+        onClose={() => setShowOnboardingModal(false)}
+      />
     </div>
   )
 }
