@@ -7,6 +7,7 @@ frontend/package-lock.json
 # Go build & cache
 backend/.gopath/
 backend/tersane-backend
+bin/
 *.log
 
 # Git IPC sockets & OS
