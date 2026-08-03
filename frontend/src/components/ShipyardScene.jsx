@@ -15,7 +15,8 @@ import PodLogViewer from './PodLogViewer'
 import { SmokeAndFlameEffect, RedFlagEffect, OOMKilledBurstEffect } from './3d/AnomalyEffects'
 import { HPAMobileCrane, NodeAffinityLines, PDBMaintenanceFlag } from './3d/OrchestrationHelpers'
 import { MiniSparkline, DetailedTrendChartModal } from './3d/MetricTrendCharts'
-import { calculateContainerDeckPosition } from '../constants/dimensions'
+import { calculateContainerDeckPosition, calculateShipDockPosition, calculateShipPatrolPosition } from '../constants/dimensions'
+import InfoCard, { InfoCardHeader, InfoCardSection, InfoCardRow, InfoCardBadge } from './InfoCard'
 import HoverTooltipOverlay from './3d/HoverTooltipOverlay'
 import OnboardingWelcomeModal from './OnboardingWelcomeModal'
 import { OBJECT_DESCRIPTIONS } from '../constants/descriptions'
@@ -375,7 +376,7 @@ function CargoContainer({ position, podData, shipName, onSelectPod, activeAnomal
 }
 
 // 8. Cargo Ship (Worker Node) With Smooth Patrol Rotation Curve & DaemonSet Antenna
-function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, onSelectDaemonSet, activeAnomaly, shipIndex = 0, onHover }) {
+function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectShip, onSelectKubelet, onSelectDaemonSet, activeAnomaly, shipIndex = 0, totalShips = 1, onHover }) {
   const groupRef = useRef()
   const [hovered, setHovered] = useState(false)
   const isNodeNotReady = activeAnomaly === 'NodeNotReady' && (shipData.id === 'node-2' || shipIndex === 1 || shipIndex === 0)
@@ -392,39 +393,22 @@ function CargoShip({ basePosition = [0, 0, 0], shipData, onSelectPod, onSelectSh
     onHover && onHover(null)
   }
 
-  const patrolCurve = useMemo(() => {
-    const [x, y, z] = basePosition
-    const points = [
-      new THREE.Vector3(x, y, z),
-      new THREE.Vector3(x + 6, y, z + 8),
-      new THREE.Vector3(x + 14, y, z),
-      new THREE.Vector3(x + 8, y, z - 8),
-      new THREE.Vector3(x, y, z)
-    ]
-    return new THREE.CatmullRomCurve3(points, true)
-  }, [basePosition])
-
-  const progressRef = useRef(shipData.id === 'node-2' ? 0.5 : 0.0)
-
-  useFrame((_, delta) => {
+  useFrame(({ clock }) => {
     if (!groupRef.current) return
+    const elapsedTime = clock.getElapsedTime()
 
-    const t = progressRef.current
-    if (!isNodeNotReady) {
-      progressRef.current += delta * 0.012
-    }
-
-    const pos = patrolCurve.getPointAt(progressRef.current % 1)
-    const tangent = patrolCurve.getTangentAt(progressRef.current % 1)
+    // Calculate zero-collision phase-spaced patrol position in open water
+    const { position, rotationY, t } = calculateShipPatrolPosition(shipIndex, totalShips, elapsedTime, isNodeNotReady)
 
     if (isNodeNotReady) {
-      groupRef.current.position.set(pos.x, pos.y - 0.8 + Math.sin(t * 3) * 0.05, pos.z)
+      groupRef.current.position.set(position[0], position[1] - 0.8 + Math.sin(t * 3) * 0.05, position[2])
+      groupRef.current.rotation.y = rotationY
       groupRef.current.rotation.z = -0.18 + Math.sin(t * 3) * 0.02
       groupRef.current.rotation.x = 0.12
     } else {
-      groupRef.current.position.set(pos.x, pos.y + Math.sin(t * 15) * 0.08, pos.z)
-      const angle = Math.atan2(tangent.x, tangent.z)
-      groupRef.current.rotation.y = angle
+      groupRef.current.position.set(position[0], position[1] + Math.sin(t * 15) * 0.08, position[2])
+      groupRef.current.rotation.y = rotationY
+      groupRef.current.rotation.x = 0
       groupRef.current.rotation.z = Math.sin(t * 10) * 0.015
     }
   })
@@ -1234,6 +1218,7 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
             <CargoShip
               key={ship.id}
               shipIndex={shipIdx}
+              totalShips={activeShips.length}
               basePosition={ship.position}
               shipData={ship}
               onSelectPod={handleSelectPod}
@@ -1299,10 +1284,10 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
       {/* KATMAN 6: ABSOLUTE OVERLAY RIGHT INSPECTOR DRAWER */}
       <aside className={`info-panel-drawer pt-12 ${activeSelection && !showMasterDashboard && !showEventLog ? 'drawer-open' : 'drawer-closed'}`}>
         {activeSelection && (
-          <div className="p-4 h-full flex flex-col justify-between overflow-y-auto font-mono-tech text-[11px]">
-            <div>
-              <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-700">
-                <h3 className="font-industrial text-sm font-bold text-amber-400 flex items-center gap-2">
+          <div className="p-3.5 h-full flex flex-col justify-between font-mono-tech text-[10.5px]">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
+                <h3 className="font-industrial text-xs font-bold text-amber-400 flex items-center gap-2">
                   {activeSelection.type === 'KUBELET' && <Activity className="w-4 h-4 text-emerald-400" />}
                   {activeSelection.type === 'CRANE' && <Cpu className="w-4 h-4 text-amber-400" />}
                   {activeSelection.type === 'KUBE_PROXY' && <Radio className="w-4 h-4 text-sky-400" />}
@@ -1341,287 +1326,172 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                 </button>
               </div>
 
-              {/* WORKER NODE DETAILS WITH SPARKLINE & DETAILED TREND LINK */}
-              {activeSelection.type === 'SHIP' && (
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">NODE ADI:</span>
-                    <strong className="text-white text-xs">{activeSelection.data.name}</strong>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                      <span className="text-slate-400 block text-[10px]">NODE IP:</span>
-                      <strong className="text-sky-300">{activeSelection.data.ip || '192.168.1.101'}</strong>
-                    </div>
-                    <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                      <span className="text-slate-400 block text-[10px]">SAĞLIK:</span>
-                      <strong className="text-emerald-400">{activeSelection.data.status || 'Ready'}</strong>
-                    </div>
-                  </div>
-
-                  {/* SPARKLINE INTEGRATION IN NODE CARD */}
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-amber-400 font-bold block text-[10px]">KAPASİTE VE CANLI TREND:</span>
-                      <button
-                        onClick={() => setShowDetailedTrendModal(true)}
-                        className="text-sky-300 hover:underline font-bold text-[9px] flex items-center gap-1 bg-sky-500/20 px-1.5 py-0.5 rounded border border-sky-500/40"
-                      >
-                        <TrendingUp className="w-2.5 h-2.5 text-sky-400" />
-                        <span>DETAYLI GRAFİK</span>
-                      </button>
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <div className="text-[10px] text-slate-300">
-                          <span>CPU Kullanımı: </span>
-                          <strong className="text-emerald-400">{activeSelection.data.metrics?.cpu_usage || '320m'} / {activeSelection.data.metrics?.cpu_capacity || '4000m'}</strong>
-                        </div>
-                        <MiniSparkline data={metricsHistory.map((h) => h.cpu)} color="#10b981" />
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div className="text-[10px] text-slate-300">
-                          <span>RAM Kullanımı: </span>
-                          <strong className="text-purple-400">{activeSelection.data.metrics?.memory_usage || '1024Mi'} / {activeSelection.data.metrics?.mem_capacity || '8192Mi'}</strong>
-                        </div>
-                        <MiniSparkline data={metricsHistory.map((h) => h.mem)} color="#a855f7" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-sky-400 font-bold block text-[10px]">NODE SERVİSLERİ & AJANLAR:</span>
-                    <div className="flex justify-between"><span>Kubelet Status:</span><strong className="text-emerald-400">Active (Running)</strong></div>
-                    <div className="flex justify-between"><span>Kube-Proxy Status:</span><strong className="text-emerald-400">Active (iptables)</strong></div>
-                    <div className="flex justify-between"><span>Bağlı Küme:</span><strong className="text-slate-200">{activeClusterContext}</strong></div>
-                  </div>
-
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-emerald-400 font-bold block text-[10px]">ÜZERİNDEKİ POD'LAR ({activeSelection.data.pods?.length || 2}):</span>
-                    {(activeSelection.data.pods || []).map((p) => (
-                      <div key={p.id} className="text-[10px] text-slate-300 flex justify-between">
-                        <span>● {p.name}</span>
-                        <span className="text-sky-400">[{p.namespace}]</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="bg-slate-900/90 p-2.5 rounded-lg border border-amber-500/40 space-y-1">
-                    <span className="text-amber-400 font-bold block text-[10px] flex items-center gap-1">
-                      <DollarSign className="w-3.5 h-3.5 text-amber-400" /> TAHMİNİ STATİK MALİYET:
-                    </span>
-                    <div className="flex justify-between text-[10px]"><span>Instance Tipi:</span><strong className="text-white">t3.medium (AWS)</strong></div>
-                    <div className="flex justify-between text-[10px]"><span>Saatlik Ücret:</span><strong className="text-emerald-400">$0.0416 / saat</strong></div>
-                    <div className="flex justify-between text-[10px]"><span>Tahmini Aylık:</span><strong className="text-amber-300">~$30.00 / ay</strong></div>
-                  </div>
-                </div>
-              )}
-
-              {/* SERVICEACCOUNT DETAILS */}
-              {activeSelection.type === 'SERVICEACCOUNT' && (
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">SERVICEACCOUNT ADI:</span>
-                    <strong className="text-sky-300 text-xs">{activeSelection.data.name}</strong>
-                  </div>
-
-                  {activeSelection.data.is_admin && (
-                    <div className="bg-red-500/10 p-2.5 rounded-lg border border-red-500/50 flex items-start gap-2">
-                      <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5 animate-bounce" />
-                      <div className="text-[10px] text-red-300 leading-tight">
-                        <strong className="text-red-400 block">⚠️ AŞIRI YETKİLİ SERVICEACCOUNT:</strong>
-                        Bu ServiceAccount <code className="text-amber-300 font-mono font-bold">cluster-admin</code> rolüne bağlıdır! Tüm küme kaynaklarına tam yetkili müdahale hakkı içerir.
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-purple-400 font-bold block text-[10px]">BAĞLI BİNDİNG VE ROL:</span>
-                    <div className="flex justify-between"><span>Binding:</span><strong className="text-slate-200">{activeSelection.data.bound_binding}</strong></div>
-                    <div className="flex justify-between items-center">
-                      <span>Hedef Rol:</span>
-                      <button
-                        onClick={() => handleSelectRole(activeSelection.data.bound_role, activeSelection.data.is_admin)}
-                        className="text-purple-300 hover:underline font-bold text-[10px] flex items-center gap-1"
-                      >
-                        <Link2 className="w-3 h-3 text-purple-400" />
-                        <span>{activeSelection.data.bound_role}</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-emerald-400 font-bold block text-[10px]">BU SA İLE ÇALIŞAN POD'LAR:</span>
-                    {activeSelection.data.used_by_pods?.map((podName, idx) => (
-                      <div key={idx} className="text-slate-200 text-[10px]">● {podName}</div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* ROLE / CLUSTERROLE READABLE RULES TABLE DETAILS */}
-              {activeSelection.type === 'ROLE' && (
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">ROL / CLUSTERROLE ADI:</span>
-                    <strong className="text-purple-300 text-xs">{activeSelection.data.name}</strong>
-                  </div>
-
-                  <div className="bg-slate-800/60 p-2 rounded border border-slate-700 flex justify-between">
-                    <span className="text-slate-400 text-[10px]">ROL TİPİ:</span>
-                    <strong className="text-emerald-400 text-[10px]">
-                      {activeSelection.data.is_cluster ? 'ClusterRole (Küme Geneli)' : `Role (Namespace: ${activeSelection.data.namespace})`}
-                    </strong>
-                  </div>
-
-                  {/* READABLE PERMISSION RULES TABLE (RESOURCE + VERBS) */}
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-2">
-                    <span className="text-amber-400 font-bold block text-[10px]">📋 TANIMLI İZİNLER (RULES TABLOSU):</span>
-                    <div className="space-y-1.5">
-                      {activeSelection.data.rules?.map((rule, idx) => (
-                        <div key={idx} className="bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1 text-[10px]">
-                          <div className="flex items-center gap-1 text-sky-300">
-                            <Box className="w-3 h-3 text-sky-400 shrink-0" />
-                            <strong>Kaynaklar (Resources):</strong> <span className="text-white font-mono">{rule.resources.join(', ')}</span>
-                          </div>
-                          <div className="flex items-center gap-1 text-emerald-400">
-                            <Zap className="w-3 h-3 text-emerald-400 shrink-0" />
-                            <strong>Eylemler (Verbs):</strong> <span className="text-emerald-300 font-mono">{rule.verbs.join(', ')}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                    <span className="text-sky-400 font-bold block text-[10px]">BAĞLI SERVICEACCOUNT'LAR:</span>
-                    {activeSelection.data.bound_sas?.map((saName, idx) => (
-                      <div key={idx} className="text-slate-200 text-[10px]">● {saName}</div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* POD DETAILS & LOG VIEWER */}
-              {activeSelection.type === 'POD' && (
-                <div className="space-y-3">
-                  <div className="flex border-b border-slate-700 pb-2 gap-2">
-                    <button
-                      onClick={() => setPodDrawerTab('details')}
-                      className={`flex-1 py-1 px-2 rounded text-[11px] font-industrial flex items-center justify-center gap-1.5 border transition ${
-                        podDrawerTab === 'details'
-                          ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 font-bold shadow'
-                          : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-slate-200'
-                      }`}
-                    >
-                      <Box className="w-3.5 h-3.5" />
-                      <span>📋 DETAYLAR</span>
-                    </button>
-
-                    <button
-                      onClick={() => setPodDrawerTab('logs')}
-                      className={`flex-1 py-1 px-2 rounded text-[11px] font-industrial flex items-center justify-center gap-1.5 border transition ${
-                        podDrawerTab === 'logs'
-                          ? 'bg-sky-500/20 text-sky-300 border-sky-500/50 font-bold shadow'
-                          : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-slate-200'
-                      }`}
-                    >
-                      <FileText className="w-3.5 h-3.5 text-sky-400" />
-                      <span>📜 LOGLAR</span>
-                    </button>
-                  </div>
-
-                  {podDrawerTab === 'details' && (
-                    <div className="space-y-3">
-                      <div>
-                        <span className="text-slate-400 block text-[10px]">POD ADI:</span>
-                        <strong className="text-white text-xs break-all">{activeSelection.data.name || 'web-frontend-deploy-74b89'}</strong>
-                      </div>
-
-                      <div className="bg-slate-900/90 p-2 rounded border border-purple-500/40 flex items-center justify-between">
-                        <span className="text-slate-400 text-[10px]">YÖNETEN ÜST NESNE (OWNER):</span>
-                        <strong className="text-purple-300 font-bold text-[10px] px-2 py-0.5 rounded bg-purple-500/20 border border-purple-500/30">
-                          {activeSelection.data.owner_kind || 'Deployment'}: {activeSelection.data.owner_name || activeSelection.data.name}
-                        </strong>
-                      </div>
-
-                      <div className="bg-slate-900/90 p-2 rounded border border-sky-500/40 flex items-center justify-between">
-                        <span className="text-slate-400 text-[10px]">🪪 KİMLİK KARTI (SA):</span>
-                        <button
-                          onClick={() => handleSelectServiceAccount(activeSelection.data.service_account || 'default', activeSelection.data.namespace || 'default')}
-                          className="text-sky-300 hover:underline font-bold text-[10px] flex items-center gap-1"
-                        >
-                          <UserCheck className="w-3 h-3 text-sky-400" />
-                          <span>{activeSelection.data.service_account || 'default'}</span>
+              <InfoCard>
+                {/* WORKER NODE DETAILS WITH SPARKLINE & DETAILED TREND LINK */}
+                {activeSelection.type === 'SHIP' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data.name} subtitle={activeSelection.data.ip || '192.168.1.101'} status={activeSelection.data.status || 'Ready'} typeLabel="WORKER NODE" icon={ShipIcon} />
+                    <InfoCardSection title="⚡ KAPASİTE VE CANLI TREND" colorClass="text-amber-400">
+                      <div className="flex justify-between items-center pb-1">
+                        <span className="text-slate-400 text-[10px]">CPU / RAM METRİK:</span>
+                        <button onClick={() => setShowDetailedTrendModal(true)} className="industrial-btn text-[9px] py-0.5 px-1.5 border-sky-500/40 text-sky-300">
+                          <TrendingUp className="w-2.5 h-2.5" /> DETAYLI GRAFİK
                         </button>
                       </div>
-
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                          <span className="text-slate-400 block text-[10px]">AMBAR (NS):</span>
-                          <strong className="text-sky-400">{activeSelection.data.namespace || 'default'}</strong>
+                      <div className="space-y-1.5 pt-1">
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-300">CPU: <strong className="text-emerald-400">{activeSelection.data.metrics?.cpu_usage || '320m'} / {activeSelection.data.metrics?.cpu_capacity || '4000m'}</strong></span>
+                          <MiniSparkline data={metricsHistory.map((h) => h.cpu)} color="#10b981" />
                         </div>
-                        <div className="bg-slate-800/60 p-2 rounded border border-slate-700">
-                          <span className="text-slate-400 block text-[10px]">DURUM:</span>
-                          <strong className="text-emerald-400">{activeSelection.data.status || 'Running'}</strong>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-300">RAM: <strong className="text-purple-400">{activeSelection.data.metrics?.memory_usage || '1024Mi'} / {activeSelection.data.metrics?.mem_capacity || '8192Mi'}</strong></span>
+                          <MiniSparkline data={metricsHistory.map((h) => h.mem)} color="#a855f7" />
                         </div>
                       </div>
+                    </InfoCardSection>
+                    <InfoCardSection title="📌 TEMEL BİLGİLER">
+                      <InfoCardRow label="Node IP" value={activeSelection.data.ip || '192.168.1.101'} valueColor="text-sky-300" />
+                      <InfoCardRow label="Sağlık" value={activeSelection.data.status || 'Ready'} valueColor="text-emerald-400" />
+                      <InfoCardRow label="Bağlı Küme" value={activeClusterContext} />
+                    </InfoCardSection>
+                    <InfoCardSection title={`📦 ÜZERİNDEKİ POD'LAR (${activeSelection.data.pods?.length || 2})`} colorClass="text-emerald-400">
+                      {(activeSelection.data.pods || []).map((p) => (
+                        <InfoCardRow key={p.id} label={p.name} value={p.namespace} valueColor="text-sky-400" />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
 
-                      <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                        <span className="text-amber-400 font-bold block text-[10px]">AĞ & DNS BİLGİSİ:</span>
-                        <div>Pod IP: <strong className="text-slate-200">{activeSelection.data.ip || '10.244.0.12'}</strong></div>
-                        <div>Service IP: <strong className="text-slate-200">{activeSelection.data.service_ip || '10.96.0.45'}</strong></div>
-                        <div className="text-[9px] text-sky-300 break-all">{activeSelection.data.dns || 'web-frontend-svc.default.svc.cluster.local'}</div>
+                {/* SERVICEACCOUNT DETAILS */}
+                {activeSelection.type === 'SERVICEACCOUNT' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data.name} status={activeSelection.data.is_admin ? 'CLUSTER-ADMIN' : 'NORMAL'} typeLabel="SERVICEACCOUNT" icon={UserCheck} />
+                    {activeSelection.data.is_admin && (
+                      <div className="bg-red-500/10 p-2 rounded-lg border border-red-500/50 flex items-start gap-2">
+                        <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5 animate-bounce" />
+                        <div className="text-[10px] text-red-300 leading-tight">
+                          <strong className="text-red-400 block">⚠️ AŞIRI YETKİLİ SERVICEACCOUNT:</strong>
+                          Bu ServiceAccount <code className="text-amber-300 font-mono font-bold">cluster-admin</code> rolüne bağlıdır!
+                        </div>
                       </div>
+                    )}
+                    <InfoCardSection title="BAĞLI ROL VEYA BİNDİNG">
+                      <InfoCardRow label="Binding" value={activeSelection.data.bound_binding} />
+                      <InfoCardRow label="Hedef Rol" value={activeSelection.data.bound_role} isLink={true} onClick={() => handleSelectRole(activeSelection.data.bound_role, activeSelection.data.is_admin)} valueColor="text-purple-300" />
+                    </InfoCardSection>
+                    <InfoCardSection title="BU SA İLE ÇALIŞAN POD'LAR" colorClass="text-emerald-400">
+                      {activeSelection.data.used_by_pods?.map((podName, idx) => (
+                        <InfoCardRow key={idx} label={`Pod #${idx + 1}`} value={podName} />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
 
-                      <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                        <span className="text-purple-400 font-bold block text-[10px]">İÇİNDEKİ KONTEYNIRLAR:</span>
-                        {(activeSelection.data.containers || [{ name: 'app', image: 'nginx:alpine', status: 'Running', restarts: 0 }]).map((c, idx) => (
-                          <div key={idx} className="text-[10px] text-slate-300">
-                            ● <strong>{c.name}</strong> ({c.image}) - <span className="text-emerald-400">{c.status}</span> (Restarts: {c.restarts})
+                {/* ROLE / CLUSTERROLE RULES DETAILS */}
+                {activeSelection.type === 'ROLE' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data.name} status={activeSelection.data.is_cluster ? 'CLUSTERROLE' : 'ROLE'} typeLabel="ROLE / CLUSTERROLE" icon={ShieldCheckIcon} />
+                    <InfoCardSection title="📋 TANIMLI İZİNLER (RULES TABLOSU)" colorClass="text-amber-400">
+                      <div className="space-y-1.5">
+                        {activeSelection.data.rules?.map((rule, idx) => (
+                          <div key={idx} className="bg-slate-950 p-2 rounded border border-slate-800 space-y-1 text-[10px]">
+                            <div className="flex items-center gap-1 text-sky-300">
+                              <Box className="w-3 h-3 text-sky-400 shrink-0" />
+                              <strong>Kaynaklar:</strong> <span className="text-white font-mono truncate">{rule.resources.join(', ')}</span>
+                            </div>
+                            <div className="flex items-center gap-1 text-emerald-400">
+                              <Zap className="w-3 h-3 text-emerald-400 shrink-0" />
+                              <strong>Eylemler:</strong> <span className="text-emerald-300 font-mono truncate">{rule.verbs.join(', ')}</span>
+                            </div>
                           </div>
                         ))}
                       </div>
+                    </InfoCardSection>
+                    <InfoCardSection title="BAĞLI SERVICEACCOUNT'LAR">
+                      {activeSelection.data.bound_sas?.map((saName, idx) => (
+                        <InfoCardRow key={idx} label={`SA #${idx + 1}`} value={saName} />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
 
-                      <div className="bg-slate-800/60 p-2.5 rounded border border-slate-700 space-y-1">
-                        <span className="text-sky-400 font-bold block text-[10px]">KAYNAK REQ / LIMIT:</span>
-                        <div>CPU: <strong className="text-emerald-300">{activeSelection.data.resources?.cpu_req || '100m'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.cpu_lim || '500m'}</strong></div>
-                        <div>RAM: <strong className="text-purple-300">{activeSelection.data.resources?.mem_req || '128Mi'}</strong> / <strong className="text-amber-300">{activeSelection.data.resources?.mem_lim || '512Mi'}</strong></div>
-                      </div>
+                {/* POD DETAILS & LOG VIEWER */}
+                {activeSelection.type === 'POD' && (
+                  <div className="space-y-2.5">
+                    <div className="flex border-b border-slate-800 pb-2 gap-2">
+                      <button
+                        onClick={() => setPodDrawerTab('details')}
+                        className={`flex-1 py-1 px-2 rounded text-[10.5px] font-industrial flex items-center justify-center gap-1.5 border transition ${
+                          podDrawerTab === 'details'
+                            ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 font-bold shadow'
+                            : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-slate-200'
+                        }`}
+                      >
+                        <Box className="w-3.5 h-3.5" />
+                        <span>📋 DETAYLAR</span>
+                      </button>
 
-                      <div className="bg-slate-900/90 p-2.5 rounded-lg border border-amber-500/30 space-y-1.5">
-                        <span className="text-amber-400 font-bold block text-[10px]">🛠️ MÜDAHALE AKSİYONLARI:</span>
-                        <div className="grid grid-cols-2 gap-2">
-                          <button
-                            disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
-                            onClick={() => triggerRestartPodAction(activeSelection.data)}
-                            className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'industrial-btn-blue-active'}`}
-                          >
-                            <RefreshCw className="w-3 h-3" />
-                            <span>RESTART</span>
-                          </button>
-
-                          <button
-                            disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
-                            onClick={() => triggerDeletePodAction(activeSelection.data)}
-                            className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'bg-red-600 text-white border-red-500 hover:bg-red-700'}`}
-                          >
-                            <Trash2 className="w-3 h-3" />
-                            <span>SİL</span>
-                          </button>
-                        </div>
-                      </div>
+                      <button
+                        onClick={() => setPodDrawerTab('logs')}
+                        className={`flex-1 py-1 px-2 rounded text-[10.5px] font-industrial flex items-center justify-center gap-1.5 border transition ${
+                          podDrawerTab === 'logs'
+                            ? 'bg-sky-500/20 text-sky-300 border-sky-500/50 font-bold shadow'
+                            : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-slate-200'
+                        }`}
+                      >
+                        <FileText className="w-3.5 h-3.5 text-sky-400" />
+                        <span>📜 LOGLAR</span>
+                      </button>
                     </div>
-                  )}
 
-                  {podDrawerTab === 'logs' && (
-                    <PodLogViewer pod={activeSelection.data} />
-                  )}
-                </div>
-              )}
+                    {podDrawerTab === 'details' && (
+                      <>
+                        <InfoCardHeader title={activeSelection.data.name || 'web-frontend-deploy-74b89'} subtitle={activeSelection.data.namespace || 'default'} status={activeSelection.data.status || 'Running'} typeLabel="POD" icon={Box} />
+                        <InfoCardSection title="📌 TEMEL BİLGİLER">
+                          <InfoCardRow label="Ambar (NS)" value={activeSelection.data.namespace || 'default'} valueColor="text-sky-400" />
+                          <InfoCardRow label="Owner" value={`${activeSelection.data.owner_kind || 'Deployment'}:${activeSelection.data.owner_name || 'app'}`} valueColor="text-purple-300" />
+                          <InfoCardRow label="SA" value={activeSelection.data.service_account || 'default'} isLink={true} onClick={() => handleSelectServiceAccount(activeSelection.data.service_account || 'default', activeSelection.data.namespace || 'default')} valueColor="text-sky-300" />
+                        </InfoCardSection>
+                        <InfoCardSection title="🌐 AĞ & DNS BİLGİSİ" colorClass="text-amber-400">
+                          <InfoCardRow label="Pod IP" value={activeSelection.data.ip || '10.244.0.12'} />
+                          <InfoCardRow label="Service IP" value={activeSelection.data.service_ip || '10.96.0.45'} />
+                          <InfoCardRow label="DNS Adı" value={activeSelection.data.dns || 'web-frontend.svc.local'} valueColor="text-sky-300" />
+                        </InfoCardSection>
+                        <InfoCardSection title="📜 İÇİNDEKİ KONTEYNIRLAR" colorClass="text-purple-400">
+                          {(activeSelection.data.containers || [{ name: 'app', image: 'nginx:alpine', status: 'Running', restarts: 0 }]).map((c, idx) => (
+                            <InfoCardRow key={idx} label={c.name} value={`${c.image} (${c.status})`} valueColor="text-emerald-300" />
+                          ))}
+                        </InfoCardSection>
+                        <InfoCardSection title="🛠️ MÜDAHALE AKSİYONLARI" colorClass="text-amber-400">
+                          <div className="grid grid-cols-2 gap-2 pt-1">
+                            <button
+                              disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
+                              onClick={() => triggerRestartPodAction(activeSelection.data)}
+                              className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'industrial-btn-blue-active'}`}
+                            >
+                              <RefreshCw className="w-3 h-3" />
+                              <span>RESTART</span>
+                            </button>
+
+                            <button
+                              disabled={isReadOnlyMode || activeSelection.data.namespace === 'kube-system'}
+                              onClick={() => triggerDeletePodAction(activeSelection.data)}
+                              className={`industrial-btn text-[10px] py-1 justify-center ${isReadOnlyMode ? 'opacity-50 cursor-not-allowed' : 'bg-red-600 text-white border-red-500 hover:bg-red-700'}`}
+                            >
+                              <Trash2 className="w-3 h-3" />
+                              <span>SİL</span>
+                            </button>
+                          </div>
+                        </InfoCardSection>
+                      </>
+                    )}
+
+                    {podDrawerTab === 'logs' && (
+                      <PodLogViewer pod={activeSelection.data} />
+                    )}
+                  </div>
+                )}
+              </InfoCard>
             </div>
 
             <div className="pt-2 border-t border-slate-800 text-[10px] text-slate-500 text-center">

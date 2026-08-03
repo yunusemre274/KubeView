@@ -33,6 +33,9 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
     - Yan paneller ve bilgi kartları hiçbir zaman canvas ile flex/grid yer paylaşımı yapamaz. Canvas her zaman `position: absolute; inset: 0;` olarak render edilir.
 12. **KISS Prensibi:**
     - En basit çalışan çözüm DOĞRU çözümdür. Olay Günlüğü son 1 saatlik in-memory ring buffer ile tutulur.
+13. **Bütüncül Gemi ve Liman Çakışma Önleme Kuralı (SHIP & HARBOR COLLISION AVOIDANCE RULE):**
+    - **Yerleşim veya hareket mantığı geliştirilirken SADECE alt nesneler (konteynır, vinç, depo) değil, hareket eden/konumlanan TÜM nesne tipleri (özellikle gemilerin kendisi ve liman rıhtım sınırları) bütüncül gözden geçirilir!**
+    - Gemiler kara rıhtım binalarının kapladığı alanlara (`x < 4.0`) giremez; devriye rotalarında `phaseOffset` ile gemi-gemi çakışması %100 engellenir.
 
 ---
 

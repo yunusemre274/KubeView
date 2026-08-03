@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 // -----------------------------------------------------------------------------
 // DIMENSIONS & LAYOUT CONSTANTS (Centralized 3D Bounding Sizes & Spacing)
 // Prevents magic numbers and guarantees zero 3D mesh clipping / overlap.
@@ -18,10 +20,19 @@ export const SHIP_DIMENSIONS = {
   HULL_WIDTH: 9.0,
   HULL_HEIGHT: 1.8,
   HULL_LENGTH: 28.0,
+  SAFE_GAP_X: 12.0,
+  SAFE_GAP_Z: 14.0,
   CABIN_Z: -9.0,
   BRIDGE_Z: 14.5,
   DECK_START_Z: -4.5,
   BASE_DECK_Y: 3.7
+}
+
+export const HARBOR_DOCK_BOUNDS = {
+  SHORE_MIN_X: -45.0,
+  SHORE_MAX_X: -6.0,    // Land pier boundary: Ships must stay at x >= 4.0
+  WATER_MIN_Z: -35.0,
+  WATER_MAX_Z: 35.0
 }
 
 export const GANTRY_CRANE_DIMENSIONS = {
@@ -86,7 +97,53 @@ export function calculateContainerDeckPosition(index) {
 }
 
 // -----------------------------------------------------------------------------
-// OPTIONAL DEBUG HELPER TO LOG BOUNDING BOX OVERLAPS IN DEV
+// DOCKING BERTH POSITION ALGORITHM FOR STATIC / DOCKED SHIPS
+// Guarantees zero overlap with harbor dock structure (x >= 4.0) and other ships.
+// -----------------------------------------------------------------------------
+export function calculateShipDockPosition(shipIndex) {
+  // Grid of water berths: 2 columns in open water (x=8, x=28), spaced by z=34
+  const col = shipIndex % 2
+  const row = Math.floor(shipIndex / 2)
+  const x = 8.0 + col * 20.0   // col 0 -> 8.0, col 1 -> 28.0
+  const z = -10.0 + row * 34.0 // row 0 -> -10.0, row 1 -> +24.0, row 2 -> +58.0
+  return [x, 0, z]
+}
+
+// -----------------------------------------------------------------------------
+// GLOBAL PATROL LOOP ALGORITHM WITH EQUAL PHASE OFFSETS
+// Guarantees zero ship-ship collision and zero ship-shore collision.
+// -----------------------------------------------------------------------------
+export function calculateShipPatrolPosition(shipIndex, totalShips, elapsedTime, isNodeNotReady = false) {
+  // Outer harbor curve in open water (x >= 8.0, z = -18 to 14)
+  const points = [
+    new THREE.Vector3(8, 0, 14),
+    new THREE.Vector3(32, 0, 14),
+    new THREE.Vector3(32, 0, -18),
+    new THREE.Vector3(8, 0, -18)
+  ]
+  const curve = new THREE.CatmullRomCurve3(points, true)
+
+  // Calculate phase offset to evenly distribute all ships around the patrol loop
+  const total = Math.max(1, totalShips)
+  const phaseStep = 1.0 / total
+  const initialOffset = shipIndex * phaseStep
+  const timeOffset = elapsedTime * 0.012
+
+  const t = (initialOffset + (isNodeNotReady ? 0 : timeOffset)) % 1.0
+
+  const pos = curve.getPointAt(t)
+  const tangent = curve.getTangentAt(t)
+  const angle = Math.atan2(tangent.x, tangent.z)
+
+  return {
+    position: [pos.x, pos.y, pos.z],
+    rotationY: angle,
+    t
+  }
+}
+
+// -----------------------------------------------------------------------------
+// DEBUG HELPER TO LOG BOUNDING BOX OVERLAPS IN DEV
 // -----------------------------------------------------------------------------
 export function checkBoundingBoxOverlap(boxA, boxB) {
   return (

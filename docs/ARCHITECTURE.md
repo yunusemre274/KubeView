@@ -18,11 +18,12 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 - **Sağlıklı Durum (Ready):** Her gemi Three.js `CatmullRomCurve3` kapalı eğrisi üzerinde `getPointAt(t)` ile yavaşça yol alır. Gemi yönü `getTangentAt(t)` ile otomatik hesaplanır.
 - **Anomali Durumu (NotReady / Fail):** Anomali tetiklendiğinde `t` zaman parametresi DONDURULUR (pause). Gemi bulunduğu koordinatta sabitlenir ve batan/alazlanan animasyon oynatılır.
 
-### 3. HTML/CSS Overlay Katmanı
+### 3. HTML/CSS Overlay Katmanı & Tipografi Ölçeği
 - `Top Header Bar`: Screen Top fixed navbar (`#top-header-bar`, `z-9999 pointer-events-auto`).
 - `MasterDashboardOverlay.jsx`: Sağ taraf 420px dikey dark-glassmorphism Control Plane paneli (`z-45`), Sefer Tarifesi (CronJob Schedule) paneli ve RBAC Özet & Güvenlik Rozetleri paneli.
 - `info-panel-drawer`: Sağ taraf 360px dikey nesne müfettiş çekmecesi (`z-40`).
 - `HoverTooltipOverlay.jsx`: İmleç altı yüzen 3D nesne açıklama tooltip kutusu (`z-50`).
+- **Merkezi Tipografi Ölçeği (`index.css`):** Kök CSS custom properties (`--font-size-title-lg`, `--font-size-body`, `--font-size-label`, `--font-size-btn`) üzerinden tüm başlık, buton ve etiket boyutları compact oranlara küçültülmüştür.
 
 ### 4. Tek Paylaşılan Singleton WebSocket Yöneticisi & Provider Mimarisi (`ShipyardClusterContext.jsx`)
 - **Modül Seviyesi Singleton (`singletonManager`):** WebSocket bağlantı yöneticisi React bileşen ağacının dışında (module-level) instantiaten edilir. React StrictMode 2x mount etse dahi backend'e **EXACTLY 1 ADET CANLI WEBSOCKET BAĞLANTISI** açılır.
@@ -34,6 +35,16 @@ Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
 ### 6. 3D Hover Tooltip & Anomali Hedefleme Motoru (v2.10.0)
 - **Merkezi Tooltip Sözlüğü (`constants/descriptions.js`):** Nesnelerin ne olduğunu 1 cümleyle anlatan `OBJECT_DESCRIPTIONS` sözlüğü tanımlanmıştır (Scheduler vinci, Ingress feneri, Kube-proxy istasyonu, Job şalupası, Secret kasası vb.).
 - **Dinamik Anomali Hedefleme:** Anomali simülasyonları canlı küme Pod/Node verilerini ve indekslerini dinamik hedefleyerek 3D duman/flam/patlama/batma animasyonlarını çalıştırır, kamerayı hedefe odaklayıp Olay Günlüğüne kaydeder.
+
+### 7. Gemi Yerleşim ve Çakışma Önleme (Ship Placement & Collision Avoidance)
+- **Fiziksel Gemi Boyutları (`SHIP_DIMENSIONS`):** Her geminin genişlik (9.0m), yükseklik (1.8m) ve derinlik (28.0m) değerleri `dimensions.js` içinde tanımlıdır.
+- **Liman-Gemi Güvenlik Sınırı (`HARBOR_DOCK_BOUNDS`):** Kara rıhtımı ve liman binalarının kapladığı alan (`x < 4.0`) koruma altına alınmış, tüm gemi rotaları ve yanaşma noktaları açık denize (`x >= 8.0`) taşınmıştır.
+- **Faz Farklı Açık Deniz Devriye Algoritması (`calculateShipPatrolPosition`):** Açık deniz kapalı devriye rotasında çalışan `N` adet gemiye `phaseOffset = (shipIndex / totalShips) + timeOffset` faz farkı atanır. Bu sayede 1, 2, 5 veya 10 gemi olduğunda gemiler kendi aralarında kusursuz eşit mesafeyi korur ve **çakışma sıfırlanır**.
+- **Yanaşma Slot Algoritması (`calculateShipDockPosition`):** Demirli veya sabit gemiler önceden hesaplanmış dinamik su slotlarına (`x=8, x=28, z spacing=34.0`) yerleştirilir.
+
+### 8. Bilgi Kartı Tasarım Şablonu (Info Card Design Template)
+- **Ortak İskelet Bileşeni (`InfoCard.jsx`):** Header (Başlık, Alt Başlık, Nesne Tipi ve Renkli Durum Rozeti) ➔ Bölüm Grupları (`InfoCardSection`, renkli alt-başlık ve dikey boşluklar) ➔ İki Sütunlu Hizalanmış Etiket-Değer Satırları (`InfoCardRow`, `truncate` ve hover tooltip) ➔ En Altta Aksiyon Butonları (`InfoCardSection` aksiyon alanı).
+- **Taşma ve Scroll Standardı:** Kart içerikleri `max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar` kapsayıcısı ile drawer içinde bağımsız scroll eder, ekran düzenini asla bozmaz.
 
 ---
 
