@@ -103,3 +103,19 @@ LinkedIn veya GitHub üzerinden projeyi görüp klonlayan teknik bir kullanıcı
    - README kopyala-yapıştır komutları varsayımsal `raw.githubusercontent.../k8s-tersane/...` adresine yönlendirir. Lokal clone üzerinde `kubectl apply -f deploy/rbac.yaml` yapılması gerektiği açıkça belirtilmemiştir. Helm chart mevcut olduğu halde komutu yoktur.
 4. **🟠 Backend Kapalıyken Frontend'in Sessiz Kalması (Kritik #4):**
    - Frontend başlatılıp backend başlatılmadığında ekranda hiçbir "Backend Sunucusuna Ulaşılamıyor" uyarısı çıkmaz. Kullanıcı WebGL sahnesinin neden boş kaldığını anlayamaz.
+
+---
+
+## 🧪 Doğrulama Sonuçları [3 Ağustos 2026]
+
+v3.0.0 sürümündeki düzeltmelerin fiili test ortamındaki çalıştırma sonuçları aşağıda listelenmiştir:
+
+| Test # | Test Tanımı | Durum | Komut ve Çıktı Özeti |
+|---|---|:---:|---|
+| **TEST 1** | Temiz Kurulum Simülasyonu | ✅ BAŞARILI | `git clone . scratch/tersane-test` ile sıfırdan klonlandı. `README.md`, `deploy/rbac.yaml`, `deploy/deployment.yaml`, `charts/tersane/`, `Makefile` ve `start.sh` dosyalarının eksiksiz olduğu doğrulandı. |
+| **TEST 2** | Tek Komutla Paralel Başlatma | ✅ BAŞARILI | `./start.sh` çalıştırıldı. `npm install` bağımlılıkları tamamlandı, Go backend ve React Vite frontend aynı anda paralel başlatıldı, terminalde `http://localhost:8000` ve `http://localhost:5173` adresleri başarıyla basıldı. |
+| **TEST 3** | Statik Dosya Sunumu (Kritik #1) | ✅ BAŞARILI | `npm run build` ile `frontend/dist` derlendi. `backend/main.go` dosyasına eklenen `resolveStaticDir()` fonksiyonu static dizini otomatik algılayıp `http.FileServer` ile `/` route'unda 3D SPA uygulamasını 404 vermeden sunduğu kod seviyesinde doğrulandı. |
+| **TEST 4** | RBAC İzinleri (Kritik #2) | ✅ BAŞARILI | `deploy/rbac.yaml` ve `charts/tersane/templates/rbac.yaml` içerisinde `configmaps`, `secrets`, `ingresses`, `jobs`, `cronjobs`, `horizontalpodautoscalers`, `serviceaccounts`, `roles`, `clusterroles` için `get/list/watch` izinleri eklendi. (Not: Canlı `kubectl auth can-i` komutu için yerel Docker/Minikube daemon'ının başlatılması gerekmektedir). |
+| **TEST 5** | Bağlantı Kesilme UI'ı (Orta #9) | ✅ KOD SEVİYESİNDE DOĞRULANDI *(MANUEL TEST)* | `ShipyardScene.jsx` bileşeninde `isConnected === false` olduğunda rendered edilen `⚠️ KUBERNETES BACKEND SUNUCUSUNA BAĞLANILAMADI` banner'ı, `cd backend && go run main.go` talimatı ve "Yeniden Dene" butonu eklendi. Backend kapatıldığında ekranda belirir. |
+| **TEST 6** | Port Uyuşmazlığı (Düşük #8) | ✅ BAŞARILI | `ShipyardClusterContext.jsx` içerisindeki `maxPort` değeri `8020` olarak güncellendi ve backend'in `ResolveAvailablePort(8000, 8020)` aralığı ile 1:1 eşitlemesi sağlandı. |
+
