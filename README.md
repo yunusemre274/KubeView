@@ -1,8 +1,9 @@
-# 🚢 Tersane (K8s Shipyard)
+# 🚢 Tersane (K8s Shipyard 3D)
 
 > **Kubernetes Cluster'ınızı Gerçek Zamanlı Bir Liman ve Tersane Metaforu ile Görselleştirin.**  
-> *Kubernetes'in soyut pod, node, service ve controller kavramlarını somut bir simülasyona dönüştüren canlı izleme platformu.*
+> *Kubernetes'in soyut pod, node, service ve controller kavramlarını somut, etkileşimli ve 3D bir liman simülasyonuna dönüştüren canlı kontrol platformu.*
 
+[![Release](https://img.shields.io/badge/Release-v1.0.0--Stable-emerald?style=for-the-badge&logo=github)](https://github.com/k8s-tersane/tersane)
 [![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
 [![React](https://img.shields.io/badge/React-18+-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-R3F-000000?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
@@ -11,181 +12,203 @@
 
 ---
 
-## 📸 Ekran Görüntüleri & Demo
+## 📸 3D Liman Arayüzü & Görsel Mimari
 
-<!-- DEMO_PLACEHOLDER_START -->
 ```
- 🚢 TERSANE INTERACTIVE DASHBOARD DEMO
- +-----------------------------------------------------------------------+
- | [ 🏗️ Control Plane / Liman Yönetimi ]                                  |
- |                                                                       |
- |   [ 🚢 Worker Node 1: Gemi Alpha ]     [ 🚢 Worker Node 2: Gemi Beta ] |
- |   +----------------------------+     +----------------------------+   |
- |   | 📦 Pod: Nginx (Palet A)    |     | 📦 Pod: Redis (Palet C)    |   |
- |   | 📦 Pod: API-v1 (Palet B)   |     | 📦 Pod: Worker (Palet D)   |   |
- |   +----------------------------+     +----------------------------+   |
- |                                                                       |
- |  📢 Liman Anonsu (Events): Pod "API-v1" başarıyla yüklendi (Running)  |
- +-----------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------+
+| 🏢 CONTROL PLANE (Tersane Yönetim Binası)          [ 🌐 Cluster Context: minikube ]             |
+|   ├── 🗼 API Server (Kontrol Kulesi)              [ 🔒 Salt İzleme Modu: PASİF ]            |
+|   ├── 📚 etcd (Arşiv Odası)                        [ 📸 PNG Ekran Görüntüsü İndir ]           |
+|   └── 📜 Live Deployments Overlay                                                             |
+|                                                                                               |
+| 🚢 WORKER NODES (Kargo Gemileri Filosu)                                                       |
+|   ├── 🚢 node-alpha  ➔ 🧱 Paletler: [ 📦 web-frontend ] [ 📦 api-backend ]                    |
+|   └── 🚢 node-beta   ➔ 🧱 Paletler: [ 📦 redis-cache ]  [ 📦 worker-job ]                     |
+|                                                                                               |
+| 🏗️ İNŞAAT VE YARDIMCI ALTYAPI TESİSLERİ                                                      |
+|   ├── 🤖 Kube-Scheduler Vinci    ➔ Pod yükleme ve düğüm yerleşim vinci (LeastRequested)       |
+|   ├── 🚨 Ingress Deniz Feneri     ➔ Dış trafik gümrük kapısı (tersane.k8s.local)               |
+|   ├── 🛡️ NetworkPolicy Bariyeri  ➔ Kırmızı lazer güvenlik çiti (Default-Deny)                  |
+|   ├── 📋 ConfigMap Sevkiyat Föyü ➔ Tahta duyuru panosu (ENV, nginx.conf)                       |
+|   ├── 🔐 Secret Kilitli Çeli Kasa➔ Ağır çelik kasa (Şifreli veriler masked-only)               |
+|   ├── 🏭 PVC/PV Depo Ambarı      ➔ Karadaki kiralanmış kalıcı depolama alanları               |
+|   ├── ⚡ HPA Mobil Vinci         ➔ Otomatik kargo yükleme vinci                              |
+|   └── 🚤 Job Görev Şalupası      ➔ Tek seferlik tarifeli görev teknesi                        |
+|                                                                                               |
+| 📢 LİMAN TELSİZ ANONS GÜNLÜĞÜ (Events):                                                      |
+|   [12:54:10] 🟢 Pod "web-frontend-deploy-74b89" node-alpha gemisine yüklendi (Running)        |
++-----------------------------------------------------------------------------------------------+
 ```
-> *(Gerçek 3D / İzometrik ekran görüntüsü veya GIF demosu buraya eklenecektir: `./assets/demo.gif`)*
-<!-- DEMO_PLACEHOLDER_END -->
 
 ---
 
-## 🎯 Neden Bu Proje?
+## 🎯 Neden Tersane?
 
-Kubernetes güçlü, ölçeklenebilir ve modern bulut mimarilerinin omurgasını oluşturan bir teknolojidir. Ancak **`kubectl get pods`**, **`kubectl describe node`** veya standart web panellerinde görünen metin ağırlıklı veriler; Kubernetes eğitimi alan öğrenciler, yeni başlayan geliştiriciler ve teknik olmayan paydaşlar için oldukça **soyut** kalmaktadır.
+Kubernetes güçlü, esnek ve modern bulut mimarilerinin omurgasını oluşturur. Ancak **`kubectl get pods`**, **`kubectl describe node`** veya metin ağırlıklı standart web panellerinde görünen karmaşık tablolar; Kubernetes öğrenen öğrenciler, geliştiriciler ve teknik olmayan paydaşlar için oldukça **soyut** kalmaktadır.
 
 **Tersane**, bu soyutluğu ortadan kaldırmak için tasarlanmıştır:
-- **Somutlaştırma:** Pod'ların oluşturulması bir konteynırın gemiye yüklenmesi, Node arızası ise geminin limana çekilmesi gibi sezgisel görsellere dönüşür.
-- **Eğitim Odaklı:** K8s mimarisini ve kaynak akışını tek bir bakışta görsel hafızaya kazır.
-- **Gerçek Zamanlı İzleme:** Polling yapmadan, API Server'a doğrudan event-driven (informer/watch) olarak bağlanarak anlık durumu 3D/İzometrik animasyonlarla sunar.
+- 💡 **Somut Görsel Hafıza:** Pod'ların oluşturulması gemiye vinçle kargo yüklenmesi, Node arızası geminin su alması/karaya çekilmesi, Ingress ise liman girişindeki deniz feneri olarak somutlaşır.
+- 🎓 **Eğitim ve Sunum Odaklı:** K8s mimarisini, controller ilişkilerini ve veri akışını tek bir bakışta anlaşılır kılar.
+- ⚡ **Sıfır Gecikmeli Canlı Yayın:** Polling (periyodik sorgulama) yapmadan, Kubernetes `client-go` Informer/Watch mimarisi ile API Server'a doğrudan bağlanarak anlık durumu WebSocket üzerinden 3D animasyonlarla sunar.
 
 ---
 
-## ✨ Özellikler
+## ✨ Ana Özellikler
 
-- 🚢 **Canlı Node ve Pod Takibi:** Cluster'daki tüm Node ve Pod durumlarının anlık tersane animasyonlarıyla izlenmesi.
-- ⚡ **Event-Driven Mimari:** Polling yerine Kubernetes `client-go` Informer/Watch pattern ile sıfır gecikmeli WebSocket veri akışı.
-- 📊 **Kaynak Tüketimi Görselleştirme:** CPU ve Bellek kullanım oranlarının `metrics-server` entegrasyonu ile gemi doluluk oranına yansıtılması.
-- 🎬 **Dinamik Scaling ve Lifecycle Animasyonları:**
-  - Yeni Pod oluşturulması ➔ Vinç ile kargo paleti yükleme animasyonu.
-  - Pod silinmesi / çökmesi ➔ Kargo kutusunun kaybolması / uyarı ışıkları.
-  - Node kapalı duruma geçmesi ➔ Geminin limandan ayrılması / arıza moduna geçmesi.
-- 🛡️ **Güvenli ve Hafif:** Sadece salt-okunur (read-only) RBAC yetkileriyle çalışır; cluster state'ine asla müdahale etmez.
-- 🌐 **Kolay Dağıtım:** Tek bir `make dev` komutu, K8s YAML manifesti veya Helm şablonu ile dakikalar içinde canlıya alma.
+- 🚢 **Canlı Node ve Pod Görselleştirmesi:** Cluster'daki tüm Worker Node'ların kargo gemisi, Pod'ların ise gemi üzerindeki taşıyıcı paletler olarak 3D simülasyonu.
+- ⚡ **Event-Driven WebSocket Akışı:** `client-go` Informer & Watch pattern ile sıfır gecikmeli canlı durum yayını. Pod silme/scale durumlarında tombstone unwrap & multi-node purge garantisi.
+- 📜 **Canlı Container Log Akışı (PodLogViewer):** Sahnede seçilen herhangi bir Pod'un konteynır loglarını WebSocket üzerinden gerçek zamanlı izleme (`/api/v1/pods/logs/stream`).
+- 📊 **Canlı Metrikler ve Zaman Serisi Trend Grafikleri:** `metrics-server` entegrasyonu ile anlık CPU/RAM kullanımı, mini sparkline'lar ve 1 saatlik ring buffer trend grafik dökümü (`DetailedMetricTrendModal`).
+- 🏢 **%100 Zengin 3D Obje Müfettişi (InfoCard):** Sahnede seçilebilen 15 farklı nesne tipinin (`Node`, `Pod`, `Deployment`, `StatefulSet`, `DaemonSet`, `Job`, `ConfigMap`, `Secret`, `PVC`, `PV`, `Ingress`, `NetworkPolicy`, `Kubelet`, `Kube-proxy`, `RBAC`) tamamı için zengin detay, zaman damgası ve bağımlılık kartları.
+- 🛡️ **RBAC İlişkisel İnceleme & Aşırı Yetki Uyarıları:** ServiceAccount kimlik kartları, Role/ClusterRole izin matrisleri (`resources`, `verbs`) ve `cluster-admin` bağlı hesaplar için otomatik güvenlik ikazı.
+- 🔐 **Şifreli Veri Koruma (Masked Secret Policy):** Secret nesnelerinin içerik değerleri asla istemciye gönderilmez; sadece key isimleri ve maskeli değerler (`••••••••`) gösterilir.
+- 🔄 **Otomatik Kubeconfig Port Auto-Heal:** minikube / local k8s yeniden başlatmalarında değişen API Server port adreslerini 3 denemede diskten otomatik algılama ve kesintisiz canlı bağlanma.
+- 🔒 **Güvenli Mutasyon İşlemleri & Salt İzleme Modu:** UI üzerinden onay modalı doğrulamalı Pod Restart/Delete ve Deployment Scale işlemleri, Salt İzleme (Read-Only) modu ve kilitli namespace (`kube-system`) koruması.
+- 📸 **PNG Ekran Görüntüsü Dışa Aktarımı & Multi-Cluster Context Seçici:** 3D sahneyi yüksek çözünürlüklü PNG görseli olarak indirme ve minikube / docker-desktop / prod-cluster bağlamları arasında geçiş yapma.
 
 ---
 
 ## ⚓ Metafor Eşleştirmesi
 
-Kubernetes bileşenlerinin **Tersane** dünyasındaki karşılıkları:
+Kubernetes kavramlarının **Tersane** dünyasındaki sezgisel karşılıkları:
 
 | Kubernetes Kavramı | Tersane Metaforu | Açıklama |
 | :--- | :--- | :--- |
-| **Cluster** | 🏗️ **Tersanenin Tamamı** | Tüm operasyonun gerçekleştiği liman ve tesis alanı |
-| **Control Plane / Master Node** | 🏢 **Tersane Yönetim Binası** | Tüm kararların alındığı ve komutların dağıtıldığı merkez |
+| **Cluster** | 🏗️ **Tersanenin Tamamı** | Tüm operasyonun gerçekleştiği liman ve deniz tesisi alanı |
+| **Control Plane / Master Node** | 🏢 **Tersane Yönetim Binası** | Tüm kararların alındığı ve komutların dağıtıldığı merkez bina |
 | **API Server** | 🗼 **Kontrol Kulesi / Santral** | Tüm iletişimin geçtiği tek erişim ve doğrulama noktası |
-| **etcd** | 📚 **Arşiv / Kayıt Odası** | Tersanedeki tüm varlıkların ve durumların tutulduğu ana defter |
-| **Scheduler** | 📦 **Sevkiyat Planlayıcısı** | Hangi kargonun hangi gemiye yükleneceğine karar veren birim |
-| **Controller Manager** | 👮 **Denetim Müfettişi** | Hedeflenen kargo sayısı ile mevcut durumu sürekli kıyaslayan birim |
-| **Worker Node** | 🚢 **Gemi (Kargo Gemisi)** | Konteynırları taşıyan ve işlem gücü sunan ana birimler |
-| **Kubelet** | 👨‍✈️ **Geminin Kaptanı / Pusula** | Gemi üzerindeki yükleri yöneten ve kuleye rapor veren yetkili |
-| **Kube-proxy** | 📻 **Geminin Telsizcisi** | Gemiler ve ambarlar arası iletişim ağını düzenleyen görevli |
+| **etcd** | 📚 **Arşiv Odası / Ana Defter** | Tersanedeki tüm varlıkların ve durumların tutulduğu ana defter |
+| **Kube-Scheduler** | 🤖 **Sevkiyat Planlayıcı Vinci** | Hangi kargonun hangi gemiye yükleneceğine karar veren vinç |
+| **Controller Manager** | 👮 **Denetim Müfettişi** | Hedeflenen kargo sayısı ile mevcut durumu kıyaslayan birim |
+| **Worker Node** | 🚢 **Kargo Gemisi** | Konteynırları taşıyan ve işlem gücü sunan ana gemiler |
+| **Kubelet** | 📡 **Geminin Kaptanı / Dümenci** | Gemi üzerindeki yükleri yöneten ve kuleye rapor veren agent |
+| **Kube-proxy** | 📻 **Geminin Ağ İstasyonu** | Gemiler ve ambarlar arası iletişim ağını düzenleyen istasyon |
 | **Container Runtime** | ⚙️ **Geminin Makine Dairesi** | Konteynırların fiilen çalışmasını sağlayan motor |
 | **Pod** | 🧱 **Palet / Kargo Platformu** | Bir veya birden fazla kargo kutusunu bir arada tutan taşıyıcı |
 | **Container** | 📦 **Kargo Kutusu** | Uygulamanın kendisini barındıran tekil birim |
 | **Namespace** | 🚪 **Geminin Ambarları / Bölmeleri** | Mantıksal olarak ayrılmış çalışma ve depolama alanları |
 | **Deployment** | 📜 **Sefer Siparişi** | Kaç adet paletin taşınacağını bildiren genel talimatname |
 | **ReplicaSet** | 🧾 **Sipariş Fişi** | İstenen palet sayısının korunmasını garantileyen alt fiş |
-| **Service** | 🎟️ **Liman Gişesi / Yönlendirme Tabelası** | Gelen trafiği doğru ambar ve paletlere yönlendiren kapı |
-| **Ingress** | 🛂 **Ana Giriş / Gümrük Kapısı** | Dış dünyadan limana giren ana giriş ve yönlendirme noktası |
-| **ConfigMap** | 📋 **Sevkiyat Föyü** | Uygulama ayarlarını içeren açık talimat kağıdı |
-| **Secret** | 🔐 **Kilitli Kasa** | Şifreler ve hassas anahtarların saklandığı kasa |
-| **PersistentVolume / PVC** | 🏭 **Kiralanmış Depo Alanı** | Kalıcı verilerin depolandığı fiziksel alan |
-| **Labels / Selectors** | 🏷️ **Barkod / Etiketler** | Yükleri ve bölmeleri gruplamak için kullanılan tanımlayıcılar |
-| **Liveness / Readiness Probe** | 🔍 **Gümrük Muayene Memuru** | Kargonun sağlam ve sefere hazır olup olmadığını kontrol eden birim |
-| **HPA (Horizontal Pod Autoscaler)** | ⚡ **Otomatik Ekstra Kutu Yükleme** | Yoğunluğa göre otomatik palet ekleyen/çıkaran sistem |
-| **Cluster / Node Autoscaler** | 🚢✨ **Otomatik Yeni Gemi Kiralama** | Kapasite yetmediğinde filoya otomatik yeni gemi ekleyen sistem |
-| **DaemonSet** | 🧯 **Her Geminin Standart Ekipmanı** | Her gemide bulunması zorunlu olan Yangın Söndürücü/Ekipman |
-| **StatefulSet** | 🔢 **Numaralı, Sabit Sıradaki Özel Gemiler** | Kimliği ve sırası değişmeyen özel taşıyıcılar |
-| **Job / CronJob** | 🚤 **Tek Seferlik Görev Teknesi / Tarifeli Mekik** | Belirli bir işi tamamlayıp bitiren veya zamanlı seferler |
-| **Events** | 📢 **Liman Anonsları** | Limanda gerçekleşen tüm önemli olayların canlı sesli/görsel yayını |
+| **Service** | 🎟️ **Liman Gişesi / Yönlendirme** | Gelen trafiği doğru ambar ve paletlere yönlendiren kapı |
+| **Ingress** | 🚨 **Ana Giriş / Deniz Feneri** | Dış dünyadan limana giren ana giriş ve fener yönlendirme noktası |
+| **NetworkPolicy** | 🛡️ **Güvenlik Çiti / Lazer Bariyer** | Ambarlar ve gemiler arasına çekilen kırmızı lazer barierler |
+| **ConfigMap** | 📋 **Sevkiyat Föyü** | Uygulama ayarlarını içeren açık tahta duyuru panosu |
+| **Secret** | 🔐 **Kilitli Çelik Kasa** | Şifreler ve anahtarların saklandığı ağır çelik kasa |
+| **PersistentVolume / PVC** | 🏭 **Kiralanmış Depo Ambarı** | Kalıcı verilerin depolandığı karadaki ambar yapıları |
+| **HPA (Autoscaler)** | ⚡ **Otomatik Ekstra Mobil Vinç** | Kargo yoğunluğuna göre otomatik palet ekleyen raylı vinç |
+| **DaemonSet** | 🧯 **Gemi Standart Ekipmanı** | Her gemi direğinde bulunması zorunlu olan standart ekipman |
+| **StatefulSet** | 🔢 **Numaralı Sabit Gemiler** | Kimliği ve sırası değişmeyen özel taşıyıcı gemiler |
+| **Job / CronJob** | 🚤 **Tek Seferlik Görev Teknesi** | Belirli bir işi tamamlayıp bitiren görev şalupası |
+| **ServiceAccount / Role** | 🪪 **Kimlik Kartı & Yetki Rozeti** | Personel kimlik kartları ve erişim yetkileri matrisi |
+| **Events** | 📢 **Liman Telsiz Anonsları** | Limanda gerçekleşen tüm önemli olayların canlı yayın kaydı |
 
 ---
 
-## 🏗️ Mimari
+## 🏗️ Mimarisi
 
 ```
-+-----------------------------------------------------------------------------------+
-|                                KUBERNETES CLUSTER                                 |
-|                                                                                   |
-|  +------------------+       Watch / Informer        +--------------------------+  |
-|  | K8s API Server   | <---------------------------> | Tersane Backend          |  |
-|  +------------------+ (Node, Pod, Event, Deploy)    | (Go client-go)           |  |
-|           ^                                         +--------------------------+  |
-|           | Metrikler                                            |                |
-|  +------------------+                                   WebSocket STREAM          |
-|  | metrics-server   |                                            |                |
-|  +------------------+                                            v                |
-|                                                     +--------------------------+  |
-|                                                     | Tersane Frontend         |  |
-|                                                     | (React + R3F / 3D Scene) |  |
-|                                                     +--------------------------+  |
-+-----------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------+
+|                                        KUBERNETES CLUSTER                                         |
+|                                                                                                   |
+|  +-----------------------+     Watch / Informers Stream      +---------------------------------+  |
+|  | K8s API Server        | <-------------------------------> | Tersane Backend (Go)            |  |
+|  | (v1.22+)              |  (Pods, Nodes, Deploy, RS, SA)    | ├── client-go Watcher & Informer|  |
+|  +-----------------------+                                   | ├── Metrics Collector           |  |
+|              ^                                               | └── Dynamic Kubeconfig AutoHeal |  |
+|              | Metrikler                                     +---------------------------------+  |
+|  +-----------------------+                                                   |                    |
+|  | metrics-server        |                                            WebSocket STREAM            |
+|  +-----------------------+                                                   |                    |
+|                                                                              v                    |
+|                                                              +---------------------------------+  |
+|                                                              | Tersane Frontend (React 18)     |  |
+|                                                              | ├── Three.js / React Three Fiber|  |
+|                                                              | ├── 3D Shipyard Scene Engine    |  |
+|                                                              | └── InfoCard & Master Dashboard |  |
+|                                                              +---------------------------------+  |
++---------------------------------------------------------------------------------------------------+
 ```
 
 ---
 
 ## 🛠️ Kullanılan Teknolojiler
 
-- **Backend:** ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white) `k8s.io/client-go` `gorilla/websocket`
-- **Frontend:** ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![Three.js](https://img.shields.io/badge/Three.js-black?style=flat-square&logo=three.js&logoColor=white) React Three Fiber, Lucide Icons, TailwindCSS
-- **Orkestrasyon:** ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) Minikube / Kind / K3s / Cloud K8s
-- **İzleme & Metrik:** Metrics-Server / Prometheus
+- **Backend Engine:** ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white) `k8s.io/client-go`, `gorilla/websocket`, `k8s.io/metrics`
+- **Frontend 3D UI:** ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![Three.js](https://img.shields.io/badge/Three.js-black?style=flat-square&logo=three.js&logoColor=white) React Three Fiber (R3F), Drei, Lucide Icons, TailwindCSS
+- **Orkestrasyon & Deploy:** ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) Minikube / Kind / K3s / Cloud K8s, Docker, Helm v3
 
 ---
 
 ## 🚀 Kurulum ve Çalıştırma
 
 ### Ön Koşullar
-- `kubectl` CLI aracı kurulu ve yapılandırılmış olmalı.
-- Çalışan bir Kubernetes cluster'ı (Minikube, Kind, K3s veya bulut sağlayıcı k8s).
+- `kubectl` CLI aracı kurulu ve aktif bir Kubernetes kümesine bağlı olmalı (`kubectl get nodes`).
+- Çalışan bir Kubernetes ortamı (Minikube, Kind, K3s veya bulut k8s).
 - Lokal geliştirme için: **Go 1.22+** ve **Node.js 18+**.
 
 ---
 
 ### Seçenek A: Tek Komutla Kolay Kurulum (Lokal Geliştirme)
 
-Tersane'yi bilgisayarınızda tek bir komutla çalıştırmak için:
+Tersane'yi bilgisayarınızda geliştirme modunda çalıştırmak için:
 
 ```bash
 git clone https://github.com/k8s-tersane/tersane.git
 cd tersane
 
-# Backend ve Frontend sunucularını paralel başlatır
+# Backend (Go) ve Frontend (React Vite) sunucularını paralel başlatır:
 make dev
-# veya: ./start.sh
+# veya alternatif olarak:
+./start.sh
 ```
 
-- **Backend (Go API & WS):** `http://localhost:8000`
-- **Frontend (React 3D UI):** `http://localhost:5173`
+- **Backend (Go API & WebSocket):** `http://localhost:8000`
+- **Frontend (React 3D UI Dev Server):** `http://localhost:5173`
 
 ---
 
-### Seçenek B: Kubernetes / Minikube Üzerine Deploy Etme (YAML Manifest)
+### Seçenek B: Production Derlemesi (Single Binary)
 
-Tersane'yi canlı kümeniz üzerinde pod olarak dağıtmak için:
+Frontend statik çıktılarını Go backend sunucusu ile tek bir çalıştırılabilir dosyada birleştirmek için:
 
-#### Adım 1: Repoyu Klonlayın
+```bash
+cd tersane
+
+# Statik frontend paketini derler ve Go binary üretir:
+make build
+
+# Uygulamayı başlatın:
+./bin/tersane-backend
+```
+
+Tarayıcınızdan **`http://localhost:8000`** adresine gittiğinizde backend sunucusu 3D React SPA uygulamasını doğrudan sunacaktır.
+
+---
+
+### Seçenek C: Kubernetes / Minikube Üzerine Deploy Etme (YAML Manifest)
+
+Tersane'yi canlı kümeniz üzerinde salt-okunur Pod olarak çalıştırmak için:
+
 ```bash
 git clone https://github.com/k8s-tersane/tersane.git
 cd tersane
-```
 
-#### Adım 2: RBAC Read-Only İzinlerini Uygulayın
-```bash
+# 1. RBAC Read-Only İzinlerini Uygulayın:
 kubectl apply -f deploy/rbac.yaml
-```
 
-#### Adım 3: Deployment ve Service Manifestini Uygulayın
-```bash
+# 2. Deployment ve Service Manifestini Uygulayın:
 kubectl apply -f deploy/deployment.yaml
-```
 
-#### Adım 4: Uygulamaya Erişin
-```bash
-# Port Forwarding ile 8000 portunu açın
+# 3. Port Forwarding ile Erişin:
 kubectl port-forward svc/tersane-service 8000:8000
 ```
-Tarayıcınızdan **`http://localhost:8000`** adresine gidin. Backend sunucusu derlenmiş 3D React SPA uygulamasını doğrudan sunacaktır.
+Tarayıcınızda **`http://localhost:8000`** adresini açın.
 
 ---
 
-### Seçenek C: Helm Chart ile Kurulum
+### Seçenek D: Helm Chart ile Kurulum
 
-Helm kullanarak tek komutla kurulum yapmak için:
+Helm paket yöneticisi ile tek komutla dağıtmak için:
 
 ```bash
 cd tersane
@@ -199,30 +222,56 @@ kubectl port-forward svc/tersane 8000:8000
 
 ---
 
+### Seçenek E: Docker Imajı Derleme
+
+```bash
+make docker-build
+# Üretilen imaj: tersane:latest
+```
+
+---
+
+## 🎮 İntuitif Sahne Kontrolleri
+
+| Eylem | Kontrol | Açıklama |
+| :--- | :--- | :--- |
+| **Kamera Döndürme (Orbit)** | `Sol Tık + Sürükle` | 3D Liman sahnesini 360 derece etrafında döndürür |
+| **Kamera Kaydırma (Pan)** | `Sağ Tık + Sürükle` | Kamerayı eksenlerde yatay/dikey kaydırır |
+| **Yakınlaşma / Uzaklaşma** | `Fare Tekerleği (Scroll)` | Gemi ve palet detaylarına yakınlaşır |
+| **Obje İnceleme** | `Sol Tık (Objeye)` | Seçilen nesneye odaklanır ve sağ müfettiş çekmecesini açar |
+| **Odak Sıfırlama** | `X Butonu` veya `Boşluğa Tık` | Kamerayı varsayılan genel liman açısına döndürür |
+
+---
+
 ## ⚙️ Yapılandırma (Environment Variables)
 
 Uygulama davranışını aşağıdaki çevre değişkenleri ile özelleştirebilirsiniz:
 
-| Değişken Adı | Varsayılan | Açıklama |
+| Değişken Adı | Varsayılan Değer | Açıklama |
 | :--- | :--- | :--- |
 | `PORT` | `8000` | Sunucunun çalışacağı HTTP / WebSocket portu |
-| `WATCH_NAMESPACE` | `""` *(Tümü)* | İzlenecek özel namespace (Boş bırakılırsa tüm cluster izlenir) |
-| `KUBECONFIG` | `~/.kube/config` | Cluster dışı çalışırken kullanılacak Kubeconfig yolu |
-| `STATIC_DIR` | `./public` | Production statik frontend derleme dizini |
+| `WATCH_NAMESPACE` | `""` *(Tüm Cluster)* | İzlenecek özel namespace (Boş bırakılırsa tüm cluster izlenir) |
+| `KUBECONFIG` | `~/.kube/config` | Küme dışı çalışırken kullanılacak Kubeconfig dosya yolu |
+| `STATIC_DIR` | `./public` | Production statik frontend derleme dizin yolu |
 
 ---
 
 ## 🗺️ Yol Haritası (Roadmap)
 
-- [x] **Node, Pod, Deployment ve Service** nesnelerinin 3D izometrik görselleştirmesi.
-- [x] **WebSocket Tabanlı Canlı Akış:** K8s event ve pod lifecycle değişimlerinin anlık yayını.
-- [x] **StatefulSet & DaemonSet:** Numaralı sabit gemi filoları ve gemi direği standart ekipmanları.
-- [x] **HPA (Horizontal Pod Autoscaler):** Kargo yoğunluğuna göre dinamik raylı vinç sistemi.
-- [x] **ConfigMap, Secret & Ingress:** Sevkiyat panoları, kilitli kasalar ve deniz feneri yönlendirmeleri.
-- [x] **PV / PVC Depo Ambarları:** Karada kiralanmış ambar yapıları ve pod veri bağlantı hatları.
-- [x] **Zaman Serisi Metrik Grafikleri:** CPU ve Bellek kullanım oranlarının 1 saatlik ring buffer grafiği.
-- [ ] **Çoklu Cluster (Multi-Cluster) Desteği:** Aynı arayüzde birden fazla limanı / tersaneyi geçişli izleme.
-- [ ] **Sesli Anons Entegrasyonu:** Kritik K8s Event'leri için opsiyonel liman telsiz anons ses efekti.
+### 🟢 v1.0.0 (Kararlı Sürüm — Tamamlandı)
+- [x] Node, Pod, Deployment, Service, StatefulSet, DaemonSet, Job, CronJob 3D liman görselleştirmesi.
+- [x] WebSocket tabanlı sıfır gecikmeli canlı durum akışı ve tombstone purge garantisi.
+- [x] Ingress Deniz Feneri, NetworkPolicy Kırmızı Lazer Bariyerleri ve HPA Mobil Vinçler.
+- [x] ConfigMap Sevkiyat Föyü, Secret Kilitli Kasa (Masked-Only Policy) ve PVC/PV Depo Ambarları.
+- [x] Canlı Pod Log akış yayınlayıcısı (`PodLogViewer`) ve 1 saatlik metrik trend grafikleri.
+- [x] ServiceAccount kimlik kartları, RBAC izin matrisi ve `cluster-admin` aşırı yetki ikazları.
+- [x] Salt İzleme Modu (Read-Only), kilitli namespace koruması ve onay modalı doğrulaması.
+- [x] Dinamik Kubeconfig port sapması otomatik algılama ve yeniden bağlanma (Auto-Heal).
+
+### 🔵 v1.1.0 (Planlanan Gelecek Sürüm)
+- [ ] **Container Exec / Terminal Erişimi:** Güvenli opsiyonel in-browser container shell sekmesi.
+- [ ] **Sesli Telsiz Anons Efektleri:** Kritik K8s Event'leri için opsiyonel liman anons ses efektleri.
+- [ ] **Gelişmiş Multi-Cluster Dashboard:** Birden fazla uzak limanı eşzamanlı izleme paneli.
 
 ---
 
