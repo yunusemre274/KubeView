@@ -134,7 +134,7 @@ const singletonManager = {
   },
 
   processInitialState(payload) {
-    const { nodes = [], pods = [] } = payload
+    const { nodes = [], pods = [], deployments = [] } = payload
     const newShips = {}
 
     nodes.forEach((node) => {
@@ -164,16 +164,29 @@ const singletonManager = {
         name: `📦 ${pod.name}`,
         namespace: pod.namespace || 'default',
         status: pod.status || 'Running',
+        owner_kind: pod.metaphor?.owner_kind || 'Standalone',
+        owner_name: pod.metaphor?.owner_name || pod.name,
+        replicaset_owner: pod.metaphor?.replicaset_owner || '',
+        service_account: pod.metaphor?.service_account || 'default',
         color: this.getPodColor(pod.status)
       })
     })
 
+    const initialDeploys = deployments.map((d) => ({
+      name: d.name,
+      namespace: d.namespace || 'default',
+      replicas: `${d.ready_replicas || 0}/${d.replicas || 0} Ready`,
+      image: d.image || 'nginx:latest',
+      strategy: d.strategy || 'RollingUpdate'
+    }))
+
     this.state.shipsMap = newShips
+    this.state.deploymentsList = initialDeploys
     this.notifyListeners()
   },
 
   processResourceEvent(payload) {
-    const { action, kind, name, namespace, status, metaphor } = payload
+    const { action, kind, name, namespace, status, metaphor, object } = payload
     const targetNode = metaphor?.node_name || 'unassigned'
 
     if (name) {
@@ -192,7 +205,16 @@ const singletonManager = {
     if (kind === 'Deployment' && name) {
       const filtered = this.state.deploymentsList.filter((d) => d.name !== name)
       if (action !== 'DELETE') {
-        filtered.push({ name, namespace: namespace || 'default', replicas: status || '1/1 Ready', status: 'Healthy' })
+        const obj = object || {}
+        const readyRep = obj.ready_replicas != null ? obj.ready_replicas : (status ? status.split('/')[0] : 1)
+        const totalRep = obj.replicas != null ? obj.replicas : (status ? status.split('/')[1] : 1)
+        filtered.push({
+          name,
+          namespace: namespace || obj.namespace || 'default',
+          replicas: `${readyRep}/${totalRep} Ready`,
+          image: obj.image || 'nginx:latest',
+          strategy: obj.strategy || 'RollingUpdate'
+        })
       }
       this.state.deploymentsList = filtered
     } else if (kind === 'Node' && name) {
@@ -210,31 +232,50 @@ const singletonManager = {
       this.state.shipsMap = next
     } else if (kind === 'Pod' && name) {
       const next = { ...this.state.shipsMap }
-      if (!next[targetNode]) {
-        next[targetNode] = {
-          id: targetNode,
-          name: `${targetNode} (Worker Node)`,
-          status: 'Ready',
-          pods: []
-        }
-      }
-
       const podId = `${namespace || 'default'}/${name}`
-      const existingPods = next[targetNode].pods.filter((p) => p.id !== podId)
+
+      // Purge podId from ALL ships to guarantee ghost pod removal regardless of targetNode drift
+      Object.keys(next).forEach((nodeKey) => {
+        if (next[nodeKey] && Array.isArray(next[nodeKey].pods)) {
+          next[nodeKey] = {
+            ...next[nodeKey],
+            pods: next[nodeKey].pods.filter((p) => p.id !== podId)
+          }
+        }
+      })
 
       if (action !== 'DELETE') {
-        existingPods.push({
-          id: podId,
-          name: `📦 ${name}`,
-          namespace: namespace || 'default',
-          status: status || 'Running',
-          color: this.getPodColor(status)
-        })
-      }
+        const ownerKind = metaphor?.owner_kind || 'Standalone'
+        const ownerName = metaphor?.owner_name || name
+        const rsOwner = metaphor?.replicaset_owner || ''
+        const sa = metaphor?.service_account || 'default'
 
-      next[targetNode] = {
-        ...next[targetNode],
-        pods: existingPods
+        if (!next[targetNode]) {
+          next[targetNode] = {
+            id: targetNode,
+            name: `${targetNode} (Worker Node)`,
+            status: 'Ready',
+            pods: []
+          }
+        }
+
+        next[targetNode] = {
+          ...next[targetNode],
+          pods: [
+            ...next[targetNode].pods,
+            {
+              id: podId,
+              name: `📦 ${name}`,
+              namespace: namespace || 'default',
+              status: status || 'Running',
+              owner_kind: ownerKind,
+              owner_name: ownerName,
+              replicaset_owner: rsOwner,
+              service_account: sa,
+              color: this.getPodColor(status)
+            }
+          ]
+        }
       }
 
       this.state.shipsMap = next

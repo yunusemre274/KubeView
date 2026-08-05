@@ -6,6 +6,20 @@ Projedeki teknik seçimlerin meşru gerekçeleri mevcuttur.
 
 ## 📜 Karar Listesi
 
+### 🟢 [ADR-025] In-Memory ReplicaSet Informer ile Pod ➔ ReplicaSet ➔ Deployment Zincir Çözümlemesi
+- **Tarih:** 2026-08-03
+- **Durum:** Kabul Edildi
+- **Bağlam:** Pod bilgi kartında `Owner: ReplicaSet:web-frontend-deploy-74b89ff448` şeklinde ham ve kullanıcı dostu olmayan teknik isim görünmesi hatası.
+- **Karar:**
+  1. Pod olayında (`handlePodEvent`) her istek için Kubernetes API sunucusuna doğrudan senkron HTTP çağrısı yapmak event loop'u bloklayacağı ve performans kaybına yol açacağı için reddedilmiştir.
+  2. Kök Deployment ismini regex veya hash kesme ile türetmek kırılgan (Deployment ismi ile ReplicaSet hash desenleri değişken olabileceğinden) kabul edilmiştir.
+  3. **In-Memory Informer Seçimi:** Go backend watcher yapısına `ReplicaSet` SharedInformer'ı eklenmiştir (`factory.Apps().V1().ReplicaSets().Informer()`). ReplicaSet'ler bellekte `map[string]*appsv1.ReplicaSet` olarak önbelleklenir.
+  4. Pod `ownerReferences[0]` bir ReplicaSet olduğunda, bellekteki bu haritadan ReplicaSet'in kendi `ownerReferences[0]` değeri kontrol edilir. Eğer kök bir `Deployment` ise Pod `ownerKind = "Deployment"`, `ownerName = "web-frontend-deploy"` ve `replicaset_owner = "web-frontend-deploy-74b89ff448"` olarak türetilir.
+  5. `len(pod.OwnerReferences) == 0` durumundaki sahipsiz/bağımsız Pod'lar için fallback değeri `"Deployment"` yerine doğru olan `"Standalone"` (Bağımsız Palet) olarak ayarlanmıştır.
+- **Sonuç:** Sıfır ağ gecikmesi ile %100 doğru ve okunabilir Pod sahiplik zinciri elde edilmiştir.
+
+---
+
 ### 🟢 [ADR-024] Static File Server Mimarisi & Çevre Değişkenleri Temizliği
 - **Tarih:** 2026-08-03
 - **Durum:** Kabul Edildi

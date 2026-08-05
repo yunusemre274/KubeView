@@ -12,6 +12,7 @@ Bu belge, Kubernetes bileşenlerinin Tersane 3D simülasyonundaki tam görsel ve
 | **Worker Node** | **Kargo Gemisi (Filo Üyesi)** | Rıhtıma yanaşan, konteynır (Pod) taşıyan ve vinçle yüklenen yük gemisi | Faz 3 |
 | **Control Plane (Master Node)** | **Yönetim Binası & Kontrol Kulesi** | Kırmızı çatılı, kuleli ve dönebilen radar sistemi olan ana kontrol binası | Faz 9 |
 | **Pod / Container** | **Kargo Konteynırı (Palet)** | Gemi güvertesinde veya karada üst üste dizili renkli çelik konteynır kutusu | Faz 3 |
+| **Standalone Pod** | **Bağımsız Palet (Tekli Serbest Yük)** | Herhangi bir Sefer Sipariş Kartı (Deployment/StatefulSet) sahibi olmayan, doğrudan rıhtıma bırakılmış bağımsız konteynır | Faz 32 |
 | **Deployment** | **Sefer Sipariş Kartı / Filo Siparişi** | Aynı tipteki gemi ve konteynır gruplarının toplu üretim ve yükleme emri | Faz 6 |
 | **StatefulSet** | **Numaralı Sabit Gemi Filosu** | Limanda sabit demirli, devriye yapmayan, üzerinde `#0`, `#1` sıra numarası rozeti olan gemiler | Faz 24 |
 | **DaemonSet** | **Gemi Direği Ekipmanı** | Her Worker Node gemisinin direğinde otomatik olarak beliren 3D dönen anten/fener ikonu | Faz 24 |

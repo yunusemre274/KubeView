@@ -36,6 +36,12 @@ Bu dosya, Tersane projesinde görev alan tüm yapay zeka ajanlarının (worker a
 13. **Bütüncül Gemi ve Liman Çakışma Önleme Kuralı (SHIP & HARBOR COLLISION AVOIDANCE RULE):**
     - **Yerleşim veya hareket mantığı geliştirilirken SADECE alt nesneler (konteynır, vinç, depo) değil, hareket eden/konumlanan TÜM nesne tipleri (özellikle gemilerin kendisi ve liman rıhtım sınırları) bütüncül gözden geçirilir!**
     - Gemiler kara rıhtım binalarının kapladığı alanlara (`x < 4.0`) giremez; devriye rotalarında `phaseOffset` ile gemi-gemi çakışması %100 engellenir.
+14. **Uçtan Uca Silme (DELETE) Event Sınama Kuralı (END-TO-END DELETE TEST RULE):**
+    - **Silme (DELETE) event'leri, ADD/UPDATE ile aynı titizlikte uçtan uca (backend informer ➔ WebSocket ➔ frontend state) test edilmelidir!**
+    - Sadece "nesne eklenince görünüyor mu" kontrol etmek yeterli değildir; "nesne silinince sahneden gerçekten kayboluyor mu" da HER yeni kaynak tipi eklendiğinde ayrı bir test senaryosu olarak çalıştırılmalı, client-go tombstone unwrappers ve multi-node state purge mekanizmaları eksiksiz uygulanmalıdır.
+15. **3D Seçilebilir Obje Eksiksiz InfoCard Bağlama Kuralı (EXHAUSTIVE INFOCARD COVERAGE RULE):**
+    - **Sahnede tıklanabilir ve seçilebilir kılınan HER 3D nesne tipi için `<InfoCard>` içerisinde karşılık gelen veri işleme ve sunum bloğu (başlık, status badge, metrikler, zaman damgaları, aksiyonlar) EKSİKSİZ yazılmak ve ELLE doğrulanmak zorundadır!**
+    - Hiçbir 3D nesne tıklandığında boş veya sadece başlık gösteren kart dökümü sunamaz. Sahneye duplicate 3D nesneler eklenemez, Control Plane çevresi 3D slot grid ile düzenlenmelidir.
 
 ---
 

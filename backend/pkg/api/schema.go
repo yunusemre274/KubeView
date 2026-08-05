@@ -1,20 +1,10 @@
 package api
 
-import "time"
-
-// MessageType defines the category of WebSocket messages.
-type MessageType string
-
-const (
-	TypeInitialState  MessageType = "INITIAL_STATE"
-	TypeResourceEvent MessageType = "RESOURCE_EVENT"
-	TypeMetricsUpdate MessageType = "METRICS_UPDATE"
-	TypePing          MessageType = "PING"
-	TypePong          MessageType = "PONG"
-	TypeError         MessageType = "ERROR"
+import (
+	"time"
 )
 
-// ResourceAction defines the CRUD action fanned out by Informers.
+// ResourceAction defines the type of event action.
 type ResourceAction string
 
 const (
@@ -53,6 +43,17 @@ type ResourceMetrics struct {
 	MemoryUsage string  `json:"memory_usage"`
 	CPUPercent  float64 `json:"cpu_percent,omitempty"`
 	MemPercent  float64 `json:"mem_percent,omitempty"`
+}
+
+// DeploymentInfo holds Deployment workload details for live Control Plane inspection.
+type DeploymentInfo struct {
+	Name            string `json:"name"`
+	Namespace       string `json:"namespace"`
+	Replicas        int32  `json:"replicas"`
+	ReadyReplicas   int32  `json:"ready_replicas"`
+	UpdatedReplicas int32  `json:"updated_replicas"`
+	Image           string `json:"image,omitempty"`
+	Strategy        string `json:"strategy,omitempty"`
 }
 
 // ConfigMapInfo holds sanitized ConfigMap details for frontend inspection.
@@ -177,8 +178,9 @@ type ShipyardMetaphor struct {
 	NodeName           string          `json:"node_name,omitempty"`     // Target ship for Pods
 	Compartment        string          `json:"compartment,omitempty"`   // Namespace (Ambar)
 	HealthState        string          `json:"health_state,omitempty"`  // "SAFE", "WARNING", "CRITICAL"
-	OwnerKind          string          `json:"owner_kind,omitempty"`    // "Deployment", "StatefulSet", "DaemonSet", "Job"
+	OwnerKind          string          `json:"owner_kind,omitempty"`    // "Deployment", "StatefulSet", "DaemonSet", "Job", "Standalone"
 	OwnerName          string          `json:"owner_name,omitempty"`    // e.g. "api-backend-deploy", "redis-cache-set"
+	ReplicaSetOwner    string          `json:"replicaset_owner,omitempty"` // Raw ReplicaSet name e.g. "web-frontend-deploy-74b89ff448"
 	Ordinal            string          `json:"ordinal,omitempty"`       // e.g. "#0", "#1"
 	ServiceAccountName string          `json:"service_account,omitempty"`
 	Metrics            ResourceMetrics `json:"metrics,omitempty"`
@@ -196,19 +198,31 @@ type ResourcePayload struct {
 	Object    interface{}      `json:"object,omitempty"`
 }
 
-// InitialStatePayload is sent to newly connected WebSocket clients.
+// MessageType defines the type of WebSocket envelope message.
+type MessageType string
+
+const (
+	TypeInitialState  MessageType = "INITIAL_STATE"
+	TypeResourceEvent MessageType = "RESOURCE_EVENT"
+	TypeError         MessageType = "ERROR"
+	TypePing          MessageType = "PING"
+	TypePong          MessageType = "PONG"
+)
+
+// InitialStatePayload is the full payload sent when a client connects to WS.
 type InitialStatePayload struct {
-	ClusterName  string               `json:"cluster_name"`
-	Nodes        []ResourcePayload    `json:"nodes"`
-	Pods         []ResourcePayload    `json:"pods"`
-	ConfigMaps   []ConfigMapInfo      `json:"config_maps,omitempty"`
-	Secrets      []SecretInfo         `json:"secrets,omitempty"`
-	PVCs         []PVCInfo            `json:"pvcs,omitempty"`
-	PVs          []PVInfo             `json:"pvs,omitempty"`
+	ClusterName     string               `json:"cluster_name"`
+	Nodes           []ResourcePayload    `json:"nodes"`
+	Pods            []ResourcePayload    `json:"pods"`
+	Deployments     []DeploymentInfo     `json:"deployments,omitempty"`
+	ConfigMaps      []ConfigMapInfo      `json:"config_maps,omitempty"`
+	Secrets         []SecretInfo         `json:"secrets,omitempty"`
+	PVCs            []PVCInfo            `json:"pvcs,omitempty"`
+	PVs             []PVInfo             `json:"pvs,omitempty"`
 	ServiceAccounts []ServiceAccountInfo `json:"service_accounts,omitempty"`
-	Roles        []RoleInfo           `json:"roles,omitempty"`
-	TotalShips   int                  `json:"total_ships"`
-	TotalPallets int                  `json:"total_pallets"`
+	Roles           []RoleInfo           `json:"roles,omitempty"`
+	TotalShips      int                  `json:"total_ships"`
+	TotalPallets    int                  `json:"total_pallets"`
 }
 
 // WSMessage is the top-level WebSocket envelope.

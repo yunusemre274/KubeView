@@ -9,8 +9,9 @@
 
 ---
 
-## 🟢 Tamamlanan Görevler (Faz 1 - Faz 20)
-- [x] **[GÖREV-2001..2004]** 3D PNG Ekran görüntüsü indirme (`📸 PNG İNDİR`), Multi-Cluster Context seçici (`minikube`, `docker-desktop`, `prod-cluster`), Cilium Hubble eBPF algılama rozeti ve Node statik maliyet tablosu. (Yapan: `devops-agent`, `ui-ux-agent`)
+## 🟢 Tamamlanan Görevler (Faz 1 - Faz 20 & İyileştirmeler)
+- [x] **[v3.4.0 - GÖREV-2401]** 15 3D Obje için Eksiksiz InfoCard Bağlama (Job, Secret, Scheduler Crane, ConfigMap, PVC, PV, StatefulSet, DaemonSet, Ingress vb.), Underline Indicator TabBar Yenilemesi, Kapatma (X) İkonu Boyutlandırması & Dairesel 3D Slot Grid Çakışma Önleme. (Yapan: `web-frontend-agent`, `3d-graphics-agent`)
+- [x] **[v3.3.0 - GÖREV-2301]** Silinen Hayalet Pod Düzeltmesi (client-go tombstone unwrappers & multi-node state purge) ve Anlık Deployment Adı Çözümlemesi. (Yapan: `k8s-backend-agent`, `web-frontend-agent`)
 - [x] **[GÖREV-1901..1904]** 3D HPA Ekstra Mobil Vinç (`HPAMobileCrane.jsx`), 3D Node Affinity Çizgileri (`NodeAffinityLines.jsx`) ve 3D PDB Bakım Bayrağı (`PDBMaintenanceFlag.jsx`). (Yapan: `3d-scene-agent`, `ui-ux-agent`)
 - [x] **[GÖREV-1801..1804]** 3D Ingress Gateway Deniz Feneri (`IngressLighthouse.jsx`), 3D NetworkPolicy Kırmızı Lazer Bariyerleri (`NetworkPolicyBarriers.jsx`). (Yapan: `networking-agent`, `3d-scene-agent`)
 - [x] **[GÖREV-1701..1704]** 3D Anomali Efektleri (`CrashLoopBackOff` duman/alev, `OOMKilled` patlama, `NodeNotReady` su alma). (Yapan: `3d-scene-agent`)

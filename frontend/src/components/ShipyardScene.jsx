@@ -826,8 +826,8 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
         }
       }
     })
-    setCamTargetPos(new THREE.Vector3(-4, 10, -10))
-    setCamTargetLookAt(new THREE.Vector3(-8, 1, -18))
+    setCamTargetPos(new THREE.Vector3(-20, 10, 6))
+    setCamTargetLookAt(new THREE.Vector3(-28, 2, -4))
   }
 
   const handleSelectSecret = () => {
@@ -842,8 +842,8 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
         created_at: '2026-07-28T14:20:00Z'
       }
     })
-    setCamTargetPos(new THREE.Vector3(2, 10, -10))
-    setCamTargetLookAt(new THREE.Vector3(-2, 1, -18))
+    setCamTargetPos(new THREE.Vector3(-6, 10, 6))
+    setCamTargetLookAt(new THREE.Vector3(-14, 2, -4))
   }
 
   const handleSelectPVC = () => {
@@ -942,10 +942,10 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
       data: {
         scheduler_name: 'default-scheduler (v1.28.2)',
         last_decision: 'pod redis-cache-set-0 -> node-beta (Score: 94/100, Reason: LeastRequestedPriority)',
-        pending_queue: 1
+        pending_queue: 0
       }
     })
-    setCamTargetPos(new THREE.Vector3(2, 14, 22))
+    setCamTargetPos(new THREE.Vector3(-4, 12, 14))
     setCamTargetLookAt(new THREE.Vector3(-12, 4, 6))
   }
 
@@ -958,8 +958,8 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
         services: [{ name: 'web-frontend-svc', clusterIP: '10.96.0.45', endpoints: ['10.244.0.12:80'] }]
       }
     })
-    setCamTargetPos(new THREE.Vector3(32, 12, 0))
-    setCamTargetLookAt(new THREE.Vector3(18, 4, -16))
+    setCamTargetPos(new THREE.Vector3(-20, 10, -14))
+    setCamTargetLookAt(new THREE.Vector3(-28, 2, -24))
   }
 
   const handleResetCamera = () => {
@@ -1157,6 +1157,7 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
 
           <Ocean />
           <EnrichedDockAndShore onSelectLandStack={handleSelectCrane} />
+          {/* Single Iconic Kube-Scheduler Gantry Crane */}
           <GantryCrane
             position={[-12, 1, 6]}
             craneData={{}}
@@ -1164,14 +1165,13 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
             isImagePullBackOff={activeAnomaly === 'ImagePullBackOff'}
             onHover={handleHover}
           />
-          <GantryCrane position={[-12, 1, -16]} craneData={{}} onSelectCrane={handleSelectCrane} onHover={handleHover} />
           <HarborVillage onClickBuilding={handleSelectMaster} onHover={handleHover} />
-          <KubeProxyStation position={[18, 0.2, -16]} onSelectKubeProxy={handleSelectKubeProxy} onHover={handleHover} />
+          <KubeProxyStation position={[-28, 0.2, -24]} onSelectKubeProxy={handleSelectKubeProxy} onHover={handleHover} />
 
-          {/* 3D ConfigMap Notice Board & 3D Secret Safe Box */}
+          {/* 3D ConfigMap Notice Board & 3D Secret Safe Box (Slot Grid Around Control Plane) */}
           <ConfigMapAndSecretMesh
-            configMapPosition={[-8, 0.2, -18]}
-            secretPosition={[-2, 0.2, -18]}
+            configMapPosition={[-28, 0.2, -4]}
+            secretPosition={[-14, 0.2, -4]}
             onSelectConfigMap={handleSelectConfigMap}
             onSelectSecret={handleSelectSecret}
             onHover={handleHover}
@@ -1248,6 +1248,7 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
           activeShips={activeShips}
           onTriggerCronJob={handleTriggerCronJob}
           metricsHistory={metricsHistory}
+          deployments={externalDeployments}
         />
       )}
 
@@ -1321,13 +1322,13 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                     {activeSelection.type === 'ROLE' && '🛡️ YETKİ ROZETİ (ROLE / RULES)'}
                   </span>
                 </h3>
-                <button onClick={handleResetCamera} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
-                  <X className="w-4 h-4" />
+                <button onClick={handleResetCamera} className="p-1 hover:bg-slate-800/80 transition rounded text-slate-400 hover:text-slate-200" title="Kapat">
+                  <X className="w-3.5 h-3.5" />
                 </button>
               </div>
 
               <InfoCard>
-                {/* WORKER NODE DETAILS WITH SPARKLINE & DETAILED TREND LINK */}
+                {/* 1. WORKER NODE DETAILS */}
                 {activeSelection.type === 'SHIP' && (
                   <>
                     <InfoCardHeader title={activeSelection.data.name} subtitle={activeSelection.data.ip || '192.168.1.101'} status={activeSelection.data.status || 'Ready'} typeLabel="WORKER NODE" icon={ShipIcon} />
@@ -1354,7 +1355,7 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                       <InfoCardRow label="Sağlık" value={activeSelection.data.status || 'Ready'} valueColor="text-emerald-400" />
                       <InfoCardRow label="Bağlı Küme" value={activeClusterContext} />
                     </InfoCardSection>
-                    <InfoCardSection title={`📦 ÜZERİNDEKİ POD'LAR (${activeSelection.data.pods?.length || 2})`} colorClass="text-emerald-400">
+                    <InfoCardSection title={`📦 ÜZERİNDEKİ POD'LAR (${activeSelection.data.pods?.length || 0})`} colorClass="text-emerald-400">
                       {(activeSelection.data.pods || []).map((p) => (
                         <InfoCardRow key={p.id} label={p.name} value={p.namespace} valueColor="text-sky-400" />
                       ))}
@@ -1362,7 +1363,7 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                   </>
                 )}
 
-                {/* SERVICEACCOUNT DETAILS */}
+                {/* 2. SERVICEACCOUNT DETAILS */}
                 {activeSelection.type === 'SERVICEACCOUNT' && (
                   <>
                     <InfoCardHeader title={activeSelection.data.name} status={activeSelection.data.is_admin ? 'CLUSTER-ADMIN' : 'NORMAL'} typeLabel="SERVICEACCOUNT" icon={UserCheck} />
@@ -1370,7 +1371,7 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                       <div className="bg-red-500/10 p-2 rounded-lg border border-red-500/50 flex items-start gap-2">
                         <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5 animate-bounce" />
                         <div className="text-[10px] text-red-300 leading-tight">
-                          <strong className="text-red-400 block">⚠️ AŞIRI YETKİLİ SERVICEACCOUNT:</strong>
+                          <strong className="text-red-400 block font-bold">⚠️ AŞIRI YETKİLİ SERVICEACCOUNT:</strong>
                           Bu ServiceAccount <code className="text-amber-300 font-mono font-bold">cluster-admin</code> rolüne bağlıdır!
                         </div>
                       </div>
@@ -1387,7 +1388,7 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                   </>
                 )}
 
-                {/* ROLE / CLUSTERROLE RULES DETAILS */}
+                {/* 3. ROLE / CLUSTERROLE RULES DETAILS */}
                 {activeSelection.type === 'ROLE' && (
                   <>
                     <InfoCardHeader title={activeSelection.data.name} status={activeSelection.data.is_cluster ? 'CLUSTERROLE' : 'ROLE'} typeLabel="ROLE / CLUSTERROLE" icon={ShieldCheckIcon} />
@@ -1415,32 +1416,35 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                   </>
                 )}
 
-                {/* POD DETAILS & LOG VIEWER */}
+                {/* 4. POD DETAILS & LOG VIEWER */}
                 {activeSelection.type === 'POD' && (
                   <div className="space-y-2.5">
-                    <div className="flex border-b border-slate-800 pb-2 gap-2">
+                    {/* Sleek Modern Underline Tab Component */}
+                    <div className="flex border-b border-slate-800 gap-4 mb-2.5">
                       <button
                         onClick={() => setPodDrawerTab('details')}
-                        className={`flex-1 py-1 px-2 rounded text-[10.5px] font-industrial flex items-center justify-center gap-1.5 border transition ${
-                          podDrawerTab === 'details'
-                            ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 font-bold shadow'
-                            : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-slate-200'
+                        className={`pb-1.5 text-[11px] font-industrial flex items-center gap-1.5 transition relative ${
+                          podDrawerTab === 'details' ? 'text-amber-400 font-bold' : 'text-slate-400 hover:text-slate-200'
                         }`}
                       >
                         <Box className="w-3.5 h-3.5" />
-                        <span>📋 DETAYLAR</span>
+                        <span>DETAYLAR</span>
+                        {podDrawerTab === 'details' && (
+                          <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+                        )}
                       </button>
 
                       <button
                         onClick={() => setPodDrawerTab('logs')}
-                        className={`flex-1 py-1 px-2 rounded text-[10.5px] font-industrial flex items-center justify-center gap-1.5 border transition ${
-                          podDrawerTab === 'logs'
-                            ? 'bg-sky-500/20 text-sky-300 border-sky-500/50 font-bold shadow'
-                            : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-slate-200'
+                        className={`pb-1.5 text-[11px] font-industrial flex items-center gap-1.5 transition relative ${
+                          podDrawerTab === 'logs' ? 'text-sky-400 font-bold' : 'text-slate-400 hover:text-slate-200'
                         }`}
                       >
                         <FileText className="w-3.5 h-3.5 text-sky-400" />
-                        <span>📜 LOGLAR</span>
+                        <span>LOGLAR</span>
+                        {podDrawerTab === 'logs' && (
+                          <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-sky-400 rounded-full shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
+                        )}
                       </button>
                     </div>
 
@@ -1449,7 +1453,17 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                         <InfoCardHeader title={activeSelection.data.name || 'web-frontend-deploy-74b89'} subtitle={activeSelection.data.namespace || 'default'} status={activeSelection.data.status || 'Running'} typeLabel="POD" icon={Box} />
                         <InfoCardSection title="📌 TEMEL BİLGİLER">
                           <InfoCardRow label="Ambar (NS)" value={activeSelection.data.namespace || 'default'} valueColor="text-sky-400" />
-                          <InfoCardRow label="Owner" value={`${activeSelection.data.owner_kind || 'Deployment'}:${activeSelection.data.owner_name || 'app'}`} valueColor="text-purple-300" />
+                          <InfoCardRow
+                            label="Owner"
+                            value={
+                              activeSelection.data.owner_kind === 'Standalone'
+                                ? 'Yok (Bağımsız Palet)'
+                                : activeSelection.data.owner_kind === 'Deployment' && activeSelection.data.replicaset_owner
+                                ? `Deployment: ${activeSelection.data.owner_name} (RS: ${activeSelection.data.replicaset_owner})`
+                                : `${activeSelection.data.owner_kind || 'Deployment'}: ${activeSelection.data.owner_name || activeSelection.data.name}`
+                            }
+                            valueColor={activeSelection.data.owner_kind === 'Standalone' ? 'text-amber-400' : 'text-purple-300'}
+                          />
                           <InfoCardRow label="SA" value={activeSelection.data.service_account || 'default'} isLink={true} onClick={() => handleSelectServiceAccount(activeSelection.data.service_account || 'default', activeSelection.data.namespace || 'default')} valueColor="text-sky-300" />
                         </InfoCardSection>
                         <InfoCardSection title="🌐 AĞ & DNS BİLGİSİ" colorClass="text-amber-400">
@@ -1490,6 +1504,212 @@ export default function ShipyardScene({ ships = [], isConnected = false, eventsL
                       <PodLogViewer pod={activeSelection.data} />
                     )}
                   </div>
+                )}
+
+                {/* 5. JOB (GEÇİCİ GÖREV ŞALUPASI) DETAILS */}
+                {activeSelection.type === 'JOB' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'db-backup-job'} subtitle={activeSelection.data?.namespace || 'default'} status={activeSelection.data?.status || 'Completed'} typeLabel="JOB (GEÇİCİ GÖREV ŞALUPASI)" icon={Play} />
+                    <InfoCardSection title="📌 GÖREV BİLGİLERİ" colorClass="text-amber-400">
+                      <InfoCardRow label="Ambar (NS)" value={activeSelection.data?.namespace || 'default'} valueColor="text-sky-400" />
+                      <InfoCardRow label="Completions" value={activeSelection.data?.completions || '1/1'} valueColor="text-emerald-400" />
+                      <InfoCardRow label="Durum" value={activeSelection.data?.status || 'Completed'} valueColor="text-emerald-300" />
+                    </InfoCardSection>
+                    <InfoCardSection title="⏰ ZAMAN DAMGALARI" colorClass="text-purple-400">
+                      <InfoCardRow label="Başlangıç" value={activeSelection.data?.start_time || '10:45:00'} />
+                      <InfoCardRow label="Bitiş" value={activeSelection.data?.end_time || '10:45:12'} valueColor="text-sky-300" />
+                    </InfoCardSection>
+                    <InfoCardSection title="🛠️ MANUEL TETİKLEME" colorClass="text-amber-400">
+                      <button
+                        onClick={() => handleTriggerCronJob('db-backup-cronjob')}
+                        className="industrial-btn text-[10px] py-1 px-3 w-full justify-center bg-amber-500/20 text-amber-300 border-amber-500/40 hover:bg-amber-500/30 flex items-center gap-1.5"
+                      >
+                        <Play className="w-3 h-3 text-amber-400" />
+                        <span>YENİ GÖREV ŞALUPASI ÇIKAR (CRONJOB)</span>
+                      </button>
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 6. SECRET (KİLİTLİ KASA) DETAILS */}
+                {activeSelection.type === 'SECRET' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'db-credentials-secret'} subtitle={activeSelection.data?.namespace || 'default'} status={activeSelection.data?.type || 'Opaque'} typeLabel="SECRET (KİLİTLİ KASA)" icon={Lock} />
+                    <div className="bg-amber-500/10 p-2 rounded-lg border border-amber-500/40 flex items-start gap-2">
+                      <Shield className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                      <div className="text-[9.5px] text-amber-300 leading-tight">
+                        <strong className="text-amber-400 block font-bold">🛡️ GÜVENLİK GARANTİSİ:</strong>
+                        Secret içerik değerleri maskelidir ve istemciye gönderilmez. Sadece key isimleri listelenir.
+                      </div>
+                    </div>
+                    <InfoCardSection title="🔑 DEĞER ANAHTARLARI (MASKELİ)" colorClass="text-amber-400">
+                      {(activeSelection.data?.key_names || ['DB_USER', 'DB_PASSWORD', 'API_SECRET_KEY']).map((key, idx) => (
+                        <InfoCardRow key={idx} label={key} value="•••••••• (Encrypted)" valueColor="text-slate-400 font-mono" />
+                      ))}
+                    </InfoCardSection>
+                    <InfoCardSection title="📦 KULLANAN POD'LAR" colorClass="text-emerald-400">
+                      {(activeSelection.data?.used_by || ['api-backend-deploy-59d4c']).map((podName, idx) => (
+                        <InfoCardRow key={idx} label={`Pod #${idx + 1}`} value={podName} valueColor="text-sky-300" />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 7. CRANE (KUBE-SCHEDULER VİNÇ) DETAILS */}
+                {activeSelection.type === 'CRANE' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.scheduler_name || 'kube-scheduler (v1.28.2)'} status="Leader Active" typeLabel="KUBE-SCHEDULER (VİNÇ)" icon={Cpu} />
+                    <InfoCardSection title="⚙️ MİMARİ ROL" colorClass="text-amber-400">
+                      <InfoCardRow label="Görev" value="Pod Yükleme ve Yerleşim Vinci" valueColor="text-amber-300" />
+                      <InfoCardRow label="Algoritma" value="LeastRequestedPriority + Affinity" valueColor="text-sky-300" />
+                    </InfoCardSection>
+                    <InfoCardSection title="🎯 SON ZAMANLAMA KARARI" colorClass="text-emerald-400">
+                      <div className="bg-slate-950 p-2 rounded border border-slate-800 text-[9.5px] font-mono text-emerald-300 leading-relaxed">
+                        {activeSelection.data?.last_decision || 'pod redis-cache-set-0 -> node-beta (Score: 94/100)'}
+                      </div>
+                    </InfoCardSection>
+                    <InfoCardSection title="📋 BEKLEYEN İŞ KUYRUĞU">
+                      <InfoCardRow label="Bekleyen Pod" value={`${activeSelection.data?.pending_queue || 0} Pod`} valueColor="text-slate-300" />
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 8. CONFIGMAP DETAILS */}
+                {activeSelection.type === 'CONFIGMAP' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'web-frontend-config'} subtitle={activeSelection.data?.namespace || 'default'} status="Active" typeLabel="CONFIGMAP (SEVKİYAT FÖYÜ)" icon={ClipboardList} />
+                    <InfoCardSection title="📋 FÖY İÇERİĞİ (KEY-VALUE)" colorClass="text-amber-400">
+                      <div className="space-y-1.5">
+                        {Object.entries(activeSelection.data?.data || { APP_ENV: 'production', LOG_LEVEL: 'info' }).map(([key, val], idx) => (
+                          <div key={idx} className="bg-slate-950 p-2 rounded border border-slate-800 space-y-1">
+                            <span className="text-amber-400 font-bold block text-[10px]">● {key}</span>
+                            <pre className="text-[9px] text-slate-300 font-mono whitespace-pre-wrap max-h-24 overflow-y-auto bg-slate-900 p-1.5 rounded">{val}</pre>
+                          </div>
+                        ))}
+                      </div>
+                    </InfoCardSection>
+                    <InfoCardSection title="📦 KULLANAN POD'LAR" colorClass="text-emerald-400">
+                      {(activeSelection.data?.used_by || ['web-frontend-deploy-74b89']).map((podName, idx) => (
+                        <InfoCardRow key={idx} label={`Pod #${idx + 1}`} value={podName} valueColor="text-sky-300" />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 9. PVC DETAILS */}
+                {activeSelection.type === 'PVC' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'web-data-pvc'} subtitle={activeSelection.data?.namespace || 'default'} status={activeSelection.data?.status || 'Bound'} typeLabel="PVC (DEPO TALEBİ)" icon={Database} />
+                    <InfoCardSection title="🏢 TAHSİS TALEBİ DETAYLARI" colorClass="text-purple-400">
+                      <InfoCardRow label="Kapasite" value={activeSelection.data?.requested_capacity || '10Gi'} valueColor="text-purple-300" />
+                      <InfoCardRow label="Erişim Modu" value={(activeSelection.data?.access_modes || ['ReadWriteOnce']).join(', ')} valueColor="text-sky-300" />
+                      <InfoCardRow label="StorageClass" value={activeSelection.data?.storage_class || 'gp3 (AWS EBS)'} />
+                    </InfoCardSection>
+                    <InfoCardSection title="🔗 BAĞLI PV VE POD'LAR" colorClass="text-emerald-400">
+                      <InfoCardRow label="Fiziksel PV" value={activeSelection.data?.bound_pv || 'pv-storage-disk-01'} valueColor="text-emerald-300" />
+                      {(activeSelection.data?.used_by_pods || ['web-frontend-deploy-74b89']).map((podName, idx) => (
+                        <InfoCardRow key={idx} label={`Kullanan Pod`} value={podName} valueColor="text-sky-300" />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 10. PV DETAILS */}
+                {activeSelection.type === 'PV' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'pv-storage-disk-01'} status={activeSelection.data?.status || 'Bound'} typeLabel="PV (FİZİKSEL DEPO AMBARI)" icon={HardDrive} />
+                    <InfoCardSection title="🏭 FİZİKSEL AMBAR DETAYLARI" colorClass="text-purple-400">
+                      <InfoCardRow label="Kapasite" value={activeSelection.data?.capacity || '10Gi'} valueColor="text-purple-300" />
+                      <InfoCardRow label="Backend" value={activeSelection.data?.backend_type || 'AWS EBS gp3'} valueColor="text-amber-300" />
+                      <InfoCardRow label="Reclaim Policy" value={activeSelection.data?.reclaim_policy || 'Retain'} />
+                    </InfoCardSection>
+                    <InfoCardSection title="🔗 BAĞLI PVC TALEBİ" colorClass="text-emerald-400">
+                      <InfoCardRow label="Hedef PVC" value={activeSelection.data?.bound_pvc || 'default/web-data-pvc'} valueColor="text-emerald-300" />
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 11. STATEFULSET DETAILS */}
+                {activeSelection.type === 'STATEFULSET' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'redis-cache-set'} subtitle={activeSelection.data?.namespace || 'production'} status={activeSelection.data?.replicas || '1/1 Ready'} typeLabel="STATEFULSET" icon={Layers3} />
+                    <InfoCardSection title="🔢 SABİT FİLO DETAYLARI" colorClass="text-purple-400">
+                      <InfoCardRow label="Headless Svc" value={activeSelection.data?.service_name || 'redis-svc'} valueColor="text-sky-300" />
+                      <InfoCardRow label="Sıra Numarası" value={activeSelection.data?.ordinal || '#0'} valueColor="text-amber-300" />
+                      <InfoCardRow label="Bağlı PVC" value={activeSelection.data?.bound_pvc || 'web-data-pvc'} valueColor="text-purple-300" />
+                    </InfoCardSection>
+                    <InfoCardSection title="📦 YÖNETİLEN NUMARALI POD'LAR" colorClass="text-emerald-400">
+                      {(activeSelection.data?.pod_names || ['redis-cache-set-0']).map((podName, idx) => (
+                        <InfoCardRow key={idx} label={`Palet #${idx}`} value={podName} valueColor="text-emerald-300" />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 12. DAEMONSET DETAILS */}
+                {activeSelection.type === 'DAEMONSET' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'kube-flannel-ds'} subtitle={activeSelection.data?.namespace || 'kube-system'} status={`${activeSelection.data?.ready || 2}/${activeSelection.data?.desired || 2} Ready`} typeLabel="DAEMONSET (STANDART EKİPMAN)" icon={Terminal} />
+                    <InfoCardSection title="🧯 HER DİREKTEKİ EKİPMAN" colorClass="text-sky-400">
+                      <InfoCardRow label="İstenen" value={`${activeSelection.data?.desired || 2} Node`} />
+                      <InfoCardRow label="Hazır" value={`${activeSelection.data?.ready || 2} Node`} valueColor="text-emerald-400" />
+                    </InfoCardSection>
+                    <InfoCardSection title="🚢 EKİPMAN KURULU GEMİLER (NODE'LAR)">
+                      {(activeSelection.data?.nodes || ['node-alpha', 'node-beta']).map((nodeName, idx) => (
+                        <InfoCardRow key={idx} label={`Gemi #${idx + 1}`} value={nodeName} valueColor="text-sky-300" />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 13. INGRESS DETAILS */}
+                {activeSelection.type === 'INGRESS' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'tersane-ingress-gateway'} status="Active" typeLabel="INGRESS (DENİZ FENERİ)" icon={Compass} />
+                    <InfoCardSection title="🚨 FENER VE YÖNLENDİRME KURALLARI" colorClass="text-amber-400">
+                      <InfoCardRow label="Host Adresi" value={(activeSelection.data?.hosts || ['tersane.k8s.local']).join(', ')} valueColor="text-amber-300" />
+                      <InfoCardRow label="TLS Sertifika" value={activeSelection.data?.tls || 'Enabled (Let\'s Encrypt)'} valueColor="text-emerald-400" />
+                    </InfoCardSection>
+                    <InfoCardSection title="🌐 AĞ ROTALARI (ROUTES)">
+                      {(activeSelection.data?.rules || [{ path: '/', service: 'web-frontend-svc:80' }]).map((rule, idx) => (
+                        <InfoCardRow key={idx} label={`Rota ${rule.path}`} value={rule.service} valueColor="text-sky-300" />
+                      ))}
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 14. NETWORK_POLICY DETAILS */}
+                {activeSelection.type === 'NETWORK_POLICY' && (
+                  <>
+                    <InfoCardHeader title={activeSelection.data?.name || 'default-deny-ingress'} status="Active" typeLabel="NETWORK POLICY" icon={ShieldAlert} />
+                    <InfoCardSection title="🛡️ GÜVENLİK DUVARI BARİYERLERİ" colorClass="text-red-400">
+                      <InfoCardRow label="Bariyer Modu" value={(activeSelection.data?.policyTypes || ['Ingress']).join(', ')} valueColor="text-red-300" />
+                      <InfoCardRow label="Pod Selector" value={activeSelection.data?.podSelector || 'app=api-backend-deploy'} valueColor="text-amber-300" />
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 15. KUBELET DETAILS */}
+                {activeSelection.type === 'KUBELET' && (
+                  <>
+                    <InfoCardHeader title={`kubelet (${activeSelection.data?.node_name || 'node-alpha'})`} status={activeSelection.data?.status || 'Active (Running)'} typeLabel="KUBELET AGENT" icon={Activity} />
+                    <InfoCardSection title="📡 DÜMENCİ KUBELET SAĞLIĞI" colorClass="text-emerald-400">
+                      <InfoCardRow label="Node IP" value={activeSelection.data?.ip || '192.168.1.101'} valueColor="text-sky-300" />
+                      <InfoCardRow label="Heartbeat" value={activeSelection.data?.last_heartbeat || '1.2s ago'} valueColor="text-emerald-300" />
+                      <InfoCardRow label="Readiness" value={activeSelection.data?.readiness_probe || '100% Passing'} />
+                    </InfoCardSection>
+                  </>
+                )}
+
+                {/* 16. KUBE_PROXY DETAILS */}
+                {activeSelection.type === 'KUBE_PROXY' && (
+                  <>
+                    <InfoCardHeader title="kube-proxy" status={activeSelection.data?.mode || 'iptables'} typeLabel="KUBE-PROXY (AĞ İSTASYONU)" icon={Radio} />
+                    <InfoCardSection title="📻 AĞ İSTASYONU MODU" colorClass="text-sky-400">
+                      <InfoCardRow label="Ağ Modu" value={activeSelection.data?.mode || 'iptables'} valueColor="text-sky-300" />
+                      <InfoCardRow label="eBPF Entegrasyon" value={activeSelection.data?.hubble_mode || 'Cilium Hubble Active'} valueColor="text-emerald-400" />
+                    </InfoCardSection>
+                  </>
                 )}
               </InfoCard>
             </div>

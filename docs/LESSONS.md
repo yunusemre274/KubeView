@@ -6,6 +6,24 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 
 ## 📋 Kayıtlı Dersler
 
+### 🔴 [DERS-017] Eksiksiz InfoCard Data-Binding Denetimi ve 3D Slot Grid Düzeni
+- **Tarih:** 2026-08-04
+- **Sorumlu Agent:** `web-frontend-agent` & `3d-graphics-agent`
+- **Ne Yanlış Gitti?:** Sahnede seçilebilen 15 farklı 3D nesne tipinden sadece `SHIP`, `POD`, `SERVICEACCOUNT` ve `ROLE` için `<InfoCard>` içerik blokları tanımlanmıştı. `JOB`, `SECRET`, `CRANE`, `CONFIGMAP`, `PVC`, `PV`, `STATEFULSET`, `DAEMONSET`, `KUBELET`, `KUBE_PROXY`, `INGRESS` nesnelerine tıklandığında kart sadece başlık gösterip içi boş kalıyordu. Ayrıca sahneye iki adet Kube-Scheduler vinci render edilerek etiket ve kol çakışması yaratılmıştı.
+- **Nasıl Düzeltildi?:** `<InfoCard>` içerisine 15 nesne tipinin tamamı için zengin detay, zaman damgası, güvenlik maskesi ve metrik blokları yazıldı. Pod kartı sekme butonları modern underline indicator tarzında TabBar ile yenilendi, kapatma (X) butonu %65 küçültüldü. Sahnede duplicate olan Scheduler vinci kaldırıldı ve Control Plane çevresindeki yardımcı nesneler için dairesel slot grid koordinatları tanımlandı.
+- **Geleceğe Dönük Kural:** Sahnede tıklanabilir ve seçilebilir yapılan HER nesne tipi için `<InfoCard>` içerisinde karşılık gelen veri işleme bloğu yazılmak ve ELLE doğrulanmak zorundadır. Asla boş drawer gösterimine izin verilmez.
+
+---
+
+### 🔴 [DERS-016] Silme (DELETE) Event'lerinin Uçtan Uca Sınanması ve Client-Go Tombstone / Multi-Node Purge Zorunluluğu
+- **Tarih:** 2026-08-03
+- **Sorumlu Agent:** `k8s-backend-agent` & `web-frontend-agent`
+- **Ne Yanlış Gitti?:** Pod'lar `kubectl delete pod` ile silindiğinde veya Deployment `--replicas=0` yapıldığında Pod'lar sahnede "Pending" durumunda hayalet olarak kalıyordu. Kök Neden: (1) Go backend'deki client-go Informer `DeleteFunc` callback'i `cache.DeletedFinalStateUnknown` tombstone yapılarını unwrap etmediği için silme olayları sessizce atlanıyordu, (2) Frontend state yönetimi `targetNode` drift nedeniyle silinen Pod'u sadece tek bir node'un dizisinde arıyordu.
+- **Nasıl Düzeltildi?:** Backend'e tüm informer tipleri için tombstone unwrap yardımcıları eklendi. Frontend `ShipyardClusterContext.jsx` içerisinde silme ve güncelleme olaylarında silinen `podId` kümedeki TÜM node'ların dizilerinden temizlenecek şekilde jenerik silme mekanizması kuruldu.
+- **Geleceğe Dönük Kural:** Silme (DELETE) event'leri, ADD/UPDATE ile aynı titizlikte uçtan uca (backend informer ➔ WebSocket ➔ frontend state) test edilmelidir. Sadece "nesne eklenince görünüyor mu" kontrol etmek yeterli değildir; "nesne silinince gerçekten kayboluyor mu" da HER yeni kaynak tipi eklendiğinde ayrı bir test senaryosu olmalıdır.
+
+---
+
 ### 🔴 [DERS-015] Kapsamlı Çakışma Önleme ve Tüm Hareket Eden/Konumlanan Nesne Tiplerinin Gözden Geçirilmesi
 - **Tarih:** 2026-08-03
 - **Sorumlu Agent:** `3d-graphics-agent` & `web-frontend-agent`

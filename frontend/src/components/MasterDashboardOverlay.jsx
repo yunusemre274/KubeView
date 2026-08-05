@@ -2,13 +2,8 @@ import React, { useState } from 'react'
 import { X, ShieldAlert, Cpu, Box, Radio, Zap, Anchor, Server, Activity, ArrowRight, Play, RefreshCw, FileText, Calendar, Clock, Shield, Key, Lock, AlertTriangle, CheckCircle2, TrendingUp } from 'lucide-react'
 import { ClusterTrendChart } from './3d/MetricTrendCharts'
 
-export default function MasterDashboardOverlay({ onClose, activeShips = [], onTriggerCronJob, metricsHistory = [] }) {
+export default function MasterDashboardOverlay({ onClose, activeShips = [], onTriggerCronJob, metricsHistory = [], deployments = [] }) {
   const [activeTab, setActiveTab] = useState('OVERVIEW')
-
-  const mockDeployments = [
-    { name: 'web-frontend-deploy', namespace: 'default', replicas: '2/2 Ready', image: 'nginx:alpine' },
-    { name: 'api-backend-deploy', namespace: 'default', replicas: '1/1 Ready', image: 'tersane/backend:v1.0.0' }
-  ]
 
   const mockCronJobs = [
     { name: 'db-backup-cronjob', namespace: 'default', schedule: '*/5 * * * *', last_run: '3 dk önce (Succeeded)', next_run: '2 dk sonra' },
@@ -147,18 +142,25 @@ export default function MasterDashboardOverlay({ onClose, activeShips = [], onTr
           {activeTab === 'DEPLOYMENTS' && (
             <div className="space-y-3 font-mono-tech text-[11px]">
               <div className="space-y-1.5">
-                <span className="text-purple-400 font-bold block text-[10px]">📦 AKTİF DEPLOYMENT VE İŞ YÜKLERİ:</span>
-                {mockDeployments.map((d) => (
-                  <div key={d.name} className="industrial-card p-2.5 rounded-lg border space-y-1">
-                    <div className="flex justify-between items-center text-[11px]">
-                      <strong className="text-purple-300">{d.name}</strong>
-                      <span className="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold text-[10px]">
-                        {d.replicas}
-                      </span>
+                <span className="text-purple-400 font-bold block text-[10px]">📦 AKTİF DEPLOYMENT VE İŞ YÜKLERİ ({deployments.length}):</span>
+                {deployments.length > 0 ? (
+                  deployments.map((d) => (
+                    <div key={d.name} className="industrial-card p-2.5 rounded-lg border space-y-1">
+                      <div className="flex justify-between items-center text-[11px]">
+                        <strong className="text-purple-300 font-bold">● {d.name}</strong>
+                        <span className="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold text-[10px] border border-purple-500/40">
+                          {d.replicas}
+                        </span>
+                      </div>
+                      <div className="text-[10px] text-slate-300 truncate">Namespace: <strong className="text-sky-400">{d.namespace}</strong></div>
+                      <div className="text-[10px] text-slate-400 truncate">İmaj: <code className="text-amber-300 font-mono">{d.image || 'nginx:latest'}</code> ({d.strategy || 'RollingUpdate'})</div>
                     </div>
-                    <div className="text-[10px] text-slate-400">Namespace: {d.namespace} | Image: {d.image}</div>
+                  ))
+                ) : (
+                  <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800 text-center text-[10px] text-slate-400 italic">
+                    Bu cluster'da tanımlı Deployment yok.
                   </div>
-                ))}
+                )}
               </div>
 
               {/* CRONJOB SEFER TARİFESİ */}
