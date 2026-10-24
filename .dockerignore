@@ -2,8 +2,14 @@
 .gitignore
 AGENTS/
 docs/
-backend/.gopath
-frontend/node_modules
-frontend/dist
+reference_harbor/
+backend/.gopath/
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/docs/
+frontend/playwright-report/
+bin/
 *.log
 *.ipc
+.DS_Store

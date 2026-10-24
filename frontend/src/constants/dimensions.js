@@ -155,3 +155,38 @@ export function checkBoundingBoxOverlap(boxA, boxB) {
     boxA.maxZ >= boxB.minZ
   )
 }
+
+// Harbor redesign: Y is up; vessels remain in water, all crane feet remain on concrete.
+export const HARBOR_DIMENSIONS = Object.freeze({
+  PIER_WIDTH: 22,
+  PIER_GAP: 80,
+  PIER_START_Z: -30,
+  PIER_MIN_END_Z: 100,
+  SHORE_START_Z: -92,
+  SHORE_END_Z: -30,
+  SHORE_MIN_X: -120,
+  SHORE_MAX_X: 120,
+  SHIP_WIDTH: 16,
+  SHIP_LENGTH: 72,
+  SHIP_DECK_Y: 4.2,
+  BERTH_FIRST_X: -54,
+  BERTH_FIRST_Z: 37,
+  BERTH_ROW_GAP: 88,
+  BERTH_COLUMNS: 4,
+  CONTAINER_WIDTH: 3.1,
+  CONTAINER_HEIGHT: 2.5,
+  CONTAINER_LENGTH: 6.1,
+  DECK_COLUMNS: 3,
+  DECK_ROWS: 6,
+  DECK_COL_GAP: 3.65,
+  DECK_ROW_GAP: 6.65,
+  CRANE_HEIGHT: 29,
+  CRANE_SPAN: 18,
+  CRANE_JIB: 43,
+  HANGAR_WIDTH: 35,
+  HANGAR_LENGTH: 43,
+  HANGAR_HEIGHT: 18,
+  MAX_TRANSFERS: 4,
+  TRANSFER_SECONDS: 2.1,
+  MAX_QUEUED_TRANSFERS: 16,
+})

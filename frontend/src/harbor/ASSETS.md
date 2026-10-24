@@ -1,0 +1,15 @@
+# Tersane harbor assets
+
+All harbor models and texture generators in this folder are original procedural source generated for this repository. They have no external model or texture runtime dependencies and are available under `LICENSE-assets.txt` (MIT). The reference images are composition references only: no logos, watermarks, image pixels, branded lettering or third-party models were copied.
+
+`assets.jsx` builds the tapered blue/red cargo hull, deck, white bridge, railings, window rows, mast, gantry structure, wheeled bogies, hoist, hangars and operations building. Repeated rectangular fittings and cargo are instanced; the hull is shared indexed geometry. `materials.js` deterministically generates concrete grain, corrugated metal and ripple normals in the browser. It uses no random samples. Static metal/concrete/water roughness are different.
+
+The only supplied font data is the locally installed Three.js `helvetiker_regular.typeface.json` (its notice is preserved locally in `LICENSE-font.txt`). Vite packages the font data; the application does not fetch a font from a CDN.
+
+Coordinates and bounds are in `constants/dimensions.js` (`HARBOR_DIMENSIONS`). `layout.test.js` verifies 50 berth hulls are clear of land, piers and one another, UID slot stability, pending area placement, canceled transfers, bounded queues and Ready/Running/Unknown distinctions. It does not claim GPU or frame-rate measurements.
+
+The world-first navigation uses permanent, selectable facilities from `WorldFacilities.jsx`. These are navigation affordances and remain present in an empty cluster; they never enter resource totals. The control tower, order hangar, calendar board, warehouse, configuration board, Secret safe, network station, lighthouse and identity office call `onOpenFacility` with a stable facility id. Gantry cranes call `scheduling`. Real Node radars select the same Node UID.
+
+Every regular, init (including restartable init sidecars) and ephemeral container has its own picking instance and raw `containerName`. `interactions.test.js` covers this mapping and the 5 CSS pixel camera-drag selection threshold. `canvas.__harbor.projectTargets()` returns projected diagnostic anchors; it does not trigger selection. Browser acceptance tests can click those canvas coordinates through the ordinary Three.js raycaster. Container anchors are projected from the actual top face so adjacent boxes do not hide their targets.
+
+Full viewport composition uses an approximately 39-degree elevation. Initial/snapshot state and the real resource store stay separate from visual transitions. Picking any object opens its panel without changing the camera; only explicit `focusRequest` or `focusFacilityRequest` actions move it. Outer gantry jibs now extend to local x=32, covering all deck columns.

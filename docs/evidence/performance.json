@@ -1,0 +1,1794 @@
+{
+  "date": "2026-10-24T14:49:54.362Z",
+  "browser": "156.0.8078.4",
+  "viewport": "1440x900 CSS px",
+  "headless": true,
+  "quality": "medium",
+  "environment": "Hardware:\n\n    Hardware Overview:\n\n      Model Name: MacBook Air\n      Model Identifier: Mac17,3\n      Model Number: Z1L8000H1TU/A\n      Chip: Apple M5\n      Total Number of Cores: 10 (4 Super and 6 Efficiency)\n      Memory: 32 GB\n      System Firmware Version: 20457.1.29\n      OS Loader Version: 20457.1.29      Activation Lock Status: Disabled\n\n",
+  "profiles": [
+    {
+      "nodes": 20,
+      "pods": 300,
+      "before": {
+        "frame": 3,
+        "calls": 382,
+        "triangles": 56284,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 0,
+          "containerTransitions": 0
+        }
+      },
+      "after": {
+        "frame": 3,
+        "calls": 382,
+        "triangles": 56284,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 0,
+          "containerTransitions": 0
+        }
+      },
+      "idleFrames": 0,
+      "heap": {
+        "usedSize": 15928424,
+        "totalSize": 17694720,
+        "embedderHeapUsedSize": 604456,
+        "backingStorageSize": 10212874
+      },
+      "render": {
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "renderedFrames": 33,
+        "elapsedMs": 3068.100000000093,
+        "observedRenderFPS": 10.755842378018643
+      },
+      "note": "Synthetic scene. Renderer FPS is measured during a three-second controlled camera motion; headless software renderer must not be claimed as hardware FPS."
+    },
+    {
+      "nodes": 50,
+      "pods": 1500,
+      "before": {
+        "frame": 3,
+        "calls": 382,
+        "triangles": 77884,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 50,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 1500,
+          "visiblePods": 600,
+          "nodeSlots": 50,
+          "podSlots": 600,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 0,
+          "containerTransitions": 0
+        }
+      },
+      "after": {
+        "frame": 3,
+        "calls": 382,
+        "triangles": 77884,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 50,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 1500,
+          "visiblePods": 600,
+          "nodeSlots": 50,
+          "podSlots": 600,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 0,
+          "containerTransitions": 0
+        }
+      },
+      "idleFrames": 0,
+      "heap": {
+        "usedSize": 17022380,
+        "totalSize": 18743296,
+        "embedderHeapUsedSize": 625488,
+        "backingStorageSize": 10339037
+      },
+      "render": {
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "renderedFrames": 25,
+        "elapsedMs": 3049.8000000002794,
+        "observedRenderFPS": 8.197258836644275
+      },
+      "note": "Synthetic scene. Renderer FPS is measured during a three-second controlled camera motion; headless software renderer must not be claimed as hardware FPS."
+    }
+  ],
+  "churn": [
+    {
+      "elapsedMs": 11160,
+      "cycle": 10,
+      "heap": {
+        "usedSize": 19581268,
+        "totalSize": 23199744,
+        "embedderHeapUsedSize": 1531928,
+        "backingStorageSize": 10362721
+      },
+      "stats": {
+        "frame": 81,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 23396,
+      "cycle": 20,
+      "heap": {
+        "usedSize": 19902080,
+        "totalSize": 22413312,
+        "embedderHeapUsedSize": 1388640,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 165,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 35825,
+      "cycle": 30,
+      "heap": {
+        "usedSize": 20075444,
+        "totalSize": 23199744,
+        "embedderHeapUsedSize": 1883216,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 243,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 61520,
+      "cycle": 40,
+      "heap": {
+        "usedSize": 19222988,
+        "totalSize": 25034752,
+        "embedderHeapUsedSize": 1787784,
+        "backingStorageSize": 10362769
+      },
+      "stats": {
+        "frame": 308,
+        "calls": 382,
+        "triangles": 56284,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 0,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 81708,
+      "cycle": 50,
+      "heap": {
+        "usedSize": 20535804,
+        "totalSize": 22937600,
+        "embedderHeapUsedSize": 1740504,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 374,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 94168,
+      "cycle": 60,
+      "heap": {
+        "usedSize": 20717568,
+        "totalSize": 23461888,
+        "embedderHeapUsedSize": 1771712,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 457,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 106399,
+      "cycle": 70,
+      "heap": {
+        "usedSize": 20980508,
+        "totalSize": 24510464,
+        "embedderHeapUsedSize": 2053600,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 539,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 118212,
+      "cycle": 80,
+      "heap": {
+        "usedSize": 21163912,
+        "totalSize": 24248320,
+        "embedderHeapUsedSize": 2178760,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 624,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 130069,
+      "cycle": 90,
+      "heap": {
+        "usedSize": 22043740,
+        "totalSize": 24772608,
+        "embedderHeapUsedSize": 2298160,
+        "backingStorageSize": 10363310
+      },
+      "stats": {
+        "frame": 710,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 142881,
+      "cycle": 100,
+      "heap": {
+        "usedSize": 21651116,
+        "totalSize": 24248320,
+        "embedderHeapUsedSize": 2403944,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 788,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 154794,
+      "cycle": 110,
+      "heap": {
+        "usedSize": 21784480,
+        "totalSize": 24772608,
+        "embedderHeapUsedSize": 2494552,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 874,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 167250,
+      "cycle": 120,
+      "heap": {
+        "usedSize": 21994000,
+        "totalSize": 25034752,
+        "embedderHeapUsedSize": 2615296,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 957,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 179056,
+      "cycle": 130,
+      "heap": {
+        "usedSize": 22120160,
+        "totalSize": 25296896,
+        "embedderHeapUsedSize": 3072264,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1041,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 190988,
+      "cycle": 140,
+      "heap": {
+        "usedSize": 22280064,
+        "totalSize": 25296896,
+        "embedderHeapUsedSize": 3092792,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1124,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 202773,
+      "cycle": 150,
+      "heap": {
+        "usedSize": 22406644,
+        "totalSize": 25559040,
+        "embedderHeapUsedSize": 3188792,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1209,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 215310,
+      "cycle": 160,
+      "heap": {
+        "usedSize": 22691740,
+        "totalSize": 25559040,
+        "embedderHeapUsedSize": 3351848,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1290,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 228482,
+      "cycle": 170,
+      "heap": {
+        "usedSize": 21625620,
+        "totalSize": 27394048,
+        "embedderHeapUsedSize": 3430088,
+        "backingStorageSize": 10362769
+      },
+      "stats": {
+        "frame": 1369,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 240752,
+      "cycle": 180,
+      "heap": {
+        "usedSize": 22904736,
+        "totalSize": 26083328,
+        "embedderHeapUsedSize": 3549608,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1452,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 253086,
+      "cycle": 190,
+      "heap": {
+        "usedSize": 23028772,
+        "totalSize": 26083328,
+        "embedderHeapUsedSize": 3692400,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1537,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 265279,
+      "cycle": 200,
+      "heap": {
+        "usedSize": 23124076,
+        "totalSize": 26083328,
+        "embedderHeapUsedSize": 3796520,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1620,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 277518,
+      "cycle": 210,
+      "heap": {
+        "usedSize": 23252104,
+        "totalSize": 26083328,
+        "embedderHeapUsedSize": 4003240,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1704,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 289472,
+      "cycle": 220,
+      "heap": {
+        "usedSize": 23350408,
+        "totalSize": 26869760,
+        "embedderHeapUsedSize": 4332640,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1790,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 301513,
+      "cycle": 230,
+      "heap": {
+        "usedSize": 23477744,
+        "totalSize": 26083328,
+        "embedderHeapUsedSize": 4264216,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1874,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 313830,
+      "cycle": 240,
+      "heap": {
+        "usedSize": 23591420,
+        "totalSize": 26083328,
+        "embedderHeapUsedSize": 4565056,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 1957,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 326419,
+      "cycle": 250,
+      "heap": {
+        "usedSize": 23721932,
+        "totalSize": 26869760,
+        "embedderHeapUsedSize": 4717584,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2041,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 338555,
+      "cycle": 260,
+      "heap": {
+        "usedSize": 22680604,
+        "totalSize": 28180480,
+        "embedderHeapUsedSize": 4653184,
+        "backingStorageSize": 10362769
+      },
+      "stats": {
+        "frame": 2124,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 350989,
+      "cycle": 270,
+      "heap": {
+        "usedSize": 23974880,
+        "totalSize": 26607616,
+        "embedderHeapUsedSize": 4904720,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2204,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 366873,
+      "cycle": 280,
+      "heap": {
+        "usedSize": 24032760,
+        "totalSize": 27131904,
+        "embedderHeapUsedSize": 5014360,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2275,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 379107,
+      "cycle": 290,
+      "heap": {
+        "usedSize": 24126776,
+        "totalSize": 27131904,
+        "embedderHeapUsedSize": 4979280,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2354,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 391001,
+      "cycle": 300,
+      "heap": {
+        "usedSize": 24211140,
+        "totalSize": 27131904,
+        "embedderHeapUsedSize": 5144792,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2439,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 402982,
+      "cycle": 310,
+      "heap": {
+        "usedSize": 24346564,
+        "totalSize": 27394048,
+        "embedderHeapUsedSize": 5709664,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2524,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 414937,
+      "cycle": 320,
+      "heap": {
+        "usedSize": 24462168,
+        "totalSize": 27394048,
+        "embedderHeapUsedSize": 5541152,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2609,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 427205,
+      "cycle": 330,
+      "heap": {
+        "usedSize": 24570388,
+        "totalSize": 27394048,
+        "embedderHeapUsedSize": 5730968,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2690,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 439714,
+      "cycle": 340,
+      "heap": {
+        "usedSize": 24661716,
+        "totalSize": 28180480,
+        "embedderHeapUsedSize": 5860856,
+        "backingStorageSize": 10362735
+      },
+      "stats": {
+        "frame": 2773,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 452136,
+      "cycle": 350,
+      "heap": {
+        "usedSize": 24286108,
+        "totalSize": 27131904,
+        "embedderHeapUsedSize": 5914840,
+        "backingStorageSize": 10362642
+      },
+      "stats": {
+        "frame": 2858,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 464766,
+      "cycle": 360,
+      "heap": {
+        "usedSize": 23733660,
+        "totalSize": 27656192,
+        "embedderHeapUsedSize": 5930752,
+        "backingStorageSize": 10362199
+      },
+      "stats": {
+        "frame": 2942,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 477678,
+      "cycle": 370,
+      "heap": {
+        "usedSize": 24409504,
+        "totalSize": 28180480,
+        "embedderHeapUsedSize": 6375088,
+        "backingStorageSize": 10362531
+      },
+      "stats": {
+        "frame": 3021,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 490523,
+      "cycle": 380,
+      "heap": {
+        "usedSize": 24938120,
+        "totalSize": 28704768,
+        "embedderHeapUsedSize": 6382560,
+        "backingStorageSize": 10362565
+      },
+      "stats": {
+        "frame": 3094,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 503733,
+      "cycle": 390,
+      "heap": {
+        "usedSize": 23918536,
+        "totalSize": 27656192,
+        "embedderHeapUsedSize": 6174368,
+        "backingStorageSize": 10362133
+      },
+      "stats": {
+        "frame": 3174,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 517037,
+      "cycle": 400,
+      "heap": {
+        "usedSize": 24611592,
+        "totalSize": 28442624,
+        "embedderHeapUsedSize": 6761536,
+        "backingStorageSize": 10362531
+      },
+      "stats": {
+        "frame": 3249,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 530213,
+      "cycle": 410,
+      "heap": {
+        "usedSize": 24722372,
+        "totalSize": 27656192,
+        "embedderHeapUsedSize": 6750872,
+        "backingStorageSize": 10362531
+      },
+      "stats": {
+        "frame": 3322,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 542766,
+      "cycle": 420,
+      "heap": {
+        "usedSize": 24806592,
+        "totalSize": 27394048,
+        "embedderHeapUsedSize": 6920824,
+        "backingStorageSize": 10362531
+      },
+      "stats": {
+        "frame": 3396,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 555367,
+      "cycle": 430,
+      "heap": {
+        "usedSize": 24260392,
+        "totalSize": 28442624,
+        "embedderHeapUsedSize": 6917792,
+        "backingStorageSize": 10362133
+      },
+      "stats": {
+        "frame": 3475,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 567829,
+      "cycle": 440,
+      "heap": {
+        "usedSize": 24989736,
+        "totalSize": 28180480,
+        "embedderHeapUsedSize": 7136536,
+        "backingStorageSize": 10362531
+      },
+      "stats": {
+        "frame": 3553,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 581248,
+      "cycle": 450,
+      "heap": {
+        "usedSize": 25063012,
+        "totalSize": 27394048,
+        "embedderHeapUsedSize": 7268624,
+        "backingStorageSize": 10362531
+      },
+      "stats": {
+        "frame": 3633,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 594639,
+      "cycle": 460,
+      "heap": {
+        "usedSize": 25660836,
+        "totalSize": 29491200,
+        "embedderHeapUsedSize": 7272304,
+        "backingStorageSize": 10362565
+      },
+      "stats": {
+        "frame": 3712,
+        "calls": 383,
+        "triangles": 56296,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 1,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "elapsedMs": 601542,
+      "cycle": 464,
+      "heap": {
+        "usedSize": 23463704,
+        "totalSize": 24510464,
+        "embedderHeapUsedSize": 6924688,
+        "backingStorageSize": 10235703
+      },
+      "stats": {
+        "frame": 3753,
+        "calls": 382,
+        "triangles": 56284,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 0,
+          "containerTransitions": 0
+        }
+      }
+    }
+  ],
+  "errors": []
+}

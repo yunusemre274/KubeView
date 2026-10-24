@@ -1,20 +1,15 @@
-# ROADMAP.md — Faz Zaman ve Durum Takibi
+# Tam ekran tersane dönüşümü
 
-Bu tablo, projenin canlı ilerleme durumunu gösterir. Tahmini süreler değil, **gerçekleşen durumlar** kaydedilir.
+2026-10-24 kararı: önceki dashboard yerleşimi geçersizdir. Aşağıdaki durum kod ve test kanıtını izler; tarihsel “tüm fazlar tamamlandı” ifadeleri kabul kanıtı değildir.
 
-> 🏆 **TEBRİKLER! TERSANE V1.0.0 STABLE RELEASE SÜRÜMÜ BAŞARIYLA TAMAMLANDI!**
+| Aşama | Durum | Somut çıktı / kalan doğrulama |
+|---|---|---|
+| A — Güncel kaynak/ref keşfi | Yapıldı | Mevcut API korundu; iki referans açıldı; UI-UX işlev matrisi |
+| B — Tam ekran dünya ve geçici pencereler | Uygulandı | Kalıcı sidebar/header/KPI/tablo yok; tesis ve Bul girişleri |
+| C — Merkezden gerçek dikey akış | Canlı doğrulandı | Create/dry-run/watch, gerçek yük raycast seçimi, log, scale/delete |
+| D — Gemiye hedefli Pod | Canlı doğrulandı | UID kontrolü, required/preferred/scheduler, gerçek assignment |
+| E — Diğer tesisler | Uygulandı | Storage/network/config/Secret/RBAC ve discovery katalogları |
+| F — Görsel kalite | Görsel doğrulandı | Chromium/WebKit ekranları açıldı; kontrol kulesi, gemi/vinç/hangar, tam viewport kamera |
+| G — Kabul, performans, dağıtım | Yerel kabul geçti; sınırlar açık | 21 tarayıcı testi geçti, 5 WebKit canlı mutasyon bilinçli atlandı; canlı video, 10 dk bellek döngüsü ve paketleme; harici ortam sınırları VALIDATION içinde |
 
-| Faz | Durum | Başlangıç | Bitiş | Sorumlu Agent(lar) | Not |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Faz 1-19: Core & Workload Scope** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-07-30 | Tüm Agent'lar | Backend, WS, 3D Canvas, 2D Dashboard, Ingress, HPA, PDB |
-| **Faz 20-27: Genişletmeler & Altyapı** | 🟢 **Tamamlandı** | 2026-07-30 | 2026-08-04 | `devops-agent`, `ui-ux-agent` | Logs, Secret, PV/PVC, Workload Types, RBAC, Trend, Kubeconfig Auto-heal |
-| **Faz 28: v1.0.0 Stable Release** | 🟢 **Tamamlandı** | 2026-08-05 | 2026-08-05 | Tüm Agent'lar | Regresyon Denetimi, Kapsam Karşılaştırma, v1.0.0 Git Tagging |
-
----
-
-## 📌 Lejant (Durum Simgeleri)
-- ⚪ **Bekliyor:** Henüz başlanmadı.
-- 🟡 **Bekliyor (Sıradaki):** Başlatılmak üzere otonom sıraya alındı.
-- 🔵 **Devam Ediyor:** Aktif geliştirme aşamasında.
-- 🟢 **Tamamlandı:** Tüm kabul kriterleri doğrulandı ve merge edildi.
-- 🔴 **Bloklandı:** Bir bağımlılık veya teknik engel nedeniyle durduruldu.
+Son kanıtlar ve dış yetenek sınırları [CAPABILITIES.md](CAPABILITIES.md) içinde tutulur.

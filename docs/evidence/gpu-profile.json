@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-24T15:07:52.790Z",
+  "browser": "156.0.8078.4",
+  "headless": false,
+  "viewport": "1440x900 CSS px",
+  "quality": "medium",
+  "profiles": [
+    {
+      "nodes": 20,
+      "pods": 300,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "renderedFrames": 302,
+      "elapsedMs": 5005.4000000003725,
+      "renderedFPS": 60.33483837455098,
+      "animationFrameP95Ms": 18.799999999813735,
+      "stats": {
+        "frame": 306,
+        "calls": 382,
+        "triangles": 56284,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 300,
+          "visiblePods": 300,
+          "nodeSlots": 20,
+          "podSlots": 300,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 0,
+          "containerTransitions": 0
+        }
+      }
+    },
+    {
+      "nodes": 50,
+      "pods": 1500,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "renderedFrames": 301,
+      "elapsedMs": 5001.5999999996275,
+      "renderedFPS": 60.18074216251248,
+      "animationFrameP95Ms": 18.700000000186265,
+      "stats": {
+        "frame": 303,
+        "calls": 382,
+        "triangles": 77884,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 20,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 50,
+          "visibleNodes": 20,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 1500,
+          "visiblePods": 600,
+          "nodeSlots": 50,
+          "podSlots": 600,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "exitGhosts": 0,
+          "containerTransitions": 0
+        }
+      }
+    }
+  ],
+  "note": "Synthetic scene, controlled camera movement. Metal requested; inspect actual renderer before describing hardware results."
+}

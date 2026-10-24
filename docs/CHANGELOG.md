@@ -68,3 +68,15 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 ### Düzeltilen Hatalar ve İyileştirmeler (ONBOARDING-AUDIT.md Referanslı)
 - **#1 Static File Server Handler (Kritik #1 Fix):** `backend/main.go` dosyasına `./public`, `/app/public` ve `../frontend/dist` dizinlerini dinleyen `http.FileServer` eklendi.
 - **#2 RBAC İzin Genişletmesi (Kritik #2 Fix):** `deploy/rbac.yaml` ve `charts/tersane/templates/rbac.yaml` manifestlerine tüm 3D izlenen kaynaklar için salt-okunur izinler eklendi.
+
+## [Unreleased] - 2026-10-24
+
+- Ana deneyim tam ekran etkileşimli liman olarak değiştirildi; kalıcı dashboard kabuğu kaldırıldı.
+- Merkez, vinç, depo, ağ, kasa ve diğer tesisler geçici gerçek kaynak pencerelerine bağlandı.
+- Gemi → Pod → container zinciri; tam container adıyla log/exec ve gerçek port-forward korundu.
+- Node hedefli oluşturmada scheduler affinity, client/server UID kontrolü ve kayıpsız yerleştirme birleştirme eklendi.
+- SSAR cluster scope, scale UID/RV yarış kontrolü ve snapshot sonrası gecikmiş callback koruması düzeltildi.
+- Canvas raycast, keyboard/dirty form, gerçek targeted scheduling ve boş dünya testleri eklendi. Son birleşik QA sonuçları tamamlanma iddiasından ayrı raporlanır.
+
+- Kabul: 39 frontend unit testi, 21 Chromium/WebKit browser testi geçti (5 WebKit tekrar mutasyonu bilinçli atlandı); gerçek kısıtlı ServiceAccount RBAC403, workerUnknown ve canlı yaşam döngüsü kaydı.
+- AppleM5 Metal headed Chromium kısa sentetik profillerde yaklaşık60FPS; 10dakika/464 çevrim churn raporu ve yazılım renderer ölçümleri ayrı kaydedildi.

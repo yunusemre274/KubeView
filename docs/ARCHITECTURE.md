@@ -1,54 +1,55 @@
-# ARCHITECTURE.md — Canlı 3D Liman Mimari Dokümantasyonu
+# Veri, işlem ve 3D mimarisi
 
-Projenin teknik bileşenleri, veri akışları ve rendering katmanları.
+## Çalışan katmanlar
 
----
+React 18 / R3F 8 / Drei 9 / Three 0.164 korunur. Vite 6.4.5 güvenlik düzeltmeleri için yükseltildi. Go client-go 0.30, dynamic client, typed logs/metrics ve discovery birlikte kullanılır. Frontend framework göçü yapılmadı.
 
-## 🏛️ Mimari Katmanlar
+1. `backend/pkg/server`: gerçek context seçimi, HTTP API, kimlik doğrulama, SSAR, dynamic informer ve WebSocket. Önceki `k8s`/`websocket` paketleri ana çalışma yolunda kullanılmaz; eski örnek log fallback’i kaldırıldı.
+2. `frontend/src/context/ShipyardClusterContext.jsx`: modül düzeyinde tek WebSocket yöneticisi. Kaynak değişiminde oturum epoch artırılır, eski callback/istek/socket reddedilir. UI yalnız ham nesneleri paylaşır.
+3. `frontend/src/data/resourceStore.js`: saf snapshot/delta reducer, UID kimliği, bounded 500 olay / 1 saat ve 241 metrik örneği. `resourceVersion` opaque dize olarak korunur.
+4. `frontend/src/App.jsx`: tam ekran dünya, ortak seçim/namespace ve geçici pencere akışı. `world/` tesis kaydı, bağlamsal merkez/katalog, nesne bulucu, ayarlar ve işlem gözlemcisini kapsar. Kalıcı dashboard/sidebar/split view yoktur. `workbench/` mevcut gerçek tabloları, ayrıntıları, formları, grafikleri, log ve terminal akışlarını korur.
+5. `frontend/src/harbor/`: liman yerleşimi, ortak prosedürel asset/materyal, UID slotları ve geçici animasyon koordinatörü. `components/ShipyardScene.jsx` yalnız eski import yolunun uyum köprüsüdür. Eski monolit ve kullanılmayan sahte paneller kaldırıldı.
+6. `frontend/src/data/demo.js`: açık kullanıcı seçimiyle çalışan deterministik fixture kaynağı. Gerçek API işlemleri bu modda engellenir.
 
-### 1. 3D WebGL Rendering Katmanı (Three.js & R3F)
-- `ShipyardScene.jsx`: Ana 3D canvas kapsayıcısı. `position: absolute; inset: 0; width: 100%; height: 100%;` (Unbroken height chain).
-- `CargoShip.jsx`: Worker Node gemileri. Devriye rotası (CatmullRomCurve3) üzerinde hareket eder.
-- `CargoContainer.jsx`: Pod paletleri. Gemi üstüne parent-child dönüşümüyle bağlıdır.
-- `WorkloadHelpers.jsx`: StatefulSet Sabit Numaralı Gemi (`StatefulSetShip`), DaemonSet Gemi Direği Anteni (`DaemonSetEquipment`), Job Görev Şalupası (`JobTaskBoatMesh`).
-- `ConfigMapAndSecretMesh.jsx`: ConfigMap (Sevkiyat Föyü Panosu) ve Secret (Kilitli Çelik Kasa) 3D nesneleri.
-- `StorageDepotMesh.jsx`: Karada gemilerden bağımsız duran 3D Kiralanmış Depo Ambarı (PV/PVC) ve mor/turkuaz bağlantı hattı.
+## Snapshot, watch ve resync
 
-### 2. Node Hareket Mantığı (Devriye Rotası Mimarisi)
-- **Sağlıklı Durum (Ready):** Her gemi Three.js `CatmullRomCurve3` kapalı eğrisi üzerinde `getPointAt(t)` ile yavaşça yol alır. Gemi yönü `getTangentAt(t)` ile otomatik hesaplanır.
-- **Anomali Durumu (NotReady / Fail):** Anomali tetiklendiğinde `t` zaman parametresi DONDURULUR (pause). Gemi bulunduğu koordinatta sabitlenir ve batan/alazlanan animasyon oynatılır.
+`GET /api/contexts` gerçek kubeconfig/in-cluster seçeneklerini döndürür; `KUBE_CONTEXT` sunucu başlangıç seçimini belirleyebilir. `/ws?context=...` bağlantısında context sabittir. Her bağlantı rastgele bir `generation` üretir. Dynamic informer listeleri ve store’ları senkronize edilir; `SNAPSHOT` gerçek ham kaynakları (Secret sanitize edilerek), hataları ve sağlık bilgisini taşır. İlk listeler yeni Pod animasyonu değildir. Sonrasında `RESOURCE_EVENT` ADD/UPDATE/DELETE taşır. Tombstone açılır; aynı resourceVersion UPDATE atlanır.
 
-### 3. HTML/CSS Overlay Katmanı & Tipografi Ölçeği
-- `Top Header Bar`: Screen Top fixed navbar (`#top-header-bar`, `z-9999 pointer-events-auto`).
-- `MasterDashboardOverlay.jsx`: Sağ taraf 420px dikey dark-glassmorphism Control Plane paneli (`z-45`), Sefer Tarifesi (CronJob Schedule) paneli ve RBAC Özet & Güvenlik Rozetleri paneli.
-- `info-panel-drawer`: Sağ taraf 360px dikey nesne müfettiş çekmecesi (`z-40`).
-- `HoverTooltipOverlay.jsx`: İmleç altı yüzen 3D nesne açıklama tooltip kutusu (`z-50`).
-- **Merkezi Tipografi Ölçeği (`index.css`):** Kök CSS custom properties (`--font-size-title-lg`, `--font-size-body`, `--font-size-label`, `--font-size-btn`) üzerinden tüm başlık, buton ve etiket boyutları compact oranlara küçültülmüştür.
+İstemci cluster+kind+UID kapsamını korur. Aynı namespace/ad yeni UID ise farklı yaşam döngüsüdür; gecikmiş eski UID silmesi yenisini etkilemez. Authoritative snapshot kaybolmuş kaynakları uzlaştırır. Backend kuyruğu bounded; overflow veya reflector hatası stale bildirimi ve yeniden bağlantı/snapshot gerektirir. Tarayıcı WS, Kubernetes erişimi, snapshot ve stale ayrı alanlardır. Son gerçek kaynak güncellemesi heartbeat ile değiştirilmez.
 
-### 4. Tek Paylaşılan Singleton WebSocket Yöneticisi & Provider Mimarisi (`ShipyardClusterContext.jsx`)
-- **Modül Seviyesi Singleton (`singletonManager`):** WebSocket bağlantı yöneticisi React bileşen ağacının dışında (module-level) instantiaten edilir. React StrictMode 2x mount etse dahi backend'e **EXACTLY 1 ADET CANLI WEBSOCKET BAĞLANTISI** açılır.
+Tarayıcı başına tek WS vardır; backend’de informer fabrikası bağlantı başına kurulur. Çok kullanıcılı kullanım için yetki kapsamlı ortak watch havuzu henüz uygulanmadı; 100 kullanıcı/çok büyük cluster verimliliği iddia edilmez.
 
-### 5. Sahne Yerleşim Mantığı (3D Bounding Dimensions & Tiered Stacking Grid Layout)
-- **Merkezi Boyut Sabitleri (`constants/dimensions.js`):** Tüm 3D nesnelerin fiziksel boyutları (genişlik, yükseklik, derinlik) ve aralık parametreleri sabitler olarak tanımlanmıştır.
-- **Dinamik Katmanlı Güverte İstifleme (`calculateContainerDeckPosition`):** Gemi güvertesindeki Pod konteynırları Y ekseninde dikey katmanlı (tier-based vertical stacking) istifleme algoritması ile yerleştirilir.
+## API ve mutasyon
 
-### 6. 3D Hover Tooltip & Anomali Hedefleme Motoru (v2.10.0)
-- **Merkezi Tooltip Sözlüğü (`constants/descriptions.js`):** Nesnelerin ne olduğunu 1 cümleyle anlatan `OBJECT_DESCRIPTIONS` sözlüğü tanımlanmıştır (Scheduler vinci, Ingress feneri, Kube-proxy istasyonu, Job şalupası, Secret kasası vb.).
-- **Dinamik Anomali Hedefleme:** Anomali simülasyonları canlı küme Pod/Node verilerini ve indekslerini dinamik hedefleyerek 3D duman/flam/patlama/batma animasyonlarını çalıştırır, kamerayı hedefe odaklayıp Olay Günlüğüne kaydeder.
+- `/api/discovery`: gerçek GVR/kind/namespace scope/API verbs.
+- `/api/resources`: discovery tabanlı list/get/POST create/PUT edit/DELETE. Dry-run Kubernetes API’de çalışır; PUT resourceVersion ve UID, DELETE preconditions kullanır.
+- `/api/capabilities`: SelfSubjectAccessReview, server read-only, scope ve subresource koşulları.
+- `/api/actions`: scale, restart, resources, cordon/uncordon, resize, CronJob, rollback, drain akışları. HPA sahipliği, controller strategy ve namespace kapsamı sunucuda da denetlenir.
+- `/api/logs`: ham Pod adı, namespace, container, tail/follow/previous/timestamps ile gerçek HTTP stream. Fallback başarı verisi yok.
+- `/api/metrics`: metrics.k8s.io gerçek Node/Pod kullanım değerleri. Uzun geçmiş deposu değildir; frontend oturum belleğinde 15 saniyelik örnekler tutar.
+- `/api/exec`: gerçek pods/exec WS/SPDY; tarayıcı terminali non-TTY pipe olarak açıkça etiketlidir.
+- `/api/portforwards`, `/api/portforward/<id>/`: seçili Pod UID ve portla sınırlı, süreli gerçek SPDY tüneli; HTTP önizleme ve ham TCP WebSocket. Genel bir host/shell proxy değildir.
+- `/api/openapi`: cluster şemasına erişim; gelişmiş şema tamamlama editörü henüz yok.
+- `/api/secrets/reveal`: ayrı ve yetkili, amaçlı Secret okuma. Toplu state içinde değer yok; maskelenmiş veri editörle geri yazılmaz.
 
-### 7. Gemi Yerleşim ve Çakışma Önleme (Ship Placement & Collision Avoidance)
-- **Fiziksel Gemi Boyutları (`SHIP_DIMENSIONS`):** Her geminin genişlik (9.0m), yükseklik (1.8m) ve derinlik (28.0m) değerleri `dimensions.js` içinde tanımlıdır.
-- **Liman-Gemi Güvenlik Sınırı (`HARBOR_DOCK_BOUNDS`):** Kara rıhtımı ve liman binalarının kapladığı alan (`x < 4.0`) koruma altına alınmış, tüm gemi rotaları ve yanaşma noktaları açık denize (`x >= 8.0`) taşınmıştır.
-- **Faz Farklı Açık Deniz Devriye Algoritması (`calculateShipPatrolPosition`):** Açık deniz kapalı devriye rotasında çalışan `N` adet gemiye `phaseOffset = (shipIndex / totalShips) + timeOffset` faz farkı atanır. Bu sayede 1, 2, 5 veya 10 gemi olduğunda gemiler kendi aralarında kusursuz eşit mesafeyi korur ve **çakışma sıfırlanır**.
-- **Yanaşma Slot Algoritması (`calculateShipDockPosition`):** Demirli veya sabit gemiler önceden hesaplanmış dinamik su slotlarına (`x=8, x=28, z spacing=34.0`) yerleştirilir.
+İşlem yanıtındaki `operation.id` API kabulünü temsil eder. UI bu kaydı seçili UID / generation / replica hedefiyle ilişkilendirir ve watch sonucunu bekler. Controller gecikmesi, finalizer, kısmi hata ve 409 ayrı sonuçtur. Tam kalıcı backend operasyon günlüğü yoktur; UI işlem takibi oturumluk ve sınırlıdır.
 
-### 8. Bilgi Kartı Tasarım Şablonu (Info Card Design Template)
-- **Ortak İskelet Bileşeni (`InfoCard.jsx`):** Header (Başlık, Alt Başlık, Nesne Tipi ve Renkli Durum Rozeti) ➔ Bölüm Grupları (`InfoCardSection`, renkli alt-başlık ve dikey boşluklar) ➔ İki Sütunlu Hizalanmış Etiket-Değer Satırları (`InfoCardRow`, `truncate` ve hover tooltip) ➔ En Altta Aksiyon Butonları (`InfoCardSection` aksiyon alanı).
-- **Taşma ve Scroll Standardı:** Kart içerikleri `max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar` kapsayıcısı ile drawer içinde bağımsız scroll eder, ekran düzenini asla bozmaz.
+## Node hedefleme ve bağlamsal seçim
 
----
+Tesisler uygulama girişleridir; Kubernetes nesnesi gibi UID üretmezler. Gerçek gemi/palet/container seçimleri aynı normalized store’u kullanır. Container instance index yalnız o çizimde UID + ham container adına eşlenir. Bulucu, fiziksel tıklama ve pencereler aynı onSelect/onAction yoluna bağlanır. DOM overlay pointer/wheel olayı canvas’a geçmez; drag eşiği yanlış seçimi önler.
 
-## 🔄 Veri Akış Şeması
-```text
-Kube API / State -> WebSocket Sync -> Singleton Manager -> React Context -> R3F Canvas & Hover Overlay
-```
+Gemiden create, mevcut nodeSelector’ı ve NodeAffinity OR dallarını koruyarak her required dala singleton `metadata.name` matchFields koşulunu AND olarak ekler. Preferred ayrı ağırlıklı tercih, scheduler modu yalnız formun kendi eklediği kuralı kaldırır. `spec.nodeName` yazılmaz. Client ve backend seçili Node’un güncel UID’sini doğrular; çelişki sessizce silinmez. Kubernetes affinity Node adına bağlandığından API kabulünden sonraki Node recreation iki kaynak arasında atomik olarak engellenemez; gözlenen Node kimliği ayrıca izlenir.
+
+## Animasyon sınırı
+
+Kanonik state transfer süresini beklemez. `HarborSlots` yerleşimi UID ile korur; namespace filtresi ve sıralama kaynağı yerinden oynatmaz. `TransferCoordinator` sadece gözlenen nodeName değişimine veya açıkça görsel varışa tepki verir. İlk snapshot kurulumu, bounded kuyruk, fiziksel vinç başına bir yük, iptal, context reset ve reduced motion saf modüllerde sınanır. Node Unknown iletişim durumudur; backend kopması gemileri batırmaz.
+
+Canvas demand rendering kullanır; aktif geçişler invalidate eder, dekoratif su idle render üretmez. Container/fitting instancing, ortak geometri/materyal, kaliteye bağlı DPR/gölge vardır. Ayrıntı overlay’i kamerayı mount etmez; açık odak eylemi haricinde kamera kaçırılmaz.
+
+## Erişim modeli
+
+Varsayılan `READ_ONLY=true`, loopback bind. Yerel tek kullanıcı kubeconfig kimliğiyle çalışır. Non-loopback bind için `API_TOKEN` zorunlu; HTTP bearer veya HttpOnly SameSite oturum cookie’si kullanılır. WebSocket ve HTTP same-origin kontrolü uygular. Shared kullanım aynı gateway Kubernetes kimliğini paylaşır; per-user Kubernetes impersonation yoktur. Dolayısıyla internet üzerinde açık çok kiracılı admin proxy olarak dağıtılmamalıdır. Helm varsayılan okuyucu RBAC; yazma ayrı opt-in ve namespace sınırlıdır. Kubeconfig/token tarayıcıya aktarılmaz.
+
+## Sunum
+
+Vite geliştirmede `/api` ve `/ws` aynı origin proxy eder; backend portu `API_TARGET` ile değiştirilebilir. Production frontend `STATIC_DIR`, `/app/public` veya repo build yolundan aynı Go sunucusunda sunulur. Binary ve statik dosyalar ayrı dağıtım parçalarıdır; gömülü asset’li tek binary iddiası yoktur.

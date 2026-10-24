@@ -1,27 +1,13 @@
-# PROJECT.md — Proje Vizyonu ve Genişletilmiş Kapsam
+# KubeView / Tersane ürün sözleşmesi
 
-## 📌 Proje Adı: Tersane (K8s 3D Visualizer & Interactive Operator)
+KubeView, Kubernetes kümesini tam ekran etkileşimli 3D bir tersane olarak sunar. Ana deneyim dünyanın kendisidir; kalıcı dashboard, sidebar, üst uygulama barı, KPI kartları veya açık alt tablo bulunmaz.
 
-Tersane, Kubernetes kümelerini 3D canlı bir liman, yük gemileri, kargo konteynırları ve kontrol kulesi metaforuyla temsil eden ve güvenli müdahale imkanı sunan etkileşimli bir müfettiş platformudur.
+Kullanıcı merkezden iş yükü yönetimine, gemiden gerçek Node’a, palet/container kutusundan Pod ve içeriğine geçer. Tablolar, grafikler, YAML, log ve formlar ilgili nesnenin geçici penceresinde yer alır. Pencereyi kapatmak aynı kamera ve seçim bağlamıyla dünyaya döndürür. Nesne bulucu aynı kaynak ve eylem modeline klavye/ekran okuyucu erişimi sağlar.
 
----
+Gerçek Kubernetes state’i, geçici görsel state’ten ayrıdır. UID, raw namespace/name, context generation, snapshot/relist/delete uzlaştırması ve server RBAC korunur. API kabulü ile gözlenen controller sonucu ayrıdır. Rastgele metrik, sessiz mock log veya boş kümede otomatik örnek Node yoktur. Demo yalnız açık seçimle ve belirgin etiketle çalışır.
 
-## 🎯 Projenin Temel Sütunları
+Yerel/test denemeleri yalnız `kubeview-test / kubeview-qa` içindir. Node hedefleme scheduler’ı atlamaz; namespace veya workload replica sayısı yeni Node sayısı olarak yorumlanmaz. Helm yaşam döngüsü, VM sağlama ve trafik telemetrisi ayrı entegrasyonlardır.
 
-1. **3D Canlı Liman Simülasyonu:**
-   - Worker Node'lar ➔ Yük Gemileri (Filo)
-   - Pod'lar ➔ Kargo Konteynırları
-   - Control Plane ➔ Yönetim Binası & Kontrol Kulesi
-   - Kube-Scheduler ➔ Sarı Gantry Vinç
-   - Kube-proxy ➔ Ağ Yönlendirme Binası ve Işıklı Parçacık Akış Hatları
-2. **Güvenli Müdahale ve Mutasyonlar (v1.6+):**
-   - Deployment Scale (replica artırma/azaltma)
-   - Pod Silme ve Yeniden Başlatma
-   - Global "Salt İzleme Modu" kilidi ve onay modalları
-3. **Olay Günlüğü & Zaman Geçişi (In-Memory Ring Buffer):**
-   - Son 1 saatin olay günlüğü (Event Log).
-   - Olay üzerine tıklandığında nesneye kamera odağı ve tek seferlik dramatize animasyon (sürtünme, duman, patlama, denize atma).
-4. **Anomali ve Alarm Dramatizasyonları:**
-   - `CrashLoopBackOff`, `OOMKilled`, `ImagePullBackOff`, `Pending`, `Evicted`, `Node NotReady`, `Self-heal`, `Readiness fail` durumlarında anında ve olay günlüğünden tetiklenebilen 3D görsel efektler.
-5. **Genişletilmiş K8s Nesne Seti (`METAPHOR.md`):**
-   - Ingress, NetworkPolicy, ResourceQuota, HPA, PDB, Taints/Tolerations, Node Affinity, ServiceAccount, RBAC, EndpointSlice, Rolling Update, CRD/Operator, Helm Release.
+Görsel hedef: referanslardaki bağlı kara ve paralel beton iskeleler, su havuzları, okunur gemi silueti, portal vinç mekaniği, hangar ritmi ve ölçülü gün ışığı. Marka/filigran kopyalanmaz. Performans hedefleri ölçülmüş başarı yerine raporlanan koşullara göre değerlendirilir.
+
+2026-10-24 kararı önceki dashboard yerleşim talimatlarını geçersiz kılar. Tarihsel belgelerdeki “bütün fazlar tamamlandı” iddiaları güncel özellik kanıtı değildir.

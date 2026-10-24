@@ -52,3 +52,13 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 - **Sorumlu Agent:** `3d-graphics-agent`
 - **Ne Yanlış Gitti?:** Pod konteynırları ve karadaki liman yapıları sabit/tahmini koordinatlarla yerleştirildiği için nesneler iç içe geçiyordu.
 - **Nasıl Düzeltildi?:** `constants/dimensions.js` ile merkezi boyut sabitleri ve `calculateContainerDeckPosition` dikey katmanlama (tier-based grid) algoritması kuruldu.
+
+## 2026-10-24 — Dünya etkileşimi ve doğrulama
+
+- CSS selector listesinde `[data-autofocus],button,input` öncelik belirtmez; DOM’daki ilk eşleşmeyi seçer. Bulucu odak hedefi ayrı sorguyla önce seçilmelidir.
+- Container üst merkezinin ekrana projeksiyonu, tıklanabilir olduğunun kanıtı değildir. Gerçek vinç kirişi/trolley bu noktayı örtebilir; raycast ile görünür yüzey ve parked crane mekaniği doğrulanmalıdır.
+- Form stepper içindeki label, ilk button’a bağlanabilir. Numeric input’un erişilebilir adı ayrıca doğrulanmalıdır.
+- Mutasyonun API tarafından kabul edilmesi gözlenen sonuç değildir; UI ve test bekleyişi aynı UID/generation/replica üzerinden kurulmalıdır.
+
+- Dünya üzerindeki bildirim rozetinin yalnız z-index'ini artırmak yeterli değildir: Node paneli ile aynı köşedeki denetim tıklanamaz kalabilir. Panel açıkken rozeti boş köşeye taşı; alt sheet'te üstte tut.
+- WebGL kaybı gerçek WEBGL_lose_context ile iki tarayıcıda sınandı; semantik Bul → aynı Node paneli yolu GPU'dan bağımsız kalmalı.

@@ -54,3 +54,11 @@ Projedeki teknik seçimlerin meşru gerekçeleri mevcuttur.
   3. Kubeconfig okunamama hataları (`ErrKubeconfigUnreadable`) ile ağ bağlantı hataları net biçimde ayrıştırılır.
   4. Durum WebSocket üzerinden UI'ya iletilir.
 - **Sonuç:** Kullanıcı müdahalesi gerektirmeyen self-healing K8s bağlantı altyapısı kurulmuştur.
+
+### [ADR-026] Tam ekran dünya birincil arayüzdür
+- **Tarih:** 2026-10-24
+- **Durum:** Kullanıcının kesin ürün kararı; önceki dashboard yerleşimini geçersiz kılar.
+- Tek tam viewport R3F canvas korunur. Sidebar, header bar, KPI ve sürekli kaynak tablosu kaldırılır. Tesis/Node/Pod etkileşimi geçici DOM penceresi açar; kapatma kamerayı yeniden kurmaz.
+- Mevcut gerçek API/capability/form bileşenleri korunur. Sabit tesisler uygulama girişidir; gerçek kaynak sayılmaz. Bulucu aynı kayıt ve eylemleri semantik olarak açar.
+- Node hedeflemede `metadata.name` nodeAffinity, Node UID ön kontrolü ve required OR-dallarına AND eklenmesi kullanılır; `spec.nodeName` ile scheduler atlanmaz.
+- Önceki salt-okunur güvenlik ADR’si varsayılan mod için geçerlidir; kullanıcı kapsamındaki gerçek yönetim, açık sunucu opt-in’i ve her istekte RBAC ile etkinleşir. Bu, genel admin/shell proxy yetkisi değildir.

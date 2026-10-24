@@ -53,3 +53,17 @@ export const OBJECT_DESCRIPTIONS = {
     description: 'DaemonSet — Tüm Worker Node gemilerinin direğinde otomatik çalışan arka plan izleme ekipmanı.'
   }
 }
+
+// The harbor's fixtures describe the visual metaphor, never invented Kubernetes resources.
+Object.assign(OBJECT_DESCRIPTIONS, {
+  HARBOR_PIER: { title: 'Beton iskele', description: 'Node gemilerine erişen, vinç raylarını taşıyan tersane iskelesi. Dekoratif tesis öğesidir.' },
+  HARBOR_HANGAR: { title: 'Endüstriyel hangar', description: 'Tersanenin kara tarafındaki oluklu metal çalışma hangarı. Tek başına Kubernetes kaynağı sayılmaz.' },
+  HARBOR_PENDING: { title: 'Pod bekleme alanı', description: 'Henüz bir Node ataması gözlenmeyen Pod kaynaklarının rıhtımdaki geçici yeri.' },
+})
+
+Object.assign(OBJECT_DESCRIPTIONS, {
+  HARBOR_CENTER: {title:'Liman yönetimi',description:'Kontrol kulesi; gerçek cluster, iş yükü ve operasyon pencerelerini açar.'},
+  HARBOR_WORKLOADS: {title:'İş yükleri hangarı',description:'Deployment, StatefulSet, DaemonSet ve Pod siparişlerinin gerçek kaynak penceresi.'},
+  HARBOR_CALENDAR: {title:'Sefer takvimi',description:'Gerçek Job ve CronJob görevlerini ve zamanlamalarını açar.'},
+  HARBOR_IDENTITY: {title:'Personel ve kimlik',description:'ServiceAccount ve RBAC kaynaklarını, gerçek yetki ve bağlarını inceleme ofisi.'},
+})

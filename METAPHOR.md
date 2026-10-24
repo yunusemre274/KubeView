@@ -1,31 +1,27 @@
-# METAPHOR.md — Kubernetes & Tersane Kavram-Nesne Eşleştirme Rehberi
+# Kubernetes ↔ Tersane
 
-Bu belge, Kubernetes bileşenlerinin Tersane 3D simülasyonundaki tam görsel ve davranışsal karşılıklarını tanımlayan **tek resmi referans tablosudur**.
+Tersane uygulamanın tam ekran arayüzüdür. Sabit tesisler, kaynak olmasa da açıkça tanımlı uygulama girişleridir; gerçek Kubernetes toplamına eklenmez. Kaynak kimliği cluster + GVR/kind + UID, API adresi ham namespace/name’dir.
 
----
+| Dünya nesnesi | Gerçek anlamı | Tıklama |
+|---|---|---|
+| Liman bütünü | Seçili cluster | Küçük bağlantı rozeti context/kapsamı açar |
+| Merkez ve kontrol kulesi | Cluster yönetimi / control-plane işlevleri | Geçici Liman Yönetim Merkezi |
+| Kargo gemisi | Gerçek Node; control-plane Node da dahildir | O Node’un koşulları, Pod’ları ve işlemleri |
+| Palet / yük grubu | Pod UID | Pod ve container içeriği |
+| Grup içindeki kutu | Adıyla tanımlı gerçek container | Doğru app/init/sidecar/ephemeral container |
+| Sarı / pas kırmızısı vinç | Gözlenen scheduling ve yükleme | Pending yükler ve gerçek olay gerekçeleri |
+| Sefer panosu / ana hangar | Workload yönetimi | Deployment, StatefulSet, DaemonSet, ReplicaSet, HPA/PDB |
+| Takvim panosu | Job / CronJob | Zamanlama, suspend/resume ve run-now |
+| Depo / ambar | PV ve depolama yönetimi | PVC tahsisleri, PV ve StorageClass |
+| Talimat panosu | ConfigMap ve yapılandırma | ConfigMap, namespace, quota/limit |
+| Kilitli kasa | Secret | Metadata; ayrı yetkili içerik akışı |
+| Ağ tesisi | Service / EndpointSlice / NetworkPolicy | Gerçek selector ve endpoint ilişkileri |
+| Giriş feneri | Ingress ve kurulu Gateway API | Discovery tabanlı dış erişim kaynakları |
+| Personel bölümü | ServiceAccount / Role / Binding | Gerçek kural ve özne ilişkileri |
+| Gemi radarı | Aynı Node/kubelet gözlemi | Aynı Node UID’sinin sağlık bilgileri |
 
-## ⚓ Temel ve Genişletilmiş Kavram Tablosu
+Deployment veya StatefulSet replica’ları yeni gemi üretmez. StatefulSet ordinal kimliği gerçek Pod yükündedir; DaemonSet Node’lar üzerinde çalışan gerçek Pod’larla ilişkilidir. Namespace farklı gemilere yayılabilir; fiziksel olarak tek geminin ambarı değildir.
 
-| Kubernetes Kavramı | Tersanedeki Karşılığı | 3D Sahne Temsili & Görsel Davranış | Faz |
-|---|---|---|---|
-| **Cluster (Küme)** | **Tersane Havzası / Liman Bütünü** | Tüm deniz, rıhtım, liman binaları mevkileri | Faz 3 |
-| **Worker Node** | **Kargo Gemisi (Filo Üyesi)** | Rıhtıma yanaşan, konteynır (Pod) taşıyan ve vinçle yüklenen yük gemisi | Faz 3 |
-| **Control Plane (Master Node)** | **Yönetim Binası & Kontrol Kulesi** | Kırmızı çatılı, kuleli ve dönebilen radar sistemi olan ana kontrol binası | Faz 9 |
-| **Pod / Container** | **Kargo Konteynırı (Palet)** | Gemi güvertesinde veya karada üst üste dizili renkli çelik konteynır kutusu | Faz 3 |
-| **Standalone Pod** | **Bağımsız Palet (Tekli Serbest Yük)** | Herhangi bir Sefer Sipariş Kartı (Deployment/StatefulSet) sahibi olmayan, doğrudan rıhtıma bırakılmış bağımsız konteynır | Faz 32 |
-| **Deployment** | **Sefer Sipariş Kartı / Filo Siparişi** | Aynı tipteki gemi ve konteynır gruplarının toplu üretim ve yükleme emri | Faz 6 |
-| **StatefulSet** | **Numaralı Sabit Gemi Filosu** | Limanda sabit demirli, devriye yapmayan, üzerinde `#0`, `#1` sıra numarası rozeti olan gemiler | Faz 24 |
-| **DaemonSet** | **Gemi Direği Ekipmanı** | Her Worker Node gemisinin direğinde otomatik olarak beliren 3D dönen anten/fener ikonu | Faz 24 |
-| **Job** | **Geçici Görev Şalupası** | Limanda belirip işini yapan, tamamlanınca yumuşakça süzülen 3D görev teknesi | Faz 24 |
-| **CronJob** | **Sefer Tarifesi & Zamanlayıcı** | Yönetim Binası Sefer Tarifesi tablosundaki saat zamanlaması ve sahnede Job üreten zamanlayıcı | Faz 24 |
-| **ServiceAccount** | **Gemi Adamı / Mürettebat Kimlik Kartı** | Pod müfettiş kartında tıklanabilir `🪪 KİMLİK KARTI`, bağlı olduğu Role/Binding ilişkisi | Faz 25 |
-| **Role / ClusterRole** | **Yetki Rozeti & İzin Listesi** | Namespace veya küme genelinde tanımlı izinler tablosu (`Resource` ➔ `Allowed Verbs`) | Faz 25 |
-| **Metrik Trend Grafiği** | **Gemi Yük & Seyir Grafiği** | Node kartında mini sparkline çizelgeleri ve detaylı zaman serisi trend modalı | Faz 26 |
-| **ConfigMap** | **Sevkiyat Föyü / Talimat Panosu** | Rıhtımda dikili, üzeri iğneli talimat kağıtlarıyla dolu tahta/çelik pano (tüm içerik açık) | Faz 22 |
-| **Secret** | **Kilitli Emniyet Kasası** | Rıhtımda sabitlenmiş, altın kilitli ve sinyal fenerli çelik kasa (sadece key ismi, değerler gizli) | Faz 22 |
-| **PersistentVolumeClaim (PVC)** | **Depo Tahsis Sözleşmesi** | Kiralanmış depolama alanının istenen kapasite (10Gi) ve erişim modları belgesi | Faz 23 |
-| **PersistentVolume (PV)** | **Kiralanmış Depo Ambarı Yapısı** | Karada gemilerden bağımsız duran, çelik çatılı, 3D kapasite rozetli sanayi ambarı | Faz 23 |
-| **Service (ClusterIP / NodePort)** | **Liman Danışma & Ağ Yönlendirme Binası** | Kube-proxy sinyal fenerli ağ binası ve yönlendirme ışık kanalları | Faz 10 |
-| **Kubelet** | **Gemi Direğindeki Dönen Radar / Dümenci** | Gemi güvertesinde sürekli dönen ve node sağlığını bildiren radar | Faz 15 |
-| **kube-scheduler** | **Sarı Liman Gantry Vinci** | Konteynırları karadan gemilere sevk eden ve yükleme kararı veren vinç | Faz 13 |
-| **Ingress / Gateway API** | **Uluslararası Giriş Rıhtımı & Fener** | Liman ağzındaki deniz feneri mevkii | Faz 18 |
+Gemiden oluşturma, seçilen Node’a zorunlu veya tercih edilen affinity ekleyebilir. `spec.nodeName` ile scheduler atlanmaz. Merkezden oluşturma scheduler seçimini varsayılan bırakır. Gerçek nodeName gözlenmeden yük gemiye taşınmaz. Animasyon hiçbir kaynak veya işlem başarısı üretmez.
+
+Tarihsel “numaralı StatefulSet gemi filosu”, “namespace = gemi ambarı” ve kalıcı dashboard eşleştirmeleri 2026-10-24 ürün kararıyla geçersizdir.

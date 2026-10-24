@@ -13,3 +13,10 @@ bin/
 # Git IPC sockets & OS
 *.ipc
 .DS_Store
+
+# Local browser QA scratch artifacts
+frontend/test-results/
+frontend/playwright-report/
+frontend/docs/
+docs/evidence/browser-artifacts/
+docs/evidence/world/recording-temp/
