@@ -80,3 +80,5 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 
 - Kabul: 39 frontend unit testi, 21 Chromium/WebKit browser testi geçti (5 WebKit tekrar mutasyonu bilinçli atlandı); gerçek kısıtlı ServiceAccount RBAC403, workerUnknown ve canlı yaşam döngüsü kaydı.
 - AppleM5 Metal headed Chromium kısa sentetik profillerde yaklaşık60FPS; 10dakika/464 çevrim churn raporu ve yazılım renderer ölçümleri ayrı kaydedildi.
+
+- Gemi formunda Pod/Deployment tür seçimi görünür; tür değiştirirken Pod spec ve üretilen affinity korunur, yinelenmez. Altı Chromium workbench regresyonu tekrar geçti.

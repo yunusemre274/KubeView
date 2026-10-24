@@ -473,9 +473,11 @@ export default function ResourceForms({
     setKind(value);
     let next = template(value, object.metadata?.namespace || namespace);
     next.metadata.name = object.metadata?.name || "";
+    const previousSpec = podSpec(object), nextSpec = podSpec(next);
+    if (previousSpec && nextSpec) Object.assign(nextSpec, cloneResource(previousSpec));
     if (targetNode && ["Pod", "Deployment", "Job", "CronJob"].includes(value)) {
       try {
-        const placed = applyPlacement(next, targetNode, placementMode);
+        const placed = applyPlacement(next, targetNode, placementMode, previousSpec && nextSpec ? placementProvenance : null);
         next = placed.object;
         setPlacementProvenance(placed.provenance);
       } catch (e) {
@@ -1026,9 +1028,10 @@ export default function ResourceForms({
             {(isCreate || isEdit) && (
               <>
                 <div className="form-topline">
-                  {isCreate && !targetNode ? (
+                  {isCreate ? (
                     <Field label="Kaynak türü">
                       <select
+                        aria-label="Kaynak türü"
                         value={kind}
                         onChange={(e) => changeKind(e.target.value)}
                       >

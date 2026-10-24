@@ -39,6 +39,8 @@ Bu yazılım renderer değerleri donanım performansını temsil etmez. Ek olara
 
 Canlı kayıt sırasında WebSocket mesajının alınması → parse/store güncellemesi: 31 örnek, p50 **0,2 ms**, p95 **1,8 ms**, max **2,2 ms**. Bu, Kubernetes algılama/planlama gecikmesi veya React paint süresi değildir. Go RSS ayrı tek zaman örneğinde yaklaşık **57,9 MiB** idi; bir trend iddiası değildir. Tarayıcı toplam proses belleği ve GPU byte belleği ayrıca ölçülmedi.
 
+Son form düzeltmesinden sonra Chromium workbench paketinin **6 testi yeniden geçti**: gemi formunda Pod → Deployment → Pod geçişi, ad/image/CPU/bellek ve tek required affinity kuralını korudu; devamındaki gerçek Pod oluşturma/scheduling ve UID değişimi reddi geçti. Seçici [görüntüsü](evidence/world/ship-kind-selector.png). Güncellenen production ve Docker build tekrar geçti.
+
 ## Paketleme ve açık eksikler
 
 Temiz `npm ci` + Vite production build + Go binary build, Go test/race/vet, Helm lint/render, Docker build uygulanır. Statik frontend binary içine gömülü değildir; Docker’da birlikte taşınır. Same-origin HTTP/WS ve configurable Vite proxy kullanılır; sabit 8000 portlu log URL’si yoktur.

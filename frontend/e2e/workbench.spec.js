@@ -273,10 +273,19 @@ test("dedicated namespace: ship Pod form validates fresh UID twice and schedules
     await form.getByPlaceholder("Örn. 1", { exact: true }).fill("100m");
     await form.getByPlaceholder("Örn. 128Mi").fill("16Mi");
     await form.getByPlaceholder("Örn. 512Mi").fill("64Mi");
+    for (const kind of ["Deployment", "Pod"]) {
+      await form.getByLabel("Kaynak türü", { exact: true }).selectOption(kind);
+      await expect(form.getByLabel("Kaynak adı", { exact: true })).toHaveValue(name);
+      await expect(form.getByLabel("Ana container image")).toHaveValue("nginx:1.27-alpine");
+      await expect(form.getByPlaceholder("Örn. 250m")).toHaveValue("20m");
+      await expect(form.getByLabel("Pod yerleşimi", { exact: true })).toHaveValue("required");
+    }
+    await page.screenshot({path:"../docs/evidence/world/ship-kind-selector.png"});
     await form.getByRole("button", { name: "YAML", exact: true }).click();
     const yaml = await form
       .getByLabel("Kaynak YAML", { exact: true })
       .inputValue();
+    expect(yaml.match(/key: metadata.name/g)).toHaveLength(1);
     expect(yaml).toContain("key: metadata.name");
     expect(yaml).toContain(node.metadata.name);
     expect(yaml).not.toContain("nodeName:");
