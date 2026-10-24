@@ -2,6 +2,7 @@ import React, {
   Suspense,
   lazy,
   useEffect,
+  useCallback,
   useMemo,
   useRef,
   useState,
@@ -17,6 +18,8 @@ import {
   AlertTriangle,
   Focus,
   ArrowUpRight,
+  Pause,
+  Play,
 } from "lucide-react";
 import { useClusterConnection } from "./context/ShipyardClusterContext";
 import { hasProblem } from "./data/resourceStore";
@@ -32,6 +35,18 @@ import {
 } from "./world/UtilityWindows";
 import { FACILITIES, facilityFor, ownerNode } from "./world/registry";
 import { acceptedOperation, observeOperation } from "./world/operations";
+import {
+  loadPreferences,
+  savePreferences,
+  resolvePreferences,
+} from "./world/preferences.js";
+const safeStored = (key) => {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+};
 const HarborScene = lazy(() => import("./harbor/HarborScene"));
 export default function App() {
   const connection = useClusterConnection();
@@ -52,24 +67,61 @@ export default function App() {
     [utility, setUtility] = useState(null),
     [form, setForm] = useState(null),
     [operations, setOperations] = useState([]);
-  const [theme, setTheme] = useState(
-      () => localStorage.getItem("kubeview-theme") || "light",
-    ),
-    [quality, setQuality] = useState(
-      () => localStorage.getItem("kubeview-quality") || "medium",
-    ),
-    [layers, setLayers] = useState({
-      nodes: true,
-      pods: true,
-      storage: true,
-      network: false,
-      labels: false,
-    }),
-    [reducedMotion, setReducedMotion] = useState(
-      () => matchMedia("(prefers-reduced-motion: reduce)").matches,
+  const [preferences, setPreferences] = useState(loadPreferences);
+  const [systemReduced, setSystemReduced] = useState(
+    () => matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  const [systemDark, setSystemDark] = useState(
+    () => matchMedia("(prefers-color-scheme: dark)").matches,
+  );
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const resolved = useMemo(
+    () =>
+      resolvePreferences(preferences, {
+        systemReduced,
+        systemDark,
+        viewportWidth,
+        hardwareConcurrency: navigator.hardwareConcurrency,
+        deviceMemory: navigator.deviceMemory,
+      }),
+    [preferences, systemReduced, systemDark, viewportWidth],
+  );
+  const { theme, quality, contrast, motion } = resolved;
+  const reducedMotion = motion.reduced || motion.paused;
+  const [layers, setLayers] = useState({
+    nodes: true,
+    pods: true,
+    storage: true,
+    network: false,
+    labels: false,
+  });
+  const [shipControls, setShipControls] = useState({
+    pausedUIDs: [],
+    followUID: null,
+  });
+  const [shipMotion, setShipMotion] = useState(null);
+  const onShipMotionChange = useCallback((value) => {
+    const next = value
+      ? {
+          uid: value.uid,
+          state: value.state,
+          paused: value.paused,
+          visualLoading: value.visualLoading,
+        }
+      : null;
+    setShipMotion((previous) =>
+      JSON.stringify(previous) === JSON.stringify(next) ? previous : next,
     );
+  }, []);
+  const onFollowEnd = useCallback(
+    () =>
+      setShipControls((value) =>
+        value.followUID ? { ...value, followUID: null } : value,
+      ),
+    [],
+  );
   const [guide, setGuide] = useState(
-      () => localStorage.getItem("kubeview-world-guide") !== "seen",
+      () => safeStored("kubeview-world-guide") !== "seen",
     ),
     [focusRequest, setFocusRequest] = useState(0),
     [overviewRequest, setOverviewRequest] = useState(0),
@@ -89,8 +141,13 @@ export default function App() {
     [resources],
   );
   useEffect(() => {
-    for (const r of resources) seenUIDs.current.add(r.metadata.uid);
-  }, [resources]);
+    const uid = selection?.resource?.metadata?.uid;
+    const keepDeletedSelection = uid && seenUIDs.current.has(uid);
+    seenUIDs.current = new Set(
+      resources.map((resource) => resource.metadata.uid),
+    );
+    if (keepDeletedSelection) seenUIDs.current.add(uid);
+  }, [resources, selection?.resource?.metadata?.uid]);
   useEffect(() => {
     if (currentSource.current !== sourceKey) {
       currentSource.current = sourceKey;
@@ -100,21 +157,46 @@ export default function App() {
       setForm(null);
       setOperations([]);
       setNamespace("all");
+      setShipControls({ pausedUIDs: [], followUID: null });
+      setShipMotion(null);
     }
   }, [sourceKey]);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    localStorage.setItem("kubeview-theme", theme);
-  }, [theme]);
+    document.documentElement.dataset.contrast = contrast;
+  }, [theme, contrast]);
   useEffect(() => {
-    localStorage.setItem("kubeview-quality", quality);
-  }, [quality]);
+    savePreferences(preferences);
+  }, [preferences]);
   useEffect(() => {
-    const media = matchMedia("(prefers-reduced-motion: reduce)"),
-      change = () => setReducedMotion(media.matches);
-    media.addEventListener("change", change);
-    return () => media.removeEventListener("change", change);
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)"),
+      dark = matchMedia("(prefers-color-scheme: dark)");
+    const changeReduced = () => setSystemReduced(reduced.matches),
+      changeDark = () => setSystemDark(dark.matches),
+      resize = () => setViewportWidth(window.innerWidth);
+    reduced.addEventListener("change", changeReduced);
+    dark.addEventListener("change", changeDark);
+    window.addEventListener("resize", resize);
+    return () => {
+      reduced.removeEventListener("change", changeReduced);
+      dark.removeEventListener("change", changeDark);
+      window.removeEventListener("resize", resize);
+    };
   }, []);
+  useEffect(() => {
+    if (!snapshotReady) return;
+    const nodes = new Set(
+      resources.filter((r) => r.kind === "Node").map((r) => r.metadata.uid),
+    );
+    setShipControls((value) => {
+      const pausedUIDs = value.pausedUIDs.filter((uid) => nodes.has(uid)),
+        followUID = nodes.has(value.followUID) ? value.followUID : null;
+      return pausedUIDs.length === value.pausedUIDs.length &&
+        followUID === value.followUID
+        ? value
+        : { pausedUIDs, followUID };
+    });
+  }, [resources, snapshotReady]);
   useEffect(() => {
     if (!operations.length) return;
     const timer = setInterval(() => setClock(Date.now()), 1000);
@@ -146,6 +228,9 @@ export default function App() {
   const selected = selection
     ? byUID.get(selection.resource.metadata.uid) || selection.resource
     : null;
+  const selectedNode =
+    selected?.kind === "Node" ? selected : ownerNode(selected, resources);
+  const selectedNodeUID = selectedNode?.metadata.uid;
   const deleted = Boolean(
     selected &&
     snapshotReady &&
@@ -336,6 +421,10 @@ export default function App() {
             focusFacilityRequest={focusFacilityRequest}
             overviewRequest={overviewRequest}
             reducedMotion={reducedMotion}
+            motion={motion}
+            shipControls={shipControls}
+            onFollowEnd={onFollowEnd}
+            onShipMotionChange={onShipMotionChange}
             sourceKey={sourceKey}
             isStale={mode !== "demo" && stale}
           />
@@ -395,6 +484,26 @@ export default function App() {
             </button>
           ))}
         </div>
+        <button
+          className="world-tool world-motion-toggle"
+          style={{ position: "absolute", left: 16, top: 68 }}
+          aria-label={
+            preferences.paused
+              ? "Görsel hareketleri sürdür"
+              : "Görsel hareketleri duraklat"
+          }
+          title={
+            preferences.paused
+              ? "Görsel hareketleri sürdür · Kubernetes verisi devam ediyor"
+              : "Görsel hareketleri duraklat · yalnız görsel sunum"
+          }
+          aria-pressed={preferences.paused}
+          onClick={() =>
+            setPreferences((value) => ({ ...value, paused: !value.paused }))
+          }
+        >
+          {preferences.paused ? <Play size={18} /> : <Pause size={18} />}
+        </button>
         {guide && !panel && !utility && (
           <div className="world-first-guide">
             <p>
@@ -407,7 +516,9 @@ export default function App() {
               aria-label="Kısa rehberi kapat"
               onClick={() => {
                 setGuide(false);
-                localStorage.setItem("kubeview-world-guide", "seen");
+                try {
+                  localStorage.setItem("kubeview-world-guide", "seen");
+                } catch {}
               }}
             >
               <X size={17} />
@@ -479,6 +590,34 @@ export default function App() {
             onSelectContainer={(containerName) =>
               setSelection((s) => ({ ...s, containerName }))
             }
+            visualMotion={
+              selectedNodeUID && !deleted
+                ? {
+                    state:
+                      shipMotion?.uid === selectedNodeUID
+                        ? shipMotion.state
+                        : undefined,
+                    paused: shipControls.pausedUIDs.includes(selectedNodeUID),
+                    following: shipControls.followUID === selectedNodeUID,
+                    reduced: motion.reduced,
+                  }
+                : undefined
+            }
+            onToggleShipPause={() =>
+              setShipControls((value) => ({
+                ...value,
+                pausedUIDs: value.pausedUIDs.includes(selectedNodeUID)
+                  ? value.pausedUIDs.filter((uid) => uid !== selectedNodeUID)
+                  : [...value.pausedUIDs, selectedNodeUID],
+              }))
+            }
+            onToggleShipFollow={() =>
+              setShipControls((value) => ({
+                ...value,
+                followUID:
+                  value.followUID === selectedNodeUID ? null : selectedNodeUID,
+              }))
+            }
             onAction={action}
             api={api}
             metrics={{
@@ -508,14 +647,11 @@ export default function App() {
         )}
         {utility === "preferences" && (
           <PreferencesWindow
-            theme={theme}
-            onTheme={setTheme}
-            quality={quality}
-            onQuality={setQuality}
+            preferences={preferences}
+            onPreferences={setPreferences}
+            motion={motion}
             layers={layers}
             onLayers={setLayers}
-            reducedMotion={reducedMotion}
-            onReducedMotion={setReducedMotion}
             onClose={() => setUtility(null)}
             mode={mode}
             onDemoScenario={() => {

@@ -20,3 +20,5 @@ frontend/playwright-report/
 frontend/docs/
 docs/evidence/browser-artifacts/
 docs/evidence/world/recording-temp/
+
+docs/evidence/motion/recording-temp/

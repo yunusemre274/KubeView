@@ -325,6 +325,9 @@ export default function ResourceDetails({
   selectedContainerName,
   onSelectContainer,
   onShowInScene,
+  visualMotion,
+  onToggleShipPause,
+  onToggleShipFollow,
 }) {
   const [tab, setTab] = useState(
       resource?.kind === "Pod" ? "containers" : "summary",
@@ -671,6 +674,67 @@ export default function ResourceDetails({
         ))}
       </nav>
       <div className="details-body">
+        {visualMotion &&
+          (resource.kind === "Node" ||
+            (resource.kind === "Pod" && spec.nodeName)) && (
+            <details className="resource-motion-controls">
+              <summary>Görsel seyir ve kamera</summary>
+              <div className="resource-motion-content">
+                <div>
+                  <strong>
+                    {resource.kind === "Node"
+                      ? "Bu geminin hareketi"
+                      : `Node gemisi · ${spec.nodeName}`}
+                  </strong>
+                  <span>
+                    {{
+                      patrol: "Devriyede",
+                      docked: "Demirli",
+                      paused: "Görsel hareket duraklatıldı",
+                      reduced: "Hareket azaltıldı",
+                      unknown: "Node iletişimi belirsiz",
+                      notReady: "Node hazır değil",
+                      "not-ready": "Node hazır değil",
+                      hidden: "Görsel hareket görünüm dışında",
+                      idle: "Demirli",
+                      returning: "Yanaşıyor",
+                    }[visualMotion.state] ||
+                      visualMotion.state ||
+                      "Görsel durum izleniyor"}
+                  </span>
+                </div>
+                <div>
+                  {onToggleShipPause && (
+                    <button
+                      className="button"
+                      aria-pressed={Boolean(visualMotion.paused)}
+                      onClick={onToggleShipPause}
+                    >
+                      {visualMotion.paused
+                        ? "Görsel devriyeyi sürdür"
+                        : "Görsel devriyeyi duraklat"}
+                    </button>
+                  )}
+                  {onToggleShipFollow && (
+                    <button
+                      className="button"
+                      aria-pressed={Boolean(visualMotion.following)}
+                      onClick={onToggleShipFollow}
+                    >
+                      {visualMotion.following
+                        ? "Gemi takibini bırak"
+                        : "Gemiyi kamerayla izle"}
+                    </button>
+                  )}
+                </div>
+                <p>
+                  Bu kontroller yalnız sahneyi etkiler. Node scheduling, Pod
+                  yerleşimi ve Kubernetes durumu değiştirilmez.
+                </p>
+              </div>
+            </details>
+          )}
+
         {deleted && (
           <div className="inline-alert alert-warning" role="status">
             Bu kaynak silindi. Gösterilen bilgiler son gözlenen UID’ye aittir;

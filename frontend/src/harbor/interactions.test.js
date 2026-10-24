@@ -20,3 +20,30 @@ test('drag greater than 5 CSS pixels suppresses selection including a drag retur
   gesture.down({clientX:100,clientY:100,button:0});gesture.up({clientX:100,clientY:100});assert.equal(gesture.canSelect({delta:6}),false)
   gesture.down({clientX:100,clientY:100,button:0});gesture.up({clientX:100,clientY:100});assert.equal(gesture.canSelect({delta:0}),true)
 })
+
+
+test('moving vessel or container identity changing between pointer down/up cancels picking',()=>{
+  const gesture=new PointerGesture();gesture.down({clientX:100,clientY:100,button:0});gesture.target('container:uid-old:api');gesture.up({clientX:100,clientY:100})
+  assert.equal(gesture.canSelect({delta:0},'container:uid-old:api'),true)
+  assert.equal(gesture.canSelect({delta:0},'container:uid-new:api'),false)
+  assert.equal(gesture.canSelect({delta:0},'container:uid-old:sidecar'),false)
+  gesture.down({clientX:100,clientY:100,button:0});gesture.up({clientX:100,clientY:100});assert.equal(gesture.canSelect({delta:0},'node:appeared-after-down'),false)
+})
+
+test('queued fallback shrinks to invisible before the same UID grows on its actual vessel',async()=>{
+  const {arrivalVisual}=await import('./interactions.js'),queued={uid:'same-uid',queuedAt:0,wallQueuedAt:0}
+  assert.equal(arrivalVisual(queued,null,9000,9000).scale,1)
+  const shrink=arrivalVisual(queued,null,9840,9840);assert.equal(shrink.loading,true);assert.equal(shrink.scale,.5)
+  assert.equal(arrivalVisual(queued,null,10000,10000).scale,0)
+  const active={uid:'same-uid',started:10000,simple:true,duration:320}
+  assert.equal(arrivalVisual(null,active,10000).scale,0)
+  assert.equal(arrivalVisual(null,active,10160).scale,.5)
+  assert.equal(arrivalVisual(null,active,10320).scale,1)
+  assert.equal(arrivalVisual(null,null,10321).loading,false)
+  assert.equal(active.uid,queued.uid)
+})
+test('wall-time bound also shrinks fallback while full crane transfers stay opaque',async()=>{
+  const {arrivalVisual}=await import('./interactions.js')
+  assert.equal(arrivalVisual({queuedAt:0,wallQueuedAt:1000},null,200,10900).scale<1,true)
+  assert.equal(arrivalVisual(null,{started:0,simple:false,duration:2100},1000).scale,1)
+})

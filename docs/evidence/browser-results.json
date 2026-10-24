@@ -4,7 +4,7 @@
       "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
       "/Users/yunusemre/Desktop/KubeView/frontend/node_modules/.bin/playwright",
       "test",
-      "--output=/tmp/kubeview-world-verified-suite"
+      "--output=/tmp/kubeview-motion-release-suite"
     ],
     "configFile": "/Users/yunusemre/Desktop/KubeView/frontend/playwright.config.js",
     "rootDir": "/Users/yunusemre/Desktop/KubeView/frontend/e2e",
@@ -23,7 +23,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "/tmp/kubeview-world-verified-suite",
+        "outputDir": "/tmp/kubeview-motion-release-suite",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -39,7 +39,7 @@
         "timeout": 60000
       },
       {
-        "outputDir": "/tmp/kubeview-world-verified-suite",
+        "outputDir": "/tmp/kubeview-motion-release-suite",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -59,7 +59,7 @@
       {
         "grep": {},
         "grepInvert": null,
-        "outputDir": "/tmp/kubeview-world-verified-suite",
+        "outputDir": "/tmp/kubeview-motion-release-suite",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -87,7 +87,12 @@
           "deviceScaleFactor": 1,
           "isMobile": false,
           "hasTouch": false,
-          "defaultBrowserType": "chromium"
+          "defaultBrowserType": "chromium",
+          "launchOptions": {
+            "args": [
+              "--use-angle=metal"
+            ]
+          }
         },
         "dependencies": [],
         "ignoreSnapshots": false,
@@ -96,7 +101,7 @@
       {
         "grep": {},
         "grepInvert": null,
-        "outputDir": "/tmp/kubeview-world-verified-suite",
+        "outputDir": "/tmp/kubeview-motion-release-suite",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -179,12 +184,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 12041,
+                  "duration": 6312,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:05:30.344Z",
+                  "startTime": "2026-10-24T16:08:17.014Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -213,12 +218,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 21060,
+                  "duration": 11254,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:05:42.447Z",
+                  "startTime": "2026-10-24T16:08:23.393Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -247,12 +252,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2538,
+                  "duration": 1646,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:03.511Z",
+                  "startTime": "2026-10-24T16:08:34.652Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -281,12 +286,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2496,
+                  "duration": 1092,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:06.052Z",
+                  "startTime": "2026-10-24T16:08:36.306Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -315,12 +320,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2609,
+                  "duration": 1005,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:08.551Z",
+                  "startTime": "2026-10-24T16:08:37.403Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -349,12 +354,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 6847,
+                  "duration": 7043,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:55.499Z",
+                  "startTime": "2026-10-24T16:09:39.197Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -383,12 +388,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 11047,
+                  "duration": 11297,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:02.509Z",
+                  "startTime": "2026-10-24T16:09:46.397Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -417,12 +422,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1288,
+                  "duration": 1247,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:13.562Z",
+                  "startTime": "2026-10-24T16:09:57.701Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -451,12 +456,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 871,
+                  "duration": 916,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:14.855Z",
+                  "startTime": "2026-10-24T16:09:58.956Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -485,12 +490,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 969,
+                  "duration": 1112,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:15.732Z",
+                  "startTime": "2026-10-24T16:09:59.877Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -527,12 +532,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 10752,
+                  "duration": 4551,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:11.170Z",
+                  "startTime": "2026-10-24T16:08:38.416Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -561,12 +566,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 8298,
+                  "duration": 4438,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:21.927Z",
+                  "startTime": "2026-10-24T16:08:42.972Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -610,7 +615,7 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:16.712Z",
+                  "startTime": "2026-10-24T16:10:01.000Z",
                   "annotations": [
                     {
                       "type": "skip",
@@ -664,7 +669,7 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:16.715Z",
+                  "startTime": "2026-10-24T16:10:01.003Z",
                   "annotations": [
                     {
                       "type": "skip",
@@ -685,6 +690,374 @@
           "id": "ed0cb703495a228a0509-22bd7d1e870911186149",
           "file": "live.spec.js",
           "line": 163,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "motion.spec.js",
+      "file": "motion.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "moving Node/cargo keep UID; local pause and follow preserve canvas, camera and data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6440,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:47.446Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-0c3cb18d0ada12f70a82",
+          "file": "motion.spec.js",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "sea toggle freezes only water; patrol/global pause and system preference retain phase",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10883,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:53.892Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-a40d11430b72dfe75f7f",
+          "file": "motion.spec.js",
+          "line": 116,
+          "column": 1
+        },
+        {
+          "title": "soft UI settings remain opaque, accessible and persistent in both themes and narrow world",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2932,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:04.781Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-6b81ba38e1d8cc9ae75b",
+          "file": "motion.spec.js",
+          "line": 190,
+          "column": 1
+        },
+        {
+          "title": "real WebSocket reconnect keeps Node UID, selection and patrol progress",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4928,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:07.716Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-f3eb4cc00f0f0a2fe3d5",
+          "file": "motion.spec.js",
+          "line": 253,
+          "column": 1
+        },
+        {
+          "title": "far-vessel arrival stays one UID and finishes without an unbounded crane queue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18779,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:12.648Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-facabbcd98da6ecedbad",
+          "file": "motion.spec.js",
+          "line": 291,
+          "column": 1
+        },
+        {
+          "title": "moving Node/cargo keep UID; local pause and follow preserve canvas, camera and data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6694,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:01.036Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-0365ce7b9d163d6d43cb",
+          "file": "motion.spec.js",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "sea toggle freezes only water; patrol/global pause and system preference retain phase",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11080,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:07.735Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-766cfb73dfd59c76bcda",
+          "file": "motion.spec.js",
+          "line": 116,
+          "column": 1
+        },
+        {
+          "title": "soft UI settings remain opaque, accessible and persistent in both themes and narrow world",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3042,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:18.822Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-31ad21041c443e6d243c",
+          "file": "motion.spec.js",
+          "line": 190,
+          "column": 1
+        },
+        {
+          "title": "real WebSocket reconnect keeps Node UID, selection and patrol progress",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Real upstream reconnect once",
+                  "location": {
+                    "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/motion.spec.js",
+                    "line": 261,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 160,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:21.871Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Real upstream reconnect once",
+                      "location": {
+                        "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/motion.spec.js",
+                        "line": 261,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-32a43493035f9fd5f5e2",
+          "file": "motion.spec.js",
+          "line": 253,
+          "column": 1
+        },
+        {
+          "title": "far-vessel arrival stays one UID and finishes without an unbounded crane queue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18821,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:22.036Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-6acfe58105f4fecb82c8",
+          "file": "motion.spec.js",
+          "line": 291,
           "column": 1
         }
       ]
@@ -711,12 +1084,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3203,
+                  "duration": 1041,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:30.237Z",
+                  "startTime": "2026-10-24T16:09:31.438Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -745,12 +1118,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3883,
+                  "duration": 939,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:33.444Z",
+                  "startTime": "2026-10-24T16:09:32.484Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -779,12 +1152,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4660,
+                  "duration": 1246,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:37.333Z",
+                  "startTime": "2026-10-24T16:09:33.427Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -813,12 +1186,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5194,
+                  "duration": 1599,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:41.998Z",
+                  "startTime": "2026-10-24T16:09:34.678Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -847,12 +1220,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5104,
+                  "duration": 1407,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:47.199Z",
+                  "startTime": "2026-10-24T16:09:36.281Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -862,7 +1235,7 @@
           ],
           "id": "786bed9da8f8fd2ce49c-a82792d819fe8c8e10da",
           "file": "workbench.spec.js",
-          "line": 335,
+          "line": 344,
           "column": 1
         },
         {
@@ -881,12 +1254,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2934,
+                  "duration": 1256,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:06:52.310Z",
+                  "startTime": "2026-10-24T16:09:37.693Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -896,7 +1269,7 @@
           ],
           "id": "786bed9da8f8fd2ce49c-49b57059432369ad78f4",
           "file": "workbench.spec.js",
-          "line": 454,
+          "line": 463,
           "column": 1
         },
         {
@@ -915,12 +1288,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1350,
+                  "duration": 1229,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:16.723Z",
+                  "startTime": "2026-10-24T16:10:40.870Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -949,12 +1322,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1141,
+                  "duration": 1012,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:18.076Z",
+                  "startTime": "2026-10-24T16:10:42.104Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -993,12 +1366,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "skipped",
-                  "duration": 176,
+                  "duration": 161,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:19.223Z",
+                  "startTime": "2026-10-24T16:10:43.122Z",
                   "annotations": [
                     {
                       "type": "skip",
@@ -1047,12 +1420,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "skipped",
-                  "duration": 171,
+                  "duration": 164,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:19.403Z",
+                  "startTime": "2026-10-24T16:10:43.287Z",
                   "annotations": [
                     {
                       "type": "skip",
@@ -1088,7 +1461,7 @@
                   "description": "Real mutation once; Secret sanitization also has pure tests",
                   "location": {
                     "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/workbench.spec.js",
-                    "line": 344,
+                    "line": 353,
                     "column": 8
                   }
                 }
@@ -1106,14 +1479,14 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:19.578Z",
+                  "startTime": "2026-10-24T16:10:43.456Z",
                   "annotations": [
                     {
                       "type": "skip",
                       "description": "Real mutation once; Secret sanitization also has pure tests",
                       "location": {
                         "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/workbench.spec.js",
-                        "line": 344,
+                        "line": 353,
                         "column": 8
                       }
                     }
@@ -1126,7 +1499,7 @@
           ],
           "id": "786bed9da8f8fd2ce49c-f158db323678d674934a",
           "file": "workbench.spec.js",
-          "line": 335,
+          "line": 344,
           "column": 1
         },
         {
@@ -1145,12 +1518,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1123,
+                  "duration": 1120,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-24T15:07:19.751Z",
+                  "startTime": "2026-10-24T16:10:43.628Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1160,7 +1533,7 @@
           ],
           "id": "786bed9da8f8fd2ce49c-f8dc4b4f06730beae846",
           "file": "workbench.spec.js",
-          "line": 454,
+          "line": 463,
           "column": 1
         }
       ]
@@ -1168,10 +1541,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-24T15:05:30.142Z",
-    "duration": 110760.968,
-    "expected": 21,
-    "skipped": 5,
+    "startTime": "2026-10-24T16:08:16.794Z",
+    "duration": 148004.025,
+    "expected": 30,
+    "skipped": 6,
     "unexpected": 0,
     "flaky": 0
   }

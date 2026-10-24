@@ -10,7 +10,7 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 - **Tüm Nesne Tiplerinin Zengin İnceleme Kartları:** Sahnede seçilen 15 nesne tipinin tamamı için zengin metrik, IP/DNS, zaman damgası ve bağımlılık kartları.
 - **Canlı Log Streaming & Metrik Trend Grafikleri:** Anlık Pod log yayınlayıcısı, CPU/RAM canlı sparkline'ları ve 1 saatlik ring buffer grafik dökümü.
 - **Güvenli Mutasyon İşlemleri:** Salt İzleme Modu (Read-Only Mode) anahtarı, kilitli namespace koruması ve onay modalı doğrulaması.
-- **Kubeconfig Auto-Heal Altyapısı:** minikube / local k8s yeniden başlatmalarında dinamik port sapmalarını 3 deneme sonrası otomatik algılama ve canlı bağlanma.
+- **Kubeconfig Auto-Heal Altyapısı:** minikube / local k8 sn yeniden başlatmalarında dinamik port sapmalarını 3 deneme sonrası otomatik algılama ve canlı bağlanma.
 
 ### 📋 Bilinen Sınırlamalar / v1.1 İçin Planlanan (Known Limitations)
 - **Container Terminal / Exec Erişimi:** İnteraktif container shell (exec) erişimi v1.0.0 güvenlik sınırı nedeniyle kapsam dışı tutulmuştur (v1.1 roadmap).
@@ -79,6 +79,14 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 - Canvas raycast, keyboard/dirty form, gerçek targeted scheduling ve boş dünya testleri eklendi. Son birleşik QA sonuçları tamamlanma iddiasından ayrı raporlanır.
 
 - Kabul: 39 frontend unit testi, 21 Chromium/WebKit browser testi geçti (5 WebKit tekrar mutasyonu bilinçli atlandı); gerçek kısıtlı ServiceAccount RBAC403, workerUnknown ve canlı yaşam döngüsü kaydı.
-- AppleM5 Metal headed Chromium kısa sentetik profillerde yaklaşık60FPS; 10dakika/464 çevrim churn raporu ve yazılım renderer ölçümleri ayrı kaydedildi.
+- AppleM5 Metal headed Chromium kısa sentetik profillerde yaklaşık60 FPS; 10 dakika/464 çevrim churn raporu ve yazılım renderer ölçümleri ayrı kaydedildi.
 
 - Gemi formunda Pod/Deployment tür seçimi görünür; tür değiştirirken Pod spec ve üretilen affinity korunur, yinelenmez. Altı Chromium workbench regresyonu tekrar geçti.
+
+## Hareketli filo / canlı deniz / Soft UI — 2026-10-24
+
+- Sağlıklı Node gemileri varsayılan seyirde; UID fazı ve bölge kapasitesi8. Görsel duraklatma ve açık kamera takibi Kubernetes scheduling'den ayrı.
+- Ortak analitik dalga modeli, iki ripple katmanı, hıza bağlı iz ve bağımsız deniz/seyir ayarları.
+- Gerçek Pod atamasına bağlı geçici yanaşma/vinç/ayrılma; sınırlı kuyruk, sade varış, ayrı görsel yükleme etiketi.
+- Neumorphism paneller, yüksek kontrast, sistem tercihleri ve sürümlü güvenli yerel ayarlar.
+- Trafik kilidi ve dış rıhtımda kıç süpürmesi uzun testte bulundu; birleşme rezervasyonu ve önce düz çıkış ile düzeltildi.

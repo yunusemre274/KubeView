@@ -4,7 +4,7 @@
 
 React 18 / R3F 8 / Drei 9 / Three 0.164 korunur. Vite 6.4.5 güvenlik düzeltmeleri için yükseltildi. Go client-go 0.30, dynamic client, typed logs/metrics ve discovery birlikte kullanılır. Frontend framework göçü yapılmadı.
 
-1. `backend/pkg/server`: gerçek context seçimi, HTTP API, kimlik doğrulama, SSAR, dynamic informer ve WebSocket. Önceki `k8s`/`websocket` paketleri ana çalışma yolunda kullanılmaz; eski örnek log fallback’i kaldırıldı.
+1. `backend/pkg/server`: gerçek context seçimi, HTTP API, kimlik doğrulama, SSAR, dynamic informer ve WebSocket. Önceki `k8 sn`/`websocket` paketleri ana çalışma yolunda kullanılmaz; eski örnek log fallback’i kaldırıldı.
 2. `frontend/src/context/ShipyardClusterContext.jsx`: modül düzeyinde tek WebSocket yöneticisi. Kaynak değişiminde oturum epoch artırılır, eski callback/istek/socket reddedilir. UI yalnız ham nesneleri paylaşır.
 3. `frontend/src/data/resourceStore.js`: saf snapshot/delta reducer, UID kimliği, bounded 500 olay / 1 saat ve 241 metrik örneği. `resourceVersion` opaque dize olarak korunur.
 4. `frontend/src/App.jsx`: tam ekran dünya, ortak seçim/namespace ve geçici pencere akışı. `world/` tesis kaydı, bağlamsal merkez/katalog, nesne bulucu, ayarlar ve işlem gözlemcisini kapsar. Kalıcı dashboard/sidebar/split view yoktur. `workbench/` mevcut gerçek tabloları, ayrıntıları, formları, grafikleri, log ve terminal akışlarını korur.
@@ -26,7 +26,7 @@ Tarayıcı başına tek WS vardır; backend’de informer fabrikası bağlantı 
 - `/api/capabilities`: SelfSubjectAccessReview, server read-only, scope ve subresource koşulları.
 - `/api/actions`: scale, restart, resources, cordon/uncordon, resize, CronJob, rollback, drain akışları. HPA sahipliği, controller strategy ve namespace kapsamı sunucuda da denetlenir.
 - `/api/logs`: ham Pod adı, namespace, container, tail/follow/previous/timestamps ile gerçek HTTP stream. Fallback başarı verisi yok.
-- `/api/metrics`: metrics.k8s.io gerçek Node/Pod kullanım değerleri. Uzun geçmiş deposu değildir; frontend oturum belleğinde 15 saniyelik örnekler tutar.
+- `/api/metrics`: metrics.k8 sn.io gerçek Node/Pod kullanım değerleri. Uzun geçmiş deposu değildir; frontend oturum belleğinde 15 saniyelik örnekler tutar.
 - `/api/exec`: gerçek pods/exec WS/SPDY; tarayıcı terminali non-TTY pipe olarak açıkça etiketlidir.
 - `/api/portforwards`, `/api/portforward/<id>/`: seçili Pod UID ve portla sınırlı, süreli gerçek SPDY tüneli; HTTP önizleme ve ham TCP WebSocket. Genel bir host/shell proxy değildir.
 - `/api/openapi`: cluster şemasına erişim; gelişmiş şema tamamlama editörü henüz yok.
@@ -44,7 +44,13 @@ Gemiden create, mevcut nodeSelector’ı ve NodeAffinity OR dallarını koruyara
 
 Kanonik state transfer süresini beklemez. `HarborSlots` yerleşimi UID ile korur; namespace filtresi ve sıralama kaynağı yerinden oynatmaz. `TransferCoordinator` sadece gözlenen nodeName değişimine veya açıkça görsel varışa tepki verir. İlk snapshot kurulumu, bounded kuyruk, fiziksel vinç başına bir yük, iptal, context reset ve reduced motion saf modüllerde sınanır. Node Unknown iletişim durumudur; backend kopması gemileri batırmaz.
 
-Canvas demand rendering kullanır; aktif geçişler invalidate eder, dekoratif su idle render üretmez. Container/fitting instancing, ortak geometri/materyal, kaliteye bağlı DPR/gölge vardır. Ayrıntı overlay’i kamerayı mount etmez; açık odak eylemi haricinde kamera kaçırılmaz.
+`fleet.js` UID başına yay uzunluğuyla ölçülen rota ilerlemesi, trafik aralığı, süpürülmüş kapsül çarpışmaları, yaklaşma/yanaşma/yükleme/ayrılma ve rezervasyonları tutar. Sabit8 gemi bölgesi ve sabit kara/iskele sınırı, Node sayısı değişince rota biçimini değiştirmez. Bölge dışı UID fazları askıda saklanır; gerçek DELETE bunları da temizler. Kaynak store’una frame başına pozisyon yazılmaz.
+
+`waterModel.js` tek analitik dalga modelidir; CPU gemi yüksekliği/eğimleri ve Ocean GPU shader'ı aynı faz/şiddeti kullanır. `Ocean.jsx` iki kaydırılan ripple katmanı ve hıza bağlı hafif kıç izi sunar; statik geometri/material yaşam döngüsünü temizler. Düşük kalite ikinci ince normal katmanını ve izi kapatır. Dalga kapatılınca faz donar, şiddet0'a yumuşar; statik su yüzeyi çizilebilir olmaya devam eder.
+
+Canvas demand rendering kullanır; **seyir/deniz açıkken sürekli invalidation gerekir**. İkisi kapalı ve geçiş yokken idle davranışı devreye girer. `visibilitychange` görsel saati durdurur; görünmeyen sekmede delta birikmez, eski transferler birleştirilir. Kamera/etiket/instanced kargo aynı gemi dönüşümünü kullanır. Ağ çizgileri hareketli kaynak konumuna güncellenen mevcut buffer'ı kullanır; trafik telemetrisi değildir.
+
+`world/preferences.js` version1 kaydı doğrular, güvenli yükler/saklar ve açık kullanıcı tercihi ile etkili sistem azaltılmış hareketini ayırır. Opak Neumorphism token'ları, yüksek kontrast, açık/koyu/sistem teması ortak panellerde uygulanır. `ResourceDetails` görsel hareket bölümü iç kaydırmada kalır. Ayrıntı overlay'i canvas'ı mount etmez; takip/odak yalnız açık kullanıcı eylemiyle başlar, manuel Orbit başlangıcı takibi bırakır.
 
 ## Erişim modeli
 

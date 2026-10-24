@@ -62,3 +62,9 @@ Projedeki teknik seçimlerin meşru gerekçeleri mevcuttur.
 - Mevcut gerçek API/capability/form bileşenleri korunur. Sabit tesisler uygulama girişidir; gerçek kaynak sayılmaz. Bulucu aynı kayıt ve eylemleri semantik olarak açar.
 - Node hedeflemede `metadata.name` nodeAffinity, Node UID ön kontrolü ve required OR-dallarına AND eklenmesi kullanılır; `spec.nodeName` ile scheduler atlanmaz.
 - Önceki salt-okunur güvenlik ADR’si varsayılan mod için geçerlidir; kullanıcı kapsamındaki gerçek yönetim, açık sunucu opt-in’i ve her istekte RBAC ile etkinleşir. Bu, genel admin/shell proxy yetkisi değildir.
+
+### [ADR-027] Hareketli UID filosu, ortak su modeli ve Neumorphism
+- Kullanıcı kararı: sağlıklı ve boşta gemilerin sürekli park etmesi yerine güvenli çevre rotası; geçici operasyon yanaşması. Sabit8gemi bölgeleri, UID ilerlemesi ve gerçek veriden ayrı görsel rezervasyon kullanılır.
+- Deniz analitik GPU modeliyle hareket eder; aynı model gemiyi yüzdürür. Ayrı görsel saat, Page Visibility ve sürümlü tercihler; arka plan zamanı tek karede uygulanmaz.
+- Panel dili mat Neumorphism'dir. İnce açık inset kenar ve koyu dış ayrım; küçük kontrollerde çift gölge; gerçek kontrast sınırları. Liquid Glass ve dashboard eklenmez.
+- Mevcut watcher/API/auth/mutation sözleşmeleri korunur; bu görev yeni backend endpoint'i eklemez.

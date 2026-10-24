@@ -21,6 +21,8 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
+        launchOptions:
+          process.platform === "darwin" ? { args: ["--use-angle=metal"] } : {},
         viewport: { width: 1440, height: 900 },
       },
     },

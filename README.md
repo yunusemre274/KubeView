@@ -2,7 +2,7 @@
 
 Kubernetes kümenizin arayüzü, tam ekran etkileşimli bir tersanedir. Merkez binasına, Node gemisine veya Pod yüküne tıklayarak çalışırsınız. Kalıcı dashboard, sidebar veya açık kaynak tablosu yoktur. Listeler, formlar, grafikler ve loglar ilgili nesnenin geçici penceresinde açılır.
 
-![Tam ekran tersane](docs/evidence/world/chromium-world-1440.png)
+![Hareketli tersane](docs/evidence/motion/fleet-overview.png)
 
 ## Kullanım
 
@@ -13,6 +13,18 @@ Kubernetes kümenizin arayüzü, tam ekran etkileşimli bir tersanedir. Merkez b
 - **Depo, talimat panosu, kasa, ağ tesisi, fener ve personel bölümü:** ilgili gerçek kaynak türleri.
 
 **Bul** veya **Cmd/Ctrl+K**, kaynak ve tesislere klavye ile erişir. **Limana dön**, genel kadraja döner. Paneller kapanırken canvas ve kamera korunur. Dar ekranda da ana görünüm limandır; ayrıntı paneli genişletilebilir alt sheet olur.
+
+## Filo, deniz ve panel tercihleri
+
+Sağlıklı Node gemileri varsayılan olarak kapalı ve güvenli su rotasında dolaşır. UID'ye bağlı seyir fazı kaynak güncellemesi, filtre veya pencere açılmasıyla sıfırlanmaz. Her bölgede en fazla **8 görünür gemi** vardır; bölge denetimi ve Bul bütün gerçek kaynaklara erişimi korur. Diğer bölgeler ek sahte Node üretmez. Normal tur yaklaşık **154 saniyedir**; duraklatma ve trafik bu süreyi uzatabilir.
+
+Gözlenen yeni yük için uygun gemi geçici yanaşır, vinç işi bitince ayrılır. Görsel yaklaşma uzun sürecekse yaklaşık10 saniye sonra hedef gemide kısa varış kullanılır; bu, gerçek yanaşma olayı olarak kaydedilmez. Kanonik Node/Pod ataması ve Ready bilgisi animasyonları beklemez.
+
+**Görünüm ve ayarlar**: seyir, hız, salınım, deniz, dalga şiddeti, iz, operasyon biçimi; sistem/azaltılmış/tam hareket; otomatik kalite; açık/koyu/sistem panel teması ve yüksek kontrast. Sol üstteki duraklatma düğmesi yalnız görsel hareketi durdurur. Node/Pod panelindeki **Görsel seyir ve kamera** bölümünden tek gemi durdurulabilir veya açıkça kamera takibi başlatılır. Elle kamera hareketi takibi bırakır. Bunlar Kubernetes cordon/scale işlemi değildir.
+
+Deniz kapatılınca su fazı ve iz/salınım durur, yüzey yumuşakça statik hâle gelir; seyir ve gerçek veri akışı sürer. Tercihler sürümlü küçük yerel kayıtta doğrulanarak saklanır; depolama erişilemezse uygulama çalışmaya devam eder. Mat Neumorphism paneller opaktır; log/YAML/tablo yüzeyleri okunaklı tutulur.
+
+Kanıt: [hareketli demo kaydı](docs/evidence/motion/demo-living-fleet.webm), [gerçek yanaşma döngüsü](docs/evidence/motion/live-docking-cycle.webm), [test ve ölçüm koşulları](docs/VALIDATION.md).
 
 ## Yerel çalıştırma
 
@@ -47,7 +59,7 @@ Bağlantı rozeti gerçek context ve namespace seçimini açar. Kubeconfig ve Ku
 
 Discovery tabanlı list/get/create/edit/delete, server dry-run, UID/resourceVersion koruması, scale, uygun restart/rollback, container request/limit, koşullu `pods/resize`, CronJob işlemleri, cordon/uncordon ve eviction tabanlı drain servisi bulunur. Log/exec/port-forward gerçek Kubernetes alt kaynaklarını kullanır. Özellik ve test kapsamı [CAPABILITIES.md](docs/CAPABILITIES.md) içinde açıkça ayrılmıştır.
 
-metrics.k8s.io ölçümleri oturum belleğinde örneklenir; Prometheus gibi uzun geçmiş deposu değildir. Exec arayüzü non-TTY satır tabanlı shell’dir. HTTP port-forward önizlemesi sandbox uygular; mutlak asset yolları kullanan karmaşık uygulamalar sınırlıdır. Helm release yönetimi, bulut worker sağlama ve ölçülmüş ağ trafiği entegrasyonu yoktur.
+metrics.k8 sn.io ölçümleri oturum belleğinde örneklenir; Prometheus gibi uzun geçmiş deposu değildir. Exec arayüzü non-TTY satır tabanlı shell’dir. HTTP port-forward önizlemesi sandbox uygular; mutlak asset yolları kullanan karmaşık uygulamalar sınırlıdır. Helm release yönetimi, bulut worker sağlama ve ölçülmüş ağ trafiği entegrasyonu yoktur.
 
 Görsel kanıt: [önceki dashboard](docs/evidence/chromium-overview-1440.png) → [tam ekran dünya](docs/evidence/world/chromium-world-1440.png) · [gerçek yaşam döngüsü videosu](docs/evidence/world/lifecycle-live.webm). Test ortamı, ölçümler ve açık sınırlar: [VALIDATION](docs/VALIDATION.md).
 
@@ -63,7 +75,7 @@ KUBEVIEW_TEST_CONTEXT=kubeview-test KUBEVIEW_TEST_NAMESPACE=kubeview-qa \
   go test -race ./pkg/server -run TestDedicatedCluster -v
 ```
 
-Sentetik GPU profili için frontend dizininde `node e2e/gpu-profile.mjs` (headed Chromium, Metal ister); 10 dakikalık yazılım renderer/bellek döngüsü için `node e2e/performance.mjs` kullanılır. Bunlar Kubernetes mutasyonu yapmaz; gerçek renderer ham raporda belirtilir.
+Yeni hareketli profil için frontend dizininde `npx vite --config e2e/benchmark.vite.config.js` ile HMR kapalı ölçüm sunucusu başlatın; ayrı terminalde `BASE_URL=http://127.0.0.1:5187 node e2e/fleet-benchmark.mjs` çalıştırın. Yaklaşık 11 dakikalık sentetik GPU/bellek/seyir koşusu gerçek Kubernetes mutasyonu yapmaz. `node e2e/visibility-check.mjs`, geçici native Chromium profilinde gerçek 60 saniye görünmezlik kontrolüdür. Ölçüm ortamı ve ham renderer rapora yazılır.
 
 Tarayıcı testleri çalışan Vite/backend bekler. `npx playwright install chromium webkit` komutu frontend dizininden gerekli motorları kurar. Canlı mutasyon testleri iki açık test bayrağı olmadan atlanır; üretim context’i otomatik seçilmez.
 

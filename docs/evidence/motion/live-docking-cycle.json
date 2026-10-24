@@ -1,0 +1,174 @@
+{
+  "date": "2026-10-24T16:20:07.768Z",
+  "source": "Gerçek kubeview-test / kubeview-qa",
+  "events": [
+    {
+      "at": 122208.90000000037,
+      "uid": "cc3982cd-caf7-45f0-9763-a29c626fcd91",
+      "name": "kubeview-test-m02",
+      "slot": 1,
+      "progress": 760.9494479412049,
+      "position": [
+        63.422221470335785,
+        0.06327218871611275,
+        238
+      ],
+      "yaw": -1.5707963267948966,
+      "pitch": -0.002495894648839306,
+      "roll": 0.001817852120018718,
+      "state": "patrolling",
+      "speed": 8.999999999984096,
+      "paused": false,
+      "healthy": true,
+      "reason": "",
+      "reservation": null,
+      "eligibleForDock": true
+    },
+    {
+      "at": 122245.90000000037,
+      "uid": "cc3982cd-caf7-45f0-9763-a29c626fcd91",
+      "name": "kubeview-test-m02",
+      "slot": 1,
+      "progress": 761.0988479412015,
+      "position": [
+        63.25408792663126,
+        0.0588955072793812,
+        237.996481758
+      ],
+      "yaw": -1.5700068351362715,
+      "pitch": -0.002267345955589582,
+      "roll": 0.0017155873896604907,
+      "state": "approaching",
+      "speed": 0.977489823662893,
+      "paused": false,
+      "healthy": true,
+      "reason": null,
+      "reservation": "basin:right",
+      "eligibleForDock": false
+    },
+    {
+      "at": 123759.5,
+      "uid": "cc3982cd-caf7-45f0-9763-a29c626fcd91",
+      "name": "kubeview-test-m02",
+      "slot": 1,
+      "progress": 761.0988479412015,
+      "position": [
+        26,
+        0.00013814724231523984,
+        229.8345000000391
+      ],
+      "yaw": 0,
+      "pitch": -0.000005318361376080232,
+      "roll": 0.000004024138304949623,
+      "state": "docking",
+      "speed": 35.00000000000062,
+      "paused": false,
+      "healthy": true,
+      "reason": null,
+      "reservation": "basin:right",
+      "eligibleForDock": false
+    },
+    {
+      "at": 126680.30000000075,
+      "uid": "cc3982cd-caf7-45f0-9763-a29c626fcd91",
+      "name": "kubeview-test-m02",
+      "slot": 1,
+      "progress": 761.0988479412015,
+      "position": [
+        26,
+        1.184446253354007e-9,
+        128
+      ],
+      "yaw": 0,
+      "pitch": -4.559854471438829e-11,
+      "roll": 3.45021403134453e-11,
+      "state": "docked",
+      "speed": 19.93975903571134,
+      "paused": false,
+      "healthy": true,
+      "reason": null,
+      "reservation": "basin:right",
+      "eligibleForDock": false
+    },
+    {
+      "at": 128800.30000000075,
+      "uid": "cc3982cd-caf7-45f0-9763-a29c626fcd91",
+      "name": "kubeview-test-m02",
+      "slot": 1,
+      "progress": 761.0988479412015,
+      "position": [
+        26,
+        2.4913275988044436e-13,
+        128.58449999997393
+      ],
+      "yaw": 0,
+      "pitch": -9.591056798954722e-15,
+      "roll": 7.257073433033101e-15,
+      "state": "departing",
+      "speed": 35.00000000000034,
+      "paused": false,
+      "healthy": true,
+      "reason": "Vinç yüklemesi · görsel rezervasyon",
+      "reservation": "basin:right",
+      "eligibleForDock": false
+    },
+    {
+      "at": 130521.59999999963,
+      "uid": "cc3982cd-caf7-45f0-9763-a29c626fcd91",
+      "name": "kubeview-test-m02",
+      "slot": 1,
+      "progress": 761.0988479412015,
+      "position": [
+        26,
+        0.0037367669081979195,
+        188
+      ],
+      "yaw": 0,
+      "pitch": -0.00000888947383113829,
+      "roll": 0.00048807034409030156,
+      "state": "merging",
+      "speed": 0,
+      "paused": false,
+      "healthy": true,
+      "reason": "Vinç yüklemesi · görsel rezervasyon",
+      "reservation": "basin:right",
+      "eligibleForDock": false
+    },
+    {
+      "at": 133241.09999999963,
+      "uid": "cc3982cd-caf7-45f0-9763-a29c626fcd91",
+      "name": "kubeview-test-m02",
+      "slot": 1,
+      "progress": 798.3716694115407,
+      "position": [
+        25.999999999999886,
+        0.03003062117759668,
+        238
+      ],
+      "yaw": -1.5707963267948966,
+      "pitch": 0.0029764565733074377,
+      "roll": 0.0006404077523792293,
+      "state": "patrolling",
+      "speed": 0.08644478217075567,
+      "paused": false,
+      "healthy": true,
+      "reason": null,
+      "reservation": null,
+      "eligibleForDock": true
+    }
+  ],
+  "errors": [],
+  "node": {
+    "name": "kubeview-test-m02",
+    "uid": "cc3982cd-caf7-45f0-9763-a29c626fcd91"
+  },
+  "pod": {
+    "name": "fleet-record-1792858808676",
+    "uid": "c63277e8-5287-4f91-b8ff-910f5bc00723",
+    "nodeName": "kubeview-test-m02"
+  },
+  "clip": {
+    "start": 118.16,
+    "end": 138.432
+  }
+}

@@ -1735,3 +1735,79 @@
   font-size: 13px;
   font-weight: 500;
 }
+/* Shared relief tokens come from index.css; technical content stays flat and legible. */
+.resource-table-panel,
+.resource-table th,
+.resource-table td {
+  box-shadow: none;
+}
+.table-toolbar,
+.table-footer,
+.resource-table th {
+  background: var(--nm-base, var(--panel));
+}
+.resource-table td {
+  border-bottom-color: var(--border-soft, var(--border));
+  font-size: 13px;
+}
+.table-search {
+  background: var(--nm-recessed, var(--panel));
+  border: 1px solid var(--nm-boundary, var(--border));
+  border-radius: 8px;
+  padding: 0 10px;
+  box-shadow: var(--nm-inset-shadow);
+  min-height: 38px;
+}
+.table-search input {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.yaml-output,
+.form-field .yaml-editor {
+  color: var(--nm-text, var(--text));
+  background: var(--nm-recessed, var(--code-bg));
+  border-color: var(--nm-boundary, var(--border));
+  box-shadow: var(--nm-inset-shadow);
+  font-size: 13px;
+  line-height: 1.75;
+}
+.log-output {
+  color: #edf3f7;
+  background: var(--log-bg, #18222d);
+  border-color: var(--nm-boundary, var(--border));
+  box-shadow:
+    inset 3px 3px 8px #07121c,
+    inset -1px -1px 4px #344453;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.container-card,
+.advanced-form,
+.container-resource-fields,
+.replica-summary,
+.placement-section,
+.node-pod-list {
+  border-color: var(--nm-boundary, var(--border));
+  background: var(--nm-base, var(--panel));
+}
+.container-selected {
+  border-color: var(--nm-focus, var(--blue));
+  box-shadow: 0 0 0 1px var(--nm-focus, var(--blue));
+}
+.container-card .container-select-name,
+.resource-name {
+  box-shadow: none;
+  border: 0;
+  background: transparent;
+}
+.segmented-control {
+  background: var(--nm-recessed, var(--raised));
+  border: 1px solid var(--nm-boundary, var(--border));
+  box-shadow: var(--nm-inset-shadow);
+}
+.segmented-control button.active {
+  border: 1px solid var(--nm-boundary, var(--border));
+  background: var(--nm-base, var(--panel));
+  box-shadow: var(--nm-raised-shadow);
+}

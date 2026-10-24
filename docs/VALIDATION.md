@@ -1,48 +1,51 @@
-# Kabul ve ölçüm kaydı — 2026-10-24
+# Hareketli filo, canlı deniz ve Neumorphism — 2026-10-24
 
-## Ortam ve güvenli kapsam
+Bu kayıt son hareketli sürümü anlatır. Önceki sabit rıhtım görüntüleri/ölçümleri tarihsel kanıttır; yeni sonuçlar `evidence/motion/` altındadır.
 
-MacBook Air Apple M5 (10 CPU), 32 GB RAM; Chromium 156 headless ve Playwright WebKit. WebKit testi gerçek Safari donanım testi değildir. Kubernetes 1.35.1, iki Node’lu **kubeview-test**, namespaced denemelerde yalnız **kubeview-qa**. Varsayılan minikube context’i mutasyon hedefi yapılmadı. Docker yalnız mevcut ayrılmış test kümesini çalıştırmak için açıldı; yeni production dağıtımı yapılmadı.
+## Ortam ve kapsam
 
-Son birleşik tarayıcı paketi: **21 geçti, 0 hata, 5 bilinçli atlama**. Atlananlar WebKit’te tekrar gerçek mutasyon yapan senaryolardır; bunların Chromium karşılıkları geçti. Frontend **39** birim testi; Go test/race/vet ve iki gerçek canvas raycast regresyonu geçti. Makineye okunur son tarayıcı sonucu [browser-results.json](evidence/browser-results.json).
+MacBook Air **Apple M5 / 10 CPU / 32 GiB**, Darwin 27; **Chromium 156**, ANGLE Metal Apple M5. Playwright viewport **1440×900 CSS px**, orta kalite; 1280×800 ve768×900 görsel kabulü de yapıldı. **Playwright WebKit** sınandı; gerçek Safari cihaz testi değildir. Chromium standart yazılım renderer ile ağır sahnede context loss gösterebildiğinden Mac testlerinde Metal açıkça seçilir; genel WebGL kaybı/retry ve semantik Bul yolu iki motorda da sınandı.
 
-## Gerçek akış kanıtı
+Gerçek cluster yalnız **kubeview-test**, namespace **kubeview-qa**, Kubernetes 1.35.1, iki Node. Mevcut control-plane cordon durumu korundu; bu görev Node bakımı veya backend endpoint'i eklemedi. Yeni kayıt/test Pod'ları UID/RV önkoşullarıyla silinir; önceden var olan kaynaklar korunur.
 
-- Merkezde gerçek Deployment dry-run/create → informer/watch → WebSocket → kanonik UID → sahnedeki gerçek container seçimi → gerçek log → scale/delete: Chromium canlı testi.
-- Gemide Node hedefli create; `metadata.name` required affinity, boş `spec.nodeName`, gerçek scheduler assignment ve seçilen UID: Chromium canlı testi. Node yeniden yaratılması 409/preflight ile reddedilir.
-- Backend canlı testleri: create/edit/delete, scale/restart/rollback, CronJob, cordon/uncordon; gerçek log/exec/portforward; Pod UID korunarak resize; uygunsuz affinity ile gerçek Unschedulable/FailedScheduling gözlemi.
-- Ayrılmış worker Docker container’ı 50.9 saniye duraklatıldı; gerçek Node `Ready=Unknown` gözlendi, UI bağlantısı **Canlı** kalırken yalnız o gemi iletişim uyarısı verdi. Sonra worker tekrar başlatıldı ve her iki Node Ready doğrulandı. [Görüntü](evidence/world/live-node-unknown.png), [kayıt bilgisi](evidence/world/node-unknown.json).
-- Snapshot/ADD/UPDATE/DELETE, gecikmiş callback, eski context generation, opaque RV, aynı ad/yeni UID, finalizer ve kısmi hata için servis/store testleri var. Görsel transfer testi API sonucunu değiştirmez.
-- Gerçek RBAC reddi: test namespace’ine ait SA/Role/RoleBinding ile impersonated Kubernetes istemcisi oluşturuldu. Pod GET 200; gerçek SSAR delete/log false; gateway DELETE/log 403 ve doğrudan upstream Forbidden. Pod UID korunmuş, fixture’lar UID önkoşuluyla temizlenmiştir. `TestDedicatedClusterRestrictedRBAC` race ile geçti.
-- Secret reveal ve edit ayrı amaçlı akıştır; yasaklı reveal kaydı mutasyonu engeller. Raw data/stringData/annotations operasyon geçmişine sızmaz.
+## İşlev ve görsel kanıt
 
-[Canlı yaşam döngüsü videosu](evidence/world/lifecycle-live.webm) merkez → Deployment oluşturma → gemi → hedefli Pod oluşturma → gözlenen vinç transferi → container logu → dünyaya dönüşü gösterir. [Metadata](evidence/world/lifecycle-live.json) gerçek context/namespace, API yanıtları, gözlenen transfer ve istemci sürelerini içerir. Kayıt demo değildir; ekran görsel kabul testlerindeki demo verisi kalıcı **Demo — örnek veri** rozeti taşır.
+Son birleşik paket **30 geçti / 0 hata / 6 bilinçli atlama**: beş WebKit tekrarlı mutasyon ve bir WebKit gerçek upstream reconnect tekrarı. Chromium karşılıkları geçti. [Makineye okunur sonuç](evidence/browser-results.json). **69 frontend testi**, Go testleri, production build, Docker `kubeview:motion` build ve Helm lint/render geçti. Filo testleri dört yanaşma sütununu,1cm aralıkla gövde süpürmesini, kayıtlı kilitlenmeden toparlanmayı ve700 saniyelik sekiz gemi/iptal edilen iş yoğunluğunu kapsar.
 
-## Görsel ve etkileşim kabulü
+- Hareketli gövde/container tıklaması UID'yi korur; pointer-down/up farklı kimlikse seçim iptal edilir. Kamera sürüklemesi yanlış kaynak açmaz.
+- Node ve Pod paneli, görsel tek-gemi duraklatma ve açık kamera takibi çalışır. Manuel Orbit başlangıcı takibi bırakır; canvas kimliği korunur.
+- Deniz kapatma fazı dondurur, su/iz/salınımı durdurur; seyir sürer. Seyir ve deniz birlikte kapalıyken ek frame0. Ortak duraklatma ve sistem azaltılmış hareketinde veri/kaynak işlemleri devam eder.
+- Gerçek create/dry-run, scale/delete, log, Secret edit, namespace ve Node affinity akışları korundu. Gerçek WS1012 kesintisinden sonra aynı Node UID, seçim, canvas ve yakın rota ilerlemesi korundu.
+- Uzak yükte kuyruk≈10 sn sonrası320ms sade varışa geçer; tek UID/tek instance ve doğru kanonik Pod sayısı korunur. 'Görsel yükleme sürüyor', Ready bilgisinden ayrı gösterilir.
+- Açık/koyu ve normal/yüksek kontrast dört birleşimde gerçek tarayıcı axe AA kontrolü temiz. Normal açık temada metin12.28:1, yardımcı6.00:1, kontrol sınırı3.26:1, focus7.00:1; koyuda12.85/8.40/4.77/9.00. Yüzen denetimlerde suya karşı ayrıca iki tonlu düz focus sınırı vardır. Gölge tek durum göstergesi değildir.
 
-1440×900, 1280×800 ve 768×900 CSS px; Chromium + WebKit: ilk açılış, fiziksel tesislerin tıklanması, merkez, Node/Pod paneli, koyu tema, dar sheet, boş kaynak durumu. Görüntüler gerçekten açılarak incelendi. Canvas tam viewport; panel aç/kapat kamera ve DOM canvas kimliğini korur. Kamera sürüklemesi seçim yapmaz; panel wheel kameraya sızmaz. Cmd/Ctrl+K, Escape, odak ve reduced motion kontrol edildi. İlk backend 503 sonrası tekrar bağlanma iki motorda geçti. Son mobil düzeltme başlık/aksiyon satırını kısaltıp Pod içeriğine alan bırakır.
+Ekranlar açılıp incelendi: [filo](evidence/motion/fleet-overview.png), [Node paneli](evidence/motion/demo-soft-node.png), [koyu ayarlar](evidence/motion/demo-soft-settings-dark.png), [gerçek container logu](evidence/motion/live-soft-container-logs.png). Renkler ve bilgi alanları opaktır; büyük blur/saydam dashboard yüzeyi yoktur.
 
-Referans karşılaştırması [UI-UX](UI-UX.md): bağlı uzun beton iskeleler ve dar su havuzları, sivrilen mavi borda ve köprüüstü, kiriş/ayak/halatlı portal vinç, oluklu hangar, güneş ve farklı beton/metal/su malzemeleri. Yerel prosedürel modeller ve ortak materyaller kullanılır; referans logoları kopyalanmaz. Pencere açıkken sahne arkasında kalır; varsayılan kullanımda dashboard yoktur.
+[19 sn demo kaydı](evidence/motion/demo-living-fleet.webm) dolaşma, tek gemi duraklatma, Pod seçimi, deniz kapatma, koyu panel ve ortak duraklatmayı gösterir; kalıcı Demo rozeti vardır. [Gerçek yanaşma kaydı](evidence/motion/live-docking-cycle.webm), yalnız test namespace'inde oluşturulmuş gerçek Pod'u gösterir. [Metadata](evidence/motion/live-docking-cycle.json): yanaşma≈4.47 sn, vinçten ayrılma≈6.59 sn, seyire dönüş≈11.03 sn; hata0. Uzun bekleme kısmı videodan kesilmiştir; hareket hızlandırılmamıştır.
 
-## Performans — hedef ile ölçümü ayırma
+## Performans matrisi
 
-[Ham rapor](evidence/performance.json), 1440×900, orta kalite, headless Chromium **SwiftShader yazılım renderer**; sentetik fixture, gerçek küme yük testi değildir. Aynı makinede başka geliştirme/test işlemleri vardı.
+[Ham rapor](evidence/motion/fleet-performance.json). Sentetik kaynaklar; gerçek20/50 Node cluster denemesi değildir. Her satır3 saniyelik ölçüm; aktif desenlerden önce1700ms yerleşme süresi. Arka planda diğer geliştirme/test süreçleri vardı. Her bölgede8 gemi görünür; bütün kanonik kaynaklar korunur.
 
-| Kanonik profil | Ekrandaki kaynak | Draw call | Üçgen | Kontrollü 3 sn kamera hareketi |
-|---|---|---:|---:|---:|
-| 20 Node / 300 Pod | 20 / 300 | 382 | 56.284 | 10,76 FPS |
-| 50 Node / 1500 Pod | 20 / 600, bölgelerle | 382 | 77.884 | 8,20 FPS |
+| Kanonik kaynak | Görünen | Seyir+deniz | Yalnız seyir | Yalnız deniz | İkisi kapalı | Node paneli açık |
+|---|---|---:|---:|---:|---:|---:|
+|20 Node /300 Pod |8 Node /120 Pod |59.90 FPS|60.27 FPS|59.92 FPS|0 ekframe|59.90 FPS|
+|50 Node /1500 Pod |8 Node /240 Pod |60.21 FPS|59.94 FPS|59.94 FPS|0 ekframe|59.94 FPS|
 
-Bu yazılım renderer değerleri donanım performansını temsil etmez. Ek olarak **headed Chromium / ANGLE Metal / Apple M5** ile her profilde 5 saniyelik kontrollü kamera hareketi ölçüldü: 20/300 için **60,33 FPS**, 50/1500 (görünür 20/600) için **60,18 FPS**; animation-frame p95 sırasıyla 18,8 / 18,7 ms. [GPU ham raporu](evidence/gpu-profile.json). Bu kısa sentetik 3D ölçümünde başlangıç FPS hedeflerine ulaşıldı; uzun süreli gerçek küme ve Safari ölçümü değildir. Draw-call sayısı başlangıç 300 bütçesinin üzerindedir. Her iki profilde de boşta 1 saniyede ek frame **0**; demand rendering aktif. GPU nesne sayısı 20 geometri / 4 texture; bu, GPU byte belleği ölçümü değildir.
+Seyir+denizde246 draw call,47478/56118üçgen; panel açıldığında247 call. Bunlar bu kısa profillerde başlangıç hedeflerini karşılar; tüm50 geminin aynı anda çizildiği veya her donanımda60 FPS garantisi değildir.
 
-10 dakikalık Pending → schedule → delete ve periyodik source-reset döngüsünde **464** ekle/sil çevrimi, **601,5 saniye**, **47** GC sonrası örnek alındı. JS heap ilk **18,67 MiB**, son **22,38 MiB**, aralık **18,33–24,47 MiB**; monoton sürekli büyüme görülmedi ancak başlangıç/son farkı var. GPU nesne sayıları 20/4 kaldı. Sonunda kanonik 300 Pod, 300 Pod slotu, 0 transfer, 0 kuyruk, 0 çıkış hayaleti; tarayıcı JS hatası **0**. Uzun süreli üretim bellek testi yerine geçmez.
+## Uzun koşu ve görünmez pencere
 
-Canlı kayıt sırasında WebSocket mesajının alınması → parse/store güncellemesi: 31 örnek, p50 **0,2 ms**, p95 **1,8 ms**, max **2,2 ms**. Bu, Kubernetes algılama/planlama gecikmesi veya React paint süresi değildir. Go RSS ayrı tek zaman örneğinde yaklaşık **57,9 MiB** idi; bir trend iddiası değildir. Tarayıcı toplam proses belleği ve GPU byte belleği ayrıca ölçülmedi.
+Son sürümde **601.6 sn /589 örnekleme döngüsü /51 GC ölçümü /9aynıUID resync**. Her20 döngüde Pending→schedule→delete, panel aç/kapat ve ayrıca600 fixture güncellemesi uygulandı. Hiçbir gerçek Kubernetes mutasyonu yapılmadı. Çarpışma örneği0, JavaScript hatası0. İlk gemi **en az3.48 tur**, diğer boşta gemiler3.42–3.48 tur; yükleme/ayrılma işleri alan gemide sayılan alt sınır2.90 tur. Uzun örnekleme aralığı dışlandığı için tur ölçümü bilinçli alt sınırdır. Saf700 sn yoğun testte bütün sekiz UID üç turu geçer.
 
-Son form düzeltmesinden sonra Chromium workbench paketinin **6 testi yeniden geçti**: gemi formunda Pod → Deployment → Pod geçişi, ad/image/CPU/bellek ve tek required affinity kuralını korudu; devamındaki gerçek Pod oluşturma/scheduling ve UID değişimi reddi geçti. Seçici [görüntüsü](evidence/world/ship-kind-selector.png). Güncellenen production ve Docker build tekrar geçti.
+JS heap GC sonrası **19.89→21.49 MiB**, aralık19.89–21.50 MiB. Başlangıç/son farkı≈1.60 MiB; sürekli sınırsız artış görülmedi fakat bu24saatlik üretim leak kanıtı değildir. GPU nesneleri **29 geometri/3 texture** kaldı. Sonunda300kanonik Pod/120görünür slot; transfer/kuyruk/çıkış hayaleti0. GPU byte belleği ve tarayıcı toplam proses belleği ayrıca ölçülmedi. Go RSS ayrı tek noktada54.1 MiB idi; bir trend veya 'toplam uygulamaRAM'i değildir.
 
-## Paketleme ve açık eksikler
+Uzun koşuda sekme değişimi `document.hidden=false` kaldı; bu yüzden onun gizlenme denemesi başarılı sayılmaz. Ham rapordaki tek `unexpected route jump` denetim uyarısı,60 saniyelik **örnekleme boşluğu**dur; tek karelik animasyon sıçraması veya JS hatası değildir. Ham kayıt korundu, `samplingWarnings` / `pageErrors` ayrımı eklendi.
 
-Temiz `npm ci` + Vite production build + Go binary build, Go test/race/vet, Helm lint/render, Docker build uygulanır. Statik frontend binary içine gömülü değildir; Docker’da birlikte taşınır. Same-origin HTTP/WS ve configurable Vite proxy kullanılır; sabit 8000 portlu log URL’si yoktur.
+Ayrı [gerçek görünmezlik kaydı](evidence/motion/visibility-check.json): native Chromium geçici profille başlatıldı, CDP `noDefaults` ile Playwright'ın sürekli-focus varsayımı kaldırıldı ve OS penceresi küçültüldü. `hidden=true` **60001ms**, bu sırada ekframe **0**, su fazı/şiddeti birebir aynı.600 fixture işlemi sonunda tek atanmış yeni Pod korundu; geri dönüşte kanonik33 Pod, transfer/kuyruk/hayalet0. Geri dönüş+küçültme geçişini kapsayan hareket15.13birim;60 sn'lik zaman tek kareye uygulanmadı. JS hatası0. Bu testte credential/token profili kullanılmadı; geçici profil temizlendi.
 
-Tam Node drain/PDB kesintisi canlı çalıştırılmadı. Tüm CRD/operator/controller kombinasyonları ve gerçek çok-container log senaryosu canlı matrisi tamamlanmadı. Gateway API hedef test kümesinde kurulu değil. Gerçek Safari ve uzun süreli GPU performansı, çok kullanıcılı kimlik ayrımı ve watch havuzu açık işlerdir. Ayrıntı [CAPABILITIES](CAPABILITIES.md).
+## Tekrar çalıştırma ve sınırlar
+
+`frontend` dizininden `npm run test:e2e` çalışan Vite/backend ister. Canlı senaryolar için yalnız `KUBEVIEW_TEST_CONTEXT=kubeview-test KUBEVIEW_TEST_NAMESPACE=kubeview-qa` bayraklarını kullanın. `node e2e/record-fleet.mjs` demo kaydı; `RECORD_SOURCE=live` ve iki test bayrağı gerçek kayıt oluşturur. `node e2e/fleet-benchmark.mjs` yaklaşık11 dakikalık sentetik profil, `node e2e/visibility-check.mjs` gerçek pencere küçültme kontrolüdür. Mac'te Metal açıkça seçilir.
+
+Gerçek Safari donanımı, uzun süreli üretim GPU yükü, bütün operator/CRD kombinasyonları ve canlı tam drain/PDB kesintisi bu görsel ek görevin kanıtı değildir. Önceki backend yetenekleri ve sınırları [CAPABILITIES](CAPABILITIES.md) içinde korunur. Arayüz varsayılanı tam ekran dünyadır; tablolar/paneller geçici nesne etkileşimleridir.

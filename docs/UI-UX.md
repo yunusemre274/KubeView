@@ -17,7 +17,7 @@ Merkez → workload oluştur → gözlenen Pod → gerçek Node gemisine transfe
 | Scale/restart/resources/rollback | Gerçek controller işlemleri | API kabulü ve watch sonucu ayrı; HPA ve strategy koruması |
 | Node hedefli oluşturma | Gerçek affinity ve scheduler | Her mevcut OR terimine AND; Node UID ön kontrolü |
 | Log/exec/port-forward | Gerçek alt kaynaklar | Exec non-TTY; HTTP önizlemede mutlak yollar sınırlı |
-| CPU/bellek geçmişi | Gerçek oturum örnekleri | metrics.k8s.io; ölçüm yoksa boşluk; uzun dönem depo yok |
+| CPU/bellek geçmişi | Gerçek oturum örnekleri | metrics.k8 sn.io; ölçüm yoksa boşluk; uzun dönem depo yok |
 | Demo | Açık seçim, deterministik fixture | Sürekli küçük Demo etiketi; canlı mutasyon kapalı |
 | Bulut Node sağlama / Helm / trafik | Eksik ayrı entegrasyon | Bu yetenekler bağlı gibi gösterilmez |
 
@@ -44,7 +44,7 @@ Prosedürel üretim fotoğraf gerçekçiliği iddiası taşımaz. Kaynak ve yere
 - Yardımcı kontroller kenardan 12–16 px, 36–40 px yüksekliğinde. Oluşturma eylemleri bu araç çubuğunda toplanmaz.
 - Merkez penceresi yaklaşık 880 px / en fazla %78 yükseklik; dünya kenarlarda görünür. İç tablo kendi içinde kayar.
 - Node/Pod paneli masaüstünde 400 px, küçük masaüstünde 360 px; dar ekranda %45 alt sheet, kullanıcı isteğiyle %85.
-- Yalnız açık “Yaklaş”, “Sahnede göster” veya “Limana dön” kamera hareketi başlatır. Sürüklemede 5 px eşiği seçimi engeller.
+- Yalnız açık “Yaklaş”, “Sahnede göster”, “Limana dön” veya gemi takip eylemi kamera hareketi başlatır. Sürüklemede 5 px eşiği seçimi engeller.
 - Nesne bulucu ve klavye aynı fiziksel tesis/kaynak akışına bağlanır. Geçici bulucu kalıcı tabloya dönüşmez.
 - Gemi → Pod → container geri zinciri tek paneldedir. Form/YAML aynı nesneyi korur; kirli taslak kapanışı onaylanır.
 - Namespace bir gemiye ait alan değildir; farklı gemilerdeki yükleri filtreler. Filtre, UID slotlarını ve kanonik sayıları uydurmaz.
@@ -53,6 +53,10 @@ Prosedürel üretim fotoğraf gerçekçiliği iddiası taşımaz. Kaynak ve yere
 
 ## Panel tasarımı
 
-Açık panel: `#FFFFFF`, metin `#17212F`, yardımcı `#526074`, kenarlık `#DDE3EA`, ana eylem `#2563EB`. Koyu panel: `#111C2E`, metin `#E7EDF5`, yardımcı `#A6B3C5`, kenarlık `#2B3A50`. Dünya gün ışığı korunur. Gövde 14 px, tablo 13 px, yardımcı metin en az 12 px; satır 44 px. Renk durumun tek taşıyıcısı değildir.
+Açık Soft UI panel: `#E6EDF1`, metin `#20313F`, yardımcı `#526578`; koyu panel `#202B36`, metin `#EBF3F8`, yardımcı `#B6C6D4`. Kontrol sınırları ve focus gölgelerden bağımsız belirgindir. Mat/opak yüzey, küçük yükseltilmiş düğme ve inset alanlar kullanılır; büyük dış beyaz parıltı ve blur yoktur. Dünya gün ışığı korunur. Gövde 14 px, tablo 13 px, yardımcı metin en az 12 px; satır 44 px. Renk durumun tek taşıyıcısı değildir.
 
 Ekranlar `docs/evidence/world/` altında tutulur. Test motoru WebKit, gerçek Safari donanımıyla eşdeğer kanıt olarak sunulmaz. Performans ve tamamlanmamış senaryolar [CAPABILITIES.md](CAPABILITIES.md) içinde belirtilir.
+
+## Dünya hareketi kararı
+
+Sağlıklı gemiler dolaşır; normal tur≈154 sn, UID fazları sabittir. Gerçek yeni yükte kısa yanaşma mümkündür; 10 sn civarı aşılacaksa sade varış, kanonik durumu geciktirmeden kullanılır. Her bölgede8 gemi: kamera liman ve en yakın seyir alanını gösterir, bütün kümeyi tek küçük kadraja sıkıştırmaz. Seyir durdurulması Node cordon değildir. Deniz/gemi/iz/operasyon ayarları ayrıdır; ortak duraklatma ve sistem azaltılmış hareket tercihi gerçek veriyi durdurmaz.

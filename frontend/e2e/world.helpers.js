@@ -12,7 +12,7 @@ export async function target(page, match) {
     .evaluate(
       (canvas, match) =>
         canvas.__harbor
-          .projectTargets()
+          .projectTargets(match)
           .find(
             (t) =>
               t.visible && Object.entries(match).every(([k, v]) => t[k] === v),

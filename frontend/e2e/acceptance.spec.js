@@ -96,7 +96,7 @@ test("full viewport world, physical facilities, Node→Pod, stable camera, keybo
   await page
     .getByRole("button", { name: "Görünüm ve ayarlar", exact: true })
     .click();
-  await page.getByRole("button", { name: "Koyu", exact: true }).click();
+  await page.getByLabel("Panel teması", {exact:true}).selectOption("dark");
   await closeWindow(page);
   await page.screenshot({
     path: `../docs/evidence/world/${info.project.name}-dark-1440.png`,

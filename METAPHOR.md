@@ -25,3 +25,9 @@ Deployment veya StatefulSet replica’ları yeni gemi üretmez. StatefulSet ordi
 Gemiden oluşturma, seçilen Node’a zorunlu veya tercih edilen affinity ekleyebilir. `spec.nodeName` ile scheduler atlanmaz. Merkezden oluşturma scheduler seçimini varsayılan bırakır. Gerçek nodeName gözlenmeden yük gemiye taşınmaz. Animasyon hiçbir kaynak veya işlem başarısı üretmez.
 
 Tarihsel “numaralı StatefulSet gemi filosu”, “namespace = gemi ambarı” ve kalıcı dashboard eşleştirmeleri 2026-10-24 ürün kararıyla geçersizdir.
+
+## Görsel filo hareketi
+
+Node kimliği sabittir, geminin dünya dönüşümü hareket eder. Güverte yükleri gerçek nodeName ilişkisini korur; başka gemiye fiziksel olarak sürüklenmek bir Kubernetes scheduling olayı değildir. Sağlıklı geminin varsayılan hâli seyirdir; eski sürekli rıhtımda park kararı bu ek ürün kararıyla değişmiştir. Node arızası veya görsel kullanıcı duraklatması son konumu korur. Backend bağlantısı kesilmesi Node arızası değildir.
+
+Yanaşma/vinç işlemi yalnız gözlenen Pod atamasının geçici sunumudur. İlk snapshot/relist yük kuyruğu üretmez. Görsel yükleme sürerken kaynak atanmış/Running/Ready olabilir; panel gerçek durumu gösterir. Uzak veya meşgul gemide kısa varış, gerçek yanaşma yapılmış iddiası taşımaz. Her bölge8 gemi kapasitelidir; namespace hâlâ gemiler arasında ortaktır.

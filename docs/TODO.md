@@ -13,3 +13,14 @@
 - [x] Dağıtım/temiz kurulum ve belgeleri son kanıtlarla eşleştir.
 
 Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch havuzu, harici Prometheus/Helm/bulut VM entegrasyonu ayrı kapsamlardır. Tam Node drain/PDB kesinti senaryosu gerçek kümede henüz yürütülmedi; koruma fake-client testinde sınandı.
+
+## Hareketli filo / canlı deniz / Soft UI ek görevi
+
+- [x] UID'ye bağlı sabit kapasiteli rotalar, hız/headway ve görsel duraklatma.
+- [x] Yanaşma ve rota birleşmesi: sanal rota lideri; kıç iskeleyi temizledikten sonra dönüş; dört yanaşma sütunu.
+- [x] Hareketli gemi/kargo/etiket/seçim ve kullanıcı isteğine bağlı kamera takibi.
+- [x] Ortak analitik su modeli, açılıp kapanan ripple/dalga ve hıza bağlı iz.
+- [x] Sürümlü ayarlar; sistem hareket/tema tercihi; opak Neumorphism ve yüksek kontrast.
+- [x] Chromium/Metal ve WebKit işlev/görsel testleri; gerçek WS reconnect ve gerçek Pod/docking/log kaydı.
+- [x] Son 10 dakika / üç tur / görünmez sekme / GC kaynak raporunu son sürümle bitir.
+- [x] Son paket, kanıt ve dokümanları kaydet.

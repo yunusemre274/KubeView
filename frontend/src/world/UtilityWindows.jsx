@@ -19,6 +19,7 @@ import Window from "./Window";
 import { FACILITIES, facilityFor, scopeResources } from "./registry";
 import { OPERATION_LABELS } from "./operations";
 import { Events } from "./FacilityWindow";
+import { DEFAULT_PREFERENCES, validatePreferences } from "./preferences";
 const time = (v) =>
   v ? new Date(v).toLocaleString("tr-TR") : "Henüz alınmadı";
 export function ConnectionWindow({
@@ -179,11 +180,14 @@ export function ConnectionWindow({
   );
 }
 export function PreferencesWindow({
+  preferences,
+  onPreferences,
+  motion,
   theme,
   onTheme,
   quality,
   onQuality,
-  layers,
+  layers = {},
   onLayers,
   reducedMotion,
   onReducedMotion,
@@ -191,39 +195,190 @@ export function PreferencesWindow({
   mode,
   onDemoScenario,
 }) {
+  const value = validatePreferences(
+    preferences || {
+      ...DEFAULT_PREFERENCES,
+      theme: theme || "system",
+      quality: quality || "auto",
+      motionPreference: reducedMotion ? "reduced" : "system",
+    },
+  );
+  const change = (key, next) => {
+    const validated = validatePreferences({ ...value, [key]: next });
+    if (onPreferences) onPreferences(validated);
+    else if (key === "theme") onTheme?.(next === "system" ? "light" : next);
+    else if (key === "quality") onQuality?.(next === "auto" ? "medium" : next);
+    else if (key === "motionPreference") onReducedMotion?.(next === "reduced");
+  };
+  const toggle = (key, label, description) => (
+    <label className="preference-toggle" key={key}>
+      <span>
+        <strong>{label}</strong>
+        <small>{description}</small>
+      </span>
+      <input
+        type="checkbox"
+        aria-label={label}
+        checked={value[key]}
+        onChange={(event) => change(key, event.target.checked)}
+      />
+    </label>
+  );
   return (
     <Window
       title="Görünüm ve ayarlar"
       icon={Settings}
       onClose={onClose}
-      className="utility-window"
+      className="utility-window preferences-window"
       modal
     >
-      <div className="preference-row">
-        <div>
-          <strong>Panel teması</strong>
-          <p>Dünyanın gün ışığı korunur.</p>
+      <section className="preferences-section">
+        <h2>Panel görünümü</h2>
+        <p className="muted">
+          Mat yüzeyler, belirgin sınırlar ve okunabilir teknik alanlar.
+        </p>
+        <div className="preferences-grid">
+          <label className="form-field">
+            <span>Panel teması</span>
+            <select
+              aria-label="Panel teması"
+              value={value.theme}
+              onChange={(event) => change("theme", event.target.value)}
+            >
+              <option value="system">Sistemi izle</option>
+              <option value="light">Açık</option>
+              <option value="dark">Koyu</option>
+            </select>
+          </label>
+          <label className="form-field">
+            <span>Kontrast</span>
+            <select
+              aria-label="Kontrast"
+              value={value.contrast}
+              onChange={(event) => change("contrast", event.target.value)}
+            >
+              <option value="normal">Normal</option>
+              <option value="high">Yüksek kontrast</option>
+            </select>
+          </label>
         </div>
-        <button
-          className="button"
-          onClick={() => onTheme(theme === "light" ? "dark" : "light")}
-        >
-          {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}{" "}
-          {theme === "light" ? "Koyu" : "Açık"}
-        </button>
-      </div>
-      <label className="form-field">
-        3D kalite
-        <select
-          aria-label="3D kalite"
-          value={quality}
-          onChange={(e) => onQuality(e.target.value)}
-        >
-          <option value="low">Düşük · gölge kapalı</option>
-          <option value="medium">Orta</option>
-          <option value="high">Yüksek</option>
-        </select>
-      </label>
+      </section>
+      <section className="preferences-section">
+        <div className="preferences-heading">
+          <div>
+            <h2>Liman hareketi</h2>
+            <p className="muted">
+              Yalnız görsel hareket değişir; Kubernetes kaynakları ve işlem
+              sonuçları gerçek veriden izlenir.
+            </p>
+          </div>
+          <button
+            className="button"
+            aria-pressed={value.paused}
+            onClick={() => change("paused", !value.paused)}
+          >
+            {value.paused
+              ? "Görsel hareketi sürdür"
+              : "Görsel hareketi duraklat"}
+          </button>
+        </div>
+        <label className="form-field">
+          <span>Hareket tercihi</span>
+          <select
+            aria-label="Hareket tercihi"
+            value={value.motionPreference}
+            onChange={(event) => change("motionPreference", event.target.value)}
+          >
+            <option value="system">Sistem tercihini izle</option>
+            <option value="reduced">Hareketi azalt</option>
+            <option value="full">Tam hareket</option>
+          </select>
+        </label>
+        {(motion?.reduced || motion?.paused) && (
+          <p className="motion-preference-status" role="status">
+            {motion.paused
+              ? "Görsel hareket duraklatıldı."
+              : "Hareket azaltma etkin."}{" "}
+            Aşağıdaki tercihleriniz saklanır; dekoratif yolculuk, salınım ve su
+            hareketi durur.
+          </p>
+        )}
+        {toggle(
+          "patrol",
+          "Gemi devriyesi",
+          "Node gemileri güvenli liman rotalarında ilerler.",
+        )}
+        <label className="form-field">
+          <span>Devriye hızı</span>
+          <select
+            aria-label="Devriye hızı"
+            value={value.speed}
+            onChange={(event) => change("speed", event.target.value)}
+          >
+            <option value="slow">Yavaş</option>
+            <option value="normal">Normal</option>
+            <option value="fast">Hızlı</option>
+          </select>
+        </label>
+        {toggle(
+          "bob",
+          "Hafif gemi salınımı",
+          "Demirli veya ilerleyen gemilerde sınırlı su salınımı.",
+        )}
+        {toggle(
+          "sea",
+          "Deniz yüzeyi hareketi",
+          "Hafif yüzey hareketi ve güneş yansımaları.",
+        )}
+        <label className="form-field">
+          <span>Deniz hareketi şiddeti</span>
+          <select
+            aria-label="Deniz hareketi şiddeti"
+            value={value.seaStrength}
+            onChange={(event) => change("seaStrength", event.target.value)}
+          >
+            <option value="calm">Sakin</option>
+            <option value="light">Hafif</option>
+            <option value="noticeable">Belirgin</option>
+          </select>
+        </label>
+        {toggle(
+          "wake",
+          "Gemi izi",
+          "Hareket eden gemilerin arkasında ölçülü su izi.",
+        )}
+        <label className="form-field">
+          <span>Operasyon animasyonları</span>
+          <select
+            aria-label="Operasyon animasyonları"
+            value={value.operations}
+            onChange={(event) => change("operations", event.target.value)}
+          >
+            <option value="full">Tam · vinç transferleri</option>
+            <option value="simple">Sade · kısa durum geçişleri</option>
+          </select>
+        </label>
+      </section>
+      <section className="preferences-section">
+        <h2>3D kalite</h2>
+        <label className="form-field">
+          <span>3D kalite</span>
+          <select
+            aria-label="3D kalite"
+            value={value.quality}
+            onChange={(event) => change("quality", event.target.value)}
+          >
+            <option value="auto">Otomatik · cihaz bütçesine göre</option>
+            <option value="low">Düşük · gölge kapalı</option>
+            <option value="medium">Orta</option>
+            <option value="high">Yüksek</option>
+          </select>
+        </label>
+        <p className="muted">
+          Otomatik seçim düşük veya orta kaliteyi kullanır. Kaynak verisinin
+          kapsamını değiştirmez.
+        </p>
+      </section>
       <fieldset className="layer-options">
         <legend>Dünya katmanları</legend>
         {[
@@ -236,26 +391,16 @@ export function PreferencesWindow({
           <label key={key}>
             <input
               type="checkbox"
-              checked={layers[key]}
-              onChange={(e) => onLayers({ ...layers, [key]: e.target.checked })}
+              checked={layers[key] !== false}
+              onChange={(event) =>
+                onLayers?.({ ...layers, [key]: event.target.checked })
+              }
             />
             {label}
           </label>
         ))}
         <p>Ağ çizgileri kaynak ilişkileridir; ölçülmüş trafik değildir.</p>
       </fieldset>
-      <label className="checkbox-field">
-        <input
-          type="checkbox"
-          checked={reducedMotion}
-          onChange={(e) => onReducedMotion(e.target.checked)}
-        />
-        Hareketi azalt
-      </label>
-      <p className="muted">
-        Vinç yolculuğu ve dramatik geçişler sadeleşir. İşlem sonuçları
-        animasyonu beklemez.
-      </p>
       {mode === "demo" && (
         <button className="button" onClick={onDemoScenario}>
           <Play size={15} />

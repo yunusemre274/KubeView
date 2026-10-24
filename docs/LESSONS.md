@@ -17,7 +17,7 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 
 ### 🔴 [DERS-016] Silme (DELETE) Event'lerinin Uçtan Uca Sınanması ve Client-Go Tombstone / Multi-Node Purge Zorunluluğu
 - **Tarih:** 2026-08-03
-- **Sorumlu Agent:** `k8s-backend-agent` & `web-frontend-agent`
+- **Sorumlu Agent:** `k8 sn-backend-agent` & `web-frontend-agent`
 - **Ne Yanlış Gitti?:** Pod'lar `kubectl delete pod` ile silindiğinde veya Deployment `--replicas=0` yapıldığında Pod'lar sahnede "Pending" durumunda hayalet olarak kalıyordu. Kök Neden: (1) Go backend'deki client-go Informer `DeleteFunc` callback'i `cache.DeletedFinalStateUnknown` tombstone yapılarını unwrap etmediği için silme olayları sessizce atlanıyordu, (2) Frontend state yönetimi `targetNode` drift nedeniyle silinen Pod'u sadece tek bir node'un dizisinde arıyordu.
 - **Nasıl Düzeltildi?:** Backend'e tüm informer tipleri için tombstone unwrap yardımcıları eklendi. Frontend `ShipyardClusterContext.jsx` içerisinde silme ve güncelleme olaylarında silinen `podId` kümedeki TÜM node'ların dizilerinden temizlenecek şekilde jenerik silme mekanizması kuruldu.
 - **Geleceğe Dönük Kural:** Silme (DELETE) event'leri, ADD/UPDATE ile aynı titizlikte uçtan uca (backend informer ➔ WebSocket ➔ frontend state) test edilmelidir. Sadece "nesne eklenince görünüyor mu" kontrol etmek yeterli değildir; "nesne silinince gerçekten kayboluyor mu" da HER yeni kaynak tipi eklendiğinde ayrı bir test senaryosu olmalıdır.
@@ -62,3 +62,10 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 
 - Dünya üzerindeki bildirim rozetinin yalnız z-index'ini artırmak yeterli değildir: Node paneli ile aynı köşedeki denetim tıklanamaz kalabilir. Panel açıkken rozeti boş köşeye taşı; alt sheet'te üstte tut.
 - WebGL kaybı gerçek WEBGL_lose_context ile iki tarayıcıda sınandı; semantik Bul → aynı Node paneli yolu GPU'dan bağımsız kalmalı.
+
+- Su, PlaneGeometry'den özel BufferGeometry'ye geçtiğinde kamera fit'i20km denizi model sınırı sanabilir. Fit'te su/izleri dışla; gemi kapsüllerinin seyir rotası örneklerini bilinçli ekle.
+- Birleşme için yalnız o anki iki gemi aralığı yeterli değildir: manevra boyunca ana rotada sanal bir lider/rezervasyon gerekir. Uzun test bu eksikliği yakaladı.
+- 'Diğer yedi gemi ilerliyor' başarı ölçütü, bir geminin sürekli beklemesini gizleyebilir. Her UID'nin tekrar seyire dönmesini doğrula. Dış yanaşma sütunlarında kıç açıklığını, interpolasyon boyunca bütün gövdeyle test et; önce düz çık, sonra dön.
+- Uzun GPU benchmark'ını HMR'den ve paralel tarayıcıların/natif fare olaylarının ölçüm kontrollerini değiştirmesinden ayır. Ham renderer, görünen kaynak sayısı ve açık/kapalı etkileri kaydet.
+
+- Playwright, Chromium ana oturumunda focus emulation açar; ikinci CDP oturumundan kapatmak gerçek görünmezlik sağlamayabilir. Native geçici profili connectOverCDP(noDefaults:true) ile bağlayıp document.hidden değerini gerçekten doğrula. Başarısız görünmezlik denemesini geçmiş sonuçtan silme veya başarı gibi adlandırma.
