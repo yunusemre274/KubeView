@@ -568,7 +568,13 @@ test("scoped snapshot Nodes are existing fleet; a verified provision UID or genu
     [node(), old, live, provided],
     life,
     origins,
-    [{ id: "verified", nodeUID: "provider-node" }],
+    [
+      {
+        id: "verified",
+        nodeUID: "provider-node",
+        startedAt: new Date(life.sourceWallStart).toISOString(),
+      },
+    ],
   );
   assert.deepEqual([...initial], ["live-node", "provider-node"]);
   life.observe([node(), old, live, provided], [], {
@@ -605,4 +611,71 @@ test("scoped snapshot Nodes are existing fleet; a verified provision UID or genu
     ["old-snapshot", "provider-node"],
     "consumer must not mutate snapshot origins",
   );
+});
+
+test("old provisioning journal history cannot turn a later first-seen snapshot Node into a new admission", () => {
+  const life = new VisualLifecycle("new-source"),
+    old = node("True", "historical-worker"),
+    origins = new Set(["historical-worker"]);
+  life.observe([node("True", "known-1"), node("True", "known-2")], [], {
+    now: 0,
+  });
+  const historical = {
+    id: "old-provider-journal",
+    nodeUID: "historical-worker",
+    status: "ready",
+    startedAt: new Date(Date.now() - 60000).toISOString(),
+  };
+  assert.equal(
+    observedNodeArrivals(
+      [node("True", "known-1"), node("True", "known-2"), old],
+      life,
+      origins,
+      [historical],
+    ).size,
+    0,
+    "old successful journal entry predates this visual source epoch",
+  );
+});
+
+test("only valid provider start time within this visual source epoch can override a snapshot; live delta admission is independent", () => {
+  const life = new VisualLifecycle("source");
+  life.observe([], [], { now: 0 });
+  const opened = life.sourceWallStart,
+    n = node("True", "worker"),
+    origins = new Set(["worker"]);
+  for (const startedAt of [
+    undefined,
+    "invalid",
+    new Date(opened - 60000).toISOString(),
+    new Date(Date.now() + 60000).toISOString(),
+  ])
+    assert.equal(
+      observedNodeArrivals([n], life, origins, [
+        { nodeUID: "worker", startedAt },
+      ]).size,
+      0,
+    );
+  const request = {
+    nodeUID: "worker",
+    startedAt: new Date(opened).toISOString(),
+  };
+  assert.deepEqual(
+    [...observedNodeArrivals([n], life, origins, [request])],
+    ["worker"],
+  );
+  assert.deepEqual(
+    [...observedNodeArrivals([n], life, new Set(), [])],
+    ["worker"],
+    "real live ADD must not depend on a provider operation",
+  );
+  life.observe([], [], { now: 200 });
+  assert.equal(
+    life.sourceWallStart,
+    opened,
+    "visual source wall start is stable across ordinary updates",
+  );
+  life.reset("next-source");
+  assert.ok(life.sourceWallStart >= opened);
+  assert.equal(life.initialized, false);
 });

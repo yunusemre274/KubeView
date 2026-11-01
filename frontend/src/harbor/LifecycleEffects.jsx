@@ -181,11 +181,17 @@ function EventParticles({ lifecycle, nodes, fleet, clock, reducedMotion }) {
 
 export function NodeArrivalCaption({ uid, fleet, ready }) {
   const text = useRef();
+  const label = (ship) =>
+    !ready
+      ? "Gerçek Node kaydı · Node Ready bekleniyor"
+      : ship?.modeElapsed > 0
+        ? "Kızaktan katılım · Node Ready"
+        : "Güvenli katılım aralığı bekleniyor · Node Ready";
   useFrame(() => {
     if (text.current) {
       const ship = fleet.ships.get(uid);
       text.current.hidden = ship?.mode !== "launching";
-      const value = `Gerçek Node kaydı · ${!ready ? "Ready bekleniyor" : ship?.launchReserved ? "Kızaktan katılım" : "Güvenli katılım aralığı bekleniyor"}`;
+      const value = label(ship);
       if (text.current.textContent !== value) text.current.textContent = value;
     }
   }, -0.5);
@@ -201,8 +207,7 @@ export function NodeArrivalCaption({ uid, fleet, ready }) {
         hidden
         style={{ ...caption, color: "#4b697a", borderColor: "#6d8d9b" }}
       >
-        Gerçek Node kaydı · kızaktan katılım ·{" "}
-        {ready ? "Ready" : "Ready bekleniyor"}
+        {label(fleet.ships.get(uid))}
       </span>
     </Html>
   );

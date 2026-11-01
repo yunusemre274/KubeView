@@ -52,10 +52,24 @@ export function observedNodeArrivals(
   operations = [],
 ) {
   if (!lifecycle.initialized) return new Set();
+  const wallNow = Date.now();
   const origins =
       snapshotUIDs instanceof Set ? snapshotUIDs : new Set(snapshotUIDs || []),
     verified = new Set(
-      operations.map((operation) => operation.nodeUID).filter(Boolean),
+      operations
+        .filter((operation) => {
+          const started =
+            typeof operation.startedAt === "string"
+              ? Date.parse(operation.startedAt)
+              : NaN;
+          return (
+            Number.isFinite(lifecycle.sourceWallStart) &&
+            started >= lifecycle.sourceWallStart &&
+            started <= wallNow
+          );
+        })
+        .map((operation) => operation.nodeUID)
+        .filter(Boolean),
     );
   return new Set(
     nodes
@@ -131,6 +145,7 @@ export class VisualLifecycle {
   }
   reset(source = "") {
     this.source = source;
+    this.sourceWallStart = Date.now();
     this.initialized = false;
     this.nodes = new Map();
     this.previousContainers = new Map();

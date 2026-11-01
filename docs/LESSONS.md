@@ -119,3 +119,5 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 - Hubble1.20.2 field mask, L3/L4 kaydında boş veya önceki HTTP alanları bırakabilir. `http != nil` hatta `code200/protocolHTTP` uygulama protokolü kanıtı değildir. Gerçek `Type=L7`, geçerli L7 türü ve aktif record varyantı birlikte doğrulanmalı; gerçek masked TCP/HTTP/DNS örnekleriyle regresyon kurulmalı.
 
 - Aynı source içinde namespace değişimiyle gelen yeni scoped snapshot da baseline'dır. Önceki namespace'de görülmemiş eski Pod'ları canlı ADD sanmak sahte vinç/süreç kuyruğu ve gereksiz yanaşma üretir. Son snapshot UID Set'ini ayrı ve sınırlı tut; yalnız ilk görülmeyi baseline yap, bilinen Pending→assigned canlı değişimini bastırma.
+
+- Kalıcı provisioning history'de nodeUID bulunması yeni katılım kanıtı değildir. Snapshot istisnası geçerli ve güncel görsel source epoch'unda başlatılmış işlem ister; eski/eksik/gelecek tarihli kayıt baseline'ı bozamaz. Bu risk unit ile üretildi, runtime arızası diye etiketlenmedi.
