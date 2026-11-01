@@ -1,5 +1,68 @@
 # Güncel görev durumu
 
+## 1 Kasım 2026 — v1.1 öncesi görsel davranış denetimi
+
+- [x] Mevcut dirty checkout/build kimliğini koru; aktif watcher→WS→store→nesne→panel→gerçek işlem yollarını ve iki yerel referansı denetle. Ürün davranışı değiştirilmedi.
+- [x] Yalnız denetime ait gerçek Kubernetes1.35.1 kümesinde Node stop/Unknown/recovery/delete/new UID, Pod restart/Failed/Succeeded/finalizer/replacement ve normal UI Deployment create/scale/restart kanıtlarını kaydet; sentetik/status enjeksiyonunu gerçek fault'tan ayır.
+- [x] Gerçek container click/current/init/ephemeral/previous log, exec, HTTP port-forward ve restricted SA403 kontrollerini; selector topolojisi ile test istemcisinin trafik ölçümünü ayrı raporla.
+- [x] Reconnect sonrası API'de duran CR'ye yanlış silindi diyen P0'ı normal kullanıcı yolunda kanıtla. Bu tur düzeltme uygulanmadı.
+- [x] Sekiz soruyu ayrı cevaplayan [rapor](VISUAL_FEATURE_AUDIT.md), [76 satırlık matris](VISUAL_FEATURE_MATRIX.csv), [öncelikli eksik listesi](VISUAL_FEATURE_GAPS.md), zamanlı kare/video ve kısa n=1 tanılamayı teslim et. Chromium/WebKit dört odaklı kamera testi geçti; native hidden giriş koşulu sağlanmadı.
+- [ ] Ürün eksikleri: alev/batma, fiziksel kargo düşmesi, in-app Node provisioning, gerçek ağ/protokol telemetrisi, özel hazırlık/control-plane animasyonu ve CR reconnect düzeltmesi. Bunlar denetim tamamlandı diye tamamlanmış özellik sayılmadı; v1.1 geliştirmesine/tag/milestone kapanışına geçilmedi.
+
+## 30 Ekim 2026 — Dolu log ve son kabul / test orkestrasyonu
+
+- [x] Mevcut kaynak ve geçerli ölçümü koruyarak üç alt müdür, görünür Terminal sekmeleri ve gerçek üç test worker'ı kur; tek CPU/GPU lease.
+- [x] Frozen v5 source listesi, baseline'a ters patch eşitliği ve5.000satır metin/selection/download/filter/wrap eşitliğini doğrula.
+- [x] Dolu normal logda30+60sn ×5 eşleşmiş çift; jank/RSS kazanımını toplam CPU belirsizliğinden ayır.
+- [x] Frontend14/14 Chromium/WebKit, backend tek contract işi7/7 kontrol, supervisor5/5 güvenlik testi; tamamlanan80 unit testi yeniden kullan.
+- [x] Başarısız WebKit kamera testinin sabit bekleme ön koşulunu düzelt; toleransı ve production kodunu koru, eski kanıtı sakla.
+- [x] Hatalı kapalı-panel ölçümünü reddet; ısınma öncesi DOM doğrulama/input koruması ve açık per-cell kurtarma ledger'ı; geçerli beş hücreyi tekrar etme.
+- [x] Son ana M matrisini40 geçerli hücre / beş tam eşleşmiş blokla tamamla; toplam CPU ve signed Δpanel ayrı. Logsuz panelde net CPU kazanımı kanıtlanmadı; kapalı/5olay maliyet artışı açık kaydedildi.
+- [x] Instance kapasite prototipini ayrı frozen kaynakta test et;5 eşleşmiş çiftte toplam kazanç kanıtlanmadığından reddet. Üretim v5 aynı kaldı; negatif sonuç ve16/16 prototip testi korunur.
+- [x] AC'den pile geçişi oturum sınırıyla ayır; sıfır ölçümlü AC guard hatasını koru. Kullanıcının pille devam tercihiyle yeni son kararlılık/yardımcı oturumunu başlat.
+- [x] Son v5 kaynakta yeni20dk churn/resync:40/40quiet count,fullfinalsignature,5600applied/5567live,3reconnect/329resync,21/21logsclosed;59,999FPS,p9517,7/p9918,9ms.29→30tek geometri artışı atfedilemedi; açık sınırlama.
+- [x] S/L/burst/interaction/idle/log/DPR2 matrisi60geçerli hücre/3eşleşmiş blok; native60sn visibility geçti, Safari WebDriver+gerçekmanueldeneme engeli N/A olarak kaydedildi. Uyku/PID nedeniyle yalnız geçersiz/eksik hücreler kurtarıldı.
+- [x] Son rapor,111geçerli hücre,12harness testi, ham CSV/JSON, kaynak SHA ve açık sınırlar kaydedildi.
+- [ ] Genel panel CPU azalması / bütün fiziksel UI gecikme hedefleri: kanıtlanmadı; ölçülen CPU artışları ve732,2ms tek DOM-proxy örneği raporda açık. Native Safari performansı erişim engeli nedeniyle N/A.
+
+Gerçek kuyruk/çıktı: [orchestration/README](../benchmarks/orchestration/README.md), [panel raporu](PANEL_CPU_OPTIMIZATION.md).
+
+## 26 Ekim 2026 — Panel CPU / kaynak optimizasyonu
+
+- [x] Güncel sınırlı-log baseline, kullanıcı farkı, dependency/source/build/fixture kimliklerini koru; ters uygulanabilir kaynak farkını doğrula.
+- [x] Aynı seçili Node, kamera ve filo fazıyla40 hücrelik beş eşleşmiş blok;30 sn ısınma +60 sn ölçüm. Signed Δpanel ve toplam CPU ayrı; hiçbir iyi örnek seçilmedi.
+- [x] ResourceDetails gövdesini ilgisiz Pod olaylarından ayır; canonical güncellik ve silme/UID replacement davranışını koru.
+- [x] Kargo kutusu başına tekrarlanan dönüşüm/renk/template allocation'ını kaldır; matris eşdeğerlik testleri ve aynı pozda piksel karşılaştırması.
+- [x] Boş log interval'ını kaldır;180 ms yeni-veri flush'ı, sınırlar, abort ve eski logda scroll davranışını doğrula.
+- [x] Ayrı gerçek React profiling build, CPU/alloc/timeline/asenkron GPU tanılamaları; CSS/Three byte eşdeğerliği.
+- [x]76 frontend testi,9 harness testi,12 Chromium/WebKit testi ve Go server paketi geçti.
+- [x] Chrome pil tasarrufunun30 Hz etkisini baseline/adaya ayrı kısa kontrolle teşhis et; sonraki yardımcı koşularda yalnız geçici benchmark profilinde sabitle. Native Safari WebDriver yeniden HTTP500, performans N/A.
+- [x] Yeni20 dk churn/log/panel/reconnect/resync son v5 kaynağında30Ekim tamamlandı; önceki v3 kare bütçesi başarısızlığı başarıya çevrilmedi.
+- [x] Eşit başlangıç buffer'ıyla yardımcı matris30Ekim tamamlandı; eski güvensiz log baseline'ı tekrar çalıştırılmadı.
+- [x] Son sayısal rapor ve karşılanmayan CPU/gerçek UI/Safari kabul sınırları30Ekim kaydedildi.
+
+Ayrıntı ve yeni run-id'ler: [PANEL_CPU_OPTIMIZATION.md](PANEL_CPU_OPTIMIZATION.md). Aşağıdaki tamamlanmış benchmark bölümü25 Ekim çalışmasının tarihsel kaydıdır.
+
+## Ölçüme dayalı benchmark / optimizasyon
+
+- [x] Güncel commit ve kullanıcı farkını kaydet; production build + gerçek Go informer/WebSocket/store/App yolunda deterministik fixture kur.
+- [x] Snapshot sırasını sabitle; önce/sonra görünür UID, DPR, kamera, kaynak ve protokol eşitliğini karşılaştırma kapısına bağla.
+- [x] Uzun log satırı/pending buffer byte sınırını gerçek HTTP stream ile doğrula; ham API akışını koru.
+- [x] Başlangıç runtime patch'inden, kullanıcı checkout'unu değiştirmeden byte eşdeğer production build üret.
+- [x] Go mikro benchmark, CPU/heap profili, yavaş okuyucu + 1/3 reconnect ve ayrı race kontrolünü çalıştır.
+- [x] Chromium/WebKit UID replacement, seçili DELETE, resync, hareketli instance, container logu ve kapanış temizliği testlerini geçir.
+- [x] Native Safari erişim engelini gerçek safaridriver yanıtıyla kaydet; manuel production ölçüm yolu ekle.
+- [x] Sabit güçte S/M/L ve M olay/etkileşim/efekt matrisi: 19 geçerli üçlü (30 sn +60 sn ×3); uzun log baseline ısınmada6 GiB guard ile durdu, tekrar edilmedi ve oranı N/A kaydedildi.
+- [x] Native Chromium penceresini 60 sn gerçekten gizle; 0 çizim, donan su, kesintisiz doğru canonical state ve güvenli dönüşü doğrula.
+- [x] Tam20 dk churn:5600 uygulanan/5567 canlı alınan olay ve33 snapshot uzlaştırması,40 eşit kaynak kontrolü,3 reconnect ve329 gerçek aynı-version resync callback'i; tek WS,29 geometri/3 texture,21/21 log kapanışı.
+- [x] Üç tekrarlı instrumentation kapalı kontrol; ayrı GPU timer ve UID/RV korelasyonlu Chrome timeline doğrulandı.
+- [x] Nihai önce/sonra raporu,1550 ham ölçüt satırı/538 medyan grubu CSV/JSON, görsel kayıt ve Safari/CPU/başarısız baseline sınırları tamamlandı.
+
+Kargo matris cache adayı kanıtlanmış kazanç göstermediği için geri alındı; aday ve olumsuz ölçümleri saklandı. İlk sırasız snapshot koşuları karşılaştırma dışında tutulur.
+
+## Tamamlanmış dünya görevleri
+
+- [x] Yalnız sahne odağında yön tuşlarıyla kamera/hedefi yatay kaydır; tuş bırakma ve odak kaybında durdur. Chromium/WebKit: 4 kamera testi; frontend: 69 test ve production build geçti.
 - [x] Güncel kaynakları ve referansları incele; önceki gerçek Kubernetes servislerini koru.
 - [x] Dashboard kabuğunu tam ekran world shell ile değiştir.
 - [x] Merkez, vinç ve diğer fiziksel tesisleri geçici yönetim pencerelerine bağla.

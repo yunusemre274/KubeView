@@ -11,6 +11,18 @@ React 18 / R3F 8 / Drei 9 / Three 0.164 korunur. Vite 6.4.5 güvenlik düzeltmel
 5. `frontend/src/harbor/`: liman yerleşimi, ortak prosedürel asset/materyal, UID slotları ve geçici animasyon koordinatörü. `components/ShipyardScene.jsx` yalnız eski import yolunun uyum köprüsüdür. Eski monolit ve kullanılmayan sahte paneller kaldırıldı.
 6. `frontend/src/data/demo.js`: açık kullanıcı seçimiyle çalışan deterministik fixture kaynağı. Gerçek API işlemleri bu modda engellenir.
 
+### 26 Ekim 2026 — Kaynak indeksi ve panel sınırı
+
+Provider, canonical objeleri değiştirmeden `data/resourceIndex.js` ile UID/tür/Node/owner/Event indekslerini tek geçişte türetir. Değişmeyen bucket dizileri korunur; source değişiminde paylaşım sıfırlanır. Uyumluluk `ships` görünümü aynı alanları taşır. App'in Node/Pod ayrıntı kapsamı, kendi kaynakları ve ilişkileri değişince yenilenir; genel tür kataloğu tam listeyi kullanır. `ResourceDetails` memo sınırı ve kararlı callback'ler panel gövdesini ilgisiz Pod olaylarından ayırır. Son veri metni ayrı context tüketicisidir; canonical yayın geciktirilmez. Backend cache/watch paylaşımı değiştirilmedi.
+
+Hareketli kargo hâlâ mevcut R3F frame'inde instance buffer'a yazılır. Statik kutu şablonları UID'ye, dönüş tabanı Node'un güncel pose'una bağlıdır; geometri/LOD/kalite korunur. Panel için bütün filo pozisyonları React state'ine taşınmaz; seçilen geminin yalnız değişen seyir durumu yayınlanır. Cache ve silme yolları bounded kalır.
+
+Log flush'ı yeni chunk geldikten sonra tek180 ms timeout ile kurulur; veri yokken boş interval yoktur. Eski loglarda scroll korunur, “En alta dön” açık eylemdir. Satır/byte/yarım satır sınırları ve abort davranışı değişmez. Ayrı React production profiling build'i ve opt-in ölçüm kancaları normal kullanıcıda aktif değildir. Deneyler, sayılar ve sınırlar: [panel CPU raporu](PANEL_CPU_OPTIMIZATION.md).
+
+### 30 Ekim2026 — Dolu log ve ölçüm sınırı
+
+Log görünümü32satırlık ordinal bloklarda değişmeyen metin düğümlerini korur. Satır/byte/partial sınırları,180ms flush, gerçek HTTP abort ve seçilebilir/kopyalanabilir tam metin aynı kalır. Soft UI CSS'i, canvas boyutu, hareket ve Kubernetes veri akışı değiştirilmedi. Instance kapasite yeniden kullanımı prototipi toplam fayda göstermediği için üretime alınmadı; exact-count mesh yaşam döngüsü devam eder. Benchmark saat/PID kapıları yalnız test araçlarıdır; yeni production endpoint, Worker/WASM veya render döngüsü eklenmedi. Genel CPU kazancı kanıtlanmadı; [son ölçüm ve sınırlar](PANEL_CPU_OPTIMIZATION.md) esas alınır.
+
 ## Snapshot, watch ve resync
 
 `GET /api/contexts` gerçek kubeconfig/in-cluster seçeneklerini döndürür; `KUBE_CONTEXT` sunucu başlangıç seçimini belirleyebilir. `/ws?context=...` bağlantısında context sabittir. Her bağlantı rastgele bir `generation` üretir. Dynamic informer listeleri ve store’ları senkronize edilir; `SNAPSHOT` gerçek ham kaynakları (Secret sanitize edilerek), hataları ve sağlık bilgisini taşır. İlk listeler yeni Pod animasyonu değildir. Sonrasında `RESOURCE_EVENT` ADD/UPDATE/DELETE taşır. Tombstone açılır; aynı resourceVersion UPDATE atlanır.
@@ -25,7 +37,7 @@ Tarayıcı başına tek WS vardır; backend’de informer fabrikası bağlantı 
 - `/api/resources`: discovery tabanlı list/get/POST create/PUT edit/DELETE. Dry-run Kubernetes API’de çalışır; PUT resourceVersion ve UID, DELETE preconditions kullanır.
 - `/api/capabilities`: SelfSubjectAccessReview, server read-only, scope ve subresource koşulları.
 - `/api/actions`: scale, restart, resources, cordon/uncordon, resize, CronJob, rollback, drain akışları. HPA sahipliği, controller strategy ve namespace kapsamı sunucuda da denetlenir.
-- `/api/logs`: ham Pod adı, namespace, container, tail/follow/previous/timestamps ile gerçek HTTP stream. Fallback başarı verisi yok.
+- `/api/logs`: ham Pod adı, namespace, container, tail/follow/previous/timestamps ile gerçek HTTP stream. Fallback başarı verisi yok. İstemci `LogBuffer` yerel geçmişi 5000 satır / 1 MiB UTF-8 ve bitmemiş satır dahil satır başına16 KiB ile sınırlar; kısaltma görünürdür. Container değişimi/kapanış eski stream'i abort eder. Ham sunucu logu bu görünüm sınırından etkilenmez.
 - `/api/metrics`: metrics.k8 sn.io gerçek Node/Pod kullanım değerleri. Uzun geçmiş deposu değildir; frontend oturum belleğinde 15 saniyelik örnekler tutar.
 - `/api/exec`: gerçek pods/exec WS/SPDY; tarayıcı terminali non-TTY pipe olarak açıkça etiketlidir.
 - `/api/portforwards`, `/api/portforward/<id>/`: seçili Pod UID ve portla sınırlı, süreli gerçek SPDY tüneli; HTTP önizleme ve ham TCP WebSocket. Genel bir host/shell proxy değildir.

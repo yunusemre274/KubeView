@@ -3,6 +3,8 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
+  useLayoutEffect,
   useState,
 } from "react";
 import {
@@ -11,6 +13,8 @@ import {
   appendMetrics,
 } from "../data/resourceStore";
 import { demoResources, demoMetrics } from "../data/demo";
+import { buildResourceIndex } from "../data/resourceIndex.js";
+const EMPTY_RESOURCES = Object.freeze([]);
 
 const Context = createContext(null);
 // One manager per browser. Each context change invalidates every old callback.
@@ -262,6 +266,7 @@ export const singletonManager = {
     const url = this.url("/ws");
     url.protocol = url.protocol === "https:" ? "wss:" : "ws:";
     const socket = new WebSocket(url);
+    globalThis.__KUBEVIEW_BENCHMARK__?.connection?.(socket);
     this.socket = socket;
     socket.onopen = () => {
       if (epoch === this.epoch) this.publish({ isConnected: true });
@@ -270,11 +275,23 @@ export const singletonManager = {
       if (epoch !== this.epoch || socket !== this.socket) return;
       try {
         const t = performance.now();
-        this.state = reduceMessage(this.state, JSON.parse(e.data));
+        const message = JSON.parse(e.data);
+        const parsed = performance.now();
+        this.state = reduceMessage(this.state, message);
         const elapsed = performance.now() - t;
         this.storeTimings.push(elapsed);
         if (this.storeTimings.length > 500) this.storeTimings.shift();
         this.publish({ lastStoreLatency: elapsed });
+        globalThis.__KUBEVIEW_BENCHMARK__?.message(
+          message,
+          {
+            callback: t,
+            parsed,
+            stored: t + elapsed,
+            published: performance.now(),
+          },
+          this.state,
+        );
       } catch (error) {
         this.publish({ errors: [`Veri mesajı okunamadı: ${error.message}`] });
       }
@@ -373,6 +390,14 @@ export function ShipyardClusterProvider({ children }) {
     () => Object.values(state.resources),
     [state.resources],
   );
+  const previousIndex = useRef();
+  const resourceIndex = useMemo(
+    () => buildResourceIndex(resources, previousIndex.current, state.sourceKey),
+    [resources, state.sourceKey],
+  );
+  useLayoutEffect(() => {
+    previousIndex.current = resourceIndex;
+  }, [resourceIndex]);
   const api = useMemo(
     () => ({
       request: (path, options) => {
@@ -410,6 +435,7 @@ export function ShipyardClusterProvider({ children }) {
       value={{
         ...state,
         resources,
+        resourceIndex,
         api,
         login: (token) => singletonManager.login(token),
         loadKind: singletonManager.loadKind.bind(singletonManager),
@@ -424,20 +450,11 @@ export function ShipyardClusterProvider({ children }) {
             state.mode === "demo" ? "__demo__" : state.context,
           );
         },
-        totalShips: resources.filter((r) => r.kind === "Node").length,
-        totalPallets: resources.filter((r) => r.kind === "Pod").length,
-        ships: resources
-          .filter((r) => r.kind === "Node")
-          .map((r) => ({
-            ...r,
-            id: r.metadata.uid,
-            name: r.metadata.name,
-            pods: resources.filter(
-              (p) => p.kind === "Pod" && p.spec?.nodeName === r.metadata.name,
-            ),
-          })),
+        totalShips: resourceIndex.nodes.length,
+        totalPallets: resourceIndex.pods.length,
+        ships: resourceIndex.ships,
         eventsLog: state.events,
-        deployments: resources.filter((r) => r.kind === "Deployment"),
+        deployments: resourceIndex.kinds.get("Deployment") || EMPTY_RESOURCES,
       }}
     >
       {children}

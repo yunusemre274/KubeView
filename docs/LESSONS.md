@@ -2,6 +2,14 @@
 
 Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemelerinden çıkarılan dersleri saklar.
 
+## 26 Ekim 2026 — Panel farkı, gerçek profiling ve ölçüm kontrolü
+
+- İki sürümün panel-açık CPU farkı, paneli açmanın ek maliyeti değildir. Aynı seçili UID/kamera/filo fazında kapalı-açık blokları eşleştir; negatif Δ'yı koru. Bir baseline aykırısında ilk üç örneği ezmeden iki eksiksiz blok eklenerek beşe çıkıldı. Frekans/sıcaklık ölçülmediyse küçük toplam CPU farkına kesin neden atama.
+- Normal production React Profiler callback üretmez. Kurulu React18.3.1'in gerçek profiling build'inde callback doğrulandı; iç içe App/Details süreleri toplanmadı. Allocation tahmini retained bellek veya süreç RSS'i değildir.
+- Takip scriptinde aynı CLI bayrağını varsayılan ve override olarak iki kez üretmek ilk-değeri-okuyan parser'da süre/tekrar planını değiştiriyordu. Ön kontrollerin gerçek5/15 manifest'leri saklandı; ana40 hücre etkilenmedi. Varsayılan yalnız override yoksa ekleniyor, çift seçenek çalıştırmadan reddediliyor.
+- Mac `lowpowermode=0` olsa bile Chromium'un kendi Energy Saver'ı pil%20 civarında30 Hz uygulayabilir. Baseline ve adayda29,9 çizim/sn, yalnız geçici ölçüm profili tercihi0 yapılınca59,9 görüldü. Bu fark optimizasyon kazanımı sayılmadı; ana kullanıcı profili/OS ayarı değiştirilmedi, sonraki yardımcı protokol ayrı tutuldu.
+- Sabit kaynak sayısı tek başına doğruluk veya leak kanıtı değildir: UID/RV içeriği upstream/plan signature'ıyla, DOM/listener/timer/observer/WS/GPU adetleri aynı kontrol noktalarında ayrıca izlenir. Aynı sahne fazındaki piksel farkı yalnız saat yazısında kaldı; CSS'i ölçümsüz değiştirmek gerekmedi.
+
 ---
 
 ## 📋 Kayıtlı Dersler
@@ -69,3 +77,32 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 - Uzun GPU benchmark'ını HMR'den ve paralel tarayıcıların/natif fare olaylarının ölçüm kontrollerini değiştirmesinden ayır. Ham renderer, görünen kaynak sayısı ve açık/kapalı etkileri kaydet.
 
 - Playwright, Chromium ana oturumunda focus emulation açar; ikinci CDP oturumundan kapatmak gerçek görünmezlik sağlamayabilir. Native geçici profili connectOverCDP(noDefaults:true) ile bağlayıp document.hidden değerini gerçekten doğrula. Başarısız görünmezlik denemesini geçmiş sonuçtan silme veya başarı gibi adlandırma.
+
+## 2026-10-24 — Adil benchmark ve log hacmi
+
+- Aynı kaynak sayısı, aynı görünür çalışma kümesi değildir. Informer Store.List sırası değişirse sekiz gemilik bölge farklı UID/Pod'lar seçebilir. Fixture snapshot'ını deterministik sırala; kamera/DPR/kalite yanında görünür UID'leri de karşılaştırma önkoşulu yap.
+- Satır sayısı sınırı log byte hacmini sınırlamaz. Newline bekleyen yarım satır ve flush öncesi birikim de sınırlanmalıdır. Çok uzun UTF-8 satırları, bölünmüş chunk ve stream iptali gerçek HTTP testiyle doğrulanmalı; kısaltma kullanıcıdan saklanmamalıdır.
+- CPU profilinde pahalı görünen fonksiyona cache eklemek otomatik kazanç değildir. Aynı production koşulunda ölçülen matris cache adayı kazanç göstermedi; geri alındı. Olumsuz veri korunur, kısa tanılama nihai üç tekrarlı kabul yerine geçirilmez.
+- Ölçüm aracının bütün kareleri tarayıcı belleğinde tutması uzun koşuda sahte büyüme yaratabilir. Bounded kayıtları periyodik olarak dış harness'e boşalt; profiler/video koşularını ana akıcılık örneklerine karıştırma. Güç kaynağı değişen koşuları aynı koşul sayma.
+- Kamera başlangıçta doğru görünse de geciken otomatik fit veya yerel fare girdisi ısınma sırasında pozu değiştirebilir. Pozu ölçüm sınırında da doğrula; sabit kamera ve gerçek etkileşim senaryolarını ayır. Yanlış kadrajla alınmış üçlüden tek iyi örnek seçme veya toleransı büyütme.
+- Bağlantı kopmasında bütün watch deltalarının alınması beklenmez. Üretilen, canlı alınan ve snapshot ile uzlaştırılan değişiklikleri ayrı say; tam kaynak içeriğini son upstream/plan ile eşleştir. Aynı sayıya dönmek tek başına doğruluk kanıtı değildir.
+
+- Güvenlik eşiğinde duran baseline da sonuçtur. Eski log renderer'ı30 sn ısınmada6 GiB RSS'i aşınca aynı testi yeniden zorlamak yerine ham başarısızlığı sakla; N/A baseline ile tam hızlanma yüzdesi üretme. Aynı kaynak kodlu3D yollarda bile CPU değişebilir; açıklanamayan artış/düşüşü saklama veya uygulama kazancı diye atama.
+# 30 Ekim 2026 — Ölçüm ve worker sınırları
+
+- Paneli kapatma komutunun dönmesi yeterli değildir: DOM'un kapandığını doğrula ve kullanıcı girdi korumasını ısınmaya da uygula. Kararlı ölçüm öncesinde zaten yanlış olan paneli sonradan doğru koşulmuş gibi etiketleme.
+- Geçerli önceki hücreleri koruyan kurtarma açık per-cell ledger, eski hata/ham dosya bağlantısı, eşit repeat-ID kümeleri ve tam blok sayımı ister. CPU değerine göre örnek seçme; premeasurement protokol onarımını ve zaman aralığı sınırlamasını açık yaz.
+- Sabit800ms beklemek OrbitControls damping'in bittiğini kanıtlamaz. Bounded pose gözlemiyle test ön koşulunu doğrula; başarısız toleransı körlemesine genişletme.
+- GPU süreci CPU'su V8 profilinin dışındadır. Renderer CPU düşüşünü, toplam CPU düşüşü veya GPU süresi kazanımı diye sunma; eşleşmiş fark medyanını iki grubun ayrı medyan farkından ayır.
+- Worker terminali gerçek süreç/çıktıya bağlı olmalı. Timeout'ta yalnız TERM yetmez: bilinen PID+birth sahipliği, bounded TERM→KILL, output drain ve başarısız cleanup'ta tutulmuş lease gerekir. Bilinmeyen orphan'ı isimden/porttan tahminen öldürme.
+- Güç kapısı ölçümden önce durduysa bu bir başarısız test kaydıdır, CPU örneği değildir. Kullanıcının pille devam tercihi varsa eski AC dağılımına pil örneği eklemek yerine yeni kimlikli güç kapsamı aç; uzun koşu ve yardımcı çiftleri bu kapsamda ayrı değerlendir.
+- Buffer oluşturma20→0 gibi gerçek API işi azalması, toplam kaynak faydasının kendisi değildir. Beş çiftten üçünde CPU artan ve ek kapasite tutan prototipi sırf mikro ölçüt daha iyi diye production'a alma; olumsuz sonuçları ve değişmeyen ürün dosyalarını koru.
+- macOS kapak uykusunda `performance.now` ile OS duvar saati aynı süreyi kapsamayabilir. PID'lerin değişmemesi yeterli değildir:653sn CPU penceresini60sn JS işiyle karşılaştırmak sahte tasarruf üretir. Ortak saat kapısı uygula, uyuyan örneği ham hâliyle koruyup kabulden çıkar.
+- Alt stage dosyası bir sinyal/timeout sonrası `running` kalabilir. İlerleme bildirirken merkezi worker kuyruğundaki terminal sonucu öncelikli olmalı; yalnız alt dosyadan canlılık çıkarma. Kapanmış işi çalışıyor gibi bildiren izleyici düzeltildi; geçerli eski hücreler tekrar edilmedi.
+
+## 1 Kasım 2026 — Görsel denetim kanıtı
+
+- Log container/previous seçeneğini değiştirdikten sonra eski metnin kısa süre görünmesi yanlış başarı üretebilir. İlgili yeni isteğin parametre/cevabını bekle, farklı incarnation metnini doğrula ve screenshot sonrasında da kararlı kaldığını kontrol et. Yardımcıdaki OBSERVED etiketi tek başına görsel kabul değildir; gerçek görüntü hata gösteriyorsa eski başarıyı reddet.
+- Tam name onayı isteyen silme dialog'unda alanı boş bırakan test, API delete hatası değildir. Canlı UI doğrulamasını tamamlamadan bekleme süresini artırmak veya ürünü değiştirmek yerine test ön koşulunu düzelt; önceki hatayı sakla.
+- Uzun kullanıcı duraklatmasından sonra Docker verisi korunurken özel temp kubeconfig/profil ve KIC hostname kaydı kaybolabilir. Yalnız owned container kimliği/cluster UID doğrulamasıyla kurtar; kullanıcı context'ine geçme. `docker start` hemen ardından systemd hazır varsayma. Fresh worker join ile aynı worker'ın yeniden kaydını ayır.
+- Native minimize komutunun başarılı olması `document.hidden` olduğunu kanıtlamaz. Gerçek visibility giriş koşulu sağlanmıyorsa background testini engelli bırak; DOM özelliğini taklit ederek native test geçti deme.

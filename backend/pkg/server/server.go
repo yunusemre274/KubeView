@@ -43,6 +43,9 @@ type Server struct {
 	clients   map[string]*Clients
 	forwardMu sync.Mutex
 	forwards  map[string]*forwardSession
+	// Test harness only; nil in production. Must be assigned before serving.
+	streamProbe     func(connection, stage string, msg envelope, depth int, elapsed time.Duration)
+	prepareSnapshot func([]*unstructured.Unstructured)
 }
 type Resource struct {
 	Group      string   `json:"group"`

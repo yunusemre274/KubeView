@@ -75,7 +75,17 @@ KUBEVIEW_TEST_CONTEXT=kubeview-test KUBEVIEW_TEST_NAMESPACE=kubeview-qa \
   go test -race ./pkg/server -run TestDedicatedCluster -v
 ```
 
-Yeni hareketli profil için frontend dizininde `npx vite --config e2e/benchmark.vite.config.js` ile HMR kapalı ölçüm sunucusu başlatın; ayrı terminalde `BASE_URL=http://127.0.0.1:5187 node e2e/fleet-benchmark.mjs` çalıştırın. Yaklaşık 11 dakikalık sentetik GPU/bellek/seyir koşusu gerçek Kubernetes mutasyonu yapmaz. `node e2e/visibility-check.mjs`, geçici native Chromium profilinde gerçek 60 saniye görünmezlik kontrolüdür. Ölçüm ortamı ve ham renderer rapora yazılır.
+Production performans altyapısı, gerçek Go informer → WebSocket → store → mevcut sahne yolunu deterministik sentetik verilerle kullanır. Gerçek kümeye kaynak uygulamaz. S/M/L profilleri, 30 sn ısınma + 60 sn ×3 tekrar, efekt/olay/etkileşim koşuları ve 20 dakikalık kaynak/log/reconnect döngüsü için [ölçüm kılavuzuna](docs/PERFORMANCE.md) bakın. Ölçülen sonuçlar ve native Safari erişim sınırı [performans raporunda](docs/PERFORMANCE_REPORT.md) ayrılır. Önceki `e2e/fleet-benchmark.mjs` geliştirme tanılaması production benchmark yerine kullanılmaz.
+
+26–30 Ekim panel araştırması, güncel sınırlı-log sürümünü yeni baseline olarak kullanır: [panel CPU deneyi ve tekrarlama](docs/PANEL_CPU_OPTIMIZATION.md). Beş çiftte dolu-log takılması ve süreç RSS'i azaldı; net toplam CPU kazanımı kanıtlanmadı. Açık/kapalı panel farkı aynı seçili UID ile eşleşmiş bloklarda ölçülür; tarihsel sürümler arasındaki fark panel açma maliyeti sayılmaz. Son doğrulama durumu ve reddedilen kapasite adayı da raporda ayrı tutulur.
+
+```sh
+npm --prefix frontend run bench:test
+npm --prefix frontend run bench:run -- --phase optimized --profiles M --scenarios living
+npm --prefix frontend run bench:compare -- BEFORE_DIR AFTER_DIR OUTPUT.json
+```
+
+`--phase` dondurulan build'i, `--profiles` kaynak yükünü, `--scenarios` ölçüm akışını seçer. Var olan build tekrar kullanılacaksa `--reuse-build --reuse-binary` eklenir; tarihsel baseline güncel kodla ezilmez. Log ekranının yerel geçmişi 5000 satır / 1 MiB ve satır başına16 KiB ile sınırlıdır; kısaltma görünür biçimde bildirilir. Ham Kubernetes log verisi değiştirilmez.
 
 Tarayıcı testleri çalışan Vite/backend bekler. `npx playwright install chromium webkit` komutu frontend dizininden gerekli motorları kurar. Canlı mutasyon testleri iki açık test bayrağı olmadan atlanır; üretim context’i otomatik seçilmez.
 

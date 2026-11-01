@@ -210,13 +210,26 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 	generation := uuid.NewString()
+	if s.streamProbe != nil {
+		s.streamProbe(generation, "open", envelope{}, 0, 0)
+		defer s.streamProbe(generation, "close", envelope{}, 0, 0)
+	}
 	send := func(msg envelope) error {
 		msg.Upstream = msg.Reachable
 		msg.SnapshotReady = msg.Synced
 		msg.Generation = generation
 		msg.Timestamp = time.Now().UTC().Format(time.RFC3339Nano)
 		conn.SetWriteDeadline(time.Now().Add(10 * time.Second))
-		return conn.WriteJSON(msg)
+		var start time.Time
+		if s.streamProbe != nil {
+			s.streamProbe(generation, "write_begin", msg, -1, 0)
+			start = time.Now()
+		}
+		err := conn.WriteJSON(msg)
+		if s.streamProbe != nil {
+			s.streamProbe(generation, "write_end", msg, -1, time.Since(start))
+		}
+		return err
 	}
 	if send(envelope{Type: "STATUS", Message: "Kubernetes API ve kaynak listeleri denetleniyor"}) != nil {
 		return
@@ -240,14 +253,28 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		if u == nil {
 			return
 		}
+		var start time.Time
+		if s.streamProbe != nil {
+			start = time.Now()
+		}
 		gate.Lock()
 		defer gate.Unlock()
+		if s.streamProbe != nil {
+			s.streamProbe(generation, "gate_wait", envelope{}, len(out), time.Since(start))
+		}
 		if !ready || !currentInformerEvent(store, action, u) {
 			return
 		}
+		msg := envelope{Type: "RESOURCE_EVENT", Action: action, Object: sanitize(u), Synced: true, Reachable: true}
+		if s.streamProbe != nil {
+			s.streamProbe(generation, "queue", msg, len(out)+1, 0)
+		}
 		select {
-		case out <- envelope{Type: "RESOURCE_EVENT", Action: action, Object: sanitize(u), Synced: true, Reachable: true}:
+		case out <- msg:
 		default:
+			if s.streamProbe != nil {
+				s.streamProbe(generation, "overflow", msg, len(out), 0)
+			}
 			select {
 			case overflow <- struct{}{}:
 			default:
@@ -299,6 +326,9 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		inf.AddEventHandler(cache.ResourceEventHandlerFuncs{AddFunc: func(obj interface{}) { emit("ADD", obj, inf.GetStore()) }, UpdateFunc: func(old, obj interface{}) {
 			oldU, newU := unwrap(old), unwrap(obj)
 			if oldU != nil && newU != nil && oldU.GetResourceVersion() == newU.GetResourceVersion() {
+				if s.streamProbe != nil {
+					s.streamProbe(generation, "same_version_resync", envelope{}, 0, 0)
+				}
 				return
 			}
 			emit("UPDATE", obj, inf.GetStore())
@@ -332,6 +362,10 @@ wait:
 		}
 	}
 	gate.Lock()
+	var snapshotStart time.Time
+	if s.streamProbe != nil {
+		snapshotStart = time.Now()
+	}
 	snapshot := []*unstructured.Unstructured{}
 	synced := len(informers) > 0 && !watchFailed
 	for _, inf := range informers {
@@ -345,6 +379,12 @@ wait:
 				snapshot = append(snapshot, sanitize(u))
 			}
 		}
+	}
+	if s.prepareSnapshot != nil {
+		s.prepareSnapshot(snapshot)
+	}
+	if s.streamProbe != nil {
+		s.streamProbe(generation, "snapshot_build", envelope{Resources: snapshot}, 0, time.Since(snapshotStart))
 	}
 	err = send(envelope{Type: "SNAPSHOT", Resources: snapshot, Errors: errors, Synced: synced, Reachable: true})
 	ready = true

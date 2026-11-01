@@ -306,7 +306,7 @@ function SpecificSummary({ resource, resources }) {
     </section>
   );
 }
-export default function ResourceDetails({
+function ResourceDetails({
   resource,
   deleted = false,
   cluster,
@@ -319,6 +319,7 @@ export default function ResourceDetails({
   resources = [],
   readOnly = true,
   lastUpdated,
+  updateStamp,
   onBack,
   breadcrumb = [],
   onAddPod,
@@ -652,9 +653,10 @@ export default function ResourceDetails({
           <p className="details-version">
             resourceVersion <code>{metadata.resourceVersion}</code> ·{" "}
             {age(resource)} önce oluşturuldu
-            {lastUpdated
-              ? ` · Son veri ${new Date(lastUpdated).toLocaleTimeString("tr-TR")}`
-              : ""}
+            {updateStamp ||
+              (lastUpdated
+                ? ` · Son veri ${new Date(lastUpdated).toLocaleTimeString("tr-TR")}`
+                : "")}
           </p>
         )}
       </header>
@@ -1365,3 +1367,19 @@ export default function ResourceDetails({
     </aside>
   );
 }
+
+const MemoResourceDetails = React.memo(ResourceDetails);
+export default import.meta.env.VITE_REACT_PROFILE === "1"
+  ? function ProfiledResourceDetails(props) {
+      return (
+        <React.Profiler
+          id="ResourceDetails"
+          onRender={(...values) =>
+            globalThis.__KUBEVIEW_BENCHMARK__?.reactCommit?.(...values)
+          }
+        >
+          <MemoResourceDetails {...props} />
+        </React.Profiler>
+      );
+    }
+  : MemoResourceDetails;

@@ -1,6 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 export default defineConfig({
+  resolve: {
+    alias:
+      process.env.VITE_REACT_PROFILE === "1"
+        ? [{ find: /^react-dom\/client$/, replacement: "react-dom/profiling" }]
+        : [],
+  },
   plugins: [react()],
   server: {
     port: 5173,

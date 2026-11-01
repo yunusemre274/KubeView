@@ -1,3 +1,4 @@
+import { writeCargoMatrix } from "./cargoTransforms.js";
 import React, {
   Component,
   Suspense,
@@ -351,8 +352,52 @@ function FleetFrame({
   useEffect(() => {
     invalidate();
   }, [motion, shipControls, visible, invalidate]);
+  useEffect(() => {
+    const snapshot = () => fleet.snapshot();
+    scene.userData.fleetStates = snapshot;
+    return () => {
+      if (scene.userData.fleetStates === snapshot)
+        delete scene.userData.fleetStates;
+    };
+  }, [fleet, scene]);
+  useEffect(() => {
+    const probe = globalThis.__KUBEVIEW_BENCHMARK__;
+    if (!probe) return;
+    // Diagnostic setup only, outside measured time. Canonical resources are untouched.
+    const reset = () => {
+      const ships = [...fleet.ships.values()];
+      const slots = new Map(ships.map((ship) => [ship.uid, ship.slot]));
+      fleet.reset();
+      clock.current = 0;
+      waterState.current = createWaterState(0);
+      waterState.current.strength = motion.sea
+        ? (motion.seaAmplitude ??
+          (typeof motion.seaStrength === "number"
+            ? motion.seaStrength
+            : ({ calm: 0.15, light: 0.45, noticeable: 1 }[motion.seaStrength] ??
+              0.45)))
+        : 0;
+      fleet.reconcile(
+        ships.map((ship) => ship.node),
+        (uid) => slots.get(uid),
+        0,
+        { snapshot: true, patrol: motion.patrol },
+      );
+      probe.visualHold = true;
+      lastReport.current = -Infinity;
+      invalidate();
+    };
+    probe.resetVisual = reset;
+    return () => {
+      if (probe.resetVisual === reset) delete probe.resetVisual;
+    };
+  }, [fleet, clock, waterState, motion, invalidate]);
   useFrame((_, delta) => {
-    const enabled = visible && !motion.paused && !motion.reduced,
+    const enabled =
+        visible &&
+        !motion.paused &&
+        !motion.reduced &&
+        !globalThis.__KUBEVIEW_BENCHMARK__?.visualHold,
       dt = enabled ? Math.min(0.2, Math.max(0, delta)) : 0;
     if (dt) clock.current += dt;
     const amplitude = motion.sea
@@ -415,10 +460,13 @@ function FleetFrame({
         coordinator.current.queue.length)
     )
       invalidate();
-    scene.userData.fleetStates = () => fleet.snapshot();
-    if (onShipMotionChange && performance.now() - lastReport.current > 500) {
+    if (
+      selectedUID &&
+      onShipMotionChange &&
+      performance.now() - lastReport.current > 500
+    ) {
       lastReport.current = performance.now();
-      const state = fleet.snapshot().find((ship) => ship.uid === selectedUID);
+      const state = fleet.snapshotShip(selectedUID);
       if (state) {
         const ready = fleet.ships
           .get(state.uid)
@@ -562,22 +610,128 @@ function PodCargo({
     details = useRef(),
     status = useRef(),
     selection = useRef();
-  const transform = useMemo(() => new THREE.Object3D(), []),
+  const matrix = useMemo(() => new THREE.Matrix4(), []),
+    basisEuler = useMemo(() => new THREE.Euler(0, 0, 0, "YXZ"), []),
     tint = useMemo(() => new THREE.Color(), []);
+  const cached = useRef(new Map()),
+    bases = useRef(new Map()),
+    frame = useRef(0);
+  const records = useMemo(() => {
+    const live = new Set();
+    const rows = pods.map((pod) => {
+      const uid = uidOf(pod),
+        node = nodesByName.get(pod.spec?.nodeName),
+        nodeUID = node && uidOf(node);
+      live.add(uid);
+      let row = cached.current.get(uid);
+      if (row?.pod === pod && row.nodeUID === nodeUID && row.slots === slots)
+        return row;
+      const containers = containersForPod(pod);
+      const length =
+        (D.CONTAINER_LENGTH - (containers.length - 1) * 0.15) /
+        containers.length;
+      row = {
+        pod,
+        uid,
+        nodeUID,
+        slots,
+        deck: node ? deckPosition(slots.pod(uid, nodeUID)) : null,
+        boxes: containers.map((_, c) => ({
+          offset: [
+            0,
+            0,
+            -D.CONTAINER_LENGTH / 2 + length / 2 + c * (length + 0.15),
+          ],
+          size: [D.CONTAINER_WIDTH, D.CONTAINER_HEIGHT, length],
+        })),
+      };
+      cached.current.set(uid, row);
+      return row;
+    });
+    for (const uid of cached.current.keys())
+      if (!live.has(uid)) cached.current.delete(uid);
+    return rows;
+  }, [pods, nodesByName, slots]);
   const instances = useMemo(() => containerInstances(pods), [pods]),
     bodyCount = instances.length;
+  const statusBoxes = useMemo(
+    () => [
+      {
+        offset: [
+          0,
+          D.CONTAINER_HEIGHT / 2 + 0.03,
+          -D.CONTAINER_LENGTH / 2 + 0.2,
+        ],
+        size: [D.CONTAINER_WIDTH, 0.14, 0.36],
+      },
+      {
+        offset: [
+          -D.CONTAINER_WIDTH / 2 + 0.2,
+          0.7,
+          D.CONTAINER_LENGTH / 2 + 0.07,
+        ],
+        size: [0.32, 0.45, 0.08],
+      },
+    ],
+    [],
+  );
+  const detailBoxes = useMemo(
+    () =>
+      [0, 1, 2].map((d) => ({
+        offset: [(d - 1) * 0.8, 0, D.CONTAINER_LENGTH / 2 + 0.02],
+        size: [d === 1 ? 0.035 : 0.055, D.CONTAINER_HEIGHT - 0.2, 0.06],
+      })),
+    [],
+  );
   useLayoutEffect(() => {
     const meshes = [body.current, details.current, status.current];
     return () =>
       meshes.forEach((mesh) => mesh?.dispatchEvent({ type: "dispose" }));
   }, [bodyCount, pods.length]);
+  useLayoutEffect(() => {
+    if (!records.length) bases.current.clear();
+    if (!body.current || !status.current) return;
+    let bodyIndex = 0;
+    const liveBasis = new Set();
+    records.forEach((row, index) => {
+      liveBasis.add(row.uid);
+      if (row.nodeUID) liveBasis.add(row.nodeUID);
+      row.boxes.forEach((_, c) =>
+        body.current.setColorAt(
+          bodyIndex++,
+          tint
+            .set(
+              hashColor(row.pod.metadata.ownerReferences?.[0]?.uid || row.uid),
+            )
+            .offsetHSL(0, 0, c * 0.035),
+        ),
+      );
+      status.current.setColorAt(
+        index * 2,
+        tint.set(STATE_COLORS[readyState(row.pod)]),
+      );
+      status.current.setColorAt(
+        index * 2 + 1,
+        tint.set(hashColor(row.pod.metadata.namespace)),
+      );
+    });
+    if (body.current.instanceColor)
+      body.current.instanceColor.needsUpdate = true;
+    if (status.current.instanceColor)
+      status.current.instanceColor.needsUpdate = true;
+    for (const key of bases.current.keys())
+      if (!liveBasis.has(key)) bases.current.delete(key);
+  }, [records, tint]);
+  const zero = useMemo(() => [0, 0, 0], []);
   const place = useCallback(() => {
     if (!body.current || !details.current || !status.current) return;
+    const revision = ++frame.current;
     let bodyIndex = 0;
-    for (let index = 0; index < pods.length; index++) {
-      const pod = pods[index],
-        uid = uidOf(pod),
-        visual = podVisual(pod, nodesByName, slots, transfers, clock),
+    for (let index = 0; index < records.length; index++) {
+      const row = records[index],
+        pod = row.pod,
+        uid = row.uid;
+      const visual = podVisual(pod, nodesByName, slots, transfers, clock),
         p = visual.position,
         pose = visual.pose;
       if (!p) continue;
@@ -590,80 +744,66 @@ function PodCargo({
       last.position[0] = p[0];
       last.position[1] = p[1];
       last.position[2] = p[2];
-      last.pose = pose
-        ? { yaw: pose.yaw, pitch: pose.pitch, roll: pose.roll }
-        : null;
-      const containers = containersForPod(pod),
-        node = nodesByName.get(pod.spec?.nodeName),
-        deck = node ? deckPosition(slots.pod(uidOf(pod), uidOf(node))) : null;
-      const localPoint = (offset) =>
-        pose && deck
-          ? vesselPointToWorld(
-              pose,
-              deck.map((value, i) => value + offset[i]),
-            )
-          : p.map((value, i) => value + offset[i]);
-      const setTransform = (offset, scale) => {
-        transform.position.set(...localPoint(offset));
-        transform.rotation.set(
-          pose?.pitch || 0,
-          pose?.yaw || 0,
-          pose?.roll || 0,
-          "YXZ",
-        );
-        transform.scale.set(
-          ...scale.map((value) => value * Math.max(0.0001, visual.scale)),
-        );
-        transform.updateMatrix();
-      };
-      for (let c = 0; c < containers.length; c++) {
-        const length =
-          (D.CONTAINER_LENGTH - (containers.length - 1) * 0.15) /
-          containers.length;
-        setTransform(
-          [0, 0, -D.CONTAINER_LENGTH / 2 + length / 2 + c * (length + 0.15)],
-          [D.CONTAINER_WIDTH, D.CONTAINER_HEIGHT, length],
-        );
-        body.current.setMatrixAt(bodyIndex, transform.matrix);
-        body.current.setColorAt(
-          bodyIndex,
-          tint
-            .set(
-              hashColor(pod.metadata.ownerReferences?.[0]?.uid || uidOf(pod)),
-            )
-            .offsetHSL(0, 0, c * 0.035),
-        );
-        bodyIndex++;
+      if (pose) {
+        last.pose ??= { yaw: 0, pitch: 0, roll: 0 };
+        last.pose.yaw = pose.yaw;
+        last.pose.pitch = pose.pitch;
+        last.pose.roll = pose.roll;
+      } else last.pose = null;
+      const key = pose && row.deck ? row.nodeUID : uid;
+      let basis = bases.current.get(key);
+      if (!basis) {
+        basis = { matrix: new THREE.Matrix4(), revision: -1 };
+        bases.current.set(key, basis);
       }
-      setTransform(
-        [0, D.CONTAINER_HEIGHT / 2 + 0.03, -D.CONTAINER_LENGTH / 2 + 0.2],
-        [D.CONTAINER_WIDTH, 0.14, 0.36],
-      );
-      status.current.setMatrixAt(index * 2, transform.matrix);
-      status.current.setColorAt(
-        index * 2,
-        tint.set(STATE_COLORS[readyState(pod)]),
-      );
-      setTransform(
-        [-D.CONTAINER_WIDTH / 2 + 0.2, 0.7, D.CONTAINER_LENGTH / 2 + 0.07],
-        [0.32, 0.45, 0.08],
-      );
-      status.current.setMatrixAt(index * 2 + 1, transform.matrix);
-      status.current.setColorAt(
-        index * 2 + 1,
-        tint.set(hashColor(pod.metadata.namespace)),
-      );
-      for (let d = 0; d < 3; d++) {
-        setTransform(
-          [(d - 1) * 0.8, 0, D.CONTAINER_LENGTH / 2 + 0.02],
-          [d === 1 ? 0.035 : 0.055, D.CONTAINER_HEIGHT - 0.2, 0.06],
+      if (basis.revision !== revision) {
+        if (pose && row.deck) {
+          basisEuler.set(pose.pitch || 0, pose.yaw || 0, pose.roll || 0, "YXZ");
+          basis.matrix
+            .makeRotationFromEuler(basisEuler)
+            .setPosition(...pose.position);
+        } else basis.matrix.makeTranslation(p[0], p[1], p[2]);
+        basis.revision = revision;
+      }
+      const anchor = pose && row.deck ? row.deck : zero;
+      for (const box of row.boxes) {
+        writeCargoMatrix(
+          matrix,
+          basis.matrix,
+          anchor,
+          box.offset,
+          box.size,
+          visual.scale,
         );
-        details.current.setMatrixAt(index * 3 + d, transform.matrix);
+        body.current.setMatrixAt(bodyIndex++, matrix);
+      }
+      for (let k = 0; k < statusBoxes.length; k++) {
+        const box = statusBoxes[k];
+        writeCargoMatrix(
+          matrix,
+          basis.matrix,
+          anchor,
+          box.offset,
+          box.size,
+          visual.scale,
+        );
+        status.current.setMatrixAt(index * 2 + k, matrix);
+      }
+      for (let k = 0; k < detailBoxes.length; k++) {
+        const box = detailBoxes[k];
+        writeCargoMatrix(
+          matrix,
+          basis.matrix,
+          anchor,
+          box.offset,
+          box.size,
+          visual.scale,
+        );
+        details.current.setMatrixAt(index * 3 + k, matrix);
       }
       if (
         selection.current &&
-        (uidOf(pod) === selectedUID ||
-          (!selectedUID && uidOf(pod) === hovering))
+        (uid === selectedUID || (!selectedUID && uid === hovering))
       ) {
         selection.current.position.set(...p);
         selection.current.rotation.set(
@@ -677,11 +817,22 @@ function PodCargo({
     }
     for (const ref of [body, details, status]) {
       ref.current.instanceMatrix.needsUpdate = true;
-      if (ref.current.instanceColor)
-        ref.current.instanceColor.needsUpdate = true;
       ref.current.computeBoundingSphere();
     }
-  }, [pods, nodesByName, slots, transfers, clock, selectedUID, hovering]);
+  }, [
+    records,
+    nodesByName,
+    slots,
+    transfers,
+    clock,
+    selectedUID,
+    hovering,
+    matrix,
+    basisEuler,
+    zero,
+    statusBoxes,
+    detailBoxes,
+  ]);
   useLayoutEffect(() => place(), [place]);
   useFrame(() => place(), -1);
   const picked = (e) => instances[e.instanceId],
@@ -1167,8 +1318,89 @@ function ViewController({
   shipControls,
   fleet,
   motion,
+  onFollowEnd,
 }) {
-  const { camera, size, invalidate, scene } = useThree();
+  const { camera, size, invalidate, scene, gl } = useThree();
+  const panKeys = useRef(new Set()),
+    panStarting = useRef(false),
+    endFollow = useRef(onFollowEnd);
+  endFollow.current = onFollowEnd;
+  const panVectors = useMemo(
+    () => ({
+      forward: new THREE.Vector3(),
+      right: new THREE.Vector3(),
+      offset: new THREE.Vector3(),
+      up: new THREE.Vector3(0, 1, 0),
+    }),
+    [],
+  );
+  useEffect(() => {
+    const canvas = gl.domElement,
+      doc = canvas.ownerDocument,
+      win = doc.defaultView,
+      previousTabIndex = canvas.getAttribute("tabindex"),
+      previousLabel = canvas.getAttribute("aria-label");
+    const arrowKeys = new Set([
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowUp",
+      "ArrowDown",
+    ]);
+    const clear = () => panKeys.current.clear();
+    const focus = () => canvas.focus({ preventScroll: true });
+    const keyDown = (event) => {
+      if (
+        doc.activeElement !== canvas ||
+        event.target !== canvas ||
+        !arrowKeys.has(event.key) ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey
+      )
+        return;
+      event.preventDefault();
+      if (!panKeys.current.size) {
+        // The first demand frame may include time spent idle; never pan by it.
+        panStarting.current = true;
+        endFollow.current?.();
+      }
+      panKeys.current.add(event.key);
+      invalidate();
+    };
+    const keyUp = (event) => {
+      if (panKeys.current.delete(event.key)) event.preventDefault();
+    };
+    const visibility = () => {
+      if (doc.hidden) clear();
+    };
+    canvas.tabIndex = 0;
+    canvas.setAttribute(
+      "aria-label",
+      "3D liman — yön tuşlarıyla kamerayı kaydır",
+    );
+    canvas.addEventListener("pointerdown", focus);
+    canvas.addEventListener("keydown", keyDown);
+    canvas.addEventListener("keyup", keyUp);
+    canvas.addEventListener("blur", clear);
+    win.addEventListener("blur", clear);
+    doc.addEventListener("visibilitychange", visibility);
+    return () => {
+      clear();
+      canvas.removeEventListener("pointerdown", focus);
+      canvas.removeEventListener("keydown", keyDown);
+      canvas.removeEventListener("keyup", keyUp);
+      canvas.removeEventListener("blur", clear);
+      win.removeEventListener("blur", clear);
+      doc.removeEventListener("visibilitychange", visibility);
+      for (const [name, value] of [
+        ["tabindex", previousTabIndex],
+        ["aria-label", previousLabel],
+      ]) {
+        if (value === null) canvas.removeAttribute(name);
+        else canvas.setAttribute(name, value);
+      }
+    };
+  }, [gl, invalidate]);
   const lastFocus = useRef(focusRequest),
     lastOverview = useRef(overviewRequest);
   const fit = useCallback(() => {
@@ -1343,7 +1575,34 @@ function ViewController({
 
   const followOffset = useRef(new THREE.Vector3(55, 60, 75)),
     lastFollow = useRef(null);
-  useFrame(() => {
+  useFrame((_, delta) => {
+    const keys = panKeys.current;
+    if (
+      keys.size &&
+      gl.domElement.ownerDocument.activeElement === gl.domElement &&
+      controls.current?.enabled
+    ) {
+      const { forward, right, offset, up } = panVectors;
+      camera.getWorldDirection(forward);
+      forward.y = 0;
+      forward.normalize();
+      right.crossVectors(forward, up).normalize();
+      offset
+        .copy(right)
+        .multiplyScalar(
+          Number(keys.has("ArrowRight")) - Number(keys.has("ArrowLeft")),
+        )
+        .addScaledVector(
+          forward,
+          Number(keys.has("ArrowUp")) - Number(keys.has("ArrowDown")),
+        );
+      offset.normalize().multiplyScalar(panStarting.current ? 0 : 75 * delta);
+      panStarting.current = false;
+      camera.position.add(offset);
+      controls.current.target.add(offset);
+      invalidate();
+      return;
+    }
     if (motion?.paused || motion?.reduced) return;
     const uid = shipControls?.followUID,
       pose = uid && fleet?.pose(uid);
@@ -1974,6 +2233,7 @@ function SceneWorld({
         shipControls={shipControls}
         fleet={fleet.current}
         motion={motion}
+        onFollowEnd={onFollowEnd}
       />
     </>
   );
@@ -2012,7 +2272,7 @@ class HarborErrorBoundary extends Component {
   }
 }
 
-export default function HarborScene({
+function HarborScene({
   resources = [],
   selectedUID,
   onSelect,
@@ -2048,6 +2308,7 @@ export default function HarborScene({
   const [windowInfo, setWindowInfo] = useState(null);
   const created = useCallback(({ gl, camera, scene, invalidate }) => {
     const canvas = gl.domElement;
+    const stopBenchmark = globalThis.__KUBEVIEW_BENCHMARK__?.renderer(gl);
     canvas.__harbor = {
       camera,
       scene,
@@ -2200,6 +2461,7 @@ export default function HarborScene({
     canvas.addEventListener("webglcontextlost", onLost);
     canvas.addEventListener("webglcontextrestored", onRestore);
     canvas.__harborCleanup = () => {
+      stopBenchmark?.();
       canvas.removeEventListener("webglcontextlost", onLost);
       canvas.removeEventListener("webglcontextrestored", onRestore);
     };
@@ -2386,3 +2648,4 @@ export default function HarborScene({
     </div>
   );
 }
+export default React.memo(HarborScene);

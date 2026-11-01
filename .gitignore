@@ -2,7 +2,6 @@
 node_modules/
 frontend/node_modules/
 frontend/dist/
-frontend/package-lock.json
 
 # Go build & cache
 backend/.gopath/
@@ -22,3 +21,8 @@ docs/evidence/browser-artifacts/
 docs/evidence/world/recording-temp/
 
 docs/evidence/motion/recording-temp/
+
+# Reproducible benchmark sources are tracked; generated runs/builds stay local.
+benchmarks/.build/
+benchmarks/results/
+__pycache__/

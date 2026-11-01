@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  useLayoutEffect,
 } from "react";
 import {
   Anchor,
@@ -23,6 +24,7 @@ import {
 } from "lucide-react";
 import { useClusterConnection } from "./context/ShipyardClusterContext";
 import { hasProblem } from "./data/resourceStore";
+import { detailResourceScope } from "./data/resourceIndex.js";
 import ResourceDetails from "./workbench/ResourceDetails";
 import ResourceForms from "./workbench/ResourceForms";
 import FacilityWindow from "./world/FacilityWindow";
@@ -48,10 +50,25 @@ const safeStored = (key) => {
   }
 };
 const HarborScene = lazy(() => import("./harbor/HarborScene"));
+function useCommittedEvent(callback) {
+  const latest = useRef(callback);
+  useLayoutEffect(() => {
+    latest.current = callback;
+  });
+  return useCallback((...args) => latest.current(...args), []);
+}
+function ConnectionUpdateStamp() {
+  const { lastUpdated } = useClusterConnection();
+  return lastUpdated
+    ? ` · Son veri ${new Date(lastUpdated).toLocaleTimeString("tr-TR")}`
+    : null;
+}
+const CONNECTION_UPDATE_STAMP = <ConnectionUpdateStamp />;
 export default function App() {
   const connection = useClusterConnection();
   const {
     resources,
+    resourceIndex,
     api,
     context,
     mode,
@@ -61,6 +78,9 @@ export default function App() {
     sourceKey,
     lastUpdated,
   } = connection;
+  useEffect(() => {
+    globalThis.__KUBEVIEW_BENCHMARK__?.commit(resources);
+  }, [resources]);
   const [namespace, setNamespace] = useState("all"),
     [panel, setPanel] = useState(null),
     [selection, setSelection] = useState(null),
@@ -100,7 +120,19 @@ export default function App() {
     followUID: null,
   });
   const [shipMotion, setShipMotion] = useState(null);
+  const lastShipMotion = useRef(null);
   const onShipMotionChange = useCallback((value) => {
+    const previous = lastShipMotion.current;
+    if (
+      (!previous && !value) ||
+      (previous &&
+        value &&
+        previous.uid === value.uid &&
+        previous.state === value.state &&
+        previous.paused === value.paused &&
+        previous.visualLoading === value.visualLoading)
+    )
+      return;
     const next = value
       ? {
           uid: value.uid,
@@ -109,9 +141,8 @@ export default function App() {
           visualLoading: value.visualLoading,
         }
       : null;
-    setShipMotion((previous) =>
-      JSON.stringify(previous) === JSON.stringify(next) ? previous : next,
-    );
+    lastShipMotion.current = next;
+    setShipMotion(next);
   }, []);
   const onFollowEnd = useCallback(
     () =>
@@ -136,10 +167,7 @@ export default function App() {
   formRef.current = form;
   utilityRef.current = utility;
   panelRef.current = panel;
-  const byUID = useMemo(
-    () => new Map(resources.map((r) => [r.metadata.uid, r])),
-    [resources],
-  );
+  const byUID = resourceIndex.byUID;
   useEffect(() => {
     const uid = selection?.resource?.metadata?.uid;
     const keepDeletedSelection = uid && seenUIDs.current.has(uid);
@@ -159,6 +187,7 @@ export default function App() {
       setNamespace("all");
       setShipControls({ pausedUIDs: [], followUID: null });
       setShipMotion(null);
+      lastShipMotion.current = null;
     }
   }, [sourceKey]);
   useEffect(() => {
@@ -184,19 +213,22 @@ export default function App() {
     };
   }, []);
   useEffect(() => {
-    if (!snapshotReady) return;
-    const nodes = new Set(
-      resources.filter((r) => r.kind === "Node").map((r) => r.metadata.uid),
-    );
-    setShipControls((value) => {
-      const pausedUIDs = value.pausedUIDs.filter((uid) => nodes.has(uid)),
-        followUID = nodes.has(value.followUID) ? value.followUID : null;
-      return pausedUIDs.length === value.pausedUIDs.length &&
-        followUID === value.followUID
-        ? value
-        : { pausedUIDs, followUID };
-    });
-  }, [resources, snapshotReady]);
+    if (
+      !snapshotReady ||
+      (!shipControls.pausedUIDs.length && !shipControls.followUID)
+    )
+      return;
+    const nodes = new Set(resourceIndex.nodes.map((r) => r.metadata.uid));
+    const pausedUIDs = shipControls.pausedUIDs.filter((uid) => nodes.has(uid));
+    const followUID = nodes.has(shipControls.followUID)
+      ? shipControls.followUID
+      : null;
+    if (
+      pausedUIDs.length !== shipControls.pausedUIDs.length ||
+      followUID !== shipControls.followUID
+    )
+      setShipControls({ ...shipControls, pausedUIDs, followUID });
+  }, [resourceIndex.nodes, snapshotReady, shipControls]);
   useEffect(() => {
     if (!operations.length) return;
     const timer = setInterval(() => setClock(Date.now()), 1000);
@@ -229,7 +261,11 @@ export default function App() {
     ? byUID.get(selection.resource.metadata.uid) || selection.resource
     : null;
   const selectedNode =
-    selected?.kind === "Node" ? selected : ownerNode(selected, resources);
+    selected?.kind === "Node"
+      ? selected
+      : selected?.kind === "Pod"
+        ? resourceIndex.nodesByName.get(selected.spec?.nodeName)
+        : ownerNode(selected, resources);
   const selectedNodeUID = selectedNode?.metadata.uid;
   const deleted = Boolean(
     selected &&
@@ -377,18 +413,81 @@ export default function App() {
     setPanel(null);
     setFocusFacilityRequest({ id, revision: Date.now() });
   }
-  const breadcrumb =
-    selected?.kind === "Pod" && ownerNode(selected, resources)
-      ? [
-          {
-            label: ownerNode(selected, resources).metadata.name,
-            onClick: () =>
-              selectResource(ownerNode(selected, resources), {
-                origin: { type: "facility", id: "center" },
-              }),
-          },
-        ]
-      : [];
+  const detailSelectResource = useCommittedEvent(selectResource);
+  const sceneOpenFacility = useCommittedEvent(openFacility);
+  const detailsClose = useCommittedEvent(closePanel),
+    detailsBack = useCommittedEvent(back),
+    detailsAction = useCommittedEvent(action);
+  const detailsAddPod = useCommittedEvent((node) =>
+    create({ createKind: "Pod", targetNode: node }),
+  );
+  const detailsShow = useCommittedEvent(showInScene);
+  const detailsContainer = useCommittedEvent((containerName) =>
+    setSelection((s) => ({ ...s, containerName })),
+  );
+  const detailsPause = useCommittedEvent(() =>
+    setShipControls((value) => ({
+      ...value,
+      pausedUIDs: value.pausedUIDs.includes(selectedNodeUID)
+        ? value.pausedUIDs.filter((uid) => uid !== selectedNodeUID)
+        : [...value.pausedUIDs, selectedNodeUID],
+    })),
+  );
+  const detailsFollow = useCommittedEvent(() =>
+    setShipControls((value) => ({
+      ...value,
+      followUID: value.followUID === selectedNodeUID ? null : selectedNodeUID,
+    })),
+  );
+  const breadcrumb = useMemo(
+    () =>
+      selected?.kind === "Pod" && selectedNode
+        ? [
+            {
+              label: selectedNode.metadata.name,
+              onClick: () =>
+                detailSelectResource(selectedNode, {
+                  origin: { type: "facility", id: "center" },
+                }),
+            },
+          ]
+        : [],
+    [selected?.kind, selectedNode, detailSelectResource],
+  );
+  const previousScope = useRef();
+  const detailScope = useMemo(
+    () => detailResourceScope(resourceIndex, selected, previousScope.current),
+    [resourceIndex, selected],
+  );
+  useLayoutEffect(() => {
+    previousScope.current = detailScope;
+  }, [detailScope]);
+  const detailResource = useMemo(
+    () => (selection?.tab ? { ...selected, __tab: selection.tab } : selected),
+    [selected, selection?.tab],
+  );
+  const detailMetrics = useMemo(
+    () => ({ ...connection.metrics, history: connection.metricHistory }),
+    [connection.metrics, connection.metricHistory],
+  );
+  const detailEvents = selected
+    ? resourceIndex.eventsByUID.get(selected.metadata.uid)
+    : undefined;
+  const detailMotion = useMemo(
+    () =>
+      selectedNodeUID && !deleted
+        ? {
+            state:
+              shipMotion?.uid === selectedNodeUID
+                ? shipMotion.state
+                : undefined,
+            paused: shipControls.pausedUIDs.includes(selectedNodeUID),
+            following: shipControls.followUID === selectedNodeUID,
+            reduced: motion.reduced,
+          }
+        : undefined,
+    [selectedNodeUID, deleted, shipMotion, shipControls, motion.reduced],
+  );
   return (
     <main className="world-root" aria-label="KubeView etkileşimli tersane">
       <a href="#world-find" className="skip-link">
@@ -413,8 +512,8 @@ export default function App() {
             snapshotReady={snapshotReady}
             selectedUID={selected?.metadata.uid}
             selectedFacility={panel?.type === "facility" ? panel.id : null}
-            onSelect={selectResource}
-            onOpenFacility={openFacility}
+            onSelect={detailSelectResource}
+            onOpenFacility={sceneOpenFacility}
             quality={quality}
             layers={layers}
             focusRequest={focusRequest}
@@ -573,58 +672,25 @@ export default function App() {
         {panel?.type === "resource" && selected && (
           <ResourceDetails
             key={selected.metadata.uid}
-            resource={{
-              ...selected,
-              ...(selection?.tab ? { __tab: selection.tab } : {}),
-            }}
+            resource={detailResource}
             deleted={deleted}
             cluster={mode === "demo" ? "Demo — örnek veri" : context}
-            lastUpdated={lastUpdated}
-            resources={resources}
-            onClose={closePanel}
-            onBack={back}
+            updateStamp={CONNECTION_UPDATE_STAMP}
+            resources={detailScope.resources}
+            onClose={detailsClose}
+            onBack={detailsBack}
             breadcrumb={breadcrumb}
-            onAddPod={(node) => create({ createKind: "Pod", targetNode: node })}
-            onShowInScene={showInScene}
+            onAddPod={detailsAddPod}
+            onShowInScene={detailsShow}
             selectedContainerName={selection?.containerName}
-            onSelectContainer={(containerName) =>
-              setSelection((s) => ({ ...s, containerName }))
-            }
-            visualMotion={
-              selectedNodeUID && !deleted
-                ? {
-                    state:
-                      shipMotion?.uid === selectedNodeUID
-                        ? shipMotion.state
-                        : undefined,
-                    paused: shipControls.pausedUIDs.includes(selectedNodeUID),
-                    following: shipControls.followUID === selectedNodeUID,
-                    reduced: motion.reduced,
-                  }
-                : undefined
-            }
-            onToggleShipPause={() =>
-              setShipControls((value) => ({
-                ...value,
-                pausedUIDs: value.pausedUIDs.includes(selectedNodeUID)
-                  ? value.pausedUIDs.filter((uid) => uid !== selectedNodeUID)
-                  : [...value.pausedUIDs, selectedNodeUID],
-              }))
-            }
-            onToggleShipFollow={() =>
-              setShipControls((value) => ({
-                ...value,
-                followUID:
-                  value.followUID === selectedNodeUID ? null : selectedNodeUID,
-              }))
-            }
-            onAction={action}
+            onSelectContainer={detailsContainer}
+            visualMotion={detailMotion}
+            onToggleShipPause={detailsPause}
+            onToggleShipFollow={detailsFollow}
+            onAction={detailsAction}
             api={api}
-            metrics={{
-              ...connection.metrics,
-              history: connection.metricHistory,
-            }}
-            events={resources.filter((r) => r.kind === "Event")}
+            metrics={detailMetrics}
+            events={detailEvents}
             readOnly={mutationDisabled}
           />
         )}

@@ -8,7 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "node --test tests/*.test.js src/harbor/*.test.js src/workbench/*.test.js",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "bench:run": "node ../benchmarks/run.mjs",
+    "bench:compare": "node ../benchmarks/compare.mjs",
+    "bench:test": "node --test ../benchmarks/*.test.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.105.0",

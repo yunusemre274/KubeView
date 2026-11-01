@@ -670,8 +670,10 @@ export class FleetSimulator {
           ship.request = null;
       }
   }
-  snapshot() {
-    return [...this.ships.values()].map((ship) => ({
+  snapshotShip(uid) {
+    const ship = this.ships.get(uid);
+    if (!ship) return undefined;
+    return {
       uid: ship.uid,
       name: ship.node.metadata.name,
       slot: ship.slot,
@@ -691,6 +693,9 @@ export class FleetSimulator {
         ship.mode === "patrolling" &&
         ship.pose.position[2] > F.PIER_END + 45 &&
         Math.abs(ship.pose.position[0] - dockX(ship.slot)) < 38,
-    }));
+    };
+  }
+  snapshot() {
+    return [...this.ships.keys()].map((uid) => this.snapshotShip(uid));
   }
 }

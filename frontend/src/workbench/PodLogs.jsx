@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Download,
   Pause,
@@ -7,8 +13,14 @@ import {
   Search,
   Terminal,
 } from "lucide-react";
+import { LogBuffer } from "./logBuffer.js";
+import { buildLogView } from "./logView.js";
+const LOG_CHUNK_STYLE = Object.freeze({display: "block"});
+const LogTextChunk = React.memo(function LogTextChunk({ text }) {
+  return <span style={LOG_CHUNK_STYLE}>{text}</span>;
+});
 
-export default function PodLogs({
+function PodLogs({
   resource,
   cluster,
   api,
@@ -31,10 +43,14 @@ export default function PodLogs({
     [wrap, setWrap] = useState(true),
     [search, setSearch] = useState(""),
     [lines, setLines] = useState([]),
+    [firstSequence, setFirstSequence] = useState(0),
+    [truncated, setTruncated] = useState(false),
+    [followingTail, setFollowingTail] = useState(true),
     [error, setError] = useState(""),
     [status, setStatus] = useState(""),
     [refresh, setRefresh] = useState(0);
   const outputRef = useRef(null);
+  const followTailRef = useRef(true);
   useEffect(() => {
     setContainer(
       containers.some((c) => c.name === initialContainerName)
@@ -42,17 +58,24 @@ export default function PodLogs({
         : containers[0]?.name || "",
     );
     setLines([]);
+    setFirstSequence(0);
     setPaused(false);
+    followTailRef.current = true;
+    setFollowingTail(true);
   }, [resource.metadata?.uid, initialContainerName]);
   useEffect(() => {
     if (paused || !container) return;
     const abort = new AbortController();
     let timer;
-    let buffer = "",
-      pending = "";
+    const history = new LogBuffer();
+    let flushedRevision = -1;
     setLines([]);
+    setFirstSequence(0);
+    setTruncated(false);
     setError("");
     setStatus("Bağlanıyor");
+    followTailRef.current = true;
+    setFollowingTail(true);
     const query = new URLSearchParams({
       namespace: resource.metadata?.namespace || "default",
       pod: resource.metadata?.name || "",
@@ -65,10 +88,13 @@ export default function PodLogs({
     });
     const url = api?.url ? api.url(`/api/logs?${query}`) : `/api/logs?${query}`;
     const flush = () => {
-      if (!pending) return;
-      const batch = pending;
-      pending = "";
-      setLines((current) => [...current, ...batch.split("\n")].slice(-5000));
+      timer = undefined;
+      if (abort.signal.aborted || flushedRevision === history.revision) return;
+      flushedRevision = history.revision;
+      const snapshot = history.snapshot();
+      setLines(snapshot.lines);
+      setFirstSequence(snapshot.firstSequence);
+      setTruncated(snapshot.truncated);
     };
     const run = async () => {
       try {
@@ -94,18 +120,15 @@ export default function PodLogs({
         const reader = response.body?.getReader();
         if (!reader) throw new Error("Tarayıcı yanıt akışını desteklemiyor.");
         const decoder = new TextDecoder();
-        timer = setInterval(flush, 180);
         while (true) {
           const { done, value } = await reader.read();
+          if (abort.signal.aborted) return;
           if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-          const index = buffer.lastIndexOf("\n");
-          if (index >= 0) {
-            pending += buffer.slice(0, index + 1);
-            buffer = buffer.slice(index + 1);
-          }
+          history.append(decoder.decode(value, { stream: true }));
+          if (timer === undefined) timer = setTimeout(flush, 180);
         }
-        if (buffer) pending += buffer;
+        history.append(decoder.decode());
+        clearTimeout(timer);
         flush();
         setStatus("Akış tamamlandı");
       } catch (e) {
@@ -114,13 +137,13 @@ export default function PodLogs({
           setStatus("Log okunamadı");
         }
       } finally {
-        clearInterval(timer);
+        clearTimeout(timer);
       }
     };
     run();
     return () => {
       abort.abort();
-      clearInterval(timer);
+      clearTimeout(timer);
     };
   }, [
     resource.metadata?.uid,
@@ -137,16 +160,18 @@ export default function PodLogs({
     api,
   ]);
   useEffect(() => {
-    if (outputRef.current && !search)
+    if (outputRef.current && !search && followTailRef.current)
       outputRef.current.scrollTop = outputRef.current.scrollHeight;
   }, [lines, search]);
-  const visible = search
-    ? lines.filter((line) =>
-        line
-          .toLocaleLowerCase("tr-TR")
-          .includes(search.toLocaleLowerCase("tr-TR")),
-      )
-    : lines;
+  const previousView = useRef();
+  const view = useMemo(
+    () => buildLogView(lines, firstSequence, search, previousView.current),
+    [lines, firstSequence, search],
+  );
+  useLayoutEffect(() => {
+    previousView.current = view;
+  }, [view]);
+  const { visible, text, chunks } = view;
   return (
     <section className="pod-logs">
       <div className="logs-toolbar">
@@ -257,11 +282,30 @@ export default function PodLogs({
         <span>
           {paused ? "Duraklatıldı" : status} · {visible.length} satır
         </span>
+        {!followingTail && (
+          <button
+            className="button"
+            onClick={() => {
+              followTailRef.current = true;
+              setFollowingTail(true);
+              if (outputRef.current)
+                outputRef.current.scrollTop = outputRef.current.scrollHeight;
+            }}
+          >
+            En alta dön
+          </button>
+        )}
       </div>
       {paused && (
         <p className="muted">
           Duraklatma sunucu akışını kapatır. Devam et son seçilen satır sayısını
           yeniden alır; aradaki tüm satırların saklanacağı garanti edilmez.
+        </p>
+      )}
+      {truncated && (
+        <p className="muted" role="status">
+          Görünüm sınırına ulaşıldı: eski satırlar kaldırıldı veya uzun satırlar
+          kısaltıldı. Kubernetes log akışı değişmedi.
         </p>
       )}
       {error && (
@@ -278,9 +322,20 @@ export default function PodLogs({
         ref={outputRef}
         tabIndex={0}
         aria-label="Container log çıktısı"
+        onScroll={(event) => {
+          const element = event.currentTarget;
+          const atBottom =
+            element.scrollHeight - element.clientHeight - element.scrollTop <
+            24;
+          const changed = followTailRef.current !== atBottom;
+          followTailRef.current = atBottom;
+          if (changed) setFollowingTail(atBottom);
+        }}
       >
         {visible.length
-          ? visible.join("\n")
+          ? chunks.map((chunk) => (
+              <LogTextChunk key={chunk.key} text={chunk.text} />
+            ))
           : error
             ? "Log içeriği alınamadı."
             : paused
@@ -289,8 +344,9 @@ export default function PodLogs({
       </pre>
       <p className="muted">
         Ham Pod adı: <code>{resource.metadata?.name}</code> · Görünüm en fazla
-        5.000 satır tutar.
+        5.000 satır ve 1 MiB tutar; tek satır en fazla 16 KiB gösterilir.
       </p>
     </section>
   );
 }
+export default React.memo(PodLogs);

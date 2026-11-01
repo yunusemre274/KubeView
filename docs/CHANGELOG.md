@@ -2,6 +2,45 @@
 
 Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standardına dayanır.
 
+## 2026-11-01 — v1.1 öncesi görsel davranış denetimi (ürün değişikliği yok)
+
+- Sekiz görsel/Kubernetes beklentisi için aktif kod, normal UI ve gerçek Kubernetes kanıtı ayrı raporlandı. Gerçek owned test kümesinde Node/Pod lifecycle, create/scale/restart, log/exec/forward ve RBAC sınırları incelendi; alev/batma, kargo düşmesi, provisioning ve flow/protokol özellikleri varmış gibi sunulmadı.
+- Gerçek same-source backend reconnect sonrası on-demand AuditCargo API'de aynı UID/RV ile dururken panelin yanlış silindi göstermesi P0 olarak doğrulandı; bu denetimde ürün kodu düzeltilmedi.
+- [Ana rapor](VISUAL_FEATURE_AUDIT.md), [kaynak/işlem matrisi](VISUAL_FEATURE_MATRIX.csv), [eksikler](VISUAL_FEATURE_GAPS.md) ve `artifacts/visual-audit/audit-20261030T175145Z/` kanıtları eklendi. Dört Chromium/WebKit kamera testi ve kısa gerçek-küme tanılaması, geniş performans kabulü/gerçek Safari testi yerine geçirilmedi. Eski başarısız test yardımcıları ve önceki log metni yarışı kanıtları korundu.
+
+## 2026-10-30 — Dolu log yerleşimi ve ölçüm orkestrasyonu
+
+- Log metni32satırlık kararlı ordinal bloklarla güncellenir;5000satır/1MiB/16KiB/180ms sınırları, seçim/indirme/arama/sarma ve gerçek HTTP abort korunur. Beş eşleşmiş log çiftinde p95 medyanı41,7→17,7ms; en büyük browser PID RSS459,4→386,2MiB. Toplam CPU aralıkları örtüşür, eşleşmiş fark medyanı+0,0023çekirdek; net CPU kazancı ilan edilmez.
+- Üç Codex alt müdürü ve gerçek test süreçlerine bağlı görünür Terminal supervisor/worker sekmeleri; ana müdürün merkezi kaynak kuyruğu, source SHA kapısı, tek ağır iş ve sonlu timeout.5/5 cleanup testi; başarısız/yarım işler otomatik yeniden denenmez.
+- Son frozen kaynakta14 Chromium/WebKit testi; gerçek log pause/resume kontrolü eklendi. WebKit kamera testindeki800ms sabit bekleme, aynı toleransla gözlenen durağan poza çevrildi. Backend frozen binary contract işindeki7 kontrol geçti.
+- Kapalı-panel hücresinde başlangıç durumu uyuşmayınca ana matris durdu; hata korundu. Isınmadan önce input koruması/DOM doğrulaması ve açık kabul ledger'ıyla eksik hücreler tamamlandı. Son ana matris40 geçerli hücre/beş blok: logsuz panelde net CPU kazancı kanıtlanmadı; toplam CPU ve signed Δpanel ayrı raporlandı.
+- Instance buffer kapasite prototipi5 eşleşmiş çift sonunda reddedildi: buffer churn20→0 olsa da üç çiftte toplam CPU arttı, tutulan payload11.720bayt büyüdü. Production v5 değişmedi. Güç kaynağı değişince AC ana sonuçlarından ayrı pil doğrulama oturumu açıldı.
+- Son v5 yeni20dk koşusu59,999JSçizim/sn,p9517,7/p9918,9ms,0uzun görev;5600olay,tamfinaliçerikeşitliği,40/40kaynak sayımı,3reconnect/329resync ve21/21logkapanışı. Geometri29→30tek artışın nedeni kanıtlanmadı; yardımcı60hücre/3eşleşmiş blok tamamlandı; genel CPU hedefi karşılanmadı. [Panel raporu](PANEL_CPU_OPTIMIZATION.md) gerçek kapsamı tutar.
+
+- Uyku kaynaklı653snOS/60snJS CPU örneğini reddeden saat kapısı ve stale stage yerine worker kuyruk durumunu kullanan ilerleme izleyicisi;12/12harness testi.52geçerli hücre korundu; yalnız8eksik/geçersiz ve1PID-kapsamı eksik interaction hücresi yeni kimliklerle tamamlandı.
+-111geçerli hücrelik son inceleme; native60sn gizli pencerede0çizim/doğru veri. Safari WebDriver ve gerçek manuel AppleEvents yolu engelli, performans N/A. Eski sayılar ve başarısız ham artefaktlar korunur; bütün performans hedefleri geçti denmez.
+
+## 2026-10-26 — Panel ve kargo hesap maliyeti
+
+- Canonical kaynaklardan UID/tür/Node/owner/Event indeksleri; değişmeyen scope ve callback'lerle Node/Pod panel gövdesi ilgisiz Pod güncellemelerinden ayrıldı. Güncellik yazısı ve ilgili kaynak değişimleri anında kalır.
+- Mevcut instance geometrileriyle statik kargo şablonları, Node başına dönüş tabanı ve doğrudan matris yazımı; frame başına geçici pose/renk hesapları azaltıldı. Filo/deniz kalitesi, FPS, DPR ve görünür kaynak kapsamı değiştirilmedi.
+- Loglarda veri yokken boş180 ms interval kaldırıldı; veri geldiğinde tek flush timer'ı, byte/satır sınırları ve abort korunur. Eski satırlara bakarken scroll tutulur; “En alta dön” eylemi eklendi.
+-40 hücrelik beş blok ana matris: açık panel/5 olay-sn CPU medyanı0,396→0,370 çekirdek; signed Δ medyanı0,0308→0,0017. Aralıklar örtüşür; kesin küresel yüzde iddiası yok. Ayrı allocation tahmini1127→603 MiB/15 sn; retained RAM değildir. Son kapsam ve kısıtlar [panel raporunda](PANEL_CPU_OPTIMIZATION.md).
+-76 frontend,9 harness,12 Chromium/WebKit testi ve Go server testleri geçti. Aynı kadraj görüntülerinde saat metni dışındaki pikseller aynı; Neumorphism CSS'i ve Three chunk'ları byte eşdeğer.
+
+## 2026-10-24 — Production benchmark ve sınırlı log belleği
+
+- Deterministik S/M/L fixture, gerçek dynamic informer/WebSocket/store/sahne yolu, seri production ölçüm harness'i ve karşılaştırılabilirlik kapısı eklendi. Kubeconfig kullanılmaz; sentetik kaynaklar görünür etiketli ve salt okunurdur.
+- Log görünümü bitmemiş satır dahil UTF-8 byte sınırlarına alındı: 5000 satır / 1 MiB, satır başına16 KiB. Kısaltma açıkça bildirilir; container değişimi/kapanış eski akışı abort eder. Ham Kubernetes logu değişmez.
+- 72 frontend testi, 6 harness testi, 8 Chromium/WebKit tarayıcı testi; Go mikro/ağ/race ve gerçek 60 sn gizli pencere kontrolü geçti. Video/PNG ana FPS ölçümlerinden ayrıdır.
+- Matris cache adayı kazanç kanıtlamadığı için geri alındı.19 geçerli üçlü set,20 dk churn/resync ve üçlü instrumentation kontrolü tamamlandı; uzun log baseline6 GiB RSS guard nedeniyle N/A, yeni sürüm aynı yükte yaklaşık60 çizim/sn. Native Safari performansı N/A; açıklanamayan CPU farkları ve bütün kapsam sınırları `PERFORMANCE_REPORT.md` içinde korunur.
+
+## 2026-10-24 — Yön tuşlarıyla kamera kaydırma
+
+- Odaklanmış 3D canvas üzerinde yön tuşları kamerayı ve OrbitControls hedefini bakışa göre yatay düzlemde birlikte taşır; yükseklik, açı ve zoom korunur.
+- Mevcut render döngüsünde delta zaman kullanılır; tuş bırakma, canvas/pencere odağı kaybı ve gizlenen sekme hareketi keser. Panel/form klavyesi korunur; listener'lar kaldırılır.
+- Chromium ve Playwright WebKit'te 4 kamera testi, mevcut 69 frontend testi ve üretim derlemesi geçti. Kubernetes servisi veya mutasyon akışı değiştirilmedi.
+
 ## [1.0.0] - 2026-08-05
 
 ### 🚀 Kararlı Sürüm Yayın Özeti (v1.0.0 Release Summary)
