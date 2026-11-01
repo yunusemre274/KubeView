@@ -44,6 +44,30 @@ export function visibleContainerMarkers(
     .slice(0, V.MAX_CONTAINER_EFFECTS);
 }
 
+/** A scoped/reconnect snapshot describes existing objects, not live ADDs. */
+export function observedNodeArrivals(
+  nodes,
+  lifecycle,
+  snapshotUIDs,
+  operations = [],
+) {
+  if (!lifecycle.initialized) return new Set();
+  const origins =
+      snapshotUIDs instanceof Set ? snapshotUIDs : new Set(snapshotUIDs || []),
+    verified = new Set(
+      operations.map((operation) => operation.nodeUID).filter(Boolean),
+    );
+  return new Set(
+    nodes
+      .filter(
+        (node) =>
+          !lifecycle.nodes.has(node.metadata.uid) &&
+          (!origins.has(node.metadata.uid) || verified.has(node.metadata.uid)),
+      )
+      .map((node) => node.metadata.uid),
+  );
+}
+
 /** Spec roles, never image/name heuristics; init success is not a crash. */
 export function observedContainers(pod) {
   const spec = pod.spec || {},
@@ -253,11 +277,15 @@ export class VisualLifecycle {
       hidden = false,
       snapshotReady = true,
       resources = null,
+      snapshotUIDs = null,
+      newNodeUIDs = null,
     } = {},
   ) {
     if (source !== this.source) this.reset(source);
     if (!snapshotReady) return;
     const baseline = !this.initialized;
+    const snapshotOrigins =
+      snapshotUIDs instanceof Set ? snapshotUIDs : new Set(snapshotUIDs || []);
     this.resourceByUID = new Map(
       (resources || [...nodes, ...pods]).map((r) => [r.metadata.uid, r]),
     );
@@ -270,13 +298,15 @@ export class VisualLifecycle {
       liveNodes.add(uid);
       let record = this.nodes.get(uid);
       if (!record) {
-        const pending = !baseline && ready !== "True";
+        const nodeBaseline =
+          baseline || (snapshotOrigins.has(uid) && !newNodeUIDs?.has(uid));
+        const pending = !nodeBaseline && ready !== "True";
         const fault = ready === "False" && !pending ? 1 : 0;
         record = {
           uid,
           ready,
           pending,
-          hadReady: ready === "True" || baseline,
+          hadReady: ready === "True" || nodeBaseline,
           from: fault,
           target: fault,
           changedAt: now,
@@ -308,7 +338,9 @@ export class VisualLifecycle {
     ).length;
     for (const pod of pods) {
       const uid = pod.metadata.uid,
-        terminating = Boolean(pod.metadata.deletionTimestamp);
+        terminating = Boolean(pod.metadata.deletionTimestamp),
+        oldPod = this.previousPods.get(uid),
+        podBaseline = baseline || (!oldPod && snapshotOrigins.has(uid));
       livePods.add(uid);
       let entries = this.cachedPods.get(pod);
       if (!entries) {
@@ -339,7 +371,7 @@ export class VisualLifecycle {
           !terminating &&
           !value.completed &&
           (newRestart || newTermination || newLastFailure);
-        if (trigger && !baseline && !simple && !hidden) {
+        if (trigger && !podBaseline && !simple && !hidden) {
           if (
             this.pulses.size >= V.MAX_CONTAINER_EFFECTS &&
             !this.pulses.has(key)
@@ -361,12 +393,12 @@ export class VisualLifecycle {
           });
         }
         if (
-          (baseline && !terminating && value.failure) ||
-          (trigger && !baseline)
+          (podBaseline && !terminating && value.failure) ||
+          (trigger && !podBaseline)
         ) {
           if (!effect || effect.phase === "settled") {
             const animate =
-              !baseline &&
+              !podBaseline &&
               !simple &&
               !hidden &&
               animated < V.MAX_CONTAINER_EFFECTS;
@@ -397,7 +429,7 @@ export class VisualLifecycle {
             };
             this.containers.set(key, effect);
             if (animate) animated++;
-            else if (!baseline && !simple && !hidden) this.summarized++;
+            else if (!podBaseline && !simple && !hidden) this.summarized++;
           } else {
             // Repeated CrashLoop updates/restarts summarize the same overboard
             // box. A healthy recovery followed by another crash is a new period.
@@ -438,8 +470,7 @@ export class VisualLifecycle {
           }
         }
       }
-      const oldPod = this.previousPods.get(uid);
-      if (!baseline && !simple && !hidden) {
+      if (!podBaseline && !simple && !hidden) {
         if (!oldPod)
           this.signal(
             pod,

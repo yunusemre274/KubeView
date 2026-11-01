@@ -327,8 +327,10 @@ export class TransferCoordinator {
     slots,
     reducedMotion = false,
     now = performance.now(),
+    snapshotUIDs = null,
   ) {
     const current = new Map(pods.map((p) => [uidOf(p), p]));
+    const snapshotOrigins=snapshotUIDs instanceof Set?snapshotUIDs:new Set(snapshotUIDs || []);
     const liveNodeNames = new Set(nodesByName.keys());
     this.active = this.active.filter(
       (t) =>
@@ -357,6 +359,7 @@ export class TransferCoordinator {
     if (this.previous && !reducedMotion) {
       for (const [uid, pod] of current) {
         const old = this.previous.get(uid);
+        if (!old && snapshotOrigins.has(uid)) continue;
         const node = nodesByName.get(pod.spec?.nodeName);
         const replacedNode = old?.spec?.nodeName === pod.spec?.nodeName && this.previousNodeUIDs.has(pod.spec?.nodeName) && this.previousNodeUIDs.get(pod.spec.nodeName) !== uidOf(node);
         if (!node || (old && old.spec?.nodeName === pod.spec?.nodeName && !replacedNode))

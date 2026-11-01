@@ -31,3 +31,7 @@ Yeni lab yalnız bu iş için oluşturuldu: Kubernetes1.35.1, minikube1.38.1, do
 ## İkinci doğruluk kontrolü — gerçek trafik protokolü
 
 İlk trafik UI koşusu `traffic-visual-real.json` kaynak/hedef UID'leri ve yük artışını doğruladı, fakat bütün kayıtları HTTP sınıflandırdığı için kabul edilmedi. Gerçek whitelist CLI örneğinde Hubble maskesi L3/L4 olayına boş/önceki HTTP alanı bırakıyordu. Düzeltme `Type=L7` + tanınan L7 türü + gerçek record varyantı ister; TCP/UDP'de eski L7 alanları atılır. URL/header/query maskede yoktur. `backend-protocol-real-172201Z` gerçek Cilium/Hubble mTLS → decoder → HTTP API zincirinde TCP'nin L7 alanı olmaması, gerçek HTTP/1.1 response200/latency ve DNS/UDP'yi doğruladı. Ağ tesisine aynı authorized veriyi kullanan klavye erişimli ölçülmüş akış sekmesi eklendi;512kayıt UI fixture'ının9kontrolü gerçek Hubble E2E yerine sayılmaz. Son gerçek sahne kabulü ve performans hâlâ açık.
+
+## Scoped snapshot görsel kökeni
+
+`provision-final.json` başlangıcında aynı UID'li71/74dakikalık Pod'lar namespace default→qa snapshot'ında yanlış yeni yük sayılıp2transfer/6sinyal üretmişti. `snapshotUIDs` son gerçek snapshot kapsamını kararlı bir Set olarak taşır; ilk görülen snapshot kaynakları baseline, sonraki canlı ADD veya bilinen Pending→assigned gerçek geçiştir.17store/56harbor testi ve tam frontend testleri geçti. Önceki katılım helper'ı50sn sonunda hareket yeni başlamışken kapanmıştır; kilit yok, eski yüklerin yanlış yanaşması güvenli giriş penceresini uzatmıştır. Bu başarısız kabul kaydı korunur; güncel yeni worker kabulü henüz açık.

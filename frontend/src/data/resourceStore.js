@@ -8,6 +8,9 @@ export function initialState(sourceKey = "") {
     sourceKey,
     generation: null,
     resources: {},
+    // Origin of the latest real snapshot, not a growing history of seen UIDs.
+    // Scene consumers use it only for first-seen baseline presentation.
+    snapshotUIDs: new Set(),
     scopes: {},
     tombstones: {},
     completeSnapshot: false,
@@ -121,6 +124,7 @@ export function reduceMessage(state, message) {
     return {
       ...state,
       resources,
+      snapshotUIDs: incoming,
       scopes,
       tombstones: boundedTombstones(tombstones),
       completeSnapshot: !scoped,

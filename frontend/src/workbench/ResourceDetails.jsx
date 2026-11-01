@@ -715,6 +715,12 @@ function ResourceDetails({
                   <span>
                     {{
                       patrol: "Devriyede",
+                      patrolling: "Seyirde",
+                      launching: "Filoya görsel katılım",
+                      approaching: "Yanaşmaya yaklaşıyor",
+                      docking: "Yanaşıyor",
+                      loading: "Görsel yükleme sürüyor",
+                      departing: "Rıhtımdan ayrılıyor",
                       docked: "Demirli",
                       paused: "Görsel hareket duraklatıldı",
                       reduced: "Hareket azaltıldı",

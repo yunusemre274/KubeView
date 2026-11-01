@@ -7,6 +7,7 @@ import {
   waterDropTarget,
   confirmedRemoval,
   visibleContainerMarkers,
+  observedNodeArrivals,
 } from "./visualLifecycle.js";
 import {
   FLEET_OBSTACLES,
@@ -517,5 +518,91 @@ test("specific fault markers remain bounded, prioritize the selected container g
   assert.equal(
     visibleContainerMarkers(life, visible, "pod-29", 5000).length,
     0,
+  );
+});
+
+test("a later scoped snapshot baselines old Pod failure/owners without pulses; known Pending→assigned and new live UID remain live", () => {
+  const life = new VisualLifecycle("lab"),
+    origins = new Set(["old", "pending"]);
+  const old = pod(4, true, "old"),
+    pending = pod(0, false, "pending");
+  delete pending.spec.nodeName;
+  pending.status.conditions = [{ type: "Ready", status: "False" }];
+  life.observe([node()], [], { now: 0 });
+  life.observe([node()], [old, pending], { now: 100, snapshotUIDs: origins });
+  assert.equal(life.signals.length, 0);
+  assert.equal(life.pulses.size, 0);
+  assert.equal(life.container("old", "crasher", "app").phase, "faulted");
+  const scheduled = structuredClone(pending);
+  scheduled.spec.nodeName = "n";
+  life.observe([node()], [old, scheduled], { now: 200, snapshotUIDs: origins });
+  assert.equal(
+    life.signals.filter((s) => s.uid === "pending" && s.stage === "assigned")
+      .length,
+    1,
+  );
+  const live = pod(0, false, "live-add");
+  life.observe([node()], [old, scheduled, live], {
+    now: 300,
+    snapshotUIDs: origins,
+  });
+  assert.ok(
+    life.signals.some(
+      (s) => s.uid === "live-add" && s.stage === "resource-observed",
+    ),
+  );
+  life.observe([node()], [], { now: 400, snapshotUIDs: origins });
+  life.observe([node()], [old], { now: 500, snapshotUIDs: new Set(["old"]) });
+  assert.equal(life.signals.length, 0);
+  assert.equal(life.pulses.size, 0);
+});
+
+test("scoped snapshot Nodes are existing fleet; a verified provision UID or genuine live ADD still admits once", () => {
+  const life = new VisualLifecycle("lab");
+  life.observe([node()], [], { now: 0 });
+  const old = node("False", "old-snapshot"),
+    live = node("False", "live-node"),
+    provided = node("False", "provider-node"),
+    origins = new Set(["old-snapshot", "provider-node"]);
+  const initial = observedNodeArrivals(
+    [node(), old, live, provided],
+    life,
+    origins,
+    [{ id: "verified", nodeUID: "provider-node" }],
+  );
+  assert.deepEqual([...initial], ["live-node", "provider-node"]);
+  life.observe([node(), old, live, provided], [], {
+    now: 100,
+    snapshotUIDs: origins,
+    newNodeUIDs: initial,
+  });
+  assert.equal(
+    life.nodeVisual("old-snapshot", 100).fault,
+    1,
+    "already-broken snapshot starts at its end state",
+  );
+  assert.equal(life.nodeVisual("live-node", 100).fault, 0);
+  assert.equal(life.nodes.get("live-node").pending, true);
+  assert.equal(life.nodeVisual("provider-node", 100).fault, 0);
+  assert.equal(life.nodes.get("provider-node").pending, true);
+  assert.equal(
+    observedNodeArrivals([node(), old, live, provided], life, origins, [
+      { nodeUID: "provider-node" },
+    ]).size,
+    0,
+    "same UID cannot replay admission on operation polling",
+  );
+  const baseline = new VisualLifecycle();
+  assert.equal(
+    observedNodeArrivals([provided], baseline, new Set(), [
+      { nodeUID: "provider-node" },
+    ]).size,
+    0,
+    "first connection is never an ADD parade",
+  );
+  assert.deepEqual(
+    [...origins],
+    ["old-snapshot", "provider-node"],
+    "consumer must not mutate snapshot origins",
   );
 });

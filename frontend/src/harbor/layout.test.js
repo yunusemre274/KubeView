@@ -138,3 +138,17 @@ test('Node fault hands a crane load continuously to a short actual-target arriva
   assert.ok(c.active.every(t=>t.nodeUID==='new-node')); assert.ok(c.queue.every(t=>t.nodeUID==='new-node'));
   c.observe([],new Map(),slots,false,700); assert.equal(c.active.length,0); assert.equal(c.queue.length,0);
 })
+
+test('a later scoped snapshot baselines first-seen old Pods; known Pending assignment and real live ADD still transfer',()=> {
+  const slots=new HarborSlots(),n=node('n','worker'),nodes=new Map([['worker',n]]),c=new TransferCoordinator(),origins=new Set(['old','pending']);
+  c.observe([],nodes,slots,false,0);
+  c.observe([pod('old','worker'),pod('pending')],nodes,slots,false,100,origins);
+  assert.equal(c.active.length,0);assert.equal(c.queue.length,0,'old scheduled snapshot Pod must not dock the existing fleet');
+  c.observe([pod('old','worker'),pod('pending','worker')],nodes,slots,false,200,origins);
+  assert.deepEqual([...c.active,...c.queue].map(t=>t.uid),['pending']);
+  c.observe([pod('old','worker'),pod('pending','worker'),pod('live-add','worker')],nodes,slots,false,300,origins);
+  assert.ok([...c.active,...c.queue].some(t=>t.uid==='live-add'));assert.ok([...c.active,...c.queue].every(t=>t.uid!=='old'));
+  c.observe([],nodes,slots,false,400,origins);
+  c.observe([pod('old','worker')],nodes,slots,false,500,new Set(['old']));
+  assert.equal(c.active.length+c.queue.length,0,'scope forget then authoritative relist is not a live ADD');
+})

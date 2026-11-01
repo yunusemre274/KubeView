@@ -673,6 +673,8 @@ export function ShipyardClusterProvider({ children }) {
       value={{
         ...state,
         resources,
+        // Stable across live deltas; a scoped snapshot is not a batch of ADDs.
+        snapshotUIDs: state.snapshotUIDs,
         resourceIndex,
         api,
         login: (token) => singletonManager.login(token),

@@ -370,3 +370,103 @@ test("namespace narrowing forgets only unleased coverage without inventing DELET
     "b",
   ]);
 });
+
+test("a later scoped snapshot marks only its actual UIDs as baseline; live ADD and Pending assignment stay separate", () => {
+  const pending = {
+    ...pod("snapshot-pending"),
+    metadata: {
+      ...pod("snapshot-pending").metadata,
+      name: "preexisting-pending",
+      namespace: "qa",
+    },
+    status: { phase: "Pending" },
+  };
+  const scope = {
+    group: "",
+    version: "v1",
+    resource: "pods",
+    kind: "Pod",
+    namespace: "qa",
+    authoritative: true,
+    status: "synced",
+  };
+  let state = reduceMessage(initialState("same-context"), {
+    type: "SNAPSHOT",
+    generation: "default-snapshot",
+    resources: [],
+    scopes: [{ ...scope, namespace: "default" }],
+  });
+  const firstIDs = state.snapshotUIDs;
+  assert.equal(firstIDs.size, 0);
+  state = reduceMessage(state, {
+    type: "SNAPSHOT",
+    generation: "qa-snapshot",
+    resources: [pending],
+    scopes: [scope],
+  });
+  assert.equal(state.sourceKey, "same-context");
+  assert.deepEqual([...state.snapshotUIDs], [pending.metadata.uid]);
+  assert.notEqual(state.snapshotUIDs, firstIDs);
+  const snapshotIDs = state.snapshotUIDs;
+  const liveAdded = {
+    ...pod("live-added", "worker-cp"),
+    metadata: {
+      ...pod("live-added").metadata,
+      name: "new-live-pod",
+      namespace: "qa",
+    },
+  };
+  state = reduceMessage(state, event("ADD", liveAdded, "qa-snapshot"));
+  assert.equal(
+    state.snapshotUIDs,
+    snapshotIDs,
+    "ordinary live events must not invalidate origin consumers",
+  );
+  assert.equal(
+    state.snapshotUIDs.has("live-added"),
+    false,
+    "a real later ADD must keep its arrival animation",
+  );
+  const assigned = {
+    ...pending,
+    spec: { nodeName: "worker-cp" },
+    metadata: { ...pending.metadata, resourceVersion: "opaque-assigned" },
+  };
+  state = reduceMessage(state, event("UPDATE", assigned, "qa-snapshot"));
+  assert.equal(
+    state.resources[pending.metadata.uid].spec.nodeName,
+    "worker-cp",
+  );
+  assert.equal(
+    state.snapshotUIDs,
+    snapshotIDs,
+    "known Pending→assigned is still a live update, not another baseline",
+  );
+  assert.equal(state.resources["live-added"], liveAdded);
+});
+
+test("snapshot provenance replaces rather than accumulates UID history and resets with source", () => {
+  let state = initialState("old-context");
+  for (let index = 0; index < 40; index++) {
+    const current = pod(`snapshot-${index}`);
+    state = reduceMessage(state, {
+      type: "SNAPSHOT",
+      generation: `generation-${index}`,
+      resources: [current],
+    });
+    assert.deepEqual([...state.snapshotUIDs], [current.metadata.uid]);
+    const ids = state.snapshotUIDs;
+    state = reduceMessage(
+      state,
+      event("DELETE", current, `generation-${index}`),
+    );
+    assert.equal(
+      state.snapshotUIDs,
+      ids,
+      "snapshot membership describes that snapshot, not mutable live existence",
+    );
+  }
+  const nextSource = initialState("next-context");
+  assert.equal(nextSource.snapshotUIDs.size, 0);
+  assert.notEqual(nextSource.snapshotUIDs, state.snapshotUIDs);
+});

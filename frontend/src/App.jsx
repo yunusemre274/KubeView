@@ -570,6 +570,7 @@ export default function App() {
           <HarborScene
             resources={resources}
             resourceTombstones={connection.tombstones}
+            snapshotUIDs={connection.snapshotUIDs}
             selectedContainerName={selection?.containerName}
             workloadOperations={operations}
             provisionOperations={worldProviders.provisionOperations}

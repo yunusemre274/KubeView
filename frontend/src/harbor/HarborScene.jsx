@@ -36,6 +36,7 @@ import {
   applyNodeFaultPose,
   confirmedRemoval,
   visibleContainerMarkers,
+  observedNodeArrivals,
 } from "./visualLifecycle.js";
 import LifecycleEffects, { NodeArrivalCaption } from "./LifecycleEffects.jsx";
 import MeasuredTraffic from "./MeasuredTraffic.jsx";
@@ -81,6 +82,7 @@ import {
 
 const EMPTY_OPERATIONS = Object.freeze([]);
 const EMPTY_TOMBSTONES = Object.freeze({});
+const EMPTY_SNAPSHOT_UIDS = new Set();
 
 const item = (p, s, c, r) => ({ p, s, c, r });
 const labelStyle = {
@@ -1848,6 +1850,7 @@ function SceneWorld({
   provisionOperations = EMPTY_OPERATIONS,
   workloadOperations = EMPTY_OPERATIONS,
   resourceTombstones = EMPTY_TOMBSTONES,
+  snapshotUIDs = EMPTY_SNAPSHOT_UIDS,
   measuredFlows,
   onFlowSelect,
   onSelect,
@@ -1929,6 +1932,11 @@ function SceneWorld({
     () => resources.filter((resource) => resource.kind === "Pod"),
     [resources],
   );
+  const snapshotOrigins = useMemo(
+    () =>
+      snapshotUIDs instanceof Set ? snapshotUIDs : new Set(snapshotUIDs || []),
+    [snapshotUIDs],
+  );
   const displayPods = useMemo(
     () =>
       visibleNamespace
@@ -1955,6 +1963,12 @@ function SceneWorld({
     lifecycle.current.ghosts = [];
     lifecycle.current.containers.reset();
   }
+  const newNodeUIDs = observedNodeArrivals(
+    nodes,
+    lifecycle.current.visual,
+    snapshotOrigins,
+    provisionOperations,
+  );
   fleet.current.reconcile(
     visibleWindow.visible,
     (uid) => slots.current.node(uid) - visibleWindow.offset,
@@ -1963,15 +1977,7 @@ function SceneWorld({
       snapshot: snapshotReady,
       patrol: motion.patrol,
       canonicalUIDs: new Set(nodes.map(uidOf)),
-      arrivals: new Set(
-        nodes
-          .filter(
-            (n) =>
-              lifecycle.current.visual.initialized &&
-              !lifecycle.current.visual.nodes.has(uidOf(n)),
-          )
-          .map(uidOf),
-      ),
+      arrivals: newNodeUIDs,
     },
   );
   slots.current.fleet = fleet.current;
@@ -2156,6 +2162,7 @@ function SceneWorld({
       slots.current,
       !visible || reducedMotion || motion.reduced || motion.paused,
       clock.current * 1000,
+      snapshotOrigins,
     );
     state.visual.observe(nodes, pods, {
       now: clock.current * 1000,
@@ -2168,6 +2175,8 @@ function SceneWorld({
       hidden: !visible,
       snapshotReady,
       resources,
+      snapshotUIDs: snapshotOrigins,
+      newNodeUIDs,
     });
     state.containers.active = state.visual.pulses;
     setLifecycleRevision((revision) => revision + 1);
@@ -2217,6 +2226,7 @@ function SceneWorld({
     motion.paused,
     motion.operations,
     resourceTombstones,
+    snapshotOrigins,
   ]);
   useEffect(() => {
     if (!snapshotReady) return;
@@ -2649,6 +2659,7 @@ function HarborScene({
   provisionOperations = EMPTY_OPERATIONS,
   workloadOperations = EMPTY_OPERATIONS,
   resourceTombstones = EMPTY_TOMBSTONES,
+  snapshotUIDs = EMPTY_SNAPSHOT_UIDS,
   measuredFlows = null,
   onFlowSelect,
   onSelect,
@@ -2907,6 +2918,7 @@ function HarborScene({
               provisionOperations={provisionOperations}
               workloadOperations={workloadOperations}
               resourceTombstones={resourceTombstones}
+              snapshotUIDs={snapshotUIDs}
               measuredFlows={measuredFlows}
               onFlowSelect={onFlowSelect}
               onSelect={onSelect}
