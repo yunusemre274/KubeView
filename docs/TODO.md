@@ -1,5 +1,19 @@
 # Güncel görev durumu
 
+## 1 Kasım 2026 — v1.1 öncesi onarım (uygulama sürüyor)
+
+- [x] G00 kapsam/UID/reconnect/RBAC; gerçek CR UI testinde6grup, log replacement yarışı ve sentetik Secret metadata korunumu.
+- [x] Controller resource capability hedefi; gerçek D/STS/DS template202, RS/Job/CronJob422; CronJob/rollback/native-sidecar/applied-resize/PDB gerçek API testleri.
+- [x] Bounded Node/container görsel koordinatörü; gerçek status enjeksiyonuyla batma/toparlanma, doğal worker stop→Unknown→recovery, Node DELETE→orphan erişimi/yeni UID; gerçek çok-container arızası/recovery/normal termination ayrımı.
+- [x] Yerel minikube worker-add adaptörü/journal/lock; iki gerçek yeni worker sağlandı. İlk katılım trafik kilidi gerçek kayıttan düzeltildi; güncel gerçek katılımın son kabulü aşağıda açık.
+- [x] Hubble1.20.2 read adapter, mTLS/namespace/temporal UID sınırları; gerçek ayrı same/cross-Node Pod iletişimi ve restricted-SA erişim testi.
+- [x] Chromium/WebKit odak/overlay/hareket, gerçek60sn document.hidden ve72SoftUI kontrast kontrolü; gerçek yakın vinç yük alma/kaldırma/indirme videosu açıldı.
+- [ ] Güncel katılım düzeltmesiyle yeni gerçek worker'ın filoya tamamlanmış katılımı; gerçek trafik katmanının start/increase/stop/DNS/provider recovery görsel kabulü.
+- [ ] Aynı kalite eşleşmiş son performans, yeni efekt/collector maliyeti,20dk karma ve20panel/stream çevrimi; nihai audit/matris/kurulum belgeleri.
+- [ ] v1.1 ayrı sonraki karardır; sürüm/etiket/release/milestone kapanışı yapılmayacak.
+
+Kanıt ve açık sınırlar: [PRE_V11_VISUAL_REPAIR](PRE_V11_VISUAL_REPAIR.md).
+
 ## 1 Kasım 2026 — v1.1 öncesi görsel davranış denetimi
 
 - [x] Mevcut dirty checkout/build kimliğini koru; aktif watcher→WS→store→nesne→panel→gerçek işlem yollarını ve iki yerel referansı denetle. Ürün davranışı değiştirilmedi.

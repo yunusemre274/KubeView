@@ -32,6 +32,7 @@ func main() {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
 	gateway := server.New()
+	defer gateway.Close()
 	mux := http.NewServeMux()
 	gateway.Register(mux)
 	mux.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {

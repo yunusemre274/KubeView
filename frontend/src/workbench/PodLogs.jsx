@@ -15,7 +15,12 @@ import {
 } from "lucide-react";
 import { LogBuffer } from "./logBuffer.js";
 import { buildLogView } from "./logView.js";
-const LOG_CHUNK_STYLE = Object.freeze({display: "block"});
+import {
+  LogStreamDecoder,
+  logSessionID,
+  verifyLogOpening,
+} from "./logProtocol.js";
+const LOG_CHUNK_STYLE = Object.freeze({ display: "block" });
 const LogTextChunk = React.memo(function LogTextChunk({ text }) {
   return <span style={LOG_CHUNK_STYLE}>{text}</span>;
 });
@@ -48,9 +53,37 @@ function PodLogs({
     [followingTail, setFollowingTail] = useState(true),
     [error, setError] = useState(""),
     [status, setStatus] = useState(""),
-    [refresh, setRefresh] = useState(0);
+    [refresh, setRefresh] = useState(0),
+    [streamRevision, setStreamRevision] = useState(0),
+    [outputIdentity, setOutputIdentity] = useState("");
   const outputRef = useRef(null);
   const followTailRef = useRef(true);
+  const activeAbort = useRef(null);
+  const streamSession = api?.streamSession?.();
+  const requestIdentity = JSON.stringify([
+    resource.metadata?.uid,
+    resource.metadata?.namespace,
+    resource.metadata?.name,
+    cluster,
+    container,
+    tailLines,
+    follow,
+    previous,
+    timestamps,
+    refresh,
+    streamSession?.key || "legacy",
+    streamRevision,
+  ]);
+  const renderedIdentity = useRef(requestIdentity);
+  renderedIdentity.current = requestIdentity;
+  useEffect(
+    () =>
+      api?.subscribeStreamSession?.(() => {
+        activeAbort.current?.abort();
+        setStreamRevision((value) => value + 1);
+      }),
+    [api],
+  );
   useEffect(() => {
     setContainer(
       containers.some((c) => c.name === initialContainerName)
@@ -65,13 +98,31 @@ function PodLogs({
   }, [resource.metadata?.uid, initialContainerName]);
   useEffect(() => {
     if (paused || !container) return;
+    if (api?.streamSession && !api.streamSession().ready) {
+      setStatus(
+        api.mode === "demo"
+          ? "Demo — örnek veri; gerçek log akışı kapalı"
+          : "Bağlantı yeniden doğrulanıyor",
+      );
+      return;
+    }
     const abort = new AbortController();
+    activeAbort.current = abort;
+    const identity = requestIdentity;
+    const sessionKey = api?.streamSession?.().key;
+    const session = logSessionID();
+    const protocol = new LogStreamDecoder(session);
+    const current = () =>
+      !abort.signal.aborted &&
+      renderedIdentity.current === identity &&
+      (!api?.streamSession || api.streamSession().key === sessionKey);
     let timer;
     const history = new LogBuffer();
     let flushedRevision = -1;
     setLines([]);
     setFirstSequence(0);
     setTruncated(false);
+    setOutputIdentity(identity);
     setError("");
     setStatus("Bağlanıyor");
     followTailRef.current = true;
@@ -85,11 +136,13 @@ function PodLogs({
       previous: String(previous),
       timestamps: String(timestamps),
       context: cluster || "",
+      uid: resource.metadata?.uid || "",
+      session,
     });
     const url = api?.url ? api.url(`/api/logs?${query}`) : `/api/logs?${query}`;
     const flush = () => {
       timer = undefined;
-      if (abort.signal.aborted || flushedRevision === history.revision) return;
+      if (!current() || flushedRevision === history.revision) return;
       flushedRevision = history.revision;
       const snapshot = history.snapshot();
       setLines(snapshot.lines);
@@ -102,6 +155,7 @@ function PodLogs({
           signal: abort.signal,
           credentials: "same-origin",
         });
+        if (!current()) return;
         if (!response.ok) {
           const text = await response.text();
           try {
@@ -116,25 +170,37 @@ function PodLogs({
             );
           }
         }
+        verifyLogOpening(response.headers, resource.metadata?.uid, session);
         setStatus(follow ? "Canlı akış" : "Log alınıyor");
         const reader = response.body?.getReader();
         if (!reader) throw new Error("Tarayıcı yanıt akışını desteklemiyor.");
         const decoder = new TextDecoder();
+        const append = (value, final = false) => {
+          const parsed = protocol.push(value, final);
+          if (parsed.error) throw new Error(parsed.error);
+          if (parsed.text) history.append(parsed.text);
+        };
         while (true) {
           const { done, value } = await reader.read();
-          if (abort.signal.aborted) return;
+          if (!current()) return;
           if (done) break;
-          history.append(decoder.decode(value, { stream: true }));
-          if (timer === undefined) timer = setTimeout(flush, 180);
+          append(decoder.decode(value, { stream: true }));
+          if (timer === undefined && flushedRevision !== history.revision)
+            timer = setTimeout(flush, 180);
         }
-        history.append(decoder.decode());
+        append(decoder.decode(), true);
         clearTimeout(timer);
         flush();
         setStatus("Akış tamamlandı");
       } catch (e) {
-        if (e.name !== "AbortError") {
+        if (e.name !== "AbortError" && current()) {
+          // A lost UID/watch guard makes retained bytes untrusted. Keep the
+          // explicit failure, not an old successful-looking container output.
+          setLines([]);
+          setFirstSequence(0);
           setError(e.message);
           setStatus("Log okunamadı");
+          abort.abort();
         }
       } finally {
         clearTimeout(timer);
@@ -143,6 +209,7 @@ function PodLogs({
     run();
     return () => {
       abort.abort();
+      if (activeAbort.current === abort) activeAbort.current = null;
       clearTimeout(timer);
     };
   }, [
@@ -158,15 +225,19 @@ function PodLogs({
     refresh,
     cluster,
     api,
+    streamRevision,
+    requestIdentity,
+    streamSession?.ready,
   ]);
   useEffect(() => {
     if (outputRef.current && !search && followTailRef.current)
       outputRef.current.scrollTop = outputRef.current.scrollHeight;
   }, [lines, search]);
   const previousView = useRef();
+  const shownLines = outputIdentity === requestIdentity ? lines : [];
   const view = useMemo(
-    () => buildLogView(lines, firstSequence, search, previousView.current),
-    [lines, firstSequence, search],
+    () => buildLogView(shownLines, firstSequence, search, previousView.current),
+    [shownLines, firstSequence, search],
   );
   useLayoutEffect(() => {
     previousView.current = view;
@@ -178,6 +249,7 @@ function PodLogs({
         <label>
           Container
           <select
+            aria-label="Container"
             value={container}
             onChange={(e) => {
               setContainer(e.target.value);
@@ -192,6 +264,7 @@ function PodLogs({
         <label>
           Son satır
           <select
+            aria-label="Son satır"
             value={tailLines}
             onChange={(e) => setTailLines(Number(e.target.value))}
           >
@@ -217,10 +290,10 @@ function PodLogs({
         <button
           className="icon-button"
           aria-label="Logları indir"
-          disabled={!lines.length}
+          disabled={!shownLines.length}
           onClick={() => {
             const url = URL.createObjectURL(
-              new Blob([lines.join("\n")], {
+              new Blob([shownLines.join("\n")], {
                 type: "text/plain;charset=utf-8",
               }),
             );

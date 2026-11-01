@@ -68,3 +68,9 @@ Projedeki teknik seçimlerin meşru gerekçeleri mevcuttur.
 - Deniz analitik GPU modeliyle hareket eder; aynı model gemiyi yüzdürür. Ayrı görsel saat, Page Visibility ve sürümlü tercihler; arka plan zamanı tek karede uygulanmaz.
 - Panel dili mat Neumorphism'dir. İnce açık inset kenar ve koyu dış ayrım; küçük kontrollerde çift gölge; gerçek kontrast sınırları. Liquid Glass ve dashboard eklenmez.
 - Mevcut watcher/API/auth/mutation sözleşmeleri korunur; bu görev yeni backend endpoint'i eklemez.
+
+## ADR-028 — Kapsamlı gözlem ve sabit opsiyonel sağlayıcı sınırı
+
+2026-11-01. Snapshot'ın authoritative kapsamı GVR/namespace'tir; on-demand CR reconnect boşluğu silinme değildir. UI silinme kararını pozitif tombstone kanıtından alır. Kubernetes logs name-addressed olduğundan UID watch/açılış/ilk yayın guard'ı kullanılır; atomik Kubernetes UID garantisi iddia edilmez.
+
+İlk worker sağlayıcısı sabit minikube docker profile/context/clusterUID + yerel operatör + persistent journal/lock ile sınırlandı; serbest shell endpoint'i veya bulut göçü yoktur. İlk trafik adaptörü sürümü doğrulanmış resmi Hubble CLI1.20.2'dir. Bu seçim mevcut client-go0.30'a büyük SDK/transitif sürüm göçü eklemeden gerçek gRPC/protobuf alanlarını kullanır. CLI process/JSON maliyeti tarayıcı maliyetinden ayrı ölçülür; farklı dile taşıma veya toplam tasarruf başarısı iddia edilmez. Yetki, zamanlı UID eşlemesi ve payload field mask backend'de uygulanır. Ortak görsel koordinatör gerçek state'ten ayrıdır; kapasiteler ve cleanup sonludur.

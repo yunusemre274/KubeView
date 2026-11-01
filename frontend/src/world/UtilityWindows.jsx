@@ -41,6 +41,8 @@ export function ConnectionWindow({
     ...new Set(
       [
         watchNamespace,
+        connection.namespaceHint,
+        namespace === "all" ? "" : namespace,
         ...resources.map((r) =>
           r.kind === "Namespace" ? r.metadata.name : r.metadata.namespace,
         ),
@@ -50,6 +52,7 @@ export function ConnectionWindow({
   const [token, setToken] = useState(""),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
+  const [namespaceName, setNamespaceName] = useState("");
   return (
     <Window
       title="Bağlantı ve kapsam"
@@ -131,6 +134,48 @@ export function ConnectionWindow({
               ))}
             </select>
           </label>
+          {mode !== "demo" && (
+            <div>
+              <label className="form-field">
+                Namespace adıyla kapsam
+                <input
+                  aria-label="Namespace adıyla kapsam"
+                  value={namespaceName}
+                  placeholder={
+                    connection.namespaceHint || "İzinli namespace adı"
+                  }
+                  onChange={(event) => setNamespaceName(event.target.value)}
+                />
+              </label>
+              <button
+                className="button"
+                onClick={() => {
+                  const value = namespaceName.trim();
+                  if (
+                    !/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/.test(value) ||
+                    value.length > 63
+                  ) {
+                    setError("Geçerli bir namespace adı yazın.");
+                    return;
+                  }
+                  setError("");
+                  onNamespace(value);
+                }}
+              >
+                Kapsamı uygula
+              </button>
+              <p className="muted">
+                Namespace listeleme izniniz olmasa da bildiğiniz kapsamı
+                açabilirsiniz; gerçek okuma/yazma yetkileri backend’de
+                denetlenir.
+              </p>
+              {error && (
+                <p className="inline-alert alert-danger" role="alert">
+                  {error}
+                </p>
+              )}
+            </div>
+          )}
           <dl className="connection-grid">
             <dt>Tarayıcı ↔ backend</dt>
             <dd>
@@ -194,6 +239,7 @@ export function PreferencesWindow({
   onClose,
   mode,
   onDemoScenario,
+  onProviders,
 }) {
   const value = validatePreferences(
     preferences || {
@@ -386,12 +432,18 @@ export function PreferencesWindow({
           ["pods", "Pod yükleri"],
           ["storage", "Depolama kaynakları"],
           ["network", "Gerçek selector ilişkileri"],
+          ["measuredTraffic", "Ölçülmüş trafik — Hubble"],
+          ["controlPlane", "Temsili kontrol düzlemi"],
           ["labels", "Durum etiketleri"],
         ].map(([key, label]) => (
           <label key={key}>
             <input
               type="checkbox"
-              checked={layers[key] !== false}
+              checked={
+                key === "measuredTraffic"
+                  ? layers[key] === true
+                  : layers[key] !== false
+              }
               onChange={(event) =>
                 onLayers?.({ ...layers, [key]: event.target.checked })
               }
@@ -400,7 +452,18 @@ export function PreferencesWindow({
           </label>
         ))}
         <p>Ağ çizgileri kaynak ilişkileridir; ölçülmüş trafik değildir.</p>
+        <p>
+          Hubble akışları gerçek sağlayıcı ölçümüdür. Kontrol düzlemi işaretleri
+          Kubernetes durumundan türetilmiş temsili süreçtir; gerçek RPC paketi
+          ölçümü değildir.
+        </p>
       </fieldset>
+      {onProviders && (
+        <button className="button" onClick={onProviders}>
+          <Radio size={15} />
+          Sağlayıcı bağlantılarını incele
+        </button>
+      )}
       {mode === "demo" && (
         <button className="button" onClick={onDemoScenario}>
           <Play size={15} />

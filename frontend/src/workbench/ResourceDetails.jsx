@@ -309,6 +309,7 @@ function SpecificSummary({ resource, resources }) {
 function ResourceDetails({
   resource,
   deleted = false,
+  observation,
   cluster,
   onClose,
   onAction,
@@ -401,6 +402,7 @@ function ResourceDetails({
       path = api
         .resourcePath(resource)
         .replace("/api/resources", "/api/capabilities");
+      path += `${path.includes("?") ? "&" : "?"}uid=${encodeURIComponent(uid)}`;
     } catch (error) {
       setCapabilityError(error.message);
       return;
@@ -430,6 +432,28 @@ function ResourceDetails({
   ].includes(resource.kind);
   const controller =
     resource.kind === "Pod" ? resolveController(resource, resources) : null;
+  const templateCapability = capabilities?.templateResources;
+  const editTemplateResources = async () => {
+    const target = templateCapability?.target;
+    if (!templateCapability?.supported || !target || readOnly || deleted)
+      return;
+    try {
+      let owner = resources.find((r) => r.metadata?.uid === target.uid);
+      if (!owner)
+        owner = await api.request(
+          api.resourcePath({
+            apiVersion: `${target.group ? target.group + "/" : ""}${target.version}`,
+            kind: target.kind,
+            metadata: { name: target.name, namespace: target.namespace },
+          }),
+        );
+      if (owner.metadata?.uid !== target.uid)
+        throw new Error("Workload UID değişti; hedefi yeniden inceleyin.");
+      onAction?.("resources", owner);
+    } catch (error) {
+      setCapabilityError(error.message);
+    }
+  };
   const containers =
     resource.kind === "Pod"
       ? podContainers(resource)
@@ -743,6 +767,32 @@ function ResourceDetails({
             aynı adla yeni kaynak oluşturulması bu paneli değiştirmez.
           </div>
         )}
+        {observation && !deleted && observation.status !== "live" && (
+          <div className="inline-alert alert-warning" role="status">
+            {{
+              stale: "Son bilinen veri · güncel değil",
+              syncing: "Kaynak yeniden senkronize ediliyor",
+              forbidden: "Bu kaynak kapsamına okuma yetkisi yok",
+              unavailable: "Kaynak API'sine erişilemiyor",
+              "not-listed": "Bu kaynak kapsamı henüz listelenmedi",
+            }[observation.status] || "Veri doğrulanıyor"}
+            .{" "}
+            {observation.error ||
+              "Yokluk doğrulanmadan kaynak silindi sayılmaz."}
+          </div>
+        )}
+        {capabilityError && (
+          <div className="inline-alert alert-danger" role="alert">
+            {capabilityError}
+          </div>
+        )}
+        {templateCapability?.reason &&
+          (workload ||
+            resource.kind === "Pod" ||
+            resource.kind === "Job" ||
+            resource.kind === "CronJob") && (
+            <p className="muted">CPU / RAM: {templateCapability.reason}</p>
+          )}
         {metadata.deletionTimestamp && (
           <div className="inline-alert alert-warning">
             Silme API tarafından kabul edilmiş. Grace period veya finalizer’lar
@@ -1295,16 +1345,17 @@ function ResourceDetails({
             Rollout restart
           </button>
         )}
-        {(workload || controller) && (
+        {(workload ||
+          controller ||
+          ["Pod", "Job", "CronJob"].includes(resource.kind)) && (
           <button
             className="button"
-            disabled={readOnly || deleted || (!controller && !canUpdate)}
+            disabled={readOnly || deleted || !templateCapability?.supported}
             title={
-              controller
-                ? `${controller.kind}/${controller.metadata.name} workload şablonu güncellenir.`
-                : "Container başına request ve limit"
+              templateCapability?.reason ||
+              "Kubernetes hedef yeteneği doğrulanıyor"
             }
-            onClick={() => onAction?.("resources", controller || resource)}
+            onClick={editTemplateResources}
           >
             <Settings2 size={15} />
             CPU / RAM

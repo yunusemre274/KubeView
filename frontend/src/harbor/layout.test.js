@@ -126,3 +126,15 @@ test('dense scene pages preserve the full store and UID allocations; changing pa
   c.observe([],map,slots,false,0);c.observe([pod('offscreen','worker0')],map,slots,false,1)
   assert.equal(c.active.length,0)
 })
+
+test('Node fault hands a crane load continuously to a short actual-target arrival; replacement UID cancels old reservation',()=> {
+  const slots=new HarborSlots(), n=node('old-node','worker'), map=new Map([['worker',n]]), c=new TransferCoordinator();
+  c.observe([],map,slots,false,0); c.observe([pod('load','worker')],map,slots,false,10);
+  const transfer=c.active[0], before=transferPosition(transfer,500);
+  const failed={...n,status:{conditions:[{type:'Ready',status:'False'}]}};
+  c.observe([pod('load','worker')],new Map([['worker',failed]]),slots,false,500);
+  assert.equal(c.active[0].simple,true); assert.deepEqual(c.active[0].simpleOrigin,before); assert.equal(c.active[0].started,500);
+  c.observe([pod('load','worker')],new Map([['worker',node('new-node','worker')]]),slots,false,600);
+  assert.ok(c.active.every(t=>t.nodeUID==='new-node')); assert.ok(c.queue.every(t=>t.nodeUID==='new-node'));
+  c.observe([],new Map(),slots,false,700); assert.equal(c.active.length,0); assert.equal(c.queue.length,0);
+})

@@ -14,6 +14,17 @@ import {
 } from "../data/resourceStore";
 import { demoResources, demoMetrics } from "../data/demo";
 import { buildResourceIndex } from "../data/resourceIndex.js";
+import {
+  MAX_RESOURCE_SCOPES,
+  resourceScope,
+  resourceObservation,
+  scopeContains,
+  scopeCoversScope,
+  scopeKey,
+  scopeSubscription,
+  mergeResourceList,
+  narrowNamespaceState,
+} from "../data/resourceScopes.js";
 const EMPTY_RESOURCES = Object.freeze([]);
 
 const Context = createContext(null);
@@ -36,6 +47,137 @@ export const singletonManager = {
   demoTimers: [],
   started: false,
   storeTimings: [],
+  scopeSubscriptions: new Map(),
+  scopeRequests: new Map(),
+  refreshQueued: false,
+  socketSerial: 0,
+  streamListeners: new Set(),
+  streamSession() {
+    return {
+      key: `${this.epoch}:${this.socketSerial}:${this.state.generation ?? "pending"}`,
+      ready:
+        this.state.mode === "live" &&
+        this.state.isConnected &&
+        this.state.snapshotReady,
+    };
+  },
+  notifyStreamSession() {
+    const session = this.streamSession();
+    this.streamListeners.forEach((listener) => listener(session));
+  },
+  watchCovers(scope) {
+    return Object.values(this.state.scopes || {}).some(
+      (known) =>
+        known.source === "watch" &&
+        known.authoritative &&
+        known.status === "synced" &&
+        scopeCoversScope(known, scope),
+    );
+  },
+  scheduleScopeRefresh() {
+    if (this.refreshQueued || this.state.mode !== "live") return;
+    this.refreshQueued = true;
+    const epoch = this.epoch;
+    queueMicrotask(() => {
+      this.refreshQueued = false;
+      if (epoch === this.epoch && this.started) this.connect();
+    });
+  },
+  registerScope(scope, retain = false) {
+    const key = scopeKey(scope);
+    const existing = this.scopeSubscriptions.get(key);
+    if (existing) {
+      existing.touched = Date.now();
+      const known = this.state.scopes?.[key];
+      if (
+        known &&
+        ["forbidden", "unavailable", "not-listed"].includes(known.status)
+      )
+        this.scheduleScopeRefresh();
+      return existing;
+    }
+    const covered = this.watchCovers(scope);
+    if (covered && !retain) return null;
+    // One served version per GR: UID-only canonical objects must not oscillate
+    // between e.g. HPA v1/v2 from competing informers.
+    for (const [otherKey, entry] of this.scopeSubscriptions)
+      if (
+        entry.scope.group === scope.group &&
+        entry.scope.resource === scope.resource &&
+        entry.scope.version !== scope.version
+      )
+        this.scopeSubscriptions.delete(otherKey);
+    if (this.scopeSubscriptions.size >= MAX_RESOURCE_SCOPES) {
+      const victim = [...this.scopeSubscriptions.entries()]
+        .filter(([, entry]) => !entry.references)
+        .sort((a, b) => a[1].touched - b[1].touched)[0];
+      if (!victim)
+        throw new Error(
+          "32 kaynak kapsamı zaten açık. Yeni kapsam için bir kaynak penceresini kapatın.",
+        );
+      this.scopeSubscriptions.delete(victim[0]);
+      const scopes = { ...this.state.scopes };
+      delete scopes[victim[0]];
+      const resources = { ...this.state.resources };
+      for (const [uid, resource] of Object.entries(resources))
+        if (
+          scopeContains(victim[1].scope, resource) &&
+          !Object.values(scopes).some(
+            (known) => known.authoritative && scopeContains(known, resource),
+          )
+        )
+          delete resources[uid];
+      this.publish({ scopes, resources });
+    }
+    const entry = { scope, references: 0, touched: Date.now() };
+    this.scopeSubscriptions.set(key, entry);
+    if (!covered) this.scheduleScopeRefresh();
+    return entry;
+  },
+  retainKind(kind, namespace = "all", requestedDescriptor) {
+    if (this.state.mode === "demo") return () => {};
+    const descriptor =
+      requestedDescriptor || this.state.discovery.find((d) => d.kind === kind);
+    if (!descriptor) return () => {};
+    const entry = this.registerScope(
+      resourceScope(descriptor, namespace),
+      true,
+    );
+    if (!entry) return () => {};
+    ++entry.references;
+    return () => {
+      entry.references = Math.max(0, entry.references - 1);
+      entry.touched = Date.now();
+    };
+  },
+  observeNamespace(
+    namespace = "all",
+    expectedSourceKey = this.state.sourceKey,
+  ) {
+    if (
+      this.state.mode !== "live" ||
+      expectedSourceKey !== this.state.sourceKey
+    )
+      return;
+    const next =
+      this.state.watchNamespace ||
+      (namespace && namespace !== "*" ? namespace : "all");
+    if (next === this.state.activeNamespace) return;
+    for (const [key, entry] of this.scopeSubscriptions)
+      if (
+        !entry.references &&
+        entry.scope.namespace &&
+        next !== "all" &&
+        entry.scope.namespace !== next
+      )
+        this.scopeSubscriptions.delete(key);
+    const retained = [...this.scopeSubscriptions.values()].map(
+      (entry) => entry.scope,
+    );
+    this.state = narrowNamespaceState(this.state, next, retained);
+    this.publish({ activeNamespace: next });
+    this.scheduleScopeRefresh();
+  },
   diagnostics() {
     const sorted = [...this.storeTimings].sort((a, b) => a - b);
     return {
@@ -108,6 +250,7 @@ export const singletonManager = {
         watchNamespace: result.namespace || "",
         authRequired: false,
         readOnly: result.readOnly !== false,
+        namespaceHint: result.currentNamespace || "",
       });
       if (epoch !== this.epoch) return;
       this.selectSource(result.current || result.contexts?.[0]?.name || "");
@@ -131,86 +274,129 @@ export const singletonManager = {
     const descriptor =
       requestedDescriptor || this.state.discovery.find((d) => d.kind === kind);
     if (!descriptor) return;
+    const scope = resourceScope(descriptor, namespace);
+    this.registerScope(scope);
+    const key = scopeKey(scope);
+    const previous = this.scopeRequests.get(key);
+    previous?.abort();
+    const abort = new AbortController();
+    this.scopeRequests.set(key, abort);
     const epoch = this.epoch;
+    const socketSerial = this.socketSerial;
     const before = this.state.resources;
     try {
       const list = await this.request(
         "/api/resources?" +
           new URLSearchParams({
-            group: descriptor.group,
-            version: descriptor.version,
-            resource: descriptor.resource,
-            namespace: namespace === "all" ? "" : namespace,
+            group: scope.group,
+            version: scope.version,
+            resource: scope.resource,
+            namespace: scope.namespace === "*" ? "" : scope.namespace,
           }),
+        { signal: abort.signal },
       );
-      if (epoch !== this.epoch) return;
-      const version =
-        (descriptor.group ? descriptor.group + "/" : "") + descriptor.version;
-      const next = { ...this.state.resources };
-      for (const [uid, r] of Object.entries(before))
+      if (
+        epoch !== this.epoch ||
+        abort.signal.aborted ||
+        socketSerial !== this.socketSerial
+      )
+        return;
+      const next = mergeResourceList(
+        this.state.resources,
+        before,
+        list.items || [],
+        scope,
+      );
+      const timestamp = new Date().toISOString();
+      const tombstones = { ...this.state.tombstones };
+      for (const [uid, old] of Object.entries(before))
         if (
-          r.kind === kind &&
-          r.apiVersion === version &&
-          (namespace === "all" ||
-            !r.metadata.namespace ||
-            r.metadata.namespace === namespace) &&
-          next[uid] === r
+          scopeContains(scope, old) &&
+          !next[uid] &&
+          this.state.resources[uid] === old
         )
-          delete next[uid];
-      for (const r of list.items || []) {
-        const uid = r.metadata?.uid;
-        if (!uid) continue;
-        // Do not undo newer watch updates/deletes received while this list was in flight.
-        if (before[uid] && !this.state.resources[uid]) continue;
-        if (
-          this.state.resources[uid] &&
-          this.state.resources[uid] !== before[uid]
-        )
-          continue;
-        const replaced = Object.values(this.state.resources).some(
-          (old) =>
-            old.metadata.uid !== uid &&
-            old.kind === r.kind &&
-            old.apiVersion === r.apiVersion &&
-            old.metadata.name === r.metadata.name &&
-            old.metadata.namespace === r.metadata.namespace,
-        );
-        if (!replaced) next[uid] = r;
-      }
-      this.publish({ resources: next });
+          tombstones[uid] = { reason: "authoritative-list-absence", timestamp };
+      for (const uid of Object.keys(next)) delete tombstones[uid];
+      const known = this.state.scopes?.[key];
+      this.publish({
+        resources: next,
+        tombstones: Object.fromEntries(Object.entries(tombstones).slice(-1000)),
+        scopes: {
+          ...this.state.scopes,
+          [key]: {
+            ...scope,
+            authoritative: true,
+            status: "synced",
+            timestamp,
+            generation: this.state.generation,
+            source: known?.source || "list",
+          },
+        },
+      });
       return list;
     } catch (error) {
-      if (epoch === this.epoch)
-        this.publish({
-          errors: [...new Set([error.message, ...this.state.errors])].slice(
-            0,
-            30,
-          ),
-        });
+      if (
+        epoch !== this.epoch ||
+        abort.signal.aborted ||
+        socketSerial !== this.socketSerial
+      )
+        return;
+      this.publish({
+        scopes: {
+          ...this.state.scopes,
+          [key]: {
+            ...scope,
+            authoritative: false,
+            status: error.status === 403 ? "forbidden" : "unavailable",
+            error: error.message,
+            timestamp: new Date().toISOString(),
+            source: "list",
+          },
+        },
+        errors: [...new Set([error.message, ...this.state.errors])].slice(
+          0,
+          30,
+        ),
+      });
       throw error;
+    } finally {
+      if (this.scopeRequests.get(key) === abort) this.scopeRequests.delete(key);
     }
   },
   cleanup() {
     ++this.epoch;
+    ++this.socketSerial;
     clearTimeout(this.retry);
     clearInterval(this.poll);
     this.demoTimers.forEach(clearTimeout);
     this.demoTimers = [];
     this.storeTimings = [];
+    this.scopeRequests.forEach((abort) => abort.abort());
+    this.scopeRequests.clear();
+    this.scopeSubscriptions.clear();
+    this.refreshQueued = false;
     if (this.socket) {
       this.socket.onclose = null;
       this.socket.close();
       this.socket = null;
     }
+    this.state = { ...this.state, isConnected: false, snapshotReady: false };
+    this.notifyStreamSession();
   },
   selectSource(context) {
     this.cleanup();
     const mode = context === "__demo__" ? "demo" : "live";
+    const namespaceHint =
+      mode === "demo"
+        ? ""
+        : this.state.contexts.find((c) => c.name === context)?.namespace || "";
     this.publish({
       ...initialState(`${mode}:${context}:${this.epoch}`),
       context: mode === "demo" ? "" : context,
       mode,
       discovery: [],
+      namespaceHint,
+      activeNamespace: this.state.watchNamespace || namespaceHint || "all",
     });
     if (mode === "demo") {
       this.state = reduceMessage(this.state, {
@@ -240,7 +426,16 @@ export const singletonManager = {
       });
     const metrics = async () => {
       try {
-        const data = await this.request("/api/metrics");
+        const metricsNamespace =
+          this.state.watchNamespace ||
+          (this.state.activeNamespace === "all"
+            ? ""
+            : this.state.activeNamespace);
+        const data = await this.request(
+          metricsNamespace
+            ? `/api/metrics?${new URLSearchParams({ namespace: metricsNamespace })}`
+            : "/api/metrics",
+        );
         if (epoch === this.epoch) {
           this.state = appendMetrics(this.state, data);
           this.publish();
@@ -263,13 +458,38 @@ export const singletonManager = {
   },
   connect() {
     const epoch = this.epoch;
+    clearTimeout(this.retry);
+    if (this.socket) {
+      this.socket.onopen =
+        this.socket.onmessage =
+        this.socket.onerror =
+        this.socket.onclose =
+          null;
+      this.socket.close();
+      this.socket = null;
+    }
+    ++this.socketSerial;
+    this.scopeRequests.forEach((abort) => abort.abort());
+    this.scopeRequests.clear();
+    this.state = reduceMessage(this.state, { type: "CONNECTION_PENDING" });
+    this.publish({ isConnected: false });
+    this.notifyStreamSession();
     const url = this.url("/ws");
+    const activeNamespace =
+      this.state.watchNamespace || this.state.activeNamespace;
+    url.searchParams.set(
+      "namespace",
+      activeNamespace === "all" ? "" : activeNamespace || "",
+    );
+    for (const { scope } of this.scopeSubscriptions.values())
+      url.searchParams.append("subscribe", scopeSubscription(scope));
     url.protocol = url.protocol === "https:" ? "wss:" : "ws:";
     const socket = new WebSocket(url);
     globalThis.__KUBEVIEW_BENCHMARK__?.connection?.(socket);
     this.socket = socket;
     socket.onopen = () => {
-      if (epoch === this.epoch) this.publish({ isConnected: true });
+      if (epoch === this.epoch && socket === this.socket)
+        this.publish({ isConnected: true });
     };
     socket.onmessage = (e) => {
       if (epoch !== this.epoch || socket !== this.socket) return;
@@ -282,6 +502,7 @@ export const singletonManager = {
         this.storeTimings.push(elapsed);
         if (this.storeTimings.length > 500) this.storeTimings.shift();
         this.publish({ lastStoreLatency: elapsed });
+        if (message.type === "SNAPSHOT") this.notifyStreamSession();
         globalThis.__KUBEVIEW_BENCHMARK__?.message(
           message,
           {
@@ -297,11 +518,14 @@ export const singletonManager = {
       }
     };
     socket.onerror = () => {
-      if (epoch === this.epoch) this.publish({ stale: true, upstream: false });
+      if (epoch === this.epoch && socket === this.socket)
+        this.publish({ stale: true, upstream: false });
     };
     socket.onclose = () => {
-      if (epoch !== this.epoch) return;
+      if (epoch !== this.epoch || socket !== this.socket) return;
+      this.state = reduceMessage(this.state, { type: "CONNECTION_PENDING" });
       this.publish({ isConnected: false, stale: true });
+      this.notifyStreamSession();
       this.retry = setTimeout(() => this.connect(), 3000);
     };
   },
@@ -411,6 +635,20 @@ export function ShipyardClusterProvider({ children }) {
       },
       url: (path) => singletonManager.url(path).toString(),
       context: state.context,
+      mode: state.mode,
+      streamSession: () => {
+        const session = singletonManager.streamSession();
+        return {
+          ...session,
+          ready:
+            session.ready &&
+            state.sourceKey === singletonManager.state.sourceKey,
+        };
+      },
+      subscribeStreamSession(listener) {
+        singletonManager.streamListeners.add(listener);
+        return () => singletonManager.streamListeners.delete(listener);
+      },
       resourcePath(resource) {
         const [group, version] = resource.apiVersion.includes("/")
           ? resource.apiVersion.split("/")
@@ -439,6 +677,11 @@ export function ShipyardClusterProvider({ children }) {
         api,
         login: (token) => singletonManager.login(token),
         loadKind: singletonManager.loadKind.bind(singletonManager),
+        retainKind: singletonManager.retainKind.bind(singletonManager),
+        observeNamespace:
+          singletonManager.observeNamespace.bind(singletonManager),
+        resourceObservation: (resource) =>
+          resourceObservation(singletonManager.state, resource),
         selectSource: (name) => singletonManager.selectSource(name),
         runDemoScenario: () => singletonManager.runDemoScenario(),
         refresh: () => {
@@ -446,9 +689,11 @@ export function ShipyardClusterProvider({ children }) {
             singletonManager.started = false;
             return singletonManager.start();
           }
-          return singletonManager.selectSource(
-            state.mode === "demo" ? "__demo__" : state.context,
-          );
+          if (state.mode === "demo")
+            return singletonManager.selectSource("__demo__");
+          // Reconnect is not a context switch: retain scoped subscriptions,
+          // canonical data and UID selection until the real relist reconciles.
+          return singletonManager.connect();
         },
         totalShips: resourceIndex.nodes.length,
         totalPallets: resourceIndex.pods.length,

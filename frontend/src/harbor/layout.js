@@ -61,11 +61,11 @@ export class HarborSlots {
       const [nodeUID, uid] = JSON.parse(key),
         resource = live.get(uid);
       const expected = resource
-        ? nodeNames.get(resource.spec?.nodeName) || "pending"
+        ? resource.spec?.nodeName ? nodeNames.get(resource.spec.nodeName) || "orphan" : "pending"
         : null;
       if (!resource || expected !== nodeUID) {
         this.pods.delete(key);
-        if (nodeUID === "pending" || live.has(nodeUID)) {
+        if (nodeUID === "pending" || nodeUID === "orphan" || live.has(nodeUID)) {
           const free = this.freePods.get(nodeUID) || [];
           free.push(slot);
           this.freePods.set(nodeUID, free);
@@ -134,6 +134,11 @@ export function pendingPosition(index) {
     3.1 + Math.floor(index / 21) * 2.65,
     -44 - Math.floor((index % 21) / 7) * 7,
   ];
+}
+
+/** A display/inspection location, not a synthetic Node or a Pending phase. */
+export function orphanPosition(index) {
+  return [-133 + (index % 5) * 4, 3.1 + Math.floor(index / 15) * 2.65, -15 + Math.floor((index % 15) / 5) * 7];
 }
 
 export function sceneBounds(maxNodeSlot = 1) {
@@ -283,7 +288,9 @@ export function resourcePosition(resource, nodesByName, slots) {
   if (resource.kind !== "Pod") return null;
   const node = nodesByName.get(resource.spec?.nodeName);
   if (!node)
-    return resource.spec?.nodeName ? null : pendingPosition(slots.pod(uid));
+    return resource.spec?.nodeName
+      ? slots.lastVisual?.get(uid)?.position || orphanPosition(slots.pod(uid, "orphan"))
+      : pendingPosition(slots.pod(uid));
   const nodeUID = uidOf(node);
   const index = slots.node(nodeUID) - slots.windowOffset;
   if (index < 0 || index >= slots.windowSize) return null;
@@ -303,12 +310,16 @@ export class TransferCoordinator {
     this.queue = [];
     this.sequence = 0;
     this.positions = new Map();
+    this.previousNodeUIDs = new Map();
+    this.summarized = 0;
   }
   reset() {
     this.previous = null;
     this.active = [];
     this.queue = [];
     this.positions.clear();
+    this.previousNodeUIDs.clear();
+    this.summarized = 0;
   }
   observe(
     pods,
@@ -323,20 +334,32 @@ export class TransferCoordinator {
       (t) =>
         current.has(t.uid) &&
         liveNodeNames.has(t.nodeName) &&
+        uidOf(nodesByName.get(t.nodeName)) === t.nodeUID &&
         current.get(t.uid).spec?.nodeName === t.nodeName &&
-        now - t.started < D.TRANSFER_SECONDS * 1000,
+        now - t.started < (t.duration ?? D.TRANSFER_SECONDS * 1000),
     );
     this.queue = this.queue.filter(
       (t) =>
         current.has(t.uid) &&
         liveNodeNames.has(t.nodeName) &&
+        uidOf(nodesByName.get(t.nodeName)) === t.nodeUID &&
         current.get(t.uid).spec?.nodeName === t.nodeName,
     );
+    for (const transfer of this.active) {
+      if (!transfer.simple && readyState(nodesByName.get(transfer.nodeName)) !== "ready") {
+        transfer.simpleOrigin = transferPosition(transfer, now);
+        transfer.simple = true;
+        transfer.preserveScale = true;
+        transfer.started = now;
+        transfer.duration = 700;
+      }
+    }
     if (this.previous && !reducedMotion) {
       for (const [uid, pod] of current) {
         const old = this.previous.get(uid);
         const node = nodesByName.get(pod.spec?.nodeName);
-        if (!node || (old && old.spec?.nodeName === pod.spec?.nodeName))
+        const replacedNode = old?.spec?.nodeName === pod.spec?.nodeName && this.previousNodeUIDs.has(pod.spec?.nodeName) && this.previousNodeUIDs.get(pod.spec.nodeName) !== uidOf(node);
+        if (!node || (old && old.spec?.nodeName === pod.spec?.nodeName && !replacedNode))
           continue;
         const destination = resourcePosition(pod, nodesByName, slots);
         if (!destination) continue;
@@ -361,13 +384,16 @@ export class TransferCoordinator {
           destination,
           deck: deckPosition(slots.pod(uid, uidOf(node))),
           observedPending: Boolean(old && !old.spec?.nodeName),
+          replacedNode,
           staging,
           resource: pod,
         };
         this.queue.push(transfer);
       }
-      if (this.queue.length > D.MAX_QUEUED_TRANSFERS)
+      if (this.queue.length > D.MAX_QUEUED_TRANSFERS) {
+        this.summarized += this.queue.length - D.MAX_QUEUED_TRANSFERS;
         this.queue.splice(0, this.queue.length - D.MAX_QUEUED_TRANSFERS);
+      }
     }
     if (reducedMotion) {
       this.queue = [];
@@ -375,6 +401,7 @@ export class TransferCoordinator {
       this.fleet?.syncLoadingOwners(new Set());
     }
     this.previous = current;
+    this.previousNodeUIDs = new Map([...nodesByName].map(([name, n]) => [name, uidOf(n)]));
     this.positions = new Map(
       pods.map((p) => [uidOf(p), resourcePosition(p, nodesByName, slots)]),
     );
@@ -420,7 +447,7 @@ export class TransferCoordinator {
         ...transfer,
         destination,
         simple: readiness.simple,
-        duration: readiness.simple ? 320 : D.TRANSFER_SECONDS * 1000,
+        duration: readiness.simple ? 700 : D.TRANSFER_SECONDS * 1000,
         started: now,
       });
       occupied.add(transfer.crane);
@@ -440,7 +467,10 @@ export function transferPosition(transfer, now) {
         (transfer.duration ?? D.TRANSFER_SECONDS * 1000),
     ),
   );
-  if (transfer.simple) return [...transfer.destination];
+  if (transfer.simple) {
+    const s = smooth(t);
+    return [transfer.destination[0] - (1 - s) * 6, transfer.destination[1] + (1 - s) * 4 + Math.sin(t * Math.PI) * 2, transfer.destination[2] - (1 - s) * 8];
+  }
   const height = Math.max(19, transfer.destination[1] + 8);
   if (t === 1) return [...transfer.destination];
   if (transfer.observedPending && transfer.staging) {
@@ -473,30 +503,34 @@ export function transferPosition(transfer, now) {
         stage[2] + (transfer.destination[2] - stage[2]) * s,
       ];
     }
-    const s = smooth((t - 0.76) / 0.24);
+    const s = smooth(Math.min(1, (t - 0.76) / 0.18));
     return [
       transfer.destination[0],
       height + (transfer.destination[1] - height) * s,
       transfer.destination[2],
     ];
   }
-  if (t < 0.25)
+  // The load waits while the trolley approaches and the cable lowers. It is
+  // attached only after pickup; the final hold lets the spreader release.
+  if (t < 0.16) return [...transfer.origin];
+  if (t < 0.4)
     return [
       transfer.origin[0],
-      transfer.origin[1] + (height - transfer.origin[1]) * smooth(t / 0.25),
+      transfer.origin[1] + (height - transfer.origin[1]) * smooth((t - 0.16) / 0.24),
       transfer.origin[2],
     ];
-  if (t < 0.72) {
-    const s = smooth((t - 0.25) / 0.47);
+  if (t < 0.78) {
+    const s = smooth((t - 0.4) / 0.38);
     return [
       transfer.origin[0] + (transfer.destination[0] - transfer.origin[0]) * s,
       height,
       transfer.origin[2] + (transfer.destination[2] - transfer.origin[2]) * s,
     ];
   }
+  if (t >= .94) return [...transfer.destination];
   return [
     transfer.destination[0],
-    height + (transfer.destination[1] - height) * smooth((t - 0.72) / 0.28),
+    height + (transfer.destination[1] - height) * smooth((t - 0.78) / 0.16),
     transfer.destination[2],
   ];
 }

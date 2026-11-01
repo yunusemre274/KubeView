@@ -1,6 +1,7 @@
 import {
   FLEET_DIMENSIONS as F,
   HARBOR_DIMENSIONS as D,
+  VISUAL_EVENT_DIMENSIONS as V,
 } from "../constants/dimensions.js";
 const TAU = Math.PI * 2;
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -186,6 +187,22 @@ export function interpolatePose(a, b, t) {
     roll: lerp(a.roll || 0, b.roll || 0, t),
   };
 }
+
+/** Full hull launch at the west slipway, then tangent-continuous route entry. */
+export function launchTrajectory(elapsed) {
+  const t = clamp(elapsed / V.LAUNCH_SECONDS, 0, 1);
+  if (t < .42) {
+    const s = smooth(t / .42);
+    return { position: [-140, V.LAUNCH_POSITION[1] * (1 - s), -61 - 47 * s], yaw: Math.PI, pitch: -.04 * Math.sin(Math.PI * s), roll: 0 };
+  }
+  const u = (t - .42) / .58, v = 1 - u;
+  const x = v ** 3 * -140 + 3 * v * v * u * -140 + 3 * v * u * u * -157 + u ** 3 * -130;
+  const z = v ** 3 * -108 + 3 * v * v * u * -137 + 3 * v * u * u * -145 + u ** 3 * -145;
+  const dx = 6 * v * u * -17 + 3 * u * u * 27;
+  const dz = 3 * v * v * -29 + 6 * v * u * -8;
+  return { position: [x, 0, z], yaw: Math.atan2(dx, dz), pitch: 0, roll: 0 };
+}
+const LAUNCH_SWEEP = Array.from({length: 34}, (_, i) => launchTrajectory(i * V.LAUNCH_SECONDS / 33));
 export function sweptClear(from, to, others = [], obstacles = FLEET_OBSTACLES) {
   const turns = Math.abs(
     Math.atan2(Math.sin(to.yaw - from.yaw), Math.cos(to.yaw - from.yaw)),
@@ -268,7 +285,7 @@ export class FleetSimulator {
     nodes,
     slotOf,
     now = this.time,
-    { snapshot = true, patrol = true, canonicalUIDs = null } = {},
+    { snapshot = true, patrol = true, canonicalUIDs = null, arrivals = null } = {},
   ) {
     const live = new Set(nodes.map(uidOf));
     for (const [uid, ship] of this.ships)
@@ -285,8 +302,12 @@ export class FleetSimulator {
         slot = slotOf(uid),
         existing = this.ships.get(uid);
       if (existing) {
+        const nextHealthy = healthy(node), falseReady = node.status?.conditions?.some((c) => c.type === "Ready" && c.status === "False");
+        if (existing.healthy && !nextHealthy && falseReady && this.onRoute(existing))
+          existing.failureCoast = Math.max(0, existing.speed || existing.cruiseVelocity || 0);
+        if (nextHealthy || !falseReady) existing.failureCoast = 0;
         existing.node = node;
-        existing.healthy = healthy(node);
+        existing.healthy = nextHealthy;
         continue;
       }
       const restored = this.suspended.get(uid);
@@ -352,6 +373,19 @@ export class FleetSimulator {
           roll: 0,
         };
         ship.mode = "waiting-admission";
+      }
+      const introduced = this.initialized && snapshot && (arrivals == null || arrivals.has(uid));
+      if (introduced && patrol) {
+        const start = launchTrajectory(0);
+        if (![...this.ships.values()].some((s) => s.mode === "launching" || vesselsOverlap(start, s.pose, 5))) {
+          ship.pose = start;
+          ship.mode = "launching";
+          ship.modeElapsed = 0;
+          ship.launchReserved = false;
+          ship.mergeGate = null;
+          ship.launchHeight = start.position[1];
+          ship.waitingReason = "Gerçek Node kaydı · kızaktan katılım";
+        } else ship.waitingReason = "Yeni Node · güvenli katılım aralığı bekleniyor";
       }
       this.ships.set(uid, ship);
     }
@@ -422,11 +456,26 @@ export class FleetSimulator {
   }
   mergeGates(exceptUID) {
     return [...this.ships.values()]
-      .filter((ship) => ship.uid !== exceptUID && ship.mode === "merging")
+      .filter((ship) => ship.uid !== exceptUID && (ship.mode === "merging" || (ship.mode === "launching" && ship.launchReserved)))
       .map((ship) => ({
         uid: ship.uid,
         progress: ship.mergeGate ?? this.route.gateProgress(dockX(ship.slot)),
       }));
+  }
+  canLaunch(ship) {
+    const behindClearance = F.HEADWAY + V.LAUNCH_ROUTE_BUFFER + F.PATROL_SPEED * 1.5 * V.LAUNCH_SECONDS;
+    const others = [...this.ships.values()].filter((other) => other.uid !== ship.uid);
+    for (const other of others) if (this.onRoute(other)) {
+      const ahead = wrap(other.progress, this.route.length), behind = wrap(-other.progress, this.route.length);
+      if (ahead < F.HEADWAY + 1 || behind < behindClearance) return false;
+    }
+    if (this.mergeGates(ship.uid).some((gate) => this.circularGap(0, gate.progress) < F.HEADWAY + V.LAUNCH_ROUTE_BUFFER)) return false;
+    // Reserve the complete swept hull, not just the route entry center line.
+    // Executed only once a real route gap exists; the immutable path is cached.
+    const poses = others.map((other) => other.pose);
+    for (let i = 1; i < LAUNCH_SWEEP.length; i++)
+      if (i * V.LAUNCH_SECONDS / 33 >= ship.modeElapsed && !sweptClear(LAUNCH_SWEEP[i-1], LAUNCH_SWEEP[i], poses)) return false;
+    return true;
   }
   canMerge(ship) {
     const target = this.route.gateProgress(dockX(ship.slot)),
@@ -484,6 +533,16 @@ export class FleetSimulator {
         ship.hold = stopped;
         ship.speed = 0;
         if (stopped) {
+          // A newly observed Ready=False brakes briefly in its existing safe
+          // lane. Unknown, user pause and global motion pause stop immediately.
+          if (!ship.healthy && ship.failureCoast > 0 && motion.patrol !== false && !this.pausedUIDs.has(ship.uid)) {
+            const speed = Math.max(0, ship.failureCoast - F.PATROL_SPEED * step / .7),
+              progress = wrap(ship.progress + speed * step, this.route.length),
+              candidate = this.route.pose(progress),
+              obstacles = [...this.ships.values()].filter((s) => s.uid !== ship.uid).map((s) => s.pose);
+            if (sweptClear(ship.pose, candidate, obstacles)) { ship.pose = candidate; ship.progress = progress; ship.speed = speed; ship.failureCoast = speed; }
+            else ship.failureCoast = 0;
+          }
           ship.cruiseVelocity = 0;
           ship.waitingReason = !ship.healthy
             ? "Node Ready değil · son pozisyon korunuyor"
@@ -498,7 +557,17 @@ export class FleetSimulator {
         let candidate = null,
           nextMode = null,
           nextProgress = ship.progress;
-        if (ship.mode === "waiting-admission") {
+        if (ship.mode === "launching") {
+          if (!ship.launchReserved) {
+            if (!this.canLaunch(ship)) { ship.waitingReason = "Gerçek Node · güvenli katılım aralığı bekleniyor"; continue; }
+            ship.launchReserved = true;
+            ship.mergeGate = wrap(-V.LAUNCH_ROUTE_BUFFER, this.route.length);
+          }
+          const nextElapsed = ship.modeElapsed + step;
+          candidate = launchTrajectory(nextElapsed);
+          nextProgress = 0;
+          if (nextElapsed >= V.LAUNCH_SECONDS) nextMode = "patrolling";
+        } else if (ship.mode === "waiting-admission") {
           if (
             this.canMerge(ship) &&
             !vesselHitsLand(ship.pose) &&
@@ -516,7 +585,7 @@ export class FleetSimulator {
           }
           continue;
         }
-        if (
+        if (ship.mode !== "launching" &&
           ship.request &&
           ship.mode === "patrolling" &&
           ship.pose.position[2] > F.PIER_END + 45 &&
@@ -634,6 +703,7 @@ export class FleetSimulator {
 
         }
         if (candidate && sweptClear(ship.pose, candidate, others)) {
+          if (ship.mode === "launching") ship.launchHeight = candidate.position[1];
           ship.speed = distance(ship.pose.position, candidate.position) / step;
           ship.pose = candidate;
           ship.progress = nextProgress;

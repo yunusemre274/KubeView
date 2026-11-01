@@ -15,6 +15,7 @@ import * as THREE from "three";
 import {
   HARBOR_DIMENSIONS as D,
   FLEET_DIMENSIONS as F,
+  VISUAL_EVENT_DIMENSIONS as V,
 } from "../constants/dimensions.js";
 import {
   Box,
@@ -29,6 +30,15 @@ import {
   HULL,
 } from "./assets.jsx";
 import FacilityResources from "./FacilityResources.jsx";
+import {
+  VisualLifecycle,
+  sampleContainerEffect,
+  applyNodeFaultPose,
+  confirmedRemoval,
+  visibleContainerMarkers,
+} from "./visualLifecycle.js";
+import LifecycleEffects, { NodeArrivalCaption } from "./LifecycleEffects.jsx";
+import MeasuredTraffic from "./MeasuredTraffic.jsx";
 import WorldFacilities, { FacilityHit } from "./WorldFacilities.jsx";
 import Ocean, { ShipWake } from "./Ocean.jsx";
 import {
@@ -41,6 +51,7 @@ import {
   FleetSimulator,
   vesselPointToWorld,
   speedMultiplier,
+  FLEET_OBSTACLES,
 } from "./fleet.js";
 import {
   containersForPod,
@@ -67,6 +78,9 @@ import {
   transferPosition,
   uidOf,
 } from "./layout.js";
+
+const EMPTY_OPERATIONS = Object.freeze([]);
+const EMPTY_TOMBSTONES = Object.freeze({});
 
 const item = (p, s, c, r) => ({ p, s, c, r });
 const labelStyle = {
@@ -244,6 +258,7 @@ function ResourceLabel({
 }) {
   const ref = useRef(),
     visualRef = useRef(),
+    nameRef = useRef(),
     last = useRef({});
   useFrame(() => {
     if (!visualStatus) return;
@@ -253,20 +268,32 @@ function ResourceLabel({
       ref.current.style.opacity = String(opacity);
       last.current.opacity = opacity;
     }
-    const visible = !!visual.loading;
-    if (ref.current && last.current.auto !== onlyWhileLoading) {
-      ref.current.style.display =
-        !onlyWhileLoading || visible ? "block" : "none";
-      last.current.auto = onlyWhileLoading;
+    const visible = !!(visual.loading || visual.orphan);
+    const show = (!onlyWhileLoading || visible) && !visual.suppressLabel;
+    if (ref.current && last.current.show !== show) {
+      ref.current.style.display = show ? "block" : "none";
+      last.current.show = show;
     }
-    if (visualRef.current && last.current.loading !== visible) {
+    const hideName = !!(onlyWhileLoading && visual.loading && !visual.orphan);
+    if (nameRef.current && last.current.hideName !== hideName) {
+      nameRef.current.style.display = hideName ? "none" : "inline-block";
+      last.current.hideName = hideName;
+    }
+    const visualLabel = visual.orphan
+      ? "orphan"
+      : visual.loading
+        ? "loading"
+        : "";
+    if (visualRef.current && last.current.loading !== visualLabel) {
       if (visualRef.current) {
         visualRef.current.hidden = !visible;
-        visualRef.current.textContent = visible ? "Görsel yükleme sürüyor" : "";
+        visualRef.current.textContent = visual.orphan
+          ? "Atanmış Node kaydı yok · son görsel konum"
+          : visual.loading
+            ? "Görsel yükleme sürüyor"
+            : "";
       }
-      if (onlyWhileLoading && ref.current)
-        ref.current.style.display = visible ? "block" : "none";
-      last.current.loading = visible;
+      last.current.loading = visualLabel;
     }
   });
   if (!labels && !selected && !hover && !onlyWhileLoading) return null;
@@ -284,6 +311,9 @@ function ResourceLabel({
           ...labelStyle,
           borderColor: selected ? "#4b89d1" : "#d5dfe3",
           marginLeft: offset,
+          ...(resource.kind === "Pod"
+            ? { transform: "translate(calc(50% + 26px), -12px)" }
+            : {}),
         }}
       >
         <span
@@ -297,7 +327,19 @@ function ResourceLabel({
             verticalAlign: "middle",
           }}
         />
-        {resource.metadata?.name}
+        <span
+          ref={nameRef}
+          title={resource.metadata?.name}
+          style={{
+            display: "inline-block",
+            maxWidth: resource.kind === "Pod" ? 220 : undefined,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            verticalAlign: "middle",
+          }}
+        >
+          {resource.metadata?.name}
+        </span>
         {(selected || hover) && (
           <div style={statusLabelStyle}>
             {resource.kind} ·{" "}
@@ -345,6 +387,8 @@ function FleetFrame({
   coordinator,
   selectedUID,
   onShipMotionChange,
+  lifecycle,
+  slots,
 }) {
   const { invalidate, scene } = useThree(),
     lastReport = useRef(-Infinity),
@@ -444,9 +488,25 @@ function FleetFrame({
       ship.bob.height += (sample.height - ship.bob.height) * ease;
       ship.bob.pitch += (targetPitch - ship.bob.pitch) * ease;
       ship.bob.roll += (targetRoll - ship.bob.roll) * ease;
-      ship.pose.position[1] = ship.bob.height;
+      ship.pose.position[1] =
+        ship.bob.height +
+        (ship.mode === "launching" ? ship.launchHeight || 0 : 0);
       ship.pose.pitch = ship.bob.pitch;
       ship.pose.roll = ship.bob.roll;
+      applyNodeFaultPose(
+        ship.pose,
+        lifecycle.current.visual.nodeVisual(ship.uid, clock.current * 1000),
+      );
+      slots.current.lastVisual ??= new Map();
+      let previous = slots.current.lastVisual.get(ship.uid);
+      if (!previous) {
+        previous = { position: [0, 0, 0], pose: { yaw: 0, pitch: 0, roll: 0 } };
+        slots.current.lastVisual.set(ship.uid, previous);
+      }
+      for (let i = 0; i < 3; i++) previous.position[i] = ship.pose.position[i];
+      previous.pose.yaw = ship.pose.yaw;
+      previous.pose.pitch = ship.pose.pitch;
+      previous.pose.roll = ship.pose.roll;
     }
     coordinator.current.pump(clock.current * 1000);
     if (
@@ -457,7 +517,12 @@ function FleetFrame({
         )) ||
         waterNeedsFrame(waterState.current, amplitude) ||
         coordinator.current.active.length ||
-        coordinator.current.queue.length)
+        coordinator.current.queue.length ||
+        lifecycle.current.visual.needsFrame(
+          clock.current * 1000,
+          fleet.ships,
+          slots.current.visiblePodUIDs,
+        ))
     )
       invalidate();
     if (
@@ -506,6 +571,47 @@ function podVisual(pod, nodesByName, slots, transfers, clock) {
   const node = nodesByName.get(pod.spec?.nodeName),
     pose = node && slots.fleet?.pose(uidOf(node));
   const appearance = arrivalVisual(queued, transfer, clock.current * 1000);
+  appearance.suppressLabel =
+    slots.containerMarkers?.some(
+      (effect) => effect.uid === uid && effect.phase !== "settled",
+    ) || false;
+  if (transfer?.simple && pose) {
+    const progress = Math.max(
+      0,
+      Math.min(
+        1,
+        (clock.current * 1000 - transfer.started) / transfer.duration,
+      ),
+    );
+    const ease = progress * progress * (3 - 2 * progress),
+      local = [
+        transfer.deck[0] - (1 - ease) * 6,
+        transfer.deck[1] + (1 - ease) * 4 + Math.sin(progress * Math.PI) * 2,
+        transfer.deck[2] - (1 - ease) * 8,
+      ];
+    let position = vesselPointToWorld(pose, local),
+      transferPose = pose;
+    if (transfer.simpleOrigin) {
+      const destination = vesselPointToWorld(pose, transfer.deck);
+      position = destination.map(
+        (value, index) =>
+          transfer.simpleOrigin[index] +
+          (value - transfer.simpleOrigin[index]) * ease,
+      );
+      position[1] += Math.sin(progress * Math.PI) * 2;
+      transferPose = {
+        yaw: pose.yaw * ease,
+        pitch: pose.pitch * ease,
+        roll: pose.roll * ease,
+      };
+    }
+    return {
+      ...appearance,
+      position,
+      pose: { ...transferPose, position },
+      attached: false,
+    };
+  }
   if (transfer && !transfer.simple)
     return {
       ...appearance,
@@ -516,7 +622,16 @@ function podVisual(pod, nodesByName, slots, transfers, clock) {
   return {
     ...appearance,
     position: resourcePosition(pod, nodesByName, slots),
-    pose,
+    pose:
+      pose ||
+      (pod.spec?.nodeName && slots.lastVisual?.get(uid)?.pose
+        ? {
+            ...slots.lastVisual.get(uid).pose,
+            position: resourcePosition(pod, nodesByName, slots),
+          }
+        : null),
+    attached: !!pose,
+    orphan: !!pod.spec?.nodeName && !node,
   };
 }
 function MovingAnchor({
@@ -605,6 +720,8 @@ function PodCargo({
   canSelect,
   onPickStart,
   clock,
+  lifecycle,
+  selectedContainerName,
 }) {
   const body = useRef(),
     details = useRef(),
@@ -612,7 +729,8 @@ function PodCargo({
     selection = useRef();
   const matrix = useMemo(() => new THREE.Matrix4(), []),
     basisEuler = useMemo(() => new THREE.Euler(0, 0, 0, "YXZ"), []),
-    tint = useMemo(() => new THREE.Color(), []);
+    tint = useMemo(() => new THREE.Color(), []),
+    effectBasis = useMemo(() => new THREE.Matrix4(), []);
   const cached = useRef(new Map()),
     bases = useRef(new Map()),
     frame = useRef(0);
@@ -636,7 +754,10 @@ function PodCargo({
         nodeUID,
         slots,
         deck: node ? deckPosition(slots.pod(uid, nodeUID)) : null,
-        boxes: containers.map((_, c) => ({
+        boxes: containers.map((container, c) => ({
+          containerName: container.containerName,
+          role: container.role,
+          worldPosition: [0, 0, 0],
           offset: [
             0,
             0,
@@ -750,22 +871,25 @@ function PodCargo({
         last.pose.pitch = pose.pitch;
         last.pose.roll = pose.roll;
       } else last.pose = null;
-      const key = pose && row.deck ? row.nodeUID : uid;
+      const key = visual.attached && pose && row.deck ? row.nodeUID : uid;
       let basis = bases.current.get(key);
       if (!basis) {
         basis = { matrix: new THREE.Matrix4(), revision: -1 };
         bases.current.set(key, basis);
       }
       if (basis.revision !== revision) {
-        if (pose && row.deck) {
+        if (visual.attached && pose && row.deck) {
           basisEuler.set(pose.pitch || 0, pose.yaw || 0, pose.roll || 0, "YXZ");
           basis.matrix
             .makeRotationFromEuler(basisEuler)
             .setPosition(...pose.position);
+        } else if (pose) {
+          basisEuler.set(pose.pitch || 0, pose.yaw || 0, pose.roll || 0, "YXZ");
+          basis.matrix.makeRotationFromEuler(basisEuler).setPosition(...p);
         } else basis.matrix.makeTranslation(p[0], p[1], p[2]);
         basis.revision = revision;
       }
-      const anchor = pose && row.deck ? row.deck : zero;
+      const anchor = visual.attached && pose && row.deck ? row.deck : zero;
       for (const box of row.boxes) {
         writeCargoMatrix(
           matrix,
@@ -775,6 +899,58 @@ function PodCargo({
           box.size,
           visual.scale,
         );
+        const effect = lifecycle.current.visual.container(
+          uid,
+          box.containerName,
+          box.role,
+        );
+        if (effect && effect.phase !== "settled") {
+          const e = matrix.elements;
+          box.worldPosition[0] = e[12];
+          box.worldPosition[1] = e[13];
+          box.worldPosition[2] = e[14];
+          const view = sampleContainerEffect(
+            effect,
+            clock.current * 1000,
+            box.worldPosition,
+            pose,
+            FLEET_OBSTACLES,
+          );
+          if (view) {
+            basisEuler.set(view.pitch, view.yaw, view.roll, "YXZ");
+            effectBasis
+              .makeRotationFromEuler(basisEuler)
+              .setPosition(...view.position);
+            writeCargoMatrix(
+              matrix,
+              effectBasis,
+              zero,
+              zero,
+              box.size,
+              visual.scale,
+            );
+          }
+        }
+        if (
+          selection.current &&
+          uid === selectedUID &&
+          selectedContainerName === box.containerName
+        ) {
+          const e = matrix.elements;
+          selection.current.position.set(e[12], e[13], e[14]);
+          const view = effect?.phase !== "settled" ? effect?.view : null;
+          selection.current.rotation.set(
+            view?.pitch || pose?.pitch || 0,
+            view?.yaw ?? pose?.yaw ?? 0,
+            view?.roll || pose?.roll || 0,
+            "YXZ",
+          );
+          selection.current.scale.set(
+            1,
+            1,
+            Math.max(0.1, box.size[2] / D.CONTAINER_LENGTH),
+          );
+        }
         body.current.setMatrixAt(bodyIndex++, matrix);
       }
       for (let k = 0; k < statusBoxes.length; k++) {
@@ -803,7 +979,8 @@ function PodCargo({
       }
       if (
         selection.current &&
-        (uid === selectedUID || (!selectedUID && uid === hovering))
+        ((uid === selectedUID && !selectedContainerName) ||
+          (!selectedUID && uid === hovering))
       ) {
         selection.current.position.set(...p);
         selection.current.rotation.set(
@@ -832,6 +1009,9 @@ function PodCargo({
     zero,
     statusBoxes,
     detailBoxes,
+    lifecycle,
+    selectedContainerName,
+    effectBasis,
   ]);
   useLayoutEffect(() => place(), [place]);
   useFrame(() => place(), -1);
@@ -915,6 +1095,12 @@ function PodCargo({
             selected,
             hovered,
             ...pods
+              .filter(
+                (pod) =>
+                  pod.spec?.nodeName && !nodesByName.has(pod.spec.nodeName),
+              )
+              .slice(0, 3),
+            ...pods
               .filter((pod) =>
                 [...transfers.current.active, ...transfers.current.queue].some(
                   (job) => job.uid === uidOf(pod),
@@ -984,7 +1170,8 @@ function WorkingCrane({
     trolley = useRef(),
     cable = useRef(),
     spreader = useRef(),
-    hadTransfer = useRef(false);
+    hadTransfer = useRef(false),
+    approach = useRef(null);
   const pierX = [-80, 0, 80][index],
     direction = index === 2 ? -1 : 1;
   const berth = [pierX, 0, D.BERTH_FIRST_Z];
@@ -995,28 +1182,41 @@ function WorkingCrane({
     if (!group.current) return;
     if (transfer && !reducedMotion) {
       hadTransfer.current = true;
+      if (approach.current?.job !== transfer)
+        approach.current = {
+          job: transfer,
+          z: group.current.position.z,
+          x: trolley.current?.position.x ?? -2,
+          height: spreader.current?.position.y ?? 18.1,
+        };
       const progress =
         (clock.current * 1000 - transfer.started) / (D.TRANSFER_SECONDS * 1000);
       const p =
         transfer.observedPending && progress < 0.16
           ? transfer.staging
           : transferPosition(transfer, clock.current * 1000);
-      group.current.position.z = p[2];
-      const x = (p[0] - pierX) * direction;
+      const phase = Math.max(0, Math.min(1, progress / 0.16)),
+        ease = phase * phase * (3 - 2 * phase),
+        destinationX = (p[0] - pierX) * direction,
+        x = approach.current.x + (destinationX - approach.current.x) * ease;
+      group.current.position.z =
+        approach.current.z + (p[2] - approach.current.z) * ease;
       if (trolley.current) trolley.current.position.x = x;
+      const loadTop = p[1] + D.CONTAINER_HEIGHT / 2 + 0.4 - 1,
+        pickupHeight =
+          approach.current.height + (loadTop - approach.current.height) * ease,
+        // The load rests on the deck while the spreader releases and retracts.
+        release = Math.max(0, Math.min(1, (progress - 0.94) / 0.06)),
+        hookHeight = pickupHeight + release * 3;
       if (cable.current) {
-        const loadTop = p[1] + D.CONTAINER_HEIGHT / 2 + 0.4 - 1;
-        cable.current.position.set(x, (26.1 + loadTop) / 2, 0);
-        cable.current.scale.y = Math.max(0.1, 26.1 - loadTop);
+        cable.current.position.set(x, (26.1 + hookHeight) / 2, 0);
+        cable.current.scale.y = Math.max(0.1, 26.1 - hookHeight);
       }
       if (spreader.current)
-        spreader.current.position.set(
-          x,
-          p[1] + D.CONTAINER_HEIGHT / 2 + 0.35 - 1,
-          0,
-        );
+        spreader.current.position.set(x, hookHeight - 0.05, 0);
     } else if (hadTransfer.current) {
       hadTransfer.current = false;
+      approach.current = null;
       if (trolley.current) trolley.current.position.x = -2;
       if (cable.current) {
         cable.current.position.set(-2, 22.1, 0);
@@ -1210,9 +1410,15 @@ function LifecycleIndicators({
   clock,
 }) {
   const podMap = new Map(pods.map((p) => [uidOf(p), p]));
-  const problems = pods.filter((p) => containerProblem(p)).slice(0, 12);
+  const hasSpecificMarker = (uid) =>
+    slots.containerMarkers?.some(
+      (effect) => effect.uid === uid && effect.phase !== "settled",
+    );
+  const problems = pods
+    .filter((p) => containerProblem(p) && !hasSpecificMarker(uidOf(p)))
+    .slice(0, 12);
   const pulses = [...lifecycle.current.containers.active.values()]
-    .filter((p) => podMap.has(p.uid))
+    .filter((p) => podMap.has(p.uid) && !hasSpecificMarker(p.uid))
     .slice(-8);
   return (
     <group>
@@ -1638,6 +1844,12 @@ function ViewController({
 function SceneWorld({
   resources,
   selectedUID,
+  selectedContainerName,
+  provisionOperations = EMPTY_OPERATIONS,
+  workloadOperations = EMPTY_OPERATIONS,
+  resourceTombstones = EMPTY_TOMBSTONES,
+  measuredFlows,
+  onFlowSelect,
   onSelect,
   quality,
   layers,
@@ -1694,6 +1906,7 @@ function SceneWorld({
     previous: new Map(),
     ghosts: [],
     containers: new ContainerTransitions(),
+    visual: new VisualLifecycle(sourceKey),
   });
   if (lifecycle.current.source !== sourceKey)
     lifecycle.current = {
@@ -1702,6 +1915,7 @@ function SceneWorld({
       previous: new Map(),
       ghosts: [],
       containers: new ContainerTransitions(),
+      visual: new VisualLifecycle(sourceKey),
     };
   const lifecycleTimer = useRef();
   const [windowIndex, setWindowIndex] = useState(0),
@@ -1749,6 +1963,15 @@ function SceneWorld({
       snapshot: snapshotReady,
       patrol: motion.patrol,
       canonicalUIDs: new Set(nodes.map(uidOf)),
+      arrivals: new Set(
+        nodes
+          .filter(
+            (n) =>
+              lifecycle.current.visual.initialized &&
+              !lifecycle.current.visual.nodes.has(uidOf(n)),
+          )
+          .map(uidOf),
+      ),
     },
   );
   slots.current.fleet = fleet.current;
@@ -1761,8 +1984,19 @@ function SceneWorld({
     visibleWindow.visible.map((node) => node.metadata.name),
   );
   const renderPods = displayPods.filter(
-    (p) => !p.spec?.nodeName || visibleNames.has(p.spec.nodeName),
+    (p) =>
+      !p.spec?.nodeName ||
+      visibleNames.has(p.spec.nodeName) ||
+      !nodesByName.has(p.spec.nodeName),
   );
+  slots.current.visiblePodUIDs = new Set(renderPods.map(uidOf));
+  const containerMarkers = visibleContainerMarkers(
+    lifecycle.current.visual,
+    slots.current.visiblePodUIDs,
+    selectedUID,
+    clock.current * 1000,
+  );
+  slots.current.containerMarkers = containerMarkers;
   const selected = resources.find(
     (resource) => uidOf(resource) === selectedUID,
   );
@@ -1779,6 +2013,36 @@ function SceneWorld({
           .position
       : resourcePosition(resource, nodesByName, slots.current);
   const lowDetail = quality === "low" || nodes.length > 12;
+  // Read-only diagnostic: real identity plus sampled presentation, no setters
+  // or dev-only event injection. Useful for correlating watch records/video.
+  scene.userData.visualLifecycleState = () => ({
+    source: sourceKey,
+    clock: clock.current,
+    nodes: [...lifecycle.current.visual.nodes.keys()].map((uid) => ({
+      uid,
+      ...lifecycle.current.visual.nodeVisual(uid, clock.current * 1000),
+      pose: fleet.current.snapshotShip(uid) || null,
+    })),
+    containers: [...lifecycle.current.visual.containers.values()].map(
+      (effect) => ({
+        uid: effect.uid,
+        name: effect.name,
+        role: effect.role,
+        phase: effect.phase,
+        reason: effect.reason,
+        count: effect.count,
+        started: effect.started,
+        recoverAt: effect.recoverAt,
+        position: effect.origin ? [...effect.view.position] : null,
+        origin: effect.origin ? [...effect.origin] : null,
+        destination: effect.destination ? [...effect.destination] : null,
+      }),
+    ),
+    signals: lifecycle.current.visual.signals.map(
+      ({ resource, ...signal }) => signal,
+    ),
+    summary: lifecycle.current.visual.summary(clock.current * 1000),
+  });
   scene.userData.harborStats = () => ({
     canonicalNodes: nodes.length,
     visibleNodes: visibleWindow.visible.length,
@@ -1799,6 +2063,8 @@ function SceneWorld({
     ],
     exitGhosts: lifecycle.current.ghosts.length,
     containerTransitions: lifecycle.current.containers.active.size,
+    visualEvents: lifecycle.current.visual.summary(clock.current * 1000),
+    summarizedTransfers: coordinator.current.summarized || 0,
   });
   useEffect(() => {
     if (onWindowInfo)
@@ -1849,7 +2115,11 @@ function SceneWorld({
     state.ghosts = state.ghosts.filter((ghost) => now < ghost.expires);
     if (state.initialized) {
       for (const [uid, previous] of state.previous)
-        if (!live.has(uid) && previous.position)
+        if (
+          !live.has(uid) &&
+          previous.position &&
+          confirmedRemoval(uid, resourceTombstones)
+        )
           state.ghosts.push({
             ...previous,
             ...slots.current.lastVisual?.get(uid),
@@ -1887,29 +2157,46 @@ function SceneWorld({
       !visible || reducedMotion || motion.reduced || motion.paused,
       clock.current * 1000,
     );
-    state.containers.observe(pods, now);
+    state.visual.observe(nodes, pods, {
+      now: clock.current * 1000,
+      source: sourceKey,
+      simple:
+        reducedMotion ||
+        motion.reduced ||
+        motion.paused ||
+        motion.operations === "simple",
+      hidden: !visible,
+      snapshotReady,
+      resources,
+    });
+    state.containers.active = state.visual.pulses;
     setLifecycleRevision((revision) => revision + 1);
     clearTimeout(lifecycleTimer.current);
     const scheduleExpiry = () => {
-      const clock = performance.now();
-      state.ghosts = state.ghosts.filter((g) => g.expires > clock);
+      const wallNow = performance.now();
+      state.ghosts = state.ghosts.filter((g) => g.expires > wallNow);
       for (const [key, event] of state.containers.active)
-        if (event.expires <= clock) state.containers.active.delete(key);
+        if (event.expires <= clock.current * 1000)
+          state.containers.active.delete(key);
       setLifecycleRevision((revision) => revision + 1);
       invalidate();
       const expires = [
         ...state.ghosts.map((g) => g.expires),
-        ...[...state.containers.active.values()].map((e) => e.expires),
+        ...[...state.containers.active.values()].map(
+          (e) => wallNow + Math.max(0, e.expires - clock.current * 1000),
+        ),
       ];
       if (expires.length)
         lifecycleTimer.current = setTimeout(
           scheduleExpiry,
-          Math.max(16, Math.min(...expires) - clock + 10),
+          Math.max(16, Math.min(...expires) - wallNow + 10),
         );
     };
     const expires = [
       ...state.ghosts.map((g) => g.expires),
-      ...[...state.containers.active.values()].map((e) => e.expires),
+      ...[...state.containers.active.values()].map(
+        (e) => now + Math.max(0, e.expires - clock.current * 1000),
+      ),
     ];
     if (expires.length)
       lifecycleTimer.current = setTimeout(
@@ -1928,6 +2215,34 @@ function SceneWorld({
     visible,
     motion.reduced,
     motion.paused,
+    motion.operations,
+    resourceTombstones,
+  ]);
+  useEffect(() => {
+    if (!snapshotReady) return;
+    lifecycle.current.visual.observeOperations(
+      workloadOperations,
+      clock.current * 1000,
+      {
+        simple:
+          reducedMotion ||
+          motion.reduced ||
+          motion.paused ||
+          motion.operations === "simple",
+        hidden: !visible,
+      },
+    );
+    invalidate();
+  }, [
+    workloadOperations,
+    snapshotReady,
+    sourceKey,
+    visible,
+    reducedMotion,
+    motion.reduced,
+    motion.paused,
+    motion.operations,
+    invalidate,
   ]);
   useEffect(() => () => clearTimeout(lifecycleTimer.current), []);
   useEffect(() => {
@@ -1996,6 +2311,8 @@ function SceneWorld({
             : selectedUID
         }
         onShipMotionChange={onShipMotionChange}
+        lifecycle={lifecycle}
+        slots={slots}
       />
       <Ocean
         motion={motion}
@@ -2123,9 +2440,18 @@ function SceneWorld({
                         fontWeight: 700,
                       }}
                     >
-                      {state === "unknown" ? "?" : "!"} {STATE_LABELS[state]}
+                      {state === "unknown"
+                        ? "? İletişim kaybı · fiziksel arıza kanıtı değil"
+                        : `! ${STATE_LABELS[state]}`}
                     </span>
                   </Html>
+                )}
+                {fleet.current.ships.get(uid)?.mode === "launching" && (
+                  <NodeArrivalCaption
+                    uid={uid}
+                    fleet={fleet.current}
+                    ready={state === "ready"}
+                  />
                 )}
               </group>
             </VesselGroup>
@@ -2162,8 +2488,36 @@ function SceneWorld({
           canSelect={canSelect}
           onPickStart={onPickStart}
           clock={clock}
+          lifecycle={lifecycle}
+          selectedContainerName={selectedContainerName}
         />
       )}
+      <LifecycleEffects
+        hoveredUID={hovered}
+        containerMarkers={containerMarkers}
+        lifecycle={lifecycle}
+        nodes={visibleWindow.visible}
+        nodesByName={nodesByName}
+        pods={renderPods}
+        fleet={fleet.current}
+        slots={slots.current}
+        clock={clock}
+        materials={materials}
+        reducedMotion={
+          reducedMotion ||
+          motion.reduced ||
+          motion.operations === "simple" ||
+          motion.paused
+        }
+        onSelect={onSelect}
+        onOpenFacility={onOpenFacility}
+        canSelect={canSelect}
+        onPickStart={onPickStart}
+        selectedUID={selectedUID}
+        layers={layers}
+        provisionOperations={provisionOperations}
+        workloadOperations={workloadOperations}
+      />
       <LifecycleIndicators
         pods={renderPods}
         nodesByName={nodesByName}
@@ -2184,10 +2538,26 @@ function SceneWorld({
         materials={materials}
         selectedUID={selectedUID}
         onSelect={onSelect}
-        layers={{ ...layers, storage: false }}
+        layers={layers}
         sourceKey={sourceKey}
         canSelect={canSelect}
+        visibleNamespace={visibleNamespace}
       />
+      {layers.measuredTraffic && (
+        <MeasuredTraffic
+          selectedUID={selectedUID}
+          data={measuredFlows}
+          resources={resources}
+          nodesByName={nodesByName}
+          slots={slots.current}
+          visibleNamespace={visibleNamespace}
+          clock={clock}
+          motion={motion}
+          canSelect={canSelect}
+          onPickStart={onPickStart}
+          onFlowSelect={onFlowSelect}
+        />
+      )}
       <DockShuttles
         coordinator={coordinator}
         materials={materials}
@@ -2275,6 +2645,12 @@ class HarborErrorBoundary extends Component {
 function HarborScene({
   resources = [],
   selectedUID,
+  selectedContainerName,
+  provisionOperations = EMPTY_OPERATIONS,
+  workloadOperations = EMPTY_OPERATIONS,
+  resourceTombstones = EMPTY_TOMBSTONES,
+  measuredFlows = null,
+  onFlowSelect,
   onSelect,
   quality = "medium",
   layers = {},
@@ -2314,6 +2690,8 @@ function HarborScene({
       scene,
       invalidate,
       fleetStates: () => scene.userData.fleetStates?.() || [],
+      visualLifecycleState: () =>
+        scene.userData.visualLifecycleState?.() || null,
       projectTargets: (filter = {}) => {
         scene.updateMatrixWorld(true);
         const rect = canvas.getBoundingClientRect(),
@@ -2449,6 +2827,7 @@ function HarborScene({
       },
       stats: () => ({
         ...gl.info.render,
+        measuredTraffic: scene.userData.measuredTrafficStats?.() || null,
         memory: { ...gl.info.memory },
         lifecycle: scene.userData.harborStats?.(),
       }),
@@ -2524,6 +2903,12 @@ function HarborScene({
             <SceneWorld
               resources={resources}
               selectedUID={selectedUID}
+              selectedContainerName={selectedContainerName}
+              provisionOperations={provisionOperations}
+              workloadOperations={workloadOperations}
+              resourceTombstones={resourceTombstones}
+              measuredFlows={measuredFlows}
+              onFlowSelect={onFlowSelect}
               onSelect={onSelect}
               quality={localQuality}
               layers={layers}

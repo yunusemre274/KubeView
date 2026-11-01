@@ -1,4 +1,5 @@
 // Canonical objects are independent of scene transitions. resourceVersion is opaque.
+import { scopeContains, scopeKey } from "./resourceScopes.js";
 export const identity = (resource) => resource?.metadata?.uid;
 export const address = (r) =>
   `${r.apiVersion}/${r.kind}/${r.metadata?.namespace || ""}/${r.metadata?.name}`;
@@ -7,6 +8,9 @@ export function initialState(sourceKey = "") {
     sourceKey,
     generation: null,
     resources: {},
+    scopes: {},
+    tombstones: {},
+    completeSnapshot: false,
     snapshotReady: false,
     synced: false,
     upstream: false,
@@ -19,9 +23,32 @@ export function initialState(sourceKey = "") {
     metricHistory: [],
   };
 }
+const MAX_TOMBSTONES = 1000;
+function boundedTombstones(tombstones) {
+  const entries = Object.entries(tombstones);
+  return entries.length <= MAX_TOMBSTONES
+    ? tombstones
+    : Object.fromEntries(entries.slice(-MAX_TOMBSTONES));
+}
 export function reduceMessage(state, message) {
   const payload = message.payload || message;
   const generation = message.generation ?? payload.generation;
+  const context = message.context ?? payload.context;
+  if (context !== undefined && state.context && context !== state.context)
+    return state;
+  if (message.type === "CONNECTION_PENDING") {
+    return {
+      ...state,
+      snapshotReady: false,
+      stale: true,
+      scopes: Object.fromEntries(
+        Object.entries(state.scopes || {}).map(([key, scope]) => [
+          key,
+          { ...scope, authoritative: false, status: "syncing" },
+        ]),
+      ),
+    };
+  }
   if (
     message.type !== "SNAPSHOT" &&
     state.generation !== null &&
@@ -31,34 +58,114 @@ export function reduceMessage(state, message) {
     return state;
   if (message.type === "SNAPSHOT") {
     const objects = payload.resources || [];
-    const resources = Object.fromEntries(
-      objects.filter(identity).map((r) => [identity(r), r]),
+    const scoped = Array.isArray(payload.scopes);
+    const incoming = new Set(objects.filter(identity).map(identity));
+    const resources = scoped ? { ...state.resources } : {};
+    const tombstones = { ...state.tombstones };
+    const timestamp = message.timestamp || new Date().toISOString();
+    for (const [uid, old] of Object.entries(state.resources)) {
+      if (
+        !incoming.has(uid) &&
+        (!scoped ||
+          payload.scopes.some(
+            (scope) =>
+              scope.authoritative &&
+              scope.status === "synced" &&
+              scopeContains(scope, old),
+          ))
+      ) {
+        delete resources[uid];
+        tombstones[uid] = { reason: "authoritative-absence", timestamp };
+      }
+    }
+    const addresses = new Map(
+      Object.entries(resources).map(([uid, resource]) => [
+        address(resource),
+        uid,
+      ]),
     );
+    for (const resource of objects.filter(identity)) {
+      const uid = identity(resource);
+      const oldUID = addresses.get(address(resource));
+      if (oldUID && oldUID !== uid) {
+        delete resources[oldUID];
+        tombstones[oldUID] = { reason: "replaced", timestamp };
+      }
+      resources[uid] = resource;
+      addresses.set(address(resource), uid);
+      delete tombstones[uid];
+    }
+    const retained = Object.values(resources);
+    const scopes = scoped
+      ? Object.fromEntries(
+          Object.entries(state.scopes || {})
+            .filter(([, scope]) =>
+              retained.some((resource) => scopeContains(scope, resource)),
+            )
+            .map(([key, scope]) => [
+              key,
+              { ...scope, authoritative: false, status: "not-listed" },
+            ]),
+        )
+      : {};
+    for (const scope of payload.scopes || []) {
+      const key = scopeKey(scope);
+      scopes[key] = {
+        ...scope,
+        kind: scope.kind || state.scopes?.[key]?.kind || "",
+        timestamp,
+        generation,
+        source: "watch",
+      };
+    }
     return {
       ...state,
       resources,
+      scopes,
+      tombstones: boundedTombstones(tombstones),
+      completeSnapshot: !scoped,
       generation,
       snapshotReady: true,
       synced: payload.synced !== false,
       upstream: payload.upstream !== false,
       stale: payload.synced === false,
       errors: payload.errors || [],
-      lastUpdated: message.timestamp || new Date().toISOString(),
+      lastUpdated: timestamp,
     };
   }
   if (message.type === "RESOURCE_EVENT") {
     const r = payload.object;
     if (!identity(r)) return state;
     const resources = { ...state.resources };
-    if (payload.action === "DELETE") delete resources[identity(r)];
-    else {
+    let tombstones = state.tombstones || {};
+    let changedTombstones = false;
+    const recordDeletion = (uid, reason) => {
+      if (!changedTombstones) {
+        tombstones = { ...tombstones };
+        changedTombstones = true;
+      }
+      tombstones[uid] = { reason, timestamp: now };
+    };
+    const now = message.timestamp || new Date().toISOString();
+    if (payload.action === "DELETE") {
+      delete resources[identity(r)];
+      recordDeletion(identity(r), "delete-event");
+    } else {
       // A recreated address has a new identity; delayed DELETE cannot remove it.
       for (const [uid, old] of Object.entries(resources))
-        if (uid !== identity(r) && address(old) === address(r))
+        if (uid !== identity(r) && address(old) === address(r)) {
           delete resources[uid];
+          recordDeletion(uid, "replaced");
+        }
       resources[identity(r)] = r;
+      if (tombstones[identity(r)]) {
+        if (!changedTombstones) {
+          tombstones = { ...tombstones };
+          changedTombstones = true;
+        }
+        delete tombstones[identity(r)];
+      }
     }
-    const now = message.timestamp || new Date().toISOString();
     const event = {
       id: `${identity(r)}:${r.metadata.resourceVersion}:${payload.action}`,
       timestamp: now,
@@ -69,9 +176,32 @@ export function reduceMessage(state, message) {
       namespace: r.metadata.namespace,
       message: r.message || `${r.kind} ${r.metadata.name} · ${payload.action}`,
     };
+    const oldScope = payload.scope && state.scopes?.[scopeKey(payload.scope)];
+    const scopeChanged =
+      payload.scope &&
+      (!oldScope ||
+        oldScope.status !== "synced" ||
+        !oldScope.authoritative ||
+        oldScope.generation !== generation);
     return {
       ...state,
       resources,
+      tombstones: changedTombstones
+        ? boundedTombstones(tombstones)
+        : tombstones,
+      scopes: scopeChanged
+        ? {
+            ...state.scopes,
+            [scopeKey(payload.scope)]: {
+              ...payload.scope,
+              authoritative: true,
+              status: "synced",
+              timestamp: now,
+              generation,
+              source: "watch",
+            },
+          }
+        : state.scopes,
       lastUpdated: now,
       events: [
         event,

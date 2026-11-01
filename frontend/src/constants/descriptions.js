@@ -56,6 +56,9 @@ export const OBJECT_DESCRIPTIONS = {
 
 // The harbor's fixtures describe the visual metaphor, never invented Kubernetes resources.
 Object.assign(OBJECT_DESCRIPTIONS, {
+  HARBOR_CONTAINER_FAULT: { title: 'Container arıza izi', description: 'Gerçek container arızasının görsel izi. Pod UID ve container kimliği korunur; incelemek için seçin.' },
+  HARBOR_SLIPWAY: { title: 'Node kızağı', description: 'Node kızağı — Gerçek worker isteğini yönetim merkezinde açar; istek taslağı Node sayısına dahil değildir.' },
+  HARBOR_MEASURED_TRAFFIC: { title: 'Ölçülmüş Hubble akışı', description: 'Sağlayıcının zaman penceresindeki yönlü flow olayları; parçacıklar paket sayısı veya bant genişliği değildir.' },
   HARBOR_PIER: { title: 'Beton iskele', description: 'Node gemilerine erişen, vinç raylarını taşıyan tersane iskelesi. Dekoratif tesis öğesidir.' },
   HARBOR_HANGAR: { title: 'Endüstriyel hangar', description: 'Tersanenin kara tarafındaki oluklu metal çalışma hangarı. Tek başına Kubernetes kaynağı sayılmaz.' },
   HARBOR_PENDING: { title: 'Pod bekleme alanı', description: 'Henüz bir Node ataması gözlenmeyen Pod kaynaklarının rıhtımdaki geçici yeri.' },

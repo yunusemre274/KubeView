@@ -437,8 +437,11 @@ func TestPurposefulSecretRevealIncludesGVKAndIdentity(t *testing.T) {
 	if response.UID != fixture.UID || response.ResourceVersion != fixture.ResourceVersion {
 		t.Fatal("purposeful reveal changed UID/resourceVersion")
 	}
-	if response.Annotations != nil || response.ManagedFields != nil {
-		t.Fatal("reveal retained internal metadata")
+	if response.ManagedFields != nil {
+		t.Fatal("reveal retained managedFields")
+	}
+	if response.Annotations["last-applied"] != fixture.Annotations["last-applied"] {
+		t.Fatal("purposeful editor lost unknown annotations")
 	}
 	if !bytes.Equal(response.Data["fixture"], fixture.Data["fixture"]) {
 		t.Fatal("purposeful reveal failed to return explicitly requested fixture")

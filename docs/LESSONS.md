@@ -106,3 +106,12 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 - Tam name onayı isteyen silme dialog'unda alanı boş bırakan test, API delete hatası değildir. Canlı UI doğrulamasını tamamlamadan bekleme süresini artırmak veya ürünü değiştirmek yerine test ön koşulunu düzelt; önceki hatayı sakla.
 - Uzun kullanıcı duraklatmasından sonra Docker verisi korunurken özel temp kubeconfig/profil ve KIC hostname kaydı kaybolabilir. Yalnız owned container kimliği/cluster UID doğrulamasıyla kurtar; kullanıcı context'ine geçme. `docker start` hemen ardından systemd hazır varsayma. Fresh worker join ile aynı worker'ın yeniden kaydını ayır.
 - Native minimize komutunun başarılı olması `document.hidden` olduğunu kanıtlamaz. Gerçek visibility giriş koşulu sağlanmıyorsa background testini engelli bırak; DOM özelliğini taklit ederek native test geçti deme.
+
+## 1 Kasım 2026 — Uygulama ve gerçek olay tekrarları
+
+- Eksilen scoped listeden DELETE çıkarma; yalnız başarılı authoritative kapsam veya gerçek DELETE tombstone'dur. Same-context reconnect seçim/lease'i korumalıdır; kaynak değişimi ayrı epoch'tur.
+- Minikube1.38 profil dosyası primary adı boş, worker adı m02 saklar; gerçek host adı profil ile birleştirilir. Docker29'un eksik nesne hatası küçük harflidir. Sürümün gerçek veri/çıktısını test et; yalnız fake Runner sözleşmesi gerçek provisioning kanıtı değildir.
+- Normal Pod deletionTimestamp sonrası SIGTERM/137 çıkışı yeni crash efekti başlatmamalı. Yeni Node kızak rotası için yalnız merkez çizgi değil geminin kıç/süpürülmüş alanı da gate rezervasyonuna katılmalı.
+- Three0.164 instanceColor için vertexColors bayrağı gerekmez; geometry color attribute'u yokken ayrıca vertexColors açmak alev/okları siyahla çarpabilir. Gerçek ekranı açmadan materyal kabulü yapma.
+- SSAR yardımcılarının positional resource/subresource/namespace sırasını gerçek restricted-SA ile sına; admin testi yanlış argümanı maskeleyebilir. Dokümanda başarı zinciriyle negatif denemeyi ayır.
+-120ms yalnız background geçişi, anında değişen metinle geçici düşük kontrast üretir; metin/yüzey atomik tema değişsin, kabartma gölgesi korunabilir. Window autofocus RAF'ından önce ölçülen focus testi gerçek klavye odağını kanıtlamaz.

@@ -182,6 +182,23 @@ func TestBenchmarkFixtureServer(t *testing.T) {
 		jsonResponse(w, 200, map[string]interface{}{"available": false, "source": "synthetic fixture", "error": "Benchmark fixture does not provide usage metrics"})
 	})
 	mux.HandleFunc("/api/logs", func(w http.ResponseWriter, r *http.Request) {
+		// Synthetic fixture transport only. Match the guarded client contract so
+		// frontend benchmarks do not silently bypass response identity checks.
+		q := r.URL.Query()
+		fixture, identityErr := c.Dynamic.Resource(benchGVR["Pod"]).Namespace(q.Get("namespace")).Get(r.Context(), q.Get("pod"), metav1.GetOptions{})
+		if identityErr != nil || q.Get("uid") == "" || string(fixture.GetUID()) != q.Get("uid") {
+			problem(w, 409, "Benchmark fixture Pod UID uyuşmuyor")
+			return
+		}
+		session, sessionErr := logSessionName(q.Get("session"))
+		if sessionErr != nil {
+			failure(w, sessionErr)
+			return
+		}
+		w.Header().Set("X-KubeView-Pod-UID", q.Get("uid"))
+		w.Header().Set("X-KubeView-Log-Session", session)
+		w.Header().Set("X-KubeView-Log-Protocol", "guarded-text-v1")
+
 		mu.Lock()
 		logOpened++
 		logRequests = append(logRequests, map[string]string{"namespace": r.URL.Query().Get("namespace"), "pod": r.URL.Query().Get("pod"), "container": r.URL.Query().Get("container")})

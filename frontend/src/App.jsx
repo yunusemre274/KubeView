@@ -28,6 +28,8 @@ import { detailResourceScope } from "./data/resourceIndex.js";
 import ResourceDetails from "./workbench/ResourceDetails";
 import ResourceForms from "./workbench/ResourceForms";
 import FacilityWindow from "./world/FacilityWindow";
+import { ProviderWindow, FlowWindow } from "./world/ProviderWindows.jsx";
+import useWorldProviders from "./world/useWorldProviders.js";
 import {
   ConnectionWindow,
   FinderWindow,
@@ -86,6 +88,7 @@ export default function App() {
     [selection, setSelection] = useState(null),
     [utility, setUtility] = useState(null),
     [form, setForm] = useState(null),
+    [selectedFlow, setSelectedFlow] = useState(null),
     [operations, setOperations] = useState([]);
   const [preferences, setPreferences] = useState(loadPreferences);
   const [systemReduced, setSystemReduced] = useState(
@@ -114,6 +117,8 @@ export default function App() {
     storage: true,
     network: false,
     labels: false,
+    measuredTraffic: false,
+    controlPlane: true,
   });
   const [shipControls, setShipControls] = useState({
     pausedUIDs: [],
@@ -181,15 +186,27 @@ export default function App() {
       currentSource.current = sourceKey;
       seenUIDs.current.clear();
       setSelection(null);
+      setSelectedFlow(null);
       setPanel(null);
       setForm(null);
       setOperations([]);
-      setNamespace("all");
+      setNamespace(
+        connection.watchNamespace || connection.namespaceHint || "all",
+      );
       setShipControls({ pausedUIDs: [], followUID: null });
       setShipMotion(null);
       lastShipMotion.current = null;
     }
   }, [sourceKey]);
+  const namespaceSource = useRef(sourceKey);
+  const observeNamespace = useCommittedEvent(connection.observeNamespace);
+  useEffect(() => {
+    if (namespaceSource.current !== sourceKey) {
+      namespaceSource.current = sourceKey;
+      return;
+    }
+    observeNamespace(namespace, sourceKey);
+  }, [namespace, sourceKey, observeNamespace]);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.dataset.contrast = contrast;
@@ -260,6 +277,34 @@ export default function App() {
   const selected = selection
     ? byUID.get(selection.resource.metadata.uid) || selection.resource
     : null;
+  const selectedObservation = useMemo(
+    () => selected && connection.resourceObservation(selected),
+    [
+      selected,
+      connection.scopes,
+      connection.tombstones,
+      connection.isConnected,
+      connection.upstream,
+      connection.snapshotReady,
+      sourceKey,
+    ],
+  );
+  const retainKind = useCommittedEvent(connection.retainKind);
+  const selectedDescriptor =
+    selected &&
+    connection.discovery.find(
+      (d) =>
+        d.kind === selected.kind &&
+        `${d.group ? d.group + "/" : ""}${d.version}` === selected.apiVersion,
+    );
+  useEffect(() => {
+    if (!selectedDescriptor) return;
+    return retainKind(
+      selectedDescriptor.kind,
+      selected?.metadata.namespace || "",
+      selectedDescriptor,
+    );
+  }, [selectedDescriptor, selected?.metadata.namespace, sourceKey, retainKind]);
   const selectedNode =
     selected?.kind === "Node"
       ? selected
@@ -267,12 +312,7 @@ export default function App() {
         ? resourceIndex.nodesByName.get(selected.spec?.nodeName)
         : ownerNode(selected, resources);
   const selectedNodeUID = selectedNode?.metadata.uid;
-  const deleted = Boolean(
-    selected &&
-    snapshotReady &&
-    seenUIDs.current.has(selected.metadata.uid) &&
-    !byUID.has(selected.metadata.uid),
-  );
+  const deleted = Boolean(selectedObservation?.deleted);
   const tracked = useMemo(
     () => operations.map((op) => observeOperation(op, byUID, clock)),
     [operations, byUID, clock],
@@ -286,6 +326,27 @@ export default function App() {
     (r) => (r.kind === "Node" || r.kind === "Pod") && hasProblem(r),
   ).length;
   const mutationDisabled = readOnly || mode === "demo" || stale;
+  const worldProviders = useWorldProviders({
+    connection,
+    namespace,
+    trafficEnabled: layers.measuredTraffic,
+    selectedUID: selected?.kind === "Pod" ? selected.metadata.uid : null,
+    managementVisible: utility === "providers",
+  });
+  const openProviders = useCommittedEvent(() => {
+    captureTrigger();
+    setUtility("providers");
+  });
+  const selectFlow = useCommittedEvent((flow) => {
+    if (formRef.current) return;
+    captureTrigger();
+    setSelectedFlow(flow);
+    setUtility("flow");
+  });
+  const flowResource = useCommittedEvent((uid) => {
+    const resource = byUID.get(uid);
+    if (resource) selectResource(resource);
+  });
   const status =
     mode === "demo"
       ? "Demo — örnek veri"
@@ -508,6 +569,12 @@ export default function App() {
         >
           <HarborScene
             resources={resources}
+            resourceTombstones={connection.tombstones}
+            selectedContainerName={selection?.containerName}
+            workloadOperations={operations}
+            provisionOperations={worldProviders.provisionOperations}
+            measuredFlows={worldProviders.measuredFlows}
+            onFlowSelect={selectFlow}
             visibleNamespace={namespace === "all" ? null : namespace}
             snapshotReady={snapshotReady}
             selectedUID={selected?.metadata.uid}
@@ -667,6 +734,7 @@ export default function App() {
             onCreate={create}
             onFocus={focusFacility}
             onConnection={() => setUtility("connection")}
+            onProviders={openProviders}
           />
         )}
         {panel?.type === "resource" && selected && (
@@ -674,6 +742,7 @@ export default function App() {
             key={selected.metadata.uid}
             resource={detailResource}
             deleted={deleted}
+            observation={selectedObservation}
             cluster={mode === "demo" ? "Demo — örnek veri" : context}
             updateStamp={CONNECTION_UPDATE_STAMP}
             resources={detailScope.resources}
@@ -691,7 +760,9 @@ export default function App() {
             api={api}
             metrics={detailMetrics}
             events={detailEvents}
-            readOnly={mutationDisabled}
+            readOnly={
+              mutationDisabled || selectedObservation?.status !== "live"
+            }
           />
         )}
         {utility === "connection" && (
@@ -718,12 +789,37 @@ export default function App() {
             motion={motion}
             layers={layers}
             onLayers={setLayers}
+            onProviders={openProviders}
             onClose={() => setUtility(null)}
             mode={mode}
             onDemoScenario={() => {
               setUtility(null);
               connection.runDemoScenario();
             }}
+          />
+        )}
+        {utility === "providers" && (
+          <ProviderWindow
+            {...worldProviders}
+            context={context}
+            readOnly={mutationDisabled}
+            onRefresh={worldProviders.refresh}
+            onAddWorker={worldProviders.addWorker}
+            onCancelWorker={worldProviders.cancelWorker}
+            onClose={() => setUtility(null)}
+          />
+        )}
+        {utility === "flow" && (
+          <FlowWindow
+            flow={
+              worldProviders.measuredFlows.flows.find(
+                (f) => f.id === selectedFlow?.id,
+              ) || selectedFlow
+            }
+            measuredFlows={worldProviders.measuredFlows}
+            context={context}
+            onSelectResource={flowResource}
+            onClose={() => setUtility(null)}
           />
         )}
         {utility === "help" && <HelpWindow onClose={() => setUtility(null)} />}
@@ -747,7 +843,13 @@ export default function App() {
             }
             api={api}
             resources={resources}
-            readOnly={mutationDisabled}
+            readOnly={
+              mutationDisabled ||
+              Boolean(
+                form.resource &&
+                connection.resourceObservation(form.resource).status !== "live",
+              )
+            }
             onClose={() => setForm(null)}
             onSubmitted={submit}
           />

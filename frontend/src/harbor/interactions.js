@@ -8,7 +8,7 @@ export function containersForPod(pod) {
   const entries = groups.flatMap(([role, items]) =>
     (items || []).map((container) => ({
       containerName: container.name,
-      role,
+      role: role === "init" && container.restartPolicy === "Always" ? "sidecar" : role,
       container,
     })),
   );
@@ -81,7 +81,7 @@ export function arrivalVisual(
       0,
       Math.min(1, (nowMS - active.started) / (active.duration ?? window)),
     );
-    const amount = active.simple ? smooth(progress) : 1;
+    const amount = active.simple && !active.preserveScale ? smooth(progress) : 1;
     return {
       loading: progress < 1,
       stage: active.simple ? "arrival" : "transfer",

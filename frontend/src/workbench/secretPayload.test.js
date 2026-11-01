@@ -64,3 +64,29 @@ test("Secret draft values and annotations cannot escape through operation/result
   );
   assert.equal(secretMetadataOnly({ kind: "Pod" }).kind, "Pod");
 });
+test("purpose-authorized edit keeps unknown labels/annotations in its local draft without publishing values", () => {
+  const value = {
+    ...revealed,
+    metadata: {
+      ...revealed.metadata,
+      labels: { "synthetic.example/owner": "test-only" },
+      annotations: {
+        "synthetic.example/unknown": "must-survive-edit",
+        "last-applied": "private-source",
+      },
+    },
+  };
+  const draft = validateRevealedSecret(expected, value);
+  assert.deepEqual(draft.metadata.labels, value.metadata.labels);
+  assert.deepEqual(draft.metadata.annotations, value.metadata.annotations);
+  assert.equal(
+    secretSafeSubmission({ object: draft }, {}).result.object.metadata
+      .annotations,
+    undefined,
+  );
+  assert.deepEqual(
+    draft.metadata.annotations,
+    value.metadata.annotations,
+    "operation sanitization does not mutate the authorized editor draft",
+  );
+});

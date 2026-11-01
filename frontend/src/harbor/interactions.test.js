@@ -7,7 +7,7 @@ test('every regular, init, restartable init and ephemeral container maps to its 
   const instances=containerInstances([resource])
   assert.equal(instances.length,7)
   assert.deepEqual(instances.map(i=>i.containerName),['api','metrics','proxy','fourth','prepare','init-sidecar','debug'])
-  assert.deepEqual(instances.map(i=>i.role),['container','container','container','container','init','init','ephemeral'])
+  assert.deepEqual(instances.map(i=>i.role),['container','container','container','container','init','sidecar','ephemeral'])
   for(const instance of instances){assert.equal(instance.resource.metadata.uid,'pod-uid');assert.equal(instance.resource.metadata.name,'plain-api-name');assert.equal(instance.count,7)}
   assert.equal(containersForPod({spec:{}})[0].containerName,undefined)
 })
@@ -47,3 +47,12 @@ test('wall-time bound also shrinks fallback while full crane transfers stay opaq
   assert.equal(arrivalVisual({queuedAt:0,wallQueuedAt:1000},null,200,10900).scale<1,true)
   assert.equal(arrivalVisual(null,{started:0,simple:false,duration:2100},1000).scale,1)
 })
+
+test('a crane handover preserves the existing box visibility instead of replaying its arrival scale', async () => {
+  const {arrivalVisual}=await import('./interactions.js');
+  const active = {simple:true,preserveScale:true,started:100,duration:700};
+  for (const now of [100,101,450,800]) {
+    const visual=arrivalVisual(null,active,now);
+    assert.equal(visual.scale,1); assert.equal(visual.opacity,1);
+  }
+});

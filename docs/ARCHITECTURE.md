@@ -71,3 +71,21 @@ Varsayılan `READ_ONLY=true`, loopback bind. Yerel tek kullanıcı kubeconfig ki
 ## Sunum
 
 Vite geliştirmede `/api` ve `/ws` aynı origin proxy eder; backend portu `API_TARGET` ile değiştirilebilir. Production frontend `STATIC_DIR`, `/app/public` veya repo build yolundan aynı Go sunucusunda sunulur. Binary ve statik dosyalar ayrı dağıtım parçalarıdır; gömülü asset’li tek binary iddiası yoktur.
+
+## 1 Kasım 2026 — Kapsam, kimlik ve opsiyonel sağlayıcılar
+
+Snapshot `scopes` alanı GVR+namespace bazında authoritative/syncing/forbidden/unavailable durumunu taşır. Başarılı kapsamda doğrulanmış yokluk ve gerçek DELETE tombstone üretir; kapsanmayan on-demand CR silinmiş sayılmaz. Aynı context reconnect canonical store, seçili UID ve sınırlı lease'leri korur; namespace tabanı değişebilir, seçili eski scope pin'lenir. GVR abonelikleri32, tombstone geçmişi1000 kayıtla sınırlıdır. Scope bırakmak DELETE animasyonu değildir.
+
+`log_session.go` beklenen UID'yi watch/açılış/ilk yayın aşamalarında doğrular, sınırlı8KiB staging ve iptal kullanır. İstemci UID/session/protocol başlıklarını ve current-session guarded hata kaydını doğrular. Kubernetes name-addressed logs API'si atomik UID önkoşulu sunmadığı için mutlak yarışsızlık iddia edilmez; gerçek replacement interleaving testleri sağlanan sınırı gösterir. Mevcut5000satır/1MiB/16KiB/180ms görünüm korumaları değişmez.
+
+`template_capability.go` actual owner UID zincirini çözer; D/STS/DS template değişikliği desteklenir, standalone RS/Job/CronJob aynı işlemle taklit edilmez. Frontend API'nin doğruladığı targetUID/effect/reason sözleşmesini kullanır. Generic işlemler oturumluk; yerel worker sağlayıcısının journal'ı ise kalıcı ve ayrıdır.
+
+`pkg/provision` önceden izinli tek minikube docker profile/context/clusterUID'ye sabit worker-add çalıştırır. Tarayıcı binary/komut/profile gönderemez. Yerel operatör, yazma modu ve Node yetkisi gerekir. Profil process lock ve sonlu idempotency journal ikinci isteği engeller; restart/timeout sonrası önce envanter uzlaştırılır, kör retry/silme yapılmaz. CLI başarı kodu Ready değildir; gerçek yeni Node UID/adres ve Ready ayrıca eşleşir. Belirsiz/yarım işlem korunur ve operatör uzlaştırması gerektirir.
+
+`pkg/traffic` Hubble1.20.2 resmi CLI'nin gRPC/protobuf JSONPB çıkışını fixed argüman+field mask ile okur; SDK ekleyerek client-go major sürümü değiştirilmedi. TLS bilgisi backend'de kalır. Yapılandırılmış context/clusterUID/API TLS binding ve Cilium cluster.name doğrulanır; gerçek seçili kimlik yalnız yetkili namespace Pod verisini okur. Collector anahtarı context+opaque auth fingerprint+namespace+Node metadata iznidir. İstemci lease kapanışı diğerini kapatmaz;8scope/32lease,15sn lease timeout,4096gözlem/10sn,512grup, bounded reader ve kayıp sayaçları vardır. Seçili UID yalnız zaten yetkili grupları önceliklendirir. İptal subprocess'i ve wait'i temizler; kopmada bounded2–10sn retry, gerçek veri gelmeden canlı iddiası yoktur.
+
+Hubble endpoint'lerinde UID yoksa yalnız iki pozitif Pod gözlemi arasındaki IP/name/namespace zamanı eşleşir; reuse boşluğu bilinmez kalır. IP.encrypted HTTPS değildir; L7 gecikmesi yalnız gerçekten sağlanan yanıt olayınındır. URL/header/payload/DNS sorgu içeriği istenmez veya yayınlanmaz. ClusterMesh uzak küme aynı namespace adına sahip olsa bile yerel SSAR'la yetkili sayılmaz.
+
+`visualLifecycle.js` ortak bounded Node/container/owner süreç state'idir; gerçek state'i değiştirmez. Node gövde/kargo/selection/anchor aynı güncel pose zincirini kullanır. İlk snapshot geçmiş arızaları yeniden oynatmaz. Alev/duman/sıçrama paylaşılan instanced geometri/materyaldir; yeni rAF/physics motoru yoktur. `MeasuredTraffic` yalnız açık katmanda mount olur,96görsel sınırını/toplamı belirtir, seçili Pod ilişkisini öncelikler. Ağ topolojisi ile trafik birbirinin kanıtı değildir.
+
+Bu mimari değişikliklerinin gerçek API/visual/performans kabulü ayrı tutulur: [onarım kaydı](PRE_V11_VISUAL_REPAIR.md). Son performans kapıları tamamlanmadan toplam kaynak tasarrufu veya v1.1 tamamlanması iddia edilmez.

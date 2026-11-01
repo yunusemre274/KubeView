@@ -1495,9 +1495,9 @@ kbd {
   border: 1px solid var(--nm-boundary);
   box-shadow: var(--nm-raised-shadow);
   border-radius: 9px;
-  transition:
-    background-color 120ms ease,
-    box-shadow 120ms ease;
+  /* Text and surface theme tokens must switch together: fading only the
+     background briefly puts dark-theme white text on the old pale surface. */
+  transition: box-shadow 120ms ease;
 }
 .button:hover,
 .icon-button:hover,
@@ -1569,9 +1569,23 @@ textarea:focus-visible,
 a:focus-visible,
 [tabindex]:focus-visible,
 .table-search:focus-within,
-.finder-search:focus-within {
+.finder-search:focus-within,
+:root .button:focus-visible,
+:root .icon-button:focus-visible,
+:root .resource-name:focus-visible,
+:root .resource-table th button:focus-visible,
+:root .details-tabs button:focus-visible,
+:root .segmented-control button:focus-visible,
+:root .form-field input:focus,
+:root .form-field select:focus,
+:root .form-field textarea:focus {
   outline: 3px solid var(--nm-focus);
   outline-offset: 3px;
+}
+:root .form-field input:focus,
+:root .form-field select:focus,
+:root .form-field textarea:focus {
+  border-color: var(--nm-focus);
 }
 .world-window .window-content,
 .resource-form-dialog .form-dialog-body {

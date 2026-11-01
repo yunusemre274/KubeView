@@ -100,3 +100,38 @@ helm template kubeview charts/tersane >/dev/null
 Docker varsayılan olarak dış arayüze bind ettiği için `API_TOKEN` gerektirir. Helm aynı amaçla release’e ait Secret üretir veya `auth.existingSecret` kullanır. Paylaşılan erişimde aynı gateway Kubernetes kimliği kullanılır; kullanıcı bazlı impersonation uygulanmaz. Helm yazma, exec, port-forward ve Node bakımı izinleri ayrı opt-in değerlerdir. Credential içeren dosyaları depoya eklemeyin.
 
 Mimari: [ARCHITECTURE](docs/ARCHITECTURE.md) · dünya eşleştirmeleri: [METAPHOR](METAPHOR.md) · tasarım: [UI-UX](docs/UI-UX.md) · gerçek durum: [ROADMAP](docs/ROADMAP.md).
+
+### İsteğe bağlı gerçek worker ve trafik sağlayıcıları
+
+Tam ekran dünyada merkez → **Sağlayıcılar / Worker ekle** yerel minikube işlem kaydını açar. Sağlayıcı kapalıysa gerekçesi görünür; taslak gemi gerçek Node sayılmaz. Aşağıdaki örnekte değerleri yalnız yönettiğiniz test profiline göre verin:
+
+```sh
+READ_ONLY=false \
+KV_MINIKUBE_ENABLED=true \
+KV_MINIKUBE_PROFILE=your-test-profile \
+KV_MINIKUBE_CONTEXT=your-test-context \
+KV_MINIKUBE_CLUSTER_UID=verified-kube-system-uid \
+KV_MINIKUBE_MAX_NODES=3 \
+./start.sh
+```
+
+`READ_ONLY=false` gerçek mutasyonu açar; profil/context/UID sabit allowlist'tir. İlk adaptör minikube1.38.1/docker üzerinde sınandı. `KV_MINIKUBE_HOME` profil dizinini, `KV_PROVIDER_STATE_DIR` özel kalıcı journal/lock dizinini belirler. Açık/sonucu belirsiz işlem ikinci worker'ı otomatik oluşturmaz. İptal veya timeout oluşmuş makineyi silmez; envanter uzlaştırılmadan kör retry yapılmaz. Yerel operatör erişimi ve Kubernetes `nodes create` yetkisi ayrıca denetlenir.
+
+**Görünüm ve ayarlar → Ölçülmüş trafik — Hubble** opsiyonel gerçek flow katmanıdır. CNI/agent uygulama tarafından kurulmaz. Operatörün mevcut Hubble relay'ine backend'den TLS ile erişebilmesi ve resmi Hubble CLI1.20.2'nin kurulu olması gerekir:
+
+```sh
+KV_HUBBLE_ENABLED=true \
+KV_HUBBLE_CONTEXT=your-observer-context \
+KV_HUBBLE_CLUSTER_UID=verified-kube-system-uid \
+KV_HUBBLE_CLUSTER_NAME=your-cilium-cluster-name \
+KV_HUBBLE_SERVER=relay.example:4245 \
+KV_HUBBLE_TLS_CA=/private/ca.crt \
+KV_HUBBLE_TLS_CERT=/private/client.crt \
+KV_HUBBLE_TLS_KEY=/private/client.key \
+KV_HUBBLE_TLS_SERVER_NAME=relay.example \
+./start.sh
+```
+
+`KV_HUBBLE_BINARY` varsayılan `hubble` yerine sabit bir executable yolu verebilir. Sağlayıcı kimliği context/clusterUID/API TLS binding ve gerçek Cilium cluster.name ile sınırlandırılır. Namespace yetkisi ayrıca uygulanır; relay sertifikası uygulama kullanıcısına tüm namespace yetkisi vermez. Flow olayları10sn pencerede toplanır; paket, byte veya bant genişliği değildir. L7 yalnız sağlayıcı kaydı varsa görünür; şifreli içerik çıkarılmaz. UID/kimlik belirsizliği, kapasite sınırları ve eski veri açıkça belirtilir. Selector/EndpointSlice çizgileri ayrı yapılandırma katmanıdır.
+
+Güncel uygulama/test kapsamı ve henüz açık kabul kapıları: [v1.1 öncesi onarım kaydı](docs/PRE_V11_VISUAL_REPAIR.md). Bu çalışma sürüm numarasını veya v1.1 release durumunu değiştirmez.

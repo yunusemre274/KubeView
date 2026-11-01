@@ -25,6 +25,7 @@ import {
 } from "./registry";
 import ResourceTable from "../workbench/ResourceTable";
 import MetricsPanel from "../workbench/MetricsPanel";
+import { resourceScope, scopeCoversScope } from "../data/resourceScopes.js";
 const icons = {
   Building2,
   ClipboardList,
@@ -125,6 +126,7 @@ export default function FacilityWindow({
   onCreate,
   onFocus,
   onConnection,
+  onProviders,
 }) {
   const config = FACILITIES[id] || FACILITIES.center;
   const [tab, setTab] = useState("resources"),
@@ -156,6 +158,7 @@ export default function FacilityWindow({
     ...new Set(
       [
         connection.watchNamespace,
+        connection.namespaceHint,
         ...resources.map((r) =>
           r.kind === "Namespace" ? r.metadata.name : r.metadata.namespace,
         ),
@@ -168,11 +171,34 @@ export default function FacilityWindow({
       (!gvr || !descriptor || r.apiVersion === apiVersionOf(descriptor)) &&
       (id !== "scheduling" || !r.spec?.nodeName),
   );
+  const matchingScopes = descriptor
+    ? Object.values(connection.scopes || {}).filter((scope) =>
+        scopeCoversScope(scope, resourceScope(descriptor, namespace)),
+      )
+    : [];
+  const scopeState =
+    matchingScopes.find(
+      (scope) => scope.authoritative && scope.status === "synced",
+    ) ||
+    matchingScopes.find((scope) => scope.status === "forbidden") ||
+    matchingScopes[0];
+  useEffect(() => {
+    if (scopeState?.authoritative && scopeState.status === "synced")
+      setError("");
+  }, [scopeState?.authoritative, scopeState?.status]);
   useEffect(() => {
     if (mode === "demo" || !descriptor) return;
     let active = true;
+    let release;
     setLoading(true);
     setError("");
+    try {
+      release = connection.retainKind?.(descriptor.kind, namespace, descriptor);
+    } catch (e) {
+      setError(e.message);
+      setLoading(false);
+      return;
+    }
     connection
       .loadKind(descriptor.kind, namespace, descriptor)
       .catch((e) => {
@@ -183,6 +209,7 @@ export default function FacilityWindow({
       });
     return () => {
       active = false;
+      release?.();
     };
   }, [
     descriptor?.group,
@@ -339,6 +366,12 @@ export default function FacilityWindow({
               </span>
             </div>
             <div className="facility-create">
+              {id === "center" && onProviders && (
+                <button className="button" onClick={onProviders}>
+                  <Construction size={16} />
+                  Sağlayıcılar / Worker ekle
+                </button>
+              )}
               <button
                 className="button button-primary"
                 onClick={() =>
@@ -446,6 +479,19 @@ export default function FacilityWindow({
               alanındadır. Scheduler kararı veya skor uydurulmaz; nedeni Olaylar
               bölümünde görünür.
             </p>
+          )}
+          {mode !== "demo" && scopeState && scopeState.status !== "synced" && (
+            <div
+              className={`inline-alert ${scopeState.status === "forbidden" ? "alert-warning" : "alert-info"}`}
+              role="status"
+            >
+              {scopeState.status === "forbidden"
+                ? "Bu kaynak kapsamını okuma yetkisi yok. Son bilinen kayıtlar silinmiş sayılmadı."
+                : scopeState.status === "unavailable"
+                  ? "Kaynak API’sine erişilemiyor. Son bilinen veri güncel olmayabilir."
+                  : "Kaynak kapsamı yeniden senkronize ediliyor; yokluk henüz doğrulanmadı."}
+              {scopeState.error && <span> {scopeState.error}</span>}
+            </div>
           )}
           {error && (
             <div className="inline-alert alert-danger" role="alert">

@@ -4,6 +4,7 @@ import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Box, Blocks } from "./assets.jsx";
 import { resourcePosition, uidOf } from "./layout.js";
+import { ResourceModuleSlots, topologyRelations } from "./resourceRelations.js";
 
 const badge = {
   background: "#fffffff2",
@@ -30,6 +31,17 @@ function SelectableModule({
   return (
     <group
       position={position}
+      name={`resource-module:${uid}`}
+      userData={{
+        harborTarget: {
+          type: "resource-module",
+          uid,
+          name: resource.metadata.name,
+          namespace: resource.metadata.namespace,
+          kind: resource.kind,
+          local: [0, scale[1], 0],
+        },
+      }}
       onClick={(e) => {
         e.stopPropagation();
         if (canSelect(e)) onSelect?.(resource);
@@ -106,48 +118,71 @@ export default function FacilityResources({
   layers,
   sourceKey,
   canSelect,
+  visibleNamespace,
 }) {
-  const allocation = useRef({ source: sourceKey, map: new Map(), next: 0 });
+  const allocation = useRef({
+    source: sourceKey,
+    storage: new ResourceModuleSlots(),
+    storageDisplay: new ResourceModuleSlots(),
+    services: new ResourceModuleSlots(),
+  });
   if (allocation.current.source !== sourceKey)
-    allocation.current = { source: sourceKey, map: new Map(), next: 0 };
-  const storage = resources.filter(
+    allocation.current = {
+      source: sourceKey,
+      storage: new ResourceModuleSlots(),
+      storageDisplay: new ResourceModuleSlots(),
+      services: new ResourceModuleSlots(),
+    };
+  const allStorage = resources.filter(
     (r) => r.kind === "PersistentVolumeClaim" || r.kind === "PersistentVolume",
   );
-  const services = resources.filter((r) => r.kind === "Service");
-  for (const r of storage)
-    if (!allocation.current.map.has(uidOf(r)))
-      allocation.current.map.set(uidOf(r), allocation.current.next++);
-  const visibleStorage = storage.filter(
-    (r) => allocation.current.map.get(uidOf(r)) < 3,
+  const sortedStorage = allocation.current.storage
+    .reconcile(allStorage)
+    .filter(
+      (r) =>
+        !visibleNamespace ||
+        !r.metadata.namespace ||
+        r.metadata.namespace === visibleNamespace,
+    );
+  const services = allocation.current.services.reconcile(
+    resources.filter((r) => r.kind === "Service"),
   );
-  const visibleServices = services.slice(0, 6);
-  const selectedService = services.find((s) => uidOf(s) === selectedUID);
-  const connectionLinks = useMemo(() => {
-    if (!layers.network) return [];
-    const links = [];
-    for (const service of selectedService
-      ? [selectedService]
-      : visibleServices) {
-      const selector = Object.entries(service.spec?.selector || {});
-      if (!selector.length) continue;
-      const index = visibleServices.findIndex(
-        (s) => uidOf(s) === uidOf(service),
-      );
-      const source = [-48 + Math.max(0, index) * 4, 4, -51];
-      for (const pod of resources
-        .filter(
-          (p) =>
-            p.kind === "Pod" &&
-            p.metadata.namespace === service.metadata.namespace &&
-            selector.every(
-              ([key, value]) => p.metadata.labels?.[key] === value,
-            ),
-        )
-        .slice(0, 30))
-        links.push({ source, pod });
-    }
-    return links;
-  }, [resources, layers.network, selectedUID]);
+  const visibleStorage = sortedStorage.slice(0, 3);
+  const selectedStorage = sortedStorage.find((r) => uidOf(r) === selectedUID);
+  if (selectedStorage && !visibleStorage.includes(selectedStorage))
+    visibleStorage.push(selectedStorage);
+  allocation.current.storageDisplay.reconcile(visibleStorage);
+  const topology = useMemo(
+    () =>
+      layers.network
+        ? topologyRelations(
+            resources,
+            services,
+            nodesByName,
+            slots,
+            selectedUID,
+            visibleNamespace,
+          )
+        : {
+            services: [],
+            links: [],
+            anchors: new Map(),
+            totalServices: 0,
+            matchedPods: 0,
+            outsideWindow: 0,
+            aggregated: false,
+          },
+    [
+      resources,
+      layers.network,
+      selectedUID,
+      nodesByName,
+      slots.windowOffset,
+      visibleNamespace,
+    ],
+  );
+  const connectionLinks = topology.links;
+  const visibleServices = topology.services;
   const connectionGeometry = useMemo(() => {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute(
@@ -164,8 +199,9 @@ export default function FacilityResources({
     const attribute = connectionGeometry.attributes.position,
       values = attribute.array;
     let offset = 0;
-    for (const { source, pod } of connectionLinks) {
-      const destination = resourcePosition(pod, nodesByName, slots) || source;
+    for (const { source, resource, aggregate } of connectionLinks) {
+      const destination = resourcePosition(resource, nodesByName, slots);
+      if (!destination) continue;
       let px = source[0],
         py = source[1],
         pz = source[2];
@@ -174,7 +210,8 @@ export default function FacilityResources({
           x = source[0] + (destination[0] - source[0]) * t,
           y =
             source[1] +
-            (destination[1] - source[1]) * t +
+            (destination[1] + (resource.kind === "Node" ? 10 : 0) - source[1]) *
+              t +
             Math.sin(t * Math.PI) * 9,
           z = source[2] + (destination[2] - source[2]) * t;
         values[offset++] = px;
@@ -188,27 +225,42 @@ export default function FacilityResources({
         pz = z;
       }
     }
-    attribute.needsUpdate = true;
+    connectionGeometry.setDrawRange(0, offset / 3);
+    attribute.needsUpdate = offset > 0;
   });
   useEffect(() => () => connectionGeometry.dispose(), [connectionGeometry]);
   return (
     <group>
       {layers.storage !== false &&
-        visibleStorage.map((r) => (
+        visibleStorage.map((r, index) => (
           <SelectableModule
             key={uidOf(r)}
             resource={r}
             position={[
-              -108 + allocation.current.map.get(uidOf(r)) * 13,
+              67 + allocation.current.storageDisplay.map.get(uidOf(r)) * 7,
               1,
-              -77,
+              -42,
             ]}
             materials={materials}
             selectedUID={selectedUID}
             onSelect={onSelect}
             canSelect={canSelect}
+            small
           />
         ))}
+      {layers.storage !== false && sortedStorage.length > 0 && (
+        <Html
+          position={[80, 10, -43]}
+          center
+          style={{ pointerEvents: "none" }}
+          zIndexRange={[5, 0]}
+        >
+          <span style={badge}>
+            {visibleStorage.length}/{sortedStorage.length} PV/PVC modülü · tümü
+            depoda
+          </span>
+        </Html>
+      )}
       {layers.network && (
         <>
           {visibleServices.map((r, i) => (
@@ -223,7 +275,26 @@ export default function FacilityResources({
               small
             />
           ))}
-          <lineSegments geometry={connectionGeometry} frustumCulled={false}>
+          <Html
+            position={[-40, 10, -51]}
+            center
+            style={{ pointerEvents: "none" }}
+            zIndexRange={[5, 0]}
+          >
+            <span style={badge}>
+              Topoloji · {visibleServices.length}/{topology.totalServices}{" "}
+              Service · {topology.matchedPods} Pod bağı
+              {topology.aggregated ? " · Node bazında özet" : ""}
+              {topology.outsideWindow
+                ? ` · ${topology.outsideWindow} hedef diğer bölgede`
+                : ""}
+            </span>
+          </Html>
+          <lineSegments
+            geometry={connectionGeometry}
+            frustumCulled={false}
+            raycast={() => null}
+          >
             <lineBasicMaterial color="#72a6bc" transparent opacity={0.65} />
           </lineSegments>
         </>

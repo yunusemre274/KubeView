@@ -91,7 +91,7 @@ export function CargoShip({ position, materials: m, selected, state = 'unknown',
     }
     return { windows, white, accents, dark, red, mast }
   }, [lowDetail])
-  return <group position={position} rotation={state==='failed'?[0,0,0.025]:[0,0,0]} onClick={onClick} onPointerOver={onPointerOver} onPointerOut={onPointerOut}>
+  return <group position={position} rotation={[0,0,0]} onClick={onClick} onPointerOver={onPointerOver} onPointerOut={onPointerOut}>
     <mesh geometry={KEEL} material={m.red} castShadow receiveShadow dispose={null}/>
     <mesh geometry={HULL} material={m.blue} castShadow receiveShadow dispose={null}/>
     <mesh geometry={DECK} material={m.deck} receiveShadow dispose={null}/>

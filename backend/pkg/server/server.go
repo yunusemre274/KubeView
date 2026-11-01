@@ -36,16 +36,20 @@ type Clients struct {
 	Name      string
 }
 type Server struct {
-	ReadOnly  bool
-	Namespace string
-	Token     string
-	mu        sync.Mutex
-	clients   map[string]*Clients
-	forwardMu sync.Mutex
-	forwards  map[string]*forwardSession
+	ReadOnly   bool
+	Namespace  string
+	Token      string
+	mu         sync.Mutex
+	clients    map[string]*Clients
+	forwardMu  sync.Mutex
+	forwards   map[string]*forwardSession
+	providerMu sync.Mutex
+	providers  *providerServices
 	// Test harness only; nil in production. Must be assigned before serving.
 	streamProbe     func(connection, stage string, msg envelope, depth int, elapsed time.Duration)
 	prepareSnapshot func([]*unstructured.Unstructured)
+	openLogStream   logStreamOpener
+	logOpenStage    func(string)
 }
 type Resource struct {
 	Group      string   `json:"group"`
@@ -60,11 +64,16 @@ func New() *Server {
 	return &Server{ReadOnly: os.Getenv("READ_ONLY") != "false", Namespace: os.Getenv("WATCH_NAMESPACE"), Token: os.Getenv("API_TOKEN"), clients: map[string]*Clients{}, forwards: map[string]*forwardSession{}}
 }
 func (s *Server) Register(mux *http.ServeMux) {
+	s.registerProviders(mux)
 	mux.HandleFunc("/api/session", s.session)
 	for path, fn := range map[string]http.HandlerFunc{"/api/contexts": s.contexts, "/api/discovery": s.discovery, "/api/resources": s.resources, "/api/capabilities": s.capabilities, "/api/actions": s.actions, "/api/metrics": s.metrics, "/api/logs": s.logs, "/api/exec": s.exec, "/api/portforwards": s.portforwards, "/api/portforward/": s.proxyForward, "/api/portforward": s.rawPortforward, "/api/openapi": s.openapi, "/api/secrets/reveal": s.revealSecret, "/ws": s.websocket} {
 		mux.HandleFunc(path, s.protect(fn))
 	}
 }
+
+// Close releases optional provider subscriptions when the local gateway stops.
+func (s *Server) Close() { s.closeProviders() }
+
 func SameOrigin(r *http.Request) bool {
 	origin := r.Header.Get("Origin")
 	if origin == "" {
@@ -165,7 +174,7 @@ func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {
 			current = cfg.CurrentContext
 		}
 		for name := range cfg.Contexts {
-			names = append(names, map[string]string{"name": name})
+			names = append(names, map[string]string{"name": name, "namespace": cfg.Contexts[name].Namespace})
 		}
 	}
 	sort.Slice(names, func(i, j int) bool { return names[i]["name"] < names[j]["name"] })
@@ -175,7 +184,11 @@ func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {
 			current = "in-cluster"
 		}
 	}
-	result := map[string]interface{}{"contexts": names, "current": current, "readOnly": s.ReadOnly, "configured": len(names) > 0, "namespace": s.Namespace}
+	currentNamespace := ""
+	if cfg != nil && cfg.Contexts[current] != nil {
+		currentNamespace = cfg.Contexts[current].Namespace
+	}
+	result := map[string]interface{}{"contexts": names, "current": current, "currentNamespace": currentNamespace, "readOnly": s.ReadOnly, "configured": len(names) > 0, "namespace": s.Namespace}
 	if err != nil {
 		result["error"] = err.Error()
 	}
@@ -383,6 +396,8 @@ func (s *Server) revealSecret(w http.ResponseWriter, r *http.Request) {
 	}
 	obj.TypeMeta = metav1.TypeMeta{APIVersion: "v1", Kind: "Secret"}
 	obj.ManagedFields = nil
-	obj.Annotations = nil
+	// Annotations may contain user-managed configuration. They stay inside this
+	// explicitly authorized editor response, while bulk sanitize still removes
+	// them (including last-applied Secret contents) from shared state.
 	jsonResponse(w, 200, obj)
 }

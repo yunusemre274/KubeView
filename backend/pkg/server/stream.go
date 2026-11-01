@@ -2,7 +2,6 @@ package server
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"net/http"
 	"strconv"
@@ -15,10 +14,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
-	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/dynamic/dynamicinformer"
-	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/cache"
 )
 
@@ -87,31 +83,116 @@ func (s *Server) logs(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	opts := &corev1.PodLogOptions{Container: q.Get("container"), Follow: q.Get("follow") == "true", Previous: q.Get("previous") == "true", Timestamps: q.Get("timestamps") != "false", TailLines: &tail}
-	logClient := c.Typed
-	if c.Config != nil {
-		config := rest.CopyConfig(c.Config)
-		config.Timeout = 0
-		typed, e := kubernetes.NewForConfig(config)
-		if e != nil {
-			failure(w, e)
-			return
-		}
-		logClient = typed
+	expectedUID := q.Get("uid")
+	if expectedUID == "" || len(expectedUID) > 128 {
+		problem(w, 400, "Log için beklenen Pod UID gerekli")
+		return
 	}
-	stream, err := logClient.CoreV1().Pods(ns).GetLogs(pod, opts).Stream(r.Context())
+	session, err := logSessionName(q.Get("session"))
 	if err != nil {
 		failure(w, err)
 		return
 	}
+	for _, verb := range []string{"get", "watch"} {
+		if err = s.authorize(r.Context(), c, verb, "", "pods", "", ns, pod); err != nil {
+			failure(w, err)
+			return
+		}
+	}
+	before, err := c.Typed.CoreV1().Pods(ns).Get(r.Context(), pod, metav1.GetOptions{})
+	if err != nil {
+		failure(w, err)
+		return
+	}
+	if string(before.UID) != expectedUID {
+		problem(w, 409, "Pod UID değişti; kaynağı yeniden seçin")
+		return
+	}
+	containerFound := false
+	for _, container := range before.Spec.Containers {
+		containerFound = containerFound || container.Name == opts.Container
+	}
+	for _, container := range before.Spec.InitContainers {
+		containerFound = containerFound || container.Name == opts.Container
+	}
+	for _, container := range before.Spec.EphemeralContainers {
+		containerFound = containerFound || container.Name == opts.Container
+	}
+	if !containerFound {
+		problem(w, 422, "Seçili container bu Pod UID içinde bulunamadı")
+		return
+	}
+	guard, err := startPodLogGuard(r.Context(), c, before)
+	if err != nil {
+		failure(w, err)
+		return
+	}
+	defer guard.close()
+	if s.logOpenStage != nil {
+		s.logOpenStage("before-open")
+	}
+	opener := s.openLogStream
+	if opener == nil {
+		opener = openKubernetesLogs
+	}
+	stream, err := opener(guard.ctx, c, ns, pod, opts)
+	if err != nil {
+		if guarded := guard.err(); guarded != nil {
+			err = guarded
+		}
+		failure(w, err)
+		return
+	}
 	defer stream.Close()
+	streamDone := make(chan struct{})
+	defer close(streamDone)
+	go func() {
+		select {
+		case <-guard.ctx.Done():
+			stream.Close()
+		case <-streamDone:
+		}
+	}()
+	if s.logOpenStage != nil {
+		s.logOpenStage("after-open")
+	}
+	if err = guard.check(); err != nil {
+		failure(w, err)
+		return
+	}
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.Header().Set("X-Accel-Buffering", "no")
+	w.Header().Set("X-KubeView-Pod-UID", expectedUID)
+	w.Header().Set("X-KubeView-Log-Session", session)
+	w.Header().Set("X-KubeView-Log-Protocol", "guarded-text-v1")
+	w.Header().Set("X-KubeView-Log-Guarantee", "observed-uid-guard; Kubernetes log API has no atomic UID precondition")
 	w.WriteHeader(200)
+	if f, ok := w.(http.Flusher); ok {
+		f.Flush()
+	}
 	buf := make([]byte, 8192)
+	first := true
 	for {
 		n, e := stream.Read(buf)
+		if guarded := guard.err(); guarded != nil {
+			writeLogSessionError(w, session, guarded)
+			return
+		}
 		if n > 0 {
-			if _, e := w.Write(buf[:n]); e != nil {
+			// Hold only this first bounded chunk until identity is checked again.
+			// An adversarial replacement between GET and upstream /log opening
+			// must not publish the replacement's first bytes to the old session.
+			if first {
+				first = false
+				if s.logOpenStage != nil {
+					s.logOpenStage("before-first-publish")
+				}
+				if err = guard.check(); err != nil {
+					writeLogSessionError(w, session, err)
+					return
+				}
+			}
+			if _, writeErr := w.Write(buf[:n]); writeErr != nil {
 				return
 			}
 			if f, ok := w.(http.Flusher); ok {
@@ -119,12 +200,13 @@ func (s *Server) logs(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		if e != nil {
-			if e != io.EOF {
-				fmt.Fprintf(w, "\n[Log akışı kesildi: %v]\n", e)
+			if e != io.EOF && r.Context().Err() == nil {
+				writeLogSessionError(w, session, e)
 			}
 			return
 		}
 	}
+
 }
 
 // Watch kinds are broad enough for the primary UI. Other installed APIs remain
@@ -133,6 +215,9 @@ var watchKinds = map[string]bool{"Node": true, "Namespace": true, "Pod": true, "
 
 type envelope struct {
 	Type          string                       `json:"type"`
+	Context       string                       `json:"context,omitempty"`
+	Scopes        []ResourceScope              `json:"scopes"`
+	Scope         *ResourceScope               `json:"scope,omitempty"`
 	Generation    string                       `json:"generation"`
 	Timestamp     string                       `json:"timestamp"`
 	Action        string                       `json:"action,omitempty"`
@@ -192,6 +277,11 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		problem(w, 403, err.Error())
 		return
 	}
+	requested, err := requestedScopes(r)
+	if err != nil {
+		problem(w, 400, err.Error())
+		return
+	}
 	upgrader := websocket.Upgrader{CheckOrigin: SameOrigin, ReadBufferSize: 1024, WriteBufferSize: 16384}
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -215,6 +305,7 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		defer s.streamProbe(generation, "close", envelope{}, 0, 0)
 	}
 	send := func(msg envelope) error {
+		msg.Context = c.Name
 		msg.Upstream = msg.Reachable
 		msg.SnapshotReady = msg.Synced
 		msg.Generation = generation
@@ -239,8 +330,8 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		send(envelope{Type: "STATUS", Errors: errors, Message: "Kubernetes API erişilemiyor"})
 		return
 	}
-	factory := dynamicinformer.NewFilteredDynamicSharedInformerFactory(c.Dynamic, 10*time.Minute, ns, nil)
-	clusterFactory := dynamicinformer.NewDynamicSharedInformerFactory(c.Dynamic, 10*time.Minute)
+	bindings := watchScopeBindings(resources, ns, s.Namespace, requested)
+	factories := map[string]dynamicinformer.DynamicSharedInformerFactory{}
 	informers := []cache.SharedIndexInformer{}
 	out := make(chan envelope, 2048)
 	var gate sync.Mutex
@@ -248,7 +339,7 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 	watchFailed := false
 	watchFailure := make(chan struct{}, 1)
 	overflow := make(chan struct{}, 1)
-	emit := func(action string, obj interface{}, store cache.Store) {
+	emit := func(action string, obj interface{}, binding *scopeBinding) {
 		u := unwrap(obj)
 		if u == nil {
 			return
@@ -262,10 +353,14 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		if s.streamProbe != nil {
 			s.streamProbe(generation, "gate_wait", envelope{}, len(out), time.Since(start))
 		}
-		if !ready || !currentInformerEvent(store, action, u) {
+		if !ready || watchFailed || !currentInformerEvent(binding.informer.GetStore(), action, u) {
 			return
 		}
-		msg := envelope{Type: "RESOURCE_EVENT", Action: action, Object: sanitize(u), Synced: true, Reachable: true}
+		scope := binding.scope
+		scope.Status = "synced"
+		scope.Authoritative = true
+		scope.Error = ""
+		msg := envelope{Type: "RESOURCE_EVENT", Action: action, Object: sanitize(u), Scope: &scope, Synced: true, Reachable: true}
 		if s.streamProbe != nil {
 			s.streamProbe(generation, "queue", msg, len(out)+1, 0)
 		}
@@ -281,49 +376,67 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	seen := map[string]bool{}
-	for _, resource := range resources {
-		if !watchKinds[resource.Kind] || seen[resource.Kind] || !hasVerb(resource, "list") || !hasVerb(resource, "watch") {
+	for i := range bindings {
+		binding := &bindings[i]
+		if binding.scope.Status != "syncing" {
+			errors = append(errors, binding.scope.Error)
 			continue
 		}
-		if s.Namespace != "" && !resource.Namespaced && resource.Kind != "Node" {
-			continue
-		}
-		reviewNamespace := ns
-		if !resource.Namespaced {
+		reviewNamespace := binding.scope.Namespace
+		if reviewNamespace == "*" {
 			reviewNamespace = ""
 		}
-		if err := s.authorize(ctx, c, "list", resource.Group, resource.Resource, "", reviewNamespace, ""); err != nil {
-			errors = append(errors, resource.Kind+": "+err.Error())
+		for _, verb := range []string{"list", "watch"} {
+			if e := s.authorize(ctx, c, verb, binding.scope.Group, binding.scope.Resource, "", reviewNamespace, ""); e != nil {
+				scopeError(&binding.scope, e)
+				break
+			}
+		}
+		if binding.scope.Status != "syncing" {
+			errors = append(errors, binding.scope.Kind+": "+binding.scope.Error)
 			continue
 		}
-		if err := s.authorize(ctx, c, "watch", resource.Group, resource.Resource, "", reviewNamespace, ""); err != nil {
-			errors = append(errors, resource.Kind+": "+err.Error())
+		// An authorized all-namespace watch already covers a narrower catalog scope.
+		// Reuse its informer and callback rather than publishing every delta twice.
+		for previous := 0; previous < i; previous++ {
+			candidate := &bindings[previous]
+			if candidate.informer != nil && candidate.scope.gvr() == binding.scope.gvr() && (candidate.scope.Namespace == "*" || candidate.scope.Namespace == binding.scope.Namespace) {
+				binding.informer = candidate.informer
+				break
+			}
+		}
+		if binding.informer != nil {
 			continue
 		}
-		seen[resource.Kind] = true
-		gvr := schema.GroupVersionResource{Group: resource.Group, Version: resource.Version, Resource: resource.Resource}
-		selectedFactory := factory
-		if !resource.Namespaced {
-			selectedFactory = clusterFactory
+		factoryNamespace := reviewNamespace
+		factory := factories[factoryNamespace]
+		if factory == nil {
+			factory = dynamicinformer.NewFilteredDynamicSharedInformerFactory(c.Dynamic, 10*time.Minute, factoryNamespace, nil)
+			factories[factoryNamespace] = factory
 		}
-		inf := selectedFactory.ForResource(gvr).Informer()
+		inf := factory.ForResource(binding.scope.gvr()).Informer()
+		binding.informer = inf
 		inf.SetWatchErrorHandler(func(_ *cache.Reflector, watchErr error) {
 			gate.Lock()
 			defer gate.Unlock()
 			watchFailed = true
+			for j := range bindings {
+				if bindings[j].informer == inf {
+					scopeError(&bindings[j].scope, watchErr)
+				}
+			}
 			select {
 			case watchFailure <- struct{}{}:
 			default:
 			}
 			if ready {
 				select {
-				case out <- envelope{Type: "STATUS", Message: watchErr.Error(), Errors: []string{watchErr.Error()}, Synced: false, Reachable: true}:
+				case out <- envelope{Type: "STATUS", Message: watchErr.Error(), Errors: []string{watchErr.Error()}, Scopes: []ResourceScope{binding.scope}, Synced: false, Reachable: true}:
 				default:
 				}
 			}
 		})
-		inf.AddEventHandler(cache.ResourceEventHandlerFuncs{AddFunc: func(obj interface{}) { emit("ADD", obj, inf.GetStore()) }, UpdateFunc: func(old, obj interface{}) {
+		inf.AddEventHandler(cache.ResourceEventHandlerFuncs{AddFunc: func(obj interface{}) { emit("ADD", obj, binding) }, UpdateFunc: func(old, obj interface{}) {
 			oldU, newU := unwrap(old), unwrap(obj)
 			if oldU != nil && newU != nil && oldU.GetResourceVersion() == newU.GetResourceVersion() {
 				if s.streamProbe != nil {
@@ -331,12 +444,13 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 				}
 				return
 			}
-			emit("UPDATE", obj, inf.GetStore())
-		}, DeleteFunc: func(obj interface{}) { emit("DELETE", obj, inf.GetStore()) }})
+			emit("UPDATE", obj, binding)
+		}, DeleteFunc: func(obj interface{}) { emit("DELETE", obj, binding) }})
 		informers = append(informers, inf)
 	}
-	factory.Start(ctx.Done())
-	clusterFactory.Start(ctx.Done())
+	for _, factory := range factories {
+		factory.Start(ctx.Done())
+	}
 	deadline := time.NewTimer(12 * time.Second)
 	defer deadline.Stop()
 	poll := time.NewTicker(50 * time.Millisecond)
@@ -367,18 +481,31 @@ wait:
 		snapshotStart = time.Now()
 	}
 	snapshot := []*unstructured.Unstructured{}
+	scopes := make([]ResourceScope, 0, len(bindings))
+	snapshotUIDs := map[string]bool{}
 	synced := len(informers) > 0 && !watchFailed
-	for _, inf := range informers {
-		if !inf.HasSynced() {
-			synced = false
-			errors = append(errors, "Bir kaynak listesi senkronize edilemedi; yetki ve API erişimini kontrol edin")
-			continue
-		}
-		for _, obj := range inf.GetStore().List() {
-			if u := unwrap(obj); u != nil {
-				snapshot = append(snapshot, sanitize(u))
+	for i := range bindings {
+		binding := &bindings[i]
+		if binding.informer != nil {
+			if !binding.informer.HasSynced() || binding.scope.Status != "syncing" {
+				synced = false
+				if binding.scope.Status == "syncing" {
+					binding.scope.Status = "unavailable"
+					binding.scope.Error = "Kaynak listesi henüz senkronize edilemedi"
+				}
+				errors = append(errors, binding.scope.Kind+": "+binding.scope.Error)
+			} else {
+				binding.scope.Authoritative = true
+				binding.scope.Status = "synced"
+				for _, obj := range binding.informer.GetStore().List() {
+					if u := unwrap(obj); u != nil && !snapshotUIDs[string(u.GetUID())] && (binding.scope.Namespace == "*" || binding.scope.Namespace == u.GetNamespace()) {
+						snapshot = append(snapshot, sanitize(u))
+						snapshotUIDs[string(u.GetUID())] = true
+					}
+				}
 			}
 		}
+		scopes = append(scopes, binding.scope)
 	}
 	if s.prepareSnapshot != nil {
 		s.prepareSnapshot(snapshot)
@@ -386,7 +513,7 @@ wait:
 	if s.streamProbe != nil {
 		s.streamProbe(generation, "snapshot_build", envelope{Resources: snapshot}, 0, time.Since(snapshotStart))
 	}
-	err = send(envelope{Type: "SNAPSHOT", Resources: snapshot, Errors: errors, Synced: synced, Reachable: true})
+	err = send(envelope{Type: "SNAPSHOT", Resources: snapshot, Scopes: scopes, Errors: errors, Synced: synced, Reachable: true})
 	ready = true
 	gate.Unlock()
 	if err != nil {

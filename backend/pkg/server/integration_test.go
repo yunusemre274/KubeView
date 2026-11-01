@@ -227,7 +227,7 @@ func TestDedicatedClusterPodSessions(t *testing.T) {
 	}
 	metadata := pod["metadata"].(map[string]interface{})
 	uid := metadata["uid"].(string)
-	response, err := http.Get(httpServer.URL + "/api/logs?namespace=kubeview-qa&pod=" + name + "&container=app&follow=false")
+	response, err := http.Get(httpServer.URL + "/api/logs?namespace=kubeview-qa&pod=" + name + "&container=app&follow=false&uid=" + url.QueryEscape(uid))
 	if err != nil {
 		t.Fatal(err)
 	}

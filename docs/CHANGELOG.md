@@ -2,6 +2,14 @@
 
 Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standardına dayanır.
 
+## 2026-11-01 — v1.1 öncesi onarım, doğruluk ve sağlayıcı aşaması
+
+- Snapshot'ın gerçek GVR/namespace kapsamı, on-demand watch/reconnect ve UID tombstone ayrımı düzeltildi. Silinme, henüz listelenmeme, stale ve RBAC reddi ayrı; gerçek CR kullanıcı akışı6grup geçti.
+- Log oturumu beklenen UID/watch/açılış/ilk yayın denetimi ve iptalle korundu; Kubernetes name-addressed logs API'sine atomik UID garantisi atfedilmez. Secret amaçlı metadata korunumu, maskeli yazma reddi ve CPU/RAM controller hedef capability'si gerçek API'de sınandı.
+- Ortak sınırlı Node/container arıza koordinatörü, kademeli batma/toparlanma, yalnız hatalı kutunun düşüşü, orphan Pod erişimi ve gerçek durumdan türetilmiş süreç/vinç devri eklendi. Normal silmenin SIGTERM çıkışı yeni arıza sayılmaz. Yeni gemi trafik kilidi ve instanced renk materyali gerçek görsel kanıttan düzeltildi.
+- Sabit profile/context/clusterUID bağlı minikube worker sağlayıcısı; persistent idempotency/journal ve profil kilidi. Hubble1.20.2 resmi CLI ile read-only mTLS akış adaptörü, iki-endpoint namespace yetkisi, temporal IP/UID geçmişi, bounded toplama/kayıp/güncellik ve reconnect. CLI/protobuf bağımlılığı kurulu client-go'nun major sürümünü değiştirmeden ayrıldı.
+- Gerçek Kubernetes1.35.1 testlerinde iki yeni worker, multi-container failure/recovery, logs/Secret/template/CronJob/native-sidecar/applied-resize/rollback/PDB ve reader RBAC doğrulandı. Chromium/WebKit erişim/odak ve72kontrast kontrolü; gerçek60sn hidden duruşu geçti. Son provisioning/trafik görsel kabulü ve20dk/eşleşmiş performans henüz açık; çalışma/v1.1 tamamlandı ilan edilmez.
+
 ## 2026-11-01 — v1.1 öncesi görsel davranış denetimi (ürün değişikliği yok)
 
 - Sekiz görsel/Kubernetes beklentisi için aktif kod, normal UI ve gerçek Kubernetes kanıtı ayrı raporlandı. Gerçek owned test kümesinde Node/Pod lifecycle, create/scale/restart, log/exec/forward ve RBAC sınırları incelendi; alev/batma, kargo düşmesi, provisioning ve flow/protokol özellikleri varmış gibi sunulmadı.

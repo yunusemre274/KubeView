@@ -110,7 +110,18 @@ func (s *Server) capabilities(w http.ResponseWriter, r *http.Request) {
 			reasons[verb] = "Namespace ile sınırlandırılmış bağlantıda küme kapsamlı genel mutasyon kapalı"
 		}
 	}
-	jsonResponse(w, 200, map[string]interface{}{"readOnly": s.ReadOnly, "verbs": verbs, "subresources": subs, "reasons": reasons, "scopeRestricted": scopeRestricted, "actions": actions})
+	templateResources := s.templateResourcesCapability(r.Context(), c, gvr, ns, name, r.URL.Query().Get("uid"))
+	actionReasons := map[string]string{}
+	if !templateResources.Supported {
+		actionReasons["resources"] = templateResources.Reason
+		actions["resources"] = false
+	}
+	// A Pod can point at an editable owner, but the action is issued to the
+	// returned target, never directly to pods with a generic update permission.
+	if _, exists := actions["resources"]; !exists {
+		actions["resources"] = false
+	}
+	jsonResponse(w, 200, map[string]interface{}{"readOnly": s.ReadOnly, "verbs": verbs, "subresources": subs, "reasons": reasons, "scopeRestricted": scopeRestricted, "actions": actions, "actionReasons": actionReasons, "templateResources": templateResources})
 }
 
 type Mutation struct {
@@ -480,6 +491,10 @@ func (s *Server) actions(w http.ResponseWriter, r *http.Request) {
 		}
 		unstructured.SetNestedField(obj.Object, a.Action == "cordon", "spec", "unschedulable")
 	case "resources":
+		if len(a.Containers) == 0 {
+			problem(w, 422, "En az bir container kaynak değişikliği gerekli")
+			return
+		}
 		if a.Group != "apps" || (a.Resource != "deployments" && a.Resource != "statefulsets" && a.Resource != "daemonsets") {
 			problem(w, 422, "Kalıcı kaynak değişikliği için yönetici workload şablonunu seçin")
 			return
