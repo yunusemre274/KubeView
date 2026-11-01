@@ -34,6 +34,7 @@ func TestJSONPBWhitelistAndMeasuredProtocols(t *testing.T) {
 		t.Fatal(err)
 	}
 	flow := envelope["flow"].(map[string]interface{})
+	flow["Type"] = "L7"
 	flow["l7"] = map[string]interface{}{"type": "RESPONSE", "latency_ns": "1250000", "http": map[string]interface{}{"code": 200, "protocol": "HTTP/2", "url": "https://private.invalid/secret", "headers": []string{"Authorization: hidden"}}}
 	line, _ := json.Marshal(envelope)
 	row, _, err = decodeObservation(line)

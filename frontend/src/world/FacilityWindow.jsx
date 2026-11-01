@@ -25,6 +25,7 @@ import {
 } from "./registry";
 import ResourceTable from "../workbench/ResourceTable";
 import MetricsPanel from "../workbench/MetricsPanel";
+import { FlowList } from "./ProviderWindows.jsx";
 import { resourceScope, scopeCoversScope } from "../data/resourceScopes.js";
 const icons = {
   Building2,
@@ -127,6 +128,10 @@ export default function FacilityWindow({
   onFocus,
   onConnection,
   onProviders,
+  measuredFlows,
+  trafficEnabled = false,
+  onEnableTraffic,
+  onFlowSelect,
 }) {
   const config = FACILITIES[id] || FACILITIES.center;
   const [tab, setTab] = useState("resources"),
@@ -258,10 +263,16 @@ export default function FacilityWindow({
             ["resources", "Bekleyen yükler"],
             ["events", "Yerleştirme olayları"],
           ]
-        : [
-            ["resources", "Kaynaklar"],
-            ["events", "İlgili olaylar"],
-          ];
+        : id === "network"
+          ? [
+              ["resources", "Kaynaklar"],
+              ["traffic", "Ölçülmüş trafik"],
+              ["events", "İlgili olaylar"],
+            ]
+          : [
+              ["resources", "Kaynaklar"],
+              ["events", "İlgili olaylar"],
+            ];
   return (
     <Window
       title={config.title}
@@ -271,7 +282,11 @@ export default function FacilityWindow({
       className="facility-window"
       footer={
         <>
-          <p>{config.description}</p>
+          <p>
+            {tab === "traffic"
+              ? "Hubble akışları ölçümdür; Service/EndpointSlice topolojisi Kaynaklar sekmesindedir."
+              : config.description}
+          </p>
           <button className="button" onClick={() => onFocus(id)}>
             <Focus size={15} />
             Yaklaş
@@ -291,7 +306,15 @@ export default function FacilityWindow({
           </button>
         ))}
       </nav>
-      {tab === "access" ? (
+      {tab === "traffic" && id === "network" ? (
+        <FlowList
+          measuredFlows={measuredFlows}
+          enabled={trafficEnabled}
+          onEnable={onEnableTraffic}
+          onSelectFlow={onFlowSelect}
+          mode={mode}
+        />
+      ) : tab === "access" ? (
         <div className="facility-copy">
           <h2>Bağlantı ve işlem yetkisi</h2>
           <p>

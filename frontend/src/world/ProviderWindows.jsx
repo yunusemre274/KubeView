@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import {
   Construction,
   Radio,
@@ -7,6 +7,8 @@ import {
   Plus,
   Square,
   ExternalLink,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import Window from "./Window";
 import { provisionTerminal } from "./useWorldProviders.js";
@@ -52,6 +54,270 @@ function Row({ label, children }) {
 }
 const run = (callback, ...args) =>
   Promise.resolve(callback?.(...args)).catch(() => {});
+
+const FLOW_PAGE_SIZE = 25,
+  FLOW_LIST_LIMIT = 512;
+const flowEndpointName = (endpoint) =>
+  [endpoint?.namespace, endpoint?.name || endpoint?.ip || "Bilinmiyor"]
+    .filter(Boolean)
+    .join("/");
+const flowDescription = (flow) =>
+  `${flowEndpointName(flow.source)} (UID ${flow.source?.uid || "eşleşmedi"}) → ${flowEndpointName(flow.destination)} (UID ${flow.destination?.uid || "eşleşmedi"}); ${flow.protocol || "protokol bilinmiyor"}, ${flow.verdict || "verdict bilinmiyor"}; ${at(flow.lastObserved)}; ${flow.eventCount ?? "bilinmeyen"} flow olayı`;
+
+/** Contextual semantic access to the same authorized records used by 3D arrows. */
+export function FlowList({
+  measuredFlows,
+  enabled = false,
+  onEnable,
+  onSelectFlow,
+  mode = "live",
+}) {
+  const [search, setSearch] = useState(""),
+    [page, setPage] = useState(0);
+  const records = measuredFlows?.flows || [];
+  const rows = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    return records.slice(0, FLOW_LIST_LIMIT).filter(
+      (flow) =>
+        !query ||
+        [
+          flow.id,
+          flow.protocol,
+          flow.transportProtocol,
+          flow.verdict,
+          flow.direction,
+          ...[flow.source, flow.destination].flatMap((endpoint) =>
+            endpoint
+              ? [
+                  endpoint.name,
+                  endpoint.namespace,
+                  endpoint.uid,
+                  endpoint.nodeName,
+                  endpoint.nodeUID,
+                  endpoint.ip,
+                  endpoint.port,
+                ]
+              : [],
+          ),
+        ]
+          .filter((value) => value != null)
+          .join(" ")
+          .toLowerCase()
+          .includes(query),
+    );
+  }, [records, search]);
+  const pages = Math.max(1, Math.ceil(rows.length / FLOW_PAGE_SIZE)),
+    currentPage = Math.min(page, pages - 1);
+  const visible = rows.slice(
+    currentPage * FLOW_PAGE_SIZE,
+    (currentPage + 1) * FLOW_PAGE_SIZE,
+  );
+  const omitted =
+    (measuredFlows?.clientOmitted || 0) +
+    Math.max(0, records.length - FLOW_LIST_LIMIT);
+  const live = measuredFlows?.status === "live";
+  const endpoint = (value) => (
+    <>
+      <span
+        className="cell-truncate"
+        style={{ maxWidth: 230, display: "block" }}
+      >
+        {flowEndpointName(value)}
+      </span>
+      <details>
+        <summary style={{ fontSize: 12 }}>
+          Pod UID{value?.uid ? "" : " · eşleşmedi"}
+        </summary>
+        <code className="break-value">
+          {value?.uid || "Bilinmiyor; IP/porttan Pod kimliği varsayılmaz"}
+        </code>
+      </details>
+    </>
+  );
+  return (
+    <section
+      className="resource-table-panel measured-flow-list"
+      aria-label="Ölçülmüş trafik akışları"
+    >
+      <div className="facility-copy" style={{ flexShrink: 0 }}>
+        <h2>Ölçülmüş trafik — Hubble</h2>
+        {!enabled ? (
+          <>
+            <p>
+              {mode === "demo"
+                ? "Demo modunda gerçek Hubble trafiği okunmaz."
+                : "Trafik katmanı kapalı. Yalnız yetkili context/namespace kapsamındaki gerçek sağlayıcı gözlemleri açılır; Service selector çizgileri ayrı topolojidir."}
+            </p>
+            <button
+              className="button"
+              disabled={mode === "demo" || !onEnable}
+              onClick={onEnable}
+            >
+              Ölçülmüş trafik katmanını aç
+            </button>
+          </>
+        ) : (
+          <>
+            <p role="status">
+              Sağlayıcı: Hubble ·{" "}
+              {live
+                ? "Canlı sağlayıcı gözlemi"
+                : measuredFlows?.status || "Durum doğrulanıyor"}{" "}
+              · Pencere: {measuredFlows?.windowSeconds ?? "Bilinmiyor"} saniye ·
+              Son veri:{" "}
+              {at(measuredFlows?.updatedAt || measuredFlows?.observedAt)}
+            </p>
+            {!live && (
+              <p className="inline-alert alert-warning">
+                Güncel trafik doğrulanamadı; varsa son gözlemler tarihleriyle
+                gösterilir.{" "}
+                {measuredFlows?.error ||
+                  "Bağlantı/izin bilgisi sağlayıcı yanıtından alınır."}
+              </p>
+            )}
+            <p className="muted">
+              {records.length} alınan /{" "}
+              {measuredFlows?.totalFlowGroups ?? "bilinmeyen"} toplam grup ·
+              Sağlayıcı penceresinde gösterilmeyen:{" "}
+              {measuredFlows?.omittedGroups ?? "bilinmiyor"} · İstemcide
+              gösterilmeyen: {omitted}. Flow olayı sayısı paket, byte veya bant
+              genişliği değildir.
+            </p>
+            <details>
+              <summary>Ölçüm sınırları ve kayıplar</summary>
+              <p>
+                Filtrelenen {measuredFlows?.filteredEvents ?? "bilinmiyor"} ·
+                Sağlayıcı kaybı{" "}
+                {measuredFlows?.providerLostEvents ?? "bilinmiyor"} · Kimlik
+                eşlemesi kaybı {measuredFlows?.mappingDropped ?? "bilinmiyor"} ·
+                Kuyrukta düşen {measuredFlows?.dropped ?? "bilinmiyor"} ·
+                Özetlenen {measuredFlows?.summarized ?? "bilinmiyor"}. Protokol
+                ve UID yalnız sağlayıcı tarafından bildirilen/eşleştirilen
+                alanlardır; eksik bilgi bilinmiyor kalır.
+              </p>
+            </details>
+          </>
+        )}
+      </div>
+      {enabled && (
+        <>
+          <div className="table-toolbar">
+            <label className="form-field" style={{ flex: 1, margin: 0 }}>
+              Akışlarda ara
+              <input
+                aria-label="Ölçülmüş akışlarda ara"
+                value={search}
+                placeholder="Kaynak, hedef, namespace, UID, protokol veya verdict"
+                onChange={(event) => {
+                  setSearch(event.target.value);
+                  setPage(0);
+                }}
+              />
+            </label>
+          </div>
+          <div
+            className="table-scroll"
+            tabIndex={0}
+            aria-label="Akış tablosu; yatay kaydırılabilir"
+          >
+            <table className="resource-table">
+              <caption className="sr-only">
+                Hubble gözlemleri; akış inceleme düğmeleri klavyeyle açılabilir
+              </caption>
+              <thead>
+                <tr>
+                  {[
+                    "Kaynak",
+                    "Hedef",
+                    "Protokol",
+                    "Port (kaynak / hedef)",
+                    "Verdict",
+                    "Son gözlem",
+                    "Flow olayı",
+                    "İncele",
+                  ].map((heading) => (
+                    <th key={heading} scope="col">
+                      {heading}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {visible.map((flow) => (
+                  <tr key={flow.id}>
+                    <td>{endpoint(flow.source)}</td>
+                    <td>{endpoint(flow.destination)}</td>
+                    <td>
+                      {flow.protocol || "Bilinmiyor"}
+                      <small style={{ display: "block" }}>
+                        {flow.transportProtocol ||
+                          "Taşıma protokolü bilinmiyor"}
+                      </small>
+                    </td>
+                    <td>
+                      {flow.source?.port ?? "?"} /{" "}
+                      {flow.destination?.port ?? "?"}
+                    </td>
+                    <td>{flow.verdict || "Bilinmiyor"}</td>
+                    <td>{at(flow.lastObserved)}</td>
+                    <td>{flow.eventCount ?? "Veri yok"}</td>
+                    <td>
+                      <button
+                        className="button"
+                        aria-label={`Akışı incele: ${flowDescription(flow)}`}
+                        onClick={() => onSelectFlow?.(flow)}
+                        disabled={!onSelectFlow}
+                      >
+                        Akışı incele
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {!rows.length && (
+              <p className="empty-copy">
+                {search
+                  ? "Bu aramayla eşleşen gözlem yok."
+                  : live
+                    ? "Bu ölçüm penceresinde yetkili kapsama ait akış gözlenmedi."
+                    : "Gösterilebilen gerçek akış gözlemi yok."}
+              </p>
+            )}
+          </div>
+          <div className="table-footer">
+            <span>
+              {rows.length ? currentPage * FLOW_PAGE_SIZE + 1 : 0}–
+              {Math.min((currentPage + 1) * FLOW_PAGE_SIZE, rows.length)} /{" "}
+              {rows.length} eşleşen akış · sayfa başına {FLOW_PAGE_SIZE}
+            </span>
+            <div>
+              <button
+                className="icon-button"
+                aria-label="Önceki akış sayfası"
+                disabled={currentPage === 0}
+                onClick={() => setPage(currentPage - 1)}
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <span>
+                {currentPage + 1} / {pages}
+              </span>
+              <button
+                className="icon-button"
+                aria-label="Sonraki akış sayfası"
+                disabled={currentPage + 1 >= pages}
+                onClick={() => setPage(currentPage + 1)}
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+    </section>
+  );
+}
 
 export function ProviderWindow({
   providers,
@@ -393,7 +659,7 @@ export function FlowWindow({
               </Row>
               <Row label="Seçili akışın gözlemi">
                 {inWindow === true
-                  ? `Güncel ${windowSeconds} saniyelik ölçüm penceresinde`
+                  ? `${measuredFlows?.status === "live" ? "Güncel" : "Son sağlanan"} ${windowSeconds} saniyelik ölçüm penceresinde`
                   : inWindow === false
                     ? "Tarihsel gözlem · güncel pencere dışında"
                     : "Gözlem zamanı / pencere doğrulanamadı"}

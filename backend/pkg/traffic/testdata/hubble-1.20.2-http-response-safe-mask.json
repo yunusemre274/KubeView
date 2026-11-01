@@ -1,0 +1,41 @@
+{
+  "flow": {
+    "time": "2026-11-01T17:17:35.119093468Z",
+    "uuid": "14a246d9-ac88-48ac-b5a1-d1e63ced0592",
+    "verdict": "FORWARDED",
+    "IP": {
+      "source": "10.244.0.171",
+      "destination": "10.244.0.88"
+    },
+    "l4": {
+      "TCP": {
+        "source_port": 8080,
+        "destination_port": 57404
+      }
+    },
+    "source": {
+      "cluster_name": "default",
+      "namespace": "kv-repair-qa",
+      "pod_name": "flow-same"
+    },
+    "destination": {
+      "cluster_name": "default",
+      "namespace": "kv-repair-qa",
+      "pod_name": "flow-client"
+    },
+    "Type": "L7",
+    "node_name": "kv-repair-1101",
+    "l7": {
+      "type": "RESPONSE",
+      "latency_ns": "1128375",
+      "http": {
+        "code": 200,
+        "protocol": "HTTP/1.1"
+      }
+    },
+    "traffic_direction": "EGRESS",
+    "is_reply": true
+  },
+  "node_name": "kv-repair-1101",
+  "time": "2026-11-01T17:17:35.119093468Z"
+}

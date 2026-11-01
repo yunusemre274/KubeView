@@ -735,6 +735,12 @@ export default function App() {
             onFocus={focusFacility}
             onConnection={() => setUtility("connection")}
             onProviders={openProviders}
+            measuredFlows={worldProviders.measuredFlows}
+            trafficEnabled={layers.measuredTraffic}
+            onEnableTraffic={() =>
+              setLayers((value) => ({ ...value, measuredTraffic: true }))
+            }
+            onFlowSelect={selectFlow}
           />
         )}
         {panel?.type === "resource" && selected && (

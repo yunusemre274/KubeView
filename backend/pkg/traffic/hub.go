@@ -27,7 +27,7 @@ const maxFlowGroups = 512
 
 // Field masks apply at the Hubble server, then decodeObservation applies a
 // second local whitelist. No URL/header/query/payload/label field is requested.
-const flowFieldMask = "time,uuid,verdict,IP.source,IP.destination,l4,source.namespace,source.pod_name,source.cluster_name,destination.namespace,destination.pod_name,destination.cluster_name,node_name,traffic_direction,l7.type,l7.latency_ns,l7.http.code,l7.http.protocol,l7.dns.rcode,drop_reason_desc,is_reply"
+const flowFieldMask = "time,uuid,Type,verdict,IP.source,IP.destination,l4,source.namespace,source.pod_name,source.cluster_name,destination.namespace,destination.pod_name,destination.cluster_name,node_name,traffic_direction,l7.type,l7.latency_ns,l7.http.code,l7.http.protocol,l7.dns.rcode,l7.kafka.error_code,drop_reason_desc,is_reply"
 
 type Hub struct {
 	cfg       Config

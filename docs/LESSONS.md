@@ -115,3 +115,5 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 - Three0.164 instanceColor için vertexColors bayrağı gerekmez; geometry color attribute'u yokken ayrıca vertexColors açmak alev/okları siyahla çarpabilir. Gerçek ekranı açmadan materyal kabulü yapma.
 - SSAR yardımcılarının positional resource/subresource/namespace sırasını gerçek restricted-SA ile sına; admin testi yanlış argümanı maskeleyebilir. Dokümanda başarı zinciriyle negatif denemeyi ayır.
 -120ms yalnız background geçişi, anında değişen metinle geçici düşük kontrast üretir; metin/yüzey atomik tema değişsin, kabartma gölgesi korunabilir. Window autofocus RAF'ından önce ölçülen focus testi gerçek klavye odağını kanıtlamaz.
+
+- Hubble1.20.2 field mask, L3/L4 kaydında boş veya önceki HTTP alanları bırakabilir. `http != nil` hatta `code200/protocolHTTP` uygulama protokolü kanıtı değildir. Gerçek `Type=L7`, geçerli L7 türü ve aktif record varyantı birlikte doğrulanmalı; gerçek masked TCP/HTTP/DNS örnekleriyle regresyon kurulmalı.

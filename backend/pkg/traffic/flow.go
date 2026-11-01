@@ -180,15 +180,30 @@ func decodeObservation(line []byte) (*observedFlow, uint64, error) {
 	l7 := getObject(f, "l7")
 	httpRecord := getObject(l7, "http", "HTTP")
 	dnsRecord := getObject(l7, "dns", "DNS")
-	if httpRecord != nil {
+	kafkaRecord := getObject(l7, "kafka", "Kafka")
+	l7Type := getString(l7, "type")
+	// Cilium1.20.2 FieldMask.Alloc materializes empty nested oneof messages
+	// even for genuine L3/L4 observations. Presence of l7.http:{} is not an
+	// HTTP observation. Request Flow.Type plus every oneof variant's harmless
+	// scalar so active DNS/HTTP/Kafka selection is preserved by FieldMask.Copy.
+	recordCount := 0
+	for _, record := range []object{httpRecord, dnsRecord, kafkaRecord} {
+		if record != nil {
+			recordCount++
+		}
+	}
+	genuineL7 := getString(f, "Type", "type") == "L7" && (l7Type == "REQUEST" || l7Type == "RESPONSE" || l7Type == "SAMPLE") && recordCount == 1
+	if genuineL7 && httpRecord != nil {
 		row.protocol = "HTTP"
 		row.httpCode = uint32Value(httpRecord, "code")
 		row.httpProtocol = optionalString(getString(httpRecord, "protocol"))
-	} else if dnsRecord != nil {
+	} else if genuineL7 && dnsRecord != nil {
 		row.protocol = "DNS"
 		row.dnsRcode = uint32Value(dnsRecord, "rcode")
+	} else if genuineL7 {
+		row.protocol = "UNKNOWN_L7"
 	}
-	if (httpRecord != nil || dnsRecord != nil) && getString(l7, "type") == "RESPONSE" {
+	if genuineL7 && (httpRecord != nil || dnsRecord != nil) && l7Type == "RESPONSE" {
 		if latency := getUint(l7, "latency_ns", "latencyNs"); latency != nil {
 			v := float64(*latency) / 1e6
 			row.latencyMS = &v
