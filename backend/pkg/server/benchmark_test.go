@@ -67,6 +67,9 @@ func TestBenchmarkFixtureServer(t *testing.T) {
 	}
 	s, c := testServer(t, true)
 	s.Namespace = ""
+	// The fixture's advertised context and watch envelopes must agree. The
+	// production client correctly rejects messages from another context.
+	c.Name = "benchmark"
 	s.clients = map[string]*Clients{"benchmark": c}
 	var sameVersionResyncs atomic.Int64
 	s.streamProbe = func(_ string, stage string, _ envelope, _ int, _ time.Duration) {

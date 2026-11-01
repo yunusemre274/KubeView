@@ -121,3 +121,7 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 - Aynı source içinde namespace değişimiyle gelen yeni scoped snapshot da baseline'dır. Önceki namespace'de görülmemiş eski Pod'ları canlı ADD sanmak sahte vinç/süreç kuyruğu ve gereksiz yanaşma üretir. Son snapshot UID Set'ini ayrı ve sınırlı tut; yalnız ilk görülmeyi baseline yap, bilinen Pending→assigned canlı değişimini bastırma.
 
 - Kalıcı provisioning history'de nodeUID bulunması yeni katılım kanıtı değildir. Snapshot istisnası geçerli ve güncel görsel source epoch'unda başlatılmış işlem ister; eski/eksik/gelecek tarihli kayıt baseline'ı bozamaz. Bu risk unit ile üretildi, runtime arızası diye etiketlenmedi.
+
+### Benchmark context kimliği — 1 Kasım 2026
+
+`TestBenchmarkFixtureServer`, `/api/contexts` içinde `benchmark` yayımlarken ortak test factory'sinden gelen `Clients.Name=test` değerini koruyordu. Production context koruması bu eski harness tutarsızlığını doğru biçimde reddetti; ilk yeni pilot90sn hazır olma bekleyişinde durdu ve kayıt korundu. Fixture client adı `benchmark` yapıldı; ürünün context kontrolü gevşetilmedi. Düzeltilmiş pilotta4planlanan watch olayı, tam canonical içerik, Node arızası/recovery ve sıfır kalan transfer/sinyal doğrulandı. Kısa pilotun~60JS çizim/sn sonucu kabul performans ölçümü değildir.

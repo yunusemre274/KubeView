@@ -21,6 +21,7 @@ import {
   VERSION,
   PROFILES,
 } from "./fixtures.mjs";
+import { REPAIR_SCENARIOS, REPAIR_SCENARIO_VERSION, repairScenario, readRepairSnapshot, assessRepairRun, recordRepairPanelCycle } from "./repair-scenarios.mjs";
 import { installProbe, installFrameMarks } from "./probe.mjs";
 import { installGPUProbe } from "./gpu-probe.mjs";
 import { installBufferProbe } from './buffer-probe.mjs';
@@ -87,6 +88,7 @@ if (
       "log-static",
       "log-normal",
       "log-long",
+      ...REPAIR_SCENARIOS,
     ].includes(s),
   ) ||
   ![repeats, warmup, seconds, longSeconds, port, dpr].every(Number.isFinite) ||
@@ -150,6 +152,8 @@ const manifest = {
   buildTag,
   date: new Date().toISOString(),
   fixtureVersion: VERSION,
+  repairScenarioVersion: REPAIR_SCENARIO_VERSION,
+  repairHarnessSHA256: hash(await readFile(path.join(root, "benchmarks/repair-scenarios.mjs"))),
   scenarioVersion: (panelMatrix || logMatrix) ? (lockInput ? 4 : 3) : 2,
   replaySHA256: hash(replay.toString()),
   snapshotOrder:
@@ -907,6 +911,7 @@ async function run(profile, scenario, repeat) {
   if (
     (scenario === "events" && repeat > 0) ||
     scenario.startsWith("panel-") ||
+    REPAIR_SCENARIOS.includes(scenario) ||
     logMatrix
   )
     await launchProfile(profile, scenario);
@@ -952,7 +957,9 @@ async function run(profile, scenario, repeat) {
   }
   const initialResources = (await state()).resources;
   const duration = scenario === "long" ? longSeconds : seconds;
-  const events =
+  const repairPlan = REPAIR_SCENARIOS.includes(scenario)
+    ? repairScenario(initialResources, scenario, { duration, startSequence: 1 + repeat * 10000 }) : null;
+  const events = repairPlan ? repairPlan.events :
     scenario === "events" || scenario === "long" || scenario.endsWith("-events")
       ? replay(initialResources, {
           duration,
@@ -980,7 +987,7 @@ async function run(profile, scenario, repeat) {
   // Settle startup effects, then protect noninteractive cases from native input.
   // OrbitControls.update remains enabled, so the normal per-frame work is kept.
   await prepareCamera(scenario === "interaction");
-  if (panelMatrix || logMatrix) {
+  if (panelMatrix || logMatrix || repairPlan) {
     await page.evaluate(() => {
       const p = globalThis.__KUBEVIEW_BENCHMARK__;
       if (!p.resetVisual)
@@ -1000,6 +1007,8 @@ async function run(profile, scenario, repeat) {
     await page.screenshot({
       path: path.join(out, `${profile}-${scenario}-${repeat}-start.png`),
     });
+  const repairBefore = repairPlan ? await page.evaluate(readRepairSnapshot) : null;
+  const repairObservations = [], repairPanelCycles = [];
   const before = await inventory(),
     osBefore = await sampleOS();
   const logBefore = logMatrix ? await state() : null;
@@ -1074,8 +1083,11 @@ async function run(profile, scenario, repeat) {
   const reconnectAtMs = [];
   // Sample inside the 28..30 second quiet window, before the next ADD can run.
   let nextCheckpoint = 29000,
+    repairCheckpoint = 1,
     reconnects = 0;
   while (Date.now() - start < duration * 1000) {
+    const remainingRepairCheckpoint = repairPlan && repairCheckpoint < repairPlan.checkpoints.length
+      ? Math.max(0, repairPlan.checkpoints[repairCheckpoint].atMs - (Date.now() - start)) : Infinity;
     const remainingToCheckpoint =
       scenario === "long"
         ? Math.max(0, nextCheckpoint - (Date.now() - start))
@@ -1086,6 +1098,7 @@ async function run(profile, scenario, repeat) {
         Math.min(
           5000,
           remainingToCheckpoint,
+          remainingRepairCheckpoint,
           duration * 1000 - (Date.now() - start),
         ),
       ),
@@ -1093,6 +1106,9 @@ async function run(profile, scenario, repeat) {
     await sampleOS();
     if (interactionError) throw interactionError;
     const elapsed = Date.now() - start;
+    if (repairPlan && repairCheckpoint < repairPlan.checkpoints.length && elapsed >= repairPlan.checkpoints[repairCheckpoint].atMs) {
+      repairObservations.push({ ...await page.evaluate(readRepairSnapshot), plannedAtMs: repairPlan.checkpoints[repairCheckpoint++].atMs, actualAtMs: elapsed });
+    }
     if (scenario === "long" && elapsed >= nextCheckpoint) {
       const chunk = await page.evaluate(() =>
         globalThis.__KUBEVIEW_BENCHMARK__.drain(),
@@ -1138,8 +1154,7 @@ async function run(profile, scenario, repeat) {
       );
       if (elapsed > 600000) {
         await setInputGuard(false);
-        await closePanel();
-        await openPodLogs();
+        repairPanelCycles.push(await recordRepairPanelCycle({ cycle: repairPanelCycles.length + 1, closePanel, openPanel: openPodLogs, inventory, upstreamState: state }));
         await setInputGuard(lockInput);
       }
       // Informers belong to each socket: keep the last connection >10 minutes,
@@ -1236,6 +1251,7 @@ async function run(profile, scenario, repeat) {
     checkpoints,
     reconnects,
     reconnectAtMs,
+    repairPanelCycles,
     interactionSchedule,
     network,
     setupBeforeWarm,
@@ -1342,6 +1358,17 @@ async function run(profile, scenario, repeat) {
       result.producer.completed === events.length &&
       !result.producer.errors.length &&
       result.producer.delayMs.p95 < 100;
+  }
+  if (repairPlan) {
+    const repairAfter = await page.evaluate(readRepairSnapshot);
+    const upstream = await state();
+    const actualResources = Object.values(await page.evaluate(() => globalThis.__KUBEVIEW_BENCHMARK__.resources));
+    result.repair = { eventsSHA256: hash(JSON.stringify(repairPlan.events)), plan: repairPlan, before: repairBefore, observations: repairObservations, after: repairAfter,
+      acceptance: assessRepairRun(repairPlan, initialResources, { before: repairBefore, after: repairAfter, observations: repairObservations, upstream, actualResources, expectedVisible: { nodes: repairBefore.stats.lifecycle.visibleNodes, pods: repairBefore.stats.lifecycle.visiblePods } }) };
+    if (!result.repair.acceptance.valid || (phase === "optimized" && result.repair.acceptance.visual.valid !== true)) { report.errors.push(`Repair canonical/visual gate failed ${profile}/${scenario}/${repeat}`); process.exitCode = 1; }
+  }
+  if (scenario === "long" && duration >= 1200 && ((duration === 1200 ? repairPanelCycles.length !== 20 : repairPanelCycles.length < 20) || repairPanelCycles.some(c => !c.valid))) {
+    report.errors.push("Long run did not complete twenty verified panel/stream close-reopen cycles"); process.exitCode = 1;
   }
   await writeFile(
     path.join(out, `${profile}-${scenario}-${repeat}-raw.json`),

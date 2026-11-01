@@ -2024,6 +2024,7 @@ function SceneWorld({
   scene.userData.visualLifecycleState = () => ({
     source: sourceKey,
     clock: clock.current,
+    sourceWallStart: lifecycle.current.visual.sourceWallStart,
     nodes: [...lifecycle.current.visual.nodes.keys()].map((uid) => ({
       uid,
       ...lifecycle.current.visual.nodeVisual(uid, clock.current * 1000),
