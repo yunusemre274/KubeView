@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-06T10:18:46.405249+00:00",
+  "head": "6bb9dea540130a32a29a3f4ebaba80c26d06cf00",
+  "buildChanges": [],
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t41%; discharging; 4:10 remaining present: true\n",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434\n",
+  "go": "go version go1.26.5 darwin/arm64\n",
+  "node": "v24.16.0\n",
+  "oldACKeptSeparate": true,
+  "userPreference": "battery; new matched comparisons",
+  "frozenFrontendSource": "c9f5c8cc1b093fc8ac9f0a4d81f83a12e75fa17a8c3ef4e115a9bf3c6e8c0eba"
+}

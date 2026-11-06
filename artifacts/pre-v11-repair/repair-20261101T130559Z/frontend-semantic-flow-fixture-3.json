@@ -1,0 +1,575 @@
+{
+  "name": "frontend-semantic-flow-fixture-3",
+  "startedAt": "2026-11-01T17:25:44.999Z",
+  "source": "SYNTHETIC512-flow UI fixture; not real Hubble/traffic proof. Normal physical facility + DOM/keyboard flow; canonical Kubernetes resource state untouched.",
+  "engine": "chromium",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "context": "kv-repair-1101",
+  "errors": [],
+  "captures": [
+    {
+      "at": "2026-11-01T17:25:46.998Z",
+      "label": "keyboard-opened-exact-flow-detail",
+      "path": "frontend-semantic-flow-fixture-3-01-keyboard-opened-exact-flow-detail.png",
+      "view": {
+        "stats": {
+          "frame": 93,
+          "calls": 202,
+          "triangles": 43676,
+          "points": 0,
+          "lines": 84,
+          "measuredTraffic": {
+            "provider": "hubble",
+            "status": "live",
+            "windowSeconds": 10,
+            "inputFlows": 512,
+            "renderedFlows": 0,
+            "unresolved": 512,
+            "otherRegion": 0,
+            "outsideNamespace": 0,
+            "expired": 0,
+            "aggregatedOutOfView": 0,
+            "providerDropped": 0,
+            "providerSummarized": 0
+          },
+          "memory": {
+            "geometries": 36,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 2,
+            "visiblePods": 2,
+            "nodeSlots": 2,
+            "podSlots": 2,
+            "activeTransfers": 0,
+            "queuedTransfers": 2,
+            "visualLoadingUIDs": [
+              "c3787c43-ad96-4bba-b67a-71f150959e20",
+              "3bf472e6-0adb-49d7-bf58-39a8c97671b4"
+            ],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 6,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 879.9340694115365,
+            "position": [
+              -54.20377077544294,
+              -0.00009789719295186666,
+              231.912951502883
+            ],
+            "yaw": -0.20486583818150206,
+            "pitch": -0.000008394114015183533,
+            "roll": -0.000007711494073844482,
+            "state": "approaching",
+            "speed": 5.100156288571969,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": "basin:left",
+            "eligibleForDock": false
+          },
+          {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1063.9723867644186,
+            "position": [
+              -175,
+              -0.07108519237702073,
+              154.08511735289244
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0015803269805748834,
+            "roll": -0.0036687407585687154,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 1.4290999999996277,
+          "nodes": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 0,
+                "progress": 879.9340694115365,
+                "position": [
+                  -54.20377077544294,
+                  -0.00009789719295186666,
+                  231.912951502883
+                ],
+                "yaw": -0.20486583818150206,
+                "pitch": -0.000008394114015183533,
+                "roll": -0.000007711494073844482,
+                "state": "approaching",
+                "speed": 5.100156288571969,
+                "paused": false,
+                "healthy": true,
+                "reason": null,
+                "reservation": "basin:left",
+                "eligibleForDock": false
+              }
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+                "name": "kv-repair-1101-m02",
+                "slot": 1,
+                "progress": 1063.9723867644186,
+                "position": [
+                  -175,
+                  -0.07108519237702073,
+                  154.08511735289244
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": -0.0015803269805748834,
+                "roll": -0.0036687407585687154,
+                "state": "patrolling",
+                "speed": 9.000000000014552,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [
+            {
+              "id": 1,
+              "uid": "c3787c43-ad96-4bba-b67a-71f150959e20",
+              "stage": "resource-observed",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "workloads",
+              "destination": "pending",
+              "label": "Pod gözlendi · temsili hazırlık",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 2,
+              "uid": "c3787c43-ad96-4bba-b67a-71f150959e20",
+              "stage": "assigned",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "pending",
+              "destination": "pod",
+              "label": "Node ataması gözlendi · temsili yerleştirme",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 3,
+              "uid": "c3787c43-ad96-4bba-b67a-71f150959e20",
+              "stage": "ready",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "pod",
+              "destination": "center",
+              "label": "Ready gözlendi · temsili süreç",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 4,
+              "uid": "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+              "stage": "resource-observed",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "workloads",
+              "destination": "pending",
+              "label": "Pod gözlendi · temsili hazırlık",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 5,
+              "uid": "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+              "stage": "assigned",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "pending",
+              "destination": "pod",
+              "label": "Node ataması gözlendi · temsili yerleştirme",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 6,
+              "uid": "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+              "stage": "ready",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "pod",
+              "destination": "center",
+              "label": "Ready gözlendi · temsili süreç",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            }
+          ],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 6,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "Ağ Yönlendirme Tesisi\n\nkv-repair-1101 · kv-repair-qa\n\nKaynaklar\nÖlçülmüş trafik\nİlgili olaylar\nÖlçülmüş trafik — Hubble\n\nSağlayıcı: Hubble · Canlı sağlayıcı gözlemi · Pencere: 10 saniye · Son veri: 01.11.2026 20:25:44\n\n512 alınan / 530 toplam grup · Sağlayıcı penceresinde gösterilmeyen: 18 · İstemcide gösterilmeyen: 0. Flow olayı sayısı paket, byte veya bant genişliği değildir.\n\nÖlçüm sınırları ve kayıplar\nAkışlarda ara\nHubble gözlemleri; akış inceleme düğmeleri klavyeyle açılabilir\nKaynak\tHedef\tProtokol\tPort (kaynak / hedef)\tVerdict\tSon gözlem\tFlow olayı\tİncele\n\nfixture-ns/fixture-source-500\nPod UID\n\t\nfixture-ns/fixture-target-500\nPod UID\n\tTCP\nTCP\n\t80 / 8080\tFORWARDED\t01.11.2026 20:25:44\t501\tAkışı incele\n1–1 / 1 eşleşen akış · sayfa başına 25\n1 / 1\n\nHubble akışları ölçümdür; Service/EndpointSlice topolojisi Kaynaklar sekmesindedir.\n\nYaklaş",
+        "selectedLabels": [
+          "Sağlayıcı: Hubble · Canlı sağlayıcı gözlemi · Pencere: 10 saniye · Son veri: 01.11.2026 20:25:44"
+        ]
+      }
+    },
+    {
+      "at": "2026-11-01T17:25:47.143Z",
+      "label": "return-preserves-contextual-search",
+      "path": "frontend-semantic-flow-fixture-3-02-return-preserves-contextual-search.png",
+      "view": {
+        "stats": {
+          "frame": 102,
+          "calls": 202,
+          "triangles": 43676,
+          "points": 0,
+          "lines": 84,
+          "measuredTraffic": {
+            "provider": "hubble",
+            "status": "live",
+            "windowSeconds": 10,
+            "inputFlows": 512,
+            "renderedFlows": 0,
+            "unresolved": 512,
+            "otherRegion": 0,
+            "outsideNamespace": 0,
+            "expired": 0,
+            "aggregatedOutOfView": 0,
+            "providerDropped": 0,
+            "providerSummarized": 0
+          },
+          "memory": {
+            "geometries": 36,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 2,
+            "visiblePods": 2,
+            "nodeSlots": 2,
+            "podSlots": 2,
+            "activeTransfers": 0,
+            "queuedTransfers": 2,
+            "visualLoadingUIDs": [
+              "c3787c43-ad96-4bba-b67a-71f150959e20",
+              "3bf472e6-0adb-49d7-bf58-39a8c97671b4"
+            ],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 6,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 879.9340694115365,
+            "position": [
+              -54.06892215055053,
+              -0.00005387776537195051,
+              231.308790997091
+            ],
+            "yaw": -0.06929253771112376,
+            "pitch": -0.0000046197045265416485,
+            "roll": -0.0000042440243264386435,
+            "state": "approaching",
+            "speed": 3.2952027929152923,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": "basin:left",
+            "eligibleForDock": false
+          },
+          {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1065.3160867644253,
+            "position": [
+              -175,
+              -0.07024231074901852,
+              152.74141735288572
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0018244927941695017,
+            "roll": -0.003389186744343541,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 1.5784000000003726,
+          "nodes": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 0,
+                "progress": 879.9340694115365,
+                "position": [
+                  -54.06892215055053,
+                  -0.00005387776537195051,
+                  231.308790997091
+                ],
+                "yaw": -0.06929253771112376,
+                "pitch": -0.0000046197045265416485,
+                "roll": -0.0000042440243264386435,
+                "state": "approaching",
+                "speed": 3.2952027929152923,
+                "paused": false,
+                "healthy": true,
+                "reason": null,
+                "reservation": "basin:left",
+                "eligibleForDock": false
+              }
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+                "name": "kv-repair-1101-m02",
+                "slot": 1,
+                "progress": 1065.3160867644253,
+                "position": [
+                  -175,
+                  -0.07024231074901852,
+                  152.74141735288572
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": -0.0018244927941695017,
+                "roll": -0.003389186744343541,
+                "state": "patrolling",
+                "speed": 9.000000000014552,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [
+            {
+              "id": 1,
+              "uid": "c3787c43-ad96-4bba-b67a-71f150959e20",
+              "stage": "resource-observed",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "workloads",
+              "destination": "pending",
+              "label": "Pod gözlendi · temsili hazırlık",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 2,
+              "uid": "c3787c43-ad96-4bba-b67a-71f150959e20",
+              "stage": "assigned",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "pending",
+              "destination": "pod",
+              "label": "Node ataması gözlendi · temsili yerleştirme",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 3,
+              "uid": "c3787c43-ad96-4bba-b67a-71f150959e20",
+              "stage": "ready",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "pod",
+              "destination": "center",
+              "label": "Ready gözlendi · temsili süreç",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 4,
+              "uid": "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+              "stage": "resource-observed",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "workloads",
+              "destination": "pending",
+              "label": "Pod gözlendi · temsili hazırlık",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 5,
+              "uid": "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+              "stage": "assigned",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "pending",
+              "destination": "pod",
+              "label": "Node ataması gözlendi · temsili yerleştirme",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            },
+            {
+              "id": 6,
+              "uid": "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+              "stage": "ready",
+              "started": 268.5,
+              "expires": 2068.5,
+              "source": "pod",
+              "destination": "center",
+              "label": "Ready gözlendi · temsili süreç",
+              "owners": [],
+              "operationId": null,
+              "generation": 1,
+              "observedGeneration": 1,
+              "dataSource": "Kubernetes watch observation"
+            }
+          ],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 6,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "Ağ Yönlendirme Tesisi\n\nkv-repair-1101 · kv-repair-qa\n\nKaynaklar\nÖlçülmüş trafik\nİlgili olaylar\nÖlçülmüş trafik — Hubble\n\nSağlayıcı: Hubble · Canlı sağlayıcı gözlemi · Pencere: 10 saniye · Son veri: 01.11.2026 20:25:44\n\n512 alınan / 530 toplam grup · Sağlayıcı penceresinde gösterilmeyen: 18 · İstemcide gösterilmeyen: 0. Flow olayı sayısı paket, byte veya bant genişliği değildir.\n\nÖlçüm sınırları ve kayıplar\nAkışlarda ara\nHubble gözlemleri; akış inceleme düğmeleri klavyeyle açılabilir\nKaynak\tHedef\tProtokol\tPort (kaynak / hedef)\tVerdict\tSon gözlem\tFlow olayı\tİncele\n\nfixture-ns/fixture-source-500\nPod UID\n\t\nfixture-ns/fixture-target-500\nPod UID\n\tTCP\nTCP\n\t80 / 8080\tFORWARDED\t01.11.2026 20:25:44\t501\tAkışı incele\n1–1 / 1 eşleşen akış · sayfa başına 25\n1 / 1\n\nHubble akışları ölçümdür; Service/EndpointSlice topolojisi Kaynaklar sekmesindedir.\n\nYaklaş",
+        "selectedLabels": [
+          "Sağlayıcı: Hubble · Canlı sağlayıcı gözlemi · Pencere: 10 saniye · Son veri: 01.11.2026 20:25:44"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "pagination25of512": true,
+    "omitted530reported": true,
+    "uidSearch": true,
+    "keyboardSameFlowHandler": true,
+    "detailBackPreservesSearch": true,
+    "resourceTabsPreserved": true,
+    "hiddenFlowListUnmounted": true,
+    "noPortInference": true,
+    "layerOffStopsPollingAndReleasesLease": true
+  },
+  "flowRequests": [
+    {
+      "at": "2026-11-01T17:25:46.646Z",
+      "method": "GET"
+    },
+    {
+      "at": "2026-11-01T17:25:47.274Z",
+      "method": "DELETE"
+    }
+  ],
+  "status": "PASSED"
+}

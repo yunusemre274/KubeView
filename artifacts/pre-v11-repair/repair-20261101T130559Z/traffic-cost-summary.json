@@ -1,0 +1,108 @@
+{
+  "at": "2026-11-01T19:15:40.027923+00:00",
+  "source": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-cost-final-20261101T184714650Z/result.json",
+  "status": "PASSED",
+  "scope": "ACTUAL owned3Node/3PodQA; production medium/DPR1/1440x900; same2successfulrequestpairs/s; independentPodclock. FeatureOFF/ON, notold/newoptimization.",
+  "rejected": "traffic-cost-final-20261101T184158826Z: camera changed, wholepairrejected",
+  "sides": {
+    "OFF": {
+      "browserCPU": {
+        "median": 0.39852121170447696,
+        "min": 0.27780169960110496,
+        "max": 0.42198261720327346,
+        "n": 3
+      },
+      "gatewayCPU": {
+        "median": 0.002176066216195275,
+        "min": 0.0017446812741566961,
+        "max": 0.0022504523302388545,
+        "n": 3
+      },
+      "collectorCPU": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "n": 3
+      },
+      "jsDrawsPerSecond": {
+        "median": 60.00222846414142,
+        "min": 60.001364045429014,
+        "max": 60.00937802416189,
+        "n": 3
+      },
+      "intervalP95ms": {
+        "median": 17.599999997764826,
+        "min": 17.5,
+        "max": 17.600000001490116,
+        "n": 3
+      },
+      "intervalP99ms": {
+        "median": 17.700000002980232,
+        "min": 17.699999999254942,
+        "max": 17.799999997019768,
+        "n": 3
+      }
+    },
+    "ON": {
+      "browserCPU": {
+        "median": 0.41428300255577405,
+        "min": 0.353878580992752,
+        "max": 0.436339241887696,
+        "n": 3
+      },
+      "gatewayCPU": {
+        "median": 0.01753278063935537,
+        "min": 0.015423863771867974,
+        "max": 0.01799897487226723,
+        "n": 3
+      },
+      "collectorCPU": {
+        "median": 0.012847752798981114,
+        "min": 0.011379591426981391,
+        "max": 0.013265083322084283,
+        "n": 3
+      },
+      "jsDrawsPerSecond": {
+        "median": 59.999434595130026,
+        "min": 59.99923504301443,
+        "max": 60.007417768384165,
+        "n": 3
+      },
+      "intervalP95ms": {
+        "median": 17.699999999254942,
+        "min": 17.599999997764826,
+        "max": 17.699999999254942,
+        "n": 3
+      },
+      "intervalP99ms": {
+        "median": 17.900000002235174,
+        "min": 17.800000000745058,
+        "max": 18,
+        "n": 3
+      }
+    }
+  },
+  "pairs": [
+    {
+      "block": 1,
+      "complete": true,
+      "browserDelta": 0.1364813029546691,
+      "gatewayOwnDelta": 0.015788099365198673,
+      "collectorDelta": 0.012847752798981114
+    },
+    {
+      "block": 2,
+      "complete": true,
+      "browserDelta": -0.06810403621052147,
+      "gatewayOwnDelta": 0.013173411441629118,
+      "collectorDelta": 0.011379591426981391
+    },
+    {
+      "block": 3,
+      "complete": true,
+      "browserDelta": 0.037818030183219054,
+      "gatewayOwnDelta": 0.015822908656071957,
+      "collectorDelta": 0.013265083322084283
+    }
+  ]
+}

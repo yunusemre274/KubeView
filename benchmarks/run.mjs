@@ -26,6 +26,7 @@ import { installProbe, installFrameMarks } from "./probe.mjs";
 import { installGPUProbe } from "./gpu-probe.mjs";
 import { installBufferProbe } from './buffer-probe.mjs';
 import { installLifecycleProbe } from "./lifecycle-probe.mjs";
+import { readSceneInventory } from "./scene-inventory.mjs";
 import { summarize, distribution, cpuSeconds, loadBands, measurementWindow } from "./metrics.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const require = createRequire(path.join(root, "frontend/package.json"));
@@ -164,6 +165,8 @@ const manifest = {
   lifecycleInstrumentationSHA256: args.includes("--lifecycle-counts")
     ? hash(installLifecycleProbe.toString())
     : null,
+  sceneInventoryDiagnostic: args.includes("--scene-inventory"),
+  sceneInventorySHA256: args.includes("--scene-inventory") ? hash(readSceneInventory.toString()) : null,
   networkDiagnostic: args.includes("--network-counts"),
   fixtureSHA256: Object.fromEntries(
     profiles.map((profile) => [
@@ -443,6 +446,7 @@ async function inventory() {
         zoom: c.__harbor.camera.zoom,
       },
       stats: c.__harbor.stats(),
+      sceneResources: globalThis.__KUBEVIEW_SCENE_INVENTORY__?.(c.__harbor.scene, p?.gl),
       preferences: JSON.parse(localStorage.getItem("kubeview.preferences.v1")),
       connectionStale: document
         .querySelector(".world-brand-control")
@@ -544,7 +548,7 @@ async function launchProfile(profile, scenario = "") {
   });
   if (!noProbe)
     await context.addInitScript({
-      content: `${args.includes("--lifecycle-counts") ? `(${installLifecycleProbe.toString()})();` : ""}(${installProbe.toString()})();${args.includes("--profile-gpu") ? `(${installGPUProbe.toString()})();` : ""}${args.includes("--profile-frames") ? `(${installFrameMarks.toString()})();` : ""}`,
+      content: `${args.includes("--lifecycle-counts") ? `(${installLifecycleProbe.toString()})();` : ""}(${installProbe.toString()})();${args.includes("--profile-gpu") ? `(${installGPUProbe.toString()})();` : ""}${args.includes("--profile-frames") ? `(${installFrameMarks.toString()})();` : ""}${args.includes("--scene-inventory") ? `globalThis.__KUBEVIEW_SCENE_INVENTORY__=(${readSceneInventory.toString()});` : ""}`,
     });
   if (args.includes('--profile-buffers')) {
     manifest.profiler = true;

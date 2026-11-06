@@ -1,0 +1,143 @@
+{
+  "mainRun": "repair-final-battery-20261106-final-long",
+  "all40": {
+    "JSHeapUsedMiB": {
+      "n": 40,
+      "min": 18.86423110961914,
+      "median": 35.46302604675293,
+      "max": 85.64011764526367
+    },
+    "DOMNodes": {
+      "n": 40,
+      "min": 524,
+      "median": 534.5,
+      "max": 744
+    },
+    "CDPListenerObjects": {
+      "n": 40,
+      "min": 1048,
+      "median": 1179.0,
+      "max": 1834
+    },
+    "gpuGeometries": {
+      "n": 40,
+      "min": 33,
+      "median": 34.0,
+      "max": 42
+    },
+    "gpuTextures": {
+      "n": 40,
+      "min": 3,
+      "median": 3.0,
+      "max": 3
+    },
+    "logRows": {
+      "n": 40,
+      "min": 268,
+      "median": 296.0,
+      "max": 3568
+    },
+    "flushTimeoutsIncludingHarness": {
+      "n": 40,
+      "min": 1,
+      "median": 2.0,
+      "max": 3
+    },
+    "intervalsIncludingHarness": {
+      "n": 40,
+      "min": 1,
+      "median": 1.0,
+      "max": 1
+    }
+  },
+  "postFirstPanelReopen19": {
+    "JSHeapUsedMiB": {
+      "n": 19,
+      "min": 18.86423110961914,
+      "median": 35.01701736450195,
+      "max": 44.32714080810547
+    },
+    "DOMNodes": {
+      "n": 19,
+      "min": 526,
+      "median": 530,
+      "max": 544
+    },
+    "CDPListenerObjects": {
+      "n": 19,
+      "min": 1048,
+      "median": 1179,
+      "max": 1572
+    },
+    "gpuGeometries": {
+      "n": 19,
+      "min": 34,
+      "median": 34,
+      "max": 42
+    },
+    "gpuTextures": {
+      "n": 19,
+      "min": 3,
+      "median": 3,
+      "max": 3
+    },
+    "logRows": {
+      "n": 19,
+      "min": 296,
+      "median": 296,
+      "max": 296
+    },
+    "flushTimeoutsIncludingHarness": {
+      "n": 19,
+      "min": 1,
+      "median": 2,
+      "max": 2
+    },
+    "intervalsIncludingHarness": {
+      "n": 19,
+      "min": 1,
+      "median": 1,
+      "max": 1
+    }
+  },
+  "sameCanonicalCountsAll": true,
+  "socketsAlwaysOne": true,
+  "activeLogsAlwaysOne": true,
+  "closed": {
+    "logCleanup": {
+      "opened": 24,
+      "closed": 24,
+      "remaining": 0
+    },
+    "DOM": {
+      "documents": 1,
+      "nodes": 515,
+      "jsEventListeners": 1190
+    },
+    "lifecycle": {
+      "intervals": 1,
+      "timeouts": 0,
+      "observers": {
+        "MutationObserver": 2,
+        "ResizeObserver": 1
+      },
+      "observerInstances": {
+        "MutationObserver": 2,
+        "ResizeObserver": 1
+      },
+      "callbacks": {
+        "timeout": 12388,
+        "interval": 82,
+        "MutationObserver": 2020,
+        "ResizeObserver": 1
+      },
+      "overflow": false,
+      "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+    },
+    "memory": {
+      "geometries": 36,
+      "textures": 3
+    }
+  },
+  "limits": "Natural JS heap is not retained heap; CDP listeners include detached objects awaiting GC, not just active listeners. GPU object counts are not VRAM. Dynamic crash/recovery labels/transitions mean individual geometry counts may vary; no absolute leak-proof claim."
+}

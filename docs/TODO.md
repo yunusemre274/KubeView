@@ -1,20 +1,36 @@
 # Güncel görev durumu
 
+## 6 Kasım 2026 — devam ve son kabul
+
+- [x] Dondurulmuş ürün kaynak/build kimliklerini ve eski geçerli 21 AC hücresini koru; güç tercihi doğrultusunda ayrı pil oturumu başlat.
+- [x] Normal UI create/dry-run/scale, scheduling/image/admission hataları ve context taslak sınırını gerçek sahip olunan lab'da doğrula; restart helper hatasını ayrı dar koşuyla düzeltip kanıtla, eski başarısız sonucu koru.
+- [x] Başlık PNG ve visible/enabled kontrol trial tanılamasını 20 aynı çalışma kümesi çevriminde kaydet; fiziksel sunum veya bütün kontrollerin kullanılabilirliği diye sunma.
+- [x] Test kaynaklarını UID/RV ile temizle ve 404 gözle; sahip olunan lab makinelerini durdur, performans makinesini tek ölçüm kuyruğuna ayır.
+- [x] Yeni pil oturumundaki 49 hücreyi ve 20 dakika karma/20 stream çevrimini tamamla; bütünlük, latency ve kare kapıları valid=true. Tam içerik eşitliği, 24/24 log kapanışı, 3 reconnect / 329 resync doğrulandı.
+- [x] Yedi kısa gerçek kaynak kaydını kodla/aç; erken container kesitini koruyup gerçek düşüş aralığıyla değiştir; P2 etiket örtüşmesini açık yaz.
+- [x] Ayrı GPU/çoklu olay cleanup tanılaması ve üç salt okunur scene-inventory helper testi; frame/timer/listener eklenmedi.
+- [x] Doğrudan materyal envanterli son 20 dakika: 40 checkpoint, 20 panel çevrimi, 24/24 log kapanışı, tam içerik/kimlik ve kare kapıları geçti; materyaller 40–44 ve tekrar 40.
+- [x] Son rapor, açık sınırlar ve seçilmiş kanıt paketi hazırlandı; commit/push sonucu Git remote ref ve teslim mesajında doğrulanır.
+
 ## 1 Kasım 2026 — v1.1 öncesi onarım (uygulama sürüyor)
+
+Bu bölüm 1 Kasım ara durumudur; son durum yukarıdaki 6 Kasım kaydındadır.
 
 - [x] G00 kapsam/UID/reconnect/RBAC; gerçek CR UI testinde6grup, log replacement yarışı ve sentetik Secret metadata korunumu.
 - [x] Controller resource capability hedefi; gerçek D/STS/DS template202, RS/Job/CronJob422; CronJob/rollback/native-sidecar/applied-resize/PDB gerçek API testleri.
 - [x] Bounded Node/container görsel koordinatörü; gerçek status enjeksiyonuyla batma/toparlanma, doğal worker stop→Unknown→recovery, Node DELETE→orphan erişimi/yeni UID; gerçek çok-container arızası/recovery/normal termination ayrımı.
-- [x] Yerel minikube worker-add adaptörü/journal/lock; iki gerçek yeni worker sağlandı. İlk katılım trafik kilidi gerçek kayıttan düzeltildi; güncel gerçek katılımın son kabulü aşağıda açık.
+- [x] Yerel minikube worker-add adaptörü/journal/lock; güncel gerçek yeni worker, farklı Docker/NodeUID ve Ready → güvenli kızak katılımı → üç geminin seyri `provision-final-2` kaydında geçti; çift istek 202/409 ayrıldı.
 - [x] Hubble1.20.2 read adapter, mTLS/namespace/temporal UID sınırları; gerçek ayrı same/cross-Node Pod iletişimi ve restricted-SA erişim testi.
 - [x] Chromium/WebKit odak/overlay/hareket, gerçek60sn document.hidden ve72SoftUI kontrast kontrolü; gerçek yakın vinç yük alma/kaldırma/indirme videosu açıldı.
-- [ ] Güncel katılım düzeltmesiyle yeni gerçek worker'ın filoya tamamlanmış katılımı; gerçek trafik katmanının start/increase/stop/DNS/provider recovery görsel kabulü.
+- [x] Gerçek Hubble same/cross-Node start/increase/stop; 3D/klavye endpoint seçimi; gerçek DNS/UDP ve sağlayıcı kopması→stale→pencere temizliği→recovery. DNS UID belirsizliği null olarak korunur.
 - [ ] Aynı kalite eşleşmiş son performans, yeni efekt/collector maliyeti,20dk karma ve20panel/stream çevrimi; nihai audit/matris/kurulum belgeleri.
 - [ ] v1.1 ayrı sonraki karardır; sürüm/etiket/release/milestone kapanışı yapılmayacak.
 
 Kanıt ve açık sınırlar: [PRE_V11_VISUAL_REPAIR](PRE_V11_VISUAL_REPAIR.md).
 
-## 1 Kasım 2026 — v1.1 öncesi görsel davranış denetimi
+## 1 Kasım 2026 — tarihsel yalnız-denetim kaydı
+
+Bu bölümün açık ürün maddeleri sonraki uygulama görevine devredildi; güncel durum yukarıdaki onarım bölümündedir.
 
 - [x] Mevcut dirty checkout/build kimliğini koru; aktif watcher→WS→store→nesne→panel→gerçek işlem yollarını ve iki yerel referansı denetle. Ürün davranışı değiştirilmedi.
 - [x] Yalnız denetime ait gerçek Kubernetes1.35.1 kümesinde Node stop/Unknown/recovery/delete/new UID, Pod restart/Failed/Succeeded/finalizer/replacement ve normal UI Deployment create/scale/restart kanıtlarını kaydet; sentetik/status enjeksiyonunu gerçek fault'tan ayır.

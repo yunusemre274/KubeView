@@ -1,5 +1,21 @@
 # Tam ekran tersane dönüşümü
 
+## 6 Kasım 2026 — v1.1 öncesi doğruluk ve görsel onarım
+
+v1.1 geçişi ertelidir; aşağıdaki onarım v1.1 milestone/release kapanışı değildir. [Güncel kabul raporu](PRE_V11_VISUAL_REPAIR.md), [somut kaynak matrisi](VISUAL_FEATURE_MATRIX.csv) ve [sınırlar](VISUAL_FEATURE_GAPS.md) tarihsel A–G kayıtlarından sonra gelen durumu tanımlar.
+
+| İş | Durum / kanıt |
+|---|---|
+| G00 scoped CR / UID / logs / Secret / template hedefi | Gerçek API/UI doğrulandı; atomik UID-pinned Kubernetes logs garantisi yok, sınır belgelendi. |
+| G01–G02 Node ve tek-container arıza/recovery | Uygulandı; doğal worker Unknown/recovery ile ayrı False status enjeksiyonu, gerçek iki-container crash/recovery ve normal completion ayrımı. OOM/Evicted gerçek E2E kapsamı açıkça sınırlı. |
+| G03 yerel worker sağlama / katılım | Gerçek yeni minikube Docker worker + yeni Node UID + Ready ve kızak katılımı doğrulandı; genel bulut sağlayıcısı değildir. |
+| G04/G07 hazırlık / vinç / kontrol düzlemi anlatımı | Gerçek owner/işlem/atama/Ready zinciri; iki eşzamanlı Deployment ve yakın vinç devri. Temsili süreç, ölçülmüş iç RPC değildir. |
+| G05 gerçek flow | Hubble1.20.2 mTLS, same/cross-Node gerçek Pod iletişimi, start/artır/stop, yetki sınırı ve provider loss/recovery. Paket/bant genişliği veya bütün protokoller iddiası yok. |
+| G06 capability ve erişim | Kaynak/işlem bazında matris; genel YAML özel 3D temsil değildir. Kurulu olmayan addon ve desteklenmeyen işlem açık. |
+| Son kabul | Ana 49 hücre/üç eşleşmiş blok ve 20 dakika/20 panel çevrimi geçti. Ayrı doğrudan materyal cleanup tanılaması da geçti (40 checkpoint/20 çevrim); belgelenmiş platform/protokol/P2 sınırları korunur. |
+
+## Önceki dönüşüm kilometre taşları — tarihsel kayıt
+
 A–G tablosu ilk tam ekran dönüşümünün tarihsel kilometre taşlarıdır; son hareketli sürümün kabulü alttaki tabloda yer alır.
 
 2026-10-24 kararı: önceki dashboard yerleşimi geçersizdir. Aşağıdaki durum kod ve test kanıtını izler; tarihsel “tüm fazlar tamamlandı” ifadeleri kabul kanıtı değildir.

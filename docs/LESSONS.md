@@ -133,3 +133,9 @@ Panel sırasını hem dış kuyruk hem runner ters çeviriyordu. Yeni oturumda b
 Rollout yardımcısı yeni Ready Pod'ları kontrol ederken doğru biçimde canonical state'te tutulan eski Terminating Pod'u da yeni UID kontrolüne katıyordu. Gerçek watch kaydı yeni ReplicaSet ve Pod'ları gösterdi; yalnız helper düzeltildi, ilk FAILED kayıt korundu ve ayrı dar tekrar geçti. API kabulü ile eski Pod'un DELETE olayı birbirinden ayrılır.
 
 Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm sınırları gecikti. Geçersiz pencere dışarıda bırakıldı; kullanıcı süreçleri kapatılmadı. Beş günlük aradan sonra kullanıcı pilde devamı seçtiğinden AC sonuçlarıyla CPU oranı kurulmaz; aynı dondurulmuş kaynakla yeni eşleşmiş pil oturumu gerekir.
+
+## 6 Kasım 2026 — Kabul yardımcısı ve video zamanının sınırı
+
+- Restart sonrası canonical state, grace period içindeki eski Terminating Pod'u doğru biçimde tutar. Yeni Ready incarnation kontrolü bu eski UID'leri de saymamalı. İlk FAILED kanıt korundu; yalnız assertion düzeltildi ve ayrı dar gerçek koşu iki eski DELETE / iki yeni Ready UID'yi doğruladı. Ürün kaynağı değişmedi.
+- UTC/capture gecikmesinden video PTS'si varsayılmaz. İlk 11–14,5 saniyelik container kesiti warning sırasında bitiyordu; kaynak video örnek kareleri açılınca gerçek düşüş/su izi 13–20 saniyede seçildi. Eski kesit reddedilmiş seçim olarak tutuldu; etiketin orta hareketi örtmesi P2 olarak gizlenmedi.
+- Yeni render sarmalayıcısı/WeakRef registry kurmadan önce mevcut gözlem arayüzünü incele. `canvas.__harbor.scene` checkpoint'te doğrudan envanter sağlar; saf sayaç timer/listener/render döngüsü veya güçlü kaynak geçmişi kurmaz. Sarmalayıcı prototipi kurulmadan elendi; mikrobenchmark hızlanması iddia edilmedi.

@@ -2,6 +2,22 @@
 
 Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standardına dayanır.
 
+## 2026-11-06 — onarımın son kabul oturumu
+
+- Üç eşleşmiş blokta medium/DPR1/su/seyir/kaynak kapsamı korundu. Açık panel CPU medyanı0,4325→0,4143 çekirdek; negatif signedΔpanel korunur. Çoklu arıza ek maliyeti+0,0162çekirdek, küresel optimizasyon iddiası yok. Uzun koşu60,0005JSçizim/sn,p9518,6/p9919,4ms;5600/5600olay,fullfinalsignature,3reconnect/329resync,20/20panel ve24/24log kapanışı.
+- Salt okunur checkpoint materyal envanteri, üç hedefli test ve ayrı asenkron GPU tanılaması; ek frame/timer/listener yok. GPU p952,55ms kullanım yüzdesi değildir. Yedi kısa gerçek kaynak kaydı açıldı; hatalı erken container video kesiti korunup13–20sn aralığı seçildi. Etiket örtüşmesiP2olarak açık.
+
+- Dondurulmuş ürün source/build kimlikleri korunarak, kullanıcının pille devam tercihi için yeni eşleşmiş seri oturum açıldı. Önceki 21 AC hücresi ayrı tutulur; kaynak, güç, tarayıcı, süreç kapsamı ve tam canonical içerik kapıları gevşetilmedi.
+- Normal UI create/dry-run/scale ve olumsuz scheduling/image/quota/context yolları yeniden sınandı. İlk restart helper hatası tarihsel FAILED olarak kaldı; ayrı dar recovery koşusu eski UID DELETE / yeni RS ve Ready Pod UIDlerini doğruladı. Ürün kodu bu test düzeltmesiyle değişmedi.
+- Aynı sentetik çalışma kümesinde 20 panel çevriminin başlık PNG ve kontrol trial üst sınırları kaydedildi; fiziksel ekran sunumu veya bütün panel kontrollerinin kullanılabilirliği diye sunulmaz. Ana pil oturumu 49/49 hücre ve 20 dakika/20 panel çevrimiyle geçti; doğrudan materyal tanılaması da 40 checkpoint/20 çevrim/24 kapanışla geçti. Materyal40–44 ve texture3 aralığı ölçüldü; mutlak sızıntı yokluğu iddiası yok.
+
+## 1 Kasım 2026 — onarımın gerçek işlev kabulü, son performans açık
+
+- Son gerçek yeni worker, API NodeUID/Ready, kızaktan katılım ve mevcut filonun seyri birlikte doğrulandı; aynı/farklı idempotency key sonuçları202/409. Önceki başarısız giriş/harness kayıtları korunur.
+- Gerçek same/cross-Node Hubble akışı,3Dve klavye seçimi, yük artırma/durdurma; provider kopması/stale/10sn expiry/recovery ve gerçek DNS/UDP doğrulandı. Flow olayı paket değildir; belirsiz UID uydurulmaz.
+- Snapshot kaynak kökeni ve tarihsel provisioning journal sınırı düzeltildi; eski namespace Pod'ları yeni yükleme gibi oynatılmaz. Benchmark fixture context adı production korumasıyla eşlendi; koruma gevşetilmedi.
+-129frontend/26benchmark testleri ve son Go/race kapıları geçti. Son production CPU/kare/kararlılık ölçümleri sürüyor; tamamlandı veya v1.1 duyurusu değildir.
+
 ## 2026-11-01 — v1.1 öncesi onarım, doğruluk ve sağlayıcı aşaması
 
 - Snapshot'ın gerçek GVR/namespace kapsamı, on-demand watch/reconnect ve UID tombstone ayrımı düzeltildi. Silinme, henüz listelenmeme, stale ve RBAC reddi ayrı; gerçek CR kullanıcı akışı6grup geçti.

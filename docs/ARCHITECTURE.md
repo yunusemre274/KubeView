@@ -4,6 +4,8 @@
 
 React 18 / R3F 8 / Drei 9 / Three 0.164 korunur. Vite 6.4.5 güvenlik düzeltmeleri için yükseltildi. Go client-go 0.30, dynamic client, typed logs/metrics ve discovery birlikte kullanılır. Frontend framework göçü yapılmadı.
 
+6 Kasım kabulü: [49 hücrelik karşılaştırma ve gerçek E2E sınırları](PRE_V11_VISUAL_REPAIR.md). Son ürün kaynak/build kimliği donduruldu; yeni materyal sayacı yalnız test harness'inin isteğe bağlı checkpoint envanteridir. Mevcut `canvas.__harbor.scene` üzerinden benzersiz erişilebilir geometri/materyal sayılır; yeni render döngüsü, timer, listener, Worker veya üretim endpoint'i kurulmaz. Renderer nesne/program sayıları, sahne envanteri, JS heap ve süreç RSS farklı ölçümlerdir. Envanter renderer-generated/off-scene materyalleri veya GC tamamlanmasını kanıtlamaz.
+
 1. `backend/pkg/server`: gerçek context seçimi, HTTP API, kimlik doğrulama, SSAR, dynamic informer ve WebSocket. Önceki `k8 sn`/`websocket` paketleri ana çalışma yolunda kullanılmaz; eski örnek log fallback’i kaldırıldı.
 2. `frontend/src/context/ShipyardClusterContext.jsx`: modül düzeyinde tek WebSocket yöneticisi. Kaynak değişiminde oturum epoch artırılır, eski callback/istek/socket reddedilir. UI yalnız ham nesneleri paylaşır.
 3. `frontend/src/data/resourceStore.js`: saf snapshot/delta reducer, UID kimliği, bounded 500 olay / 1 saat ve 241 metrik örneği. `resourceVersion` opaque dize olarak korunur.

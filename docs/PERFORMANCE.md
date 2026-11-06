@@ -1,5 +1,37 @@
 # KubeView performans ölçümü
 
+**6 Kasım 2026 — görsel onarım kabulü:** Gerçek kaynak/animasyon kanıtı, dondurulmuş source/build kimliği ve yeni pil oturumunun durumu [PRE_V11_VISUAL_REPAIR.md](PRE_V11_VISUAL_REPAIR.md) içindedir. `benchmarks/repair-session.mjs` mevcut production runner'ına sonlu seri plan ekler; ayrı renderer veya yeni benchmark sistemi değildir. Üç eşleşmiş blokta açık/kapalı panel, Node/container/çoklu olay efektleri, idle ve L dünya; ardından olay, etkileşim ve 20 dakika/20 panel-stream çevrimi çalışır. İlk snapshot efekt kuyruğu, tam nesne içeriği eşitliği, üretici hızı, süreç CPU kapsamı, zaman/kalite/kaynak kimliği ve cleanup kapıları raporda ayrı doğrulanır. Aynı seçili UID korunur; panel açılmasıyla kamerayı veya seçim bağlamını değiştirerek kıyas yapılmaz.
+
+```sh
+# Önceden dondurulmuş iki build ile YENİ run-id; geçerli dosyaları ezmez.
+node benchmarks/repair-session.mjs YENI_RUN_ID pre-v11-start pre-v11-final-8768398
+# Yalnız bütün seri kuyruk bittikten sonra kabul raporu.
+node benchmarks/repair-report.mjs YENI_RUN_ID
+# Devam eden kuyruk için salt okuma; sonuç kabul değildir.
+node benchmarks/repair-report.mjs YENI_RUN_ID --partial
+```
+
+Build etiketleri `benchmarks/.build/` içindeki `panel-build.mjs` çıktısına ve kaynak provenance kaydına karşılık gelir; aynı etiket adını vermek aynı binary'yi üretme garantisi değildir. Kuyruk frontend asset'lerini, test binary'sini ve tarayıcı sürümünü her işten önce denetler. Başlangıç güç kaynağı sabitlenir, pil %10 altındaysa sonraki iş başlamaz. `--continue-from ESKI_RUN_ID`, yalnız durmuş kuyruğun build/güç/tarayıcı kimliği aynıysa, tamamlanmış işleri koruyarak yeni run-id ile devam eder. Başarısız iş cleanup'ı incelenmeden yeniden denenmez. Tek tekrar çağrıları runner tarafından `smoke` işaretlenebilir; kabul raporu gerçek 30/60 sn pencerelerini ve en az üç bağımsız eşleşmiş bloğu birlikte denetler. Profiling/video/GPU tanılamaları ana CPU dağılımına katılmaz.
+
+Dar sahne envanteri yalnız mevcut `inventory()` checkpointlerinde `canvas.__harbor.scene` üzerinde benzersiz geometri/materyal kimliklerini sayar. Ek timer, render sarmalayıcısı veya listener kurmaz. Sahneden erişilen nesneleri, görünmez mesh'leri ve custom/override materyalleri kapsar; renderer-generated/off-scene materyalleri veya GC tamamlanmasını ölçmez. GPU `renderer.info` nesne/program sayıları ayrı alandır; VRAM baytı değildir. Üç hedefli helper testi paylaşım/çıkarma/serileştirme ve sıfır scheduler davranışını doğrular. Şu tanılamalar ana CPU dağılımıyla birleştirilmez:
+
+```sh
+# Aynı dondurulmuş ürün; 30+60sn asenkron GPU ve arıza/cleanup envanteri.
+node benchmarks/run.mjs --phase optimized --build-tag pre-v11-final-8768398 \
+  --backend-tag pre-v11-final-8768398 --reuse-build --reuse-binary \
+  --id YENI_GPU_RUN_ID --profiles M --scenarios repair-burst --repeats 1 \
+  --warmup 30 --seconds 60 --dpr 1 --lock-input --disable-browser-energy-saver \
+  --lifecycle-counts --scene-inventory --profile-gpu --max-minutes 5
+# Aynı mevcut uzun koşu, ek olarak doğrudan materyal sayımı. Tek makine lease'i.
+node benchmarks/run.mjs --phase optimized --build-tag pre-v11-final-8768398 \
+  --backend-tag pre-v11-final-8768398 --reuse-build --reuse-binary \
+  --id YENI_ENVANTER_RUN_ID --profiles M --scenarios long --repeats 1 \
+  --warmup 30 --seconds 60 --long-seconds 1200 --dpr 1 --lock-input \
+  --disable-browser-energy-saver --lifecycle-counts --scene-inventory --max-minutes 25
+```
+
+`--reuse-build/--reuse-binary` yeni derleme yapmaz; önce kaynak/build provenance dosyalarının kimliği doğrulanmalıdır. `--scene-inventory` yalnız bu ek sayımı, `--lifecycle-counts` JS timer/observer tanılamasını, `--profile-gpu` asenkron GPU sorgularını açar. `--lock-input` test kamera/kadrajını dış girdiden korur. `--disable-browser-energy-saver` sadece geçici benchmark profilinin 30Hz pil tasarrufunu kapatır, sistem güç ayarını değiştirmez. Bu bayrakların overhead'i normal üretim kullanımıyla eşit sayılmaz.
+
 **30 Ekim 2026 eki:** [Panel çalışması](PANEL_CPU_OPTIMIZATION.md) son v5 kaynak kimliğini,40 hücre/beş blok AC matrisini, beş dolu-log çiftini ve reddedilen instance kapasite prototipini içerir. Toplam CPU ve signed Δpanel ayrıdır; log akıcılık/RSS kazanımı net toplam CPU kazanımı diye sunulmaz. Pildeki son kararlılık/yardımcı oturumu AC dağılımlarına eklenmez. [Gerçek müdür/worker komutları](../benchmarks/orchestration/README.md).
 
 **26 Ekim 2026 eki:** Güncel sınırlı log sürümünden başlayan eşleşmiş panel matrisi, ayrı profiling build'i, log/lifecycle tanılamaları ve yeni frozen build komutları [PANEL_CPU_OPTIMIZATION.md](PANEL_CPU_OPTIMIZATION.md) içindedir. Aşağıdaki 25 Ekim yöntem ve sonuç bağlantıları tarihsel olarak korunur; o raporun eski güvensiz log baseline'ı yeniden çalıştırılmaz. Güncel panel/kargo indeks sınırları ARCHITECTURE ve yeni ekte anlatılır.

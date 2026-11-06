@@ -1,0 +1,11 @@
+=== RUN   TestOwnedRepairRealLogUIDReplacement
+=== RUN   TestOwnedRepairRealLogUIDReplacement/before-open
+    repair_integration_test.go:187: REAL API/watch/log race boundary=before-open context=kv-repair-1101 namespace=kv-repair-log oldUID=5a350e61-0bf4-4646-a5ac-9cd6c47dec0b newUID=b5b140ea-0634-4026-a11b-06e799edbcc9 HTTP=409; new-incarnation bytes withheld; Kubernetes log endpoint remains non-atomic
+=== RUN   TestOwnedRepairRealLogUIDReplacement/before-first-publish
+E1101 17:02:29.466944   67001 retrywatcher.go:129] "Watch failed" err="context canceled"
+    repair_integration_test.go:187: REAL API/watch/log race boundary=before-first-publish context=kv-repair-1101 namespace=kv-repair-log oldUID=271c29e4-970d-4158-8e90-8957b6d2a662 newUID=c6cbb1e5-848e-4999-9939-4af65a9e558d HTTP=200; new-incarnation bytes withheld; Kubernetes log endpoint remains non-atomic
+--- PASS: TestOwnedRepairRealLogUIDReplacement (10.08s)
+    --- PASS: TestOwnedRepairRealLogUIDReplacement/before-open (8.00s)
+    --- PASS: TestOwnedRepairRealLogUIDReplacement/before-first-publish (2.06s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	10.477s

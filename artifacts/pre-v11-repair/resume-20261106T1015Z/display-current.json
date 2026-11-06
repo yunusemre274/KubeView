@@ -1,0 +1,12 @@
+{
+  "observedAt": "2026-11-06T10:37:27.342003+00:00",
+  "method": "JXA CoreGraphics CGMainDisplayID/CGDisplayCopyDisplayMode, actual current query",
+  "displayMode": {
+    "display": 1,
+    "Width": 1470,
+    "Height": 956,
+    "PixelWidth": 2940,
+    "PixelHeight": 1912,
+    "RefreshRate": 60
+  }
+}

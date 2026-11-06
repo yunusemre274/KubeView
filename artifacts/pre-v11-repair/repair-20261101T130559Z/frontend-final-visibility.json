@@ -1,0 +1,485 @@
+{
+  "startedAt": "2026-11-01T16:43:08.412Z",
+  "source": "Real owned Kubernetes / normal UI; native own Chromium OS minimization, not synthetic visibility dispatch",
+  "context": "kv-repair-1101",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "errors": [],
+  "browser": "156.0.8078.4",
+  "expectedPod": {
+    "uid": "c3787c43-ad96-4bba-b67a-71f150959e20",
+    "name": "flow-client",
+    "namespace": "kv-repair-qa"
+  },
+  "before": {
+    "at": "2026-11-01T16:43:10.257Z",
+    "hidden": false,
+    "visibilityState": "visible",
+    "water": {
+      "time": 0.9676999999992549,
+      "strength": 0.44791840074337813
+    },
+    "fleet": [
+      {
+        "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+        "name": "kv-repair-1101",
+        "slot": 0,
+        "progress": 885.6364694115339,
+        "position": [
+          -61.264799999993215,
+          -0.010730438621289268,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.00202841988737301,
+        "roll": -0.002359769879926303,
+        "state": "patrolling",
+        "speed": 9.000000000007624,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      },
+      {
+        "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+        "name": "kv-repair-1101-m02",
+        "slot": 1,
+        "progress": 1059.2293867644191,
+        "position": [
+          -175,
+          -0.06694993484149452,
+          158.82811735289192
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0006895549211767823,
+        "roll": -0.004151451997182721,
+        "state": "patrolling",
+        "speed": 8.999999999980394,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+        "name": "kv-repair-1101-m03",
+        "slot": 2,
+        "progress": 1232.8223041173048,
+        "position": [
+          -175,
+          0.03560947200937545,
+          -14.764799999993784
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.003578334469651642,
+        "roll": -0.0014426707276784477,
+        "state": "patrolling",
+        "speed": 8.999999999980394,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "stats": {
+      "frame": 60,
+      "calls": 215,
+      "triangles": 45791,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 36,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 3,
+        "visibleNodes": 3,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 3,
+        "visiblePods": 3,
+        "nodeSlots": 3,
+        "podSlots": 3,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "camera": [
+      155.32070332934845,
+      297.3149971650057,
+      468.72488860383254
+    ],
+    "brand": "KubeViewkv-repair-1101Canlı"
+  },
+  "minimized": {
+    "at": "2026-11-01T16:43:11.583Z",
+    "hidden": true,
+    "visibilityState": "hidden",
+    "water": {
+      "time": 1.5679000000003727,
+      "strength": 0.45
+    },
+    "fleet": [
+      {
+        "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+        "name": "kv-repair-1101",
+        "slot": 0,
+        "progress": 891.0382694115453,
+        "position": [
+          -66.66660000000468,
+          0.004135877521073236,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.0013709332120667589,
+        "roll": -0.0017244595477233634,
+        "state": "patrolling",
+        "speed": 9.000000000004809,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      },
+      {
+        "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+        "name": "kv-repair-1101-m02",
+        "slot": 1,
+        "progress": 1064.631186764431,
+        "position": [
+          -175,
+          -0.0713586741869057,
+          153.42631735288
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.001749975074951781,
+        "roll": -0.0034458838704051176,
+        "state": "patrolling",
+        "speed": 9.000000000004809,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+        "name": "kv-repair-1101-m03",
+        "slot": 2,
+        "progress": 1238.2241041173168,
+        "position": [
+          -175,
+          0.004160620561547822,
+          -20.166600000005673
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.0039198863028504765,
+        "roll": -0.0017960286106874594,
+        "state": "patrolling",
+        "speed": 9.000000000003174,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "stats": {
+      "frame": 96,
+      "calls": 215,
+      "triangles": 45791,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 36,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 3,
+        "visibleNodes": 3,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 3,
+        "visiblePods": 3,
+        "nodeSlots": 3,
+        "podSlots": 3,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "camera": [
+      155.32070332934845,
+      297.3149971650057,
+      468.72488860383254
+    ],
+    "brand": "KubeViewkv-repair-1101Canlı"
+  },
+  "hiddenMs": 60002,
+  "during": {
+    "at": "2026-11-01T16:44:11.594Z",
+    "hidden": true,
+    "visibilityState": "hidden",
+    "water": {
+      "time": 1.5679000000003727,
+      "strength": 0.45
+    },
+    "fleet": [
+      {
+        "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+        "name": "kv-repair-1101",
+        "slot": 0,
+        "progress": 891.0382694115453,
+        "position": [
+          -66.66660000000468,
+          0.004135877521073236,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.0013709332120667589,
+        "roll": -0.0017244595477233634,
+        "state": "patrolling",
+        "speed": 9.000000000004809,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      },
+      {
+        "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+        "name": "kv-repair-1101-m02",
+        "slot": 1,
+        "progress": 1064.631186764431,
+        "position": [
+          -175,
+          -0.0713586741869057,
+          153.42631735288
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.001749975074951781,
+        "roll": -0.0034458838704051176,
+        "state": "patrolling",
+        "speed": 9.000000000004809,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+        "name": "kv-repair-1101-m03",
+        "slot": 2,
+        "progress": 1238.2241041173168,
+        "position": [
+          -175,
+          0.004160620561547822,
+          -20.166600000005673
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.0039198863028504765,
+        "roll": -0.0017960286106874594,
+        "state": "patrolling",
+        "speed": 9.000000000003174,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "stats": {
+      "frame": 96,
+      "calls": 215,
+      "triangles": 45791,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 36,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 3,
+        "visibleNodes": 3,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 3,
+        "visiblePods": 3,
+        "nodeSlots": 3,
+        "podSlots": 3,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "camera": [
+      155.32070332934845,
+      297.3149971650057,
+      468.72488860383254
+    ],
+    "brand": "KubeViewkv-repair-1101Canlı"
+  },
+  "upstreamDuring": {
+    "uid": "c3787c43-ad96-4bba-b67a-71f150959e20"
+  },
+  "after": {
+    "at": "2026-11-01T16:44:13.045Z",
+    "hidden": false,
+    "visibilityState": "visible",
+    "water": {
+      "time": 2.4177000000011195,
+      "strength": 0.45
+    },
+    "fleet": [
+      {
+        "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+        "name": "kv-repair-1101",
+        "slot": 0,
+        "progress": 899.5864694115528,
+        "position": [
+          -75.21480000001213,
+          0.013004086156240996,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": 0.00027499128961197685,
+        "roll": 0.0005971001842701966,
+        "state": "patrolling",
+        "speed": 8.999999999993092,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      },
+      {
+        "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+        "name": "kv-repair-1101-m02",
+        "slot": 1,
+        "progress": 1073.179386764438,
+        "position": [
+          -175,
+          -0.0517242533433184,
+          144.878117352873
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.002797118248770908,
+        "roll": -0.0013100921231759617,
+        "state": "patrolling",
+        "speed": 8.999999999993092,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+        "name": "kv-repair-1101-m03",
+        "slot": 2,
+        "progress": 1246.7723041173238,
+        "position": [
+          -175,
+          -0.0450142266681758,
+          -28.7148000000127
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.0029968069129205775,
+        "roll": -0.001569026043249933,
+        "state": "patrolling",
+        "speed": 8.999999999991294,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "stats": {
+      "frame": 143,
+      "calls": 215,
+      "triangles": 45791,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 37,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 3,
+        "visibleNodes": 3,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 3,
+        "visiblePods": 3,
+        "nodeSlots": 3,
+        "podSlots": 3,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "camera": [
+      155.32070332934845,
+      297.3149971650057,
+      468.72488860383254
+    ],
+    "brand": "KubeViewkv-repair-1101Canlı"
+  },
+  "hiddenFrames": 0,
+  "waterPaused": true,
+  "hiddenFleetMaxProgress": 0,
+  "resumedFleetMaxProgress": 8.548200000007455,
+  "resumedSelectedUIDCorrect": true,
+  "status": "PASSED",
+  "limit": "Read-only selected UID retained/accessible and canonical count/queue diagnostics recorded; no event generator or full canonical-content equality claim in this visibility check.",
+  "endedAt": "2026-11-01T16:44:13.956Z"
+}

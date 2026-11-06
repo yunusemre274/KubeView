@@ -1,0 +1,11 @@
+✔ deduplicates shared and array/depth/distance/override materials including hidden meshes (0.765208ms)
+✔ fresh checkpoint inventory observes removal/replacement and retains no resource history (0.08375ms)
+✔ serialized browser function schedules nothing and preserves input objects (0.826ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30.3355

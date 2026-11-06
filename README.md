@@ -2,6 +2,8 @@
 
 Kubernetes kümenizin arayüzü, tam ekran etkileşimli bir tersanedir. Merkez binasına, Node gemisine veya Pod yüküne tıklayarak çalışırsınız. Kalıcı dashboard, sidebar veya açık kaynak tablosu yoktur. Listeler, formlar, grafikler ve loglar ilgili nesnenin geçici penceresinde açılır.
 
+6 Kasım onarım kaydı: kapsamlı CR reconnect/UID doğruluğu, Node/container arıza anlatımı, izinli yerel worker sağlama, gerçek Hubble akışı ve temsili hazırlık süreci için [gerçek kanıtlar ve sınırlar](docs/PRE_V11_VISUAL_REPAIR.md), [incelenmiş kısa kayıtlar](artifacts/pre-v11-repair/repair-20261101T130559Z/delivery/EVIDENCE_INDEX.md). Sürüm 0.4.0 korunur; v1.1 release'i oluşturulmadı.
+
 ![Hareketli tersane](docs/evidence/motion/fleet-overview.png)
 
 ## Kullanım
@@ -134,4 +136,4 @@ KV_HUBBLE_TLS_SERVER_NAME=relay.example \
 
 `KV_HUBBLE_BINARY` varsayılan `hubble` yerine sabit bir executable yolu verebilir. Sağlayıcı kimliği context/clusterUID/API TLS binding ve gerçek Cilium cluster.name ile sınırlandırılır. Namespace yetkisi ayrıca uygulanır; relay sertifikası uygulama kullanıcısına tüm namespace yetkisi vermez. Flow olayları10sn pencerede toplanır; paket, byte veya bant genişliği değildir. L7 yalnız sağlayıcı kaydı varsa görünür; şifreli içerik çıkarılmaz. UID/kimlik belirsizliği, kapasite sınırları ve eski veri açıkça belirtilir. Selector/EndpointSlice çizgileri ayrı yapılandırma katmanıdır.
 
-Güncel uygulama/test kapsamı ve henüz açık kabul kapıları: [v1.1 öncesi onarım kaydı](docs/PRE_V11_VISUAL_REPAIR.md). Bu çalışma sürüm numarasını veya v1.1 release durumunu değiştirmez.
+Güncel uygulama/test kanıtları ve açık kapsam/platform sınırları: [v1.1 öncesi onarım kaydı](docs/PRE_V11_VISUAL_REPAIR.md). Bu çalışma sürüm numarasını veya v1.1 release durumunu değiştirmez.

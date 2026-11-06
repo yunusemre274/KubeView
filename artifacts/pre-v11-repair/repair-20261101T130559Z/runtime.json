@@ -1,0 +1,20 @@
+{
+  "runID": "repair-20261101T130559Z",
+  "profile": "kv-repair-1101",
+  "context": "kv-repair-1101",
+  "namespace": "kv-repair-qa",
+  "privateDirectory": "/Users/yunusemre/Desktop/KubeView/.git/kv-repair-runtime",
+  "kubeconfig": "/Users/yunusemre/Desktop/KubeView/.git/kv-repair-runtime/kubeconfig",
+  "minikubeHome": "/Users/yunusemre/Desktop/KubeView/.git/kv-repair-runtime/.minikube",
+  "ownsCluster": true,
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "createdAt": "2026-11-01T13:51:12.000621+00:00",
+  "cilium": "1.20.2",
+  "hubbleCLI": "1.20.2",
+  "kubernetes": "v1.35.1",
+  "initialNodes": 1,
+  "maxNodes": 3,
+  "resourceBudget": "Dockerdriver;initial1controlplane2CPUs/2200MiB, thenapplicationprovideraddsworker;Ciliumoperator1replica;userDBcontainersunchanged",
+  "initialCNI": "bridge, owned empty cluster bootstrap",
+  "ciliumCNIChangeScope": "only owned new kv-repair-1101 cluster"
+}

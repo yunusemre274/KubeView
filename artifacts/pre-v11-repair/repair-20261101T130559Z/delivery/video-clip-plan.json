@@ -1,0 +1,378 @@
+{
+  "generatedAt": "2026-11-06T10:36:07.342842+00:00",
+  "status": "ENCODED_DECODED_AND_VISUALLY_REVIEWED",
+  "clips": [
+    {
+      "id": "new-worker",
+      "source": "provision-final-2-video/page@5a866d5871acba79d31c4d10e50f9807.webm",
+      "sourceSHA256": "420e06eb9cc51f3e6f03612b9dd4bb0fc56d23acb16b7f59146eb38e38237b36",
+      "sourceDurationSeconds": 83.96,
+      "sourceStartPTSSeconds": 0,
+      "encodedFrameRate": "25/1",
+      "cutStartPTSSeconds": 67.76,
+      "cutEndPTSSeconds": 76.76,
+      "reviewedPTSSeconds": [
+        68.26,
+        76.26
+      ],
+      "review": "provision-final-2-visual-review.json#/video",
+      "caption": "New realworker launch and entry; do not hide prior30s safe-entry wait",
+      "output": "clips/new-worker.webm",
+      "status": "REVIEWED_WITH_DISCLOSED_LIMITS",
+      "outputSHA256": "1c44933218f25b8e27c82f3506bfffe40900cdd8051048a452a20117a77f5287",
+      "outputMetadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 1440,
+            "height": 900,
+            "avg_frame_rate": "25/1"
+          }
+        ],
+        "format": {
+          "duration": "9.000000"
+        }
+      },
+      "decodedReviewFrames": [
+        {
+          "outputPTSSeconds": 0.5,
+          "path": "video-frames/new-worker-1.png",
+          "SHA256": "aeb1c05546daab9e1f2dd24a21b3a2912388b06e71314ca97dce364878f72b7f"
+        },
+        {
+          "outputPTSSeconds": 8.5,
+          "path": "video-frames/new-worker-2.png",
+          "SHA256": "47deb2ab247d1183b8e0cd46be2bab93528043717e6ca79a70b6e5ebcc406fc4"
+        }
+      ],
+      "reviewSheet": "video-frames/new-worker-sheet.jpg",
+      "reviewNote": "Actual newly provisioned Node enters from slipway; existing two vessels continue. Prior ~30s safe-gap wait remains in source record."
+    },
+    {
+      "id": "crane",
+      "source": "frontend-final-crane-envelope-3-video/page@d6a84f7a2b3bcacae41ac66147d8cf34.webm",
+      "sourceSHA256": "0ffd2ba541ef6856e6ab6ad9f4eac655a32068c567a20e970d5b2a9ff47ca074",
+      "sourceDurationSeconds": 12.16,
+      "sourceStartPTSSeconds": 0,
+      "encodedFrameRate": "25/1",
+      "cutStartPTSSeconds": 7.6,
+      "cutEndPTSSeconds": 11.6,
+      "reviewedPTSSeconds": [
+        8.1,
+        11.1
+      ],
+      "review": "frontend-final-crane-envelope-3.json#/visualReview",
+      "caption": "Lift/rail/lower load envelope; manually chosen normalzoom",
+      "output": "clips/crane.webm",
+      "status": "REVIEWED_WITH_DISCLOSED_LIMITS",
+      "outputSHA256": "5776fcbc6f41b4d938547006499f73158cdf4fc5d53ceedbe9610044c413bf50",
+      "outputMetadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 1440,
+            "height": 900,
+            "avg_frame_rate": "25/1"
+          }
+        ],
+        "format": {
+          "duration": "4.000000"
+        }
+      },
+      "decodedReviewFrames": [
+        {
+          "outputPTSSeconds": 0.5,
+          "path": "video-frames/crane-1.png",
+          "SHA256": "ab213efdee8aac425f9218a22d9d518db4e0ef77d0b6096bdcbb00abe11647a2"
+        },
+        {
+          "outputPTSSeconds": 3.5,
+          "path": "video-frames/crane-2.png",
+          "SHA256": "90139dc25e68397bf19f8c11574fabbb44e2db627cf8db769ea5bebe127f1aae"
+        }
+      ],
+      "reviewSheet": "video-frames/crane-sheet.jpg",
+      "reviewNote": "Actual gantry lift/carry/lower load, manually framed normal zoom."
+    },
+    {
+      "id": "container-fall",
+      "source": "frontend-container-preparation-2-video/page@d28b36640e5519b27d90048e524c416d.webm",
+      "sourceSHA256": "e1fead717cc3f543ae09e579726432d66942aae0aa911bd5991acd5a0ec3ba5d",
+      "sourceDurationSeconds": 44.12,
+      "sourceStartPTSSeconds": 0,
+      "encodedFrameRate": "25/1",
+      "cutStartPTSSeconds": 13,
+      "cutEndPTSSeconds": 20,
+      "reviewedPTSSeconds": [
+        13.5,
+        15.5,
+        18.5
+      ],
+      "review": "frontend-container-preparation-2.json#/visualReview",
+      "caption": "Controlled onecontainer fall; historicallabel occlusion disclosed; cleaner watermarkerPNG included",
+      "output": "clips/container-fall-reviewed.webm",
+      "status": "REVIEWED_WITH_DISCLOSED_LIMITS",
+      "outputSHA256": "b14a57481f3ecb6ddac9576343998f727cfaf7e878115858d94d6ded1c1eb17e",
+      "outputMetadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 1440,
+            "height": 900,
+            "avg_frame_rate": "25/1"
+          }
+        ],
+        "format": {
+          "duration": "7.000000"
+        }
+      },
+      "decodedReviewFrames": [
+        {
+          "outputPTSSeconds": 0.5,
+          "originalPTSSeconds": 13.5,
+          "path": "video-frames/container-fall-reviewed-1.png",
+          "SHA256": "df47d32346d759678a3c33109ebcdd37f874699d4bbe2ddd953e65c248248648"
+        },
+        {
+          "outputPTSSeconds": 2.5,
+          "originalPTSSeconds": 15.5,
+          "path": "video-frames/container-fall-reviewed-2.png",
+          "SHA256": "09754d0caf2f649ce8eda639f6c89efa387b1ec5ccc017348337e78c730626dc"
+        },
+        {
+          "outputPTSSeconds": 5.5,
+          "originalPTSSeconds": 18.5,
+          "path": "video-frames/container-fall-reviewed-3.png",
+          "SHA256": "ad4f887a4807e34fdcd15426f3e248cd10f8509793eb3fd2f5d9ecd819fd1fb2"
+        }
+      ],
+      "reviewSheet": "video-frames/container-fall-reviewed-sheet.jpg",
+      "supersededSelection": {
+        "output": "clips/container-fall.webm",
+        "outputSHA256": "89401ec1535665eec4384a003a810a99333bec3b091173409b867714c5b82428",
+        "cutStartPTSSeconds": 11,
+        "cutEndPTSSeconds": 14.5,
+        "decodedReviewFrames": [
+          {
+            "outputPTSSeconds": 0.5,
+            "path": "video-frames/container-fall-1.png",
+            "SHA256": "e43738a601fa1b018b7341caa9cdb29b75b23c93952d4c0eb25b22b3a57e95e3"
+          },
+          {
+            "outputPTSSeconds": 3.02,
+            "path": "video-frames/container-fall-2.png",
+            "SHA256": "a910678d44bfa72545299a1911a5989ef50fcc3f39e47b1f2eba5996fb8ca665"
+          }
+        ],
+        "reviewSheet": "video-frames/container-fall-sheet.jpg",
+        "reason": "11–14.5s ended during warning; source overview review selected actual fall/water interval instead. Earlier cut retained locally, not accepted as fall proof."
+      },
+      "reviewNote": "13–20s source PTS now covers warning, departure and water marker; warning labels still partly occlude mid-flight. P2 limitation; clean close water marker PNG is separate. Initial 11–14.5s cut rejected, preserved."
+    },
+    {
+      "id": "traffic-start-increase",
+      "source": "traffic-visual-final-video/page@31742544fbe0327fc89a8e275b59174a.webm",
+      "sourceSHA256": "21c36db23e8983c21a975af366a11dc53fa825272a446dc0d1a6807120bbbe00",
+      "sourceDurationSeconds": 36.72,
+      "sourceStartPTSSeconds": 0,
+      "encodedFrameRate": "25/1",
+      "cutStartPTSSeconds": 8,
+      "cutEndPTSSeconds": 20,
+      "reviewedPTSSeconds": [
+        8.5,
+        19.5
+      ],
+      "review": "traffic-visual-final.json#/visualReview",
+      "caption": "Real same/crossNode observations and increasedload; flowevents are notpackets",
+      "output": "clips/traffic-start-increase.webm",
+      "status": "REVIEWED_WITH_DISCLOSED_LIMITS",
+      "outputSHA256": "c1cf8817c06a228e2bf8c8e52ce3040c46071276cfde2ba1273e5c3fe1a97141",
+      "outputMetadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 1440,
+            "height": 900,
+            "avg_frame_rate": "25/1"
+          }
+        ],
+        "format": {
+          "duration": "12.000000"
+        }
+      },
+      "decodedReviewFrames": [
+        {
+          "outputPTSSeconds": 0.5,
+          "path": "video-frames/traffic-start-increase-1.png",
+          "SHA256": "f8bc6f010af30c5a278e2309905990f8366d518692d161527b0df7965b4a6bc4"
+        },
+        {
+          "outputPTSSeconds": 11.5,
+          "path": "video-frames/traffic-start-increase-2.png",
+          "SHA256": "8dc8cdcb4c253aa9709f729b1a9512e5f7e91ec859360f579e0ca10f0dcdfce2"
+        }
+      ],
+      "reviewSheet": "video-frames/traffic-start-increase-sheet.jpg",
+      "reviewNote": "Actual same/cross-Node observation arrows and higher flow grouping; caption edge clips at high density (P2)."
+    },
+    {
+      "id": "traffic-stopped",
+      "source": "traffic-visual-final-video/page@31742544fbe0327fc89a8e275b59174a.webm",
+      "sourceSHA256": "21c36db23e8983c21a975af366a11dc53fa825272a446dc0d1a6807120bbbe00",
+      "sourceDurationSeconds": 36.72,
+      "sourceStartPTSSeconds": 0,
+      "encodedFrameRate": "25/1",
+      "cutStartPTSSeconds": 32,
+      "cutEndPTSSeconds": 35,
+      "reviewedPTSSeconds": [
+        32.5,
+        34.5
+      ],
+      "review": "traffic-visual-final.json#/visualReview",
+      "caption": "Realproducer stopped; knownflow window expired to0",
+      "output": "clips/traffic-stopped.webm",
+      "status": "REVIEWED_WITH_DISCLOSED_LIMITS",
+      "outputSHA256": "5b8af40f1da77fa063b2b0b55bc0d997c4a49072cc2971cef6724585e2c819a9",
+      "outputMetadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 1440,
+            "height": 900,
+            "avg_frame_rate": "25/1"
+          }
+        ],
+        "format": {
+          "duration": "3.000000"
+        }
+      },
+      "decodedReviewFrames": [
+        {
+          "outputPTSSeconds": 0.5,
+          "path": "video-frames/traffic-stopped-1.png",
+          "SHA256": "318092e2b1625c4894e40416471e1669e0597438ed9a0ad006d76f5230cfef64"
+        },
+        {
+          "outputPTSSeconds": 2.5,
+          "path": "video-frames/traffic-stopped-2.png",
+          "SHA256": "7d3d41af6e14eea313e9a91bd98e0fd7d771a0770137b0d7ee0fa7f1a707347f"
+        }
+      ],
+      "reviewSheet": "video-frames/traffic-stopped-sheet.jpg",
+      "reviewNote": "Known flow window expired to zero while fleet continues."
+    },
+    {
+      "id": "provider-loss-recovery",
+      "source": "traffic-provider-recovery-real-video/page@bc5b8dcf3a89e6c57e8d86efdc23973c.webm",
+      "sourceSHA256": "b55e608398873be7c525b7f9523df372fcdf78219b95c9c349d5a41894077010",
+      "sourceDurationSeconds": 35.52,
+      "sourceStartPTSSeconds": 0,
+      "encodedFrameRate": "25/1",
+      "cutStartPTSSeconds": 7,
+      "cutEndPTSSeconds": 29,
+      "reviewedPTSSeconds": [
+        7.5,
+        17,
+        28
+      ],
+      "review": "traffic-provider-recovery-visual-review.json",
+      "caption": "Actual mTLSforward loss→stale→expiry→newobservation recovery; historicalarrows labelled stale",
+      "output": "clips/provider-loss-recovery.webm",
+      "status": "REVIEWED_WITH_DISCLOSED_LIMITS",
+      "outputSHA256": "cc9a07dd4a47c13ffd8ec637c94ab3e40ca921f0d2603cbdf0d385af176ad873",
+      "outputMetadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 1440,
+            "height": 900,
+            "avg_frame_rate": "25/1"
+          }
+        ],
+        "format": {
+          "duration": "22.000000"
+        }
+      },
+      "decodedReviewFrames": [
+        {
+          "outputPTSSeconds": 0.5,
+          "path": "video-frames/provider-loss-recovery-1.png",
+          "SHA256": "8fe40d45abace7be46e1db827fe21df6ff7d33e552267bf3b4fd0cbaf22aa354"
+        },
+        {
+          "outputPTSSeconds": 10,
+          "path": "video-frames/provider-loss-recovery-2.png",
+          "SHA256": "d7bdde098b97b0dbeb4c0cfe6af3be2176e7a7cc380e6ffe79cbf35ea242a804"
+        },
+        {
+          "outputPTSSeconds": 21,
+          "path": "video-frames/provider-loss-recovery-3.png",
+          "SHA256": "057df120e568fa9cfecdba39bbf6b45320c788be495f6538689e241aa63df421"
+        }
+      ],
+      "reviewSheet": "video-frames/provider-loss-recovery-sheet.jpg",
+      "reviewNote": "Actual stale/no-live caption and zero after expiry, then new observations after mTLS forward recovery."
+    },
+    {
+      "id": "node-false-status-injection-full",
+      "source": "node-fire-final-2-video/page@1e7f15a45365e577de46f904c1947bd9.webm",
+      "sourceSHA256": "318bcba80cd23476f219c0ac0c3770221c7c35710640b0625404b9c61fff9a76",
+      "output": "clips/node-false-status-injection-full.webm",
+      "outputSHA256": "318bcba80cd23476f219c0ac0c3770221c7c35710640b0625404b9c61fff9a76",
+      "caption": "Ready=False via actual Kubernetes API status injection; NOT physical server stop. Natural Unknown/recovery evidence is separate. Full original video, no cut.",
+      "cutStartPTSSeconds": 0,
+      "status": "REVIEWED_WITH_DISCLOSED_LIMITS",
+      "outputMetadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 1440,
+            "height": 900,
+            "avg_frame_rate": "25/1"
+          }
+        ],
+        "format": {
+          "duration": "15.160000"
+        }
+      },
+      "decodedReviewFrames": [
+        {
+          "outputPTSSeconds": 2.5,
+          "path": "video-frames/node-false-status-injection-full-1.png",
+          "SHA256": "4291df65cd4e619bc0ec81dcfb0406b01aeb174d8ecc7bf4e1c125811245450a"
+        },
+        {
+          "outputPTSSeconds": 7.58,
+          "path": "video-frames/node-false-status-injection-full-2.png",
+          "SHA256": "34bfae3a11df3a6cacd19d2121e4f087db6992ca413b79816c0dc37f96f8b136"
+        },
+        {
+          "outputPTSSeconds": 14.16,
+          "path": "video-frames/node-false-status-injection-full-3.png",
+          "SHA256": "c6729bf0acfa08e5f18dddba0de1fea1a2f809c683a1898c6b4ea06e5bb1e28b"
+        }
+      ],
+      "reviewSheet": "video-frames/node-false-status-injection-full-sheet.jpg",
+      "reviewNote": "Healthy→False fire/smoke/partial sink→sameUID recovery; real API status injection, not natural physical worker failure.",
+      "reviewedPTSSeconds": [
+        2.5,
+        7.58,
+        14.16
+      ]
+    }
+  ],
+  "totalPlannedDurationSeconds": 53.5,
+  "metadataVerification": "ffprobe confirms output dimensions, encoded FPS and duration; decoded source/output PTS frames were opened. Encoding FPS is not application or physical presented FPS.",
+  "timeLimit": "Cuts use originalvideo PTS and alreadyopened decodedreview frames. UTC correlation remains approximate; no physicalpresentedFPS claim. Nodefire has screenshot selection only; no unreviewedPTS invented.",
+  "encodedAt": "2026-11-06T12:15:24.729542+00:00",
+  "note": "CPU measurements completed before encoding. Same resolution, short VP9 cuts with explicit source PTS. Encoded FPS is not app/presented FPS. Original source video retained.",
+  "reviewedAt": "2026-11-06T12:18:46.215098+00:00",
+  "totalEncodedDurationSeconds": 72.16
+}
