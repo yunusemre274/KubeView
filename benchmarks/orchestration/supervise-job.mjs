@@ -11,7 +11,7 @@ async function within(promise, ms) {
 }
 async function processes() {
   const { stdout } = await execute('ps', ['-axo', 'pid=,ppid=,pgid=,stat=,lstart=,comm='], {
-    encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' }, maxBuffer: 4 * 1024 * 1024, timeout: 2000,
+    encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' }, maxBuffer: 4 * 1024 * 1024, timeout: 10000,
   });
   const rows = new Map();
   for (const line of stdout.split('\n')) {

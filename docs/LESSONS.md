@@ -125,3 +125,11 @@ Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemel
 ### Benchmark context kimliği — 1 Kasım 2026
 
 `TestBenchmarkFixtureServer`, `/api/contexts` içinde `benchmark` yayımlarken ortak test factory'sinden gelen `Clients.Name=test` değerini koruyordu. Production context koruması bu eski harness tutarsızlığını doğru biçimde reddetti; ilk yeni pilot90sn hazır olma bekleyişinde durdu ve kayıt korundu. Fixture client adı `benchmark` yapıldı; ürünün context kontrolü gevşetilmedi. Düzeltilmiş pilotta4planlanan watch olayı, tam canonical içerik, Node arızası/recovery ve sıfır kalan transfer/sinyal doğrulandı. Kısa pilotun~60JS çizim/sn sonucu kabul performans ölçümü değildir.
+
+### Kabul araçlarında kaynak, sıra ve sonlanma — 6 Kasım 2026
+
+Panel sırasını hem dış kuyruk hem runner ters çeviriyordu. Yeni oturumda bu işi yalnız runner yapar; eski ölçümlerin gerçekleşmiş sırası korunur. Tek tekrar içeren iş manifestindeki `smoke:true`, üç bağımsız eşleştirilmiş blok bir araya getirildiğinde tek başına ret nedeni değildir; 30 saniye ısınma, 60 saniye ölçüm ve tamamlanan bağımsız çift sayısı ayrıca doğrulanır. Kısa veya eksik bir set bu yolla kabul edilmez.
+
+Rollout yardımcısı yeni Ready Pod'ları kontrol ederken doğru biçimde canonical state'te tutulan eski Terminating Pod'u da yeni UID kontrolüne katıyordu. Gerçek watch kaydı yeni ReplicaSet ve Pod'ları gösterdi; yalnız helper düzeltildi, ilk FAILED kayıt korundu ve ayrı dar tekrar geçti. API kabulü ile eski Pod'un DELETE olayı birbirinden ayrılır.
+
+Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm sınırları gecikti. Geçersiz pencere dışarıda bırakıldı; kullanıcı süreçleri kapatılmadı. Beş günlük aradan sonra kullanıcı pilde devamı seçtiğinden AC sonuçlarıyla CPU oranı kurulmaz; aynı dondurulmuş kaynakla yeni eşleşmiş pil oturumu gerekir.
