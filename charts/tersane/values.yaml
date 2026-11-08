@@ -2,9 +2,11 @@ replicaCount: 1
 nameOverride: ""
 fullnameOverride: ""
 image:
-  repository: ghcr.io/k8s-tersane/tersane
+  # Build/load kubeview:local or explicitly set your own trusted registry image.
+  # This chart does not claim a published GHCR image exists.
+  repository: kubeview
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "local"
 serviceAccount:
   create: true
   name: ""

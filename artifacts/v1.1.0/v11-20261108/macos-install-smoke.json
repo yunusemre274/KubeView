@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "version": {
+    "arch": "arm64",
+    "commit": "721d95d-candidate",
+    "os": "darwin",
+    "version": "1.1.0"
+  },
+  "cleanDirectory": "private install-macos; binary only; no STATIC_DIR or Vite",
+  "httpPort": 18410,
+  "html": true,
+  "note": "API/UI real acceptance pending; smoke alone is not whole gate1"
+}

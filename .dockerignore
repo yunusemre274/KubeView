@@ -13,3 +13,9 @@ bin/
 *.log
 *.ipc
 .DS_Store
+artifacts/
+benchmarks/
+dist/
+frontend/e2e/
+backend/internal/webui/dist/*
+!backend/internal/webui/dist/README.txt

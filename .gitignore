@@ -26,3 +26,8 @@ docs/evidence/motion/recording-temp/
 benchmarks/.build/
 benchmarks/results/
 __pycache__/
+
+# Generated single-binary frontend and release packages (not source assets).
+backend/internal/webui/dist/*
+!backend/internal/webui/dist/README.txt
+/dist/

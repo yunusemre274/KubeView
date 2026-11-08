@@ -2,6 +2,8 @@
 
 ## 2026-11-08 — v1.1.0 adayı, bağlantı ve işlem doğruluğu
 
+- Üretim frontend Go ikilisine gömülür; CLI context/kubeconfig/port/write ve özel token-file seçenekleri. macOSARM64 temiz dizin, LinuxAMD64 Docker emülasyonu temiz/tmp+gerçekTLSAPI smoke geçti. Dockerfile Node24.16/Go1.26.5, pinli CI, ayrı namespace read/write/log/metrics RBAC örnekleri. Bu kayıt stable release onayı değildir.
+
 - Ayrı API/discovery/yetki/metrics/Hubble tanılaması; açık Connect/Demo ve context/namespace için açık yönetim izni. Nonce, browser session ve private client fingerprint ile geç enable/mutation yanıtları ayrılır; kapsam değişimi iptal/revoke eder.
 - Exact scheme/Host Origin, JSON/CSRF ve opaque sandbox HTTP önizleme korumaları; upstream'e operator cookie/token/nonce gönderilmez. Backend salt okunur son kararı korur.
 - Namespace/UID metrics iptali, gerçek kaynak zamanı; operation failure/terminating/resize ve çift submit/timeout inceleme. Düşme/trafik caption yerleşimi iyileştirildi, güvenli admission rotası korunuyor.

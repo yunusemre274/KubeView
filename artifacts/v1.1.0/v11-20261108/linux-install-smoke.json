@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "version": {
+    "arch": "amd64",
+    "commit": "721d95d-candidate",
+    "os": "linux",
+    "version": "1.1.0"
+  },
+  "platform": "Linux AMD64 Docker emulation on macOS ARM64, not physical Intel",
+  "cwd": "/tmp; binary and private identity mounts only; no Node/Go/Vite/source tree",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "context": "kv-repair-1101",
+  "api": {
+    "status": "ok",
+    "message": "Kubernetes API yan\u0131t verdi"
+  },
+  "readOnly": true,
+  "actualNodes": 3,
+  "TLSValidation": "retained; certificate-authority-data and internal owned API endpoint",
+  "binarySHA256": "520997ef0385476aee2e1a5ce481dda37dd659c5edebb8601016c7b0f4976177",
+  "note": "Runtime + real API install smoke, not native Linux browser/performance proof"
+}

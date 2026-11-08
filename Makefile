@@ -8,8 +8,10 @@ run-frontend:
 	cd frontend && npm run dev
 build:
 	cd frontend && npm ci && npm run build
+	node scripts/prepare-webui.mjs
 	mkdir -p bin
-	cd backend && go build -o ../bin/tersane-backend .
+	cd backend && CGO_ENABLED=0 go build -trimpath -o ../bin/kubeview .
+	cp bin/kubeview bin/tersane-backend
 test:
 	cd backend && go test ./...
 	cd frontend && npm test

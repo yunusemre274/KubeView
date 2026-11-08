@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "command": "docker build -t kubeview:v11-candidate --build-arg VERSION=1.1.0 --build-arg COMMIT=721d95d-candidate .",
+  "originalLogSHA256": "98a2abdc1deadf95f249d34d965badfa2a9b5c60423f2e8394a7560c6585c4af",
+  "trackedLogNormalization": "Trailing whitespace only removed for repository whitespace gate; original private raw next to build runtime if needed",
+  "imageManifest": "sha256:3449c6f12439985ee059963a185adaea42103c173af4efacbb2e79e30905a4da",
+  "note": "Build success is distinct from image runtime and real cluster UI"
+}

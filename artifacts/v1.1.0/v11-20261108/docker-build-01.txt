@@ -1,0 +1,167 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 896B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.26.5-alpine
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/node:24.16.0-alpine
+#3 DONE 1.1s
+
+#4 [internal] load metadata for docker.io/library/alpine:3.22
+#4 DONE 1.5s
+
+#2 [internal] load metadata for docker.io/library/golang:1.26.5-alpine
+#2 DONE 1.6s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 351B done
+#5 DONE 0.0s
+
+#6 [stage-2 1/4] FROM docker.io/library/alpine:3.22@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f
+#6 resolve docker.io/library/alpine:3.22@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f done
+#6 ...
+
+#7 [internal] load build context
+#7 transferring context: 1.24MB 0.0s done
+#7 DONE 0.0s
+
+#8 [frontend-builder 1/6] FROM docker.io/library/node:24.16.0-alpine@sha256:21f403ab171f2dc89bad4dd69d7721bfd15f084ccb46cdd225f31f2bc59b5c9a
+#8 resolve docker.io/library/node:24.16.0-alpine@sha256:21f403ab171f2dc89bad4dd69d7721bfd15f084ccb46cdd225f31f2bc59b5c9a done
+#8 DONE 0.1s
+
+#9 [frontend-builder 2/6] WORKDIR /app/frontend
+#9 DONE 0.0s
+
+#10 [frontend-builder 3/6] COPY frontend/package.json frontend/package-lock.json ./
+#10 DONE 0.0s
+
+#6 [stage-2 1/4] FROM docker.io/library/alpine:3.22@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f
+#6 sha256:fea5b91588ca539ff8a89d7d5df6c6d65d6ab7bd89145ba57f32c302cf02ffbe 0B / 4.13MB 0.2s
+#6 DONE 0.3s
+
+#11 [backend-builder 1/7] FROM docker.io/library/golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2
+#11 resolve docker.io/library/golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2 0.0s done
+#11 sha256:c46b3da72838fcc08809d7b7b9b74504e390e2c83a78042435d5cb4ea0467b37 127B / 127B 0.2s done
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 0B / 64.18MB 0.2s
+#11 sha256:aeb60d774e748fc8e1175c75ffa3c47b99f167c67645ce2fe81fcbec8a146704 0B / 247.51kB 0.2s
+#11 ...
+
+#6 [stage-2 1/4] FROM docker.io/library/alpine:3.22@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f
+#6 extracting sha256:fea5b91588ca539ff8a89d7d5df6c6d65d6ab7bd89145ba57f32c302cf02ffbe 0.0s done
+#6 DONE 0.4s
+
+#11 [backend-builder 1/7] FROM docker.io/library/golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 11.53MB / 64.18MB 0.6s
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 18.87MB / 64.18MB 0.8s
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 24.12MB / 64.18MB 0.9s
+#11 sha256:aeb60d774e748fc8e1175c75ffa3c47b99f167c67645ce2fe81fcbec8a146704 247.51kB / 247.51kB 0.9s done
+#11 extracting sha256:aeb60d774e748fc8e1175c75ffa3c47b99f167c67645ce2fe81fcbec8a146704 0.0s done
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 38.80MB / 64.18MB 1.2s
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 49.28MB / 64.18MB 1.5s
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 56.62MB / 64.18MB 1.7s
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 62.91MB / 64.18MB 1.8s
+#11 sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 64.18MB / 64.18MB 1.8s done
+#11 extracting sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15
+#11 extracting sha256:9e4d5c89bdd324edeb5721c09064e2659473bba39ae9d84fae53c9cc0181cf15 1.3s done
+#11 DONE 3.2s
+
+#12 [stage-2 2/4] RUN apk add --no-cache ca-certificates && addgroup -g 10001 -S tersane && adduser -u 10001 -S tersane -G tersane
+#12 0.069 fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/main/aarch64/APKINDEX.tar.gz
+#12 1.382 fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/community/aarch64/APKINDEX.tar.gz
+#12 ...
+
+#11 [backend-builder 1/7] FROM docker.io/library/golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2
+#11 extracting sha256:c46b3da72838fcc08809d7b7b9b74504e390e2c83a78042435d5cb4ea0467b37 done
+#11 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+#11 DONE 3.2s
+
+#13 [backend-builder 2/7] WORKDIR /app/backend
+#13 DONE 0.2s
+
+#14 [frontend-builder 4/6] RUN npm ci
+#14 0.841 npm warn deprecated three-mesh-bvh@0.7.8: Deprecated due to three.js version incompatibility. Please use v0.8.0, instead.
+#14 3.284
+#14 3.284 added 154 packages, and audited 155 packages in 3s
+#14 3.284
+#14 3.284 16 packages are looking for funding
+#14 3.284   run `npm fund` for details
+#14 3.285
+#14 3.285 found 0 vulnerabilities
+#14 3.311 npm notice
+#14 3.311 npm notice New major version of npm available! 11.13.0 -> 12.2.2
+#14 3.311 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+#14 3.311 npm notice To update run: npm install -g npm@12.2.2
+#14 3.311 npm notice
+#14 DONE 3.3s
+
+#15 [backend-builder 3/7] COPY backend/go.mod backend/go.sum ./
+#15 DONE 0.0s
+
+#16 [frontend-builder 5/6] COPY frontend/ ./
+#16 DONE 0.1s
+
+#17 [backend-builder 4/7] RUN go mod download
+#17 ...
+
+#12 [stage-2 2/4] RUN apk add --no-cache ca-certificates && addgroup -g 10001 -S tersane && adduser -u 10001 -S tersane -G tersane
+#12 3.193 (1/1) Installing ca-certificates (20261020-r0)
+#12 3.327 Executing busybox-1.37.0-r20.trigger
+#12 3.329 Executing ca-certificates-20261020-r0.trigger
+#12 3.340 OK: 8 MiB in 17 packages
+#12 DONE 3.4s
+
+#18 [frontend-builder 6/6] RUN npm run build
+#18 0.118
+#18 0.118 > tersane-frontend@1.1.0 build
+#18 0.118 > vite build
+#18 0.118
+#18 0.215 vite v6.4.5 building for production...
+#18 0.247 transforming...
+#18 ...
+
+#19 [stage-2 3/4] WORKDIR /app
+#19 DONE 2.1s
+
+#18 [frontend-builder 6/6] RUN npm run build
+#18 2.327 ✓ 2204 modules transformed.
+#18 2.464 rendering chunks...
+#18 2.536 computing gzip size...
+#18 2.554 dist/index.html                        0.59 kB │ gzip:   0.35 kB
+#18 2.554 dist/assets/index-BhFeK0mD.css        60.17 kB │ gzip:  11.42 kB
+#18 2.554 dist/assets/HarborScene-Vy8ofl7a.js  209.30 kB │ gzip:  72.77 kB
+#18 2.554 dist/assets/index-DFc0FyGP.js        380.14 kB │ gzip: 114.40 kB
+#18 2.554 dist/assets/three-CGmfrzlm.js        973.63 kB │ gzip: 270.80 kB
+#18 2.554 ✓ built in 2.33s
+#18 DONE 2.6s
+
+#17 [backend-builder 4/7] RUN go mod download
+#17 DONE 3.9s
+
+#20 [backend-builder 5/7] COPY backend/ ./
+#20 DONE 0.0s
+
+#21 [backend-builder 6/7] COPY --from=frontend-builder /app/frontend/dist ./internal/webui/dist/
+#21 DONE 0.0s
+
+#22 [backend-builder 7/7] RUN CGO_ENABLED=0 go build -trimpath -ldflags="-w -s -X main.version=1.1.0 -X main.commit=721d95d-candidate" -o /app/kubeview .
+#22 DONE 11.8s
+
+#23 [stage-2 4/4] COPY --from=backend-builder /app/kubeview /app/kubeview
+#23 DONE 0.0s
+
+#24 exporting to image
+#24 exporting layers
+#24 exporting layers 0.6s done
+#24 exporting manifest sha256:ac24823cbc1a5df5ee04dff5226b04edfff2c25c362a05bfe63e7f911d05b298
+#24 exporting manifest sha256:ac24823cbc1a5df5ee04dff5226b04edfff2c25c362a05bfe63e7f911d05b298 done
+#24 exporting config sha256:1608298a01d1be33056d3c0cded7a1792d30e28c5c605fbd1a2ade822e824c0c done
+#24 exporting attestation manifest sha256:b0e85160a7937e974574ff9a1783a67833ee81b0be958dd6792740be9877e598 done
+#24 exporting manifest list sha256:3449c6f12439985ee059963a185adaea42103c173af4efacbb2e79e30905a4da done
+#24 naming to docker.io/library/kubeview:v11-candidate done
+#24 unpacking to docker.io/library/kubeview:v11-candidate 0.1s done
+#24 DONE 0.7s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/17684dw9t625wwgwluzkh7hm6

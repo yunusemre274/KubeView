@@ -6,6 +6,12 @@
 
 Frontend yönetim niyeti ayrı tutulur; scope değişimi hemen readonly olur, önceki HTTP/log/metrics/socket işleri abort/epoch ile reddedilir. Namespace metrics geçmişi ve Pod incarnation UID birlikte doğrulanır. Canonical watcher state animasyon veya operation kuyruğunu beklemez. Genel mutation için kalıcı idempotency garantisi eklenmedi: çift UI submit kilitlenir; belirsiz timeout GET/watch ile incelenir. Mevcut worker provisioning idempotency/journal korunur.
 
+## Üretim dağıtımı
+
+`make build` / `scripts/build-release.mjs`, Vite çıktılarını `backend/internal/webui/dist` içine hazırlayıp Go `embed.FS` ile aynı binary'ye alır. Üretilmiş dosyalar Git'e eklenmez; kaynak-only Go testleri README placeholder ile çalışır. Açık `STATIC_DIR` güvenilir override'dır; yoksa embedded frontend önceliklidir. API/WS yollarına SPA fallback uygulanmaz, eksik asset404 döner. Statik sayfa frame-ancestors/X-Frame-Options/nosniff/no-referrer ile korunur; HTTP preview'un ayrı opaque sandbox politikası bozulmaz. Binary portu değişse de istemci aynı-origin `/api` ve `/ws` kullanır.
+
+CLI process environment üzerinden standart client-go loader'a override verir; kubeconfig dosyasına yazmaz. Varsayılan loopback/read-only, nonloopback için operator token zorunlu. İki izin katmanı (server --write ve scoped browsergrant) Kubernetes yetkilerinin üst sınırını genişletmez. TLS terminator forwarded header'ları örtük güvenilir sayılmaz; local-first dağıtım SSH/kubectl loopback yolunu belgeler.
+
 ## Çalışan katmanlar
 
 React 18 / R3F 8 / Drei 9 / Three 0.164 korunur. Vite 6.4.5 güvenlik düzeltmeleri için yükseltildi. Go client-go 0.30, dynamic client, typed logs/metrics ve discovery birlikte kullanılır. Frontend framework göçü yapılmadı.

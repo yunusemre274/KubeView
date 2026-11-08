@@ -6,7 +6,7 @@
 - [x] Onboarding/diagnostics, scoped browser yönetim izni, nonce/Origin güvenliği; hedefli unit/race ve owned API doğrulaması.
 - [x] Metrics scope iptali, operation/double-submit ve P2 caption kaynak değişiklikleri; frontend141/141.
 - [ ] İki gerçek cluster normal UI, restricted scope ve kalan19kabul alt şartları.
-- [ ] Embedded üretim dağıtımı, temiz macOSARM64/LinuxAMD64 çalışma, CI/kurulum/güvenlik belgeleri.
+- [x] Embedded üretim dağıtımı, temiz macOSARM64/LinuxAMD64 API smoke, CI/kurulum/güvenlik belgeleri; uzaktaki CI sonucu ve normal UI genel kapısı ayrıca bekliyor.
 - [ ] Yeni kaynakta eşleşmiş performans,20dk/20panel ve görsel kanıt; bütün kapılar sağlanınca v1.1.0 release/milestone kapanışı.
 
 Son kullanıcı talimatı v1.1.0 geliştirme ve koşullu release yetkisi verir; aşağıdaki geçmiş “v1.1'e geçme” kayıtları tarihsel onarım sınırıdır.
