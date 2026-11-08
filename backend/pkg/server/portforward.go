@@ -31,14 +31,15 @@ type forwardRequest struct {
 }
 type forwardSession struct {
 	forwardRequest
-	id        string
-	expires   time.Time
-	client    *Clients
-	transport *http.Transport
-	timer     *time.Timer
-	mu        sync.Mutex
-	active    map[*forwardConn]bool
-	closed    bool
+	id         string
+	expires    time.Time
+	client     *Clients
+	transport  *http.Transport
+	timer      *time.Timer
+	mu         sync.Mutex
+	active     map[*forwardConn]bool
+	closed     bool
+	operatorID string
 }
 
 func (s *Server) validateForward(w http.ResponseWriter, r *http.Request, target forwardRequest) (*Clients, bool) {
@@ -105,8 +106,17 @@ func (session *forwardSession) description() map[string]interface{} {
 	return map[string]interface{}{"id": session.id, "url": "/api/portforward/" + session.id + "/", "expiresAt": session.expires.UTC().Format(time.RFC3339), "namespace": session.Namespace, "pod": session.Pod, "uid": session.UID, "port": session.Port, "context": session.Context, "status": "created", "transport": "Kubernetes pods/portforward (SPDY)"}
 }
 func (s *Server) portforwards(w http.ResponseWriter, r *http.Request) {
+	operator, _ := r.Context().Value(operatorRequestKey{}).(operatorRequest)
 	if r.Method == "DELETE" {
 		id := r.URL.Query().Get("id")
+		s.forwardMu.Lock()
+		session := s.forwards[id]
+		foreign := session != nil && session.operatorID != operator.id
+		s.forwardMu.Unlock()
+		if foreign {
+			problem(w, 403, "Port-forward farklı yerel oturuma ait")
+			return
+		}
 		s.closeForward(id)
 		jsonResponse(w, 200, map[string]bool{"closed": true})
 		return
@@ -115,7 +125,9 @@ func (s *Server) portforwards(w http.ResponseWriter, r *http.Request) {
 		s.forwardMu.Lock()
 		sessions := []map[string]interface{}{}
 		for _, session := range s.forwards {
-			sessions = append(sessions, session.description())
+			if session.operatorID == operator.id {
+				sessions = append(sessions, session.description())
+			}
 		}
 		s.forwardMu.Unlock()
 		jsonResponse(w, 200, map[string]interface{}{"sessions": sessions})
@@ -134,6 +146,9 @@ func (s *Server) portforwards(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	session := &forwardSession{forwardRequest: target, id: uuid.NewString(), expires: time.Now().Add(15 * time.Minute), client: c, active: map[*forwardConn]bool{}}
+	if request, ok := r.Context().Value(operatorRequestKey{}).(operatorRequest); ok {
+		session.operatorID = request.id
+	}
 	session.Context = c.Name
 	session.transport = &http.Transport{Proxy: nil, DisableKeepAlives: true, ResponseHeaderTimeout: 20 * time.Second, DialContext: func(ctx context.Context, _, _ string) (net.Conn, error) {
 		conn, err := dialPodPort(ctx, c, target.Namespace, target.Pod, target.Port)
@@ -172,8 +187,17 @@ func (s *Server) proxyForward(w http.ResponseWriter, r *http.Request) {
 		problem(w, 410, "Port-forward oturumu sonlandı")
 		return
 	}
+	operator, _ := r.Context().Value(operatorRequestKey{}).(operatorRequest)
+	if operator.id == "" || operator.id != session.operatorID {
+		problem(w, 403, "Port-forward farklı yerel oturuma ait")
+		return
+	}
 	if r.Method == http.MethodConnect {
 		problem(w, 405, "CONNECT desteklenmiyor")
+		return
+	}
+	if err := s.managementAllowed(r.Context(), session.client, session.Namespace); err != nil {
+		failure(w, err)
 		return
 	}
 	pod, err := session.client.Typed.CoreV1().Pods(session.Namespace).Get(r.Context(), session.Pod, metav1.GetOptions{})
@@ -193,11 +217,17 @@ func (s *Server) proxyForward(w http.ResponseWriter, r *http.Request) {
 		request.Host = session.Pod
 		request.URL.Path = strings.TrimPrefix(request.URL.Path, prefix)
 		request.URL.RawPath = ""
+		query := request.URL.Query()
+		query.Del("connectionID")
+		request.URL.RawQuery = query.Encode()
 		request.Header.Del("Authorization")
 		request.Header.Del("Cookie")
 		request.Header.Del("Proxy-Authorization")
+		request.Header.Del("X-KubeView-Connection")
 	}, ModifyResponse: func(response *http.Response) error {
 		response.Header.Del("Set-Cookie")
+		response.Header.Del("Access-Control-Allow-Origin")
+		response.Header.Del("Access-Control-Allow-Credentials")
 		response.Header.Set("Content-Security-Policy", "sandbox allow-scripts allow-forms")
 		response.Header.Set("Referrer-Policy", "no-referrer")
 		response.Header.Set("Cache-Control", "no-store")
@@ -206,7 +236,7 @@ func (s *Server) proxyForward(w http.ResponseWriter, r *http.Request) {
 		}
 		return nil
 	}, ErrorHandler: func(w http.ResponseWriter, r *http.Request, err error) {
-		problem(w, 502, "Pod port-forward hatası: "+err.Error())
+		problem(w, 502, "Pod port-forward bağlantısı tamamlanamadı")
 	}}
 	proxy.ServeHTTP(w, r)
 }

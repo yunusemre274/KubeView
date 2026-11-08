@@ -1,5 +1,10 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 8 Kasım 2026 — güvenli test orchestration
+
+- Python assertion ardından shell yeni satırı fail-fast sayılmaz. Preflight ile mutation aynı checked subprocess akışında olmalı. Owned lab restore guardında kısa machineName alanı için yanlış assertion çıktı; exact Docker ID/label doğrulamasıyla kapsam tekrar ispatlandı. Diğer kümeye dokunulmadı.
+- Güvenli error redaction, yararlı PDB/admission/quota nedenlerini statik sınıflandırmayla korumalı. PodDisruptionBudget birleşik yazımı ilk regresyon testinde yakalandı; başarısız kayıt silinmeden düzeltildi.
+
 Bu belge, geliştirme sürecinde yaşanan fiili hataları ve vizyon güncellemelerinden çıkarılan dersleri saklar.
 
 ## 26 Ekim 2026 — Panel farkı, gerçek profiling ve ölçüm kontrolü

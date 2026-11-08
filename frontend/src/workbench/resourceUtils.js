@@ -198,6 +198,7 @@ export function metricFor(resource, metrics) {
     list.find(
       (m) =>
         (m.metadata?.name || m.name) === resource?.metadata?.name &&
+        (!resource.metadata?.creationTimestamp || !m.timestamp || Date.parse(m.timestamp) >= Date.parse(resource.metadata.creationTimestamp)) &&
         (resource.kind === "Node" ||
           (m.metadata?.namespace || m.namespace) ===
             resource.metadata?.namespace),

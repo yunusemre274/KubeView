@@ -8,6 +8,7 @@ import { Box, Blocks, CargoShip, Lettering } from "./assets.jsx";
 import { vesselPointToWorld } from "./fleet.js";
 import { resourcePosition, uidOf } from "./layout.js";
 import { hashColor } from "./materials.js";
+import { captionPosition } from "./captions.js";
 
 const caption = {
   background: "#fff9ef",
@@ -296,6 +297,9 @@ function FaultMarker({
       <Html
         center
         position={[0, 2.3, 0]}
+        calculatePosition={(object, camera, size) =>
+          captionPosition(object, camera, size, 220, true)
+        }
         style={{ pointerEvents: "none" }}
         zIndexRange={[8, 0]}
       >
@@ -305,9 +309,9 @@ function FaultMarker({
           style={{
             ...caption,
             display: "block",
-            maxWidth: 260,
+            width: "min(220px, calc(100vw - 32px))",
             whiteSpace: "normal",
-            transform: "translate(calc(50% + 26px), -8px)",
+            overflowWrap: "anywhere",
           }}
         />
       </Html>

@@ -30,6 +30,10 @@ func (s *Server) metrics(w http.ResponseWriter, r *http.Request) {
 	}
 	ctx, cancel := context.WithTimeout(r.Context(), 10*time.Second)
 	defer cancel()
+	if c.Metrics == nil {
+		jsonResponse(w, 200, map[string]interface{}{"available": false, "source": "metrics.k8s.io", "timestamp": time.Now().UTC().Format(time.RFC3339), "nodes": []interface{}{}, "pods": []interface{}{}, "error": "Metrics API kullanılamıyor"})
+		return
+	}
 	nodes, nodeErr := c.Metrics.MetricsV1beta1().NodeMetricses().List(ctx, metav1.ListOptions{})
 	pods, podErr := c.Metrics.MetricsV1beta1().PodMetricses(ns).List(ctx, metav1.ListOptions{})
 	result := map[string]interface{}{"available": nodeErr == nil || podErr == nil, "source": "metrics.k8s.io", "timestamp": time.Now().UTC().Format(time.RFC3339), "nodes": []interface{}{}, "pods": []interface{}{}}
@@ -37,12 +41,12 @@ func (s *Server) metrics(w http.ResponseWriter, r *http.Request) {
 	if nodeErr == nil {
 		result["nodes"] = nodes.Items
 	} else {
-		errors["nodes"] = nodeErr.Error()
+		errors["nodes"] = safeError(nodeErr)
 	}
 	if podErr == nil {
 		result["pods"] = pods.Items
 	} else {
-		errors["pods"] = podErr.Error()
+		errors["pods"] = safeError(podErr)
 	}
 	if len(errors) > 0 {
 		result["errors"] = errors
@@ -431,7 +435,7 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 			}
 			if ready {
 				select {
-				case out <- envelope{Type: "STATUS", Message: watchErr.Error(), Errors: []string{watchErr.Error()}, Scopes: []ResourceScope{binding.scope}, Synced: false, Reachable: true}:
+				case out <- envelope{Type: "STATUS", Message: safeError(watchErr), Errors: []string{safeError(watchErr)}, Scopes: []ResourceScope{binding.scope}, Synced: false, Reachable: true}:
 				default:
 				}
 			}
@@ -545,7 +549,7 @@ wait:
 			_, e := c.Discovery.ServerVersion()
 			message := "Kaynak watch bağlantısı açık"
 			if e != nil {
-				message = e.Error()
+				message = safeError(e)
 			}
 			if send(envelope{Type: "STATUS", Synced: synced && e == nil && !hasWatchError, Reachable: e == nil, Message: message}) != nil {
 				return

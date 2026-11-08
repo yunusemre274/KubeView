@@ -172,11 +172,11 @@ func (s *Server) providerWorker(w http.ResponseWriter, r *http.Request) {
 	}
 	if body.Action == "cancel" {
 		if _, _, e := p.minikube.Verify(ctx, c.Typed, c.Name); e != nil {
-			problem(w, 409, e.Error())
+			problem(w, 409, "Yerel sağlayıcı profil/küme kimliği veya API erişimi doğrulanamadı")
 			return
 		}
 		if e := p.minikube.Cancel(body.ID); e != nil {
-			problem(w, 404, e.Error())
+			problem(w, 404, "Yerel sağlayıcı işlemi bulunamadı veya işlem kaydı güncellenemedi")
 			return
 		}
 		jsonResponse(w, 202, map[string]interface{}{"operations": p.minikube.Snapshot()})
@@ -188,7 +188,7 @@ func (s *Server) providerWorker(w http.ResponseWriter, r *http.Request) {
 	}
 	op, e := p.minikube.Begin(ctx, c.Typed, c.Name, body.IdempotencyKey)
 	if e != nil {
-		problem(w, 409, e.Error())
+		problem(w, 409, "Yerel sağlayıcı isteği reddedildi; profil/küme kimliğini, kapasiteyi ve açık işlemleri kontrol edin")
 		return
 	}
 	jsonResponse(w, 202, map[string]interface{}{"operation": op})

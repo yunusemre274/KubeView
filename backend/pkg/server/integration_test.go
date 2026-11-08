@@ -28,6 +28,9 @@ func TestDedicatedClusterManagement(t *testing.T) {
 	s.ReadOnly = false
 	s.Namespace = "kubeview-qa"
 	s.Token = ""
+	defer s.Close()
+	verifyDedicatedCluster(t, s)
+	operator := explicitTestOperator(t, s, "kubeview-test", "kubeview-qa")
 	mux := http.NewServeMux()
 	s.Register(mux)
 	httpServer := httptest.NewServer(mux)
@@ -43,6 +46,7 @@ func TestDedicatedClusterManagement(t *testing.T) {
 			t.Fatal(err)
 		}
 		req.Header.Set("Content-Type", "application/json")
+		operator.apply(req)
 		res, err := http.DefaultClient.Do(req)
 		if err != nil {
 			t.Fatal(err)
@@ -168,6 +172,9 @@ func TestDedicatedClusterPodSessions(t *testing.T) {
 	s.ReadOnly = false
 	s.Namespace = "kubeview-qa"
 	s.Token = ""
+	defer s.Close()
+	verifyDedicatedCluster(t, s)
+	operator := explicitTestOperator(t, s, "kubeview-test", "kubeview-qa")
 	mux := http.NewServeMux()
 	s.Register(mux)
 	httpServer := httptest.NewServer(mux)
@@ -185,6 +192,7 @@ func TestDedicatedClusterPodSessions(t *testing.T) {
 			t.Fatal(err)
 		}
 		req.Header.Set("Content-Type", "application/json")
+		operator.apply(req)
 		res, err := http.DefaultClient.Do(req)
 		if err != nil {
 			t.Fatal(err)
@@ -237,7 +245,9 @@ func TestDedicatedClusterPodSessions(t *testing.T) {
 		t.Fatalf("actual logs missing %d %s", response.StatusCode, raw)
 	}
 	query := url.Values{"namespace": {"kubeview-qa"}, "pod": {name}, "container": {"app"}, "uid": {uid}, "command": {"sh", "-c", "echo kubeview-real-exec"}}
-	conn, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(httpServer.URL, "http")+"/api/exec?"+query.Encode(), nil)
+	query.Set("connectionID", operator.nonce)
+	operatorHeaders := http.Header{"Cookie": {operator.cookie.Name + "=" + operator.cookie.Value}}
+	conn, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(httpServer.URL, "http")+"/api/exec?"+query.Encode(), operatorHeaders)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -264,7 +274,9 @@ func TestDedicatedClusterPodSessions(t *testing.T) {
 	forwardURL := forward["url"].(string)
 	forwardID := forward["id"].(string)
 	defer call("DELETE", "/api/portforwards?id="+forwardID, nil)
-	response, err = http.Get(httpServer.URL + forwardURL)
+	previewRequest, _ := http.NewRequest("GET", httpServer.URL+forwardURL, nil)
+	operator.apply(previewRequest)
+	response, err = http.DefaultClient.Do(previewRequest)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -274,7 +286,8 @@ func TestDedicatedClusterPodSessions(t *testing.T) {
 		t.Fatalf("actual port-forward HTTP missing %d %s", response.StatusCode, httpPage)
 	}
 	rawQuery := url.Values{"namespace": {"kubeview-qa"}, "pod": {name}, "uid": {uid}, "port": {"8080"}}
-	rawSocket, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(httpServer.URL, "http")+"/api/portforward?"+rawQuery.Encode(), nil)
+	rawQuery.Set("connectionID", operator.nonce)
+	rawSocket, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(httpServer.URL, "http")+"/api/portforward?"+rawQuery.Encode(), operatorHeaders)
 	if err != nil {
 		t.Fatal(err)
 	}

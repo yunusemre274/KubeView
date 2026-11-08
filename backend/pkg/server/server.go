@@ -6,6 +6,8 @@ import (
 	"crypto/subtle"
 	"encoding/json"
 	"fmt"
+	"io"
+	"mime"
 	"net"
 	"net/http"
 	"net/url"
@@ -15,7 +17,7 @@ import (
 	"sync"
 	"time"
 
-	apierrors "k8s.io/apimachinery/pkg/api/errors"
+	"github.com/google/uuid"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -34,6 +36,10 @@ type Clients struct {
 	Metrics   metrics.Interface
 	Config    *rest.Config
 	Name      string
+	Namespace string
+	// ID is random; the private credential fingerprint is never sent to clients.
+	ID          string
+	fingerprint string
 }
 type Server struct {
 	ReadOnly   bool
@@ -41,15 +47,18 @@ type Server struct {
 	Token      string
 	mu         sync.Mutex
 	clients    map[string]*Clients
+	operatorMu sync.Mutex
+	operators  map[string]*operatorSession
 	forwardMu  sync.Mutex
 	forwards   map[string]*forwardSession
 	providerMu sync.Mutex
 	providers  *providerServices
 	// Test harness only; nil in production. Must be assigned before serving.
-	streamProbe     func(connection, stage string, msg envelope, depth int, elapsed time.Duration)
-	prepareSnapshot func([]*unstructured.Unstructured)
-	openLogStream   logStreamOpener
-	logOpenStage    func(string)
+	streamProbe           func(connection, stage string, msg envelope, depth int, elapsed time.Duration)
+	prepareSnapshot       func([]*unstructured.Unstructured)
+	openLogStream         logStreamOpener
+	logOpenStage          func(string)
+	managementBeforeGrant func()
 }
 type Resource struct {
 	Group      string   `json:"group"`
@@ -61,18 +70,37 @@ type Resource struct {
 }
 
 func New() *Server {
-	return &Server{ReadOnly: os.Getenv("READ_ONLY") != "false", Namespace: os.Getenv("WATCH_NAMESPACE"), Token: os.Getenv("API_TOKEN"), clients: map[string]*Clients{}, forwards: map[string]*forwardSession{}}
+	return &Server{ReadOnly: os.Getenv("READ_ONLY") != "false", Namespace: os.Getenv("WATCH_NAMESPACE"), Token: os.Getenv("API_TOKEN"), clients: map[string]*Clients{}, forwards: map[string]*forwardSession{}, operators: map[string]*operatorSession{}}
 }
 func (s *Server) Register(mux *http.ServeMux) {
 	s.registerProviders(mux)
 	mux.HandleFunc("/api/session", s.session)
+	mux.HandleFunc("/api/connection", s.protect(s.connection))
+	mux.HandleFunc("/api/management", s.protect(s.management))
 	for path, fn := range map[string]http.HandlerFunc{"/api/contexts": s.contexts, "/api/discovery": s.discovery, "/api/resources": s.resources, "/api/capabilities": s.capabilities, "/api/actions": s.actions, "/api/metrics": s.metrics, "/api/logs": s.logs, "/api/exec": s.exec, "/api/portforwards": s.portforwards, "/api/portforward/": s.proxyForward, "/api/portforward": s.rawPortforward, "/api/openapi": s.openapi, "/api/secrets/reveal": s.revealSecret, "/ws": s.websocket} {
 		mux.HandleFunc(path, s.protect(fn))
 	}
 }
 
 // Close releases optional provider subscriptions when the local gateway stops.
-func (s *Server) Close() { s.closeProviders() }
+func (s *Server) Close() {
+	s.closeProviders()
+	s.operatorMu.Lock()
+	for id, session := range s.operators {
+		session.cancel()
+		delete(s.operators, id)
+	}
+	s.operatorMu.Unlock()
+	s.forwardMu.Lock()
+	ids := []string{}
+	for id := range s.forwards {
+		ids = append(ids, id)
+	}
+	s.forwardMu.Unlock()
+	for _, id := range ids {
+		s.closeForward(id)
+	}
+}
 
 func SameOrigin(r *http.Request) bool {
 	origin := r.Header.Get("Origin")
@@ -80,42 +108,72 @@ func SameOrigin(r *http.Request) bool {
 		return true
 	}
 	u, err := url.Parse(origin)
-	return err == nil && (u.Scheme == "http" || u.Scheme == "https") && strings.EqualFold(u.Host, r.Host)
+	scheme := "http"
+	if r.TLS != nil {
+		scheme = "https"
+	}
+	return err == nil && u.Scheme == scheme && u.User == nil && u.Path == "" && u.RawQuery == "" && u.Fragment == "" && strings.EqualFold(u.Host, r.Host)
+}
+func (s *Server) guard(w http.ResponseWriter, r *http.Request, authenticate bool) bool {
+	w.Header().Set("Cache-Control", "no-store")
+	w.Header().Set("X-Content-Type-Options", "nosniff")
+	if s.Token == "" {
+		host := r.Host
+		if h, _, err := net.SplitHostPort(host); err == nil {
+			host = h
+		}
+		ip := net.ParseIP(host)
+		if host != "localhost" && (ip == nil || !ip.IsLoopback()) {
+			problem(w, 403, "Yerel erişim için localhost veya loopback adresini kullanın")
+			return false
+		}
+	}
+	if !SameOrigin(r) || r.Header.Get("Sec-Fetch-Site") == "cross-site" {
+		problem(w, 403, "Farklı origin üzerinden erişim reddedildi")
+		return false
+	}
+	if authenticate && s.Token != "" {
+		token := strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")
+		if cookie, err := r.Cookie("kubeview_session"); err == nil && token == "" {
+			token = cookie.Value
+		}
+		if subtle.ConstantTimeCompare([]byte(token), []byte(s.Token)) != 1 {
+			problem(w, 401, "Oturum açılması gerekiyor")
+			return false
+		}
+	}
+	return true
 }
 func (s *Server) protect(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Cache-Control", "no-store")
-		w.Header().Set("X-Content-Type-Options", "nosniff")
-		if s.Token == "" {
-			host := r.Host
-			if h, _, err := net.SplitHostPort(host); err == nil {
-				host = h
-			}
-			ip := net.ParseIP(host)
-			if host != "localhost" && (ip == nil || !ip.IsLoopback()) {
-				problem(w, 403, "Yerel erişim için localhost veya loopback adresini kullanın")
-				return
-			}
-		}
-		if !SameOrigin(r) {
-			problem(w, 403, "Farklı origin üzerinden erişim reddedildi")
+		if !s.guard(w, r, true) {
 			return
 		}
-		if s.Token != "" {
-			token := strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")
-			if cookie, err := r.Cookie("kubeview_session"); err == nil && token == "" {
-				token = cookie.Value
-			}
-			if subtle.ConstantTimeCompare([]byte(token), []byte(s.Token)) != 1 {
-				problem(w, 401, "Oturum açılması gerekiyor")
-				return
-			}
+		request := operatorRequest{nonce: r.Header.Get("X-KubeView-Connection")}
+		if request.nonce == "" {
+			request.nonce = r.URL.Query().Get("connectionID")
 		}
-		next(w, r)
+		if cookie, err := r.Cookie(operatorCookie); err == nil {
+			request.id = cookie.Value
+		}
+		ctx, cancel := context.WithCancel(context.WithValue(r.Context(), operatorRequestKey{}, request))
+		defer cancel()
+		if r.URL.Path != "/api/connection" && r.URL.Path != "/api/management" {
+			s.operatorMu.Lock()
+			if session := s.operators[request.id]; session != nil {
+				stop := context.AfterFunc(session.ctx, cancel)
+				defer stop()
+			}
+			s.operatorMu.Unlock()
+		}
+		next(w, r.WithContext(ctx))
 	}
 }
 func (s *Server) session(w http.ResponseWriter, r *http.Request) {
-	if !SameOrigin(r) || r.Method != "POST" {
+	if !s.guard(w, r, false) {
+		return
+	}
+	if r.Method != "POST" {
 		problem(w, 403, "Oturum isteği reddedildi")
 		return
 	}
@@ -140,30 +198,35 @@ func jsonResponse(w http.ResponseWriter, status int, v interface{}) {
 func problem(w http.ResponseWriter, status int, message string) {
 	jsonResponse(w, status, map[string]interface{}{"error": message, "code": status})
 }
-func failure(w http.ResponseWriter, err error) {
-	status := 500
-	if st, ok := err.(apierrors.APIStatus); ok {
-		status = int(st.Status().Code)
-	}
-	if status < 400 {
-		status = 500
-	}
-	problem(w, status, err.Error())
-}
 func decode(w http.ResponseWriter, r *http.Request, v interface{}) bool {
-	if !strings.Contains(r.Header.Get("Content-Type"), "application/json") {
+	mediaType, _, err := mime.ParseMediaType(r.Header.Get("Content-Type"))
+	if err != nil || mediaType != "application/json" {
 		problem(w, 415, "Content-Type application/json olmalı")
 		return false
 	}
 	r.Body = http.MaxBytesReader(w, r.Body, 2<<20)
-	if err := json.NewDecoder(r.Body).Decode(v); err != nil {
-		problem(w, 400, "Geçersiz JSON: "+err.Error())
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(v); err != nil {
+		problem(w, 400, "Geçersiz JSON")
+		return false
+	}
+	if err := decoder.Decode(new(interface{})); err != io.EOF {
+		problem(w, 400, "Tek JSON nesnesi gerekli")
 		return false
 	}
 	return true
 }
 func loadingRules() *clientcmd.ClientConfigLoadingRules {
 	return clientcmd.NewDefaultClientConfigLoadingRules()
+}
+func inClusterNamespace() string {
+	if value := os.Getenv("POD_NAMESPACE"); value != "" {
+		return value
+	}
+	if value, err := os.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/namespace"); err == nil && strings.TrimSpace(string(value)) != "" {
+		return strings.TrimSpace(string(value))
+	}
+	return "default"
 }
 func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {
 	cfg, err := loadingRules().Load()
@@ -174,23 +237,41 @@ func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {
 			current = cfg.CurrentContext
 		}
 		for name := range cfg.Contexts {
-			names = append(names, map[string]string{"name": name, "namespace": cfg.Contexts[name].Namespace})
+			ns := cfg.Contexts[name].Namespace
+			if ns == "" {
+				ns = "default"
+			}
+			names = append(names, map[string]string{"name": name, "namespace": ns})
 		}
 	}
 	sort.Slice(names, func(i, j int) bool { return names[i]["name"] < names[j]["name"] })
 	if len(names) == 0 {
 		if _, e := rest.InClusterConfig(); e == nil {
-			names = append(names, map[string]string{"name": "in-cluster"})
+			names = append(names, map[string]string{"name": "in-cluster", "namespace": inClusterNamespace()})
 			current = "in-cluster"
 		}
 	}
 	currentNamespace := ""
 	if cfg != nil && cfg.Contexts[current] != nil {
 		currentNamespace = cfg.Contexts[current].Namespace
+		if currentNamespace == "" {
+			currentNamespace = "default"
+		}
 	}
-	result := map[string]interface{}{"contexts": names, "current": current, "currentNamespace": currentNamespace, "readOnly": s.ReadOnly, "configured": len(names) > 0, "namespace": s.Namespace}
+	if current == "in-cluster" {
+		currentNamespace = inClusterNamespace()
+	}
+	enabled := false
+	if cookie, e := r.Cookie(operatorCookie); e == nil {
+		s.operatorMu.Lock()
+		if session := s.operators[cookie.Value]; session != nil {
+			enabled = !s.ReadOnly && session.enabled && time.Now().Before(session.expires)
+		}
+		s.operatorMu.Unlock()
+	}
+	result := map[string]interface{}{"contexts": names, "current": current, "currentNamespace": currentNamespace, "readOnly": !enabled, "serverReadOnly": s.ReadOnly, "managementEnabled": enabled, "managementAvailable": !s.ReadOnly, "configured": len(names) > 0, "namespace": s.Namespace}
 	if err != nil {
-		result["error"] = err.Error()
+		result["error"] = safeError(err)
 	}
 	jsonResponse(w, 200, result)
 }
@@ -202,16 +283,24 @@ func (s *Server) client(name string) (*Clients, error) {
 	defer s.mu.Unlock()
 	requestedName := name
 	if c := s.clients[name]; c != nil && c.Config == nil {
+		if c.ID == "" {
+			c.ID = uuid.NewString()
+		}
 		return c, nil
 	}
 	var cfg *rest.Config
 	var err error
+	defaultNamespace := "default"
 	if name == "in-cluster" {
 		cfg, err = rest.InClusterConfig()
+		defaultNamespace = inClusterNamespace()
 	} else {
 		rules := loadingRules()
 		overrides := &clientcmd.ConfigOverrides{CurrentContext: name}
 		loader := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(rules, overrides)
+		if ns, _, e := loader.Namespace(); e == nil {
+			defaultNamespace = ns
+		}
 		if name == "" {
 			raw, e := loader.RawConfig()
 			if e != nil {
@@ -221,6 +310,7 @@ func (s *Server) client(name string) (*Clients, error) {
 			if name == "" {
 				if cfg, err = rest.InClusterConfig(); err == nil {
 					name = "in-cluster"
+					defaultNamespace = inClusterNamespace()
 				}
 			}
 		}
@@ -236,7 +326,15 @@ func (s *Server) client(name string) (*Clients, error) {
 	cfg.Timeout = 15 * time.Second
 	cfg.QPS = 30
 	cfg.Burst = 60
-	c := &Clients{Config: cfg, Name: name}
+	fingerprint, err := trafficIdentity(cfg)
+	if err != nil {
+		return nil, err
+	}
+	if cached := s.clients[name]; cached != nil && cached.fingerprint == fingerprint && cached.Namespace == defaultNamespace {
+		s.clients[requestedName] = cached
+		return cached, nil
+	}
+	c := &Clients{Config: cfg, Name: name, Namespace: defaultNamespace, ID: uuid.NewString(), fingerprint: fingerprint}
 	c.Dynamic, err = dynamic.NewForConfig(cfg)
 	if err != nil {
 		return nil, err
@@ -250,6 +348,11 @@ func (s *Server) client(name string) (*Clients, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Bound context transport references even if a trusted kubeconfig is replaced
+	// with many context names. Open streams keep their own client until canceled.
+	if len(s.clients) >= 128 {
+		s.clients = map[string]*Clients{}
+	}
 	s.clients[name] = c
 	s.clients[requestedName] = c
 	return c, nil
@@ -257,7 +360,7 @@ func (s *Server) client(name string) (*Clients, error) {
 func (s *Server) requestClient(w http.ResponseWriter, r *http.Request) *Clients {
 	c, err := s.client(r.URL.Query().Get("context"))
 	if err != nil {
-		problem(w, 503, err.Error())
+		failure(w, err)
 		return nil
 	}
 	return c
@@ -276,7 +379,7 @@ func discover(c *Clients) ([]Resource, []string) {
 	_, lists, err := c.Discovery.ServerGroupsAndResources()
 	errors := []string{}
 	if err != nil {
-		errors = append(errors, err.Error())
+		errors = append(errors, safeError(err))
 	}
 	resources := []Resource{}
 	for _, list := range lists {

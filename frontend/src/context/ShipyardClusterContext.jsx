@@ -38,6 +38,11 @@ export const singletonManager = {
     configured: false,
     readOnly: true,
     discovery: [],
+    connectionChecks: null,
+    connectionChecking: false,
+    serverReadOnly: true,
+    managementAvailable: false,
+    managementEnabled: false,
   },
   listeners: new Set(),
   socket: null,
@@ -52,6 +57,12 @@ export const singletonManager = {
   refreshQueued: false,
   socketSerial: 0,
   streamListeners: new Set(),
+  scopeRevision: 0,
+  metricsAbort: null,
+  connectionAbort: null,
+  requests: new Set(),
+  managementReset: Promise.resolve(),
+  managementIntent: false,
   streamSession() {
     return {
       key: `${this.epoch}:${this.socketSerial}:${this.state.generation ?? "pending"}`,
@@ -176,7 +187,22 @@ export const singletonManager = {
     );
     this.state = narrowNamespaceState(this.state, next, retained);
     this.publish({ activeNamespace: next });
-    this.scheduleScopeRefresh();
+    ++this.scopeRevision;
+    this.requests.forEach((abort) => abort.abort());
+    this.publish({
+      readOnly: true,
+      managementEnabled: false,
+      connectionChecks: null,
+      metrics: null,
+      metricHistory: [],
+    });
+    this.pauseStream();
+    const revision = this.scopeRevision;
+    this.resetManagement().then(() => {
+      if (revision !== this.scopeRevision) return;
+      this.refreshMetrics();
+      this.scheduleScopeRefresh();
+    });
   },
   diagnostics() {
     const sorted = [...this.storeTimings].sort((a, b) => a - b);
@@ -202,35 +228,229 @@ export const singletonManager = {
       throw new Error(
         "Demo — örnek veri. Canlı Kubernetes işlemleri bu veri kaynağında kapalı.",
       );
-    const response = await fetch(this.url(path), {
-      ...options,
-      headers: { "Content-Type": "application/json", ...options.headers },
-      body:
-        options.body && typeof options.body !== "string"
-          ? JSON.stringify(options.body)
-          : options.body,
-    });
-    const contentType = response.headers.get("content-type") || "";
-    const data = contentType.includes("json")
-      ? await response.json()
-      : await response.text();
-    if (requestEpoch !== this.epoch)
-      throw new Error(
-        "Bağlantı kapsamı değişti; önceki oturum yanıtı kullanılmadı.",
-      );
-    if (!response.ok) {
-      const error = new Error(
-        data?.error?.message ||
-          data?.message ||
-          data?.error ||
-          data ||
-          `HTTP ${response.status}`,
-      );
-      error.status = response.status;
-      error.details = data;
-      throw error;
+    const abort = new AbortController();
+    const cancel = () => abort.abort();
+    if (options.signal?.aborted) abort.abort();
+    options.signal?.addEventListener("abort", cancel, { once: true });
+    this.requests.add(abort);
+    try {
+      const response = await fetch(this.url(path), {
+        ...options,
+        signal: abort.signal,
+        headers: {
+          "Content-Type": "application/json",
+          ...(this.state.connectionChecks?.connectionID
+            ? {
+                "X-KubeView-Connection":
+                  this.state.connectionChecks.connectionID,
+              }
+            : {}),
+          ...options.headers,
+        },
+        body:
+          options.body && typeof options.body !== "string"
+            ? JSON.stringify(options.body)
+            : options.body,
+      });
+      const contentType = response.headers.get("content-type") || "";
+      const data = contentType.includes("json")
+        ? await response.json()
+        : await response.text();
+      if (requestEpoch !== this.epoch)
+        throw new Error(
+          "Bağlantı kapsamı değişti; önceki oturum yanıtı kullanılmadı.",
+        );
+      if (!response.ok) {
+        const error = new Error(
+          data?.error?.message ||
+            data?.message ||
+            data?.error ||
+            data ||
+            `HTTP ${response.status}`,
+        );
+        error.status = response.status;
+        error.details = data;
+        throw error;
+      }
+      return data;
+    } finally {
+      options.signal?.removeEventListener("abort", cancel);
+      this.requests.delete(abort);
     }
-    return data;
+  },
+  async refreshConnection() {
+    if (this.state.mode !== "live" || !this.state.configured) return;
+    this.connectionAbort?.abort();
+    const abort = new AbortController();
+    this.connectionAbort = abort;
+    const epoch = this.epoch,
+      revision = this.scopeRevision;
+    const namespace =
+      this.state.watchNamespace ||
+      (this.state.activeNamespace === "all"
+        ? ""
+        : this.state.activeNamespace) ||
+      "";
+    this.publish({ connectionChecking: true });
+    try {
+      const data = await this.request(
+        `/api/connection?${new URLSearchParams({ namespace })}`,
+        { signal: abort.signal },
+      );
+      if (
+        epoch !== this.epoch ||
+        revision !== this.scopeRevision ||
+        abort.signal.aborted
+      )
+        return;
+      this.publish({
+        connectionChecks: data,
+        readOnly: !this.managementIntent || data.readOnly !== false,
+        serverReadOnly: data.serverReadOnly !== false,
+        managementAvailable: data.managementAvailable === true,
+        managementEnabled:
+          this.managementIntent && data.managementEnabled === true,
+      });
+    } catch (error) {
+      if (
+        epoch === this.epoch &&
+        revision === this.scopeRevision &&
+        !abort.signal.aborted
+      )
+        this.publish({
+          connectionChecks: {
+            checks: { api: { status: "error", message: error.message } },
+          },
+          readOnly: true,
+          managementEnabled: false,
+        });
+    } finally {
+      if (this.connectionAbort === abort) {
+        this.connectionAbort = null;
+        this.publish({ connectionChecking: false });
+      }
+    }
+  },
+  resetManagement() {
+    this.managementIntent = false;
+    this.publish({ readOnly: true, managementEnabled: false });
+    if (this.state.mode !== "live" || !this.state.configured) return;
+    const epoch = this.epoch,
+      revision = this.scopeRevision;
+    const url = this.url("/api/management");
+    const body = JSON.stringify({
+      enabled: false,
+      context: this.state.context,
+      namespace:
+        this.state.watchNamespace ||
+        (this.state.activeNamespace === "all"
+          ? ""
+          : this.state.activeNamespace) ||
+        "",
+    });
+    // Revocation must finish even when cleanup aborts old reads. Serialize it
+    // ahead of the next diagnostic so a late response cannot restore writes.
+    this.managementReset = this.managementReset
+      .catch(() => {})
+      .then(async () => {
+        const abort = new AbortController();
+        const deadline = setTimeout(() => abort.abort(), 10000);
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body,
+            signal: abort.signal,
+            credentials: "same-origin",
+          });
+          if (!response.ok)
+            throw new Error("Yönetim modu kapatılamadı; yeniden bağlanın.");
+        } finally {
+          clearTimeout(deadline);
+        }
+        if (epoch === this.epoch && revision === this.scopeRevision)
+          return this.refreshConnection();
+      })
+      .catch(() => {
+        if (epoch === this.epoch && revision === this.scopeRevision)
+          this.publish({
+            readOnly: true,
+            managementEnabled: false,
+            connectionChecking: false,
+          });
+      });
+    return this.managementReset;
+  },
+  async setManagement(enabled) {
+    if (!enabled) {
+      this.managementIntent = false;
+      this.publish({ readOnly: true, managementEnabled: false });
+    }
+    const epoch = this.epoch,
+      revision = this.scopeRevision;
+    const data = await this.request("/api/management", {
+      method: "POST",
+      body: {
+        enabled,
+        context: this.state.context,
+        namespace:
+          this.state.watchNamespace ||
+          (this.state.activeNamespace === "all"
+            ? ""
+            : this.state.activeNamespace) ||
+          "",
+        connectionID: this.state.connectionChecks?.connectionID || "",
+      },
+    });
+    if (epoch !== this.epoch || revision !== this.scopeRevision) return;
+    this.managementIntent = enabled && data.managementEnabled === true;
+    this.publish({
+      readOnly: data.readOnly !== false,
+      managementEnabled: data.managementEnabled === true,
+    });
+    return this.refreshConnection();
+  },
+  async refreshMetrics() {
+    if (this.state.mode !== "live" || !this.state.configured) return;
+    this.metricsAbort?.abort();
+    const abort = new AbortController();
+    this.metricsAbort = abort;
+    const epoch = this.epoch,
+      revision = this.scopeRevision;
+    const namespace =
+      this.state.watchNamespace ||
+      (this.state.activeNamespace === "all" ? "" : this.state.activeNamespace);
+    try {
+      const data = await this.request(
+        namespace
+          ? `/api/metrics?${new URLSearchParams({ namespace })}`
+          : "/api/metrics",
+        { signal: abort.signal },
+      );
+      if (
+        epoch !== this.epoch ||
+        revision !== this.scopeRevision ||
+        abort.signal.aborted
+      )
+        return;
+      this.state = appendMetrics(this.state, data);
+      this.publish();
+    } catch (error) {
+      if (
+        epoch !== this.epoch ||
+        revision !== this.scopeRevision ||
+        abort.signal.aborted
+      )
+        return;
+      this.state = appendMetrics(this.state, {
+        available: false,
+        error: error.message,
+        timestamp: new Date().toISOString(),
+      });
+      this.publish();
+    } finally {
+      if (this.metricsAbort === abort) this.metricsAbort = null;
+    }
   },
   async start() {
     if (this.started) return;
@@ -250,12 +470,16 @@ export const singletonManager = {
         watchNamespace: result.namespace || "",
         authRequired: false,
         readOnly: result.readOnly !== false,
+        serverReadOnly: result.serverReadOnly !== false,
+        managementAvailable: result.managementAvailable === true,
+        managementEnabled: result.managementEnabled === true,
         namespaceHint: result.currentNamespace || "",
       });
       if (epoch !== this.epoch) return;
       this.selectSource(result.current || result.contexts?.[0]?.name || "");
     } catch (error) {
-      this.publish({ errors: [`Backend erişilemiyor: ${error.message}`] });
+      if (epoch === this.epoch)
+        this.publish({ errors: [`Backend erişilemiyor: ${error.message}`] });
     }
   },
   async login(token) {
@@ -364,7 +588,9 @@ export const singletonManager = {
     }
   },
   cleanup() {
+    this.managementIntent = false;
     ++this.epoch;
+    ++this.scopeRevision;
     ++this.socketSerial;
     clearTimeout(this.retry);
     clearInterval(this.poll);
@@ -373,6 +599,10 @@ export const singletonManager = {
     this.storeTimings = [];
     this.scopeRequests.forEach((abort) => abort.abort());
     this.scopeRequests.clear();
+    this.requests.forEach((abort) => abort.abort());
+    this.requests.clear();
+    this.metricsAbort?.abort();
+    this.connectionAbort?.abort();
     this.scopeSubscriptions.clear();
     this.refreshQueued = false;
     if (this.socket) {
@@ -395,6 +625,10 @@ export const singletonManager = {
       context: mode === "demo" ? "" : context,
       mode,
       discovery: [],
+      readOnly: true,
+      managementEnabled: false,
+      connectionChecks: null,
+      connectionChecking: false,
       namespaceHint,
       activeNamespace: this.state.watchNamespace || namespaceHint || "all",
     });
@@ -413,51 +647,26 @@ export const singletonManager = {
       return;
     }
     if (!context && !this.state.configured) return;
-    this.connect();
     const epoch = this.epoch;
-    this.request("/api/discovery")
-      .then((data) => {
-        if (epoch === this.epoch)
-          this.publish({ discovery: data.resources || [] });
-      })
-      .catch((error) => {
-        if (epoch === this.epoch)
-          this.publish({ errors: [...this.state.errors, error.message] });
-      });
-    const metrics = async () => {
-      try {
-        const metricsNamespace =
-          this.state.watchNamespace ||
-          (this.state.activeNamespace === "all"
-            ? ""
-            : this.state.activeNamespace);
-        const data = await this.request(
-          metricsNamespace
-            ? `/api/metrics?${new URLSearchParams({ namespace: metricsNamespace })}`
-            : "/api/metrics",
-        );
-        if (epoch === this.epoch) {
-          this.state = appendMetrics(this.state, data);
-          this.publish();
-        }
-      } catch (error) {
-        if (epoch === this.epoch) {
-          this.state = appendMetrics(this.state, {
-            available: false,
-            error: error.message,
-            timestamp: new Date().toISOString(),
-          });
-          this.publish();
-        }
-      }
-    };
-    metrics();
+    this.resetManagement().then(() => {
+      if (epoch !== this.epoch) return;
+      this.connect();
+      this.refreshMetrics();
+      this.request("/api/discovery")
+        .then((data) => {
+          if (epoch === this.epoch)
+            this.publish({ discovery: data.resources || [] });
+        })
+        .catch((error) => {
+          if (epoch === this.epoch)
+            this.publish({ errors: [...this.state.errors, error.message] });
+        });
+    });
     this.poll = setInterval(() => {
-      if (!document.hidden) metrics();
+      if (!document.hidden) this.refreshMetrics();
     }, 15000);
   },
-  connect() {
-    const epoch = this.epoch;
+  pauseStream() {
     clearTimeout(this.retry);
     if (this.socket) {
       this.socket.onopen =
@@ -474,6 +683,10 @@ export const singletonManager = {
     this.state = reduceMessage(this.state, { type: "CONNECTION_PENDING" });
     this.publish({ isConnected: false });
     this.notifyStreamSession();
+  },
+  connect() {
+    const epoch = this.epoch;
+    this.pauseStream();
     const url = this.url("/ws");
     const activeNamespace =
       this.state.watchNamespace || this.state.activeNamespace;
@@ -625,15 +838,44 @@ export function ShipyardClusterProvider({ children }) {
   const api = useMemo(
     () => ({
       request: (path, options) => {
-        if (state.sourceKey !== singletonManager.state.sourceKey)
+        const revision = singletonManager.scopeRevision;
+        if (
+          state.sourceKey !== singletonManager.state.sourceKey ||
+          state.activeNamespace !== singletonManager.state.activeNamespace
+        )
           return Promise.reject(
             new Error(
               "Bu işlem önceki bağlantı kapsamına ait. Kaynağı yeni bağlantıda tekrar açın.",
             ),
           );
-        return singletonManager.request(path, options);
+        return singletonManager.request(path, options).then((data) => {
+          if (revision !== singletonManager.scopeRevision)
+            throw new Error(
+              "Namespace kapsamı değişti; önceki yanıt kullanılmadı.",
+            );
+          return data;
+        });
       },
-      url: (path) => singletonManager.url(path).toString(),
+      url: (path) => {
+        if (
+          state.sourceKey !== singletonManager.state.sourceKey ||
+          state.activeNamespace !== singletonManager.state.activeNamespace
+        )
+          throw new Error(
+            "Bağlantı kapsamı değişti; eski oturum URL’si kullanılmadı.",
+          );
+        const url = singletonManager.url(path, state.context);
+        if (
+          state.sourceKey === singletonManager.state.sourceKey &&
+          state.activeNamespace === singletonManager.state.activeNamespace &&
+          singletonManager.state.connectionChecks?.connectionID
+        )
+          url.searchParams.set(
+            "connectionID",
+            singletonManager.state.connectionChecks.connectionID,
+          );
+        return url.toString();
+      },
       context: state.context,
       mode: state.mode,
       streamSession: () => {
@@ -666,7 +908,13 @@ export function ShipyardClusterProvider({ children }) {
         return `/api/resources?${new URLSearchParams({ group, version, resource: descriptor.resource, namespace: resource.metadata?.namespace || "", name: resource.metadata?.name || "" })}`;
       },
     }),
-    [state.context, state.mode, state.discovery, state.sourceKey],
+    [
+      state.context,
+      state.mode,
+      state.discovery,
+      state.sourceKey,
+      state.activeNamespace,
+    ],
   );
   return (
     <Context.Provider
@@ -678,6 +926,8 @@ export function ShipyardClusterProvider({ children }) {
         resourceIndex,
         api,
         login: (token) => singletonManager.login(token),
+        refreshConnection: () => singletonManager.refreshConnection(),
+        setManagement: (enabled) => singletonManager.setManagement(enabled),
         loadKind: singletonManager.loadKind.bind(singletonManager),
         retainKind: singletonManager.retainKind.bind(singletonManager),
         observeNamespace:
@@ -695,7 +945,9 @@ export function ShipyardClusterProvider({ children }) {
             return singletonManager.selectSource("__demo__");
           // Reconnect is not a context switch: retain scoped subscriptions,
           // canonical data and UID selection until the real relist reconciles.
-          return singletonManager.connect();
+          singletonManager.connect();
+          singletonManager.refreshMetrics();
+          return singletonManager.refreshConnection();
         },
         totalShips: resourceIndex.nodes.length,
         totalPallets: resourceIndex.pods.length,

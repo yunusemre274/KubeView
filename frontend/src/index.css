@@ -755,6 +755,19 @@ kbd {
   margin: 0;
   overflow-wrap: anywhere;
 }
+.connection-checks dd strong, .connection-checks dd small { display: block; }
+.connection-permission { display: block; }
+.connection-checks dd small { color: var(--muted); margin-top: 4px; }
+.connection-intro { line-height: 1.65; color: var(--muted); }
+.connection-onboarding { padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--raised); }
+.connection-onboarding p { margin: 8px 0 14px; line-height: 1.6; }
+.connection-onboarding-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.world-first-guide:has(.connection-onboarding-actions) { flex-wrap: wrap; width: max-content; }
+.world-first-guide .connection-onboarding-actions { flex: 1 1 100%; padding-top: 3px; }
+@media (max-width: 800px) {
+  .world-first-guide:has(.connection-onboarding-actions) { max-width: calc(100vw - 32px); left: 16px; transform: none; }
+  .world-first-guide:has(.connection-onboarding-actions) p { white-space: normal; }
+}
 .connection-errors {
   border: 1px solid var(--border);
   background: var(--raised);

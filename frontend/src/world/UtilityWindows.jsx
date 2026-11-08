@@ -14,12 +14,19 @@ import {
   Activity,
   AlertTriangle,
   CheckCircle2,
+  Copy,
 } from "lucide-react";
 import Window from "./Window";
 import { FACILITIES, facilityFor, scopeResources } from "./registry";
 import { OPERATION_LABELS } from "./operations";
 import { Events } from "./FacilityWindow";
 import { DEFAULT_PREFERENCES, validatePreferences } from "./preferences";
+import {
+  CHECK_LABELS,
+  CHECK_STATUS,
+  PERMISSION_LABELS,
+  safeConnectionDiagnostics,
+} from "./connectionState.js";
 const time = (v) =>
   v ? new Date(v).toLocaleString("tr-TR") : "Henüz alınmadı";
 export function ConnectionWindow({
@@ -53,6 +60,16 @@ export function ConnectionWindow({
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
   const [namespaceName, setNamespaceName] = useState("");
+  const [copied, setCopied] = useState(false);
+  const scope = `${connection.sourceKey}:${namespace}`;
+  const currentScope = useRef(scope);
+  currentScope.current = scope;
+  useEffect(() => {
+    setError("");
+    setBusy(false);
+    setCopied(false);
+    setNamespaceName("");
+  }, [scope]);
   return (
     <Window
       title="Bağlantı ve kapsam"
@@ -103,6 +120,12 @@ export function ConnectionWindow({
         </form>
       ) : (
         <>
+          <p className="connection-intro">
+            KubeView, sunucunun güvenilir yerel kubeconfig dosyası veya
+            in-cluster ServiceAccount kimliğiyle bağlanır. Kubeconfig ve kimlik
+            bilgileri tarayıcıya yüklenmez; global current-context
+            değiştirilmez.
+          </p>
           <label className="form-field">
             Cluster / context
             <select
@@ -189,8 +212,14 @@ export function ConnectionWindow({
                   ? "Erişilebilir"
                   : "Doğrulanamadı / erişilemiyor"}
             </dd>
-            <dt>Kaynak snapshot</dt>
-            <dd>{connection.snapshotReady ? "Alındı" : "Bekleniyor"}</dd>
+            <dt>Kaynak senkronizasyonu</dt>
+            <dd>
+              {mode === "demo"
+                ? "Örnek veri"
+                : connection.snapshotReady
+                  ? "Snapshot alındı"
+                  : "Bekleniyor"}
+            </dd>
             <dt>Veri güncelliği</dt>
             <dd>
               {mode === "demo"
@@ -208,6 +237,106 @@ export function ConnectionWindow({
                 : "Kubernetes RBAC denetimli"}
             </dd>
           </dl>
+          {mode !== "demo" && (
+            <>
+              <dl
+                className="connection-grid connection-checks"
+                aria-label="Bağlantı kontrolleri"
+                aria-busy={connection.connectionChecking}
+              >
+                {Object.entries(CHECK_LABELS).map(([key, label]) => {
+                  const check = connection.connectionChecks?.checks?.[key];
+                  return (
+                    <React.Fragment key={key}>
+                      <dt>{label}</dt>
+                      <dd>
+                        {key === "permissions" ? (
+                          Object.entries(PERMISSION_LABELS).map(
+                            ([resource, label]) => (
+                              <span
+                                key={resource}
+                                className="connection-permission"
+                              >
+                                {label}:{" "}
+                                {CHECK_STATUS[check?.[resource]?.status] ||
+                                  "Henüz denetlenmedi"}
+                              </span>
+                            ),
+                          )
+                        ) : (
+                          <>
+                            <strong>
+                              {CHECK_STATUS[check?.status] ||
+                                "Henüz denetlenmedi"}
+                            </strong>
+                            {check?.message && <small>{check.message}</small>}
+                          </>
+                        )}
+                      </dd>
+                    </React.Fragment>
+                  );
+                })}
+              </dl>
+              {!connection.snapshotReady && !contexts.length && (
+                <p className="inline-alert alert-info">
+                  Sunucuda erişilebilir bir context bulunamadı. Güvenilir
+                  kubeconfig ayarını kontrol edin; sonra yeniden bağlanın.
+                </p>
+              )}
+              {connection.snapshotReady &&
+                !connection.resources.some(
+                  (r) =>
+                    r.kind === "Pod" &&
+                    (namespace === "all" || r.metadata.namespace === namespace),
+                ) && (
+                  <p className="inline-alert alert-info">
+                    Bu kapsamda gözlenen Pod yok. Boş veya yetkisiz kapsamın
+                    ayrıntısı okuma izinlerinde görünür; örnek yük eklenmez.
+                  </p>
+                )}
+              <p className="muted">
+                Başlangıç salt okunurdur. Yönetim modunu açmak Kubernetes
+                yetkisi vermez; her işlem gerçek API ve RBAC denetiminden geçer.
+                Context veya namespace değişince yeniden açmanız gerekir.
+              </p>
+              <button
+                className="button"
+                disabled={
+                  busy ||
+                  !connection.connectionChecks?.connectionID ||
+                  (!connection.managementEnabled &&
+                    !connection.managementAvailable)
+                }
+                onClick={async () => {
+                  if (busy) return;
+                  const captured = scope;
+                  setBusy(true);
+                  setError("");
+                  try {
+                    await connection.setManagement(
+                      !connection.managementEnabled,
+                    );
+                  } catch (e) {
+                    if (currentScope.current === captured) setError(e.message);
+                  } finally {
+                    if (currentScope.current === captured) setBusy(false);
+                  }
+                }}
+              >
+                {busy
+                  ? "İşlem modu denetleniyor…"
+                  : connection.managementEnabled
+                    ? "Salt okunur moda dön"
+                    : "Yönetim modunu aç"}
+              </button>
+              {!connection.managementAvailable && (
+                <p className="muted">
+                  Sunucu salt okunur yapılandırılmış; yönetim modu bu sunucuda
+                  açılamaz.
+                </p>
+              )}
+            </>
+          )}
           {errors.length > 0 && (
             <div className="connection-errors" role="status">
               {errors.slice(0, 10).map((e, i) => (
@@ -219,6 +348,36 @@ export function ConnectionWindow({
             <RefreshCw size={15} />
             Yeniden bağlan
           </button>
+          <button
+            className="button"
+            onClick={async () => {
+              const captured = scope;
+              try {
+                await navigator.clipboard.writeText(
+                  JSON.stringify(
+                    safeConnectionDiagnostics(connection, namespace),
+                    null,
+                    2,
+                  ),
+                );
+                if (currentScope.current === captured) setCopied(true);
+              } catch {
+                if (currentScope.current === captured)
+                  setError(
+                    "Tanılama panoya kopyalanamadı. Tarayıcının pano iznini kontrol edin.",
+                  );
+              }
+            }}
+          >
+            <Copy size={15} />
+            Tanılamayı kopyala
+          </button>
+          {copied && (
+            <p role="status">
+              Güvenli durum özeti kopyalandı; kimlik bilgileri ve hata
+              içerikleri dahil edilmedi.
+            </p>
+          )}
         </>
       )}
     </Window>

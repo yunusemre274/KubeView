@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   AlertCircle,
   CheckCircle2,
@@ -214,7 +214,7 @@ export default function ResourceForms({
   resource,
   cluster,
   namespace = "default",
-  api,
+  api: connectionAPI,
   onClose,
   onSubmitted,
   readOnly = true,
@@ -225,6 +225,30 @@ export default function ResourceForms({
   initialObject,
   secretEdit = false,
 }) {
+  const requestScope = useMemo(() => new AbortController(), [connectionAPI]);
+  useEffect(() => () => requestScope.abort(), [requestScope]);
+  const api = useMemo(
+    () => ({
+      ...connectionAPI,
+      request: (path, options = {}) => {
+        const abort = new AbortController();
+        const cancel = () => abort.abort();
+        const signals = [requestScope.signal, options.signal].filter(Boolean);
+        for (const signal of signals) {
+          if (signal.aborted) abort.abort();
+          signal.addEventListener("abort", cancel, { once: true });
+        }
+        return connectionAPI
+          .request(path, { ...options, signal: abort.signal })
+          .finally(() =>
+            signals.forEach((signal) =>
+              signal.removeEventListener("abort", cancel),
+            ),
+          );
+      },
+    }),
+    [connectionAPI, requestScope],
+  );
   const actionType =
     typeof action === "string" ? action : action?.type || "create";
   const purposeSecretEdit =
@@ -296,6 +320,9 @@ export default function ResourceForms({
     [fieldErrors, setFieldErrors] = useState({}),
     [schemaHelp, setSchemaHelp] = useState(null),
     [schemaLoading, setSchemaLoading] = useState(false);
+  const [uncertain, setUncertain] = useState(false),
+    [reconciliation, setReconciliation] = useState("");
+  const uncertainTarget = useRef(null);
   const dialog = useRef(null),
     errorRef = useRef(null),
     previousFocus = useRef(null),
@@ -473,11 +500,18 @@ export default function ResourceForms({
     setKind(value);
     let next = template(value, object.metadata?.namespace || namespace);
     next.metadata.name = object.metadata?.name || "";
-    const previousSpec = podSpec(object), nextSpec = podSpec(next);
-    if (previousSpec && nextSpec) Object.assign(nextSpec, cloneResource(previousSpec));
+    const previousSpec = podSpec(object),
+      nextSpec = podSpec(next);
+    if (previousSpec && nextSpec)
+      Object.assign(nextSpec, cloneResource(previousSpec));
     if (targetNode && ["Pod", "Deployment", "Job", "CronJob"].includes(value)) {
       try {
-        const placed = applyPlacement(next, targetNode, placementMode, previousSpec && nextSpec ? placementProvenance : null);
+        const placed = applyPlacement(
+          next,
+          targetNode,
+          placementMode,
+          previousSpec && nextSpec ? placementProvenance : null,
+        );
         next = placed.object;
         setPlacementProvenance(placed.provenance);
       } catch (e) {
@@ -641,6 +675,8 @@ export default function ResourceForms({
       );
   };
   const dryRun = async () => {
+    if (busyRef.current || submitted.current) return;
+    busyRef.current = true;
     setBusy(true);
     setError("");
     setPreview(null);
@@ -676,14 +712,17 @@ export default function ResourceForms({
     } catch (e) {
       setError(e.message);
     } finally {
+      busyRef.current = false;
       setBusy(false);
     }
   };
   const submit = async (e) => {
     e?.preventDefault();
-    if (submitted.current) return;
+    if (submitted.current || busyRef.current || uncertain) return;
+    busyRef.current = true;
     setBusy(true);
     setError("");
+    let mutationSent = false;
     try {
       validate();
       if ((isCreate || isEdit || isResources) && !preview)
@@ -725,7 +764,9 @@ export default function ResourceForms({
         return;
       }
       const preparedObject = await prepareObject();
+      uncertainTarget.current = isCreate ? preparedObject : resource;
       let result;
+      mutationSent = true;
       if (isCreate || isEdit)
         result = await api.request(api.resourcePath(preparedObject), {
           method: isCreate ? "POST" : "PUT",
@@ -792,7 +833,44 @@ export default function ResourceForms({
       onSubmitted?.(safeSubmission.result, safeSubmission.meta);
     } catch (err) {
       setError(err.message);
+      if (
+        mutationSent &&
+        (!err.status || err.status >= 500 || err.status === 408)
+      )
+        setUncertain(true);
     } finally {
+      busyRef.current = false;
+      setBusy(false);
+    }
+  };
+  const reconcileUncertain = async () => {
+    if (busyRef.current || !uncertainTarget.current) return;
+    busyRef.current = true;
+    setBusy(true);
+    try {
+      const current = await api.request(
+        api.resourcePath(uncertainTarget.current),
+      );
+      if (
+        resource?.metadata?.uid &&
+        current.metadata?.uid !== resource.metadata.uid
+      ) {
+        setReconciliation(
+          "Aynı ad artık farklı UID’ye ait. Eski işlem bu kaynağa tekrar gönderilmeyecek.",
+        );
+      } else {
+        setReconciliation(
+          `Gerçek API kaydı gözlendi: ${current.kind} ${current.metadata?.namespace || ""}/${current.metadata?.name} · UID ${current.metadata?.uid} · resourceVersion ${current.metadata?.resourceVersion}. Kaynağı yeniden açıp gerçek durumu inceleyin; bu gözlem önceki isteğin kabul edildiğini tek başına kanıtlamaz.`,
+        );
+      }
+    } catch (error) {
+      setReconciliation(
+        error.status === 404
+          ? "Gerçek API şu anda 404 döndürüyor. Önceki isteğin nihai sonucu belirsiz; istek otomatik tekrarlanmadı."
+          : error.message,
+      );
+    } finally {
+      busyRef.current = false;
       setBusy(false);
     }
   };
@@ -977,6 +1055,24 @@ export default function ResourceForms({
               </div>
             )}
             {loading && <p role="status">Kaynağın güncel sürümü alınıyor…</p>}
+            {uncertain && (
+              <div className="inline-alert alert-warning" role="status">
+                <span>
+                  Gönderimin sonucu belirsiz. Çift işlem oluşturmamak için
+                  yeniden gönderim kapalı; gerçek kaynağı sorgulayın ve paneli
+                  yeniden açarak gözden geçirin.
+                </span>
+                <button
+                  type="button"
+                  className="button"
+                  disabled={busy}
+                  onClick={reconcileUncertain}
+                >
+                  Gerçek kaynak durumunu sorgula
+                </button>
+                {reconciliation && <p>{reconciliation}</p>}
+              </div>
+            )}
             {isCreate && targetNode && (
               <section className="placement-section">
                 <h3>Hedef gemi · {targetNode.metadata.name}</h3>
@@ -1997,6 +2093,7 @@ export default function ResourceForms({
                   !!yamlError ||
                   (actionType === "scale" && !!hpa) ||
                   submitted.current ||
+                  uncertain ||
                   (isResources && !containers.length) ||
                   (actionType === "drain" &&
                     (!drainPreview ||

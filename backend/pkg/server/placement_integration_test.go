@@ -28,6 +28,9 @@ func TestDedicatedClusterTargetedScheduling(t *testing.T) {
 	server.ReadOnly = false
 	server.Namespace = "kubeview-qa"
 	server.Token = ""
+	defer server.Close()
+	verifyDedicatedCluster(t, server)
+	operator := explicitTestOperator(t, server, "kubeview-test", "kubeview-qa")
 	mux := http.NewServeMux()
 	server.Register(mux)
 	httpServer := httptest.NewServer(mux)
@@ -43,6 +46,7 @@ func TestDedicatedClusterTargetedScheduling(t *testing.T) {
 			t.Fatal(err)
 		}
 		req.Header.Set("Content-Type", "application/json")
+		operator.apply(req)
 		response, err := http.DefaultClient.Do(req)
 		if err != nil {
 			t.Fatal(err)

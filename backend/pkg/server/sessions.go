@@ -107,7 +107,7 @@ func (s *Server) exec(w http.ResponseWriter, r *http.Request) {
 	}()
 	err = executor.StreamWithContext(ctx, remotecommand.StreamOptions{Stdin: reader, Stdout: output, Stderr: output, Tty: false})
 	if err != nil && ctx.Err() == nil {
-		output.Write([]byte("\r\n[Exec hatası: " + err.Error() + "]\r\n"))
+		output.Write([]byte("\r\n[Exec hatası: " + safeError(err) + "]\r\n"))
 	}
 }
 

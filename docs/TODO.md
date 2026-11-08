@@ -1,5 +1,16 @@
 # Güncel görev durumu
 
+## 8 Kasım 2026 — v1.1.0 gerçek kullanıcı sürümü (açık)
+
+- [x] Güncel 2b76e21 başlangıcı ve immutable baseline korunumu; açık GitHub milestone ve sabit platform matrisi.
+- [x] Onboarding/diagnostics, scoped browser yönetim izni, nonce/Origin güvenliği; hedefli unit/race ve owned API doğrulaması.
+- [x] Metrics scope iptali, operation/double-submit ve P2 caption kaynak değişiklikleri; frontend141/141.
+- [ ] İki gerçek cluster normal UI, restricted scope ve kalan19kabul alt şartları.
+- [ ] Embedded üretim dağıtımı, temiz macOSARM64/LinuxAMD64 çalışma, CI/kurulum/güvenlik belgeleri.
+- [ ] Yeni kaynakta eşleşmiş performans,20dk/20panel ve görsel kanıt; bütün kapılar sağlanınca v1.1.0 release/milestone kapanışı.
+
+Son kullanıcı talimatı v1.1.0 geliştirme ve koşullu release yetkisi verir; aşağıdaki geçmiş “v1.1'e geçme” kayıtları tarihsel onarım sınırıdır.
+
 ## 6 Kasım 2026 — devam ve son kabul
 
 - [x] Dondurulmuş ürün kaynak/build kimliklerini ve eski geçerli 21 AC hücresini koru; güç tercihi doğrultusunda ayrı pil oturumu başlat.

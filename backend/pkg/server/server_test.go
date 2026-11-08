@@ -39,12 +39,13 @@ func testServer(t *testing.T, readOnly bool, objects ...runtime.Object) (*Server
 	scheme := runtime.NewScheme()
 	corev1.AddToScheme(scheme)
 	dynamic := dynamicfake.NewSimpleDynamicClientWithCustomListKinds(scheme, map[schema.GroupVersionResource]string{{Version: "v1", Resource: "pods"}: "PodList", {Version: "v1", Resource: "nodes"}: "NodeList", {Version: "v1", Resource: "secrets"}: "SecretList"}, objects...)
-	clients := &Clients{Dynamic: dynamic, Typed: typed, Discovery: discovery, Name: "test"}
+	clients := &Clients{Dynamic: dynamic, Typed: typed, Discovery: discovery, Name: "test", ID: "unit-client"}
 	s := New()
 	s.ReadOnly = readOnly
 	s.Token = ""
 	s.Namespace = "qa"
 	s.clients = map[string]*Clients{"test": clients}
+	t.Cleanup(s.Close)
 	return s, clients
 }
 func request(s *Server, method, path string, body interface{}) *httptest.ResponseRecorder {
@@ -54,6 +55,17 @@ func request(s *Server, method, path string, body interface{}) *httptest.Respons
 	}
 	r := httptest.NewRequest(method, "http://localhost"+path, bytes.NewReader(payload))
 	r.Header.Set("Content-Type", "application/json")
+	// Existing resource contract tests opt into an explicit management fixture.
+	// Connection/security tests below use raw requests and never this helper.
+	ctx, cancel := context.WithCancel(context.Background())
+	s.operatorMu.Lock()
+	if previous := s.operators["unit-operator"]; previous != nil {
+		previous.cancel()
+	}
+	s.operators["unit-operator"] = &operatorSession{context: "test", namespace: s.Namespace, clientID: "unit-client", nonce: "unit-intent", enabled: !s.ReadOnly, expires: time.Now().Add(time.Hour), ctx: ctx, cancel: cancel}
+	s.operatorMu.Unlock()
+	r.AddCookie(&http.Cookie{Name: operatorCookie, Value: "unit-operator"})
+	r.Header.Set("X-KubeView-Connection", "unit-intent")
 	w := httptest.NewRecorder()
 	mux := http.NewServeMux()
 	s.Register(mux)
@@ -292,7 +304,7 @@ func TestLogPermissionErrorNeverBecomesSampleOutput(t *testing.T) {
 		return true, &authv1.SelfSubjectAccessReview{Status: authv1.SubjectAccessReviewStatus{Allowed: false, Reason: "pods/log denied"}}, nil
 	})
 	result := request(s, "GET", "/api/logs?context=test&namespace=qa&pod=web&container=app", nil)
-	if result.Code != 403 || !strings.Contains(result.Body.String(), "pods/log denied") {
+	if result.Code != 403 || !strings.Contains(result.Body.String(), `"category":"forbidden"`) {
 		t.Fatalf("log error masked: %d %s", result.Code, result.Body)
 	}
 }

@@ -64,8 +64,54 @@ func ownedRepairGateway(t *testing.T) (*Server, *Clients, context.Context, strin
 	s.Register(mux)
 	server := httptest.NewServer(mux)
 	t.Cleanup(server.Close)
+	// Ownership and kube-system UID above are verified before this explicit UI
+	// management handshake. No test-only bypass of the production gate is used.
+	cookie, info := diagnostic(t, s, contextName, ns, nil)
+	nonce := info["connectionID"].(string)
+	if response := connectionRequest(s, "POST", "/api/management", managementBody(contextName, ns, nonce, true), cookie, ""); response.Code != 200 {
+		t.Fatalf("owned gateway management handshake: HTTP%d", response.Code)
+	}
+	ctx = context.WithValue(ctx, integrationOperatorKey{}, integrationOperator{cookie: cookie, nonce: nonce})
 	return s, c, ctx, contextName, server.URL
 }
+
+type integrationOperatorKey struct{}
+type integrationOperator struct {
+	cookie *http.Cookie
+	nonce  string
+}
+
+func (operator integrationOperator) apply(request *http.Request) {
+	request.AddCookie(operator.cookie)
+	request.Header.Set("X-KubeView-Connection", operator.nonce)
+}
+func explicitTestOperator(t *testing.T, s *Server, contextName, namespace string) integrationOperator {
+	t.Helper()
+	cookie, info := diagnostic(t, s, contextName, namespace, nil)
+	nonce := info["connectionID"].(string)
+	if w := connectionRequest(s, "POST", "/api/management", managementBody(contextName, namespace, nonce, true), cookie, ""); w.Code != 200 {
+		t.Fatalf("explicit management handshake: HTTP%d", w.Code)
+	}
+	return integrationOperator{cookie: cookie, nonce: nonce}
+}
+func verifyDedicatedCluster(t *testing.T, s *Server) {
+	t.Helper()
+	expected := os.Getenv("KUBEVIEW_TEST_CLUSTER_UID")
+	if expected == "" {
+		t.Skip("requires explicit KUBEVIEW_TEST_CLUSTER_UID before dedicated-cluster mutations")
+	}
+	c, err := s.client("kubeview-test")
+	if err != nil {
+		t.Fatal("dedicated context unavailable")
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	cluster, err := c.Typed.CoreV1().Namespaces().Get(ctx, "kube-system", metav1.GetOptions{})
+	if err != nil || string(cluster.UID) != expected {
+		t.Fatal("refusing unexpected dedicated cluster UID")
+	}
+}
+
 func repairHTTP(t *testing.T, ctx context.Context, method, address string, body interface{}) (int, []byte) {
 	t.Helper()
 	var encoded []byte
@@ -82,6 +128,9 @@ func repairHTTP(t *testing.T, ctx context.Context, method, address string, body 
 	}
 	if body != nil {
 		request.Header.Set("Content-Type", "application/json")
+	}
+	if operator, ok := ctx.Value(integrationOperatorKey{}).(integrationOperator); ok {
+		operator.apply(request)
 	}
 	response, err := http.DefaultClient.Do(request)
 	if err != nil {

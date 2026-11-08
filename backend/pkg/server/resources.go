@@ -19,10 +19,15 @@ import (
 )
 
 func (s *Server) authorize(ctx context.Context, c *Clients, verb, group, res, sub, ns, name string) error {
-	if verb != "get" && verb != "list" && verb != "watch" && s.ReadOnly {
-		return apierrors.NewForbidden(schema.GroupResource{Group: group, Resource: res}, name, fmt.Errorf("Sunucu salt okunur modda (READ_ONLY=true)"))
+	if verb != "get" && verb != "list" && verb != "watch" {
+		if s.ReadOnly {
+			return apierrors.NewForbidden(schema.GroupResource{Group: group, Resource: res}, name, fmt.Errorf("Sunucu salt okunur modda (READ_ONLY=true)"))
+		}
+		if err := s.managementAllowed(ctx, c, ns); err != nil {
+			return err
+		}
 	}
-	review, err := c.Typed.AuthorizationV1().SelfSubjectAccessReviews().Create(ctx, &authv1.SelfSubjectAccessReview{Spec: authv1.SelfSubjectAccessReviewSpec{ResourceAttributes: &authv1.ResourceAttributes{Namespace: ns, Verb: verb, Group: group, Resource: res, Subresource: sub, Name: name}}}, metav1.CreateOptions{})
+	review, err := c.Typed.AuthorizationV1().SelfSubjectAccessReviews().Create(ctx, accessReview(verb, group, res, sub, ns, name), metav1.CreateOptions{})
 	if err != nil {
 		return err
 	}
@@ -30,6 +35,9 @@ func (s *Server) authorize(ctx context.Context, c *Clients, verb, group, res, su
 		return apierrors.NewForbidden(schema.GroupResource{Group: group, Resource: res}, name, fmt.Errorf("Yetki reddedildi: %s", review.Status.Reason))
 	}
 	return nil
+}
+func accessReview(verb, group, res, sub, ns, name string) *authv1.SelfSubjectAccessReview {
+	return &authv1.SelfSubjectAccessReview{Spec: authv1.SelfSubjectAccessReviewSpec{ResourceAttributes: &authv1.ResourceAttributes{Namespace: ns, Verb: verb, Group: group, Resource: res, Subresource: sub, Name: name}}}
 }
 func (s *Server) capabilities(w http.ResponseWriter, r *http.Request) {
 	c := s.requestClient(w, r)
@@ -50,7 +58,7 @@ func (s *Server) capabilities(w http.ResponseWriter, r *http.Request) {
 		err := s.authorize(r.Context(), c, verb, gvr.Group, gvr.Resource, "", ns, name)
 		verbs[verb] = err == nil
 		if err != nil {
-			reasons[verb] = err.Error()
+			reasons[verb] = safeError(err)
 		}
 	}
 	subs := map[string]bool{}
@@ -121,7 +129,7 @@ func (s *Server) capabilities(w http.ResponseWriter, r *http.Request) {
 	if _, exists := actions["resources"]; !exists {
 		actions["resources"] = false
 	}
-	jsonResponse(w, 200, map[string]interface{}{"readOnly": s.ReadOnly, "verbs": verbs, "subresources": subs, "reasons": reasons, "scopeRestricted": scopeRestricted, "actions": actions, "actionReasons": actionReasons, "templateResources": templateResources})
+	jsonResponse(w, 200, map[string]interface{}{"readOnly": !s.managementState(r, c, ns), "verbs": verbs, "subresources": subs, "reasons": reasons, "scopeRestricted": scopeRestricted, "actions": actions, "actionReasons": actionReasons, "templateResources": templateResources})
 }
 
 type Mutation struct {

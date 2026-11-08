@@ -9,6 +9,7 @@ import {
   quantityNumber,
   resourceStatus,
 } from "./resourceUtils";
+import { metricTimestamp, latestMeasurement } from "./metricModel.js";
 
 function sampleValue(sample, resource, key) {
   if (sample.available === false) return null;
@@ -30,10 +31,13 @@ function LineChart({ samples, resource, metric, label, color }) {
     height = 172,
     padding = { left: 58, right: 16, top: 16, bottom: 32 };
   const points = samples
-    .map((s) => ({
-      time: Date.parse(s.timestamp),
-      value: sampleValue(s, resource, metric),
-    }))
+    .map((s) => {
+      const measuredAt = metricTimestamp(s, resource);
+      return {
+        time: Date.parse(measuredAt || s.timestamp),
+        value: measuredAt ? sampleValue(s, resource, metric) : null,
+      };
+    })
     .filter((p) => Number.isFinite(p.time));
   const available = points.filter((p) => p.value != null);
   const format =
@@ -163,6 +167,7 @@ export default function MetricsPanel({
   range,
   onRangeChange,
   onFilter,
+  stale = metrics?.stale,
 }) {
   const history = inputHistory || metrics?.history || [];
   const [localRange, setLocalRange] = useState(5);
@@ -206,14 +211,24 @@ export default function MetricsPanel({
           ))}
         </div>
       </div>
-      {metrics?.available === false && (
+      {(!metrics ||
+        metrics.available === false ||
+        metrics.error ||
+        metrics.errors) && (
         <div className="inline-alert alert-warning">
           <Info size={16} />
           <span>
             Metrik alınamıyor:{" "}
-            {metrics.error || "metrics-server erişimi veya yetkisi yok."}
+            {metrics?.error ||
+              "metrics-server ölçümü henüz alınmadı veya erişim yetkisi yok."}
           </span>
         </div>
+      )}
+      {stale && (
+        <p className="inline-alert alert-warning" role="status">
+          Son ölçümler güncel olmayabilir; son gerçek ölçüm zamanı aşağıda
+          gösterilir.
+        </p>
       )}
       <div className="metric-charts">
         <LineChart
@@ -232,6 +247,14 @@ export default function MetricsPanel({
         />
       </div>
       <p className="metric-source">
+        Son ölçüm zamanı:{" "}
+        {latestMeasurement(samples, resource)
+          ? new Date(latestMeasurement(samples, resource)).toLocaleString(
+              "tr-TR",
+            )
+          : "Ölçüm yok"}{" "}
+        · Birimler: CPU core / millicore, bellek byte / Mi / Gi.
+        <br />
         Kaynak: {metrics?.source || "metrics.k8s.io"} · Oturum belleğinde{" "}
         {samples.length} örnek
         {samples.length > 0
@@ -239,6 +262,8 @@ export default function MetricsPanel({
           : ""}
         . Eksik ölçümler boşluk olarak gösterilir; uzun süreli geçmiş deposu
         bağlı değildir.
+        {!resource &&
+          " Toplam Node grafiğinde aynı API yanıtındaki ölçümler toplanır; zaman ekseni son Node ölçümüdür."}
       </p>
       {!resource && nodes.length > 0 && (
         <div className="node-metrics">

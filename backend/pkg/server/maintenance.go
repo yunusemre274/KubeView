@@ -71,7 +71,7 @@ func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients,
 		if a.Action == "drain-preview" || a.DryRun {
 			if pdbErr != nil {
 				for _, entry := range affected {
-					entry["pdbInspectionError"] = pdbErr.Error()
+					entry["pdbInspectionError"] = safeError(pdbErr)
 				}
 			}
 			jsonResponse(w, 200, map[string]interface{}{"affected": affected, "blocked": blocked, "scope": s.Namespace, "requiresCordon": true, "partialScope": s.Namespace != "", "operation": map[string]interface{}{"status": "validated", "message": "Etki önizlemesi; PodDisruptionBudget API eviction sırasında denetlenir"}})
@@ -104,7 +104,7 @@ func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients,
 			}
 			if err != nil {
 				entry["status"] = "failed"
-				entry["error"] = err.Error()
+				entry["error"] = safeError(err)
 				partial = true
 			}
 			results = append(results, entry)

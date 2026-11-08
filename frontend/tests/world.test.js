@@ -14,6 +14,8 @@ const deployment = (replicas = 1, generation = 1, ready = replicas) => ({
     observedGeneration: generation,
     readyReplicas: ready,
     updatedReplicas: replicas,
+    replicas,
+    availableReplicas: ready,
   },
 });
 test("every resource group has a world entry without adding synthetic resource identities", () => {
@@ -94,8 +96,109 @@ test("post-acceptance Node recreation is disclosed without altering real Pod pla
 });
 
 test("operation history never retains purposeful Secret values or annotations", () => {
- const secret={apiVersion:"v1",kind:"Secret",metadata:{uid:"s",name:"s",annotations:{value:"private-annotation"}},data:{password:"private-value"}};
- const op=acceptedOperation({object:secret},{action:"edit",object:secret,resource:secret},"live");
- assert.doesNotMatch(JSON.stringify(op),/private-value|private-annotation/);
- assert.equal(op.resource.metadata.uid,"s");
+  const secret = {
+    apiVersion: "v1",
+    kind: "Secret",
+    metadata: {
+      uid: "s",
+      name: "s",
+      annotations: { value: "private-annotation" },
+    },
+    data: { password: "private-value" },
+  };
+  const op = acceptedOperation(
+    { object: secret },
+    { action: "edit", object: secret, resource: secret },
+    "live",
+  );
+  assert.doesNotMatch(JSON.stringify(op), /private-value|private-annotation/);
+  assert.equal(op.resource.metadata.uid, "s");
+});
+
+test("rollout progress deadline and Pod failure are actual failed results", () => {
+  const failed = {
+    ...deployment(),
+    status: {
+      observedGeneration: 1,
+      conditions: [
+        {
+          type: "Progressing",
+          status: "False",
+          reason: "ProgressDeadlineExceeded",
+          message: "ReplicaSet rollout deadline",
+        },
+      ],
+    },
+  };
+  const observed = observeOperation(
+    { action: "restart", resource: deployment(), at: Date.now() },
+    [failed],
+  );
+  assert.equal(observed.status, "failed");
+  assert.match(observed.observation, /deadline/);
+  const pod = {
+    kind: "Pod",
+    metadata: { uid: "p" },
+    status: { phase: "Failed", reason: "Evicted" },
+  };
+  assert.equal(
+    observeOperation({ resource: pod, at: Date.now() }, [pod]).status,
+    "failed",
+  );
+});
+test("a terminating old Pod cannot complete a Ready operation", () => {
+  const pod = {
+    kind: "Pod",
+    metadata: { uid: "old", deletionTimestamp: "2026-11-08T10:00:00Z" },
+    status: { conditions: [{ type: "Ready", status: "True" }] },
+  };
+  assert.equal(
+    observeOperation({ action: "create", resource: pod, at: Date.now() }, [pod])
+      .status,
+    "reconciling",
+  );
+});
+test("accepted resize waits for kubelet applied container resources", () => {
+  const pod = {
+    kind: "Pod",
+    metadata: { uid: "p" },
+    spec: {
+      containers: [{ name: "app", resources: { requests: { cpu: "100m" } } }],
+    },
+    status: { containerStatuses: [{ name: "app" }] },
+  };
+  const op = { action: "resize", resource: pod, at: Date.now() };
+  assert.equal(observeOperation(op, [pod]).status, "reconciling");
+  assert.equal(
+    observeOperation(op, [
+      {
+        ...pod,
+        status: {
+          containerStatuses: [
+            { name: "app", resources: pod.spec.containers[0].resources },
+          ],
+        },
+      },
+    ]).status,
+    "observed",
+  );
+  assert.equal(
+    observeOperation(op, [{ ...pod, status: { resize: "Infeasible" } }]).status,
+    "failed",
+  );
+});
+test("DaemonSet without desired/updated status is not a completed rollout", () => {
+  const workload = {
+    kind: "DaemonSet",
+    metadata: { uid: "ds", generation: 1 },
+    spec: {},
+    status: { observedGeneration: 1 },
+  };
+  assert.equal(
+    observeOperation(
+      { action: "resources", resource: workload, at: Date.now() },
+      [workload],
+    ).status,
+    "reconciling",
+  );
 });

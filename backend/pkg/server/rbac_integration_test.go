@@ -32,6 +32,8 @@ func TestDedicatedClusterRestrictedRBAC(t *testing.T) {
 	t.Setenv("KUBE_CONTEXT", "kubeview-test")
 	const namespace = "kubeview-qa"
 	adminServer := New()
+	defer adminServer.Close()
+	verifyDedicatedCluster(t, adminServer)
 	admin, err := adminServer.client("kubeview-test")
 	if err != nil {
 		t.Fatal(err)
@@ -116,6 +118,8 @@ func TestDedicatedClusterRestrictedRBAC(t *testing.T) {
 	restricted.Namespace = namespace
 	restricted.Token = ""
 	restricted.clients = map[string]*Clients{"restricted": {Name: "restricted", Typed: typed, Dynamic: dynamicClient, Discovery: typed.Discovery()}}
+	defer restricted.Close()
+	operator := explicitTestOperator(t, restricted, "restricted", namespace)
 	mux := http.NewServeMux()
 	restricted.Register(mux)
 	httpServer := httptest.NewServer(mux)
@@ -131,6 +135,7 @@ func TestDedicatedClusterRestrictedRBAC(t *testing.T) {
 			t.Fatal(err)
 		}
 		request.Header.Set("Content-Type", "application/json")
+		operator.apply(request)
 		response, err := http.DefaultClient.Do(request)
 		if err != nil {
 			t.Fatal(err)

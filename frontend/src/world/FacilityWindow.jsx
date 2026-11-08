@@ -294,6 +294,28 @@ export default function FacilityWindow({
         </>
       }
     >
+      {id === "center" &&
+        mode !== "demo" &&
+        (!connection.upstream || !connection.snapshotReady) && (
+          <section className="connection-onboarding" aria-label="Kümeye başla">
+            <h2>Kendi kümeni limana bağla</h2>
+            <p>
+              Merkez, sunucunun mevcut Kubernetes erişimiyle çalışır. Bağlantı
+              kurulana kadar gerçek gemi ve yük eklenmez.
+            </p>
+            <div className="connection-onboarding-actions">
+              <button className="button button-primary" onClick={onConnection}>
+                Kendi Kubernetes kümeme bağlan
+              </button>
+              <button
+                className="button"
+                onClick={() => connection.selectSource("__demo__")}
+              >
+                Demo ile incele
+              </button>
+            </div>
+          </section>
+        )}
       <nav className="window-tabs" aria-label="Tesis bölümleri">
         {centerTabs.map(([value, label]) => (
           <button
@@ -350,6 +372,7 @@ export default function FacilityWindow({
       ) : tab === "metrics" ? (
         <MetricsPanel
           metrics={metrics}
+          stale={stale}
           history={metricHistory}
           resources={scoped}
           range={range}

@@ -44,7 +44,7 @@ func scopeError(scope *ResourceScope, err error) {
 	if apierrors.IsForbidden(err) || apierrors.IsUnauthorized(err) {
 		scope.Status = "forbidden"
 	}
-	scope.Error = err.Error()
+	scope.Error = safeError(err)
 }
 
 // Subscriptions are declarative GVR/namespace identifiers, never arbitrary URLs.

@@ -179,7 +179,7 @@ func logSessionName(raw string) (string, error) {
 	return raw, nil
 }
 func writeLogSessionError(w http.ResponseWriter, session string, err error) {
-	message := err.Error()
+	message := safeError(err)
 	if len(message) > 512 {
 		message = message[:512]
 	}

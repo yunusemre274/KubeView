@@ -71,12 +71,12 @@ func (s *Server) templateResourcesCapability(ctx context.Context, c *Clients, gv
 		return result
 	}
 	if err := s.authorize(ctx, c, "get", gvr.Group, gvr.Resource, "", namespace, name); err != nil {
-		result.Reason = err.Error()
+		result.Reason = safeError(err)
 		return result
 	}
 	obj, err := s.resourceClient(c, gvr, namespace).Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
-		result.Reason = err.Error()
+		result.Reason = safeError(err)
 		return result
 	}
 	if string(obj.GetUID()) != expectedUID {
@@ -100,17 +100,17 @@ func (s *Server) templateResourcesCapability(ctx context.Context, c *Clients, gv
 		}
 		ownerGVR, e := resourceForOwner(c, controller.APIVersion, controller.Kind)
 		if e != nil {
-			result.Reason = e.Error()
+			result.Reason = safeError(e)
 			return result
 		}
 		ownerNamespace := resourceNamespace(c, ownerGVR, obj.GetNamespace())
 		if e = s.authorize(ctx, c, "get", ownerGVR.Group, ownerGVR.Resource, "", ownerNamespace, controller.Name); e != nil {
-			result.Reason = "Workload sahibi okunamıyor: " + e.Error()
+			result.Reason = "Workload sahibi okunamıyor: " + safeError(e)
 			return result
 		}
 		owner, e := s.resourceClient(c, ownerGVR, ownerNamespace).Get(ctx, controller.Name, metav1.GetOptions{})
 		if e != nil {
-			result.Reason = "Workload sahibi okunamıyor: " + e.Error()
+			result.Reason = "Workload sahibi okunamıyor: " + safeError(e)
 			return result
 		}
 		if controller.UID == "" || owner.GetUID() != controller.UID {
@@ -136,7 +136,7 @@ func (s *Server) templateResourcesCapability(ctx context.Context, c *Clients, gv
 		return result
 	}
 	if err = s.authorize(ctx, c, "update", gvr.Group, gvr.Resource, "", namespace, obj.GetName()); err != nil {
-		result.Reason = err.Error()
+		result.Reason = safeError(err)
 		return result
 	}
 	result.Supported = true

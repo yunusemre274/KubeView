@@ -9,6 +9,7 @@ import {
 } from "./resourceRelations.js";
 import { Lettering } from "./assets.jsx";
 import { OBJECT_DESCRIPTIONS } from "../constants/descriptions.js";
+import { captionPosition } from "./captions.js";
 
 const MAX_FLOWS = 96,
   SEGMENTS = 12;
@@ -19,7 +20,11 @@ const providerCaption = {
   color: "#234e4a",
   padding: "5px 8px",
   font: "500 12px/1.4 system-ui",
-  whiteSpace: "nowrap",
+  display: "block",
+  width: "min(320px, calc(100vw - 32px))",
+  whiteSpace: "normal",
+  overflowWrap: "anywhere",
+  textAlign: "center",
   pointerEvents: "none",
 };
 
@@ -354,6 +359,7 @@ export default function MeasuredTraffic({
       <Html
         position={[109, 20, -54]}
         center
+        calculatePosition={captionPosition}
         style={{ pointerEvents: "none" }}
         zIndexRange={[7, 0]}
       >

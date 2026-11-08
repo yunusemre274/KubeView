@@ -1,5 +1,11 @@
 # Veri, işlem ve 3D mimarisi
 
+## 8 Kasım 2026 — bağlantı ve yönetim oturumu
+
+`GET /api/connection` gerçek context/namespace, API, keşif, ayrı SSAR izinleri, Metrics ve opsiyonel Hubble durumunu döndürür. Credential fingerprint yalnız Go'da kalır. `POST /api/management` açık kullanıcı niyetini mevcut browser cookie, nonce, context, namespace ve client ID ile bağlar. Backend READ_ONLY=false yalnız bu ek izni açabilme imkânıdır; Kubernetes RBAC son karardır. Kapsam/config değişimi grant'i iptal eder, eski stream/forwardları sonlandırır. Geç enable callback nonce altında tekrar doğrulanır.
+
+Frontend yönetim niyeti ayrı tutulur; scope değişimi hemen readonly olur, önceki HTTP/log/metrics/socket işleri abort/epoch ile reddedilir. Namespace metrics geçmişi ve Pod incarnation UID birlikte doğrulanır. Canonical watcher state animasyon veya operation kuyruğunu beklemez. Genel mutation için kalıcı idempotency garantisi eklenmedi: çift UI submit kilitlenir; belirsiz timeout GET/watch ile incelenir. Mevcut worker provisioning idempotency/journal korunur.
+
 ## Çalışan katmanlar
 
 React 18 / R3F 8 / Drei 9 / Three 0.164 korunur. Vite 6.4.5 güvenlik düzeltmeleri için yükseltildi. Go client-go 0.30, dynamic client, typed logs/metrics ve discovery birlikte kullanılır. Frontend framework göçü yapılmadı.

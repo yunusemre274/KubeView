@@ -1,6 +1,6 @@
 import { secretSafeSubmission } from "../workbench/secretPayload.js";
 export function acceptedOperation(result, meta, sourceKey, now = Date.now()) {
-  ({result,meta}=secretSafeSubmission(result,meta));
+  ({ result, meta } = secretSafeSubmission(result, meta));
   const returned = result.object;
   const object =
     returned?.kind === "Scale"
@@ -36,6 +36,7 @@ export function observeOperation(op, resources, now = Date.now()) {
           : "reconciling",
     };
   let status = "accepted";
+  let observation;
   if (op.action === "delete") status = current ? "reconciling" : "succeeded";
   else if (current) {
     const expected = op.resource;
@@ -54,16 +55,23 @@ export function observeOperation(op, resources, now = Date.now()) {
         "edit",
         "rollback",
       ].includes(op.action);
-      const currentTarget = current.spec?.replicas === desired;
+      const currentTarget = (current.spec?.replicas ?? 1) === desired;
       const ready = (current.status?.readyReplicas || 0) === desired;
       const updated =
-        !templateChanged ||
-        (current.status?.updatedReplicas === desired &&
-          (!expected?.spec?.template ||
-            JSON.stringify(current.spec?.template?.spec?.containers) ===
-              JSON.stringify(expected.spec.template.spec?.containers)));
+        (current.kind === "ReplicaSet" ||
+          (current.status?.updatedReplicas || 0) === desired) &&
+        (!templateChanged ||
+          !expected?.spec?.template ||
+          JSON.stringify(current.spec?.template?.spec?.containers) ===
+            JSON.stringify(expected.spec.template.spec?.containers));
       status =
-        generationObserved && currentTarget && ready && updated
+        generationObserved &&
+        currentTarget &&
+        ready &&
+        updated &&
+        (current.kind !== "Deployment" ||
+          ((current.status?.replicas || 0) === desired &&
+            (current.status?.availableReplicas || 0) >= desired))
           ? "succeeded"
           : "reconciling";
     } else if (current.kind === "Pod") {
@@ -72,32 +80,35 @@ export function observeOperation(op, resources, now = Date.now()) {
           current.status?.resize &&
           ["Deferred", "Infeasible"].includes(current.status.resize)
             ? "failed"
-            : (current.status?.containerStatuses || []).every(
-                  (c) =>
-                    !c.resources ||
-                    JSON.stringify(c.resources) ===
-                      JSON.stringify(
-                        expected.spec?.containers?.find(
-                          (s) => s.name === c.name,
-                        )?.resources,
-                      ),
-                )
+            : expected.spec?.containers?.length > 0 &&
+                expected.spec.containers.every((container) => {
+                  const applied = current.status?.containerStatuses?.find(
+                    (c) => c.name === container.name,
+                  )?.resources;
+                  return (
+                    applied &&
+                    JSON.stringify(applied) ===
+                      JSON.stringify(container.resources || {})
+                  );
+                })
               ? "observed"
               : "reconciling";
       else
         status =
-          current.status?.phase === "Succeeded" ||
-          current.status?.conditions?.some(
-            (c) => c.type === "Ready" && c.status === "True",
-          )
+          !current.metadata?.deletionTimestamp &&
+          (current.status?.phase === "Succeeded" ||
+            current.status?.conditions?.some(
+              (c) => c.type === "Ready" && c.status === "True",
+            ))
             ? "succeeded"
             : "reconciling";
     } else if (current.kind === "DaemonSet")
       status =
         generationObserved &&
-        current.status?.numberReady ===
+        Number.isInteger(current.status?.desiredNumberScheduled) &&
+        (current.status?.numberReady || 0) ===
           current.status?.desiredNumberScheduled &&
-        current.status?.updatedNumberScheduled ===
+        (current.status?.updatedNumberScheduled || 0) ===
           current.status?.desiredNumberScheduled
           ? "succeeded"
           : "reconciling";
@@ -107,10 +118,41 @@ export function observeOperation(op, resources, now = Date.now()) {
           ? "succeeded"
           : "reconciling";
     else status = "observed";
+    const failed = current.status?.conditions?.find(
+      (condition) =>
+        (condition.type === "Progressing" &&
+          condition.status === "False" &&
+          condition.reason === "ProgressDeadlineExceeded") ||
+        (condition.type === "ReplicaFailure" && condition.status === "True"),
+    );
+    if (current.status?.phase === "Failed" || (generationObserved && failed)) {
+      status = "failed";
+      observation =
+        failed?.message ||
+        failed?.reason ||
+        current.status?.message ||
+        current.status?.reason ||
+        "Kubernetes kaynağı başarısız durum bildirdi.";
+    } else if (current.metadata?.deletionTimestamp) {
+      status = "reconciling";
+      observation =
+        "Kaynak sonlandırılıyor; canlı Ready sonucu olarak sayılmadı.";
+    } else if (
+      ["resources", "edit", "restart"].includes(op.action) &&
+      ["StatefulSet", "DaemonSet"].includes(current.kind) &&
+      current.metadata?.generation >= expected?.metadata?.generation &&
+      JSON.stringify(current.spec?.template) ===
+        JSON.stringify(expected?.spec?.template) &&
+      (current.spec?.updateStrategy?.type === "OnDelete" ||
+        current.spec?.updateStrategy?.rollingUpdate?.partition > 0)
+    ) {
+      status = "observed";
+      observation =
+        "Template güncellemesi gözlendi. OnDelete/partition stratejisi bütün Pod’ları otomatik yenilemez; Pod sonuçlarını ayrıca inceleyin.";
+    }
   }
   if (["accepted", "reconciling"].includes(status) && now - op.at > 120000)
     status = "timed-out";
-  let observation;
   if (op.targetNode && current) {
     const target = op.targetNode;
     const pods =

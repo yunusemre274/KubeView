@@ -1,5 +1,12 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-08 — v1.1.0 adayı, bağlantı ve işlem doğruluğu
+
+- Ayrı API/discovery/yetki/metrics/Hubble tanılaması; açık Connect/Demo ve context/namespace için açık yönetim izni. Nonce, browser session ve private client fingerprint ile geç enable/mutation yanıtları ayrılır; kapsam değişimi iptal/revoke eder.
+- Exact scheme/Host Origin, JSON/CSRF ve opaque sandbox HTTP önizleme korumaları; upstream'e operator cookie/token/nonce gönderilmez. Backend salt okunur son kararı korur.
+- Namespace/UID metrics iptali, gerçek kaynak zamanı; operation failure/terminating/resize ve çift submit/timeout inceleme. Düşme/trafik caption yerleşimi iyileştirildi, güvenli admission rotası korunuyor.
+- Yeni adayda frontend141/141, server39PASS/16SKIP, hedefli race11/11; owned Kubernetes1.35.1 API grubunda10leaf/4top-levelPASS. Normal UI/two-cluster, üretim dağıtımı ve son performans kapıları hâlâ açık. Release veya milestone tamamlandı değildir.
+
 Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standardına dayanır.
 
 ## 2026-11-06 — onarımın son kabul oturumu

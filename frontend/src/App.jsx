@@ -39,6 +39,7 @@ import {
 } from "./world/UtilityWindows";
 import { FACILITIES, facilityFor, ownerNode } from "./world/registry";
 import { acceptedOperation, observeOperation } from "./world/operations";
+import { connectionStatus } from "./world/connectionState.js";
 import {
   loadPreferences,
   savePreferences,
@@ -199,6 +200,18 @@ export default function App() {
     }
   }, [sourceKey]);
   const namespaceSource = useRef(sourceKey);
+  const viewNamespace = useRef(namespace);
+  viewNamespace.current = namespace;
+  const previousNamespace = useRef(namespace);
+  useEffect(() => {
+    if (previousNamespace.current === namespace) return;
+    previousNamespace.current = namespace;
+    setSelection(null);
+    setSelectedFlow(null);
+    setForm(null);
+    setOperations([]);
+    setPanel((value) => (value?.type === "resource" ? null : value));
+  }, [namespace]);
   const observeNamespace = useCommittedEvent(connection.observeNamespace);
   useEffect(() => {
     if (namespaceSource.current !== sourceKey) {
@@ -347,20 +360,7 @@ export default function App() {
     const resource = byUID.get(uid);
     if (resource) selectResource(resource);
   });
-  const status =
-    mode === "demo"
-      ? "Demo — örnek veri"
-      : connection.authRequired
-        ? "Oturum gerekli"
-        : !connection.isConnected
-          ? "Bağlantı yok"
-          : !connection.upstream
-            ? "API bekleniyor"
-            : stale
-              ? "Veri güncel değil"
-              : connection.errors.length
-                ? "Kısmi erişim"
-                : "Canlı";
+  const status = connectionStatus(connection);
   function captureTrigger() {
     savedTrigger.current = document.activeElement;
   }
@@ -411,11 +411,22 @@ export default function App() {
   }
   function create(options = {}) {
     setUtility(null);
-    setForm({ action: "create", ...options, sourceKey });
+    setForm({
+      action: "create",
+      ...options,
+      sourceKey,
+      viewNamespace: namespace,
+    });
   }
   function action(name, resource) {
     if (name === "secret-edit") {
-      setForm({ action: "edit", secretEdit: true, resource, sourceKey });
+      setForm({
+        action: "edit",
+        secretEdit: true,
+        resource,
+        sourceKey,
+        viewNamespace: namespace,
+      });
       return;
     }
     if (name === "inspect") {
@@ -431,7 +442,7 @@ export default function App() {
       showInScene(resource);
       return;
     }
-    setForm({ action: name, resource, sourceKey });
+    setForm({ action: name, resource, sourceKey, viewNamespace: namespace });
   }
   function showInScene(resource) {
     if (resource.kind === "Node" || resource.kind === "Pod") {
@@ -447,7 +458,11 @@ export default function App() {
   }
   function submit(result, meta = {}) {
     const submitSource = form?.sourceKey;
-    if (submitSource !== currentSource.current) return;
+    if (
+      submitSource !== currentSource.current ||
+      form?.viewNamespace !== viewNamespace.current
+    )
+      return;
     const op = acceptedOperation(
       result,
       { ...meta, action: meta.action || form?.action },
@@ -528,8 +543,12 @@ export default function App() {
     [selected, selection?.tab],
   );
   const detailMetrics = useMemo(
-    () => ({ ...connection.metrics, history: connection.metricHistory }),
-    [connection.metrics, connection.metricHistory],
+    () => ({
+      ...connection.metrics,
+      history: connection.metricHistory,
+      stale: connection.stale,
+    }),
+    [connection.metrics, connection.metricHistory, connection.stale],
   );
   const detailEvents = selected
     ? resourceIndex.eventsByUID.get(selected.metadata.uid)
@@ -673,6 +692,22 @@ export default function App() {
         </button>
         {guide && !panel && !utility && (
           <div className="world-first-guide">
+            {mode !== "demo" && !snapshotReady ? (
+              <div className="connection-onboarding-actions">
+                <button
+                  className="button button-primary"
+                  onClick={() => setUtility("connection")}
+                >
+                  Kendi Kubernetes kümeme bağlan
+                </button>
+                <button
+                  className="button"
+                  onClick={() => connection.selectSource("__demo__")}
+                >
+                  Demo ile incele
+                </button>
+              </div>
+            ) : null}
             <p>
               <strong>Merkez:</strong> yönetim <span>·</span>{" "}
               <strong>Gemi:</strong> Node <span>·</span>{" "}
