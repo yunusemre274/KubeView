@@ -1,0 +1,16 @@
+✔ first mount can observe namespace before contexts arrive without opening streams or claiming authority (1.212292ms)
+✔ management revoke is awaitable and fails closed before configuration and in demo (0.088ms)
+✔ connection labels distinguish browser, API, first synchronization and demo (0.07575ms)
+✔ copy diagnostics excludes raw errors, Secret metadata, endpoint and session credentials (0.119ms)
+✔ context cleanup aborts pending HTTP and rejects a late accepted mutation (6.959041ms)
+✔ namespace switch cancels metrics and never appends an alpha response into beta (1.148917ms)
+✔ late management enable cannot restore writes after alpha to beta to alpha (0.234125ms)
+✔ diagnostics never reenable management without an explicit current-view intent (0.190083ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 68.542584

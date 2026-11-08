@@ -31,6 +31,8 @@ jobs:
       - run: npm run build
         working-directory: frontend
       - run: node scripts/build-release.mjs --prepared --require-clean darwin-arm64 linux-amd64
+      - run: npx playwright install --with-deps chromium
+        working-directory: frontend
       - name: Clean Linux binary startup (no source tree)
         run: |
           work=$(mktemp -d)
@@ -43,6 +45,8 @@ jobs:
           for attempt in $(seq 1 30); do curl -fsS http://127.0.0.1:18081/healthz && break || sleep 1; done
           curl -fsS http://127.0.0.1:18081/ | grep -q '<html'
           curl -fsS http://127.0.0.1:18081/api/version
+          cd "$GITHUB_WORKSPACE/frontend"
+          npx playwright test -c e2e/production-smoke.config.js
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: tested-builds

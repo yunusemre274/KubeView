@@ -2,6 +2,8 @@
 
 ## 2026-11-08 — v1.1.0 adayı, bağlantı ve işlem doğruluğu
 
+- Gerçek production UI kabulünde bulunan ilk-mount Promise hatası iki satırlık async/configured guard düzeltmesiyle giderildi.143/143 unit ve gömülü binary üzerinden Chromium başlangıç/bağlantı penceresi smoke geçti; CI build-only kontrolüne gerçek browser smoke eklendi. İlk başarısız kayıtlar korunur.
+
 - Üretim frontend Go ikilisine gömülür; CLI context/kubeconfig/port/write ve özel token-file seçenekleri. macOSARM64 temiz dizin, LinuxAMD64 Docker emülasyonu temiz/tmp+gerçekTLSAPI smoke geçti. Dockerfile Node24.16/Go1.26.5, pinli CI, ayrı namespace read/write/log/metrics RBAC örnekleri. Bu kayıt stable release onayı değildir.
 
 - Ayrı API/discovery/yetki/metrics/Hubble tanılaması; açık Connect/Demo ve context/namespace için açık yönetim izni. Nonce, browser session ve private client fingerprint ile geç enable/mutation yanıtları ayrılır; kapsam değişimi iptal/revoke eder.

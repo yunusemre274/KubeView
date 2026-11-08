@@ -35,3 +35,11 @@ Safe-gap: `fleet.reconcile/canLaunch`, HEADWAY, merge gate ve LAUNCH_SWEEP gövd
 - Lab restore guard ilk denemesinde config Node `Name` alanının kısa (`m02`) olduğu varsayımı hatalıydı. Shell fail-fast olmadığı için sahip olunan restore başladı. Gerçek üç container'ın sabit ID ve minikube label'ları bağımsız doğrulandı; başka kümeye dokunulmadı. Sonraki orchestration checked subprocess kullanır.
 
 Sonuçlar tamamlandıkça bu belgeye kaynak/build/komut, PASS/FAIL/SKIP/BLOCKED ve kanıt eklenir. Bu dosyanın oluşturulması kabul kapılarını kapatmaz.
+
+## 8 Kasım — gerçek UI kapısında bulunan başlangıç hatası
+
+İlk normal production UI A→B→A testi240s ve ardından readonly testi başarısız oldu; boş React görünümü PASS sayılmadı. Headed Chromium kısa probu da aynı `observeNamespace → resetManagement().then` TypeError'ını gösterdi; headless altyapısına atfedilmedi. Kaynak/build bütünlüğü korundu, ilk kanıtlar `qa/runs/2026-11-08T19-26-12-081Z-chromium-0ea3c244` ve `qa/startup-2026-11-08T19-33-54-667Z.json` altında. Düzeltme ve yeni kabul koşusu bekleniyor. Önceki 39 server/141 frontend unit sonucu bu kapıyı geçmiş sayılmaz.
+
+Dağıtım kilometre taşı `7eaddde75067c28237488d0b4107e4b86573219f` pushlandı; [taslak PR #1](https://github.com/yunusemre274/KubeView/pull/1) milestone #1'e bağlı. Üretim kaynak sürümü1.1.0'a hazırlandı, stable tag/release yok. macOS temiz dizin ve LinuxAMD64 emülasyon gerçek TLS/API smoke ayrı JSON kaydında; Node/Go/Vite çalıştırmadan binary HTML/API sunuyor. Docker image linuxarm64 nonroot10001/readOnlyRootFS ile startup+auth+emptyconfig smoke geçti. Helm render/lint geçti; in-cluster Helm runtime testi yapılmış sayılmaz.
+
+Başlangıç düzeltmesi: configured=false/revoke dönüşü async Promise oldu; namespace followup, yapılandırma yokken stream/metrics başlatmıyor. İki yeni ilk-mount/demo regresyonuyla143/143 frontend unit geçti; `frontend/startup-regression-*` kanıtı. Düzeltilmiş production bundle gerçek UI smoke ve iki-cluster yeniden testi henüz bekliyor.

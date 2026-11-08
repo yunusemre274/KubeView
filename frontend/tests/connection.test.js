@@ -65,6 +65,68 @@ const reply = (body) =>
     headers: { "Content-Type": "application/json" },
   });
 
+test("first mount can observe namespace before contexts arrive without opening streams or claiming authority", async () => {
+  const manager = fresh();
+  manager.state = {
+    ...initialState("initial-mount"),
+    contexts: [],
+    context: "",
+    mode: "live",
+    configured: false,
+    readOnly: true,
+    managementEnabled: false,
+  };
+  manager.started = true;
+  let streamStarts = 0;
+  manager.connect = () => {
+    ++streamStarts;
+  };
+  try {
+    assert.doesNotThrow(() => manager.observeNamespace("all", "initial-mount"));
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(manager.state.activeNamespace, "all");
+    assert.equal(manager.state.readOnly, true);
+    assert.equal(manager.state.managementEnabled, false);
+    assert.equal(manager.state.snapshotReady, false);
+    assert.equal(Object.keys(manager.state.resources).length, 0);
+    assert.equal(Object.keys(manager.state.scopes).length, 0);
+    assert.equal(manager.state.metricHistory.length, 0);
+    assert.equal(streamStarts, 0);
+    manager.observeNamespace("known-namespace", "initial-mount");
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(manager.state.activeNamespace, "known-namespace");
+    assert.equal(streamStarts, 0);
+  } finally {
+    manager.cleanup();
+  }
+});
+
+test("management revoke is awaitable and fails closed before configuration and in demo", async () => {
+  const manager = fresh();
+  try {
+    for (const state of [
+      { mode: "live", configured: false },
+      { mode: "demo", configured: true },
+    ]) {
+      manager.state = {
+        ...manager.state,
+        ...state,
+        readOnly: false,
+        managementEnabled: true,
+      };
+      manager.managementIntent = true;
+      const reset = manager.resetManagement();
+      assert.equal(typeof reset?.then, "function");
+      await reset;
+      assert.equal(manager.state.readOnly, true);
+      assert.equal(manager.state.managementEnabled, false);
+      assert.equal(manager.managementIntent, false);
+    }
+  } finally {
+    manager.cleanup();
+  }
+});
+
 test("connection labels distinguish browser, API, first synchronization and demo", () => {
   assert.match(
     connectionStatus({ configured: true, isConnected: true, upstream: true }),

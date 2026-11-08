@@ -2,6 +2,8 @@
 
 ## 8 Kasım 2026 — güvenli test orchestration
 
+- Production build ve saf manager unit testleri React ilk açılışını kanıtlamaz. İlk normal UI testi, configured=false iken resetManagement dönüşünün Promise olmaması nedeniyle observeNamespace `.then` hatasını yakaladı. Başarısız iki koşu korunur; CI artık derlenmiş binary arayüzünde DOM/runtime smoke içerir.
+
 - Python assertion ardından shell yeni satırı fail-fast sayılmaz. Preflight ile mutation aynı checked subprocess akışında olmalı. Owned lab restore guardında kısa machineName alanı için yanlış assertion çıktı; exact Docker ID/label doğrulamasıyla kapsam tekrar ispatlandı. Diğer kümeye dokunulmadı.
 - Güvenli error redaction, yararlı PDB/admission/quota nedenlerini statik sınıflandırmayla korumalı. PodDisruptionBudget birleşik yazımı ilk regresyon testinde yakalandı; başarısız kayıt silinmeden düzeltildi.
 

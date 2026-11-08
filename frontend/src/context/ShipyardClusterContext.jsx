@@ -199,7 +199,7 @@ export const singletonManager = {
     this.pauseStream();
     const revision = this.scopeRevision;
     this.resetManagement().then(() => {
-      if (revision !== this.scopeRevision) return;
+      if (revision !== this.scopeRevision || !this.state.configured) return;
       this.refreshMetrics();
       this.scheduleScopeRefresh();
     });
@@ -331,7 +331,7 @@ export const singletonManager = {
       }
     }
   },
-  resetManagement() {
+  async resetManagement() {
     this.managementIntent = false;
     this.publish({ readOnly: true, managementEnabled: false });
     if (this.state.mode !== "live" || !this.state.configured) return;
