@@ -1,0 +1,22 @@
+{
+  "startedAt": "2026-11-08T20:48:44.340111+00:00",
+  "runnerPID": 65446,
+  "caffeinatePID": 65447,
+  "command": [
+    "node",
+    "/Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js",
+    "test",
+    "-c",
+    "e2e/v11-playwright.config.js",
+    "--project=chromium",
+    "--grep",
+    "same-name different-UID|initial read-only",
+    "--max-failures=1"
+  ],
+  "scope": "Only this runner lifetime; no global OS setting change",
+  "finishedAt": "2026-11-08T20:49:10.471178+00:00",
+  "runnerExit": 1,
+  "elapsedWallSeconds": 26.134644985198975,
+  "elapsedMonotonicSeconds": 26.134688582998933,
+  "caffeinateExited": true
+}

@@ -1,5 +1,12 @@
 # KubeView performans ölçümü
 
+## 9 Kasım 2026 — v1.1.0 yeni kaynak kabulü
+
+Dondurulmuş `2b76e21`→`32a0468` için yeni AC31/31hücre, üç eşleşmiş30s+60sblok ve tek1200s/20panel koşusu tamamlandı. [Ayrıntılı güncel tablo, ham sonuçlar ve sınırlar](../artifacts/v1.1.0/v11-20261108/performance/REVIEW.md). Açık panel toplam browser CPU medyanı.38237→.39759çekirdek; aralıklar örtüşür. SignedΔpanel ayrı hesaplanır; CPU kazancı iddia edilmez. L ham.39292→.47515farkında fiili çizim yükü de değişmiştir; ayrı iki kontrollü pil çifti+.63%/+1.59%verdi, AC ile pool yapılmaz ve bu tek sonuç bütün regresyon kapısını otomatik kapatmaz.
+
+M/L yaklaşık60JSçizim/sn; uzun koşu60.0005,p9518.7/p9921.0ms. Tam canonical içerik eşitliği,20/20panel,24/24log kapanışı ve bounded materyal/observer/timer gözlemi geçti. Fiziksel presentedFPS/GPUkullanım%/toplamRAM/nativeSafari performansı ölçülmedi. Eski6Kasım ve25Ekim kayıtları korunur; yeni kaynağın geçmişte test edildiği ileri sürülmez.
+
+
 **6 Kasım 2026 — görsel onarım kabulü:** Gerçek kaynak/animasyon kanıtı, dondurulmuş source/build kimliği ve yeni pil oturumunun durumu [PRE_V11_VISUAL_REPAIR.md](PRE_V11_VISUAL_REPAIR.md) içindedir. `benchmarks/repair-session.mjs` mevcut production runner'ına sonlu seri plan ekler; ayrı renderer veya yeni benchmark sistemi değildir. Üç eşleşmiş blokta açık/kapalı panel, Node/container/çoklu olay efektleri, idle ve L dünya; ardından olay, etkileşim ve 20 dakika/20 panel-stream çevrimi çalışır. İlk snapshot efekt kuyruğu, tam nesne içeriği eşitliği, üretici hızı, süreç CPU kapsamı, zaman/kalite/kaynak kimliği ve cleanup kapıları raporda ayrı doğrulanır. Aynı seçili UID korunur; panel açılmasıyla kamerayı veya seçim bağlamını değiştirerek kıyas yapılmaz.
 
 ```sh

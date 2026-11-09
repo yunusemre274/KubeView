@@ -41,3 +41,13 @@ Arızalanan kutu gerçek Pod UID + container adı/rolü + restart/termination d�
 Kızak, merkezden istenen gerçek yerel worker sağlamanın girişidir. İstek taslağı Node sayılmaz; yalnız sağlayıcının doğruladığı gerçek Node UID'siyle eşleşir. Scheduler worker sağlamaz. Merkez/API/controller/scheduler/kubelet işaretleri gerçek kaynak/owner/nodeName/Ready gözlemlerinden türetilmiş temsili süreçtir; iç RPC mesajı ölçülmez.
 
 Ağ katmanları ayrıdır: selector/EndpointSlice topolojisi, Hubble ölçülmüş flow olayları ve temsili kontrol düzlemi. Flow sayısı paket/byte/bant genişliği değildir. Hubble1.20.2 Pod UID veya container adı vermediğinden zamana bağlı doğrulanmış IP/Pod aralıkları kullanılır; belirsiz eşleşme bilinmiyor kalır ve yanlış kutuya çizilmez. Namespace/küme yetkisi dışında endpoint metadata'sı gönderilmez. Trafik penceresi sona erince iz durur; provider kesilmesi Node arızası değildir.
+
+## 9 Kasım 2026 — durum ve yönetim sunumu
+
+Takvim panosundaki askıdaki Job **Askıya alındı** görünür; gerçek Complete/Failed koşulları önceliklidir. Job askısı yeni gemi yaratmaz ve görsel seyri durdurma düğmesiyle aynı işlem değildir. DaemonSet için eksik sayılar sağlıklı filo anlamına gelmez: bilinen desired/ready ve güncel observedGeneration gerekir. Gerçek 1/1 Ready DS **Hazır** kalır. [Son kaynakta normal UI kanıtı](artifacts/v1.1.0/v11-20261108/frontend/status-resume/REVIEW.md).
+
+Workload formu yalnız backend'in doğruladığı gerçek owner UID hedefine gider. D/STS/DS template düzenleme yeni Pod/Ready sonucundan ayrıdır; standalone RS/Job/CronJob sessizce başka workload'a çevrilmez. Pod silme controller replacement'ına yol açabilir; yeni UID ayrı bir yük olarak seçilir. Aynı UID'deki kullanıcı taslağı reconnect GET'iyle ezilmez, RV farkı görünür gözden geçirme ister. Kasa yalnız metadata gösterir; değer reveal/edit'i ayrı yetkili yerel akıştır ve maskeli içerik gerçek Secret yerine yazılmaz.
+
+Context/namespace/stream değişince eski trafik callback'i yeni limana çizilemez. Geç yanıtların reddi ve eski scope lease'inin bırakılması gerçek hook'un sentetik unit testleriyle ayrıca sınanır; bu, gerçek Hubble ölçümünün yerine geçmez. App/init/ephemeral/previous log seçimi gerçek Pod UID ve container adına bağlıdır; pause akışı kapatır, resume seçili tail'i yeniden okur. Bir log veya provider kopması geminin fiziksel ölüm kanıtı değildir.
+
+Güncel aday tam ekran liman ve opak Soft UI pencereleri kullanır. Önceki gerçek Node arızası/worker/vinç kanıtları tarihsel kaynaklarıyla korunur; yeni caption ve bağlantı akışı için incelenmiş kaynak uygulanabilirliği [ayrı kayıttır](artifacts/v1.1.0/v11-20261108/harbor-source-applicability.json). Yayımlama durumu ve test edilmiş aday kimlikleri [release notlarında](docs/RELEASE_NOTES_v1.1.0.md) izlenir.

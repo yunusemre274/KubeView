@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-32-38-354Z-c9ebfe38",
+  "startedAt": "2026-11-09T08:32:38.354Z",
+  "tests": [
+    {
+      "title": "V11-04 V11-07 actual restricted identity cannot preview or create Deployment after explicit management intent",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 1361,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-32-38-551Z-20b7765a/v11-rbac-create-V11-04-V11-39533--explicit-management-intent-chromium/attachments/v11-evidence-6e73cb65ced63d6182c67f8e3607804a365a2de0.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:32:40.012Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-32-38-354Z-c9ebfe38.json"
+}

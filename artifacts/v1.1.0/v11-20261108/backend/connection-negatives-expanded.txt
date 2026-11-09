@@ -1,0 +1,36 @@
+=== RUN   TestManagementStartsReadOnlyAndCannotBypassSession
+--- PASS: TestManagementStartsReadOnlyAndCannotBypassSession (0.00s)
+=== RUN   TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip
+--- PASS: TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip (0.00s)
+=== RUN   TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList
+--- PASS: TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList (0.00s)
+=== RUN   TestOriginHostJSONAndSessionNegatives
+=== RUN   TestOriginHostJSONAndSessionNegatives/foreign-origin
+=== RUN   TestOriginHostJSONAndSessionNegatives/wrong-scheme
+=== RUN   TestOriginHostJSONAndSessionNegatives/opaque-origin
+=== RUN   TestOriginHostJSONAndSessionNegatives/origin-userinfo
+=== RUN   TestOriginHostJSONAndSessionNegatives/dns-rebind
+=== RUN   TestOriginHostJSONAndSessionNegatives/fetch-site
+=== RUN   TestOriginHostJSONAndSessionNegatives/form-json-substring
+=== RUN   TestOriginHostJSONAndSessionNegatives/multiple-json
+=== RUN   TestOriginHostJSONAndSessionNegatives/tls-downgrade
+--- PASS: TestOriginHostJSONAndSessionNegatives (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/foreign-origin (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/wrong-scheme (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/opaque-origin (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/origin-userinfo (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/dns-rebind (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/fetch-site (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/form-json-substring (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/multiple-json (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/tls-downgrade (0.00s)
+=== RUN   TestConnectionErrorsDoNotExposeCredentials
+--- PASS: TestConnectionErrorsDoNotExposeCredentials (0.00s)
+=== RUN   TestMergedKubeconfigSelectionReloadAndNoGlobalMutation
+--- PASS: TestMergedKubeconfigSelectionReloadAndNoGlobalMutation (0.00s)
+=== RUN   TestScopeSwitchCancelsInFlightStreams
+--- PASS: TestScopeSwitchCancelsInFlightStreams (0.00s)
+=== RUN   TestPortForwardSandboxStripsGatewayCredentialsAndBindsOperator
+--- PASS: TestPortForwardSandboxStripsGatewayCredentialsAndBindsOperator (0.00s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	0.569s

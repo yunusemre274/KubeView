@@ -2,7 +2,7 @@
 
 Kubernetes kümenizin arayüzü, tam ekran etkileşimli bir tersanedir. Merkez binasına, Node gemisine veya Pod yüküne tıklayarak çalışırsınız. Kalıcı dashboard, sidebar veya açık kaynak tablosu yoktur. Listeler, formlar, grafikler ve loglar ilgili nesnenin geçici penceresinde açılır.
 
-**Sürüm durumu:** çalışma ağacı **1.1.0 adayı** için hazırlanıyor; stable tag/release ve kabul kapıları henüz tamamlanmadı. 6 Kasım onarımının ürün sürümü 0.4.0 idi. Önceden yayımlanmış bir v1.0.0 varsayılmıyor. Aday değişiklikleri ve teslim durumu [release notlarında](docs/RELEASE_NOTES_v1.1.0.md); önceki CR reconnect/UID, Node/container arızası, yerel worker, Hubble ve temsili hazırlık kanıtları [onarım kaydında](docs/PRE_V11_VISUAL_REPAIR.md) ve [incelenmiş kısa kayıtlarda](artifacts/pre-v11-repair/repair-20261101T130559Z/delivery/EVIDENCE_INDEX.md). Tarihsel testler bu aday için otomatik PASS değildir.
+**Sürüm durumu:** **1.1.0 sürüm adayı**; final kanıt/kabul incelemesi, CI ve yayımlama bekleniyor. Doğrulanan runtime kaynak commit'i `32a0468`, frozen frontend kimliği `e61447de…`; test edilen macOS/Linux binary kimlikleri ve platform sınırları [release notlarında](docs/RELEASE_NOTES_v1.1.0.md). 6 Kasım onarımının ürün sürümü 0.4.0 idi; önceden yayımlanmış bir v1.0.0 varsayılmıyor. Önceki CR reconnect/UID, Node/container arızası, yerel worker, Hubble ve temsili hazırlık kanıtları [onarım kaydında](docs/PRE_V11_VISUAL_REPAIR.md) ve [incelenmiş kısa kayıtlarda](artifacts/pre-v11-repair/repair-20261101T130559Z/delivery/EVIDENCE_INDEX.md). Tarihsel sonuçların uygulanabilirliği ilgili kaynak farklarıyla değerlendirilir.
 
 ![Hareketli tersane](docs/evidence/motion/fleet-overview.png)
 
@@ -15,6 +15,8 @@ Kubernetes kümenizin arayüzü, tam ekran etkileşimli bir tersanedir. Merkez b
 - **Depo, talimat panosu, kasa, ağ tesisi, fener ve personel bölümü:** ilgili gerçek kaynak türleri.
 
 **Bul** veya **Cmd/Ctrl+K**, kaynak ve tesislere klavye ile erişir. **Limana dön**, genel kadraja döner. Paneller kapanırken canvas ve kamera korunur. Dar ekranda da ana görünüm limandır; ayrıntı paneli genişletilebilir alt sheet olur.
+
+Bul penceresi mouse veya klavye ile açılabilir; ESC kapanışında odak açan kontrole döner. Input, YAML veya terminal odağı kameranın yön tuşlarını devralmasını engeller. Bir Pod/container seçiminde ham namespace/ad ve UID korunur; aynı adla yeniden oluşan kaynak ayrıca seçilir.
 
 ## Filo, deniz ve panel tercihleri
 
@@ -32,7 +34,7 @@ Kanıt: [hareketli demo kaydı](docs/evidence/motion/demo-living-fleet.webm), [g
 
 Normal kullanım için çalışan bir Kubernetes kümesi, yalnız güvendiğiniz bir kubeconfig ve kimliğinizin ihtiyaç duyduğu mevcut auth plugin gerekir. Kubernetes kaynak koduna SDK eklenmez. Metrics API ve Hubble isteğe bağlıdır; yoklukları temel kaynakları incelemeyi engellemez. Gerçek küme olmadan yalnız açıkça seçilen demo kullanılabilir.
 
-Hedef aday paketler `kubeview_1.1.0_darwin-arm64.tar.gz` ve `kubeview_1.1.0_linux-amd64.tar.gz` adlarını kullanır. Paketlerin varlığı veya çapraz derlenmesi, platformda çalıştırma ve release kabulü kanıtı değildir; yayımlanma ve test durumu release notlarından kontrol edilmelidir. Doğrulanmış paket elinizde olduğunda macOS ARM64 örneği:
+Hedef aday paketler `kubeview_1.1.0_darwin-arm64.tar.gz` ve `kubeview_1.1.0_linux-amd64.tar.gz` adlarını kullanır. Güncel macOS ARM64 binary temiz kurulum dizininden gömülü arayüzle ve gerçek normal UI ile çalıştırıldı. Linux AMD64 binary macOS ARM64 üzerindeki Docker emülasyonunda gerçek API ve gömülü asset kontrollerini geçti; native Intel/Linux browser veya performans kabulü bu kayıtta yoktur. Paketlerin yayımlanma durumu ve tam kimlikleri release notlarından kontrol edilmelidir. Doğrulanmış paket elinizde olduğunda macOS ARM64 örneği:
 
 ```sh
 tar -xzf kubeview_1.1.0_darwin-arm64.tar.gz
@@ -59,6 +61,8 @@ Başlangıç salt okunurdur. Yönetim gerekiyorsa sunucuyu `--write` ile başlat
 
 `--write` / `READ_ONLY=false` sunucu kilidini açar; Kubernetes rolü vermez ve tarayıcıyı kendiliğinden yazma moduna geçirmez. Her işlem gerçek Kubernetes yetkileriyle denetlenir. Context veya namespace değişince tarayıcı yazma niyeti iptal edilir; tekrar açık onay gerekir. API kabulü, controller uygulanması ve gözlenen Ready/tamamlanma ayrı gösterilir. Ağ hatasında sonucu belirsiz gönderim otomatik tekrarlanmaz; formdan gerçek kaynak durumu sorgulanır.
 
+Yeniden bağlantıda yönetim durumu backend'den tekrar doğrulanır; backend izni kaldırmışsa açık panel de salt okunur olur. Aynı kaynak UID'sindeki kullanıcı taslağı gecikmiş GET ile ezilmez. Güncel sürüm yüklenirken form alanları bekler; resourceVersion değişmişse taslak korunur ve açık gözden geçirme gerekir. Önceki dry-run önizlemesi yeniden doğrulanır. Farklı context/namespace'e ait seçim, taslak ve akışlar yeni kümeye taşınmaz.
+
 | Seçenek | Etkisi |
 |---|---|
 | `--kubeconfig PATH_LIST` | Güvenilir kubeconfig dosyalarını `KUBECONFIG` yüklemesine verir. macOS/Linux'ta çoklu yol `:` ile ayrılır. |
@@ -71,6 +75,8 @@ Başlangıç salt okunurdur. Yönetim gerekiyorsa sunucuyu `--write` ile başlat
 | `--version` | Binary'ye gömülen sürüm, commit ve OS/CPU bilgisini gösterir. |
 
 Bayrak verilmezse mevcut ortam ayarları kullanılır. Standart yükleme `KUBECONFIG` dosya listesini birleştirir; yoksa yerel `~/.kube/config`, uygun ortamda in-cluster ServiceAccount değerlendirilir. Örnek çoklu dosya: `./kubeview --kubeconfig "$HOME/.kube/config:$HOME/.kube/ek-config" --context kendi-context-adiniz`. Kubeconfig ve kimlik bilgileri backend'de kalır. **Yalnız güvendiğiniz kubeconfig dosyalarını kullanın:** içindeki exec auth plugin'i backend makinesinde yerel program çalıştırabilir. TLS doğrulaması bağlantı hatasını gidermek için otomatik kapatılmaz.
+
+Bağlanmak cluster kaynaklarını değiştirmez, Node eklemez veya ağ sağlayıcısı kurmaz. Mutasyonlar ayrı, açık kullanıcı eylemiyle ve sunucu kapsamı/RBAC denetimiyle çalışır.
 
 `STATIC_DIR=/tam/yol/frontend ./kubeview` gömülü arayüz yerine belirtilen dizini sunar; dizinde `index.html` bulunmalıdır. Override güvenilir ve aynı adayın API'siyle uyumlu olmalıdır. Hazırlanmamış geliştirme derlemesinde dış statik dizin veya Vite yolu korunur.
 
@@ -105,11 +111,19 @@ Bu geliştirme örneği de bağlantı penceresinden açık yönetim seçimi gere
 
 Discovery tabanlı list/get/create/edit/delete, server dry-run, UID/resourceVersion koruması, scale, uygun restart/rollback, container request/limit, koşullu `pods/resize`, CronJob işlemleri, cordon/uncordon ve eviction tabanlı drain servisi bulunur. Log/exec/port-forward gerçek Kubernetes alt kaynaklarını kullanır. Özellik ve test kapsamı [CAPABILITIES.md](docs/CAPABILITIES.md) içinde açıkça ayrılmıştır.
 
+Merkez veya sefer panosundan Deployment oluştururken önce **Server dry-run**, sonra gerçek oluşturma kullanılır; dry-run nesne yaratmaz. Pod ataması, owner zinciri ve Ready durumu gerçek watch verisinden izlenir. Workload panelindeki **Ölçekle**, **CPU / RAM**, **Rollout restart** ve **Sil** kendi eylemidir. Pod silmek controller'ın yeni UID ile replacement yaratmasına yol açabilir; replica azaltma ve workload silme farklı sonuçlardır. CPU/RAM template düzenleme doğrulanmış Deployment/StatefulSet/DaemonSet hedefine uygulanır; standalone ReplicaSet/Job/CronJob için gerekçe gösterilir. RollingUpdate, OnDelete ve partition sonuçları aynı kabul eşiğiyle sunulmaz.
+
+StatefulSet/DaemonSet CPU/RAM template düzenlemesinde bilinmeyen kullanıcı etiketleri/annotation'ları ve diğer container alanlarının korunması [gerçek form akışında doğrulandı](artifacts/v1.1.0/v11-20261108/frontend/forms-resume/REVIEW.md). Controller'ın kendi template-generation annotation değişimi bu kayıtta ayrıca ayrılır.
+
+Kasa Secret değerlerini toplu akışta taşımaz; ayrı **Yetkiyle Secret değerlerini aç** ve **Gizli içeriği düzenle** yolları gerçek yetki ister. Maskeli placeholder gerçek Secret değeri olarak geri yazılmaz. Container loglarında app, tamamlanmış init, geçici debug ve previous/current seçimi gerçek container adını kullanır. **Duraklat**, HTTP log akışını kapatır; devam et seçili son satır sayısını yeniden alır, aradaki bütün satırların saklanmasını garanti etmez. Askıdaki Job **Askıya alındı** görünür; DaemonSet ancak bilinen ready/desired sayıları ve güncel observedGeneration ile **Hazır** sayılır.
+
 `metrics.k8s.io` gerçek CPU/RAM ölçümlerini sağlar; grafikler ölçüm zamanını ve birimini gösterir. Request/limit/allocatable kullanım ölçümü değildir. Ölçüm yoksa/Forbidden ise sahte sıfır çizilmez. Geçmiş yalnız oturum belleğindedir; Prometheus gibi uzun geçmiş deposu değildir. Exec arayüzü non-TTY satır tabanlı shell'dir. Kullanıcıya sunulan port-forward yolu seçili Pod'un TCP portundaki **HTTP önizlemesidir**; genel ağ proxy'si veya UDP desteği vaat edilmez. Önizleme sandbox uygular; mutlak asset yolları kullanan karmaşık uygulamalar sınırlıdır. Log UID guard'ları aynı-ad/yeni-UID yarışını sınırlar; Kubernetes logs API'si atomik UID önkoşulu sunmadığından mutlak UID-pinned log garantisi yoktur. Helm release yönetimi ve genel bulut worker sağlama yoktur; izinli yerel minikube worker ve gerçek Hubble akışı aşağıdaki sınırlı sağlayıcılardır.
 
 Görsel kanıt: [önceki dashboard](docs/evidence/chromium-overview-1440.png) → [tam ekran dünya](docs/evidence/world/chromium-world-1440.png) · [gerçek yaşam döngüsü videosu](docs/evidence/world/lifecycle-live.webm). Test ortamı, ölçümler ve açık sınırlar: [VALIDATION](docs/VALIDATION.md).
 
 ## Doğrulama
+
+Güncel seri frontend unit grubu **165/165 PASS** içerir. Son beş vaka gerçek `useWorldProviders` hook'unu sentetik deferred yanıtlarla sınar: A→B→A, namespace ve stream-session değişiminde eski Hubble UID/protokol verisi modele girmez, güncel nonempty yanıt kabul edilir ve pinned lease cleanup korunur. Bunlar gerçek Hubble E2E yerine geçmez. [Unit kanıtı](artifacts/v1.1.0/v11-20261108/frontend/provider-epoch-evidence.json), [gerçek Job/DS UI kabulü](artifacts/v1.1.0/v11-20261108/frontend/status-resume/REVIEW.md) ve bütün kabul satırlarının [durumu](docs/V11_ACCEPTANCE_REPORT.md) ayrı kayıtlardır.
 
 ```sh
 make test
@@ -123,6 +137,8 @@ KUBEVIEW_TEST_CONTEXT=kubeview-test KUBEVIEW_TEST_NAMESPACE=kubeview-qa \
 ```
 
 Production performans altyapısı, gerçek Go informer → WebSocket → store → mevcut sahne yolunu deterministik sentetik verilerle kullanır. Gerçek kümeye kaynak uygulamaz. S/M/L profilleri, 30 sn ısınma + 60 sn ×3 tekrar, efekt/olay/etkileşim koşuları ve 20 dakikalık kaynak/log/reconnect döngüsü için [ölçüm kılavuzuna](docs/PERFORMANCE.md) bakın. Ölçülen sonuçlar ve native Safari erişim sınırı [performans raporunda](docs/PERFORMANCE_REPORT.md) ayrılır. Önceki `e2e/fleet-benchmark.mjs` geliştirme tanılaması production benchmark yerine kullanılmaz.
+
+Son aday için 31 AC hücresi ve ayrı dört kontrollü pil hücresi tamamlandı; AC karşılaştırma kaydı `valid=true/partial=false` döner. 20 dakikalık sentetik koşuda 20 panel döngüsü ve 24/24 log kapanışı bulunur. [Ham ölçüm kapsamı](artifacts/v1.1.0/v11-20261108/performance/raw-measurements-manifest.json) ve [AC karşılaştırması](artifacts/v1.1.0/v11-20261108/performance/comparison-ac.json) kaynak/güç koşullarına bağlıdır. Pil ile AC oranlanmaz; JS çizim sıklığı fiziksel presented FPS, sentetik replay de gerçek provider maliyeti değildir. Yayın kararı kalan final kanıt/CI/release kapılarına bağlıdır.
 
 26–30 Ekim panel araştırması, güncel sınırlı-log sürümünü yeni baseline olarak kullanır: [panel CPU deneyi ve tekrarlama](docs/PANEL_CPU_OPTIMIZATION.md). Beş çiftte dolu-log takılması ve süreç RSS'i azaldı; net toplam CPU kazanımı kanıtlanmadı. Açık/kapalı panel farkı aynı seçili UID ile eşleşmiş bloklarda ölçülür; tarihsel sürümler arasındaki fark panel açma maliyeti sayılmaz. Son doğrulama durumu ve reddedilen kapasite adayı da raporda ayrı tutulur.
 
@@ -200,4 +216,4 @@ KV_HUBBLE_TLS_SERVER_NAME=relay.example \
 
 `KV_HUBBLE_BINARY` varsayılan `hubble` yerine sabit bir executable yolu verebilir. Sağlayıcı kimliği context/clusterUID/API TLS binding ve gerçek Cilium cluster.name ile sınırlandırılır. Namespace yetkisi ayrıca uygulanır; relay sertifikası uygulama kullanıcısına tüm namespace yetkisi vermez. Flow olayları10sn pencerede toplanır; paket, byte veya bant genişliği değildir. L7 yalnız sağlayıcı kaydı varsa görünür; şifreli içerik çıkarılmaz. UID/kimlik belirsizliği, kapasite sınırları ve eski veri açıkça belirtilir. Selector/EndpointSlice çizgileri ayrı yapılandırma katmanıdır.
 
-Tarihsel sağlayıcı kanıtları ve kapsam/platform sınırları: [v1.1 öncesi onarım kaydı](docs/PRE_V11_VISUAL_REPAIR.md). Yeni 1.1.0 adayının yayın ve kabul durumu [release notlarından](docs/RELEASE_NOTES_v1.1.0.md) ayrıca izlenir.
+Tarihsel Node arızası/worker/vinç sağlayıcı kanıtları [v1.1 öncesi onarım kaydında](docs/PRE_V11_VISUAL_REPAIR.md) kalır; güncel [kaynak uygulanabilirliği](artifacts/v1.1.0/v11-20261108/harbor-source-applicability.json) ve [son runtime farkı](artifacts/v1.1.0/v11-20261108/source-applicability-32a0468.json) hangi modüllerin korunduğunu belirtir. Bunlar yeni bir gerçek Node stop veya worker-add koşusu olarak sayılmaz. Değişen caption'lar ayrı gerçek container/flow UI [kanıtıyla](artifacts/v1.1.0/v11-20261108/frontend/visual-resume/REVIEW.md) incelendi. Adayın yayın ve kabul durumu [release notlarından](docs/RELEASE_NOTES_v1.1.0.md) izlenir.

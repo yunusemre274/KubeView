@@ -1,0 +1,110 @@
+{
+  "at": "2026-11-09T08:33:23.959311+00:00",
+  "baselineCommit": "2b76e215fdbe201be1611ccea4c40dcd547b2ba7",
+  "currentCommit": "0f5a5ab6b8e52e645b9e2e71dd063112ca105e98",
+  "files": [
+    {
+      "file": "frontend/src/harbor/FacilityResources.jsx",
+      "baselineSHA256": "0c1b6f4d76726ae7bb2036c04dd6aebf177a7e556d8e4fc9fd18d03e41382ad2",
+      "currentSHA256": "0c1b6f4d76726ae7bb2036c04dd6aebf177a7e556d8e4fc9fd18d03e41382ad2",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/HarborScene.jsx",
+      "baselineSHA256": "64cc7fcc945c8d58cf9dcd8c0b3f4efd0ab7d822f6fb59fc1f76d08d39235e6c",
+      "currentSHA256": "64cc7fcc945c8d58cf9dcd8c0b3f4efd0ab7d822f6fb59fc1f76d08d39235e6c",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/LifecycleEffects.jsx",
+      "baselineSHA256": "3a3d3cf328c330c89ba7d3845e10b5210717c2b24fb0c1ad7e950421ce0e7798",
+      "currentSHA256": "e68fd8a180a44ae7ea0974a8572c099cf16e6be6642f71dde7831a2e32eb607c",
+      "byteEqual": false
+    },
+    {
+      "file": "frontend/src/harbor/MeasuredTraffic.jsx",
+      "baselineSHA256": "82600a5e3ae8f6309a77368490d9193abba7c30e6829109c1cb06b0ef70e00d8",
+      "currentSHA256": "2379cfe1f870ff366a336295641592f4958f230dbf03230889662cef333d539d",
+      "byteEqual": false
+    },
+    {
+      "file": "frontend/src/harbor/Ocean.jsx",
+      "baselineSHA256": "8ed52205a3437d41f6787aa21f3f26d3b26e779a65a54b219163e2e79a631318",
+      "currentSHA256": "8ed52205a3437d41f6787aa21f3f26d3b26e779a65a54b219163e2e79a631318",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/WorldFacilities.jsx",
+      "baselineSHA256": "b7440e44f580ceb717ea37c273c8e29f0df081b5ce198ba1c4d82e40c0938a9f",
+      "currentSHA256": "b7440e44f580ceb717ea37c273c8e29f0df081b5ce198ba1c4d82e40c0938a9f",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/assets.jsx",
+      "baselineSHA256": "c72be209e02a7088b77ed3603fe0641863828e3cd18b0014e985119eaa132618",
+      "currentSHA256": "c72be209e02a7088b77ed3603fe0641863828e3cd18b0014e985119eaa132618",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/captions.js",
+      "baselineSHA256": null,
+      "currentSHA256": "7d3b646662faa6aaf3a0709f01d8501450c12c7a903270da87003e035da884c8",
+      "byteEqual": false
+    },
+    {
+      "file": "frontend/src/harbor/cargoTransforms.js",
+      "baselineSHA256": "df856ab15058990e8ec7964dff56ba614bab493b00117de0fbb5ca62ec70de7f",
+      "currentSHA256": "df856ab15058990e8ec7964dff56ba614bab493b00117de0fbb5ca62ec70de7f",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/fleet.js",
+      "baselineSHA256": "436c3a71d88e7124ce9bb312a0428ba962c2b7c815a80cace9c32294f22b0404",
+      "currentSHA256": "436c3a71d88e7124ce9bb312a0428ba962c2b7c815a80cace9c32294f22b0404",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/interactions.js",
+      "baselineSHA256": "29f0784df8d5af8fca2208cf5a9d56b5fa53b9b4e65733830df6a33a07e5d306",
+      "currentSHA256": "29f0784df8d5af8fca2208cf5a9d56b5fa53b9b4e65733830df6a33a07e5d306",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/layout.js",
+      "baselineSHA256": "43b3c0c3769cd3960368cc1ce571a61e1f944a02ce90dfbaaaf129543ca17022",
+      "currentSHA256": "43b3c0c3769cd3960368cc1ce571a61e1f944a02ce90dfbaaaf129543ca17022",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/materials.js",
+      "baselineSHA256": "01146b51ad0983064d62e53606ca802dd54cc65a46c0821a01b5b0557772521b",
+      "currentSHA256": "01146b51ad0983064d62e53606ca802dd54cc65a46c0821a01b5b0557772521b",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/resourceRelations.js",
+      "baselineSHA256": "d1c8d9a8eefb0457ce9c842ebab3d36749791e845a76799eaf2289e35372d6e2",
+      "currentSHA256": "d1c8d9a8eefb0457ce9c842ebab3d36749791e845a76799eaf2289e35372d6e2",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/visualLifecycle.js",
+      "baselineSHA256": "6936afdb11c5b60e24a1c27392e790de9c5532beace54f60dbb6040ec0025a26",
+      "currentSHA256": "6936afdb11c5b60e24a1c27392e790de9c5532beace54f60dbb6040ec0025a26",
+      "byteEqual": true
+    },
+    {
+      "file": "frontend/src/harbor/waterModel.js",
+      "baselineSHA256": "822eb100b1cd371d7dbe101f684e30d7293dce90b4b4e80d445c0de693483dbc",
+      "currentSHA256": "822eb100b1cd371d7dbe101f684e30d7293dce90b4b4e80d445c0de693483dbc",
+      "byteEqual": true
+    }
+  ],
+  "reviewedRuntimeDiff": "diff --git a/frontend/src/harbor/LifecycleEffects.jsx b/frontend/src/harbor/LifecycleEffects.jsx\nindex 842c679..0b3b850 100644\n--- a/frontend/src/harbor/LifecycleEffects.jsx\n+++ b/frontend/src/harbor/LifecycleEffects.jsx\n@@ -8,6 +8,7 @@ import { Box, Blocks, CargoShip, Lettering } from \"./assets.jsx\";\n import { vesselPointToWorld } from \"./fleet.js\";\n import { resourcePosition, uidOf } from \"./layout.js\";\n import { hashColor } from \"./materials.js\";\n+import { captionPosition } from \"./captions.js\";\n \n const caption = {\n   background: \"#fff9ef\",\n@@ -296,6 +297,9 @@ function FaultMarker({\n       <Html\n         center\n         position={[0, 2.3, 0]}\n+        calculatePosition={(object, camera, size) =>\n+          captionPosition(object, camera, size, 220, true)\n+        }\n         style={{ pointerEvents: \"none\" }}\n         zIndexRange={[8, 0]}\n       >\n@@ -305,9 +309,9 @@ function FaultMarker({\n           style={{\n             ...caption,\n             display: \"block\",\n-            maxWidth: 260,\n+            width: \"min(220px, calc(100vw - 32px))\",\n             whiteSpace: \"normal\",\n-            transform: \"translate(calc(50% + 26px), -8px)\",\n+            overflowWrap: \"anywhere\",\n           }}\n         />\n       </Html>\ndiff --git a/frontend/src/harbor/MeasuredTraffic.jsx b/frontend/src/harbor/MeasuredTraffic.jsx\nindex 684fcaa..00bea5d 100644\n--- a/frontend/src/harbor/MeasuredTraffic.jsx\n+++ b/frontend/src/harbor/MeasuredTraffic.jsx\n@@ -9,6 +9,7 @@ import {\n } from \"./resourceRelations.js\";\n import { Lettering } from \"./assets.jsx\";\n import { OBJECT_DESCRIPTIONS } from \"../constants/descriptions.js\";\n+import { captionPosition } from \"./captions.js\";\n \n const MAX_FLOWS = 96,\n   SEGMENTS = 12;\n@@ -19,7 +20,11 @@ const providerCaption = {\n   color: \"#234e4a\",\n   padding: \"5px 8px\",\n   font: \"500 12px/1.4 system-ui\",\n-  whiteSpace: \"nowrap\",\n+  display: \"block\",\n+  width: \"min(320px, calc(100vw - 32px))\",\n+  whiteSpace: \"normal\",\n+  overflowWrap: \"anywhere\",\n+  textAlign: \"center\",\n   pointerEvents: \"none\",\n };\n \n@@ -354,6 +359,7 @@ export default function MeasuredTraffic({\n       <Html\n         position={[109, 20, -54]}\n         center\n+        calculatePosition={captionPosition}\n         style={{ pointerEvents: \"none\" }}\n         zIndexRange={[7, 0]}\n       >\ndiff --git a/frontend/src/harbor/captions.js b/frontend/src/harbor/captions.js\nnew file mode 100644\nindex 0000000..0ddec20\n--- /dev/null\n+++ b/frontend/src/harbor/captions.js\n@@ -0,0 +1,22 @@\n+import { Vector3 } from \"three\";\n+const projected = new Vector3();\n+// Keep a caption inside the viewport. Fault captions sit beside the moving\n+// marker, choosing the side with room rather than covering the falling box.\n+export function captionPosition(\n+  object,\n+  camera,\n+  size,\n+  maxWidth = 320,\n+  beside = false,\n+) {\n+  projected.setFromMatrixPosition(object.matrixWorld).project(camera);\n+  const width = Math.min(maxWidth, Math.max(120, size.width - 32));\n+  const half = width / 2;\n+  let x = (projected.x * 0.5 + 0.5) * size.width;\n+  const y = (-projected.y * 0.5 + 0.5) * size.height;\n+  if (beside) x += (x > size.width / 2 ? -1 : 1) * (half + 30);\n+  return [\n+    Math.max(half + 16, Math.min(size.width - half - 16, x)),\n+    Math.max(55, Math.min(size.height - 65, y)),\n+  ];\n+}\n",
+  "limits": [
+    "Complete application is NOT source-identical. App/context/form/session code changed and received current normal UI and API tests.",
+    "Harbor geometry, motion, visual coordinator, routes, water, crane and layout modules are byte-identical; two effect renderer files changed only caption layout via a new helper.",
+    "Historical actual worker/Node fault/crane proof remains historical with qualified module applicability; not presented as a newly executed real fault or worker add.",
+    "Changed caption positions have current real container crash/traffic normal UI PNG/video proof; this record is source analysis, not runtime observation."
+  ]
+}

@@ -1,5 +1,14 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-09 — final kaynak doğrulaması ve kanıt teslimi
+
+- Gerçek production hook çevresine beş sınırlı, sentetik provider-epoch regresyon testi eklendi: A→B→A/namespace/stream nesli, geciken yanıtın reddi ve eski lease'in sabit contextURL'siyle iptali. Runtime/dependency değişmedi;165/165 frontend unitPASS,0FAIL/0SKIP.
+- Askıdaki Job ve gerçek Ready DS yeni32a0468 binary üzerinde normalUI2/2PASS; önceki STS/DS/Secret/log testleri kaynak farkıyla ayrı uzlaştırıldı. WebKit focus, G00, READ_ONLY/auth/Origin/WS ve negatif workload kapıları tamamlandı.
+- Yeni AC31/31geçerlihücre ve1200s/20panel koşusu:60.0005JSçizim/sn,p9518.7/p9921ms, tam canonical imza,24/24log kapanışı. Gerçek60sdocument.hidden ve materyal/listener/observer/timer sınırları ayrıca kaydedildi. Bu fizikselFPS/GPU%/toplamRAM kanıtı değildir.
+- M açıkpanelCPU.38237→.39759çekirdek; aralıklar örtüşür. L ilkAC.39292→.47515farkında çizim işi de farklıydı; yalnız iki kontrollüpilçifti+.63%/+1.59%verdi. Güç/senaryo farklı sonuçlar pool yapılmadı, genelCPUkazancı veya otomatikregresyonsuzluk ilan edilmedi.141hamdosya ve SHA manifesti korunur.
+- macOSARM64temizbinary, LinuxAMD64emülasyon4/4, nonrootDocker ve Helmrender son kaynakla doğrulandı. Stable1.1.0 henüz yayımlanmadı; finalCPU/CI/PR kapıları açıkken milestone kapanmaz. Önceki aynı tarihli ara durumlar aşağıda korunur.
+
+
 ## 2026-11-09 — gerçek UI ve bağlantı toparlanma düzeltmeleri
 
 - Gerçek normal UI incelemesinde askıya alınmış Job'un `Çalışıyor` etiketlendiği görüldü; `spec.suspend=true` artık terminal Complete/Failed koşullarından sonra `Askıya alındı` gösterir. Ayrı unit tekrarı, boş/eski DaemonSet status'unun `undefined === undefined` ile Hazır sayıldığını gösterdi; bilinen sayaçlar ve gözlenen generation beklenir. İkincisi gerçek runtime arızası olarak raporlanmaz. Önceki iki failing assertion korunur;160/160 frontend unit geçti, yeni build UI doğrulaması ayrıca yapılır.

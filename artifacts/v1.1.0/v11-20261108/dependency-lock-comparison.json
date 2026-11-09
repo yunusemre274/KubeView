@@ -1,0 +1,12 @@
+{
+  "before": {
+    "lockSHA256": "02861c6741be1eef8c70fedd1b51dc7a8e400888502c7ac41d81188eff9b5560",
+    "dependencyGraphSHA256": "6f1b0d74ebb5aef567167a508aaca30467d2bc90965ea234cc1f4783e76a0a71"
+  },
+  "after": {
+    "lockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "dependencyGraphSHA256": "6f1b0d74ebb5aef567167a508aaca30467d2bc90965ea234cc1f4783e76a0a71"
+  },
+  "dependencyGraphEqual": true,
+  "normalization": "Only root version and packages[empty].version release metadata excluded. All dependency versions/integrity/resolution/platform declarations retained."
+}

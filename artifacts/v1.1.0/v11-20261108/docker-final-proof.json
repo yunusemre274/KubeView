@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-09T08:52:03.326887+00:00",
+  "commit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "image": "kubeview:v11-final-32a0468",
+  "platform": "linux/arm64 Docker on macOS ARM64",
+  "status": "PASS",
+  "note": "Image build/nonroot/auth/empty-config and exact embedded asset smoke; no live Helm/in-cluster/browser claim",
+  "containerID": "63b59c31f8fce362f5c4f4b99bc7b0d7f6d74dc07e3afa2b0b5427009be92772",
+  "version": "KubeView 1.1.0 (32a0468ad51516a1bb38aab68760e73984c45ddf) linux/arm64",
+  "user": "10001:10001",
+  "readOnlyRootFS": true,
+  "embeddedIndexByteEqual": true,
+  "missingAuthStatus": 401,
+  "configured": false,
+  "noFakeContext": true,
+  "providersConfigured": false,
+  "ownedContainerRemoved": true,
+  "finishedAt": "2026-11-09T08:52:03.881712+00:00",
+  "buildLogSHA256": "cfed1172ffff748bcd18d8fce1c2cf4d1f64a685eb3cb8c14c4ac61771696a09"
+}

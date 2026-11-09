@@ -1,0 +1,251 @@
+{
+  "at": "2026-11-09T10:42:54.271999+00:00",
+  "owner": "root integrates QA/backend/frontend evidence; no product change in this review",
+  "runtimeCommit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "earlierNormalUICommit": "0f5a5ab6b8e52e645b9e2e71dd063112ca105e98",
+  "sourceApplicability": "source-applicability-32a0468.json; harbor-source-applicability.json; backend/provider-compatibility.json",
+  "oldCheckpointPreserved": "qa/QA_CHECKPOINT_0F5A5AB.md and acceptance-ledger.json11PASS/8BLOCKED remain unchanged",
+  "rows": [
+    {
+      "id": "V11-01",
+      "scenario": "Temiz production kurulum ve merkezden bağlantı",
+      "status": "PASS",
+      "testType": "real normal production UI + clean binary runtime",
+      "evidenceRelativeToV11Root": [
+        "macos-final-proof.json",
+        "platform-final/result-summary.json",
+        "qa/runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json"
+      ],
+      "limits": "Macnative/LinuxAMD64emülasyon; fizikselIntel/browserperf değil"
+    },
+    {
+      "id": "V11-02",
+      "scenario": "Standart kubeconfig/context/namespace, global config korunumu",
+      "status": "PASS",
+      "testType": "real two-cluster UI/API + unit",
+      "evidenceRelativeToV11Root": [
+        "qa/runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json",
+        "backend/final-acceptance-map.json"
+      ],
+      "limits": "A/B ayrıclusterUID; yalnız privateconfigler yazıldı"
+    },
+    {
+      "id": "V11-03",
+      "scenario": "A→B→A ve eski watch/metrics/log/CR/Hubble/operation izolasyonu",
+      "status": "PASS",
+      "testType": "real distinct-cluster UI/API + delayed synthetic hook/unit",
+      "evidenceRelativeToV11Root": [
+        "qa/runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json",
+        "frontend/provider-epoch-evidence.json",
+        "backend/final-acceptance-map.json"
+      ],
+      "limits": "Her alt sınır aynı test türü değildir; hookunit gerçekHubbleE2E değildir"
+    },
+    {
+      "id": "V11-04",
+      "scenario": "Node/Namespace LIST olmayan restricted kapsam",
+      "status": "PASS",
+      "testType": "real restricted ServiceAccount normal UI/API",
+      "evidenceRelativeToV11Root": [
+        "qa/runs/2026-11-09T08-05-39-229Z-chromium-56ab4a46/result.json",
+        "qa/runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json"
+      ],
+      "limits": "Namespace seçmek yetki kazandırmaz; reader exactUID ile temizlendi"
+    },
+    {
+      "id": "V11-05",
+      "scenario": "Boş/error/deleted/stale/Demo ayrımı",
+      "status": "PASS",
+      "testType": "real zero scope/error/explicitDemo normal UI",
+      "evidenceRelativeToV11Root": [
+        "qa/QA_CHECKPOINT_0F5A5AB.md",
+        "qa/acceptance-ledger.json"
+      ],
+      "limits": "Demo gerçek veriden ayrıdır; eski checkpoint hamstatusları korunur"
+    },
+    {
+      "id": "V11-06",
+      "scenario": "G00 authoritative CR reconnect ve logUID replacement",
+      "status": "PASS",
+      "testType": "real custom resource normal UI/API + controlled log race",
+      "evidenceRelativeToV11Root": [
+        "qa/runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json",
+        "backend/live-cr-scope-metadata.json",
+        "backend/final-acceptance-map.json"
+      ],
+      "limits": "KuberneteslogsAPI atomikUIDpin sunmaz; sınırlı guard+iptal"
+    },
+    {
+      "id": "V11-07",
+      "scenario": "Gerçek dry-run404/create/owner/Ready ve negatifler",
+      "status": "PASS",
+      "testType": "real normal production UI/API",
+      "evidenceRelativeToV11Root": [
+        "qa/runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+        "qa/runs/2026-11-09T08-26-55-502Z-chromium-23a5484e/result.json",
+        "qa/runs/2026-11-09T08-25-10-609Z-chromium-cea91338/result.json"
+      ],
+      "limits": "Nodeuygunsuz/image/quota/RBAC ayrı; gözlenmeyenaraadım yok; contextiptali gönderilmemiştaslak"
+    },
+    {
+      "id": "V11-08",
+      "scenario": "Replica2→3→1 ve controllerreplacement",
+      "status": "PASS",
+      "testType": "real normal UI/API",
+      "evidenceRelativeToV11Root": [
+        "qa/runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json"
+      ],
+      "limits": "HPA bu namespace içinde yok; HPA-present gerçekE2E N/A"
+    },
+    {
+      "id": "V11-09",
+      "scenario": "D/STS/DS kaynaktemplate ve unsupportedtarget",
+      "status": "PASS",
+      "testType": "real normal UI/API + qualified earlier resize/strategy evidence",
+      "evidenceRelativeToV11Root": [
+        "frontend/forms-resume/REVIEW.md",
+        "backend/final-acceptance-map.json",
+        "frontend/status-resume/REVIEW.md"
+      ],
+      "limits": "YeniRollingUpdate; OnDelete/partition bu dar koşuda tekrar edilmedi; RS/Job/CronJob unsupported"
+    },
+    {
+      "id": "V11-10",
+      "scenario": "Restart/delete/finalizer/yeni UID seçimi",
+      "status": "PASS",
+      "testType": "real normal UI/API",
+      "evidenceRelativeToV11Root": [
+        "qa/runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+        "qa/runs/2026-11-09T08-07-07-947Z-chromium-338db7dd/result.json"
+      ],
+      "limits": "EskiTerminating canonical kalır; animasyonAPIbaşarısı değildir"
+    },
+    {
+      "id": "V11-11",
+      "scenario": "READ_ONLY/RBAC/auth/Origin/CSRF/WS negatifleri",
+      "status": "PASS",
+      "testType": "actual production binary HTTP/WS + normal UI + unit/race",
+      "evidenceRelativeToV11Root": [
+        "backend/prod-security-result.json",
+        "qa/runs/2026-11-09T08-28-13-727Z-chromium-ab74e076/result.json",
+        "qa/runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json"
+      ],
+      "limits": "HTTPgate ve normalUI farklı koşular; credentials browsera verilmez"
+    },
+    {
+      "id": "V11-12",
+      "scenario": "Logrolleri/pause/resume/cleanup ve sentetikSecret",
+      "status": "PASS",
+      "testType": "real normal UI/API; independent kerneltransport",
+      "evidenceRelativeToV11Root": [
+        "frontend/logs-resume/REVIEW.md",
+        "frontend/logs-resume/kernel-socket-close-20261109.json",
+        "frontend/forms-resume/REVIEW.md"
+      ],
+      "limits": "RawWSwrapper-close FAILkorunur; TCP0 closeframe/heapgarantisi değildir; gerçekSecret okunmadı"
+    },
+    {
+      "id": "V11-13",
+      "scenario": "Metrics mevcut/yok/Forbidden ve gerçekgrafikler",
+      "status": "PASS",
+      "testType": "real Metrics API + normal Chromium/WebKit UI",
+      "evidenceRelativeToV11Root": [
+        "qa/runs/2026-11-09T08-10-37-722Z-webkit-d3caf439/result.json",
+        "qa/runs/2026-11-09T08-09-02-605Z-chromium-e0514610/result.json",
+        "qa/QA_CHECKPOINT_0F5A5AB.md"
+      ],
+      "limits": "Ölçümzamanı/birim; boşveri0değildir; nativeSafari performansı değil"
+    },
+    {
+      "id": "V11-14",
+      "scenario": "GerçekHubble/UID/scope/stale/retry/topoloji ayrımı",
+      "status": "PASS",
+      "testType": "real mTLS TCP provider/API + normal flowmouse UI; historical L7 exactdecoder",
+      "evidenceRelativeToV11Root": [
+        "backend/live-hubble-scope-corrected2-metadata.json",
+        "frontend/visual-resume/REVIEW.md",
+        "backend/provider-compatibility.json"
+      ],
+      "limits": "YeniTCP; L7/HTTP/DNS önceki eşitçekirdek; byte/paket/payload iddiası yok; collectorCPU bu oturumda ölçülmedi"
+    },
+    {
+      "id": "V11-15",
+      "scenario": "Görselarıza/worker/crane/controlplane/flow regresyonu",
+      "status": "PASS",
+      "testType": "new real fall/traffic + reviewed source-identical historical core",
+      "evidenceRelativeToV11Root": [
+        "frontend/visual-resume/REVIEW.md",
+        "frontend/final-focus-caption/runs/2026-11-09T10-39-50-109Z/result.json",
+        "harbor-source-applicability.json",
+        "backend/provider-compatibility.json"
+      ],
+      "limits": "Root768middle/1280middle/failurelate PNGaçtı: captionokunaklı.1280late strictAABB0.0477CSSpx²köşesınırı rawFAILkorunur; bağımsızpostAPI1280NOTRUN. Yeniworker/workerstop0; tarihselreuse ayrı"
+    },
+    {
+      "id": "V11-16",
+      "scenario": "Burst/hidden/reducedmotion/viewport/focus ve UIhedefleri",
+      "status": "BLOCKED",
+      "testType": "real UI + synthetic event/hidden + pixel/actionability proxies",
+      "evidenceRelativeToV11Root": [
+        "performance/REVIEW.md",
+        "performance/visibility-contract.json",
+        "frontend/final-focus-caption/runs/2026-11-09T10-36-38-216Z/result.json",
+        "frontend/final-focus-caption/exec-runs/2026-11-09T10-45-36-202Z/result.json"
+      ],
+      "limits": "Formtext/numeric/YAML+canvaspositive gerçekPASS; gerçeknonTTYprintf/4nativecaret/camera0target0/fleetcontinuity/execclosePASS. Fizikselilkfeedbackp95 ve bütün temelkontrollerlepanel kullanılabilirliği ölçülmedi; BLOCKED bu hedeflere aittir."
+    },
+    {
+      "id": "V11-17",
+      "scenario": "Workerprovider idempotency/lock/contextUID",
+      "status": "PASS",
+      "testType": "current real management/capacity API + unit + qualified historical real worker",
+      "evidenceRelativeToV11Root": [
+        "backend/live-minikube-gate-metadata.json",
+        "backend/provider-compatibility.json",
+        "backend/final-acceptance-map.json"
+      ],
+      "limits": "GüncelgateyeniNode0; öncekiCLI/newDocker/newNodeUID/Ready/idempotency eşitcorekapsamıyla reuse"
+    },
+    {
+      "id": "V11-18",
+      "scenario": "Tamcanonical/20dakika/20panel/resourcecleanup ve CPUkabulü",
+      "status": "BLOCKED",
+      "testType": "current synthetic production informer/WS/store/scene + real scope API",
+      "evidenceRelativeToV11Root": [
+        "performance/REVIEW.md",
+        "performance/comparison-ac.json",
+        "backend/l-cpu-review.md"
+      ],
+      "limits": "31/31kare/veri ve1200s/20panel/24log PASS; AC L açıklanamayanCPUresidualı4.02%; ayrıpil2çiftACnedenselliğini kapatmaz"
+    },
+    {
+      "id": "V11-19",
+      "scenario": "Finaldağıtım/CI/manifest/docs/tag/release",
+      "status": "BLOCKED",
+      "testType": "current Mac/Linux/Docker/Helm runtime/build; remoteCI",
+      "evidenceRelativeToV11Root": [
+        "macos-final-proof.json",
+        "platform-final/result-summary.json",
+        "docker-final-proof.json",
+        "helm-final-proof.json",
+        "ci-32a0468.json"
+      ],
+      "limits": "32CI SUCCESS. Yeni kanıtcommitiCI/finalpaketmetadataeşliği/normalmerge/tag/releasepending; CPU/UIölçümkapılarıaçıkkenstableyayınlanmaz"
+    }
+  ],
+  "stableReleaseAllowed": false,
+  "globalGates": {
+    "unexplainedCPURegression": "BLOCKED",
+    "physicalFeedbackAndCompletePanelLatency": "BLOCKED; only proxies measured",
+    "newEvidenceCommitCIAndFinalDelivery": "PENDING"
+  },
+  "counts": {
+    "PASS": 16,
+    "FAIL": 0,
+    "SKIP": 0,
+    "BLOCKED": 3
+  },
+  "nativeSafariRetina": "optionalN/A, not mandatoryplatformfailure",
+  "newLiveWorkerProvisioned": 0,
+  "updatedAt": "2026-11-09T10:47:39.930874+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-09T08:39:30.288469+00:00",
+  "method": "Actual macOS kernel TCP endpoint inventory after owned frontend logs browser/context closed; main gateway still serves listener",
+  "relatedFunctionalRun": "runs/2026-11-09T08-37-27-546Z/result.json",
+  "binarySHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+  "gatewayPID": 13162,
+  "port": 18410,
+  "rawLsof": "COMMAND    PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nkubeview 13162 yunusemre    5u  IPv4 0x77db4fe67e9cb47f      0t0  TCP 127.0.0.1:18410 (LISTEN)\n",
+  "onlyGatewayListener": true,
+  "connectedHTTPEndpoints": 0,
+  "connectedWebSocketTCPEndpoints": 0,
+  "limits": "TCP absence is actual transport cleanup, not a WebSocket protocol close-event observation or a Go heap/goroutine proof. The original Playwright close-event assertion failure is retained; 20-minute fixture checks evaluate longer-lived resources separately."
+}

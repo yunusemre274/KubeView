@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-09T08:45:08.874689+00:00",
+  "commit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "binarySHA256": "180941247e252f34d71300967fc71ae146174a3dea3caba734d947e1da80f548",
+  "previousSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+  "linuxBinarySHA256": "25576de72112b7ac97882fb36d839452d6c5496abaef0295072524ef31697b24",
+  "version": "KubeView 1.1.0 (32a0468ad51516a1bb38aab68760e73984c45ddf) darwin/arm64",
+  "note": "Prepared final runtime test candidate, no stable release."
+}

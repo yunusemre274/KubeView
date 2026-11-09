@@ -1,5 +1,12 @@
 # Tam ekran tersane dönüşümü
 
+## 9 Kasım2026 — v1.1.0 son kabul, stable bekliyor
+
+Geliştirme/runtime32a0468, frontend165unit, gerçek iki-küme/namespace/RBAC/CR/Secret/log/metrics/workload ve Chromium/WebKit işlevleri tamamlandı. Güncel macOSARM64 ve LinuxAMD64emülasyon/Docker/Helm kanıtı; AC31hücre/1200s20panel/24log/fullcanonical ve gerçek60shidden mevcut. [19satırsondefter](../artifacts/v1.1.0/v11-20261108/qa/final-acceptance-ledger-32a0468.json)16PASS/3BLOCKED; her PASS kendi scopedtesttüründedir. Yeni form/YAML/exec yön tuşu kanıtı ve768/1280caption incelemesi eklendi; rawhelperFAIL/subpixelAABB ve1280postAPIassertNOTRUN korunur.
+
+Kalan: CPU ilkACnedenselliği, fizikselilkfeedback/tamtemelpanel gecikmesi, sonCI/paket/normalPR/release teslimi. Ayrıpilikiçifti AC sonucunun yerine geçmez. MilestoneOPEN/PRDRAFT; tüm zorunlu kapılar geçmeden stable1.1.0yayımlanmaz. Aşağıdaki8Kasım ve6Kasım bölümleri tarihsel checkpoint'tir; kaynak/test tarihleri değiştirilmez.
+
+
 ## 8 Kasım2026 — v1.1.0 gerçek kullanıcı adayı (OPEN)
 
 [Milestone #1](https://github.com/yunusemre274/KubeView/milestone/1), [taslak PR #1](https://github.com/yunusemre274/KubeView/pull/1). Bağlantı/session güvenliği ve tek-binary dağıtım uygulanıp hedefli unit/race/API/install smoke sınandı. İlk gerçek UI başlangıç hatası düzeltildi; iki-cluster normalUI, kalan kabul, görsel/performance ve kararlılık kapıları henüz açık. Hedef sürüm1.1.0 paketlerde hazır, stable tag/release yok. Ayrıntılı sabit platform+kapılar [milestone kaydında](milestones/v1.1.0.md), gerçek sonuçlar [kabul raporunda](V11_ACCEPTANCE_REPORT.md). Aşağıdaki tarihsel onarım kayıtları otomatik yeni PASS değildir.

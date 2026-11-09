@@ -1,3 +1,7 @@
+## 9 Kasım2026 — v1.1.0 kabul sınırı
+
+Bu bölüm yeni `32a0468` runtime kabulüne işaret eder: [V11 kabul raporu](V11_ACCEPTANCE_REPORT.md). Gerçek UI/provider, unit ve eşit çekirdekli tarihsel tekrar-kullanım ayrıdır; aşağıdaki6Kasım onarım ve1Kasım denetim hükümleri geriye dönük değiştirilmez. Yeni STS/DS/Secret/log/CR/metrics/iki-cluster kanıtları ve caption düzeltmesi eklendi. Askıdaki Job ve bilinmeyen DS durum etiketi dar düzeltmeyle doğrulandı. Son31AC hücre/20dakika geçti; CPU nedensellik yorumu ve stable teslim kapısı [yeni performans kaydında](../artifacts/v1.1.0/v11-20261108/performance/REVIEW.md) ayrı tutulur. Bu ek stable release veya bütün Kubernetes kapsamı ilanı değildir. CSV'de yeni tarihli sütunlar eski envanteri korur.
+
 # Güncel onarım eksikleri ve kabul kapıları — 6 Kasım 2026 kanıt uzlaştırması
 
 **v1.1 öncesi görsel onarım tamamlandı:** zorunlu çekirdek işlev, ana pil seti, 20 dakika karma koşu ve ayrı materyal/cleanup kapıları belgelenen kapsamda geçti. Gerçek yeni worker katılımı ve Hubble same/cross-Node trafik/panel yolu kanıtlıdır. Son Git teslimini ana yönetici yürütür; v1.1 milestone'u, etiketi veya release'i kapatılmadı/oluşturulmadı. Aşağıdaki P2 polish, platform ve ek senaryo sınırları tamamlanmamış zorunlu çekirdek kapıları değildir. Eski audit eksikleri tarihsel tutulur.

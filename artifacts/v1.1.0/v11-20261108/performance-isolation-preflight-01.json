@@ -1,0 +1,7 @@
+{
+  "at": "2026-11-09T08:55:56.051201+00:00",
+  "status": "FAIL_SAFE_PREFLIGHT",
+  "reason": "Root guard assumed worker Docker label contained the parent profile name; actual minikube name label is each exact machine/container name. Exact container IDs and both cluster/namespace UIDs matched.",
+  "mutationsBeforeFailure": 0,
+  "correction": "Use durable A inventory and B bootstrap full IDs plus exact name.minikube.sigs.k8s.io; retain API UID/namespace owner guards before any stop."
+}

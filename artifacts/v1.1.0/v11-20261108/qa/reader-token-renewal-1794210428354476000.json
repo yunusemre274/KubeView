@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-09T07:47:08.354338+00:00",
+  "issuedAt": "2026-11-09T07:47:08+00:00",
+  "expiresAt": "2026-11-09T08:47:08+00:00",
+  "clusterGuards": [
+    {
+      "slot": "A",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+    },
+    {
+      "slot": "B",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+    }
+  ],
+  "identities": [
+    {
+      "kind": "ServiceAccount",
+      "name": "v11-reader",
+      "uid": "40ee58f8-ed2d-4eff-a2ad-f9fa067c79d5",
+      "resourceVersion": "21139"
+    },
+    {
+      "kind": "Role",
+      "name": "v11-reader",
+      "uid": "ffce8bc8-9ec6-48e7-a9f8-91ab3ee972a4",
+      "resourceVersion": "21140"
+    },
+    {
+      "kind": "RoleBinding",
+      "name": "v11-reader",
+      "uid": "29e3bd35-547d-4026-8920-e9014a85fae5",
+      "resourceVersion": "21142"
+    }
+  ],
+  "retainedDeployment": {
+    "name": "v11-ui-mw8bfgl6",
+    "uid": "c5e42ecc-9987-4349-9c28-c89769f162c7",
+    "resourceVersion": "26134",
+    "generation": 3
+  },
+  "apiDate": "2026-11-09T07:47:08+00:00",
+  "hostApiSkewSeconds": 0.10769295692443848,
+  "restrictedChecks": {
+    "pods:kv-repair-v11-qa": "allowed",
+    "nodes:": "forbidden",
+    "namespaces:": "forbidden",
+    "pods:kube-system": "forbidden"
+  },
+  "metrics": "403Forbidden",
+  "credentialRecorded": false,
+  "privateFilesUpdated": 5,
+  "globalKubeconfigUnchanged": true,
+  "clockSkewSeconds": -1.7494428448117105e-06,
+  "earlierPreparationGuard": "Assumed unavailable port1 rejected actual owned loopback port9 before private writes; verified exact existing port9 and preserved it. One unused TokenRequest was issued; no credential value recorded."
+}

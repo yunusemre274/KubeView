@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-08T19:37:35.749976+00:00",
+  "priorAttemptsPreserved": true,
+  "productEditedByQA": false,
+  "harnessCorrectionsAfterBothAttemptsClosed": [
+    "Retain redacted pageerror names/messages and fail immediately on pageerror.",
+    "15s action/20s navigation bounds replace implicit whole-test locator waits; no overall test budget increased.",
+    "Cleanup 404 bound60s includes real30s Pod grace plus bounded API reconciliation.",
+    "Record newly created fixture context/clusterUID/namespaceUID/name/UID/RV to append-only safe registry.",
+    "Wall and monotonic duration/skew are recorded; >2s discontinuity invalidates the run."
+  ],
+  "rootCause": "Actual headed production startup TypeError at observeNamespace; pending root/frontend rebuild.",
+  "cleanup": "Both exact original fixture UIDs observed404; two replacement cleanup operator sessions revoked. Initial30s cleanup-bound failure is preserved as diagnosis; no false PASS.",
+  "runnerCounts": {
+    "PASS": 0,
+    "FAIL": 2,
+    "SKIP": 0
+  },
+  "normalUIDOrSecurityAcceptanceReached": false
+}

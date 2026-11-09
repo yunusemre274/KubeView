@@ -1,0 +1,1317 @@
+{
+  "recorded_at": "2026-11-09T08:18:32.266572+00:00",
+  "scope": "Read-only backend acceptance contribution map, not19-row signoff and not a new test",
+  "classes": {
+    "CURRENT_REAL": "Actual real API/provider run in this resume; UI never inferred.",
+    "CURRENT_UNIT": "Fresh final unit/fake/race/harness execution with all real opt-ins skipped.",
+    "HISTORICAL_SOURCE_IDENTICAL": "Previously executed real v1.1 or pre-v1.1 evidence, reused only for named exact source-equal backend/core path. No new PASS execution claimed.",
+    "MISSING": "Not demonstrated by inspected evidence; parent owner must supply or test separately."
+  },
+  "whole_release_PASS": false,
+  "source_identity": {
+    "final_nonbrowser_manifest_sha256": "37c8892b16849d68afee4c9e8d1319245188786dfd13d08b4701dc6f37c14cab",
+    "reference": "resume-final-job-meta.json#source_before",
+    "current_runtime16": {
+      "backend/pkg/server/connection.go": {
+        "sha256": "02863427c5546eea2218db16a0cc9b3d974c14120dfe55560a1dc604fa2d49ca",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/connection_errors.go": {
+        "sha256": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/log_session.go": {
+        "sha256": "1f575b4bb24bb8a26dcf3b04a9b1ec82d884ee758789a0bc57d2029c354e0ede",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/maintenance.go": {
+        "sha256": "4708bcf04a91202e84c7b0c0f1d843fb8d4d2fb99d6c7c53cbf4c8f9f7982efd",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/placement.go": {
+        "sha256": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/portforward.go": {
+        "sha256": "8bd00d7e80d4190e97cf09b7cb3d02684dd520b5927056bcdaef5e1e67f2f3ca",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/provider_handlers.go": {
+        "sha256": "131539d99c818f52f0518e81fd3defefe791bf8dabd86cb44b799126bbd427bd",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/resource_scopes.go": {
+        "sha256": "e0e0c13db9fe0bbef1f3ae6b65d50b55364c1d93264f9fe391d92592704eacbd",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/resources.go": {
+        "sha256": "01c50606e3812238aa641f3e0e355b82b637c7771dfdbf2d2554ccce6ea5f72c",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/server.go": {
+        "sha256": "ce4174bbeb11af011d404e7687b5bafb7a63941fe4bb7a5079f0a625b2429a58",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/sessions.go": {
+        "sha256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/stream.go": {
+        "sha256": "705934ae746929790ee2ed253ad7e9ca16d92ad1a7c7bbae0dda578ad6c43718",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/template_capability.go": {
+        "sha256": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+        "equal_to_v11_real_run": true
+      },
+      "backend/pkg/server/traffic_handlers.go": {
+        "sha256": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+        "equal_to_v11_real_run": true
+      },
+      "backend/go.mod": {
+        "sha256": "9063188102dfa5ed6f60be6b7f34adaf150fdf87fc54cbecb9be0a3501a5344f",
+        "equal_to_v11_real_run": true
+      },
+      "backend/go.sum": {
+        "sha256": "9b3181f96a3e08d824d0b8861442f07353806b27b358b8a30f3fb5b9631c0679",
+        "equal_to_v11_real_run": true
+      }
+    },
+    "provider_baseline_comparison": [
+      {
+        "file": "backend/pkg/provision/cli.go",
+        "current_sha256": "a98674ee47c27ce4e919ceeac8f5fe113dcce6caa4d715a9696e243da905814f",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/provision/cli_test.go",
+        "current_sha256": "d0da83268f33a3b50352aa1586534f6a47891f82b594382f13f7b9911b477bf7",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/provision/lock_unix.go",
+        "current_sha256": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/provision/lock_windows.go",
+        "current_sha256": "fb3fd946a2aa60fbfc20005dc4766f1e62867841f538b149815a8c6d97b57a9b",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/provision/minikube.go",
+        "current_sha256": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/provision/minikube_test.go",
+        "current_sha256": "36c803e6ab0766b968fd274043ed66f1090d16b29d5349837ad8affbe15c0287",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/traffic/actual_protocol_test.go",
+        "current_sha256": "78bcc63e787c70e80e36894693c137f82610c5a01ddbf23868778244ce31083e",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/traffic/config.go",
+        "current_sha256": "752b3caca8081b3ea8e42107165d7b237dbe2f64baaa9e74061fafa175884f06",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/traffic/flow.go",
+        "current_sha256": "5f6698bdc8530f588f6ce016c4e58679a669cddf30c7906a05a2d4402f441786",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/traffic/history.go",
+        "current_sha256": "92510d00d3044e1a4a9022bd0b374fbf2f92caedb4ceb94c8589ba463f28b09b",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/traffic/hub.go",
+        "current_sha256": "62127effd6b152cd8de70dfdd8e655bb3f5b329c7114785123d601ba81297454",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/traffic/process_unix.go",
+        "current_sha256": "3924ed3c81482a69a67ea2e479fb1289840a31d4eb7cb99968be7cb5ac9d26b4",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/traffic/process_windows.go",
+        "current_sha256": "f79b534dc54ae796fd2c0f478967e03fc869216f55c1d0fdb0ca650a4536f6aa",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/traffic/traffic_test.go",
+        "current_sha256": "13f082a51a3fa67bc035c54268940efcffea08503d5cd80c9e17d68c9ea5175c",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/server/traffic_handlers.go",
+        "current_sha256": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": true
+      },
+      {
+        "file": "backend/pkg/server/provider_handlers.go",
+        "current_sha256": "131539d99c818f52f0518e81fd3defefe791bf8dabd86cb44b799126bbd427bd",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": false
+      },
+      {
+        "file": "backend/pkg/server/server.go",
+        "current_sha256": "ce4174bbeb11af011d404e7687b5bafb7a63941fe4bb7a5079f0a625b2429a58",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": false
+      },
+      {
+        "file": "backend/pkg/server/resources.go",
+        "current_sha256": "01c50606e3812238aa641f3e0e355b82b637c7771dfdbf2d2554ccce6ea5f72c",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": false
+      },
+      {
+        "file": "backend/pkg/server/connection.go",
+        "current_sha256": "02863427c5546eea2218db16a0cc9b3d974c14120dfe55560a1dc604fa2d49ca",
+        "equal_to_compatibility_current": true,
+        "equal_to_pre_v11_baseline": false
+      }
+    ],
+    "provider_baseline_commit": "2b76e215fdbe201be1611ccea4c40dcd547b2ba7",
+    "source_files_modified_for_this_mapping": false
+  },
+  "current_nonbrowser_results": {
+    "go_all": {
+      "main_tests_PASS": 60,
+      "main_tests_FAIL": 0,
+      "SKIP": 20,
+      "additional_subtests_PASS": 36
+    },
+    "server_race": {
+      "main_tests_PASS": 39,
+      "main_tests_FAIL": 0,
+      "SKIP": 20,
+      "additional_subtests_PASS": 23
+    },
+    "harness_unit": {
+      "tests": 45,
+      "suites": 0,
+      "pass": 45,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "real_integration_executed": 0,
+    "performance_measurement": false,
+    "active_test_children": 0
+  },
+  "evidence": {
+    "unit": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/resume-final-go-all-meta.json",
+      "file_sha256": "47fd3942d077b624a551ed87a1862013c56d994bdf58625f8cc88a62783d5b5f"
+    },
+    "race": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/resume-final-race-meta.json",
+      "file_sha256": "6f01b3054951e757d5dd5c5a1f3cde953b57139d692ee47f8fbfb724b8700b11"
+    },
+    "harness": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/resume-final-harness-meta.json",
+      "file_sha256": "78d8481a6518557cbba3b7a8f260bb4fa2bf7e6c6575d17f38f2ee7201d7e689"
+    },
+    "cr": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-cr-scope-metadata.json",
+      "file_sha256": "947bc5b899948468ec3e19b39a848f83a341bdcac8eaa72c4182046de34a32b4"
+    },
+    "minikube": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-minikube-gate-metadata.json",
+      "file_sha256": "8817a68b16fb76f7626fe99cc5b0d68cc773cb82b76eb924b6d06520bf2d7abf"
+    },
+    "hubble": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-hubble-scope-corrected2-metadata.json",
+      "file_sha256": "0bf6ccca0bc0c1a143976cc5dc5c47eaf057e72252b13feacdc0892c742995c8"
+    },
+    "prior_api": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-owned-ten-metadata.json",
+      "file_sha256": "deedb7c2509a22c14623c79a681c906e913de5b916c5d9f35d747b560de3b85d",
+      "current_gateway_runtime16_equal": true,
+      "run_date": "2026-11-08",
+      "interpretation": "real v1.1 API evidence reused only for exact unchanged gateway runtime; not a newly executed test or normal UI proof"
+    },
+    "prior_actions": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-actions-supplement-metadata.json",
+      "file_sha256": "d2c5aa1b931e61e3033969b8ef064d2b0c7cc487de061d68f3c33d9dbda60d2f",
+      "current_gateway_runtime16_equal": true,
+      "run_date": "2026-11-08",
+      "interpretation": "real v1.1 API evidence reused only for exact unchanged gateway runtime; not a newly executed test or normal UI proof"
+    },
+    "prior_log_roles": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-log-roles-metadata.json",
+      "file_sha256": "91659b97390f49ab6a32a4d25d3acc140b84aed4f2ff92944e6a5ce51ca1eacc",
+      "current_gateway_runtime16_equal": true,
+      "run_date": "2026-11-08",
+      "interpretation": "real v1.1 API evidence reused only for exact unchanged gateway runtime; not a newly executed test or normal UI proof"
+    },
+    "provider_hashes": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/provider-compatibility.json",
+      "file_sha256": "02d489d698dbe972846e00fc3b17e25bc7ca7f2c8ecbda1dc45568aff23cf6c2"
+    },
+    "old_launch": {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/provision-final-2.json",
+      "file_sha256": "e5706d77948a52897583132ae72d3cabf2c797b9164837ddcc7af408aadc79b9"
+    },
+    "old_L7": {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/backend-protocol-real-172201Z.txt",
+      "file_sha256": "70d43f3c1e70d6413ad08070d6b6c9eafce364274bfca4230a24e0496ee40ecd"
+    },
+    "old_hubble_recovery": {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-provider-recovery-real.json",
+      "file_sha256": "cb1615071b785f156fa2061544c99d9411ed0db98d974130c248a871985a0164"
+    },
+    "old_CR_UI": {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-G00-real-2.json",
+      "file_sha256": "7e89c3bd5b8821c42da3b3de172eeeced21f44773134638e0039b0f37ee09f98"
+    },
+    "qa_security_map": {
+      "path": "artifacts/v1.1.0/v11-20261108/qa/security-evidence-map-20261109.json",
+      "file_sha256": "83d0c16f34a01450eedd48a918e23f8b37f14d4be303959c925603e349427d05"
+    },
+    "qa_workload": {
+      "path": "artifacts/v1.1.0/v11-20261108/qa/runs/2026-11-09T07-49-09-654Z-chromium-3e964047/result.json",
+      "file_sha256": "28484eedae0117b2c900914d93fad04b1f4062b810b2692582c7bd625d14486b",
+      "recorded_status": "PASS",
+      "recorded_source_unchanged": true,
+      "recorded_build_unchanged": true,
+      "recorded_source_sha256": "63cc05cb9f891856029adec959fea2d200a8f9ffdb6a951d678a72a8b9c9400d",
+      "current_gateway_runtime16_equal": true,
+      "all_recorded_source_files_equal_now": false,
+      "changed_recorded_files": [
+        "frontend/src/App.jsx",
+        "frontend/src/context/ShipyardClusterContext.jsx",
+        "frontend/src/workbench/ResourceForms.jsx",
+        "frontend/src/world/Window.jsx"
+      ],
+      "interpretation": "QA-owned normal UI result at its recorded source/build; this backend map certifies only exact backend-path applicability. Final UI/build acceptance belongs to QA/root."
+    },
+    "qa_restricted": {
+      "path": "artifacts/v1.1.0/v11-20261108/qa/runs/2026-11-09T08-05-39-229Z-chromium-56ab4a46/result.json",
+      "file_sha256": "a080abf6192fb30dba2d826232536461af206fac192629d632a6bfed3ce2bafc",
+      "recorded_status": "PASS",
+      "recorded_source_unchanged": true,
+      "recorded_build_unchanged": true,
+      "recorded_source_sha256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "current_gateway_runtime16_equal": true,
+      "all_recorded_source_files_equal_now": false,
+      "changed_recorded_files": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx"
+      ],
+      "interpretation": "QA-owned normal UI result at its recorded source/build; this backend map certifies only exact backend-path applicability. Final UI/build acceptance belongs to QA/root."
+    },
+    "qa_empty": {
+      "path": "artifacts/v1.1.0/v11-20261108/qa/runs/2026-11-09T08-06-43-939Z-chromium-5fefc332/result.json",
+      "file_sha256": "540f5f0d6aaa5df54bdee53de8dc67e6975c4b65c9f853c8e2cf49ab4c04c4c8",
+      "recorded_status": "PASS",
+      "recorded_source_unchanged": true,
+      "recorded_build_unchanged": true,
+      "recorded_source_sha256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "current_gateway_runtime16_equal": true,
+      "all_recorded_source_files_equal_now": false,
+      "changed_recorded_files": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx"
+      ],
+      "interpretation": "QA-owned normal UI result at its recorded source/build; this backend map certifies only exact backend-path applicability. Final UI/build acceptance belongs to QA/root."
+    },
+    "qa_finalizer": {
+      "path": "artifacts/v1.1.0/v11-20261108/qa/runs/2026-11-09T08-07-07-947Z-chromium-338db7dd/result.json",
+      "file_sha256": "e36d2413d6b8b72c3ff0f53da5de8880e2296c8e23df0f62319000e7478f019c",
+      "recorded_status": "PASS",
+      "recorded_source_unchanged": true,
+      "recorded_build_unchanged": true,
+      "recorded_source_sha256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "current_gateway_runtime16_equal": true,
+      "all_recorded_source_files_equal_now": false,
+      "changed_recorded_files": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx"
+      ],
+      "interpretation": "QA-owned normal UI result at its recorded source/build; this backend map certifies only exact backend-path applicability. Final UI/build acceptance belongs to QA/root."
+    },
+    "qa_metrics": {
+      "path": "artifacts/v1.1.0/v11-20261108/qa/runs/2026-11-09T07-49-44-587Z-chromium-f4224ad6/result.json",
+      "file_sha256": "18b116b739d9b74bd2e1a84c4e86f321725c56ef1826495d996bff6c690648cd",
+      "recorded_status": "PASS",
+      "recorded_source_unchanged": true,
+      "recorded_build_unchanged": true,
+      "recorded_source_sha256": "63cc05cb9f891856029adec959fea2d200a8f9ffdb6a951d678a72a8b9c9400d",
+      "current_gateway_runtime16_equal": true,
+      "all_recorded_source_files_equal_now": false,
+      "changed_recorded_files": [
+        "frontend/src/App.jsx",
+        "frontend/src/context/ShipyardClusterContext.jsx",
+        "frontend/src/workbench/ResourceForms.jsx",
+        "frontend/src/world/Window.jsx"
+      ],
+      "interpretation": "QA-owned normal UI result at its recorded source/build; this backend map certifies only exact backend-path applicability. Final UI/build acceptance belongs to QA/root."
+    },
+    "qa_metrics_missing": {
+      "path": "artifacts/v1.1.0/v11-20261108/qa/runs/2026-11-09T08-09-02-605Z-chromium-e0514610/result.json",
+      "file_sha256": "58f0bb413c468b4d5c92bc523a8e679e557559dcffd29efa190b6505cd1ffa5b",
+      "recorded_status": "PASS",
+      "recorded_source_unchanged": true,
+      "recorded_build_unchanged": true,
+      "recorded_source_sha256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "current_gateway_runtime16_equal": true,
+      "all_recorded_source_files_equal_now": false,
+      "changed_recorded_files": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx"
+      ],
+      "interpretation": "QA-owned normal UI result at its recorded source/build; this backend map certifies only exact backend-path applicability. Final UI/build acceptance belongs to QA/root."
+    },
+    "qa_focus_failure": {
+      "path": "artifacts/v1.1.0/v11-20261108/qa/runs/2026-11-09T08-12-49-626Z-webkit-1f58e562/result.json",
+      "file_sha256": "45817f7088b13eb1ebb0638d3ec12be333aa3c1077b5bee0ae4fc4c6d011d0fd",
+      "recorded_status": "FAIL",
+      "recorded_source_unchanged": true,
+      "recorded_build_unchanged": true,
+      "recorded_source_sha256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "current_gateway_runtime16_equal": true,
+      "all_recorded_source_files_equal_now": false,
+      "changed_recorded_files": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx"
+      ],
+      "interpretation": "QA-owned normal UI result at its recorded source/build; this backend map certifies only exact backend-path applicability. Final UI/build acceptance belongs to QA/root."
+    },
+    "prod_security": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/prod-security-result.json",
+      "file_sha256": "8a867ec433963da29eb02fba06ca6f55ce0ac95075221e4e0b24da8cbd9e687d",
+      "test_type": "Real copied production binary / actual Kubernetes read / HTTP and WebSocket transport; no browser UI proof",
+      "current_gateway_runtime16_equal": true,
+      "exact_binary_sha256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "reported_binary_commit": "0f5a5ab6b8e52e645b9e2e71dd063112ca105e98",
+      "checks_PASS": 5,
+      "normal_UI_proof": false
+    }
+  },
+  "rows": [
+    {
+      "id": "V11-01",
+      "checks": [
+        {
+          "subcondition": "Production static routing/CSP boundary and CLI scope configuration",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit"
+          ],
+          "tests": [
+            "TestProductionFrontendRoutesAndBoundary",
+            "TestCLIContextDoesNotRewriteKubeconfig"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Clean install + normal center onboarding on final production artifact",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Root distribution/platform + QA normal UI gate; backend unit routing does not prove an installed application.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Root/QA installation signoff remains separate.",
+      "mandatory_scenario": "Temiz production kurulum; uygulamanın açılması ve normal kullanıcıdan merkez bağlantısı."
+    },
+    {
+      "id": "V11-02",
+      "checks": [
+        {
+          "subcondition": "Standard merged kubeconfig selection/reload without global current-context mutation",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestMergedKubeconfigSelectionReloadAndNoGlobalMutation"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Actual private A:B standard merge, selected context and real cluster identities",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "minikube",
+            "hubble"
+          ],
+          "tests": [],
+          "limit": "Only backend/API/CLI path; private reader config changes are confined to test temp files.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current normal context/namespace dropdown + global file hash proof",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "QA owns final-bundle browser source/build audit; no UI PASS inferred from backend loading.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Actual backend merge proven; normal UI applicability requires QA map.",
+      "mandatory_scenario": "Güvenilir kubeconfig; çoklu dosya standardı gerekiyorsa doğru merge; context dropdown, namespace seçimi; global current-context dosyasına değişiklik yok."
+    },
+    {
+      "id": "V11-03",
+      "checks": [
+        {
+          "subcondition": "Current A/B exact cluster binding, nonce rotation/revoke; B provider calls rejected",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "minikube",
+            "hubble"
+          ],
+          "tests": [],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Cancellation, delayed enable and same-name UID isolation",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestScopeSwitchCancelsInFlightStreams",
+            "TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip",
+            "TestScaleDoesNotAdoptRecreatedSubresourceIdentity"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Full current UI watcher+metrics+log+CR+Hubble+pending-operation cross-context isolation",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Current backend checks cover only the named API/provider paths; QA A/B/log and pending-operation coverage must be merged separately.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "No whole cross-subsystem isolation PASS.",
+      "mandatory_scenario": "İki farklı test cluster/context arasında aynı namespace, Pod adı ve farklı UID; hızlı A→B→A; eski watcher, metrics, log, CR, Hubble ve pending operation yeni sahneye sızmaz."
+    },
+    {
+      "id": "V11-04",
+      "checks": [
+        {
+          "subcondition": "Real TokenRequest identity can read its namespace without Node/Namespace LIST; outside scopes403",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "cr",
+            "hubble"
+          ],
+          "tests": [],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Permission diagnostics and namespace/cluster CRUD boundary",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList",
+            "TestNamespaceScopeBlocksClusterCRUD"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Recorded restricted normal UI and Forbidden metrics",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "qa_restricted"
+          ],
+          "tests": [],
+          "limit": "QA recorded PASS; backend16 equality checked. Final UI candidate source/build applicability is QA/root.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Namespace selection never grants RBAC; real API uses actual caller.",
+      "mandatory_scenario": "Namespace `list` veya cluster-scope Node `list` izni olmayan restricted kullanıcı izinli kapsamı kullanabilir; namespace filtresi RBAC yetki kazandırmaz."
+    },
+    {
+      "id": "V11-05",
+      "checks": [
+        {
+          "subcondition": "Real authoritative empty custom-GVR scope after offline DELETE",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "cr"
+          ],
+          "tests": [],
+          "limit": "A unique CR scope is not a zero-Pod UI proof.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Forbidden log response never becomes sample output",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestLogPermissionErrorNeverBecomesSampleOutput"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Recorded actual zero Pods/unreachable context/explicit Demo UI separation",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "qa_empty"
+          ],
+          "tests": [],
+          "limit": "QA recorded source/build, not a new backend execution; final UI applicability separate.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Do not substitute CR emptiness for entire empty harbor behavior.",
+      "mandatory_scenario": "Boş namespace ve gerçek 0 Pod; bağlantı/yetki hatasında canlıymış gibi mock gemi/log/metrik oluşmaz. Demo açık seçilmedikçe ayrıdır."
+    },
+    {
+      "id": "V11-06",
+      "checks": [
+        {
+          "subcondition": "Actual G00 readonly reconnect sameUID, live DELETE, newUID, offline absence, forbidden/recovery",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "cr"
+          ],
+          "tests": [],
+          "limit": "6 leaf API/WS tests; frontend stale/selected-panel presentation is not asserted.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Real log UID replacement at before-open and first-publish boundaries",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "prior_api"
+          ],
+          "tests": [],
+          "limit": "Exact unchanged gateway16; Kubernetes logs remain name-addressed and non-atomic.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Fake informer/log race guards including after-open and same-name watch cancellation",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestLogUIDGuardInterposesReplacementAtOpeningBoundaries",
+            "TestLogWatchCancelsStreamOnSameNameNewUID",
+            "TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current normal UI G00 stale/reconnect/newUID/RBAC selection behavior",
+          "classification": "MISSING",
+          "evidence": [
+            "old_CR_UI"
+          ],
+          "tests": [],
+          "limit": "Old UI reference exists; QA currently owns fresh guarded G00 UI, not this worker.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Backend G00 proven; entire UI row remains QA-owned.",
+      "mandatory_scenario": "G00 on-demand custom resource reconnect; aynı UID korunur, gerçek DELETE/offline DELETE, forbidden, yeni UID ve stale durumu doğru; log UID replacement yarışı regresyonu."
+    },
+    {
+      "id": "V11-07",
+      "checks": [
+        {
+          "subcondition": "Resource quantity validation and target UID scheduler-affinity guard",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestQuantityValidation",
+            "TestCreateTargetUIDMismatchDoesNotReachMutation"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Actual scheduler placement with required affinity and UID-owned Ready Pods",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "hubble"
+          ],
+          "tests": [],
+          "limit": "Standalone traffic Pods are not a Deployment owner-chain/create/dry-run proof.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current normal Deployment dry-run404/create owner chain/Ready and all negative conditions",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Root/QA create/scale evidence plus actual image/unschedulable/admission/quota/Forbidden cases must be audited per subcondition; no generic unit replacement.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "No all-negative create acceptance from quantity unit tests.",
+      "mandatory_scenario": "Deployment server dry-run GET404; gerçek create → owner chain, Pending/assigned/Ready, doğru gemi ve vinç; yanlış image/unschedulable/admission/Quota/Forbidden."
+    },
+    {
+      "id": "V11-08",
+      "checks": [
+        {
+          "subcondition": "Scale/recreated UID protection and REST delete preconditions",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestScaleDoesNotAdoptRecreatedSubresourceIdentity",
+            "TestDeleteRESTPreconditions"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Recorded normal Pod delete -> actual controller replacement UID/Ready",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "qa_workload"
+          ],
+          "tests": [],
+          "limit": "QA-owned recorded source/build. Create+2->3->1 earlier run must be linked separately.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Full current2->3->1 desired/current/ready + HPA-present behavior",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Backend map does not certify QA scale/HPA UI state or disable any HPA.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "API identity guards do not prove every scale/HPA UI condition.",
+      "mandatory_scenario": "Replica 2→3→1; Pod silme + controller replacement; UID ve desired/current/ready doğru. HPA varsa belirgin açıklama ve sağlam davranış."
+    },
+    {
+      "id": "V11-09",
+      "checks": [
+        {
+          "subcondition": "Real D/STS/DS UID capability/template202 and standaloneRS/Job/CronJob422",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "prior_api"
+          ],
+          "tests": [],
+          "limit": "Exact gateway16; gated workload readiness deliberately not asserted by this API test.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Real standalone native-sidecar logs and sameUID kubelet-applied40m resize",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "prior_actions"
+          ],
+          "tests": [],
+          "limit": "Applied in-place status is distinct from template rollout; 3D/container role UI not asserted.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Owner/strategy/read-only, no Secret body read and quantity checks",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestTemplateCapabilityResolvesVerifiedOwnerAndRejectsUnsupportedKinds",
+            "TestTemplateCapabilityPreservesControllerStrategyAndReadOnly",
+            "TestTemplateCapabilityDoesNotReadSecretBodies",
+            "TestQuantityValidation"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Recorded Deployment form preserves four quantities/metadata and reaches Ready",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "qa_workload"
+          ],
+          "tests": [],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current normal UI STS/DS strategy-specific completion/multi-container preservation",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "202 template API acceptance alone does not prove rollout completion or current form UX for every kind.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Deployment Ready UI and STS/DS template acceptance stay separate.",
+      "mandatory_scenario": "D/STS/DS template CPU/RAM değişimi; desteklenmeyen owner için açık UX/422; ilgili rollout/in-place status ayrımı. Multi-container metadata korunur."
+    },
+    {
+      "id": "V11-10",
+      "checks": [
+        {
+          "subcondition": "Recorded normal restart newRS/new non-terminating ReadyPod; delete404 oldUID panel",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "qa_workload"
+          ],
+          "tests": [],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Recorded real finalizer keeps exact oldUID; same-name newUID needs reselection",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "qa_finalizer"
+          ],
+          "tests": [],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Delete UID/RV and stale target guards",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestDeletePreconditionsAndUIDRecreation",
+            "TestDeleteRESTPreconditions"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Final QA current-bundle visual applicability remains separate from backend guards.",
+      "mandatory_scenario": "Rollout restart ve Deployment delete; eski terminating UID, yeni UID, doğru Node; finalizer durumları; gerçek kaynak kaybı ile animasyon ayrı."
+    },
+    {
+      "id": "V11-11",
+      "checks": [
+        {
+          "subcondition": "Server READ_ONLY=true direct handler403 and no drain/enable bypass",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestReadOnlyAndNamespaceEnforced",
+            "TestReadOnlyDrainRejectedBeforeEviction",
+            "TestManagementStartsReadOnlyAndCannotBypassSession"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Real management-off/missingnonce403 and stale/current contextnonce409",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "cr",
+            "minikube"
+          ],
+          "tests": [],
+          "limit": "Server configured writable; browser management remains disabled until explicit enable. Not a server_READ_ONLY=true production proof.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "HTTP same-origin/Host/Fetch/JSON and credential-safe error categories401/403/409",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestOriginAndAuthentication",
+            "TestOriginHostJSONAndSessionNegatives",
+            "TestConnectionErrorsDoNotExposeCredentials",
+            "TestLocalServerRejectsDNSRebindingHost"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Real Hubble hostile/null HTTP Origin403",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "hubble"
+          ],
+          "tests": [],
+          "limit": "This is HTTP, not a WebSocket handshake negative.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Real unsupported resource422 + actual log UID-opening409 and GET404 cleanup",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "prior_api"
+          ],
+          "tests": [],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Actual current copied production binary READ_ONLY=true direct HTTP diagnostics/enable/create/actions403 + denied objectGET404",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "prod_security"
+          ],
+          "tests": [],
+          "limit": "Exact b741 binary/commit0f5a5ab. Shared actions authorization probe uses exact namespaceUID/RV+dryRun=true; normal readonly UI remains a separate QA test.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Actual API_TOKEN missing/wrong401 + token session flow",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "prod_security"
+          ],
+          "tests": [],
+          "limit": "Actual guarded HTTP+WS absent/wrong401; proper Bearer and HttpOnly/SameSiteStrict cookie-only reads/SNAPSHOT work. Loopback HTTP only, not actual TLS Secure cookie transport or shared SaaS authorization.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Hostile/null/wrong-scheme Origin actual WebSocket handshake403",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "prod_security"
+          ],
+          "tests": [],
+          "limit": "Three exact negative Origins return403 on both readonly/plain and properly authenticated gateway; same-origin actual SNAPSHOT positive. No browser UI acceptance inferred.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "READ_ONLY=true final production normal UI shows readonly and cannot mutate",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "QA/root will restart a readonly gateway from the same frozen current b741 binary after backend-owned18412/18413 cleanup. Backend actual HTTP/WS is not a normal UI test.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Production direct HTTP/auth/WS security gaps now current-real-proven; normal UI server-readonly and every other error/UX subcondition remain owner-specific.",
+      "mandatory_scenario": "Backend READ_ONLY=true → UI ve doğrudan HTTP mutation reddi; 403, 409 conflict, 404 not-found, validation, auth failure ve CSRF/Origin/WebSocket negatif testleri."
+    },
+    {
+      "id": "V11-12",
+      "checks": [
+        {
+          "subcondition": "Real app/init/ephemeral/restarted-current/previous logs with UID/session/protocol headers",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "prior_log_roles"
+          ],
+          "tests": [],
+          "limit": "5 real API leaf roles; no recorded log payload. Role selector UI is separate.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Native sidecar running init role logs",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "prior_actions"
+          ],
+          "tests": [],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "UID/session validation and replacement abort guards",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestLogGuardRequiresUIDAndEchoesSessionIdentity",
+            "TestLogWatchCancelsStreamOnSameNameNewUID",
+            "TestLogUIDGuardInterposesReplacementAtOpeningBoundaries"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Real synthetic Secret purpose reveal/edit/bulk redaction/masked-write rejection",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "prior_api"
+          ],
+          "tests": [],
+          "limit": "No synthetic Secret value recorded; ordinary UI Secret reveal/edit still separate.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Secret sanitization and purpose editor metadata/GVK correctness",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak",
+            "TestPurposefulSecretRevealIncludesGVKAndIdentity",
+            "TestSecretSanitizationDoesNotMutateSource"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current full normal role selector/pause/resume/double-open/close+abort and Secret reveal/edit UI",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "QA A/B current app logs cover named subchecks only; API roles do not imply all UI lifecycle paths.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Never claim atomic UID-pinned Kubernetes logs.",
+      "mandatory_scenario": "Gerçek Pod logs: current/init/ephemeral/previous uygun izin; container seçimi, pause/resume, close/abort, double-open; doğru UID; Secret değerleri frontend/kanıta sızmaz."
+    },
+    {
+      "id": "V11-13",
+      "checks": [
+        {
+          "subcondition": "Actual metrics.k8s.io Node samples/source/timestamp",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "prior_api"
+          ],
+          "tests": [],
+          "limit": "This API sample had3Nodes/0Pods, not filled Pod UI.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Recorded real filled Node/Pod graph + unavailable/Forbidden provider UI",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "qa_metrics",
+            "qa_metrics_missing",
+            "qa_restricted"
+          ],
+          "tests": [],
+          "limit": "QA recorded sources/build; backend16 equality checked. Final UI graph/callback scope audit is QA-owned.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Metrics stale/late response and whole final UI coverage",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Do not infer random0 absence or entire stale/timestamp behavior from API presence alone.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Present/missing/Forbidden are distinct recorded real subchecks.",
+      "mandatory_scenario": "Metrics API mevcut/yok/Forbidden; Node ve Pod gerçek CPU/RAM verisinin normal UI'daki doğru timestamp/unit/görünür grafik; random 0 yok."
+    },
+    {
+      "id": "V11-14",
+      "checks": [
+        {
+          "subcondition": "Current real Hubble readonly mTLS, actual same/cross TCP UID-time pairs, restricted identity, B409, expiry and lease cleanup",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "hubble"
+          ],
+          "tests": [],
+          "limit": "7 API/provider leaves;15 safe measured groups per identity. Observations are not packets/bytes/bandwidth.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Owned collector process transport interruption -> stale -> real bounded retry",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "hubble"
+          ],
+          "tests": [],
+          "limit": "Root relay and CNI not interrupted; does not claim actual relay outage.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Real historical HTTP/DNS/UDP/L4 decoder protocol and relay loss/recovery",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "provider_hashes",
+            "old_L7",
+            "old_hubble_recovery"
+          ],
+          "tests": [],
+          "limit": "Traffic core/handler exact baseline hashes; current session gate tested separately. Historical core evidence only, not new protocol/relay execution.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current normal UI traffic arrows/L7/provider-off presentation",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Backend TCP fields remain L7-null; no inference from HTTP request or port.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Pair current gate/data proof with named historical source-identical core proof; no whole UI PASS.",
+      "mandatory_scenario": "Hubble mevcut/erişilemiyor/stale/geri geliyor; ölçülmüş trafik ve topoloji ayrımı; mevcut gerçek provider flow UID ve protokol ayırma korunur. Production cluster'a CNI/agent kurma."
+    },
+    {
+      "id": "V11-15",
+      "checks": [
+        {
+          "subcondition": "Canonical informer add/update/delete/snapshot does not regress identity/version",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestInformerWebSocketSnapshotAddUpdateDelete",
+            "TestInformerEventsCannotRegressSnapshotIdentityOrVersion"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Historical real worker new-machine/NodeUID/Ready core proof",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "provider_hashes",
+            "old_launch"
+          ],
+          "tests": [],
+          "limit": "Current minikube gate/CLI-read+capacity proof is additional; no new worker launch this turn.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current final visual Node fire/sink/repair, container fall/reload, crane/controlplane/actual arrows",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Frontend/QA/root visual source/build and performance gates; no backend API substitution.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Do not promote backend state proof to visual effect acceptance.",
+      "mandatory_scenario": "Önceki sekiz görsel davranışın kritik regresyonları: Node health Fire/sink/repair, tek container fall/reload, gerçek worker launch (provider yalnız own lab), crane, controlplane temsili işaret, actual flow arrows. Doğru nesneye gidiyor mu, dedup ve cleanup doğru mu?"
+    },
+    {
+      "id": "V11-16",
+      "checks": [
+        {
+          "subcondition": "Snapshot scope/UID and delayed callback cancellation invariants",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestInformerEventsCannotRegressSnapshotIdentityOrVersion",
+            "TestScopeSwitchCancelsInFlightStreams"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current browser churn/hidden/reduced-motion/viewport/focus acceptance",
+          "classification": "MISSING",
+          "evidence": [
+            "qa_focus_failure"
+          ],
+          "tests": [],
+          "limit": "Earlier inspected focus probe FAIL is retained as historical negative. Root0f5a5ab focus fix passed156 frontend units and current b741 was rebuilt; final QA browser focus/churn/reduced-motion/viewport proof is separately owned and not inferred here.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Backend unit/race timing is not browser performance/interaction proof.",
+      "mandatory_scenario": "Kısa olay fırtınası, reconnect, kaynak churn, aynı ad-yeni UID, arkaplan document.hidden, reduced-motion, kamera/panel/form odak, arama/finder, 768/1280/1440 ekran; keyifle çalışan demo testi gerçek E2E yerine geçmez."
+    },
+    {
+      "id": "V11-17",
+      "checks": [
+        {
+          "subcondition": "Current real minikube management/nonce/context/UID/SSAR+MaxNodes3 capacity gate",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "minikube"
+          ],
+          "tests": [],
+          "limit": "canAdd=true is permission availability, valid unknown-key POST409 is capacity. Before/after3Node/Docker identities and4ready journal are byte-exact; newNodes/Machines/Operations0.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current provisioning unit runner/lock/idempotency tests",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit"
+          ],
+          "tests": [],
+          "limit": "Fake/temp runner proof only, not a real VM/Node.",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Historical actual same-key202/sameID, different concurrent key409, new Docker/NodeUID/Ready",
+          "classification": "HISTORICAL_SOURCE_IDENTICAL",
+          "evidence": [
+            "provider_hashes",
+            "old_launch"
+          ],
+          "tests": [],
+          "limit": "Core/path scope exact source equality with2b76e21; new browser cookie/nonce gate independently current-tested. No reverse hash, replayed unknown key or another launch claim.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Qualified historical core reuse is available; current fresh Ready-worker UI is not claimed.",
+      "mandatory_scenario": "Provisioning idempotency/lock ve context UID; yalnız owned minikube; aynı key aynı işlem, farklı eşzamanlı key conflict. Elde var olan kanıt uygun source eşitliğinde kullanılabilir; uyumsuz test türünü yeniden koş."
+    },
+    {
+      "id": "V11-18",
+      "checks": [
+        {
+          "subcondition": "Current actual G00 reconnect/offline authoritative absence and RBAC restore sameUID",
+          "classification": "CURRENT_REAL",
+          "evidence": [
+            "cr"
+          ],
+          "tests": [],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current stream/log cancellation and snapshot identity correctness",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit",
+            "race"
+          ],
+          "tests": [
+            "TestScopeSwitchCancelsInFlightStreams",
+            "TestLogWatchCancelsStreamOnSameNameNewUID",
+            "TestInformerEventsCannotRegressSnapshotIdentityOrVersion"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "20-minute current candidate full content/scope equality,20panel/log/observer/material cleanup",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Root exclusive benchmark/soak queue; harness45unitPASS and race counts are not this measurement.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Mandatory soak/cleanup cannot be closed by unit or isolated API cases.",
+      "mandatory_scenario": "Namespace değişimi, yetki güncellemesi ve API watch kopması sırasında snapshot tam içerik eşitliği; open log stream, observer, material/geometry/interval cleanup; 20 panel aç/kapat."
+    },
+    {
+      "id": "V11-19",
+      "checks": [
+        {
+          "subcondition": "Current production static route/CLI configuration unit coverage",
+          "classification": "CURRENT_UNIT",
+          "evidence": [
+            "unit"
+          ],
+          "tests": [
+            "TestProductionFrontendRoutesAndBoundary",
+            "TestCLIContextDoesNotRewriteKubeconfig"
+          ],
+          "limit": "",
+          "whole_acceptance_PASS": false
+        },
+        {
+          "subcondition": "Current install/build/test/RBAC/Helm/platform/user setup certification",
+          "classification": "MISSING",
+          "evidence": [],
+          "tests": [],
+          "limit": "Root distribution and QA normal UI gates; this backend map neither reruns nor certifies platform installation.",
+          "whole_acceptance_PASS": false
+        }
+      ],
+      "row_verdict": "PARTIAL_MAP_ONLY",
+      "remaining_or_owner_gate": "Root integrates final distribution/source/assets/CI evidence.",
+      "mandatory_scenario": "Temiz local dağıtım, build/test, örnek manifest Helm (varsa), kurulum sonrasında bir geliştiricinin kod düzenlemeden bağlanması."
+    }
+  ],
+  "priority_real_gaps": [
+    "Server_READ_ONLY=true final production normal UI (direct HTTP now proven)",
+    "Normal UI Secret reveal/edit and init/ephemeral/previous role selectors/double-open",
+    "STS/DS normalUI rollout completion beyond template202",
+    "Current final UI/provider visual and whole multi-subsystem isolation cases",
+    "Final candidate full20minute/20panel cleanup/performance and distribution/platform/CI gates"
+  ],
+  "scheduled_followup": "Completed production readonly/auth/WebSocket helper prod-security-result.json:5PASS,0FAIL,0SKIP; exact copiedb741/0f5a5ab gateway runtime16 unchanged, owned gateway PIDs stopped/ports free. QA normal readonly UI remains separate.",
+  "no_activity_started": [
+    "No tests",
+    "No builds",
+    "No provider/cluster calls or mutations",
+    "No existing docs/runtime/Git edits"
+  ],
+  "updated_at": "2026-11-09T08:25:12.595306+00:00",
+  "mapping_activity_note": "Original map was read-only. A separately root-authorized production HTTP/WS job then supplied named CURRENT_REAL security subchecks; no runtime/FE/docs/Git edit or cluster mutation."
+}

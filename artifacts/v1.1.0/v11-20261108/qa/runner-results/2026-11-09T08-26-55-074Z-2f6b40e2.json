@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-26-55-074Z-2f6b40e2",
+  "startedAt": "2026-11-09T08:26:55.074Z",
+  "tests": [
+    {
+      "title": "V11-07 normal UI actual unschedulable image-pull quota-admission and discarded context draft stay truthful",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 21482,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-26-55-271Z-86c3cf1e/v11-workload-negative-V11--ed04e-context-draft-stay-truthful-chromium/attachments/v11-evidence-94e2b3b5260100f6767d4b450930d8aa9d4399c5.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:27:16.850Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-26-55-074Z-2f6b40e2.json"
+}

@@ -1,5 +1,20 @@
 # Güncel görev durumu
 
+## 9 Kasım2026 — son kaynak kabulü ve teslim kontrolü
+
+- [x] Son runtime32a0468 donduruldu; frontend165/165, Go60topPASS/20SKIP, serverrace39topPASS/20SKIP, harness45/45.
+- [x] Gerçek iki-küme/restricted/readonly/G00, workload/negatifler, STS/DS/Secret/log/metrics, WebKit focus ve son Job/DS normal UI kanıtları uzlaştırıldı; eskiFAIL'lar korundu.
+- [x] Final macOSARM64/LinuxAMD64 emülasyon/Docker/Helm kanıtı; nativeSafari/Retina isteğe bağlıN/A olarak korundu.
+- [x] Yeni AC31hücre, üç eşleşmiş blok,1200s/20panel/24log ve gerçek60sdocument.hidden; tam içerik ve sınırlı kaynak envanteri.
+- [x] L CPU için yalnız iki ek kontrollü pil çifti; AC ile birleştirilmedi. Ham141dosya+SHA listesi küçük arşivde korunuyor.
+- [x] Gerçekformtext/numeric/YAML ve nonTTYterminalde yön tuşu/nativecaret/camera-target0; gerçekprintf/execclose.768/1280fall kareleri incelendi; subpixelstrictAABBFAIL ve1280postAPIassertNOTRUN dürüstçe korundu.
+- [ ] Fizikselilkfeedback≤100ms/tamtemelpanel≤200ms doğrulaması; PNG/DOM/rAFproxy yerinegeçmez.
+- [ ] L ilkACfarkının nedensel yorumu ve açıklanamayan anlamlı regresyon kapısı. Kontrollüpil+.63%/+1.59%, ilkAC+20.93%yerine otomatikgenelPASS değildir.
+- [ ] Kanıt/test/doküman commit+push, yeni CI; tüm zorunlu kapılar sağlanmadan normal merge/stable tag/release/milestone kapanışı yapılmaz.
+
+Aşağıdaki aynı gün ara durumları tarihsel checkpoint'tir; yeni sonuçlar yukarıdadır. Tam kayıt: [V11_ACCEPTANCE_REPORT.md](V11_ACCEPTANCE_REPORT.md).
+
+
 ## 9 Kasım 2026 — devam eden v1.1.0 kabulü
 
 - [x] Kaynak/çalışma ağacı pause checkpoint ile eşit; private API port/clock yenilenmesi ve aynı A/B clusterUID doğrulandı.

@@ -1,5 +1,12 @@
 # Production performans raporu — 25 Ekim 2026
 
+## 9 Kasım 2026 — v1.1.0 yeni kaynak kabulü
+
+Dondurulmuş `2b76e21`→`32a0468` için yeni AC31/31hücre, üç eşleşmiş30s+60sblok ve tek1200s/20panel koşusu tamamlandı. [Ayrıntılı güncel tablo, ham sonuçlar ve sınırlar](../artifacts/v1.1.0/v11-20261108/performance/REVIEW.md). Açık panel toplam browser CPU medyanı.38237→.39759çekirdek; aralıklar örtüşür. SignedΔpanel ayrı hesaplanır; CPU kazancı iddia edilmez. L ham.39292→.47515farkında fiili çizim yükü de değişmiştir; ayrı iki kontrollü pil çifti+.63%/+1.59%verdi, AC ile pool yapılmaz ve bu tek sonuç bütün regresyon kapısını otomatik kapatmaz.
+
+M/L yaklaşık60JSçizim/sn; uzun koşu60.0005,p9518.7/p9921.0ms. Tam canonical içerik eşitliği,20/20panel,24/24log kapanışı ve bounded materyal/observer/timer gözlemi geçti. Fiziksel presentedFPS/GPUkullanım%/toplamRAM/nativeSafari performansı ölçülmedi. Eski6Kasım ve25Ekim kayıtları korunur; yeni kaynağın geçmişte test edildiği ileri sürülmez.
+
+
 **6 Kasım 2026 — v1.1 öncesi onarım:** [Yeni kabul raporu ve tam tablolar](PRE_V11_VISUAL_REPAIR.md#6-kasım--kabul-edilmiş-49-hücrelik-pil-ölçümü) 49/49 geçerli hücreyi, üç bağımsız eşleşmiş bloğu ve son 20 dakika koşusunu içerir. Açık panel browser CPU medyanı 0,4325→0,4143 çekirdek; aralıklar örtüşür, genel optimizasyon oranı iddia edilmez. Çoklu arıza anlatımının farkı +0,0162 çekirdek ek işlev maliyetidir. M/L yaklaşık 60 JS çizim/sn korudu. Uzun koşu p95 18,6 / p99 19,4 ms, tam canonical içerik eşitliği, 20/20 panel çevrimi ve 24/24 log kapanışıyla geçti. GPU ve doğrudan materyal envanteri ayrı tanılamadır; eski AC ve aşağıdaki tarihsel sonuçlara katılmaz.
 
 **30 Ekim 2026 ek raporu:** [PANEL_CPU_OPTIMIZATION.md](PANEL_CPU_OPTIMIZATION.md) güncel v5 kaynak kimliği ve ham sonuç bağlantılarıyla40 hücrelik AC panel matrisini, beş dolu-log çiftini, reddedilen kapasite adayını ve son doğrulamanın gerçek durumunu içerir. Log p95 medyanı41,7→17,7ms, en büyük PID RSS459,4→386,2MiB; net toplam CPU kazancı kanıtlanmadı. Bu yeni sonuçlar aşağıdaki tarihsel25 Ekim sayılarını değiştirmez. Pil/AC ve prototip/production kanıtları ayrı tutulur.

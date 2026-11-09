@@ -1,0 +1,11 @@
+{
+  "attempt": "runs/2026-11-09T08-25-10-609Z-chromium-cea91338/result.json",
+  "status": "FAIL",
+  "classification": "QA locator apostrophe mismatch; not a product image-state failure",
+  "passedSubchecks": ["Actual server dry-run GET404", "Real scheduler Pending/Unschedulable API and normal details UI", "Image-pull error/nonReady and selected actual Node UID API assertions"],
+  "observed": "The image Pod normal details header and capture show ImagePullBackOff. The test searched Container'lar with ASCII apostrophe; the actual accessible tab label is Container’lar with U+2019.",
+  "correction": "Use the actual tab label and explicitly continue from image. The passed Unschedulable subcheck can be reused only after exact product source and binary SHA equality checks.",
+  "notExecuted": ["Quota admission403 after successful preview", "Unsent draft/context boundary"],
+  "cleanup": "Both exact owned Deployments observed404; dependent own Pod LIST0",
+  "originalEvidencePreserved": true
+}

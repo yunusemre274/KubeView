@@ -1,5 +1,19 @@
 # Veri, işlem ve 3D mimarisi
 
+## 9 Kasım 2026 — güncel aday kaynağı ve oturum sınırı
+
+Runtime kaynak commit'i `32a0468ad51516a1bb38aab68760e73984c45ddf`; frozen frontend SHA256 `e61447de244192dca130675866abf81bc87daa20a7a128ee8534b5c6ae1fe164`, build adı `v11-final-32a0468`. Test edilmiş embedded macOS/Linux kimlikleri [release notlarında](RELEASE_NOTES_v1.1.0.md) ve [kaynak kaydında](../artifacts/v1.1.0/v11-20261108/candidate-frozen-32a0468.json). Durum sürüm adayıdır; final kanıt/CI/release beklenir. Aşağıdaki tarihli mimari ve ölçüm kayıtları kendi source kapsamlarında korunur.
+
+`singletonManager` güncel socket açılışında yönetimi geçici readonly tutup gerçek `/api/connection` tanılamasını yeniler. Diagnostic success/error ve gecikmiş management enable sonuçları epoch, namespace revision ve socket serial ile ayrılır. Eski socket'ten dönen izin yeni bağlantıyı açmaz; aynı-source reconnect sonrası backend grant'i kaldırılmışsa açık form da readonly kalır. Scope değişimi eski HTTP/log/metrics/socket işlerini abort eder; global kubeconfig/current-context yazılmaz.
+
+`useWorldProviders` modeli source owner'a, flow görünümü ayrıca namespace ve stream-session key/revision'a bağlıdır. Status/flow istekleri yeni kapsamda iptal edilir; gecikmiş nonempty callback cancelled/owner/flowKey kontrollerini geçmeden commit edilemez. Flow effect cleanup, eski context/scope/subscription URL'ini effect başında sabitler ve yalnız eski lease'i keepalive DELETE ile bırakır. Yeni guarded API nesnesi eski scope'u okumaya çalışmaz. Bu sınırlar gerçek hook'a deferred sentetik yanıt veren beş unit ile sınandı; current nonempty kabulü ve unmount sonrası timer/listener sayısının sıfır olması da doğrulanır. Son seri frontend 165/165 PASS; [unit/provenance kaydı](../artifacts/v1.1.0/v11-20261108/frontend/provider-epoch-evidence.json). Bu kayıt gerçek Hubble E2E veya production heap/timer ölçümü değildir.
+
+`ResourceForms` desteklenen writable edit/resources/resize başlangıcında gerçek GET tamamlanana kadar alanları kilitler. Aynı source/cluster/UID üzerinde dirty ref, body/YAML/resourceVersion taslağını reconnect yanıtından korur; UID ve yetkili Secret reveal doğrulaması sürer. Önceki dry-run geçersiz olur; RV değişimi görünür review ister. Yalnız mevcut açık sürüm-gözden-geçirme eylemi RV'yi bilinçli ilerletir. Başka source/UID eski taslağa bağlanmaz; Secret readiness readonly/pending/reveal hatasında false olur ve kapanış yerel içeriği temizler.
+
+App ve ortak Window gerçek DOM tetikleyicisini kaydeder; BODY/HTML, kaldırılmış veya disabled kontrol geçerli dönüş odağı sayılmaz. Canvas mount/ölçüleri, UID filo fazı ve kamera pencerelerden bağımsız kalır. `resourceStatus` Job için Complete/Failed önceliğini koruyup askıdaki Job'u gösterir. DS ancak bilinen, negatif olmayan tamsayı desired/ready ve güncel observedGeneration ile hazırdır; gerçek 1/1 Ready davranışı ayrıca [normal UI'da doğrulandı](../artifacts/v1.1.0/v11-20261108/frontend/status-resume/REVIEW.md). Eksik/stale DS negatifleri unit kapsamıdır; sahte UI status enjeksiyonu yapılmadı.
+
+Önceki `0f5a5ab` normal UI checkpoint'iyle fark yalnız Job/DS status dalları ve semantiği değiştirmeyen metricFor satır sarmadır; tüm uygulama eşitliği iddia edilmeden [uygulanabilirlik incelenmiştir](../artifacts/v1.1.0/v11-20261108/source-applicability-32a0468.json). Tarihsel Node/worker/vinç/provider senaryoları yeniden çalıştırılmış sayılmaz. Geometri, deniz, rota ve visual coordinator eşliği ile değişen caption'ların ayrı gerçek UI kanıtı [harbor kaydında](../artifacts/v1.1.0/v11-20261108/harbor-source-applicability.json) tutulur.
+
 ## 8 Kasım 2026 — bağlantı ve yönetim oturumu
 
 `GET /api/connection` gerçek context/namespace, API, keşif, ayrı SSAR izinleri, Metrics ve opsiyonel Hubble durumunu döndürür. Credential fingerprint yalnız Go'da kalır. `POST /api/management` açık kullanıcı niyetini mevcut browser cookie, nonce, context, namespace ve client ID ile bağlar. Backend READ_ONLY=false yalnız bu ek izni açabilme imkânıdır; Kubernetes RBAC son karardır. Kapsam/config değişimi grant'i iptal eder, eski stream/forwardları sonlandırır. Geç enable callback nonce altında tekrar doğrulanır.
@@ -82,9 +96,9 @@ Canvas demand rendering kullanır; **seyir/deniz açıkken sürekli invalidation
 
 Varsayılan `READ_ONLY=true`, loopback bind. Yerel tek kullanıcı kubeconfig kimliğiyle çalışır. Non-loopback bind için `API_TOKEN` zorunlu; HTTP bearer veya HttpOnly SameSite oturum cookie’si kullanılır. WebSocket ve HTTP same-origin kontrolü uygular. Shared kullanım aynı gateway Kubernetes kimliğini paylaşır; per-user Kubernetes impersonation yoktur. Dolayısıyla internet üzerinde açık çok kiracılı admin proxy olarak dağıtılmamalıdır. Helm varsayılan okuyucu RBAC; yazma ayrı opt-in ve namespace sınırlıdır. Kubeconfig/token tarayıcıya aktarılmaz.
 
-## Sunum
+## Sunum — v1.1 öncesi ayrı statik dağıtım kaydı
 
-Vite geliştirmede `/api` ve `/ws` aynı origin proxy eder; backend portu `API_TARGET` ile değiştirilebilir. Production frontend `STATIC_DIR`, `/app/public` veya repo build yolundan aynı Go sunucusunda sunulur. Binary ve statik dosyalar ayrı dağıtım parçalarıdır; gömülü asset’li tek binary iddiası yoktur.
+Önceki dağıtımda production frontend `STATIC_DIR`, `/app/public` veya repo build yolundan sunulur, binary ve statik dosyalar ayrı parçalar olarak taşınırdı. Güncel aday bu kaydın üzerine yukarıdaki **Üretim dağıtımı** bölümündeki Go embed yolunu ekler; dış statik yollar güvenilir override/geliştirme uyumluluğu olarak kalır. Vite geliştirmede `/api` ve `/ws` aynı origin proxy eder; backend portu `API_TARGET` ile değiştirilebilir.
 
 ## 1 Kasım 2026 — Kapsam, kimlik ve opsiyonel sağlayıcılar
 

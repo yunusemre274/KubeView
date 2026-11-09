@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-08T21-03-24-876Z-0dd5445c",
+  "startedAt": "2026-11-08T21:03:24.876Z",
+  "tests": [
+    {
+      "title": "V11-09 V11-10 owned workload recovery continues resources/restart/replacement/delete after passed create+scale",
+      "project": "chromium",
+      "status": "FAIL",
+      "durationMs": 21874,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "TimeoutError: locator.click: Timeout 15000ms exceeded."
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T21-03-25-072Z-8b27b67b/v11-workload-recovery-V11--1bf33-e-after-passed-create-scale-chromium/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T21-03-25-072Z-8b27b67b/v11-workload-recovery-V11--1bf33-e-after-passed-create-scale-chromium/attachments/v11-evidence-7cce44c2bf5dd9045dee991f3c63672dc658a013.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T21-03-25-072Z-8b27b67b/v11-workload-recovery-V11--1bf33-e-after-passed-create-scale-chromium/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "Error",
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-08T21:03:47.041Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-08T21-03-24-876Z-0dd5445c.json"
+}

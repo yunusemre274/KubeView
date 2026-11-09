@@ -1,0 +1,50 @@
+{
+  "evidenceType": "synthetic unit around actual production useWorldProviders hook",
+  "gitHead": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "actualHubbleE2E": false,
+  "targeted": {
+    "command": "cd frontend && node --test --test-concurrency=1 --test-timeout=60000 tests/provider-epoch.test.js",
+    "artifact": "provider-epoch-targeted-01.txt",
+    "pass": 5,
+    "fail": 0,
+    "skip": 0,
+    "cancelled": 0,
+    "durationMS": 95.715584,
+    "attempts": 1,
+    "exitCode": 0
+  },
+  "fullSerial": {
+    "command": "cd frontend && node --test --test-concurrency=1 tests/*.test.js src/harbor/*.test.js src/workbench/*.test.js",
+    "artifact": "provider-epoch-full-unit-01.txt",
+    "pass": 165,
+    "fail": 0,
+    "skip": 0,
+    "cancelled": 0,
+    "durationMS": 2733.994709,
+    "attempts": 1,
+    "exitCode": 0
+  },
+  "identity": {
+    "testSHA256Before": "0ac2dc80923c50619ea47ebe906162647063340df052a5540d50c3cdc65ef887",
+    "testSHA256After": "0ac2dc80923c50619ea47ebe906162647063340df052a5540d50c3cdc65ef887",
+    "actualHookSHA256Before": "cd43c1af8f8663ce7cf1a82d794e0d85e2d9f783ee6ddeb1ae75a81fd4a4eb46",
+    "actualHookSHA256After": "cd43c1af8f8663ce7cf1a82d794e0d85e2d9f783ee6ddeb1ae75a81fd4a4eb46",
+    "runtimeTrackedDiffEmpty": true
+  },
+  "cleanupAssertions": {
+    "scope": "each of five synthetic hook unit environments; not production resource inventory",
+    "remainingVirtualTimers": 0,
+    "remainingStreamListeners": 0,
+    "lateStateUpdatesAfterUnmount": 0,
+    "assertedByEveryTeardown": true,
+    "pinnedDELETEDeadlineCleared": true
+  },
+  "runtimeEdit": false,
+  "dependencyChange": false,
+  "buildRun": false,
+  "browserRun": false,
+  "clusterRun": false,
+  "gitWrite": false,
+  "activeTestProcess": 0,
+  "testSourceFrozen": true
+}

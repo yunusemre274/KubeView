@@ -1,5 +1,13 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 9 Kasım2026 — aynı kaynak, fiili iş ve cleanup kanıtı
+
+- Aynı canonical/görünür adet ve kamera, aynı fiili render işi anlamına gelmez. Serbest yaşayan L koşusunda başlangıç fazı/drawcall/üçgen dağılımı değişti; report valid=true yalnız protokol/tamlık/kare bütçesini kapatır, CPU nedenselliğini kendiliğinden ispatlamaz. Fazı sabit kontrollü deney ayrıca etiketlenmeli; güç veya seçimi farklı seriler pool yapılmamalı.
+- Kaynak eşitliği modül bazındadır. Pure Job/DS status farkını yeni gerçek UI'da sına; eşit provider/gemi/vinç çekirdeğini nitelikli tarihsel kanıtla koru. Bütün uygulama veya eski test tarihi eşitmiş gibi sunma.
+- Playwright WS-close olayının gözlenememesi gerçek açık socket kanıtı değildir. RawFAIL'ı koru; bağımsız kernelTCPcleanup, tümHTTPlogların terminal olması ve20dkresourceenvanterini ayrı delil olarak ver. Hiçbiri tek başına genelheapleak yokluğunu kanıtlamaz.
+- DS controller'ın kendisinin artırdığı tek deprecated generation annotation'ını kullanıcı metadata kaybı sanma; yalnız gerçek kontrol edilen anahtarı ayır, bilinmeyen map/spec alanlarının tam korunma kontrolünü kaldırma. Suspend Job başlığı ve eski/eksik DS status'u ayrı gerçek/unit bulgulardır.
+
+
 ## 9 Kasım2026 — normal UI/fault ve kaynak türü ayrımı
 
 - Kubernetes controller'ı DaemonSet'in `deprecated.daemonset.template.generation` annotation'ını değiştirebilir; kullanıcı metadata'sının korunumu controller'a ait bu exact anahtardan ayrı ölçülür. Genel Job durumunda `spec.suspend` unutulması gerçek UI kusuruydu; DaemonSet'te eksik iki sayacın eşitliği ise unit ile yeniden üretildi. Runtime ve unit kanıtları aynı etiket altında birleştirilmez.

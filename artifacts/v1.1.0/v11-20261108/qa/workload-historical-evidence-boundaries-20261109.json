@@ -1,0 +1,130 @@
+{
+  "at": "2026-11-09T08:16:27.257011+00:00",
+  "historicalNegativeUI": {
+    "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-final-failures-20261106T102147Z.json",
+    "sourceUnchangedDuringHistoricalRun": true,
+    "compoundStatus": "FAILED",
+    "cases": [
+      {
+        "name": "normal center dry-run absence then real Deployment owner/assignment/Ready",
+        "status": "PASSED",
+        "error": ""
+      },
+      {
+        "name": "normal UI scale uses real scale endpoint and preserves existing Pod UID",
+        "status": "PASSED",
+        "error": ""
+      },
+      {
+        "name": "normal UI rollout restart observes new ReplicaSet/new Pods without changing Node identity",
+        "status": "FAILED",
+        "error": "AssertionError [ERR_ASSERTION]: Restart did not produce new Pod incarnations"
+      },
+      {
+        "name": "real no-eligible-Node workload stays Pending with scheduler Unschedulable reason",
+        "status": "PASSED",
+        "error": ""
+      },
+      {
+        "name": "real invalid image reports ErrImagePull/ImagePullBackOff without fabricated readiness",
+        "status": "PASSED",
+        "error": ""
+      },
+      {
+        "name": "real quota admission rejects create after successful server dry-run preview",
+        "status": "PASSED",
+        "error": ""
+      },
+      {
+        "name": "discarded unsent draft then real context switch; accepted workload is not server-cancelled",
+        "status": "PASSED",
+        "error": ""
+      },
+      {
+        "name": "reuse prior actual RBAC rejection only when the relevant authorization source still matches",
+        "status": "PASSED",
+        "error": ""
+      }
+    ],
+    "changedFilesSinceHistoricalNegativeUI": [
+      "frontend/src/App.jsx",
+      "frontend/src/workbench/ResourceForms.jsx",
+      "frontend/src/world/operations.js",
+      "frontend/src/context/ShipyardClusterContext.jsx",
+      "backend/pkg/server/resources.go",
+      "backend/pkg/server/server.go",
+      "backend/pkg/server/stream.go",
+      "backend/pkg/server/resource_scopes.go"
+    ],
+    "applicability": "Historical per-case evidence only. Changed form/context/operation modules prevent automatic whole-current-candidate PASS. The old restart assertion failure and targeted recovery remain preserved."
+  },
+  "v11ActualCreateAndScale": {
+    "path": "artifacts/v1.1.0/v11-20261108/qa/runs/2026-11-08T20-59-31-344Z-chromium-f3b766b2/result.json",
+    "compoundStatus": "FAIL",
+    "passedSubchecks": [
+      {
+        "at": "2026-11-08T20:59:36.805Z",
+        "name": "Real server dry-run left GET 404",
+        "status": "PASS"
+      },
+      {
+        "at": "2026-11-08T20:59:36.963Z",
+        "name": "v11-ui-mw8bfgl6",
+        "status": "PASS",
+        "uid": "c5e42ecc-9987-4349-9c28-c89769f162c7",
+        "resourceVersion": "24750",
+        "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "namespace": "kv-repair-v11-qa"
+      },
+      {
+        "at": "2026-11-08T20:59:43.163Z",
+        "name": "Create reached observed-generation and 2 Ready",
+        "status": "PASS",
+        "uid": "c5e42ecc-9987-4349-9c28-c89769f162c7"
+      },
+      {
+        "at": "2026-11-08T20:59:48.307Z",
+        "name": "Scale observed desired/current/ready 3",
+        "status": "PASS",
+        "uid": "c5e42ecc-9987-4349-9c28-c89769f162c7",
+        "livePodUIDs": [
+          "da053411-da21-4ab6-a42c-86b6472b604f",
+          "df6effb4-aa05-42d2-88e0-b00798681ad3",
+          "2509469a-966f-4f13-8f98-b3860cf6b6d3"
+        ]
+      },
+      {
+        "at": "2026-11-08T20:59:48.896Z",
+        "name": "Scale observed desired/current/ready 1",
+        "status": "PASS",
+        "uid": "c5e42ecc-9987-4349-9c28-c89769f162c7",
+        "livePodUIDs": [
+          "df6effb4-aa05-42d2-88e0-b00798681ad3"
+        ]
+      },
+      {
+        "name": "Workload own cleanup",
+        "status": "FAIL",
+        "uid": "c5e42ecc-9987-4349-9c28-c89769f162c7",
+        "reason": "locator.click: Timeout 15000ms exceeded."
+      }
+    ],
+    "source": "f3650f009320ef54342dc0cf9c7b1f8f644eed756b168bafe5560bcb2693b01d",
+    "applicability": "Actual v1.1 real UI server dry-run GET404, create2Ready and scale2→3→1 subchecks passed before the form loading/reconnect/focus fixes. These exact owned-UID subchecks were intentionally continued by a targeted resource/restart/replacement/delete recovery rather than blindly repeated."
+  },
+  "remainingCurrentNegativeGaps": [],
+  "broadPASSClaim": false,
+  "updatedAt": "2026-11-09T08:47:23.665872+00:00",
+  "gapsAtInitialReview": [
+    "Fresh current UI ImagePullBackOff/unschedulable/quota-admission/context-cancel proof not yet run by QA",
+    "Fresh current normal UI purposeful Secret reveal/edit not yet run; real synthetic Secret API proof is separately mapped"
+  ],
+  "latestCurrentProofs": {
+    "freshFullPositive": "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+    "negativeRecovery": "runs/2026-11-09T08-26-55-502Z-chromium-23a5484e/result.json",
+    "negativePredecessorPassedUnschedulable": "runs/2026-11-09T08-25-10-609Z-chromium-cea91338/result.json",
+    "actualRbacCreate": "runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json",
+    "normalSecretUI": "../frontend/forms-resume/runs/2026-11-09T08-28-50-268Z/result.json"
+  },
+  "latestLimit": "Fresh0f5/b741 functional proof closes the earlier UI gaps. All historical failed compound attempts remain FAIL. Future Job/DS display status fix/build/UI validation and root release gates are separate."
+}

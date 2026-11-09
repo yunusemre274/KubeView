@@ -1,0 +1,66 @@
+{
+  "at": "2026-11-09T10:44:49.387083+00:00",
+  "runtimeCommit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "binarySHA256": "180941247e252f34d71300967fc71ae146174a3dea3caba734d947e1da80f548",
+  "gatewayPort": 18410,
+  "lsofExitCode": 0,
+  "gatewayListenerCount": 1,
+  "connectedTCPEndpointCount": 0,
+  "ownedProxyChecks": [
+    {
+      "pid": 12655,
+      "present": false
+    },
+    {
+      "pid": 13127,
+      "present": false
+    },
+    {
+      "pid": 13713,
+      "present": false
+    },
+    {
+      "pid": 14284,
+      "present": false
+    }
+  ],
+  "exclusiveBrowserProcessRows": [],
+  "runs": [
+    {
+      "runID": "2026-11-09T10-36-38-216Z",
+      "proxyPID": 12655,
+      "sourceUnchanged": true,
+      "binaryUnchanged": true,
+      "contextClosed": true,
+      "browserDisconnected": true
+    },
+    {
+      "runID": "2026-11-09T10-37-51-128Z",
+      "proxyPID": 13127,
+      "sourceUnchanged": true,
+      "binaryUnchanged": true,
+      "contextClosed": true,
+      "browserDisconnected": true
+    },
+    {
+      "runID": "2026-11-09T10-39-50-109Z",
+      "proxyPID": 13713,
+      "sourceUnchanged": true,
+      "binaryUnchanged": true,
+      "contextClosed": true,
+      "browserDisconnected": true
+    },
+    {
+      "runID": "2026-11-09T10-43-28-559Z",
+      "proxyPID": 14284,
+      "sourceUnchanged": true,
+      "binaryUnchanged": true,
+      "contextClosed": true,
+      "browserDisconnected": true
+    }
+  ],
+  "limits": [
+    "Kernel connected TCP absence proves transport cleanup at this instant, not WS close-frame or Go heap/goroutine absence.",
+    "No process is signalled by this measurement."
+  ]
+}

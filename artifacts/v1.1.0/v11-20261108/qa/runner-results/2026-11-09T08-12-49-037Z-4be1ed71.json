@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-12-49-037Z-4be1ed71",
+  "startedAt": "2026-11-09T08:12:49.037Z",
+  "tests": [
+    {
+      "title": "V11-16 finder mouse versus keyboard trigger focus restoration probe",
+      "project": "webkit",
+      "status": "FAIL",
+      "durationMs": 6815,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "Error: mouse activation should restore focus to the finder trigger\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"world-find\"\u001b[39m\nReceived: \u001b[31mnull\u001b[39m"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-12-49-214Z-214e5c77/v11-focus-probe-V11-16-fin-d95b4-ger-focus-restoration-probe-webkit/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-12-49-214Z-214e5c77/v11-focus-probe-V11-16-fin-d95b4-ger-focus-restoration-probe-webkit/attachments/v11-evidence-dd45104f817784a310ded9454a82ccff4fa86461.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-12-49-214Z-214e5c77/v11-focus-probe-V11-16-fin-d95b4-ger-focus-restoration-probe-webkit/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "Error",
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:12:56.174Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-12-49-037Z-4be1ed71.json"
+}
