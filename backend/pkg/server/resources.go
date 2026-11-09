@@ -19,12 +19,31 @@ import (
 )
 
 func (s *Server) authorize(ctx context.Context, c *Clients, verb, group, res, sub, ns, name string) error {
+	if err := s.authorizeWorkspace(ctx, c, verb, group, res, sub, ns, name); err != nil {
+		return err
+	}
 	if verb != "get" && verb != "list" && verb != "watch" {
 		if s.ReadOnly {
 			return apierrors.NewForbidden(schema.GroupResource{Group: group, Resource: res}, name, fmt.Errorf("Sunucu salt okunur modda (READ_ONLY=true)"))
 		}
 		if err := s.managementAllowed(ctx, c, ns); err != nil {
 			return err
+		}
+	}
+	if scope := workspaceScopeFrom(ctx); scope != nil && ns == "" && len(scope.harbor.Namespaces) > 0 && scope.harbor.Namespaces[0] != "*" {
+		// A multi-namespace harbor needs permission in each explicit namespace,
+		// never a broader all-namespace SSAR merely to combine those lists.
+		if workspaceNamespacedResource(c, group, res) {
+			for _, namespace := range scope.harbor.Namespaces {
+				review, err := c.Typed.AuthorizationV1().SelfSubjectAccessReviews().Create(ctx, accessReview(verb, group, res, sub, namespace, name), metav1.CreateOptions{})
+				if err != nil {
+					return err
+				}
+				if !review.Status.Allowed {
+					return apierrors.NewForbidden(schema.GroupResource{Group: group, Resource: res}, name, fmt.Errorf("Namespace yetkisi reddedildi: %s", namespace))
+				}
+			}
+			return nil
 		}
 	}
 	review, err := c.Typed.AuthorizationV1().SelfSubjectAccessReviews().Create(ctx, accessReview(verb, group, res, sub, ns, name), metav1.CreateOptions{})
@@ -36,10 +55,28 @@ func (s *Server) authorize(ctx context.Context, c *Clients, verb, group, res, su
 	}
 	return nil
 }
+func workspaceNamespacedResource(c *Clients, group, res string) bool {
+	standard := map[string]string{"": "pods,secrets,configmaps,services,endpoints,events,persistentvolumeclaims,serviceaccounts,resourcequotas,limitranges", "apps": "deployments,replicasets,statefulsets,daemonsets,controllerrevisions", "batch": "jobs,cronjobs", "networking.k8s.io": "ingresses,networkpolicies", "discovery.k8s.io": "endpointslices", "rbac.authorization.k8s.io": "roles,rolebindings", "autoscaling": "horizontalpodautoscalers", "policy": "poddisruptionbudgets"}
+	if names, ok := standard[group]; ok {
+		for _, name := range strings.Split(names, ",") {
+			if name == res {
+				return true
+			}
+		}
+	}
+	resources, _ := discover(c)
+	for _, resource := range resources {
+		if resource.Group == group && resource.Resource == res {
+			return resource.Namespaced
+		}
+	}
+	return false
+}
 func accessReview(verb, group, res, sub, ns, name string) *authv1.SelfSubjectAccessReview {
 	return &authv1.SelfSubjectAccessReview{Spec: authv1.SelfSubjectAccessReviewSpec{ResourceAttributes: &authv1.ResourceAttributes{Namespace: ns, Verb: verb, Group: group, Resource: res, Subresource: sub, Name: name}}}
 }
 func (s *Server) capabilities(w http.ResponseWriter, r *http.Request) {
+	r = r.WithContext(context.WithValue(r.Context(), capabilityProbeKey{}, true))
 	c := s.requestClient(w, r)
 	if c == nil {
 		return
@@ -85,6 +122,9 @@ func (s *Server) capabilities(w http.ResponseWriter, r *http.Request) {
 		actions["uncordon"] = verbs["update"]
 		actions["drain-preview"] = verbs["get"]
 		actions["drain"] = !s.ReadOnly && s.Namespace == ""
+		if scope := workspaceScopeFrom(r.Context()); scope != nil && (scope.harbor.Namespaces[0] != "*" || !scope.selector.Empty()) {
+			actions["drain"] = false
+		}
 	case "deployments":
 		actions["restart"] = verbs["update"]
 		actions["rollback"] = verbs["update"]
@@ -218,6 +258,13 @@ func (s *Server) resources(w http.ResponseWriter, r *http.Request) {
 	if !decode(w, r, &body) {
 		return
 	}
+	target := workspaceOperationTarget{Group: gvr.Group, Version: gvr.Version, Resource: gvr.Resource, Namespace: ns, Name: name, UID: body.UID, ResourceVersion: body.ResourceVersion}
+	if body.Object != nil {
+		target.Name = body.Object.GetName()
+		target.UID = string(body.Object.GetUID())
+		target.ResourceVersion = body.Object.GetResourceVersion()
+	}
+	r = r.WithContext(context.WithValue(r.Context(), operationTargetKey{}, target))
 	verb := map[string]string{"POST": "create", "PUT": "update", "DELETE": "delete"}[r.Method]
 	if err = s.authorize(ctx, c, verb, gvr.Group, gvr.Resource, "", ns, name); err != nil {
 		failure(w, err)
@@ -240,7 +287,7 @@ func (s *Server) resources(w http.ResponseWriter, r *http.Request) {
 			failure(w, err)
 			return
 		}
-		jsonResponse(w, 202, operation(nil, body.DryRun))
+		jsonResponse(w, 202, scopedOperation(r, c, nil, body.DryRun))
 		return
 	}
 	obj := body.Object
@@ -271,7 +318,7 @@ func (s *Server) resources(w http.ResponseWriter, r *http.Request) {
 			failure(w, e)
 			return
 		}
-		jsonResponse(w, 201, operation(sanitize(out), body.DryRun))
+		jsonResponse(w, 201, scopedOperation(r, c, sanitize(out), body.DryRun))
 		return
 	}
 	if name == "" || obj.GetName() != name || obj.GetUID() == "" || obj.GetResourceVersion() == "" {
@@ -292,7 +339,7 @@ func (s *Server) resources(w http.ResponseWriter, r *http.Request) {
 		failure(w, e)
 		return
 	}
-	jsonResponse(w, 200, operation(sanitize(out), body.DryRun))
+	jsonResponse(w, 200, scopedOperation(r, c, sanitize(out), body.DryRun))
 }
 func checkIdentity(obj *unstructured.Unstructured, uid, rv string) error {
 	if uid == "" || rv == "" {
@@ -359,6 +406,7 @@ func (s *Server) actions(w http.ResponseWriter, r *http.Request) {
 		failure(w, err)
 		return
 	}
+	r = r.WithContext(context.WithValue(r.Context(), operationTargetKey{}, workspaceOperationTarget{Group: a.Group, Version: a.Version, Resource: a.Resource, Namespace: a.Namespace, Name: a.Name, UID: a.UID, ResourceVersion: a.ResourceVersion}))
 	if s.maintenance(w, r, c, a, obj) {
 		return
 	}
@@ -428,7 +476,7 @@ func (s *Server) actions(w http.ResponseWriter, r *http.Request) {
 			failure(w, e)
 			return
 		}
-		jsonResponse(w, 202, operation(sanitize(out), a.DryRun))
+		jsonResponse(w, 202, scopedOperation(r, c, sanitize(out), a.DryRun))
 		return
 	case "scale":
 		if a.Group != "apps" || (a.Resource != "deployments" && a.Resource != "statefulsets" && a.Resource != "replicasets") {
@@ -465,7 +513,7 @@ func (s *Server) actions(w http.ResponseWriter, r *http.Request) {
 			failure(w, e)
 			return
 		}
-		jsonResponse(w, 202, operation(out, a.DryRun))
+		jsonResponse(w, 202, scopedOperation(r, c, out, a.DryRun))
 		return
 	case "restart":
 		if a.Resource == "statefulsets" || a.Resource == "daemonsets" {
@@ -537,7 +585,7 @@ func (s *Server) actions(w http.ResponseWriter, r *http.Request) {
 		failure(w, err)
 		return
 	}
-	jsonResponse(w, 202, operation(sanitize(out), a.DryRun))
+	jsonResponse(w, 202, scopedOperation(r, c, sanitize(out), a.DryRun))
 }
 func validateResources(resources map[string]interface{}) error {
 	for _, key := range []string{"cpu", "memory"} {

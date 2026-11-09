@@ -21,7 +21,7 @@ export function resumeJobs(previous,planned,id,reasons={}){
  if(previous.id===id||!['failed','paused'].includes(previous.status))throw Error('Resume needs a new ID and a stopped previous queue');
  if(previous.jobs.length!==planned.length)throw Error('Resume scenario plan changed');
  return previous.jobs.map((old,i)=>{
-  const next=planned[i],identity=j=>[j.profile,j.phase,j.tag,j.group,j.matrix||false,j.scenarios,j.block||0,j.repeats||1,j.seconds,j.warmup,j.longSeconds||1200,j.timeoutSeconds];
+  const next=planned[i],identity=j=>[j.profile,j.phase,j.tag,j.group,j.matrix||false,j.scenarios,j.block||0,j.repeats||1,j.seconds,j.warmup,j.longSeconds||1200,j.timeoutSeconds,j.harbors||0];
   if(JSON.stringify(identity(old))!==JSON.stringify(identity(next)))throw Error('Resume job identity changed');
   if(old.status==='passed')return old;
   if(!['failed','pending'].includes(old.status))throw Error('Unfinished running job needs ownership/cleanup review before resume');
@@ -75,6 +75,22 @@ export function v11Jobs(id, baselineTag, candidateTag) {
   job.scenarios.some(s => ['events', 'interaction', 'long'].includes(s)))
   .map(job => job.scenarios.includes('long') ? {...job, sceneInventory:true} : job);
 }
+// Four-condition paired blocks share a control within each block: 1→5/10/20,
+// then reversed, then forward. This is 24 cells, not 36 repeated controls.
+// Old/new single-harbor source comparison is a distinct family. Never pool the
+// old release's CPU gate with the new registered-harbor overhead experiment.
+export function workspaceJobs(id, baselineTag, candidateTag) {
+ const jobs=[];
+ for(let block=0;block<3;block++){
+  for(const phase of (block%2?['optimized','baseline']:['baseline','optimized']))
+   jobs.push({id:`${id}-source-${phase}-b${block}`,group:'workspace-source',profile:'M',phase,tag:phase==='baseline'?baselineTag:candidateTag,...(phase==='optimized'?{harbors:1}:{}),scenarios:['living'],block,warmup:30,seconds:60,timeoutSeconds:240,sceneInventory:true});
+  for(const profile of (block%2?['L','M']:['M','L']))for(const harbors of (block%2?[20,10,5,1]:[1,5,10,20]))
+   jobs.push({id:`${id}-${profile}-h${harbors}-b${block}`,group:'workspace-overhead',profile,phase:harbors===1?'baseline':'optimized',tag:candidateTag,harbors,scenarios:['living'],block,warmup:30,seconds:60,timeoutSeconds:240,sceneInventory:true});
+ }
+ for(const scenario of ['panel','events','idle','interaction'])jobs.push({id:`${id}-h20-${scenario}`,group:`workspace-${scenario}`,profile:scenario==='interaction'?'S':'M',phase:'optimized',tag:candidateTag,harbors:20,scenarios:[scenario],repeats:3,warmup:30,seconds:60,timeoutSeconds:480,sceneInventory:true});
+ jobs.push({id:`${id}-h20-long`,group:'workspace-long',profile:'M',phase:'optimized',tag:candidateTag,harbors:20,scenarios:['long'],repeats:1,warmup:30,seconds:60,longSeconds:1200,timeoutSeconds:1500,sceneInventory:true});
+ return jobs;
+}
 async function main(){
 const [id,baselineTag,candidateTag]=process.argv.slice(2);
 const resumeIndex=process.argv.indexOf('--continue-from'),previousID=resumeIndex>=0?process.argv[resumeIndex+1]:null;
@@ -86,8 +102,8 @@ const initialPower=power(),powerSource=powerSourceOf(initialPower);
 if(!powerSource)throw Error('Unknown power source');
 assertPower(initialPower,powerSource);
 const suiteIndex=process.argv.indexOf('--suite'),suite=suiteIndex<0?'repair':process.argv[suiteIndex+1];
-if(!['repair','v11'].includes(suite))throw Error('Unknown finite acceptance suite');
-const buildIdentities=Object.fromEntries(await Promise.all([baselineTag,candidateTag].map(async tag=>[tag,await frozenBuildIdentity(root,tag)]))),browserVersion=await currentBrowserVersion(root),jobs=(suite==='v11'?v11Jobs:repairJobs)(id,baselineTag,candidateTag);
+if(!['repair','v11','workspace'].includes(suite))throw Error('Unknown finite acceptance suite');
+const buildIdentities=Object.fromEntries(await Promise.all([baselineTag,candidateTag].map(async tag=>[tag,await frozenBuildIdentity(root,tag)]))),browserVersion=await currentBrowserVersion(root),jobs=(suite==='workspace'?workspaceJobs:suite==='v11'?v11Jobs:repairJobs)(id,baselineTag,candidateTag);
 const plan={id,suite,createdAt:new Date().toISOString(),powerSource,initialPower,baselineTag,candidateTag,buildIdentities,browserVersion,source:'Synthetic tracker → production informer/WebSocket/store/Harbor; not live Kubernetes E2E',order:'Three paired blocks, alternating build order; matrix reversal owned once by run.mjs. No automatic retry.',expectedCells:jobs.reduce((n,j)=>n+(j.repeats||1)*j.scenarios.length,0),totalMinimumWindowSeconds:jobs.reduce((n,j)=>n+(j.repeats||1)*j.scenarios.reduce((m,s)=>m+j.warmup+(s==='long'?j.longSeconds:j.seconds),0),0),jobs:jobs.map(j=>({...j,status:'pending'})),status:'pending'};
 if(previousID){
  const previous=JSON.parse(await readFile(path.resolve('benchmarks/results',previousID,'queue.json'),'utf8'));
@@ -116,6 +132,7 @@ try{
   // Force identical selected source/visual phase in the narrow paired matrix.
   if(job.matrix)argv.push('--panel-matrix');
   if(job.sceneInventory)argv.push('--scene-inventory');
+  if(job.harbors)argv.push('--harbors',String(job.harbors));
   job.argv=argv;job.status='running';job.startedAt=new Date().toISOString();await save();
   console.log(`${job.startedAt} START ${job.id} (${scenarios.join(',')})`);
   const log=await open(path.join(directory,`${job.id}.stdout.log`),'wx');let result;

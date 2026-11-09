@@ -1,0 +1,113 @@
+{
+  "id": "ws-vertical01-real01-onboarding-fixed-helper",
+  "startedAt": "2026-11-09T15:15:00.221Z",
+  "url": "http://127.0.0.1:19701",
+  "browser": "chromium",
+  "browserVersion": "156.0.8078.4",
+  "dataSource": "Normal product UI; source kind verified from actual profile",
+  "status": "failed",
+  "checks": [
+    {
+      "name": "empty-workspace-no-fake-resources",
+      "at": "2026-11-09T15:15:00.425Z",
+      "detail": {
+        "nodes": 0,
+        "pods": 0
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:15:00.592Z",
+      "detail": {
+        "file": "01-initial-world.png"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:15:03.125Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 0,
+        "brand": "KubeViewİlk manuel liman · kvml-ccdfe731dabd-a · defaultCanlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T15:15:03.127Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "normal-ui-onboarding-server-generated-ids",
+      "at": "2026-11-09T15:15:03.127Z",
+      "detail": {
+        "harborId": "9431766e-e9a5-4e49-b038-859fcfa40aab",
+        "connectionId": "01121641-45c8-4be9-8aad-081f2b8bf1e7"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:15:03.289Z",
+      "detail": {
+        "file": "02-onboarded-world.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:15:03.487Z",
+      "detail": {
+        "file": "world-1440-light.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:15:03.630Z",
+      "detail": {
+        "file": "harbors-1440-light.png"
+      }
+    },
+    {
+      "name": "harbor-card-text-contrast",
+      "at": "2026-11-09T15:15:03.632Z",
+      "detail": {
+        "ratios": [
+          12.224759811934943
+        ],
+        "scope": "Computed opaque text/surface colors; no physical display contrast claim"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:15:03.831Z",
+      "detail": {
+        "file": "world-1280-dark.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:15:03.963Z",
+      "detail": {
+        "file": "harbors-1280-dark.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:15:04.044Z",
+      "detail": {
+        "file": "failure.png"
+      }
+    }
+  ],
+  "errors": [],
+  "workspaceBefore": {
+    "id": "23ab2226-27dd-4127-954a-b62927bc6a0a",
+    "revision": 1,
+    "schemaVersion": 1,
+    "connections": [],
+    "harbors": []
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: Harbor card text contrast below 4.5: 1.0618818413536562\n    at panelContrast (file:///Users/yunusemre/Desktop/KubeView/benchmarks/workspace-browser.mjs:59:9)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:472:9)\n    at async file:///Users/yunusemre/Desktop/KubeView/benchmarks/workspace-browser.mjs:128:85",
+  "finishedAt": "2026-11-09T15:15:04.044Z"
+}

@@ -164,3 +164,12 @@ Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm 
 - Restart sonrası canonical state, grace period içindeki eski Terminating Pod'u doğru biçimde tutar. Yeni Ready incarnation kontrolü bu eski UID'leri de saymamalı. İlk FAILED kanıt korundu; yalnız assertion düzeltildi ve ayrı dar gerçek koşu iki eski DELETE / iki yeni Ready UID'yi doğruladı. Ürün kaynağı değişmedi.
 - UTC/capture gecikmesinden video PTS'si varsayılmaz. İlk 11–14,5 saniyelik container kesiti warning sırasında bitiyordu; kaynak video örnek kareleri açılınca gerçek düşüş/su izi 13–20 saniyede seçildi. Eski kesit reddedilmiş seçim olarak tutuldu; etiketin orta hareketi örtmesi P2 olarak gizlenmedi.
 - Yeni render sarmalayıcısı/WeakRef registry kurmadan önce mevcut gözlem arayüzünü incele. `canvas.__harbor.scene` checkpoint'te doğrudan envanter sağlar; saf sayaç timer/listener/render döngüsü veya güçlü kaynak geçmişi kurmaz. Sarmalayıcı prototipi kurulmadan elendi; mikrobenchmark hızlanması iddia edilmedi.
+
+## 9 Kasım 2026 — çoklu liman ve temiz manuel lab
+
+- Yeni bir API kaydının immutable ID'sini backend üretiyorsa, istemcinin taslak UUID'si sonraki bağlantı referansı olamaz. Connection ve harbor POST yanıtındaki gerçek ID kullanılmalı; onboarding testi yalnız önizleme yanıtını kontrol ederek bitmemeli.
+- Liman konumunu `len(harbors)` ile vermek silme sonrası mevcut son slotu yeniden kullanabilir. Mevcut konumlar korunup boş slot seçilmeli; remove-middle/add regresyonu ayrıca sınanmalı.
+- Tarayıcı `sessionStorage` yeni açılan/çoğaltılan sekmeye kopyalanabilir. Saklanan tab ID tek başına bağımsız belge/izin niyeti kanıtı değildir. Grant bağlamı yeni document yaşam döngüsünü ayırmalıdır.
+- Minikube'de bir-node bridge denemesinin başarılı olması iki-node CNI'nin hazır olduğunu kanıtlamaz. İlk owned iki-node `bridge` cold kurulumu worker CNI uninitialized nedeniyle exit80 ile sonlandı; FAIL korunur. Yeni kindnet kurulumunda iki gerçek Node hazırlandı; idempotency ve uygulama UI doğrulaması ayrı adımdır.
+- `docker inspect` aynı adlı network'ü de döndürebilir ve IPAM.Config null olabilir. Container sahipliği exact `docker container inspect`, Docker ID ve Node'a ait gerçek label üzerinden doğrulanır. Aynı profile sahip worker'ın label değeri parent profile değil worker adıdır.
+- Bir test fixture'ında scoped Clients kopyası, temel client ile aynı pointer değildir. Replay log açılışı doğru source/context kimliğini doğrular; canlı moda dönüşmez. Kaynak ve request iptali, yazıcısı bloklanan log pipe'ını da sonlandırmalıdır.

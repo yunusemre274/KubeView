@@ -1,0 +1,9 @@
+{
+  "attempt": "a-owned-worker-host-repair-01",
+  "pass": false,
+  "testType": "runner/API helper failed before final evidence capture",
+  "failure": "status get(pods collection) returned None for intentionally empty producer namespace with --ignore-not-found; unhandled TypeError; outer proof then JSONDecodeError",
+  "realWorkerAliasAfterInvocation": "172.29.189.2 control-plane.minikube.internal",
+  "fullMinikubeStartInvoked": false,
+  "at": "2026-11-09T12:59:59.603860+00:00"
+}

@@ -59,6 +59,8 @@ const lockInput = args.includes('--lock-input');
 const logInitialLines = Number(option('log-initial-lines','1000'));
 if (!Number.isInteger(logInitialLines) || logInitialLines<1 || logInitialLines>20000) throw Error('Log initial lines must be 1..20000');
 const backendTag = option("backend-tag", "");
+const harborCount = Number(option("harbors", "0"));
+if (![0,1,5,10,20].includes(harborCount)) throw Error("--harbors must be 1, 5, 10 or 20 (omitted = historical legacy harness)");
 if (backendTag && !/^[\w.-]+$/.test(backendTag))
   throw Error("Invalid backend tag");
 const backendFile = path.join(
@@ -154,6 +156,9 @@ const manifest = {
   buildTag,
   date: new Date().toISOString(),
   fixtureVersion: VERSION,
+  workspaceMode: harborCount > 0,
+  registeredHarbors: harborCount || null,
+  workspaceInterpretation: harborCount ? "Same canonical fixture and active detailed world; registered harbors share one compatible connection/scope. Far-harbor render inventory is reported, not silently treated as byte-equivalent work." : "Historical legacy single-source harness",
   repairScenarioVersion: REPAIR_SCENARIO_VERSION,
   repairHarnessSHA256: hash(await readFile(path.join(root, "benchmarks/repair-scenarios.mjs"))),
   scenarioVersion: (panelMatrix || logMatrix) ? (lockInput ? 4 : 3) : 2,
@@ -227,7 +232,7 @@ const manifest = {
       ? "own caffeinate -di process, benchmark lifetime only"
       : null,
   smoke,
-  params: { profiles, scenarios, repeats, warmup, seconds, longSeconds },
+  params: { profiles, scenarios, repeats, warmup, seconds, longSeconds, harborCount },
   source:
     "Explicit synthetic read-only upstream using production Go dynamic informers, websocket, frontend store and App; never uses kubeconfig",
   backend:
@@ -514,6 +519,7 @@ async function launchProfile(profile, scenario = "") {
       env: {
         ...process.env,
         KUBEVIEW_BENCH_FIXTURE: file,
+		KUBEVIEW_BENCH_HARBORS: harborCount ? String(harborCount) : "",
         KUBEVIEW_BENCH_STATIC: build,
         KUBEVIEW_BENCH_ADDR: `127.0.0.1:${port}`,
         KUBEVIEW_BENCH_LOG_BYTES: logMatrix

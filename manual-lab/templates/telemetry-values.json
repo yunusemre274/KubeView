@@ -1,0 +1,14 @@
+{
+  "cluster": {"name": "__LAB_ID__", "id": 0},
+  "commonLabels": {"manual.kubeview.local/lab-id": "__LAB_ID__"},
+  "kubeProxyReplacement": false,
+  "ipam": {"mode": "kubernetes"},
+  "operator": {"replicas": 1},
+  "hubble": {
+    "enabled": true,
+    "tls": {"enabled": true, "auto": {"enabled": true}},
+    "relay": {"enabled": true, "replicas": 1, "tls": {"server": {"enabled": false}}},
+    "ui": {"enabled": false},
+    "metrics": {"enabled": []}
+  }
+}

@@ -28,7 +28,8 @@ import {
 const EMPTY_RESOURCES = Object.freeze([]);
 
 const Context = createContext(null);
-// One manager per browser. Each context change invalidates every old callback.
+// Legacy single-source adapter. Workspace production instances are independent
+// managers created below; this export remains the compatibility/test adapter.
 export const singletonManager = {
   state: {
     ...initialState(),
@@ -170,9 +171,10 @@ export const singletonManager = {
       expectedSourceKey !== this.state.sourceKey
     )
       return;
-    const next =
-      this.state.watchNamespace ||
-      (namespace && namespace !== "*" ? namespace : "all");
+    const next = this.workspaceScope
+      ? this.connectionNamespace() || "all"
+      : this.state.watchNamespace ||
+        (namespace && namespace !== "*" ? namespace : "all");
     if (next === this.state.activeNamespace) return;
     for (const [key, entry] of this.scopeSubscriptions)
       if (
@@ -220,10 +222,15 @@ export const singletonManager = {
   url(path, context = this.state.context) {
     const url = new URL(path, window.location.origin);
     if (context) url.searchParams.set("context", context);
+    if (this.workspaceScope) {
+      for (const key of ["workspaceId", "harborId", "tabId"])
+        url.searchParams.set(key, this.workspaceScope[key]);
+    }
     return url;
   },
   async request(path, options = {}) {
     const requestEpoch = this.epoch;
+    const { onOperation, ...fetchOptions } = options;
     if (this.state.mode === "demo")
       throw new Error(
         "Demo — örnek veri. Canlı Kubernetes işlemleri bu veri kaynağında kapalı.",
@@ -235,7 +242,7 @@ export const singletonManager = {
     this.requests.add(abort);
     try {
       const response = await fetch(this.url(path), {
-        ...options,
+        ...fetchOptions,
         signal: abort.signal,
         headers: {
           "Content-Type": "application/json",
@@ -256,6 +263,11 @@ export const singletonManager = {
       const data = contentType.includes("json")
         ? await response.json()
         : await response.text();
+      if (response.ok && onOperation) {
+        const object = data?.object || data;
+        onOperation({ operation: data?.operation ? { id: data.operation.id, status: data.operation.status } : null,
+          target: object?.metadata ? { kind: object.kind, uid: object.metadata.uid, name: object.metadata.name, namespace: object.metadata.namespace, resourceVersion: object.metadata.resourceVersion } : null });
+      }
       if (requestEpoch !== this.epoch)
         throw new Error(
           "Bağlantı kapsamı değişti; önceki oturum yanıtı kullanılmadı.",
@@ -278,6 +290,13 @@ export const singletonManager = {
       this.requests.delete(abort);
     }
   },
+  connectionNamespace() {
+    if (this.workspaceScope) {
+      const namespaces = this.workspaceScope.namespaces || [];
+      return namespaces.length === 1 && namespaces[0] !== "*" ? namespaces[0] : "";
+    }
+    return this.state.watchNamespace || (this.state.activeNamespace === "all" ? "" : this.state.activeNamespace) || "";
+  },
   async refreshConnection() {
     if (this.state.mode !== "live" || !this.state.configured) return;
     this.connectionAbort?.abort();
@@ -286,12 +305,7 @@ export const singletonManager = {
     const epoch = this.epoch,
       revision = this.scopeRevision,
       socketSerial = this.socketSerial;
-    const namespace =
-      this.state.watchNamespace ||
-      (this.state.activeNamespace === "all"
-        ? ""
-        : this.state.activeNamespace) ||
-      "";
+    const namespace = this.connectionNamespace();
     this.publish({ connectionChecking: true });
     try {
       const data = await this.request(
@@ -344,12 +358,7 @@ export const singletonManager = {
     const body = JSON.stringify({
       enabled: false,
       context: this.state.context,
-      namespace:
-        this.state.watchNamespace ||
-        (this.state.activeNamespace === "all"
-          ? ""
-          : this.state.activeNamespace) ||
-        "",
+      namespace: this.connectionNamespace(),
     });
     // Revocation must finish even when cleanup aborts old reads. Serialize it
     // ahead of the next diagnostic so a late response cannot restore writes.
@@ -397,12 +406,7 @@ export const singletonManager = {
       body: {
         enabled,
         context: this.state.context,
-        namespace:
-          this.state.watchNamespace ||
-          (this.state.activeNamespace === "all"
-            ? ""
-            : this.state.activeNamespace) ||
-          "",
+        namespace: this.connectionNamespace(),
         connectionID: this.state.connectionChecks?.connectionID || "",
       },
     });
@@ -426,9 +430,7 @@ export const singletonManager = {
     this.metricsAbort = abort;
     const epoch = this.epoch,
       revision = this.scopeRevision;
-    const namespace =
-      this.state.watchNamespace ||
-      (this.state.activeNamespace === "all" ? "" : this.state.activeNamespace);
+    const namespace = this.connectionNamespace();
     try {
       const data = await this.request(
         namespace
@@ -630,7 +632,7 @@ export const singletonManager = {
         ? ""
         : this.state.contexts.find((c) => c.name === context)?.namespace || "";
     this.publish({
-      ...initialState(`${mode}:${context}:${this.epoch}`),
+      ...initialState(`${this.workspaceScope?.scopeKey || ""}${mode}:${context}:${this.epoch}`),
       context: mode === "demo" ? "" : context,
       mode,
       discovery: [],
@@ -639,7 +641,9 @@ export const singletonManager = {
       connectionChecks: null,
       connectionChecking: false,
       namespaceHint,
-      activeNamespace: this.state.watchNamespace || namespaceHint || "all",
+      activeNamespace: this.workspaceScope
+        ? this.connectionNamespace() || "all"
+        : this.state.watchNamespace || namespaceHint || "all",
     });
     if (mode === "demo") {
       this.state = reduceMessage(this.state, {
@@ -697,12 +701,7 @@ export const singletonManager = {
     const epoch = this.epoch;
     this.pauseStream();
     const url = this.url("/ws");
-    const activeNamespace =
-      this.state.watchNamespace || this.state.activeNamespace;
-    url.searchParams.set(
-      "namespace",
-      activeNamespace === "all" ? "" : activeNamespace || "",
-    );
+    url.searchParams.set("namespace", this.connectionNamespace());
     for (const { scope } of this.scopeSubscriptions.values())
       url.searchParams.append("subscribe", scopeSubscription(scope));
     url.protocol = url.protocol === "https:" ? "wss:" : "ws:";
@@ -723,6 +722,11 @@ export const singletonManager = {
       try {
         const t = performance.now();
         const message = JSON.parse(e.data);
+        if (this.workspaceScope) {
+          if (message.workspaceId !== this.workspaceScope.workspaceId || message.harborId !== this.workspaceScope.harborId || message.tabId !== this.workspaceScope.tabId) return;
+          if (message.type === "SNAPSHOT") this.sessionGeneration = message.sessionGeneration;
+          else if (this.sessionGeneration && message.sessionGeneration !== this.sessionGeneration) return;
+        }
         const parsed = performance.now();
         this.state = reduceMessage(this.state, message);
         const elapsed = performance.now() - t;
@@ -828,15 +832,45 @@ export const singletonManager = {
     this.demoTimers = steps.map(([time, fn]) => setTimeout(fn, time));
   },
 };
-export function ShipyardClusterProvider({ children }) {
-  const [state, setState] = useState(singletonManager.state);
-  useEffect(() => {
-    singletonManager.listeners.add(setState);
-    singletonManager.start();
+export function createSourceManager(scope) {
+  const manager = {
+    ...singletonManager,
+    workspaceScope: scope,
+    state: {
+      ...initialState(), contexts: scope.contexts || [], context: scope.context,
+      configured: scope.bound !== false, mode: "live", readOnly: true,
+      serverReadOnly: true, managementEnabled: false, managementAvailable: false,
+      discovery: [], connectionChecks: null, connectionChecking: false,
+      watchNamespace: scope.namespaces?.length === 1 && scope.namespaces[0] !== "*" ? scope.namespaces[0] : "",
+    },
+    listeners: new Set(), streamListeners: new Set(), requests: new Set(),
+    scopeSubscriptions: new Map(), scopeRequests: new Map(),
+    storeTimings: [], demoTimers: [], started: false, socket: null,
+    retry: null, poll: null, epoch: 0, socketSerial: 0, scopeRevision: 0,
+    metricsAbort: null, connectionAbort: null, refreshQueued: false,
+    managementReset: Promise.resolve(), managementIntent: false,
+    async start() {
+      if (this.started || !this.state.configured) return;
+      this.started = true;
+      this.selectSource(scope.context);
+    },
+  };
+  return manager;
+}
+
+export function ShipyardClusterProvider({ children, manager = singletonManager, workspace }) {
+  const [publishedState, setState] = useState(manager.state);
+  const renderedManager = useRef(manager);
+  const state = renderedManager.current === manager ? publishedState : manager.state;
+  useLayoutEffect(() => {
+    renderedManager.current = manager;
+    setState(manager.state);
+    manager.listeners.add(setState);
+    manager.start();
     if (import.meta.env.DEV)
-      window.__kubeviewDiagnostics = () => singletonManager.diagnostics();
-    return () => singletonManager.listeners.delete(setState);
-  }, []);
+      window.__kubeviewDiagnostics = () => manager.diagnostics();
+    return () => manager.listeners.delete(setState);
+  }, [manager]);
   const resources = useMemo(
     () => Object.values(state.resources),
     [state.resources],
@@ -850,20 +884,23 @@ export function ShipyardClusterProvider({ children }) {
     previousIndex.current = resourceIndex;
   }, [resourceIndex]);
   const api = useMemo(
-    () => ({
+    () => {
+      const renderEpoch = manager.epoch;
+      return ({
       request: (path, options) => {
-        const revision = singletonManager.scopeRevision;
+        const revision = manager.scopeRevision;
         if (
-          state.sourceKey !== singletonManager.state.sourceKey ||
-          state.activeNamespace !== singletonManager.state.activeNamespace
+          renderEpoch !== manager.epoch ||
+          state.sourceKey !== manager.state.sourceKey ||
+          state.activeNamespace !== manager.state.activeNamespace
         )
           return Promise.reject(
             new Error(
               "Bu işlem önceki bağlantı kapsamına ait. Kaynağı yeni bağlantıda tekrar açın.",
             ),
           );
-        return singletonManager.request(path, options).then((data) => {
-          if (revision !== singletonManager.scopeRevision)
+        return manager.request(path, options).then((data) => {
+          if (revision !== manager.scopeRevision)
             throw new Error(
               "Namespace kapsamı değişti; önceki yanıt kullanılmadı.",
             );
@@ -872,38 +909,45 @@ export function ShipyardClusterProvider({ children }) {
       },
       url: (path) => {
         if (
-          state.sourceKey !== singletonManager.state.sourceKey ||
-          state.activeNamespace !== singletonManager.state.activeNamespace
+          renderEpoch !== manager.epoch ||
+          state.sourceKey !== manager.state.sourceKey ||
+          state.activeNamespace !== manager.state.activeNamespace
         )
           throw new Error(
             "Bağlantı kapsamı değişti; eski oturum URL’si kullanılmadı.",
           );
-        const url = singletonManager.url(path, state.context);
+        const url = manager.url(path, state.context);
         if (
-          state.sourceKey === singletonManager.state.sourceKey &&
-          state.activeNamespace === singletonManager.state.activeNamespace &&
-          singletonManager.state.connectionChecks?.connectionID
+          state.sourceKey === manager.state.sourceKey &&
+          state.activeNamespace === manager.state.activeNamespace &&
+          manager.state.connectionChecks?.connectionID
         )
           url.searchParams.set(
             "connectionID",
-            singletonManager.state.connectionChecks.connectionID,
+            manager.state.connectionChecks.connectionID,
           );
         return url.toString();
       },
       context: state.context,
+      workspaceScope: manager.workspaceScope,
+      isClusterScoped(resource) {
+        const group = resource?.apiVersion?.includes("/") ? resource.apiVersion.split("/")[0] : "";
+        const descriptor = state.discovery.find((entry) => entry.kind === resource?.kind && entry.group === group);
+        return descriptor ? descriptor.namespaced === false : ["Node", "Namespace", "PersistentVolume", "StorageClass", "ClusterRole", "ClusterRoleBinding", "CustomResourceDefinition", "APIService", "PriorityClass", "RuntimeClass"].includes(resource?.kind);
+      },
       mode: state.mode,
       streamSession: () => {
-        const session = singletonManager.streamSession();
+        const session = manager.streamSession();
         return {
           ...session,
           ready:
             session.ready &&
-            state.sourceKey === singletonManager.state.sourceKey,
+            state.sourceKey === manager.state.sourceKey,
         };
       },
       subscribeStreamSession(listener) {
-        singletonManager.streamListeners.add(listener);
-        return () => singletonManager.streamListeners.delete(listener);
+        manager.streamListeners.add(listener);
+        return () => manager.streamListeners.delete(listener);
       },
       resourcePath(resource) {
         const [group, version] = resource.apiVersion.includes("/")
@@ -921,47 +965,51 @@ export function ShipyardClusterProvider({ children }) {
           );
         return `/api/resources?${new URLSearchParams({ group, version, resource: descriptor.resource, namespace: resource.metadata?.namespace || "", name: resource.metadata?.name || "" })}`;
       },
-    }),
+    }); },
     [
       state.context,
       state.mode,
       state.discovery,
       state.sourceKey,
       state.activeNamespace,
+      manager,
+      state.sessionRevision,
     ],
   );
   return (
     <Context.Provider
       value={{
         ...state,
+        workspace,
+        authRequired: workspace?.authRequired || state.authRequired,
         resources,
         // Stable across live deltas; a scoped snapshot is not a batch of ADDs.
         snapshotUIDs: state.snapshotUIDs,
         resourceIndex,
         api,
-        login: (token) => singletonManager.login(token),
-        refreshConnection: () => singletonManager.refreshConnection(),
-        setManagement: (enabled) => singletonManager.setManagement(enabled),
-        loadKind: singletonManager.loadKind.bind(singletonManager),
-        retainKind: singletonManager.retainKind.bind(singletonManager),
+        login: (token) => workspace ? workspace.login(token) : manager.login(token),
+        refreshConnection: () => manager.refreshConnection(),
+        setManagement: (enabled) => manager.setManagement(enabled),
+        loadKind: manager.loadKind.bind(manager),
+        retainKind: manager.retainKind.bind(manager),
         observeNamespace:
-          singletonManager.observeNamespace.bind(singletonManager),
+          manager.observeNamespace.bind(manager),
         resourceObservation: (resource) =>
-          resourceObservation(singletonManager.state, resource),
-        selectSource: (name) => singletonManager.selectSource(name),
-        runDemoScenario: () => singletonManager.runDemoScenario(),
+          resourceObservation(manager.state, resource),
+        selectSource: (name) => manager.selectSource(name),
+        runDemoScenario: () => manager.runDemoScenario(),
         refresh: () => {
           if (state.mode !== "demo" && (!state.context || !state.configured)) {
-            singletonManager.started = false;
-            return singletonManager.start();
+            manager.started = false;
+            return manager.start();
           }
           if (state.mode === "demo")
-            return singletonManager.selectSource("__demo__");
+            return manager.selectSource("__demo__");
           // Reconnect is not a context switch: retain scoped subscriptions,
           // canonical data and UID selection until the real relist reconciles.
-          singletonManager.connect();
-          singletonManager.refreshMetrics();
-          return singletonManager.refreshConnection();
+          manager.connect();
+          manager.refreshMetrics();
+          return manager.refreshConnection();
         },
         totalShips: resourceIndex.nodes.length,
         totalPallets: resourceIndex.pods.length,

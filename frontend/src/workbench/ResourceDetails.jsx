@@ -330,6 +330,8 @@ function ResourceDetails({
   visualMotion,
   onToggleShipPause,
   onToggleShipFollow,
+  harborName,
+  sharedNodeHarbors = [],
 }) {
   const [tab, setTab] = useState(
       resource?.kind === "Pod" ? "containers" : "summary",
@@ -668,6 +670,7 @@ function ResourceDetails({
           </p>
         )}
         <div className="details-scope">
+          {harborName && <><strong>{harborName}</strong><span>/</span></>}
           <span>{cluster || "Bağlantı yok"}</span>
           <span>/</span>
           <span>{metadata.namespace || "Küme kapsamı"}</span>
@@ -700,6 +703,7 @@ function ResourceDetails({
         ))}
       </nav>
       <div className="details-body">
+        {sharedNodeHarbors.length > 1 && <p className="shared-node-badge"><strong>Paylaşılan Node</strong> · {sharedNodeHarbors.join(", ")}<br />Aynı doğrulanmış fiziksel Node. Bu görünümde bu limanın yükleri gösterilir; ikinci sunucu veya ayrılmış kapasite değildir.</p>}
         {visualMotion &&
           (resource.kind === "Node" ||
             (resource.kind === "Pod" && spec.nodeName)) && (

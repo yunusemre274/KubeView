@@ -13,6 +13,7 @@ export function initialState(sourceKey = "") {
     snapshotUIDs: new Set(),
     scopes: {},
     tombstones: {},
+    outOfScope: {},
     completeSnapshot: false,
     snapshotReady: false,
     synced: false,
@@ -63,10 +64,16 @@ export function reduceMessage(state, message) {
     const objects = payload.resources || [];
     const scoped = Array.isArray(payload.scopes);
     const incoming = new Set(objects.filter(identity).map(identity));
+    const exited = new Set((payload.outOfScope || []).map(identity).filter(Boolean));
     const resources = scoped ? { ...state.resources } : {};
     const tombstones = { ...state.tombstones };
     const timestamp = message.timestamp || new Date().toISOString();
+    const outOfScope = { ...(state.outOfScope || {}) };
+    for (const uid of exited) {
+      delete resources[uid]; delete tombstones[uid]; outOfScope[uid] = timestamp;
+    }
     for (const [uid, old] of Object.entries(state.resources)) {
+      if (exited.has(uid)) continue;
       if (
         !incoming.has(uid) &&
         (!scoped ||
@@ -97,6 +104,7 @@ export function reduceMessage(state, message) {
       resources[uid] = resource;
       addresses.set(address(resource), uid);
       delete tombstones[uid];
+      delete outOfScope[uid];
     }
     const retained = Object.values(resources);
     const scopes = scoped
@@ -127,6 +135,7 @@ export function reduceMessage(state, message) {
       snapshotUIDs: incoming,
       scopes,
       tombstones: boundedTombstones(tombstones),
+      outOfScope: Object.fromEntries(Object.entries(outOfScope).slice(-1000)),
       completeSnapshot: !scoped,
       generation,
       snapshotReady: true,
@@ -151,6 +160,14 @@ export function reduceMessage(state, message) {
       tombstones[uid] = { reason, timestamp: now };
     };
     const now = message.timestamp || new Date().toISOString();
+    if (payload.action === "OUT_OF_SCOPE") {
+      // Membership ended, not the Kubernetes object's life. Do not manufacture
+      // deletion tombstones or a delete/fall animation for a selector change.
+      delete resources[identity(r)];
+      const retainedTombstones = { ...tombstones }; delete retainedTombstones[identity(r)];
+      return { ...state, resources, tombstones: retainedTombstones, lastUpdated: now,
+        outOfScope: Object.fromEntries(Object.entries({ ...(state.outOfScope || {}), [identity(r)]: now }).slice(-1000)) };
+    }
     if (payload.action === "DELETE") {
       delete resources[identity(r)];
       recordDeletion(identity(r), "delete-event");

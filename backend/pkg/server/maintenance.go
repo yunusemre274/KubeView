@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
+	corev1 "k8s.io/api/core/v1"
 	policyv1 "k8s.io/api/policy/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
@@ -15,6 +16,12 @@ import (
 func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients, a Action, obj *unstructured.Unstructured) bool {
 	switch a.Action {
 	case "drain-preview", "drain":
+		if a.Action == "drain" && workspaceScopeFrom(r.Context()) != nil {
+			if ack, _ := r.Context().Value(clusterImpactKey{}).(bool); !ack {
+				problem(w, 403, "Paylaşılan Node drain etkisi açıkça onaylanmalı")
+				return true
+			}
+		}
 		if a.Action == "drain" && !a.DryRun && s.ReadOnly {
 			problem(w, 403, "Sunucu salt okunur modda")
 			return true
@@ -27,12 +34,45 @@ func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients,
 			failure(w, err)
 			return true
 		}
-		pods, err := c.Typed.CoreV1().Pods(s.Namespace).List(r.Context(), metav1.ListOptions{FieldSelector: "spec.nodeName=" + a.Name})
+		workspaceScope := workspaceScopeFrom(r.Context())
+		var pods *corev1.PodList
+		var err error
+		if workspaceScope == nil {
+			pods, err = c.Typed.CoreV1().Pods(s.Namespace).List(r.Context(), metav1.ListOptions{FieldSelector: "spec.nodeName=" + a.Name})
+		} else {
+			list, e := c.Dynamic.Resource(schemaGVR("", "v1", "pods")).List(r.Context(), metav1.ListOptions{FieldSelector: "spec.nodeName=" + a.Name})
+			err = e
+			pods = &corev1.PodList{}
+			if e == nil {
+				for _, item := range list.Items {
+					var pod corev1.Pod
+					if e = runtime.DefaultUnstructuredConverter.FromUnstructured(item.Object, &pod); e != nil {
+						err = e
+						break
+					}
+					pods.Items = append(pods.Items, pod)
+				}
+			}
+		}
 		if err != nil {
 			failure(w, err)
 			return true
 		}
-		pdbs, pdbErr := c.Typed.PolicyV1().PodDisruptionBudgets(s.Namespace).List(r.Context(), metav1.ListOptions{})
+		var pdbs *policyv1.PodDisruptionBudgetList
+		var pdbErr error
+		if workspaceScope != nil && workspaceScope.harbor.Namespaces[0] != "*" {
+			pdbs = &policyv1.PodDisruptionBudgetList{}
+			for _, namespace := range workspaceScope.harbor.Namespaces {
+				list, e := c.Typed.PolicyV1().PodDisruptionBudgets(namespace).List(r.Context(), metav1.ListOptions{})
+				if e != nil {
+					pdbErr = e
+					break
+				}
+				pdbs.Items = append(pdbs.Items, list.Items...)
+			}
+		} else {
+			pdbs, pdbErr = c.Typed.PolicyV1().PodDisruptionBudgets(s.Namespace).List(r.Context(), metav1.ListOptions{})
+		}
 		affected := []map[string]interface{}{}
 		blocked := false
 		for _, pod := range pods.Items {
@@ -74,11 +114,16 @@ func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients,
 					entry["pdbInspectionError"] = safeError(pdbErr)
 				}
 			}
-			jsonResponse(w, 200, map[string]interface{}{"affected": affected, "blocked": blocked, "scope": s.Namespace, "requiresCordon": true, "partialScope": s.Namespace != "", "operation": map[string]interface{}{"status": "validated", "message": "Etki önizlemesi; PodDisruptionBudget API eviction sırasında denetlenir"}})
+			partialScope := s.Namespace != "" || workspaceScope != nil && (workspaceScope.harbor.Namespaces[0] != "*" || !workspaceScope.selector.Empty())
+			jsonResponse(w, 200, map[string]interface{}{"affected": affected, "blocked": blocked, "scope": s.Namespace, "requiresCordon": true, "partialScope": partialScope, "operation": map[string]interface{}{"status": "validated", "message": "Etki önizlemesi; PodDisruptionBudget API eviction sırasında denetlenir"}})
 			return true
 		}
 		if s.Namespace != "" {
 			problem(w, 403, "WATCH_NAMESPACE sınırlı bağlantıda Node'un tamamı drain edilemez; küme kapsamlı, yetkili bakım bağlantısı gerekir")
+			return true
+		}
+		if workspaceScope != nil && (workspaceScope.harbor.Namespaces[0] != "*" || !workspaceScope.selector.Empty()) {
+			problem(w, 403, "Node drain tüm küme kapsamı ve açık ortak etki onayı gerektirir; liman önizlemesi kısmi kapsamdır")
 			return true
 		}
 		cordoned, _, _ := unstructured.NestedBool(obj.Object, "spec", "unschedulable")
@@ -109,7 +154,7 @@ func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients,
 			}
 			results = append(results, entry)
 		}
-		result := operation(nil, false)
+		result := scopedOperation(r, c, nil, false)
 		result["results"] = results
 		result["partialFailure"] = partial
 		result["operation"].(map[string]interface{})["status"] = "reconciling"
@@ -152,7 +197,7 @@ func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients,
 				failure(w, err)
 				return true
 			}
-			jsonResponse(w, 202, operation(sanitize(out), a.DryRun))
+			jsonResponse(w, 202, scopedOperation(r, c, sanitize(out), a.DryRun))
 			return true
 		}
 		unstructured.SetNestedField(obj.Object, a.Action == "suspend", "spec", "suspend")
@@ -161,7 +206,7 @@ func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients,
 			failure(w, err)
 			return true
 		}
-		jsonResponse(w, 202, operation(sanitize(out), a.DryRun))
+		jsonResponse(w, 202, scopedOperation(r, c, sanitize(out), a.DryRun))
 		return true
 	case "rollback":
 		if a.Group != "apps" || a.Resource != "deployments" {
@@ -226,7 +271,7 @@ func (s *Server) maintenance(w http.ResponseWriter, r *http.Request, c *Clients,
 			failure(w, err)
 			return true
 		}
-		result := operation(sanitize(out), a.DryRun)
+		result := scopedOperation(r, c, sanitize(out), a.DryRun)
 		result["targetRevision"] = best
 		jsonResponse(w, 202, result)
 		return true

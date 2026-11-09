@@ -4,11 +4,29 @@ import {mkdtemp,mkdir,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {assertPower,powerSourceOf,repairJobs,scenarioArguments,resumeJobs,excludedAttempts,frozenBuildIdentity,assertManifestIdentity,assertResumeIdentity} from './repair-session.mjs';
+import {assertPower,powerSourceOf,repairJobs,workspaceJobs,scenarioArguments,resumeJobs,excludedAttempts,frozenBuildIdentity,assertManifestIdentity,assertResumeIdentity} from './repair-session.mjs';
 import {runGateReasons,expectedJobCells,cellCompleteness,repairProcessCoverage,observedOrderReasons,jobProtocolReasons,independentPairReasons,panelDeltas,fixedConditionReasons} from './repair-report.mjs';
 import './repair-panel-counterbalance.mjs'; // Importing helpers must never start a queue.
 
 const jobs=()=>repairJobs('new','start','final');
+test('workspace plan is finite: paired four-condition blocks, separate source controls and one final soak',()=>{
+ const plan=workspaceJobs('new','start','final');
+ assert.equal(plan.length,35);
+ for(const profile of ['M','L']){
+  const rows=plan.filter(j=>j.group==='workspace-overhead'&&j.profile===profile);
+  assert.equal(rows.length,12);
+  assert.deepEqual(rows.map(j=>j.harbors),[1,5,10,20,20,10,5,1,1,5,10,20]);
+  for(const harbors of [1,5,10,20])assert.deepEqual(rows.filter(j=>j.harbors===harbors).map(j=>j.block),[0,1,2]);
+  assert.ok(rows.every(j=>j.tag==='final'&&j.warmup===30&&j.seconds===60));
+ }
+ assert.equal(plan.filter(j=>j.group==='workspace-source').length,6);
+ assert.equal(plan.filter(j=>j.scenarios.includes('long')).length,1);
+ assert.equal(plan.at(-1).longSeconds,1200);
+ assert.equal(plan.at(-1).harbors,20);
+ const previous={id:'old',status:'failed',jobs:structuredClone(plan).map(j=>({...j,status:'pending'}))};
+ const altered=structuredClone(plan);altered[2].harbors=20;
+ assert.throws(()=>resumeJobs(previous,altered,'other'));
+});
 const clone=structuredClone;
 const digest=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const identity={buildIndexSHA256:'a'.repeat(64),backendBinarySHA256:'b'.repeat(64),buildProvenanceSHA256:digest({source:'frozen'}),assetsSHA256:'c'.repeat(64)};

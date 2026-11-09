@@ -226,13 +226,23 @@ export default function ResourceForms({
   placementMode: requestedPlacementMode,
   initialObject,
   secretEdit = false,
+  harborName,
+  onHarbors,
+  restoredDraft,
+  onSafeDraft,
 }) {
+  const impactAcknowledged = useRef(false);
+  const [clusterImpact, setClusterImpact] = useState(false);
+  impactAcknowledged.current = clusterImpact;
   const requestScope = useMemo(() => new AbortController(), [connectionAPI]);
   useEffect(() => () => requestScope.abort(), [requestScope]);
   const api = useMemo(
     () => ({
       ...connectionAPI,
       request: (path, options = {}) => {
+        const sharedMutation = connectionAPI.isClusterScoped?.(options.body?.object || resource) || (Array.isArray(resource) && resource.some((item) => connectionAPI.isClusterScoped?.(item)));
+        const headers = connectionAPI.workspaceScope && sharedMutation && impactAcknowledged.current
+          ? { ...options.headers, "X-KubeView-Cluster-Impact": "acknowledged" } : options.headers;
         const abort = new AbortController();
         const cancel = () => abort.abort();
         const signals = [requestScope.signal, options.signal].filter(Boolean);
@@ -241,7 +251,7 @@ export default function ResourceForms({
           signal.addEventListener("abort", cancel, { once: true });
         }
         return connectionAPI
-          .request(path, { ...options, signal: abort.signal })
+          .request(path, { ...options, headers, signal: abort.signal })
           .finally(() =>
             signals.forEach((signal) =>
               signal.removeEventListener("abort", cancel),
@@ -275,16 +285,17 @@ export default function ResourceForms({
         : []
       : [];
   const initialDraft = useRef(null);
+  const resume = restoredDraft && restoredDraft.sourceKey === sourceKey && restoredDraft.uid === resource?.metadata?.uid && restoredDraft.action === actionType && restoredDraft.object?.kind !== "Secret" && !purposeSecretEdit ? restoredDraft : null;
   if (!initialDraft.current) {
-    const base = initialObject
+    const base = resume?.object || (initialObject
       ? mergeInitial(template(initialKind, namespace), initialObject)
-      : resource && !Array.isArray(resource)
+      : (resource && !Array.isArray(resource)
         ? editableResource(resource)
-        : template(initialKind, namespace);
+        : template(initialKind, namespace)));
     const initialMode =
       requestedPlacementMode || (targetNode ? "required" : "scheduler");
     try {
-      initialDraft.current = targetNode
+      initialDraft.current = resume ? { object: base, provenance: resume.placementProvenance } : targetNode
         ? applyPlacement(base, targetNode, initialMode)
         : { object: base, provenance: null };
     } catch (e) {
@@ -296,27 +307,27 @@ export default function ResourceForms({
     }
   }
   const [placementMode, setPlacementMode] = useState(
-      requestedPlacementMode || (targetNode ? "required" : "scheduler"),
+      resume?.placementMode || requestedPlacementMode || (targetNode ? "required" : "scheduler"),
     ),
     [placementProvenance, setPlacementProvenance] = useState(
       initialDraft.current.provenance,
     ),
-    [dirty, setDirty] = useState(false),
+    [dirty, setDirty] = useState(resume?.dirty || false),
     [discardPrompt, setDiscardPrompt] = useState(false);
-  const [kind, setKind] = useState(initialObject?.kind || initialKind),
+  const [kind, setKind] = useState(resume?.kind || initialObject?.kind || initialKind),
     [object, setObject] = useState(initialDraft.current.object),
     [mode, setMode] = useState(
-      purposeSecretEdit ||
+      resume?.mode || (purposeSecretEdit ||
         !TYPES.includes(initialKind) ||
         initialKind === "Diğer kaynak / YAML"
         ? "yaml"
-        : "form",
+        : "form"),
     ),
     [yamlText, setYAMLText] = useState(() =>
-      stringify(initialDraft.current.object),
+      resume?.yamlText || stringify(initialDraft.current.object),
     ),
     [yamlError, setYAMLError] = useState(""),
-    [replicas, setReplicas] = useState(resource?.spec?.replicas ?? 1),
+    [replicas, setReplicas] = useState(resume?.replicas ?? resource?.spec?.replicas ?? 1),
     [confirmation, setConfirmation] = useState(""),
     [error, setError] = useState(initialDraft.current.error || ""),
     [preview, setPreview] = useState(null),
@@ -331,7 +342,7 @@ export default function ResourceForms({
     [schemaLoading, setSchemaLoading] = useState(false);
   const [uncertain, setUncertain] = useState(false),
     [reconciliation, setReconciliation] = useState("");
-  const dirtyRef = useRef(false),
+  const dirtyRef = useRef(resume?.dirty || false),
     draftRef = useRef(object),
     draftTargetRef = useRef({
       sourceKey,
@@ -339,6 +350,13 @@ export default function ResourceForms({
       uid: resource?.metadata?.uid,
     });
   draftRef.current = object;
+  const safeDraftCallback = useRef(onSafeDraft);
+  safeDraftCallback.current = onSafeDraft;
+  useEffect(() => {
+    // Safe drafts are memory-only in App; never report Secret or invalid YAML.
+    const sensitive = purposeSecretEdit || object.kind === "Secret" || Boolean(yamlError);
+    safeDraftCallback.current?.(sensitive ? null : { sourceKey, uid: resource?.metadata?.uid, action: actionType, object, kind, mode, yamlText, dirty, replicas, placementMode, placementProvenance });
+  }, [object, kind, mode, yamlText, dirty, replicas, yamlError, sourceKey]);
   const markDirty = () => {
     dirtyRef.current = true;
     setDirty(true);
@@ -661,6 +679,8 @@ export default function ResourceForms({
       .object;
   };
   const validate = () => {
+    if (connectionAPI.workspaceScope && (connectionAPI.isClusterScoped?.(object) || connectionAPI.isClusterScoped?.(resource) || batch.some((item) => connectionAPI.isClusterScoped?.(item))) && !clusterImpact)
+      throw new Error("Küme kapsamlı işlem ortak altyapıyı etkiler. Ortak etki onayı gereklidir.");
     if (
       isEdit &&
       object.kind === "Secret" &&
@@ -1037,6 +1057,7 @@ export default function ResourceForms({
         <header className="form-dialog-header">
           <div>
             <span className="eyebrow">
+              {harborName ? `${harborName} · ` : ""}
               {cluster || "Bağlantı yok"} ·{" "}
               {resource?.metadata?.namespace || namespace || "Küme kapsamı"}
             </span>
@@ -1051,6 +1072,7 @@ export default function ResourceForms({
                 : `${resource?.kind || ""} ${targetName || ""}`}
             </p>
           </div>
+          {onHarbors && <button className="button" type="button" onClick={onHarbors}>Limanlar</button>}
           <button
             className="icon-button"
             aria-label="Formu kapat"
@@ -1066,6 +1088,7 @@ export default function ResourceForms({
             disabled={loading || busy}
             aria-busy={loading || busy}
           >
+            {connectionAPI.workspaceScope && (connectionAPI.isClusterScoped?.(object) || connectionAPI.isClusterScoped?.(resource) || batch.some((item) => connectionAPI.isClusterScoped?.(item))) && <section className="inline-alert alert-warning"><strong>Ortak cluster etkisi</strong><p>Bu kaynak namespace veya limana ait özel bir kaynak değildir. Node bakım işlemleri ve diğer küme kapsamlı değişiklikler aynı altyapıyı kullanan izinli limanları da etkileyebilir.</p><label><input type="checkbox" checked={clusterImpact} onChange={(e) => setClusterImpact(e.target.checked)} />Bu işlemin ortak cluster altyapısını etkilemesini açıkça onaylıyorum</label></section>}
             {readOnly && (
               <div className="inline-alert alert-warning">
                 Salt okunur bağlantı. Formu inceleyebilirsiniz; gerçek mutasyon

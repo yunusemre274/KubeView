@@ -2,6 +2,16 @@
 
 Projedeki teknik seçimlerin meşru gerekçeleri mevcuttur.
 
+## 9 Kasım 2026 — çoklu liman ve kullanıcıya ait manuel kabul
+
+Son kullanıcı kararı: bu tur manuel kabul adayıdır. Önceki koşullu otomatik stable yayın/merge talimatını değiştirir. Kullanıcı yedi profili deneyip açıkça onaylamadan stable v1.1.0 tag/release, stable amaçlı PR merge veya ana milestone kapatma yoktur. Geliştirme commit/push ve PR/milestone ilerleme kaydı sürer; eski BLOCKED kapıları korunur.
+
+Bağlantı, liman ve workspace ayrılır. İlk sürümde liman tek güvenilir bağlantı + namespace kümesi + isteğe bağlı selector'dır. Local-first model korunur; hesap/SaaS/CI-CD veya otomatik multi-cluster ağ sistemi eklenmez. Güvenilir cluster UID fiziksel dedup sağlar; cache paylaşımı ayrıca aynı kimlik/credential nesli/kapsam gerektirir. Bilinmeyen cluster ayrı tutulur, sırf dedup için yetki yükseltilmez.
+
+Server-side scoped dynamic adapter ve typed alt kaynak kontrolleri mevcut client-go/Go yolunu genişletir; watch broker son abonede kapanır. Frontend uyumlu canonical kaynakları paylaşır, liman oturum/grant/form bağlamını ayırır. Birden fazla WebGL canvas yerine aktif ayrıntılı dünya ve uzak LOD kullanılır. Worker/WASM/framework göçü için bağımsız net kazanç kanıtı olmadığı sürece mevcut React18/R3F8/Go korunur.
+
+Manuel 01–06 gerçek owned Kubernetes kaynaklarına bağlanır. 07 açık TEST/REPLAY modu aynı dondurulmuş M/L fixture'ını kullanır; read-only ve loopback zorunlu, gerçek bağlantı fallback'i değildir. Bundle runner'ı stdlib Python kullanır; uygulama Go/Node kurmadan embedded binary'den çalışır. Private lab state repo dışında dar izinlidir, kullanıcı cluster'larına/global kubeconfig'e dokunulmaz. Ağır kaynaklar teslim sonunda durur; manuel kurulum/fixture dosyaları korunur. [Kabul defteri](WORKSPACE_ACCEPTANCE.md).
+
 ---
 
 ## 📜 Karar Listesi

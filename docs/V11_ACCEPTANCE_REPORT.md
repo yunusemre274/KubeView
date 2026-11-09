@@ -1,5 +1,9 @@
 # v1.1.0 kabul kaydı
 
+## Aktif genişletme — çoklu liman / manuel kullanıcı kabulü
+
+`0029672` sonrasında bağlantı/store/scope/UI yolları çoklu workspace için değişiyor. Aşağıdaki **16PASS/3BLOCKED**, yalnız kayıtlı `32a0468` runtime ve ilişkili kanıtlara aittir; yeni kodun tekrar doğrulandığı anlamına gelmez. Yeni kaynak/build, gerçek A–O senaryoları ve performans kapıları [WORKSPACE_ACCEPTANCE.md](WORKSPACE_ACCEPTANCE.md) içinde tutulur. Eski V11-16/V11-18/V11-19 açık kalır. Kullanıcının yedi profil üzerinde **manuel kabulü ayrı PENDING** kapısıdır; bu tur stable tag/release, stable amaçlı PR merge ve ana milestone kapanışı yoktur.
+
 ## 9 Kasım2026, son kaynak32a0468 — kabul uzlaştırması
 
 **Stable v1.1.0 henüz yayımlanmadı; milestone açık ve PR#1 DRAFT.** Uygulama geliştirmesi ve yeni işlevsel testler tamamlandı. Son karar, açıklanamayan CPU farkı ve fiziksel arayüz gecikmesi kanıtına bağlıdır; yalnız proxy ölçümler bu kapıları kapatmaz. Önceki ara durumlar bu bölümün altında tarihsel kayıt olarak korunur; oradaki “bekleniyor” ifadeleri bugünkü testleri geçersiz kılmaz.

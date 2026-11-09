@@ -40,26 +40,27 @@ type Flow struct {
 	IsReply           *bool     `json:"isReply"`
 }
 type Snapshot struct {
-	Status                  string     `json:"status"`
-	Provider                string     `json:"provider"`
-	Context                 string     `json:"context"`
-	ClusterUID              string     `json:"clusterUID"`
-	Namespace               string     `json:"namespace"`
-	WindowSeconds           int        `json:"windowSeconds"`
-	ObservedAt              time.Time  `json:"observedAt"`
-	UpdatedAt               *time.Time `json:"updatedAt"`
-	Dropped                 uint64     `json:"dropped"`
-	Summarized              uint64     `json:"summarized"`
-	Flows                   []Flow     `json:"flows"`
-	FilteredEvents          uint64     `json:"filteredEvents"`
-	DuplicateEvents         uint64     `json:"duplicateEvents"`
-	ProviderLostEvents      uint64     `json:"providerLostEvents"`
-	MappingDropped          uint64     `json:"mappingDropped"`
-	UnverifiedClusterEvents uint64     `json:"unverifiedClusterEvents"`
-	TotalFlowGroups         int        `json:"totalFlowGroups"`
-	OmittedGroups           int        `json:"omittedGroups"`
-	Error                   string     `json:"error,omitempty"`
-	Units                   string     `json:"units"`
+	Status                  string           `json:"status"`
+	Provider                string           `json:"provider"`
+	Context                 string           `json:"context"`
+	ClusterUID              string           `json:"clusterUID"`
+	Namespace               string           `json:"namespace"`
+	NamespaceScopes         []NamespaceScope `json:"namespaceScopes,omitempty"`
+	WindowSeconds           int              `json:"windowSeconds"`
+	ObservedAt              time.Time        `json:"observedAt"`
+	UpdatedAt               *time.Time       `json:"updatedAt"`
+	Dropped                 uint64           `json:"dropped"`
+	Summarized              uint64           `json:"summarized"`
+	Flows                   []Flow           `json:"flows"`
+	FilteredEvents          uint64           `json:"filteredEvents"`
+	DuplicateEvents         uint64           `json:"duplicateEvents"`
+	ProviderLostEvents      uint64           `json:"providerLostEvents"`
+	MappingDropped          uint64           `json:"mappingDropped"`
+	UnverifiedClusterEvents uint64           `json:"unverifiedClusterEvents"`
+	TotalFlowGroups         int              `json:"totalFlowGroups"`
+	OmittedGroups           int              `json:"omittedGroups"`
+	Error                   string           `json:"error,omitempty"`
+	Units                   string           `json:"units"`
 }
 type observedEndpoint struct {
 	name, namespace, ip, cluster string

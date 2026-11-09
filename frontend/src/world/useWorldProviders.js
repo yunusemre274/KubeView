@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { authorizedFlowHarbors } from "./workspace.js";
 
 const EMPTY_ROWS = Object.freeze([]);
 export const EMPTY_MEASURED_FLOWS = Object.freeze({
@@ -109,6 +110,8 @@ export function normalizeMeasuredFlows(value = {}) {
     filteredEvents: count(value.filteredEvents),
     providerLostEvents: count(value.providerLostEvents),
     mappingDropped: count(value.mappingDropped),
+    authorizedHarborIds: Array.isArray(value.authorizedHarborIds) ? value.authorizedHarborIds.filter((id) => typeof id === "string").slice(0, 100) : [],
+    namespaceScopes: Array.isArray(value.namespaceScopes) ? value.namespaceScopes.slice(0, 100).map((scope) => ({ namespace: text(scope.namespace), selector: text(scope.selector) })) : [],
     duplicateEvents: count(value.duplicateEvents),
     flows: rows,
     clientOmitted: Math.max(0, supplied.length - rows.length),
@@ -239,7 +242,9 @@ export default function useWorldProviders({
   const selectedUIDRef = useRef(selectedUID);
   selectedUIDRef.current = selectedUID;
   const stream = api?.streamSession?.();
-  const flowKey = `${owner}|${namespace}|${stream?.key || "no-session"}|${streamRevision}`;
+  const harborIds = authorizedFlowHarbors(connection.workspace?.record, connection.workspace?.activeId);
+  const harborSet = harborIds.join(",");
+  const flowKey = `${owner}|${namespace}|${stream?.key || "no-session"}|${streamRevision}|${harborSet}`;
   const flowKeyRef = useRef(flowKey);
   flowKeyRef.current = flowKey;
   const commit = useCallback((captured, patch) => {
@@ -379,9 +384,10 @@ export default function useWorldProviders({
     }
     const subscription = uuid();
     const query = new URLSearchParams({
-      namespace: namespace || "all",
+      namespace: harborIds.length > 1 ? "all" : namespace || "all",
       subscription,
     });
+    for (const id of harborIds) query.append("harborIds", id);
     const path = `/api/flows?${query}`;
     const pinnedURL = api.url
       ? api.url(path)
@@ -463,7 +469,7 @@ export default function useWorldProviders({
     commit,
   ]);
   const refresh = useCallback(() => setRevision((value) => value + 1), []);
-  const addWorker = useCallback(async () => {
+  const addWorker = useCallback(async (options = {}) => {
     if (!live || connection.readOnly)
       throw new Error("Worker ekleme bu bağlantıda kapalı.");
     let pending = attempt.current;
@@ -489,6 +495,7 @@ export default function useWorldProviders({
       try {
         const value = await api.request("/api/providers/minikube/workers", {
           method: "POST",
+          headers: options.acknowledged ? { "X-KubeView-Cluster-Impact": "acknowledged" } : undefined,
           body: { action: "add-worker", idempotencyKey: pending.key },
           signal: abort.signal,
         });

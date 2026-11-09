@@ -2,7 +2,17 @@
 
 Kubernetes kümenizin arayüzü, tam ekran etkileşimli bir tersanedir. Merkez binasına, Node gemisine veya Pod yüküne tıklayarak çalışırsınız. Kalıcı dashboard, sidebar veya açık kaynak tablosu yoktur. Listeler, formlar, grafikler ve loglar ilgili nesnenin geçici penceresinde açılır.
 
-**Sürüm durumu:** **1.1.0 sürüm adayı**; CPU farkı ve fiziksel arayüz gecikmesi kabulü açık.594e090 CI ve indirilen aday paket kontrolü geçti; stable release yayımlanmadı. Doğrulanan runtime kaynak commit'i `32a0468`, frozen frontend kimliği `e61447de…`; test edilen macOS/Linux binary kimlikleri ve platform sınırları [release notlarında](docs/RELEASE_NOTES_v1.1.0.md). 6 Kasım onarımının ürün sürümü 0.4.0 idi; önceden yayımlanmış bir v1.0.0 varsayılmıyor. Önceki CR reconnect/UID, Node/container arızası, yerel worker, Hubble ve temsili hazırlık kanıtları [onarım kaydında](docs/PRE_V11_VISUAL_REPAIR.md) ve [incelenmiş kısa kayıtlarda](artifacts/pre-v11-repair/repair-20261101T130559Z/delivery/EVIDENCE_INDEX.md). Tarihsel sonuçların uygulanabilirliği ilgili kaynak farklarıyla değerlendirilir.
+**Sürüm durumu:** **çoklu liman için 1.1.0 manuel kabul adayı geliştiriliyor**. Stable release yayımlanmadı; kullanıcının manuel onayı, eski CPU farkı ve fiziksel arayüz gecikmesi kapıları açık. Güncel kapsam ve kanıtlar [workspace kabul defterinde](docs/WORKSPACE_ACCEPTANCE.md), kullanıcı profilleri [manuel test rehberinde](MANUAL_TEST_GUIDE.md) tutulur. `32a0468` runtime / `594e090` kanıt / `0029672` paket kontrolü önceki tek-liman adayıdır; o testler yeni kodun otomatik kabulü değildir. Tarihsel platform ve build kimlikleri [release notlarında](docs/RELEASE_NOTES_v1.1.0.md); önceki CR/UID, gemi/container onarımı, worker ve Hubble kanıtları [onarım kaydında](docs/PRE_V11_VISUAL_REPAIR.md) korunur.
+
+## Birden fazla proje, ayrı limanlar
+
+Bir workspace, güvenilir Kubernetes bağlantıları ve bu bağlantılara bağlı proje/liman kayıtları içerir. Bir liman açık namespace kümesi ve isteğe bağlı label seçicisi kullanır. **Limanlar** pusulası veya merkez üzerinden eklenir; ilk boş kurulumda **İlk limanını bağla** açılır. İzinli namespace adı, namespace LIST izni olmadan elle girilebilir. Bağlantı ve kapsam gerçek API ile önizlenir. Liman kaydetmek, yeniden adlandırmak veya kaldırmak Kubernetes kaynaklarını yaratmaz, taşımaz veya silmez.
+
+Aynı doğrulanmış cluster ve Node UID'si birden fazla projede **Paylaşılan Node** görünümü olabilir; bunlar ayrı sunucu değildir. Yalnız ilgili projenin yükleri gösterilir. Bilinmeyen cluster kimlikleri güvenli biçimde ayrı tutulur. Ortak altyapı, yapılandırılmış ilişki ve Hubble'dan ölçülmüş trafik farklı anlam taşır. Farklı kümeler tek scheduler/CPU havuzu değildir; doğrulanmış ağ altyapısı olmadan cross-cluster trafik iddiası yoktur.
+
+Uygulama bir ayrıntılı Canvas kullanır; diğer limanlar uzak görünüm ve ortak veri abonelikleriyle temsil edilir. Paneller, kamera ve kaynak seçimi liman bağlamındadır. Yazma niyeti liman ve tarayıcı sekmesine bağlıdır; kayıt/import bunu açmaz. Paylaşılan Node ve diğer cluster kapsamlı işlemlerde etki ayrıca onaylanır. Label filtresi Kubernetes RBAC yerine geçmez.
+
+Workspace, varsayılan kullanıcı yapılandırma dizinindeki `KubeView/workspace.json` dosyasına atomik ve yedekli yazılır. `--data-dir` ayrı profiller sağlar; bozuk/gelecek şema kullanıcı verisini sıfırlamaz. Güvenli export credential, mutlak kubeconfig yolu veya Secret taşımaz; import bağlantıları güvenilir context'e açıkça bağlanmadan erişim açmaz. Bu sözleşmelerin test durumu kabul defterindedir; kullanıcı manuel PASS/FAIL alanları önceden doldurulmaz.
 
 ![Hareketli tersane](docs/evidence/motion/fleet-overview.png)
 
@@ -47,9 +57,9 @@ Linux AMD64 için dosya ve dizin adındaki `darwin-arm64` yerine `linux-amd64` k
 
 Tarayıcıda `http://127.0.0.1:8000` açılır. Aynı Go süreci gömülü frontend'i, API'yi ve WebSocket'i sunar; günlük kullanım için Node, Go veya Vite başlatılmaz.
 
-1. Merkezden **Kendi Kubernetes kümeme bağlan** veya açıkça **Demo ile incele** seçin. Bağlantı hatası otomatik demoya dönmez.
-2. **Cluster / context** alanı sunucunun güvenilir kubeconfig bağlamlarını listeler. Seçim gerçek istemciyi değiştirir; kubeconfig'in global `current-context` alanına yazmaz. Başlangıç namespace'i seçilen context'in etkin varsayılanıdır.
-3. **Namespace kapsamı** seçin. Namespace LIST izni yoksa **Namespace adıyla kapsam → Kapsamı uygula** ile bildiğiniz izinli namespace'i yazın. Node LIST izni olmaması izinli Pod/Deployment erişimini ortadan kaldırmaz. Namespace seçimi RBAC yetkisi vermez.
+1. Boş workspace'te **İlk limanını bağla**, sonrakiler için küçük **Limanlar** pusulasından **Liman ekle** seçin. Demo ayrı ve açık seçimdir; bağlantı hatası demoya dönmez.
+2. Liman adı ve mevcut/yeni güvenilir bağlantıyı seçin. **Cluster / context** sunucunun güvenilir kubeconfig bağlamlarını listeler; global `current-context` değişmez. Bir liman tek bağlantıya bağlıdır; aynı bağlantıda farklı projeler kaydedilebilir.
+3. Açık namespace kümesini virgülle girin; isteğe bağlı label seçicisini belirtin. **Bağlantıyı dene ve kapsamı önizle** ardından kaydedin. Node/namespace LIST izni olmaması izinli Pod/Deployment erişimini ortadan kaldırmaz. Kapsam seçimi RBAC yetkisi vermez.
 4. Bağlantı penceresinde tarayıcı/backend, Kubernetes API, discovery, kaynak okuma izinleri ve snapshot senkronizasyonunu ayrı inceleyin. Boş kapsam, Forbidden, eski veri, Metrics ve Hubble yokluğu ayrıca görünür. **Tanılamayı kopyala** yalnız izinli durum alanlarını kopyalar; token, kubeconfig, bağlantı nonce'u, kaynak içeriği ve ham hata mesajları bu özete dahil edilmez.
 5. Gerçek kaynakları **Bul** ile arayın; Node gemisi veya Pod/container üzerinden ayrıntı açın. Bağlantı olmasa da merkez erişilebilir kalır. Boş namespace'e sahte yük eklenmez.
 
@@ -73,10 +83,14 @@ Yeniden bağlantıda yönetim durumu backend'den tekrar doğrulanır; backend iz
 | `--bind ADDRESS` | Dinleme adresi; varsayılan `127.0.0.1`. Loopback dışı adres erişim token'ı gerektirir. |
 | `--api-token-file PATH` | En az 32 karakterlik, tek satırlık erişim token'ını dosyadan okur; token komut argümanına yazılmaz. |
 | `--version` | Binary'ye gömülen sürüm, commit ve OS/CPU bilgisini gösterir. |
+| `--data-dir PATH` | Workspace ve güvenli görünüm tercihleri için ayrı özel dizin (`KUBEVIEW_DATA_DIR`). Repo veya `.git` gerekmez. |
+| `--replay-profile M\|L` | Yalnız açık TEST/REPLAY manuel yük profili. Loopback ve salt okuma zorunludur; gerçek kubeconfig yüklemez, gerçek kullanım metriği üretmez. |
 
 Bayrak verilmezse mevcut ortam ayarları kullanılır. Standart yükleme `KUBECONFIG` dosya listesini birleştirir; yoksa yerel `~/.kube/config`, uygun ortamda in-cluster ServiceAccount değerlendirilir. Örnek çoklu dosya: `./kubeview --kubeconfig "$HOME/.kube/config:$HOME/.kube/ek-config" --context kendi-context-adiniz`. Kubeconfig ve kimlik bilgileri backend'de kalır. **Yalnız güvendiğiniz kubeconfig dosyalarını kullanın:** içindeki exec auth plugin'i backend makinesinde yerel program çalıştırabilir. TLS doğrulaması bağlantı hatasını gidermek için otomatik kapatılmaz.
 
 Bağlanmak cluster kaynaklarını değiştirmez, Node eklemez veya ağ sağlayıcısı kurmaz. Mutasyonlar ayrı, açık kullanıcı eylemiyle ve sunucu kapsamı/RBAC denetimiyle çalışır.
+
+Bayrakla açık `--context` seçimi, henüz workspace dosyası yoksa tek-liman kurulumunu bir defa taşır. Kayıtlı workspace her açılışta yeniden oluşturulmaz. `--context` vermeden yeni veri diziniyle başlamak boş onboarding'i korur. Yedi izole manuel profil ve yeniden başlatma komutları için [MANUAL_TEST_GUIDE.md](MANUAL_TEST_GUIDE.md).
 
 `STATIC_DIR=/tam/yol/frontend ./kubeview` gömülü arayüz yerine belirtilen dizini sunar; dizinde `index.html` bulunmalıdır. Override güvenilir ve aynı adayın API'siyle uyumlu olmalıdır. Hazırlanmamış geliştirme derlemesinde dış statik dizin veya Vite yolu korunur.
 

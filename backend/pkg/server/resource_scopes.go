@@ -14,6 +14,7 @@ import (
 // cluster. An unavailable/forbidden scope never proves resource deletion.
 // Namespace "*" means all namespaces; "" means a cluster-scoped resource.
 type ResourceScope struct {
+	Selector      string `json:"selector,omitempty"`
 	Group         string `json:"group"`
 	Version       string `json:"version"`
 	Resource      string `json:"resource"`

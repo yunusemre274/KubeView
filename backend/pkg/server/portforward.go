@@ -200,6 +200,13 @@ func (s *Server) proxyForward(w http.ResponseWriter, r *http.Request) {
 		failure(w, err)
 		return
 	}
+	if workspaceScopeFrom(r.Context()) != nil {
+		if _, err := session.client.Dynamic.Resource(schemaGVR("", "v1", "pods")).Namespace(session.Namespace).Get(r.Context(), session.Pod, metav1.GetOptions{}); err != nil {
+			s.closeForward(id)
+			failure(w, err)
+			return
+		}
+	}
 	pod, err := session.client.Typed.CoreV1().Pods(session.Namespace).Get(r.Context(), session.Pod, metav1.GetOptions{})
 	if err != nil {
 		failure(w, err)

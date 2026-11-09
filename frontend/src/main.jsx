@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { ShipyardClusterProvider } from "./context/ShipyardClusterContext.jsx";
+import WorkspaceProvider from "./context/WorkspaceProvider.jsx";
 import "./index.css";
 
 const tree = (
   <React.StrictMode>
-    <ShipyardClusterProvider>
+    <WorkspaceProvider>
       <App />
-    </ShipyardClusterProvider>
+    </WorkspaceProvider>
   </React.StrictMode>
 );
 ReactDOM.createRoot(document.getElementById("root")).render(

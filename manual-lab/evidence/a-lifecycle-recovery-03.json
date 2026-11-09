@@ -1,0 +1,28 @@
+{
+  "attempt": "a-lifecycle-recovery-03",
+  "sourceSHA256": "4a9e202d67ce7de6b6d4435f55b8b6dc4a8838e938cc01e278371a7df9e95999",
+  "priorEvidence": [
+    "a-fixtures-lifecycle-01.json",
+    "a-lifecycle-recovery-02.json"
+  ],
+  "steps": [
+    {
+      "name": "repair minikube host mapping without early node_ready wait",
+      "pass": true,
+      "output": "Küme A: Ready; 0 exact-owned container açıldı; adres onarımı=True\nHazır: 02-ortak-kume; labId=kvml-ccdfe731dabd; 2 kayıt planı. app komutu ayrı çalıştırılır.\nVarsayılan fixture sağlığı için status; kullanıcının önceki scenario değişiklikleri up ile sıfırlanmaz.\n"
+    },
+    {
+      "name": "actual both-owned-node containers stopped",
+      "pass": true
+    }
+  ],
+  "normalUI": false,
+  "nodeStopScenario": false,
+  "pass": false,
+  "failure": {
+    "type": "RuntimeError",
+    "message": "manual-lab: minikube çıkış 102: X Exiting due to K8S_UNHEALTHY_CONTROL_PLANE: wait 3m0s for node: wait for healthy API server: controlPlane never updated to v1.35.1\n* Suggestion: Control Plane could not update, try minikube delete --all --purge\n* Related issue: https://github.com/kubernetes/minikube/issues/11417\n* \n╭─────────────────────────────────────────────────────────────────────────────────────────────╮\n│                                                                                             │\n│    * If the above advice does not help, please let us know:                                 │\n│      https://github.com/kubernetes/minikube/issues/new/choose                               │\n│                                                                                             │\n│    * Please run `minikube logs --file=logs.txt` and attach logs.txt to the GitHub issue.    │\n│                                                                                             │\n╰─────────────────────────────────────────────────────────────────────────────────────────────╯\n\n"
+  },
+  "elapsedSeconds": 270.834,
+  "sourceUnchanged": true
+}

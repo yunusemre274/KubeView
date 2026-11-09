@@ -51,3 +51,13 @@ Workload formu yalnız backend'in doğruladığı gerçek owner UID hedefine gid
 Context/namespace/stream değişince eski trafik callback'i yeni limana çizilemez. Geç yanıtların reddi ve eski scope lease'inin bırakılması gerçek hook'un sentetik unit testleriyle ayrıca sınanır; bu, gerçek Hubble ölçümünün yerine geçmez. App/init/ephemeral/previous log seçimi gerçek Pod UID ve container adına bağlıdır; pause akışı kapatır, resume seçili tail'i yeniden okur. Bir log veya provider kopması geminin fiziksel ölüm kanıtı değildir.
 
 Güncel aday tam ekran liman ve opak Soft UI pencereleri kullanır. Önceki gerçek Node arızası/worker/vinç kanıtları tarihsel kaynaklarıyla korunur; yeni caption ve bağlantı akışı için incelenmiş kaynak uygulanabilirliği [ayrı kayıttır](artifacts/v1.1.0/v11-20261108/harbor-source-applicability.json). Yayımlama durumu ve test edilmiş aday kimlikleri [release notlarında](docs/RELEASE_NOTES_v1.1.0.md) izlenir.
+
+## 9 Kasım 2026 — proje limanları ve ortak altyapı
+
+Deniz dünyası artık bir workspace içindeki proje limanlarını kapsar. **Liman** tek bir güvenilir Kubernetes bağlantısında seçilmiş namespace kümesi ve isteğe bağlı label kapsamıdır; yeni cluster, namespace veya fiziksel Node değildir. **Workspace** bu limanların kayıtlı koleksiyonu/düzenidir. Küçük Limanlar pusulası ya da merkez liman ekleme ve harita geçişini açar; kalıcı dashboard oluşmaz.
+
+Bir Node gemisi küme kapsamındadır. Aynı doğrulanmış cluster+Node UID, iki projenin limanında o projenin yükleriyle gösterilebilir. **Paylaşılan Node** işareti, iki gemi görünümünün iki sunucu olmadığını anlatır. İzin verilmeyen diğer proje yükleri görünmez. Bilinmeyen cluster kimliği iki context'i aynı altyapı kabul ettirmez. Farklı cluster'ların aynı adlı gemileri ayrı kaynaklardır; bir limana geçmek gerçek Node/Pod taşımaz.
+
+Ortak altyapı çizgisi aynı doğrulanmış kaynağı; yapılandırılmış çizgi gözlenen/elle belirtilen bağımlılığı; ölçülmüş akış yalnız sağlayıcının zamanlı gözlemini anlatır. İlk ikisi canlı paket veya bant genişliği kanıtı değildir. Harita üzerinde ilişki eklemek ağ erişimi yaratmaz. Tek-cluster Hubble gözlemi cross-cluster bağlantı sağladığımız anlamına gelmez.
+
+Yakındaki liman ayrıntılı, diğerleri hafif uzak temsildir; tek Canvas, paylaşılan deniz ve mevcut deniz/seyir/vinç/arıza davranışları korunur. Görsel uyku canonical state'i geciktirmez. Liman kaldırmak yalnız uygulama kaydını ve aboneliği bırakır; Kubernetes kaynağı silmez. TEST/REPLAY yük profili açıkça sentetiktir; gerçek scheduler, worker sağlama veya trafik ölçümü yerine sayılmaz.

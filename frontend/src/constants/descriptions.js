@@ -4,6 +4,7 @@
 // -----------------------------------------------------------------------------
 
 export const OBJECT_DESCRIPTIONS = {
+  WORKSPACE_HARBOR: { title: 'Proje limanı', description: 'Kayıtlı Kubernetes bağlantısı ve izinli namespace/label kapsamı. Seçerek bu limanın gerçek bağlantı ve kaynak görünümünü açın; yeni cluster veya Node yaratılmaz.' },
   CRANE: {
     title: '🤖 Kube-scheduler (Liman Vinci)',
     description: 'Kube-scheduler — Yeni Pod\'ları hangi Node gemisine yükleyeceğine kaynak skorlarına göre karar verir.'

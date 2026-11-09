@@ -1,0 +1,77 @@
+{
+  "labId": "kvml-ccdfe731dabd",
+  "stateDir": "/Users/yunusemre/Library/Application Support/KubeView/manual-lab-v1",
+  "clusters": {
+    "a": {
+      "name": "kvml-ccdfe731dabd-a",
+      "systemUid": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5",
+      "nodesExpected": 2,
+      "containers": [
+        {
+          "id": "ad4df28f50725a6cfc3b66455a217e44e598dd059af39c8ef873499877a8a77b",
+          "name": "kvml-ccdfe731dabd-a",
+          "running": true
+        },
+        {
+          "id": "3a2953aea628ceecd4bde2fa52c2306a1f5dcb8610ac785e9f3a20d32cd66b6f",
+          "name": "kvml-ccdfe731dabd-a-m02",
+          "running": true
+        }
+      ],
+      "actualNodes": [
+        {
+          "name": "kvml-ccdfe731dabd-a",
+          "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+          "ready": true
+        },
+        {
+          "name": "kvml-ccdfe731dabd-a-m02",
+          "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+          "ready": true
+        }
+      ]
+    }
+  },
+  "apps": {},
+  "profiles": {
+    "02-ortak-kume": {
+      "registeredHarborPlan": 2,
+      "namespaces": [
+        {
+          "cluster": "a",
+          "name": "kvml-e731dabd-02-p1",
+          "uid": "9b04c056-f008-4e91-bd94-dacdb40258e6"
+        },
+        {
+          "cluster": "a",
+          "name": "kvml-e731dabd-02-p2",
+          "uid": "99d01a63-e670-43ef-a455-94d98c87de90"
+        }
+      ],
+      "fixtureObjects": 2,
+      "pods": [
+        {
+          "cluster": "a",
+          "namespace": "kvml-e731dabd-02-p1",
+          "name": "web-5f76b8f75f-mc5n9",
+          "uid": "17d8ae2d-d614-4fa1-a832-249b9c171e1f",
+          "node": "kvml-ccdfe731dabd-a-m02",
+          "phase": "Running",
+          "readyContainers": 1,
+          "containerCount": 1
+        },
+        {
+          "cluster": "a",
+          "namespace": "kvml-e731dabd-02-p2",
+          "name": "web-5f76b8f75f-4pnzr",
+          "uid": "0ea37661-9f95-46b7-8591-a29dba747b34",
+          "node": "kvml-ccdfe731dabd-a-m02",
+          "phase": "Running",
+          "readyContainers": 1,
+          "containerCount": 1
+        }
+      ],
+      "readerTokenRefreshBefore": null
+    }
+  }
+}

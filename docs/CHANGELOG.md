@@ -1,5 +1,12 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-09 — çoklu liman geliştirmesi (manuel kabul bekliyor)
+
+- Workspace/bağlantı/liman modeli, özel `--data-dir`, scope ve kimlik nesli temelli watch paylaşımı üzerinde çalışılıyor; test ve kabul durumu [ayrı defterdedir](WORKSPACE_ACCEPTANCE.md).
+- Açık TEST/REPLAY M/L kaynağı, mevcut fixture ve harness'e 1/5/10/20 liman ekseni eklendi. Sentetik kanıt gerçek Kubernetes/telemetri E2E'si sayılmaz.
+- Manuel bundle runner/fixture/rehberi hazırlanıyor. Temiz iki-node ilk bridge-CNI denemesi FAIL olarak korunur; doğru çok-node ağ yapılandırmasıyla yeniden doğrulama gerekir.
+- Kullanıcının manuel onayı beklenir; eski CPU/fiziksel latency kapıları ve tarihsel başarısız denemeler korunur. Stable yayın veya milestone kapanışı yapılmadı.
+
 ## 2026-11-09 — aday paket ve CI teslim kontrolü
 
 - `594e090` kanıt commit'i doğru uzak dala pushlandı; CI42604991277 geçti. GitHub geçici PR test merge'i09ee97 ile head tree eşliği doğrulandı; bu gerçek main merge veya release değildir. İki aday arşivinin checksum'u ve indirilen Mac binary'nin temiz dizin/salt okunur/boş yapılandırma smoke testi geçti. Runtime ve bağımlılıklar değişmedi.

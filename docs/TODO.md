@@ -1,5 +1,18 @@
 # Güncel görev durumu
 
+## 9 Kasım 2026 — çoklu liman / manuel kabul (aktif)
+
+- [x] HEAD0029672, doğru upstream ve iki mantıksal dal; immutable kaynak arşivi, başlangıç kimliği ve eski açık kapılar korundu.
+- [x] Workspace veri/güvenlik sözleşmesi ve A–O kabul defteri oluşturuldu; aşağıdaki eski sonuçlar tarihsel kaynaklarına aittir.
+- [ ] Workspace kalıcılığı/migration, scope/credential/watch izolasyonu; yeni kaynakta unit/integration/race ve gerçek iki küme.
+- [ ] Tek Canvas deniz haritası, shared Node, güvenli per-harbor state/işlem ve ilişki katmanları; normal UI/görsel kanıt.
+- [ ] Yedi profil, embedded binary ile temiz kurulum, up iki kez, down/start/reset; MANUAL_TEST_GUIDE.
+- [ ] Aynı M/L verisiyle 1/5/10/20 liman ve sonlu üç blok; yeni 20 dakika/20 panel-log çevrimi; anlamlı regresyon varsa çözüm.
+- [ ] Anlamlı test edilmiş checkpoint commit/push, remote SHA/CI ve manuel aday teslimi; manuel lab'lar durdurulmuş/yeniden açılabilir.
+- [ ] **Kullanıcının manuel kabulü PENDING.** V11-16/V11-18/V11-19 açık kalır; bu tur stable tag/release/merge veya ana milestone kapanışı yoktur.
+
+Güncel ayrıntı: [WORKSPACE_ACCEPTANCE.md](WORKSPACE_ACCEPTANCE.md). Yeni test sayıları eski CPU/fiziksel arayüz gecikmesi kapılarının yerine geçmez.
+
 ## 9 Kasım2026 — son kaynak kabulü ve teslim kontrolü
 
 - [x] Son runtime32a0468 donduruldu; frontend165/165, Go60topPASS/20SKIP, serverrace39topPASS/20SKIP, harness45/45.

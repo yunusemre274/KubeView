@@ -1,0 +1,14 @@
+{
+  "version": "kubeview-benchmark-v2",
+  "seed": 20261024,
+  "profiles": {
+    "M": {
+      "objects": 328,
+      "canonicalSha256": "a8960f86f0c7d28e9d8d80701e816bf62701181f551396396dfebb285ebbb237"
+    },
+    "L": {
+      "objects": 1558,
+      "canonicalSha256": "fa4f8361540dc68113a7bfe4cb9e80f49777b35c857b234ef188a981e070893e"
+    }
+  }
+}

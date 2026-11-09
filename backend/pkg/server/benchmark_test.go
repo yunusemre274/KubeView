@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	ws "github.com/k8s-tersane/tersane/backend/pkg/workspace"
 	"net"
 	"net/http"
 	"os"
@@ -96,6 +97,36 @@ func TestBenchmarkFixtureServer(t *testing.T) {
 		groups[gv] = append(groups[gv], metav1.APIResource{Name: gvr.Resource, Kind: kind, Namespaced: kind != "Node" && kind != "Namespace", Verbs: metav1.Verbs{"get", "list", "watch"}})
 	}
 	c.Dynamic = dynamicfake.NewSimpleDynamicClientWithCustomListKinds(k8sruntime.NewScheme(), kinds, inputs...)
+	// Explicit opt-in workspace mode uses the same production persistence,
+	// broker, scoped requests and frontend registry. Historical single-source
+	// baselines remain untouched when this variable is absent.
+	if value := os.Getenv("KUBEVIEW_BENCH_HARBORS"); value != "" {
+		count, err := strconv.Atoi(value)
+		if err != nil || (count != 1 && count != 5 && count != 10 && count != 20) {
+			t.Fatal("benchmark harbors must be 1, 5, 10 or 20")
+		}
+		c.DataSource = "test-replay"
+		if err = s.ConfigureWorkspace(filepath.Join(t.TempDir(), "app-data"), "benchmark", "*"); err != nil {
+			t.Fatal(err)
+		}
+		doc := s.workspace.store.Snapshot()
+		_, err = s.workspace.store.Update(doc.Revision, func(d *ws.Document) error {
+			initial := d.Harbors[0]
+			initial.Name = "TEST/REPLAY 01"
+			d.Harbors[0] = initial
+			for i := 1; i < count; i++ {
+				h := initial
+				h.ID = fmt.Sprintf("fixture-harbor-%02d", i+1)
+				h.Name = fmt.Sprintf("TEST/REPLAY %02d", i+1)
+				h.Position = [2]float64{float64(i%5) * 750, float64(i/5) * 750}
+				d.Harbors = append(d.Harbors, h)
+			}
+			return nil
+		})
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
 	d := c.Typed.(*kubefake.Clientset).Discovery().(*fake.FakeDiscovery)
 	d.Resources = nil
 	for gv, rs := range groups {

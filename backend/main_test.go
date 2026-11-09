@@ -3,6 +3,7 @@ package main
 import (
 	"net/http/httptest"
 	"os"
+	"path/filepath"
 	"testing"
 	"testing/fstest"
 )
@@ -36,6 +37,8 @@ func TestCLIContextDoesNotRewriteKubeconfig(t *testing.T) {
 	t.Setenv("WATCH_NAMESPACE", "")
 	t.Setenv("READ_ONLY", "true")
 	t.Setenv("PORT", "8000")
+	t.Setenv("KUBEVIEW_DATA_DIR", t.TempDir())
+	t.Setenv("KUBEVIEW_REPLAY_PROFILE", "")
 	stop, err := configure([]string{"--context", "new", "--namespace", "allowed", "--write", "--port", "8123"})
 	if stop || err != nil {
 		t.Fatalf("configure %v %v", stop, err)
@@ -46,5 +49,38 @@ func TestCLIContextDoesNotRewriteKubeconfig(t *testing.T) {
 	// configure changes only the process environment, never a kubeconfig file.
 	if _, err = configure([]string{"--port", "not-a-port"}); err == nil {
 		t.Fatal("invalid port accepted")
+	}
+}
+
+func TestCLIWorkspaceAndReplayBoundary(t *testing.T) {
+	t.Setenv("KUBEVIEW_DATA_DIR", "")
+	t.Setenv("KUBEVIEW_REPLAY_PROFILE", "")
+	t.Setenv("BIND_ADDR", "127.0.0.1")
+	t.Setenv("READ_ONLY", "false")
+	dir := filepath.Join(t.TempDir(), "new-profile")
+	if stop, err := configure([]string{"--data-dir", dir, "--replay-profile", "M"}); stop || err != nil {
+		t.Fatalf("configure: %v %v", stop, err)
+	}
+	if os.Getenv("KUBEVIEW_DATA_DIR") != dir || os.Getenv("KUBEVIEW_REPLAY_PROFILE") != "M" || os.Getenv("READ_ONLY") != "true" {
+		t.Fatal("isolated read-only source not applied")
+	}
+	if _, err := os.Stat(dir); !os.IsNotExist(err) {
+		t.Fatal("CLI parse must not create/overwrite workspace data")
+	}
+	for _, args := range [][]string{{"--replay-profile", "wrong"}, {"--replay-profile", "M", "--write"}, {"--replay-profile", "M", "--bind", "0.0.0.0"}} {
+		if _, err := configure(args); err == nil {
+			t.Fatalf("accepted unsafe flags: %v", args)
+		}
+	}
+}
+
+func TestCLIVersionDoesNotLoadConfigOrCreateDirectory(t *testing.T) {
+	dir := filepath.Join(t.TempDir(), "absent")
+	t.Setenv("KUBEVIEW_DATA_DIR", dir)
+	if stop, err := configure([]string{"--version"}); !stop || err != nil {
+		t.Fatalf("version: %v %v", stop, err)
+	}
+	if _, err := os.Stat(dir); !os.IsNotExist(err) {
+		t.Fatal("--version mutated application data")
 	}
 }

@@ -78,6 +78,9 @@ export function resourceObservation(state, resource) {
   if (!uid)
     return { status: "not-listed", deleted: false, stale: true, error: "" };
   const live = state.resources[uid];
+  if (!live && state.outOfScope?.[uid])
+    return { status: "out-of-scope", deleted: false, stale: true,
+      error: "Kaynak bu limanın label/namespace kapsamından çıktı; Kubernetes'te silinmiş sayılmaz.", timestamp: state.outOfScope[uid] };
   const tombstone = state.tombstones?.[uid];
   if (!live && tombstone)
     return {

@@ -35,6 +35,8 @@ func configure(args []string) (bool, error) {
 	bind := flags.String("bind", "", "Listen address; default 127.0.0.1. Non-loopback requires API_TOKEN")
 	port := flags.String("port", "", "HTTP listen port; default 8000")
 	write := flags.Bool("write", false, "Allow explicit per-browser management enablement; Kubernetes RBAC still applies")
+	dataDir := flags.String("data-dir", "", "Private workspace data directory; default user configuration directory/KubeView")
+	replay := flags.String("replay-profile", "", "Explicit loopback-only TEST/REPLAY source: M or L; always read-only, never loads kubeconfig")
 	tokenFile := flags.String("api-token-file", "", "Read operator access token from a private file; never send it in process arguments")
 	if err := flags.Parse(args); err != nil {
 		return false, err
@@ -46,6 +48,43 @@ func configure(args []string) (bool, error) {
 		fmt.Printf("KubeView %s (%s) %s/%s\n", version, commit, runtime.GOOS, runtime.GOARCH)
 		return true, nil
 	}
+	profile := *replay
+	if profile == "" {
+		profile = os.Getenv("KUBEVIEW_REPLAY_PROFILE")
+	}
+	if profile != "" {
+		if profile != "M" && profile != "L" {
+			return false, fmt.Errorf("--replay-profile must be M or L")
+		}
+		host := *bind
+		if host == "" {
+			host = os.Getenv("BIND_ADDR")
+		}
+		if host != "" && host != "127.0.0.1" && host != "localhost" && host != "::1" {
+			return false, fmt.Errorf("TEST/REPLAY requires a loopback --bind")
+		}
+		if *write {
+			return false, fmt.Errorf("TEST/REPLAY cannot enable --write")
+		}
+		os.Setenv("KUBEVIEW_REPLAY_PROFILE", profile)
+		os.Setenv("READ_ONLY", "true")
+	}
+	directory := *dataDir
+	if directory == "" {
+		directory = os.Getenv("KUBEVIEW_DATA_DIR")
+	}
+	if directory == "" {
+		base, err := os.UserConfigDir()
+		if err != nil {
+			return false, fmt.Errorf("workspace directory unavailable; use --data-dir")
+		}
+		directory = filepath.Join(base, "KubeView")
+	}
+	absolute, err := filepath.Abs(directory)
+	if err != nil {
+		return false, fmt.Errorf("invalid --data-dir")
+	}
+	os.Setenv("KUBEVIEW_DATA_DIR", absolute)
 	for key, value := range map[string]string{"KUBECONFIG": *kubeconfig, "KUBE_CONTEXT": *contextName, "WATCH_NAMESPACE": *namespace, "BIND_ADDR": *bind, "PORT": *port} {
 		if value != "" {
 			if err := os.Setenv(key, value); err != nil {
@@ -148,6 +187,16 @@ func main() {
 	defer cancel()
 	gateway := server.New()
 	defer gateway.Close()
+	if profile := os.Getenv("KUBEVIEW_REPLAY_PROFILE"); profile != "" {
+		if err := gateway.EnableReplay(profile); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+	}
+	if err := gateway.ConfigureWorkspace(os.Getenv("KUBEVIEW_DATA_DIR"), os.Getenv("KUBE_CONTEXT"), gateway.Namespace); err != nil {
+		fmt.Fprintln(os.Stderr, "Workspace could not be opened:", err)
+		os.Exit(1)
+	}
 	mux := http.NewServeMux()
 	gateway.Register(mux)
 	mux.HandleFunc("/api/version", func(w http.ResponseWriter, r *http.Request) {

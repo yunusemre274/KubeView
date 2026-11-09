@@ -40,6 +40,9 @@ import {
 } from "./visualLifecycle.js";
 import LifecycleEffects, { NodeArrivalCaption } from "./LifecycleEffects.jsx";
 import MeasuredTraffic from "./MeasuredTraffic.jsx";
+import WorkspaceHarbors from "./WorkspaceHarbors.jsx";
+import { captureHarborCamera, restoreHarborCamera, harborFitSamples } from "./cameraViews.js";
+import { harborPosition } from "../world/workspace.js";
 import WorldFacilities, { FacilityHit } from "./WorldFacilities.jsx";
 import Ocean, { ShipWake } from "./Ocean.jsx";
 import {
@@ -391,6 +394,7 @@ function FleetFrame({
   onShipMotionChange,
   lifecycle,
   slots,
+  worldOffset = [0, 0],
 }) {
   const { invalidate, scene } = useThree(),
     lastReport = useRef(-Infinity),
@@ -469,8 +473,8 @@ function FleetFrame({
       );
       const sample = sampleWater(
         waterState.current.time,
-        ship.pose.position[0],
-        ship.pose.position[2],
+        ship.pose.position[0] + worldOffset[0],
+        ship.pose.position[2] + worldOffset[1],
         motion.bob && !steady ? waterState.current.strength : 0,
         waterSample.current,
       );
@@ -1527,6 +1531,11 @@ function ViewController({
   fleet,
   motion,
   onFollowEnd,
+  worldOffset = [0, 0],
+  harborView,
+  viewBridge,
+  activeHarborId,
+  workspaceHarbors = [],
 }) {
   const { camera, size, invalidate, scene, gl } = useThree();
   const panKeys = useRef(new Set()),
@@ -1611,8 +1620,9 @@ function ViewController({
   }, [gl, invalidate]);
   const lastFocus = useRef(focusRequest),
     lastOverview = useRef(overviewRequest);
+  const transition = useRef(null), lastHarbor = useRef(activeHarborId), viewOwner = useRef(null);
   const fit = useCallback(() => {
-    const center = new THREE.Vector3(0, 0, (bounds.minZ + bounds.maxZ) / 2);
+    const center = new THREE.Vector3(worldOffset[0], 0, (bounds.minZ + bounds.maxZ) / 2 + worldOffset[1]);
     const width = bounds.maxX - bounds.minX,
       depth = bounds.maxZ - bounds.minZ;
     const verticalFov = THREE.MathUtils.degToRad(camera.fov);
@@ -1621,56 +1631,7 @@ function ViewController({
       Math.max(depth * 0.65 + width * 0.3, (width + depth * 0.4) / aspect) /
       (2 * Math.tan(verticalFov / 2));
     const direction = new THREE.Vector3(0.44, 0.88, 1).normalize();
-    const corner = new THREE.Vector3(),
-      instance = new THREE.Matrix4(),
-      matrix = new THREE.Matrix4(),
-      samples = [];
-    scene.updateMatrixWorld(true);
-    // Fit actual model parts; a box around the entire industrial site contains
-    // large, empty diagonal corners that would make the visible site too small.
-    scene.traverse((object) => {
-      for (let parent = object; parent; parent = parent.parent)
-        if (!parent.visible) return;
-      if (
-        !object.isMesh ||
-        !object.visible ||
-        object.name === "harbor:ocean" ||
-        object.name === "harbor:vessel-wake" ||
-        object.geometry.userData?.waterGrid ||
-        object.material?.name?.includes("wake") ||
-        object.geometry.type === "PlaneGeometry" ||
-        object.geometry.type === "RingGeometry"
-      )
-        return;
-      object.geometry.computeBoundingBox();
-      const box = object.geometry.boundingBox;
-      if (!box) return;
-      const count = object.isInstancedMesh ? object.count : 1;
-      for (let index = 0; index < count; index++) {
-        if (object.isInstancedMesh) {
-          object.getMatrixAt(index, instance);
-          matrix.multiplyMatrices(object.matrixWorld, instance);
-        } else matrix.copy(object.matrixWorld);
-        for (const x of [box.min.x, box.max.x])
-          for (const y of [box.min.y, box.max.y])
-            for (const z of [box.min.z, box.max.z])
-              samples.push(new THREE.Vector3(x, y, z).applyMatrix4(matrix));
-      }
-    });
-    if (fleet?.motion?.patrol)
-      for (let distance = 0; distance < fleet.route.length; distance += 55) {
-        const pose = fleet.route.pose(distance);
-        for (const x of [-10, 10])
-          for (const z of [-38, 38])
-            for (const y of [0, 20])
-              samples.push(
-                new THREE.Vector3(...vesselPointToWorld(pose, [x, y, z])),
-              );
-      }
-    if (!samples.length)
-      for (const x of [bounds.minX, bounds.maxX])
-        for (const z of [bounds.minZ, bounds.maxZ])
-          samples.push(new THREE.Vector3(x, 0, z));
+    const corner = new THREE.Vector3(), samples = harborFitSamples(scene, fleet, bounds, worldOffset);
     for (let iteration = 0; iteration < 8; iteration++) {
       camera.position.copy(center).addScaledVector(direction, distance);
       camera.lookAt(center);
@@ -1714,14 +1675,56 @@ function ViewController({
     controls.current?.target.copy(center);
     controls.current?.update();
     invalidate();
-  }, [camera, size.width, size.height, bounds.maxZ]);
+  }, [camera, size.width, size.height, bounds.maxZ, worldOffset[0], worldOffset[1]]);
   const fittedData = useRef(false);
   useEffect(() => {
-    fittedData.current = false;
-    fit();
-  }, [sourceKey]);
+    const from = camera.position.clone(), fromTarget = controls.current?.target.clone();
+    if (activeHarborId && viewOwner.current?.harborId === activeHarborId && controls.current) {
+      const dx = worldOffset[0] - viewOwner.current.offset[0], dz = worldOffset[1] - viewOwner.current.offset[1];
+      if (dx || dz) { camera.position.x += dx; camera.position.z += dz; controls.current.target.x += dx; controls.current.target.z += dz; transition.current = null; controls.current.update(); }
+      fittedData.current = true;
+      viewOwner.current = { harborId: activeHarborId, sourceKey, offset: [...worldOffset] };
+      invalidate();
+      return;
+    }
+    const restored = restoreHarborCamera(harborView?.camera, activeHarborId, worldOffset);
+    fittedData.current = Boolean(restored);
+    if (restored) {
+      camera.position.fromArray(restored.position);
+      controls.current?.target.fromArray(restored.target);
+      camera.far = Math.max(2500, camera.position.distanceTo(controls.current?.target || new THREE.Vector3()) * 5);
+      camera.updateProjectionMatrix();
+      controls.current?.update();
+    } else fit();
+    if (activeHarborId && lastHarbor.current && lastHarbor.current !== activeHarborId && !motion?.reduced && !motion?.paused && fromTarget) {
+      transition.current = { from, fromTarget, to: camera.position.clone(), toTarget: controls.current.target.clone(), elapsed: 0 };
+      camera.position.copy(from); controls.current.target.copy(fromTarget); controls.current.update();
+    }
+    lastHarbor.current = activeHarborId;
+    viewOwner.current = { harborId: activeHarborId, sourceKey, offset: [...worldOffset] };
+    invalidate();
+  }, [sourceKey, worldOffset[0], worldOffset[1]]);
+  useLayoutEffect(() => {
+    if (!viewBridge) return;
+    const bridge = {
+      harborId: activeHarborId,
+      capture: () => controls.current && viewOwner.current?.sourceKey === sourceKey && viewOwner.current?.harborId === activeHarborId ? captureHarborCamera(camera.position.toArray(), controls.current.target.toArray(), transition.current ? { position: transition.current.to.toArray(), target: transition.current.toTarget.toArray() } : null, activeHarborId, worldOffset) : null,
+      cancelTransition() { transition.current = null; },
+      overviewWorkspace() {
+        const positions = workspaceHarbors.map((harbor, index) => harborPosition(harbor, index));
+        if (!positions.length) return fit();
+        const minX = Math.min(...positions.map((position) => position[0])), maxX = Math.max(...positions.map((position) => position[0])), minZ = Math.min(...positions.map((position) => position[1])), maxZ = Math.max(...positions.map((position) => position[1]));
+        const center = new THREE.Vector3((minX + maxX) / 2, 0, (minZ + maxZ) / 2), distance = Math.max(maxX - minX, maxZ - minZ) * 1.5 + 700;
+        transition.current = null;
+        camera.position.copy(center).add(new THREE.Vector3(0, distance, distance * 0.7));
+        controls.current?.target.copy(center); camera.far = distance * 5; camera.updateProjectionMatrix(); controls.current?.update(); invalidate();
+      },
+    };
+    viewBridge.current = bridge;
+    return () => { if (viewBridge.current === bridge) viewBridge.current = null; };
+  }, [viewBridge, camera, controls, activeHarborId, workspaceHarbors, fit]);
   useEffect(() => {
-    fit();
+    if (!activeHarborId) fit();
   }, [size.width, size.height]);
   useEffect(() => {
     if (!fittedData.current && nodesByName.size) {
@@ -1743,7 +1746,7 @@ function ViewController({
         resourcePosition(selected, nodesByName, slots));
     if (!p) return;
     lastFocus.current = focusRequest;
-    const center = new THREE.Vector3(...p);
+    const center = new THREE.Vector3(p[0] + worldOffset[0], p[1], p[2] + worldOffset[1]);
     camera.position.copy(center).add(new THREE.Vector3(55, 60, 75));
     controls.current?.target.copy(center);
     controls.current?.update();
@@ -1785,6 +1788,17 @@ function ViewController({
     lastFollow = useRef(null);
   useFrame((_, delta) => {
     const keys = panKeys.current;
+    if (keys.size) transition.current = null;
+    if (transition.current && !keys.size) {
+      const value = transition.current;
+      value.elapsed += Math.min(delta, 0.1);
+      const t = Math.min(1, value.elapsed / 0.45), ease = t * t * (3 - 2 * t);
+      camera.position.lerpVectors(value.from, value.to, ease);
+      controls.current?.target.lerpVectors(value.fromTarget, value.toTarget, ease);
+      controls.current?.update(); invalidate();
+      if (t === 1) transition.current = null;
+      return;
+    }
     if (
       keys.size &&
       gl.domElement.ownerDocument.activeElement === gl.domElement &&
@@ -1822,11 +1836,11 @@ function ViewController({
       lastFollow.current = uid;
       followOffset.current
         .copy(camera.position)
-        .sub(new THREE.Vector3(...pose.position));
+        .sub(new THREE.Vector3(pose.position[0] + worldOffset[0], pose.position[1], pose.position[2] + worldOffset[1]));
       if (followOffset.current.length() > 190)
         followOffset.current.set(55, 60, 75);
     }
-    const target = new THREE.Vector3(...pose.position);
+    const target = new THREE.Vector3(pose.position[0] + worldOffset[0], pose.position[1], pose.position[2] + worldOffset[1]);
     const desired = target.clone().add(followOffset.current);
     if (
       camera.position.distanceToSquared(desired) > 1e-8 ||
@@ -1873,6 +1887,14 @@ function SceneWorld({
   onFollowEnd,
   onPickStart,
   onShipMotionChange,
+  workspaceHarbors = [],
+  activeHarborId,
+  workspaceRelations = [],
+  onHarborSelect,
+  onHarborRelations,
+  harborView,
+  viewBridge,
+  harborEndpoints,
 }) {
   const { invalidate, gl, scene } = useThree();
   const controls = useRef(),
@@ -1881,14 +1903,21 @@ function SceneWorld({
     lastSource = useRef(sourceKey),
     fleet = useRef(new FleetSimulator()),
     clock = useRef(0),
-    waterState = useRef(createWaterState(0));
+    waterState = useRef(createWaterState(0)), visualViews = useRef(new Map());
+  const activeHarbor = workspaceHarbors.find((harbor) => harbor.id === activeHarborId);
+  const worldOffset = useMemo(() => activeHarbor ? harborPosition(activeHarbor, workspaceHarbors.indexOf(activeHarbor)) : [0, 0], [activeHarbor?.id, activeHarbor?.position?.[0], activeHarbor?.position?.[1]]);
+  const lightTarget = useMemo(() => { const object = new THREE.Object3D(); object.position.set(worldOffset[0], 0, worldOffset[1]); return object; }, [worldOffset]);
   if (lastSource.current !== sourceKey) {
+    if (activeHarborId) {
+      visualViews.current.set(lastSource.current, { slots: slots.current, fleet: fleet.current });
+      while (visualViews.current.size > 64) visualViews.current.delete(visualViews.current.keys().next().value);
+    }
     lastSource.current = sourceKey;
-    slots.current = new HarborSlots();
+    const saved = activeHarborId && visualViews.current.get(sourceKey);
+    slots.current = saved?.slots || new HarborSlots();
     coordinator.current.reset();
-    fleet.current.reset();
-    clock.current = 0;
-    waterState.current = createWaterState(0);
+    fleet.current = saved?.fleet || new FleetSimulator();
+    if (!activeHarborId) { clock.current = 0; waterState.current = createWaterState(0); }
   }
   const [visible, setVisible] = useState(!document.hidden);
   const maps = useMemo(() => makeSurfaceMaps(), []);
@@ -2293,7 +2322,8 @@ function SceneWorld({
       <hemisphereLight args={["#f7f3e5", "#78949a", 1.65]} />
       <ambientLight intensity={0.45} />
       <directionalLight
-        position={[-110, 170, 90]}
+        position={[worldOffset[0] - 110, 170, worldOffset[1] + 90]}
+        target={lightTarget}
         intensity={2.4}
         color="#fff0ce"
         castShadow={quality !== "low"}
@@ -2308,6 +2338,9 @@ function SceneWorld({
         shadow-bias={-0.00012}
         shadow-radius={3}
       />
+      <primitive object={lightTarget} />
+      <WorkspaceHarbors harbors={workspaceHarbors} activeId={activeHarborId} materials={materials} onSelect={onHarborSelect} canSelect={canSelect} onPickStart={onPickStart} relations={workspaceRelations} showRelations={layers.network} onRelations={onHarborRelations} />
+      <group name="workspace:active-harbor" position={[worldOffset[0], 0, worldOffset[1]]}>
       <FleetFrame
         fleet={fleet.current}
         clock={clock}
@@ -2324,6 +2357,7 @@ function SceneWorld({
         onShipMotionChange={onShipMotionChange}
         lifecycle={lifecycle}
         slots={slots}
+        worldOffset={worldOffset}
       />
       <Ocean
         motion={motion}
@@ -2567,6 +2601,9 @@ function SceneWorld({
           canSelect={canSelect}
           onPickStart={onPickStart}
           onFlowSelect={onFlowSelect}
+          harborEndpoints={harborEndpoints}
+          activeHarborId={activeHarborId}
+          worldOffset={worldOffset}
         />
       )}
       <DockShuttles
@@ -2575,16 +2612,18 @@ function SceneWorld({
         reducedMotion={reducedMotion}
         clock={clock}
       />
+      </group>
       <OrbitControls
         ref={controls}
         makeDefault
         onStart={() => {
+          viewBridge?.current?.cancelTransition?.();
           if (shipControls?.followUID) onFollowEnd?.();
         }}
         enableDamping
         dampingFactor={0.13}
         minDistance={32}
-        maxDistance={Math.max(650, bounds.maxZ * 2.5)}
+        maxDistance={Math.max(650, bounds.maxZ * 2.5, workspaceHarbors.length > 1 ? 15000 : 0)}
         minPolarAngle={Math.PI / 10}
         maxPolarAngle={Math.PI / 2.4}
         enablePan
@@ -2615,6 +2654,11 @@ function SceneWorld({
         fleet={fleet.current}
         motion={motion}
         onFollowEnd={onFollowEnd}
+        worldOffset={worldOffset}
+        harborView={harborView}
+        viewBridge={viewBridge}
+        activeHarborId={activeHarborId}
+        workspaceHarbors={workspaceHarbors}
       />
     </>
   );
@@ -2682,6 +2726,14 @@ function HarborScene({
   shipControls = {},
   onFollowEnd,
   onShipMotionChange,
+  workspaceHarbors,
+  activeHarborId,
+  workspaceRelations,
+  onHarborSelect,
+  onHarborRelations,
+  harborView,
+  viewBridge,
+  harborEndpoints,
 }) {
   const [lost, setLost] = useState(false),
     [fallback, setFallback] = useState(false),
@@ -2942,6 +2994,14 @@ function HarborScene({
               onFollowEnd={onFollowEnd}
               onPickStart={onPickStart}
               onShipMotionChange={onShipMotionChange}
+              workspaceHarbors={workspaceHarbors}
+              activeHarborId={activeHarborId}
+              workspaceRelations={workspaceRelations}
+              onHarborSelect={onHarborSelect}
+              onHarborRelations={onHarborRelations}
+              harborView={harborView}
+              viewBridge={viewBridge}
+              harborEndpoints={harborEndpoints}
             />
           </Suspense>
         </Canvas>

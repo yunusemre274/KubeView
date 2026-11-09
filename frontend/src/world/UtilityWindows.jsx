@@ -34,7 +34,9 @@ export function ConnectionWindow({
   namespace,
   onNamespace,
   onClose,
+  onEditHarbor,
 }) {
+  const harbor = connection.workspace?.activeHarbor;
   const {
     contexts,
     context,
@@ -73,7 +75,7 @@ export function ConnectionWindow({
   return (
     <Window
       title="Bağlantı ve kapsam"
-      subtitle="Gerçek context ve namespace seçimi"
+      subtitle={harbor ? `${harbor.name} · ${connection.context} · ${harbor.namespaces.join(", ")}` : "Gerçek context ve namespace seçimi"}
       icon={Radio}
       onClose={onClose}
       className="utility-window connection-window"
@@ -131,6 +133,7 @@ export function ConnectionWindow({
             <select
               aria-label="Cluster / context"
               value={mode === "demo" ? "__demo__" : context}
+              disabled={Boolean(harbor)}
               onChange={(e) => selectSource(e.target.value)}
             >
               {!context && mode !== "demo" && (
@@ -144,6 +147,7 @@ export function ConnectionWindow({
               <option value="__demo__">Demo — örnek veri</option>
             </select>
           </label>
+          {harbor && <><p className="muted">Bağlantı ve yönetim onayı bu limanın kayıtlı namespace/label kapsamına bağlıdır. Aşağıdaki namespace seçimi bu kapsam içindeki görünüm filtresidir. Context değiştirmek liman yapılandırmasını açıkça düzenler; yönetim izni yeni kapsama taşınmaz.</p><button className="button" onClick={onEditHarbor}>Liman bağlantısını/kapsamını düzenle</button></>}
           <label className="form-field">
             Namespace kapsamı
             <select
@@ -151,8 +155,8 @@ export function ConnectionWindow({
               value={namespace}
               onChange={(e) => onNamespace(e.target.value)}
             >
-              <option value="all">Tüm namespace’ler</option>
-              {namespaces.map((ns) => (
+              <option value="all">{harbor ? "Bu limanın tüm namespace'leri" : "Tüm namespace’ler"}</option>
+              {namespaces.filter((ns) => !harbor || harbor.namespaces.includes("*") || harbor.namespaces.includes(ns)).map((ns) => (
                 <option key={ns}>{ns}</option>
               ))}
             </select>
@@ -179,6 +183,10 @@ export function ConnectionWindow({
                     value.length > 63
                   ) {
                     setError("Geçerli bir namespace adı yazın.");
+                    return;
+                  }
+                  if (harbor && !harbor.namespaces.includes("*") && !harbor.namespaces.includes(value)) {
+                    setError("Bu namespace limanın kayıtlı kapsamında değil. Liman bağlantısını/kapsamını düzenleyin.");
                     return;
                   }
                   setError("");
@@ -680,7 +688,7 @@ export function FinderWindow({
   onFacility,
   onClose,
 }) {
-  const [search, setSearch] = useState(""),
+  const [search, setSearch] = useState(() => connection.workspace?.getView(connection.workspace.activeId)?.search || connection.workspace?.view?.search || ""),
     [kind, setKind] = useState("all"),
     [limit, setLimit] = useState(40),
     [error, setError] = useState("");
@@ -730,6 +738,7 @@ export function FinderWindow({
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
+            if (connection.workspace?.activeId) connection.workspace.saveView(connection.workspace.activeId, { ...connection.workspace.getView(connection.workspace.activeId), search: e.target.value });
             setLimit(40);
           }}
         />

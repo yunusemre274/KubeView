@@ -65,6 +65,9 @@ func (g *podLogGuard) check() error {
 	if err == nil && string(pod.UID) != g.expectedUID {
 		err = apierrors.NewConflict(schema.GroupResource{Resource: "pods"}, g.name, fmt.Errorf("Pod UID değişti; aynı adlı yeni Pod'un logları gösterilmedi"))
 	}
+	if err == nil && workspaceScopeFrom(g.ctx) != nil {
+		_, err = g.client.Dynamic.Resource(schemaGVR("", "v1", "pods")).Namespace(g.namespace).Get(g.ctx, g.name, metav1.GetOptions{})
+	}
 	if err != nil {
 		g.fail(err)
 	}
@@ -129,6 +132,11 @@ func startPodLogGuard(ctx context.Context, c *Clients, pod *corev1.Pod) (*podLog
 				if string(observed.UID) != g.expectedUID || event.Type == watch.Deleted {
 					g.fail(apierrors.NewConflict(schema.GroupResource{Resource: "pods"}, pod.Name, fmt.Errorf("Pod silindi veya UID değişti; eski log oturumu iptal edildi")))
 					return
+				}
+				if workspaceScopeFrom(ctx) != nil {
+					if err := g.check(); err != nil {
+						return
+					}
 				}
 			}
 		}

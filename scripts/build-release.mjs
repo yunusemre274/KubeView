@@ -1,6 +1,6 @@
 // Build installable, same-origin single binaries from the current source.
 import { execFileSync } from 'node:child_process';
-import { readFileSync, mkdirSync, copyFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, mkdirSync, copyFileSync, writeFileSync, existsSync, cpSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -29,7 +29,7 @@ for(const target of targets) {
   const binary=path.join(folder,GOOS==='windows'?'kubeview.exe':'kubeview');
   run('go',['build','-trimpath','-ldflags',`-s -w -X main.version=${version} -X main.commit=${commit}${dirty?'-dirty':''}`,'-o',binary,'.'],
     {cwd:path.join(root,'backend'),env:{...process.env,CGO_ENABLED:'0',GOOS,GOARCH}});
-  for(const file of ['LICENSE','README.md','docs/SECURITY.md','docs/RELEASE_NOTES_v1.1.0.md','docs/V11_ACCEPTANCE_REPORT.md',
+  for(const file of ['LICENSE','README.md','MANUAL_TEST_GUIDE.md','docs/SECURITY.md','docs/RELEASE_NOTES_v1.1.0.md','docs/V11_ACCEPTANCE_REPORT.md','docs/WORKSPACE_ACCEPTANCE.md',
     'deploy/rbac-namespace-readonly.yaml','deploy/rbac-namespace-write.yaml','deploy/rbac-namespace-observability.yaml','deploy/rbac-node-observability.yaml']) {
     if(!existsSync(path.join(root,file))) continue;
     const destination=path.join(folder,file); mkdirSync(path.dirname(destination),{recursive:true});
@@ -45,6 +45,19 @@ for(const target of targets) {
       writeFileSync(destination,text);
     } else copyFileSync(path.join(root,file),destination);
   }
+  // The manual candidate is runnable from an extracted bundle, without the
+  // repository, a Go/Node toolchain, .git or historical developer artifacts.
+  // Private lab state is created at runtime outside this public bundle.
+  for (const file of ['scripts/manual-lab.sh','scripts/manual_lab.py']) {
+    const source=path.join(root,file);
+    if (!existsSync(source)) continue;
+    mkdirSync(path.join(folder,path.dirname(file)),{recursive:true});
+    copyFileSync(source,path.join(folder,file));
+  }
+  if (existsSync(path.join(root,'manual-lab'))) cpSync(path.join(root,'manual-lab'),path.join(folder,'manual-lab'),{
+    recursive:true,
+    filter:source=>!source.split(path.sep).some(part=>part==='__pycache__'||part==='.pytest_cache')&&!source.endsWith('.pyc'),
+  });
   const archive=`${name}.tar.gz`;
   run('tar',['-czf',path.join(out,archive),'-C',out,name]);
   sums.push(`${createHash('sha256').update(readFileSync(path.join(out,archive))).digest('hex')}  ${archive}`);

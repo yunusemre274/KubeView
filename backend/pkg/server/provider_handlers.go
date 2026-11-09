@@ -26,6 +26,10 @@ func (s *Server) providerServices() *providerServices {
 		return s.providers
 	}
 	p := &providerServices{}
+	if s.replayEnabled() {
+		s.providers = p
+		return p
+	}
 	cfg := provision.FromEnv()
 	if cfg.Enabled {
 		if _, e := exec.LookPath(cfg.Binary); e != nil {

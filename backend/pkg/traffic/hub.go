@@ -3,6 +3,9 @@ package traffic
 import (
 	"bufio"
 	"context"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"os"
 	"os/exec"
@@ -14,8 +17,10 @@ import (
 	"sync/atomic"
 	"time"
 
+	corev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/kubernetes"
 )
@@ -43,6 +48,9 @@ type collection struct {
 	hub                                 *Hub
 	key, namespace, contextName         string
 	allowNodes                          bool
+	namespaceScopes                     []NamespaceScope
+	strictEndpoints                     bool
+	allowedEndpoints                    map[string]bool
 	ctx                                 context.Context
 	cancel                              context.CancelFunc
 	done                                chan struct{}
@@ -119,6 +127,59 @@ func (h *Hub) Snapshot(ctx context.Context, client kubernetes.Interface, context
 	if namespace == "all" || namespace == "*" {
 		namespace = ""
 	}
+	return h.snapshotScopes(ctx, client, contextName, namespace, nil, allowNodes, leaseIDs...)
+}
+
+// NamespaceScope is explicit metadata authorization, not a Hubble privilege.
+// Selectors are ORed within a namespace; both flow endpoints must be covered.
+// Empty Namespace is allowed only when the caller explicitly authorized all.
+type NamespaceScope struct {
+	Namespace string `json:"namespace"`
+	Selector  string `json:"selector"`
+}
+
+func normalizeNamespaceScopes(scopes []NamespaceScope) ([]NamespaceScope, string, error) {
+	if len(scopes) == 0 || len(scopes) > 128 {
+		return nil, "", apierrors.NewBadRequest("Explicit traffic namespace scopes required (max128)")
+	}
+	out := []NamespaceScope{}
+	seen := map[string]bool{}
+	for _, scope := range scopes {
+		if scope.Namespace == "*" {
+			scope.Namespace = ""
+		}
+		if scope.Namespace != "" && (len(scope.Namespace) > 63 || !namespacePattern.MatchString(scope.Namespace)) {
+			return nil, "", apierrors.NewBadRequest("Invalid traffic namespace")
+		}
+		parsed, err := labels.Parse(scope.Selector)
+		if err != nil {
+			return nil, "", apierrors.NewBadRequest("Invalid traffic selector")
+		}
+		scope.Selector = parsed.String()
+		key := scope.Namespace + "\x00" + scope.Selector
+		if !seen[key] {
+			out = append(out, scope)
+			seen[key] = true
+		}
+	}
+	sort.Slice(out, func(i, j int) bool {
+		if out[i].Namespace == out[j].Namespace {
+			return out[i].Selector < out[j].Selector
+		}
+		return out[i].Namespace < out[j].Namespace
+	})
+	b, _ := json.Marshal(out)
+	sum := sha256.Sum256(b)
+	return out, "scopes:" + hex.EncodeToString(sum[:16]), nil
+}
+func (h *Hub) SnapshotScopes(ctx context.Context, client kubernetes.Interface, contextName string, scopes []NamespaceScope, allowNodes bool, leaseIDs ...string) (Snapshot, error) {
+	normalized, key, err := normalizeNamespaceScopes(scopes)
+	if err != nil {
+		return h.base(contextName, "", "forbidden"), err
+	}
+	return h.snapshotScopes(ctx, client, contextName, key, normalized, allowNodes, leaseIDs...)
+}
+func (h *Hub) snapshotScopes(ctx context.Context, client kubernetes.Interface, contextName, namespace string, scopes []NamespaceScope, allowNodes bool, leaseIDs ...string) (Snapshot, error) {
 	if !h.cfg.Enabled {
 		return h.base(contextName, namespace, "disabled"), nil
 	}
@@ -127,7 +188,7 @@ func (h *Hub) Snapshot(ctx context.Context, client kubernetes.Interface, context
 	if contextName != h.cfg.Context || identity == "" || client == nil {
 		return base, apierrors.NewForbidden(schema.GroupResource{Resource: "traffic"}, "", fmt.Errorf("Trafik context/kimlik eşlemesi doğrulanamadı"))
 	}
-	if namespace != "" && (len(namespace) > 63 || !namespacePattern.MatchString(namespace)) {
+	if scopes == nil && namespace != "" && (len(namespace) > 63 || !namespacePattern.MatchString(namespace)) {
 		return base, apierrors.NewBadRequest("Geçerli namespace gerekli")
 	}
 	lease, err := normalizeLease(leaseIDs)
@@ -149,7 +210,7 @@ func (h *Hub) Snapshot(ctx context.Context, client kubernetes.Interface, context
 			return base, apierrors.NewServiceUnavailable("Trafik kapsamı sınırına ulaşıldı")
 		}
 		collectorCtx, cancel := context.WithCancel(context.Background())
-		scope = &collection{hub: h, key: key, namespace: namespace, contextName: contextName, allowNodes: allowNodes, ctx: collectorCtx, cancel: cancel, done: make(chan struct{}), leases: map[string]time.Time{}, history: newHistory(), status: "connecting", seen: map[string]time.Time{}}
+		scope = &collection{hub: h, key: key, namespace: namespace, contextName: contextName, allowNodes: allowNodes, namespaceScopes: scopes, strictEndpoints: scopes != nil, ctx: collectorCtx, cancel: cancel, done: make(chan struct{}), leases: map[string]time.Time{}, history: newHistory(), status: "connecting", seen: map[string]time.Time{}}
 		h.scopes[key] = scope
 	}
 	scope.mu.Lock()
@@ -197,7 +258,21 @@ func (s *collection) refreshPods(ctx context.Context, client kubernetes.Interfac
 	}
 	requestCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
-	pods, err := client.CoreV1().Pods(s.namespace).List(requestCtx, metav1.ListOptions{})
+	namespaces := s.namespaces()
+	pods := []corev1.Pod{}
+	var err error
+	for _, namespace := range namespaces {
+		list, e := client.CoreV1().Pods(namespace).List(requestCtx, metav1.ListOptions{})
+		if e != nil {
+			err = e
+			break
+		}
+		for _, pod := range list.Items {
+			if s.podAllowed(&pod) {
+				pods = append(pods, pod)
+			}
+		}
+	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.lastRefresh = time.Now()
@@ -206,9 +281,76 @@ func (s *collection) refreshPods(ctx context.Context, client kubernetes.Interfac
 		s.metadataError = "Kubernetes Pod kimlik gözlemleri güncellenemiyor"
 		return err
 	}
-	s.history.observe(pods.Items, time.Now().UTC())
+	s.history.observe(pods, time.Now().UTC())
+	if s.strictEndpoints {
+		s.allowedEndpoints = map[string]bool{}
+		for _, pod := range pods {
+			ips := pod.Status.PodIPs
+			if len(ips) == 0 && pod.Status.PodIP != "" {
+				ips = []corev1.PodIP{{IP: pod.Status.PodIP}}
+			}
+			for _, ip := range ips {
+				if len(s.allowedEndpoints) >= maxHistoryBindings {
+					break
+				}
+				s.allowedEndpoints[pod.Namespace+"\x00"+pod.Name+"\x00"+ip.IP] = true
+			}
+		}
+	}
 	s.metadataError = ""
 	return nil
+}
+func (s *collection) namespaces() []string {
+	if s.namespaceScopes == nil {
+		return []string{s.namespace}
+	}
+	out := []string{}
+	seen := map[string]bool{}
+	for _, scope := range s.namespaceScopes {
+		if scope.Namespace == "" {
+			return []string{""}
+		}
+		if !seen[scope.Namespace] {
+			out = append(out, scope.Namespace)
+			seen[scope.Namespace] = true
+		}
+	}
+	return out
+}
+func (s *collection) podAllowed(pod *corev1.Pod) bool {
+	if s.namespaceScopes == nil {
+		return true
+	}
+	for _, scope := range s.namespaceScopes {
+		if scope.Namespace != "" && scope.Namespace != pod.Namespace {
+			continue
+		}
+		selector, _ := labels.Parse(scope.Selector)
+		if selector.Matches(labels.Set(pod.Labels)) {
+			return true
+		}
+	}
+	return false
+}
+func (s *collection) endpointAllowed(endpoint observedEndpoint) bool {
+	if !s.strictEndpoints {
+		return true
+	}
+	return s.allowedEndpoints[endpoint.namespace+"\x00"+endpoint.name+"\x00"+endpoint.ip]
+}
+func (s *collection) flowAllowed(row observedFlow) bool {
+	if s.namespaceScopes == nil {
+		return row.permitted(s.namespace)
+	}
+	allowed := func(ns string) bool {
+		for _, scope := range s.namespaceScopes {
+			if scope.Namespace == "" || scope.Namespace == ns {
+				return true
+			}
+		}
+		return false
+	}
+	return allowed(row.source.namespace) && allowed(row.destination.namespace)
 }
 
 func (h *Hub) removeScope(key string, scope *collection) {
@@ -228,6 +370,13 @@ func (h *Hub) ReleaseIdentity(ctx context.Context, contextName, namespace string
 		return
 	}
 	h.release(contextName, namespace, identity, leaseIDs...)
+}
+func (h *Hub) ReleaseScopesIdentity(ctx context.Context, contextName string, scopes []NamespaceScope, leaseIDs ...string) {
+	_, key, err := normalizeNamespaceScopes(scopes)
+	if err != nil {
+		return
+	}
+	h.ReleaseIdentity(ctx, contextName, key, leaseIDs...)
 }
 
 // Release is an operator-side cleanup helper; HTTP handlers use ReleaseIdentity.
@@ -393,8 +542,11 @@ func (s *collection) runStream() {
 	streamCtx, stopStream := context.WithCancel(s.ctx)
 	defer stopStream()
 	args := append(s.hub.serverArguments(), "observe", "--follow", "--since", time.Now().UTC().Format(time.RFC3339Nano), "--output", "jsonpb", "--field-mask", flowFieldMask)
-	if s.namespace != "" {
-		args = append(args, "--from-namespace", s.namespace, "--to-namespace", s.namespace)
+	namespaces := s.namespaces()
+	if len(namespaces) > 0 && namespaces[0] != "" {
+		for _, namespace := range namespaces {
+			args = append(args, "--from-namespace", namespace, "--to-namespace", namespace)
+		}
 	} else {
 		args = append(args, "--all-namespaces")
 	}
@@ -512,7 +664,7 @@ func (s *collection) setFailure(message string) {
 	s.errorText = message
 }
 func (s *collection) ingest(row observedFlow, now time.Time) {
-	if !row.permitted(s.namespace) || (row.source.cluster != "" && row.source.cluster != s.hub.cfg.ClusterName) || (row.destination.cluster != "" && row.destination.cluster != s.hub.cfg.ClusterName) || row.at.Before(now.Add(-Window)) || row.at.After(now.Add(time.Second)) {
+	if !s.flowAllowed(row) || !s.endpointAllowed(row.source) || !s.endpointAllowed(row.destination) || (row.source.cluster != "" && row.source.cluster != s.hub.cfg.ClusterName) || (row.destination.cluster != "" && row.destination.cluster != s.hub.cfg.ClusterName) || row.at.Before(now.Add(-Window)) || row.at.After(now.Add(time.Second)) {
 		s.filtered++
 		return
 	}
@@ -544,6 +696,10 @@ func (s *collection) snapshot(now time.Time, preferredUIDs ...string) Snapshot {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	result := s.hub.base(s.contextName, s.namespace, s.status)
+	if s.namespaceScopes != nil {
+		result.Namespace = ""
+		result.NamespaceScopes = append([]NamespaceScope(nil), s.namespaceScopes...)
+	}
 	result.UpdatedAt = s.lastUpdate
 	result.Dropped = s.dropped + s.queueDrops.Load() + s.lost
 	result.FilteredEvents = s.filtered
@@ -561,6 +717,9 @@ func (s *collection) snapshot(now time.Time, preferredUIDs ...string) Snapshot {
 	for i := 0; i < s.count; i++ {
 		row := s.events[i]
 		if row.at.Before(cutoff) || row.at.After(now) {
+			continue
+		}
+		if !s.endpointAllowed(row.source) || !s.endpointAllowed(row.destination) {
 			continue
 		}
 		source, destination := s.history.endpoint(row.source, row.at, s.allowNodes), s.history.endpoint(row.destination, row.at, s.allowNodes)

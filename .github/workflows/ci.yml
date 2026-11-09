@@ -39,7 +39,7 @@ jobs:
           cp dist/kubeview_*_linux-amd64/kubeview "$work/kubeview"
           cd "$work"
           ./kubeview --version
-          KUBECONFIG="$work/absent-kubeconfig" ./kubeview --port 18081 > startup.txt 2>&1 &
+          KUBECONFIG="$work/absent-kubeconfig" ./kubeview --data-dir "$work/data" --port 18081 > startup.txt 2>&1 &
           app_pid=$!
           trap 'kill "$app_pid" 2>/dev/null || true' EXIT
           for attempt in $(seq 1 30); do curl -fsS http://127.0.0.1:18081/healthz && break || sleep 1; done

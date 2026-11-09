@@ -10,6 +10,7 @@ import {
 import { Lettering } from "./assets.jsx";
 import { OBJECT_DESCRIPTIONS } from "../constants/descriptions.js";
 import { captionPosition } from "./captions.js";
+import { WORKSPACE_DIMENSIONS as W } from "../constants/dimensions.js";
 
 const MAX_FLOWS = 96,
   SEGMENTS = 12;
@@ -41,6 +42,9 @@ export default function MeasuredTraffic({
   onPickStart,
   onFlowSelect,
   selectedUID,
+  harborEndpoints,
+  activeHarborId,
+  worldOffset = [0, 0],
 }) {
   const { invalidate, scene } = useThree(),
     line = useRef(),
@@ -52,10 +56,12 @@ export default function MeasuredTraffic({
     hovered = useRef(null);
   const byUID = useMemo(
     () =>
-      new Map(
+      new Map([
+        ...[...(harborEndpoints?.values() || [])].map((entry) => [uidOf(entry.resource), entry.resource]),
+        ...
         resources.filter((r) => r.kind === "Pod").map((r) => [uidOf(r), r]),
-      ),
-    [resources],
+      ]),
+    [resources, harborEndpoints],
   );
   const flows = useMemo(
     () =>
@@ -63,12 +69,14 @@ export default function MeasuredTraffic({
         flow,
         source: flowEndpointResource(flow.source, byUID),
         destination: flowEndpointResource(flow.destination, byUID),
+        sourceHarbor: harborEndpoints?.get(flow.source?.uid),
+        destinationHarbor: harborEndpoints?.get(flow.destination?.uid),
         at: Date.parse(flow.lastObserved),
         expires:
           Date.parse(flow.lastObserved) +
           Math.max(1, data.windowSeconds || 10) * 1000,
       })),
-    [data, byUID, selectedUID],
+    [data, byUID, selectedUID, harborEndpoints],
   );
   const objects = useMemo(() => {
     const geometry = new THREE.BufferGeometry();
@@ -144,22 +152,24 @@ export default function MeasuredTraffic({
       }
       if (
         visibleNamespace &&
-        (record.source.metadata.namespace !== visibleNamespace ||
-          record.destination.metadata.namespace !== visibleNamespace)
+        ((!record.sourceHarbor || record.sourceHarbor.harborId === activeHarborId) && record.source.metadata.namespace !== visibleNamespace ||
+          (!record.destinationHarbor || record.destinationHarbor.harborId === activeHarborId) && record.destination.metadata.namespace !== visibleNamespace)
       ) {
         outsideNamespace++;
         continue;
       }
       if (
         slots.visiblePodUIDs &&
-        (!slots.visiblePodUIDs.has(uidOf(record.source)) ||
-          !slots.visiblePodUIDs.has(uidOf(record.destination)))
+        ((!record.sourceHarbor || record.sourceHarbor.harborId === activeHarborId) && !slots.visiblePodUIDs.has(uidOf(record.source)) ||
+          (!record.destinationHarbor || record.destinationHarbor.harborId === activeHarborId) && !slots.visiblePodUIDs.has(uidOf(record.destination)))
       ) {
         otherRegion++;
         continue;
       }
-      const a = resourcePosition(record.source, nodesByName, slots),
-        b = resourcePosition(record.destination, nodesByName, slots);
+      const anchor = (resource, harbor) => harbor && harbor.harborId !== activeHarborId
+        ? [harbor.position[0] - worldOffset[0] + W.ENDPOINT_BOUNDARY_X, W.ENDPOINT_HEIGHT, harbor.position[1] - worldOffset[1]]
+        : resourcePosition(resource, nodesByName, slots);
+      const a = anchor(record.source, record.sourceHarbor), b = anchor(record.destination, record.destinationHarbor);
       if (!a || !b) {
         otherRegion++;
         continue;

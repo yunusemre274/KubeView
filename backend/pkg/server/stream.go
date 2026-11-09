@@ -35,7 +35,35 @@ func (s *Server) metrics(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	nodes, nodeErr := c.Metrics.MetricsV1beta1().NodeMetricses().List(ctx, metav1.ListOptions{})
-	pods, podErr := c.Metrics.MetricsV1beta1().PodMetricses(ns).List(ctx, metav1.ListOptions{})
+	namespaces := []string{ns}
+	scope := workspaceScopeFrom(ctx)
+	if scope != nil && ns == "" && scope.harbor.Namespaces[0] != "*" {
+		namespaces = scope.harbor.Namespaces
+	}
+	pods, podErr := c.Metrics.MetricsV1beta1().PodMetricses(namespaces[0]).List(ctx, metav1.ListOptions{})
+	if podErr == nil {
+		for _, namespace := range namespaces[1:] {
+			list, e := c.Metrics.MetricsV1beta1().PodMetricses(namespace).List(ctx, metav1.ListOptions{})
+			if e != nil {
+				podErr = e
+				break
+			}
+			pods.Items = append(pods.Items, list.Items...)
+		}
+	}
+	if podErr == nil && scope != nil {
+		items := pods.Items[:0]
+		for _, metric := range pods.Items {
+			if !scope.allowsNamespace(metric.Namespace) {
+				continue
+			}
+			obj, e := baseWorkspaceClient(c).Dynamic.Resource(schemaGVR("", "v1", "pods")).Namespace(metric.Namespace).Get(ctx, metric.Name, metav1.GetOptions{})
+			if e == nil && s.scopeContains(ctx, baseWorkspaceClient(c), scope, obj, 0) {
+				items = append(items, metric)
+			}
+		}
+		pods.Items = items
+	}
 	result := map[string]interface{}{"available": nodeErr == nil || podErr == nil, "source": "metrics.k8s.io", "timestamp": time.Now().UTC().Format(time.RFC3339), "nodes": []interface{}{}, "pods": []interface{}{}}
 	errors := map[string]string{}
 	if nodeErr == nil {
@@ -218,21 +246,29 @@ func (s *Server) logs(w http.ResponseWriter, r *http.Request) {
 var watchKinds = map[string]bool{"Node": true, "Namespace": true, "Pod": true, "Deployment": true, "ReplicaSet": true, "StatefulSet": true, "DaemonSet": true, "Job": true, "CronJob": true, "Service": true, "EndpointSlice": true, "Ingress": true, "NetworkPolicy": true, "PersistentVolumeClaim": true, "PersistentVolume": true, "StorageClass": true, "ConfigMap": true, "Secret": true, "ServiceAccount": true, "Role": true, "ClusterRole": true, "RoleBinding": true, "ClusterRoleBinding": true, "HorizontalPodAutoscaler": true, "PodDisruptionBudget": true, "ResourceQuota": true, "LimitRange": true, "Event": true, "CustomResourceDefinition": true}
 
 type envelope struct {
-	Type          string                       `json:"type"`
-	Context       string                       `json:"context,omitempty"`
-	Scopes        []ResourceScope              `json:"scopes"`
-	Scope         *ResourceScope               `json:"scope,omitempty"`
-	Generation    string                       `json:"generation"`
-	Timestamp     string                       `json:"timestamp"`
-	Action        string                       `json:"action,omitempty"`
-	Object        *unstructured.Unstructured   `json:"object,omitempty"`
-	Resources     []*unstructured.Unstructured `json:"resources,omitempty"`
-	Errors        []string                     `json:"errors,omitempty"`
-	Synced        bool                         `json:"synced"`
-	Reachable     bool                         `json:"reachable"`
-	Message       string                       `json:"message,omitempty"`
-	Upstream      bool                         `json:"upstream"`
-	SnapshotReady bool                         `json:"snapshotReady"`
+	OutOfScope           []*unstructured.Unstructured `json:"outOfScope,omitempty"`
+	WorkspaceID          string                       `json:"workspaceId,omitempty"`
+	HarborID             string                       `json:"harborId,omitempty"`
+	TabID                string                       `json:"tabId,omitempty"`
+	ConnectionRef        string                       `json:"connectionRef,omitempty"`
+	AuthorizationKey     string                       `json:"authorizationKey,omitempty"`
+	CredentialGeneration string                       `json:"credentialGeneration,omitempty"`
+	SessionGeneration    string                       `json:"sessionGeneration,omitempty"`
+	Type                 string                       `json:"type"`
+	Context              string                       `json:"context,omitempty"`
+	Scopes               []ResourceScope              `json:"scopes"`
+	Scope                *ResourceScope               `json:"scope,omitempty"`
+	Generation           string                       `json:"generation"`
+	Timestamp            string                       `json:"timestamp"`
+	Action               string                       `json:"action,omitempty"`
+	Object               *unstructured.Unstructured   `json:"object,omitempty"`
+	Resources            []*unstructured.Unstructured `json:"resources,omitempty"`
+	Errors               []string                     `json:"errors,omitempty"`
+	Synced               bool                         `json:"synced"`
+	Reachable            bool                         `json:"reachable"`
+	Message              string                       `json:"message,omitempty"`
+	Upstream             bool                         `json:"upstream"`
+	SnapshotReady        bool                         `json:"snapshotReady"`
 }
 
 func hasVerb(r Resource, verb string) bool {
@@ -295,6 +331,9 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 	conn.SetReadLimit(4096)
 	ctx, cancel := context.WithCancel(r.Context())
 	defer cancel()
+	if workspaceScopeFrom(r.Context()) != nil {
+		ctx = context.WithValue(ctx, workspaceCacheOnlyKey{}, true)
+	}
 	go func() {
 		defer cancel()
 		for {
@@ -304,11 +343,21 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 	generation := uuid.NewString()
+	previousMembers := s.beginWorkspaceMembership(r, generation)
 	if s.streamProbe != nil {
 		s.streamProbe(generation, "open", envelope{}, 0, 0)
 		defer s.streamProbe(generation, "close", envelope{}, 0, 0)
 	}
 	send := func(msg envelope) error {
+		if scope := workspaceScopeFrom(r.Context()); scope != nil {
+			msg.WorkspaceID = scope.workspaceID
+			msg.HarborID = scope.harbor.ID
+			msg.TabID = scope.tabID
+			msg.ConnectionRef = scope.connection.ID
+			msg.AuthorizationKey = safeAuthorizationKey(c, scope.connection.ID)
+			msg.CredentialGeneration = strings.TrimSuffix(c.ID, ":"+scope.connection.ID)
+			msg.SessionGeneration = generation
+		}
 		msg.Context = c.Name
 		msg.Upstream = msg.Reachable
 		msg.SnapshotReady = msg.Synced
@@ -335,11 +384,14 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	bindings := watchScopeBindings(resources, ns, s.Namespace, requested)
+	workspaceScope := workspaceScopeFrom(r.Context())
+	bindings = workspaceBindings(bindings, workspaceScope)
 	factories := map[string]dynamicinformer.DynamicSharedInformerFactory{}
 	informers := []cache.SharedIndexInformer{}
 	out := make(chan envelope, 2048)
 	var gate sync.Mutex
 	ready := false
+	visibleUIDs := map[string]bool{}
 	watchFailed := false
 	watchFailure := make(chan struct{}, 1)
 	overflow := make(chan struct{}, 1)
@@ -364,7 +416,32 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		scope.Status = "synced"
 		scope.Authoritative = true
 		scope.Error = ""
-		msg := envelope{Type: "RESOURCE_EVENT", Action: action, Object: sanitize(u), Scope: &scope, Synced: true, Reachable: true}
+		if workspaceScope != nil {
+			inside := s.scopeContains(ctx, baseWorkspaceClient(c), workspaceScope, u, 0)
+			known := visibleUIDs[string(u.GetUID())]
+			if action == "DELETE" {
+				if !known && !inside {
+					return
+				}
+				delete(visibleUIDs, string(u.GetUID()))
+			} else if !inside {
+				if !known {
+					return
+				}
+				action = "OUT_OF_SCOPE"
+				delete(visibleUIDs, string(u.GetUID()))
+			} else {
+				visibleUIDs[string(u.GetUID())] = true
+			}
+		}
+		if !s.updateWorkspaceMember(r, generation, action, u, scope) {
+			select {
+			case overflow <- struct{}{}:
+			default:
+			}
+			return
+		}
+		msg := scopedResourceMessage(action, u, scope)
 		if s.streamProbe != nil {
 			s.streamProbe(generation, "queue", msg, len(out)+1, 0)
 		}
@@ -377,6 +454,59 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 			select {
 			case overflow <- struct{}{}:
 			default:
+			}
+		}
+	}
+	reconcileRelated := func() {
+		if workspaceScope == nil || workspaceScope.selector.Empty() {
+			return
+		}
+		gate.Lock()
+		defer gate.Unlock()
+		if !ready || watchFailed {
+			return
+		}
+		seen := map[string]bool{}
+		for i := range bindings {
+			binding := &bindings[i]
+			if binding.informer == nil || !binding.informer.HasSynced() {
+				continue
+			}
+			for _, object := range binding.informer.GetStore().List() {
+				u := unwrap(object)
+				if u == nil || seen[string(u.GetUID())] || !currentInformerEvent(binding.informer.GetStore(), "UPDATE", u) {
+					continue
+				}
+				seen[string(u.GetUID())] = true
+				inside := s.scopeContains(ctx, baseWorkspaceClient(c), workspaceScope, u, 0)
+				known := visibleUIDs[string(u.GetUID())]
+				if inside == known {
+					continue
+				}
+				action := "UPDATE"
+				if !inside {
+					action = "OUT_OF_SCOPE"
+					delete(visibleUIDs, string(u.GetUID()))
+				} else {
+					visibleUIDs[string(u.GetUID())] = true
+				}
+				if !s.updateWorkspaceMember(r, generation, action, u, binding.scope) {
+					select {
+					case overflow <- struct{}{}:
+					default:
+					}
+					return
+				}
+				msg := scopedResourceMessage(action, u, binding.scope)
+				select {
+				case out <- msg:
+				default:
+					select {
+					case overflow <- struct{}{}:
+					default:
+					}
+					return
+				}
 			}
 		}
 	}
@@ -412,23 +542,12 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		if binding.informer != nil {
 			continue
 		}
-		factoryNamespace := reviewNamespace
-		factory := factories[factoryNamespace]
-		if factory == nil {
-			factory = dynamicinformer.NewFilteredDynamicSharedInformerFactory(c.Dynamic, 10*time.Minute, factoryNamespace, nil)
-			factories[factoryNamespace] = factory
-		}
-		inf := factory.ForResource(binding.scope.gvr()).Informer()
-		binding.informer = inf
-		inf.SetWatchErrorHandler(func(_ *cache.Reflector, watchErr error) {
+		var inf cache.SharedIndexInformer
+		onWatchError := func(watchErr error) {
 			gate.Lock()
 			defer gate.Unlock()
 			watchFailed = true
-			for j := range bindings {
-				if bindings[j].informer == inf {
-					scopeError(&bindings[j].scope, watchErr)
-				}
-			}
+			scopeError(&binding.scope, watchErr)
 			select {
 			case watchFailure <- struct{}{}:
 			default:
@@ -439,8 +558,28 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 				default:
 				}
 			}
-		})
-		inf.AddEventHandler(cache.ResourceEventHandlerFuncs{AddFunc: func(obj interface{}) { emit("ADD", obj, binding) }, UpdateFunc: func(old, obj interface{}) {
+		}
+		if workspaceScope != nil {
+			var release func()
+			inf, release, err = s.watches.acquire(c, binding.scope, onWatchError)
+			if err != nil {
+				scopeError(&binding.scope, err)
+				errors = append(errors, safeError(err))
+				continue
+			}
+			defer release()
+		} else {
+			factoryNamespace := reviewNamespace
+			factory := factories[factoryNamespace]
+			if factory == nil {
+				factory = dynamicinformer.NewFilteredDynamicSharedInformerFactory(c.Dynamic, 10*time.Minute, factoryNamespace, nil)
+				factories[factoryNamespace] = factory
+			}
+			inf = factory.ForResource(binding.scope.gvr()).Informer()
+			inf.SetWatchErrorHandler(func(_ *cache.Reflector, watchErr error) { onWatchError(watchErr) })
+		}
+		binding.informer = inf
+		handler, _ := inf.AddEventHandler(cache.ResourceEventHandlerFuncs{AddFunc: func(obj interface{}) { emit("ADD", obj, binding); reconcileRelated() }, UpdateFunc: func(old, obj interface{}) {
 			oldU, newU := unwrap(old), unwrap(obj)
 			if oldU != nil && newU != nil && oldU.GetResourceVersion() == newU.GetResourceVersion() {
 				if s.streamProbe != nil {
@@ -449,7 +588,11 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			emit("UPDATE", obj, binding)
-		}, DeleteFunc: func(obj interface{}) { emit("DELETE", obj, binding) }})
+			if workspaceScope != nil && !workspaceScope.selector.Empty() && workspaceMembershipChanged(oldU, newU) {
+				reconcileRelated()
+			}
+		}, DeleteFunc: func(obj interface{}) { emit("DELETE", obj, binding); reconcileRelated() }})
+		defer inf.RemoveEventHandler(handler)
 		informers = append(informers, inf)
 	}
 	for _, factory := range factories {
@@ -485,8 +628,23 @@ wait:
 		snapshotStart = time.Now()
 	}
 	snapshot := []*unstructured.Unstructured{}
+	if watchFailed {
+		for i := range bindings {
+			bindings[i].scope.Authoritative = false
+			if bindings[i].scope.Status == "syncing" {
+				bindings[i].scope.Status = "unavailable"
+				bindings[i].scope.Error = "Kaynak watch doğrulanamadı; snapshot silinme kanıtı değildir"
+			}
+		}
+	}
 	scopes := make([]ResourceScope, 0, len(bindings))
 	snapshotUIDs := map[string]bool{}
+	newMembers := map[string]workspaceMember{}
+	for uid, member := range previousMembers {
+		newMembers[uid] = member
+	}
+	outOfScope := []*unstructured.Unstructured{}
+	outOfScopeUIDs := map[string]bool{}
 	synced := len(informers) > 0 && !watchFailed
 	for i := range bindings {
 		binding := &bindings[i]
@@ -503,8 +661,27 @@ wait:
 				binding.scope.Status = "synced"
 				for _, obj := range binding.informer.GetStore().List() {
 					if u := unwrap(obj); u != nil && !snapshotUIDs[string(u.GetUID())] && (binding.scope.Namespace == "*" || binding.scope.Namespace == u.GetNamespace()) {
+						if workspaceScope != nil && !s.scopeContains(ctx, baseWorkspaceClient(c), workspaceScope, u, 0) {
+							if member, known := previousMembers[string(u.GetUID())]; known && !outOfScopeUIDs[string(u.GetUID())] {
+								outOfScope = append(outOfScope, member.object)
+								outOfScopeUIDs[string(u.GetUID())] = true
+								delete(newMembers, string(u.GetUID()))
+							}
+							continue
+						}
 						snapshot = append(snapshot, sanitize(u))
 						snapshotUIDs[string(u.GetUID())] = true
+						visibleUIDs[string(u.GetUID())] = true
+						if workspaceScope != nil {
+							newMembers[string(u.GetUID())] = workspaceMember{scope: binding.scope, object: memberMetadata(u)}
+						}
+					}
+				}
+				if workspaceScope != nil {
+					for uid, member := range previousMembers {
+						if member.scope.gvr() == binding.scope.gvr() && (binding.scope.Namespace == "*" || binding.scope.Namespace == member.object.GetNamespace()) && !snapshotUIDs[uid] {
+							delete(newMembers, uid)
+						}
 					}
 				}
 			}
@@ -517,7 +694,12 @@ wait:
 	if s.streamProbe != nil {
 		s.streamProbe(generation, "snapshot_build", envelope{Resources: snapshot}, 0, time.Since(snapshotStart))
 	}
-	err = send(envelope{Type: "SNAPSHOT", Resources: snapshot, Scopes: scopes, Errors: errors, Synced: synced, Reachable: true})
+	if !s.replaceWorkspaceMembers(r, generation, newMembers) {
+		gate.Unlock()
+		send(envelope{Type: "STATUS", Message: "Liman üyelik sınırı veya oturumu değişti; snapshot yetkili değildir", Synced: false, Reachable: true})
+		return
+	}
+	err = send(envelope{Type: "SNAPSHOT", Resources: snapshot, OutOfScope: outOfScope, Scopes: scopes, Errors: errors, Synced: synced, Reachable: true})
 	ready = true
 	gate.Unlock()
 	if err != nil {
@@ -543,6 +725,13 @@ wait:
 			send(envelope{Type: "STATUS", Message: "Mesaj kuyruğu doldu; yeniden snapshot gerekiyor", Synced: false, Reachable: true})
 			return
 		case <-heartbeat.C:
+			if workspaceScope != nil {
+				latest, err := s.client(workspaceScope.connection.Context)
+				if err != nil || latest.ID+":"+workspaceScope.connection.ID != c.ID {
+					send(envelope{Type: "STATUS", Synced: false, Reachable: false, Message: "Bağlantı kimliği değişti; yeni yetki ve snapshot gerekli"})
+					return
+				}
+			}
 			gate.Lock()
 			hasWatchError := watchFailed
 			gate.Unlock()

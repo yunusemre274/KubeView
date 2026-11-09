@@ -182,6 +182,7 @@ test("actual light/dark/high-contrast CSS tokens meet text, boundary and focus c
     new URL("../src/index.css", import.meta.url),
     "utf8",
   );
+  const workspaceCSS = await readFile(new URL("../src/world/workspace.css", import.meta.url), "utf8");
   const luminance = (hex) => {
     const channels = [1, 3, 5]
       .map((index) => parseInt(hex.slice(index, index + 2), 16) / 255)
@@ -204,6 +205,19 @@ test("actual light/dark/high-contrast CSS tokens meet text, boundary and focus c
       ),
     );
     const base = colors["--nm-base"];
+    const themedColor = (expression, inherited) => {
+      if (!expression) return inherited;
+      if (/^#[a-fA-F0-9]{6}$/.test(expression)) return expression;
+      const match = expression.match(/^var\((--[a-z-]+)(?:,\s*(#[a-fA-F0-9]{6}))?\)$/);
+      if (!match) return inherited;
+      return ({ "--panel": base, "--text": colors["--nm-text"], "--border": colors["--nm-boundary"] })[match[1]] || match[2] || inherited;
+    };
+    for (const selector of ["workspace-port", "world-first-harbor", "shared-node-badge", "workspace-world-port"]) {
+      const rule = workspaceCSS.match(new RegExp(`\\.${selector}\\s*\\{([^}]+)`))?.[1];
+      assert.ok(rule, `${selector} style exists`);
+      const declaration = (property) => rule.match(new RegExp(`(?:^|;)\\s*${property}:\\s*([^;]+)`))?.[1].trim();
+      assert.ok(contrast(themedColor(declaration("color"), colors["--nm-text"]), themedColor(declaration("background"), base)) >= 4.5, `${name} ${selector} actual text/background contrast`);
+    }
     assert.ok(
       contrast(colors["--nm-text"], base) >= 4.5,
       `${name} primary text AA`,

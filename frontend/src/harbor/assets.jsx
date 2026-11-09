@@ -11,7 +11,7 @@ const UNIT_CYLINDER = new THREE.CylinderGeometry(1, 1, 1, 8)
 const dummy = new THREE.Object3D()
 const color = new THREE.Color()
 
-export function Blocks({ items, material, castShadow = true, receiveShadow = true, geometry = UNIT_BOX }) {
+export function Blocks({ items, material, castShadow = true, receiveShadow = true, geometry = UNIT_BOX, ...props }) {
   const ref = useRef()
   useLayoutEffect(()=>{const instance=ref.current;return()=>instance?.dispose ? instance.dispose() : instance?.dispatchEvent({type:'dispose'})},[items.length])
   useLayoutEffect(() => {
@@ -28,7 +28,7 @@ export function Blocks({ items, material, castShadow = true, receiveShadow = tru
     if (ref.current.instanceColor) ref.current.instanceColor.needsUpdate = true
     ref.current.computeBoundingSphere()
   }, [items])
-  return items.length ? <instancedMesh key={items.length} ref={ref} args={[geometry, material, items.length]} castShadow={castShadow} receiveShadow={receiveShadow} dispose={null} /> : null
+  return items.length ? <instancedMesh key={items.length} ref={ref} args={[geometry, material, items.length]} castShadow={castShadow} receiveShadow={receiveShadow} dispose={null} {...props} /> : null
 }
 export function Box({ position = [0,0,0], scale = [1,1,1], material, rotation, ...props }) {
   return <mesh position={position} scale={scale} rotation={rotation} geometry={UNIT_BOX} material={material} castShadow receiveShadow {...props} dispose={null} />

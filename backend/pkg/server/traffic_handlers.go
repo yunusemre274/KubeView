@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"sort"
 	"time"
 
 	"github.com/k8s-tersane/tersane/backend/pkg/traffic"
@@ -137,6 +138,59 @@ func (s *Server) flows(w http.ResponseWriter, r *http.Request) {
 		problem(w, 503, "Trafik kimliği güvenli biçimde doğrulanamadı")
 		return
 	}
+	var workspaceScopes []traffic.NamespaceScope
+	var authorizedHarborIDs []string
+	if scope := workspaceScopeFrom(r.Context()); scope != nil {
+		fingerprint += "|workspace-connection:" + scope.connection.ID
+		requested := r.URL.Query()["harborIds"]
+		if len(requested) == 0 {
+			requested = []string{scope.harbor.ID}
+		}
+		if len(requested) > 100 {
+			problem(w, 400, "En fazla100 trafik limanı seçilebilir")
+			return
+		}
+		wanted := map[string]bool{}
+		for _, id := range requested {
+			wanted[id] = true
+		}
+		seen := map[string]bool{}
+		for _, harbor := range s.workspace.store.Snapshot().Harbors {
+			if !wanted[harbor.ID] {
+				continue
+			}
+			if harbor.ConnectionRef != scope.connection.ID {
+				problem(w, 403, "Trafik limanları aynı bağlantı ve kimliği kullanmalı")
+				return
+			}
+			delete(wanted, harbor.ID)
+			authorizedHarborIDs = append(authorizedHarborIDs, harbor.ID)
+			for _, namespace := range harbor.Namespaces {
+				if s.Namespace != "" && namespace != s.Namespace {
+					continue
+				}
+				if namespace == "*" {
+					namespace = ""
+				}
+				key := namespace + "\x00" + harbor.Selector
+				if !seen[key] {
+					workspaceScopes = append(workspaceScopes, traffic.NamespaceScope{Namespace: namespace, Selector: harbor.Selector})
+					seen[key] = true
+				}
+			}
+		}
+		if len(wanted) > 0 {
+			problem(w, 403, "Trafik limanı bu workspace'te bulunamadı")
+			return
+		}
+		if len(workspaceScopes) == 0 {
+			problem(w, 403, "Trafik için izinli workspace namespace kapsamı yok")
+			return
+		}
+		sort.Slice(workspaceScopes, func(i, j int) bool {
+			return workspaceScopes[i].Namespace+workspaceScopes[i].Selector < workspaceScopes[j].Namespace+workspaceScopes[j].Selector
+		})
+	}
 	ctx, cancel := context.WithTimeout(traffic.WithIdentity(r.Context(), fingerprint), 8*time.Second)
 	defer cancel()
 	ctx = traffic.WithSelectedUID(ctx, r.URL.Query().Get("selectedUID"))
@@ -145,17 +199,39 @@ func (s *Server) flows(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// No Namespace LIST permission is needed to use a known authorized namespace.
-	if err = s.authorize(ctx, c, "list", "", "pods", "", ns, ""); err != nil {
+	if workspaceScopes != nil {
+		for _, scope := range workspaceScopes {
+			review, e := c.Typed.AuthorizationV1().SelfSubjectAccessReviews().Create(ctx, accessReview("list", "", "pods", "", scope.Namespace, ""), metav1.CreateOptions{})
+			if e != nil {
+				failure(w, e)
+				return
+			}
+			if !review.Status.Allowed {
+				problem(w, 403, "Workspace trafik namespace kapsamı için Pod list izni gerekli")
+				return
+			}
+		}
+	} else if err = s.authorize(ctx, c, "list", "", "pods", "", ns, ""); err != nil {
 		failure(w, err)
 		return
 	}
 	if r.Method == "DELETE" {
-		p.hubble.ReleaseIdentity(ctx, cfg.Context, ns, lease)
+		if workspaceScopes != nil {
+			p.hubble.ReleaseScopesIdentity(ctx, cfg.Context, workspaceScopes, lease)
+		} else {
+			p.hubble.ReleaseIdentity(ctx, cfg.Context, ns, lease)
+		}
 		jsonResponse(w, 200, map[string]bool{"released": true})
 		return
 	}
 	allowNodes := s.authorize(ctx, c, "get", "", "nodes", "", "", "") == nil
-	snapshot, err := p.hubble.Snapshot(ctx, c.Typed, cfg.Context, ns, allowNodes, lease)
+	var snapshot traffic.Snapshot
+	if workspaceScopes != nil {
+		snapshot, err = p.hubble.SnapshotScopes(ctx, c.Typed, cfg.Context, workspaceScopes, allowNodes, lease)
+		snapshot.Namespace = ns
+	} else {
+		snapshot, err = p.hubble.Snapshot(ctx, c.Typed, cfg.Context, ns, allowNodes, lease)
+	}
 	if err != nil {
 		failure(w, err)
 		return
@@ -163,5 +239,8 @@ func (s *Server) flows(w http.ResponseWriter, r *http.Request) {
 	// A restricted kubeconfig alias can share the attested cluster, without
 	// sharing its Pod collector or receiving the operator's endpoint metadata.
 	snapshot.Context = c.Name
-	jsonResponse(w, 200, snapshot)
+	jsonResponse(w, 200, struct {
+		traffic.Snapshot
+		AuthorizedHarborIDs []string `json:"authorizedHarborIds,omitempty"`
+	}{snapshot, authorizedHarborIDs})
 }

@@ -30,6 +30,8 @@ import ResourceForms from "./workbench/ResourceForms";
 import FacilityWindow from "./world/FacilityWindow";
 import { ProviderWindow, FlowWindow } from "./world/ProviderWindows.jsx";
 import useWorldProviders from "./world/useWorldProviders.js";
+import WorkspaceWindow from "./world/WorkspaceWindow.jsx";
+import { sharedResources, canonicalResourceKey, workspaceRelations as deriveWorkspaceRelations, flowHarborEndpoints, harborViewNamespace } from "./world/workspace.js";
 import {
   ConnectionWindow,
   FinderWindow,
@@ -70,6 +72,9 @@ function ConnectionUpdateStamp() {
 const CONNECTION_UPDATE_STAMP = <ConnectionUpdateStamp />;
 export default function App() {
   const connection = useClusterConnection();
+  const workspace = connection.workspace;
+  const harborUI = useRef(new Map()), currentHarbor = useRef(workspace?.activeId),
+    sceneView = useRef(null), safeDraft = useRef(null), sensitiveDraft = useRef(false), pendingHarborSelection = useRef(null);
   const {
     resources,
     resourceIndex,
@@ -183,23 +188,64 @@ export default function App() {
     );
     if (keepDeletedSelection) seenUIDs.current.add(uid);
   }, [resources, selection?.resource?.metadata?.uid]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (currentSource.current !== sourceKey) {
+      const previousHarbor = currentHarbor.current;
+      if (workspace && previousHarbor) {
+        harborUI.current.set(previousHarbor, {
+          selection: selection?.resource?.kind === "Secret" ? null : selection,
+          sourceKey: currentSource.current,
+          panel, namespace, operations, shipControls,
+          form: sensitiveDraft.current || form?.resource?.kind === "Secret" || form?.initialObject?.kind === "Secret" ? null : form,
+          draft: sensitiveDraft.current ? null : safeDraft.current,
+        });
+        while (harborUI.current.size > 64) harborUI.current.delete(harborUI.current.keys().next().value);
+      }
+      currentHarbor.current = workspace?.activeId;
       currentSource.current = sourceKey;
       seenUIDs.current.clear();
-      setSelection(null);
+      const candidate = harborUI.current.get(workspace?.activeId);
+      const cached = candidate?.sourceKey === sourceKey ? candidate : null;
+      const savedSelection = workspace?.view?.selection;
+      const pendingSelection = pendingHarborSelection.current?.harborId === workspace?.activeId ? pendingHarborSelection.current : null;
+      pendingHarborSelection.current = null;
+      const restored = pendingSelection ? byUID.get(pendingSelection.uid) : cached?.selection?.resource?.metadata?.uid
+        ? byUID.get(cached.selection.resource.metadata.uid)
+        : savedSelection?.uid ? byUID.get(savedSelection.uid) : null;
+      setSelection(restored ? { ...(cached?.selection || {}), resource: restored, containerName: cached?.selection?.containerName || savedSelection?.containerName } : null);
       setSelectedFlow(null);
-      setPanel(null);
-      setForm(null);
-      setOperations([]);
-      setNamespace(
-        connection.watchNamespace || connection.namespaceHint || "all",
-      );
-      setShipControls({ pausedUIDs: [], followUID: null });
+      setPanel(cached?.panel?.type === "facility" ? cached.panel : restored ? { type: "resource" } : null);
+      setForm(cached?.form?.sourceKey === sourceKey && (!cached.form.resource?.metadata?.uid || byUID.has(cached.form.resource.metadata.uid)) ? { ...cached.form, restoredDraft: cached.draft } : null);
+      safeDraft.current = cached?.draft || null;
+      sensitiveDraft.current = false;
+      setOperations(cached?.operations || []);
+      const nextNamespace = workspace?.activeHarbor
+        ? harborViewNamespace(workspace.activeHarbor, cached?.namespace || workspace.view?.namespace)
+        : connection.watchNamespace || connection.namespaceHint || "all";
+      previousNamespace.current = nextNamespace;
+      setNamespace(nextNamespace);
+      setShipControls(cached?.shipControls || { pausedUIDs: [], followUID: null });
       setShipMotion(null);
       lastShipMotion.current = null;
     }
   }, [sourceKey]);
+  const switchHarbor = useCommittedEvent((id) => {
+    if (!workspace || id === workspace.activeId) { setUtility(null); return; }
+    const camera = sceneView.current?.harborId === workspace.activeId ? sceneView.current.capture?.() : null;
+    const view = {
+      ...workspace.getView(workspace.activeId),
+      ...(camera ? { camera } : {}), namespace,
+      selection: selection?.resource ? { uid: selection.resource.metadata.uid, kind: selection.resource.kind, namespace: selection.resource.metadata.namespace, containerName: selection.containerName } : undefined,
+      tab: selection?.tab,
+      search: workspace.getView(workspace.activeId)?.search,
+    };
+    if (workspace.activeId) {
+      workspace.saveView(workspace.activeId, view);
+      workspace.persistView(workspace.activeId, view).catch(() => {});
+    }
+    workspace.selectHarbor(id);
+    setUtility(null);
+  });
   const namespaceSource = useRef(sourceKey);
   const viewNamespace = useRef(namespace);
   viewNamespace.current = namespace;
@@ -326,10 +372,22 @@ export default function App() {
         ? resourceIndex.nodesByName.get(selected.spec?.nodeName)
         : ownerNode(selected, resources);
   const selectedNodeUID = selectedNode?.metadata.uid;
+  const sharedNodeHarbors = workspace?.record && selectedNode ? (() => {
+    const connections = workspace.registry.connections(workspace.record.connections);
+    const union = sharedResources(workspace.record.harbors, workspace.registry.snapshots(), connections);
+    const activeConnection = connections.find((item) => item.id === workspace.activeHarbor?.connectionRef);
+    if (activeConnection?.identity?.confidence !== "verified") return [];
+    return (union.membership.get(canonicalResourceKey(activeConnection, selectedNode)) || []).map((id) => workspace.record.harbors.find((harbor) => harbor.id === id)?.name).filter(Boolean);
+  })() : [];
   const deleted = Boolean(selectedObservation?.deleted);
   const tracked = useMemo(
-    () => operations.map((op) => observeOperation(op, byUID, clock)),
-    [operations, byUID, clock],
+    () => [...operations.map((op) => observeOperation(op, byUID, clock)), ...(connection.detachedOperations || []).map((op) => ({
+      id: op.operationId || op.id, at: op.at, action: op.action, sourceKey,
+      resource: { kind: op.target.kind || "Kaynak", metadata: { uid: op.target.uid, name: op.target.name, namespace: op.target.namespace } },
+      status: op.status === "accepted" ? "accepted" : op.status === "failed" ? "failed" : "timed-out",
+      observation: `${workspace?.activeHarbor?.name || op.harborId} · ${op.context}: ${op.status === "accepted" ? "API kabulü özgün limana bağlıdır; controller sonucunu bu limanda inceleyin." : "Liman değiştirilirken istek sonucu belirsiz kaldı. Otomatik tekrar gönderilmedi; gerçek GET/watch durumunu inceleyin."}`,
+    }))],
+    [operations, byUID, clock, connection.detachedOperations, sourceKey],
   );
   const activeCount = tracked.filter((op) =>
     ["accepted", "reconciling", "partial", "failed", "timed-out"].includes(
@@ -347,6 +405,9 @@ export default function App() {
     selectedUID: selected?.kind === "Pod" ? selected.metadata.uid : null,
     managementVisible: utility === "providers",
   });
+  const harborEndpoints = workspace?.record ? flowHarborEndpoints(workspace.record, workspace.activeId, workspace.registry.snapshots(), workspace.registry.connections(workspace.record.connections), worldProviders.measuredFlows.authorizedHarborIds) : new Map();
+  const harborRelations = workspace?.record && layers.network ? deriveWorkspaceRelations(workspace.record, workspace.registry.snapshots(), workspace.registry.connections(workspace.record.connections)) : [];
+  const inspectHarbor = useCommittedEvent((id) => { switchHarbor(id); setUtility("connection"); });
   const openProviders = useCommittedEvent(() => {
     captureTrigger();
     setUtility("providers");
@@ -360,6 +421,13 @@ export default function App() {
   const flowResource = useCommittedEvent((uid) => {
     const resource = byUID.get(uid);
     if (resource) selectResource(resource);
+    else {
+      const endpoint = harborEndpoints.get(uid);
+      if (endpoint) {
+        pendingHarborSelection.current = { harborId: endpoint.harborId, uid };
+        switchHarbor(endpoint.harborId);
+      }
+    }
   });
   const status = connectionStatus(connection);
   function captureTrigger(trigger = document.activeElement) {
@@ -613,17 +681,26 @@ export default function App() {
             onShipMotionChange={onShipMotionChange}
             sourceKey={sourceKey}
             isStale={mode !== "demo" && stale}
+            workspaceHarbors={workspace?.record?.harbors}
+            activeHarborId={workspace?.activeId}
+            onHarborSelect={inspectHarbor}
+            onHarborRelations={() => setUtility("harbors")}
+            workspaceRelations={harborRelations}
+            harborEndpoints={harborEndpoints}
+            harborView={workspace?.view}
+            viewBridge={sceneView}
           />
         </Suspense>
       </div>
       <div className="world-overlay">
+        {(workspace?.dataSource === "test-replay" || connection.connectionChecks?.dataSource === "test-replay") && <div className="world-replay-badge" role="status">TEST/REPLAY — sentetik performans verisi · salt okunur</div>}
         <button
           className={`world-brand-control ${mode === "demo" ? "is-demo" : stale ? "is-stale" : ""}`}
           aria-label="Bağlantı ve cluster kapsamını aç"
           title="Bağlantı ve kapsam"
           onClick={(event) => {
             captureTrigger(event.currentTarget);
-            setUtility("connection");
+            setUtility(workspace && !workspace.activeHarbor && !workspace.authRequired ? "harbors" : "connection");
           }}
         >
           <span className="world-brand-mark">
@@ -632,7 +709,7 @@ export default function App() {
           <strong>KubeView</strong>
           <span className="brand-separator" />
           <span className="world-cluster-name">
-            {mode === "demo" ? "Tersane demo" : context || "Tersane"}
+            {mode === "demo" ? "Tersane demo" : workspace?.activeHarbor ? `${workspace.activeHarbor.name} · ${context} · ${workspace.activeHarbor.namespaces.join(", ")}` : context || "Tersane"}
           </span>
           <span className="connection-light" />
           <span className="connection-short">{status}</span>
@@ -643,6 +720,7 @@ export default function App() {
           aria-label="Liman yardımcı kontrolleri"
         >
           {[
+            ...(workspace ? [["harbors", "Limanlar ve deniz haritası", Compass]] : []),
             ["finder", "Bul", Search],
             ["home", "Limana dön", Compass],
             ["preferences", "Görünüm ve ayarlar", Settings],
@@ -657,7 +735,8 @@ export default function App() {
               aria-pressed={utility === id}
               onClick={(event) => {
                 captureTrigger(event.currentTarget);
-                if (id === "home") {
+                if (id === "harbors") setUtility((current) => current === id ? null : id);
+                else if (id === "home") {
                   if (form) return;
                   setPanel(null);
                   setUtility(null);
@@ -690,7 +769,8 @@ export default function App() {
         >
           {preferences.paused ? <Play size={18} /> : <Pause size={18} />}
         </button>
-        {guide && !panel && !utility && (
+        {workspace && mode !== "demo" && !workspace.activeHarbor && !utility && <section className="world-first-harbor" aria-label="İlk limanını bağla"><h1>Deniz senin; ilk limanını bağla</h1><p>Mevcut Kubernetes projenin namespace ve etiket kapsamını seç. Kaynak yaratılmaz.</p>{workspace.error && <p role="alert">{workspace.error}</p>}{workspace.authRequired ? <button className="button button-primary" onClick={() => setUtility("connection")}>Uygulama oturumu aç</button> : <button className="button button-primary" disabled={workspace.loading || !workspace.record} onClick={() => setUtility("harbors")}>İlk limanını bağla</button>}{workspace.error && <button className="button" onClick={workspace.reload}>Workspace'i yeniden oku</button>}<button className="button" onClick={workspace.enterDemo}>Demo ile incele</button></section>}
+        {guide && !panel && !utility && (!workspace || workspace.activeHarbor || mode === "demo") && (
           <div className="world-first-guide">
             {mode !== "demo" && !snapshotReady ? (
               <div className="connection-onboarding-actions">
@@ -702,7 +782,7 @@ export default function App() {
                 </button>
                 <button
                   className="button"
-                  onClick={() => connection.selectSource("__demo__")}
+                  onClick={() => workspace ? workspace.enterDemo() : connection.selectSource("__demo__")}
                 >
                   Demo ile incele
                 </button>
@@ -786,6 +866,8 @@ export default function App() {
             deleted={deleted}
             observation={selectedObservation}
             cluster={mode === "demo" ? "Demo — örnek veri" : context}
+            harborName={workspace?.activeHarbor?.name}
+            sharedNodeHarbors={sharedNodeHarbors}
             updateStamp={CONNECTION_UPDATE_STAMP}
             resources={detailScope.resources}
             onClose={detailsClose}
@@ -813,8 +895,10 @@ export default function App() {
             namespace={namespace}
             onNamespace={setNamespace}
             onClose={() => setUtility(null)}
+            onEditHarbor={() => setUtility("harbor-edit")}
           />
         )}
+        {(utility === "harbors" || utility === "harbor-edit") && workspace?.record && <WorkspaceWindow workspace={workspace} onSelect={switchHarbor} onOverview={() => { setUtility(null); sceneView.current?.overviewWorkspace?.(); }} editHarborId={utility === "harbor-edit" ? workspace.activeId : null} first={!workspace.record.harbors.length} onClose={() => setUtility(null)} />}
         {utility === "finder" && (
           <FinderWindow
             connection={connection}
@@ -848,6 +932,8 @@ export default function App() {
             onRefresh={worldProviders.refresh}
             onAddWorker={worldProviders.addWorker}
             onCancelWorker={worldProviders.cancelWorker}
+            harborName={workspace?.activeHarbor?.name}
+            sharedImpactRequired={Boolean(workspace)}
             onClose={() => setUtility(null)}
           />
         )}
@@ -861,6 +947,7 @@ export default function App() {
             measuredFlows={worldProviders.measuredFlows}
             context={context}
             onSelectResource={flowResource}
+            endpointHarbors={harborEndpoints}
             onClose={() => setUtility(null)}
           />
         )}
@@ -874,7 +961,7 @@ export default function App() {
             onClose={() => setUtility(null)}
           />
         )}
-        {form && (
+        {form && form.sourceKey === sourceKey && (
           <ResourceForms
             {...form}
             cluster={context}
@@ -894,6 +981,9 @@ export default function App() {
             }
             onClose={() => setForm(null)}
             onSubmitted={submit}
+            harborName={workspace?.activeHarbor?.name}
+            onHarbors={workspace ? () => setUtility("harbors") : undefined}
+            onSafeDraft={(draft) => { safeDraft.current = draft; sensitiveDraft.current = !draft; }}
           />
         )}
       </div>

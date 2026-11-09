@@ -30,13 +30,14 @@ import (
 )
 
 type Clients struct {
-	Dynamic   dynamic.Interface
-	Typed     kubernetes.Interface
-	Discovery discovery.DiscoveryInterface
-	Metrics   metrics.Interface
-	Config    *rest.Config
-	Name      string
-	Namespace string
+	Dynamic    dynamic.Interface
+	Typed      kubernetes.Interface
+	Discovery  discovery.DiscoveryInterface
+	Metrics    metrics.Interface
+	Config     *rest.Config
+	Name       string
+	Namespace  string
+	DataSource string
 	// ID is random; the private credential fingerprint is never sent to clients.
 	ID          string
 	fingerprint string
@@ -53,6 +54,9 @@ type Server struct {
 	forwards   map[string]*forwardSession
 	providerMu sync.Mutex
 	providers  *providerServices
+	workspace  *workspaceRuntime
+	watches    watchBroker
+	replay     *replaySource
 	// Test harness only; nil in production. Must be assigned before serving.
 	streamProbe           func(connection, stage string, msg envelope, depth int, elapsed time.Duration)
 	prepareSnapshot       func([]*unstructured.Unstructured)
@@ -73,7 +77,10 @@ func New() *Server {
 	return &Server{ReadOnly: os.Getenv("READ_ONLY") != "false", Namespace: os.Getenv("WATCH_NAMESPACE"), Token: os.Getenv("API_TOKEN"), clients: map[string]*Clients{}, forwards: map[string]*forwardSession{}, operators: map[string]*operatorSession{}}
 }
 func (s *Server) Register(mux *http.ServeMux) {
+	s.registerReplay(mux)
 	s.registerProviders(mux)
+	mux.HandleFunc("/api/workspace", s.protect(s.workspaceHandler))
+	mux.HandleFunc("/api/workspace/", s.protect(s.workspaceHandler))
 	mux.HandleFunc("/api/session", s.session)
 	mux.HandleFunc("/api/connection", s.protect(s.connection))
 	mux.HandleFunc("/api/management", s.protect(s.management))
@@ -84,6 +91,8 @@ func (s *Server) Register(mux *http.ServeMux) {
 
 // Close releases optional provider subscriptions when the local gateway stops.
 func (s *Server) Close() {
+	s.closeReplay()
+	s.watches.close()
 	s.closeProviders()
 	s.operatorMu.Lock()
 	for id, session := range s.operators {
@@ -134,7 +143,7 @@ func (s *Server) guard(w http.ResponseWriter, r *http.Request, authenticate bool
 	}
 	if authenticate && s.Token != "" {
 		token := strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")
-		if cookie, err := r.Cookie("kubeview_session"); err == nil && token == "" {
+		if cookie, err := r.Cookie(s.accessCookieName()); err == nil && token == "" {
 			token = cookie.Value
 		}
 		if subtle.ConstantTimeCompare([]byte(token), []byte(s.Token)) != 1 {
@@ -149,12 +158,28 @@ func (s *Server) protect(next http.HandlerFunc) http.HandlerFunc {
 		if !s.guard(w, r, true) {
 			return
 		}
-		request := operatorRequest{nonce: r.Header.Get("X-KubeView-Connection")}
+		var ok bool
+		r, ok = s.bindWorkspaceRequest(w, r)
+		if !ok {
+			return
+		}
+		operatorID := ""
+		if workspaceScopeFrom(r.Context()) != nil {
+			var session *operatorSession
+			operatorID, session = s.operator(r, w)
+			if session == nil {
+				problem(w, 429, "Yerel oturum sınırı")
+				return
+			}
+		}
+		request := operatorRequest{id: operatorID, nonce: r.Header.Get("X-KubeView-Connection")}
 		if request.nonce == "" {
 			request.nonce = r.URL.Query().Get("connectionID")
 		}
-		if cookie, err := r.Cookie(operatorCookie); err == nil {
-			request.id = cookie.Value
+		if cookie, err := r.Cookie(s.operatorCookieName()); err == nil {
+			if request.id == "" {
+				request.id = operatorKey(r, cookie.Value)
+			}
 		}
 		ctx, cancel := context.WithCancel(context.WithValue(r.Context(), operatorRequestKey{}, request))
 		defer cancel()
@@ -187,7 +212,7 @@ func (s *Server) session(w http.ResponseWriter, r *http.Request) {
 		problem(w, 401, "Geçersiz erişim anahtarı")
 		return
 	}
-	http.SetCookie(w, &http.Cookie{Name: "kubeview_session", Value: v.Token, HttpOnly: true, Secure: r.TLS != nil, SameSite: http.SameSiteStrictMode, Path: "/", MaxAge: 28800})
+	http.SetCookie(w, &http.Cookie{Name: s.accessCookieName(), Value: v.Token, HttpOnly: true, Secure: r.TLS != nil, SameSite: http.SameSiteStrictMode, Path: "/", MaxAge: 28800})
 	jsonResponse(w, 200, map[string]bool{"authenticated": true})
 }
 func jsonResponse(w http.ResponseWriter, status int, v interface{}) {
@@ -229,6 +254,10 @@ func inClusterNamespace() string {
 	return "default"
 }
 func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {
+	if s.replayEnabled() {
+		s.replayContexts(w, r)
+		return
+	}
 	cfg, err := loadingRules().Load()
 	names := []map[string]string{}
 	current := os.Getenv("KUBE_CONTEXT")
@@ -262,7 +291,7 @@ func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {
 		currentNamespace = inClusterNamespace()
 	}
 	enabled := false
-	if cookie, e := r.Cookie(operatorCookie); e == nil {
+	if cookie, e := r.Cookie(s.operatorCookieName()); e == nil {
 		s.operatorMu.Lock()
 		if session := s.operators[cookie.Value]; session != nil {
 			enabled = !s.ReadOnly && session.enabled && time.Now().Before(session.expires)
@@ -276,6 +305,9 @@ func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {
 	jsonResponse(w, 200, result)
 }
 func (s *Server) client(name string) (*Clients, error) {
+	if s.replayEnabled() {
+		return s.replayClient(name)
+	}
 	if name == "" {
 		name = os.Getenv("KUBE_CONTEXT")
 	}
@@ -353,20 +385,43 @@ func (s *Server) client(name string) (*Clients, error) {
 	if len(s.clients) >= 128 {
 		s.clients = map[string]*Clients{}
 	}
+	if previous := s.clients[name]; previous != nil && previous.ID != c.ID {
+		s.retireWorkspaceClient(previous.ID)
+	}
 	s.clients[name] = c
 	s.clients[requestedName] = c
 	return c, nil
 }
 func (s *Server) requestClient(w http.ResponseWriter, r *http.Request) *Clients {
-	c, err := s.client(r.URL.Query().Get("context"))
+	name := r.URL.Query().Get("context")
+	scope := workspaceScopeFrom(r.Context())
+	if scope != nil {
+		if name != "" && name != scope.connection.Context {
+			problem(w, 409, "İstek context'i liman bağlantısıyla uyuşmuyor")
+			return nil
+		}
+		name = scope.connection.Context
+	}
+	c, err := s.client(name)
 	if err != nil {
 		failure(w, err)
 		return nil
+	}
+	if scope != nil {
+		c = s.scopedClient(c, scope)
 	}
 	return c
 }
 func (s *Server) namespace(r *http.Request) (string, error) {
 	ns := r.URL.Query().Get("namespace")
+	if scope := workspaceScopeFrom(r.Context()); scope != nil {
+		if ns != "" && !scope.allowsNamespace(ns) {
+			return "", fmt.Errorf("Namespace liman kapsamı dışında")
+		}
+		if ns == "" && len(scope.harbor.Namespaces) == 1 && scope.harbor.Namespaces[0] != "*" {
+			ns = scope.harbor.Namespaces[0]
+		}
+	}
 	if s.Namespace != "" {
 		if ns != "" && ns != s.Namespace {
 			return "", fmt.Errorf("Bu bağlantı yalnız %s namespace kapsamına izin veriyor", s.Namespace)

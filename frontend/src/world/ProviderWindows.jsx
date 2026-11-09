@@ -330,7 +330,10 @@ export function ProviderWindow({
   onAddWorker,
   onCancelWorker,
   onClose,
+  harborName,
+  sharedImpactRequired = false,
 }) {
+  const [impactAcknowledged, setImpactAcknowledged] = useState(false);
   const local = providers?.minikube,
     hubble = providers?.hubble;
   const config = local?.configuration;
@@ -339,13 +342,14 @@ export function ProviderWindow({
     (operation) => !provisionTerminal(operation),
   );
   const canAdd =
+    (!sharedImpactRequired || impactAcknowledged) &&
     !readOnly &&
     !busy &&
     (uncertain || (local?.available && local?.canAdd && !active));
   return (
     <Window
       title="Sağlayıcılar ve worker ekleme"
-      subtitle={`${context || "Bağlı context yok"} · Gerçek yerel sağlayıcı işlemleri`}
+      subtitle={`${harborName ? `${harborName} · ` : ""}${context || "Bağlı context yok"} · Gerçek yerel sağlayıcı işlemleri`}
       icon={Construction}
       onClose={onClose}
       className="utility-window providers-window"
@@ -397,10 +401,11 @@ export function ProviderWindow({
           </p>
         )}
         <div className="terminal-actions">
+          {sharedImpactRequired && <label><input type="checkbox" checked={impactAcknowledged} onChange={(event) => setImpactAcknowledged(event.target.checked)} />Worker eklemenin ortak cluster altyapısını etkilemesini açıkça onaylıyorum</label>}
           <button
             className="button button-primary"
             disabled={!canAdd}
-            onClick={() => run(onAddWorker)}
+            onClick={() => run(onAddWorker, { acknowledged: impactAcknowledged })}
           >
             <Plus size={16} />
             {busy
@@ -556,13 +561,14 @@ export function ProviderWindow({
   );
 }
 
-function FlowEndpoint({ title, endpoint = {}, onSelectResource }) {
+function FlowEndpoint({ title, endpoint = {}, onSelectResource, harbor }) {
   return (
     <section className="detail-section">
       <h2>
         {title}: {endpoint.name || endpoint.ip || "Bilinmiyor"}
       </h2>
       <dl>
+        {harbor && <Row label="Liman">{harbor.harborName} · {harbor.harborId}</Row>}
         <Row label="Namespace">{dash(endpoint.namespace)}</Row>
         <Row label="Pod UID">
           {endpoint.uid ? (
@@ -599,6 +605,7 @@ export function FlowWindow({
   context,
   onSelectResource,
   onClose,
+  endpointHarbors,
 }) {
   const sampleAt = Date.parse(measuredFlows?.observedAt || ""),
     lastAt = Date.parse(flow?.lastObserved || "");
@@ -707,11 +714,13 @@ export function FlowWindow({
           <FlowEndpoint
             title="Kaynak"
             endpoint={flow.source}
+            harbor={endpointHarbors?.get(flow.source?.uid)}
             onSelectResource={onSelectResource}
           />
           <FlowEndpoint
             title="Hedef"
             endpoint={flow.destination}
+            harbor={endpointHarbors?.get(flow.destination?.uid)}
             onSelectResource={onSelectResource}
           />
         </>

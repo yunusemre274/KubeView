@@ -1,0 +1,25 @@
+{
+  "reviewedAt": "2026-11-09T15:06:31.201910+00:00",
+  "helperResult": "PASS only for DOM/canonical/Canvas checks in result.json",
+  "visualAcceptance": "FAIL",
+  "openedImages": [
+    "01-initial-world.png",
+    "03-after-switches.png",
+    "world-768-light.png",
+    "harbors-1280-dark.png",
+    "harbors-768-light.png"
+  ],
+  "findings": [
+    {
+      "id": "WS-VIS-01",
+      "status": "RUNTIME CONFIRMED",
+      "behavior": "After50normalUI switches activeHarbor Proje2 at[1400,0], camera stays near[215,337,511]; active real facility/ships offscreen. Only inactiveProje1 silhouette visible. Canonical remains2Nodes/1Pod."
+    },
+    {
+      "id": "WS-VIS-02",
+      "status": "RUNTIME CONFIRMED",
+      "behavior": "Dark1280 harbor cards use light background and inheritedlighttext; names/context/status unreadable."
+    }
+  ],
+  "limits": "This review overrides any assumption that the helper pass proves visual acceptance. Earlier modal failure was a focus/test sequencing issue; focused ESC succeeded in this second run. No Kubernetes mutation was made by browser tests."
+}

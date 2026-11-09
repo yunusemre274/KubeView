@@ -1,5 +1,11 @@
 # Tam ekran tersane dönüşümü
 
+## Aktif genişletme — çoklu proje limanları ve manuel aday
+
+Başlangıç0029672 üzerinden workspace kalıcılığı, güvenli scope/broker, tek Canvas deniz haritası, ortak Node kimliği ve ayrı ilişki katmanları uygulanıyor. Yedi manuel profil/runner, gerçek iki küme/RBAC/arıza/ağ, aynı M/L yükünde 1/5/10/20 liman ve sonlu yeni soak kabul kapsamıdır. Durum [WORKSPACE_ACCEPTANCE.md](WORKSPACE_ACCEPTANCE.md) içinde A–O/PERF olarak tutulur; aşağıdaki sonuçlar önceki kaynaklara ait checkpoint'lerdir.
+
+**Manuel kullanıcı onayı ayrı PENDING kapısıdır.** Önceki V11-16 fiziksel UI gecikmesi, V11-18 açıklanmamış CPU ve V11-19 stable bağımlılığı silinmez. Bu tur stable tag/release/merge ve ana milestone kapanışı yoktur.
+
 ## 9 Kasım2026 — v1.1.0 son kabul, stable bekliyor
 
 Geliştirme/runtime32a0468, frontend165unit, gerçek iki-küme/namespace/RBAC/CR/Secret/log/metrics/workload ve Chromium/WebKit işlevleri tamamlandı. Güncel macOSARM64 ve LinuxAMD64emülasyon/Docker/Helm kanıtı; AC31hücre/1200s20panel/24log/fullcanonical ve gerçek60shidden mevcut. [19satırsondefter](../artifacts/v1.1.0/v11-20261108/qa/final-acceptance-ledger-32a0468.json)16PASS/3BLOCKED; her PASS kendi scopedtesttüründedir. Yeni form/YAML/exec yön tuşu kanıtı ve768/1280caption incelemesi eklendi; rawhelperFAIL/subpixelAABB ve1280postAPIassertNOTRUN korunur.

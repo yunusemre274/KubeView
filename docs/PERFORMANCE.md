@@ -1,5 +1,9 @@
 # KubeView performans ölçümü
 
+## Aktif çoklu liman ölçümü — henüz yeni sonuç yok
+
+Yeni workspace geliştirmesinin 1/5/10/20 liman protokolü ve kabul durumu [WORKSPACE_ACCEPTANCE.md](WORKSPACE_ACCEPTANCE.md) içindedir. Mevcut harness `--harbors` ve `repair-session --suite workspace` ile genişletilir; aynı M/L canonical kaynak, aktif sahne ve güç koşulları kaydedilir. Yeni kaynakta ölçülmeyen CPU/FPS/enerji sonucu üretilmez. Aşağıdaki sonuçlar eski dondurulmuş build'ler içindir; V11-16 fiziksel UI ve V11-18 CPU kapılarını yeni test sayıları kapatmaz.
+
 ## 9 Kasım 2026 — v1.1.0 yeni kaynak kabulü
 
 Dondurulmuş `2b76e21`→`32a0468` için yeni AC31/31hücre, üç eşleşmiş30s+60sblok ve tek1200s/20panel koşusu tamamlandı. [Ayrıntılı güncel tablo, ham sonuçlar ve sınırlar](../artifacts/v1.1.0/v11-20261108/performance/REVIEW.md). Açık panel toplam browser CPU medyanı.38237→.39759çekirdek; aralıklar örtüşür. SignedΔpanel ayrı hesaplanır; CPU kazancı iddia edilmez. L ham.39292→.47515farkında fiili çizim yükü de değişmiştir; ayrı iki kontrollü pil çifti+.63%/+1.59%verdi, AC ile pool yapılmaz ve bu tek sonuç bütün regresyon kapısını otomatik kapatmaz.

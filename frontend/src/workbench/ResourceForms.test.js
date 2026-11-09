@@ -369,3 +369,31 @@ test("dirty Secret reveal revalidates before reuse, fails closed on error, and c
     form.close();
   }
 });
+
+test("same harbor safe memory draft resumes dirty values and fresh GET revalidates its original UID", async () => {
+  let saved;
+  const api = { resourcePath: () => "/resource", request: async () => copy(base) };
+  const first = mount(options(base, api, { onSafeDraft(value) { saved = value && copy(value); } }));
+  await first.settle();
+  const fields = resourceFields(first); fields.props.onChange({ ...fields.props.container, resources: edited }); first.render();
+  first.close();
+  assert.equal(saved.uid, base.metadata.uid); assert.equal(saved.dirty, true);
+  const second = mount(options(base, api, { restoredDraft: saved }));
+  try { await second.settle(); assert.deepEqual(resourceFields(second).props.container.resources, edited); }
+  finally { second.close(); }
+});
+
+test("cluster-scoped generic PV deletion requires explicit impact acknowledgement and sends its header", async () => {
+  const pv = { apiVersion: "v1", kind: "PersistentVolume", metadata: { uid: "unit-pv", name: "unit-pv", resourceVersion: "rv" }, spec: {} }, calls = [];
+  const api = { workspaceScope: { workspaceId: "unit", harborId: "harbor", tabId: "tab" }, isClusterScoped: (resource) => resource?.kind === "PersistentVolume", resourcePath: () => "/api/resources?resource=persistentvolumes", request: async (path, request = {}) => { calls.push({ path, request }); return { operation: { id: "synthetic-unit-accept" } }; } };
+  const form = mount(options(pv, api, { action: "delete" }));
+  try {
+    form.find((node) => node.type === "input" && node.props.autoComplete === "off").props.onChange({ target: { value: pv.metadata.name } }); form.render();
+    await form.find((node) => node.type === "form").props.onSubmit({ preventDefault() {} }); form.render();
+    assert.equal(calls.length, 0); assert.match(form.text(), /Ortak etki onayı/);
+    form.find((node) => node.type === "input" && node.props.type === "checkbox").props.onChange({ target: { checked: true } }); form.render();
+    await form.find((node) => node.type === "form").props.onSubmit({ preventDefault() {} }); form.render();
+    assert.equal(calls.length, 1); assert.equal(calls[0].request.headers["X-KubeView-Cluster-Impact"], "acknowledged");
+    assert.equal(calls[0].request.body.uid, pv.metadata.uid); assert.equal(calls[0].request.body.resourceVersion, "rv");
+  } finally { form.close(); }
+});
