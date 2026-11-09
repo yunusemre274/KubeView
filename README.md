@@ -178,7 +178,7 @@ KV_MINIKUBE_PROFILE=your-test-profile \
 KV_MINIKUBE_CONTEXT=your-test-context \
 KV_MINIKUBE_CLUSTER_UID=verified-kube-system-uid \
 KV_MINIKUBE_MAX_NODES=3 \
-./start.sh
+./kubeview --context your-test-context --write
 ```
 
 `READ_ONLY=false` sunucu yazma kilidini açar; tarayıcıda açık yönetim seçimi ayrıca gerekir. Profil/context/UID sabit allowlist'tir. İlk adaptör minikube1.38.1/docker üzerinde sınandı. `KV_MINIKUBE_HOME` profil dizinini, `KV_PROVIDER_STATE_DIR` özel kalıcı journal/lock dizinini belirler. Açık/sonucu belirsiz işlem ikinci worker'ı otomatik oluşturmaz. İptal veya timeout oluşmuş makineyi silmez; envanter uzlaştırılmadan kör retry yapılmaz. Yerel operatör erişimi ve Kubernetes `nodes create` yetkisi ayrıca denetlenir. Gerçek Ready sonucu görsel katılımı beklemez. Filoya giriş, gemi gövdeleri ve rota takip mesafesi güvenliyken başlar; yoğun trafikte bekleyebilir.
@@ -195,7 +195,7 @@ KV_HUBBLE_TLS_CA=/private/ca.crt \
 KV_HUBBLE_TLS_CERT=/private/client.crt \
 KV_HUBBLE_TLS_KEY=/private/client.key \
 KV_HUBBLE_TLS_SERVER_NAME=relay.example \
-./start.sh
+./kubeview --context your-observer-context
 ```
 
 `KV_HUBBLE_BINARY` varsayılan `hubble` yerine sabit bir executable yolu verebilir. Sağlayıcı kimliği context/clusterUID/API TLS binding ve gerçek Cilium cluster.name ile sınırlandırılır. Namespace yetkisi ayrıca uygulanır; relay sertifikası uygulama kullanıcısına tüm namespace yetkisi vermez. Flow olayları10sn pencerede toplanır; paket, byte veya bant genişliği değildir. L7 yalnız sağlayıcı kaydı varsa görünür; şifreli içerik çıkarılmaz. UID/kimlik belirsizliği, kapasite sınırları ve eski veri açıkça belirtilir. Selector/EndpointSlice çizgileri ayrı yapılandırma katmanıdır.

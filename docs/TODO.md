@@ -5,8 +5,10 @@
 - [x] Kaynak/çalışma ağacı pause checkpoint ile eşit; private API port/clock yenilenmesi ve aynı A/B clusterUID doğrulandı.
 - [x] İlk GET edit kilidi, sameUID dirty draft/reconnect ve grant-revocation UI hataları gerçek API/WS deneyiyle düzeltildi;153frontendunit.
 - [x] Normal UI resources/restart/Podreplacement/Deploymentdelete404 ve gerçek dolu Node/Pod metrikleri; G00/Minikube/Hubble güncel API gate testleri.
-- [ ] Kalan restricted/empty/finalizer/metricsmissing/CRUI/WebKit/visual ve güvenlik alt şartları; kaynak/test türü ayrımlı19satır kabul defteri.
-- [ ] Tam kaynak freeze, güncel45harnessunit, üç eşleşmiş blok/1200s20panel; temiz final dağıtım ve CI.
+- [x] Restricted manual namespace/metrics403, empty/error/demo, finalizer/yeni UID ve gerçek eksik Metrics API normal Chromium akışları; P2 gerçek container düşüşü ve Hubble başlığı üç viewport'ta açılarak incelendi.
+- [x] Güncel Go tüm paketler60top PASS/20SKIP; server race39top PASS/20SKIP;45/45 harness unit. Opt-in gerçek testler bu genel koşuda çalıştırılmış sayılmaz.
+- [ ] Kalan CR normal UI, WebKit focus ve güvenlik alt şartları; kaynak/test türü ayrımlı19satır kabul defteri.
+- [ ] Tam kaynak freeze, üç eşleşmiş blok/1200s20panel; temiz final dağıtım ve CI.
 - [ ] Bütün kapılar geçerse normalPR/merge, doğru finalartifact/tag/release ve milestone kapanışı; şu an DRAFT/OPEN.
 
 ## 8 Kasım 2026 — v1.1.0 gerçek kullanıcı sürümü (açık)

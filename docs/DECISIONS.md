@@ -74,3 +74,13 @@ Projedeki teknik seçimlerin meşru gerekçeleri mevcuttur.
 2026-11-01. Snapshot'ın authoritative kapsamı GVR/namespace'tir; on-demand CR reconnect boşluğu silinme değildir. UI silinme kararını pozitif tombstone kanıtından alır. Kubernetes logs name-addressed olduğundan UID watch/açılış/ilk yayın guard'ı kullanılır; atomik Kubernetes UID garantisi iddia edilmez.
 
 İlk worker sağlayıcısı sabit minikube docker profile/context/clusterUID + yerel operatör + persistent journal/lock ile sınırlandı; serbest shell endpoint'i veya bulut göçü yoktur. İlk trafik adaptörü sürümü doğrulanmış resmi Hubble CLI1.20.2'dir. Bu seçim mevcut client-go0.30'a büyük SDK/transitif sürüm göçü eklemeden gerçek gRPC/protobuf alanlarını kullanır. CLI process/JSON maliyeti tarayıcı maliyetinden ayrı ölçülür; farklı dile taşıma veya toplam tasarruf başarısı iddia edilmez. Yetki, zamanlı UID eşlemesi ve payload field mask backend'de uygulanır. Ortak görsel koordinatör gerçek state'ten ayrıdır; kapasiteler ve cleanup sonludur.
+
+## 8 Kasım2026 — v1.1.0 local-first dağıtım ve yetki niyeti
+
+Kullanıcının yeni sürüm talimatı önceki onarımın sürüm yükseltmeme sınırını değiştirdi. Paket metaverisi1.1.0 test build'inden önce hazırlanır; stable tag/release ve milestone kapanışı bütün zorunlu kabul kapılarına bağlı kalır. Başlangıçta gerçek yayımlanmışv1.0release bulunmadı; eski chart etiketi geçmiş release sayılmaz.
+
+Mevcut React18/R3F8/Three0.164 ve Go korunur. Ürün local-first tek operatördür; frontend Goembed ile aynıorigin sunulur. Standart kubeconfig merge ve context override kullanılır, global current-context yazılmaz. Backend READ_ONLY=false tek başına tarayıcıya yönetim vermez; scope/clientID/browser nonce ile açık niyet gerekir. Kapsam/config değişimi bunu iptal eder. Genel SaaS/impersonation veya güvenilmeyen forwarded-header modeli eklenmez.
+
+Minimum namespace RBAC örnekleri Node/Namespace LIST veya Secret okumayı zorunlu kılmaz. Hubble ve minikube provider kurulu/değil ayrımı korunur; CNI otomatik kurulmaz. Yaklaşık30sn safe-gap için keyfi sleep bulunmadı; gövde/HEADWAY/merge koşullarına dayalı rota admission güvenliği kanıtlanmadan kısaltılmaz.
+
+Yeni kabul için mevcut performans harness'inin `--suite v11` sonlu31hücre alt kümesi kullanılır; geçmiş49hücreyi yeni kaynakta koşulmuş gibi göstermeden yeni panel/connection ömrü ve20dk/20panel sınanır. Görsel/provider core source eşitliği, gerçek veri ve UI kanıtı ile ayrı değerlendirilir.

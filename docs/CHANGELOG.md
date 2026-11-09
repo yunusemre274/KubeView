@@ -2,6 +2,7 @@
 
 ## 2026-11-09 — gerçek UI ve bağlantı toparlanma düzeltmeleri
 
+- İzole gerçek API test yardımcıları CR scope/UID/RBAC, Hubble mTLS ve minikube güncel yönetim sınırlarını yeniden üretir. Genel Go/race koşuları ve45/45 harness unit geçti; opt-in SKIP gerçek test başarısı sayılmaz. Mevcut benchmark kuyruğuna sonlu31hücre v1.1 alt kümesi ve frozen build'in gerçek lockfile kimliği eklendi; yeni CPU sonucu henüz yoktur.
 - CPU/RAM/edit ilk GET'i bitmeden alanlar native disabled fieldset ile kilitlenir; header/ESC kapatma çalışır. Gerçek GET geciktirilerek dört alan, dry-run ve gerçek rollout/restart/replacement/delete doğrulandı.
 - Aynı source/UID dirty taslak reconnect/reveal sonrasında korunur; resourceVersion sessiz ilerlemez, değişirse gözden geçirme uyarısı verilir. Yeni socket açılışında yönetim tanılaması fail-closed yenilenir; eski serial'dan gelen diagnostic/enable yanıtları reddedilir. İki gerçek transport/grant-revocation hatası önce FAIL kaydedilip düzeltme sonrası aynı akışta PASS oldu.153/153frontend unit.
 - Gerçek Node ve Pod grafiklerinde timestamp/unit ve çizilen ham değerler Metrics API ile eşleştirildi. Gerçek G00 scoped reconnect/UID/offlineDELETE/RBAC6alt; minikube güncel gate6alt (yeniNode0); Hubble readonly mTLS/same-crossNode TCP/scope/retry/expiry/cleanup7alt geçti. İlk iki Hubble fixture/helper hatası korunur; yeni L7/worker sağlama iddiası kurulmaz.

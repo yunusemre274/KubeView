@@ -24,6 +24,13 @@ import (
 
 func ownedRepairGateway(t *testing.T) (*Server, *Clients, context.Context, string, string) {
 	t.Helper()
+	return ownedRepairGatewayManagement(t, true)
+}
+
+// management=false exercises the production diagnostic/read paths without
+// enabling writes. Fixture setup still uses the separately guarded API client.
+func ownedRepairGatewayManagement(t *testing.T, management bool) (*Server, *Clients, context.Context, string, string) {
+	t.Helper()
 	contextName := os.Getenv("KUBEVIEW_REPAIR_CONTEXT")
 	expected := os.Getenv("KUBEVIEW_REPAIR_CLUSTER_UID")
 	ns := os.Getenv("KUBEVIEW_REPAIR_NAMESPACE")
@@ -68,8 +75,12 @@ func ownedRepairGateway(t *testing.T) (*Server, *Clients, context.Context, strin
 	// management handshake. No test-only bypass of the production gate is used.
 	cookie, info := diagnostic(t, s, contextName, ns, nil)
 	nonce := info["connectionID"].(string)
-	if response := connectionRequest(s, "POST", "/api/management", managementBody(contextName, ns, nonce, true), cookie, ""); response.Code != 200 {
-		t.Fatalf("owned gateway management handshake: HTTP%d", response.Code)
+	if management {
+		if response := connectionRequest(s, "POST", "/api/management", managementBody(contextName, ns, nonce, true), cookie, ""); response.Code != 200 {
+			t.Fatalf("owned gateway management handshake: HTTP%d", response.Code)
+		}
+	} else if info["readOnly"] != true || info["managementEnabled"] != false {
+		t.Fatal("owned gateway did not start with browser management disabled")
 	}
 	ctx = context.WithValue(ctx, integrationOperatorKey{}, integrationOperator{cookie: cookie, nonce: nonce})
 	return s, c, ctx, contextName, server.URL

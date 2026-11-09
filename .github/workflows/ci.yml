@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [main, redesign/harbor-workbench]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 permissions:

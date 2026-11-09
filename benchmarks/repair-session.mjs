@@ -65,6 +65,16 @@ jobs.push({id:`${id}-final-interaction`,phase:'optimized',tag:candidateTag,profi
 jobs.push({id:`${id}-final-long`,phase:'optimized',tag:candidateTag,profile:'M',scenarios:['long'],repeats:1,seconds:60,warmup:30,longSeconds:1200,timeoutSeconds:1500});
 return jobs;
 }
+// v1.1 changes connection/DOM lifetime, not the failure-effect renderer. Reuse
+// the established runner with a bounded release subset instead of replaying all
+// 49 historical repair cells. The 20-minute run still exercises burst/churn,
+// logs, three reconnects, resync and twenty panel lifetimes.
+export function v11Jobs(id, baselineTag, candidateTag) {
+ return repairJobs(id, baselineTag, candidateTag).filter(job =>
+  ['panel', 'idle', 'world'].includes(job.group) ||
+  job.scenarios.some(s => ['events', 'interaction', 'long'].includes(s)))
+  .map(job => job.scenarios.includes('long') ? {...job, sceneInventory:true} : job);
+}
 async function main(){
 const [id,baselineTag,candidateTag]=process.argv.slice(2);
 const resumeIndex=process.argv.indexOf('--continue-from'),previousID=resumeIndex>=0?process.argv[resumeIndex+1]:null;
@@ -75,8 +85,10 @@ const power=()=>execFileSync('pmset',['-g','batt'],{encoding:'utf8',timeout:1000
 const initialPower=power(),powerSource=powerSourceOf(initialPower);
 if(!powerSource)throw Error('Unknown power source');
 assertPower(initialPower,powerSource);
-const buildIdentities=Object.fromEntries(await Promise.all([baselineTag,candidateTag].map(async tag=>[tag,await frozenBuildIdentity(root,tag)]))),browserVersion=await currentBrowserVersion(root),jobs=repairJobs(id,baselineTag,candidateTag);
-const plan={id,createdAt:new Date().toISOString(),powerSource,initialPower,baselineTag,candidateTag,buildIdentities,browserVersion,source:'Synthetic tracker → production informer/WebSocket/store/Harbor; not live Kubernetes E2E',order:'Three paired blocks, alternating build order; matrix reversal owned once by run.mjs. No automatic retry.',expectedCells:49,totalMinimumWindowSeconds:3*2*7*90+6*90+1230,jobs:jobs.map(j=>({...j,status:'pending'})),status:'pending'};
+const suiteIndex=process.argv.indexOf('--suite'),suite=suiteIndex<0?'repair':process.argv[suiteIndex+1];
+if(!['repair','v11'].includes(suite))throw Error('Unknown finite acceptance suite');
+const buildIdentities=Object.fromEntries(await Promise.all([baselineTag,candidateTag].map(async tag=>[tag,await frozenBuildIdentity(root,tag)]))),browserVersion=await currentBrowserVersion(root),jobs=(suite==='v11'?v11Jobs:repairJobs)(id,baselineTag,candidateTag);
+const plan={id,suite,createdAt:new Date().toISOString(),powerSource,initialPower,baselineTag,candidateTag,buildIdentities,browserVersion,source:'Synthetic tracker → production informer/WebSocket/store/Harbor; not live Kubernetes E2E',order:'Three paired blocks, alternating build order; matrix reversal owned once by run.mjs. No automatic retry.',expectedCells:jobs.reduce((n,j)=>n+(j.repeats||1)*j.scenarios.length,0),totalMinimumWindowSeconds:jobs.reduce((n,j)=>n+(j.repeats||1)*j.scenarios.reduce((m,s)=>m+j.warmup+(s==='long'?j.longSeconds:j.seconds),0),0),jobs:jobs.map(j=>({...j,status:'pending'})),status:'pending'};
 if(previousID){
  const previous=JSON.parse(await readFile(path.resolve('benchmarks/results',previousID,'queue.json'),'utf8'));
  assertResumeIdentity(previous,plan);
@@ -103,6 +115,7 @@ try{
   const argv=[process.execPath,'benchmarks/run.mjs','--phase',job.phase,'--build-tag',job.tag,'--backend-tag',job.tag,'--reuse-build','--reuse-binary','--id',job.id,'--profiles',job.profile,'--scenarios',scenarios.join(','),'--repeats',String(job.repeats||1),'--repeat-offset',String(job.block||0),'--warmup',String(job.warmup),'--seconds',String(job.seconds),'--long-seconds',String(job.longSeconds||1200),'--max-minutes',String(Math.ceil(job.timeoutSeconds/60)),'--dpr','1','--lock-input','--disable-browser-energy-saver','--lifecycle-counts','--experiment-family',id];
   // Force identical selected source/visual phase in the narrow paired matrix.
   if(job.matrix)argv.push('--panel-matrix');
+  if(job.sceneInventory)argv.push('--scene-inventory');
   job.argv=argv;job.status='running';job.startedAt=new Date().toISOString();await save();
   console.log(`${job.startedAt} START ${job.id} (${scenarios.join(',')})`);
   const log=await open(path.join(directory,`${job.id}.stdout.log`),'wx');let result;

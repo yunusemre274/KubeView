@@ -145,3 +145,19 @@ Web Inspector'ı ayrı pencerede kullanın; CSS viewport'u kaydedin. 30 sn ısı
 `node benchmarks/rebuild-baseline.mjs`, başlangıç commit'i ve kaydedilmiş kullanıcı/instrumentation patch'ini geçici dizinde derler; çalışma ağacını değiştirmez. İlk üretim artefaktıyla SHA-256 eşdeğerliği gerçekten doğrulanmıştır (`baseline-living-3x/reproduction.json`).
 
 Yöntem referansları: [R3F demand ve kaynak paylaşımı](https://r3f.docs.pmnd.rs/advanced/scaling-performance), [Three renderer sayaçları](https://threejs.org/docs/pages/WebGLRenderer.html), [Safari Timelines](https://webkit.org/web-inspector/timelines-tab/), [Go diagnostics](https://go.dev/doc/diagnostics), [INP tanımı](https://web.dev/articles/inp), [rAF zamanlaması](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame), [heap/OS bellek ayrımı](https://developer.chrome.com/docs/devtools/memory-problems), [memory API sınırlaması](https://developer.mozilla.org/en-US/docs/Web/API/Performance/memory), [GPU timer query](https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query).
+
+## 8 Kasım2026 — v1.1.0 adayının sınırlı kabul kuyruğu
+
+Başlangıç kodu değişmeden önce `v11-start-2b76e21` source/build'i donduruldu. Son aday aynı araçla yeni isimde hazırlanır; bu bölüm henüz ölçüm sonucu değildir. Eski49hücre raporu yeni kaynak için PASS sayılmaz.
+
+```sh
+node benchmarks/repair-session.mjs NEW_RUN_ID v11-start-2b76e21 FINAL_FROZEN_TAG --suite v11
+```
+
+`--suite v11` mevcut runner ve supervisörle31hücrelik sonlu alt küme seçer: üç eşleşmiş blokta aynı seçiliUID/camera/faz ile M açık/kapalı panel, M ayrı hareket-kapalı idle, L normal dünya; son adayda üç normal5Hz olay ve üç etkileşim tekrarı; bir1200s karma/log/churn/reconnect/resync ve20panel koşusu. Steady pencereler30sısınma+60sölçüm; teorik toplam pencere65,5dakikadır, build/kurulum dahil değildir. Hata, kaynak/build/tarayıcı/güç değişimi veya pil<%10 sonraki işi durdurur; otomatik retry yoktur. Kaldığı yerden sürdürme yeni run-id ve aynı kimlik kontrolleriyle ayrıca gerekçelendirilir.
+
+M20Node/300Pod canonical,görünür8/120; L50/1500,görünür8/270. Varsayılan medium/DPR1/su+seyir korunur; idle ayrı ayar karşılaştırmasıdır. Bu fixture Go tracker→üretim informer/WS/store→sahne yolunu sınar, gerçek Kubernetes/provider E2E değildir. Yeni gerçek bağlantı/metrics/iki-cluster/Hubble kanıtları kabul raporunda ayrıca yer alır. Eski arıza-effect render core'u ve provider core kaynakları değişmediyse tam49hücreyi sebepsiz tekrarlamak yerine dosya eşitliği+hedefli görsel/API regresyonu kullanılır. Trafik collector maliyeti fixture browser CPU'suna karıştırılmaz.
+
+Sürüm metaverisi karşılaştırması:0.4.0→1.1.0 geçişinde lockfile'ın ham SHA'sı değişti. Runner artık komutu başlatan checkout'un lockfile'ını frozen baseline'a aitmiş gibi yazmaz; her frozen source'un gerçek lock SHA'sını provenance ile doğrular. Sabit koşullarda yalnız root `version` ve `packages[""].version` hariç tutularak bağımlılık grafiği SHA'sı karşılaştırılır. Bütün dependency sürümleri, integrity/resolved ve platform/optional/peer bildirimleri korunur; gerçek değişiklik karşılaştırmayı reddeder. İki ham SHA ve eşit grafiğin kanıtı `artifacts/v1.1.0/v11-20261108/dependency-lock-comparison.json`; yeni unit bunu gerçek dependency değişikliğinden ayırır.
+
+9 Kasım devamı: v1.1 uzun koşusu mevcut checkpointlerde `--scene-inventory` de kullanır; materyal kimliği sayımı için ikinci bir20dk tur başlatılmaz. Bu read-only sayım yalnız1200s cleanup işindedir; üçlü steady panel/idle/L CPU çiftlerinde kapalıdır ve uzun koşunun tanılama overhead'i ayrı belirtilir. Ham frozen lockSHA her manifestte kalır; settings karşılaştırmasında normalleştirilmiş anahtar açıkça dependencyGraphSHA256 adını taşır.

@@ -1,0 +1,41 @@
+{
+  "recorded_at": "2026-11-09T08:03:11.736514+00:00",
+  "kind": "guarded real post-test read-only residual check",
+  "cluster_uid": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace_uid": "42337a2d-ae0b-49ba-bdc5-4badd8a5f92f",
+  "inventory": [
+    {
+      "resource": "pods",
+      "name": "kv-v11-flow-6e9e860f-client",
+      "absent": true
+    },
+    {
+      "resource": "pods",
+      "name": "kv-v11-flow-6e9e860f-same",
+      "absent": true
+    },
+    {
+      "resource": "pods",
+      "name": "kv-v11-flow-6e9e860f-cross",
+      "absent": true
+    },
+    {
+      "resource": "serviceaccounts",
+      "name": "kv-v11-flow-6e9e860f-reader",
+      "absent": true
+    },
+    {
+      "resource": "roles",
+      "name": "kv-v11-flow-6e9e860f-reader",
+      "absent": true
+    },
+    {
+      "resource": "rolebindings",
+      "name": "kv-v11-flow-6e9e860f-reader",
+      "absent": true
+    }
+  ],
+  "all_absent": true,
+  "payload_or_credentials_logged": false,
+  "relay_forward_untouched": true
+}

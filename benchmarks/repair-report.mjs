@@ -51,7 +51,10 @@ export function independentPairReasons(rows,key,partial=false){
  return !partial&&complete.length<3?[`Insufficient independent pairs ${key}`]:[];
 }
 const fixedManifestFields=['fixtureVersion','repairScenarioVersion','repairHarnessSHA256','replaySHA256','snapshotOrder','instrumentationSHA256','lifecycleInstrumentationSHA256','networkDiagnostic','nodeVersion','goVersion','hardware','os','powerSource','powerSettings','displayRefreshHz','nativeDisplay','browserVersion','quality','lockSHA256','viewport','deviceScaleFactorOverride','shadows','water','patrol','fpsCap','adaptiveQuality','production','inputLocked','browserEnergySaver'];
-const manifestConditions=m=>Object.fromEntries(fixedManifestFields.map(k=>[k,m[k]]));
+const manifestConditions=m=>({
+ ...Object.fromEntries(fixedManifestFields.filter(k=>k!=='lockSHA256').map(k=>[k,m[k]])),
+ dependencyGraphSHA256:m.dependencyGraphSHA256||m.lockSHA256,
+});
 export function fixedConditionReasons(runs){
  const reference=runs[0]?.manifest;return reference?runs.filter(r=>JSON.stringify(manifestConditions(r.manifest))!==JSON.stringify(manifestConditions(reference))).map(r=>`Fixed session conditions differ ${r.runID}`):[];
 }

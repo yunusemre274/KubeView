@@ -1,5 +1,9 @@
 # Tam ekran tersane dönüşümü
 
+## 8 Kasım2026 — v1.1.0 gerçek kullanıcı adayı (OPEN)
+
+[Milestone #1](https://github.com/yunusemre274/KubeView/milestone/1), [taslak PR #1](https://github.com/yunusemre274/KubeView/pull/1). Bağlantı/session güvenliği ve tek-binary dağıtım uygulanıp hedefli unit/race/API/install smoke sınandı. İlk gerçek UI başlangıç hatası düzeltildi; iki-cluster normalUI, kalan kabul, görsel/performance ve kararlılık kapıları henüz açık. Hedef sürüm1.1.0 paketlerde hazır, stable tag/release yok. Ayrıntılı sabit platform+kapılar [milestone kaydında](milestones/v1.1.0.md), gerçek sonuçlar [kabul raporunda](V11_ACCEPTANCE_REPORT.md). Aşağıdaki tarihsel onarım kayıtları otomatik yeni PASS değildir.
+
 ## 6 Kasım 2026 — v1.1 öncesi doğruluk ve görsel onarım
 
 v1.1 geçişi ertelidir; aşağıdaki onarım v1.1 milestone/release kapanışı değildir. [Güncel kabul raporu](PRE_V11_VISUAL_REPAIR.md), [somut kaynak matrisi](VISUAL_FEATURE_MATRIX.csv) ve [sınırlar](VISUAL_FEATURE_GAPS.md) tarihsel A–G kayıtlarından sonra gelen durumu tanımlar.

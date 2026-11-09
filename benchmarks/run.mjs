@@ -27,6 +27,7 @@ import { installGPUProbe } from "./gpu-probe.mjs";
 import { installBufferProbe } from './buffer-probe.mjs';
 import { installLifecycleProbe } from "./lifecycle-probe.mjs";
 import { readSceneInventory } from "./scene-inventory.mjs";
+import { buildLockIdentity } from './build-lock.mjs';
 import { summarize, distribution, cpuSeconds, loadBands, measurementWindow } from "./metrics.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const require = createRequire(path.join(root, "frontend/package.json"));
@@ -299,6 +300,13 @@ manifest.buildProvenance = await readFile(`${build}.json`, "utf8")
     if (e.code === "ENOENT") return null;
     throw e;
   });
+// Report the measured frozen build's lock, not the checkout used to launch it.
+manifest.harnessLockSHA256 = manifest.lockSHA256;
+const frozenLock = await readFile(path.join(manifest.buildProvenance?.source || path.join(root,'frontend'), 'package-lock.json'), 'utf8');
+Object.assign(manifest, buildLockIdentity(frozenLock));
+if (manifest.buildProvenance && manifest.lockSHA256 !== manifest.buildProvenance.files?.['package-lock.json'])
+  throw Error('Frozen build source lock changed; refusing CPU measurement');
+manifest.dependencyComparison = 'Exact frozen lock SHA retained; comparison excludes only root version and packages[empty].version release metadata';
 if (
   Boolean(manifest.buildProvenance?.profiling) !== manifest.reactProfilingBuild
 )
