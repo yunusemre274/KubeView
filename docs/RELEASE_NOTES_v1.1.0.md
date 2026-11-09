@@ -1,6 +1,6 @@
 # KubeView 1.1.0 — sürüm adayı
 
-**Sürüm adayı; henüz yayımlanmadı.** Final kanıt/kabul incelemesi, CI ve yayımlama bekleniyor; stable tag/release ve milestone kapanışı son kapı değerlendirmesine bağlıdır.
+**Sürüm adayı; henüz yayımlanmadı.** 594e090 CI ve indirilen aday paket kontrolü geçti. Açıklanamayan CPU farkı ve fiziksel ilk tepki/tam temel panel gecikmesi kabulü açık; bu zorunlu kapılar geçmeden stable tag/release veya milestone kapanışı yapılmaz.
 Başlangıç paket sürümü 0.4.0 idi. Başlangıç GitHub envanterinde v1.0.0 release/tag yoktu; eski chart metni yayımlanmış sürüm olarak yorumlanmaz.
 
 Bu aday, mevcut tam ekran limanı ve gerçek Kubernetes işlemlerini yerel operatörün kendi kümesine bağlanabileceği bir dağıtıma dönüştürür:
@@ -45,3 +45,9 @@ Log pause gerçek HTTP akışını kapatır; resume seçili tail'i yeniden okur,
 
 Kurulum ve güvenlik: [README](../README.md), [SECURITY](SECURITY.md).
 Platform, kaynak/build ve gerçek test durumu: [kabul raporu](V11_ACCEPTANCE_REPORT.md).
+
+## 9 Kasım — doğrulanmış CI aday paketleri
+
+[CI42604991277](https://github.com/yunusemre274/KubeView/actions/runs/42604991277)SUCCESS; head594e090'ın geçici PRtestmerge09ee97 tree'si headile eşit. `tested-builds`CIartifact'i stable release değildir;14gün saklama politikalıdır. İki arşivin checksum'u ve indirilenmacOSbinary temizdizin başlangıcı/embeddedindex/configuredfalse doğrulandı. [Paketkaydı](../artifacts/v1.1.0/v11-20261108/ci-package-proof-594e090.json).32→594runtime/dependencydiff0; paketcommitmetaverisi09ee97, test edilmişgerçekAPIruntime32'den ayrıdır.
+
+Yerelkontrol için `dist/ci-594e090/` arşivleri mevcut; kaynakdepoda binary/cache tutulmaz. CPU ve fizikselUIlatencykapıları açık kaldığından gerçekmainmerge/tag/release/milestone kapanışı yapılmadı. Sonraki saltbelgecommit'inin CIsonucu PR'da ayrıca görünür; bu kayıt bütün kapıların geçtiği ilanı değildir.

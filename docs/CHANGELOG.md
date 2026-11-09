@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-09 — aday paket ve CI teslim kontrolü
+
+- `594e090` kanıt commit'i doğru uzak dala pushlandı; CI42604991277 geçti. GitHub geçici PR test merge'i09ee97 ile head tree eşliği doğrulandı; bu gerçek main merge veya release değildir. İki aday arşivinin checksum'u ve indirilen Mac binary'nin temiz dizin/salt okunur/boş yapılandırma smoke testi geçti. Runtime ve bağımlılıklar değişmedi.
+- CPU ve fiziksel arayüz gecikmesi kabulü açık: stable tag/release veya milestone kapanışı yapılmadı.16PASS/3BLOCKED, test türleri ve başarısız yardımcı kayıtları korunur.
+
 ## 2026-11-09 — final kaynak doğrulaması ve kanıt teslimi
 
 - Gerçek production hook çevresine beş sınırlı, sentetik provider-epoch regresyon testi eklendi: A→B→A/namespace/stream nesli, geciken yanıtın reddi ve eski lease'in sabit contextURL'siyle iptali. Runtime/dependency değişmedi;165/165 frontend unitPASS,0FAIL/0SKIP.

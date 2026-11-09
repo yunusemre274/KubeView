@@ -35,3 +35,7 @@
 Root gerçek768middle,1280middle ve failurelate PNGlerini açtı: metin okunaklı/viewportiçinde ve düşen kutuyu görsel olarak kapatmıyor.1280late helperının projectedaxisaligned köşe testi0.159×0.300CSSpx kesişiminde durdu; rawFAIL başarıya çevrilmedi. Bu orientedmesh/gerçek okunurluk hatası kanıtı değildir.1280bağımsızpostAPIassert aşaması NOTRUN; canlıwatchkaynaklıaynıUID/Error/count1kaydı ve önceki tam gerçek2containerproof ayrı kalır. İlk768tamAPIexit42/healthysiblingPASS. Exec-focus ayrıdar iştePASS: [gerçek sonuç](../frontend/final-focus-caption/exec-runs/2026-11-09T10-45-36-202Z/result.json), dörtcaret40→39→40→17→40, camera/target0 ve gerçekprintf/execWSclose. FizikselUIlatencykapısı bundan kapanmaz.
 
 [Makinece okunur19satır](final-acceptance-ledger-32a0468.json). Ortam:Kubernetes1.35.1;AUIDa24740ba-cf3e-461d-b5b3-250deeb060d7/BUID4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32;Chromium156.0.8078.4,PlaywrightWebKit;nativeSafari/RetinaoptionalN/A. Go genel60topPASS/20SKIP;race39topPASS/20SKIP;frontend165PASS/0FAIL/0SKIP;harness45PASS. Opt-inSKIPgerçekAPItest başarısı değildir. Invocation/leafsayısı toplamları karıştırılmaz; eskiFAILmetadata korunur.
+
+## CI/paket teslim eki
+
+594e090CI42604991277SUCCESS, indirilenikiarşivSHA256SUMS veMaccleanbinary/indexsmokePASS. PRtestmerge09ee97/head594tamtreesame; gerçekmainmerge/release değildir. [Paketkanıtı](../ci-package-proof-594e090.json).16PASS/3BLOCKEDdeğişmez; CPU/fizikselUI/finalstableteslim açık. Sonraki saltbelgecommitCI PRcheck'lerinde doğrulanır; kendiSHA'sını kaydeden sonsuzcommit/CIzinciri kurulmaz.

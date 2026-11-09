@@ -46,6 +46,14 @@ Başlangıç/finalruntime: `2b76e215fdbe201be1611ccea4c40dcd547b2ba7`→`32a0468
 
 `32a0468` CI [42588093195](https://github.com/yunusemre274/KubeView/actions/runs/42588093195) SUCCESS. Yeni test/kanıt commit'inin CI'ı ve normalPR/release kararı ayrıca izlenir. En fazla2mantıksalbranch, forcepush/yazılmıştag yok. Dört ownedlabcontainer yalnız performans izolasyonu için durduruldu, silinmedi; diğer projeler korundu.
 
+## 9 Kasım2026 — CI ve indirilen aday paket doğrulaması
+
+Kanıt/test/doküman commit'i `594e090710cef4ad178b896f03802542c2756d3c` doğru uzak dala pushlandı; remoteSHA eşit. [CI42604991277](https://github.com/yunusemre274/KubeView/actions/runs/42604991277)SUCCESS;165frontend,Go,harness,ikihedefpaket ve temiz nativeLinuxbinary/browser smoke adımları geçti. İndirilen iki arşivinSHA256SUMS'u doğrulandı; macOSarşivinden yalnızbinary temiz dizine alınıp yerelARM64'te yeniden çalıştırıldı. EmbeddedindexSHA `2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395` ölçülmüş32aday ile eşit; absentprivateconfig/configured=false ve readonlykorundu. Port18415/süreç kapandı. [Makineceokunurpaketkanıtı](../artifacts/v1.1.0/v11-20261108/ci-package-proof-594e090.json).
+
+GitHub PR CI'ı head594e090 yerine geçici testmerge`09ee97d1268bd25f63445564ef0a4d675aa2c83e` derledi; ikisinin tamGittreeSHA'sı `91c5c0f393af45f109c6c748fd2aa10c8f4d6b3c` eşit. Bu gerçekmainmerge veya release değildir. İlk helper'ın build.commit=head varsayımıFAIL olarak kayda geçirildi; gerçekCIsemantiği ile tree/asset eşliği doğrulandı.32→594runtime/dependencydiff0; bu yeniemptyconfigsmoke, yeniiki-clusterTLS/performancekoşusu diye sunulmaz.
+
+Son takip commit'i yalnız bu CI/paket kaydını ve durum belgelerini ekler; yeniden uzun benchmark gerekmez. GüncelcommitCIsonucu PRcheck'lerinde ayrıca izlenir. **16PASS/3BLOCKED korunur:**V11-16fizikselUIlatency,V11-18CPU,V11-19bunlara bağlıstableteslim. PRDRAFT/milestoneOPEN, v1.1.0tag/release yok. Yerel aday arşivleri `dist/ci-594e090/` içinde; yayımlanmışstableasset değildir.
+
 ## Önceki ara durum kayıtları
 
 

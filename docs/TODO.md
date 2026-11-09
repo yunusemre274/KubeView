@@ -10,7 +10,8 @@
 - [x] Gerçekformtext/numeric/YAML ve nonTTYterminalde yön tuşu/nativecaret/camera-target0; gerçekprintf/execclose.768/1280fall kareleri incelendi; subpixelstrictAABBFAIL ve1280postAPIassertNOTRUN dürüstçe korundu.
 - [ ] Fizikselilkfeedback≤100ms/tamtemelpanel≤200ms doğrulaması; PNG/DOM/rAFproxy yerinegeçmez.
 - [ ] L ilkACfarkının nedensel yorumu ve açıklanamayan anlamlı regresyon kapısı. Kontrollüpil+.63%/+1.59%, ilkAC+20.93%yerine otomatikgenelPASS değildir.
-- [ ] Kanıt/test/doküman commit+push, yeni CI; tüm zorunlu kapılar sağlanmadan normal merge/stable tag/release/milestone kapanışı yapılmaz.
+- [x] Kanıt/test/doküman594e090 commit+push/remoteref, CI42604991277SUCCESS, indirilenikiarchivechecksum veMaccleanbinary/indexsmoke; PRtestmerge/headtreeeşliği.
+- [ ] CPU/fizikselUIkapıları sonrası gerçekmainmerge/stabletag/release/milestone; sonbelgecommitCI PRcheck'lerinde ayrıca doğrulanır.
 
 Aşağıdaki aynı gün ara durumları tarihsel checkpoint'tir; yeni sonuçlar yukarıdadır. Tam kayıt: [V11_ACCEPTANCE_REPORT.md](V11_ACCEPTANCE_REPORT.md).
 

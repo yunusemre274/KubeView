@@ -228,16 +228,17 @@
         "platform-final/result-summary.json",
         "docker-final-proof.json",
         "helm-final-proof.json",
-        "ci-32a0468.json"
+        "ci-32a0468.json",
+        "ci-package-proof-594e090.json"
       ],
-      "limits": "32CI SUCCESS. Yeni kanıtcommitiCI/finalpaketmetadataeşliği/normalmerge/tag/releasepending; CPU/UIölçümkapılarıaçıkkenstableyayınlanmaz"
+      "limits": "594e090CI SUCCESS42604991277; geçiciPRtestmerge09ee97tamtreesame;2archivechecksums+MaccleanindexsmokePASS. CPU/physicalUIgates açıkken normalmainmerge/tag/release/milestonecloseBLOCKED."
     }
   ],
   "stableReleaseAllowed": false,
   "globalGates": {
     "unexplainedCPURegression": "BLOCKED",
     "physicalFeedbackAndCompletePanelLatency": "BLOCKED; only proxies measured",
-    "newEvidenceCommitCIAndFinalDelivery": "PENDING"
+    "newEvidenceCommitCIAndFinalDelivery": "594e090CI PASS, nextdocumentaryCI externalPRchecks; stable/mainmerge/tag BLOCKED by CPU and physicalUIgates"
   },
   "counts": {
     "PASS": 16,

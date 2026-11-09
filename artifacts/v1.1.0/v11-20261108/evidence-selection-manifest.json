@@ -1861,5 +1861,7 @@
   ],
   "textCredentialPatternFindings": [],
   "patternScanLimit": "Pattern search is a limited check, not proof that arbitrary secrets cannot occur. Synthetic Secret reveal/editor screenshots and payload traces were never recorded; reviewed metadata-only screenshots are selected. Private .git runtime configs, binaries, caches and all root user prompt files are excluded.",
-  "omissions": "Duplicate panel readback PNGs except00/03/14; QA browser-artifacts traces/copies; helper-failure videos; all unrelated pre-v11 untracked artifacts. Files remain locally, not deleted."
+  "omissions": "Duplicate panel readback PNGs except00/03/14; QA browser-artifacts traces/copies; helper-failure videos; all unrelated pre-v11 untracked artifacts. Files remain locally, not deleted.",
+  "selectionCommit": "594e090710cef4ad178b896f03802542c2756d3c",
+  "historicalSelectionNote": "selectedFiles SHA map freezes the evidence/test/doc contents included in594e090. Later CI-package/status-only documentation changes have their own Git history and are not silently substituted into this earlier hash map."
 }
