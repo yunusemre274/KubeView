@@ -2,6 +2,7 @@
 
 ## 2026-11-09 — gerçek UI ve bağlantı toparlanma düzeltmeleri
 
+- Gerçek normal UI incelemesinde askıya alınmış Job'un `Çalışıyor` etiketlendiği görüldü; `spec.suspend=true` artık terminal Complete/Failed koşullarından sonra `Askıya alındı` gösterir. Ayrı unit tekrarı, boş/eski DaemonSet status'unun `undefined === undefined` ile Hazır sayıldığını gösterdi; bilinen sayaçlar ve gözlenen generation beklenir. İkincisi gerçek runtime arızası olarak raporlanmaz. Önceki iki failing assertion korunur;160/160 frontend unit geçti, yeni build UI doğrulaması ayrıca yapılır.
 - WebKit'te mouse ile açılan Bul penceresinin ESC sonrası BODY'ye odak dönmesi düzeltildi; gerçek açan düğme ve geçerli fallback ortak focus helper'ıyla korunur.156/156 frontend unit; gerçek WebKit tekrarı ayrı kabul kapısıdır.
 - İzole gerçek API test yardımcıları CR scope/UID/RBAC, Hubble mTLS ve minikube güncel yönetim sınırlarını yeniden üretir. Genel Go/race koşuları ve45/45 harness unit geçti; opt-in SKIP gerçek test başarısı sayılmaz. Mevcut benchmark kuyruğuna sonlu31hücre v1.1 alt kümesi ve frozen build'in gerçek lockfile kimliği eklendi; yeni CPU sonucu henüz yoktur.
 - CPU/RAM/edit ilk GET'i bitmeden alanlar native disabled fieldset ile kilitlenir; header/ESC kapatma çalışır. Gerçek GET geciktirilerek dört alan, dry-run ve gerçek rollout/restart/replacement/delete doğrulandı.

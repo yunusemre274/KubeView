@@ -2,6 +2,7 @@
 
 ## 9 Kasım2026 — normal UI/fault ve kaynak türü ayrımı
 
+- Kubernetes controller'ı DaemonSet'in `deprecated.daemonset.template.generation` annotation'ını değiştirebilir; kullanıcı metadata'sının korunumu controller'a ait bu exact anahtardan ayrı ölçülür. Genel Job durumunda `spec.suspend` unutulması gerçek UI kusuruydu; DaemonSet'te eksik iki sayacın eşitliği ise unit ile yeniden üretildi. Runtime ve unit kanıtları aynı etiket altında birleştirilmez.
 - WebKit mouse ile düğmeye tıklayınca `document.activeElement` BODY kalabilir. Pencereyi açan `event.currentTarget` odağı açıkça kaydedilir; BODY/HTML veya kaldırılmış/disabled hedef yerine finder'a dönülür. Gerçek mouse→ESC hatası ve klavyenin doğru çalışması ayrı kaydedildi; helper unit tek başına tarayıcı kabulü değildir.
 - Loading metni ve kapalı submit düğmesi inputlara yazılmasını engellemez. İlk GET yanıtı typed draft'ı ezdi; native fieldset + ilk state guard ve geciktirilmiş gerçek GET testiyle düzeltildi.
 - Aynı UID/RV ile gerçek WebSocket reconnect de fresh GET başlatabilir. Dirty taslak/RV koruması, UID/reveal doğrulamasından ayrı tutulmalı. Server grant iptali fresh snapshot ile anlaşılmaz; yeni socket'te güncel diagnostic ve serial guard gerekir.

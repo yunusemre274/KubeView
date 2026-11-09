@@ -7,7 +7,12 @@ import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const session = JSON.parse(await readFile(path.join(root, 'benchmarks/panel-final-session.json'), 'utf8'));
+// An explicit session keeps new acceptance runs separate from historical ones.
+const sessionIndex = process.argv.indexOf('--session');
+const sessionFile = sessionIndex < 0 ? path.join(root, 'benchmarks/panel-final-session.json') : path.resolve(root, process.argv[sessionIndex + 1] || '');
+const session = JSON.parse(await readFile(sessionFile, 'utf8'));
+if (![session.id, session.candidate, session.backend].every(value => typeof value === 'string' && /^[\w.-]+$/.test(value)))
+  throw Error('Visibility requires explicit safe session/build identities');
 const id = `${session.id}-visibility`, fixtureID = `${id}-fixture`;
 const out = path.join(root, 'benchmarks/results', id), base = 'http://127.0.0.1:5195';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));

@@ -54,6 +54,88 @@ test("Unknown Node is not healthy and UID recreation does not alias", () => {
     resourceUID({ ...pod, metadata: { ...pod.metadata, uid: "b" } }),
   );
 });
+test("a suspended Job with no terminal condition is suspended instead of running", () => {
+  assert.deepEqual(
+    resourceStatus({
+      kind: "Job",
+      metadata: { uid: "suspended-job", generation: 1 },
+      spec: { suspend: true },
+      status: { active: 0 },
+    }),
+    { label: "Askıya alındı", tone: "warning" },
+  );
+});
+test("Job terminal conditions retain priority over suspend and normal running stays unchanged", () => {
+  const job = { kind: "Job", spec: { suspend: true } };
+  assert.deepEqual(
+    resourceStatus({
+      ...job,
+      status: { conditions: [{ type: "Complete", status: "True" }] },
+    }),
+    { label: "Tamamlandı", tone: "success" },
+  );
+  assert.deepEqual(
+    resourceStatus({
+      ...job,
+      status: { conditions: [{ type: "Failed", status: "True" }] },
+    }),
+    { label: "Başarısız", tone: "danger" },
+  );
+  assert.deepEqual(
+    resourceStatus({
+      kind: "Job",
+      spec: { suspend: false },
+      status: { active: 1 },
+    }),
+    { label: "Çalışıyor", tone: "warning" },
+  );
+});
+test("DaemonSet missing, partial or stale observations never imply healthy readiness", () => {
+  const daemonset = {
+    kind: "DaemonSet",
+    metadata: { uid: "daemonset", generation: 2 },
+  };
+  for (const status of [
+    {},
+    { observedGeneration: 2 },
+    { observedGeneration: 2, numberReady: 1 },
+    { observedGeneration: 2, desiredNumberScheduled: 1 },
+    { numberReady: 1, desiredNumberScheduled: 1 },
+    { observedGeneration: 1, numberReady: 1, desiredNumberScheduled: 1 },
+    { observedGeneration: 2, numberReady: "1", desiredNumberScheduled: "1" },
+    { observedGeneration: 2, numberReady: 1, desiredNumberScheduled: 2 },
+  ])
+    assert.deepEqual(resourceStatus({ ...daemonset, status }), {
+      label: "Uygulanıyor",
+      tone: "warning",
+    });
+  assert.deepEqual(
+    resourceStatus({
+      kind: "DaemonSet",
+      status: {
+        observedGeneration: 2,
+        numberReady: 1,
+        desiredNumberScheduled: 1,
+      },
+    }),
+    { label: "Uygulanıyor", tone: "warning" },
+  );
+});
+test("DaemonSet known counts and current observed generation preserve real Ready including zero eligible Nodes", () => {
+  for (const count of [0, 1, 3])
+    assert.deepEqual(
+      resourceStatus({
+        kind: "DaemonSet",
+        metadata: { generation: 2 },
+        status: {
+          observedGeneration: 2,
+          numberReady: count,
+          desiredNumberScheduled: count,
+        },
+      }),
+      { label: "Hazır", tone: "success" },
+    );
+});
 test("CPU and binary memory quantity parse without invented defaults", () => {
   assert.equal(quantityNumber("500m"), 0.5);
   assert.equal(quantityNumber("1Gi"), 1073741824);
