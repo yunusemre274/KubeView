@@ -1,5 +1,5 @@
 import { createSourceManager, singletonManager } from "./ShipyardClusterContext.jsx";
-import { initialState } from "../data/resourceStore.js";
+import { appendMetrics, initialState } from "../data/resourceStore.js";
 import { harborScopeKey, normalizeNamespaces, MAX_HARBOR_VIEWS } from "../world/workspace.js";
 export { createSourceManager };
 
@@ -22,13 +22,21 @@ export class HarborSession {
     this.lastStream = "";
     this.lastCoreEpoch = core.epoch;
     this.operationRecords = [];
+    this.observationPins = new Map();
+    this.lastCoreMetrics = core.state.metrics;
     this.coreListener = () => {
       if (this.lastCoreEpoch !== core.epoch) {
         this.lastCoreEpoch = core.epoch;
+        this.clearObservationPins();
+        this.lastCoreMetrics = null;
         this.managementIntent = false;
-        this.overlay = { ...this.overlay, readOnly: true, managementEnabled: false, connectionChecks: null };
+        this.overlay = { ...this.overlay, readOnly: true, managementEnabled: false, connectionChecks: null, metrics: null, metricHistory: [] };
         ++this.revision;
         this.requests.forEach((abort) => abort.abort());
+      }
+      if (this.lastCoreMetrics !== core.state.metrics) {
+        this.lastCoreMetrics = core.state.metrics;
+        if (this.active) this.adoptCoreMetrics();
       }
       const key = this.streamSession().key;
       if (key !== this.lastStream) {
@@ -89,6 +97,7 @@ export class HarborSession {
     ++this.revision;
     this.publish({ readOnly: true, managementEnabled: false });
     this.core.start();
+    this.adoptCoreMetrics();
     this.refreshConnection();
     this.notifyStreamSession();
   }
@@ -111,6 +120,31 @@ export class HarborSession {
   }
   resetManagement() { return singletonManager.resetManagement.call(this); }
   setManagement(enabled) { return singletonManager.setManagement.call(this, enabled); }
+  setObservationPin(slot, uid) {
+    if (!["selection", "form"].includes(slot)) throw new Error("Geçersiz kaynak gözlem alanı.");
+    if (uid) this.observationPins.set(slot, uid);
+    else this.observationPins.delete(slot);
+    this.core.setObservationPin?.(`${this.workspaceScope.harborId}:${slot}`, uid);
+  }
+  clearObservationPins() {
+    for (const slot of this.observationPins.keys())
+      this.core.setObservationPin?.(`${this.workspaceScope.harborId}:${slot}`, null);
+    this.observationPins.clear();
+  }
+  adoptCoreMetrics() {
+    const metrics = this.core.state.metrics;
+    if (!this.active || !metrics) return;
+    this.metricsAbort?.abort(); this.metricsAbort = null;
+    const namespace = this.state.activeNamespace;
+    const filter = (items) => items.filter((item) => (item.metadata?.namespace || item.namespace) === namespace);
+    const scoped = namespace && namespace !== "all"
+      ? { ...metrics, pods: Array.isArray(metrics.pods) ? filter(metrics.pods) : { ...metrics.pods, items: filter(metrics.pods?.items || []) } }
+      : metrics;
+    this.overlay = appendMetrics({ ...this.overlay, metricHistory: this.overlay.metricHistory || [] }, scoped);
+    // A union list can fail where an authorized, narrower namespace still works.
+    // Reuse complete samples directly; retry only that active local observation.
+    if (namespace && namespace !== "all" && metrics.errors?.pods) this.refreshMetrics();
+  }
   async refreshMetrics() {
     if (!this.active) return;
     this.metricsAbort?.abort();
@@ -124,6 +158,8 @@ export class HarborSession {
     } catch (error) {
       if (epoch === this.epoch && !abort.signal.aborted)
         this.publish({ metrics: { available: false, error: error.message } });
+    } finally {
+      if (this.metricsAbort === abort) this.metricsAbort = null;
     }
   }
   observeNamespace(namespace = "all", expectedSource = this.state.sourceKey) {
@@ -154,6 +190,7 @@ export class HarborSession {
   notifyStreamSession() { this.streamListeners.forEach((listener) => listener(this.streamSession())); }
   dispose() {
     this.deactivate();
+    this.clearObservationPins();
     this.core.listeners.delete(this.coreListener);
     this.listeners.clear();
     this.streamListeners.clear();
@@ -262,7 +299,7 @@ export class WorkspaceRegistry {
 
 export function emptyWorkspaceManager(contexts = []) {
   return { ...singletonManager, state: { ...initialState("workspace:empty"), contexts, context: "", mode: "live", configured: false, readOnly: true, discovery: [], managementEnabled: false, connectionChecks: null },
-    listeners: new Set(), streamListeners: new Set(), started: true,
+    listeners: new Set(), streamListeners: new Set(), observationPins: new Map(), started: true,
     start() {}, cleanup() {}, refreshConnection() {}, refreshMetrics() {},
     observeNamespace() {}, retainKind() { return () => {}; }, loadKind() {},
     selectSource() {}, diagnostics() { return {}; },

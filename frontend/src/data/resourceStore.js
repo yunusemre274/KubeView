@@ -28,13 +28,20 @@ export function initialState(sourceKey = "") {
   };
 }
 const MAX_TOMBSTONES = 1000;
+const MAX_OUT_OF_SCOPE = 1000;
+function boundedScopeExits(exits, pinnedUIDs) {
+  const pins = new Set(pinnedUIDs), ordinary = [], protectedEntries = [];
+  for (const entry of Object.entries(exits))
+    (pins.has(entry[0]) ? protectedEntries : ordinary).push(entry);
+  return Object.fromEntries([...ordinary.slice(-MAX_OUT_OF_SCOPE), ...protectedEntries]);
+}
 function boundedTombstones(tombstones) {
   const entries = Object.entries(tombstones);
   return entries.length <= MAX_TOMBSTONES
     ? tombstones
     : Object.fromEntries(entries.slice(-MAX_TOMBSTONES));
 }
-export function reduceMessage(state, message) {
+export function reduceMessage(state, message, { pinnedUIDs = [] } = {}) {
   const payload = message.payload || message;
   const generation = message.generation ?? payload.generation;
   const context = message.context ?? payload.context;
@@ -135,7 +142,7 @@ export function reduceMessage(state, message) {
       snapshotUIDs: incoming,
       scopes,
       tombstones: boundedTombstones(tombstones),
-      outOfScope: Object.fromEntries(Object.entries(outOfScope).slice(-1000)),
+      outOfScope: boundedScopeExits(outOfScope, pinnedUIDs),
       completeSnapshot: !scoped,
       generation,
       snapshotReady: true,
@@ -150,6 +157,7 @@ export function reduceMessage(state, message) {
     const r = payload.object;
     if (!identity(r)) return state;
     const resources = { ...state.resources };
+    let outOfScope = state.outOfScope || {};
     let tombstones = state.tombstones || {};
     let changedTombstones = false;
     const recordDeletion = (uid, reason) => {
@@ -166,7 +174,11 @@ export function reduceMessage(state, message) {
       delete resources[identity(r)];
       const retainedTombstones = { ...tombstones }; delete retainedTombstones[identity(r)];
       return { ...state, resources, tombstones: retainedTombstones, lastUpdated: now,
-        outOfScope: Object.fromEntries(Object.entries({ ...(state.outOfScope || {}), [identity(r)]: now }).slice(-1000)) };
+        outOfScope: boundedScopeExits({ ...outOfScope, [identity(r)]: now }, pinnedUIDs) };
+    }
+    if (outOfScope[identity(r)]) {
+      outOfScope = { ...outOfScope };
+      delete outOfScope[identity(r)];
     }
     if (payload.action === "DELETE") {
       delete resources[identity(r)];
@@ -207,6 +219,7 @@ export function reduceMessage(state, message) {
     return {
       ...state,
       resources,
+      outOfScope,
       tombstones: changedTombstones
         ? boundedTombstones(tombstones)
         : tombstones,

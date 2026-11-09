@@ -1,0 +1,8 @@
+{
+  "head": "2d63c67886d0d81ed1cbedf9915a200f29b80b84",
+  "runId": 42663820290,
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/yunusemre274/KubeView/actions/runs/42663820290",
+  "scope": "Remote production unit/build/package and clean Linux binary startup; not local real-cluster or workspace performance acceptance"
+}

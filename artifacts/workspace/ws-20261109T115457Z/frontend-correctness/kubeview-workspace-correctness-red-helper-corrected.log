@@ -1,0 +1,104 @@
+✖ cold persisted exact UID restores its panel once after the first current snapshot arrives (5.13025ms)
+✔ cold restore never follows a same-name replacement or overrides a newer user panel (0.895167ms)
+✖ empty onboarding has no last-known-view stale label, while a disconnected observed harbor does (0.327125ms)
+✖ two per-harbor UID pins survive marker eviction without masking real DELETE, reentry or a new source (9.950708ms)
+✖ a new canonical metrics sample refreshes the active local view without adding polling or requests (1.374708ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 496.225166
+
+✖ failing tests:
+
+test at tests/workspace-app-state.test.js:79:1
+✖ cold persisted exact UID restores its panel once after the first current snapshot arrives (5.13025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'old-uid'
+  
+      at file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:83:10
+      at withApp (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:72:15)
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:79:111)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'old-uid',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/workspace-app-state.test.js:98:1
+✖ empty onboarding has no last-known-view stale label, while a disconnected observed harbor does (0.327125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:100:10
+      at withApp (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:72:15)
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:98:116)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/workspace.test.js:260:1
+✖ two per-harbor UID pins survive marker eviction without masking real DELETE, reentry or a new source (9.950708ms)
+  AssertionError [ERR_ASSERTION]: evicting ordinary markers cannot manufacture deletion of the pinned selection
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace.test.js:276:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/workspace.test.js:293:1
+✖ a new canonical metrics sample refreshes the active local view without adding polling or requests (1.374708ms)
+  AssertionError [ERR_ASSERTION]: old namespace overlay cannot mask a newer canonical sample
+  + actual - expected
+  
+  + '2026-11-09T00:00:00Z'
+  - '2026-11-09T00:00:01Z'
+                       ^
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace.test.js:312:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '2026-11-09T00:00:00Z',
+    expected: '2026-11-09T00:00:01Z',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

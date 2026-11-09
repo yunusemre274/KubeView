@@ -326,6 +326,7 @@ function ResourceDetails({
   onAddPod,
   selectedContainerName,
   onSelectContainer,
+  onTabChange,
   onShowInScene,
   visualMotion,
   onToggleShipPause,
@@ -347,11 +348,15 @@ function ResourceDetails({
     requestedTabRef = useRef(null);
   const [localContainerName, setLocalContainerName] = useState(null);
   const activeContainerName = selectedContainerName || localContainerName;
+  const selectTab = (next) => {
+    setTab(next);
+    onTabChange?.(next);
+  };
   const selectContainer = (name, targetTab = "containers") => {
     setLocalContainerName(name);
     requestedTabRef.current = targetTab;
     onSelectContainer?.(name, resource);
-    setTab(targetTab);
+    selectTab(targetTab);
   };
   useEffect(() => {
     if (selectedContainerName) {
@@ -691,7 +696,7 @@ function ResourceDetails({
         {tabs.map((t) => (
           <button
             key={t.id}
-            onClick={() => setTab(t.id)}
+            onClick={() => selectTab(t.id)}
             aria-current={tab === t.id ? "page" : undefined}
             className={tab === t.id ? "active" : ""}
           >
@@ -1321,7 +1326,7 @@ function ResourceDetails({
           <button
             className="button"
             disabled={deleted}
-            onClick={() => setTab("logs")}
+            onClick={() => selectTab("logs")}
           >
             <Terminal size={15} />
             Loglar

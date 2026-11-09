@@ -173,3 +173,10 @@ Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm 
 - Minikube'de bir-node bridge denemesinin başarılı olması iki-node CNI'nin hazır olduğunu kanıtlamaz. İlk owned iki-node `bridge` cold kurulumu worker CNI uninitialized nedeniyle exit80 ile sonlandı; FAIL korunur. Yeni kindnet kurulumunda iki gerçek Node hazırlandı; idempotency ve uygulama UI doğrulaması ayrı adımdır.
 - `docker inspect` aynı adlı network'ü de döndürebilir ve IPAM.Config null olabilir. Container sahipliği exact `docker container inspect`, Docker ID ve Node'a ait gerçek label üzerinden doğrulanır. Aynı profile sahip worker'ın label değeri parent profile değil worker adıdır.
 - Bir test fixture'ında scoped Clients kopyası, temel client ile aynı pointer değildir. Replay log açılışı doğru source/context kimliğini doğrular; canlı moda dönüşmez. Kaynak ve request iptali, yazıcısı bloklanan log pipe'ını da sonlandırmalıdır.
+
+### Çoklu liman ikinci doğruluk checkpoint'i
+
+- UI'da sekme değiştirmek yalnız child local state'ini değiştiriyorsa parent'ın kaydettiği selection.tab güncel değildir. Normal UI→server workspace GET→cold reload testi bunu unit varsayımından ayırır.
+- Kaydedilmiş UID ilk render'da bulunmayabilir. İlk yetkili güncel snapshot'a bir kez bekleyen restore, kullanıcı yeni bir nesne açınca iptal edilmeli; aynı isim/yeniUID'ye bağlanmamalı.
+- Canonical store güncel olsa da panel overlay'i eski metrik referansını örtebilir. Yeni timer eklemeden yetkili core örneği aynı cadence'de yeniden kullanılmalı; epoch/abort sınırı korunmalı.
+- Aktif kamera geçişinin devam etmesini textbox yön tuşunun kamerayı hareket ettirmesiyle karıştırma; önce pose'un durduğunu gözle. Controller eyleminde202 Accepted doğru sözleşmedir, testin200 varsayımı ürün hatası değildir; Ready ayrıca gerçek API'den beklenir. İlk helperFAIL ve cleanup kanıtı saklanır.

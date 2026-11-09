@@ -55,6 +55,7 @@ export const singletonManager = {
   storeTimings: [],
   scopeSubscriptions: new Map(),
   scopeRequests: new Map(),
+  observationPins: new Map(),
   refreshQueued: false,
   socketSerial: 0,
   streamListeners: new Set(),
@@ -64,6 +65,13 @@ export const singletonManager = {
   requests: new Set(),
   managementReset: Promise.resolve(),
   managementIntent: false,
+  setObservationPin(slot, uid) {
+    this.observationPins ||= new Map();
+    if (!uid) { this.observationPins.delete(slot); return; }
+    if (!this.observationPins.has(slot) && this.observationPins.size >= 200)
+      throw new Error("Seçili kaynak gözlem sınırı aşıldı.");
+    this.observationPins.set(slot, uid);
+  },
   streamSession() {
     return {
       key: `${this.epoch}:${this.socketSerial}:${this.state.generation ?? "pending"}`,
@@ -615,6 +623,7 @@ export const singletonManager = {
     this.metricsAbort?.abort();
     this.connectionAbort?.abort();
     this.scopeSubscriptions.clear();
+    this.observationPins?.clear();
     this.refreshQueued = false;
     if (this.socket) {
       this.socket.onclose = null;
@@ -728,7 +737,7 @@ export const singletonManager = {
           else if (this.sessionGeneration && message.sessionGeneration !== this.sessionGeneration) return;
         }
         const parsed = performance.now();
-        this.state = reduceMessage(this.state, message);
+        this.state = reduceMessage(this.state, message, { pinnedUIDs: this.observationPins?.values() || [] });
         const elapsed = performance.now() - t;
         this.storeTimings.push(elapsed);
         if (this.storeTimings.length > 500) this.storeTimings.shift();
@@ -845,6 +854,7 @@ export function createSourceManager(scope) {
     },
     listeners: new Set(), streamListeners: new Set(), requests: new Set(),
     scopeSubscriptions: new Map(), scopeRequests: new Map(),
+    observationPins: new Map(),
     storeTimings: [], demoTimers: [], started: false, socket: null,
     retry: null, poll: null, epoch: 0, socketSerial: 0, scopeRevision: 0,
     metricsAbort: null, connectionAbort: null, refreshQueued: false,
@@ -992,6 +1002,7 @@ export function ShipyardClusterProvider({ children, manager = singletonManager, 
         setManagement: (enabled) => manager.setManagement(enabled),
         loadKind: manager.loadKind.bind(manager),
         retainKind: manager.retainKind.bind(manager),
+        setObservationPin: manager.setObservationPin.bind(manager),
         observeNamespace:
           manager.observeNamespace.bind(manager),
         resourceObservation: (resource) =>

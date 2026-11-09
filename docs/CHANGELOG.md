@@ -2,6 +2,8 @@
 
 ## 2026-11-09 — çoklu liman geliştirmesi (manuel kabul bekliyor)
 
+- İkinci checkpoint: cold exactUID/sekme kalıcılığı, bounded seçili scope-exit gözlemi, güncel core metrik örneği ve boş açılış durumu düzeltildi;198 frontend test/build geçti. Gerçek iki kümede same-name UID/log ve A-only UI scale/grant izolasyonu kanıtlandı. Yeni performans kazancı veya tam A–O kabulü ilan edilmez.
+
 - Workspace/bağlantı/liman modeli, özel `--data-dir`, scope ve kimlik nesli temelli watch paylaşımı üzerinde çalışılıyor; test ve kabul durumu [ayrı defterdedir](WORKSPACE_ACCEPTANCE.md).
 - Açık TEST/REPLAY M/L kaynağı, mevcut fixture ve harness'e 1/5/10/20 liman ekseni eklendi. Sentetik kanıt gerçek Kubernetes/telemetri E2E'si sayılmaz.
 - Manuel bundle runner/fixture/rehberi hazırlanıyor. Temiz iki-node ilk bridge-CNI denemesi FAIL olarak korunur; doğru çok-node ağ yapılandırmasıyla yeniden doğrulama gerekir.

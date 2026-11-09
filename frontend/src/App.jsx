@@ -70,11 +70,18 @@ function ConnectionUpdateStamp() {
     : null;
 }
 const CONNECTION_UPDATE_STAMP = <ConnectionUpdateStamp />;
+function savedSelectionResource(byUID, descriptor) {
+  const resource = descriptor?.uid && byUID.get(descriptor.uid);
+  return resource && resource.kind !== "Secret" &&
+    (!descriptor.kind || descriptor.kind === resource.kind) &&
+    (descriptor.namespace === undefined || descriptor.namespace === (resource.metadata.namespace || ""))
+    ? resource : null;
+}
 export default function App() {
   const connection = useClusterConnection();
   const workspace = connection.workspace;
   const harborUI = useRef(new Map()), currentHarbor = useRef(workspace?.activeId),
-    sceneView = useRef(null), safeDraft = useRef(null), sensitiveDraft = useRef(false), pendingHarborSelection = useRef(null);
+    sceneView = useRef(null), safeDraft = useRef(null), sensitiveDraft = useRef(false), pendingHarborSelection = useRef(null), pendingSelectionRestore = useRef(null);
   const {
     resources,
     resourceIndex,
@@ -170,7 +177,7 @@ export default function App() {
     [overviewRequest, setOverviewRequest] = useState(0),
     [focusFacilityRequest, setFocusFacilityRequest] = useState(null),
     [clock, setClock] = useState(Date.now());
-  const currentSource = useRef(sourceKey),
+  const currentSource = useRef(null),
     seenUIDs = useRef(new Set()),
     formRef = useRef(form),
     utilityRef = useRef(utility),
@@ -209,10 +216,17 @@ export default function App() {
       const savedSelection = workspace?.view?.selection;
       const pendingSelection = pendingHarborSelection.current?.harborId === workspace?.activeId ? pendingHarborSelection.current : null;
       pendingHarborSelection.current = null;
-      const restored = pendingSelection ? byUID.get(pendingSelection.uid) : cached?.selection?.resource?.metadata?.uid
-        ? byUID.get(cached.selection.resource.metadata.uid)
-        : savedSelection?.uid ? byUID.get(savedSelection.uid) : null;
-      setSelection(restored ? { ...(cached?.selection || {}), resource: restored, containerName: cached?.selection?.containerName || savedSelection?.containerName } : null);
+      const cachedResource = cached?.selection?.resource;
+      const descriptor = pendingSelection || (cachedResource
+        ? { uid: cachedResource.metadata.uid, kind: cachedResource.kind, namespace: cachedResource.metadata.namespace || "" }
+        : savedSelection);
+      const selectionView = { ...(pendingSelection ? {} : cached?.selection || {}),
+        containerName: cached?.selection?.containerName || savedSelection?.containerName,
+        tab: cached?.selection?.tab || workspace?.view?.tab };
+      const restored = savedSelectionResource(byUID, descriptor);
+      pendingSelectionRestore.current = !restored && descriptor?.uid && descriptor.kind !== "Secret" && (!snapshotReady || stale)
+        ? { sourceKey, harborId: workspace?.activeId, descriptor, selectionView } : null;
+      setSelection(restored ? { ...selectionView, resource: restored } : null);
       setSelectedFlow(null);
       setPanel(cached?.panel?.type === "facility" ? cached.panel : restored ? { type: "resource" } : null);
       setForm(cached?.form?.sourceKey === sourceKey && (!cached.form.resource?.metadata?.uid || byUID.has(cached.form.resource.metadata.uid)) ? { ...cached.form, restoredDraft: cached.draft } : null);
@@ -229,6 +243,17 @@ export default function App() {
       lastShipMotion.current = null;
     }
   }, [sourceKey]);
+  useLayoutEffect(() => {
+    const pending = pendingSelectionRestore.current;
+    if (!pending || pending.sourceKey !== sourceKey || pending.harborId !== workspace?.activeId || !snapshotReady || stale) return;
+    // The first current snapshot resolves this saved UID once. Absence never
+    // selects a same-name replacement, and later ADDs cannot reopen the panel.
+    pendingSelectionRestore.current = null;
+    const resource = savedSelectionResource(byUID, pending.descriptor);
+    if (!resource) return;
+    setSelection({ ...pending.selectionView, resource });
+    setPanel({ type: "resource" });
+  }, [sourceKey, workspace?.activeId, snapshotReady, stale, byUID]);
   const switchHarbor = useCommittedEvent((id) => {
     if (!workspace || id === workspace.activeId) { setUtility(null); return; }
     const camera = sceneView.current?.harborId === workspace.activeId ? sceneView.current.capture?.() : null;
@@ -253,6 +278,7 @@ export default function App() {
   useEffect(() => {
     if (previousNamespace.current === namespace) return;
     previousNamespace.current = namespace;
+    pendingSelectionRestore.current = null;
     setSelection(null);
     setSelectedFlow(null);
     setForm(null);
@@ -343,12 +369,21 @@ export default function App() {
       selected,
       connection.scopes,
       connection.tombstones,
+      connection.outOfScope,
       connection.isConnected,
       connection.upstream,
       connection.snapshotReady,
       sourceKey,
     ],
   );
+  const setObservationPin = useCommittedEvent(connection.setObservationPin || (() => {}));
+  const selectedSource = currentSource.current;
+  useLayoutEffect(() => {
+    setObservationPin("selection", selectedSource === sourceKey ? selected?.metadata?.uid : null);
+    setObservationPin("form", form?.sourceKey === sourceKey ? form.resource?.metadata?.uid : null);
+    // Inactive harbor pins stay bounded to these two slots until its next
+    // selection, source generation change, removal or provider disposal.
+  }, [setObservationPin, sourceKey, selectedSource, selected?.metadata?.uid, form?.sourceKey, form?.resource?.metadata?.uid]);
   const retainKind = useCommittedEvent(connection.retainKind);
   const selectedDescriptor =
     selected &&
@@ -431,9 +466,11 @@ export default function App() {
   });
   const status = connectionStatus(connection);
   function captureTrigger(trigger = document.activeElement) {
+    pendingSelectionRestore.current = null;
     savedTrigger.current = focusElement(trigger);
   }
   function closePanel() {
+    pendingSelectionRestore.current = null;
     setPanel(null);
     requestAnimationFrame(() => {
       focusElement(savedTrigger.current, document.getElementById("world-find"));
@@ -569,6 +606,15 @@ export default function App() {
   const detailsContainer = useCommittedEvent((containerName) =>
     setSelection((s) => ({ ...s, containerName })),
   );
+  const tabTarget = useRef(null), selectedTabUID = selected?.metadata.uid;
+  useLayoutEffect(() => {
+    tabTarget.current = { sourceKey, revision: connection.sessionRevision, uid: selectedTabUID };
+  }, [sourceKey, connection.sessionRevision, selectedTabUID]);
+  const detailsTab = useCallback((tab) => {
+    const target = tabTarget.current;
+    if (!selectedTabUID || target?.sourceKey !== sourceKey || target.revision !== connection.sessionRevision || target.uid !== selectedTabUID) return;
+    setSelection((current) => current?.resource?.metadata.uid === selectedTabUID && current.tab !== tab ? { ...current, tab } : current);
+  }, [sourceKey, connection.sessionRevision, selectedTabUID]);
   const detailsPause = useCommittedEvent(() =>
     setShipControls((value) => ({
       ...value,
@@ -680,7 +726,7 @@ export default function App() {
             onFollowEnd={onFollowEnd}
             onShipMotionChange={onShipMotionChange}
             sourceKey={sourceKey}
-            isStale={mode !== "demo" && stale}
+            isStale={mode !== "demo" && stale && Boolean(lastUpdated)}
             workspaceHarbors={workspace?.record?.harbors}
             activeHarborId={workspace?.activeId}
             onHarborSelect={inspectHarbor}
@@ -877,6 +923,7 @@ export default function App() {
             onShowInScene={detailsShow}
             selectedContainerName={selection?.containerName}
             onSelectContainer={detailsContainer}
+            onTabChange={detailsTab}
             visualMotion={detailMotion}
             onToggleShipPause={detailsPause}
             onToggleShipFollow={detailsFollow}

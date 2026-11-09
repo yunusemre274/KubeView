@@ -1,0 +1,13 @@
+✔ cold persisted exact UID restores its panel once after the first current snapshot arrives (2.686667ms)
+✔ cold restore never follows a same-name replacement or overrides a newer user panel (0.857ms)
+✔ empty onboarding has no last-known-view stale label, while a disconnected observed harbor does (0.342167ms)
+✔ two per-harbor UID pins survive marker eviction without masking real DELETE, reentry or a new source (12.660542ms)
+✔ a new canonical metrics sample refreshes the active local view without adding polling or requests (2.528167ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 516.073542

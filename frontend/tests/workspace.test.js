@@ -257,6 +257,86 @@ test("real canonical managers ignore context namespace hints for union scopes ac
     Object.assign(globalThis, previous);
   }
 });
+test("two per-harbor UID pins survive marker eviction without masking real DELETE, reentry or a new source", () => {
+  const previous = { window: globalThis.window, WebSocket: globalThis.WebSocket };
+  globalThis.window = { location: { origin: "http://localhost:8000" } };
+  let socket;
+  globalThis.WebSocket = class { constructor() { socket = this; } close() {} };
+  const scope = { workspaceId: "w", harborId: "h", tabId: "t", scopeKey: "unit-pinned", context: "A", namespaces: ["alpha"], bound: true };
+  const core = createSourceManager(scope), session = new HarborSession(core, scope), selected = pod("selected");
+  const receive = (message) => socket.onmessage({ data: JSON.stringify({ workspaceId: "w", harborId: "h", tabId: "t", sessionGeneration: "unit-session", generation: "unit-generation", ...message }) });
+  try {
+    core.connect(); core.publish({ isConnected: true });
+    receive({ type: "SNAPSHOT", resources: [selected] });
+    session.active = true;
+    session.setObservationPin?.("selection", selected.metadata.uid);
+    session.setObservationPin?.("form", "form-target");
+    session.deactivate();
+    const exits = [selected, ...Array.from({ length: 1001 }, (_, index) => ({ ...pod(`exit-${index}`), metadata: { ...pod().metadata, uid: `exit-${index}`, name: `exit-${index}` } }))];
+    receive({ type: "SNAPSHOT", resources: [], outOfScope: exits });
+    assert.equal(resourceObservation(core.state, selected).deleted, false, "evicting ordinary markers cannot manufacture deletion of the pinned selection");
+    assert.equal(resourceObservation(core.state, selected).status, "out-of-scope");
+    assert.ok(Object.keys(core.state.outOfScope).length <= 1002, "ordinary history remains bounded in addition to two pins");
+    assert.equal(typeof session.setObservationPin, "function");
+    receive({ type: "RESOURCE_EVENT", action: "DELETE", object: selected });
+    assert.equal(resourceObservation(core.state, selected).deleted, true);
+    assert.equal(core.state.outOfScope.selected, undefined);
+    receive({ type: "RESOURCE_EVENT", action: "ADD", object: selected });
+    assert.equal(resourceObservation(core.state, selected).deleted, false); assert.ok(core.state.resources.selected);
+    assert.equal(core.state.outOfScope.selected, undefined);
+    for (let index = 0; index < 50; index++) session.setObservationPin("selection", `next-selection-${index}`);
+    assert.equal(session.observationPins.size, 2); assert.equal(core.observationPins.size, 2);
+    core.cleanup(); core.publish({ ...initialState("new-source"), configured: false });
+    assert.equal(core.observationPins.size, 0); assert.equal(session.observationPins.size, 0);
+    session.dispose(); assert.equal(core.listeners.size, 0);
+  } finally { session.dispose(); core.cleanup(); Object.assign(globalThis, previous); }
+});
+test("a new canonical metrics sample refreshes the active local view without adding polling or requests", async () => {
+  const previous = { window: globalThis.window, fetch: globalThis.fetch }, calls = [];
+  globalThis.window = { location: { origin: "http://localhost:8000" } };
+  const sample = (time, cpu) => ({ available: true, source: "synthetic-unit", timestamp: `2026-11-09T00:00:0${time}Z`,
+    nodes: [{ metadata: { name: "node" }, usage: { cpu: `${cpu}m` } }],
+    pods: [{ metadata: { name: "alpha", namespace: "alpha" } }, { metadata: { name: "beta", namespace: "beta" }, containers: [{ name: "app", usage: { cpu: `${cpu}m` } }] }] });
+  let pendingResponse = null;
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url: new URL(url), options });
+    if (pendingResponse) return pendingResponse;
+    return new Response(JSON.stringify(sample(0, 1)), { headers: { "Content-Type": "application/json" } });
+  };
+  const scope = { workspaceId: "w", harborId: "h", tabId: "t", scopeKey: "metrics-scope", context: "A", namespaces: ["alpha", "beta"], bound: true };
+  const core = createSourceManager(scope), session = new HarborSession(core, scope);
+  try {
+    session.active = true; session.overlay.activeNamespace = "beta"; session.lastStream = session.streamSession().key;
+    await session.refreshMetrics();
+    const before = calls.length, next = sample(1, 2);
+    core.publish({ metrics: next, metricHistory: [next] });
+    assert.equal(session.state.metrics.timestamp, next.timestamp, "old namespace overlay cannot mask a newer canonical sample");
+    assert.deepEqual(session.state.metrics.pods.map((item) => item.metadata.namespace), ["beta"]);
+    assert.equal(session.state.metrics.nodes, next.nodes); assert.equal(core.state.metrics, next);
+    assert.equal(session.state.metricHistory.at(-1).timestamp, next.timestamp);
+    assert.equal(calls.length, before, "complete authorized core samples need no duplicate HTTP request");
+    let resolveOld;
+    pendingResponse = new Promise((resolve) => { resolveOld = resolve; });
+    const oldRequest = session.refreshMetrics(), oldCall = calls.at(-1), latest = sample(2, 3);
+    core.publish({ metrics: latest, metricHistory: [next, latest] });
+    assert.equal(oldCall.options.signal.aborted, true, "new core data invalidates an older local sample in flight");
+    resolveOld(new Response(JSON.stringify(sample(0, 1)), { headers: { "Content-Type": "application/json" } })); await oldRequest;
+    assert.equal(session.state.metrics.timestamp, latest.timestamp);
+    let resolvePartial;
+    pendingResponse = new Promise((resolve) => { resolvePartial = resolve; });
+    const partialCount = calls.length, partial = { ...sample(3, 4), pods: [], errors: { pods: "synthetic partial union permission" } };
+    core.publish({ metrics: partial, metricHistory: [latest, partial] });
+    assert.equal(calls.length, partialCount + 1, "an incomplete union Pod sample may refresh only its active local namespace");
+    assert.equal(calls.at(-1).url.searchParams.get("namespace"), "beta");
+    resolvePartial(new Response(JSON.stringify({ ...sample(3, 4), pods: [sample(3, 4).pods[1]] }), { headers: { "Content-Type": "application/json" } }));
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(session.state.metrics.timestamp, partial.timestamp); assert.equal(session.state.metrics.errors, undefined);
+    const inactiveCount = calls.length;
+    session.deactivate(); const inactive = sample(4, 5); core.publish({ metrics: inactive, metricHistory: [partial, inactive] });
+    assert.equal(calls.length, inactiveCount, "inactive harbors never start local refresh requests");
+    session.dispose(); core.cleanup(); assert.equal(core.listeners.size, 0); assert.equal(session.requests.size, 0);
+  } finally { session.dispose(); core.cleanup(); Object.assign(globalThis, previous); }
+});
 test("offline selector exit snapshot cannot create authoritative-absence tombstones and reentry is live", () => {
   const first = reduceMessage(initialState("unit"), { type: "SNAPSHOT", generation: "first", resources: [pod()] });
   const next = reduceMessage(first, { type: "SNAPSHOT", generation: "reconnect", resources: [], outOfScope: [pod()] });

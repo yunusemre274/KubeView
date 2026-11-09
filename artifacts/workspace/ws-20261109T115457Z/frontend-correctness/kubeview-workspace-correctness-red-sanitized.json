@@ -1,0 +1,9 @@
+{
+  "rawPath": "/tmp/kubeview-workspace-correctness-red.log",
+  "rawSHA256": "9c794264400e6f4f4b2b585e70ced7ca8fbbfca8f2b36fa855fb8ffe957b3ea3",
+  "rawBytes": 34157562,
+  "sanitizedPath": "/tmp/kubeview-workspace-correctness-red-sanitized.log",
+  "sanitizedSHA256": "bc62d8ac7a158f1bf0abbe4003e76f3d3ccd7748490b66ccaf7e65cbb54acebe",
+  "sanitizedBytes": 2964,
+  "transformation": "Only data:text/javascript;base64 bundle URLs replaced with [bundled-test-module]; errors and assertion lines preserved."
+}
