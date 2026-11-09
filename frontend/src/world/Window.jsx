@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { X, ArrowLeft } from "lucide-react";
+import { focusElement } from "./focus.js";
 export function isolateWorld(event) {
   event.stopPropagation();
 }
@@ -53,8 +54,7 @@ export default function Window({
     return () => {
       cancelAnimationFrame(frame);
       ref.current?.removeEventListener("keydown", key);
-      if (previous?.isConnected) previous.focus();
-      else document.getElementById("world-find")?.focus();
+      focusElement(previous, document.getElementById("world-find"));
     };
   }, [modal]);
   const content = (

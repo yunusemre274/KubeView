@@ -2,6 +2,7 @@
 
 ## 2026-11-09 — gerçek UI ve bağlantı toparlanma düzeltmeleri
 
+- WebKit'te mouse ile açılan Bul penceresinin ESC sonrası BODY'ye odak dönmesi düzeltildi; gerçek açan düğme ve geçerli fallback ortak focus helper'ıyla korunur.156/156 frontend unit; gerçek WebKit tekrarı ayrı kabul kapısıdır.
 - İzole gerçek API test yardımcıları CR scope/UID/RBAC, Hubble mTLS ve minikube güncel yönetim sınırlarını yeniden üretir. Genel Go/race koşuları ve45/45 harness unit geçti; opt-in SKIP gerçek test başarısı sayılmaz. Mevcut benchmark kuyruğuna sonlu31hücre v1.1 alt kümesi ve frozen build'in gerçek lockfile kimliği eklendi; yeni CPU sonucu henüz yoktur.
 - CPU/RAM/edit ilk GET'i bitmeden alanlar native disabled fieldset ile kilitlenir; header/ESC kapatma çalışır. Gerçek GET geciktirilerek dört alan, dry-run ve gerçek rollout/restart/replacement/delete doğrulandı.
 - Aynı source/UID dirty taslak reconnect/reveal sonrasında korunur; resourceVersion sessiz ilerlemez, değişirse gözden geçirme uyarısı verilir. Yeni socket açılışında yönetim tanılaması fail-closed yenilenir; eski serial'dan gelen diagnostic/enable yanıtları reddedilir. İki gerçek transport/grant-revocation hatası önce FAIL kaydedilip düzeltme sonrası aynı akışta PASS oldu.153/153frontend unit.

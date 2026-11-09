@@ -2,6 +2,7 @@
 
 ## 9 Kasım2026 — normal UI/fault ve kaynak türü ayrımı
 
+- WebKit mouse ile düğmeye tıklayınca `document.activeElement` BODY kalabilir. Pencereyi açan `event.currentTarget` odağı açıkça kaydedilir; BODY/HTML veya kaldırılmış/disabled hedef yerine finder'a dönülür. Gerçek mouse→ESC hatası ve klavyenin doğru çalışması ayrı kaydedildi; helper unit tek başına tarayıcı kabulü değildir.
 - Loading metni ve kapalı submit düğmesi inputlara yazılmasını engellemez. İlk GET yanıtı typed draft'ı ezdi; native fieldset + ilk state guard ve geciktirilmiş gerçek GET testiyle düzeltildi.
 - Aynı UID/RV ile gerçek WebSocket reconnect de fresh GET başlatabilir. Dirty taslak/RV koruması, UID/reveal doğrulamasından ayrı tutulmalı. Server grant iptali fresh snapshot ile anlaşılmaz; yeni socket'te güncel diagnostic ve serial guard gerekir.
 - Playwright fieldset için toBeDisabled yerine gerçek disabled attribute ve descendant input davranışı doğrulanır; Lucide SVG ikonları ölçüm serisi sayılmaz. Bu helper hataları ürün hatalarıyla birleştirilmedi, önceki FAIL kayıtları korundu.

@@ -1,0 +1,11 @@
+✔ a mouse activation that leaves BODY active records the actual button before opening a window (0.281292ms)
+✔ keyboard activation preserves its focused trigger when the window closes (0.04525ms)
+✔ document roots, removed and disabled controls restore the finder fallback (0.051625ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28.856458

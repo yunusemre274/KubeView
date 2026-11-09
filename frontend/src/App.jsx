@@ -40,6 +40,7 @@ import {
 import { FACILITIES, facilityFor, ownerNode } from "./world/registry";
 import { acceptedOperation, observeOperation } from "./world/operations";
 import { connectionStatus } from "./world/connectionState.js";
+import { focusElement } from "./world/focus.js";
 import {
   loadPreferences,
   savePreferences,
@@ -361,14 +362,13 @@ export default function App() {
     if (resource) selectResource(resource);
   });
   const status = connectionStatus(connection);
-  function captureTrigger() {
-    savedTrigger.current = document.activeElement;
+  function captureTrigger(trigger = document.activeElement) {
+    savedTrigger.current = focusElement(trigger);
   }
   function closePanel() {
     setPanel(null);
     requestAnimationFrame(() => {
-      if (savedTrigger.current?.isConnected) savedTrigger.current.focus();
-      else document.getElementById("world-find")?.focus();
+      focusElement(savedTrigger.current, document.getElementById("world-find"));
     });
   }
   function openFacility(id) {
@@ -621,8 +621,8 @@ export default function App() {
           className={`world-brand-control ${mode === "demo" ? "is-demo" : stale ? "is-stale" : ""}`}
           aria-label="Bağlantı ve cluster kapsamını aç"
           title="Bağlantı ve kapsam"
-          onClick={() => {
-            captureTrigger();
+          onClick={(event) => {
+            captureTrigger(event.currentTarget);
             setUtility("connection");
           }}
         >
@@ -655,8 +655,8 @@ export default function App() {
               aria-label={label}
               title={id === "finder" ? `${label} · Cmd/Ctrl+K` : label}
               aria-pressed={utility === id}
-              onClick={() => {
-                captureTrigger();
+              onClick={(event) => {
+                captureTrigger(event.currentTarget);
                 if (id === "home") {
                   if (form) return;
                   setPanel(null);
