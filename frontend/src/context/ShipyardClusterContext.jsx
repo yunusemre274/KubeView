@@ -284,7 +284,8 @@ export const singletonManager = {
     const abort = new AbortController();
     this.connectionAbort = abort;
     const epoch = this.epoch,
-      revision = this.scopeRevision;
+      revision = this.scopeRevision,
+      socketSerial = this.socketSerial;
     const namespace =
       this.state.watchNamespace ||
       (this.state.activeNamespace === "all"
@@ -300,6 +301,7 @@ export const singletonManager = {
       if (
         epoch !== this.epoch ||
         revision !== this.scopeRevision ||
+        socketSerial !== this.socketSerial ||
         abort.signal.aborted
       )
         return;
@@ -315,6 +317,7 @@ export const singletonManager = {
       if (
         epoch === this.epoch &&
         revision === this.scopeRevision &&
+        socketSerial === this.socketSerial &&
         !abort.signal.aborted
       )
         this.publish({
@@ -387,7 +390,8 @@ export const singletonManager = {
       this.publish({ readOnly: true, managementEnabled: false });
     }
     const epoch = this.epoch,
-      revision = this.scopeRevision;
+      revision = this.scopeRevision,
+      socketSerial = this.socketSerial;
     const data = await this.request("/api/management", {
       method: "POST",
       body: {
@@ -402,7 +406,12 @@ export const singletonManager = {
         connectionID: this.state.connectionChecks?.connectionID || "",
       },
     });
-    if (epoch !== this.epoch || revision !== this.scopeRevision) return;
+    if (
+      epoch !== this.epoch ||
+      revision !== this.scopeRevision ||
+      socketSerial !== this.socketSerial
+    )
+      return;
     this.managementIntent = enabled && data.managementEnabled === true;
     this.publish({
       readOnly: data.readOnly !== false,
@@ -701,8 +710,13 @@ export const singletonManager = {
     globalThis.__KUBEVIEW_BENCHMARK__?.connection?.(socket);
     this.socket = socket;
     socket.onopen = () => {
-      if (epoch === this.epoch && socket === this.socket)
-        this.publish({ isConnected: true });
+      if (epoch !== this.epoch || socket !== this.socket) return;
+      this.publish({
+        isConnected: true,
+        readOnly: true,
+        managementEnabled: false,
+      });
+      this.refreshConnection();
     };
     socket.onmessage = (e) => {
       if (epoch !== this.epoch || socket !== this.socket) return;

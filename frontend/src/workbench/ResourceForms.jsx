@@ -22,6 +22,7 @@ import {
   validateRevealedSecret,
 } from "./secretPayload";
 import { applyPlacement, assertTargetNode } from "./placement";
+import { requiresResourceDraftLoad } from "./formLoading.js";
 
 const TYPES = [
   "Deployment",
@@ -213,6 +214,7 @@ export default function ResourceForms({
   action,
   resource,
   cluster,
+  sourceKey,
   namespace = "default",
   api: connectionAPI,
   onClose,
@@ -253,6 +255,13 @@ export default function ResourceForms({
     typeof action === "string" ? action : action?.type || "create";
   const purposeSecretEdit =
     actionType === "edit" && resource?.kind === "Secret" && secretEdit;
+  const requiresFreshDraft = requiresResourceDraftLoad({
+    action: actionType,
+    resource,
+    api: connectionAPI,
+    readOnly,
+    secretEdit,
+  });
   const [secretReady, setSecretReady] = useState(false);
   const initialKind =
     initialObject?.kind ||
@@ -312,7 +321,7 @@ export default function ResourceForms({
     [error, setError] = useState(initialDraft.current.error || ""),
     [preview, setPreview] = useState(null),
     [busy, setBusy] = useState(false),
-    [loading, setLoading] = useState(false),
+    [loading, setLoading] = useState(() => requiresFreshDraft),
     [bulkResults, setBulkResults] = useState(null),
     [reviewedVersion, setReviewedVersion] = useState(null),
     [revision, setRevision] = useState(0),
@@ -322,6 +331,18 @@ export default function ResourceForms({
     [schemaLoading, setSchemaLoading] = useState(false);
   const [uncertain, setUncertain] = useState(false),
     [reconciliation, setReconciliation] = useState("");
+  const dirtyRef = useRef(false),
+    draftRef = useRef(object),
+    draftTargetRef = useRef({
+      sourceKey,
+      cluster,
+      uid: resource?.metadata?.uid,
+    });
+  draftRef.current = object;
+  const markDirty = () => {
+    dirtyRef.current = true;
+    setDirty(true);
+  };
   const uncertainTarget = useRef(null);
   const dialog = useRef(null),
     errorRef = useRef(null),
@@ -395,27 +416,35 @@ export default function ResourceForms({
     if (error) errorRef.current?.focus();
   }, [error]);
   useEffect(() => {
-    if (
-      !["edit", "resources", "resize"].includes(actionType) ||
-      !resource ||
-      !api ||
-      readOnly
-    )
-      return;
-    if (resource.kind === "Secret" && !purposeSecretEdit) {
-      setError(
-        "Secret içeriği yalnız ayrı ve yetkili düzenleme akışında açılır.",
-      );
+    if (!requiresFreshDraft) {
+      setLoading(false);
+      setSecretReady(false);
+      setPreview(null);
+      if (
+        ["edit", "resources", "resize"].includes(actionType) &&
+        resource?.kind === "Secret" &&
+        !purposeSecretEdit &&
+        !readOnly
+      )
+        setError(
+          "Secret içeriği yalnız ayrı ve yetkili düzenleme akışında açılır.",
+        );
       return;
     }
     let active = true;
     const abort = new AbortController();
+    const target = { sourceKey, cluster, uid: resource.metadata?.uid };
+    const sameDraftTarget = () =>
+      draftTargetRef.current.sourceKey === target.sourceKey &&
+      draftTargetRef.current.cluster === target.cluster &&
+      draftTargetRef.current.uid === target.uid;
     setLoading(true);
     setSecretReady(false);
-    if (purposeSecretEdit) {
+    setPreview(null);
+    if (purposeSecretEdit && !(sameDraftTarget() && dirtyRef.current)) {
       setObject(secretMetadataOnly(resource));
       setYAMLText("");
-      setPreview(null);
+      dirtyRef.current = false;
       setDirty(false);
       setReviewedVersion(null);
     }
@@ -438,12 +467,25 @@ export default function ResourceForms({
           throw new Error(
             "Kaynak UID değişti. Yeni kaynağı seçmek için paneli yeniden açın.",
           );
-        const draft = editableResource(value);
-        setObject(draft);
-        if (purposeSecretEdit) {
-          setYAMLText(stringify(draft));
-          setSecretReady(true);
+        if (sameDraftTarget() && dirtyRef.current) {
+          if (
+            value.metadata?.resourceVersion !==
+            draftRef.current.metadata?.resourceVersion
+          )
+            setError(
+              "Kaynağın resourceVersion değeri değişti. Taslağınız korundu; güncel sürümü alıp değişiklikleri gözden geçirin.",
+            );
+          if (purposeSecretEdit) setSecretReady(true);
+          return;
         }
+        const draft = editableResource(value);
+        draftTargetRef.current = target;
+        dirtyRef.current = false;
+        setDirty(false);
+        setReviewedVersion(null);
+        setObject(draft);
+        setYAMLText(stringify(draft));
+        if (purposeSecretEdit) setSecretReady(true);
       })
       .catch((error) => {
         if (active && error.name !== "AbortError") setError(error.message);
@@ -462,6 +504,8 @@ export default function ResourceForms({
     readOnly,
     purposeSecretEdit,
     cluster,
+    sourceKey,
+    requiresFreshDraft,
   ]);
   const isCreate = actionType === "create",
     isEdit = actionType === "edit",
@@ -486,7 +530,7 @@ export default function ResourceForms({
   );
   const containers = podSpec(object)?.containers || [];
   const update = (fn) => {
-    setDirty(true);
+    markDirty();
     setObject((current) => {
       const next = cloneResource(current);
       fn(next);
@@ -496,7 +540,7 @@ export default function ResourceForms({
     setError("");
   };
   const changeKind = (value) => {
-    setDirty(true);
+    markDirty();
     setKind(value);
     let next = template(value, object.metadata?.namespace || namespace);
     next.metadata.name = object.metadata?.name || "";
@@ -576,7 +620,7 @@ export default function ResourceForms({
     setMode(value);
   };
   const parseYAML = (value) => {
-    setDirty(true);
+    markDirty();
     setYAMLText(value);
     setPreview(null);
     try {
@@ -601,7 +645,7 @@ export default function ResourceForms({
       setObject(next.object);
       setPlacementProvenance(next.provenance);
       setPlacementMode(value);
-      setDirty(true);
+      markDirty();
       setPreview(null);
       setYAMLText(stringify(next.object));
       setError("");
@@ -1017,7 +1061,11 @@ export default function ResourceForms({
           </button>
         </header>
         <form onSubmit={submit}>
-          <div className="form-dialog-body">
+          <fieldset
+            className="form-dialog-body"
+            disabled={loading || busy}
+            aria-busy={loading || busy}
+          >
             {readOnly && (
               <div className="inline-alert alert-warning">
                 Salt okunur bağlantı. Formu inceleyebilirsiniz; gerçek mutasyon
@@ -1686,7 +1734,7 @@ export default function ResourceForms({
                       aria-label="Replica azalt"
                       disabled={Number(replicas) <= 0 || !!hpa}
                       onClick={() => {
-                        setDirty(true);
+                        markDirty();
                         setReplicas((n) => Math.max(0, Number(n) - 1));
                       }}
                     >
@@ -1700,7 +1748,7 @@ export default function ResourceForms({
                       disabled={!!hpa}
                       value={replicas}
                       onChange={(e) => {
-                        setDirty(true);
+                        markDirty();
                         setReplicas(e.target.value);
                       }}
                     />
@@ -1710,7 +1758,7 @@ export default function ResourceForms({
                       aria-label="Replica artır"
                       disabled={!!hpa}
                       onClick={() => {
-                        setDirty(true);
+                        markDirty();
                         setReplicas((n) => Number(n) + 1);
                       }}
                     >
@@ -2053,7 +2101,7 @@ export default function ResourceForms({
                 </details>
               </section>
             )}
-          </div>
+          </fieldset>
           <footer className="form-dialog-footer">
             <p>Gönderiliyor → API kabulü → uygulanıyor → gözlenen sonuç</p>
             <div>

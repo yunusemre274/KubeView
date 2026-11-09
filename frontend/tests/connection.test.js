@@ -47,10 +47,12 @@ const fresh = () => ({
   poll: null,
   retry: null,
   epoch: 1,
+  socketSerial: 1,
   scopeRevision: 1,
   connectionAbort: null,
   metricsAbort: null,
   managementReset: Promise.resolve(),
+  managementIntent: false,
 });
 const deferred = () => {
   let resolve;
@@ -277,6 +279,175 @@ test("diagnostics never reenable management without an explicit current-view int
     await manager.refreshConnection();
     assert.equal(manager.state.readOnly, true);
     assert.equal(manager.state.managementEnabled, false);
+  } finally {
+    manager.cleanup();
+    globalThis.fetch = oldFetch;
+    globalThis.window = oldWindow;
+  }
+});
+
+test("each current socket open refreshes authority once and a revoked grant stays readonly after snapshot", async () => {
+  const manager = fresh(),
+    sockets = [],
+    requests = [];
+  const oldFetch = globalThis.fetch,
+    oldWindow = globalThis.window,
+    oldSocket = globalThis.WebSocket;
+  globalThis.window = { location: { origin: "http://localhost:8000" } };
+  globalThis.WebSocket = class {
+    constructor(url) {
+      this.url = url;
+      sockets.push(this);
+    }
+    close() {}
+  };
+  globalThis.fetch = async (url) => {
+    requests.push(url);
+    const revoked = requests.length > 1;
+    return reply({
+      connectionID: revoked ? "new-nonce" : "nonce-a",
+      readOnly: revoked,
+      managementEnabled: !revoked,
+    });
+  };
+  manager.managementIntent = true;
+  manager.state = {
+    ...manager.state,
+    readOnly: false,
+    managementEnabled: true,
+  };
+  try {
+    manager.connect();
+    const oldOpen = sockets[0].onopen;
+    sockets[0].onopen();
+    assert.equal(
+      manager.state.readOnly,
+      true,
+      "old authority cannot be reused while diagnostics are pending",
+    );
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(manager.state.readOnly, false);
+    sockets[0].onmessage({
+      data: JSON.stringify({
+        type: "SNAPSHOT",
+        generation: "first",
+        resources: [],
+      }),
+    });
+    assert.equal(requests.length, 1);
+    sockets[0].onclose();
+    manager.connect();
+    oldOpen();
+    assert.equal(
+      requests.length,
+      1,
+      "superseded socket callback must be ignored",
+    );
+    sockets[1].onopen();
+    sockets[1].onmessage({
+      data: JSON.stringify({
+        type: "SNAPSHOT",
+        generation: "reconnected",
+        resources: [],
+      }),
+    });
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(manager.state.readOnly, true);
+    assert.equal(manager.state.managementEnabled, false);
+    assert.equal(manager.state.connectionChecks.connectionID, "new-nonce");
+    assert.equal(
+      sockets.length,
+      2,
+      "diagnostics and snapshots must not reconnect recursively",
+    );
+    assert.equal(requests.length, 2);
+    assert.ok(
+      requests.every(
+        (url) =>
+          url.pathname === "/api/connection" &&
+          url.searchParams.get("namespace") === "alpha",
+      ),
+    );
+  } finally {
+    manager.cleanup();
+    globalThis.fetch = oldFetch;
+    globalThis.window = oldWindow;
+    globalThis.WebSocket = oldSocket;
+  }
+});
+
+test("a superseded socket's diagnostic success or failure cannot replace current authority", async () => {
+  const oldFetch = globalThis.fetch,
+    oldWindow = globalThis.window;
+  globalThis.window = { location: { origin: "http://localhost:8000" } };
+  try {
+    for (const status of [200, 403]) {
+      const manager = fresh(),
+        waiting = deferred();
+      manager.managementIntent = true;
+      globalThis.fetch = () => waiting.promise;
+      try {
+        const pending = manager.refreshConnection();
+        manager.pauseStream();
+        manager.publish({
+          readOnly: false,
+          managementEnabled: true,
+          connectionChecks: { connectionID: "current-nonce" },
+        });
+        waiting.resolve(
+          new Response(
+            JSON.stringify({
+              connectionID: "obsolete",
+              readOnly: true,
+              managementEnabled: false,
+              error: "old diagnostic",
+            }),
+            {
+              status,
+              headers: { "Content-Type": "application/json" },
+            },
+          ),
+        );
+        await pending;
+        assert.equal(manager.state.readOnly, false);
+        assert.equal(manager.state.managementEnabled, true);
+        assert.equal(
+          manager.state.connectionChecks.connectionID,
+          "current-nonce",
+        );
+      } finally {
+        manager.cleanup();
+      }
+    }
+  } finally {
+    globalThis.fetch = oldFetch;
+    globalThis.window = oldWindow;
+  }
+});
+
+test("late management enable from an earlier socket cannot restore a same-scope grant", async () => {
+  const manager = fresh(),
+    waiting = deferred();
+  const oldFetch = globalThis.fetch,
+    oldWindow = globalThis.window;
+  globalThis.window = { location: { origin: "http://localhost:8000" } };
+  globalThis.fetch = () => waiting.promise;
+  manager.state = {
+    ...manager.state,
+    readOnly: true,
+    managementEnabled: false,
+  };
+  manager.refreshConnection = () => {
+    throw new Error("obsolete enable must not refresh diagnostics");
+  };
+  try {
+    const enabling = manager.setManagement(true);
+    manager.pauseStream();
+    waiting.resolve(reply({ readOnly: false, managementEnabled: true }));
+    await enabling;
+    assert.equal(manager.state.readOnly, true);
+    assert.equal(manager.state.managementEnabled, false);
+    assert.equal(manager.managementIntent, false);
   } finally {
     manager.cleanup();
     globalThis.fetch = oldFetch;

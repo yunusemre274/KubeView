@@ -1,5 +1,14 @@
 # Güncel görev durumu
 
+## 9 Kasım 2026 — devam eden v1.1.0 kabulü
+
+- [x] Kaynak/çalışma ağacı pause checkpoint ile eşit; private API port/clock yenilenmesi ve aynı A/B clusterUID doğrulandı.
+- [x] İlk GET edit kilidi, sameUID dirty draft/reconnect ve grant-revocation UI hataları gerçek API/WS deneyiyle düzeltildi;153frontendunit.
+- [x] Normal UI resources/restart/Podreplacement/Deploymentdelete404 ve gerçek dolu Node/Pod metrikleri; G00/Minikube/Hubble güncel API gate testleri.
+- [ ] Kalan restricted/empty/finalizer/metricsmissing/CRUI/WebKit/visual ve güvenlik alt şartları; kaynak/test türü ayrımlı19satır kabul defteri.
+- [ ] Tam kaynak freeze, güncel45harnessunit, üç eşleşmiş blok/1200s20panel; temiz final dağıtım ve CI.
+- [ ] Bütün kapılar geçerse normalPR/merge, doğru finalartifact/tag/release ve milestone kapanışı; şu an DRAFT/OPEN.
+
 ## 8 Kasım 2026 — v1.1.0 gerçek kullanıcı sürümü (açık)
 
 - [x] Güncel 2b76e21 başlangıcı ve immutable baseline korunumu; açık GitHub milestone ve sabit platform matrisi.

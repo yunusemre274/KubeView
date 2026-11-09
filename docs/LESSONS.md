@@ -1,5 +1,13 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 9 Kasım2026 — normal UI/fault ve kaynak türü ayrımı
+
+- Loading metni ve kapalı submit düğmesi inputlara yazılmasını engellemez. İlk GET yanıtı typed draft'ı ezdi; native fieldset + ilk state guard ve geciktirilmiş gerçek GET testiyle düzeltildi.
+- Aynı UID/RV ile gerçek WebSocket reconnect de fresh GET başlatabilir. Dirty taslak/RV koruması, UID/reveal doğrulamasından ayrı tutulmalı. Server grant iptali fresh snapshot ile anlaşılmaz; yeni socket'te güncel diagnostic ve serial guard gerekir.
+- Playwright fieldset için toBeDisabled yerine gerçek disabled attribute ve descendant input davranışı doğrulanır; Lucide SVG ikonları ölçüm serisi sayılmaz. Bu helper hataları ürün hatalarıyla birleştirilmedi, önceki FAIL kayıtları korundu.
+- Docker start tek başına minikube kubelet/containerd servislerini başlatmayabilir ve dinamik API portu değişebilir. Private profile + keep-context minikube start ve API UID doğrulaması gerekir; global kubeconfig'e yazılmaz.
+- Alpine etiketinde httpd varsayımı ve çoklu KUBECONFIG pathlist'ini --kubeconfig tekdosya argümanı yapmak iki ayrı fixture/helper hatasıydı. Bilinen nginx server ve standart environment merge ile düzeltildi; ilk FAIL'lar saklandı.
+
 ## 8 Kasım 2026 — güvenli test orchestration
 
 - Production build ve saf manager unit testleri React ilk açılışını kanıtlamaz. İlk normal UI testi, configured=false iken resetManagement dönüşünün Promise olmaması nedeniyle observeNamespace `.then` hatasını yakaladı. Başarısız iki koşu korunur; CI artık derlenmiş binary arayüzünde DOM/runtime smoke içerir.
