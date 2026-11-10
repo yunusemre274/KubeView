@@ -12,6 +12,8 @@ const jobs=()=>repairJobs('new','start','final');
 test('workspace plan is finite: paired four-condition blocks, separate source controls and one final soak',()=>{
  const plan=workspaceJobs('new','start','final');
  assert.equal(plan.length,35);
+ assert.ok(plan.every(j=>j.visualStartLocked===true));
+ assert.ok(plan.slice(0,6).every(j=>j.group==='workspace-source'));
  assert.equal(plan.flatMap(expectedJobCells).length,46);
  const panel = plan.find(j=>j.group==='workspace-panel');
  assert.deepEqual(panel.scenarios,['panel-closed','panel-open']);
@@ -28,6 +30,10 @@ test('workspace plan is finite: paired four-condition blocks, separate source co
  assert.equal(plan.filter(j=>j.scenarios.includes('long')).length,1);
  assert.equal(plan.at(-1).longSeconds,1200);
  assert.equal(plan.at(-1).harbors,20);
+ const priority=workspaceJobs('new','start','final',{longFirst:true});
+ assert.equal(priority[0].longSeconds,1200);
+ assert.deepEqual(priority.slice(1),plan.slice(0,-1));
+ assert.equal(priority.length,plan.length);
  const previous={id:'old',status:'failed',jobs:structuredClone(plan).map(j=>({...j,status:'pending'}))};
  const altered=structuredClone(plan);altered[2].harbors=20;
  assert.throws(()=>resumeJobs(previous,altered,'other'));
@@ -53,6 +59,8 @@ test('real one-repeat smoke manifests are valid only with full windows and three
  for(const job of plan){const repeats=job.repeats||1,m={production:true,inputLocked:true,browserEnergySaver:{ok:true},panelMatrix:Boolean(job.matrix),repeatOffset:job.block||0,params:{repeats,warmup:30,seconds:60,profiles:[job.profile],scenarios:scenarioArguments(job)},smoke:repeats<3};
   assert.deepEqual(jobProtocolReasons(job,m),[]);
   assert.ok(jobProtocolReasons(job,{...m,workspaceCycleProbe:true}).length);
+  assert.ok(jobProtocolReasons({...job,visualStartLocked:true},m).length);
+  assert.deepEqual(jobProtocolReasons({...job,visualStartLocked:true},{...m,visualStartLocked:true}),[]);
   if(repeats===1){assert.equal(m.smoke,true);assert.ok(jobProtocolReasons(job,{...m,smoke:false}).length);}
   for(const warmup of [0,29])assert.ok(jobProtocolReasons(job,{...m,smoke:true,params:{...m.params,warmup}}).length);
   assert.ok(jobProtocolReasons(job,{...m,smoke:true,params:{...m.params,seconds:59}}).length);

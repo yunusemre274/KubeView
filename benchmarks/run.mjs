@@ -177,6 +177,7 @@ const manifest = {
   sceneInventorySHA256: args.includes("--scene-inventory") ? hash(readSceneInventory.toString()) : null,
   networkDiagnostic: args.includes("--network-counts"),
   workspaceCycleProbe: scenarios.includes("workspace-cycle"),
+  visualStartLocked: args.includes("--lock-visual-start"),
   fixtureSHA256: Object.fromEntries(
     profiles.map((profile) => [
       profile,
@@ -1023,7 +1024,7 @@ async function run(profile, scenario, repeat) {
   // Settle startup effects, then protect noninteractive cases from native input.
   // OrbitControls.update remains enabled, so the normal per-frame work is kept.
   await prepareCamera(scenario === "interaction");
-  if (panelMatrix || logMatrix || repairPlan) {
+  if (panelMatrix || logMatrix || repairPlan || manifest.visualStartLocked) {
     await page.evaluate(() => {
       const p = globalThis.__KUBEVIEW_BENCHMARK__;
       if (!p.resetVisual)

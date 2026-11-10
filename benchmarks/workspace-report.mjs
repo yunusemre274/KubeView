@@ -12,7 +12,7 @@ const signature = (r) => JSON.stringify({ fixture: r.manifest.fixtureSHA256[r.pr
   dpr: r.before.dpr, rendererDPR: r.before.rendererPixelRatio, renderer: r.before.renderer, camera: r.before.camera,
   buffer: r.before.buffer, visible: [r.before.stats.lifecycle.visibleNodes, r.before.stats.lifecycle.visiblePods],
   canonical: [r.before.stats.lifecycle.canonicalNodes, r.before.stats.lifecycle.canonicalPods],
-  fleetUIDs: r.before.fleet?.map((s) => s.uid), panel: r.before.panel, logView: r.before.logView });
+  fleetStates: r.before.fleet, panel: r.before.panel, logView: r.before.logView });
 const drawWork = (r) => ({ calls: r.before.stats.calls, triangles: r.before.stats.triangles, points: r.before.stats.points, lines: r.before.stats.lines });
 export function workspacePairs(rows) {
   const pairs = [], reasons = [];

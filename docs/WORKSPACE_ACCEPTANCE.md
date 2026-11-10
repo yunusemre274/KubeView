@@ -108,3 +108,7 @@ Closed-panel niyeti düzeltmesinin202 frontend testi/build ve v07 normal UI3 kon
 Mevcut harness'e workspace ailesi eklendi:35 seri iş/46 hücre;3 dengeli blok,30 saniye ısınma/60 saniye ölçüm ve yalnız1 adet1200 saniyelik karma koşu. `workspace-cycle` tanılama koşusu20 normal UI liman/panel ve4 kapsam düzenleme çevrimini,22/22 kapanan logu ve tam canonical içerik eşitliğini doğruladı;30 saniyelik bu koşu uzun test veya CPU kabulü sayılmaz. İki kontrolün Playwright actionability kontrolü fiziksel geri bildirim veya bütün panel kullanılabilirliği yerine geçmez. Tarihsel V11-16/18/19 kapıları açık kalır.
 
 Telemetri lab'ında iki runtime FAIL korunur. Son kaynak aynı owned PodUID'nin başlangıç IP'sini45 saniye bounded bekler;12 unit geçti, üçüncü gerçek lab denemesi yapılmadı. Tüm owned ağır lab'lar ve uygulama süreçleri ölçüm öncesi durduruldu.
+
+### API kanıtının dar sınırı
+
+Son read-only backend incelemesinde runtime doğruluk blokeri saptanmadı. Gerçek selector7 alt vaka testi UPDATE'i UID/action ile eşler; overlap kuyruğundaki eski UPDATE'i her durumda yeni RV/label ile ayırdığını iddia etmez. Reconnect snapshot kontrolü kapsam ve generation bağını sınar, o snapshot'ın Resources UID envanterini bütünüyle karşılaştırmaz. Exact union ve DELETE'nin diğer kontrolleri bu iki eksik assertion'ı tamamlamış sayılmaz. Gelecek dar test genişletmesinde beklenen opaque RV/selector ve snapshot UID seti ayrıca doğrulanmalıdır; mevcut kanıt eksiksiz reconnect-restorasyon E2E'si diye genişletilmez.

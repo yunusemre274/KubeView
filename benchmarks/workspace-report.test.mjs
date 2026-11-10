@@ -31,6 +31,8 @@ test('workspace report never pools old source controls with four-condition harbo
   const duplicate = [...rows, structuredClone(rows[0])]; assert.equal(workspacePairs(duplicate).reasons.length, 3);
   const stale = structuredClone(rows); stale[1].before.stats.lifecycle.visiblePods--;
   assert.match(workspacePairs(stale).reasons.join(), /Active workload differs/);
+  const phase = structuredClone(rows); phase[1].before.fleet[0].progress=0.1;
+  assert.match(workspacePairs(phase).reasons.join(), /Active workload differs/);
 });
 test('panel report retains negative matched deltas and rejects different frozen camera/fleet', () => {
   const rows = [];

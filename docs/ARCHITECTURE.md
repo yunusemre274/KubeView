@@ -1,5 +1,13 @@
 # Veri, işlem ve 3D mimarisi
 
+## 10 Kasım 2026 — aktif çoklu liman kaynağı
+
+Son doğruluk checkpoint'i `42222c1184d66f3813fd98693b75bc9cb50b06ee`, `redesign/harbor-workbench` dalındadır. Bu bir **manuel kabul adayıdır**; stable yayın veya kullanıcı onayı değildir. Aktif model aşağıdaki **çoklu proje / çoklu liman genişletmesi** bölümüdür. Önceki `32a0468` tek-bağlantı açıklamaları kendi tarihsel kaynaklarını anlatır; güncel broker'ın yerine geçen tek global mutable Kubernetes istemcisi yoktur.
+
+`workspaceResource.List` çok namespace birleşiminde gerçek upstream `apiVersion/kind` bilgisini korur ve eksik/çelişkili türü reddeder. Namespace'lerin opaque resourceVersion değerlerinden global sıra veya list RV üretilmez. Seçili kaynak vurgusu ile açık panel niyeti ayrıdır: kapalı panel liman dönüşünde kendiliğinden log/abonelik açmaz. Canonical güncelleme, kamera/filo transform'u ve yönetim penceresi yaşam döngüleri ayrıdır.
+
+Donmuş son frontend kaynak SHA `ff682d9b633c86062fa3e1379aef7c92747f2bee0b31a9cbaec0995cda9219b9`; yeni kapsam/normal UI/gerçek API kanıtları [workspace kabul defterindedir](WORKSPACE_ACCEPTANCE.md). Son telemetry bootstrap bekleme düzeltmesi12 unit ile sınandı; iki gerçek kurulum FAIL ve provider E2E engeli korunur. Aşağıdaki eski ölçümler veya test sayıları yeni kaynağın otomatik kabulü sayılmaz.
+
 ## 9 Kasım 2026 — güncel aday kaynağı ve oturum sınırı
 
 Runtime kaynak commit'i `32a0468ad51516a1bb38aab68760e73984c45ddf`; frozen frontend SHA256 `e61447de244192dca130675866abf81bc87daa20a7a128ee8534b5c6ae1fe164`, build adı `v11-final-32a0468`. Test edilmiş embedded macOS/Linux kimlikleri [release notlarında](RELEASE_NOTES_v1.1.0.md) ve [kaynak kaydında](../artifacts/v1.1.0/v11-20261108/candidate-frozen-32a0468.json). Durum sürüm adayıdır; final kanıt/CI/release beklenir. Aşağıdaki tarihli mimari ve ölçüm kayıtları kendi source kapsamlarında korunur.

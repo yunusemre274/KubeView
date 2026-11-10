@@ -189,3 +189,5 @@ Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm 
 - WebKit resize testinde eski innerWidth ve eski canvas birlikte eşit olabilir. Bekleme istenen viewport hedefini kullanmalı; yalnız başarısız yaprak yeniden çalıştırılır.
 
 - Seçim ile panelin açık olma niyeti farklıdır. Cache'te panel=null iken aynıUID seçimini restore etmek panel/logu otomatik açmamalı; pending snapshot dalı da bu niyeti taşır. Bunu uzun koşunun sonuna bırakmadan red ve normalUI log sayaçlarıyla doğrula.
+
+- Workspace CPU koşullarında aynı seed/UID ve kamera yeterli değildir:30s ısınmadan sonra RAF fazı birkaç kare sapabilir. İlk oturum bu nedenle kabul dışında tutuldu. Mevcut `resetVisual`/`visualHold` yalnız ölçüm öncesinde bütün koşullara uygulanır; pencere başında hareket normal devam eder. Manifest bunu açık kaydeder; rapor yalnız UID listesini değil bütün başlangıç filo dönüşümlerini eşler. Eski koşular yeni protokole geriye dönük dahil edilmez.
