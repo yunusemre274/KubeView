@@ -59,3 +59,7 @@ Son kanıtlar ve dış yetenek sınırları [CAPABILITIES.md](CAPABILITIES.md) i
 | Canlı deniz | Uygulandı; aynı CPU/GPU analitik model, isteğe bağlı ripple/iz, görünürlük saati |
 | Soft UI ve tercihler | Uygulandı; opak açık/koyu/sistem, yüksek kontrast, ayrı etkili hareket tercihleri |
 | Kabul | 30 tarayıcı testi geçti; 6 tekrar/guard atlaması; 69 birim testi, 10 dk/üç tur, gerçek 60 sn görünmezlik ve ölçüm raporu tamamlandı |
+
+## 10 Kasım 2026 — çoklu liman manuel aday checkpoint'i
+
+Workspace/broker/harita ve scoped yönetim uygulanmıştır; A–O kanıt ve açıklar [WORKSPACE_ACCEPTANCE.md](WORKSPACE_ACCEPTANCE.md) içinde ayrıdır. Gerçek G4/H5 ve paket05/06 UI16 geçti, yedi manuel profil saklandı ve lab'lar durduruldu. Yeni CPU matrisi/1200s kararlılık pil koruması nedeniyle açık; fullTLS/Hubble lab bootstrap ikiFAIL sonrası BLOCKED. Eski V11-16/18/19 ve kullanıcı manuel onayı beklenir. **Bu bölüm milestone kapatmaz, stable sürüm teslimi değildir.**

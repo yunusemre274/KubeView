@@ -1,0 +1,40 @@
+{
+  "id": "ws-20261110-final-manual05-06-ui",
+  "at": "2026-11-10T12:22:39.874529+00:00",
+  "status": "passed",
+  "profiles": {
+    "05-ariza-toparlanma": {
+      "status": "passed",
+      "checks": 8,
+      "runtimeErrors": 0,
+      "consoleErrors": 0,
+      "prohibitedWrites": 0
+    },
+    "06-limanlar-arasi-ag": {
+      "status": "passed",
+      "checks": 8,
+      "runtimeErrors": 0,
+      "consoleErrors": 0,
+      "prohibitedWrites": 0
+    }
+  },
+  "deliveredBinarySHA256Before": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+  "deliveredBinarySHA256After": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+  "servedIndexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+  "workspaceFrontendSourceSHA256": "ff682d9b633c86062fa3e1379aef7c92747f2bee0b31a9cbaec0995cda9219b9",
+  "helperSHA256": "5af6c38c5b25b5ed048fd8d39105638ad1048621f5ff0519249c0f89bcffef22",
+  "rootReceiptSHA256": "d48b2cfc25b58acdff8a02cdc23b10806754e8e7cb5ec61a08090ed67f701827",
+  "remainingHelperOrBrowserPIDs": [],
+  "files": {
+    "05-ariza-toparlanma-closed-world.png": "1ac1597cafc67db21dbcb9afc984498ac9b581948ffaa8edc40de125cc603a54",
+    "05-ariza-toparlanma-pod-exact-UID.png": "bc189adc1c2df9981ca7d3005647623d4e600136e413d73f773b4123ba92bf11",
+    "06-limanlar-arasi-ag-closed-world.png": "6517c464ef7411b7511e72310929883af826c42d991fa7fd988aed17967732b0",
+    "06-limanlar-arasi-ag-pod-exact-UID.png": "3ac41741718228b91b96bef099b8c85a28d6158c34ccf62999530ef7bb16f710",
+    "REVIEW.md": "130f737f32a351ba72a1c8bf6ccdb4f3dc64bc601e43510cb8eb4ae6d1e88935",
+    "result.json": "5ff45b55c5c31b0795a41cfab5dcc0367cf14f30914ca13d445379093a1fe5f1"
+  },
+  "limits": [
+    "Root owns app/A stop; this helper changed no cluster resources.",
+    "No geometry leak/no-leak, CPU/performance, traffic/fault or manual-user-acceptance claim."
+  ]
+}

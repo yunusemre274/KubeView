@@ -4,6 +4,12 @@ Kubernetes kümenizin arayüzü, tam ekran etkileşimli bir tersanedir. Merkez b
 
 **Sürüm durumu:** **çoklu liman için 1.1.0 manuel kabul adayı geliştiriliyor**. Stable release yayımlanmadı; kullanıcının manuel onayı, eski CPU farkı ve fiziksel arayüz gecikmesi kapıları açık. Güncel kapsam ve kanıtlar [workspace kabul defterinde](docs/WORKSPACE_ACCEPTANCE.md), kullanıcı profilleri [manuel test rehberinde](MANUAL_TEST_GUIDE.md) tutulur. `32a0468` runtime / `594e090` kanıt / `0029672` paket kontrolü önceki tek-liman adayıdır; o testler yeni kodun otomatik kabulü değildir. Tarihsel platform ve build kimlikleri [release notlarında](docs/RELEASE_NOTES_v1.1.0.md); önceki CR/UID, gemi/container onarımı, worker ve Hubble kanıtları [onarım kaydında](docs/PRE_V11_VISUAL_REPAIR.md) korunur.
 
+## 10 Kasım manuel aday sınırı
+
+Temiz macOS paketi `ca3b9ec` runtime'ını içerir; gerçek05/06 arayüz/yön tuşu16 kontrolü, scoped eşzamanlı işlem4 ve güvenli workspace-record5 kontrolü geçti. Gerçek A2+B1 ve iki kimlik,07'de M/L×1/5/10/20 liman denendi. Model en çok100 liman/64 bağlantı saklar, frontend64 farklı canlı kaynak kapsamını sınırlar;100 liman performansı test edilmiş değildir.
+
+Kullanıcı testine ayrılan yedi profil ve sekiz replay varyantı korunmuştur; ağır lab'lar kapalıdır. Yeni1200s koşu pil9% korumasında~19dk'da kesildi; üç eşleşmiş CPU bloğu ve fullTLS/Hubble lab E2E açık. Native Safari/fiziksel gecikme ve eski CPU kapıları kapanmadı. Bu nedenle stable sürüm veya eksiksiz performans kabulü iddiası yoktur. [Güncel A–O kabul tablosu](docs/WORKSPACE_ACCEPTANCE.md), [ölçüm geçerlilik kararı](docs/PERFORMANCE_REPORT.md), [manuel komutlar](MANUAL_TEST_GUIDE.md).
+
 ## Birden fazla proje, ayrı limanlar
 
 Bir workspace, güvenilir Kubernetes bağlantıları ve bu bağlantılara bağlı proje/liman kayıtları içerir. Bir liman açık namespace kümesi ve isteğe bağlı label seçicisi kullanır. **Limanlar** pusulası veya merkez üzerinden eklenir; ilk boş kurulumda **İlk limanını bağla** açılır. İzinli namespace adı, namespace LIST izni olmadan elle girilebilir. Bağlantı ve kapsam gerçek API ile önizlenir. Liman kaydetmek, yeniden adlandırmak veya kaldırmak Kubernetes kaynaklarını yaratmaz, taşımaz veya silmez.

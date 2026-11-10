@@ -365,3 +365,22 @@ kullanıcının cluster'ları, global Docker prune veya wildcard namespace clean
 Destroy restart verisini siler; manuel tekrar denemek istiyorsanız yalnız down kullanın.
 
 MANUEL SONUÇ (kullanıcı): PASS/FAIL ______  Tarih ______  Notlar ___________________
+
+## 10 Kasım teslim kaydı — otomatik sonuç, manuel PASS değildir
+
+Bu Mac'teki hazırlanmış paket:
+
+```sh
+cd "$HOME/Library/Application Support/KubeView/manual-lab-bundles/20261110-workspace-ca3b9ec"
+./scripts/manual-lab.sh doctor
+./scripts/manual-lab.sh up --profile 01-bos-baslangic
+./scripts/manual-lab.sh app --profile 01-bos-baslangic
+```
+
+01'de boş0 limanla başlayın. Diğer profillerin tam ad/amaç/komutları yukarıdadır. Profil değiştirirken önce `down --profile <eski-profil>` yalnız eski app'i kapatır; `down` hepsini ve lab makinelerini durdurur, veriyi silmez.07 M/L varyantını aynı portta değiştirmeden önce07 app'ini kapatın. `--write` ayrıca gerçek hedef/RBAC onayı gerektirir; `--replay M --harbors 20` yalnız açık sentetik/read-only yükü seçer.
+
+Runtime binary SHA256 `2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565`; embedded index `a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471`. Runtime kaynağı ca3b9ec; son rapor/test belgeleri ayrı checkpoint ile güncellenebilir. Paket Go/Node/repo/.git gerektirmez; runner Python ve gerçek profillerin Kubernetes/Docker araçlarını kullanır. macOS'ta `/tmp` çalışma dizininden bu paketle02/05/06 açılması ve05/06 normal UI16 kontrolü doğrulandı. Linux binary yalnız derlendi, çalıştırılmadı.
+
+Son durumda default A2+B1 ve ayrı telemetryA2 **STOPPED**, app/forward süreçleri kapalıdır. Yedi profil,01boş,05bir liman,06iki liman ve sekiz07 workspace korunur. Up sonrası ilk PodReady görünümü geçici olabilir; gerçek status ve container nedenini inceleyin.10Kasım'da ilk05 0Ready aynı UID ile sonraki gözlemde2/2 oldu; ilk gözlem ve helper formatter hatası ayrıca saklanır.
+
+Telemetri lab'ının iki gerçek bootstrap denemesi başarısız kaldı; son kaynak12 unit ile doğrulandı, yeni gerçek TLS/provider/flow E2E **BLOCKED**. Normal06 DNS/HTTP/topoloji profili kullanılabilir; ölçülmüş akış yokken gerçek trafik animasyonu beklemeyin.1200s kararlılık ve üçlü CPU matrisi de tamamlanmadı. Yukarıdaki tüm MANUEL PASS/FAIL alanlarını yalnız kullanıcı doldurur; stable tag/release ve ana milestone kapanışı yapılmadı.

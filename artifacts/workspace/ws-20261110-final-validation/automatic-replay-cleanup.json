@@ -1,0 +1,12 @@
+{
+  "scope": "automatic replay QA only",
+  "existed": true,
+  "manualProfilesRemoved": false,
+  "labId": "kvml-0efb563d4dc5",
+  "profileKeys": [
+    "07-yuk-ve-gecis"
+  ],
+  "activeOwnedProcesses": 0,
+  "removed": true,
+  "time": "2026-11-10T12:31:11.687014+00:00"
+}

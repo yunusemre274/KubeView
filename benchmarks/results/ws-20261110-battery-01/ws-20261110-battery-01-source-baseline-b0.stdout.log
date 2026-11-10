@@ -1,0 +1,3 @@
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+{"profile":"M","scenario":"living","repeat":0,"fps":60.0019323220844,"p95":18,"messages":0}
+Results: /Users/yunusemre/Desktop/KubeView/benchmarks/results/ws-20261110-battery-01-source-baseline-b0

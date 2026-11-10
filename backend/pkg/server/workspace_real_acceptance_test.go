@@ -196,8 +196,28 @@ func TestOwnedWorkspaceRealConcurrentOperationsAcceptance(t *testing.T) {
 		}
 		afterA, afterB := f.rollout(itemA, 2), f.capture(itemB)
 		afterBSpec, _ := json.Marshal(afterB.Spec)
-		if afterA.Generation != beforeA.Generation+1 || afterA.Annotations[marker] != beforeA.Annotations[marker] || !bytes.Equal(bSpec, afterBSpec) || afterB.Generation != beforeB.Generation || afterB.Annotations[marker] != f.runID+"-concurrent" || !reflect.DeepEqual(f.podUIDSet(itemB), bPods) {
-			f.t.Fatal("concurrent operations crossed targets, repeated scale effect, or changed B workload/Pod identities")
+		afterBPods := f.podUIDSet(itemB)
+		f.t.Logf("READBACK concurrent A generation=%d expected=%d; B generation=%d expected=%d; BSpecEqual=%t BPodUIDsEqual=%t", afterA.Generation, beforeA.Generation+1, afterB.Generation, beforeB.Generation+1, bytes.Equal(bSpec, afterBSpec), reflect.DeepEqual(afterBPods, bPods))
+		if afterA.Generation != beforeA.Generation+1 {
+			f.t.Fatal("duplicate scale did not produce exactly one A generation increment")
+		}
+		if afterA.Annotations[marker] != beforeA.Annotations[marker] {
+			f.t.Fatal("B metadata update crossed into A annotations")
+		}
+		if !bytes.Equal(bSpec, afterBSpec) {
+			f.t.Fatal("concurrent A scale changed B workload spec")
+		}
+		// Deployment annotation updates increment generation even when spec is
+		// unchanged: Kubernetes v1.35.1 deployment/strategy.go PrepareForUpdate.
+		// https://raw.githubusercontent.com/kubernetes/kubernetes/v1.35.1/pkg/registry/apps/deployment/strategy.go
+		if afterB.Generation != beforeB.Generation+1 {
+			f.t.Fatal("one B annotation PUT did not produce exactly one B generation increment")
+		}
+		if afterB.Annotations[marker] != f.runID+"-concurrent" {
+			f.t.Fatal("concurrent B metadata annotation did not persist on B")
+		}
+		if !reflect.DeepEqual(afterBPods, bPods) {
+			f.t.Fatal("concurrent operations replaced B Pod UIDs")
 		}
 		f.t.Log("REAL concurrent dispatch: A identical UID/RV scale accepted1/conflict1; B metadata PUT accepted; exact UID readbacks and B Spec/PodUID isolation verified")
 	}) {
@@ -230,8 +250,25 @@ func TestOwnedWorkspaceRealConcurrentOperationsAcceptance(t *testing.T) {
 		}
 		afterSpec, _ := json.Marshal(after.Spec)
 		currentA := f.capture(itemA)
-		if after.ResourceVersion == before.ResourceVersion || after.Generation != before.Generation || after.Annotations[marker] != f.runID+"-suppressed-response" || !bytes.Equal(afterSpec, bSpec) || !reflect.DeepEqual(f.podUIDSet(itemB), bPods) || currentA.Spec.Replicas == nil || *currentA.Spec.Replicas != 2 {
-			f.t.Fatal("post-suppression GET did not reconcile the exact owned effect in its original harbor")
+		afterPods := f.podUIDSet(itemB)
+		f.t.Logf("READBACK suppressed B generation=%d expected=%d; RVChanged=%t BSpecEqual=%t BPodUIDsEqual=%t", after.Generation, before.Generation+1, after.ResourceVersion != before.ResourceVersion, bytes.Equal(afterSpec, bSpec), reflect.DeepEqual(afterPods, bPods))
+		if after.ResourceVersion == before.ResourceVersion {
+			f.t.Fatal("suppressed annotation PUT did not advance B resourceVersion")
+		}
+		if after.Generation != before.Generation+1 {
+			f.t.Fatal("one suppressed B annotation PUT did not produce exactly one B generation increment")
+		}
+		if after.Annotations[marker] != f.runID+"-suppressed-response" {
+			f.t.Fatal("suppressed annotation PUT could not be reconciled on exact B UID")
+		}
+		if !bytes.Equal(afterSpec, bSpec) {
+			f.t.Fatal("suppressed annotation PUT changed B workload spec")
+		}
+		if !reflect.DeepEqual(afterPods, bPods) {
+			f.t.Fatal("suppressed annotation PUT replaced B Pod UIDs")
+		}
+		if currentA.Spec.Replicas == nil || *currentA.Spec.Replicas != 2 {
+			f.t.Fatal("suppressed B metadata update changed A replica target")
 		}
 		f.t.Log("KNOWN_ACCEPTED_RESPONSE_SIMULATION: one upstream200 PUT response intentionally suppressed; exact UID GET reconciled effect; no retry. Real network timeout/cancel remains NOT RUN")
 	}) {

@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "stdout": "A\u00e7\u0131ld\u0131: http://127.0.0.1:19707/\nProfil veri dizini: /Users/yunusemre/Library/Application Support/KubeView/manual-lab-v1/profiles/07-yuk-ve-gecis/app-data/M-h20\nTEST / REPLAY: ger\u00e7ek Kubernetes de\u011fil; y\u00f6netim zorunlu salt okunur.\n",
+  "stderr": ""
+}

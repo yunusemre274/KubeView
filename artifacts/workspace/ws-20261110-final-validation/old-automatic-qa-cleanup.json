@@ -1,0 +1,35 @@
+{
+  "labId": "kvml-6cfe8d4d9509",
+  "scope": "Failed automatic QA only; not manual-lab-v1 or manual-lab-telemetry-v1",
+  "guards": "exact recorded DockerID/name/creationTime, stopped state, minikube labels, creation intent; no global bridge/network removal",
+  "containers": [
+    {
+      "id": "e89740e8c2f08f038e85d5d99630e04591b255570abe86c58e58eb4c4505121c",
+      "name": "kvml-6cfe8d4d9509-a",
+      "created": "2026-11-09T12:26:47.844123763Z",
+      "stoppedVerified": true,
+      "removed": true
+    },
+    {
+      "id": "8682b0b8b5d92ef2aa7937dddfe7c3fea52ef7895bcb0dd9d604fdd683143db5",
+      "name": "kvml-6cfe8d4d9509-a-m02",
+      "created": "2026-11-09T12:27:03.153483756Z",
+      "stoppedVerified": true,
+      "removed": true
+    }
+  ],
+  "volumes": [
+    {
+      "name": "kvml-6cfe8d4d9509-a",
+      "removed": true,
+      "noOtherReferences": true
+    },
+    {
+      "name": "kvml-6cfe8d4d9509-a-m02",
+      "removed": true,
+      "noOtherReferences": true
+    }
+  ],
+  "automaticStateRemoved": true,
+  "finishedAt": "2026-11-10T12:30:48.728101+00:00"
+}

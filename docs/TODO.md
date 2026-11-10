@@ -171,3 +171,14 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 - [x] Chromium/Metal ve WebKit işlev/görsel testleri; gerçek WS reconnect ve gerçek Pod/docking/log kaydı.
 - [x] Son 10 dakika / üç tur / görünmez sekme / GC kaynak raporunu son sürümle bitir.
 - [x] Son paket, kanıt ve dokümanları kaydet.
+
+## 10 Kasım son teslim checkpoint'i
+
+- [x] Temiz ca3b9ec macOS paketi /tmp'den02/05/06 açıldı; gerçek05/06 UI16/16, odaklı yön tuşları, sameCanvas ve doğruUID.
+- [x] Gerçek G4/H5; yanlış Deployment generation test beklentisi birincil kaynağa göre düzeltildi, ilkFAIL korundu; audited kaynaklar ve freshQA temizlendi.
+- [x] Tek40geçiş GPU diagnostiki38→57→57; ikinci tur yeni büyüme yok, genel leak sonucu değil.
+- [x] Manuel yedi profil/sekiz varyant korundu; beş owned lab Node ve app/forward süreçleri STOPPED; iki eski otomatik QA container/volume ve geçici QA data güvenle temizlendi.
+- [ ] Yeni üç eşleşmiş M/L CPU matrisi ve1200s/20çevrim: ilk oturum protokol dışı, son~19dk pil9% korumasında kesildi.
+- [ ] Yeni fullTLS/Hubble gerçek E2E iki bootstrapFAIL sonrası BLOCKED;12unit bunu kapatmaz.
+- [ ] A–O güncel tabloda belirtilen kalan gerçek revoke/timeout/background/migration/metrics geniş senaryoları.
+- [ ] V11-16/V11-18/V11-19 ve kullanıcı MANUAL kabulü açık; stable yayın/merge/milestone kapanışı yapılmaz.

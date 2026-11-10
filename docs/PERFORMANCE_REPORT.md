@@ -1,8 +1,31 @@
 # Production performans raporu — 25 Ekim 2026
 
-## Aktif çoklu liman ölçümü — henüz yeni sonuç yok
+## 10 Kasım 2026 — workspace denemeleri; kabul hâlâ açık
 
 Yeni workspace geliştirmesinin 1/5/10/20 liman protokolü ve kabul durumu [WORKSPACE_ACCEPTANCE.md](WORKSPACE_ACCEPTANCE.md) içindedir. Mevcut harness `--harbors` ve `repair-session --suite workspace` ile genişletilir; aynı M/L canonical kaynak, aktif sahne ve güç koşulları kaydedilir. Yeni kaynakta ölçülmeyen CPU/FPS/enerji sonucu üretilmez. Aşağıdaki sonuçlar eski dondurulmuş build'ler içindir; V11-16 fiziksel UI ve V11-18 CPU kapılarını yeni test sayıları kapatmaz.
+
+### Yeni ölçümlerin geçerlilik kararı
+
+MacBook Air M5/10 çekirdek/32GB, macOS27.0.1; Chromium156.0.8078.4/Metal,1440×900 CSS, renderer DPR1, medium, deniz/seyir açık. Go1.26.5; fixture-v2/seed20261024. M20Node/300Pod(görünür8/120), L50/1500(görünür8/270). Yeni workspace kaynağı ff682d9b…19b9; frozen `workspace-final-20261110`, kontrol `v11-final-32a0468` başlangıç frontend'iyle86dosyada byte eşdeğer. Tarihsel CPU sayıları bu yeni pil oturumuyla havuzlanmaz.
+
+`ws-20261110-battery-01`:6 tam60s pencere oluştu; living başlangıç filo fazı birkaç kare farklı olduğundan **oturumun tamamı kabul dışında**. Birer tekrar CPU değerleri yalnız hata incelemesi içindir: legacyM1 browser0.26588çekirdek, yeniM1source0.26435; ayrı aynı-build M1/5/10/20 sırasıyla0.26169/0.26169/0.26435/0.26701. Bunlar before/after kazancı veya karşılaştırılabilir3 tekrar değildir. [Ham tanılama özeti](../artifacts/workspace/ws-20261110-final-validation/performance-excluded-observations.json), [dışlama](../artifacts/workspace/ws-20261110-final-validation/excluded-session-01.json).
+
+Harness mevcut görsel-reset/hold işlevini tüm workspace koşullarına uyguluyor; sadece ölçüm öncesi sıfırlanır, ölçümde seyir/su normaldir. Manifest `visualStartLocked`, rapor bütün filo pose/state eşliği ister.17unit PASS; kısa eski/yeni tanılamada kamera, bütün filo,425draw-call/61788üçgen eşitti. Bu3s kontrol performans kabulü değildir.
+
+`ws-20261110-battery-02 --long-first`: tek1200s hedefli karma koşu~19dk'da **pil9% güvenlik korumasıyla kesildi**.38checkpoint/son1139.0s, cleanupComplete=true, owned child/browser/backend kalan0.1200s/20çevrim final kontrolü ve canonical tam içerik eşitliği bitmedi; rapor0/46 kabul hücresi verir. Üç eşleşmiş CPU bloğu hiç tamamlanmadı. Mac'in ayrı appstoreagent süreci yaklaşık1çekirdek, launchd~0.3çekirdek kullanıyordu; bu süreçlere müdahale edilmedi. Bunlar browser CPU toplamı değildir, ısı/frekans veya enerji ölçümü yapılmadı.
+
+| Kabul karşılaştırması | Önce CPU | Sonra CPU / Δpanel | n | Karar |
+|---|---|---|---:|---|
+| Aynı M tek-liman eski/yeni kaynak | N/A | N/A |0 geçerli çift | İlk oturum protokol nedeniyle dışlandı |
+| Aynı-build M/L,1/5/10/20 kayıtlı liman | N/A | N/A |0 tam üçlü blok | Açık |
+| M20-liman seçili UID panel kapalı/açık | N/A | N/A |0 çift | Açık; tarihsel0.413 hedeflenmedi |
+| M20-liman1200s karma/20çevrim | Karşılaştırma değil |~19dk kesildi |0 tamamlanan koşu | Pil koruması; PASS değil |
+
+Kısa kontrolün pointerdown→Close/Summary actionability proxy'si81.6–96.1ms(n2) idi; fiziksel geri bildirim/bütün panel kullanılabilirliği veya100/200ms kabul kapısını kanıtlamaz.
+
+Geometri sayısının yeni liman ziyaretleriyle artması ayrı ve **tek35.33s işlev diagnostikinde** incelendi: aynı20liman iki tur/40geçiş, aynı liman0/kamera/target/DPR/veri/kalite. GPU geometri38→57→57, scene UUID sayısı62→62→62, materyal44, nesne424, texture3 sabit. İkinci tur27UUID çıkarılıp27eklendi;19'u uzak etiket konumlarıyla eşleşti. İlk kullanım/ısınma açıklamasını destekler; GPU-privateUUID tablosu okunmadı, genel sızıntısızlık veya VRAM MB iddiası değildir. [Exact UUID ve kareler](../artifacts/workspace/ws-20261110-geometry-revisit/result.json). Bu ölçüm için ürün kalitesi veya görünür kaynak sayısı düşürülmedi, spekülatif cache/refactor eklenmedi.
+
+**V11-16/V11-18/V11-19 BLOCKED**, MANUAL PENDING. Native Safari, gerçek document.hidden ve Retina performansı yeni kaynakta N/A. Yeni fullTLS/Hubble lab bootstrap iki FAIL; gerçek provider/collector maliyeti ölçülemedi. Browser/backend/provider CPU aktarımını tasarruf sayan sonuç yok. Aşağıdaki tarihsel raporlar silinmedi ve kendi kaynaklarına aittir.
 
 ## 9 Kasım 2026 — v1.1.0 yeni kaynak kabulü
 

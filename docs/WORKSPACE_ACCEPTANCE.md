@@ -112,3 +112,35 @@ Telemetri lab'ında iki runtime FAIL korunur. Son kaynak aynı owned PodUID'nin 
 ### API kanıtının dar sınırı
 
 Son read-only backend incelemesinde runtime doğruluk blokeri saptanmadı. Gerçek selector7 alt vaka testi UPDATE'i UID/action ile eşler; overlap kuyruğundaki eski UPDATE'i her durumda yeni RV/label ile ayırdığını iddia etmez. Reconnect snapshot kontrolü kapsam ve generation bağını sınar, o snapshot'ın Resources UID envanterini bütünüyle karşılaştırmaz. Exact union ve DELETE'nin diğer kontrolleri bu iki eksik assertion'ı tamamlamış sayılmaz. Gelecek dar test genişletmesinde beklenen opaque RV/selector ve snapshot UID seti ayrıca doğrulanmalıdır; mevcut kanıt eksiksiz reconnect-restorasyon E2E'si diye genişletilmez.
+
+## 10 Kasım — son manuel adayın güncel kabul durumu
+
+Runtime `ca3b9ec00bf04ce9116fe589a416e0859e6d30e5`, darwin-arm64 binary SHA `2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565`, index `a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471`. Paket temiz kaynak kontrolüyle üretildi; macOS normal kullanıcı dizininde ve `/tmp` çalışma dizininden02/05/06 çalıştı. Linux-amd64 yalnız cross-compile edildi. Kaynak/build kaydı [burada](../artifacts/workspace/ws-20261110-final-validation/package-build.json). Bu tablo önceki **başlangıç NOT RUN** tablosunun yerine güncel durumu verir; eski başarısızlıklar tarihsel olarak korunur.
+
+| ID | Güncel otomatik kanıt | Açık sınır |
+|---|---|---|
+| A | Unit migration/revision/corrupt config; gerçek01 boş; gerçek native workspace kalıcılığı | Gerçek legacy migration→uygulama restart zinciri tam E2E değil |
+| B | Gerçek A2/iki namespace, aynı worker UID,50 UI geçişi ve iki limanda Unknown/recovery | Kapasite toplamı özelliği yok; iki görünüm iki fiziksel Node sayılmaz |
+| C | Gerçek selector/multiNS/overlap7 API alt vaka; boş/dolu List red/green/race | Gerçek Service ilişkisi genişlemesi, reconnect snapshot UID seti ve her UPDATE RV eşlemesi eksik |
+| D | Gerçek A/B aynı ad farklı UID; A-only UI scale ve A/B/A log izolasyonu | Cross-cluster delete/restart ayrıca koşulmadı |
+| E | Gerçek restricted Pod erişimi, Node/Namespace/Secret/scope403; credential/cache unit izolasyonu | Aktif stream sırasında gerçek revoke/expiry nesli E2E eksik |
+| F | Gerçek freshGET sonrası dirty form/caret; replay50 geçiş; closed-panel ve yön tuşları | Gerçek document.hidden ve bütün uzun kullanım kapısı tamamlanmadı |
+| G | Gerçek eşzamanlı A scale+B update, aynı UID/RV çift istekte202+409;4/4 | Kabul edilmiş yanıtın test transportunda bastırılması gerçek ağ timeout'u değildir |
+| H | Gerçek fresh QA native create/rename/export/import/unbound409/bind/read-only403/remove;5/5, K8s fingerprint aynı | Normal UI export/import manuel kabulü beklenir |
+| I | Gerçek ortak worker Ready→Unknown→aynıUID Ready; B ve Pod kimlikleri korundu | Ready=False/DELETE/kayıp Node son akışının tamamı bu kaynakta yeniden koşulmadı |
+| J | Gerçek cross-namespace DNS/HTTP1→3→0 fixture;06 normal UI | Yeni fullTLS/Hubble lab iki bootstrap FAIL; provider/flow E2E BLOCKED |
+| K | Bağımsız cluster kimliği ve eşleştirme/IP-reuse unit sınırları | Gerçek cross-cluster flow ve IP-reuse E2E yok |
+| L | Gerçek exact UID/container current log200 ve3/3 close; bounded replay log temizliği | Yeni kaynakta bütün previous/init/ephemeral/pause/metrics dolu-yok403 matrisi tekrar edilmedi |
+| M | Unit dosya sınırları/backup/future schema; gerçek authenticated A2 down/up | Gerçek app crash/yarım yazma/cert/timeout recovery matrisi tam değil |
+| N | Snapshot/relist unit ve gerçek/replay geçişlerde canonical kaynak korunumu | Gerçek arka plan/dönüş ve20 dakika final cleanup kapısı açık |
+| O | Yedi profil/ayrı veri; sekiz07 varyantı; gerçek cold/updouble/down/up; temiz paket05/06 UI16/16 | Native Safari/Linux runtime N/A; kullanıcı manuel sonucu ayrı |
+| PERF | Başlangıç fazı düzeltmesi17 unit; eşit tüm filo/camera/çizim yükü kısa tanılamada doğrulandı | İlk CPU oturumu protokol nedeniyle dışlandı; yeni uzun koşu pil9% korumasında~19dk kesildi; **0/46 kabul hücresi**, üç eşleşmiş tekrar ve1200s/20 çevrim kapısı açık |
+| MANUAL | Paket/profiller/boş PASS-FAIL alanları hazır | **PENDING — kullanıcı onayı alınmadı** |
+
+[G/H gerçek API sonucu](../artifacts/workspace/ws-20261109T115457Z/backend/real-api-acceptance/GH-corrected-success-summary.json): ilk G testinin Deployment annotation değişiminde generation sabit kalır beklentisi yanlıştı. Kurulu Kubernetes1.35.1 [PrepareForUpdate](https://github.com/kubernetes/kubernetes/blob/v1.35.1/pkg/registry/apps/deployment/strategy.go#L98) annotation değişiminde generation artırır. Yalnız test beklentisi düzeltildi; Spec/PodUID/exact-target/202+409 kontrolleri korunarak ikinci G4/4 ve ilk H5/5 geçti. İlk FAIL saklanır; ürün davranışı bu test için değiştirilmedi. İki audited Deployment/dependent ve iki QA limanı/bağlantı temizlendi. Root QA PID/port/dizin temizliği [ayrı kanıttır](../artifacts/workspace/ws-20261110-final-validation/qa-gateway-cleanup.json).
+
+[Temiz paket05/06 UI](../artifacts/workspace/ws-20261110-final-manual05-06-ui/REVIEW.md): gerçek cluster/namespace/UID ve canonical sayılar; Node/Pod/merkez paneli, aynı full-screen Canvas, ArrowRight/ArrowUp keyup/blur ve textbox caret izolasyonu16/16 PASS. Dört PNG açılıp incelendi; helper/browser süreçleri kapandı. İlk restore status'undaki0Ready daha sonra aynı PodUID ile2/2 oldu; ilk sonuç ve ayrı formatter hatası saklanır, restore tekrar edilmedi. Ağır koşu sırasında build/test/lab yoktu; sonraki işlev testleri CPU ölçümüne dahil değildir.
+
+**Tamamlandı ilan edilmez.** Stable tag/release/merge veya ana milestone kapanışı yok. Eski V11-16/V11-18/V11-19 BLOCKED, kullanıcı MANUAL PENDING; yeni test sayıları bu kapıları kapatmaz.
+
+Son GPU kontrolü: [40 geçiş exact UUID sonucu](../artifacts/workspace/ws-20261110-geometry-revisit/result.json) aynı liman/kamera/targetta38→57→57GPU geometri,62→62→62scene,3texture gösterir; ilk kullanım açıklamasını destekler, genel leak kapısı yerine geçmez. [Final durdurma](../manual-lab/evidence/final-stopped-20261110.json) beş Node STOPPED, tüm own app/forward süreçleri0, yedi profil/sekiz varyant korunumu ve global kubeconfig byte eşliğini kaydeder. [Eski otomatik QA temizliği](../artifacts/workspace/ws-20261110-final-validation/old-automatic-qa-cleanup.json) yalnız exactID/creationTime/intent/minikube-label doğrulanan iki stopped container ve iki münhasır volume'u kaldırdı; global bridge ve kullanıcı DB container'ları değişmedi.

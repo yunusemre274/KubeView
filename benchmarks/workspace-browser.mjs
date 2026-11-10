@@ -9,6 +9,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const require=createRequire(path.join(root,'frontend/package.json'));
 const {chromium,webkit}=require('playwright');
 const args=process.argv.slice(2),option=(key,fallback)=>{const i=args.indexOf(`--${key}`);return i<0?fallback:args[i+1]};
+const geometryRevisit=args.includes('--geometry-revisit'),runBegan=Date.now();
 const target=new URL(option('url','http://127.0.0.1:19702'));
 if(!['127.0.0.1','localhost','[::1]'].includes(target.hostname)||!['http:','https:'].includes(target.protocol)||target.username||target.password)throw Error('Explicit loopback URL only');
 const id=option('id',`workspace-ui-${Date.now()}`);
@@ -19,10 +20,13 @@ const engine=option('browser','chromium');
 if(!['chromium','webkit'].includes(engine))throw Error('Use chromium or webkit; WebKit is not native Safari');
 const switches=Number(option('switches','0'));
 if(!Number.isInteger(switches)||switches<0||switches>100)throw Error('Bounded --switches 0..100 required');
-const browser=await(engine==='webkit'?webkit:chromium).launch({headless:false,...(engine==='chromium'?{args:['--use-angle=metal']}: {})});
+if(geometryRevisit&&(switches!==40||Number(option('expect-nodes','0'))!==20||Number(option('expect-pods','0'))!==300||args.includes('--onboard')||option('motion','no-preference')!=='no-preference'))throw Error('Geometry revisit requires40 switches/M20 nodes300 pods/normal motion and no onboarding');
+const browser=await(engine==='webkit'?webkit:chromium).launch({headless:false,...(geometryRevisit?{timeout:5000}:{}),...(engine==='chromium'?{args:['--use-angle=metal']}: {})});
 const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,reducedMotion:option('motion','no-preference')});
 const page=await context.newPage();
 const result={id,startedAt:new Date().toISOString(),url:target.origin,browser:engine,browserVersion:browser.version(),dataSource:'Normal product UI; source kind verified from actual profile',status:'running',checks:[],errors:[]};
+let geometryTimer;
+if(geometryRevisit){page.setDefaultTimeout(5000);page.setDefaultNavigationTimeout(10000);geometryTimer=setTimeout(()=>{result.geometryTimedOut=true;browser.close().catch(()=>{});},Math.max(1,80000-(Date.now()-runBegan)));result.geometryRevisit={checkpoints:[],prohibitedWrites:[],limits:['Read-only GPU count/scene UUID diagnostic; not a CPU benchmark or a leak/no-leak acceptance.','TextGeometry exposes no text string here; any harbor/name association is an explicit mesh-position match, never an inferred glyph decode.','No visual reset/hold, quality, data, theme, viewport or DPR change.']};page.on('request',request=>{const url=new URL(request.url());if(['GET','HEAD'].includes(request.method()))return;if(url.pathname==='/api/management'&&request.postDataJSON()?.enabled===false)return;if(['/api/resources','/api/actions','/api/management','/api/replay/scenario'].includes(url.pathname))result.geometryRevisit.prohibitedWrites.push({path:url.pathname,method:request.method()});});}
 page.on('pageerror',error=>result.errors.push(error.message));
 const check=(name,detail)=>result.checks.push({name,at:new Date().toISOString(),detail});
 const capture=async name=>{await page.screenshot({path:path.join(out,`${name}.png`)});check('screenshot',{file:`${name}.png`});};
@@ -80,6 +84,24 @@ async function openMap(){
  const button=page.getByRole('button',{name:'Limanlar ve deniz haritası',exact:true});await button.click();
  await page.locator('.workspace-window').waitFor();
 }
+async function geometryCheckpoint(completed,harbor,harbors){
+ await settledActiveWorld(harbor);await page.waitForTimeout(80);
+ const value=await page.locator('canvas').evaluate((canvas,{harbor,harbors})=>{
+  const h=canvas.__harbor,geometries=new Map(),materials=new Set(),inactiveLettering=[];let objects=0,state=h.scene.__r3f?.root?.getState?.();
+  if(!state)h.scene.traverse(object=>{state ||= object.__r3f?.root?.getState?.();});
+  h.scene.traverse(object=>{
+   objects++;const geometry=object.geometry;
+   if(geometry?.uuid){geometries.set(geometry.uuid,{uuid:geometry.uuid,id:geometry.id,type:geometry.type});let ancestor=object.parent,insideInactive=false;while(ancestor){if(ancestor.name==='workspace:inactive-harbors'){insideInactive=true;break;}ancestor=ancestor.parent;}
+    if(insideInactive&&geometry.type==='TextGeometry'){const position=object.position.toArray(),match=harbors.find(port=>Array.isArray(port.position)&&Math.abs(position[0]-(port.position[0]-75))<1e-6&&Math.abs(position[1]-5)<1e-6&&Math.abs(position[2]-(port.position[1]+45))<1e-6);inactiveLettering.push({geometryUUID:geometry.uuid,objectUUID:object.uuid,objectName:object.name||'',position,association:match?{method:'observed mesh position matches existing WorkspaceHarbors label placement',harborId:match.id,harborName:match.name}:null,textDirectlyAvailable:typeof geometry.parameters?.text==='string'});}
+   }
+   for(const field of ['material','customDepthMaterial','customDistanceMaterial','overrideMaterial']){const value=object[field];for(const material of Array.isArray(value)?value:[value])if(material?.uuid)materials.add(material.uuid);}
+  });
+  const active=h.scene.getObjectByName('workspace:active-harbor'),rect=canvas.getBoundingClientRect(),stats=h.stats();
+  return{harborId:harbor.id,brand:document.querySelector('.world-brand-control')?.textContent,activePosition:active?[active.position.x,active.position.z]:null,camera:{position:h.camera.position.toArray(),quaternion:h.camera.quaternion.toArray(),zoom:h.camera.zoom,target:state?.controls?.target?.toArray?.()||null},gpu:{...stats.memory},sceneReachable:{objects,geometries:geometries.size,materials:materials.size},geometryUUIDs:[...geometries.keys()].sort(),geometries:[...geometries.values()].sort((a,b)=>a.uuid.localeCompare(b.uuid)),inactiveLettering:inactiveLettering.sort((a,b)=>a.position[0]-b.position[0]||a.position[2]-b.position[2]),canonical:{nodes:stats.lifecycle.canonicalNodes,pods:stats.lifecycle.canonicalPods,visibleNodes:stats.lifecycle.visibleNodes,visiblePods:stats.lifecycle.visiblePods},viewport:[innerWidth,innerHeight],canvasRect:[rect.x,rect.y,rect.width,rect.height],dpr:devicePixelRatio,rendererDPR:state?.gl?.getPixelRatio?.()||null,preferences:localStorage.getItem('kubeview.preferences.v1')};
+ },{harbor,harbors});
+ assert.equal(value.canonical.nodes,20);assert.equal(value.canonical.pods,300);assert.equal(value.canonical.visibleNodes,8);assert.equal(value.canonical.visiblePods,120);assert.deepEqual(value.viewport,[1440,900]);assert.deepEqual(value.canvasRect,[0,0,1440,900]);assert.equal(value.dpr,1);assert.deepEqual(value.activePosition,harbor.position);
+ value.completed=completed;result.geometryRevisit.checkpoints.push(value);check('geometry-revisit-checkpoint',{completed,harborId:harbor.id,gpu:value.gpu,sceneReachable:value.sceneReachable,inactiveLettering:value.inactiveLettering.length});
+}
 try{
  await page.goto(target.origin);await assertWorld();
  const original=await workspace();result.workspaceBefore=safeWorkspace(original);
@@ -112,12 +134,13 @@ try{
   await capture('02-onboarded-world');
  }
  const doc=await workspace();
+ if(geometryRevisit){assert.equal(doc.harbors.length,20);const source=await(await page.request.get(`${target.origin}/api/contexts`)).json();assert.equal(source.dataSource,'test-replay');assert.equal(source.serverReadOnly,true);await page.locator('.world-replay-badge').waitFor();const close=page.getByRole('button',{name:'Ayrıntı panelini kapat',exact:true});if(await close.isVisible())await close.click();await openMap();await page.locator('.workspace-port-select').filter({has:page.getByText(doc.harbors[0].name,{exact:true})}).click();await page.locator('.workspace-window').waitFor({state:'detached'});await readyResources(doc);await geometryCheckpoint(0,doc.harbors[0],doc.harbors);}
  if(switches){
   assert.ok(doc.harbors.length>=2,'Switch test needs at least two registered harbors');
   const initial=await assertWorld();
   const canvas=await page.locator('canvas').elementHandle();
   for(let i=0;i<switches;i++){
-   const harbor=doc.harbors[i%doc.harbors.length];
+   const harbor=doc.harbors[(i+(geometryRevisit?1:0))%doc.harbors.length];
    await openMap();
    const port=page.locator('.workspace-port-select').filter({has:page.getByText(harbor.name,{exact:true})});
    await port.click();
@@ -126,12 +149,14 @@ try{
    await readyResources(doc);
    await visibleActiveWorld();
    assert.equal(await page.evaluate(c=>c===document.querySelector('canvas'),canvas),true,'Harbor switch remounted Canvas');
+   if(geometryRevisit){await settledActiveWorld(harbor);if((i+1)%20===0)await geometryCheckpoint(i+1,harbor,doc.harbors);}
   }
-  await settledActiveWorld(doc.harbors[(switches-1)%doc.harbors.length]);
+  await settledActiveWorld(doc.harbors[(switches-1+(geometryRevisit?1:0))%doc.harbors.length]);
   const last=await assertWorld();check('normal-ui-harbor-switches',{completed:switches,canvasPreserved:true,before:initial.stats,after:last.stats});
   await capture('03-after-switches');
  }
- for(const [width,height,theme] of [[1440,900,'light'],[1280,800,'dark'],[768,900,'light']]){
+ if(geometryRevisit){const [initial,first,second]=result.geometryRevisit.checkpoints;assert.equal(initial.harborId,first.harborId);assert.equal(initial.harborId,second.harborId);for(const value of [first,second]){for(const key of ['position','quaternion','target'])if(initial.camera[key]&&value.camera[key])assert.ok(Math.hypot(...value.camera[key].map((n,index)=>n-initial.camera[key][index]))<1e-5,`Geometry revisit camera ${key} changed`);assert.equal(value.camera.zoom,initial.camera.zoom);assert.equal(value.preferences,initial.preferences);assert.equal(value.rendererDPR,initial.rendererDPR);}assert.equal(result.geometryRevisit.prohibitedWrites.length,0);result.geometryRevisit.comparison={initialTo20GPU:first.gpu.geometries-initial.gpu.geometries,from20To40GPU:second.gpu.geometries-first.gpu.geometries,from20To40AddedUUIDs:second.geometryUUIDs.filter(uuid=>!first.geometryUUIDs.includes(uuid)),from20To40RemovedUUIDs:first.geometryUUIDs.filter(uuid=>!second.geometryUUIDs.includes(uuid)),matchedHarborAndCamera:true,interpretation:'Counts and exact identities only; growth attribution and leak/no-leak conclusion require review.'};}
+ for(const [width,height,theme] of geometryRevisit?[]:[[1440,900,'light'],[1280,800,'dark'],[768,900,'light']]){
   await page.setViewportSize({width,height});
   await page.emulateMedia({colorScheme:theme,reducedMotion:option('motion','no-preference')});
   await page.getByRole('button',{name:'Görünüm ve ayarlar',exact:true}).click();
@@ -150,4 +175,4 @@ try{
  assert.equal(result.errors.length,0,'Browser page errors');
  result.status='passed';
 }catch(error){result.status='failed';result.failure=error.stack;await capture('failure').catch(()=>{});process.exitCode=1}
-finally{result.finishedAt=new Date().toISOString();await context.close();await browser.close();await writeFile(path.join(out,'result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({id,status:result.status,checks:result.checks.length,failure:result.failure||null}))}
+finally{clearTimeout(geometryTimer);result.finishedAt=new Date().toISOString();await context.close().catch(()=>{});await browser.close().catch(()=>{});await writeFile(path.join(out,'result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({id,status:result.status,checks:result.checks.length,failure:result.failure||null}))}

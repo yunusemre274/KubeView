@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "attempt": "final-05-06-readonly-convergence-20261110",
+  "startedAt": "2026-11-10T12:18:55.592948+00:00",
+  "maxWallSeconds": 25,
+  "firstZeroReadyFailurePreserved": true,
+  "restoreRerun": false,
+  "mutation": false,
+  "status": "FAIL_READONLY_CONVERGENCE",
+  "observations": [
+    {
+      "atSeconds": 1.13,
+      "05Ready": 2,
+      "06Ready": 1
+    }
+  ],
+  "failureClass": "KeyError",
+  "containerReasons": [
+    {
+      "profile": "05-ariza-toparlanma",
+      "samePodUid": true,
+      "containers": [
+        {
+          "name": "controlled",
+          "ready": true,
+          "waitingReason": null,
+          "terminatedReason": null,
+          "terminatedExitCode": null
+        },
+        {
+          "name": "healthy",
+          "ready": true,
+          "waitingReason": null,
+          "terminatedReason": null,
+          "terminatedExitCode": null
+        }
+      ]
+    },
+    {
+      "profile": "06-limanlar-arasi-ag",
+      "samePodUid": true,
+      "containers": [
+        {
+          "name": "web",
+          "ready": true,
+          "waitingReason": null,
+          "terminatedReason": null,
+          "terminatedExitCode": null
+        }
+      ]
+    }
+  ],
+  "elapsedSeconds": 1.26,
+  "finishedAt": "2026-11-10T12:18:56.853770+00:00"
+}

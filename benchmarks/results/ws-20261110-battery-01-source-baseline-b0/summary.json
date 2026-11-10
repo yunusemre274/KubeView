@@ -1,0 +1,1417 @@
+{
+  "manifest": {
+    "id": "ws-20261110-battery-01-source-baseline-b0",
+    "phase": "baseline",
+    "buildTag": "v11-final-32a0468",
+    "date": "2026-11-10T11:39:27.777Z",
+    "fixtureVersion": "kubeview-benchmark-v2",
+    "workspaceMode": false,
+    "registeredHarbors": null,
+    "workspaceInterpretation": "Historical legacy single-source harness",
+    "repairScenarioVersion": "pre-v11-visual-repair-v1",
+    "repairHarnessSHA256": "fd5525a58f12a2569d73af63a19dec3f6f7680278386a637f778d984f49628d7",
+    "scenarioVersion": 2,
+    "replaySHA256": "a9fde6d8b62ee228d61a52ea7ee3b46781f34b707228748bdb4c2c8824e6353b",
+    "snapshotOrder": "kind/namespace/name/UID before serialization; deterministic fixture-only initial slot allocation",
+    "instrumentationSHA256": "e707bd87346010856befb5b783268939759e391cf161998b7833f05ad410c6a9",
+    "lifecycleInstrumentationSHA256": "7665f99e655f90cda7510e0cb04792f6fa9611c5cc37ae7d9261d0e7f9f2f90c",
+    "sceneInventoryDiagnostic": true,
+    "sceneInventorySHA256": "089c56291cd3d522c9403216392ac2cc47d9f460bbff4720f09be017ee4f5eee",
+    "networkDiagnostic": false,
+    "workspaceCycleProbe": false,
+    "fixtureSHA256": {
+      "M": "b5cf1d2934a9a1926c5ccad1a7181ce73057c4066e13b35895cef96f43af751b"
+    },
+    "nodeVersion": "v24.16.0",
+    "goVersion": "go version go1.26.5 darwin/arm64",
+    "commit": "42222c1184d66f3813fd98693b75bc9cb50b06ee",
+    "trackedDiffSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "hardware": "Hardware:\n\n    Hardware Overview:\n\n      Model Name: MacBook Air\n      Model Identifier: Mac17,3\n      Model Number: Z1L8000H1TU/A\n      Chip: Apple M5\n      Total Number of Cores: 10 (4 Super and 6 Efficiency)\n      Memory: 32 GB\n      System Firmware Version: 20457.1.29\n      OS Loader Version: 20457.1.29",
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+    "displays": "Graphics/Displays:\n\n    Apple M5:\n\n      Chipset Model: Apple M5\n      Type: GPU\n      Bus: Built-In\n      Total Number of Cores: 10\n      Vendor: Apple (0x106b)\n      Metal Support: Metal 4\n      Displays:\n        Color LCD:\n          Display Type: Built-in Liquid Retina Display\n          Resolution: 2560 x 1664 Retina\n          Main Display: Yes\n          Mirror: Off\n          Online: Yes\n          Automatically Adjust Brightness: Yes\n          Connection Type: Internal",
+    "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t23%; discharging; 1:17 remaining present: true",
+    "powerSettings": "Battery Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         120\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           1\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         120\n womp                 1\n networkoversleep     0\n sleep                1\n tcpkeepalive         1\n disksleep            10",
+    "displayRefreshHz": 60,
+    "nativeDisplay": {
+      "display": 1,
+      "Width": 1470,
+      "Height": 956,
+      "PixelWidth": 2940,
+      "PixelHeight": 1912,
+      "RefreshRate": 60
+    },
+    "deviceScaleFactorOverride": 1,
+    "panelMatrix": false,
+    "logMatrix": false,
+    "logInitialLines": 1000,
+    "panelTarget": "node",
+    "inputLocked": true,
+    "backendTag": "v11-final-32a0468",
+    "repeatOffset": 0,
+    "balancedOrder": null,
+    "displayRefreshNote": "CoreGraphics environment/display.json observation; frame timing and renderer DPR are measured separately",
+    "browserRequested": "chromium",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "quality": "medium",
+    "shadows": true,
+    "water": true,
+    "patrol": true,
+    "fpsCap": null,
+    "adaptiveQuality": false,
+    "logPayloadBytes": 0,
+    "production": true,
+    "profiler": false,
+    "bufferDiagnostic": false,
+    "bufferInstrumentationSHA256": null,
+    "reactProfilingBuild": false,
+    "gpuProfiler": false,
+    "video": false,
+    "cpuThrottling": false,
+    "sleepInhibition": "own caffeinate -di process, benchmark lifetime only",
+    "smoke": true,
+    "params": {
+      "profiles": [
+        "M"
+      ],
+      "scenarios": [
+        "living"
+      ],
+      "repeats": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "longSeconds": 1200,
+      "harborCount": 0
+    },
+    "source": "Explicit synthetic read-only upstream using production Go dynamic informers, websocket, frontend store and App; never uses kubeconfig",
+    "backend": "Local test binary; fake Kubernetes tracker/generator lives inside same Go process. Producer apply wall time reported separately; CPU cannot be separated from Go backend CPU in this fixture.",
+    "safari": {
+      "version": "Included with Safari 27.0.1 (22625.1.29.11.28)",
+      "status": "N/A in this runner: native Safari availability and manual production measurements are separate; Playwright WebKit is a separate engine"
+    },
+    "cpuDefinition": "delta process CPU time / wall seconds; 1.0 core = 100% of one core. RSS reported per PID, not summed as unique physical memory.",
+    "instrumentation": "Opt-in on real callback, App commit and renderer.render; no product metrics dashboard. Draw start intervals and next-draw/DOM/rAF are proxies, NOT GPU presentation/INP.",
+    "powerSource": "battery",
+    "experimentFamily": "ws-20261110-battery-01",
+    "buildIndexSHA256": "2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395",
+    "buildProvenance": {
+      "tag": "v11-final-32a0468",
+      "source": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/v11-final-32a0468-source",
+      "inputSource": "/Users/yunusemre/Desktop/KubeView/frontend",
+      "date": "2026-11-09T08:44:31.559Z",
+      "profiling": false,
+      "sourceSHA256": "e61447de244192dca130675866abf81bc87daa20a7a128ee8534b5c6ae1fe164",
+      "files": {
+        "index.html": "4c9ace1dead333415e14b20e99d75a3f2a7192d4d3f6e45a8d1831f776aa419a",
+        "package-lock.json": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+        "package.json": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+        "public/favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+        "src/App.jsx": "46cd4c5ef821e7ba810be0421fd9cfd61954059c83b8281f3788e8bce3a64545",
+        "src/components/ShipyardScene.jsx": "ff434899103e72e072185176b113c0e2c83c5b62646a99257bd585b284a76bd1",
+        "src/constants/descriptions.js": "3464679115885a8d835f459996f0f2f149bb813d5ff0b498243ce18b7363fc35",
+        "src/constants/dimensions.js": "f55ad6312c98e31a10887cb6fa0112f28d6161e57b3bfe5f4661f43950c738c5",
+        "src/context/ShipyardClusterContext.jsx": "4373befda5ef637f99fa632a55a9d06e05e202b4b003e37d7e1337283f3fab6e",
+        "src/data/demo.js": "33bf47d9bc99bbae901fe63804ff7ab4bef1284263fc3b1703dc641a87072b66",
+        "src/data/resourceIndex.js": "8f61be337120d3ae41e1b99840ac3c578ba70da9bfad8c8b62158ba1531fc671",
+        "src/data/resourceScopes.js": "eab535d56d19a68f3035d9a5f7a3b6d7f8d00754c99092cdac48fab795927015",
+        "src/data/resourceStore.js": "6b80148ee652eb8d972872520dedc9bd02add062e72851f60c183f90134ef683",
+        "src/harbor/ASSETS.md": "750ba490aee4d67d9ad35c022cc42582b28c9104895ec93b1b095ec258dc6fe5",
+        "src/harbor/FacilityResources.jsx": "0c1b6f4d76726ae7bb2036c04dd6aebf177a7e556d8e4fc9fd18d03e41382ad2",
+        "src/harbor/HarborScene.jsx": "64cc7fcc945c8d58cf9dcd8c0b3f4efd0ab7d822f6fb59fc1f76d08d39235e6c",
+        "src/harbor/LICENSE-assets.txt": "29cc68b3ef679e7cc23856f6bb054b7916fe6d620a0fe01a2e2d40c77092cb48",
+        "src/harbor/LICENSE-font.txt": "35e8279356d7890871c4fce804d157e3f21456a7311ef2caab5cb4705c71b6bd",
+        "src/harbor/LifecycleEffects.jsx": "e68fd8a180a44ae7ea0974a8572c099cf16e6be6642f71dde7831a2e32eb607c",
+        "src/harbor/MeasuredTraffic.jsx": "2379cfe1f870ff366a336295641592f4958f230dbf03230889662cef333d539d",
+        "src/harbor/Ocean.jsx": "8ed52205a3437d41f6787aa21f3f26d3b26e779a65a54b219163e2e79a631318",
+        "src/harbor/WorldFacilities.jsx": "b7440e44f580ceb717ea37c273c8e29f0df081b5ce198ba1c4d82e40c0938a9f",
+        "src/harbor/assets.jsx": "c72be209e02a7088b77ed3603fe0641863828e3cd18b0014e985119eaa132618",
+        "src/harbor/captions.js": "7d3b646662faa6aaf3a0709f01d8501450c12c7a903270da87003e035da884c8",
+        "src/harbor/cargoTransforms.js": "df856ab15058990e8ec7964dff56ba614bab493b00117de0fbb5ca62ec70de7f",
+        "src/harbor/cargoTransforms.test.js": "6fcb0a537456a7fd425a2e6b3714eff1638b2bb246ae4072e1bdffe2c40d74c1",
+        "src/harbor/fleet.js": "436c3a71d88e7124ce9bb312a0428ba962c2b7c815a80cace9c32294f22b0404",
+        "src/harbor/fleet.test.js": "d33186ee2ce9b51f4432a923bde11389f32710a8684cb1a85db3d53d65f4c7e6",
+        "src/harbor/interactions.js": "29f0784df8d5af8fca2208cf5a9d56b5fa53b9b4e65733830df6a33a07e5d306",
+        "src/harbor/interactions.test.js": "23260636430a94d74e83b7bf1f96272b7577fe747a1f11b0c0acdfdb2c9ee5bb",
+        "src/harbor/layout.js": "43b3c0c3769cd3960368cc1ce571a61e1f944a02ce90dfbaaaf129543ca17022",
+        "src/harbor/layout.test.js": "1d095d824362e729c6f1f43e327169592d281af2667c103d5511a8b34cc269dc",
+        "src/harbor/materials.js": "01146b51ad0983064d62e53606ca802dd54cc65a46c0821a01b5b0557772521b",
+        "src/harbor/qa.html": "1cf368c573f62e730e1eba91f946902e87c13fa13ad45dbcfe57a489c083334e",
+        "src/harbor/qa.jsx": "f3079ec7c2e56111347b6741e704ad7ff826c0119d2f21ae3585017609e52302",
+        "src/harbor/raycast.browser.spec.js": "ca1e097548c9284702a62eb0b7d30436972990b3541f0542bef394e8b60d4030",
+        "src/harbor/raycast.playwright.config.js": "db194035e6a04ae024f7c9cd092e53b8c00c41652893ba3804aa2d49506deb7e",
+        "src/harbor/resourceRelations.js": "d1c8d9a8eefb0457ce9c842ebab3d36749791e845a76799eaf2289e35372d6e2",
+        "src/harbor/resourceRelations.test.js": "445a1e34b7e54c7312e3006f8e5fd00118019ffb1d2ac65823ea9bd6d04a149d",
+        "src/harbor/visualLifecycle.js": "6936afdb11c5b60e24a1c27392e790de9c5532beace54f60dbb6040ec0025a26",
+        "src/harbor/visualLifecycle.test.js": "a8ce1a257c3e6c0dad25c608909508f91eb41295a8a7185cbfc080eaaeaf429f",
+        "src/harbor/waterModel.js": "822eb100b1cd371d7dbe101f684e30d7293dce90b4b4e80d445c0de693483dbc",
+        "src/harbor/waterModel.test.js": "066b0c8b880a80ce4203fef6e17ea56759b086688831d2b4870284c394589cdf",
+        "src/hooks/useShipyardWebSocket.js": "23ccad67c2cc62af24d53fc0f64c6d73ac52f380ad7bd9bd155442b03180c2e6",
+        "src/index.css": "a8f3fb23c6f65c63885f8fe9f1101743bd6e109ac1a74e7e4615088a719e6b17",
+        "src/main.jsx": "a18c6c60730f1024950f442e51b7192a3f8233a57892fe7933ba0e1f738364ee",
+        "src/workbench/MetricsPanel.jsx": "63f86a46d8160a0736875dd55aa3ca5df8d47ee89d6b59925f25034e922b414b",
+        "src/workbench/PodLogs.jsx": "437ad950a11ef92c1ca3308dfecd10761f9d9b6f3543d957f0e8c2ce3e539b56",
+        "src/workbench/PodTerminal.jsx": "c812fc1b98b02bb946aeed5392c9ff961d96968b764b8beaa18be6a95f5bc453",
+        "src/workbench/PortForward.jsx": "24292f68267ce07791fd61177ffb2b2260ee71427d98a879777c6280cf81aecd",
+        "src/workbench/ResourceContents.jsx": "4ee6279c13233e5b08faca2f8c64b8dd0fec31bba91f949bbb8657c3a06f49c7",
+        "src/workbench/ResourceDetails.jsx": "991f8d6efcca4ab23c7c8aa1dc4da481fb29e17a4bb1bd7bebebc3ac749e29b2",
+        "src/workbench/ResourceForms.jsx": "634cb66753b31899b8e3acd41972f46950bde37d5dd1aac47f9f06da46702398",
+        "src/workbench/ResourceForms.test.js": "f4d41c0a6f952ae13fcb13034c00d646fcaae99564c4d7de71947b1166f3c8d7",
+        "src/workbench/ResourceTable.jsx": "6a4f94f10b78aa14362da36f729d9a1504758b125130833ac372da47bab6a80d",
+        "src/workbench/StatusBadge.jsx": "3fa40f2da7cac01794e1e680b43b21331ba104808160463963fce2d8b5b14490",
+        "src/workbench/containerModel.js": "75d5ef9db9d7bf11e839b1bdd23a9c20ebdbe6823ff2c1656f6fef2f7cdd6fed",
+        "src/workbench/containerModel.test.js": "b38d9fdd2b61f014fc72cee947370eb42e6dfb03af2577649ba6d726f4ffc7ce",
+        "src/workbench/formLoading.js": "927ab3e3b8934f9e414e05a869e12f180ed47cc9506dcd38ce4efd51d3e35df5",
+        "src/workbench/formLoading.test.js": "275107a3dde995a188906c0343d1bccd75b07f6c44cf7296395dfb30d38012d4",
+        "src/workbench/logBuffer.js": "13ce6ff7f59a20ab82a6114d53e05bcb6ef9b783bcd83482219c27438c219473",
+        "src/workbench/logBuffer.test.js": "4f497e6043937be2a1668687a4b7dbfd78b908b7689f94b00bf1f2423d12b57b",
+        "src/workbench/logProtocol.js": "ff30b165ccd6d0b13d234efa543a3d7422e236ef46ea3e7eaa378da4e4e2e026",
+        "src/workbench/logProtocol.test.js": "0d6f3d8b6e7db5d74bd3e3a30e0753521e45afe9d4f59227df69882a05bfc0ad",
+        "src/workbench/logView.js": "ec596aeb123dd7aaa5a2b8d841f49b3ed58174093cdb92d89cbd6d95116d9889",
+        "src/workbench/logView.test.js": "41994bda8735bb11bca188a8797935ca8f3e1943cca0315d44964e1243d3c0be",
+        "src/workbench/metricModel.js": "011e1c70433e47e89c27c8ef6acb4a11ec42377dd82a4e37e335e95d3ced5383",
+        "src/workbench/metricModel.test.js": "a1a7b2307626fdf935116c2886285e4566fc72755163cecae1575c74e15171f4",
+        "src/workbench/placement.js": "aad92d16d08477bc67de2249182425f6374ecec94ec74f93f3603ccebbfa3b17",
+        "src/workbench/placement.test.js": "b52238f2cd6989243e262d653e629ce44e177de313d37d0e898f7715fe028895",
+        "src/workbench/resourceUtils.js": "55b4dc602aa52e81a923c4ec312ef37d8ee33f97ed300b7a480a94a38c61f5d3",
+        "src/workbench/resourceUtils.test.js": "5b113fea9e37db706688538c27055a4a052ef07941798a52bdd4ecb39180a988",
+        "src/workbench/secretPayload.js": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+        "src/workbench/secretPayload.test.js": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+        "src/workbench/workbench.css": "4bb3482f07b50e5e707d1732388d6f20b807fc7231d54119b2a87e5b8bca32e2",
+        "src/world/FacilityWindow.jsx": "b0fec821a35a2605b73130ec63cd89fb6e9cc82200eab46048fe77416c857abe",
+        "src/world/ProviderWindows.jsx": "b84370557615d1e83a9010dffb02a51549f029cf26af27eb671943c195afbf60",
+        "src/world/UtilityWindows.jsx": "7cbe2f249ef694efd826dd0ed0c9bde4260ef24ecdb2b7b784c32b19a9842a5f",
+        "src/world/Window.jsx": "b652d992c450118e1607a4310c55af0712ba52e294b0d14774e826c04e3d6f4c",
+        "src/world/connectionState.js": "2a8f5a234c3f2f46626614c872a03ad379eac7946fb467e328dcf175494d2730",
+        "src/world/focus.js": "f55ed9b3c8bf8abe16799c82fa03a855df83e19f56efde0b314db0475846fb58",
+        "src/world/operations.js": "a471e40fc30e87b33553d00aae19f27a25d0f3bcfd50a5ff471cd0cc334f8996",
+        "src/world/preferences.js": "b0c171b937a58be742210e5680d47a29cfe9630c626345e55751c554e4378478",
+        "src/world/registry.js": "0c10f51af9a01ac85ed531af8b9ff5ef54b17d3e43118d7e982be590c5f2c98c",
+        "src/world/useWorldProviders.js": "cd43c1af8f8663ce7cf1a82d794e0d85e2d9f783ee6ddeb1ae75a81fd4a4eb46",
+        "vite.config.js": "bf549fa06ec7f2e2fba3cb77600ab63fa54ff0566b3008e2b5e4f62cd3cf4b21"
+      }
+    },
+    "harnessLockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "dependencyGraphSHA256": "6f1b0d74ebb5aef567167a508aaca30467d2bc90965ea234cc1f4783e76a0a71",
+    "dependencyComparison": "Exact frozen lock SHA retained; comparison excludes only root version and packages[empty].version release metadata",
+    "buildSourceNote": "With --reuse-build, invocation trackedDiffSHA256 is not the frozen build source hash. See baseline runtime patch/provenance.",
+    "backendBinarySHA256": "a8fa664be2f70574f98d090e5f8e748667ae5323a06b4c91a385f6b9c5caf9b8",
+    "browserEnergySaver": {
+      "before": {
+        "key": "performance_tuning.battery_saver_mode.state",
+        "type": "NUMBER",
+        "value": 1
+      },
+      "after": {
+        "key": "performance_tuning.battery_saver_mode.state",
+        "type": "NUMBER",
+        "value": 0
+      },
+      "ok": true,
+      "scope": "Owned temporary benchmark profile only; separate launcher protocol, not comparable to default-state auxiliary runs"
+    },
+    "coldStarts": [
+      {
+        "profile": "M",
+        "firstReadyMs": 243,
+        "canonicalAndCanvasReadyMs": 214,
+        "method": "navigation -> actual Node mesh raycast-visible target; fresh browser context; OS/GPU caches not flushed. Panel interaction measured separately"
+      }
+    ],
+    "actual": {
+      "visibility": "visible",
+      "dpr": 1,
+      "rendererPixelRatio": 1,
+      "buffer": {
+        "width": 1440,
+        "height": 900
+      },
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "gpuTimerSupported": true,
+      "camera": {
+        "position": [
+          155.32070332934845,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.19405942434202558,
+          0.06843554348917548,
+          0.9228937068847457
+        ],
+        "zoom": 1
+      },
+      "stats": {
+        "frame": 4,
+        "calls": 433,
+        "triangles": 62108,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 37,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 10,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "sceneResources": {
+        "version": "scene-inventory-v1",
+        "sampledAtMs": 243.19999999925494,
+        "sceneReachable": {
+          "objects": 380,
+          "geometries": 42,
+          "materials": 43
+        },
+        "gpuRendererInfo": {
+          "geometries": 37,
+          "textures": 3,
+          "programs": 17
+        },
+        "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+      },
+      "preferences": {
+        "version": 1,
+        "patrol": true,
+        "speed": "normal",
+        "bob": true,
+        "sea": true,
+        "seaStrength": "light",
+        "wake": true,
+        "operations": "full",
+        "motionPreference": "full",
+        "paused": false,
+        "quality": "medium",
+        "theme": "light",
+        "contrast": "normal"
+      },
+      "connectionStale": false,
+      "contextLost": false,
+      "fleet": [
+        {
+          "uid": "node-0",
+          "name": "worker-001",
+          "slot": 0,
+          "progress": 878.672269411544,
+          "position": [
+            -54.30060000000333,
+            -0.0019327822065666042,
+            238
+          ],
+          "yaw": -1.5707963267948966,
+          "pitch": -0.0001500728169150493,
+          "roll": -0.00012983754548443117,
+          "state": "patrolling",
+          "speed": 8.999999999986994,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": true
+        },
+        {
+          "uid": "node-1",
+          "name": "worker-002",
+          "slot": 1,
+          "progress": 1052.2651867644288,
+          "position": [
+            -175,
+            -0.003269175280553798,
+            165.79231735288226
+          ],
+          "yaw": 3.141592653589793,
+          "pitch": 0.000025841708206705674,
+          "roll": -0.00028222356808721823,
+          "state": "patrolling",
+          "speed": 8.999999999986994,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-2",
+          "name": "worker-003",
+          "slot": 2,
+          "progress": 1225.8581041173145,
+          "position": [
+            -175,
+            0.003926076753924925,
+            -7.8006000000034135
+          ],
+          "yaw": 3.141592653589793,
+          "pitch": 0.00017366732450149633,
+          "roll": -0.00004991107503986047,
+          "state": "patrolling",
+          "speed": 8.99999999998562,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-3",
+          "name": "worker-004",
+          "slot": 3,
+          "progress": 10.70768264711819,
+          "position": [
+            -119.29231735288181,
+            0.001774388032632406,
+            -145
+          ],
+          "yaw": 1.5707963267948966,
+          "pitch": -0.00019482808550206943,
+          "roll": -0.000020451808500960562,
+          "state": "patrolling",
+          "speed": 8.999999999997979,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-4",
+          "name": "worker-005",
+          "slot": 4,
+          "progress": 184.30060000000321,
+          "position": [
+            54.300600000003215,
+            -0.003077182478321056,
+            -145
+          ],
+          "yaw": 1.5707963267948966,
+          "pitch": -0.00029534076953665754,
+          "roll": 0.000013664101836191494,
+          "state": "patrolling",
+          "speed": 8.999999999997979,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-5",
+          "name": "worker-006",
+          "slot": 5,
+          "progress": 357.89351735288847,
+          "position": [
+            175,
+            -0.002207963763994586,
+            -72.79231735288187
+          ],
+          "yaw": 0,
+          "pitch": 0.00020008054952006248,
+          "roll": -0.00008855511156826886,
+          "state": "patrolling",
+          "speed": 8.999999999997979,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-6",
+          "name": "worker-007",
+          "slot": 6,
+          "progress": 531.4864347057737,
+          "position": [
+            175,
+            0.0037745794661401383,
+            100.80060000000339
+          ],
+          "yaw": 0,
+          "pitch": 0.000008082872408372965,
+          "roll": -0.00021224438362584284,
+          "state": "patrolling",
+          "speed": 8.999999999997979,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-7",
+          "name": "worker-008",
+          "slot": 7,
+          "progress": 705.0793520586592,
+          "position": [
+            119.29231735288147,
+            -0.0002443765074190784,
+            238
+          ],
+          "yaw": -1.5707963267948966,
+          "pitch": -0.00024366117652340513,
+          "roll": -0.000016356733093141907,
+          "state": "patrolling",
+          "speed": 9.000000000008963,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        }
+      ],
+      "panel": {
+        "open": false
+      },
+      "inputGuard": null,
+      "logView": null,
+      "lifecycle": {
+        "intervals": 1,
+        "timeouts": 0,
+        "observers": {
+          "MutationObserver": 2,
+          "ResizeObserver": 1
+        },
+        "observerInstances": {
+          "MutationObserver": 2,
+          "ResizeObserver": 1
+        },
+        "callbacks": {
+          "timeout": 1,
+          "interval": 0,
+          "MutationObserver": 10,
+          "ResizeObserver": 1
+        },
+        "overflow": false,
+        "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+      },
+      "heap": {
+        "used": 17081046,
+        "total": 32820278
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 127,
+        "jsEventListeners": 852
+      }
+    },
+    "finishedAt": "2026-11-10T11:40:59.517Z",
+    "powerAfter": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t22%; discharging; 1:03 remaining present: true"
+  },
+  "runs": [
+    {
+      "profile": "M",
+      "scenario": "living",
+      "repeat": 0,
+      "before": {
+        "visibility": "visible",
+        "dpr": 1,
+        "rendererPixelRatio": 1,
+        "buffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerSupported": true,
+        "camera": {
+          "position": [
+            155.32070332934842,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.1940594243420255,
+            0.06843554348917547,
+            0.9228937068847457
+          ],
+          "zoom": 1
+        },
+        "stats": {
+          "frame": 1808,
+          "calls": 435,
+          "triangles": 62132,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 37,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "sceneResources": {
+          "version": "scene-inventory-v1",
+          "sampledAtMs": 30240.699999999255,
+          "sceneReachable": {
+            "objects": 380,
+            "geometries": 42,
+            "materials": 43
+          },
+          "gpuRendererInfo": {
+            "geometries": 37,
+            "textures": 3,
+            "programs": 17
+          },
+          "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+        },
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        },
+        "connectionStale": false,
+        "contextLost": false,
+        "fleet": [
+          {
+            "uid": "node-0",
+            "name": "worker-001",
+            "slot": 0,
+            "progress": 1149.2059694115212,
+            "position": [
+              -175,
+              -0.008416318233585058,
+              68.85153470578985
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0023500545096160983,
+            "roll": 0.0017538505828221338,
+            "state": "patrolling",
+            "speed": 9.00000000001142,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-1",
+            "name": "worker-002",
+            "slot": 1,
+            "progress": 1322.798886764405,
+            "position": [
+              -174.75044533916073,
+              -0.09194938127287354,
+              -104.73261470508503
+            ],
+            "yaw": 3.0362285947654817,
+            "pitch": 0.0014271725020226441,
+            "roll": -0.0013049764059247563,
+            "state": "patrolling",
+            "speed": 8.999995562411504,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-2",
+            "name": "worker-003",
+            "slot": 2,
+            "progress": 107.6484652942072,
+            "position": [
+              -22.3515347057928,
+              0.0608449878230793,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": -0.0013831627387267567,
+            "roll": 0.0016461153322443027,
+            "state": "patrolling",
+            "speed": 8.9999999999982,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-3",
+            "name": "worker-004",
+            "slot": 3,
+            "progress": 281.24138264708745,
+            "position": [
+              150.46131463456007,
+              -0.003654808878204054,
+              -140.079104324143
+            ],
+            "yaw": 1.0987656013040643,
+            "pitch": -0.003005524576151686,
+            "roll": 0.0003883216546168036,
+            "state": "patrolling",
+            "speed": 8.999995562399121,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-4",
+            "name": "worker-005",
+            "slot": 4,
+            "progress": 454.83429999998816,
+            "position": [
+              175,
+              0.0369380989597688,
+              24.148465294217843
+            ],
+            "yaw": 0,
+            "pitch": -0.0028791388453250958,
+            "roll": 0.0011947308637464426,
+            "state": "patrolling",
+            "speed": 8.999999999999028,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-5",
+            "name": "worker-006",
+            "slot": 5,
+            "progress": 628.4272173528743,
+            "position": [
+              174.75044533915968,
+              -0.027908060883869646,
+              197.732614705095
+            ],
+            "yaw": -0.10536405882453437,
+            "pitch": -0.0003633084828427485,
+            "roll": 0.004083183023914326,
+            "state": "patrolling",
+            "speed": 8.999995562398356,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-6",
+            "name": "worker-007",
+            "slot": 6,
+            "progress": 802.020134705768,
+            "position": [
+              22.35153470577268,
+              -0.05142134459839168,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.004275950730704339,
+            "roll": -0.0006676001600079311,
+            "state": "patrolling",
+            "speed": 8.999999999984983,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-7",
+            "name": "worker-008",
+            "slot": 7,
+            "progress": 975.6130520586592,
+            "position": [
+              -150.4613146345877,
+              -0.06391524633516364,
+              233.0791043241289
+            ],
+            "yaw": -2.0428270522864183,
+            "pitch": -0.00214376173404357,
+            "roll": 0.00018591521341002136,
+            "state": "patrolling",
+            "speed": 8.999995562385115,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "panel": {
+          "open": false
+        },
+        "inputGuard": {},
+        "logView": null,
+        "lifecycle": {
+          "intervals": 1,
+          "timeouts": 0,
+          "observers": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "observerInstances": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "callbacks": {
+            "timeout": 1,
+            "interval": 2,
+            "MutationObserver": 12,
+            "ResizeObserver": 1
+          },
+          "overflow": false,
+          "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+        },
+        "heap": {
+          "used": 65782519,
+          "total": 98417627
+        },
+        "dom": {
+          "documents": 2,
+          "nodes": 256,
+          "jsEventListeners": 896
+        }
+      },
+      "after": {
+        "visibility": "visible",
+        "dpr": 1,
+        "rendererPixelRatio": 1,
+        "buffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerSupported": true,
+        "camera": {
+          "position": [
+            155.32070332934842,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.1940594243420255,
+            0.06843554348917547,
+            0.9228937068847457
+          ],
+          "zoom": 1
+        },
+        "stats": {
+          "frame": 5417,
+          "calls": 425,
+          "triangles": 61648,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 37,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "sceneResources": {
+          "version": "scene-inventory-v1",
+          "sampledAtMs": 90391.40000000037,
+          "sceneReachable": {
+            "objects": 380,
+            "geometries": 42,
+            "materials": 43
+          },
+          "gpuRendererInfo": {
+            "geometries": 37,
+            "textures": 3,
+            "programs": 17
+          },
+          "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+        },
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        },
+        "connectionStale": false,
+        "contextLost": false,
+        "fleet": [
+          {
+            "uid": "node-0",
+            "name": "worker-001",
+            "slot": 0,
+            "progress": 301.8099305883786,
+            "position": [
+              166.0489281864955,
+              -0.08015373006419892,
+              -126.93463897298219
+            ],
+            "yaw": 0.6416867581642606,
+            "pitch": 0.0031052277096381043,
+            "roll": -0.0014353509427662437,
+            "state": "patrolling",
+            "speed": 8.999995816644597,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-1",
+            "name": "worker-002",
+            "slot": 1,
+            "progress": 475.4028479412643,
+            "position": [
+              175,
+              0.030368291501751892,
+              44.717013235493994
+            ],
+            "yaw": 0,
+            "pitch": 0.0009834191165393697,
+            "roll": -0.0052448775678567774,
+            "state": "patrolling",
+            "speed": 8.999999999994008,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-2",
+            "name": "worker-003",
+            "slot": 2,
+            "progress": 648.995765294175,
+            "position": [
+              168.06797267741837,
+              0.03438945427138952,
+              216.9964467417851
+            ],
+            "yaw": -0.5624429019645504,
+            "pitch": -0.00008115873759944239,
+            "roll": 0.001082148265315132,
+            "state": "patrolling",
+            "speed": 8.999995816645283,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-3",
+            "name": "worker-004",
+            "slot": 3,
+            "progress": 822.5886826470662,
+            "position": [
+              1.7829867644744581,
+              -0.019788929640260064,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0052817535104477285,
+            "roll": 0.0008092004829831712,
+            "state": "patrolling",
+            "speed": 9.000000000007624,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-4",
+            "name": "worker-005",
+            "slot": 4,
+            "progress": 996.1815999999737,
+            "position": [
+              -166.0489281865281,
+              -0.07703625493450823,
+              219.93463897293856
+            ],
+            "yaw": -2.4999058954267426,
+            "pitch": -0.0007353249293631125,
+            "roll": -0.0009214420350172955,
+            "state": "patrolling",
+            "speed": 8.999995816658894,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-5",
+            "name": "worker-006",
+            "slot": 5,
+            "progress": 1169.7745173528535,
+            "position": [
+              -175,
+              -0.012387237044394034,
+              48.28298676445752
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0013095809375501346,
+            "roll": -0.00045202842569733284,
+            "state": "patrolling",
+            "speed": 8.999999999980394,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-6",
+            "name": "worker-007",
+            "slot": 6,
+            "progress": 1343.367434705731,
+            "position": [
+              -168.06797267741024,
+              -0.0029084415208125336,
+              -123.99644674179798
+            ],
+            "yaw": 2.5791497516249042,
+            "pitch": -0.00282152638503063,
+            "roll": -0.0042839434938810326,
+            "state": "patrolling",
+            "speed": 8.999995816631758,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-7",
+            "name": "worker-008",
+            "slot": 7,
+            "progress": 128.2170132355143,
+            "position": [
+              -1.7829867644857131,
+              -0.05047760655463398,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0.000818218950933878,
+            "roll": 0.001140473087194444,
+            "state": "patrolling",
+            "speed": 9.000000000007624,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "panel": {
+          "open": false
+        },
+        "inputGuard": {},
+        "logView": null,
+        "lifecycle": {
+          "intervals": 1,
+          "timeouts": 0,
+          "observers": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "observerInstances": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "callbacks": {
+            "timeout": 1,
+            "interval": 6,
+            "MutationObserver": 12,
+            "ResizeObserver": 1
+          },
+          "overflow": false,
+          "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+        },
+        "heap": {
+          "used": 18707016,
+          "total": 63419396
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 127,
+          "jsEventListeners": 864
+        }
+      },
+      "summary": {
+        "durationMs": 60031.40000000037,
+        "renderedFrames": 3602,
+        "renderedFPS": 60.0019323220844,
+        "renderIntervalMs": {
+          "n": 3601,
+          "p50": 16.699999999254942,
+          "p95": 18,
+          "p99": 18.5,
+          "min": 14.599999999627471,
+          "max": 18.90000000037253
+        },
+        "jsSubmitMs": {
+          "n": 3602,
+          "p50": 1.699999999254942,
+          "p95": 1.800000000745058,
+          "p99": 1.8999999985098839,
+          "min": 0.3999999985098839,
+          "max": 3.5
+        },
+        "gapsOver50Ms": 0,
+        "gapsOver100Ms": 0,
+        "calls": {
+          "n": 3602,
+          "p50": 434,
+          "p95": 439,
+          "p99": 439,
+          "min": 425,
+          "max": 439
+        },
+        "triangles": {
+          "n": 3602,
+          "p50": 62022,
+          "p95": 62232,
+          "p99": 62232,
+          "min": 61648,
+          "max": 62312
+        },
+        "parseMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "storeMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "callbackToStoreMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "commitProxyMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "drawProxyMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "panelDomProxyMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "panelRafProxyMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "messages": 0,
+        "longTasks": 0,
+        "errors": [],
+        "gpuCompletedMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "presentedFPS": null,
+        "react": {}
+      },
+      "osBefore": {
+        "time": 1794310799303,
+        "processes": [
+          {
+            "pid": 12302,
+            "ppid": 12273,
+            "cpuSeconds": 0.34,
+            "rssKiB": 207120,
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 12439,
+            "ppid": 12302,
+            "cpuSeconds": 0,
+            "rssKiB": 3696,
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 12440,
+            "ppid": 12302,
+            "cpuSeconds": 0.64,
+            "rssKiB": 250992,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 12448,
+            "ppid": 12440,
+            "cpuSeconds": 3.79,
+            "rssKiB": 179728,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 12449,
+            "ppid": 12440,
+            "cpuSeconds": 0.09,
+            "rssKiB": 109312,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 12450,
+            "ppid": 12440,
+            "cpuSeconds": 0.03,
+            "rssKiB": 82880,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 12473,
+            "ppid": 12302,
+            "cpuSeconds": 0.1,
+            "rssKiB": 45744,
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/v11-final-32a0468/backend.test"
+          },
+          {
+            "pid": 12488,
+            "ppid": 12440,
+            "cpuSeconds": 0.22,
+            "rssKiB": 187376,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 12489,
+            "ppid": 12440,
+            "cpuSeconds": 0.05,
+            "rssKiB": 104144,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 12490,
+            "ppid": 12440,
+            "cpuSeconds": 5.4,
+            "rssKiB": 305504,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 12937,
+            "ppid": 12302,
+            "cpuSeconds": 0,
+            "rssKiB": 1728,
+            "command": "ps"
+          }
+        ],
+        "memoryFreePercent": 86,
+        "swap": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+        "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t22%; discharging; 1:10 remaining present: true\n"
+      },
+      "osAfter": {
+        "time": 1794310859442,
+        "processes": [
+          {
+            "pid": 12302,
+            "ppid": 12273,
+            "cpuSeconds": 0.51,
+            "rssKiB": 187520,
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 12439,
+            "ppid": 12302,
+            "cpuSeconds": 0,
+            "rssKiB": 3696,
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 12440,
+            "ppid": 12302,
+            "cpuSeconds": 0.67,
+            "rssKiB": 252848,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 12448,
+            "ppid": 12440,
+            "cpuSeconds": 10.34,
+            "rssKiB": 179264,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 12449,
+            "ppid": 12440,
+            "cpuSeconds": 0.1,
+            "rssKiB": 109776,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 12450,
+            "ppid": 12440,
+            "cpuSeconds": 0.03,
+            "rssKiB": 82992,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 12473,
+            "ppid": 12302,
+            "cpuSeconds": 0.14,
+            "rssKiB": 45744,
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/v11-final-32a0468/backend.test"
+          },
+          {
+            "pid": 12488,
+            "ppid": 12440,
+            "cpuSeconds": 0.24,
+            "rssKiB": 185168,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 12489,
+            "ppid": 12440,
+            "cpuSeconds": 0.08,
+            "rssKiB": 104704,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 12490,
+            "ppid": 12440,
+            "cpuSeconds": 14.75,
+            "rssKiB": 289264,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 14125,
+            "ppid": 12302,
+            "cpuSeconds": 0,
+            "rssKiB": 1728,
+            "command": "ps"
+          }
+        ]
+      },
+      "checkpoints": [],
+      "reconnects": 0,
+      "reconnectAtMs": [],
+      "repairPanelCycles": [],
+      "workspaceCycles": [],
+      "interactionSchedule": null,
+      "network": null,
+      "setupBeforeWarm": null,
+      "clockWindow": {
+        "wallMs": 60139,
+        "activeMs": 60031.40000000037,
+        "differenceMs": 107.59999999962747,
+        "toleranceMs": 1000,
+        "valid": true
+      },
+      "workloadIntegrity": {
+        "valid": true,
+        "reasons": []
+      }
+    }
+  ],
+  "errors": []
+}

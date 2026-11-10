@@ -1,0 +1,19 @@
+{
+  "time": "2026-11-10T12:17:15.764444+00:00",
+  "runtimeCommit": "ca3b9ec00bf04ce9116fe589a416e0859e6d30e5",
+  "bundle": "/Users/yunusemre/Library/Application Support/KubeView/manual-lab-bundles/20261110-workspace-ca3b9ec",
+  "binarySHA256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+  "embeddedIndexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+  "build": {
+    "version": "1.1.0",
+    "commit": "ca3b9ec00bf04ce9116fe589a416e0859e6d30e5",
+    "dirty": false,
+    "targets": [
+      "darwin-arm64",
+      "linux-amd64"
+    ],
+    "builtAt": "2026-11-10T12:16:14.718Z",
+    "note": "Cross-compilation is not a runtime platform test. See V11_ACCEPTANCE_REPORT."
+  },
+  "runtimeOnly": "No stable release or tag; compiled runtime uses committed source, docs pending final reconciliation; linux-amd64 cross-compile is not Linux runtime test."
+}

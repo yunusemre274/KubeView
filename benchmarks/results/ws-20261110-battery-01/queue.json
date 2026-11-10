@@ -1,0 +1,1739 @@
+{
+  "id": "ws-20261110-battery-01",
+  "suite": "workspace",
+  "createdAt": "2026-11-10T11:39:27.624Z",
+  "powerSource": "battery",
+  "initialPower": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t23%; discharging; 1:17 remaining present: true\n",
+  "baselineTag": "v11-final-32a0468",
+  "candidateTag": "workspace-final-20261110",
+  "buildIdentities": {
+    "v11-final-32a0468": {
+      "buildIndexSHA256": "2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395",
+      "backendBinarySHA256": "a8fa664be2f70574f98d090e5f8e748667ae5323a06b4c91a385f6b9c5caf9b8",
+      "buildProvenanceSHA256": "991b44faab3aa16e4b7c447d3b59527f9dcdc88d81231f0e351f8995ff3b7971",
+      "assetsSHA256": "014a79fd573e889d1ebbcce1ad088669c7914b0d8ec3b6755e54cb324032254c"
+    },
+    "workspace-final-20261110": {
+      "buildIndexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+      "backendBinarySHA256": "2113f0de6f5b21b2af7359fecd2cb253f519495a933a60363eb2f248c74c172c",
+      "buildProvenanceSHA256": "4b617a8723d1197b662206fdc9d17917faead34f2c7e013f158029b1d6177d03",
+      "assetsSHA256": "3df19ddffccde5822717d4e46461a8faeed93ab256946386427b2a25d3c91564"
+    }
+  },
+  "browserVersion": "156.0.8078.4",
+  "source": "Synthetic tracker → production informer/WebSocket/store/Harbor; not live Kubernetes E2E",
+  "order": "Three paired blocks, alternating build order; matrix reversal owned once by run.mjs. No automatic retry.",
+  "expectedCells": 46,
+  "totalMinimumWindowSeconds": 5280,
+  "jobs": [
+    {
+      "id": "ws-20261110-battery-01-source-baseline-b0",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "v11-final-32a0468",
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "passed",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "baseline",
+        "--build-tag",
+        "v11-final-32a0468",
+        "--backend-tag",
+        "v11-final-32a0468",
+        "--reuse-build",
+        "--reuse-binary",
+        "--id",
+        "ws-20261110-battery-01-source-baseline-b0",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "living",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "30",
+        "--seconds",
+        "60",
+        "--long-seconds",
+        "1200",
+        "--max-minutes",
+        "4",
+        "--dpr",
+        "1",
+        "--lock-input",
+        "--disable-browser-energy-saver",
+        "--lifecycle-counts",
+        "--experiment-family",
+        "ws-20261110-battery-01",
+        "--scene-inventory"
+      ],
+      "startedAt": "2026-11-10T11:39:27.657Z",
+      "result": {
+        "code": 0,
+        "signal": null,
+        "pid": 12302,
+        "timedOut": false,
+        "interrupted": null,
+        "error": null,
+        "cleanupComplete": true,
+        "outputDrained": true,
+        "durationMs": 91985,
+        "ownership": [
+          {
+            "pid": 12302,
+            "ppid": 12273,
+            "pgid": 12302,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:39:27 2026",
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 12439,
+            "ppid": 12302,
+            "pgid": 12302,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 12440,
+            "ppid": 12302,
+            "pgid": 12440,
+            "state": "Ss",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 12448,
+            "ppid": 12440,
+            "pgid": 12440,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 12449,
+            "ppid": 12440,
+            "pgid": 12440,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 12450,
+            "ppid": 12440,
+            "pgid": 12440,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 12457,
+            "ppid": 12440,
+            "pgid": 12440,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 12473,
+            "ppid": 12302,
+            "pgid": 12302,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/v11-final-32a0468/backend.test"
+          },
+          {
+            "pid": 12488,
+            "ppid": 12440,
+            "pgid": 12440,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 12489,
+            "ppid": 12440,
+            "pgid": 12440,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 12490,
+            "ppid": 12440,
+            "pgid": 12440,
+            "state": "S",
+            "birth": "Tue Nov 10 14:39:28 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          }
+        ],
+        "cleanup": {
+          "complete": true,
+          "remaining": [],
+          "unknownGroupMembers": [],
+          "signals": [],
+          "scanErrors": [],
+          "overflow": false,
+          "childPipesClosed": true
+        }
+      },
+      "finishedAt": "2026-11-10T11:40:59.643Z"
+    },
+    {
+      "id": "ws-20261110-battery-01-source-optimized-b0",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "passed",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "workspace-final-20261110",
+        "--backend-tag",
+        "workspace-final-20261110",
+        "--reuse-build",
+        "--reuse-binary",
+        "--id",
+        "ws-20261110-battery-01-source-optimized-b0",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "living",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "30",
+        "--seconds",
+        "60",
+        "--long-seconds",
+        "1200",
+        "--max-minutes",
+        "4",
+        "--dpr",
+        "1",
+        "--lock-input",
+        "--disable-browser-energy-saver",
+        "--lifecycle-counts",
+        "--experiment-family",
+        "ws-20261110-battery-01",
+        "--scene-inventory",
+        "--harbors",
+        "1"
+      ],
+      "startedAt": "2026-11-10T11:40:59.684Z",
+      "result": {
+        "code": 0,
+        "signal": null,
+        "pid": 14181,
+        "timedOut": false,
+        "interrupted": null,
+        "error": null,
+        "cleanupComplete": true,
+        "outputDrained": true,
+        "durationMs": 91927,
+        "ownership": [
+          {
+            "pid": 14181,
+            "ppid": 12273,
+            "pgid": 14181,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:40:59 2026",
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 14319,
+            "ppid": 14181,
+            "pgid": 14181,
+            "state": "S",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 14320,
+            "ppid": 14181,
+            "pgid": 14320,
+            "state": "Ss",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 14328,
+            "ppid": 14320,
+            "pgid": 14320,
+            "state": "S",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 14329,
+            "ppid": 14320,
+            "pgid": 14320,
+            "state": "S",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 14330,
+            "ppid": 14320,
+            "pgid": 14320,
+            "state": "S",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 14356,
+            "ppid": 14181,
+            "pgid": 14181,
+            "state": "S",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/workspace-final-20261110/backend.test"
+          },
+          {
+            "pid": 14357,
+            "ppid": 14320,
+            "pgid": 14320,
+            "state": "R",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 14360,
+            "ppid": 14320,
+            "pgid": 14320,
+            "state": "R",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 14361,
+            "ppid": 14320,
+            "pgid": 14320,
+            "state": "R",
+            "birth": "Tue Nov 10 14:41:00 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          }
+        ],
+        "cleanup": {
+          "complete": true,
+          "remaining": [],
+          "unknownGroupMembers": [],
+          "signals": [],
+          "scanErrors": [],
+          "overflow": false,
+          "childPipesClosed": true
+        }
+      },
+      "finishedAt": "2026-11-10T11:42:31.611Z"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h1-b0",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "passed",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "baseline",
+        "--build-tag",
+        "workspace-final-20261110",
+        "--backend-tag",
+        "workspace-final-20261110",
+        "--reuse-build",
+        "--reuse-binary",
+        "--id",
+        "ws-20261110-battery-01-M-h1-b0",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "living",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "30",
+        "--seconds",
+        "60",
+        "--long-seconds",
+        "1200",
+        "--max-minutes",
+        "4",
+        "--dpr",
+        "1",
+        "--lock-input",
+        "--disable-browser-energy-saver",
+        "--lifecycle-counts",
+        "--experiment-family",
+        "ws-20261110-battery-01",
+        "--scene-inventory",
+        "--harbors",
+        "1"
+      ],
+      "startedAt": "2026-11-10T11:42:31.651Z",
+      "result": {
+        "code": 0,
+        "signal": null,
+        "pid": 15985,
+        "timedOut": false,
+        "interrupted": null,
+        "error": null,
+        "cleanupComplete": true,
+        "outputDrained": true,
+        "durationMs": 92009,
+        "ownership": [
+          {
+            "pid": 15985,
+            "ppid": 12273,
+            "pgid": 15985,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:42:31 2026",
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 16122,
+            "ppid": 15985,
+            "pgid": 15985,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 16123,
+            "ppid": 15985,
+            "pgid": 16123,
+            "state": "Ss",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 16134,
+            "ppid": 16123,
+            "pgid": 16123,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 16135,
+            "ppid": 16123,
+            "pgid": 16123,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 16136,
+            "ppid": 16123,
+            "pgid": 16123,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 16143,
+            "ppid": 16123,
+            "pgid": 16123,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 16159,
+            "ppid": 15985,
+            "pgid": 15985,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/workspace-final-20261110/backend.test"
+          },
+          {
+            "pid": 16176,
+            "ppid": 16123,
+            "pgid": 16123,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 16177,
+            "ppid": 16123,
+            "pgid": 16123,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 16178,
+            "ppid": 16123,
+            "pgid": 16123,
+            "state": "S",
+            "birth": "Tue Nov 10 14:42:32 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          }
+        ],
+        "cleanup": {
+          "complete": true,
+          "remaining": [],
+          "unknownGroupMembers": [],
+          "signals": [],
+          "scanErrors": [],
+          "overflow": false,
+          "childPipesClosed": true
+        }
+      },
+      "finishedAt": "2026-11-10T11:44:03.660Z"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h5-b0",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "passed",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "workspace-final-20261110",
+        "--backend-tag",
+        "workspace-final-20261110",
+        "--reuse-build",
+        "--reuse-binary",
+        "--id",
+        "ws-20261110-battery-01-M-h5-b0",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "living",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "30",
+        "--seconds",
+        "60",
+        "--long-seconds",
+        "1200",
+        "--max-minutes",
+        "4",
+        "--dpr",
+        "1",
+        "--lock-input",
+        "--disable-browser-energy-saver",
+        "--lifecycle-counts",
+        "--experiment-family",
+        "ws-20261110-battery-01",
+        "--scene-inventory",
+        "--harbors",
+        "5"
+      ],
+      "startedAt": "2026-11-10T11:44:03.699Z",
+      "result": {
+        "code": 0,
+        "signal": null,
+        "pid": 17842,
+        "timedOut": false,
+        "interrupted": null,
+        "error": null,
+        "cleanupComplete": true,
+        "outputDrained": true,
+        "durationMs": 92076,
+        "ownership": [
+          {
+            "pid": 17842,
+            "ppid": 12273,
+            "pgid": 17842,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:44:03 2026",
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 17979,
+            "ppid": 17842,
+            "pgid": 17842,
+            "state": "S",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 17980,
+            "ppid": 17842,
+            "pgid": 17980,
+            "state": "Ss",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 17988,
+            "ppid": 17980,
+            "pgid": 17980,
+            "state": "S",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 17989,
+            "ppid": 17980,
+            "pgid": 17980,
+            "state": "S",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 17990,
+            "ppid": 17980,
+            "pgid": 17980,
+            "state": "S",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 17999,
+            "ppid": 17980,
+            "pgid": 17980,
+            "state": "S",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 18015,
+            "ppid": 17842,
+            "pgid": 17842,
+            "state": "U",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/workspace-final-20261110/backend.test"
+          },
+          {
+            "pid": 18030,
+            "ppid": 17980,
+            "pgid": 17980,
+            "state": "S",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 18031,
+            "ppid": 17980,
+            "pgid": 17980,
+            "state": "S",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 18032,
+            "ppid": 17980,
+            "pgid": 17980,
+            "state": "S",
+            "birth": "Tue Nov 10 14:44:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          }
+        ],
+        "cleanup": {
+          "complete": true,
+          "remaining": [],
+          "unknownGroupMembers": [],
+          "signals": [],
+          "scanErrors": [],
+          "overflow": false,
+          "childPipesClosed": true
+        }
+      },
+      "finishedAt": "2026-11-10T11:45:35.776Z"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h10-b0",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "passed",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "workspace-final-20261110",
+        "--backend-tag",
+        "workspace-final-20261110",
+        "--reuse-build",
+        "--reuse-binary",
+        "--id",
+        "ws-20261110-battery-01-M-h10-b0",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "living",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "30",
+        "--seconds",
+        "60",
+        "--long-seconds",
+        "1200",
+        "--max-minutes",
+        "4",
+        "--dpr",
+        "1",
+        "--lock-input",
+        "--disable-browser-energy-saver",
+        "--lifecycle-counts",
+        "--experiment-family",
+        "ws-20261110-battery-01",
+        "--scene-inventory",
+        "--harbors",
+        "10"
+      ],
+      "startedAt": "2026-11-10T11:45:35.816Z",
+      "result": {
+        "code": 0,
+        "signal": null,
+        "pid": 19644,
+        "timedOut": false,
+        "interrupted": null,
+        "error": null,
+        "cleanupComplete": true,
+        "outputDrained": true,
+        "durationMs": 92006,
+        "ownership": [
+          {
+            "pid": 19644,
+            "ppid": 12273,
+            "pgid": 19644,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:45:35 2026",
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 19781,
+            "ppid": 19644,
+            "pgid": 19644,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 19782,
+            "ppid": 19644,
+            "pgid": 19782,
+            "state": "Ss",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 19790,
+            "ppid": 19782,
+            "pgid": 19782,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 19791,
+            "ppid": 19782,
+            "pgid": 19782,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 19792,
+            "ppid": 19782,
+            "pgid": 19782,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 19802,
+            "ppid": 19782,
+            "pgid": 19782,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 19818,
+            "ppid": 19644,
+            "pgid": 19644,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/workspace-final-20261110/backend.test"
+          },
+          {
+            "pid": 19835,
+            "ppid": 19782,
+            "pgid": 19782,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 19836,
+            "ppid": 19782,
+            "pgid": 19782,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 19837,
+            "ppid": 19782,
+            "pgid": 19782,
+            "state": "S",
+            "birth": "Tue Nov 10 14:45:36 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          }
+        ],
+        "cleanup": {
+          "complete": true,
+          "remaining": [],
+          "unknownGroupMembers": [],
+          "signals": [],
+          "scanErrors": [],
+          "overflow": false,
+          "childPipesClosed": true
+        }
+      },
+      "finishedAt": "2026-11-10T11:47:07.823Z"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h20-b0",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "passed",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "workspace-final-20261110",
+        "--backend-tag",
+        "workspace-final-20261110",
+        "--reuse-build",
+        "--reuse-binary",
+        "--id",
+        "ws-20261110-battery-01-M-h20-b0",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "living",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "30",
+        "--seconds",
+        "60",
+        "--long-seconds",
+        "1200",
+        "--max-minutes",
+        "4",
+        "--dpr",
+        "1",
+        "--lock-input",
+        "--disable-browser-energy-saver",
+        "--lifecycle-counts",
+        "--experiment-family",
+        "ws-20261110-battery-01",
+        "--scene-inventory",
+        "--harbors",
+        "20"
+      ],
+      "startedAt": "2026-11-10T11:47:07.857Z",
+      "result": {
+        "code": 0,
+        "signal": null,
+        "pid": 21443,
+        "timedOut": false,
+        "interrupted": null,
+        "error": null,
+        "cleanupComplete": true,
+        "outputDrained": true,
+        "durationMs": 92031,
+        "ownership": [
+          {
+            "pid": 21443,
+            "ppid": 12273,
+            "pgid": 21443,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:47:07 2026",
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 21580,
+            "ppid": 21443,
+            "pgid": 21443,
+            "state": "S",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 21581,
+            "ppid": 21443,
+            "pgid": 21581,
+            "state": "Ss",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 21589,
+            "ppid": 21581,
+            "pgid": 21581,
+            "state": "S",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 21590,
+            "ppid": 21581,
+            "pgid": 21581,
+            "state": "S",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 21591,
+            "ppid": 21581,
+            "pgid": 21581,
+            "state": "S",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 21602,
+            "ppid": 21581,
+            "pgid": 21581,
+            "state": "S",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 21618,
+            "ppid": 21443,
+            "pgid": 21443,
+            "state": "S",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/workspace-final-20261110/backend.test"
+          },
+          {
+            "pid": 21633,
+            "ppid": 21581,
+            "pgid": 21581,
+            "state": "S",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 21634,
+            "ppid": 21581,
+            "pgid": 21581,
+            "state": "S",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 21635,
+            "ppid": 21581,
+            "pgid": 21581,
+            "state": "R",
+            "birth": "Tue Nov 10 14:47:08 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          }
+        ],
+        "cleanup": {
+          "complete": true,
+          "remaining": [],
+          "unknownGroupMembers": [],
+          "signals": [],
+          "scanErrors": [],
+          "overflow": false,
+          "childPipesClosed": true
+        }
+      },
+      "finishedAt": "2026-11-10T11:48:39.889Z"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h1-b0",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "failed",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "baseline",
+        "--build-tag",
+        "workspace-final-20261110",
+        "--backend-tag",
+        "workspace-final-20261110",
+        "--reuse-build",
+        "--reuse-binary",
+        "--id",
+        "ws-20261110-battery-01-L-h1-b0",
+        "--profiles",
+        "L",
+        "--scenarios",
+        "living",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "30",
+        "--seconds",
+        "60",
+        "--long-seconds",
+        "1200",
+        "--max-minutes",
+        "4",
+        "--dpr",
+        "1",
+        "--lock-input",
+        "--disable-browser-energy-saver",
+        "--lifecycle-counts",
+        "--experiment-family",
+        "ws-20261110-battery-01",
+        "--scene-inventory",
+        "--harbors",
+        "1"
+      ],
+      "startedAt": "2026-11-10T11:48:39.925Z",
+      "result": {
+        "code": null,
+        "signal": "SIGKILL",
+        "pid": 23243,
+        "timedOut": false,
+        "interrupted": "SIGINT",
+        "error": null,
+        "cleanupComplete": true,
+        "outputDrained": true,
+        "durationMs": 80653,
+        "ownership": [
+          {
+            "pid": 23243,
+            "ppid": 12273,
+            "pgid": 23243,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:48:39 2026",
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 23381,
+            "ppid": 23243,
+            "pgid": 23243,
+            "state": "S",
+            "birth": "Tue Nov 10 14:48:40 2026",
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 23382,
+            "ppid": 23243,
+            "pgid": 23382,
+            "state": "Ss",
+            "birth": "Tue Nov 10 14:48:40 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 23390,
+            "ppid": 23382,
+            "pgid": 23382,
+            "state": "S",
+            "birth": "Tue Nov 10 14:48:40 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 23391,
+            "ppid": 23382,
+            "pgid": 23382,
+            "state": "S",
+            "birth": "Tue Nov 10 14:48:40 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 23392,
+            "ppid": 23382,
+            "pgid": 23382,
+            "state": "S",
+            "birth": "Tue Nov 10 14:48:40 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 23402,
+            "ppid": 23382,
+            "pgid": 23382,
+            "state": "S",
+            "birth": "Tue Nov 10 14:48:40 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 23418,
+            "ppid": 23243,
+            "pgid": 23243,
+            "state": "R",
+            "birth": "Tue Nov 10 14:48:40 2026",
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/workspace-final-20261110/backend.test"
+          },
+          {
+            "pid": 23435,
+            "ppid": 23382,
+            "pgid": 23382,
+            "state": "S",
+            "birth": "Tue Nov 10 14:48:41 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 23436,
+            "ppid": 23382,
+            "pgid": 23382,
+            "state": "S",
+            "birth": "Tue Nov 10 14:48:41 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 23437,
+            "ppid": 23382,
+            "pgid": 23382,
+            "state": "R",
+            "birth": "Tue Nov 10 14:48:41 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          }
+        ],
+        "cleanup": {
+          "complete": true,
+          "remaining": [],
+          "unknownGroupMembers": [],
+          "signals": [
+            {
+              "pid": 23243,
+              "birth": "Tue Nov 10 14:48:39 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23381,
+              "birth": "Tue Nov 10 14:48:40 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23382,
+              "birth": "Tue Nov 10 14:48:40 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23390,
+              "birth": "Tue Nov 10 14:48:40 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23391,
+              "birth": "Tue Nov 10 14:48:40 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23392,
+              "birth": "Tue Nov 10 14:48:40 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23418,
+              "birth": "Tue Nov 10 14:48:40 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23435,
+              "birth": "Tue Nov 10 14:48:41 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23436,
+              "birth": "Tue Nov 10 14:48:41 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23437,
+              "birth": "Tue Nov 10 14:48:41 2026",
+              "signal": "SIGTERM"
+            },
+            {
+              "pid": 23243,
+              "birth": "Tue Nov 10 14:48:39 2026",
+              "signal": "SIGKILL"
+            }
+          ],
+          "scanErrors": [],
+          "overflow": false,
+          "childPipesClosed": true
+        }
+      },
+      "finishedAt": "2026-11-10T11:50:00.579Z"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h5-b0",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h10-b0",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h20-b0",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-source-optimized-b1",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-source-baseline-b1",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "v11-final-32a0468",
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h20-b1",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h10-b1",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h5-b1",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h1-b1",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h20-b1",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h10-b1",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h5-b1",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h1-b1",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-source-baseline-b2",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "v11-final-32a0468",
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-source-optimized-b2",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h1-b2",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h5-b2",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h10-b2",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-M-h20-b2",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h1-b2",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h5-b2",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h10-b2",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-L-h20-b2",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-h20-panel",
+      "group": "workspace-panel",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "panel-closed",
+        "panel-open"
+      ],
+      "matrix": true,
+      "repeats": 3,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 840,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-h20-events",
+      "group": "workspace-events",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "events"
+      ],
+      "repeats": 3,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 480,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-h20-idle",
+      "group": "workspace-idle",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "idle"
+      ],
+      "repeats": 3,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 480,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-h20-interaction",
+      "group": "workspace-interaction",
+      "profile": "S",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "interaction"
+      ],
+      "repeats": 3,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 480,
+      "sceneInventory": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-01-h20-long",
+      "group": "workspace-long",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "long"
+      ],
+      "repeats": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "longSeconds": 1200,
+      "timeoutSeconds": 1500,
+      "sceneInventory": true,
+      "status": "pending"
+    }
+  ],
+  "status": "failed",
+  "error": "Error: Acceptance queue stopped at ws-20261110-battery-01-L-h1-b0; no automatic retry\n    at main (file:///Users/yunusemre/Desktop/KubeView/benchmarks/repair-session.mjs:144:34)\n    at async file:///Users/yunusemre/Desktop/KubeView/benchmarks/repair-session.mjs:150:75",
+  "finishedAt": "2026-11-10T11:50:00.579Z",
+  "finalPower": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t18%; discharging; 0:46 remaining present: true\n"
+}

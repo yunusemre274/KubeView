@@ -1,0 +1,8 @@
+{
+  "time": "2026-11-10T12:35:51.794671+00:00",
+  "testedRuntimeCommit": "ca3b9ec00bf04ce9116fe589a416e0859e6d30e5",
+  "binarySHA256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+  "runtimeFilesCompared": 157,
+  "differentRuntimeFiles": [],
+  "scope": "Runtime/source/assets/runner only; later test/report edits are not claimed executed production changes."
+}

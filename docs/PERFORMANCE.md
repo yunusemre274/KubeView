@@ -1,6 +1,6 @@
 # KubeView performans ölçümü
 
-## Aktif çoklu liman ölçümü — henüz yeni sonuç yok
+## 10 Kasım 2026 — workspace protokolü ve açık kabul
 
 Yeni workspace geliştirmesinin 1/5/10/20 liman protokolü ve kabul durumu [WORKSPACE_ACCEPTANCE.md](WORKSPACE_ACCEPTANCE.md) içindedir. Mevcut harness `--harbors` ve `repair-session --suite workspace` ile genişletilir; aynı M/L canonical kaynak, aktif sahne ve güç koşulları kaydedilir. Yeni kaynakta ölçülmeyen CPU/FPS/enerji sonucu üretilmez. Aşağıdaki sonuçlar eski dondurulmuş build'ler içindir; V11-16 fiziksel UI ve V11-18 CPU kapılarını yeni test sayıları kapatmaz.
 
@@ -172,3 +172,19 @@ M20Node/300Pod canonical,görünür8/120; L50/1500,görünür8/270. Varsayılan 
 Sürüm metaverisi karşılaştırması:0.4.0→1.1.0 geçişinde lockfile'ın ham SHA'sı değişti. Runner artık komutu başlatan checkout'un lockfile'ını frozen baseline'a aitmiş gibi yazmaz; her frozen source'un gerçek lock SHA'sını provenance ile doğrular. Sabit koşullarda yalnız root `version` ve `packages[""].version` hariç tutularak bağımlılık grafiği SHA'sı karşılaştırılır. Bütün dependency sürümleri, integrity/resolved ve platform/optional/peer bildirimleri korunur; gerçek değişiklik karşılaştırmayı reddeder. İki ham SHA ve eşit grafiğin kanıtı `artifacts/v1.1.0/v11-20261108/dependency-lock-comparison.json`; yeni unit bunu gerçek dependency değişikliğinden ayırır.
 
 9 Kasım devamı: v1.1 uzun koşusu mevcut checkpointlerde `--scene-inventory` de kullanır; materyal kimliği sayımı için ikinci bir20dk tur başlatılmaz. Bu read-only sayım yalnız1200s cleanup işindedir; üçlü steady panel/idle/L CPU çiftlerinde kapalıdır ve uzun koşunun tanılama overhead'i ayrı belirtilir. Ham frozen lockSHA her manifestte kalır; settings karşılaştırmasında normalleştirilmiş anahtar açıkça dependencyGraphSHA256 adını taşır.
+
+## Workspace oturumunu yeniden üretme
+
+Yeni runtime/önceki kaynak frozen tag'leri mevcutsa geliştirme deposunda:
+
+```sh
+node --test benchmarks/repair-session.test.mjs benchmarks/workspace-report.test.mjs
+node benchmarks/repair-session.mjs YENI_RUN_ID v11-final-32a0468 workspace-final-20261110 --suite workspace --long-first
+node benchmarks/workspace-report.mjs YENI_RUN_ID
+```
+
+`YENI_RUN_ID` benzersizdir; eski sonuç dizini ezilmez. Frozen frontend/backend üretimi yukarıdaki mevcut build adımlarını kullanır; kaynak/build hash'i farklıysa mevcut etiketin üstüne yazmayın. `--suite workspace`35 seri iş/46hücre,30s warmup+60s ölçüm/3blok ve1×1200s karma koşudur. `--long-first` yalnız son kaynak kararlılık koşusunu öne alır; eşleşmiş AB/BA sırasını/süreleri veya sayıyı değiştirmez. Bütün koşullar `--lock-visual-start` ile aynı filo fazında başlar; hareket ölçüm penceresinde açık kalır. `--partial` raporu ilerleme içindir, kabul olmaz.
+
+Kuyruk otomatik retry yapmaz; her işin timeout'u ve process-group/PID temizliği vardır. Pil10%altı veya güç kaynağı değişimi durdurur; düşük kaynakta kabul için korumayı gevşetmeyin. Üç tekrar bitmeden CPU kazancı çıkarmayın. Ağır build/cluster/browser işleri ayrı tutulmalı; gözlenen sistem yükü kaydedilmeli.10Kasım'da ilk oturum başlangıç fazı nedeniyle dışlandı, ikinci~19dk'da9%pil nedeniyle kesildi; bu koşuların başarılı1200s veya yeni CPU kabulü olduğu iddia edilmez. [Güncel sonuç ve açıklar](PERFORMANCE_REPORT.md).
+
+Manuel kullanıcının uygulamayı açması bu benchmark dosyalarına/frozenartefaktlara bağımlı değildir; tek binary ve yedi profil için [MANUAL_TEST_GUIDE.md](../MANUAL_TEST_GUIDE.md) kullanılır.

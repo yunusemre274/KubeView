@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "attempt": "final-05-06-readonly-convergence-20261110",
+  "startedAt": "2026-11-10T12:18:55.592948+00:00",
+  "maxWallSeconds": 25,
+  "firstZeroReadyFailurePreserved": true,
+  "restoreRerun": false,
+  "mutation": false,
+  "status": "READINESS_PASS_REPLICA_CHECK_PARTIAL_HELPER_FORMAT_ERROR",
+  "observations": [
+    {
+      "atSeconds": 1.13,
+      "05Ready": 2,
+      "06Ready": 1
+    }
+  ],
+  "failureClass": "KeyError",
+  "containerReasons": [
+    {
+      "profile": "05-ariza-toparlanma",
+      "samePodUid": true,
+      "containers": [
+        {
+          "name": "controlled",
+          "ready": true,
+          "waitingReason": null,
+          "terminatedReason": null,
+          "terminatedExitCode": null
+        },
+        {
+          "name": "healthy",
+          "ready": true,
+          "waitingReason": null,
+          "terminatedReason": null,
+          "terminatedExitCode": null
+        }
+      ]
+    },
+    {
+      "profile": "06-limanlar-arasi-ag",
+      "samePodUid": true,
+      "containers": [
+        {
+          "name": "web",
+          "ready": true,
+          "waitingReason": null,
+          "terminatedReason": null,
+          "terminatedExitCode": null
+        }
+      ]
+    }
+  ],
+  "elapsedSeconds": 1.26,
+  "finishedAt": "2026-11-10T12:18:56.853770+00:00",
+  "helperFormattingFailureClass": "KeyError",
+  "readinessConverged": true,
+  "podsSameUidAndReady": {
+    "05": 2,
+    "06": 1
+  },
+  "baselineDeploymentsObserved": [
+    {
+      "name": "two-containers",
+      "uid": "a804a0bf-d447-4aff-8163-8dddaa846019",
+      "namespace": "kvml-e731dabd-05-fault",
+      "replicas": 1
+    },
+    {
+      "name": "bad-image",
+      "uid": "55f8e303-d3e1-4cc6-9633-a3ce9995d0f6",
+      "namespace": "kvml-e731dabd-05-fault",
+      "replicas": 0
+    },
+    {
+      "name": "unschedulable",
+      "uid": "fe0a18bd-294e-4da0-8d0e-91a2d99ae823",
+      "namespace": "kvml-e731dabd-05-fault",
+      "replicas": 0
+    },
+    {
+      "name": "traffic",
+      "uid": "c170bde0-4a72-4516-ad2e-577394757b4b",
+      "namespace": "kvml-e731dabd-06-client",
+      "replicas": 0
+    }
+  ],
+  "05BadImageAndUnschedReplicasZero": true,
+  "06ClientReplicasZero": true,
+  "followupNoAdditionalApi": true,
+  "formatterFailureReceiptPreserved": true,
+  "privateStatusReceiptRefreshed": true,
+  "a2RunningReadySameUids": true,
+  "bStopped": true,
+  "appsAndProvidersEmpty": false,
+  "serverReplicaApiReadNotCompleted": true,
+  "originalReadOnlyJobElapsedSeconds": 1.26,
+  "noNewApiAfterJob": true,
+  "formatterFailureEvidence": "final-05-06-convergence-20261110-formatter-failure.json",
+  "helperFormattingFailureRetained": true,
+  "appsStartedByThisCheck": false,
+  "existingAppsOwnedByRoot": true
+}

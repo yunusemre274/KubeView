@@ -1,0 +1,25 @@
+{
+  "kind": "real Kubernetes + immutable HTTP gateway; not normal UI",
+  "phase": "workspace-record-acceptance",
+  "runId": "qa-ws-4115769912274bbb",
+  "workspaceId": "4d50944a-6f37-4d8a-88b7-4569ea6e1a3e",
+  "clusterUID": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5",
+  "gatewayBinarySHA256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+  "passedSteps": [
+    "fresh_qa_workspace_and_guarded_canary_ready",
+    "native_create_and_rename_preserve_harbor_and_kubernetes_identity",
+    "native_export_import_remaps_ids_and_stays_unbound",
+    "explicit_binding_allows_read_without_inheriting_write_grant",
+    "native_remove_only_qa_records_kubernetes_canary_survives"
+  ],
+  "objects": [],
+  "cleanup": [
+    "fresh QA native removed exact harbor ID d8116b56-2383-4418-9bc3-84c20805d2f8",
+    "fresh QA native removed exact harbor ID 4b4ef610-dc24-4d28-a989-aeaec85b747e",
+    "fresh QA native removed exact connection ID bd849a89-69e5-404a-b341-d6c835c1cddc",
+    "fresh QA native removed exact connection ID dbf53920-18fc-4158-bfe3-f3a2af44d5f8",
+    "fresh QA original empty workspace/preferences preserved except revision",
+    "guarded Deployment/Pod fingerprint unchanged; existing manual canary not registered for deletion"
+  ],
+  "failed": false
+}
