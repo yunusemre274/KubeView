@@ -74,3 +74,37 @@ Yeni frontend kaynak seti `ee974b3b…e559`, embedded index `f631b695…4585`; v
 - Gerçek02 API smoke: read-only/kapsam403, server dry-run→gerçekGET404, authoritative watch, API accepted target + gerçekUID/owner/Ready ve exactUID cleanup5 alt vaka PASS. Normal UI animasyon kanıtı değildir. Kalan selector/isolasyon/credential fazları ayrıca yürütülür.
 
 Bu checkpoint bütün A–O satırlarını kapatmaz. Yeni ağır Hubble cold kurulumu, ortak worker arızası, sonlu yeni CPU matrisi/20dakika ve son manuel paket teslimi sürüyor. MANUAL:PENDING; eski fiziksel/CPU kapıları değişmedi.
+
+## 10 Kasım 2026 — kapsam, arıza ve manuel profil doğrulaması
+
+Başlangıç/push `b566a711`; CI42669736323 SUCCESS. Durdurulan üç owned Node ve uygulamalar aynı UID/özel veri dizinleriyle geri alındı. Docker kapalı önkoşul denemesi FAIL olarak korundu; Docker açıldıktan sonraki restore8.684s PASS. Global kubeconfig değiştirilmedi.
+
+- Gerçek03 normal UI: güncel GET200 ve loading=false **sonrasında** dirty YAML byte eşitliği, UID, mod ve panel korundu; native caret/scroll kamera-target/quaternion değiştirmedi. Aynı adlı Pod A/B/A üç guarded log HTTP200/3 kapanış; K8s write0. [8 kontrol ve review](../artifacts/workspace/ws-20261110-real03-draft-after-fresh-get-caret-corrected/REVIEW.md). Önceki anlık restore ve caret-helper FAIL korunur.
+- Gerçek ortak worker: API ReadyTrue→Unknown→aynıUID Ready; iki02 limanı iletişim kaybını gördü, her biri2Node/1Pod canonical kaydı tuttu. B1 Ready ve ikiPodUID değişmedi. [Dört zamanlı örnek ve açılmış kareler](../artifacts/workspace/ws-20261110-shared-worker-snapshot-guard/REVIEW.md). Bu NodeFalse/yangın/batma E2E kanıtı değildir. Recovery anındaki PodReady gecikmesi görünür. Kaynakv05; aşağıdaki liste düzeltmesi ayrıv06 kaynağıdır.
+- Gerçek selector/multiNS/overlap ilk FAIL: birleşik List kind/apiVersion taşımıyordu. Boş/dolu JSON roundtrip önce red ile üretildi; minimal düzeltme upstream türünü korur, çelişkiyi reddeder; namespace RV değerlerini bir global versiyona dönüştürmez.9 hedefli unit+aynı9 race PASS. V06 binary `ce72f9dd…d9a4`; backend runtime `654c6b19…2940`, frontend/index ee974/f631 değişmedi.
+- V06 gerçek7 alt vaka PASS: scope403, exact UID union, gerçek edit→metadata-only OUT_OF_SCOPE→sameUID UPDATE reentry, yeni WS generation ve UID/RV DELETE3limanda. İki actual Deployment/dependents ve üç geçici liman temizlendi; original workspace/tercihler korundu. [Sonuç](../artifacts/workspace/ws-20261109T115457Z/backend/real-api-selector/selector-v06-summary.json). İlk FAIL silinmedi. Önceki smoke5/isolation5 ayrıca korunur; API testi animasyon kanıtı değildir.
+- Geniş Go:140 test/alt vaka PASS,23 opt-in SKIP; gerçek API koşuları bu SKIP sonucuna dahil değil, ayrı receiptlerde. [Ham çıktı](../artifacts/workspace/ws-20261109T115457Z/backend/final-multins/go-full.jsonl).
+- Runner port kontrolü: PID/listener yokken TIME_WAIT yanlış dolu sayıldı. Controlled Darwin TCP deneyi ve real unit red→SO_REUSEADDR probe düzeltmesi→2PASS,18 runner ownership PASS. SO_REUSEPORT yok; canlı listener reddediliyor. [Kanıt](../manual-lab/evidence/port-timewait-repro-20261110.json). Salt okuma kapatma POST isteğini K8s write sayan ilk UI helper FAIL de korundu.
+- Manual07:8 Chromium varyantı (M/L×1/5/10/20) ve2 WebKit senaryosu doğrulandı. Önceki9PASS/1viewport-helperFAIL kaydı korunur; yalnız eksik L20 yaprağı hedef viewport beklemesiyle ayrı6check PASS oldu. [Son review](../artifacts/workspace/ws-20261110-webkit-L20-target-viewport/REVIEW.md). Tüm sekiz app-data varyantı saklandı;07 app kapalı. Bu CPU/FPS veya native Safari kanıtı değildir;768px anomali etiket çakışması P2 olarak açıktır.
+
+**Genişletilmiş fullTLS manual-lab E2E BLOCKED:** ilk cold362.67s CNI startup yarışında relay yanlış NodeCIDR/CEP yokluğu ile başarısız; resmi down21.64s. Dar ordering/UID guard düzeltmesi9unit PASS. İkinci ve son warm deneme6.15s içinde geçici eksik PodIP guard nedeniyle durdu; Pod DELETE yapılmadı, down21.57s. TLS extraction, provider/UI trafik ve restricted-reader aşamalarına ulaşılamadı. Üçüncü deneme yok; iki FAIL ve immutable bundlelar korundu. DefaultA/B ve yeni telemetryA2 durdu. Rehber bunu açık BLOCKED gösterir.
+
+Yeni CPU matrisi/20dakika ve son paket henüz bitmedi. Eski V11-16/18/19 BLOCKED ve MANUAL PENDING korunur.
+
+### Son frontend ve hazırlık — 10 Kasım
+
+Kapalı log panelinin limana dönünce yeniden açılması actual App testinde yeniden üretildi; cached kapalı niyet seçim highlight'ından ayrıldı. Cold/explicit inspect, açık resource/facility, pending snapshot ve dirty form korunur. Tam seri202/202 PASS, build PASS. Kaynak `ff682d9b…19b9`, index `a31eb27d…b471`; v07 binary `4df0498a…94f8`, Go runtime654c6b19 değişmedi. [Normal UI3kontrol](../artifacts/workspace/ws-20261110-v07-closed-panel-ui/REVIEW.md): log1→close0→B→A panel kapalı/yeni log yok→explicit inspect1→cleanup0;3opened/3closed. CPU yüzdesi kazancı iddia edilmez.
+
+01 manuel profilindeki yalnız Root'un oluşturduğu eski onboarding harbor/connection immutableID/ad/context/namespace eşleşmesiyle nativeAPI'den kaldırıldı;0harbor/0connection hazır, K8s mutation0, private backup/veri korundu. [Kayıt](../artifacts/workspace/ws-20261109T115457Z/manual01-restored-empty.json).
+
+Telemetry eksik PodIP için45s bounded sameUID/owner/NodeCIDR beklemesi yalnız FS unit düzeyinde eklendi:12/12 PASS, module71fb19ae. İki gerçek FAIL'in ardından üçüncü integration koşulmadı; bu yeni kaynak henüz gerçek provider/TLS E2E doğrulaması sayılmaz.
+
+Perf baseline frontend86dosyada başlangıç0029672 ile byteeşdeğer; eski CPU sayıları tekrar kullanılmaz. Yeni final frontend/backend benchmark ikilisi ayrı immutable tag ile hazırlanır. Önceki8s M20 başlangıç denemesi canonical20/300,görünür8/120 ve fixture integrity kontrolüdür; kabul CPU/FPS/p95 sonucu değildir.
+
+### Donmuş son kaynak ve sonlu performans kuyruğu — 10 Kasım
+
+Closed-panel niyeti düzeltmesinin202 frontend testi/build ve v07 normal UI3 kontrolü geçti. `workspace-final-20261110` ölçüm adayı frontend kaynak SHA `ff682d9b633c86062fa3e1379aef7c92747f2bee0b31a9cbaec0995cda9219b9`, embedded index `a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471` içerir. Yeni kaynakla eski tek-liman kontrolünün kısa kamera/çizim kontrolünde aktif kamera ve başlangıç438 draw-call/62220 üçgen eşitti. Bu6 saniyelik kontrol CPU kabulü değildir.
+
+Mevcut harness'e workspace ailesi eklendi:35 seri iş/46 hücre;3 dengeli blok,30 saniye ısınma/60 saniye ölçüm ve yalnız1 adet1200 saniyelik karma koşu. `workspace-cycle` tanılama koşusu20 normal UI liman/panel ve4 kapsam düzenleme çevrimini,22/22 kapanan logu ve tam canonical içerik eşitliğini doğruladı;30 saniyelik bu koşu uzun test veya CPU kabulü sayılmaz. İki kontrolün Playwright actionability kontrolü fiziksel geri bildirim veya bütün panel kullanılabilirliği yerine geçmez. Tarihsel V11-16/18/19 kapıları açık kalır.
+
+Telemetri lab'ında iki runtime FAIL korunur. Son kaynak aynı owned PodUID'nin başlangıç IP'sini45 saniye bounded bekler;12 unit geçti, üçüncü gerçek lab denemesi yapılmadı. Tüm owned ağır lab'lar ve uygulama süreçleri ölçüm öncesi durduruldu.

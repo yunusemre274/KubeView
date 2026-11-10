@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "attempt": "telemetry-relay-startup-wait-unit-01",
+  "at": "2026-11-10T09:21:56.837083+00:00",
+  "red": {
+    "source": "immutable-v06-02-before-startup-wait-fix",
+    "testsRun": 3,
+    "failures": 2,
+    "errors": 1,
+    "pass": false
+  },
+  "green": {
+    "testsRun": 12,
+    "pass": true,
+    "failures": 0,
+    "errors": 0
+  },
+  "newCases": [
+    "test_startup_empty_ip_becomes_valid_on_same_uid_without_delete",
+    "test_startup_empty_ip_times_out_without_delete",
+    "test_startup_new_uid_aborts_without_delete"
+  ],
+  "elapsedSeconds": 0.049,
+  "sourceSha256": {
+    "manual-lab/telemetry.py": "71fb19ae92aa9f4adaed79c8469ce2e30e779a8b7342ba7f7cf481a126ddfebf",
+    "manual-lab/tests/test_telemetry_bootstrap.py": "a9cd045afb1d97a86b6ca9952abb4dbe9f1fe814ad30a908914adc8592dfbde7",
+    "scripts/manual_lab.py": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+    "MANUAL_TEST_GUIDE.md": "b323f722b682a27f6c4825b4fb2a08dc0896ee07dc0ddc32926b281408c7be04"
+  },
+  "samePodUidStartupWaitSeconds": 45,
+  "mockClock": true,
+  "actualSleep": false,
+  "clusterAppTrafficSecretAccess": false,
+  "processOrNetworkStarted": false,
+  "actualIntegrationAttemptsUsed": 2,
+  "thirdIntegrationStarted": false,
+  "telemetryE2EStatus": "BLOCKED; both prior runtime failures preserved",
+  "privatePathsOrSecretValuesRecorded": false,
+  "tracebackPathsRedacted": true
+}

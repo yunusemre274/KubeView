@@ -1,0 +1,10 @@
+{
+  "attempt": "telemetry-chart-help-preflight-01",
+  "pass": false,
+  "stage": "official chart metadata download before inspection",
+  "reason": "Python local issuer CA verification failure",
+  "tlsVerificationDisabled": false,
+  "clusterOrAppOrTestStarted": false,
+  "sourceChanged": false,
+  "at": "2026-11-09T17:42:05.861647+00:00"
+}

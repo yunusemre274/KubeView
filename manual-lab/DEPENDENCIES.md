@@ -17,9 +17,12 @@ bu makinede uyum/gerçek trafik testi değildir. [Resmi Helm kurulum yöntemi](h
 ve [aynı tag'in değerleri](https://github.com/cilium/cilium/blob/v1.20.2/install/kubernetes/cilium/values.yaml)
 kullanılır. Sistem Helm config/registry/cache'i değiştirilmez; lab'a özel yollar seçilir.
 
-Template'te agent↔relay mTLS açıktır. Relay'nin client-facing servisi yalnız owned
-kubectl port-forward ile127.0.0.1'e açılır; backend'in explicit loopback plaintext
-izni bu private lab bağlantısına uygulanır. ClusterMesh, yeni NetworkPolicy,
+Template'te agent↔relay ve relay↔backend mTLS açıktır. Relay'nin client-facing
+servisi yalnız owned kubectl port-forward ile127.0.0.1'e açılır. Pinned wildcard
+sertifikası `ui.hubble-relay.cilium.io` server name ile doğrulanır; plaintext veya
+insecure TLS fallback yoktur. Yalnız iki sabit, namespace/UID/Helm/owner guard'lı
+Secret'ten private0700/0600 materyal kopyalanır; değerler/özel yollar public
+kanıtlara yazılmaz. ClusterMesh, yeni NetworkPolicy,
 policy gevşetme, Hubble UI, L7 redirect/policy veya metrics collector kurulmaz.
 Gerçek L4 flow sayısı HTTP istek/byte/bant genişliği ölçümü diye raporlanmaz.
 

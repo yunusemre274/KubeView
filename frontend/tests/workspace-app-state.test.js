@@ -77,6 +77,43 @@ async function withApp(run) {
   }
 }
 const live = (view, resources, patch = {}) => connection({ workspace: view, sourceKey: `source:${view.activeId}`, resources, snapshotReady: true, stale: false, isConnected: true, upstream: true, ...patch });
+test("closed log panel stays closed across warm harbor return while its UID highlight survives", async () => withApp(async (app) => {
+  const a = workspace(), b = workspace("b", { uid: "other", kind: "Pod", namespace: "alpha" });
+  app.render(live(a, [pod()])); app.details().props.onTabChange("logs"); app.render();
+  app.details().props.onClose(); app.render();
+  assert.equal(Boolean(app.details()), false); assert.equal(app.scene().props.selectedUID, "old-uid");
+  app.render(live(b, [pod("other")])); app.render(live(a, [pod()]));
+  assert.equal(app.scene().props.selectedUID, "old-uid", "closing the panel keeps its safe world selection highlight");
+  assert.equal(Boolean(app.details()), false, "a harbor switch must not reopen a resource panel the user closed");
+  app.scene().props.onSelect(pod()); app.render();
+  assert.equal(app.details()?.props.resource.metadata.uid, "old-uid", "a new explicit inspect still opens the closed selection");
+}));
+test("closed log panel stays closed after a returning harbor's first fresh snapshot", async () => withApp(async (app) => {
+  const a = workspace(), b = workspace("b", { uid: "other", kind: "Pod", namespace: "alpha" });
+  app.render(live(a, [pod()])); app.details().props.onTabChange("logs"); app.render(); app.details().props.onClose(); app.render();
+  app.render(live(b, [pod("other")])); app.render(live(a, [], { snapshotReady: false, stale: true }));
+  assert.equal(Boolean(app.details()), false);
+  app.render(live(a, [pod()]));
+  assert.equal(app.scene().props.selectedUID, "old-uid");
+  assert.equal(Boolean(app.details()), false, "delayed selection resolution must retain the closed-panel intent");
+}));
+test("cached facility remains open when a returning selection resolves after its snapshot", async () => withApp(async (app) => {
+  const a = workspace(), b = workspace("b", { uid: "other", kind: "Pod", namespace: "alpha" });
+  app.render(live(a, [pod()])); app.scene().props.onOpenFacility("center"); app.render();
+  app.render(live(b, [pod("other")])); app.render(live(a, [], { snapshotReady: false, stale: true }));
+  assert.equal(app.facility()?.props.id, "center"); app.render(live(a, [pod()]));
+  assert.equal(app.facility()?.props.id, "center"); assert.equal(Boolean(app.details()), false); assert.equal(app.scene().props.selectedUID, "old-uid");
+}));
+test("an open safe dirty form and resource panel still restore together on harbor return", async () => withApp(async (app) => {
+  const a = workspace(), b = workspace("b", { uid: "other", kind: "Pod", namespace: "alpha" });
+  app.render(live(a, [pod()])); app.details().props.onAction("edit", pod()); app.render();
+  const draft = { sourceKey: "source:a", uid: "old-uid", action: "edit", object: pod(), mode: "yaml", yamlText: "local unsent yaml", dirty: true };
+  app.find((node) => node.props?.onSafeDraft)?.props.onSafeDraft(draft);
+  app.render(live(b, [pod("other")])); app.render(live(a, [pod()]));
+  assert.equal(app.details()?.props.resource.metadata.uid, "old-uid");
+  const restoredForm = app.find((node) => node.props?.onSafeDraft);
+  assert.equal(restoredForm?.props.resource.metadata.uid, "old-uid"); assert.equal(restoredForm?.props.restoredDraft, draft);
+}));
 test("cold persisted exact UID restores its panel once after the first current snapshot arrives", async () => withApp(async (app) => {
   const view = workspace();
   app.render(connection({ workspace: view, sourceKey: "source:a" })); assert.equal(app.details(), undefined);
@@ -89,6 +126,7 @@ test("cold persisted exact UID restores its panel once after the first current s
   oldTabCallback("logs"); app.render(); assert.equal(app.details().props.resource.__tab, "logs");
   app.details().props.onClose(); app.render(); app.render(live(view, [pod()]));
   assert.equal(app.details(), undefined, "a later snapshot cannot reopen a panel the user closed");
+  app.scene().props.onSelect(pod(), { containerName: "app" }); app.render(); app.details().props.onTabChange("logs"); app.render();
   const other = workspace("b", { uid: "other", kind: "Pod", namespace: "alpha" });
   app.render(live(other, [pod("other")], { sessionRevision: "b:1" }));
   oldTabCallback("terminal"); app.render(); assert.equal(app.details().props.resource.__tab, "yaml");

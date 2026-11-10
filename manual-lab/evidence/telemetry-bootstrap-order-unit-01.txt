@@ -1,0 +1,100 @@
+RED (old immutable module)
+test_active_bridge_plugin_rejects_network_proof (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_active_bridge_plugin_rejects_network_proof) ... ERROR
+test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv) ... ERROR
+test_unknown_owner_is_rejected_before_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_unknown_owner_is_rejected_before_delete) ... ERROR
+test_valid_cilium_endpoint_needs_no_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_valid_cilium_endpoint_needs_no_delete) ... ERROR
+test_valid_ip_without_endpoint_is_not_blindly_restarted (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_valid_ip_without_endpoint_is_not_blindly_restarted) ... ERROR
+
+======================================================================
+ERROR: test_active_bridge_plugin_rejects_network_proof (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_active_bridge_plugin_rejects_network_proof)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yunusemre/Desktop/KubeView/manual-lab/tests/test_telemetry_bootstrap.py", line 72, in test_active_bridge_plugin_rejects_network_proof
+    telemetry.cilium_network()
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Telemetry' object has no attribute 'cilium_network'
+
+======================================================================
+ERROR: test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yunusemre/Desktop/KubeView/manual-lab/tests/test_telemetry_bootstrap.py", line 31, in test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv
+    with patch.object(telemetry, "guard_resources"), patch.object(telemetry, "cilium_network", return_value={"worker": {"podCIDR": "10.244.1.0/24"}}), patch.object(lab, "get", side_effect=get), patch.object(lab, "save"), patch.object(lab, "kubectl", side_effect=kubectl) as command:
+                                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1503, in __enter__
+    original, local = self.get_original()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1473, in get_original
+    raise AttributeError(
+        "%s does not have the attribute %r" % (target, name)
+    )
+AttributeError: <kubeview_manual_telemetry.Telemetry object at 0x10896d550> does not have the attribute 'cilium_network'
+
+======================================================================
+ERROR: test_unknown_owner_is_rejected_before_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_unknown_owner_is_rejected_before_delete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yunusemre/Desktop/KubeView/manual-lab/tests/test_telemetry_bootstrap.py", line 43, in test_unknown_owner_is_rejected_before_delete
+    with patch.object(telemetry, "guard_resources"), patch.object(telemetry, "cilium_network", return_value={"worker": {"podCIDR": "10.244.1.0/24"}}), patch.object(lab, "get", side_effect=get), patch.object(lab, "kubectl", side_effect=kubectl) as command:
+                                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1503, in __enter__
+    original, local = self.get_original()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1473, in get_original
+    raise AttributeError(
+        "%s does not have the attribute %r" % (target, name)
+    )
+AttributeError: <kubeview_manual_telemetry.Telemetry object at 0x10896f4d0> does not have the attribute 'cilium_network'
+
+======================================================================
+ERROR: test_valid_cilium_endpoint_needs_no_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_valid_cilium_endpoint_needs_no_delete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yunusemre/Desktop/KubeView/manual-lab/tests/test_telemetry_bootstrap.py", line 59, in test_valid_cilium_endpoint_needs_no_delete
+    with patch.object(telemetry, "guard_resources"), patch.object(telemetry, "cilium_network", return_value={"worker": {"podCIDR": "10.244.1.0/24"}}), patch.object(lab, "get", side_effect=get), patch.object(lab, "save"), patch.object(lab, "kubectl", side_effect=kubectl) as command:
+                                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1503, in __enter__
+    original, local = self.get_original()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1473, in get_original
+    raise AttributeError(
+        "%s does not have the attribute %r" % (target, name)
+    )
+AttributeError: <kubeview_manual_telemetry.Telemetry object at 0x10896e900> does not have the attribute 'cilium_network'
+
+======================================================================
+ERROR: test_valid_ip_without_endpoint_is_not_blindly_restarted (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_valid_ip_without_endpoint_is_not_blindly_restarted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yunusemre/Desktop/KubeView/manual-lab/tests/test_telemetry_bootstrap.py", line 51, in test_valid_ip_without_endpoint_is_not_blindly_restarted
+    with patch.object(telemetry, "guard_resources"), patch.object(telemetry, "cilium_network", return_value={"worker": {"podCIDR": "10.244.1.0/24"}}), patch.object(lab, "get", side_effect=get), patch.object(lab, "kubectl", side_effect=kubectl) as command:
+                                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1503, in __enter__
+    original, local = self.get_original()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 1473, in get_original
+    raise AttributeError(
+        "%s does not have the attribute %r" % (target, name)
+    )
+AttributeError: <kubeview_manual_telemetry.Telemetry object at 0x10896d940> does not have the attribute 'cilium_network'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.013s
+
+FAILED (errors=5)
+
+GREEN (source fix)
+test_active_bridge_plugin_rejects_network_proof (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_active_bridge_plugin_rejects_network_proof) ... ok
+test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv) ... ok
+test_unknown_owner_is_rejected_before_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_unknown_owner_is_rejected_before_delete) ... ok
+test_valid_cilium_endpoint_needs_no_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_valid_cilium_endpoint_needs_no_delete) ... ok
+test_valid_ip_without_endpoint_is_not_blindly_restarted (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_valid_ip_without_endpoint_is_not_blindly_restarted) ... ok
+test_backend_env_requires_mtls_without_plaintext_fallback (test_telemetry_tls.TelemetryTLSContracts.test_backend_env_requires_mtls_without_plaintext_fallback) ... ok
+test_default_vanilla_lab_is_rejected_before_secret_read (test_telemetry_tls.TelemetryTLSContracts.test_default_vanilla_lab_is_rejected_before_secret_read) ... ok
+test_template_requires_both_tls_hops_and_mutual_relay_auth (test_telemetry_tls.TelemetryTLSContracts.test_template_requires_both_tls_hops_and_mutual_relay_auth) ... ok
+test_unpinned_secret_uid_cannot_write_private_material (test_telemetry_tls.TelemetryTLSContracts.test_unpinned_secret_uid_cannot_write_private_material) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.023s
+
+OK

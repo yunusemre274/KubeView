@@ -87,7 +87,7 @@ export function workspaceJobs(id, baselineTag, candidateTag) {
   for(const profile of (block%2?['L','M']:['M','L']))for(const harbors of (block%2?[20,10,5,1]:[1,5,10,20]))
    jobs.push({id:`${id}-${profile}-h${harbors}-b${block}`,group:'workspace-overhead',profile,phase:harbors===1?'baseline':'optimized',tag:candidateTag,harbors,scenarios:['living'],block,warmup:30,seconds:60,timeoutSeconds:240,sceneInventory:true});
  }
- for(const scenario of ['panel','events','idle','interaction'])jobs.push({id:`${id}-h20-${scenario}`,group:`workspace-${scenario}`,profile:scenario==='interaction'?'S':'M',phase:'optimized',tag:candidateTag,harbors:20,scenarios:[scenario],repeats:3,warmup:30,seconds:60,timeoutSeconds:480,sceneInventory:true});
+ for(const scenario of ['panel','events','idle','interaction'])jobs.push({id:`${id}-h20-${scenario}`,group:`workspace-${scenario}`,profile:scenario==='interaction'?'S':'M',phase:'optimized',tag:candidateTag,harbors:20,scenarios:scenario==='panel'?['panel-closed','panel-open']:[scenario],...(scenario==='panel'?{matrix:true}:{}),repeats:3,warmup:30,seconds:60,timeoutSeconds:scenario==='panel'?840:480,sceneInventory:true});
  jobs.push({id:`${id}-h20-long`,group:'workspace-long',profile:'M',phase:'optimized',tag:candidateTag,harbors:20,scenarios:['long'],repeats:1,warmup:30,seconds:60,longSeconds:1200,timeoutSeconds:1500,sceneInventory:true});
  return jobs;
 }

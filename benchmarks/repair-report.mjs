@@ -44,7 +44,7 @@ export function observedOrderReasons(job,runs){
 export function jobProtocolReasons(job,m){
  // run.mjs marks one-repeat invocations as smoke; independent paired blocks are pooled below.
  const declaredSmoke=m.params?.warmup<30||m.params?.seconds<60||m.params?.repeats<3;
- return m.profiler||m.gpuProfiler||m.bufferDiagnostic||m.reactProfilingBuild||m.video||m.smoke!==declaredSmoke||m.cpuThrottling||m.production!==true||m.inputLocked!==true||m.browserEnergySaver?.ok!==true||!Number.isFinite(m.params?.warmup)||m.params.warmup<30||!Number.isFinite(m.params?.seconds)||m.params.seconds<60||m.panelMatrix!==Boolean(job.matrix)||m.repeatOffset!==(job.block||0)||m.params?.repeats!==(job.repeats||1)||m.params?.profiles?.join(',')!==job.profile||JSON.stringify(m.params?.scenarios)!==JSON.stringify(scenarioArguments(job))?[`Diagnostic/short/production protocol ${job.id}`]:[];
+ return m.profiler||m.gpuProfiler||m.bufferDiagnostic||m.reactProfilingBuild||m.video||m.workspaceCycleProbe||m.smoke!==declaredSmoke||m.cpuThrottling||m.production!==true||m.inputLocked!==true||m.browserEnergySaver?.ok!==true||!Number.isFinite(m.params?.warmup)||m.params.warmup<30||!Number.isFinite(m.params?.seconds)||m.params.seconds<60||m.panelMatrix!==Boolean(job.matrix)||m.repeatOffset!==(job.block||0)||m.params?.repeats!==(job.repeats||1)||m.params?.profiles?.join(',')!==job.profile||JSON.stringify(m.params?.scenarios)!==JSON.stringify(scenarioArguments(job))?[`Diagnostic/short/production protocol ${job.id}`]:[];
 }
 export function independentPairReasons(rows,key,partial=false){
  const blocks=[...new Set(rows.map(r=>r.repeat))],complete=blocks.filter(block=>['baseline','optimized'].every(phase=>rows.filter(r=>r.repeat===block&&r.phase===phase).length===1));

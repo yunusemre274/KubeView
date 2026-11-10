@@ -297,6 +297,14 @@ func (r *workspaceResource) List(ctx context.Context, opts metav1.ListOptions) (
 			if err != nil {
 				return nil, err
 			}
+			apiVersion, kind := list.GetAPIVersion(), list.GetKind()
+			if apiVersion == "" || kind == "" || out.GetKind() != "" && (out.GetAPIVersion() != apiVersion || out.GetKind() != kind) {
+				return nil, apierrors.NewInternalError(errors.New("namespace list type metadata missing or inconsistent"))
+			}
+			// Preserve the upstream list type, including an empty union. Each
+			// namespace has its own opaque RV, so only type metadata is shared.
+			out.SetAPIVersion(apiVersion)
+			out.SetKind(kind)
 			out.Items = append(out.Items, list.Items...)
 		}
 		return out, nil

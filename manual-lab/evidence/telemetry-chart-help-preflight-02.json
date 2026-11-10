@@ -1,0 +1,61 @@
+{
+  "attempt": "telemetry-chart-help-preflight-02",
+  "scope": "official static chart inspection and installed help; no render/build/test/cluster",
+  "officialChartURL": "https://helm.cilium.io/cilium-1.20.2.tgz",
+  "chartSHA256": "b2afd87b7f75f875f92a14559f14f59b7babbb479d968e3fd625a20bf30ec20e",
+  "chartVersion": "1.20.2",
+  "appVersion": "1.20.2",
+  "matchingTemplateNames": {
+    "hubble-relay-client-certs": [
+      "cilium/templates/hubble/tls-certmanager/relay-client-secret.yaml",
+      "cilium/templates/hubble/tls-cronjob/_job-spec.tpl",
+      "cilium/templates/hubble/tls-cronjob/role.yaml",
+      "cilium/templates/hubble/tls-helm/relay-client-secret.yaml",
+      "cilium/templates/hubble/tls-provided/relay-client-secret.yaml",
+      "cilium/templates/hubble-relay/deployment.yaml"
+    ],
+    "hubble-relay-server-certs": [
+      "cilium/templates/hubble/tls-certmanager/relay-server-secret.yaml",
+      "cilium/templates/hubble/tls-cronjob/_job-spec.tpl",
+      "cilium/templates/hubble/tls-cronjob/role.yaml",
+      "cilium/templates/hubble/tls-helm/relay-server-secret.yaml",
+      "cilium/templates/hubble/tls-provided/relay-server-secret.yaml",
+      "cilium/templates/hubble-relay/deployment.yaml"
+    ],
+    "cilium-ca": [
+      "cilium/templates/_helpers.tpl",
+      "cilium/templates/hubble/tls-cronjob/_job-spec.tpl",
+      "cilium/templates/hubble/tls-cronjob/role.yaml"
+    ],
+    "tls-relay-client-ca-files": [],
+    "hubble.relay.tls.server.mtls": [],
+    "genSignedCert": [
+      "cilium/templates/hubble/tls-helm/metrics-server-secret.yaml",
+      "cilium/templates/hubble/tls-helm/relay-client-secret.yaml",
+      "cilium/templates/hubble/tls-helm/relay-server-secret.yaml",
+      "cilium/templates/hubble/tls-helm/server-secret.yaml",
+      "cilium/templates/hubble/tls-helm/ui-client-certs.yaml"
+    ]
+  },
+  "helmFlags": {
+    "upgrade": {
+      "--install": true,
+      "--values": true,
+      "--wait": true,
+      "--timeout": true,
+      "--kubeconfig": true,
+      "--kube-context": true,
+      "--labels": true,
+      "--content-cache": true
+    },
+    "pull": {
+      "--repo": true,
+      "--version": true,
+      "--destination": true,
+      "--content-cache": true
+    }
+  },
+  "tlsVerificationDisabled": false,
+  "sourceChanged": false,
+  "secretValuesRead": false
+}

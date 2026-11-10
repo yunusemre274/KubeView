@@ -1,5 +1,16 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-10 — çoklu liman doğruluk devamı
+
+- Kapatılmış log panelinin limana dönüşte kendiliğinden açılması düzeltildi; seçim korunuyor, istenmeyen log stream açılmıyor.202 frontend test/build ve normalUI3kontrol geçti; CPU kazancı yüzdesi ölçülmedi.
+- Manuel01 Root onboarding kaydı nativeAPI exactID kontrolüyle temizlendi; kullanıcı testine0liman/0bağlantı hazır. Telemetry yeni45s startup beklemesi12unit PASS; gerçekE2E BLOCKED devam eder.
+
+
+- MultiNS birleşim listesinde eksik API türü düzeltildi; opaque RV birleştirilmedi. Gerçek selector/reentry/DELETE7case ve hedefli race geçti; geniş Go140test/altcasePASS/23opt-inSKIP.
+- Gerçek ortak worker Unknown/recovery, bağımsız B izolasyonu ve loading bittikten sonra draft koruması doğrulandı. Sekiz replay liman profili/iki WebKit işlev senaryosu ayrı kanıtlandı; fiziksel UI veya CPU sonucu değildir.
+- Runner port probe TIME_WAIT ile canlı listener ayrımını yapıyor;2TCP+18ownership test geçti. Hubble cold CNI yarışması ve warm eksik PodIP guard FAIL kayıtları korundu; gerçek fullTLS flow E2E BLOCKED. Stable yayın/manual kabul yapılmadı.
+
+
 ## 2026-11-09 — çoklu liman geliştirmesi (manuel kabul bekliyor)
 
 - İkinci checkpoint: cold exactUID/sekme kalıcılığı, bounded seçili scope-exit gözlemi, güncel core metrik örneği ve boş açılış durumu düzeltildi;198 frontend test/build geçti. Gerçek iki kümede same-name UID/log ve A-only UI scale/grant izolasyonu kanıtlandı. Yeni performans kazancı veya tam A–O kabulü ilan edilmez.

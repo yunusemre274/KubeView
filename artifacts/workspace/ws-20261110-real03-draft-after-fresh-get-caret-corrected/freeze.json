@@ -1,0 +1,23 @@
+{
+  "id": "ws-20261110-real03-draft-after-fresh-get-caret-corrected",
+  "at": "2026-11-10T08:43:53.594850+00:00",
+  "status": "passed",
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "sourceAfter": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "distBefore": "4dd698fb6606a31a7be223ad40551bd06fe3a153fa83517c6f18e8cd9d785a0e",
+  "distAfter": "4dd698fb6606a31a7be223ad40551bd06fe3a153fa83517c6f18e8cd9d785a0e",
+  "helperSHA256": "836fdcfaa4ad2838dacbb1b7d3276b1f519f9a0176191aeb915366663370e219",
+  "kubernetesMutations": 0,
+  "logRequests": 3,
+  "logRequestsEnded": 3,
+  "remainingHelperOrBrowserPIDs": [],
+  "files": {
+    "01-A-dirty-form.png": "644b86f8d4ac5195320d917862c1bd15aec8dbc7324357592e6241cb0ddf9703",
+    "02-B-own-UID-readonly.png": "132d2da619ad08972cb20faa0cf778bec6d5422469a4cb0de5a82344f0ba2873",
+    "03-A-restored-after-fresh-get-and-native-input.png": "5c08a21ce0ba7494906172662c002f95484849a42a7355ac10118c1e1f20ce25",
+    "04-B-same-pod-own-UID-logs.png": "ff476fe827e0756963a8e683d827fdc7a197b97ea83741a7e1e8e1b9cea7b93a",
+    "REVIEW.md": "f1bb592b55151036d51f8defaf94b2437200556dde468f0404183902952e7b84",
+    "result.json": "c581d88df05a713836c0d6d1a19d04fb4fe578d59bf33dcf1012ff0cd04480dd"
+  },
+  "limit": "Process scan covers this helper and Playwright Chromium. Gateway/lab ownership remains with root; no kernel TCP or heap claim."
+}

@@ -1,0 +1,9 @@
+test_backend_env_requires_mtls_without_plaintext_fallback (test_telemetry_tls.TelemetryTLSContracts.test_backend_env_requires_mtls_without_plaintext_fallback) ... ok
+test_default_vanilla_lab_is_rejected_before_secret_read (test_telemetry_tls.TelemetryTLSContracts.test_default_vanilla_lab_is_rejected_before_secret_read) ... ok
+test_template_requires_both_tls_hops_and_mutual_relay_auth (test_telemetry_tls.TelemetryTLSContracts.test_template_requires_both_tls_hops_and_mutual_relay_auth) ... ok
+test_unpinned_secret_uid_cannot_write_private_material (test_telemetry_tls.TelemetryTLSContracts.test_unpinned_secret_uid_cannot_write_private_material) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.008s
+
+OK

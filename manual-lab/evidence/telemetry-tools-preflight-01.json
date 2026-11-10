@@ -1,0 +1,37 @@
+{
+  "attempt": "telemetry-tools-preflight-01",
+  "at": "2026-11-09T17:40:17.663574+00:00",
+  "scope": "FS copy and version/help only; no app/traffic/cluster",
+  "hubble": {
+    "version": "hubble v1.20.2@HEAD-90adec1 compiled with go1.27.1 on darwin/arm64",
+    "sha256": "f99c58c404124ee541403839c47976e80920a6ce935e48bf6f63cae9a08b8892",
+    "normalUserDataCopyVerified": true,
+    "executableMode": "0o700",
+    "directoryMode": "0o700",
+    "statusFlags": {
+      "--server": true,
+      "--timeout": true,
+      "--request-timeout": true,
+      "--tls": true,
+      "--tls-ca-cert-files": true,
+      "--tls-client-cert-file": true,
+      "--tls-client-key-file": true,
+      "--tls-server-name": true
+    },
+    "observeFlags": {
+      "--namespace": true,
+      "--last": true,
+      "--output": true,
+      "--type": true,
+      "--follow": true,
+      "--server": true,
+      "--tls": true
+    },
+    "globalCLIConfigRead": false
+  },
+  "runtimeRepoDependency": false,
+  "clusterMutation": false,
+  "testStarted": false,
+  "sourceChanged": false,
+  "plannedStateFresh": true
+}

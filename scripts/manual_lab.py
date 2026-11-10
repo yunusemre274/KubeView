@@ -146,6 +146,9 @@ def global_configs():
 def free_port(port):
     with socket.socket() as sock:
         try:
+            # Match Go's TCP bind: a closed connection in TIME_WAIT is not a
+            # live listener. SO_REUSEPORT stays disabled; live ports still fail.
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             sock.bind(("127.0.0.1", port))
             return True
         except OSError:

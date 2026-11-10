@@ -1,0 +1,33 @@
+{
+  "id": "ws-20261110-webkit-L20-target-viewport",
+  "at": "2026-11-10T09:11:54.394383+00:00",
+  "status": "passed",
+  "selectedCase": "webkit-L-h20",
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "sourceAfter": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "binarySHA256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "binarySHA256After": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "runnerSHA256Before": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "runnerSHA256After": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "helperSHA256": "e3f1843ba3cc5aaeda4e188671a441f345d2b4ac2bc75c535bf5c5c7d201b9b5",
+  "manual07AppRecordPresent": false,
+  "preservedVariants": [
+    "L-h01",
+    "L-h05",
+    "L-h10",
+    "L-h20",
+    "M-h01",
+    "M-h05",
+    "M-h10",
+    "M-h20"
+  ],
+  "remainingHelperOrPlaywrightBrowserPIDs": [],
+  "files": {
+    "REVIEW.md": "7cac5e6d9ac35929195a8eb73f0beeaf4ccc88ea2215beed0a71886790b0c6b4",
+    "result.json": "7b60375ad6097866a31faf37411bb10dbace723cebb15df71b62964599d10f77",
+    "webkit-L-h20-1280-map-access.png": "2c11712ec3334f31435cb53c2a8167489bf72044ef9bcdd641cffeb88d7eedcc",
+    "webkit-L-h20-768-map-access.png": "970a9acfbebd9fa106a708e08a0eb4484521efc67dfea9a970083a1b71011379",
+    "webkit-L-h20-final-world.png": "2cf9f95611fa893f5140ee23218abbb65ab2591ada9d94c76be8d6725946f6a4"
+  },
+  "limit": "Only missing WebKit L20 case rerun; old 9 PASS/1 FAIL suite remains unchanged."
+}

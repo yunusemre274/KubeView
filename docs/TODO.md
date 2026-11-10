@@ -1,9 +1,11 @@
 # Güncel görev durumu
 
-## 9 Kasım 2026 — çoklu liman / manuel kabul (aktif)
+## 9–10 Kasım 2026 — çoklu liman / manuel kabul (aktif)
 
 - [x] HEAD0029672, doğru upstream ve iki mantıksal dal; immutable kaynak arşivi, başlangıç kimliği ve eski açık kapılar korundu.
 - [x] Workspace veri/güvenlik sözleşmesi ve A–O kabul defteri oluşturuldu; aşağıdaki eski sonuçlar tarihsel kaynaklarına aittir.
+- [x] V06 multiNS list red/green+gerçek7selectorcase; shared worker Unknown/recovery; freshGET sonrası draft8check; sekiz07varyantı/ikiWebKit (Hubble/perf/sonpaket ayrı).
+- [ ] Genişletilmiş fullTLS lab E2E: iki güvenli FAIL sonrası BLOCKED; startup PodIP beklemesi düzeltildi ve12 unit geçti; yeni gerçek flow kanıtı yok.
 - [x] İlk core checkpoint2d63 push/remoteCI; beş frontend doğruluk hatasında red/green,198 test/build; gerçek same-name log ve A-only UI scale izolasyonu (kalan A–O/perf ayrı).
 - [ ] Workspace kalıcılığı/migration, scope/credential/watch izolasyonu; yeni kaynakta unit/integration/race ve gerçek iki küme.
 - [ ] Tek Canvas deniz haritası, shared Node, güvenli per-harbor state/işlem ve ilişki katmanları; normal UI/görsel kanıt.

@@ -28,6 +28,7 @@ import { installBufferProbe } from './buffer-probe.mjs';
 import { installLifecycleProbe } from "./lifecycle-probe.mjs";
 import { readSceneInventory } from "./scene-inventory.mjs";
 import { buildLockIdentity } from './build-lock.mjs';
+import { workspaceSoakTransition } from './workspace-cycle.mjs';
 import { summarize, distribution, cpuSeconds, loadBands, measurementWindow } from "./metrics.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const require = createRequire(path.join(root, "frontend/package.json"));
@@ -83,6 +84,7 @@ if (
       "panel",
       "interaction",
       "long",
+      "workspace-cycle",
       "log-stress",
       "panel-closed",
       "panel-open",
@@ -174,6 +176,7 @@ const manifest = {
   sceneInventoryDiagnostic: args.includes("--scene-inventory"),
   sceneInventorySHA256: args.includes("--scene-inventory") ? hash(readSceneInventory.toString()) : null,
   networkDiagnostic: args.includes("--network-counts"),
+  workspaceCycleProbe: scenarios.includes("workspace-cycle"),
   fixtureSHA256: Object.fromEntries(
     profiles.map((profile) => [
       profile,
@@ -837,6 +840,17 @@ async function openPodLogs() {
     .click();
   await page.locator(".log-output").waitFor();
 }
+async function cachedPanelControls(uid) {
+  await page.waitForFunction((uid) => globalThis.__KUBEVIEW_BENCHMARK__.inputs.some((row) => row.uid === uid && row.nextRafProxyMs !== undefined), uid);
+  const start = await page.evaluate((uid) => globalThis.__KUBEVIEW_BENCHMARK__.inputs.filter((row) => row.uid === uid).at(-1).start, uid);
+  // Real actionability checks, without activating either control. This is a
+  // conservative browser/automation proxy for this subset, never a physical
+  // presentation or complete management-panel usability measurement.
+  await page.getByRole("button", { name: "Ayrıntı panelini kapat", exact: true }).click({ trial: true });
+  await page.locator(".resource-details .details-tabs").getByRole("button", { name: "Özet", exact: true }).click({ trial: true });
+  const end = await page.evaluate(() => performance.now());
+  return { uid, elapsedMs: end - start, controls: ["close", "summary-tab"] };
+}
 async function interactions(stopAt) {
   const began = Date.now(),
     schedule = [];
@@ -844,6 +858,7 @@ async function interactions(stopAt) {
     const planned = cycle * 5000;
     await sleep(Math.max(0, began + planned - Date.now()));
     const started = Date.now();
+    let panelControls;
     try {
       await closePanel();
       if (cycle % 3 === 0) {
@@ -868,9 +883,11 @@ async function interactions(stopAt) {
       } else if (cycle % 3 === 1) {
         await pick({ type: "node", uid: "node-0" });
         await page.locator(".resource-details h2").waitFor();
+        panelControls = await cachedPanelControls("node-0");
       } else {
         await pick({ type: "container", uid: "pod-0", containerName: "app" });
         await page.locator(".resource-details h2").waitFor();
+        panelControls = await cachedPanelControls("pod-0");
       }
       await sleep(150);
       await closePanel();
@@ -910,6 +927,7 @@ async function interactions(stopAt) {
         plannedMs: planned,
         actualMs: started - began,
         completedMs: Date.now() - began,
+        ...(panelControls ? { panelControls } : {}),
       });
     } catch (e) {
       await page
@@ -963,7 +981,7 @@ async function run(profile, scenario, repeat) {
     }
     await page.mouse.move(8, 8);
   }
-  if (scenario === "long" || scenario === "log-stress") await openPodLogs();
+  if (scenario === "long" || scenario === "log-stress" || scenario === "workspace-cycle") await openPodLogs();
   // Protect the warm-up too. Native input there can otherwise change the panel
   // before the steady window, even when the steady-window guard is correct.
   await setInputGuard(lockInput && scenario !== 'interaction');
@@ -1026,7 +1044,7 @@ async function run(profile, scenario, repeat) {
       path: path.join(out, `${profile}-${scenario}-${repeat}-start.png`),
     });
   const repairBefore = repairPlan ? await page.evaluate(readRepairSnapshot) : null;
-  const repairObservations = [], repairPanelCycles = [];
+  const repairObservations = [], repairPanelCycles = [], workspaceCycles = [];
   const before = await inventory(),
     osBefore = await sampleOS();
   const logBefore = logMatrix ? await state() : null;
@@ -1095,7 +1113,22 @@ async function run(profile, scenario, repeat) {
           interactionError = error;
           return [];
         })
-      : null;
+      : scenario === "workspace-cycle"
+        ? (async () => {
+          await setInputGuard(false);
+          for (let cycle = 1; cycle <= 20; cycle++) {
+            const record = await recordRepairPanelCycle({ cycle, closePanel, openPanel: async () => {
+              workspaceCycles.push(await workspaceSoakTransition({ page, cycle,
+                canonicalPods: initialResources.filter((resource) => resource.kind === "Pod").length }));
+              await openPodLogs();
+            }, inventory, upstreamState: state });
+            repairPanelCycles.push(record);
+            if (!record.valid || record.streams.opened !== 1 || record.streams.closedRequests !== 1)
+              throw Error(`Workspace cycle probe failed at cycle ${cycle}`);
+          }
+          return workspaceCycles;
+        })().catch((error) => { interactionError = error; return []; })
+        : null;
   const checkpoints = [];
   const chunks = [];
   const reconnectAtMs = [];
@@ -1172,7 +1205,12 @@ async function run(profile, scenario, repeat) {
       );
       if (elapsed > 600000) {
         await setInputGuard(false);
-        repairPanelCycles.push(await recordRepairPanelCycle({ cycle: repairPanelCycles.length + 1, closePanel, openPanel: openPodLogs, inventory, upstreamState: state }));
+        const cycle = repairPanelCycles.length + 1;
+        repairPanelCycles.push(await recordRepairPanelCycle({ cycle, closePanel, openPanel: async () => {
+          if (harborCount) workspaceCycles.push(await workspaceSoakTransition({ page, cycle,
+            canonicalPods: initialResources.filter((resource) => resource.kind === "Pod").length }));
+          await openPodLogs();
+        }, inventory, upstreamState: state }));
         await setInputGuard(lockInput);
       }
       // Informers belong to each socket: keep the last connection >10 minutes,
@@ -1270,7 +1308,13 @@ async function run(profile, scenario, repeat) {
     reconnects,
     reconnectAtMs,
     repairPanelCycles,
+    workspaceCycles,
     interactionSchedule,
+    ...(interactionSchedule ? { panelControlsActionabilityProxy: {
+      scope: "Pointerdown to successful trial-click of Close and Summary; conservative automation upper bound for two controls, not physical feedback or complete panel usability",
+      samples: interactionSchedule.filter((item) => item.panelControls).map((item) => item.panelControls),
+      elapsedMs: distribution(interactionSchedule.filter((item) => item.panelControls).map((item) => item.panelControls.elapsedMs)),
+    } } : {}),
     network,
     setupBeforeWarm,
     bufferActivity: raw.bufferActivity,
@@ -1293,7 +1337,7 @@ async function run(profile, scenario, repeat) {
     result.logUI={selectionExact:selection===original,downloadExact:downloaded===original,filterExact:true,restoredExact:await page.locator('.log-output').textContent()===original,unwrapExact:unwrapped.text===original && unwrapped.whiteSpace==='pre',chunkNodes:await page.locator('.log-output > span').count()};
     if(Object.values(result.logUI).some(value=>value===false)) throw Error('Log UI content/selection verification failed');
   }
-  if (scenario === "long" || scenario === "log-stress" || logMatrix) {
+  if (scenario === "long" || scenario === "log-stress" || scenario === "workspace-cycle" || logMatrix) {
     await closePanel();
     await sleep(500);
     const upstream = await state();
@@ -1345,7 +1389,7 @@ async function run(profile, scenario, repeat) {
     if(logMatrix && ['log-normal','log-long'].includes(scenario) && Math.abs(result.logSource.producedLines-duration*10)>2) integrity.push('Independent log producer did not maintain the planned 10 lines/s');
   }
   result.workloadIntegrity={valid:!integrity.length,reasons:integrity};
-  if (events.length) {
+  if (events.length || scenario === "workspace-cycle") {
     const upstream = await state();
     result.loadBands = loadBands(events, raw.messages, {
       burst: scenario === "events",

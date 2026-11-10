@@ -1,0 +1,14 @@
+F.
+======================================================================
+FAIL: test_closed_go_style_connection_does_not_block_restart (test_ports.PortLifecycle.test_closed_go_style_connection_does_not_block_restart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yunusemre/Desktop/KubeView/manual-lab/tests/test_ports.py", line 38, in test_closed_go_style_connection_does_not_block_restart
+    self.assertTrue(runner.free_port(address[1]))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (failures=1)

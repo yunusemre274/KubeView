@@ -32,6 +32,9 @@ import (
 
 var benchGVR = map[string]schema.GroupVersionResource{
 	"Node": {Version: "v1", Resource: "nodes"}, "Pod": {Version: "v1", Resource: "pods"}, "Namespace": {Version: "v1", Resource: "namespaces"},
+	// Workspace's normal scope preview lists Services even when the frozen
+	// fixture contains none. Register the real empty API, not a mock preview.
+	"Service": {Version: "v1", Resource: "services"},
 	"Deployment": {Group: "apps", Version: "v1", Resource: "deployments"}, "StatefulSet": {Group: "apps", Version: "v1", Resource: "statefulsets"},
 }
 
@@ -118,7 +121,7 @@ func TestBenchmarkFixtureServer(t *testing.T) {
 				h := initial
 				h.ID = fmt.Sprintf("fixture-harbor-%02d", i+1)
 				h.Name = fmt.Sprintf("TEST/REPLAY %02d", i+1)
-				h.Position = [2]float64{float64(i%5) * 750, float64(i/5) * 750}
+				h.Position = [2]float64{float64(i%5) * 1400, float64(i/5) * 1400}
 				d.Harbors = append(d.Harbors, h)
 			}
 			return nil

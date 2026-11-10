@@ -223,12 +223,13 @@ export default function App() {
       const selectionView = { ...(pendingSelection ? {} : cached?.selection || {}),
         containerName: cached?.selection?.containerName || savedSelection?.containerName,
         tab: cached?.selection?.tab || workspace?.view?.tab };
+      const openResourcePanel = Boolean(pendingSelection || !cached || cached.panel?.type === "resource");
       const restored = savedSelectionResource(byUID, descriptor);
       pendingSelectionRestore.current = !restored && descriptor?.uid && descriptor.kind !== "Secret" && (!snapshotReady || stale)
-        ? { sourceKey, harborId: workspace?.activeId, descriptor, selectionView } : null;
+        ? { sourceKey, harborId: workspace?.activeId, descriptor, selectionView, openResourcePanel } : null;
       setSelection(restored ? { ...selectionView, resource: restored } : null);
       setSelectedFlow(null);
-      setPanel(cached?.panel?.type === "facility" ? cached.panel : restored ? { type: "resource" } : null);
+      setPanel(!pendingSelection && cached?.panel?.type === "facility" ? cached.panel : restored && openResourcePanel ? { type: "resource" } : null);
       setForm(cached?.form?.sourceKey === sourceKey && (!cached.form.resource?.metadata?.uid || byUID.has(cached.form.resource.metadata.uid)) ? { ...cached.form, restoredDraft: cached.draft } : null);
       safeDraft.current = cached?.draft || null;
       sensitiveDraft.current = false;
@@ -252,7 +253,7 @@ export default function App() {
     const resource = savedSelectionResource(byUID, pending.descriptor);
     if (!resource) return;
     setSelection({ ...pending.selectionView, resource });
-    setPanel({ type: "resource" });
+    if (pending.openResourcePanel) setPanel({ type: "resource" });
   }, [sourceKey, workspace?.activeId, snapshotReady, stale, byUID]);
   const switchHarbor = useCommittedEvent((id) => {
     if (!workspace || id === workspace.activeId) { setUtility(null); return; }

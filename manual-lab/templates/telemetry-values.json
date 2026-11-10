@@ -6,8 +6,8 @@
   "operator": {"replicas": 1},
   "hubble": {
     "enabled": true,
-    "tls": {"enabled": true, "auto": {"enabled": true}},
-    "relay": {"enabled": true, "replicas": 1, "tls": {"server": {"enabled": false}}},
+    "tls": {"enabled": true, "auto": {"enabled": true, "method": "helm"}},
+    "relay": {"enabled": true, "replicas": 1, "tls": {"server": {"enabled": true, "mtls": true}}},
     "ui": {"enabled": false},
     "metrics": {"enabled": []}
   }

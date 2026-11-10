@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "attempt": "telemetry-bootstrap-order-unit-01",
+  "at": "2026-11-10T09:07:35.215843+00:00",
+  "red": {
+    "testsRun": 5,
+    "missingGuardErrors": 5,
+    "pass": false,
+    "source": "immutable-v06-before-fix"
+  },
+  "green": {
+    "testsRun": 9,
+    "pass": true,
+    "errors": 0,
+    "failures": 0
+  },
+  "elapsedSeconds": 0.037,
+  "sourceSha256": {
+    "manual-lab/telemetry.py": "2a6c9b31e4411f8b24e2c7a9833a7245c7e3b3b62f8ca48b4e2acc7dec71247a",
+    "manual-lab/tests/test_telemetry_bootstrap.py": "44b779264ef36bdb586013eb538c22db070736f9b5e2c19825bf32c7987e6f90",
+    "scripts/manual_lab.py": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf"
+  },
+  "clusterAppTrafficSecretAccess": false,
+  "processOrNetworkStarted": false
+}

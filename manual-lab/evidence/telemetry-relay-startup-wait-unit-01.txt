@@ -1,0 +1,57 @@
+RED (immutable module before startup wait)
+test_startup_empty_ip_becomes_valid_on_same_uid_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_empty_ip_becomes_valid_on_same_uid_without_delete) ... ERROR
+test_startup_empty_ip_times_out_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_empty_ip_times_out_without_delete) ... FAIL
+test_startup_new_uid_aborts_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_new_uid_aborts_without_delete) ... FAIL
+
+======================================================================
+ERROR: test_startup_empty_ip_becomes_valid_on_same_uid_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_empty_ip_becomes_valid_on_same_uid_without_delete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "[USER_HOME]/Desktop/KubeView/manual-lab/tests/test_telemetry_bootstrap.py", line 98, in test_startup_empty_ip_becomes_valid_on_same_uid_without_delete
+    telemetry.relay_network(repair=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "[FROZEN_BUNDLE]/manual-lab/telemetry.py", line 248, in relay_network
+    raise self.error("Relay aktif owned Node üzerinde Running değil; silme yok")
+manual_lab.LabError: Relay aktif owned Node üzerinde Running değil; silme yok
+
+======================================================================
+FAIL: test_startup_empty_ip_times_out_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_empty_ip_times_out_without_delete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "[USER_HOME]/Desktop/KubeView/manual-lab/tests/test_telemetry_bootstrap.py", line 110, in test_startup_empty_ip_times_out_without_delete
+    self.assertEqual(clock[0], 45)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: 0.0 != 45
+
+======================================================================
+FAIL: test_startup_new_uid_aborts_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_new_uid_aborts_without_delete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "[USER_HOME]/Desktop/KubeView/manual-lab/tests/test_telemetry_bootstrap.py", line 125, in test_startup_new_uid_aborts_without_delete
+    self.assertGreater(clock[0], 0)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: 0.0 not greater than 0
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.010s
+
+FAILED (failures=2, errors=1)
+
+GREEN (source only startup wait fix)
+test_active_bridge_plugin_rejects_network_proof (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_active_bridge_plugin_rejects_network_proof) ... ok
+test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_invalid_cidr_unmanaged_relay_delete_has_exact_uid_and_rv) ... ok
+test_startup_empty_ip_becomes_valid_on_same_uid_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_empty_ip_becomes_valid_on_same_uid_without_delete) ... ok
+test_startup_empty_ip_times_out_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_empty_ip_times_out_without_delete) ... ok
+test_startup_new_uid_aborts_without_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_startup_new_uid_aborts_without_delete) ... ok
+test_unknown_owner_is_rejected_before_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_unknown_owner_is_rejected_before_delete) ... ok
+test_valid_cilium_endpoint_needs_no_delete (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_valid_cilium_endpoint_needs_no_delete) ... ok
+test_valid_ip_without_endpoint_is_not_blindly_restarted (test_telemetry_bootstrap.TelemetryBootstrapContracts.test_valid_ip_without_endpoint_is_not_blindly_restarted) ... ok
+test_backend_env_requires_mtls_without_plaintext_fallback (test_telemetry_tls.TelemetryTLSContracts.test_backend_env_requires_mtls_without_plaintext_fallback) ... ok
+test_default_vanilla_lab_is_rejected_before_secret_read (test_telemetry_tls.TelemetryTLSContracts.test_default_vanilla_lab_is_rejected_before_secret_read) ... ok
+test_template_requires_both_tls_hops_and_mutual_relay_auth (test_telemetry_tls.TelemetryTLSContracts.test_template_requires_both_tls_hops_and_mutual_relay_auth) ... ok
+test_unpinned_secret_uid_cannot_write_private_material (test_telemetry_tls.TelemetryTLSContracts.test_unpinned_secret_uid_cannot_write_private_material) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.039s
+
+OK

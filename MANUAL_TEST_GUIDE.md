@@ -234,10 +234,23 @@ kontrol eder; paket/CLI yüklemez. Cilium chart/app1.20.2 yalnız açık extensi
 isteğiyle indirilir, SHA'sı private state'e sabitlenir. Önce normal A/B lab'larını
 kendi state'lerinde `down` ile durdurun; yaklaşık4GiB+telemetry/system payı gerekir.
 
+Bu adayın opsiyonel telemetry E2E kabulü **BLOCKED**: ilk gerçek cold kurulum relay'nin
+Cilium öncesi yanlış NodeCIDR'le başlaması ve DNS timeout nedeniyle başarısız oldu.
+Dar düzeltmeden sonraki tek warm retry, henüz PodIP'si olmayan relay'yi güvenli
+biçimde reddetti; Pod silinmedi. İki denemenin de lab'ı resmî `down` ile durduruldu.
+[Cold FAIL](manual-lab/evidence/telemetry-full-tls-cold-01.json) ve
+[warm retry FAIL](manual-lab/evidence/telemetry-full-tls-warm-retry-02.json) korunur.
+Bu iki runtime FAIL sonrasındaki kaynak, aynı owned PodUID'nin başlangıçta IP
+almasını en fazla45s bekler; bu son kaynakla üçüncü integration koşusu yapılmadı.
+[12 hedefli unit PASS](manual-lab/evidence/telemetry-relay-startup-wait-unit-01.json)
+yalnız mock saat/kaynak sözleşmeleridir; gerçek mTLS/provider UI/ölçülmüş
+start–increase–stop/kısıtlı telemetry kabulünün yerine geçmez. Bu alt kontroller bu
+koşuda çalıştırılamadı.
+
 ```sh
 ./scripts/manual-lab.sh down
 ./scripts/manual-lab.sh doctor --state-dir /kullanici/verisi/kv-telemetry --hubble-binary /kurulu/hubble
-./scripts/manual-lab.sh up --profile 06-limanlar-arasi-ag --state-dir /kullanici/verisi/kv-telemetry --telemetry --hubble-binary /kurulu/hubble
+./scripts/manual-lab.sh up --profile 06-limanlar-arasi-ag --state-dir /kullanici/verisi/kv-telemetry --telemetry --base-port 19900 --hubble-binary /kurulu/hubble
 ./scripts/manual-lab.sh app --profile 06-limanlar-arasi-ag --state-dir /kullanici/verisi/kv-telemetry
 ./scripts/manual-lab.sh scenario --profile 06-limanlar-arasi-ag --state-dir /kullanici/verisi/kv-telemetry --name traffic-start
 ./scripts/manual-lab.sh scenario --profile 06-limanlar-arasi-ag --state-dir /kullanici/verisi/kv-telemetry --name traffic-stop
@@ -248,9 +261,14 @@ Bu **fresh ayrı state** ilk A2 oluşturulurken CNI'siz bootstrap→pinned Ciliu
 kurulumu yapar; mevcut vanilla A'yı dönüştürmez. Ayrı telemetry lab'ında yalnız06
 extension kapsamı kullanılır; B/T eklenmez. Aynı state ile tekrar up mode'u korur.
 Cilium/Hubble kaynakları owner+install-intent+UID, forward PID+doğum/komut+port ile
-korunur. Hubble agent↔relay mTLS açıktır; owned kubectl forward yalnız127.0.0.1:
-base-port+8(default19708) açılır. Bu özel loopback bağlantısında backend explicit
-plaintext izni kullanır. Kullanıcının global CLI/kubeconfig/Helm config'i okunmaz.
+korunur. Hubble agent↔relay ve relay↔backend mTLS açıktır; owned kubectl forward yalnız
+127.0.0.1:base-port+8 açılır. Yukarıdaki ayrı port planında app19906, Hubble19908
+olur. Backend ve CLI aynı doğrulanmış CA/clientcert/key ile
+`ui.hubble-relay.cilium.io` server name kullanır; plaintext/insecure fallback yoktur.
+Yalnız açık telemetry lab'ının UID/Helm/owner guard'lı iki sabit Secret'inden
+private0700 dizine atomic0600 materyal alınır. Default A/B Secret'leri okunmaz;
+materyal değerleri ve özel yollar public kanıtlara/export'a yazılmaz.
+Kullanıcının global CLI/kubeconfig/Helm config'i okunmaz.
 
 UI'da configured/available ayrımını, gerçek fresh flow start/stop'u ve stale
 sonrası temizliği inceleyin. Default kindnet A'da NetworkPolicy enforcement veya
@@ -259,6 +277,17 @@ L7 redirect kurulmaz, L4 flow sayısı HTTP istek/byte/bant genişliği değildi
 Extension kodunun bulunması gerçek kurulum/provider E2E PASS sayılmaz; teslim
 kanıtındaki gerçek koşu durumunu ayrıca kontrol edin. Reset yalnız06 fixture'larını
 sıfırlar; Cilium'u ve workspace tercihlerini silmez.
+
+İlk bootstrap'ta relay Cilium'dan önce başlamışsa runner yalnız açık telemetry
+lab'ının aktif Node CNI plugin adlarını ve NodeCIDR'lerini doğrular. Yalnız exact
+Deployment→ReplicaSet→Pod UID zinciri doğrulanan relay Pod'u, IP'si kendi NodeCIDR'i
+dışında **ve** CiliumEndpoint'i yoksa UID/resourceVersion önkoşuluyla bir kez yeniler.
+Başlangıçta Pending/boş IP için yalnız aynı PodUID en fazla45s beklenir; UID, owner,
+NodeUID/CIDR değişikliği veya timeout silmeyi reddeder.
+Belirsiz CNI/owner veya sıradan Ready=False bu işleme yetmez; başka Pod, CoreDNS,
+NetworkPolicy veya kullanıcı CNI'si değiştirilmez. Yeni relay IP/endpoint kimliği ve
+gerçek readiness tekrar doğrulanır. Başarısız cold denemeden sonraki recovery ayrı
+kayıttır; başarılı yeni cold kurulum kanıtı olarak yorumlanmaz.
 
 MANUEL PASS/FAIL: ______  Notlar: ______________________________________
 

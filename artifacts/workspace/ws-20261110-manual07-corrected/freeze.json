@@ -1,0 +1,53 @@
+{
+  "id": "ws-20261110-manual07-corrected",
+  "at": "2026-11-10T09:09:58.798263+00:00",
+  "status": "failed",
+  "caseStatus": {
+    "chromium-M-h1": "passed",
+    "chromium-M-h5": "passed",
+    "chromium-M-h10": "passed",
+    "chromium-M-h20": "passed",
+    "chromium-L-h1": "passed",
+    "chromium-L-h5": "passed",
+    "chromium-L-h10": "passed",
+    "chromium-L-h20": "passed",
+    "webkit-M-h5": "passed",
+    "webkit-L-h20": "failed"
+  },
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "sourceAfter": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "binarySHA256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "binarySHA256After": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "runnerSHA256Before": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "runnerSHA256After": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "manual07AppRecordPresent": false,
+  "preservedVariants": [
+    "L-h01",
+    "L-h05",
+    "L-h10",
+    "L-h20",
+    "M-h01",
+    "M-h05",
+    "M-h10",
+    "M-h20"
+  ],
+  "remainingHelperOrPlaywrightBrowserPIDs": [],
+  "screenshotCount": 12,
+  "files": {
+    "REVIEW.md": "66d7fc8bc21ed9fd1db59fed24308e0dda75d73b3ffd0956e143aa9e9986cd7c",
+    "chromium-L-h1-final-world.png": "0abfce07881628ee79937eb7e108d39558595fab5994f178cbe965da5634e2fa",
+    "chromium-L-h10-final-world.png": "d53711f0ddcee2def2ba6fdea5d022b44a9713469eec0cffb636ade9ec61c484",
+    "chromium-L-h20-final-world.png": "ce284448d87e97b5216eef7c602b4ac9e99dd371bf7549a92bc97a7cf6d82372",
+    "chromium-L-h5-final-world.png": "3fe966e42f60a19f59a508bed655ef90589c2b5d1543e4facdf4aecad83c9d66",
+    "chromium-M-h1-final-world.png": "2b2e726d268d1225546b675e16dc9d1057b849d57401894c6b3b90cd467a11de",
+    "chromium-M-h10-final-world.png": "81ef783355b3b7573cf6ec7ae523f69154dad390703a04b5cf11fbb94e5dbb5e",
+    "chromium-M-h20-final-world.png": "d03ce9fdb55e918b384379695efa8dbda76b3ad233dca58b21bb792632d49a32",
+    "chromium-M-h5-final-world.png": "a28339eea1cb64a1a62a3af10a562e799d34b56fd054bb3ac11815ea03e2a9f6",
+    "result.json": "09029e264978fb839b5426a4ed28bb2f74785e9cb2dfe0e4c85132eed05773be",
+    "webkit-L-h20-1280-map-access.png": "2c11712ec3334f31435cb53c2a8167489bf72044ef9bcdd641cffeb88d7eedcc",
+    "webkit-L-h20-failure.png": "52795ef8028df3f27d4b97306e536be41cb617416b2783a48a9bfb995a117980",
+    "webkit-M-h5-1440-map-access.png": "e0078c6697566a9d72113bdbb0fc07ee4ac6ad35149de865056915dc9478938b",
+    "webkit-M-h5-final-world.png": "e0fade5f304b9b662f0a70cbb8a7231758a0c5889b1897d93a3bba858f8131ec"
+  },
+  "limit": "9 PASS/1 FAIL remains unchanged; viewport helper fix has not been executed in this artifact."
+}

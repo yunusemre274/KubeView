@@ -180,3 +180,12 @@ Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm 
 - Kaydedilmiş UID ilk render'da bulunmayabilir. İlk yetkili güncel snapshot'a bir kez bekleyen restore, kullanıcı yeni bir nesne açınca iptal edilmeli; aynı isim/yeniUID'ye bağlanmamalı.
 - Canonical store güncel olsa da panel overlay'i eski metrik referansını örtebilir. Yeni timer eklemeden yetkili core örneği aynı cadence'de yeniden kullanılmalı; epoch/abort sınırı korunmalı.
 - Aktif kamera geçişinin devam etmesini textbox yön tuşunun kamerayı hareket ettirmesiyle karıştırma; önce pose'un durduğunu gözle. Controller eyleminde202 Accepted doğru sözleşmedir, testin200 varsayımı ürün hatası değildir; Ready ayrıca gerçek API'den beklenir. İlk helperFAIL ve cleanup kanıtı saklanır.
+
+### 10 Kasım 2026 — liste tipi, TCP ve başlangıç zamanı
+
+- Namespace listelerini birleştirirken items yeterli değildir: boş listede de upstream kind/apiVersion korunmalı; farklı namespace RV değerleri tek global versiyon yapılmamalı. HTTP200 başarılı Kubernetes decode anlamına gelmedi.
+- PID/listener kapalıyken yalın bind TIME_WAIT yüzünden başarısız olabilir. Go-style SO_REUSEADDR probe canlı LISTEN reddini korur; SO_REUSEPORT eklenmez. Controlled Darwin deneyi ve real unit red/green ile doğrulandı.
+- CNI ve uygulama aynı Helm adımında yaratılırsa erken Pod yanlış CIDR alabilir. Bir sonraki startup anında PodIP geçici boş olabilir; güvenli guard reddi başarı değildir. Warm recovery yeni cold PASS sayılmaz; gerçek trafik aşamasına ulaşılmadıysa unit sonuçları yerine yazılmaz.
+- WebKit resize testinde eski innerWidth ve eski canvas birlikte eşit olabilir. Bekleme istenen viewport hedefini kullanmalı; yalnız başarısız yaprak yeniden çalıştırılır.
+
+- Seçim ile panelin açık olma niyeti farklıdır. Cache'te panel=null iken aynıUID seçimini restore etmek panel/logu otomatik açmamalı; pending snapshot dalı da bu niyeti taşır. Bunu uzun koşunun sonuna bırakmadan red ve normalUI log sayaçlarıyla doğrula.

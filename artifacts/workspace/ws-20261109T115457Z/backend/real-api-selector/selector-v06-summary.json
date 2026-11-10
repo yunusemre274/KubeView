@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "metadata": "selector-20261110T084808Z-meta.json",
+  "proof": "workspace-real-selector-multins-overlap-qa-ws-4c6a557b2a0c4353.json",
+  "rawEvidence": "selector-20261110T084808Z.jsonl",
+  "passedSteps": [
+    "owned_selector_multins_harbors_and_real_ready",
+    "selector_negatives_and_exact_overlap_union",
+    "multins_real_update_and_target_uid",
+    "out_of_scope_is_metadata_only_and_real_object_survives",
+    "same_uid_reentry",
+    "reconnect_generation_guard",
+    "real_uid_precondition_delete_reaches_all_overlapping_harbors"
+  ],
+  "elapsedSeconds": 26.25,
+  "goPID": 6388,
+  "goAlive": false,
+  "phaseProcessesRunning": 0,
+  "gatewayBinarySHA256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "sourceUnchanged": true,
+  "sourceSHA256": "812d7b82179c24f84aa9893646f4d796e2149522efc9a0cb7586a25e89e1d452",
+  "cleanup": [
+    "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0",
+    "created temporary harbor ID removed",
+    "created temporary harbor ID removed",
+    "created temporary harbor ID removed",
+    "original workspace document preserved except revision"
+  ],
+  "ownedObjects": [
+    {
+      "namespace": "kvml-e731dabd-02-p1",
+      "name": "qa-ws-4c6a557b2a0c4353-alpha",
+      "uid": "635978b1-f6c3-4a0b-944d-25ed21560371",
+      "cleanupGet404": true
+    },
+    {
+      "namespace": "kvml-e731dabd-02-p2",
+      "name": "qa-ws-4c6a557b2a0c4353-beta",
+      "uid": "797f9f1e-f040-4198-91e2-914c0bfa40e8",
+      "cleanupGet404": true
+    },
+    {
+      "namespace": "kvml-e731dabd-02-p1",
+      "name": "qa-ws-4c6a557b2a0c4353-denied-selector",
+      "uid": "",
+      "cleanupGet404": true
+    }
+  ],
+  "temporaryHarborIds": [
+    "c0071a16-f711-4b0a-9c97-6907f48ab4c3",
+    "59f91778-6d2d-438e-82fc-0114d1662a64",
+    "f0295a52-1d2f-4a86-86ac-75019e3fdf5f"
+  ],
+  "previousFailRetained": "selector-20261110T084004Z-meta.json",
+  "limits": "Backend real Kubernetes + HTTP/API/watch proof; not browser/performance, credential-rotation, or frontend callback proof."
+}

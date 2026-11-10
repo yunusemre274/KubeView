@@ -1,0 +1,1436 @@
+{
+  "id": "ws-20261110-shared-worker-snapshot-guard",
+  "startedAt": "2026-11-10T08:43:54.030Z",
+  "source": "Real owned Docker/minikube worker power; real Node API/WS; normal object panels",
+  "worker": {
+    "name": "kvml-ccdfe731dabd-a-m02",
+    "uid": "607adac0-75e9-4de1-9903-8e6422f77564"
+  },
+  "status": "passed",
+  "samples": [
+    {
+      "at": "2026-11-10T08:44:12.352Z",
+      "phase": "0-before",
+      "upstream": {
+        "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+        "ready": "True",
+        "resourceVersion": "10019"
+      },
+      "b": {
+        "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+        "ready": "True"
+      },
+      "views": [
+        {
+          "name": "Proje-1",
+          "stats": {
+            "frame": 1056,
+            "calls": 199,
+            "triangles": 42740,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 33,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"4d50944a-6f37-4d8a-88b7-4569ea6e1a3e\",\"90209681-ba98-4149-b1dc-6c7e767bbf62\",\"0105913b-075c-4dda-a7ce-8a96e8b04bff\",\"1680ede93dbe2883b7f31e2fcc2d2e09\",[\"kvml-e731dabd-02-p1\"],\"\"]live:kvml-ccdfe731dabd-a:1:harbor:0632b558-1fc6-4921-831c-00a04301a1e4",
+            "clock": 17.653600000000576,
+            "sourceWallStart": 1794300234697,
+            "nodes": [
+              {
+                "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                  "name": "kvml-ccdfe731dabd-a",
+                  "slot": 0,
+                  "progress": 983.8210694115576,
+                  "position": [
+                    -157.39185948821063,
+                    0.08305428415257687,
+                    228.70274546555385
+                  ],
+                  "yaw": -2.2252274379063834,
+                  "pitch": -0.0025882448609118825,
+                  "roll": -0.000687501085561136,
+                  "state": "patrolling",
+                  "speed": 8.999995866614208,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              },
+              {
+                "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                  "name": "kvml-ccdfe731dabd-a-m02",
+                  "slot": 1,
+                  "progress": 1157.4139867644324,
+                  "position": [
+                    -175,
+                    0.03920753117290214,
+                    60.64351735287869
+                  ],
+                  "yaw": 3.141592653589793,
+                  "pitch": 0.000826745797611383,
+                  "roll": 0.004539856884871021,
+                  "state": "patrolling",
+                  "speed": 9.00000000001293,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 1056
+        },
+        {
+          "name": "Proje-2",
+          "stats": {
+            "frame": 691,
+            "calls": 199,
+            "triangles": 42740,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 34,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"4d50944a-6f37-4d8a-88b7-4569ea6e1a3e\",\"90209681-ba98-4149-b1dc-6c7e767bbf62\",\"0105913b-075c-4dda-a7ce-8a96e8b04bff\",\"1680ede93dbe2883b7f31e2fcc2d2e09\",[\"kvml-e731dabd-02-p2\"],\"\"]live:kvml-ccdfe731dabd-a:1:harbor:c0e5fe06-d853-40fd-84ff-5f43b46115c4",
+            "clock": 11.538900000000394,
+            "sourceWallStart": 1794300241164,
+            "nodes": [
+              {
+                "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                  "name": "kvml-ccdfe731dabd-a",
+                  "slot": 0,
+                  "progress": 906.7243694115466,
+                  "position": [
+                    -82.35270000000594,
+                    -0.022871267074139317,
+                    238
+                  ],
+                  "yaw": -1.5707963267948966,
+                  "pitch": -0.00262477795806059,
+                  "roll": -0.002303597101541927,
+                  "state": "patrolling",
+                  "speed": 8.999999999996916,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": true
+                }
+              },
+              {
+                "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                  "name": "kvml-ccdfe731dabd-a-m02",
+                  "slot": 1,
+                  "progress": 1080.3172867644269,
+                  "position": [
+                    -175,
+                    0.03413192846347855,
+                    137.7402173528842
+                  ],
+                  "yaw": 3.141592653589793,
+                  "pitch": 0.001382490435258658,
+                  "roll": -0.0029504050584917532,
+                  "state": "patrolling",
+                  "speed": 8.999999999996916,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 691
+        },
+        {
+          "name": "Bağımsız-B",
+          "stats": {
+            "frame": 178,
+            "calls": 182,
+            "triangles": 39981,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 30,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 1,
+              "visibleNodes": 1,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 2,
+              "visiblePods": 2,
+              "nodeSlots": 1,
+              "podSlots": 2,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"ae9a01f3-df40-49bd-b553-5948591c62ca\",\"d812c9ee-54eb-4e1e-b856-a47dd7fc7205\",\"f157c4a2-b1a4-4952-ab07-911de72b8402\",\"4bb1b8603336285ae869e95b1ec18052\",[\"kvml-e731dabd-03-same\"],\"\"]live:kvml-ccdfe731dabd-b:1:harbor:e9822c84-b728-4864-8380-2070f3af74e3",
+            "clock": 3.0037999999998113,
+            "sourceWallStart": 1794300249930,
+            "nodes": [
+              {
+                "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+                  "name": "kvml-ccdfe731dabd-b",
+                  "slot": 0,
+                  "progress": 885.7210694115363,
+                  "position": [
+                    -61.349399999995626,
+                    0.0740865819440706,
+                    238
+                  ],
+                  "yaw": -1.5707963267948966,
+                  "pitch": 0.00017072226790087948,
+                  "roll": 0.0008813373928169148,
+                  "state": "patrolling",
+                  "speed": 8.999999999995861,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": true
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 178
+        }
+      ]
+    },
+    {
+      "at": "2026-11-10T08:45:00.220Z",
+      "phase": "1-unknown",
+      "upstream": {
+        "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+        "ready": "Unknown",
+        "resourceVersion": "10162"
+      },
+      "b": {
+        "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+        "ready": "True"
+      },
+      "views": [
+        {
+          "name": "Proje-1",
+          "stats": {
+            "frame": 3917,
+            "calls": 198,
+            "triangles": 42700,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 33,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"4d50944a-6f37-4d8a-88b7-4569ea6e1a3e\",\"90209681-ba98-4149-b1dc-6c7e767bbf62\",\"0105913b-075c-4dda-a7ce-8a96e8b04bff\",\"1680ede93dbe2883b7f31e2fcc2d2e09\",[\"kvml-e731dabd-02-p1\"],\"\"]live:kvml-ccdfe731dabd-a:1:harbor:0632b558-1fc6-4921-831c-00a04301a1e4",
+            "clock": 65.52079999999843,
+            "sourceWallStart": 1794300234697,
+            "nodes": [
+              {
+                "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                  "name": "kvml-ccdfe731dabd-a",
+                  "slot": 0,
+                  "progress": 25.882530588384043,
+                  "position": [
+                    -104.11746941161596,
+                    0.08574259297485355,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": -0.003194684991936974,
+                  "roll": 0.0002827128715912862,
+                  "state": "patrolling",
+                  "speed": 9.000000000006064,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              },
+              {
+                "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                "fault": 0,
+                "communication": true,
+                "phase": "communication-lost",
+                "pose": {
+                  "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                  "name": "kvml-ccdfe731dabd-a-m02",
+                  "slot": 1,
+                  "progress": 184.7757479412619,
+                  "position": [
+                    54.7757479412619,
+                    -0.20733234400406286,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": -0.0028862510802866947,
+                  "roll": 0.011442776279934164,
+                  "state": "patrolling",
+                  "speed": 0,
+                  "paused": true,
+                  "healthy": false,
+                  "reason": "Node Ready değil · son pozisyon korunuyor",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 3917
+        },
+        {
+          "name": "Proje-2",
+          "stats": {
+            "frame": 3552,
+            "calls": 198,
+            "triangles": 42700,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 34,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"4d50944a-6f37-4d8a-88b7-4569ea6e1a3e\",\"90209681-ba98-4149-b1dc-6c7e767bbf62\",\"0105913b-075c-4dda-a7ce-8a96e8b04bff\",\"1680ede93dbe2883b7f31e2fcc2d2e09\",[\"kvml-e731dabd-02-p2\"],\"\"]live:kvml-ccdfe731dabd-a:1:harbor:c0e5fe06-d853-40fd-84ff-5f43b46115c4",
+            "clock": 59.371999999998614,
+            "sourceWallStart": 1794300241164,
+            "nodes": [
+              {
+                "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                  "name": "kvml-ccdfe731dabd-a",
+                  "slot": 0,
+                  "progress": 1337.2222694114787,
+                  "position": [
+                    -170.98033092115486,
+                    -0.05924618330006923,
+                    -118.59065565257552
+                  ],
+                  "yaw": 2.715708980386068,
+                  "pitch": -0.0005839551700411496,
+                  "roll": -0.0033849997333797025,
+                  "state": "patrolling",
+                  "speed": 8.999995766407347,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              },
+              {
+                "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                "fault": 0,
+                "communication": true,
+                "phase": "communication-lost",
+                "pose": {
+                  "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                  "name": "kvml-ccdfe731dabd-a-m02",
+                  "slot": 1,
+                  "progress": 106.06984794127311,
+                  "position": [
+                    -23.93015205872689,
+                    -0.16364908489633428,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": 0.0003196813857021701,
+                  "roll": 0.015530245366955645,
+                  "state": "patrolling",
+                  "speed": 0,
+                  "paused": true,
+                  "healthy": false,
+                  "reason": "Node Ready değil · son pozisyon korunuyor",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 3552
+        },
+        {
+          "name": "Bağımsız-B",
+          "stats": {
+            "frame": 3043,
+            "calls": 182,
+            "triangles": 39981,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 30,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 1,
+              "visibleNodes": 1,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 2,
+              "visiblePods": 2,
+              "nodeSlots": 1,
+              "podSlots": 2,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"ae9a01f3-df40-49bd-b553-5948591c62ca\",\"d812c9ee-54eb-4e1e-b856-a47dd7fc7205\",\"f157c4a2-b1a4-4952-ab07-911de72b8402\",\"4bb1b8603336285ae869e95b1ec18052\",[\"kvml-e731dabd-03-same\"],\"\"]live:kvml-ccdfe731dabd-b:1:harbor:e9822c84-b728-4864-8380-2070f3af74e3",
+            "clock": 50.78649999999881,
+            "sourceWallStart": 1794300249930,
+            "nodes": [
+              {
+                "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+                  "name": "kvml-ccdfe731dabd-b",
+                  "slot": 0,
+                  "progress": 1315.7653694114576,
+                  "position": [
+                    -175,
+                    0.03600696209705282,
+                    -97.70786529414659
+                  ],
+                  "yaw": 3.141592653589793,
+                  "pitch": -0.0021131663409244394,
+                  "roll": 0.003063568380901408,
+                  "state": "patrolling",
+                  "speed": 9.000000000005803,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 3043
+        }
+      ]
+    },
+    {
+      "at": "2026-11-10T08:45:02.783Z",
+      "phase": "2-unknown-held",
+      "upstream": {
+        "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+        "ready": "Unknown",
+        "resourceVersion": "10162"
+      },
+      "b": {
+        "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+        "ready": "True"
+      },
+      "views": [
+        {
+          "name": "Proje-1",
+          "stats": {
+            "frame": 4070,
+            "calls": 198,
+            "triangles": 42700,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 33,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"4d50944a-6f37-4d8a-88b7-4569ea6e1a3e\",\"90209681-ba98-4149-b1dc-6c7e767bbf62\",\"0105913b-075c-4dda-a7ce-8a96e8b04bff\",\"1680ede93dbe2883b7f31e2fcc2d2e09\",[\"kvml-e731dabd-02-p1\"],\"\"]live:kvml-ccdfe731dabd-a:1:harbor:0632b558-1fc6-4921-831c-00a04301a1e4",
+            "clock": 68.08729999999854,
+            "sourceWallStart": 1794300234697,
+            "nodes": [
+              {
+                "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                  "name": "kvml-ccdfe731dabd-a",
+                  "slot": 0,
+                  "progress": 48.981030588380236,
+                  "position": [
+                    -81.01896941161976,
+                    0.07521230097312534,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": 0.0006273285123025944,
+                  "roll": -0.001069234143205029,
+                  "state": "patrolling",
+                  "speed": 9.000000000006064,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              },
+              {
+                "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                "fault": 0,
+                "communication": true,
+                "phase": "communication-lost",
+                "pose": {
+                  "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                  "name": "kvml-ccdfe731dabd-a-m02",
+                  "slot": 1,
+                  "progress": 184.7757479412619,
+                  "position": [
+                    54.7757479412619,
+                    -0.21594607116064002,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": -0.0005856868721647251,
+                  "roll": 0.01281659540555261,
+                  "state": "patrolling",
+                  "speed": 0,
+                  "paused": true,
+                  "healthy": false,
+                  "reason": "Node Ready değil · son pozisyon korunuyor",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 4070
+        },
+        {
+          "name": "Proje-2",
+          "stats": {
+            "frame": 3703,
+            "calls": 198,
+            "triangles": 42700,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 34,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"4d50944a-6f37-4d8a-88b7-4569ea6e1a3e\",\"90209681-ba98-4149-b1dc-6c7e767bbf62\",\"0105913b-075c-4dda-a7ce-8a96e8b04bff\",\"1680ede93dbe2883b7f31e2fcc2d2e09\",[\"kvml-e731dabd-02-p2\"],\"\"]live:kvml-ccdfe731dabd-a:1:harbor:c0e5fe06-d853-40fd-84ff-5f43b46115c4",
+            "clock": 61.92189999999888,
+            "sourceWallStart": 1794300241164,
+            "nodes": [
+              {
+                "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                  "name": "kvml-ccdfe731dabd-a",
+                  "slot": 0,
+                  "progress": 1360.1713694114767,
+                  "position": [
+                    -156.69054824453917,
+                    -0.03903473662262621,
+                    -136.23002393603855
+                  ],
+                  "yaw": 2.2057289803861124,
+                  "pitch": -0.001252510573095339,
+                  "roll": -0.001763852938546511,
+                  "state": "patrolling",
+                  "speed": 8.999995613849714,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              },
+              {
+                "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                "fault": 0,
+                "communication": true,
+                "phase": "communication-lost",
+                "pose": {
+                  "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                  "name": "kvml-ccdfe731dabd-a-m02",
+                  "slot": 1,
+                  "progress": 106.06984794127311,
+                  "position": [
+                    -23.93015205872689,
+                    -0.14513501568477238,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": -0.002456206093239357,
+                  "roll": 0.013447030704449307,
+                  "state": "patrolling",
+                  "speed": 0,
+                  "paused": true,
+                  "healthy": false,
+                  "reason": "Node Ready değil · son pozisyon korunuyor",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 3703
+        },
+        {
+          "name": "Bağımsız-B",
+          "stats": {
+            "frame": 3193,
+            "calls": 182,
+            "triangles": 39981,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 30,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 1,
+              "visibleNodes": 1,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 2,
+              "visiblePods": 2,
+              "nodeSlots": 1,
+              "podSlots": 2,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"ae9a01f3-df40-49bd-b553-5948591c62ca\",\"d812c9ee-54eb-4e1e-b856-a47dd7fc7205\",\"f157c4a2-b1a4-4952-ab07-911de72b8402\",\"4bb1b8603336285ae869e95b1ec18052\",[\"kvml-e731dabd-03-same\"],\"\"]live:kvml-ccdfe731dabd-b:1:harbor:e9822c84-b728-4864-8380-2070f3af74e3",
+            "clock": 53.319299999998535,
+            "sourceWallStart": 1794300249930,
+            "nodes": [
+              {
+                "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+                  "name": "kvml-ccdfe731dabd-b",
+                  "slot": 0,
+                  "progress": 1338.5605694114504,
+                  "position": [
+                    -170.40940476834672,
+                    0.053162173162128935,
+                    -119.80101023351882
+                  ],
+                  "yaw": 2.6859689803866975,
+                  "pitch": 0.0009654252104436844,
+                  "roll": 0.0009922593758438425,
+                  "state": "patrolling",
+                  "speed": 8.999996207853263,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 3193
+        }
+      ]
+    },
+    {
+      "at": "2026-11-10T08:45:05.098Z",
+      "phase": "3-recovered",
+      "upstream": {
+        "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+        "ready": "True",
+        "resourceVersion": "10203"
+      },
+      "b": {
+        "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+        "ready": "True"
+      },
+      "views": [
+        {
+          "name": "Proje-1",
+          "stats": {
+            "frame": 4206,
+            "calls": 199,
+            "triangles": 42740,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 33,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"4d50944a-6f37-4d8a-88b7-4569ea6e1a3e\",\"90209681-ba98-4149-b1dc-6c7e767bbf62\",\"0105913b-075c-4dda-a7ce-8a96e8b04bff\",\"1680ede93dbe2883b7f31e2fcc2d2e09\",[\"kvml-e731dabd-02-p1\"],\"\"]live:kvml-ccdfe731dabd-a:1:harbor:0632b558-1fc6-4921-831c-00a04301a1e4",
+            "clock": 70.40359999999932,
+            "sourceWallStart": 1794300234697,
+            "nodes": [
+              {
+                "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                  "name": "kvml-ccdfe731dabd-a",
+                  "slot": 0,
+                  "progress": 68.91780000533413,
+                  "position": [
+                    -61.08219999466587,
+                    0.03765879305396239,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": 0.002445995449580708,
+                  "roll": 0.0003534302885894446,
+                  "state": "patrolling",
+                  "speed": 7.3270483095155345,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              },
+              {
+                "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                  "name": "kvml-ccdfe731dabd-a-m02",
+                  "slot": 1,
+                  "progress": 185.39401620126227,
+                  "position": [
+                    55.394016201262275,
+                    -0.011807194353324803,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": 0.0023474125744377327,
+                  "roll": 0.0012605742767945961,
+                  "state": "patrolling",
+                  "speed": 1.9010999999991003,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 4206
+        },
+        {
+          "name": "Proje-2",
+          "stats": {
+            "frame": 3839,
+            "calls": 199,
+            "triangles": 42740,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 34,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"4d50944a-6f37-4d8a-88b7-4569ea6e1a3e\",\"90209681-ba98-4149-b1dc-6c7e767bbf62\",\"0105913b-075c-4dda-a7ce-8a96e8b04bff\",\"1680ede93dbe2883b7f31e2fcc2d2e09\",[\"kvml-e731dabd-02-p2\"],\"\"]live:kvml-ccdfe731dabd-a:1:harbor:c0e5fe06-d853-40fd-84ff-5f43b46115c4",
+            "clock": 64.23849999999844,
+            "sourceWallStart": 1794300241164,
+            "nodes": [
+              {
+                "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+                  "name": "kvml-ccdfe731dabd-a",
+                  "slot": 0,
+                  "progress": 1379.8892588250485,
+                  "position": [
+                    -138.79706181730003,
+                    -0.06636735833411625,
+                    -144.131753912377
+                  ],
+                  "yaw": 1.7675536600845165,
+                  "pitch": -0.0017257222667124595,
+                  "roll": -0.002151507229648187,
+                  "state": "patrolling",
+                  "speed": 7.187760881326505,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              },
+              {
+                "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+                  "name": "kvml-ccdfe731dabd-a-m02",
+                  "slot": 1,
+                  "progress": 107.01125463127164,
+                  "position": [
+                    -22.98874536872836,
+                    0.041025076277341026,
+                    -145
+                  ],
+                  "yaw": 1.5707963267948966,
+                  "pitch": -0.00291931997369839,
+                  "roll": -0.0014356138306514598,
+                  "state": "patrolling",
+                  "speed": 2.3517000000019537,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 3839
+        },
+        {
+          "name": "Bağımsız-B",
+          "stats": {
+            "frame": 3330,
+            "calls": 182,
+            "triangles": 39981,
+            "points": 0,
+            "lines": 31,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 30,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 1,
+              "visibleNodes": 1,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 2,
+              "visiblePods": 2,
+              "nodeSlots": 1,
+              "podSlots": 2,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "visual": {
+            "source": "[\"ae9a01f3-df40-49bd-b553-5948591c62ca\",\"d812c9ee-54eb-4e1e-b856-a47dd7fc7205\",\"f157c4a2-b1a4-4952-ab07-911de72b8402\",\"4bb1b8603336285ae869e95b1ec18052\",[\"kvml-e731dabd-03-same\"],\"\"]live:kvml-ccdfe731dabd-b:1:harbor:e9822c84-b728-4864-8380-2070f3af74e3",
+            "clock": 55.6360999999983,
+            "sourceWallStart": 1794300249930,
+            "nodes": [
+              {
+                "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+                "fault": 0,
+                "communication": false,
+                "phase": "ready",
+                "pose": {
+                  "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+                  "name": "kvml-ccdfe731dabd-b",
+                  "slot": 0,
+                  "progress": 1359.4117694114482,
+                  "position": [
+                    -157.2982795690827,
+                    0.05984192585648201,
+                    -135.77434740939663
+                  ],
+                  "yaw": 2.2226089803867466,
+                  "pitch": -0.0016469731995337339,
+                  "roll": -0.0003291122843297408,
+                  "state": "patrolling",
+                  "speed": 8.999995766407366,
+                  "paused": false,
+                  "healthy": true,
+                  "reason": "",
+                  "reservation": null,
+                  "eligibleForDock": false
+                }
+              }
+            ],
+            "containers": [],
+            "signals": [],
+            "summary": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            }
+          },
+          "frame": 3330
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "at": "2026-11-10T08:44:12.548Z",
+      "file": "0-before-Proje-1.png"
+    },
+    {
+      "at": "2026-11-10T08:44:12.767Z",
+      "file": "0-before-Proje-2.png"
+    },
+    {
+      "at": "2026-11-10T08:44:12.907Z",
+      "file": "0-before-Bağımsız-B.png"
+    },
+    {
+      "at": "2026-11-10T08:45:00.379Z",
+      "file": "1-unknown-Proje-1.png"
+    },
+    {
+      "at": "2026-11-10T08:45:00.546Z",
+      "file": "1-unknown-Proje-2.png"
+    },
+    {
+      "at": "2026-11-10T08:45:00.695Z",
+      "file": "1-unknown-Bağımsız-B.png"
+    },
+    {
+      "at": "2026-11-10T08:45:02.938Z",
+      "file": "2-unknown-held-Proje-1.png"
+    },
+    {
+      "at": "2026-11-10T08:45:03.090Z",
+      "file": "2-unknown-held-Proje-2.png"
+    },
+    {
+      "at": "2026-11-10T08:45:03.223Z",
+      "file": "2-unknown-held-Bağımsız-B.png"
+    },
+    {
+      "at": "2026-11-10T08:45:05.252Z",
+      "file": "3-recovered-Proje-1.png"
+    },
+    {
+      "at": "2026-11-10T08:45:05.406Z",
+      "file": "3-recovered-Proje-2.png"
+    },
+    {
+      "at": "2026-11-10T08:45:05.543Z",
+      "file": "3-recovered-Bağımsız-B.png"
+    }
+  ],
+  "snapshots": [
+    {
+      "at": "2026-11-10T08:44:00.261Z",
+      "document": "Proje 1",
+      "harborId": "c0e5fe06-d853-40fd-84ff-5f43b46115c4",
+      "context": "kvml-ccdfe731dabd-a",
+      "nodes": [
+        {
+          "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+          "name": "kvml-ccdfe731dabd-a",
+          "ready": "True"
+        },
+        {
+          "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+          "name": "kvml-ccdfe731dabd-a-m02",
+          "ready": "True"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-10T08:44:00.644Z",
+      "document": "Proje 1",
+      "harborId": "0632b558-1fc6-4921-831c-00a04301a1e4",
+      "context": "kvml-ccdfe731dabd-a",
+      "nodes": [
+        {
+          "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+          "name": "kvml-ccdfe731dabd-a",
+          "ready": "True"
+        },
+        {
+          "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+          "name": "kvml-ccdfe731dabd-a-m02",
+          "ready": "True"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-10T08:44:09.410Z",
+      "document": "Proje 2",
+      "harborId": "c0e5fe06-d853-40fd-84ff-5f43b46115c4",
+      "context": "kvml-ccdfe731dabd-a",
+      "nodes": [
+        {
+          "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+          "name": "kvml-ccdfe731dabd-a",
+          "ready": "True"
+        },
+        {
+          "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+          "name": "kvml-ccdfe731dabd-a-m02",
+          "ready": "True"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-10T08:44:09.503Z",
+      "document": "Proje 2",
+      "harborId": "0632b558-1fc6-4921-831c-00a04301a1e4",
+      "context": "kvml-ccdfe731dabd-a",
+      "nodes": [
+        {
+          "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+          "name": "kvml-ccdfe731dabd-a-m02",
+          "ready": "True"
+        },
+        {
+          "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+          "name": "kvml-ccdfe731dabd-a",
+          "ready": "True"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-10T08:44:11.956Z",
+      "document": "Bağımsız B",
+      "harborId": "e9822c84-b728-4864-8380-2070f3af74e3",
+      "context": "kvml-ccdfe731dabd-b",
+      "nodes": [
+        {
+          "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4",
+          "name": "kvml-ccdfe731dabd-b",
+          "ready": "True"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-10T08:44:11.977Z",
+      "document": "Bağımsız B",
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "context": "kvml-ccdfe731dabd-a",
+      "nodes": [
+        {
+          "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+          "name": "kvml-ccdfe731dabd-a",
+          "ready": "True"
+        },
+        {
+          "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+          "name": "kvml-ccdfe731dabd-a-m02",
+          "ready": "True"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Ready Unknown is communication loss; this does not produce Ready False or prove a physical server failure.",
+    "Three independent browser documents intentionally observe live sources; no performance comparison is made."
+  ],
+  "stopRequestedAt": "2026-11-10T08:44:13.010Z",
+  "unknownObservedAt": "2026-11-10T08:45:00.138Z",
+  "recoveryRequestedAt": "2026-11-10T08:45:03.224Z",
+  "finishedAt": "2026-11-10T08:45:05.684Z"
+}

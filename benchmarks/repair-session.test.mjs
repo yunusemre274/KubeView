@@ -12,6 +12,11 @@ const jobs=()=>repairJobs('new','start','final');
 test('workspace plan is finite: paired four-condition blocks, separate source controls and one final soak',()=>{
  const plan=workspaceJobs('new','start','final');
  assert.equal(plan.length,35);
+ assert.equal(plan.flatMap(expectedJobCells).length,46);
+ const panel = plan.find(j=>j.group==='workspace-panel');
+ assert.deepEqual(panel.scenarios,['panel-closed','panel-open']);
+ assert.equal(panel.matrix,true);
+ assert.ok(panel.timeoutSeconds>(panel.seconds+panel.warmup)*panel.repeats*panel.scenarios.length);
  for(const profile of ['M','L']){
   const rows=plan.filter(j=>j.group==='workspace-overhead'&&j.profile===profile);
   assert.equal(rows.length,12);
@@ -47,6 +52,7 @@ test('real one-repeat smoke manifests are valid only with full windows and three
  const plan=jobs(),rows=[];
  for(const job of plan){const repeats=job.repeats||1,m={production:true,inputLocked:true,browserEnergySaver:{ok:true},panelMatrix:Boolean(job.matrix),repeatOffset:job.block||0,params:{repeats,warmup:30,seconds:60,profiles:[job.profile],scenarios:scenarioArguments(job)},smoke:repeats<3};
   assert.deepEqual(jobProtocolReasons(job,m),[]);
+  assert.ok(jobProtocolReasons(job,{...m,workspaceCycleProbe:true}).length);
   if(repeats===1){assert.equal(m.smoke,true);assert.ok(jobProtocolReasons(job,{...m,smoke:false}).length);}
   for(const warmup of [0,29])assert.ok(jobProtocolReasons(job,{...m,smoke:true,params:{...m.params,warmup}}).length);
   assert.ok(jobProtocolReasons(job,{...m,smoke:true,params:{...m.params,seconds:59}}).length);

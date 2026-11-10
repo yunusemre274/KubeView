@@ -4,14 +4,18 @@ Loaded by the runner only; no import side effects, subprocesses or cluster acces
 The default vanilla lab is never converted. Helpers are supplied by the runner so
 there is one ownership/error/process implementation throughout the bundle.
 """
+import base64
 import hashlib
+import ipaddress
 import json
 import os
 from pathlib import Path
 import re
 import shutil
+import ssl
 import subprocess
 import tarfile
+import tempfile
 import time
 
 VERSION = "1.20.2"
@@ -19,6 +23,10 @@ RELEASE = "kv-manual-cilium"
 FORWARD = "telemetry-forward"
 INTENT_LABEL = "manual.kubeview.local/install-intent"
 TRACKED = [("DaemonSet", "cilium"), ("Deployment", "cilium-operator"), ("Deployment", "hubble-relay"), ("Service", "hubble-relay")]
+CLIENT_SECRET = "hubble-relay-client-certs"
+SERVER_SECRET = "hubble-relay-server-certs"
+TLS_SERVER_NAME = "ui.hubble-relay.cilium.io"
+TRACKED += [("Secret", CLIENT_SECRET), ("Secret", SERVER_SECRET)]
 
 
 class Telemetry:
@@ -127,6 +135,7 @@ class Telemetry:
         return path
 
     def guard_resources(self, allow_partial=False):
+        self.require_tls_lab()
         state = self.lab.state["telemetry"]
         self.lab.guard_cluster("a")
         recorded = state.setdefault("resourceUids", {})
@@ -150,6 +159,7 @@ class Telemetry:
     def install(self):
         """No CNI exists beforehand: only the explicit owned new-A may call this."""
         state = self.lab.state["telemetry"]
+        self.require_tls_lab()
         self.dependencies(required=True)
         if not state.get("installedAt"):
             import uuid
@@ -168,15 +178,201 @@ class Telemetry:
             self.atomic(file, values)
             self.lab.guard_cluster("a")
             self.run(["helm", "upgrade", "--install", RELEASE, chart, "--namespace", "kube-system", "--kubeconfig", self.lab.root / "private/admin.json",
-                      "--kube-context", self.lab.state["clusters"]["a"]["name"], "--values", file, "--labels", self.owner + "=" + self.lab.state["labId"], "--wait", "--timeout", "5m"] + self.helm_cache_args(), env=self.helm_env(), timeout=380)
+                      "--kube-context", self.lab.state["clusters"]["a"]["name"], "--values", file, "--labels", self.owner + "=" + self.lab.state["labId"], "--wait=false", "--timeout", "5m"] + self.helm_cache_args(), env=self.helm_env(), timeout=380)
             state["resourceUids"] = self.guard_resources()
-            state["installedAt"] = self.now()
+            state["helmAppliedAt"] = self.now()
             self.lab.save()
         else:
             self.guard_resources()
         self.lab.kubectl("a", ["rollout", "status", "daemonset/cilium", "-n", "kube-system", "--timeout=150s"], timeout=165)
+        self.relay_network(repair=True)
         self.lab.kubectl("a", ["rollout", "status", "deployment/hubble-relay", "-n", "kube-system", "--timeout=150s"], timeout=165)
         self.lab.kubectl("a", ["wait", "nodes", "--all", "--for=condition=Ready", "--timeout=150s"], timeout=165)
+        self.relay_network()
+        state.setdefault("installedAt", self.now())
+        self.lab.save()
+
+    def cilium_network(self):
+        """Read only plugin names from this lab's exact owned node containers."""
+        self.require_tls_lab()
+        cluster = self.lab.guard_cluster("a")
+        nodes = self.lab.get("a", "nodes")["items"]
+        if {n["metadata"]["name"]: n["metadata"]["uid"] for n in nodes} != cluster.get("nodeUids"):
+            raise self.error("Cilium CNI doğrulamasında NodeUID envanteri değişmiş")
+        proof = {}
+        for node in nodes:
+            name = node["metadata"]["name"]
+            container = next((item for item in cluster["containers"] if item["name"] == name), None)
+            if not container or not self.lab.check_container(cluster, container)["State"]["Running"]:
+                raise self.error("Cilium CNI için exact owned aktif Node container gerekli")
+            _, listing, _ = self.run(["docker", "exec", container["id"], "ls", "-1", "/etc/cni/net.d"])
+            files = [f for f in listing.splitlines() if re.fullmatch(r"[A-Za-z0-9_.-]+\.(?:conf|conflist|json)", f)]
+            plugins = []
+            for file in files:
+                _, content, _ = self.run(["docker", "exec", container["id"], "cat", "/etc/cni/net.d/" + file])
+                try:
+                    config = json.loads(content)
+                    plugins.extend(p.get("type") for p in config.get("plugins", [config]))
+                except (ValueError, TypeError, AttributeError):
+                    raise self.error("Owned Node CNI config güvenli plugin adıyla doğrulanamadı") from None
+            if not plugins or set(plugins) != {"cilium-cni"}:
+                raise self.error("Owned Node aktif CNI yalnız Cilium değil; relay Pod silinmedi")
+            try:
+                cidr = str(ipaddress.ip_network(node["spec"]["podCIDR"]))
+            except (KeyError, ValueError):
+                raise self.error("Owned Node PodCIDR bilinmiyor; relay Pod silinmedi") from None
+            proof[name] = {"nodeUid": node["metadata"]["uid"], "podCIDR": cidr, "pluginNames": sorted(set(plugins))}
+        self.lab.state["telemetry"]["cniReadyProof"] = proof
+        self.lab.save()
+        return proof
+
+    def wait_relay_pod(self, pod, deployment_uid, network):
+        """Allow one owned incarnation to acquire its IP; never follow a new UID."""
+        name, uid = pod["metadata"]["name"], pod["metadata"]["uid"]
+        node = pod.get("spec", {}).get("nodeName")
+        owner = next((r for r in pod["metadata"].get("ownerReferences", []) if r.get("controller") and r.get("kind") == "ReplicaSet"), None)
+        expected_node_uid = network.get(node, {}).get("nodeUid")
+        try:
+            cidr = ipaddress.ip_network(network[node]["podCIDR"])
+        except (KeyError, ValueError, TypeError):
+            raise self.error("Relay owned NodeCIDR doğrulanamadı; silme yok") from None
+        if not owner or not expected_node_uid:
+            raise self.error("Relay owned Pod/RS/NodeUID doğrulanamadı; silme yok")
+        deadline = time.monotonic() + 45
+
+        def read(kind, resource_name, namespace=None):
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise self.error("Relay aynı PodUID için45s içinde kullanılabilir PodIP vermedi; silme yok")
+            args = ["get", kind, resource_name] + (["-n", namespace] if namespace else [])
+            args += ["-o", "json", "--ignore-not-found", "--request-timeout=" + str(min(2, remaining)) + "s"]
+            _, content, _ = self.lab.kubectl("a", args, timeout=min(3, remaining))
+            return json.loads(content) if content.strip() else None
+
+        while True:
+            meta = pod.get("metadata", {}) if pod else {}
+            current_owner = next((r for r in meta.get("ownerReferences", []) if r.get("controller") and r.get("kind") == "ReplicaSet"), None)
+            labels = meta.get("labels", {})
+            if meta.get("uid") != uid or meta.get("deletionTimestamp") or current_owner != owner or pod.get("spec", {}).get("nodeName") != node or labels.get(self.owner) != self.lab.state["labId"] or labels.get(INTENT_LABEL) != self.lab.state["telemetry"].get("installIntent"):
+                raise self.error("Relay beklerken PodUID/owner/Node değişmiş; silme yok")
+            rs = read("ReplicaSet", owner["name"], "kube-system")
+            actual_node = read("Node", node)
+            if not rs or rs["metadata"]["uid"] != owner["uid"] or not any(r.get("controller") and r.get("kind") == "Deployment" and r.get("uid") == deployment_uid for r in rs["metadata"].get("ownerReferences", [])) or not actual_node or actual_node["metadata"]["uid"] != expected_node_uid:
+                raise self.error("Relay beklerken RS owner/NodeUID değişmiş; silme yok")
+            try:
+                if ipaddress.ip_network(actual_node["spec"]["podCIDR"]) != cidr:
+                    raise ValueError("NodeCIDR changed")
+            except (KeyError, ValueError, TypeError):
+                raise self.error("Relay beklerken NodeCIDR değişmiş/geçersiz; silme yok") from None
+            phase = pod.get("status", {}).get("phase")
+            value = pod.get("status", {}).get("podIP")
+            if phase not in ("Pending", "Running"):
+                raise self.error("Relay Pod başlangıç durumu doğrulanamadı; silme yok")
+            if value:
+                try:
+                    ip = ipaddress.ip_address(value)
+                except (ValueError, TypeError):
+                    raise self.error("Relay PodIP geçersiz; silme yok") from None
+                if phase == "Running":
+                    return pod, ip, cidr
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise self.error("Relay aynı PodUID için45s içinde kullanılabilir PodIP vermedi; silme yok")
+            time.sleep(min(0.25, remaining))
+            pod = read("Pod", name, "kube-system")
+
+    def relay_network(self, repair=False):
+        """Repair the demonstrated bootstrap race once, never generic readiness."""
+        self.guard_resources()
+        network = self.cilium_network()
+        state = self.lab.state["telemetry"]
+        deployment_uid = state["resourceUids"]["Deployment/hubble-relay"]
+        _, content, _ = self.lab.kubectl("a", ["get", "pods", "-n", "kube-system", "-l", "k8s-app=hubble-relay", "-o", "json"])
+        pods = [pod for pod in json.loads(content)["items"] if not pod["metadata"].get("deletionTimestamp")]
+        if len(pods) != 1:
+            raise self.error("Tek exact owned relay Pod doğrulanamadı; silme yok")
+        pod, ip, cidr = self.wait_relay_pod(pods[0], deployment_uid, network)
+        meta = pod["metadata"]
+        node = pod["spec"]["nodeName"]
+        within = ip in cidr
+        endpoint = self.lab.get("a", "CiliumEndpoint", meta["name"], "kube-system")
+        endpoint_owned = bool(endpoint and any(r.get("kind") == "Pod" and r.get("uid") == meta["uid"] for r in endpoint["metadata"].get("ownerReferences", [])))
+        if within and endpoint_owned:
+            state["relayNetworkProof"] = {"podUid": meta["uid"], "node": node, "podIP": str(ip), "podIpWithinNodePodCIDR": True, "ciliumEndpointUid": endpoint["metadata"]["uid"]}
+            self.lab.save()
+            return
+        # A missing endpoint alone can be transient. Only the observed invalid
+        # node CIDR AND absent CiliumEndpoint prove this particular startup race.
+        if not repair or within or endpoint is not None or state.get("relayBootstrapRepair"):
+            raise self.error("Relay Cilium ağı doğrulanamadı; kör Pod restart/silme yok")
+        current = self.lab.get("a", "Pod", meta["name"], "kube-system")
+        if not current or current["metadata"]["uid"] != meta["uid"] or current["metadata"]["resourceVersion"] != meta["resourceVersion"]:
+            raise self.error("Relay Pod UID/RV değişmiş; silme yok")
+        self.guard_resources()
+        if self.cilium_network() != network:
+            raise self.error("Relay silme öncesi CNI/NodeUID/CIDR değişmiş; silme yok")
+        state["relayBootstrapRepair"] = {"oldPodUid": meta["uid"], "node": node, "oldPodIP": str(ip), "nodePodCIDR": network[node]["podCIDR"], "reason": "outside-node-cidr-and-no-cilium-endpoint", "intentAt": self.now()}
+        self.lab.save()
+        options = {"apiVersion": "v1", "kind": "DeleteOptions", "preconditions": {"uid": meta["uid"], "resourceVersion": meta["resourceVersion"]}}
+        self.lab.kubectl("a", ["delete", "--raw", "/api/v1/namespaces/kube-system/pods/" + meta["name"], "-f", "-"], obj=options)
+
+    def require_tls_lab(self):
+        state = self.lab.state or {}
+        telemetry = state.get("telemetry", {})
+        clusters = state.get("clusters", {})
+        if not telemetry.get("enabled") or telemetry.get("mode") != "separate-A-only" or set(clusters) != {"a"} or clusters["a"].get("cni") != "false":
+            raise self.error("TLS Secret yalnız explicit ayrı owned telemetry A lab'ında okunabilir")
+
+    def write_pem(self, path, data):
+        self.mkdir(path.parent)
+        fd, temporary = tempfile.mkstemp(prefix=".tls-", dir=path.parent)
+        try:
+            os.fchmod(fd, 0o600)
+            with os.fdopen(fd, "wb") as stream:
+                stream.write(data); stream.flush(); os.fsync(stream.fileno())
+            os.replace(temporary, path)
+            directory = os.open(path.parent, os.O_RDONLY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
+        finally:
+            if os.path.exists(temporary):
+                os.unlink(temporary)
+
+    def tls_material(self):
+        self.require_tls_lab()
+        self.guard_resources()
+        state = self.lab.state["telemetry"]
+        # Only two fixed, previously UID-pinned Helm Secrets are read. No caller
+        # can select another namespace, Secret, cluster or credential path.
+        client = self.lab.get("a", "Secret", CLIENT_SECRET, "kube-system")
+        server = self.lab.get("a", "Secret", SERVER_SECRET, "kube-system")
+        for name, secret in ((CLIENT_SECRET, client), (SERVER_SECRET, server)):
+            meta = secret.get("metadata", {}) if secret else {}
+            labels = meta.get("labels", {})
+            if not state.get("resourceUids", {}).get("Secret/" + name) or meta.get("uid") != state["resourceUids"]["Secret/" + name] or labels.get(self.owner) != self.lab.state["labId"] or labels.get(INTENT_LABEL) != state.get("installIntent") or meta.get("annotations", {}).get("meta.helm.sh/release-name") != RELEASE:
+                raise self.error("TLS Secret UID/Helm/owner farklı; private credential kopyalanmadı")
+        try:
+            ca = base64.b64decode(client["data"]["ca.crt"], validate=True)
+            cert = base64.b64decode(client["data"]["tls.crt"], validate=True)
+            key = base64.b64decode(client["data"]["tls.key"], validate=True)
+            server_ca = base64.b64decode(server["data"]["ca.crt"], validate=True)
+            if not ca or not cert or not key or ca != server_ca:
+                raise ValueError("TLS CA mismatch")
+            directory = self.lab.root / "private/telemetry-tls"
+            paths = {"ca": directory / "ca.crt", "cert": directory / "client.crt", "key": directory / "client.key"}
+            for name, payload in (("ca", ca), ("cert", cert), ("key", key)):
+                self.write_pem(paths[name], payload)
+            context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+            context.load_verify_locations(cadata=ca.decode("ascii"))
+            context.load_cert_chain(paths["cert"], paths["key"])
+        except Exception:
+            raise self.error("Owned TLS materyali doğrulanamadı; değerler/private yollar tanıya yazılmadı") from None
+        state["tlsMaterial"] = {"clientSecretUid": client["metadata"]["uid"], "serverSecretUid": server["metadata"]["uid"],
+            "caSha256": hashlib.sha256(ca).hexdigest(), "clientCertSha256": hashlib.sha256(cert).hexdigest(), "clientKeyPresent": True, "serverName": TLS_SERVER_NAME, "mutualTLS": True}
+        self.lab.save()
+        return paths
 
     def provider_env(self):
         state = self.lab.state["telemetry"]
@@ -184,14 +380,17 @@ class Telemetry:
         port = self.lab.state["basePort"] + 8
         if port > 65535:
             raise self.error("Telemetry forward port için --base-port en fazla65527 olmalı")
+        paths = self.tls_material()
         return {"KV_HUBBLE_ENABLED": "true", "KV_HUBBLE_CONTEXT": self.lab.state["clusters"]["a"]["name"],
                 "KV_HUBBLE_CLUSTER_UID": self.lab.state["clusters"]["a"]["uid"], "KV_HUBBLE_CLUSTER_NAME": self.lab.state["labId"],
-                "KV_HUBBLE_BINARY": state["hubbleBinary"], "KV_HUBBLE_SERVER": "127.0.0.1:" + str(port), "KV_HUBBLE_ALLOW_LOOPBACK_PLAINTEXT": "true"}
+                "KV_HUBBLE_BINARY": state["hubbleBinary"], "KV_HUBBLE_SERVER": "tls://127.0.0.1:" + str(port), "KV_HUBBLE_ALLOW_LOOPBACK_PLAINTEXT": "false",
+                "KV_HUBBLE_TLS_CA": str(paths["ca"]), "KV_HUBBLE_TLS_CERT": str(paths["cert"]), "KV_HUBBLE_TLS_KEY": str(paths["key"]), "KV_HUBBLE_TLS_SERVER_NAME": TLS_SERVER_NAME}
 
     def forward(self):
         self.process_tools()
         self.guard_resources()
         self.dependencies(required=True)
+        paths = self.tls_material()
         lab = self.lab
         service = lab.get("a", "Service", "hubble-relay", "kube-system")
         port = lab.state["basePort"] + 8
@@ -233,10 +432,12 @@ class Telemetry:
         empty = lab.root / "private/hubble-empty.json"
         self.atomic(empty, {})
         try:
-            self.run([lab.state["telemetry"]["hubbleBinary"], "--config", empty, "status", "--server", "127.0.0.1:" + str(port), "--timeout", "5s", "--request-timeout", "5s"], env=lab.env(), timeout=15)
+            self.run([lab.state["telemetry"]["hubbleBinary"], "--config", empty, "status", "--server", "127.0.0.1:" + str(port), "--tls",
+                      "--tls-ca-cert-files", paths["ca"], "--tls-client-cert-file", paths["cert"], "--tls-client-key-file", paths["key"], "--tls-server-name", TLS_SERVER_NAME,
+                      "--timeout", "5s", "--request-timeout", "5s"], env=lab.env(), timeout=15)
         except Exception:
             lab.stop_process(FORWARD)
-            raise
+            raise self.error("Hubble mTLS status doğrulanamadı; private tanılar artefakta yazılmadı") from None
 
     def stop_if_unused(self):
         if FORWARD in self.lab.state["processes"] and not any(key != FORWARD for key in self.lab.state["processes"]):
