@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — CI temiz başlangıç ve gerçek build kimliği
+
+- Yeni CI run43062361657 kurulum/test/paket ve Linux copy-out onboarding smoke adımlarını geçti; eski DNS başarısızlıkları ayrı kaldı. Artifact ZIP kimliği doğrulandı, final manuel kabul geçmiş sayılmadı.
+- Default PR checkout'un merge commit'i5373657 ile head3bdb7c0c ayrıldı. Exact parent ve full Git tree eşitliği doğrulandı; binary provenance merge SHA'sı olarak korundu. Workflow veya destek sınırı değiştirilmedi.
+
 ## 2026-11-11 — CI trust kaynak incelemesi
 
 - Aktif workflow ve çağrılan scriptlerin bounded statik trust incelemesi kaydedildi. Minimum izin/pin/checkout ve shell expression sınırı ile mevcut publish tüketicisi yokluğu ayrıştırıldı; fork/admin/dinamik test ve imza boşlukları açık kaldı. Workflow değiştirilmedi.

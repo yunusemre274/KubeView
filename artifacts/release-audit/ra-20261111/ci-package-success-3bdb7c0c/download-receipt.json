@@ -1,0 +1,13 @@
+{
+  "artifactID": 13874845784,
+  "runID": 43062361657,
+  "sourceCommit": "3bdb7c0c41eff0b45aec169fef89ff6b99f9db8c",
+  "firstAttempt": "urllib URLError; exact cause not retained; not success",
+  "diagnostic": "Exact hostname DNS resolved. Python default CA file/path absent; no causal certificate error was retained.",
+  "retry": "One native SecureTransport curl transfer; default TLS verification, HTTPS-only redirects, max35s/32MiB; signed URL stays private and is not process argv",
+  "exitCode": 0,
+  "elapsedSeconds": 5.247581999999966,
+  "bytes": 26217476,
+  "SHA256": "4a2d89059db9590e5d619c6dfa5ae78691015b703bbbd3d0ddf5ce862ef657da",
+  "verified": true
+}

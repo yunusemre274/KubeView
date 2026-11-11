@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — yeni CI temiz Linux sonucu
+
+- [x] PR head3bdb7c0c ile ilişkili CI43062361657 tüm adımları geçti: gerçek Linux copy-out binary/ilk liman formu smoke ve artifact upload. Eski üç DNS FAIL/SKIP kaydı korunur.
+- [x] Gerçek build5373657 merge commit'i ve PR head'in full Git tree eşitliği doğrulandı. ZIP digest/size GitHub metadata ile eşleşti; bu kaynak commit'lerinin aynı olduğu veya yayıncı imzası değildir.
+- [ ] Araçsız final paket, native Mac UI ve bütün manuel profiller açık. Önceki DNS hatası bu yeni koşunun sonucu gibi sunulmaz.
+
 ## 11 Kasım — CI güven sınırı incelemesi
 
 - [x] Tek aktif workflow, read-only token beyanı, SHA pinleri, credential persistence ve untrusted expression/publish tüketici sınırı kaynakta incelendi; gösterilmiş injection/escalation bulunmadı.

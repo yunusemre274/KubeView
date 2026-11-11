@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:00:26.697754+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:03:11.261627+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:148; IN_PROGRESS:21; FAILED:1; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:26; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:148; IN_PROGRESS:22; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:26; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -43,7 +43,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:7, IN_PROGRESS:2 | Henüz yok |
-| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:2, BLOCKED:1 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:3 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
@@ -11162,11 +11162,11 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR + packaging worker
-- Kaynak / build / paket kimliği: Paket düzeltmesi2461bbfb; CI exact46ec5508/df656bf2/96adbf60 gerçek darwin-arm64 ve linux-amd64 derlemesini geçti. Final kullanıcı paketi henüz üretilip temiz ortamda kabul edilmedi.
-- Ortam / kullanılan kimlik ve yetki: GitHub Actions ubuntu-latest; public apt mirror DNS erişimi kurulumda başarısız. Yerel Apple M5 Battery8%; yeni ağır build/uzun test başlatılmadı.
+- Kaynak / build / paket kimliği: Son başarılı CI: PR head3bdb7c0c; gerçek checkout/build5373657169e8bf332940fd2366022925f48eb85c. Her iki full Git tree2112579043ca1325013f7b5bac6b95fc7d0d3164 eşit. Artifact13874845784 ZIP SHA4a2d8905… doğrulandı; final teslim kabulü değil.
+- Ortam / kullanılan kimlik ve yetki: GitHub Actions native Ubuntu Linux CI; ayrı macOS native arşiv incelemesi sürüyor. Yerel AC Power/charging düşük pil; ağır lab/perf/soak kapalı.
 - Başlangıç zamanı: 2026-11-11T13:20:17.412070+00:00
 - Bitiş zamanı: —
-- Durum: BLOCKED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-20.01-S1 — Hazırlık
@@ -11183,6 +11183,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 - Üç exact kaynak CI koşusunda frontend ve gerçek darwin-arm64/linux-amd64 paket derleme adımı success. Bunlar temiz runtime kabulü veya opt-in gerçek Kubernetes testlerinin geçtiği anlamına gelmez.
 - Job/step ve seçili public APT hata kanıtı: artifacts/release-audit/ra-20261111/ci-package-dns-evidence/results.json.
+
+- Yeni CI run43062361657/job130668033624 tüm adımları PASS: Playwright kurulumu, copy-out Linux binary startup, gerçek boş workspace/ilk liman formu browser smoke1PASS ve artifact upload. Önceki DNS FAIL/SKIPPED sonuçları değişmedi; retry/workflow değişikliği yok.
+- PR head ile build SHA aynı değildir. Root exact merge commit ebeveynlerini ve full tree eşitliğini git show/diff ile doğruladı; binary provenance5373657 kalır. Kanıt: ci-package-success-3bdb7c0c/merge-identity.json.
 
 #### TEST-20.01-S3 — Negatif / sınır / arıza kontrolü
 - [x] Output çakışması/symlink, yarışta çıkan arşivin ezilmemesi, eksik/symlink frontend, kirli manual/doc/RBAC girdisi kontrollü test edildi.
@@ -11203,6 +11206,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - [ ] CI temiz Linux startup/browser kontrolü çalışmadı: Playwright apt bağımlılık kurulumunda Ubuntu/archive/security DNS hatası, APT100/install1. Sonraki clean-start ve artifact-upload adımları SKIPPED.
 - Aynı işi geçene kadar yeniden başlatma, DNS/TLS bypass veya platform/kapsam azaltma yapılmadı. Yeni commit'in CI sonucu önceki koşulardan bağımsız doğrulanmalıdır.
 
+- [x] Önceki CI DNS engeli yeni bağımsız koşuda tekrarlanmadı; source build ve Linux smoke bu exact merge kaynağında geçti. İndirilen ZIP26,217,476byte/SHA eşleşti. İlk urllib URLError ve tek verified-TLS native curl başarısı ayrı kaydedildi.
+- [ ] Bu CI runner'da Go/Node kurulu olduğundan, tamamen araçsız final paket/manual-lab kabulü kapanmadı. macOS native minimal path ve paket girdileri ayrı inceleniyor.
+
 #### TEST-20.01-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -11215,8 +11221,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 #### TEST-20.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- BLOCKED: CI clean-Linux startup Playwright bağımlılık kurulumu DNS hatasında çalışmadı; yerel final arşiv/temiz runtime kabulü de tamamlanmadı. Başarılı paket derlemesi bu kapıyı kapatmaz.
-- Sonraki uygulanabilir iş: DNS erişimi sağlanan owned CI ortamında aynı zorunlu clean-start adımını final kaynak/paketle çalıştırmak; kararlı güçte yerel final arşivi ve manuel profilleri ayrıca doğrulamak. Eski başarısız runlar korunur.
+- IN_PROGRESS: yeni exact merge kaynağında temiz copy-out Linux startup/browser smoke PASS; tarihsel DNS blocker güncel tek engel değildir. Final paket, araçsız/native kullanıcı yolculuğu ve manuel profiller henüz kabul edilmedi.
+- Güncel CI kanıtı ci-package-success-3bdb7c0c/REPORT.md; önceki FAIL ci-package-dns-evidence/REPORT.md. İlgili paket girdileri/runtime değişince retest yapılır.
 
 ### TEST-20.02 — Boş config/ilk liman gerçek bağlantısı
 
