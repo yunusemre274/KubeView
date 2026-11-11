@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — native-safari-app-smoke-retest-worker
+
+- Ayrı düzeltme sonrası0700 verified, actualapp88301 sağlıklı ve19843listener owned; native ownsekme88305 açıldı. İlk evaluate yanıtı decodednull olduğundan tüm UI/PNG/DPR assertionları durdu; raw successfulresponse saklanmadı. App/sekme/driver temiz kapandı; port boş. Bu ürünrenderFAIL kanıtı değildir.
+
+
 ## 2026-11-11 — native-safari-app-smoke-worker
 
 - İlk gerçek app smoke: data-dir0755 yanlış yardımcı izninde app87881exit1; driver/sekme açılmadı. Mevcut0700 güvenlik kuralı korundu. Runtime0.216sn, prep81sn>60sn; ilkstderr atıldığı için tam çıkış mesajı bilinmiyor. Root staticstore.go/private izin sözleşmesini inceledi.
