@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — Docker mount sırası tanısı
+
+- Ham before/after/üçüncü snapshot ve exactJSONpointer farkları korundu. Bu örnekte mount sırası değişkenliği doğrulandı; ürün state kaybı veya ilk HTTPFAIL kök nedeni iddiası yok.
+
+
 ## 2026-11-11 — endpoint inventory ilk denemesi
 
 - Gerçek binary üzerinde normal25pattern/21protect envanteri ve ilk28kontrol kaydedildi. Yardımcı contexts assertion hatası FAIL olarak korundu; kalan negatif kontroller henüz çalışmadı.

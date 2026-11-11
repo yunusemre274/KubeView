@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T21:46:01.935410+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T21:47:31.414333+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
@@ -4004,11 +4004,15 @@ FAIL: final snapshot/profile byte eşitliği original_cluster_fixture_profile_ch
 - Düzeltme commit'i veya çalışma farkı: —
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
 
+Ayrı salt okunur tanı: aynı lock altında kalıcı üç metadata snapshot alındı. İlk çiftte yalnız control-plane mount listesinin iki kaydı yer değiştirdi:4JSONpointer fark; üçüncü AFTER ile aynı. ProfileSHA ve diğer alanlar değişmedi. Bu koşuda sıra farkı kanıtlandı; kayıp baseline yüzünden önceki HTTPFAIL nedeni hâlâ kanıtlanmadı. İş4.435sn/toplam68.557sn; yeni app veya provider işlemi yok. Kanıt: provider-snapshot-diagnosis-worker/REPORT.md ve before/after/additional/exact-diff.
+
 #### TEST-06.12-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
 - [ ] Komşu davranışlar gerektiği ölçüde sınandı.
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+Sonraki uygulanabilir retest: mount kayıtlarını/multiplicity koruyan kararlı sıralama ve farklı volume/kayıp kayıt negatifleri; tek HTTP preflight ile her iki snapshot/profile hash kalıcı kaydedilecek. Henüz actualNodeAdd izni açılmadı; phaseFAILED korunur.
 
 #### TEST-06.12-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -4020,7 +4024,7 @@ FAIL: final snapshot/profile byte eşitliği original_cluster_fixture_profile_ch
 - [x] İlk iki preparation/blocked job source/receipt/checksumları root tarafından okundu; yeniNode veya app yok. İki original node sonraki kontrollü iş için sıcak.
 - Sonraki iş helper kodunu ayrı somut implementation aşamasında hazırlamak, syntax/pureguard kontrolü ve checkpoint sonrası tek gerçek deneme. Root onayı internal ownership gate'dir; kullanıcıdan yeni genel izin istenmedi.
 
-Ownedapp82905/birth/PGID finallyexit0; noLISTEN19849, child0, realCONTROLabsent, RUN_CLEAREDfalse vehelper723af…aynı. Liveoriginal2Node/system/marker/ns guard geçti; fullsnapshot/profile invariance doğrulanmadı. Root8SHA? tamdosyalistesiniSHA256SUMS üzerinden doğruladı; runtimebuildreceipt f9/4c ayrı eklendi.
+Ownedapp82905/birth/PGID finallyexit0; noLISTEN19849, child0, realCONTROLabsent, RUN_CLEAREDfalse vehelper723af…aynı. Liveoriginal2Node/system/marker/ns guard geçti; fullsnapshot/profile invariance doğrulanmadı. Root kayıtlı checksumların tamamını doğruladı; runtimebuildreceipt f9/4c ayrı eklendi.
 
 #### TEST-06.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

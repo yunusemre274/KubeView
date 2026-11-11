@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — snapshot sıra farkı teşhisi
+
+- [x] Salt okunur üç snapshot, yalnız aynı iki mount kaydının sırasının değiştiğini gösterdi; diğer metadata ve profile hash aynı. İlk HTTPFAIL nedeni geriye dönük kanıtlanmadı.
+- [ ] Kayıt kaybetmeyen sıralama ve tek kalıcı-before/after HTTP retesti yürütülüyor; gerçek worker testi hâlâ açık.
+
+
 ## 11 Kasım — endpoint envanteri ilk yardımcı kontrolü
 
 - [ ] TEST01.01 ilk28GET sonrasında contexts yanıtı nesne/array assertion hatasında kaldı. Mevcut sözleşmeye uyumlu yardımcı retesti gerekiyor; ürün değişmedi.

@@ -1,0 +1,31 @@
+{
+  "status": "READ_ONLY_DIAGNOSIS_COMPLETE",
+  "realCONTROLAbsentBefore": true,
+  "RUN_CLEARED": false,
+  "identity": {
+    "nodeCount": 2,
+    "actualNodeUIDs": {
+      "kvml-d32afbf634e8-a": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+      "kvml-d32afbf634e8-a-m02": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+    },
+    "allReady": true,
+    "realCONTROLAbsent": true
+  },
+  "firstPairSnapshotDifferenceCount": 4,
+  "profileHashChanged": false,
+  "differencePaths": [
+    "/hosts/kvml-d32afbf634e8-a/mounts/0/name",
+    "/hosts/kvml-d32afbf634e8-a/mounts/0/type",
+    "/hosts/kvml-d32afbf634e8-a/mounts/1/name",
+    "/hosts/kvml-d32afbf634e8-a/mounts/1/type"
+  ],
+  "additionalSnapshotTaken": true,
+  "mountOrderOnlyForCurrentPair": true,
+  "pastFailedPreflightCause": "UNPROVEN; its before/after snapshots were not retained",
+  "originalsNotMutated": true,
+  "realCONTROLStillAbsent": true,
+  "helperUnchanged": true,
+  "workElapsedSeconds": 4.435389,
+  "workWithin120s": true,
+  "completedAt": "2026-11-11T18:43:06.367140+00:00"
+}
