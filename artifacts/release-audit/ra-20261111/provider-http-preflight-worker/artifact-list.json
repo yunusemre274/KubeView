@@ -1,0 +1,37 @@
+[
+  {
+    "path": "REPORT.md",
+    "bytes": 2191,
+    "sha256": "6ef9359ea2f35707ecbb18b5409cb79273d9ac813163fca06304f4700e91f005"
+  },
+  {
+    "path": "first-failure.stdout",
+    "bytes": 2033,
+    "sha256": "548aece1664d41a96877cc0f49d4806227bd15075a0deb8e68cf72ae7cc4a792"
+  },
+  {
+    "path": "manifest.json",
+    "bytes": 2516,
+    "sha256": "96f253da53aa2d9ee5426659b7e226d867665062ee227ada0a8fd443dd8ded0b"
+  },
+  {
+    "path": "missing-diagnostic.json",
+    "bytes": 625,
+    "sha256": "707c861bb2db4f49e63a7601610bf176d1d6e08a485f78d7233cd1900a4f0e4f"
+  },
+  {
+    "path": "preflight.json",
+    "bytes": 547,
+    "sha256": "b46d5d72dc7c86a11c8252520d75049c800b6f118093d55c5b5bf2521f9ade3a"
+  },
+  {
+    "path": "result.json",
+    "bytes": 2327,
+    "sha256": "7f293ab06ac8af90df600a965e337f038435f2e49075f16cdfaa3575a75fbba3"
+  },
+  {
+    "path": "run.py",
+    "bytes": 7216,
+    "sha256": "b829835b5ad0e6583ab5457d69854d574b264160d6e2f599e86ba47828b96342"
+  }
+]

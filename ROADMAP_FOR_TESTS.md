@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T21:38:55.721901+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T21:42:56.920674+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:21; FAILED:1; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:29; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:2; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:29; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:2, VERIFIED_DONE:6 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
@@ -3950,7 +3950,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Ortam / kullanılan kimlik ve yetki: Yalnız owned kvml-d32afbf634e8-a, iki original Node Ready. Gerçek admin kubeconfig private; başka context/hedef veya Secret değeri okunmadı.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.12-S1 — Hazırlık
@@ -3975,6 +3975,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+İlk gerçek HTTP/OS preflight: exactconnection/context/systemUID200, initialreadonly→explicitgrant, provideravailable/canAdd/MaxNodes3 ve inventory0 geçti; unsupportedaction400 sonrasıoperations0. OwnedOSfixture bağımsızwatchdogTERM/exit-15 ile sonlandı. Bunlar workerADD kabulü değildir; add/cancel/delete POST0. Kanıt: provider-http-preflight-worker/REPORT.md/result.json.
+
 #### TEST-06.12-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
 - Yapılan: henüz çalışılmadı.
@@ -3987,6 +3989,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Exact m03 label filtresi container/volume/network seçmiyor; original volume/network ID/birth/owner snapshotlandı. Root pinli CLIargs[0],Retrieve/MachineName ve filteredPossibleLeftOvers kaynaklarını okudu. CLI drain --disable-eviction/force kullandığından yalnız doğrulanmış yeni host ve bilinen ownedDaemonSetPod guard'ıyla kullanılabilir; başka Pod varsa durur.
 
 Watchdog/ownedPIDbirth+PGID, finite2MiBI/O, cleanup reserve/reentry ve unprovenpartialrefusal saf testlerle geçti. Bunlar gerçek CLI sonlandırma/worker veya teardown kanıtı değildir; gerçek işlem açık.
+
+FAIL: final snapshot/profile byte eşitliği original_cluster_fixture_profile_changed guardında kaldı. Before/after saklanmadığı için değişen alan/neden bilinmiyor. Ayrıca raporfinalization243.216795sn>180sn; withinBudget=false. İlkexit0 kabul değildir; resultFAIL esas. Körretry/actualNodeAdd yok. Ayrı no-app read-only snapshot diagnostic yetkilendirildi.
 
 #### TEST-06.12-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -4012,10 +4016,12 @@ Watchdog/ownedPIDbirth+PGID, finite2MiBI/O, cleanup reserve/reentry ve unprovenp
 - [x] İlk iki preparation/blocked job source/receipt/checksumları root tarafından okundu; yeniNode veya app yok. İki original node sonraki kontrollü iş için sıcak.
 - Sonraki iş helper kodunu ayrı somut implementation aşamasında hazırlamak, syntax/pureguard kontrolü ve checkpoint sonrası tek gerçek deneme. Root onayı internal ownership gate'dir; kullanıcıdan yeni genel izin istenmedi.
 
+Ownedapp82905/birth/PGID finallyexit0; noLISTEN19849, child0, realCONTROLabsent, RUN_CLEAREDfalse vehelper723af…aynı. Liveoriginal2Node/system/marker/ns guard geçti; fullsnapshot/profile invariance doğrulanmadı. Root8SHA? tamdosyalistesiniSHA256SUMS üzerinden doğruladı; runtimebuildreceipt f9/4c ayrı eklendi.
+
 #### TEST-06.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- IN_PROGRESS: uygulamanın gerçek provider yolu var; bu güncel CLI/adaya yeni worker ADD/Ready doğrulanmadı. İlk preparation INCOMPLETE ve mutation-before-setup BLOCKED sonuçları ayrı korunur.
-- Gerçek aşama yalnız exact owned UID/profile/CLI ve kayıtlı new-host cleanup guard'larıyla çalışabilir; Kubernetes'e boş Node POST etmek veya eski worker resume bu kanıtı kapatmaz.
+- FAILED: HTTPsetup kısmen geçti fakat son invariance guard ve total180sn bütçesi başarısız. Gerçek worker henüz oluşturulmadı. İlksonuç korundu; eksik before/after yüzünden neden iddiası yok.
+- Sonraki iş: tek bounded read-only snapshot fark tanısı; sonra gerekçeli helper düzeltmesi ve ayrı finitepreflight. Hiçbir POC veya pendingpartial fullPASS sayılmaz.
 
 ### TEST-06.13 — Minikube idempotency/profile lock
 

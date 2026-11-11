@@ -1,5 +1,11 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — invariant farkını kaydetmeden yorumlama
+
+- Birleşik before/after eşitliği bozulduğunda her iki güvenli metadata snapshot ve alan farkını kalıcı kaydedin. Exited wrapper içindeki kayıp baseline yeniden üretilemez; sonraki koşudan önceki değişimin nedenini kesinleştirmeyin.
+- Testin iş süresi kadar rapor finalization süresini de bütçeye katın; shell exit0 içerideki FAIL sonucunu değiştirmez.
+
+
 ## 11 Kasım — idempotency cache ve yetki/kimlik sınırı
 
 - Cached-result dalı pahalı Verify aşamasını atlıyorsa, güncel request kimliği kontrolü bu dalın önünde kalmalıdır. Bağlam adının aynı olması, yeniden kurulmuş kümenin UID'sinin aynı olduğu anlamına gelmez.

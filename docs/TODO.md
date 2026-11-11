@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — provider HTTP preflight ilk FAIL
+
+- [x] Gerçek readonly/grant/provider/400 ve bağımsızOSwatchdog kontrolleri çalıştı; app/port temiz.
+- [ ] Snapshot/profile invariance guardFAIL, before/aftertanısı eksik ve rapor süresi243.217/180sn. WorkerADD yapılmadı, phase06.12FAILED; ayrı readonlydiff tanısı sürer.
+
+
 ## 11 Kasım — uyumlu native Safari MCP keşfi
 
 - [x] Exact2024-11-05 uzlaşma ile17araç metadata keşfi/EOF cleanup geçti.

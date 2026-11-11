@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — provider ön kontrol başarısızlığı
+
+- Gerçek HTTP/OSpreflight ilkFAIL ve fazla rapor süresi değişmeden korundu. Son snapshot eşitliği bozuldu; kayıt eksikliği nedeniyle kök neden belirlenmedi. Hiç worker oluşturulmadı, app güvenle kapandı.
+
+
 ## 2026-11-11 — native Safari için stdio metadata
 
 - Kurulu Safari MCP için uyumlu tek protokol keşfi17gerçek araç gösterdi; tools/call veya sayfa açılmadı. İlk protocol-limited sonuç ve sıkı HTTP attribution sınırı korunur.

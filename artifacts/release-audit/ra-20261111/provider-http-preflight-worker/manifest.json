@@ -1,0 +1,79 @@
+{
+  "status": "FAIL",
+  "phase": "provider HTTP/OS preflight, no worker mutation",
+  "phaseElapsedSecondsAtFinalization": 243.216795,
+  "budgetSeconds": 180,
+  "withinBudget": false,
+  "runnerProcessExitCode": 0,
+  "runnerExitCodeIsNotAcceptance": "result.json statusFAIL controls the outcome; no inference from process exit0",
+  "firstFailure": {
+    "errorClass": "Guard",
+    "safeCategory": "original_cluster_fixture_profile_changed"
+  },
+  "helperSHA256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b",
+  "preflightSourceSHA256": "b829835b5ad0e6583ab5457d69854d574b264160d6e2f599e86ba47828b96342",
+  "appSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "rootReportedSource": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "OSWatchdog": {
+    "pid": 82812,
+    "birth": "Wed Nov 11 21:38:33 2026",
+    "ownPGID": 82812,
+    "PIDEqualsPGID": true,
+    "exitCode": -15,
+    "TERMDemonstrated": true,
+    "PIDAbsentAfterReap": true,
+    "deadlineEvents": [
+      {
+        "reason": "global_or_work",
+        "at": 1794422314.2427368,
+        "overshootSeconds": 0.018106937408447266
+      }
+    ]
+  },
+  "HTTPchecks": {
+    "connection": {
+      "status": 200,
+      "context": "kvml-d32afbf634e8-a",
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "confidence": "verified",
+      "readOnly": false,
+      "managementEnabled": true,
+      "serverReadOnly": false
+    },
+    "providerStatus": {
+      "HTTP": 200,
+      "available": true,
+      "canAdd": true,
+      "configuration": {
+        "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+        "context": "kvml-d32afbf634e8-a",
+        "driver": "docker",
+        "maxNodes": 3,
+        "profile": "kvml-d32afbf634e8-a"
+      },
+      "operationCount": 0
+    },
+    "providerInventory": {
+      "HTTP": 200,
+      "operationCount": 0
+    },
+    "unsupportedAction": {
+      "HTTP": 400,
+      "ManagerBeginOrAddExpected": false
+    },
+    "operationCountAfterUnsupportedPOST": 0
+  },
+  "appChildren": [],
+  "appExitCode": 0,
+  "noListen19849": true,
+  "realCONTROLStillAbsent": true,
+  "helperUnchanged": true,
+  "RUN_CLEARED": false,
+  "originalLiveIdentityGuardReturnedInFinalSnapshot": true,
+  "finalSnapshotOrProfileEqualityFailed": true,
+  "diffMissingNoCauseClaim": true,
+  "realTransactionSnapshotRecovery": "not possible after exited wrapper; no new API probe run",
+  "noAddCancelDelete": true,
+  "noRetryOrNewTask": true,
+  "finalizedAt": "2026-11-11T18:41:33.949761+00:00"
+}
