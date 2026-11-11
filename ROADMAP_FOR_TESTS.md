@@ -1,16 +1,16 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T16:49:28.647505+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: `2461bbfb6824455a06c4fd9366ecd72a7928654e`; remote aynı, CI43028369803 SUCCESS. Beş frontend dosyasındaki label/fog düzeltmesi sonraki test checkpointi; user dosyaları korunur.
+- Son güncelleme: 2026-11-11T19:03:17.140512+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: `4a05095ab94fa40ace4785f9da2d7cfe4688f398`; remote tip aynı. Önceki550400a3 CI43030094174 SUCCESS. UI-only CSP1satır ve yeniheader testleri çalışmafarkında; gerçekbinarycsp07SHA322bd5b5… ile tarayıcıkapısı sürüyor.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
-- Ortam: Apple M5/32GiB, macOS27.0.1; şu an Battery Power %76 (önceki AC koşulundan farklı). Chromium156 ve Playwright WebKit27.2 ayrı; native Safari/Retina henüz yeni runtime kabulü değil. CPU A/B ve uzun koşu henüz başlamadı.
+- Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:153; IN_PROGRESS:21; FAILED:1; BLOCKED:0; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:152; IN_PROGRESS:21; FAILED:1; BLOCKED:1; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST06.01–06.04: yeni owned cold lab, gerçek mTLS negatif kontrolleri, iki farklı Pod arasında aynı/cross Node gerçek flow ve stop sonrası pencere boşalması. TEST09.05/11.06/11.07: gerçek browser + sahte API/upstream önizleme sınırı. Normal UI trafik testi sürüyor.
-- Süreç/lab: Owned normal A2 durdurulmuş;07 REPLAY app19847 PID925. Fresh Hubble lab kvml-d32afbf634e8-a UIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a aktif, app19846 PID80336 ve relayforward19848 PID80393. Yalnız owned06 en fazla3 client/5dk UI trafik testi yetkili. Benchmark/soak yok; diğer projelerin süreçleri korunur.
+- Süreç/lab: Owned normal A2 durdurulmuş;07 REPLAY app19847 PID13278. Fresh Hubble lab kvml-d32afbf634e8-a UIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a aktif, app19846 PID80336 ve relayforward19848 PID80393. Yalnız owned06 en fazla3 client/5dk UI trafik testi yetkili. Benchmark/soak yok; diğer projelerin süreçleri korunur.
 - Devam: bu dosyanın durum/dependency satırını ve `artifacts/release-audit/ra-20261111/` kayıtlarını okuyun; otomatik bütün lab'ı yeniden başlatmayın.
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -41,7 +41,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
 | CAT-16 — A/B benchmark | 13 | NOT_STARTED:13 | Henüz yok |
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
-| CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:5 | Henüz yok |
+| CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:8, IN_PROGRESS:1 | Henüz yok |
 | CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:12, IN_PROGRESS:2 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
@@ -3505,7 +3505,7 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 
 #### TEST-06.05-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: labkvml-d32afbf634e8; clusterUIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a; en fazla3client/5dk.
+- Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -3560,7 +3560,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 #### TEST-06.06-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: labkvml-d32afbf634e8; clusterUIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a; en fazla3client/5dk.
+- Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -4808,6 +4808,11 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 #### TEST-07.11-S5 — Tekrar test ve regresyon
 - [ ] Retest henüz yapılmadı. Binary yokken version/help/tarama SKIP.
 - Sonlu plan: en fazla1warmbuild240sn+60snverification; aynısource/modulehash; GOMAX1-2/-p1/RSS2GiB/free10GiB.
+
+- Tekwarmretest FAILED:240snistenen/494.590snölçülen wall-time, no-binary, noAPIerror. Deadlineenforcementfail ve izlenmeyenaralık açık. Version/help/GoDB/SBOM SKIP. İlkFAIL34dosyası aynı.
+- Rootpmset16:52:28ClamshellSleep, buildbaşlangıcından18.733snsonra;17:00:24DarkWake ve18:52:49fullWake kayıtlarıoverlap. Bu aktifCPUölçümü veya derleyicihatası kanıtı değil.
+- Kanıt: artifacts/release-audit/ra-20261111/hubble-1204-warm-retest-worker/REPORT.md; result.json; ROOT_ENVIRONMENT_ADDITION.json; tested-warm-runner.py
+- Daha fazla derleme otomatikbaşlatılmayacak; önce awake/izleme/sağlayıcı eşleşmesi yolu netleşmeli.
 
 #### TEST-07.11-S6 — Temizlik ve inceleme
 - [x] Build process sonlandı; binary üretilmedi; eski1.20.2özelCLI/source korunur.
@@ -10220,22 +10225,19 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: CAT18 kesintisiz60dk/50panel/3reconnect/canonical eşitlik; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Sorumlu: ANA MÜDÜR
 - Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Ortam / kullanılan kimlik ve yetki: AppleM5/macOS27/Battery45%, estimated48min; ownedlab. Final60minsoak başlamadı.
+- Başlangıç zamanı: 2026-11-11T16:03:17.129866+00:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: BLOCKED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-18.01-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Kesintisiz60dk finalsoak için yeterli güç/awakepencere hazır değil.
+- Gözlenen: Battery45%/estimated48min; bugün gerçekClamshellSleep de kaydedildi.
+- Karar: usertalimatına göre düşük/yetersizpil koşulunda uzunkoşu başlatılmadı; yarımkoşuPASS yok.
+- Kanıt: artifacts/release-audit/ra-20261111/hubble-1204-warm-retest-worker/ROOT_ENVIRONMENT_ADDITION.json
 
 #### TEST-18.01-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -10276,8 +10278,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 #### TEST-18.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Gerekçe: BLOCKED güç/awakepencere ve finalcandidate önkoşulu; yeni60dkbaşarılıkoşu yok.
+- Açılma koşulu: finalsourcefreeze, yeterligüç ve kesintisizownedtestpenceresi; dahaönce tamamlananbağımsızfazlar yenidenkoşulmaz.
 
 ### TEST-18.02 — 50 panel/log çevrimi ve3 reconnect cleanup
 

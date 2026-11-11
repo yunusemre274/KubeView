@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-11-11T16:03:17.129866+00:00",
+  "source": "readonly local pmset Sleep/Wake events; no unrelated process details or credentials retained",
+  "buildStartedAtUTC": "2026-11-11T13:52:09.267332Z",
+  "overlappingEvent": {
+    "at": "2026-11-11T16:52:28+03:00",
+    "state": "Sleep",
+    "reason": "Clamshell Sleep",
+    "secondsAfterBuildStart": 18.733
+  },
+  "firstRecordedSubsequentWake": {
+    "at": "2026-11-11T17:00:24+03:00",
+    "state": "DarkWake"
+  },
+  "laterFullWake": {
+    "at": "2026-11-11T18:52:49+03:00",
+    "state": "Wake",
+    "reason": "lid activity"
+  },
+  "assessment": "Sleep overlaps the failed compile window. It explains an environment interruption; not proof of compiler incompatibility or active CPU time. No process can enforce a wall deadline while the OS is suspended. The helper uses time.time(), not monotonic, and the first wake is consistent with its494.590s elapsed; sampling subprocess also lacks its own timeout. Existing FAIL is preserved, no successful bounded run claimed.",
+  "runnerSHA256": "7a575fb7140929fbb726847e806f9b06f4af23235e19d547c27a402977377148",
+  "currentPythonClockInfo": {
+    "implementation": "mach_absolute_time()",
+    "monotonic": true,
+    "adjustable": false,
+    "resolution": 4.166666666666666e-08
+  },
+  "powerAtRootObservation": {
+    "source": "Battery",
+    "percent": 45,
+    "remainingMinutesEstimate": 48
+  },
+  "longRunDecision": "Do not start60min soak on estimated48min battery availability; no new measurements produced."
+}

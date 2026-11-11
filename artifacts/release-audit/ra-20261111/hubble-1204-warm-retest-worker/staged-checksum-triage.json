@@ -1,0 +1,8 @@
+{
+  "rule": "generic-api-key",
+  "file": "artifacts/release-audit/ra-20261111/hubble-1204-warm-retest-worker/go.sum.patch",
+  "line": 9,
+  "decision": "FALSE_POSITIVE_PUBLIC_MODULE_H1_CHECKSUM",
+  "proof": "Exact full patch bytes equal already verified prior failed attempt; unchanged oauth2 v0.36.0 module checksum, no credential field.",
+  "patchSHA256": "5058dc031bdf8776ee73b4127226b2084311a1b901da79efebe5478bcf019032"
+}
