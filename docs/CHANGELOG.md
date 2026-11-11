@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — yeni worker yardımcısında nesne türü
+
+- Test helper typedcontainerinspect kullanır; aynı adlıvolume artık container parserına girmez. Pendingnetwork hazır sayılmaz;23saf kontrol geçti. Gerçekworker kabulü bu sonuçla kapatılmaz.
+
+
 ## 2026-11-11 — gerçek worker denemesi başarısız, kaynaklar geri alındı
 
 - GerçekAPI/CLIadd girişimi samekey ikiPOST için aynıoperation verdi, fakat helper kısmiDocker metadata aşamasında durdu; Ready doğrulanmadı.

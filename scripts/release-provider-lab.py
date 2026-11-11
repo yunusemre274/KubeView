@@ -205,6 +205,22 @@ def self_test():
     require(canonical_mounts(mounts)!=canonical_mounts([mounts[0],{'type':'volume','name':'changed'}]),'changed_volume_hidden');cases.append('changed_volume_stays_unequal')
     require(canonical_mounts(mounts)!=canonical_mounts(mounts[:1]),'dropped_mount_hidden');cases.append('dropped_mount_stays_unequal')
     require(canonical_mounts(mounts)!=canonical_mounts(mounts+[mounts[0]]),'mount_multiplicity_hidden');cases.append('mount_multiplicity_preserved')
+    original_process=globals()['bounded_process'];inspection_calls=[]
+    probe=object.__new__(Transaction);probe.budget=DeadlineBudget('check',clock=lambda:100)
+    volume={'Name':NEW,'Driver':'local','Labels':{LABEL:NEW}}
+    def volume_only(argv,*args,**kwargs):
+        inspection_calls.append(argv)
+        return (1,b'',b'') if argv[1:3]==['container','inspect'] else (0,json.dumps([volume]).encode(),b'')
+    try:
+        globals()['bounded_process']=volume_only
+        require(probe.host(NEW) is None and inspection_calls[-1][1:3]==['container','inspect'],'volume_was_mistaken_for_container')
+        cases.append('same_name_volume_is_not_a_container')
+        pending={'Name':'/'+NEW,'Id':'a'*64,'Created':utc(),'Config':{'Labels':{}},'NetworkSettings':None,'Mounts':[]}
+        globals()['bounded_process']=lambda *args,**kwargs:(0,json.dumps([pending]).encode(),b'')
+        observed=probe.host(NEW)
+        require(observed['id']==pending['Id'] and observed['networkID'] is None and observed['IP'] is None,'pending_container_network_assumed_ready')
+        cases.append('not_yet_networked_container_remains_unadopted')
+    finally:globals()['bounded_process']=original_process
     print(json.dumps({"status":"PASS","pureCases":cases,"runtimeActions":False}))
 
 class Transaction:
@@ -240,9 +256,9 @@ class Transaction:
         return nodes
     def docker(self,*args): return json.loads(self.cmd(['/usr/local/bin/docker',*args],5))
     def host(self,name):
-        self.budget.check();code,out,_=bounded_process(['/usr/local/bin/docker','inspect',name],5,deadline=self.budget.deadline(),controller=self.budget)
+        self.budget.check();code,out,_=bounded_process(['/usr/local/bin/docker','container','inspect',name],5,deadline=self.budget.deadline(),controller=self.budget)
         if code:return None
-        x=json.loads(out)[0];nets=x['NetworkSettings']['Networks'];n=nets.get(PROFILE,{})
+        x=json.loads(out)[0];nets=(x.get('NetworkSettings') or {}).get('Networks') or {};n=nets.get(PROFILE,{})
         return {'name':x['Name'].lstrip('/'),'id':x['Id'],'created':x['Created'],'labels':x['Config'].get('Labels',{}),'networkID':n.get('NetworkID'),'IP':n.get('IPAddress'),'mounts':canonical_mounts([{'type':m['Type'],'name':m.get('Name')}for m in x['Mounts']])}
     def label_targets(self):
         result={}

@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T22:07:12.460556+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T22:09:35.743709+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:1; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, RETEST_REQUIRED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
@@ -3935,11 +3935,11 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-DEPENDENCY-WORKER; root mutasyon/cleanup hedefi ve Git incelemesi
-- Kaynak / build / paket kimliği: Runtime4c6c2ac5/provider09f9e70b60; helper7f17ba97182d34dbfcb35c12ea8ce3d62fd9882fa485696150f677944bc7fe58; RUN_CLEARED=False
+- Kaynak / build / paket kimliği: Runtime4c6c2ac5/provider09f9e70b60; helper884ece74325d3145d09be26e8503abf31ddffe718a84f1704908168d69601a56; ilkactualFAIL7f17 ayrı
 - Ortam / kullanılan kimlik ve yetki: Yalnız owned kvml-d32afbf634e8-a, iki original Node Ready. Gerçek admin kubeconfig private; başka context/hedef veya Secret değeri okunmadı.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: FAILED
+- Durum: RETEST_REQUIRED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.12-S1 — Hazırlık
@@ -3997,6 +3997,8 @@ Ayrı salt okunur tanı: aynı lock altında kalıcı üç metadata snapshot al�
 
 Dar yardımcı düzeltmesi: Docker mount kayıtları ve multiplicity korunarak canonical sıralanıyor. Reversed/changedvolume/droppedrecord/duplicate negatifleri dahil21saf testPASS. Ürün runtime değişmedi. Manager.New kaynak sözleşmesinde boş journal JSONnull, SnapshotAPI[]; iki temsil ayrı doğrulandı. İlkFAIL nedeni geriye dönük kesinleştirilmedi.
 
+Dar testhelper düzeltmesi: genericinspect yerine typedcontainerinspect, pendingNetworkSettingsNone güvenle unready metadata.23safcasePASS (21eski+volume-onlycollision/pendingnetwork); syntaxPASS, RUN_CLEAREDfalse, ürünruntimeaynı. İlkactualexceptiontrace yokluğu korunur; bu saf kontrol gerçekworker kabulü değildir. Kanıt: provider-container-type-fix/REPORT.md/result.json/pure-tests.stdout.
+
 #### TEST-06.12-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
@@ -4006,6 +4008,8 @@ Dar yardımcı düzeltmesi: Docker mount kayıtları ve multiplicity korunarak c
 Sonraki uygulanabilir retest: mount kayıtlarını/multiplicity koruyan kararlı sıralama ve farklı volume/kayıp kayıt negatifleri; tek HTTP preflight ile her iki snapshot/profile hash kalıcı kaydedilecek. Henüz actualNodeAdd izni açılmadı; phaseFAILED korunur.
 
 Tek HTTP retestPASS:3.803sn actual/168.520sn total<300; readonly→grant/actualcontextUID/profile/MaxNodes3/availablecanAdd, operations0, unsupported400→operations0; çocuk süreç0. Kalıcı before/after/profilehash ve exactdiff0. App87106exit0/noLISTEN19849, realCONTROLabsent. Kanıt: provider-http-preflight-retest-worker/REPORT.md. Root14checksum, helperdar diff ve iki snapshot sonucunu inceledi.
+
+Typedcontainerfix sonrası gerçekadd retesti henüz çalışmadı: RETEST_REQUIRED. İlkownedlab exactprofileSHA/original2Ready ve sıfırnewresource rollback kanıtı mevcut; yeni sonlu case yalnız root ayrıclearance ile başlatılabilir.
 
 #### TEST-06.12-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.

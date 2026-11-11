@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — typed Docker container helper düzeltmesi
+
+- [x] Genericinspect tür karışıklığı ve pendingnetwork metadatası için dar yardımcı değişikliği;23safcase ve syntax geçti. Ürün runtime aynı, run gate kapalı.
+- [ ] GerçekworkerReady ayrı retest bekliyor; ilkactualFAIL/journallar/rollback korunur.
+
+
 ## 11 Kasım — ilk gerçek worker denemesi ve exact cleanup
 
 - [x] GerçekPOST202 ve aynıkey aynıoperation görüldü; helperKeyError öncesi minikube başladı. YeniNodeReady yok; denemeFAIL korundu.
