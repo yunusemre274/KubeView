@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — CSP hedef tarayıcı ve MIME kabulü
+
+- Aynı private adayda Chromium/Metal Apple M5 ve Playwright WebKit normal Bul/Node/Pod/container log açılışı/settings/ESC ile aynı canvas korunumunu doğruladı. Inline script gerçek CSP ihlaliyle engellendi; blob Worker çalıştı ve temizlendi. External script canary veya gerçek Kubernetes preview kabulü iddia edilmedi.
+- Ana package testlerine HTML/JS MIME, nosniff/DENY/referrer ve eksik asset404 kontrolleri eklendi; son8test/40alt durum geçti. İlk HEAD404 ResponseRecorder harness hatası ve önceki browser FAIL/INCONCLUSIVE kayıtları korundu. Ürün CSP düzeltmesi yeniden değiştirilmedi; performans kazancı iddiası yok.
+
 ## 2026-11-11 — gerçek kaynak ayarı doğrulaması
 
 - Owned test kümesinde gerçek resource action sonrası aynı Deployment UID, iki yeni Ready Pod, template/Pod request ve limit değerleri ile owner zincirleri doğrulandı. Quantity hataları ve read-only reddi mevcut kaynağı değiştirmedi; exact cleanup ve komşu fixture eşitliği geçti.

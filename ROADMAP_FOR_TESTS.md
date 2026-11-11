@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T19:47:36.592281+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T19:50:45.691562+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `96adbf6092cba098cef351072b045e0946a4525a`; remote tip aynı. Bekleyen fark yalnız gerçek Resources test guard ve test/kanıt kayıtlarıdır; CSP ürün düzeltmesi `d0be9753` içinde commitlidir.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %14, Battery Power. Yeni A/B/60dk koşusu başlamadı. Düşük pilde owned ağır lab süreçleri durduruldu; Chromium/Metal, WebKit ve native Safari sonuçları ayrı tutulur.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:149; IN_PROGRESS:21; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:25; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:149; IN_PROGRESS:21; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:26; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -34,7 +34,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:4, VERIFIED_DONE:2 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
-| CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, FAILED:1, VERIFIED_DONE:2 | Henüz yok |
+| CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
@@ -6608,11 +6608,11 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-SECURITY-WORKER + root ikinciinceleme
-- Kaynak / build / paket kimliği: 4a05095a +main.go CSPdiff; binary322bd5b5… (csp07), frontend550400a3 eşdeğer/index0e478e0c…
-- Ortam / kullanılan kimlik ve yetki: Owned07 M5REPLAY app19847PID13278; Go1.26.11; Chromium156; privateoutput. GerçekK8sforward değil.
+- Kaynak / build / paket kimliği: CSP ürün düzeltmesi d0be9753; csp07 binary SHA322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2, frontend550400a3/index0e478e0c. Son test dosyası SHA5248f666fa430a7d94d054098b755715ecb901463940b69ca6644ffb08f1221b.
+- Ortam / kullanılan kimlik ve yetki: Owned07 TEST/REPLAY M5: Chromium156 headed, gerçek ANGLE Metal Apple M5; ayrı Playwright WebKit27.2 Apple GPU; DPR1,1440×940,20Node/300Pod. Go1.26.11 unit testleri. Native Safari, gerçek Kubernetes forward ve final paket değildir.
 - Başlangıç zamanı: unitmanifest/red-meta ve browser2026-11-11T15:59:10.717Z
-- Bitiş zamanı: Sonretstguard2026-11-11T16:06:50Z; runtimegate eksik.
-- Durum: FAILED
+- Bitiş zamanı: Browser2026-11-11T16:40:09.318Z; son MIME/header testinin gerçek başlangıç/bitiş zamanı main-security-headers-final-worker/result.json içinde.
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.05-S1 — Hazırlık
@@ -6620,14 +6620,16 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kaynak/argv/provenance: artifacts/release-audit/ra-20261111/main-csp-worker/green-meta.json; main-csp-browser-worker/candidate.json
 
 #### TEST-11.05-S2 — Normal kullanım / pozitif kontrol
-- [x] Main7top/32subcasePASS, SKIPyok; UIHTML/JS/MIME/header, routeboundary, realinprocessServeMux+ReverseProxyHeaderAdd.
-- [x] Actualbinary anaHTML/module200,indexSHA,CSPheader,20Node/300PodREPLAYworld,oneCanvas geçti.
-- [ ] NormalNode/Pod/containerlog/settings/ESC ve WebKit tamakışıgeçmedi.
+- [x] Son main package8top/40alt durum PASS, SKIP0: gerçek frontendHandler HTML/SPA ve JS MIME, nosniff/DENY/no-referrer, başarılı GET gövdesi/HEAD ve eksik JS404 metin sınırı doğrulandı.
+- [x] Actual binary/document/module/index/CSP, normal Bul mouse tamamlanması, tür filtresi ve exact Node/Pod UID, seçili app container log açılışı HTTP200/UID/protocol, ayarlar/ESC ve aynı canvas iki tarayıcıda geçti.
+- Beklenmeyen CSP olayı/pageerror0. Log açılışı kanıtı ilk log satırı teslimi veya bütün log işlevlerinin kabulü değildir. Ölçülen click await süresi ürün gecikmesi benchmark'ı değildir.
+- Kanıt: artifacts/release-audit/ra-20261111/main-csp-target-worker/REPORT.md ve main-security-headers-final-worker/REPORT.md.
 
 #### TEST-11.05-S3 — Negatif / sınır / arıza kontrolü
-- [x] İlk8policyredsubcaseFAIL→UI-onlyscript-srcself/worker-srcselfblobfix→green. Unsafeinline/eval izni yok; API/previewüstüne globalheader eklenmedi.
-- [x] Encoded/query/canonicalredirect ve6previewvaryantında yalnıztekopaqueSandboxCSP korunur; gövdeJSsilinmez. Sentetiktransport, gerçekK8sforwardJSkanıtıdeğil.
-- [ ] Browser inline/Crossoriginscriptreddi veblobWorkerpositive henüzçalışmadı.
+- [x] Ana UI exact same-origin script/worker politikası, API/WS/encoded/canonical route sınırları ve ayrı opaque preview sandbox header bileşimi unit ile doğrulandı; global politika eklenmedi.
+- [x] İki gerçek tarayıcıda zararsız inline script çalışmadı ve script-src-elem/enforce ihlali gözlendi. Blob Worker postMessage pozitif kontrolü, terminate ve URL revoke geçti.
+- [x] Eksik JS isteği HTML200'e çevrilmedi;404 text/plain ve nosniff kaldı.
+- Sınır: external-script browser canary NOT RUN. Exact script-src unit kontrolü ve inline browser gözlemi, external script çalıştırma/reddetme gözlemi diye sunulmaz. Preview composition sentetik transporttur; gerçek Kubernetes forwarded HTML ayrıca açık fazdır.
 
 #### TEST-11.05-S4 — Bulgular ve düzeltme
 - Değişiklik: backend/main.go frontendHandler birpolicysatırı; yeni security_headers_test.go. ÖncekiXSSsetinde bypassbulunmadı; bu defense-in-depth, exploitseverityiddiasıyok.
@@ -6646,16 +6648,18 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kanıt: artifacts/release-audit/ra-20261111/main-csp-diagnostic-worker/REPORT.md; result.json; identity-after.json.
 - Sıradaki somut kontrol: normal load tamamlanması, doğru kind filtresi ve ilan edilen gerçek renderer koşulu. Ürün CSP geri çekilmedi.
 
+- Yeni sonlu target koşusu: Chromium Metal ve WebKit normal akışları PASS; sırasıyla4.609/5.816sn tüm case, heartbeatgap0 ve context cleanup. Bu süreler CPU/FPS/physical-feedback ölçümü değildir.
+- Son MIME/header testinde ilk HEAD404 body assertion harness hatasıydı: doğrudan ResponseRecorder, HTTP sunucusunun HEAD gövde bastırmasını uygulamaz. Yalnız başarılı HEAD body koşulu düzeltildi; ürün main.go değişmedi. İlk FAIL korundu, izinli tek retest8/40PASS,0SKIP,0.675sn.
+
 #### TEST-11.05-S6 — Temizlik ve inceleme
-- [x] Tarayıcılar kapandı; app19847PID13278+binary322bd… aktif, diğerownedprocess kayıtları değişmedi. Hubble80336/80393 korunur.
-- [x] Rootmaincodeveunitleri okudu; rootFIRSTFAILPNG, workerworld/FAIL/videotailkarelerini açtı.
-- [ ] Tamruntimekabulün ikinciincelemesi yapılamadı; gateFAILED.
-- OrijinalWebMyereldekorunur, Git PNG/rapor/hashaltkümesi DELIVERY_SHA256SUMS iledoğrulanır.
+- [x] Her iki context/browser kapandı; timer ve worker temizliği tamamlandı. Uygulama/lab süreç kimlikleri koşu boyunca aynıydı; root sonrasında yalnız owned uygulama/relay/node containerlarını durdurdu. Profiller ve private veri korunur.
+- [x] Root helper/test farkını ve raporları okudu; target11 ve son header5checksum doğrulandı. Root Chromium Node ve WebKit Pod/log PNG'lerini gerçekten açtı; worker altı görüntüyü açtı.
+- Aynı ajan sisteminin ikinci incelemesidir; profesyonel üçüncü taraf pentest değildir. Tam log teslimi, native Safari/Retina, gerçek Kubernetes preview JS ve fiziksel gecikme bu gate'in kapsamı değildir.
 
 #### TEST-11.05-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Gerekçe: unit/headerpozitifler geçti; ikiUIactiontestFAIL, kalanmandatorybrowsercasesçalışmadı. Failedharness ürüngüvenlikkusurusayılmadı.
-- Yenidentest: önceclickcompletion nedeniniayır; aynıDPR/kalite/kaynakyoğunluğukorunsun, körtimeoutartışıveotoretryyok.
+- [x] BİTTİ / DOĞRULANDI — mevcut UI header/MIME sınırı, route/preview bileşimi, normal Chromium/Metal ve WebKit kullanıcı akışı, inline reddi ve blob worker pozitif kontrolü geçti.
+- Önceki SwiftShader/load/tür filtresi sorunlu denemeler tarihsel FAIL/INCONCLUSIVE olarak korunur; yeni PASS nedensel A/B veya performans iyileşmesi kanıtı değildir.
+- Son header testindeki ilk ResponseRecorder HEAD404 harness FAIL'i ve düzeltilmiş tekrar ayrı saklandı. External script canary ve gerçek forwarded workload tarayıcı testi yapılmış sayılmadı. İlgili runtime/route/CSP/frontend değişikliğinde retest gerekir.
 
 ### TEST-11.06 — Workload preview HTML/JS yönetim origin izolasyonu
 

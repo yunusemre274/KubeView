@@ -55,9 +55,11 @@ Exec, seçili Pod/container içinde gerçek `pods/exec` yetkisiyle çalışan no
 Ana gömülü arayüz `script-src 'self'; worker-src 'self' blob:` politikasını kullanır;
 inline/eval izni eklenmez. Bu politika yalnız frontend handler'a aittir; API/WS veya
 önizlemenin ayrı sandbox politikasına global olarak eklenmez. CSP, güvenilmeyen
-metni güvenli render etmenin yerine geçmez. UI/preview route bileşimi unit ile
-doğrulandı; yeni adayın tam tarayıcı kabulü tıklama otomasyonu sorunu nedeniyle
-henüz açık ([TEST11.05](../ROADMAP_FOR_TESTS.md)). Vite geliştirme sunucusu bu Go
+metni güvenli render etmenin yerine geçmez. UI/preview route bileşimi ve MIME/nosniff
+sınırı unit ile doğrulandı. Aynı adayda normal Chromium/Metal ve Playwright WebKit
+akışı, inline script reddi ve blob Worker pozitif kontrolü geçti
+([TEST11.05](../ROADMAP_FOR_TESTS.md)). External script browser canary ve gerçek
+Kubernetes forwarded HTML testi bu sonuca dahil değildir. Vite geliştirme sunucusu bu Go
 header politikasını kendiliğinden devralmaz.
 
 ## İsteğe bağlı metrics, Hubble ve worker

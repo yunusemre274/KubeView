@@ -14,7 +14,8 @@
 ## 11 Kasım — güvenlik tarayıcı kabulü
 
 - [x] Ana UI-only CSP ve preview'dan ayrı header bileşimi:7main test/32alt durum.
-- [ ] Aynı adayda normal UI tıklama otomasyonu tamamlanmadı; CSP ihlali gösterilmedi. WebKit/inline/blobWorker/log/settings kabulü açık (TEST11.05).
+- [x] Aynı adayda Chromium/Metal ve WebKit normal Bul/Node/Pod/log açılışı/settings/ESC, inline reddi ve blob Worker kontrolü geçti. MIME/nosniff unit sınırı da doğrulandı (TEST11.05); önceki başarısız denemeler korundu.
+- [ ] External script browser canary, tam log veri teslimi, gerçek Kubernetes forwarded HTML ve final paket kendi kapsamlarında açık; normal tıklama süresi fiziksel gecikme ölçümü değildir.
 - [ ] Hubble1.20.4 CLI adayı iki sonlu buildde binary üretmedi; ikinci koşu gerçek uyku aralığıyla çakıştı. Eski aday/ham kanıtlar korunur; otomatik yeni retry yok.
 
 ## 11 Kasım — uzak harita görünürlüğü

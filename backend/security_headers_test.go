@@ -2,6 +2,7 @@ package main
 
 import (
 	"io"
+	"mime"
 	"net/http"
 	"net/http/httptest"
 	"net/http/httputil"
@@ -92,5 +93,62 @@ func TestMainUICSPAPIAndCanonicalRedirectBoundary(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+func TestFrontendMIMEAndSecurityHeaders(t *testing.T) {
+	const entry = `<html><script type="module" src="/assets/app.js"></script></html>`
+	const script = `export const normalUI=true;`
+	h := frontendHandler(fstest.MapFS{
+		"index.html":    {Data: []byte(entry)},
+		"assets/app.js": {Data: []byte(script)},
+	})
+	for _, method := range []string{http.MethodGet, http.MethodHead} {
+		for _, target := range []string{"/", "/harbor", "/assets/app.js", "/assets/missing.js"} {
+			t.Run(method+target, func(t *testing.T) {
+				w := httptest.NewRecorder()
+				h.ServeHTTP(w, httptest.NewRequest(method, target, nil))
+				for name, want := range map[string]string{
+					"X-Content-Type-Options": "nosniff",
+					"X-Frame-Options":        "DENY",
+					"Referrer-Policy":        "no-referrer",
+				} {
+					if got := w.Header().Get(name); got != want {
+						t.Errorf("%s=%q, want %q", name, got, want)
+					}
+				}
+				mediaType, _, err := mime.ParseMediaType(w.Header().Get("Content-Type"))
+				if err != nil {
+					t.Fatalf("invalid Content-Type: %v", err)
+				}
+				switch target {
+				case "/assets/missing.js":
+					if w.Code != http.StatusNotFound || mediaType != "text/plain" || strings.Contains(w.Body.String(), "<html>") || strings.Contains(w.Body.String(), script) {
+						t.Fatalf("missing JS must be a plain 404, not an application success: status=%d type=%q", w.Code, mediaType)
+					}
+				case "/assets/app.js":
+					// Both registered JavaScript MIME types identify executable JS;
+					// an HTML fallback must never masquerade as an asset success.
+					if w.Code != http.StatusOK || (mediaType != "text/javascript" && mediaType != "application/javascript") {
+						t.Fatalf("JS asset status=%d type=%q", w.Code, mediaType)
+					}
+					if method == http.MethodGet && w.Body.String() != script {
+						t.Fatal("JS asset body changed to application HTML")
+					}
+				default:
+					if w.Code != http.StatusOK || mediaType != "text/html" {
+						t.Fatalf("application entry status=%d type=%q", w.Code, mediaType)
+					}
+					if method == http.MethodGet && w.Body.String() != entry {
+						t.Fatal("application entry body missing")
+					}
+				}
+				// Direct ResponseRecorder calls do not apply the HTTP server's
+				// HEAD suppression to bodies written by http.NotFound/http.Error.
+				if method == http.MethodHead && w.Code == http.StatusOK && w.Body.Len() != 0 {
+					t.Fatal("HEAD response included a body")
+				}
+			})
+		}
 	}
 }

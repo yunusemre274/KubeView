@@ -1,0 +1,273 @@
+{
+  "startedAt": "2026-11-11T16:39:56.961Z",
+  "source": "Actual same CSP07 M5 replay; headed Metal target, normal UI and CSP canaries; no optimization/performance/causal A-B claim",
+  "cases": [
+    {
+      "id": "chromium-target",
+      "engine": "chromium",
+      "mode": "target",
+      "csp": true,
+      "cspOffDiagnosticOnly": false,
+      "startedAt": "2026-11-11T16:39:57.473Z",
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "main document + world",
+          "at": "2026-11-11T16:39:57.903Z",
+          "elapsedWallMs": 430
+        },
+        {
+          "name": "inert inline script blocked",
+          "at": "2026-11-11T16:39:59.242Z",
+          "elapsedWallMs": 1769
+        },
+        {
+          "name": "blob worker positive + cleanup",
+          "at": "2026-11-11T16:39:59.397Z",
+          "elapsedWallMs": 1924
+        },
+        {
+          "name": "normal Bul mouse completion",
+          "at": "2026-11-11T16:40:00.156Z",
+          "elapsedWallMs": 2684
+        },
+        {
+          "name": "keyboard finder Node + exact UID",
+          "at": "2026-11-11T16:40:00.299Z",
+          "elapsedWallMs": 2826
+        },
+        {
+          "name": "keyboard finder Pod + exact UID",
+          "at": "2026-11-11T16:40:01.087Z",
+          "elapsedWallMs": 3614
+        },
+        {
+          "name": "keyboard Loglar tab",
+          "at": "2026-11-11T16:40:01.504Z",
+          "elapsedWallMs": 4031
+        },
+        {
+          "name": "keyboard settings + ESC",
+          "at": "2026-11-11T16:40:02.001Z",
+          "elapsedWallMs": 4528
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "01-world-canaries",
+          "at": "2026-11-11T16:40:00.150Z"
+        },
+        {
+          "name": "02-node-uid",
+          "at": "2026-11-11T16:40:01.087Z"
+        },
+        {
+          "name": "03-pod-container-log",
+          "at": "2026-11-11T16:40:02.000Z"
+        }
+      ],
+      "pageErrors": [],
+      "gaps": [],
+      "lastAction": "keyboard settings + ESC",
+      "mainCSP": "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; script-src 'self'; worker-src 'self' blob:",
+      "readyState": "complete",
+      "controls": {
+        "dpr": 1,
+        "framebuffer": [
+          1440,
+          940
+        ],
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "quality": "auto",
+        "motionPreference": "system",
+        "pausedButtonPresent": false
+      },
+      "normalBeforeCanaries": [],
+      "inline": {
+        "executed": false,
+        "violations": [
+          {
+            "effectiveDirective": "script-src-elem",
+            "violatedDirective": "script-src-elem",
+            "blockedURI": "inline",
+            "disposition": "enforce"
+          }
+        ]
+      },
+      "worker": {
+        "ok": true,
+        "terminated": true,
+        "revoked": true
+      },
+      "canaryEventCount": 1,
+      "pointerCompleted": {
+        "elapsedMs": 130
+      },
+      "resourceIdentity": {
+        "node": {
+          "name": "worker-001",
+          "uid": "node-0"
+        },
+        "pod": {
+          "name": "app-0",
+          "uid": "pod-0",
+          "namespace": "bench-0"
+        }
+      },
+      "NodeUIDVerified": "node-0",
+      "PodUIDVerified": "pod-0",
+      "container": "app",
+      "logUIDAndProtocolVerified": true,
+      "sameCanvas": true,
+      "normalViolations": [],
+      "finalViolations": [
+        {
+          "effectiveDirective": "script-src-elem",
+          "violatedDirective": "script-src-elem",
+          "blockedURI": "inline",
+          "disposition": "enforce"
+        }
+      ],
+      "contextClosed": true,
+      "finishedAt": "2026-11-11T16:40:02.081Z",
+      "wallMs": 4609,
+      "monotonicMs": 4608.125542,
+      "boundedValid": true
+    },
+    {
+      "id": "webkit-target",
+      "engine": "webkit",
+      "mode": "target",
+      "csp": true,
+      "cspOffDiagnosticOnly": false,
+      "startedAt": "2026-11-11T16:40:03.450Z",
+      "status": "PASS",
+      "steps": [
+        {
+          "name": "main document + world",
+          "at": "2026-11-11T16:40:04.613Z",
+          "elapsedWallMs": 1163
+        },
+        {
+          "name": "inert inline script blocked",
+          "at": "2026-11-11T16:40:06.035Z",
+          "elapsedWallMs": 2585
+        },
+        {
+          "name": "blob worker positive + cleanup",
+          "at": "2026-11-11T16:40:06.230Z",
+          "elapsedWallMs": 2780
+        },
+        {
+          "name": "normal Bul mouse completion",
+          "at": "2026-11-11T16:40:06.671Z",
+          "elapsedWallMs": 3221
+        },
+        {
+          "name": "keyboard finder Node + exact UID",
+          "at": "2026-11-11T16:40:06.812Z",
+          "elapsedWallMs": 3362
+        },
+        {
+          "name": "keyboard finder Pod + exact UID",
+          "at": "2026-11-11T16:40:07.631Z",
+          "elapsedWallMs": 4181
+        },
+        {
+          "name": "keyboard Loglar tab",
+          "at": "2026-11-11T16:40:08.677Z",
+          "elapsedWallMs": 5227
+        },
+        {
+          "name": "keyboard settings + ESC",
+          "at": "2026-11-11T16:40:08.994Z",
+          "elapsedWallMs": 5544
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "01-world-canaries",
+          "at": "2026-11-11T16:40:06.662Z"
+        },
+        {
+          "name": "02-node-uid",
+          "at": "2026-11-11T16:40:07.631Z"
+        },
+        {
+          "name": "03-pod-container-log",
+          "at": "2026-11-11T16:40:08.994Z"
+        }
+      ],
+      "pageErrors": [],
+      "gaps": [],
+      "lastAction": "keyboard settings + ESC",
+      "mainCSP": "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; script-src 'self'; worker-src 'self' blob:",
+      "readyState": "complete",
+      "controls": {
+        "dpr": 1,
+        "framebuffer": [
+          1440,
+          940
+        ],
+        "renderer": "Apple GPU",
+        "quality": "auto",
+        "motionPreference": "system",
+        "pausedButtonPresent": false
+      },
+      "normalBeforeCanaries": [],
+      "inline": {
+        "executed": false,
+        "violations": [
+          {
+            "effectiveDirective": "script-src-elem",
+            "violatedDirective": "script-src-elem",
+            "blockedURI": "inline",
+            "disposition": "enforce"
+          }
+        ]
+      },
+      "worker": {
+        "ok": true,
+        "terminated": true,
+        "revoked": true
+      },
+      "canaryEventCount": 1,
+      "pointerCompleted": {
+        "elapsedMs": 95
+      },
+      "resourceIdentity": {
+        "node": {
+          "name": "worker-001",
+          "uid": "node-0"
+        },
+        "pod": {
+          "name": "app-0",
+          "uid": "pod-0",
+          "namespace": "bench-0"
+        }
+      },
+      "NodeUIDVerified": "node-0",
+      "PodUIDVerified": "pod-0",
+      "container": "app",
+      "logUIDAndProtocolVerified": true,
+      "sameCanvas": true,
+      "normalViolations": [],
+      "finalViolations": [
+        {
+          "effectiveDirective": "script-src-elem",
+          "violatedDirective": "script-src-elem",
+          "blockedURI": "inline",
+          "disposition": "enforce"
+        }
+      ],
+      "contextClosed": true,
+      "finishedAt": "2026-11-11T16:40:09.266Z",
+      "wallMs": 5816,
+      "monotonicMs": 5816.100875,
+      "boundedValid": true
+    }
+  ],
+  "allBrowsersClosed": true,
+  "finishedAt": "2026-11-11T16:40:09.318Z",
+  "status": "PASS"
+}

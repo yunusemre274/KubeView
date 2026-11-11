@@ -1,5 +1,10 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — tarayıcı koşulu ve HTTP test sınırı
+
+- Playwright click completion ve görünür dialog ayrı gözlemlerdir. Yazılımsal SwiftShader ile gerçek Metal koşulunu karıştırmayın; yükleme tamamlanmasını ve tür filtresini kaydedin. Farklı koşuldaki başarılı tekrar önceki başarısızlığın tek nedenini kanıtlamaz.
+- Handler'ı doğrudan ResponseRecorder ile çağırmak, gerçek HTTP server'ın HEAD hata gövdesini bastırmasını uygulamaz. MIME/header assertion'ını koruyup sunucu ile recorder davranışını ayrı değerlendirin; ilk yanlış harness assertion'ını silmeyin.
+
 ## 11 Kasım — Recreate ve API nesnesi sayısı
 
 - Terminal ve silinmekte olan eski Pod kayıtları, Recreate yeni Pod'ları hazırlarken API'de kısa süre kalabilir. Güvenlik sınırında yalnız toplam sayı yerine exact eski/yeni UID, owner, phase ve deletionTimestamp kaydedin. Çalışan yük sınırı ile API nesnesi sayısını ayrı tutun.
