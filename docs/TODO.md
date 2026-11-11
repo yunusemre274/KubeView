@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — native Safari gerçek görsel kanıtı
+
+- [x] Fullviewportworld ve ilkharborform programmaticopen/type/close samecanvas; ikiPNG worker/root tarafından açılıp incelendi, cleanupgeçti.
+- [ ] Gerçekpointer/directGL/Retina/perf ve genel browserkapısı açık; scopedPASS genel kabul yerine yazılmadı.
+
+
 ## 11 Kasım — kısa childPID race düzeltmesi
 
 - [x] CompletedPopenchild capture yarışı güvenle tolere edilir; liveunverifiedchild guardı korunur.26safcase ve100boundedgerçekkısa komut geçti.

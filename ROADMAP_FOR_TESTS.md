@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T22:25:03.335367+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T22:26:34.304273+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
@@ -11214,6 +11214,8 @@ Farklı ve bounded tanı gerçek kurulu araç sözleşmesini gösterdi: evaluate
 
 Explicitreturn düzeltmesiyle tek native app denemesi JS düzeyine ulaştı: complete/onecanvas/emptyConnectButton/workspace0, gerçekUA Safari27.0.1 ve reportedDPR2. Canvas o gözlemde300x150 intrinsic/rect; fullscreen veya framebuffer/Retina kabulü değildir. İlk screenshot yanıtı helperın one-imageblock varsayımına uymadı; rawshot saklanmadı. Form/PNG/samecanvas/pointer kabulü yapılmadı. Runtime1.651sn, app91715/driver91719/ownedtab cleanup ve port19843 boş. Kanıt: native-safari-app-contract-retest-worker/REPORT.md/result.json.
 
+Nativevisualcapture scopedPASS: installedscreenshot kontratı filepath; explicitownedsavePath iki gerçekPNG üretti. Readiness ilk300x150kareyi reddedip ikinci1024x664CSSviewportı doğruladı. Safari27.0.1/reportedDPR2, canvasintrinsic1433x929 ayrı kaydedildi. Programmatikformopen/type/close samecanvas geçti. Actual2PNG2048x1328 hemworkerhemroot view_image ile açıldı; fullworld/opaqueform/noDashboard görüldü. Runtime2.764sn; exactownapp93508/driver93512/tabcleanup ve19843boş. Kanıt: native-safari-visual-capture-worker/REPORT.md/ROOT_VISUAL_REVIEW.json.
+
 #### TEST-19.09-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
 - Yapılan: henüz çalışılmadı.
@@ -11268,6 +11270,8 @@ Root receipt/checksum ve dar yardımcı kaynak yolunu inceledi. İlk başarısı
 Root receipt/checksum ve dar yardımcı kaynak yolunu inceledi. İlk başarısız/blocked kayıtlar değişmedi; yalnız own app/tab/process kapatıldı. Bu alt iş genel Safari/Retina veya fiziksel gecikme kabulü değildir.
 
 Root receipt/checksum ve dar yardımcı kaynak yolunu inceledi. İlk başarısız/blocked kayıtlar değişmedi; yalnız own app/tab/process kapatıldı. Bu alt iş genel Safari/Retina veya fiziksel gecikme kabulü değildir.
+
+Bu scope temel nativeSafari boşbaşlangıç ve programmaticDOM akışıdır. Realpointer, directGLdrawingBuffer/rendererDPR2, fizikselRetina veperformans kabulü NOTRUN; phase genel kapsamı IN_PROGRESS kalır. Ekran görüntüsü fizikselpresentedlatency yerine kullanılmadı; eskiV11-16/18/19 kapıları değişmez.
 
 #### TEST-19.09-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

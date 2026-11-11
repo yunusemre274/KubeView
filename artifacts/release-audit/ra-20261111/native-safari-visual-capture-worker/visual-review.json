@@ -1,0 +1,29 @@
+{
+  "inspectedAt": "2026-11-11T19:07:44.482235+00:00",
+  "method": "Both actual PNG files opened with view_image",
+  "images": {
+    "closed.png": {
+      "width": 2048,
+      "height": 1328,
+      "bytes": 2628285,
+      "sha256": "16c4ac806706725d6dee894066aaa664b0bec34c2a9b3f4f5aedf970aa138a06"
+    },
+    "form-open.png": {
+      "width": 2048,
+      "height": 1328,
+      "bytes": 1039063,
+      "sha256": "7a1494c9b782931c511c2fee960b97829765496e2987a0fd7ebd57ef83ade040"
+    }
+  },
+  "closedObservation": "Ocean spans viewport, central harbor/docks behind empty-landing card; disconnected header, top controls and motion pause control visible; no persistent dashboard/table.",
+  "openObservation": "Liman ekle overlay, typed Safari işlev kontrolü name, readable connection/context/namespace/selector fields and visible close button; ocean remains behind overlay. Lower form content is below visible panel area; scrolling/submission was not exercised.",
+  "functionalScope": "Programmatic owned-origin DOM click/value+input event, not native pointer or keyboard interaction",
+  "reportedDPR": 2,
+  "canvasIntrinsicAttributes": {
+    "width": 1433,
+    "height": 929
+  },
+  "webGLDrawingBufferDirectQuery": "NOT RUN",
+  "physicalDisplayRetina": "NOT RUN",
+  "performance": "NOT RUN"
+}

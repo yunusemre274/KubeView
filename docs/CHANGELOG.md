@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — native Safari dünya ve form kaydı
+
+- GerçekSafari27.0.1 üstünde tamCSSviewport deniz dünyası ve form akışı PNG ile doğrulandı. Screenshot pathkontratı ve asyncviewport beklemesi doğru kullanıldı; reportedDPR2/renderbuffer/physical ayrımı korunur.
+
+
 ## 2026-11-11 — test helper kısa child ömrü
 
 - ps/getpgid arasında bitmiş child, Popenexit durumuyla normal tamamlanır; hâlâ çalışan doğrulanmamış child reddedilir.26saf+100gerçekkısa komut geçti; ürün runtime/performance iddiası yok.
