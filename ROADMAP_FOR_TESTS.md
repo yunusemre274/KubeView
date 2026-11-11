@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T22:27:53.728994+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T22:27:55.786965+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
@@ -4038,6 +4038,8 @@ Run gate kaynaktaFalse kaldı. Root HTTP ön kontrolünün başarılı checkpoin
 Ayrı exactpartialcleanup: iki lock, system/marker/ns/original2Ready, noNode/container, volume birth/labels/no-users/exclusive targets; pendingentry çıkarılmış tamcandidateSHA başlangıçc826… ile birebir eşleşti. Yalnız newvolume nonforce rm; CAS/fsync/rename ile exactoriginalprofile0600 geri geldi. Newlabelcontainer/volume/network0, originals/fixtures/Cilium/network/volumes/manualstate eşit. İşlemFAIL kaldı. Operationalcleanup90.491sn<120; cleanupreport253.531sn>180 ayrıtimingFAIL; entirejob684.910sn<720. Root22fileSHA listesi ve CLEANUP.md/result inceledi.
 
 Case02 exactcleanup:102.600sn<120 operasyon geçti; container/volume nonforce kaldırıldı, profilec826exactrestore/originalsnapshotaynı/NewNode+Pod+labeltargets0. Failedoperation/journallar değişmez. Finalreport244.087sn>240timingFAIL ayrı korundu; yeniapp/add yok. Source8645eskiFAIL kaydı sabit; makinadizini o alt işte silinmedi. Kanıt: artifacts/release-audit/ra-20261111/real-minikube-add-fixed-cleanup-worker/REPORT.md.
+
+Rootdarfilecleanup: aynıiki lock ve actualoriginal2/system/ns guardları; liveNEWresource0/profilec826 doğrulandı. Yalnız case02operationdan sonra doğmuş exactm03config/id_rsa/id_rsa.pub ve configName/driver bağlandı. Active machines/m03 dizini privateCONTROL02/quarantined-machine-m03 konumuna atomik taşındı, silinmedi; dosyaiçerikleri yayımlanmadı. Sourcepathyok, targetconfigSHAaynı, originalsnapshot/profileaynı. Bu yeniNode veya oldpendingoperationrecovery başarısı değildir. Kanıt: artifacts/release-audit/ra-20261111/provider-machine-quarantine/REPORT.md.
 
 #### TEST-06.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
