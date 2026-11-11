@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — native Safari kısmi app gözlemi
+
+- Native JS sözleşmesi düzeltilmiş yardımcı gerçek boş landing durumuna ulaştı; reportedDPR2 kaydedildi. Screenshot format assertionı durdu; dünya/form/PNG veya fiziksel Retina kabulü iddia edilmedi.
+
+
 ## 2026-11-11 — normal ve replay yüzeyi
 
 - Güncel özel binaryde normal37 ve explicitreplay7HTTP kontrolü geçti; debugbenzeri200 yanıtlarının SPAfallback olduğu hash ile doğrulandı. Aktif root alternatifi embeddedfrontend olarak düzeltildi; ürünruntime değişmedi.

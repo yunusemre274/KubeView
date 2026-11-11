@@ -1,5 +1,11 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — native araç sözleşmesi ve hazır olma
+
+- Bir alanın expression adı, JavaScript expression semantiğini kanıtlamaz. Kurulu Safari MCP explicitreturn içeren functionbody beklediğini üç sabit ve ham yanıtla gösterdi.
+- isErrorfalse yanıtları da çözümlenmeden önce güvenli biçimde kaydedin. İlkcanvas varlığı, async rendererın tamviewport hazır olduğunu veya screenshot aracının imageblock döndürdüğünü kanıtlamaz; gerçek kontratı ve render ölçüsünü doğrulayın.
+
+
 ## 11 Kasım — invariant farkını kaydetmeden yorumlama
 
 - Birleşik before/after eşitliği bozulduğunda her iki güvenli metadata snapshot ve alan farkını kalıcı kaydedin. Exited wrapper içindeki kayıp baseline yeniden üretilemez; sonraki koşudan önceki değişimin nedenini kesinleştirmeyin.

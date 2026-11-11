@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — native Safari uygulama JS gözlemi
+
+- [x] Correct outerreturn ile gerçek Safari27.0.1 uygulama JS/boşlanding kontrolları gözlendi; exact tab/app/driver temiz kapandı.
+- [ ] Canvas300x150 gözlemi/fullscreen ve screenshot yanıt sözleşmesi doğrulanmadı; PNG/form/Retina/performance kabulü açık.
+
+
 ## 11 Kasım — güncel endpoint retesti
 
 - [x]25normal/21protect ve2conditionalreplay pattern ayrımı;37normal+7replayGET assertion geçti, ilkhelperFAIL korundu.
