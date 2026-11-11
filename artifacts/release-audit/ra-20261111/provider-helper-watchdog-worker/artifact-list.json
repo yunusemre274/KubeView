@@ -1,0 +1,42 @@
+[
+  {
+    "path": "RECIPE.md",
+    "bytes": 497,
+    "sha256": "e129defd41a6bee63cba0444a1ddb6714bf8bd8c732c7348b7783f0afd093f88"
+  },
+  {
+    "path": "REPORT.md",
+    "bytes": 3459,
+    "sha256": "39a729ca9640a34ffc091a9a7658426440498989e60cdf67b0704a9996016055"
+  },
+  {
+    "path": "helper.patch",
+    "bytes": 32389,
+    "sha256": "b32618c2a237963f1ecfbcc871dca7dcefe733226914ff353cc1e0974307cdf4"
+  },
+  {
+    "path": "manifest.json",
+    "bytes": 2986,
+    "sha256": "24f570f3bc5958b30dfba9f9385658388efd455ddca2959e397d3dcde7c4f1c0"
+  },
+  {
+    "path": "original-draft.py",
+    "bytes": 22638,
+    "sha256": "5406f4807281b53f406178010e5ad7f5d1e6b15c2be0d76c674339704304312d"
+  },
+  {
+    "path": "preflight.json",
+    "bytes": 468,
+    "sha256": "161894b66e1b9d34591b2d543ee6d422c2d4b7be760ae154347e327ecdd00fee"
+  },
+  {
+    "path": "pure-guard-tests.json",
+    "bytes": 664,
+    "sha256": "b58b9d0294d1bd57d5df08b4904179733268af5cfd7f0f81cc88040a4cfb9ef6"
+  },
+  {
+    "path": "release-provider-lab.py",
+    "bytes": 35683,
+    "sha256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b"
+  }
+]

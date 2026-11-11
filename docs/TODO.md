@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — worker helper watchdog checkpoint
+
+- [x] İlk süre-aşımı draft korundu; ayrı bounded işte syntax+17saf guard geçti. Owned PID/birth+PGID watchdog, bounded I/O ve conservative partial cleanup eklendi.
+- [ ] Gerçek HTTP/OS preflight ve yeni worker yaşam döngüsü henüz doğrulanmadı; RUN_CLEARED=False. Final paket startup retesti açık.
+
+
 ## 11 Kasım — PROV-CACHE-001 düzeltme ve retest
 
 - [x] Public provider POST cached yanıt öncesi live kube-system UID kontrolü; orijinal PoC, ek403/503/404 ve combined12/33 ile dar race geçti. İlkRED korundu.

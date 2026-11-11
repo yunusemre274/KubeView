@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T21:19:51.813487+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
-- Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
+- Son güncelleme: 2026-11-11T21:37:11.936580+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
+- Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
 - Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:21; FAILED:1; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:29; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST11.05 CSP/MIME — normal Chromium/Metal ve WebKit akışı, inline reddi, blob Worker;8unit/40alt durum. Öncesinde TEST04.05 gerçek resource rollout geçti. TEST04.04 güncel helper Scale regresyonu açık.
-- Süreç/lab: Owned normal A ve fresh Hubble `kvml-d32afbf634e8-a` node containerları durduruldu; app19846/19847 ve relay19848 listenerları kapandı. Private state, workspace ve manuel profiller korundu. Diğer projelerin dört çalışan DB containerına dokunulmadı. Benchmark/soak yok.
-- Devam: Önce bu dosya, owned-lab-stop-checkpoint/result.json ve ci-package-dns-evidence/REPORT.md okunur. State/profiller korunur. Ağır lab/perf/soak kararlı güç olmadan otomatik yeniden başlatılmaz; yalnız gereken hedefli faz seçilir.
+- Son tamamlanan faz: TEST09.01 session yaşam döngüsü ve TEST04.04 güncel helper gerçekScale geçti. TEST20.01 yeni provider runtime nedeniyle RETEST_REQUIRED; TEST06.12 gerçek yeniworker henüz çalışmadı.
+- Süreç/lab: Owned Hubble kvml-d32afbf634e8-a iki originalNode sıcak; app/hostrelay kapalı, trafik0. Diğer owned normal lab durdurulmuş, private state/manuel profiller korunur; kullanıcı DB süreçlerine dokunulmadı. Aktif iş: provider HTTP/OS preflight ve Safari metadata; benchmark/soak yok.
+- Devam: scripts/release-provider-lab.py live gate kapalıdır. Sonraki adım exact ownedUID kontrolleriyle yeni binary HTTP/OS preflight; başarılı checkpoint ardından yalnız bir idempotent worker-add işi. Orijinal lab/state guard olmadan genel up/down veya production mutasyonu yok.
 - **Genel karar: NOT_RELEASE_READY**.
 
 ## Merkezi kaynak ve güvenlik bütçesi
@@ -3515,7 +3515,7 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 
 #### TEST-06.05-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -3570,7 +3570,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 #### TEST-06.06-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -3946,7 +3946,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-DEPENDENCY-WORKER; root mutasyon/cleanup hedefi ve Git incelemesi
-- Kaynak / build / paket kimliği: 42a5abde çalışma ağacı; production pkg/provision ve provider_handlers.go kaynak incelemesi. CLIpatched.4 hash98e42baf…; gerçek yeni worker testi henüz çalışmadı.
+- Kaynak / build / paket kimliği: 4c6c2ac57edc3b6634aecd86f6c927782de01f37; provider09 binary f9e70b60…; helper723af5a6… (live run locked)
 - Ortam / kullanılan kimlik ve yetki: Yalnız owned kvml-d32afbf634e8-a, iki original Node Ready. Gerçek admin kubeconfig private; başka context/hedef veya Secret değeri okunmadı.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
@@ -3964,6 +3964,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 - Read-only provider preflight: API→pkg/provision fixed add-worker yolu ve targetUID/context/profile lock/journal incelendi. Docker VM8.32GB/10CPU, mevcut2×2GiB hard limit; üçüncü2GiB için6GiB declared toplam. VM eksi limit hesabı gerçek boş bellek değildir.
 - Bu preflight raporu145.249sn/120sn sınırını aştı: INCOMPLETE olarak kaldı, mutasyon/manager/POST yok. Kanıt: minikube-provision-preflight-worker/REPORT.md.
+
+2026-11-11 yeni hazırlık: İlk helper draft5406… ve564.734sn/360sn INCOMPLETE kaydı korunur. Ayrı watchdog işi446.822sn/480sn; syntax+17pure guardPASS, Node/app/API runtime hiç çalışmadı. Yeni binary f9e70b60… ve allowlist19849 bağlı, RUN_CLEARED=False. Kanıt: artifacts/release-audit/ra-20261111/provider-helper-preparation-worker/REPORT.md ve provider-helper-watchdog-worker/REPORT.md. Root bütün9watchdog/önceki checksumları doğruladı; gerçek HTTP/OS preflight ayrı sonraki iş.
 
 #### TEST-06.12-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -3983,6 +3985,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 - İlk actual-attempt hazırlığı BLOCKED: güvenli HTTP/adoption/cleanup helper150sn setup kapısında yetişmedi; karar179.950sn'de kaydedildi, overall720sn tükenmedi. POST/manager/CLIadd/delete ve kaynak edit0; gerçek provisioning PASS yok.
 - Exact m03 label filtresi container/volume/network seçmiyor; original volume/network ID/birth/owner snapshotlandı. Root pinli CLIargs[0],Retrieve/MachineName ve filteredPossibleLeftOvers kaynaklarını okudu. CLI drain --disable-eviction/force kullandığından yalnız doğrulanmış yeni host ve bilinen ownedDaemonSetPod guard'ıyla kullanılabilir; başka Pod varsa durur.
+
+Watchdog/ownedPIDbirth+PGID, finite2MiBI/O, cleanup reserve/reentry ve unprovenpartialrefusal saf testlerle geçti. Bunlar gerçek CLI sonlandırma/worker veya teardown kanıtı değildir; gerçek işlem açık.
 
 #### TEST-06.12-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.

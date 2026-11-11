@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "method": "Python compile(source,path,exec), in memory; no bytecode cache",
+  "helperSHA256": "5406f4807281b53f406178010e5ad7f5d1e6b15c2be0d76c674339704304312d",
+  "selfTestArgv": [
+    "python3",
+    "scripts/release-provider-lab.py",
+    "self-test"
+  ],
+  "selfTestExitCode": 0,
+  "noTransactionInstantiated": true,
+  "noRuntimeActions": true
+}

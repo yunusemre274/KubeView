@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — worker helper için sınırlı yürütme
+
+- Private owned lab kimliklerine bağlı test helper ve değişmez ilk draft kanıtı;17saf guard/syntax, timeout ve cleanup reserve kayıtları. Gerçek provisioning PASS iddiası yok; helper live gate kapalı.
+
+
 ## 2026-11-11 — cached provider yanıtında canlı UID guard'ı
 
 - POST, idempotent cached sonucu döndürmeden önce seçili API'nin gerçek kube-system UID'sini doğrular. Var olan GET guard'ı ortak konuma taşındı; yanlış UID409 ve gerçek UID-read hatalarının403/503/404 ayrımı korunur. Auth/journal/Manager şeması değişmedi.
