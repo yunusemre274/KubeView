@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — uyumlu native Safari MCP keşfi
+
+- [x] Exact2024-11-05 uzlaşma ile17araç metadata keşfi/EOF cleanup geçti.
+- [ ] Gerçek owned-tab uygulama/Retina ve performans kabulü ayrı açık; bu metadata PASS onları kapatmaz.
+
+
 ## 11 Kasım — native Safari MCP ilk metadata
 
 - [x] Owned stdio initialize yanıtı alındı ve child temiz kapandı.

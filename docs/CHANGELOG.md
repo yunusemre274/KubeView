@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — native Safari için stdio metadata
+
+- Kurulu Safari MCP için uyumlu tek protokol keşfi17gerçek araç gösterdi; tools/call veya sayfa açılmadı. İlk protocol-limited sonuç ve sıkı HTTP attribution sınırı korunur.
+
+
 ## 2026-11-11 — Safari MCP metadata sınırı
 
 - Doğrudan owned stdio capability denemesi, protocol teklif/uzlaşma ayrımı ve temiz EOF kanıtı kaydedildi. Bu test Safari uygulama veya performans kabulü değildir.
