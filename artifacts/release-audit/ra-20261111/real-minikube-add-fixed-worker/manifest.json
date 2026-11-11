@@ -1,0 +1,103 @@
+{
+  "status": "FAIL_PENDING_ROOT_CLEANUP",
+  "operationID": "0aab9c6d-1a75-4e24-9c23-5a7548d922bc",
+  "sameKeyTwoPOSTsOneOperation": true,
+  "failure": {
+    "errorClass": "ProcessLookupError",
+    "safeCategory": "details_omitted",
+    "frames": [
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/real-minikube-add-fixed-worker/run.py",
+        "function": "<module>",
+        "line": 27
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "main",
+        "line": 430
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "run",
+        "line": 378
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "power",
+        "line": 243
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "cmd",
+        "line": 241
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "command",
+        "line": 125
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "bounded_process",
+        "line": 106
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "capture",
+        "line": 46
+      }
+    ]
+  },
+  "newReadyUIDVerified": false,
+  "pendingContainer": {
+    "name": "kvml-d32afbf634e8-a-m03",
+    "id": "7a5a108942e83e21b895b6b20b9e2ad18876dc632dbc99cde6d53214fdf4fa55",
+    "created": "2026-11-11T19:14:13.970380554Z",
+    "running": true,
+    "labels": {
+      "created_by.minikube.sigs.k8s.io": "true",
+      "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m03",
+      "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m03",
+      "role.minikube.sigs.k8s.io": ""
+    },
+    "network": {
+      "kvml-d32afbf634e8-a": {
+        "id": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+        "IP": "172.29.232.4"
+      }
+    },
+    "volumeNames": [
+      "kvml-d32afbf634e8-a-m03"
+    ]
+  },
+  "pendingVolume": {
+    "Name": "kvml-d32afbf634e8-a-m03",
+    "CreatedAt": "2026-11-11T19:14:12Z",
+    "Driver": "local",
+    "Labels": {
+      "created_by.minikube.sigs.k8s.io": "true",
+      "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m03"
+    }
+  },
+  "pendingProfile": {
+    "Name": "m03",
+    "IP": "",
+    "Port": 0,
+    "ControlPlane": false,
+    "Worker": true
+  },
+  "newNodeAbsent": true,
+  "newNodePods": [],
+  "recordedAppCLIPIDsAbsent": true,
+  "port19849Free": true,
+  "originalHelperSHA256": "8645fc24fa959835970f2576ef3b1794b59c0d67fc7b2d5813024cc46676d9e1",
+  "appSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "helperUnchanged": true,
+  "RUN_CLEAREDSourceStillFalse": true,
+  "noRetryRePOSTRemoval": true,
+  "privateFullOriginalProfile": ".git/release-audit/real-minikube-add-fixed-worker/profile-before-full.json",
+  "originalProfileSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+  "elapsedSecondsAtReceipt": 294.031478,
+  "within720s": true,
+  "finalizedAt": "2026-11-11T19:17:36.074681+00:00"
+}

@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — worker case02 süreç yarışı
+
+- GerçekCLIcase02 başarısızlığı actualsafe stack ile kaydedildi. İlkcase tarihi korundu; partialcontainer/volume/profile için ayrı exactcleanup yetkisi verildi. Bu ürün/CLIuyumsuzluğu veya Ready kabulü değildir.
+
+
 ## 2026-11-11 — yeni worker adoption guardı
 
 - Yardımcı strict adoptionı claimverified+providerconfirmednodeUID sonrasına taşır; kısmiNodeReady alanı yokluğu falseReady üretmez. Aynı23saf test geçti, canlıtest ayrı.

@@ -1,0 +1,9 @@
+# Real worker case02 — FAIL, exact cleanup pending
+
+One transaction was attempted. The firstPOST19:13:56.336UTC and same-key secondPOST19:13:56.637returned the same operation0aab9c6d-1a75-4e24-9c23-5a7548d922bc. The helper failed beforeReady with ProcessLookupError at19:14:15 in power→cmd→bounded_process→OwnedGroup.capture. Safe actual stack frames are retained in result.json. No retry/rePOST or newadd followed; no provider/CLI incompatibility is established.
+
+Immutable private attempt/provider journals were copied before inspection. One reconciling operation has processExitedtrue, claimVerifiedtrue, noNodeUID. App93925/CLI93976are absent;19849free. Typed inventory records exact running newcontainer7a5a108942e83e21b895b6b20b9e2ad18876dc632dbc99cde6d53214fdf4fa55, created19:14:13.970after operation, correct labels/ownednetwork/IP172.29.232.4; m03volume created19:14:12with exact labels. No newNode or assignedPod exists. Original2UIDs remainReady. Profile pendingm03has emptyIP/Port0. No uncertain resource was removed. Root has the exact identity and controls cleanup disposition.
+
+Helper8645fc24fa959835970f2576ef3b1794b59c0d67fc7b2d5813024cc46676d9e1/runtimef9were clearance-verified. Source RUN_CLEARED stayedFalse; override was memory-only and reset. Full profile BEFORE bytes were saved privately0600, SHA c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5. Public profile data is projected metadata/hash; public journal omits keyHash/credentials/headers/nonce. Old failed case/history remain untouched.
+
+The current operation staysFAIL regardless of subsequent cleanup. No helper/product/Git/index/roadmap edit, CNI change, generalup/down, profileoverwrite, NodeAPI fallback, UI or performance acceptance occurred. See manifest/result/progress, safe exception frames, typed partial inventory and private-copy receipts. Exact elapsed is recorded.

@@ -1,0 +1,63 @@
+{
+  "status": "FAIL",
+  "mainExitCode": 2,
+  "failure": {
+    "errorClass": "ProcessLookupError",
+    "safeCategory": "details_omitted",
+    "frames": [
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/real-minikube-add-fixed-worker/run.py",
+        "function": "<module>",
+        "line": 27
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "main",
+        "line": 430
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "run",
+        "line": 378
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "power",
+        "line": 243
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "cmd",
+        "line": 241
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "command",
+        "line": 125
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "bounded_process",
+        "line": 106
+      },
+      {
+        "file": "/Users/yunusemre/Desktop/KubeView/scripts/release-provider-lab.py",
+        "function": "capture",
+        "line": 46
+      }
+    ]
+  },
+  "journalResult": "FAIL",
+  "readyVerified": false,
+  "cleanupComplete": false,
+  "pendingCleanup": true,
+  "profileOriginalNodesAndSettingsEqual": false,
+  "profileFullSHAEqual": false,
+  "postCleanupGuardedReads": "NOT_RUN_AFTER_FAILURE",
+  "helperUnchanged": true,
+  "RUN_CLEAREDSourceStillFalse": true,
+  "RUN_CLEAREDMemoryResetFalse": true,
+  "totalElapsedSeconds": 93.39434909820557,
+  "within720s": true,
+  "completedAt": "2026-11-11T19:14:15.437639+00:00"
+}

@@ -1,0 +1,25 @@
+{
+  "guardsPassed": true,
+  "currentProfileSHA256": "da28c0b820f7d4c870bce1ad32c6849cf26f2e3f61b5ebc8b2b9e7f1f79f1dea",
+  "originalProfileSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+  "onlyPendingEntry": {
+    "Name": "m03",
+    "IP": "",
+    "Port": 0,
+    "KubernetesVersion": "v1.35.1",
+    "ContainerRuntime": "",
+    "ControlPlane": false,
+    "Worker": true
+  },
+  "exactContainerID": "7a5a108942e83e21b895b6b20b9e2ad18876dc632dbc99cde6d53214fdf4fa55",
+  "NodeAbsentPods0": true,
+  "targets": {
+    "containers": [
+      "7a5a108942e83e21b895b6b20b9e2ad18876dc632dbc99cde6d53214fdf4fa55"
+    ],
+    "volumes": [
+      "kvml-d32afbf634e8-a-m03"
+    ],
+    "networks": []
+  }
+}

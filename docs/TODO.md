@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — case02 worker testi FAIL
+
+- [ ] İkinci gerçek case aynı-key tekoperation verdi fakat helper kısa childPID kontrolünde ProcessLookupError ile durdu; Ready doğrulanmadı.
+- [x] Actualstack, exactpartialidentity ve fullprivatebeforeprofile korundu; app/CLI kapalı. Exactcleanup ayrı işte sürüyor, yeniadd yok.
+
+
 ## 11 Kasım — worker kimlik gözlemi
 
 - [x] Testhelper adoption öncesi providerın doğruladığı nodeUIDyi bekler; eksikReadyconditions hazır sayılmaz.23safcase geçti; ürünruntime değişmedi.
