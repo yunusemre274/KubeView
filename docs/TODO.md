@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — worker kimlik gözlemi
+
+- [x] Testhelper adoption öncesi providerın doğruladığı nodeUIDyi bekler; eksikReadyconditions hazır sayılmaz.23safcase geçti; ürünruntime değişmedi.
+- [ ] Düzeltilmiş source ile gerçek worker kabulü henüz açık.
+
+
 ## 11 Kasım — typed Docker container helper düzeltmesi
 
 - [x] Genericinspect tür karışıklığı ve pendingnetwork metadatası için dar yardımcı değişikliği;23safcase ve syntax geçti. Ürün runtime aynı, run gate kapalı.

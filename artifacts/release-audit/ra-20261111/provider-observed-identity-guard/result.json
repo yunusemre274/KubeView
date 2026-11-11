@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-11T19:10:52.722482+00:00",
+  "status": "PASS_PURE_23_ONLY",
+  "helperSHA256": "8645fc24fa959835970f2576ef3b1794b59c0d67fc7b2d5813024cc46676d9e1",
+  "change": "Wait for provider-confirmed nodeUID before strict adoption; absentReadyconditions remain notReady. ProviderReconcile confirms profileIP+NodeUID beforepublishingnodeUID.",
+  "actualAdd": "NOT_RUN",
+  "productRuntimeChanged": false
+}

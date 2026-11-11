@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — yeni worker adoption guardı
+
+- Yardımcı strict adoptionı claimverified+providerconfirmednodeUID sonrasına taşır; kısmiNodeReady alanı yokluğu falseReady üretmez. Aynı23saf test geçti, canlıtest ayrı.
+
+
 ## 2026-11-11 — yeni worker yardımcısında nesne türü
 
 - Test helper typedcontainerinspect kullanır; aynı adlıvolume artık container parserına girmez. Pendingnetwork hazır sayılmaz;23saf kontrol geçti. Gerçekworker kabulü bu sonuçla kapatılmaz.

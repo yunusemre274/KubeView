@@ -313,7 +313,7 @@ class Transaction:
         node=self.lab.get('a','node',NEW);require(node is not None,'new_Node_not_registered');node_identity(node,h,started)
         p=json.loads((STATE/'minikube/.minikube/profiles'/PROFILE/'config.json').read_text());match=[x for x in p['Nodes'] if x.get('Name') in ['m03',NEW]]
         require(len(match)==1 and not match[0].get('ControlPlane') and match[0].get('IP')==h['IP'],'profile_new_machine_binding')
-        record={**h,'NodeUID':node['metadata']['uid'],'nodeCreationTimestamp':node['metadata']['creationTimestamp'],'role':'worker','ready':any(c['type']=='Ready'and c['status']=='True'for c in node['status']['conditions'])}
+        record={**h,'NodeUID':node['metadata']['uid'],'nodeCreationTimestamp':node['metadata']['creationTimestamp'],'role':'worker','ready':any(c['type']=='Ready'and c['status']=='True'for c in node.get('status',{}).get('conditions',[]))}
         old=self.j.get('new');require(old is None or all(old[k]==record[k] for k in ['id','created','NodeUID','IP','networkID']),'recorded_new_identity_changed');self.j['new']=record;self.event('new_host_and_Node_adopted',{'dockerID':record['id'],'NodeUID':record['NodeUID'],'ready':record['ready']});return record
     def cleanup(self):
         require(not self.cleanup_attempted,'cleanup_not_retried');self.cleanup_attempted=True
@@ -378,7 +378,7 @@ class Transaction:
                 self.budget.check();self.power();require(time.time()-start<480,'work_deadline_cleanup_reserve')
                 code,state=self.http_request('GET','/api/providers/minikube/workers');require(code==200 and len(state['operations'])==1,'operation_inventory_changed');op=state['operations'][0];require(op['id']==opid,'operation_ID_changed')
                 self.event('operation_observation',{k:op.get(k)for k in ['id','status','expectedName','nodeName','nodeUID','processPID','processExited','claimVerified','stageSource']})
-                if op.get('claimVerified') and self.host(NEW) is not None and self.lab.get('a','node',NEW) is not None:
+                if op.get('claimVerified') and op.get('nodeUID') and self.host(NEW) is not None and self.lab.get('a','node',NEW) is not None:
                     self.adopt(epoch(self.j['operationStartedAt']))
                 if op.get('processPID') and self.group:
                     pid=op['processPID'];birth=process_birth(pid)
