@@ -1,0 +1,38 @@
+✔ 50 interrupted switches save each harbor's intended destination rather than the previous interpolated camera (0.852833ms)
+✔ active camera fit samples are translation invariant including fleet route and exclude remote LOD (0.864833ms)
+✔ empty harbor fit fallback and user camera capture retain the correct coordinate frame (0.093375ms)
+✔ global workspace overview includes distant harbor silhouettes and fits a narrow 24-degree viewport (0.548834ms)
+✔ UI2 camera fit frames two ports without near-plane runaway on desktop and narrow screens (0.363208ms)
+✔ legacy 38-degree view migrates to 24 degrees without cropping or changing target and viewing angle (0.208167ms)
+✔ captured effective FOV respects camera zoom and repeated restores do not drift (0.834042ms)
+✔ camera FOV validation rejects degenerate lenses while unversioned captures remain compatible (0.108334ms)
+✔ overview depth separates the actual 12.5 mm pier overlay while preserving camera pose and zoom (0.256542ms)
+✖ distant multi-harbor overview stays in front of the fog horizon without changing the near view (0.446375ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53.663167
+
+✖ failing tests:
+
+test at frontend/src/harbor/cameraViews.test.js:156:1
+✖ distant multi-harbor overview stays in front of the fog horizon without changing the near view (0.446375ms)
+  AssertionError [ERR_ASSERTION]: an in-frame harbor must not be fully replaced with fog
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/src/harbor/cameraViews.test.js:165:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -93,11 +93,23 @@ export function fitHarborView(samples, aspect, fov = 38) {
 
 // Keep millimetre-scale pier markings separable at an overview distance. A
 // fixed 0.5 m near plane loses centimetres of 24-bit depth precision at 1 km.
-export function updateHarborDepth(camera, target) {
+export function updateHarborDepth(camera, target, fog) {
   if (!target) return false;
-  const near = Math.max(0.5, camera.position.distanceTo(target) / 50);
-  if (Math.abs(near - camera.near) <= Math.max(0.0001, near * 0.005)) return false;
-  camera.near = near;
-  camera.updateProjectionMatrix();
-  return true;
+  const distance = camera.position.distanceTo(target), near = Math.max(0.5, distance / 50);
+  let changed = false;
+  if (Math.abs(near - camera.near) > Math.max(0.0001, near * 0.005)) {
+    camera.near = near;
+    camera.updateProjectionMatrix();
+    changed = true;
+  }
+  // A narrow viewport can put a valid multi-port overview beyond the old
+  // fixed fog horizon. Retain the established close-view atmosphere, while
+  // keeping the orbit target readable at global-map distances.
+  if (fog) {
+    const start = Math.max(2800, distance * .95), end = Math.max(14000, distance * 2);
+    if (Math.abs(fog.near - start) > Math.max(.1, start * .005) || Math.abs(fog.far - end) > Math.max(.1, end * .005)) {
+      fog.near = start; fog.far = end; changed = true;
+    }
+  }
+  return changed;
 }

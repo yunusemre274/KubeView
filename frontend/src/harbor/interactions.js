@@ -30,14 +30,28 @@ export function containerInstances(pods) {
 // HTML labels stay beside their real anchor, but remain readable at the edge
 // of the canvas. Dimensions are cached on mount/content/viewport changes, not
 // read from layout during the scene's frame loop.
-export function resourceLabelPosition(x, y, width, height, viewportWidth, viewportHeight, pod = false, offset = 0) {
+export function resourceLabelPosition(x, y, width, height, viewportWidth, viewportHeight, pod = false, offset = 0, obstacles = []) {
   const halfWidth = Math.min(width, Math.max(0, viewportWidth - 32)) / 2;
   const halfHeight = Math.min(height, Math.max(0, viewportHeight - 32)) / 2;
   const clamp = (value, half, extent) => Math.max(16 + half, Math.min(extent - 16 - half, value));
-  return [
-    clamp(x + offset + (pod ? halfWidth + 26 : 0), halfWidth, viewportWidth) - offset,
-    clamp(y - (pod ? 12 : 0), halfHeight, viewportHeight),
-  ];
+  const preferred = [clamp(x + offset + (pod ? halfWidth + 26 : 0), halfWidth, viewportWidth), clamp(y - (pod ? 12 : 0), halfHeight, viewportHeight)];
+  if (!obstacles.length) return [preferred[0] - offset, preferred[1]];
+  const boxes = obstacles.slice(0, 8);
+  const candidates = [preferred];
+  for (const box of boxes) candidates.push(
+    [box.left - halfWidth - 8, preferred[1]], [box.right + halfWidth + 8, preferred[1]],
+    [preferred[0], box.top - halfHeight - 8], [preferred[0], box.bottom + halfHeight + 8],
+  );
+  let best = preferred, bestOverlap = Infinity, bestDistance = Infinity;
+  for (const candidate of candidates) {
+    const cx = clamp(candidate[0], halfWidth, viewportWidth), cy = clamp(candidate[1], halfHeight, viewportHeight);
+    let overlap = 0;
+    for (const box of boxes) overlap += Math.max(0, Math.min(cx + halfWidth, box.right + 8) - Math.max(cx - halfWidth, box.left - 8)) * Math.max(0, Math.min(cy + halfHeight, box.bottom + 8) - Math.max(cy - halfHeight, box.top - 8));
+    const distance = (cx - preferred[0]) ** 2 + (cy - preferred[1]) ** 2;
+    if (overlap < bestOverlap || overlap === bestOverlap && distance < bestDistance) { best = [cx, cy]; bestOverlap = overlap; bestDistance = distance; }
+    if (bestOverlap === 0 && bestDistance === 0) break;
+  }
+  return [best[0] - offset, best[1]];
 }
 export class PointerGesture {
   constructor(threshold = 5) {

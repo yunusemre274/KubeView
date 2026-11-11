@@ -1,5 +1,11 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — uzak deniz haritasında görünürlük ve seçili etiket
+
+- Çoklu limanın uzak kadrajı sabit sis ufkunu aştığında tesisler görünmez oluyordu. Var olan kamera kare yolunda sis mesafesi orbit hedefini izler; yakın görünümün atmosferi, kamera açısı ve zoom korunur.
+- Seçili/hover etiketi sınırlı sayıdaki önbellekli liman adı alanından kaçınır; doğal genişlik kullanarak dar dikey yazıya çökmez. Ek DOM ölçüm döngüsü, timer veya React frame state'i yok.
+- 229 frontend test/build ve Chromium/WebKit390/768/1440 REPLAY görüntüleri geçti. Uzun liman isimlerinin birbiriyle ve arıza caption'larıyla çakışması açık; genel etiket kabulü veya performans kapısı kapanmadı.
+
 ## 2026-11-11 — paket girdisi bütünlüğü ve açık CLI seçimi
 
 - Paketleme, eski arşiv ve manifestleri ezmeyi reddeder; manuel lab'ın yalnız gerekli çalışma dosyalarını taşır. `--require-clean` kapsamına bu dosyalar, dağıtılan belgeler ve RBAC manifestleri de girdi.

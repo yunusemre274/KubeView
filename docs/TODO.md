@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — uzak harita görünürlüğü
+
+- [x] Sabit sis ufkunda kaybolan tesisler ve dar dikey Pod etiketi;229frontend test/build ve6Chromium/WebKit REPLAY ekranı.
+- [ ] Uzun liman adlarının kendi aralarında/kenarla çakışması ve küçük ekranda arıza caption yoğunluğu; TEST19.07 açık.
+
 ## 11 Kasım — paket girdileri ve araç sınırı
 
 - [x] Paket output çakışmalarının reddi, runtime-only manuel lab allowlist'i, dağıtılan girdiler için clean kontrolü ve hash/provenance kaydı; 11 izole test.

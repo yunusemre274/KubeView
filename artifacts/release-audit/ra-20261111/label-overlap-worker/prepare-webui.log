@@ -1,0 +1,5 @@
+start_utc: 2026-11-11T12:53:30.961146+00:00
+argv: ["node", "scripts/prepare-webui.mjs"]
+Production frontend prepared for Go embed.
+end_utc: 2026-11-11T12:53:31.001750+00:00
+exit_code: 0

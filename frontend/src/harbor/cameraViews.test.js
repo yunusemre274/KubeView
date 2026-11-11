@@ -152,3 +152,20 @@ test("overview depth separates the actual 12.5 mm pier overlay while preserving 
   camera.position.copy(target).add(new THREE.Vector3(0,20,25)); updateHarborDepth(camera,target);
   assert.ok(camera.near < 1, "close inspection keeps its nearby surfaces");
 });
+
+test("distant multi-harbor overview stays in front of the fog horizon without changing the near view", () => {
+  const camera = new THREE.PerspectiveCamera(24, 390/844, .5, 100000);
+  const target = new THREE.Vector3(), fog = new THREE.Fog('#43808c', 2800, 14000);
+  camera.position.set(0, 600, 800);
+  updateHarborDepth(camera, target, fog);
+  assert.deepEqual([fog.near, fog.far], [2800, 14000]);
+  camera.position.set(0, 12000, 16000);
+  const before = camera.position.clone(), angle = camera.quaternion.clone(), zoom = camera.zoom;
+  updateHarborDepth(camera, target, fog);
+  assert.ok(fog.far > 20000, 'an in-frame harbor must not be fully replaced with fog');
+  assert.ok((20000-fog.near)/(fog.far-fog.near) < .1, 'the target remains readable in the global map');
+  assert.deepEqual(camera.position, before); assert.deepEqual(camera.quaternion.toArray(), angle.toArray()); assert.equal(camera.zoom, zoom);
+  assert.equal(updateHarborDepth(camera, target, fog), false, 'stationary frame does not update projection or atmosphere');
+  camera.position.set(0, 600, 800); updateHarborDepth(camera, target, fog);
+  assert.deepEqual([fog.near, fog.far], [2800, 14000], 'close inspection restores the established atmosphere');
+});

@@ -1,0 +1,145 @@
+{
+  "source": "owned07 TEST/REPLAY M5; normal UI/finder/global-map; no real Kubernetes or performance claim",
+  "engine": "webkit",
+  "startedAt": "2026-11-11T12:57:04.716Z",
+  "status": "PASS",
+  "cases": [
+    {
+      "width": 390,
+      "height": 844,
+      "screenshot": "world-390.png",
+      "label": {
+        "left": 63.41802215576172,
+        "top": 428.15875244140625,
+        "right": 118.62114715576172,
+        "bottom": 556.8150024414062,
+        "width": 55.203125,
+        "height": 128.65625
+      },
+      "plates": [
+        {
+          "name": "TEST / REPLAY M 02",
+          "rect": {
+            "left": 48.4677734375,
+            "top": 384.15875244140625,
+            "right": 232.4052734375,
+            "bottom": 420.15875244140625,
+            "width": 183.9375,
+            "height": 36
+          }
+        },
+        {
+          "name": "TEST / REPLAY M 01",
+          "rect": {
+            "left": -21.71495819091797,
+            "top": 384.15875244140625,
+            "right": 160.47254180908203,
+            "bottom": 420.15875244140625,
+            "width": 182.1875,
+            "height": 36
+          }
+        }
+      ],
+      "overlaps": [],
+      "canvases": 1,
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "width": 768,
+      "height": 900,
+      "screenshot": "world-768.png",
+      "label": {
+        "left": 97.28193664550781,
+        "top": 436.98748779296875,
+        "right": 152.4850616455078,
+        "bottom": 565.6437377929688,
+        "width": 55.203125,
+        "height": 128.65625
+      },
+      "plates": [
+        {
+          "name": "TEST / REPLAY M 02",
+          "rect": {
+            "left": 184.77700805664062,
+            "top": 392.98748779296875,
+            "right": 368.7145080566406,
+            "bottom": 428.98748779296875,
+            "width": 183.9375,
+            "height": 36
+          }
+        },
+        {
+          "name": "TEST / REPLAY M 01",
+          "rect": {
+            "left": 45.81526184082031,
+            "top": 392.98748779296875,
+            "right": 228.0027618408203,
+            "bottom": 428.98748779296875,
+            "width": 182.1875,
+            "height": 36
+          }
+        }
+      ],
+      "overlaps": [],
+      "canvases": 1,
+      "viewport": [
+        768,
+        900
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "screenshot": "world-1440.png",
+      "label": {
+        "left": 149.07725524902344,
+        "top": 402.6661071777344,
+        "right": 204.28038024902344,
+        "bottom": 531.3223876953125,
+        "width": 55.203125,
+        "height": 128.65628051757812
+      },
+      "plates": [
+        {
+          "name": "TEST / REPLAY M 02",
+          "rect": {
+            "left": 409.4471435546875,
+            "top": 358.6661071777344,
+            "right": 627.1971435546875,
+            "bottom": 394.6661071777344,
+            "width": 217.75,
+            "height": 36
+          }
+        },
+        {
+          "name": "TEST / REPLAY M 01",
+          "rect": {
+            "left": 147.3535919189453,
+            "top": 358.6661071777344,
+            "right": 362.94732666015625,
+            "bottom": 394.6661071777344,
+            "width": 215.59373474121094,
+            "height": 36
+          }
+        }
+      ],
+      "overlaps": [],
+      "canvases": 1,
+      "viewport": [
+        1440,
+        900
+      ]
+    }
+  ],
+  "errors": [],
+  "browser": "27.2",
+  "selectedPod": {
+    "uid": "pod-0",
+    "name": "app-0",
+    "namespace": "bench-0"
+  },
+  "finishedAt": "2026-11-11T12:57:08.004Z"
+}

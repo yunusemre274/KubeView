@@ -1,0 +1,18 @@
+start_utc: 2026-11-11T13:00:55.238387+00:00
+argv: ["npm", "run", "build"]
+
+> tersane-frontend@1.1.0 build
+> vite build
+
+vite v6.4.5 building for production...
+transforming...
+✓ 2215 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                        0.59 kB │ gzip:   0.36 kB
+dist/assets/index-CCZQtIvj.css        64.43 kB │ gzip:  12.38 kB
+dist/assets/HarborScene-CDRrr2hG.js  234.37 kB │ gzip:  81.43 kB
+dist/assets/index-CBbhBGPp.js        438.03 kB │ gzip: 132.56 kB
+dist/assets/three-BKmXRbXN.js        973.67 kB │ gzip: 270.82 kB
+✓ built in 1.83s
+exit_code: 0

@@ -1,0 +1,35 @@
+{
+  "binary": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/candidate-runtime-visual06/kubeview",
+  "binarySHA256": "e582a5bd4a274ae5e6627eacc2d4866760a03c6763e51593531dd744f5d2b0ef",
+  "frontendIndexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+  "embeddedIndexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+  "runs": [
+    {
+      "argv": [
+        "node",
+        "scripts/prepare-webui.mjs"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView",
+      "exit": 0,
+      "seconds": 0.02702612500070245
+    },
+    {
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "build",
+        "-p",
+        "1",
+        "-trimpath",
+        "-ldflags",
+        "-s -w -X main.version=1.1.0-visual06-2461bbfb -X main.commit=2461bbfb6824455a06c4fd9366ecd72a7928654e-visual06-dirty",
+        "-o",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/candidate-runtime-visual06/kubeview",
+        "."
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+      "exit": 0,
+      "seconds": 0.8852863329993852
+    }
+  ],
+  "at": "2026-11-11T13:26:42.786066+00:00"
+}

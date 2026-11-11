@@ -1,7 +1,7 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T16:20:17.435023+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: `496729e2e1df38081496bad3313fd7e594fbe10f`, remote tip aynı; CI43019636687 SUCCESS. Paketleme/CI/explicit minikube CLI ve seçili etiket düzeltmeleri henüz çalışma farkında. Kullanıcı dosyaları korunur.
+- Son güncelleme: 2026-11-11T16:32:17.588191+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: `2461bbfb6824455a06c4fd9366ecd72a7928654e`; remote aynı, CI43028369803 SUCCESS. Beş frontend dosyasındaki label/fog düzeltmesi sonraki test checkpointi; user dosyaları korunur.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32GiB, macOS27.0.1; şu an Battery Power %76 (önceki AC koşulundan farklı). Chromium156 ve Playwright WebKit27.2 ayrı; native Safari/Retina henüz yeni runtime kabulü değil. CPU A/B ve uzun koşu henüz başlamadı.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
@@ -10,7 +10,7 @@
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST06.01–06.04: yeni owned cold lab, gerçek mTLS negatif kontrolleri, iki farklı Pod arasında aynı/cross Node gerçek flow ve stop sonrası pencere boşalması. TEST09.05/11.06/11.07: gerçek browser + sahte API/upstream önizleme sınırı. Normal UI trafik testi sürüyor.
-- Süreç/lab: Owned normal A2 durdurulmuş;07 REPLAY app19847 PID85489. Fresh Hubble lab kvml-d32afbf634e8-a UIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a aktif, app19846 PID80336 ve relayforward19848 PID80393. Yalnız owned06 en fazla3 client/5dk UI trafik testi yetkili. Benchmark/soak yok; diğer projelerin süreçleri korunur.
+- Süreç/lab: Owned normal A2 durdurulmuş;07 REPLAY app19847 PID925. Fresh Hubble lab kvml-d32afbf634e8-a UIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a aktif, app19846 PID80336 ve relayforward19848 PID80393. Yalnız owned06 en fazla3 client/5dk UI trafik testi yetkili. Benchmark/soak yok; diğer projelerin süreçleri korunur.
 - Devam: bu dosyanın durum/dependency satırını ve `artifacts/release-audit/ra-20261111/` kayıtlarını okuyun; otomatik bütün lab'ı yeniden başlatmayın.
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -10991,8 +10991,8 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Kaynak / build / paket kimliği: 2461bbfb +5frontend dosya farkı; visual06 e582a5bd… /index0e478e0c…; exactmanifest
+- Ortam / kullanılan kimlik ve yetki: Owned07 M5REPLAY saltokunur, Chromium156/WebKit27.2, DPR1; gerçek02 veya finalarchive değil.
 - Başlangıç zamanı: 2026-11-11T14:31:09.525082+03:00
 - Bitiş zamanı: —
 - Durum: IN_PROGRESS
@@ -11038,6 +11038,11 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Chromium/WebKit390/768/1440 altıREPLAYekranı worker açtı; root390Chromium+1440WebKit görüntülerini ayrıca açtı. Seçili mavi etiket/ad kesişmesi0; turuncu arıza izleri390isimleri kapatıyor ve uzun liman adları kesiliyor. Bütün UI-002 kapanmadı.
 - Kanıt: artifacts/release-audit/ra-20261111/label-overlap-worker/REPORT.md; visual-final-*/result.json; source.diff
 - Kaynak:496729e2 üstü3dosyafarkı, binary3ddc2feb…; gerçek02 ve trafikbaşlığı retest henüz yok.
+
+- Ek root onarımı: sabit14000 sis ufku, phone global haritadaki geometrinin görünmesini engelliyordu; ilk unit FAIL→mesafeye uyumlu sis ilePASS. Yakın atmosfer ve kamera pose/zoom korunur. width:max-content, dar dikey etiket kusurunu giderdi.
+- 229frontend test+build; Chromium/WebKit390/768/1440 altıekran PASS, altısı image tool ile root tarafından açıldı. GerçekK8s/perf/nativeSafari kabulü değildir.
+- Kanıt: artifacts/release-audit/ra-20261111/overview-fog-retest/REPORT.md; manifest.json; visual06-*/result.json. visual05 yanlış hazırlık nedeniyle INVALID ve kullanılmadı.
+- Açık: uzun liman isimlerinin kendi aralarında/kenarla çakışması ve turuncu arıza caption'ları; TEST19.07 IN_PROGRESS kalır.
 
 #### TEST-19.07-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.

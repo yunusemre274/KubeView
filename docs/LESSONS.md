@@ -1,5 +1,11 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — görünürlük ve test binary'si
+
+- Frustum ve draw sayısı pozitif olsa bile sis ufkunun gerisindeki tesis tamamen görünmez olabilir. Dar global haritada gerçek PNG'yi inceleyin; lens/kamera değiştirmeden atmosfer sınırını hedef mesafesiyle uyumlu tutun.
+- CSS max-width tek başına Html etiketinin doğal genişliğini sağlamaz; shrink-to-fit ebeveyn dar dikey yazı üretebilir. Normal etiket genişliği ve gerçekten görüntülenen metin ayrıca kontrol edilir.
+- Yanlış çalışma dizininde başarısız prepare adımından sonra shell'in build'e devam etmesi eski frontend'i paketleyebilir. Sıralı check ve index hash eşitliği kullanın; ilk geçersiz binary'yi başarı kanıtından ayırın.
+
 ## 11 Kasım — paket girdileri ve tarama kapsamı
 
 - Kaynak commit'i kaydı, dağıtılan bütün dosyaların o commit'e ait olduğunu tek başına kanıtlamaz. Manuel lab/belge/RBAC girdilerini clean kontrolüne ve hash kaydına dahil edin; hazırlanmış frontend'in kaynakla eşitliğini ayrıca doğrulayın.

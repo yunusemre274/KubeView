@@ -16,6 +16,27 @@ test('selected resource labels fit all canvas edges without changing their world
   }
 });
 
+test('selected labels avoid cached harbor nameplates while staying within phone and desktop bounds', () => {
+  for (const [w,h] of [[390,844],[768,900],[1440,900]]) {
+    const box = {left:w/2-55,right:w/2+55,top:h/2-18,bottom:h/2+18};
+    const width=Math.min(220,w-32),height=80,offset=12;
+    const [x,y]=resourceLabelPosition(w/2-120,h/2+15,width,height,w,h,true,offset,[box]);
+    const left=x+offset-width/2,right=x+offset+width/2,top=y-height/2,bottom=y+height/2;
+    assert.ok(left>=16 && right<=w-16 && top>=16 && bottom<=h-16);
+    assert.ok(right<=box.left-8 || left>=box.right+8 || bottom<=box.top-8 || top>=box.bottom+8);
+  }
+});
+
+test('bounded collision placement is deterministic and preserves visible labels when no free space exists', () => {
+  const boxes=[{left:16,right:374,top:16,bottom:828}];
+  const args=[190,400,220,80,390,844,true,0,boxes];
+  assert.deepEqual(resourceLabelPosition(...args),resourceLabelPosition(...args));
+  const [x,y]=resourceLabelPosition(...args);
+  assert.ok(Number.isFinite(x)&&Number.isFinite(y));
+  assert.ok(x>=126&&x<=264&&y>=56&&y<=788);
+  assert.deepEqual(resourceLabelPosition(300,200,200,48,1440,900,true,0,[{left:1000,right:1200,top:600,bottom:650}]),[426,188]);
+});
+
 test('every regular, init, restartable init and ephemeral container maps to its exact Pod UID and raw name',()=>{
   const resource={kind:'Pod',metadata:{uid:'pod-uid',name:'plain-api-name',namespace:'test'},spec:{containers:[{name:'api'},{name:'metrics'},{name:'proxy'},{name:'fourth'}],initContainers:[{name:'prepare'},{name:'init-sidecar',restartPolicy:'Always'}],ephemeralContainers:[{name:'debug'}]}}
   const instances=containerInstances([resource])

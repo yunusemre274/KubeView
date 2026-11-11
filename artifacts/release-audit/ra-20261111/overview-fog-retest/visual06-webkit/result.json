@@ -1,0 +1,277 @@
+{
+  "source": "owned07 TEST/REPLAY M5; normal UI/finder/global-map; no real Kubernetes or performance claim",
+  "engine": "webkit",
+  "startedAt": "2026-11-11T13:27:59.479Z",
+  "status": "PASS",
+  "cases": [
+    {
+      "width": 390,
+      "height": 844,
+      "screenshot": "world-390.png",
+      "label": {
+        "left": 60.94606018066406,
+        "top": 428.1585998535156,
+        "right": 203.49293518066406,
+        "bottom": 475.8773498535156,
+        "width": 142.546875,
+        "height": 47.71875
+      },
+      "plates": [
+        {
+          "name": "TEST / REPLAY M 02",
+          "rect": {
+            "left": 48.46742248535156,
+            "top": 384.1585998535156,
+            "right": 232.40492248535156,
+            "bottom": 420.1585998535156,
+            "width": 183.9375,
+            "height": 36
+          }
+        },
+        {
+          "name": "TEST / REPLAY M 01",
+          "rect": {
+            "left": -21.715293884277344,
+            "top": 384.1585998535156,
+            "right": 160.47220611572266,
+            "bottom": 420.1585998535156,
+            "width": 182.1875,
+            "height": 36
+          }
+        }
+      ],
+      "overlaps": [],
+      "canvases": 1,
+      "viewport": [
+        390,
+        844
+      ],
+      "camera": [
+        7770.043836401072,
+        8901.636390843125,
+        9354.333161949307
+      ],
+      "fog": {
+        "near": 14290.666469256665,
+        "far": 30085.613619487718
+      },
+      "stats": {
+        "frame": 191,
+        "calls": 474,
+        "triangles": 79808,
+        "points": 0,
+        "lines": 36,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 57,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "width": 768,
+      "height": 900,
+      "screenshot": "world-768.png",
+      "label": {
+        "left": 89.87614440917969,
+        "top": 436.9871520996094,
+        "right": 232.4230194091797,
+        "bottom": 484.7059020996094,
+        "width": 142.546875,
+        "height": 47.71875
+      },
+      "plates": [
+        {
+          "name": "TEST / REPLAY M 02",
+          "rect": {
+            "left": 184.77609252929688,
+            "top": 392.9871520996094,
+            "right": 368.7135925292969,
+            "bottom": 428.9871520996094,
+            "width": 183.9375,
+            "height": 36
+          }
+        },
+        {
+          "name": "TEST / REPLAY M 01",
+          "rect": {
+            "left": 45.8140869140625,
+            "top": 392.9871520996094,
+            "right": 228.0015869140625,
+            "bottom": 428.9871520996094,
+            "width": 182.1875,
+            "height": 36
+          }
+        }
+      ],
+      "overlaps": [],
+      "canvases": 1,
+      "viewport": [
+        768,
+        900
+      ],
+      "camera": [
+        4597.5292226315105,
+        4822.689030282259,
+        4822.169427992791
+      ],
+      "fog": {
+        "near": 7720.301713538426,
+        "far": 16253.266765344057
+      },
+      "stats": {
+        "frame": 310,
+        "calls": 490,
+        "triangles": 93632,
+        "points": 0,
+        "lines": 36,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 57,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "screenshot": "world-1440.png",
+      "label": {
+        "left": 131.60696411132812,
+        "top": 432.7091979980469,
+        "right": 274.1538391113281,
+        "bottom": 480.4279479980469,
+        "width": 142.546875,
+        "height": 47.71875
+      },
+      "plates": [
+        {
+          "name": "TEST / REPLAY M 02",
+          "rect": {
+            "left": 409.4454345703125,
+            "top": 358.66546630859375,
+            "right": 627.1954345703125,
+            "bottom": 394.66546630859375,
+            "width": 217.75,
+            "height": 36
+          }
+        },
+        {
+          "name": "TEST / REPLAY M 01",
+          "rect": {
+            "left": 147.35134887695312,
+            "top": 358.66546630859375,
+            "right": 362.9450988769531,
+            "bottom": 394.66546630859375,
+            "width": 215.59375,
+            "height": 36
+          }
+        }
+      ],
+      "overlaps": [],
+      "canvases": 1,
+      "viewport": [
+        1440,
+        900
+      ],
+      "camera": [
+        2838.0798297522215,
+        2560.5398108660293,
+        2308.6702953080908
+      ],
+      "fog": {
+        "near": 4098.987051681287,
+        "far": 14000
+      },
+      "stats": {
+        "frame": 410,
+        "calls": 490,
+        "triangles": 93632,
+        "points": 0,
+        "lines": 36,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 57,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "browser": "27.2",
+  "selectedPod": {
+    "uid": "pod-0",
+    "name": "app-0",
+    "namespace": "bench-0"
+  },
+  "finishedAt": "2026-11-11T13:28:08.730Z"
+}

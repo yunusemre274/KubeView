@@ -104,6 +104,12 @@ const labelStyle = {
 };
 const statusLabelStyle = { fontSize: 12, color: "#536776", marginTop: 2 };
 const labelPoint = new THREE.Vector3();
+const nameplatePoint = new THREE.Vector3();
+const nameplateLayouts = new WeakMap();
+function sceneNameplates(scene) {
+  if (!nameplateLayouts.has(scene)) nameplateLayouts.set(scene, new Map());
+  return nameplateLayouts.get(scene);
+}
 
 function Terrain({ materials: m, bounds, lowDetail }) {
   const blocks = useMemo(() => {
@@ -269,6 +275,7 @@ function ResourceLabel({
     nameRef = useRef(),
     last = useRef({});
   const size = useThree((state) => state.size);
+  const scene = useThree((state) => state.scene);
   const labelSize = useRef([420, 72]);
   const measureLabel = useCallback((node) => {
     ref.current = node;
@@ -280,13 +287,27 @@ function ResourceLabel({
   }, [resource.metadata?.name, resource.metadata?.namespace, selected, hover, labels, state, size.width, size.height]);
   const calculatePosition = useCallback((object, camera, viewport) => {
     labelPoint.setFromMatrixPosition(object.matrixWorld).project(camera);
+    const x = (labelPoint.x + 1) * viewport.width / 2, y = (1 - labelPoint.y) * viewport.height / 2;
+    const obstacles = selected || hover ? [] : EMPTY_OPERATIONS;
+    if (selected || hover) {
+      let checked = 0;
+      for (const entry of sceneNameplates(scene).values()) {
+        if (++checked > 16 || obstacles.length === 8) break;
+        if (!entry.object) continue;
+        nameplatePoint.setFromMatrixPosition(entry.object.matrixWorld).project(camera);
+        if (nameplatePoint.z < -1 || nameplatePoint.z > 1) continue;
+        const cx = (nameplatePoint.x + 1) * viewport.width / 2, cy = (1 - nameplatePoint.y) * viewport.height / 2;
+        const [width, height] = entry.size;
+        if (cx + width/2 < 0 || cx - width/2 > viewport.width || cy + height/2 < 0 || cy - height/2 > viewport.height) continue;
+        obstacles.push({ left: cx-width/2, right: cx+width/2, top: cy-height/2, bottom: cy+height/2 });
+      }
+    }
     return resourceLabelPosition(
-      (labelPoint.x + 1) * viewport.width / 2,
-      (1 - labelPoint.y) * viewport.height / 2,
+      x, y,
       ...labelSize.current, viewport.width, viewport.height,
-      resource.kind === "Pod", offset,
+      resource.kind === "Pod", offset, obstacles,
     );
-  }, [resource.kind, offset]);
+  }, [resource.kind, offset, selected, hover, scene]);
   useFrame(() => {
     if (!visualStatus) return;
     const visual = visualStatus(),
@@ -338,6 +359,7 @@ function ResourceLabel({
           ...labelStyle,
           borderColor: selected ? "#4b89d1" : "#d5dfe3",
           marginLeft: offset,
+          width: "max-content",
           maxWidth: "min(420px, calc(100vw - 32px))",
           whiteSpace: "normal",
           overflowWrap: "anywhere",
@@ -1659,7 +1681,7 @@ function ViewController({
     const { center, position, distance } = fitHarborView(samples, size.width / size.height, camera.fov);
     camera.position.copy(position);
     camera.lookAt(center);
-    updateHarborDepth(camera, center);
+    updateHarborDepth(camera, center, scene.fog);
     camera.far = Math.max(2500, distance * 5);
     camera.updateProjectionMatrix();
     controls.current?.target.copy(center);
@@ -1707,7 +1729,7 @@ function ViewController({
         const samples = harborFitSamples(scene, null, bounds, worldOffset, true, true);
         const { center, position, distance } = fitHarborView(samples, size.width / size.height, camera.fov);
         transition.current = null;
-        camera.position.copy(position); camera.lookAt(center); updateHarborDepth(camera, center);
+        camera.position.copy(position); camera.lookAt(center); updateHarborDepth(camera, center, scene.fog);
         controls.current?.target.copy(center); camera.far = distance * 5; camera.updateProjectionMatrix(); controls.current?.update(); invalidate();
       },
     };
@@ -1783,7 +1805,7 @@ function ViewController({
   const followOffset = useRef(new THREE.Vector3(55, 60, 75)),
     lastFollow = useRef(null);
   useFrame((_, delta) => {
-    updateHarborDepth(camera, controls.current?.target);
+    updateHarborDepth(camera, controls.current?.target, scene.fog);
     const keys = panKeys.current;
     if (keys.size) transition.current = null;
     if (transition.current && !keys.size) {
@@ -1926,8 +1948,22 @@ function NearbyHarbor({ harbor, index, session, views, protectedSources, materia
 }
 
 function HarborNameplate({ harbor, position, onSelect, active = false, stale = false }) {
-  return <Html position={[position[0] + 8, 110, position[1] - 76]} center zIndexRange={[5, 0]}>
-    <button className="harbor-nameplate" data-active={active} aria-label={`${harbor.name} — limanı aç`} title={`${harbor.namespaces.join(", ")}${stale ? " · Son bilinen veri" : ""}`}
+  const scene = useThree(state => state.scene), size = useThree(state => state.size);
+  const entry = useRef({ object: null, size: [112, 36] }), button = useRef();
+  const measure = useCallback(node => { button.current = node; if (node) entry.current.size = [node.offsetWidth, node.offsetHeight]; }, []);
+  useLayoutEffect(() => {
+    const cache = sceneNameplates(scene), item = entry.current;
+    cache.set(item, item);
+    return () => cache.delete(item);
+  }, [scene]);
+  useLayoutEffect(() => { if (button.current) entry.current.size = [button.current.offsetWidth, button.current.offsetHeight]; }, [harbor.name, stale, size.width, size.height]);
+  const calculatePosition = useCallback((object, camera, viewport) => {
+    entry.current.object = object;
+    nameplatePoint.setFromMatrixPosition(object.matrixWorld).project(camera);
+    return [(nameplatePoint.x + 1) * viewport.width/2, (1 - nameplatePoint.y) * viewport.height/2];
+  }, []);
+  return <Html position={[position[0] + 8, 110, position[1] - 76]} center zIndexRange={[5, 0]} calculatePosition={calculatePosition}>
+    <button ref={measure} className="harbor-nameplate" data-active={active} aria-label={`${harbor.name} — limanı aç`} title={`${harbor.namespaces.join(", ")}${stale ? " · Son bilinen veri" : ""}`}
       onPointerDown={event => event.stopPropagation()} onClick={event => { event.stopPropagation(); onSelect?.(harbor.id); }}>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m12 2 10 5.5v9L12 22 2 16.5v-9Z M2 7.5l10 5.5 10-5.5M12 13v9M7 4.75l10 5.5" /></svg>
       <span>{harbor.name}</span>{stale && <small>Eski veri</small>}
