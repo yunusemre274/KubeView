@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — physical profile lock RED
+
+- [x] FarklıStateDir/sameHome/Profile ikiManagerNew kilit alabiliyor; sameStateDir veilkoperation/Close kontrolleri ayrı geçti. GerçekCLI yok.
+- [ ] PROV-LOCK-002 için physicalhome lock ve eskiStateDir lock uyumu, cleanup/retest gerekiyor.
+
+
 ## 11 Kasım — real-minikube-add-gc-followup-worker
 
 - [ ] İlk saltokunurGCfollowup defaulthelperACpowerguardında BLOCKED; hiçbirKubernetes/Dockerread yok. CurrentGC/profileobservationUNKNOWN, öncekiFAIL değişmez. Powercondition cihazBattery90 olarak değişti; kullanıcıpildevam yetkisiyle ayrı kısaREADONLY politika uygulanacak, auth/UIDguardları değişmez.

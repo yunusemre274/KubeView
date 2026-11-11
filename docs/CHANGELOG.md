@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — profile lock kapsam regresyonu
+
+- PROV-LOCK-002 odaklıGo testi RED: physicalprofile iki ayrıStateDir üstünden eşzamanlısahipleniliyor. Yetkisizuzakexploit iddiası yok; ilksetup ve gerçekRED korunur.
+
+
 ## 2026-11-11 — real-minikube-add-gc-followup-worker
 
 - İlk saltokunurGCfollowup defaulthelperACpowerguardında BLOCKED; hiçbirKubernetes/Dockerread yok. CurrentGC/profileobservationUNKNOWN, öncekiFAIL değişmez. Powercondition cihazBattery90 olarak değişti; kullanıcıpildevam yetkisiyle ayrı kısaREADONLY politika uygulanacak, auth/UIDguardları değişmez.

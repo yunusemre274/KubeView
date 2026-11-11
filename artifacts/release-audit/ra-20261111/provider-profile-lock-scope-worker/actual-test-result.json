@@ -1,0 +1,10 @@
+{
+  "status": "RED_REPRODUCED",
+  "exitCode": 1,
+  "timeout": false,
+  "elapsedSeconds": 4.274874925613403,
+  "completedAt": "2026-11-11T19:44:13.884923+00:00",
+  "GoVersion": "go version go1.26.11 darwin/arm64",
+  "testSHA256": "2a146f4688e741a26be340a48641602efd11218161f1b5a37aef5b50c1f8f1a2",
+  "noProductFix": true
+}

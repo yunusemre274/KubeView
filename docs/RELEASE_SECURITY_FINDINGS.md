@@ -92,3 +92,9 @@ GOTOOLCHAIN=go1.26.11 GOMAXPROCS=2 go test -race -p 1 -parallel 2 -timeout 120s 
 Bu komutlar sentetik istemci kullanır; gerçek küme testi için açık opt-in ve
 owned cluster/namespace kimlikleri gerekir. `-p1/-parallel2` kaynak bütçesidir;
 `-race` ağır tanılamadır, production CPU karşılaştırmasına karıştırılmaz.
+
+### PROV-LOCK-002 — farklı journal dizinleri ortak profili kilitlemiyor
+
+MEDIUM/P1 yerel concurrency doğruluğu. İki güvenilir yerel provider örneği aynı minikubeHome/Profile için farklıStateDir kullandığında ikiManagerNew da kilit alabiliyor. AynıStateDir negatif kontrolü ve ilkfakeoperation/samekey/Close kontrolleri geçerken [odaklıregresyon](../artifacts/release-audit/ra-20261111/provider-profile-lock-scope-worker/REPORT.md) RED oldu. Gerçek ikiCLI, kapasiteaşımı veya uzak/auth exploit gösterilmedi.
+
+Kilit, physicalproviderHome/Profile yerine yalnız journalStateDir/Profile yoluna bağlı. Düzeltme/retest beklenir; risk kabul edilmedi.

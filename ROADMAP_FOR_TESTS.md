@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T22:35:39.430920+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T22:50:31.215885+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:19; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, FAILED:2, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
@@ -4062,7 +4062,7 @@ Rootdarfilecleanup: aynıiki lock ve actualoriginal2/system/ns guardları; liveN
 - Ortam / kullanılan kimlik ve yetki: UNIT production Register/protect + fake Kubernetes/runner + private terminal journal; geçerli local session/grant. Gerçek CLI/Node/cluster/browser yok.
 - Başlangıç zamanı: 2026-11-11T18:02:56.905572Z
 - Bitiş zamanı: Unit/race retest tamam; kesin argv/UTC provider-cache-scope-retest-worker JSONlarında. Gerçek same-key/profile concurrency kapısı açık.
-- Durum: IN_PROGRESS
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.13-S1 — Hazırlık
@@ -4098,6 +4098,8 @@ Aynı gerçekilkadd koşusunda aynı-key ikiPOST aynıoperation8ce1a91c… dönd
 
 - [x] PROV-CACHE-001 RED: canlı fake kube-system UID farklıyken beklenen409 yerine202+oldcachedoperation; freshNamespaceUIDGet0/ProfileUIDcheck0/Add0. Yeni worker veya RCE/Secret sızıntısı kanıtı yok.
 
+PROV-LOCK-002 RED: aynı gerçekHome/Profile fakat farklıStateDir ile ikiManagerNew eşzamanlıbaşarılı. SameStateDir redkontrolü, ilkfakeoperation/samekey tekID veClose/wgjoin/reacquire pozitifleri geçti. Tamamısentetikfakeclient/runner; gerçekCLI/VM veya exploit yok. İlkPATHGo1.26.5setupFAIL ayrı; exactGo1.26.11actualred4.275sn. Kanıt: provider-profile-lock-scope-worker/REPORT.md; regression2a146f46… .
+
 #### TEST-06.13-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
 - Önem derecesi ve gerekçesi: —
@@ -4109,6 +4111,8 @@ Aynı gerçekilkadd koşusunda aynı-key ikiPOST aynıoperation8ce1a91c… dönd
 - Kök neden: providerWorker POST context check sonrası Begin çağırır; Begin cached-key branch Verify'den önce döner. GET yolu freshUIDcheck yaparken POST atlar. Authenticated local cached-scope integrity/yanlış işlem durumu sorunu, MEDIUM güvenlik/P1 doğruluk olarak değerlendirildi; CVSS veya remote exploit iddiası yok.
 
 - Düzeltme: var olan actual kube-system GET/error/UID409 guard'ı GET/POST ayrımının önüne taşındı. Cached POST da güncel seçili UID'yi doğrular;16satırlık dar hareket, Manager/auth/journal şeması değişmedi. Aynı15sn context ve failure() RBAC/upstream error ayrımı korundu.
+
+Kök neden: physicalCLIinventory Home/Profile iken nonblockinglock StateDir/Profile konumunda. Localtrustedikiapp/customStateDir önkoşulluMEDIUM/P1 concurrency doğruluk bulgusu; anonim/RBAC bypass gösterilmedi. Runtimefix henüz yok.
 
 #### TEST-06.13-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
