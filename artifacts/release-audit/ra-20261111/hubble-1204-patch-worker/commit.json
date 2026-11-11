@@ -1,0 +1,35 @@
+{
+  "sha": "3e268bbcc7243b90300debb6e5de3062656669ce",
+  "node_id": "C_kwDODUTKXtoAKDNlMjY4YmJjYzcyNDNiOTAzMDBkZWJiNmU1ZGUzMDYyNjU2NjY5Y2U",
+  "url": "https://api.github.com/repos/cilium/hubble/git/commits/3e268bbcc7243b90300debb6e5de3062656669ce",
+  "html_url": "https://github.com/cilium/hubble/commit/3e268bbcc7243b90300debb6e5de3062656669ce",
+  "author": {
+    "name": "Glib Smaga",
+    "email": "code@gsmaga.com",
+    "date": "2026-11-05T19:31:06Z"
+  },
+  "committer": {
+    "name": "Glib Smaga",
+    "email": "199077+glibsm@users.noreply.github.com",
+    "date": "2026-11-06T21:07:00Z"
+  },
+  "tree": {
+    "sha": "5e0c0cec99c7159654b80439329f47a6189c5954",
+    "url": "https://api.github.com/repos/cilium/hubble/git/trees/5e0c0cec99c7159654b80439329f47a6189c5954"
+  },
+  "message": "Prepare for v1.20.4 release\n\nSigned-off-by: Glib Smaga <code@gsmaga.com>",
+  "parents": [
+    {
+      "sha": "060d40329d8035d2565dc97f256a7f2829b6844d",
+      "url": "https://api.github.com/repos/cilium/hubble/git/commits/060d40329d8035d2565dc97f256a7f2829b6844d",
+      "html_url": "https://github.com/cilium/hubble/commit/060d40329d8035d2565dc97f256a7f2829b6844d"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

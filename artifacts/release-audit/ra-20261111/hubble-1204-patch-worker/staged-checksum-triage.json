@@ -1,0 +1,10 @@
+{
+  "rule": "generic-api-key",
+  "file": "artifacts/release-audit/ra-20261111/hubble-1204-patch-worker/go.sum.patch",
+  "line": 9,
+  "decision": "FALSE_POSITIVE_UNCHANGED_GO_MODULE_CHECKSUM",
+  "module": "golang.org/x/oauth2",
+  "version": "v0.36.0",
+  "completeLineSHA256": "c33eab034b8da7305a11b02bb7440af0e3d7581c3303a1ad3c83715436ed5fe0",
+  "proof": "complete matched line is an h1 module checksum, identical in baseline and post-build go.sum; no secret field. Exact one-fingerprint private baseline only."
+}

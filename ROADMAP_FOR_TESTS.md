@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T16:44:24.131727+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T16:49:28.647505+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `2461bbfb6824455a06c4fd9366ecd72a7928654e`; remote aynı, CI43028369803 SUCCESS. Beş frontend dosyasındaki label/fog düzeltmesi sonraki test checkpointi; user dosyaları korunur.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32GiB, macOS27.0.1; şu an Battery Power %76 (önceki AC koşulundan farklı). Chromium156 ve Playwright WebKit27.2 ayrı; native Safari/Retina henüz yeni runtime kabulü değil. CPU A/B ve uzun koşu henüz başlamadı.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **199**. NOT_STARTED:153; IN_PROGRESS:21; FAILED:0; BLOCKED:0; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:153; IN_PROGRESS:21; FAILED:1; BLOCKED:0; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -30,7 +30,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:16, IN_PROGRESS:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
-| CAT-07 — Statik analiz/bağımlılık/sır | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
+| CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:4, VERIFIED_DONE:2 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
@@ -4771,6 +4771,52 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
 - Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
 
+
+
+### TEST-07.11 — Yeni Hubble CLI kaynak, derleme ve araç güvenliği
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: Bağımlılık düzeltmesi build/işlev regresyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: KV-DEPENDENCY-WORKER
+- Kaynak / build / paket kimliği: Hubble1.20.4 commit3e268bbcc7243b90300debb6e5de3062656669ce; x/net.62 graph; binary yok.
+- Ortam / kullanılan kimlik ve yetki: Private Go1.27.4 kaynak; no CLI/provider/cluster execution; tek build,8dk sınır.
+- Başlangıç zamanı: Exact worker command/execution manifestinde.
+- Bitiş zamanı: FAIL handoff13:45UTC; exact worker manifestinde.
+- Durum: FAILED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.11-S1 — Hazırlık
+- [x] Resmi tag/commit/tree/arşiv ve7130regularGitblob doğrulandı; eski kaynak/binary hashleri korunur.
+- Kanıt: artifacts/release-audit/ra-20261111/hubble-1204-patch-worker/REPORT.md; RECIPE.md
+
+#### TEST-07.11-S2 — Normal kullanım / pozitif kontrol
+- [x] Tek graph update PASS: x/net.62 ve gerekli x/*closure; baselinecel-go.30/gRPC1.83.2 korunur.
+- [ ] Binary/version/help/SCA pozitif sonucu yok.
+
+#### TEST-07.11-S3 — Negatif / sınır / arıza kontrolü
+- [x] Tek build kalan61.186sn sonunda SIGTERM; job8dk sınırı, peak537100288byte.
+- Gözlenen: Cilium1.20.4/Kubernetes.36.5 indirme ve compile zamanı tüketti; API derleme hatası gözlenmedi, binary yok.
+- Sonuç: FAILED bounded timeout; sonraki CLI/SCA SKIP, PASS değil.
+
+#### TEST-07.11-S4 — Bulgular ve düzeltme
+- Bu işte runtime bug/exploit gösterilmedi; özel CLI adayı tamamlanamadı. Ürün pini/cluster değişmedi.
+- Somut sonraki soru: aynı exactgraph/ısınmış cache ile tek240sn warmbuild tamamlanır mı? Kör retry yok.
+
+#### TEST-07.11-S5 — Tekrar test ve regresyon
+- [ ] Retest henüz yapılmadı. Binary yokken version/help/tarama SKIP.
+- Sonlu plan: en fazla1warmbuild240sn+60snverification; aynısource/modulehash; GOMAX1-2/-p1/RSS2GiB/free10GiB.
+
+#### TEST-07.11-S6 — Temizlik ve inceleme
+- [x] Build process sonlandı; binary üretilmedi; eski1.20.2özelCLI/source korunur.
+- [x] Exactargv/log/resource/license/sourcehash kanıtları saklandı. Root raporu okudu; globalCLI veya cluster değişmedi.
+
+#### TEST-07.11-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Gerekçe: FAILED bounded compile timeout; binary/CLI/SCA kapıları eksik.
+- Yeniden test: yalnız yukarıdaki somut warmbuild sorusu için tek sonlu retest.
 
 ## CAT-08 — Portlar/erişim/TLS
 

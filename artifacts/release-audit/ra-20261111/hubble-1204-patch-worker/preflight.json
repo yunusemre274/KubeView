@@ -1,0 +1,19 @@
+{
+  "started_at_utc": "2026-11-11T13:40:02.239242+00:00",
+  "deadline_utc": "2026-11-11T13:47:32.239242+00:00",
+  "hard_budget_seconds": 480,
+  "private": ".git/release-audit/hubble-v1.20.4-patched1",
+  "old_binary_sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2",
+  "db_metadata": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  },
+  "GOTOOLCHAIN": "go1.27.4",
+  "GOMAXPROCS": 2,
+  "GOMEMLIMIT": "1GiB",
+  "rss_limit_bytes": 2147483648,
+  "min_free_bytes": 10737418240,
+  "observed_free_bytes": 454019989504
+}
