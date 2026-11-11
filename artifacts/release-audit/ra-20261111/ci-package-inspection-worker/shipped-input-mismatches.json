@@ -1,0 +1,86 @@
+[
+  {
+    "target": "darwin-arm64",
+    "path": "MANUAL_TEST_GUIDE.md",
+    "recordedInputSHA256": "194483d7ed8f43d112c00b409efec45801be773ba3bbf9c76d652eafc671af5a",
+    "shippedSHA256": "af02d98410e7c01568bb19bfe35edac9a81529e6c6457ef7872a05d8a946b788",
+    "bytes": 26007
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "README.md",
+    "recordedInputSHA256": "2d1cbdb7ec1da79d87c36f4becccfb3d496b2a9ce61507c4eaa5b7d32783ae6f",
+    "shippedSHA256": "42dff19c4c3064c7a9f1fa6494a05c3e2c318c98998865a98578ce52df4c5609",
+    "bytes": 35859
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "docs/V11_ACCEPTANCE_REPORT.md",
+    "recordedInputSHA256": "9e30dc470232a42b11ccb366f16676bd81852d6da648dc79b22b05d766053d03",
+    "shippedSHA256": "0ee9f141c78fe7e5b88419ae2ee5b8eb2c30ca0a6cafa3259b985af137c10cdb",
+    "bytes": 23335
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "docs/WORKSPACE_ACCEPTANCE.md",
+    "recordedInputSHA256": "6ac91d1a9144764275e6280daa6c623dca088a35484bbd8f3a234f89b11dcbe2",
+    "shippedSHA256": "b06f092b296b45db027db2051c5bd3b23a8adb3be80f553309aa907e5733c105",
+    "bytes": 28532
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "docs/RELEASE_NOTES_v1.1.0.md",
+    "recordedInputSHA256": "eb8561352d77fe4eafd9e446a9a50300f0619ce64462ac79551a72ec5f0985c3",
+    "shippedSHA256": "2fce1a7c1e8054a494969f3fa79e230c922647ff599c07695257fa6b72448e9b",
+    "bytes": 10194
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "docs/SECURITY.md",
+    "recordedInputSHA256": "2fc94e85b077a295e38fb704ca845f5e6bd05f68d44282b28aa1b86dd97504d2",
+    "shippedSHA256": "e23752be7a9c3b6d741ac57bf059dd92dc70699a50a1aa1b1b6a2360208a1b7d",
+    "bytes": 15986
+  },
+  {
+    "target": "linux-amd64",
+    "path": "MANUAL_TEST_GUIDE.md",
+    "recordedInputSHA256": "194483d7ed8f43d112c00b409efec45801be773ba3bbf9c76d652eafc671af5a",
+    "shippedSHA256": "af02d98410e7c01568bb19bfe35edac9a81529e6c6457ef7872a05d8a946b788",
+    "bytes": 26007
+  },
+  {
+    "target": "linux-amd64",
+    "path": "README.md",
+    "recordedInputSHA256": "2d1cbdb7ec1da79d87c36f4becccfb3d496b2a9ce61507c4eaa5b7d32783ae6f",
+    "shippedSHA256": "42dff19c4c3064c7a9f1fa6494a05c3e2c318c98998865a98578ce52df4c5609",
+    "bytes": 35859
+  },
+  {
+    "target": "linux-amd64",
+    "path": "docs/V11_ACCEPTANCE_REPORT.md",
+    "recordedInputSHA256": "9e30dc470232a42b11ccb366f16676bd81852d6da648dc79b22b05d766053d03",
+    "shippedSHA256": "0ee9f141c78fe7e5b88419ae2ee5b8eb2c30ca0a6cafa3259b985af137c10cdb",
+    "bytes": 23335
+  },
+  {
+    "target": "linux-amd64",
+    "path": "docs/WORKSPACE_ACCEPTANCE.md",
+    "recordedInputSHA256": "6ac91d1a9144764275e6280daa6c623dca088a35484bbd8f3a234f89b11dcbe2",
+    "shippedSHA256": "b06f092b296b45db027db2051c5bd3b23a8adb3be80f553309aa907e5733c105",
+    "bytes": 28532
+  },
+  {
+    "target": "linux-amd64",
+    "path": "docs/RELEASE_NOTES_v1.1.0.md",
+    "recordedInputSHA256": "eb8561352d77fe4eafd9e446a9a50300f0619ce64462ac79551a72ec5f0985c3",
+    "shippedSHA256": "2fce1a7c1e8054a494969f3fa79e230c922647ff599c07695257fa6b72448e9b",
+    "bytes": 10194
+  },
+  {
+    "target": "linux-amd64",
+    "path": "docs/SECURITY.md",
+    "recordedInputSHA256": "2fc94e85b077a295e38fb704ca845f5e6bd05f68d44282b28aa1b86dd97504d2",
+    "shippedSHA256": "e23752be7a9c3b6d741ac57bf059dd92dc70699a50a1aa1b1b6a2360208a1b7d",
+    "bytes": 15986
+  }
+]

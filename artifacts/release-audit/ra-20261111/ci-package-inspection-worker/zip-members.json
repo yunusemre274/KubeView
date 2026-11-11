@@ -1,0 +1,30 @@
+[
+  {
+    "name": "SHA256SUMS",
+    "bytes": 201,
+    "compressedBytes": 141,
+    "unixMode": "0o100644",
+    "isDirectory": false
+  },
+  {
+    "name": "build.json",
+    "bytes": 3152,
+    "compressedBytes": 1701,
+    "unixMode": "0o100644",
+    "isDirectory": false
+  },
+  {
+    "name": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "bytes": 12712272,
+    "compressedBytes": 12574916,
+    "unixMode": "0o100644",
+    "isDirectory": false
+  },
+  {
+    "name": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "bytes": 13727706,
+    "compressedBytes": 13640154,
+    "unixMode": "0o100644",
+    "isDirectory": false
+  }
+]

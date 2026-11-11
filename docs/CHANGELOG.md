@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — dağıtılmış arşiv ve native version kontrolü
+
+- Gerçek CI arşivinin ZIP/tar ve iç/dış provenance kontrolleri kaydedildi. İlk kimlik farkı ve Markdown dönüşümleri exact kaynakla çözüldü; binary çalıştırılmadan guard uygulandı.
+- Minimal Mac version yolu geçti ve data/cwd yan etkisi üretmedi. Genel rapor sonlandırma sınırı aşıldığı için phase INCOMPLETE kaldı; final temiz kurulum veya native UI kabulü iddia edilmedi.
+
 ## 2026-11-11 — CI temiz başlangıç ve gerçek build kimliği
 
 - Yeni CI run43062361657 kurulum/test/paket ve Linux copy-out onboarding smoke adımlarını geçti; eski DNS başarısızlıkları ayrı kaldı. Artifact ZIP kimliği doğrulandı, final manuel kabul geçmiş sayılmadı.

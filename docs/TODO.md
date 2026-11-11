@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — gerçek CI arşiv incelemesi
+
+- [x] Gerçek ZIP/tar/provenance, bounded member ve runtime allowlist kontrolleri; Markdown dönüşümleri kaynak ve çıktı hashleri ayrılarak doğrulandı. Native Mac `--version` doğru merge kimliğiyle, Go/Node/Vite bulunmayan PATH üzerinde çalıştı ve data dizini açmadı.
+- [ ] Bu yalnız minimal native yoldur. Genel raporlama faz sınırı 4,683sn aşıldığı için INCOMPLETE kaydı korunur; final server/UI/temiz kurulum ve manuel profiller henüz kapanmadı.
+
 ## 11 Kasım — yeni CI temiz Linux sonucu
 
 - [x] PR head3bdb7c0c ile ilişkili CI43062361657 tüm adımları geçti: gerçek Linux copy-out binary/ilk liman formu smoke ve artifact upload. Eski üç DNS FAIL/SKIP kaydı korunur.

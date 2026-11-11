@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:03:11.261627+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:06:52.855822+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
@@ -11187,11 +11187,16 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Yeni CI run43062361657/job130668033624 tüm adımları PASS: Playwright kurulumu, copy-out Linux binary startup, gerçek boş workspace/ilk liman formu browser smoke1PASS ve artifact upload. Önceki DNS FAIL/SKIPPED sonuçları değişmedi; retry/workflow değişikliği yok.
 - PR head ile build SHA aynı değildir. Root exact merge commit ebeveynlerini ve full tree eşitliğini git show/diff ile doğruladı; binary provenance5373657 kalır. Kanıt: ci-package-success-3bdb7c0c/merge-identity.json.
 
+- Arşiv incelemesi: ZIP/both tar checksum, iç/dış provenance ve exact allowlist60member/118,777,814expanded-byte sınırında doğrulandı. Link/special/encrypted/duplicate/traversal girişleri kabul edilmedi; extractall kullanılmadı.
+- Tek native darwin-arm64 --version0.578202sn/exit0; gerçek build5373657, PATH/usr/bin:/bin, HOME korundu. Fresh cwd boş ve --data-dir yok kaldı. Server/UI veya provider başlamadı.
+
 #### TEST-20.01-S3 — Negatif / sınır / arıza kontrolü
 - [x] Output çakışması/symlink, yarışta çıkan arşivin ezilmemesi, eksik/symlink frontend, kirli manual/doc/RBAC girdisi kontrollü test edildi.
 - İlk red: 8PASS/2FAIL; clean kapsamı ve hash/provenance yokluğu yeniden üretildi.
 - Retest: 11PASS; artefaktlar ayrı.
 - Kanıt: artifacts/release-audit/ra-20261111/packaging-root-retest/initial-red.log
+
+- İlk PR-head/build SHA guard farkı korundu; root exact merge parent/full tree kanıtıyla bağladı.12Markdown input/output hash farkı exact merge kaynağından paketleyicinin link dönüşümüyle birebir yeniden üretildi. Source-input ve shipped-output hashleri birbirinin yerine yazılmadı.
 
 #### TEST-20.01-S4 — Bulgular ve düzeltme
 - Bulgu: PKG-001 P1 paket doğruluğu; eski output ezme ve seçili olmayan paket girdilerinin temiz sanılması.
@@ -11218,6 +11223,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 - Root üç job'ın gerçek step durumları ve hata excerpt'lerini GitHub connector üzerinden okudu. Kod/test/paket derleme success ile temiz paket startup SKIP ayrı tutuldu.
 - Yerel owned lab'lar düşük pilde mevcut runner guard'larıyla durduruldu. Private state/profiller korunur, 19846/19847/19848 loopback listenerları kapalı; kullanıcı DB containerları korunur. Kanıt: owned-lab-stop-checkpoint/result.json.
+
+- Root inceleme raporu/manifest/native argv ve17checksum doğruladı. Extracted binary/private ZIP .git alanında; credential veya gerçek cluster içeriği yok. Kanıt: artifacts/release-audit/ra-20261111/ci-package-inspection-worker/REPORT.md.
+- Genel job INCOMPLETE: report finalization244.683sn ile240sn faz sınırını4.683sn aştı. Native/inspection gözlemleri orijinal deadline içinde tamamlandı; bu zaman ihlali gizlenmedi ve faz tam PASS yapılmadı. Final temiz kurulum ve manuel profiller hâlâ açık.
 
 #### TEST-20.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
