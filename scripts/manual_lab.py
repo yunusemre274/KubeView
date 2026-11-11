@@ -128,6 +128,29 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
 
 
+def selected_minikube_binary(value):
+    if value is None:
+        return "minikube"
+    path = Path(value)
+    if not path.is_absolute():
+        raise LabError("--minikube-binary mutlak executable dosya yolu olmalı; shell komutu değildir")
+    try:
+        path = path.resolve(strict=True)
+    except (OSError, RuntimeError, ValueError) as exc:
+        raise LabError("--minikube-binary dosyası bulunamadı") from exc
+    if not path.is_file() or not os.access(path, os.X_OK):
+        raise LabError("--minikube-binary executable normal dosya olmalı")
+    return str(path)
+
+
+def custom_minikube_version(version, explicit):
+    if version == PINS["minikube"]:
+        return False
+    if explicit and re.fullmatch(re.escape(PINS["minikube"]) + r"-kubeview-patched\.[0-9]+", version):
+        return True
+    raise LabError(f"Bu manifestler minikube {PINS['minikube']} için sabit; sürüm desteklenmiyor: {version}")
+
+
 def default_state():
     if sys.platform == "darwin":
         return Path.home() / "Library/Application Support/KubeView/manual-lab-v1"
@@ -183,6 +206,7 @@ def process_tools():
 class Lab:
     def __init__(self, args):
         self.args = args
+        self.minikube_binary = selected_minikube_binary(getattr(args, "minikube_binary", None))
         raw = Path(args.state_dir).expanduser() if args.state_dir else default_state()
         if raw.is_symlink():
             raise LabError("State dizini symlink olamaz")
@@ -374,16 +398,18 @@ class Lab:
         return cluster
 
     def verify_tools(self):
-        for tool in ("docker", "kubectl", "minikube"):
+        for tool in ("docker", "kubectl") + (() if getattr(self.args, "minikube_binary", None) else ("minikube",)):
             if not shutil.which(tool):
                 raise LabError(f"{tool} gerekli; doctor kurulum gereksinimlerini gösterir, paket yüklemez")
-        _, version, _ = run(["minikube", "version", "--short"])
-        if version.strip() != PINS["minikube"]:
-            raise LabError(f"Bu manifestler minikube {PINS['minikube']} için sabit; kurulu sürüm: {version.strip()}")
-        _, help_text, _ = run(["minikube", "start", "--help"])
+        self.verify_minikube_version()
+        _, help_text, _ = run([self.minikube_binary, "start", "--help"])
         for flag in ("--keep-context", "--embed-certs", "--nodes", "--listen-address", "--cni"):
             if flag not in help_text:
                 raise LabError(f"Kurulu minikube {flag} desteklemiyor")
+
+    def verify_minikube_version(self):
+        _, version, _ = run([self.minikube_binary, "version", "--short"])
+        custom_minikube_version(version.strip(), bool(getattr(self.args, "minikube_binary", None)))
 
     def ensure_network(self, cluster):
         """Private minikube homes cannot allocate around other homes' subnets."""
@@ -533,7 +559,7 @@ class Lab:
             # An interrupted first start is recoverable only with exact unique profile,
             # creation time after intent, and minikube's actual labels. Persist IDs now.
             self.capture_containers(key, allow_partial=True)
-        command = ["minikube", "start", "-p", cluster["name"], "--driver=docker", "--nodes=" + str(cluster["nodes"]),
+        command = [self.minikube_binary, "start", "-p", cluster["name"], "--driver=docker", "--nodes=" + str(cluster["nodes"]),
                    "--cpus=2", "--memory=2048mb", "--disk-size=12000mb", "--kubernetes-version=" + PINS["kubernetes"],
                    "--base-image=" + PINS["baseImage"], "--keep-context", "--embed-certs", "--listen-address=127.0.0.1",
                    "--network=" + network, "--cni=" + cluster["cni"], "--interactive=false", "--auto-update-drivers=false",
@@ -1180,9 +1206,11 @@ class Lab:
                 for record in cluster["containers"]:
                     if self.check_container(cluster, record)["State"]["Running"]:
                         raise LabError("Önce down; çalışan cluster destroy edilmez")
+            if self.state["clusters"]:
+                self.verify_minikube_version()
             for key, cluster in self.state["clusters"].items():
                 self.guard_cluster(key, api=False)
-                run(["minikube", "delete", "-p", cluster["name"]], env=self.env(), timeout=180)
+                run([self.minikube_binary, "delete", "-p", cluster["name"]], env=self.env(), timeout=180)
                 for record in cluster["containers"]:
                     if self.inspect_container(record["id"]):
                         raise LabError("Minikube delete sonrası owned container hâlâ mevcut; state silinmedi")
@@ -1244,15 +1272,27 @@ class Lab:
         report = {"readOnly": True, "platform": platform.platform(), "python": platform.python_version(), "stateDir": str(self.root), "stateExists": self.state is not None,
                   "pins": PINS, "tools": {}, "ports": {}, "budgets": {"A": "2 nodes × 2 CPU/2048MiB; ~4GiB + Docker overhead", "A+B": "3 nodes; ~6GiB + overhead", "telemetry": "explicit separate state only; no default CNI changes"},
                   "network": ["First up: Kubernetes v1.35.1 binaries/images from minikube registries", "Fixture images: nginx:1.27.5-alpine and busybox:1.37.0", "Optional telemetry downloads require separate explicit opt-in"], "automaticInstall": False}
-        commands = {"minikube": ["minikube", "version", "--short"], "kubectl": ["kubectl", "version", "--client", "-o", "json"], "docker": ["docker", "version", "--format", "{{.Server.Version}}"]}
+        commands = {"minikube": [self.minikube_binary, "version", "--short"], "kubectl": ["kubectl", "version", "--client", "-o", "json"], "docker": ["docker", "version", "--format", "{{.Server.Version}}"]}
         for name, command in commands.items():
+            tool = {"available": False}
+            if name == "minikube":
+                selected = self.minikube_binary if getattr(self.args, "minikube_binary", None) else shutil.which("minikube")
+                selected = Path(selected).resolve() if selected else None
+                tool.update(path=str(selected) if selected else None, sha256=digest(selected) if selected else None,
+                            customBinary=bool(getattr(self.args, "minikube_binary", None)), customBuild=False, versionSupported=False)
             try:
                 rc, out, err = run(command, check=False, timeout=15)
-                report["tools"][name] = {"available": rc == 0, "version": scrub(out.strip()), "error": scrub(err.strip()) if rc else None}
+                tool.update(available=rc == 0, version=scrub(out.strip()), error=scrub(err.strip()) if rc else None)
+                if name == "minikube" and rc == 0:
+                    custom = custom_minikube_version(out.strip(), bool(getattr(self.args, "minikube_binary", None)))
+                    tool.update(customBuild=custom, versionSupported=True)
+                    if custom:
+                        tool["provenanceNote"] = "Operator-supplied local patch marker; not official upstream binary verification"
             except LabError as exc:
-                report["tools"][name] = {"available": False, "error": str(exc)}
+                tool.update(available=False, error=str(exc))
+            report["tools"][name] = tool
         if report["tools"].get("minikube", {}).get("available"):
-            _, out, _ = run(["minikube", "start", "--help"], timeout=15)
+            _, out, _ = run([self.minikube_binary, "start", "--help"], timeout=15)
             report["verifiedStartFlags"] = {flag: flag in out for flag in ("--keep-context", "--embed-certs", "--nodes", "--listen-address", "--cni")}
         if report["tools"].get("docker", {}).get("available"):
             _, out, _ = run(["docker", "info", "--format", '{"cpus":{{.NCPU}},"memoryBytes":{{.MemTotal}},"architecture":"{{.Architecture}}"}'])
@@ -1290,6 +1330,7 @@ def parser():
     shared.add_argument("--state-dir", help="Private normal-user state directory, outside the runner bundle/repo")
     shared.add_argument("--binary", help="Delivered embedded kubeview executable (or KUBEVIEW_BINARY)")
     shared.add_argument("--hubble-binary", help="Optional telemetry only: installed Hubble CLI1.20.2 executable")
+    shared.add_argument("--minikube-binary", help="Operator-selected absolute minikube executable; accepts v1.38.1 or explicit kubeview-patched.N local build")
     shared.add_argument("--base-port", type=int, help="Persisted lab base port; default19700, profile ports19701..19707")
     result = argparse.ArgumentParser(description=__doc__, parents=[shared])
     sub = result.add_subparsers(dest="command", required=True)
@@ -1299,6 +1340,7 @@ def parser():
         child.add_argument("--state-dir", default=argparse.SUPPRESS)
         child.add_argument("--binary", default=argparse.SUPPRESS)
         child.add_argument("--hubble-binary", default=argparse.SUPPRESS)
+        child.add_argument("--minikube-binary", default=argparse.SUPPRESS)
         child.add_argument("--base-port", type=int, default=argparse.SUPPRESS)
         if name in ("up", "app", "scenario", "reset"):
             child.add_argument("--profile", choices=PROFILES, required=True)

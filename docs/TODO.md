@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — paket girdileri ve araç sınırı
+
+- [x] Paket output çakışmalarının reddi, runtime-only manuel lab allowlist'i, dağıtılan girdiler için clean kontrolü ve hash/provenance kaydı; 11 izole test.
+- [x] Operatörün açık minikube executable seçimi: literal argv, mutlak dosya, sürüm/doctor doğrulaması; runner25 test geçti. Bu sayı özel aracın gerçek worker sağlama kabulü değildir.
+- [ ] Final arşivden temiz başlangıç, yeni collector imajlarının açık High bulguları, özel CLI düzeltmelerinin gerçek sağlayıcı kabulü ve nihai A/B/60dk testleri.
+
 ## 11 Kasım2026 — yayın öncesi test devamı
 
 - [x] Kaynak/oturum guardları SEC001/002, eski seçim lease’i WS001 ve ara panel/log renderı WS002 için red/green; normal UI50A→B→A/299kapalırequest ve gerçek selector/union/concurrent/readback.

@@ -1,5 +1,12 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — paket girdisi bütünlüğü ve açık CLI seçimi
+
+- Paketleme, eski arşiv ve manifestleri ezmeyi reddeder; manuel lab'ın yalnız gerekli çalışma dosyalarını taşır. `--require-clean` kapsamına bu dosyalar, dağıtılan belgeler ve RBAC manifestleri de girdi.
+- Arşiv içi provenance ve dış build kaydı, paket girdileri ile hazırlanmış frontend dosyalarının hash'lerini tutar. İmza veya kaynak/build eşitliği iddiası değildir. İlk iki başarısız kontrol ve 11 başarılı fixture testi ayrı saklandı; gerçek final arşiv kabulü açık.
+- Manuel lab için açık, mutlak `--minikube-binary` yolu eklendi; argv ve sürüm doğrulaması, doctor yol/hash kaydı ve varsayılan sürüm sınırı korunur. Özel CLI, resmi upstream binary olarak gösterilmez.
+- CI checkout credential'larını sonraki build adımlarına bırakmaz ve paketleme testlerini çalıştırır. Yeni CI sonucu commit/push sonrasında ayrıca doğrulanır.
+
 ## 2026-11-11 — yayın adayı kapsam ve paket sınırı
 
 - Liman geçişinde eski Pod panelinin yeni API ile ara renderı engellendi. Gerçek50A→B→A, per-harbor taslak ve299log request cleanup/kimlik kontrolü geçti; toplamCPU iyileşmesi iddiası yok.

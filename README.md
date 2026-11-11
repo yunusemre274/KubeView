@@ -115,7 +115,7 @@ make build
 ./bin/kubeview --context kendi-context-adiniz
 ```
 
-`make build` frontend'i derleyip Go embed alanına hazırlar; `bin/kubeview` ve uyumluluk adı `bin/tersane-backend` oluşur. Aday arşivleri repo kökünde `node scripts/build-release.mjs` ile hazırlanır; varsayılan hedefler macOS ARM64 ve Linux AMD64, çıktı `dist/` altındadır. `--require-clean` izlenen runtime değişikliklerinin commitlenmesini ister. `--prepared` mevcut frontend build'ini kullanır; kaynak/build eşitliği doğrulanmadan release için kullanılmamalıdır. `dist/build.json` kaynak commit'ini kaydeder; çapraz derleme platform çalıştırma testi değildir.
+`make build` frontend'i derleyip Go embed alanına hazırlar; `bin/kubeview` ve uyumluluk adı `bin/tersane-backend` oluşur. Aday arşivleri repo kökünde `node scripts/build-release.mjs` ile hazırlanır; varsayılan hedefler macOS ARM64 ve Linux AMD64, çıktı `dist/` altındadır. `--require-clean`, uygulama kaynaklarıyla birlikte pakete giren manuel lab, belge ve RBAC girdilerinin commitlenmesini ister. Önceki çıktılar üzerine yazılmaz; yeni bir deneme için henüz var olmayan `--output-dir=/mutlak/yeni-dizin` verin. `--prepared` mevcut frontend build'ini kullanır; kaynak/build eşitliği doğrulanmadan release için kullanılmamalıdır. `build.json` ve arşiv içindeki `build-provenance.json`, kaynak commit'i ve paket girdileri/frontend dosyalarının SHA256 değerlerini kaydeder. Bunlar yayıncı imzası veya hazırlanmış frontend'in kaynakla eşitliğinin tek başına kanıtı değildir. Çapraz derleme platform çalıştırma testi değildir.
 
 Geliştirme ortamı:
 

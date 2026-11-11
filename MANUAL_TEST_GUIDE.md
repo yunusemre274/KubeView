@@ -33,6 +33,16 @@ Başka çalışma dizininden mutlak runner yolu da çalışır:
 seçili liman için ayrıca açık yönetim onayı ve gerçek Kubernetes RBAC gerekir.
 Varsayılan sunucu salt okunurdur;07 her durumda salt okunurdur.
 
+Operatörün ayrıca doğruladığı yerel bir minikube executable'ı için her komutta
+`--minikube-binary /mutlak/executable-yolu` kullanılabilir. Bu dosya yolu tek argv
+öğesidir; shell metni kabul edilmez ve PATH değiştirilmez. Varsayılan sürüm sabiti
+korunur; yalnız açık dosya seçiminde `v1.38.1-kubeview-patched.N` özel yapı işareti
+de kabul edilir. Bu işaret güvenlik sertifikası değildir: `doctor`, gerçek yol,
+SHA256 ve özel yapı bilgisini gösterir; kaynağı ve düzeltmeleri ayrıca doğrulayın.
+Seçim state'e yazılmaz, sonraki komutlarda aynı bayrağı açıkça verin. Güncel tarama
+bulguları henüz bütün araç/collector dağıtımlarını yayın için onaylamamıştır;
+[canlı test defteri](ROADMAP_FOR_TESTS.md) bu kapıları ayrı tutar.
+
 Varsayılan state dizini macOS'ta
 `~/Library/Application Support/KubeView/manual-lab-v1`, Linux'ta
 `${XDG_STATE_HOME:-~/.local/state}/kubeview/manual-lab-v1` olur. Her komutta aynı

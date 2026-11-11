@@ -1,0 +1,23 @@
+source_head: 4ec526b7ce1bc39c21b603864c9096f72eb39184
+source_delta_sha256: {"scripts/build-release.mjs": "507863321b72040490f72e2caccc34f67156427ce4ded536af07624071b68505", "scripts/build-release.test.mjs": "f191ecc5026e18c639c17e1f897d62c49689fc329c824daba82a165ef4e363bd"}
+start_utc: 2026-11-11T12:06:39.859063+00:00
+command_argv: ["node", "--test", "--test-concurrency=1", "scripts/build-release.test.mjs"]
+mode: isolated temp fixtures; all git/npm/go/tar execution injected with synthetic stubs; no real builds or credential reads
+✔ strict argument parsing preserves prepared/clean/target and default targets (0.547375ms)
+✔ existing explicit output directories and symlinks fail before any command (3.58575ms)
+✔ default dist rejects every conflicting archive, binary folder or manifest before build (10.745667ms)
+✔ fresh relative output dry-run preserves prepared flow and packages only manual runtime (6.128167ms)
+✔ fresh absolute output keeps both default targets isolated from historical dist (8.01825ms)
+✔ default output preserves unrelated historical files and keeps normal frontend flow (5.302583ms)
+✔ require-clean rejection never reserves output or invokes frontend/build tools (2.474208ms)
+✔ archive published during build cannot be overwritten and temporary output is removed (4.55275ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 73.378167
+end_utc: 2026-11-11T12:06:39.987161+00:00
+exit_code: 0

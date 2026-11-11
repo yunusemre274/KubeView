@@ -1,5 +1,10 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — paket girdileri ve tarama kapsamı
+
+- Kaynak commit'i kaydı, dağıtılan bütün dosyaların o commit'e ait olduğunu tek başına kanıtlamaz. Manuel lab/belge/RBAC girdilerini clean kontrolüne ve hash kaydına dahil edin; hazırlanmış frontend'in kaynakla eşitliğini ayrıca doğrulayın.
+- Scanner exit0 ve boş sonuç, dosya analizör tarafından tanınmadıysa temiz tarama değildir. Mach-O için doğrudan Trivy kapsam boşluğu korunur; buildinfo'dan üretilen SBOM'un sınırlı bileşen taraması ayrı kanıttır. Ek veritabanı minikube'da önceki Go taramasının göstermediği go-jose High eşleşmesini buldu.
+
 ## 11 Kasım2026 — ara render ve gerçek istek kimliği
 
 - Layout effect içinde seçimi düzeltmek, eski seçimin yeni API ile bir kez çocuğa verilmesini engellemez. Yalnız son DOM/UID doğru diye kabul vermek yerine bütün log requestlerinin harbor/namespace/UID’sini izleyin. WS002normalUI’da iki yanlışscope isteği verdi; kaynak eşleşmeden resource/facility çocuğunu mountetmeyen guard ile50cycle0yanlışscope elde edildi.

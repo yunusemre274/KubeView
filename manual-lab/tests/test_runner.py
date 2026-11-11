@@ -3,6 +3,8 @@ import argparse
 import contextlib
 import datetime
 import importlib.util
+import hashlib
+import io
 import json
 from pathlib import Path
 import tempfile
@@ -22,6 +24,130 @@ class RunnerContracts(unittest.TestCase):
         before = runner.parser().parse_args(["--state-dir", "/tmp/lab", "status"])
         after = runner.parser().parse_args(["status", "--state-dir", "/tmp/lab"])
         self.assertEqual(before.state_dir, after.state_dir)
+
+    def minikube_fixture(self, directory):
+        binary = Path(directory) / "minikube patched;$(touch injected-marker)"
+        binary.write_text("SYNTHETIC EXECUTABLE; NEVER RUN\n")
+        binary.chmod(0o700)
+        return binary
+
+    def test_minikube_option_before_and_after_command_is_literal(self):
+        with tempfile.TemporaryDirectory() as directory:
+            binary = self.minikube_fixture(directory)
+            before = runner.parser().parse_args(["--minikube-binary", str(binary), "status", "--state-dir", directory])
+            after = runner.parser().parse_args(["status", "--state-dir", directory, "--minikube-binary", str(binary)])
+            self.assertEqual(before.minikube_binary, after.minikube_binary)
+            self.assertEqual(runner.Lab(before).minikube_binary, str(binary.resolve()))
+            self.assertFalse((Path(directory) / "injected-marker").exists())
+
+    def test_minikube_explicit_path_requires_absolute_executable_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            not_executable = Path(directory) / "not-executable"
+            not_executable.write_text("synthetic")
+            not_executable.chmod(0o600)
+            loop = Path(directory) / "loop"
+            loop.symlink_to(loop)
+            for value in ["", "minikube", "minikube --version", directory, str(not_executable), str(Path(directory) / "missing"), str(loop)]:
+                with self.subTest(value=value), self.assertRaises(runner.LabError):
+                    args = self.args(directory)
+                    args.minikube_binary = value
+                    runner.Lab(args)
+
+    def test_minikube_default_pin_and_explicit_patch_marker_are_exact(self):
+        self.assertFalse(runner.custom_minikube_version("v1.38.1", False))
+        self.assertFalse(runner.custom_minikube_version("v1.38.1", True))
+        self.assertTrue(runner.custom_minikube_version("v1.38.1-kubeview-patched.1", True))
+        for version in ["v1.38.1-kubeview-patched.1", "v1.38.2", "v1.39.1", "v2.38.1", "v1.38.1-other.1", "v1.38.1+build"]:
+            with self.subTest(default=version), self.assertRaises(runner.LabError):
+                runner.custom_minikube_version(version, False)
+        for version in ["v1.39.1-kubeview-patched.1", "v2.38.1-kubeview-patched.1", "v1.38.1-kubeview-patched.", "v1.38.1-kubeview-patched.-1", "v1.38.1-kubeview-patched.1-extra", "v1.38.1-kubeview-patched.1+build", "v1.38.1-other.1"]:
+            with self.subTest(explicit=version), self.assertRaises(runner.LabError):
+                runner.custom_minikube_version(version, True)
+
+    def test_minikube_version_and_help_use_selected_path_without_global_cli(self):
+        with tempfile.TemporaryDirectory() as directory:
+            binary = self.minikube_fixture(directory)
+            args = self.args(directory)
+            args.minikube_binary = str(binary)
+            lab = runner.Lab(args)
+            flags = "--keep-context --embed-certs --nodes --listen-address --cni"
+            with patch.object(runner.shutil, "which", side_effect=lambda tool: None if tool == "minikube" else "/synthetic/" + tool), patch.object(runner, "run", side_effect=[(0, "v1.38.1-kubeview-patched.2\n", ""), (0, flags, "")]) as command:
+                lab.verify_tools()
+            self.assertEqual([call.args[0] for call in command.call_args_list], [[str(binary.resolve()), "version", "--short"], [str(binary.resolve()), "start", "--help"]])
+            default = runner.Lab(self.args(directory))
+            with patch.object(runner.shutil, "which", return_value="/synthetic/tool"), patch.object(runner, "run", side_effect=[(0, "v1.38.1\n", ""), (0, flags, "")]) as command:
+                default.verify_tools()
+            self.assertEqual(command.call_args_list[0].args[0], ["minikube", "version", "--short"])
+            for selected, version in [(lab, "v1.38.1-kubeview-patched.1-unknown"), (default, "v1.38.1-kubeview-patched.1")]:
+                with patch.object(runner.shutil, "which", return_value="/synthetic/tool"), patch.object(runner, "run", return_value=(0, version, "")) as command:
+                    with self.assertRaises(runner.LabError):
+                        selected.verify_tools()
+                self.assertEqual(command.call_count, 1)
+
+    def test_minikube_start_keeps_selected_filename_as_one_argv_element(self):
+        class StopBeforeStart(Exception):
+            pass
+        with tempfile.TemporaryDirectory() as directory:
+            binary = self.minikube_fixture(directory)
+            args = self.args(directory)
+            args.minikube_binary = str(binary)
+            lab = runner.Lab(args)
+            lab.state = {"labId": "kvml-123456789abc", "clusters": {"a": {"name": "owned-a", "nodes": 2, "cni": "kindnet", "containers": []}}}
+            with patch.object(lab, "verify_tools"), patch.object(lab, "ensure_network", return_value="owned-network"), patch.object(lab, "capture_containers"), patch.object(runner, "run", side_effect=StopBeforeStart) as command, contextlib.redirect_stdout(io.StringIO()):
+                with self.assertRaises(StopBeforeStart):
+                    lab.ensure_cluster("a")
+            argv = command.call_args.args[0]
+            self.assertEqual(argv[:4], [str(binary.resolve()), "start", "-p", "owned-a"])
+            self.assertIn("--cni=kindnet", argv)
+            self.assertFalse((Path(directory) / "injected-marker").exists())
+
+    def test_minikube_delete_checks_version_then_uses_selected_path(self):
+        class StopBeforeDelete(Exception):
+            pass
+        with tempfile.TemporaryDirectory() as directory:
+            binary = self.minikube_fixture(directory)
+            args = self.args(directory)
+            args.minikube_binary = str(binary)
+            args.confirm = "kvml-123456789abc"
+            lab = runner.Lab(args)
+            lab.state = {"labId": args.confirm, "processes": {}, "clusters": {"a": {"name": "owned-a", "uid": "cluster-uid", "markerUid": "marker-uid", "containers": []}}}
+            def execute(argv, **kwargs):
+                if argv[1:] == ["version", "--short"]:
+                    return 0, "v1.38.1-kubeview-patched.1\n", ""
+                raise StopBeforeDelete()
+            with patch.object(lab, "lock", return_value=contextlib.nullcontext()), patch.object(lab, "guard_cluster"), patch.object(runner, "run", side_effect=execute) as command:
+                with self.assertRaises(StopBeforeDelete):
+                    lab.destroy()
+            self.assertEqual([call.args[0] for call in command.call_args_list], [[str(binary.resolve()), "version", "--short"], [str(binary.resolve()), "delete", "-p", "owned-a"]])
+
+    def test_minikube_doctor_reports_path_hash_custom_marker_without_state_write(self):
+        for explicit, version, supported in [(False, "v1.38.1", True), (True, "v1.38.1-kubeview-patched.3", True), (True, "v1.39.1-kubeview-patched.1", False)]:
+            with self.subTest(explicit=explicit, version=version), tempfile.TemporaryDirectory() as directory:
+                binary = self.minikube_fixture(directory)
+                state = Path(directory) / "uncreated-state"
+                args = runner.parser().parse_args(["doctor", "--state-dir", str(state)] + (["--minikube-binary", str(binary)] if explicit else []))
+                lab = runner.Lab(args)
+                selected = str(binary.resolve()) if explicit else "minikube"
+                def execute(argv, **kwargs):
+                    if argv == [selected, "version", "--short"]:
+                        return 0, version + "\n", ""
+                    if argv == [selected, "start", "--help"]:
+                        return 0, "--keep-context --embed-certs --nodes --listen-address --cni", ""
+                    return 1, "", "synthetic unavailable"
+                output = io.StringIO()
+                with patch.object(runner.shutil, "which", return_value=str(binary)), patch.object(runner, "run", side_effect=execute), patch.object(runner, "free_port", return_value=True), patch.object(runner, "global_configs", return_value={}), patch.object(runner, "process_tools", return_value="synthetic"), patch.object(lab, "binary", side_effect=runner.LabError("synthetic unavailable")), patch.object(lab, "telemetry", return_value=Mock(dependencies=Mock(return_value={}))), contextlib.redirect_stdout(output):
+                    lab.doctor()
+                report = json.loads(output.getvalue())["tools"]["minikube"]
+                self.assertEqual(report["available"], supported)
+                self.assertEqual(report["path"], str(binary.resolve()))
+                self.assertEqual(report["sha256"], hashlib.sha256(binary.read_bytes()).hexdigest())
+                self.assertEqual(report["version"], version)
+                self.assertEqual(report["customBinary"], explicit)
+                self.assertEqual(report["customBuild"], explicit and supported)
+                self.assertEqual(report["versionSupported"], supported)
+                if explicit and supported:
+                    self.assertIn("not official upstream", report["provenanceNote"])
+                self.assertFalse(state.exists())
 
     def test_corrupt_state_is_not_replaced(self):
         with tempfile.TemporaryDirectory() as directory:
