@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — Safari uygulama smoke zaman sınırı
+
+- [ ] İlk uygulama smoke görevi kaynak incelemesinden sonra NOT RUN kaldı; hiçbir app/sekme açılmadı. Kayıt korundu, kabul sayılmadı.
+
+
 ## 11 Kasım — snapshot sıra farkı teşhisi
 
 - [x] Salt okunur üç snapshot, yalnız aynı iki mount kaydının sırasının değiştiğini gösterdi; diğer metadata ve profile hash aynı. İlk HTTPFAIL nedeni geriye dönük kanıtlanmadı.

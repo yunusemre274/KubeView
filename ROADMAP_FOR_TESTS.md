@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T21:47:31.414333+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T21:47:50.810279+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
@@ -11188,6 +11188,8 @@ Ayrı compatible probe: documented2024-11-05 agreement→initialized→tools/lis
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+İlk owned-tab uygulama smoke görevi NOT_RUN_TIME_BUDGET ile durdu:300sn içinde plan/source review sonrası güvenli runtime süresi kalmadı;18:44:19 kaydı korunur. Candidatef9 hash doğrulandı fakat app/driver/tab/tools-call0. Bu ne productFAIL ne automationdenial ne SafariPASS. Kanıt: native-safari-owned-tab-worker/REPORT.md/result.json.
 
 #### TEST-19.09-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.

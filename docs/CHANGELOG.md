@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — Safari NOT RUN kaydı
+
+-300sn görevin güvenli runtime penceresi kalmadığından ilk app smoke başlatılmadı. Bu kaynak hash kontrolü dışında platform kabulü üretmez.
+
+
 ## 2026-11-11 — Docker mount sırası tanısı
 
 - Ham before/after/üçüncü snapshot ve exactJSONpointer farkları korundu. Bu örnekte mount sırası değişkenliği doğrulandı; ürün state kaybı veya ilk HTTPFAIL kök nedeni iddiası yok.
