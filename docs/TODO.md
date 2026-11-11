@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — native-safari-app-smoke-worker
+
+- [ ] İlk gerçek app smoke: data-dir0755 yanlış yardımcı izninde app87881exit1; driver/sekme açılmadı. Mevcut0700 güvenlik kuralı korundu. Runtime0.216sn, prep81sn>60sn; ilkstderr atıldığı için tam çıkış mesajı bilinmiyor. Root staticstore.go/private izin sözleşmesini inceledi.
+- [ ] Native uygulama UI/Retina kabulü genel fazı henüz kapanmadı.
+
+
 ## 11 Kasım — provider HTTP retest başarılı
 
 - [x] Canonical mount sıralama kayıt/multiplicity koruyor;21saf test ve tek gerçek HTTP retest geçti. Kalıcı before/after diff0, profilehash aynı, app/port temiz. İlkFAIL korunur.

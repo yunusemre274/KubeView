@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — native-safari-app-smoke-worker
+
+- İlk gerçek app smoke: data-dir0755 yanlış yardımcı izninde app87881exit1; driver/sekme açılmadı. Mevcut0700 güvenlik kuralı korundu. Runtime0.216sn, prep81sn>60sn; ilkstderr atıldığı için tam çıkış mesajı bilinmiyor. Root staticstore.go/private izin sözleşmesini inceledi.
+
+
 ## 2026-11-11 — provider preflight retesti
 
 - Test yardımcısında yalnız mount sırası kararlılaştırıldı.21saf kontrol ve gerçek HTTP retesti başarılı; journal null/API[] farkı kaynakla doğrulandı. Ürün runtime veya Kubernetes kaynağı değişmedi.
