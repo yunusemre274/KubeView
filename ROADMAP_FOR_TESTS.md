@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T16:35:32.046170+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T16:42:29.735916+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `2461bbfb6824455a06c4fd9366ecd72a7928654e`; remote aynı, CI43028369803 SUCCESS. Beş frontend dosyasındaki label/fog düzeltmesi sonraki test checkpointi; user dosyaları korunur.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32GiB, macOS27.0.1; şu an Battery Power %76 (önceki AC koşulundan farklı). Chromium156 ve Playwright WebKit27.2 ayrı; native Safari/Retina henüz yeni runtime kabulü değil. CPU A/B ve uzun koşu henüz başlamadı.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **199**. NOT_STARTED:159; IN_PROGRESS:17; FAILED:0; BLOCKED:0; RETEST_REQUIRED:1; VERIFIED_DONE:22; NOT_APPLICABLE:0.
+- Toplam test fazı: **199**. NOT_STARTED:157; IN_PROGRESS:17; FAILED:0; BLOCKED:0; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:16, IN_PROGRESS:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:10, VERIFIED_DONE:4 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:4, VERIFIED_DONE:2 | Henüz yok |
@@ -3495,64 +3495,53 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: KV-SECURITY-WORKER; root ikinciinceleme
+- Kaynak / build / paket kimliği: scope04binary08bd0cee5a5d… (496729e2 runtime); testhelper snapshot sırasında2461bbfb; kaynak eşitliği iddiası yok.
+- Ortam / kullanılan kimlik ve yetki: Owned06cluster e84bb50e…; admin-read+guarded scenario scale; Chromium156/WebKit27.2DPR1; max3client/5dk.
+- Başlangıç zamanı: 2026-11-11T13:20:52.944Z
+- Bitiş zamanı: 2026-11-11T13:24:27.476Z
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.05-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
+- Ortam: labkvml-d32afbf634e8; clusterUIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a; en fazla3client/5dk.
+- Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
+- Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
 #### TEST-06.05-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Normal Bul→Ağ tesisi→Ölçülmüş trafik→katmanı aç; gerçek0→1→3client ve ayrı PodUID
+amespace çiftleri API/tablo açıklamasında eşleşti.
+- Chromium156/WebKit27.2 ayrı ve seri PASS. İki proje arasında yönlü çizgi/ok ve aynıflowID matrisinde hareket görüldü.
+- Kaynak gerçekKubernetes+HubblemTLS; Node provisioning veya replay değil.
+- Ölçüm birimi10sn içindeki flowgözlemi; paket/byte/bantgenişliği/HTTPistek sayısı değil.
 
 #### TEST-06.05-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Stop sonrası own clientPod LIST0, ardından APIpair0+renderedFlows0; stophelper dönüşünden9.499/6.845sn. Katman kapatma leaseDELETE200; browsersclosed.
+- İlk accessible-name helperFAIL: aranantamtesisadı ile görünenAğtesisi farklıydı; trafik başlamadan kaldı, attempt01korundu.
+- Sınır: UIDçözümleme belirsiz olanlar null/belirsiz kalır; WebKit unresolved8 gözlemi gizlenmedi. NamespaceRBAC/providerkesinti bu fazın testi değildir.
 
 #### TEST-06.05-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Doğrulanmış ürün güvenlik/akış hatası: bu dar owned06 döngüde bulunmadı.
+- Ürün kodu değişmedi; yalnız normal görünen finder adını seçen testhelper düzeltildi.
+- Root genel incelemesi: WebKit yükleme etiketi dar dikey olabiliyordu; ayrı visual06/550400a3 düzeltmesinde ele alındı, buradaki eski binary sonucuna sonradan eklenmedi.
 
 #### TEST-06.05-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Aynı testhelper düzeltilince iki motorun tüm akış/cleanup kontrolleri tekrar geçti.
+- [x] Pozitif gerçek UID/namespace bilgisi ve negatif stop-pencere tükenmesi korundu.
+- Gözlenen sonuç: iki gerçek namespace/proje arasında ölçülmüş akış için PASS; performans/nativeSafari/physical-latency kanıtı değil.
 
 #### TEST-06.05-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Teklif edilen ekstra probe/Pod/create/exec yapılmadı; mevcutDeployment şablonu scale ile0→1→3→0. FinalclientLIST0, serverUIDdeğişmedi.
+- [x] App19846PID80336 ve relay19848PID80393 aktifaynı; subscriptionDELETE200; browsersclosed.
+- [x] Worker bütün önemli PNG/video karelerini açtı; root dünya ve stopPNG ile zamanlı iki video karesini ayrıca açtı. Aynıajan sistemi ikinciincelemesi, profesyonelüçüncüparti değil.
+- Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/REPORT.md; checked-summary.json; video-frames.json; delivery-clips/manifest.json
+- Ham147MiBWebM seti yerelde korunur; Git teslimi yalnız PNG/JSON/rapor ve hashlenmiş kısa türetilmiş klipleri içerir. DELIVERY_SHA256SUMS teslim altkümesidir.
 
 #### TEST-06.05-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: exactscope04binary, ownedCilium1.20.2mTLS ve iki motor için dar gerçekakış fazı geçti. Finalpaket veya farklısağlayıcı sürümü kendiliğinden kabul edilmez.
+- Yeniden test: trafficprovider/mapper/namespaceauthorization/sceneanchor/katmanquery/collectorversion değişimi.
 
 ### TEST-06.06 — Start/increase/stop ve pencerenin boşalması
 
@@ -3561,64 +3550,53 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: KV-SECURITY-WORKER; root ikinciinceleme
+- Kaynak / build / paket kimliği: scope04binary08bd0cee5a5d… (496729e2 runtime); testhelper snapshot sırasında2461bbfb; kaynak eşitliği iddiası yok.
+- Ortam / kullanılan kimlik ve yetki: Owned06cluster e84bb50e…; admin-read+guarded scenario scale; Chromium156/WebKit27.2DPR1; max3client/5dk.
+- Başlangıç zamanı: 2026-11-11T13:20:52.944Z
+- Bitiş zamanı: 2026-11-11T13:24:27.476Z
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.06-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
+- Ortam: labkvml-d32afbf634e8; clusterUIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a; en fazla3client/5dk.
+- Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
+- Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
 #### TEST-06.06-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Normal Bul→Ağ tesisi→Ölçülmüş trafik→katmanı aç; gerçek0→1→3client ve ayrı PodUID
+amespace çiftleri API/tablo açıklamasında eşleşti.
+- Chromium156/WebKit27.2 ayrı ve seri PASS. İki proje arasında yönlü çizgi/ok ve aynıflowID matrisinde hareket görüldü.
+- Kaynak gerçekKubernetes+HubblemTLS; Node provisioning veya replay değil.
+- Ölçüm birimi10sn içindeki flowgözlemi; paket/byte/bantgenişliği/HTTPistek sayısı değil.
 
 #### TEST-06.06-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Stop sonrası own clientPod LIST0, ardından APIpair0+renderedFlows0; stophelper dönüşünden9.499/6.845sn. Katman kapatma leaseDELETE200; browsersclosed.
+- İlk accessible-name helperFAIL: aranantamtesisadı ile görünenAğtesisi farklıydı; trafik başlamadan kaldı, attempt01korundu.
+- Sınır: UIDçözümleme belirsiz olanlar null/belirsiz kalır; WebKit unresolved8 gözlemi gizlenmedi. NamespaceRBAC/providerkesinti bu fazın testi değildir.
 
 #### TEST-06.06-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Doğrulanmış ürün güvenlik/akış hatası: bu dar owned06 döngüde bulunmadı.
+- Ürün kodu değişmedi; yalnız normal görünen finder adını seçen testhelper düzeltildi.
+- Root genel incelemesi: WebKit yükleme etiketi dar dikey olabiliyordu; ayrı visual06/550400a3 düzeltmesinde ele alındı, buradaki eski binary sonucuna sonradan eklenmedi.
 
 #### TEST-06.06-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Aynı testhelper düzeltilince iki motorun tüm akış/cleanup kontrolleri tekrar geçti.
+- [x] Pozitif gerçek UID/namespace bilgisi ve negatif stop-pencere tükenmesi korundu.
+- Gözlenen sonuç: gerçek start/increase/stop ve10sn pencere boşalması için PASS; performans/nativeSafari/physical-latency kanıtı değil.
 
 #### TEST-06.06-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Teklif edilen ekstra probe/Pod/create/exec yapılmadı; mevcutDeployment şablonu scale ile0→1→3→0. FinalclientLIST0, serverUIDdeğişmedi.
+- [x] App19846PID80336 ve relay19848PID80393 aktifaynı; subscriptionDELETE200; browsersclosed.
+- [x] Worker bütün önemli PNG/video karelerini açtı; root dünya ve stopPNG ile zamanlı iki video karesini ayrıca açtı. Aynıajan sistemi ikinciincelemesi, profesyonelüçüncüparti değil.
+- Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/REPORT.md; checked-summary.json; video-frames.json; delivery-clips/manifest.json
+- Ham147MiBWebM seti yerelde korunur; Git teslimi yalnız PNG/JSON/rapor ve hashlenmiş kısa türetilmiş klipleri içerir. DELIVERY_SHA256SUMS teslim altkümesidir.
 
 #### TEST-06.06-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: exactscope04binary, ownedCilium1.20.2mTLS ve iki motor için dar gerçekakış fazı geçti. Finalpaket veya farklısağlayıcı sürümü kendiliğinden kabul edilmez.
+- Yeniden test: trafficprovider/mapper/namespaceauthorization/sceneanchor/katmanquery/collectorversion değişimi.
 
 ### TEST-06.07 — Provider stale/recovery
 
