@@ -38,6 +38,19 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	if os.Getenv("KUBEVIEW_RELEASE_REAL_SCALE") != "owned-profile06-2-3-1" {
 		t.Skip("requires explicit owned profile06 scale opt-in")
 	}
+	runReleaseOwnedOperation(t, "scale")
+}
+
+func TestReleaseOwnedResourcesTemplate(t *testing.T) {
+	if os.Getenv("KUBEVIEW_RELEASE_REAL_RESOURCES") != "owned-profile06-template-resources" {
+		t.Skip("requires explicit owned profile06 resource-template opt-in")
+	}
+	runReleaseOwnedOperation(t, "resources")
+}
+
+// Shared private fixture/HTTP/identity/cleanup harness. Each real mutation phase
+// remains separately opt-in; no wrapper enables any other phase.
+func runReleaseOwnedOperation(t *testing.T, operation string) {
 	started := time.Now()
 	output := os.Getenv("KUBEVIEW_RELEASE_REAL_OUTPUT")
 	statePath := os.Getenv("KUBEVIEW_RELEASE_REAL_STATE")
@@ -48,7 +61,7 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	const namespace = "kvml-fbf634e8-06-client"
 	const namespaceUID = "863e13d5-da6d-481d-9484-64eb088d8df8"
 	const profile = "06-limanlar-arasi-ag"
-	const runLabel = "manual.kubeview.local/release-scale-run"
+	runLabel := "manual.kubeview.local/release-" + operation + "-run"
 	for _, p := range []string{output, statePath, configPath} {
 		if !filepath.IsAbs(p) {
 			t.Fatal("explicit absolute owned output/state/config required")
@@ -57,7 +70,7 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	if filepath.Base(configPath) != "admin.json" || filepath.Dir(filepath.Dir(configPath)) != filepath.Dir(statePath) {
 		t.Fatal("private config/state relationship refused")
 	}
-	evidence := map[string]interface{}{"kind": "real Kubernetes typed/dynamic + production HTTP gateway", "startedAt": started.UTC(), "clusterUID": clusterUID, "namespaceUID": namespaceUID, "profile": profile, "timeline": []interface{}{}}
+	evidence := map[string]interface{}{"kind": "real Kubernetes typed/dynamic + production HTTP gateway", "startedAt": started.UTC(), "clusterUID": clusterUID, "namespaceUID": namespaceUID, "profile": profile, "operation": operation, "timeline": []interface{}{}}
 	var mu sync.Mutex
 	var maxGap time.Duration
 	var lastWall = time.Now().UnixNano()
@@ -270,7 +283,7 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	transport := &http.Transport{Proxy: nil, ResponseHeaderTimeout: 4 * time.Second}
 	t.Cleanup(transport.CloseIdleConnections)
 	client := &http.Client{Jar: jar, Transport: transport, Timeout: 5 * time.Second}
-	scope := url.Values{"workspaceId": {doc.ID}, "harborId": {harbor.ID}, "tabId": {"owned-scale-phase"}}
+	scope := url.Values{"workspaceId": {doc.ID}, "harborId": {harbor.ID}, "tabId": {"owned-" + operation + "-phase"}}
 	nonce := ""
 	req := func(method, path string, q url.Values, body interface{}) workspaceAcceptanceResponse {
 		return workspaceAcceptanceRequest(ctx, client, base, method, path, q, body, nonce, "")
@@ -293,7 +306,7 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 		t.Fatal("gateway session identity/readonly guard")
 	}
 	nonce = info.ConnectionID
-	runID := "scale-" + strings.ReplaceAll(uuid.NewString(), "-", "")[:16]
+	runID := operation + "-" + strings.ReplaceAll(uuid.NewString(), "-", "")[:16]
 	name := "qa-" + runID
 	selector := runLabel + "=" + runID
 	var ownedUID types.UID
@@ -359,7 +372,11 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	q.Set("version", "v1")
 	q.Set("resource", "deployments")
 	q.Set("namespace", namespace)
-	mark("owned_fixture_plan_before_mutation", map[string]interface{}{"namespace": namespace, "namespaceUID": namespaceUID, "name": name, "runLabelKey": runLabel, "runLabelValue": runID, "ownerLabelKey": workspaceRealOwnerLabel, "ownerLabelValue": labID, "profile": profile, "kind": "Deployment", "image": "busybox:1.37.0", "replicas": []int{2, 3, 1}})
+	sequence := []int{2, 3, 1}
+	if operation == "resources" {
+		sequence = []int{2, 2}
+	}
+	mark("owned_fixture_plan_before_mutation", map[string]interface{}{"namespace": namespace, "namespaceUID": namespaceUID, "name": name, "runLabelKey": runLabel, "runLabelValue": runID, "ownerLabelKey": workspaceRealOwnerLabel, "ownerLabelValue": labID, "profile": profile, "kind": "Deployment", "image": "busybox:1.37.0", "replicas": sequence, "operation": operation})
 	// Prove production session grant enforcement without mutating Kubernetes.
 	requireCode(req("POST", "/api/resources", q, map[string]interface{}{"object": dep}), 403, "readonly_create_rejected")
 	requireCode(req("POST", "/api/management", scope, map[string]interface{}{"enabled": true, "context": contextName, "namespace": namespace, "connectionID": nonce}), 200, "explicit_management_grant")
@@ -437,6 +454,106 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	}
 	initial := readReady(2)
 	checkFixtures()
+	if operation == "resources" {
+		podUIDs := func() []string {
+			pods, e := c.Typed.CoreV1().Pods(namespace).List(ctx, metav1.ListOptions{LabelSelector: selector})
+			if e != nil || len(pods.Items) != 2 {
+				t.Fatal("resource phase requires exactly2ownedPods")
+			}
+			ids := []string{}
+			for _, pod := range pods.Items {
+				ids = append(ids, string(pod.UID))
+			}
+			sort.Strings(ids)
+			return ids
+		}
+		beforePodUIDs := podUIDs()
+		beforeTemplateSHA := hash(initial.Spec.Template)
+		quantities := func(cpuRequest, memoryRequest, cpuLimit, memoryLimit string) map[string]interface{} {
+			return map[string]interface{}{"requests": map[string]interface{}{"cpu": cpuRequest, "memory": memoryRequest}, "limits": map[string]interface{}{"cpu": cpuLimit, "memory": memoryLimit}}
+		}
+		body := func(d *appsv1.Deployment, values map[string]interface{}) map[string]interface{} {
+			return map[string]interface{}{"context": contextName, "group": "apps", "version": "v1", "resource": "deployments", "namespace": namespace, "name": name, "uid": string(d.UID), "resourceVersion": d.ResourceVersion, "action": "resources", "containers": []interface{}{map[string]interface{}{"name": "idle", "resources": values}}}
+		}
+		current := func() *appsv1.Deployment {
+			d, e := c.Typed.AppsV1().Deployments(namespace).Get(ctx, name, metav1.GetOptions{})
+			if e != nil || d.UID != ownedUID || d.Labels[runLabel] != runID || d.Labels[workspaceRealOwnerLabel] != labID {
+				t.Fatal("resource template exact UID/owner read failed")
+			}
+			return d
+		}
+		for _, bad := range []struct {
+			name   string
+			values map[string]interface{}
+		}{
+			{"invalid_quantity", quantities("not-a-quantity", "8Mi", "50m", "32Mi")},
+			{"request_exceeds_limit", quantities("200m", "8Mi", "100m", "32Mi")},
+		} {
+			if err = guard(ctx); err != nil {
+				t.Fatal("pre-resource-negative identity guard")
+			}
+			d := current()
+			requireCode(req("POST", "/api/actions", scope, body(d, bad.values)), 422, "resources_"+bad.name+"_rejected")
+			after := current()
+			if after.Generation != initial.Generation || hash(after.Spec.Template) != beforeTemplateSHA || !reflect.DeepEqual(podUIDs(), beforePodUIDs) {
+				t.Fatal("rejected resource request changed template or PodUIDs")
+			}
+			mark("rejected_resources_template_unchanged", map[string]interface{}{"case": bad.name, "deploymentUID": ownedUID, "generation": after.Generation, "templateSHA256": beforeTemplateSHA, "podUIDs": beforePodUIDs})
+		}
+		want := quantities("10m", "16Mi", "100m", "64Mi")
+		if err = guard(ctx); err != nil {
+			t.Fatal("pre-resource-positive identity guard")
+		}
+		requireCode(req("POST", "/api/actions", scope, body(current(), want)), 202, "resources_template_HTTP_accepted")
+		after := readReady(2)
+		if after.UID != initial.UID || after.Generation != initial.Generation+1 || after.Status.ObservedGeneration < after.Generation {
+			t.Fatal("resource template generation/UID proof failed")
+		}
+		assertQuantities := func(containers []corev1.Container) {
+			if len(containers) != 1 || containers[0].Name != "idle" {
+				t.Fatal("resource fixture container identity changed")
+			}
+			rr := containers[0].Resources
+			if len(rr.Requests) != 2 || len(rr.Limits) != 2 {
+				t.Fatal("resource request/limit dimensions changed")
+			}
+			for _, check := range []struct {
+				got  resource.Quantity
+				want string
+			}{{rr.Requests[corev1.ResourceCPU], "10m"}, {rr.Requests[corev1.ResourceMemory], "16Mi"}, {rr.Limits[corev1.ResourceCPU], "100m"}, {rr.Limits[corev1.ResourceMemory], "64Mi"}} {
+				if check.got.Cmp(resource.MustParse(check.want)) != 0 {
+					t.Fatal("actual CPU/memory request/limit quantity mismatch")
+				}
+			}
+		}
+		assertQuantities(after.Spec.Template.Spec.Containers)
+		preserved := after.Spec.DeepCopy()
+		preserved.Template.Spec.Containers[0].Resources = initial.Spec.Template.Spec.Containers[0].Resources
+		if hash(preserved) != hash(initial.Spec) {
+			t.Fatal("resource action changed unrelated Deployment spec fields")
+		}
+		pods, e := c.Typed.CoreV1().Pods(namespace).List(ctx, metav1.ListOptions{LabelSelector: selector})
+		if e != nil || len(pods.Items) != 2 {
+			t.Fatal("resource rollout exact2Pod readback failed")
+		}
+		newIDs := []string{}
+		for _, pod := range pods.Items {
+			assertQuantities(pod.Spec.Containers)
+			if pod.Labels[runLabel] != runID {
+				t.Fatal("new Pod run ownership changed")
+			}
+			for _, oldUID := range beforePodUIDs {
+				if string(pod.UID) == oldUID {
+					t.Fatal("template update did not replace both PodUIDs")
+				}
+			}
+			newIDs = append(newIDs, string(pod.UID))
+		}
+		sort.Strings(newIDs)
+		checkFixtures()
+		mark("resource_template_and_Pod_quantities_verified", map[string]interface{}{"deploymentUID": ownedUID, "generationBefore": initial.Generation, "generationAfter": after.Generation, "observedGeneration": after.Status.ObservedGeneration, "resources": want, "oldPodUIDs": beforePodUIDs, "newPodUIDs": newIDs, "unrelatedDeploymentSpecPreserved": true, "readinessProof": "actual2Ready with owner chains", "metricsOrUsageClaim": false})
+		return
+	}
 	action := func(d *appsv1.Deployment, want int64, uid, rv string) workspaceAcceptanceResponse {
 		return req("POST", "/api/actions", scope, Action{Context: contextName, Group: "apps", Version: "v1", Resource: "deployments", Namespace: namespace, Name: name, UID: uid, ResourceVersion: rv, Action: "scale", Replicas: want})
 	}

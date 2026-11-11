@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T19:29:10.553780+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T19:35:02.522278+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4a05095ab94fa40ace4785f9da2d7cfe4688f398`; remote tip aynı. Önceki550400a3 CI43030094174 SUCCESS. UI-only CSP1satır ve yeniheader testleri çalışmafarkında; gerçekbinarycsp07SHA322bd5b5… ile tarayıcıkapısı sürüyor.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:150; IN_PROGRESS:21; FAILED:2; BLOCKED:1; RETEST_REQUIRED:1; VERIFIED_DONE:25; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:149; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:24; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -27,7 +27,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
-| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:15, IN_PROGRESS:2, VERIFIED_DONE:1 | Henüz yok |
+| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, FAILED:1, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
@@ -1641,7 +1641,7 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Ortam / kullanılan kimlik ve yetki: Owned06 e84bb50e…/ns863e13d5…; ayrıloopbackgateway56907, adminscope HTTP/session/grant/SSAR; aktif19846değişmedi.
 - Başlangıç zamanı: 2026-11-11T16:09:18.858977Z
 - Bitiş zamanı: 2026-11-11T16:16:51Z;9.438sn actualtest/18.206snouter
-- Durum: VERIFIED_DONE
+- Durum: RETEST_REQUIRED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-04.04-S1 — Hazırlık
@@ -1682,6 +1682,8 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - [x] Exactcleanup/sonfixtureeşitliği, kaynakdurumu veboundedtime kaydedildi.
 - Sınır: normalUI/aktifapp/restrictedRBAC/relay bu testin kabulüdeğil.
 
+- Ortak helper Resources testi için çıkarıldı/ayrık exact opt-in eklendi. 46ec5508 gerçek scalePASS tarihsel olarak korunur; yeni helper kaynağı için bir Scale regresyonu gereklidir. Ürün scale handler'ı değişmedi, eski kanıt silinmedi.
+
 #### TEST-04.04-S6 — Temizlik ve inceleme
 - [x] Yalnızrunlabel+UID/RVileownDeploymentdelete; Pod/RS0, ikiGET404. MevcutfixturehashesvePodUIDleraynı. Gateway/transport/ServerClose döndü, WebSocket açılmadı.
 - [x]22checksumrootyenidenokuyupdoğruladı; roothelperdiff+cleanupkodunuinceledi. Aynıajansistemi, profesyonelüçüncüparti değil.
@@ -1700,64 +1702,43 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: KV-DEPENDENCY-WORKER; root ikinci inceleme
+- Kaynak / build / paket kimliği: 46ec5508 sonrası yalnız ortak opt-in test helper farkı; SHAfa9065f3…
+- Ortam / kullanılan kimlik ve yetki: Exact owned06 cluster/nsUID, ayrı scoped admin gateway57085; aktif19846/relay değişmedi.
+- Başlangıç zamanı: real-resources-worker/result.json
+- Bitiş zamanı: 6.260494sn actual/18.201sn outer; gap0.255964sn.
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-04.05-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Cluster/namespace/marker/worker ve mevcut fixture kimlikleri guard ile doğrulandı; private0700 workspace ve durable mutation planı kullanıldı.
+- Yalnız1Deployment/2replica/Recreate/grace5; actual image busybox1.37.0, metadata.name required affinity.
 
 #### TEST-04.05-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İlk2Ready/owner UID chain geçti; gerçek UI ile aynı /api/actions containers{name,resources} modeli kullanıldı.
+- [ ] HTTP202 sonrası yeni2Ready ve dört quantity/PodUID doğrulaması tamamlanmadı; API kabulü başarı sayılmadı.
 
 #### TEST-04.05-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Geçersiz quantity422 ve request>limit422; template hash/generation/PodUIDler değişmedi. Readonlycreate403 de geçti.
+- Pozitif rollout sırasında >3 API Pod nesnesi görüldü ve guard testi durdurdu. Exact sayı/phase/deletionTimestamp tutulmadı; cause henüz kanıtlı değil.
 
 #### TEST-04.05-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Ürün resource bug kanıtı yok; controller geçici nesne örtüşmesi olasılığı incelenecek. Guard veya kabul ölçütü geçmek için sessizce artırılmadı.
+- Kaynak referansı K8s1.35.1 recreate.go oldPodsRunning, terminal Pod nesnelerini saymaz; bu olası açıklamadır, bu koşuda gözlenmiş gerçek değildir.
+- Test fixture ve kapsama sınırı ayrı tutulur.
 
 #### TEST-04.05-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [ ] İlk sorun için yeni retest yok. Kaynak ve rawFAIL korunur.
+- Yeni kontrol, gerekirse exact eski/yeni UID + phase/termination/owner ve en çok2aktif/4API nesnesi koşulunu açık güvenlik planıyla sınayacak; bilinmeyen artış yine reddedilecek.
 
 #### TEST-04.05-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] UID/RV foreground delete, typed/dynamic404, Pod/RS runlabel LIST0; diğer fixture UID/spec/PodUIDler eşit.
+- [x] Source helper/snapshot ve20artifact/19checksum worker tarafından doğrulandı. Root raporu okudu; normalUI/metrics/actualresources gate kapanmadı.
 
 #### TEST-04.05-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Gerekçe: positive rollout >3Pod guardında FAIL; final spec/readiness doğrulanmadı. Negatifler ve cleanup ayrı PASS.
+- Sonraki test önce overflow yaşam döngüsünü sınıflandırmalı; kör tekrar yok.
 
 ### TEST-04.06 — Rollout restart ve gözlenen sonuç
 

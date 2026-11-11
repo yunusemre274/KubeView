@@ -1,0 +1,11 @@
+{
+  "backend/pkg/server/release_operations_real_test.go": "fa9065f305c9deae4301e7cf5a2a7b3b429ab84e21aba05d8ac55bad3dea690b",
+  "backend/pkg/server/workspace_real_test.go": "1fc2eba98b9c316b1eee45e3c5e9dffaad83aef35a17bbb6bf2fd294492142f0",
+  "backend/pkg/server/workspace_real_acceptance_test.go": "bd26dc88c17163ad371206ed407e0349c3f1262da392faf6a4ebc38113615bfe",
+  "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+  "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+  "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+  "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+  "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+  "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+}
