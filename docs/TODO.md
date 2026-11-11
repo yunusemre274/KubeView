@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — kısa childPID race düzeltmesi
+
+- [x] CompletedPopenchild capture yarışı güvenle tolere edilir; liveunverifiedchild guardı korunur.26safcase ve100boundedgerçekkısa komut geçti.
+- [ ] YenihelperilegerçekworkerReady henüz doğrulanmadı; ilk iki actualFAIL korunur.
+
+
 ## 11 Kasım — case02 worker testi FAIL
 
 - [ ] İkinci gerçek case aynı-key tekoperation verdi fakat helper kısa childPID kontrolünde ProcessLookupError ile durdu; Ready doğrulanmadı.

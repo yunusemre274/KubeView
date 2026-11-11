@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-11T19:22:20.743912+00:00",
+  "status": "PASS",
+  "sourceSHA256": "1a0db67621ed41059632bc246c23891d497cb02c8e23ab84c9f5bc415953d2e8",
+  "pureCases": 26,
+  "realShortCommands": 100,
+  "command": [
+    "/usr/bin/true"
+  ],
+  "elapsedSeconds": 0.4456356250011595,
+  "limitSeconds": 10,
+  "ownedCommandsReapedByPopenWait": true,
+  "KubernetesOrProviderCalls": 0,
+  "RUN_CLEARED": false,
+  "scope": "Helper lifecycle regression only; not application CPU/performance or live provisioning acceptance"
+}

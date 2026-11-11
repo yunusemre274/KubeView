@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — test helper kısa child ömrü
+
+- ps/getpgid arasında bitmiş child, Popenexit durumuyla normal tamamlanır; hâlâ çalışan doğrulanmamış child reddedilir.26saf+100gerçekkısa komut geçti; ürün runtime/performance iddiası yok.
+
+
 ## 2026-11-11 — worker case02 süreç yarışı
 
 - GerçekCLIcase02 başarısızlığı actualsafe stack ile kaydedildi. İlkcase tarihi korundu; partialcontainer/volume/profile için ayrı exactcleanup yetkisi verildi. Bu ürün/CLIuyumsuzluğu veya Ready kabulü değildir.

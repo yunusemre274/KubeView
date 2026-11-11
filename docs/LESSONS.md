@@ -1,5 +1,10 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — completed child kimliği
+
+- ProcessLookupError tek başına yanlış PID veya saldırı demek değildir: kısa child ölçüm sırasında normal tamamlanabilir. FreshPopen sahipliği/exit durumunu kontrol edin; livekimlik hatasını görmezden gelmeyin ve capture öncesi hatada ownchild/pipe cleanup sağlayın.
+
+
 ## 11 Kasım — Docker nesne türü ve kısmi sağlama
 
 - İsimsiz türde dockerinspect, aynı adlı volume varsa başarılı yanıt verebilir; containerNetworkSettings varsaymayın. Container inventoryde typedcontainerinspect kullanın ve henüznetworkatlanmamış nesneyi Ready/claimedNode diye benimsemeyin.
