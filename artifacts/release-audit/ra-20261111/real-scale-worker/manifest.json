@@ -1,0 +1,42 @@
+{
+  "status": "BLOCKED",
+  "testOutcome": "FAIL",
+  "scope": "TEST04.04 actual scale2\u21923\u21921",
+  "blocker": "ConfigureWorkspace failed while preparing the separate in-process gateway, before HTTP listener or Kubernetes mutations. The underlying error class was not retained.",
+  "sourceLine": 222,
+  "guardPassed": [
+    "explicit opt-in/private config relationship",
+    "lab/context/kube-system UID",
+    "cluster marker UID/owner",
+    "client namespace UID/owner/profile06",
+    "worker UID",
+    "existing server and traffic Deployment UID/owner/profile/spec/Pod UID baseline reads"
+  ],
+  "notRun": [
+    "gateway HTTP listener",
+    "browser session diagnostic",
+    "management grant",
+    "readonly403 create negative",
+    "temporary Deployment create",
+    "actual2Ready",
+    "staleUID409 negative",
+    "scale3",
+    "actual3Ready",
+    "staleRV409 negative",
+    "scale1",
+    "actual1Ready",
+    "post-scale other-fixture equality",
+    "UID/RV deletion and PodLIST0/GVKGET404"
+  ],
+  "mutationStarted": false,
+  "cleanupDisposition": "NOT_APPLICABLE: no temporary fixture name/run label/Deployment was allocated before failure; no socket was opened. New server object Close and context cancel ran as test cleanups.",
+  "testExecutionSeconds": 0.044640333,
+  "goTestJobSeconds": 10.62,
+  "maxOuterSampleGapSeconds": 0.256,
+  "boundedControlValid": true,
+  "noValidScalePASS": true,
+  "noRetry": true,
+  "sourceUnchangedDuringJob": true,
+  "testSourceSHA256": "fa8c29772aa0f2b571caff8aaed0d9553584a5aaf5f1a4d07f9ef43885ca8972",
+  "finalizedAt": "2026-11-11T16:11:07.375145+00:00"
+}

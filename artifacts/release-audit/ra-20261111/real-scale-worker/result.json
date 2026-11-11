@@ -1,0 +1,23 @@
+{
+  "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+  "elapsedSeconds": 0.044640333,
+  "failed": true,
+  "kind": "real Kubernetes typed/dynamic + production HTTP gateway",
+  "maxSampleGapSeconds": 0,
+  "namespaceUID": "863e13d5-da6d-481d-9484-64eb088d8df8",
+  "profile": "06-limanlar-arasi-ag",
+  "startedAt": "2026-11-11T16:09:18.858977Z",
+  "timeline": [
+    {
+      "at": "2026-11-11T16:09:18.885664Z",
+      "proof": {
+        "apiLoopback": "127.0.0.1:53873",
+        "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+        "namespaceUID": "863e13d5-da6d-481d-9484-64eb088d8df8",
+        "workerUID": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+      },
+      "step": "identity_allowlist"
+    }
+  ],
+  "validBounded": false
+}
