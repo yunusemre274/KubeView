@@ -17,9 +17,13 @@ import (
 	"github.com/google/uuid"
 	"github.com/k8s-tersane/tersane/backend/pkg/provision"
 	corev1 "k8s.io/api/core/v1"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/types"
 	kubefake "k8s.io/client-go/kubernetes/fake"
+	ktesting "k8s.io/client-go/testing"
 )
 
 type releaseCacheRunner struct{ profileReads, inventoryReads, adds int }
@@ -119,6 +123,13 @@ func TestReleaseProviderCachedKeyRemainsBoundToLiveCluster(t *testing.T) {
 			if runner.adds != 0 {
 				t.Fatal("cached/denied request launched provider runner")
 			}
+			wantUIDReads := 1
+			if tc.selected != cfg.Context {
+				wantUIDReads = 0
+			}
+			if uidReads != wantUIDReads || runner.profileReads != 0 || runner.inventoryReads != 0 {
+				t.Fatalf("freshUIDReads=%d want=%d profileChecks=%d inventoryChecks=%d; cached path must not invoke CLI", uidReads, wantUIDReads, runner.profileReads, runner.inventoryReads)
+			}
 			if w.Code != tc.want {
 				t.Fatalf("status=%d want=%d cachedOperationReturned=%t freshUIDReads=%d profileChecks=%d addCalls=%d (values omitted)", w.Code, tc.want, cachedReturned, uidReads, runner.profileReads, runner.adds)
 			}
@@ -129,6 +140,82 @@ func TestReleaseProviderCachedKeyRemainsBoundToLiveCluster(t *testing.T) {
 				t.Fatal("denied scope returned cached operation")
 			}
 			t.Logf("cachedReturned=%t freshUIDReads=%d profileChecks=%d addCalls=%d; all identities/keys omitted", cachedReturned, uidReads, runner.profileReads, runner.adds)
+		})
+	}
+}
+
+func TestReleaseProviderCachedKeyNamespaceReadErrors(t *testing.T) {
+	for _, tc := range []struct {
+		name   string
+		status int
+		err    error
+	}{
+		{"forbidden", 403, apierrors.NewForbidden(schema.GroupResource{Resource: "namespaces"}, "kube-system", errors.New("synthetic permission denial"))},
+		{"unavailable", 503, apierrors.NewServiceUnavailable("synthetic API unavailable")},
+		{"missing", 404, apierrors.NewNotFound(schema.GroupResource{Resource: "namespaces"}, "kube-system")},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			cfg := provision.Config{Enabled: true, Profile: "synthetic-provider", Context: "test", ClusterUID: "synthetic-cluster", Home: filepath.Join(t.TempDir(), ".minikube"), StateDir: t.TempDir(), Binary: "synthetic-never-executed", MaxNodes: 8, Timeout: time.Second}
+			t.Setenv("KV_MINIKUBE_ENABLED", "true")
+			t.Setenv("KV_MINIKUBE_CONTEXT", cfg.Context)
+			t.Setenv("KV_MINIKUBE_CLUSTER_UID", cfg.ClusterUID)
+			t.Setenv("KV_MINIKUBE_PROFILE", cfg.Profile)
+			t.Setenv("KV_MINIKUBE_HOME", cfg.Home)
+			t.Setenv("KV_PROVIDER_STATE_DIR", cfg.StateDir)
+			key := uuid.NewString()
+			digest := sha256.Sum256([]byte(cfg.Context + "\x00" + key))
+			op := provision.Operation{ID: uuid.NewString(), KeyHash: hex.EncodeToString(digest[:]), Context: cfg.Context, Profile: cfg.Profile, ClusterUID: cfg.ClusterUID, Status: "ready", StartedAt: time.Now().UTC(), UpdatedAt: time.Now().UTC(), StageSource: "synthetic-terminal-journal"}
+			raw, _ := json.Marshal([]provision.Operation{op})
+			if err := os.WriteFile(filepath.Join(cfg.StateDir, "minikube-"+cfg.Profile+".json"), raw, 0600); err != nil {
+				t.Fatal("journal setup failed")
+			}
+			runner := &releaseCacheRunner{}
+			manager, err := provision.New(cfg, runner)
+			if err != nil {
+				t.Fatal("terminal journal manager setup failed")
+			}
+			t.Cleanup(manager.Close)
+			s, c := testServer(t, false)
+			s.Namespace = ""
+			s.providers = &providerServices{minikube: manager}
+			typed := c.Typed.(*kubefake.Clientset)
+			if _, err = typed.CoreV1().Namespaces().Create(context.Background(), &corev1.Namespace{ObjectMeta: metav1.ObjectMeta{Name: "kube-system", UID: types.UID(cfg.ClusterUID)}}, metav1.CreateOptions{}); err != nil {
+				t.Fatal("cluster fixture failed")
+			}
+			cookie, info := diagnostic(t, s, cfg.Context, "", nil)
+			nonce := info["connectionID"].(string)
+			if w := connectionRequest(s, "POST", "/api/management", managementBody(cfg.Context, "", nonce, true), cookie, ""); w.Code != 200 {
+				t.Fatal("valid management grant failed")
+			}
+			// Fail only the fresh API namespace read after the valid grant exists.
+			typed.PrependReactor("get", "namespaces", func(a ktesting.Action) (bool, runtime.Object, error) { return true, nil, tc.err })
+			typed.ClearActions()
+			payload, _ := json.Marshal(map[string]string{"action": "add-worker", "idempotencyKey": key})
+			r := httptest.NewRequest("POST", "http://localhost/api/providers/minikube/workers?context=test", bytes.NewReader(payload))
+			r.RemoteAddr = "127.0.0.1:12345"
+			r.Header.Set("Content-Type", "application/json")
+			r.Header.Set("Origin", "http://localhost")
+			r.Header.Set("X-KubeView-Connection", nonce)
+			r.AddCookie(cookie)
+			mux := http.NewServeMux()
+			s.Register(mux)
+			w := httptest.NewRecorder()
+			mux.ServeHTTP(w, r)
+			var body struct {
+				Operation *provision.Operation `json:"operation"`
+			}
+			if json.Unmarshal(w.Body.Bytes(), &body) != nil {
+				t.Fatal("invalid provider JSON")
+			}
+			uidReads := 0
+			for _, a := range typed.Actions() {
+				if a.GetVerb() == "get" && a.GetResource().Resource == "namespaces" {
+					uidReads++
+				}
+			}
+			if w.Code != tc.status || body.Operation != nil || uidReads != 1 || runner.adds != 0 || runner.profileReads != 0 || runner.inventoryReads != 0 {
+				t.Fatalf("status=%d want=%d operationPresent=%t freshUIDReads=%d CLIchecks=%d Add=%d; identities omitted", w.Code, tc.status, body.Operation != nil, uidReads, runner.profileReads+runner.inventoryReads, runner.adds)
+			}
 		})
 	}
 }

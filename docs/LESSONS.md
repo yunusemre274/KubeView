@@ -1,5 +1,10 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — idempotency cache ve yetki/kimlik sınırı
+
+- Cached-result dalı pahalı Verify aşamasını atlıyorsa, güncel request kimliği kontrolü bu dalın önünde kalmalıdır. Bağlam adının aynı olması, yeniden kurulmuş kümenin UID'sinin aynı olduğu anlamına gelmez.
+- Yanlış cached yanıt yeni komut çalıştırmasa da yanlış işlem durumu oluşturabilir. Geçerli session/grant ile doğru-context pozitifini koruyup actualUID değişimini ve UID okuma403/503/404 hatalarını ayrı test edin; tek bir preflight okumayı atomik garanti diye sunmayın.
+
 ## 11 Kasım — driver ve port gözlemi
 
 - PID filtreli lsof exit1 ile gerçek session/API hatasını aynı kabul etmeyin. İlk hatanın hangi setup guard'ında olduğunu ve child ömrünü kaydedin.

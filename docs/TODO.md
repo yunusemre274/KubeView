@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — PROV-CACHE-001 düzeltme ve retest
+
+- [x] Public provider POST cached yanıt öncesi live kube-system UID kontrolü; orijinal PoC, ek403/503/404 ve combined12/33 ile dar race geçti. İlkRED korundu.
+- [ ] Yeni runtime/binary ve gerçek worker/same-key testi ile değişmiş final paket startup kontrolü gerekiyor. Manager şeması/auth değiştirilmedi; atomik UID sözü verilmez.
+
 ## 11 Kasım — PROV-CACHE-001 yeniden üretimi
 
 - [x] Public provider POST, changed canlı kube-system UID altında eski cachedoperation202 döndürdü; iki pozitif/yanlışcontext kontrolü ayrıldı. İlkRED ve source hashleri korundu; gerçek CLI/worker çalışmadı.

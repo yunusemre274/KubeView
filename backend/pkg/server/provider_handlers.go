@@ -148,16 +148,18 @@ func (s *Server) providerWorker(w http.ResponseWriter, r *http.Request) {
 		failure(w, err)
 		return
 	}
+	// Begin can return an idempotent cached result before its own Verify call.
+	// Keep that result bound to the selected live cluster on POST as well as GET.
+	ns, e := c.Typed.CoreV1().Namespaces().Get(ctx, "kube-system", metav1.GetOptions{})
+	if e != nil {
+		failure(w, e)
+		return
+	}
+	if string(ns.UID) != cfg.ClusterUID {
+		problem(w, 409, "Küme kimliği değişti")
+		return
+	}
 	if r.Method == "GET" {
-		ns, e := c.Typed.CoreV1().Namespaces().Get(ctx, "kube-system", metav1.GetOptions{})
-		if e != nil {
-			failure(w, e)
-			return
-		}
-		if string(ns.UID) != cfg.ClusterUID {
-			problem(w, 409, "Küme kimliği değişti")
-			return
-		}
 		p.minikube.Reconcile(ctx, c.Typed)
 		jsonResponse(w, 200, map[string]interface{}{"operations": p.minikube.Snapshot()})
 		return

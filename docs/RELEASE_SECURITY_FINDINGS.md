@@ -25,7 +25,12 @@ context kontrolleriyle birlikte sorunu yeniden üretti.
 POST, cached `Manager.Begin` dalından önce güncel UID'yi kontrol etmiyor;
 GET yolunda bu kontrol zaten var. İlk
 [RED kanıtı](../artifacts/release-audit/ra-20261111/provider-cache-scope-worker/REPORT.md)
-korunur. Düzeltme ve tekrar test bekleniyor; risk kabulü verilmedi.
+korunur. Düzeltmede actual kube-system UID kontrolü GET/POST ayrımının önüne taşındı.
+Orijinal PoC üç durumda geçti; geçerli cached sonuç korunurken yanlış UID409 oldu.
+Namespace403/503/404, birleşik12test/33alt durum ve dar race geçti.
+[Retest](../artifacts/release-audit/ra-20261111/provider-cache-scope-retest-worker/REPORT.md)
+UNIT/fake kapsamındadır; gerçek worker-count ve final yeni binary kabulü açıktır.
+Kontrol atomik bir UID garantisi değildir; önemli risk kabulü yapılmadı.
 
 | Kimlik | Önem / kanıt | Düzeltme / tekrar | Açık sınır |
 |---|---|---|---|

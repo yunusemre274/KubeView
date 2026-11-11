@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — cached provider yanıtında canlı UID guard'ı
+
+- POST, idempotent cached sonucu döndürmeden önce seçili API'nin gerçek kube-system UID'sini doğrular. Var olan GET guard'ı ortak konuma taşındı; yanlış UID409 ve gerçek UID-read hatalarının403/503/404 ayrımı korunur. Auth/journal/Manager şeması değişmedi.
+- Orijinal RED testi değişmeden green oldu; ek hata kontrolleri, birleşik12test/33alt durum ve dar race geçti. Gerçek provider ve yeni paket doğrulaması ayrı açıktır.
+
 ## 2026-11-11 — provider cached-scope regresyonu RED
 
 - Yeni public-handler testi, canlı küme UID'si değiştiğinde aynı anahtarın eski ready işlemini döndürebildiğini gösterdi. Authenticated local scope/yanlış durum sorunu olarak kaydedildi; yeni worker, RCE veya Secret sızıntısı iddia edilmedi. İlk test RED bırakıldı; ürün düzeltmesi sonraki checkpoint'tedir.
