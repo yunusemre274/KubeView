@@ -1,0 +1,32 @@
+{
+  "status": "CLEANUP_PASS_OPERATION_STILL_FAIL",
+  "operationRemainsFAIL": true,
+  "NodeDeleteOrRePOST": false,
+  "volumeRemoved": true,
+  "profileRestored": true,
+  "startedAt": "2026-11-11T19:00:31.846419+00:00",
+  "guardsPassed": {
+    "systemMarkerNamespaceOriginal2Ready": true,
+    "newNodeAndTypedContainerAbsent": true,
+    "volumeBirth": "2026-11-11T18:53:14Z",
+    "noContainerVolumeUsers": true,
+    "targets": {
+      "containers": [],
+      "volumes": [
+        "kvml-d32afbf634e8-a-m03"
+      ],
+      "networks": []
+    },
+    "fullProfileMinusOnlyPendingEqualsOriginal": true,
+    "candidateSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+    "preservedMode": "0o600"
+  },
+  "restoredProfileSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+  "allNewLabelTargetsEmpty": true,
+  "newNodeAbsent": true,
+  "originalBaselineExactlyEqual": true,
+  "originalFAILJournalsUnchanged": true,
+  "completedAt": "2026-11-11T19:00:34.177888+00:00",
+  "cleanupElapsedSeconds": 90.490807056427,
+  "within120s": true
+}

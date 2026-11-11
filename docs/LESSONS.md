@@ -1,5 +1,11 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — Docker nesne türü ve kısmi sağlama
+
+- İsimsiz türde dockerinspect, aynı adlı volume varsa başarılı yanıt verebilir; containerNetworkSettings varsaymayın. Container inventoryde typedcontainerinspect kullanın ve henüznetworkatlanmamış nesneyi Ready/claimedNode diye benimsemeyin.
+- Bir kısmi rollback yalnız capturedbeforeSHA, exactnewidentity ve CAS ile kanıtlanmış küçük değişiklikte yapılır. Eski operationFAIL kaydını temizleme başarısı ile PASS yapmayın; orijinal traceback yoksa sonradan üretilmişkeyi ona mal etmeyin.
+
+
 ## 11 Kasım — native araç sözleşmesi ve hazır olma
 
 - Bir alanın expression adı, JavaScript expression semantiğini kanıtlamaz. Kurulu Safari MCP explicitreturn içeren functionbody beklediğini üç sabit ve ham yanıtla gösterdi.

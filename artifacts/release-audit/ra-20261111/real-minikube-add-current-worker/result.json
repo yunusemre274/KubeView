@@ -1,0 +1,19 @@
+{
+  "status": "FAIL",
+  "mainExitCode": 2,
+  "failure": {
+    "errorClass": "KeyError",
+    "safeCategory": "details_omitted"
+  },
+  "journalResult": "FAIL",
+  "readyVerified": false,
+  "cleanupComplete": false,
+  "pendingCleanup": true,
+  "profileOriginalNodesAndSettingsEqual": false,
+  "helperUnchanged": true,
+  "RUN_CLEAREDSourceStillFalse": true,
+  "RUN_CLEAREDMemoryResetFalse": true,
+  "totalElapsedSeconds": 82.8300850391388,
+  "within720s": true,
+  "completedAt": "2026-11-11T18:53:15.138404+00:00"
+}

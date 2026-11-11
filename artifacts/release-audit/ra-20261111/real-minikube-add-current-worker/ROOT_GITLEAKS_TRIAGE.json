@@ -1,0 +1,10 @@
+{
+  "classification": "FALSE_POSITIVE_IDEMPOTENCY_DIGEST",
+  "fingerprint": "artifacts/release-audit/ra-20261111/real-minikube-add-current-worker/journal-redacted.json:generic-api-key:216",
+  "rule": "generic-api-key",
+  "field": "keyHash",
+  "valueSHA256": "4ac159a19f84d8fb63cca44cb0bc810b734a348ad5c29632ceb72a2583527040",
+  "source": "backend/pkg/provision/minikube.go:265; SHA256(selectedContext+NUL+idempotencyKey)",
+  "reason": "One-way operation deduplication digest, not bearer/API/session credential. Request authority is still checked separately; digest is not accepted as auth. Original idempotency key, nonce/token/cookie were not recorded.",
+  "scope": "Only this exact staged fingerprint is used as a private scanner baseline; no global rule exclusion and no high-risk acceptance."
+}

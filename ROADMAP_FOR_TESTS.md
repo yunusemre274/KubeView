@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T22:05:23.878802+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T22:07:12.460556+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:21; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:2, VERIFIED_DONE:6 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
@@ -3939,7 +3939,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Ortam / kullanılan kimlik ve yetki: Yalnız owned kvml-d32afbf634e8-a, iki original Node Ready. Gerçek admin kubeconfig private; başka context/hedef veya Secret değeri okunmadı.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.12-S1 — Hazırlık
@@ -3966,6 +3966,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 İlk gerçek HTTP/OS preflight: exactconnection/context/systemUID200, initialreadonly→explicitgrant, provideravailable/canAdd/MaxNodes3 ve inventory0 geçti; unsupportedaction400 sonrasıoperations0. OwnedOSfixture bağımsızwatchdogTERM/exit-15 ile sonlandı. Bunlar workerADD kabulü değildir; add/cancel/delete POST0. Kanıt: provider-http-preflight-worker/REPORT.md/result.json.
 
+İlk gerçek API/CLI worker denemesi:18:53:13.679POST202; aynıkey ikinciPOST18:53:13.999 aynıoperation8ce1a91c-509b-4129-8bff-778b87f48888. CLI91166 exactm03claim ile başladı. Helper18:53:15KeyError; Ready/newNodeUID doğrulanmadı. Hiç körretry yapılmadı. Runtimef9/4c, helper7f17 ve patchedCLI98e42 aynı. Kanıt: real-minikube-add-current-worker/REPORT.md/result.json/progress.jsonl.
+
 #### TEST-06.12-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
 - Yapılan: henüz çalışılmadı.
@@ -3980,6 +3982,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 Watchdog/ownedPIDbirth+PGID, finite2MiBI/O, cleanup reserve/reentry ve unprovenpartialrefusal saf testlerle geçti. Bunlar gerçek CLI sonlandırma/worker veya teardown kanıtı değildir; gerçek işlem açık.
 
 FAIL: final snapshot/profile byte eşitliği original_cluster_fixture_profile_changed guardında kaldı. Before/after saklanmadığı için değişen alan/neden bilinmiyor. Ayrıca raporfinalization243.216795sn>180sn; withinBudget=false. İlkexit0 kabul değildir; resultFAIL esas. Körretry/actualNodeAdd yok. Ayrı no-app read-only snapshot diagnostic yetkilendirildi.
+
+FAIL/pendingcleanup: typedinventory yeniNode/container olmadığını, yalnız operationdan sonra doğmuş exactm03volume ve nonCP/IPempty pendingprofilentry olduğunu gösterdi. Genericdockerinspect same-namevolume döndürebiliyor; originalexceptiontrace kayıp olduğundan kesin ilkkey iddiası yok. Rootownedapp/CLI stop ve immutablejournal kopyası korundu; tekopreconciling/processExited/NodeUIDyok.
 
 #### TEST-06.12-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -4017,10 +4021,12 @@ Ownedapp82905/birth/PGID finallyexit0; noLISTEN19849, child0, realCONTROLabsent,
 
 Run gate kaynaktaFalse kaldı. Root HTTP ön kontrolünün başarılı checkpointinden sonra yalnız exact owned lab üzerinde tek idempotent yeniworker denemesi için ayrı private clearance verecek; gerçek provisioning bu aşamada yapılmadı.
 
+Ayrı exactpartialcleanup: iki lock, system/marker/ns/original2Ready, noNode/container, volume birth/labels/no-users/exclusive targets; pendingentry çıkarılmış tamcandidateSHA başlangıçc826… ile birebir eşleşti. Yalnız newvolume nonforce rm; CAS/fsync/rename ile exactoriginalprofile0600 geri geldi. Newlabelcontainer/volume/network0, originals/fixtures/Cilium/network/volumes/manualstate eşit. İşlemFAIL kaldı. Operationalcleanup90.491sn<120; cleanupreport253.531sn>180 ayrıtimingFAIL; entirejob684.910sn<720. Root22fileSHA listesi ve CLEANUP.md/result inceledi.
+
 #### TEST-06.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- IN_PROGRESS: İlkFAIL ve rapor süre aşımı korunur; mount-order düzeltmesi ve kalıcı-before/after tek HTTP retesti geçti. Gerçek NodeAdd/Ready/cleanup henüz uygulanmadı.
-- Sonraki iş: aynı owned lab/iki originalUID/MaxNodes3 için bir işlem, aynı key ile çiftPOST ve exact yeniworker cleanup. Körretry veya unprovenpartial silme yok.
+- FAILED: ilk gerçekadd isteği ve aynı-keyoperation eşitliği görüldü fakat yardımcı kısmiDocker nesne sınırında durdu; gerçekworkerReady yok. Exactpartialcleanup tamam, başarısız işlem/journallar korunur; rapor süre aşımı saklanmadı.
+- Sonraki iş: typedcontainerinspect ve pendingnetwork sınırını dar saf testlerle düzeltmek; restore edilmiş exactenv üzerinde ayrı sonlu test. İlkFAIL yeniPASS diye yazılamaz.
 
 ### TEST-06.13 — Minikube idempotency/profile lock
 
@@ -4057,6 +4063,8 @@ Run gate kaynaktaFalse kaldı. Root HTTP ön kontrolünün başarılı checkpoin
 - Sonuç: NOT_STARTED
 
 - [x] Doğru configured context+UID+samekey202 cachedoperation, Add0. Yanlış selectedcontext geçerli grant ile409/nooperation/Add0. Pozitif yol kullanılabilirken changedUID özel negatif ayrıldı.
+
+Aynı gerçekilkadd koşusunda aynı-key ikiPOST aynıoperation8ce1a91c… döndürdü; ikinci biroperation kaydı yok. Ancak workerReady ve tüm lock/restart/timeout/idempotency kapsamı geçmedi; bu dar kanıt phase06.13 genelPASS değildir. Kanıt: real-minikube-add-current-worker/REPORT.md; actualfirstFAIL ayrı.
 
 #### TEST-06.13-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.

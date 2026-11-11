@@ -1,5 +1,12 @@
 # Güncel görev durumu
 
+## 11 Kasım — ilk gerçek worker denemesi ve exact cleanup
+
+- [x] GerçekPOST202 ve aynıkey aynıoperation görüldü; helperKeyError öncesi minikube başladı. YeniNodeReady yok; denemeFAIL korundu.
+- [x] Yalnız provennewvolume/pendingprofil exactSHA rollback ile temizlendi; original2Ready ve fixtures aynı.
+- [ ] Typedcontainerinspect/pendingnetwork helper düzeltmesi ve ayrı gerçekworker kabulü gerekiyor; toplam testin cleanup rapor süresi de başarısız kaydedildi.
+
+
 ## 11 Kasım — endpoint envanteri kabulü
 
 - [x] TEST01.01 dar kapsamı ikinci kaynak/kanıt incelemesinden geçti:25normal/21protect+2replay ve37+7HTTP kontrolü.

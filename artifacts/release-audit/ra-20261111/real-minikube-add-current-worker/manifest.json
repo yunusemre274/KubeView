@@ -1,0 +1,75 @@
+{
+  "status": "FAIL_CLEANUP_COMPLETE",
+  "originalOperationOutcome": "FAIL, retained permanently; cleanup does not convert toPASS",
+  "operationID": "8ce1a91c-509b-4129-8bff-778b87f48888",
+  "sameKeyTwoPOSTsSameOperation": true,
+  "operationCount": 1,
+  "actualNewReadyUIDVerified": false,
+  "firstFailureClass": "KeyError",
+  "firstFailureTracebackNotRetained": true,
+  "typedPartialInventory": {
+    "newContainerAbsent": true,
+    "newNodeAbsent": true,
+    "newVolumeCreated": "2026-11-11T18:53:14Z",
+    "pendingProfileEntry": {
+      "Name": "m03",
+      "IP": "",
+      "Port": 0,
+      "ControlPlane": false,
+      "Worker": true
+    }
+  },
+  "typeCollisionAssessment": "Generic docker inspect may select the same-named volume before container exists; source expects containerNetworkSettings. Exact original traceback/key not recovered; typed observations support root hypothesis.",
+  "ownedAppAndCLIRecordedPIDsAbsent": true,
+  "noListen19849": true,
+  "newNodeAssignedPods": 0,
+  "cleanup": {
+    "status": "CLEANUP_PASS_OPERATION_STILL_FAIL",
+    "operationRemainsFAIL": true,
+    "NodeDeleteOrRePOST": false,
+    "volumeRemoved": true,
+    "profileRestored": true,
+    "startedAt": "2026-11-11T19:00:31.846419+00:00",
+    "guardsPassed": {
+      "systemMarkerNamespaceOriginal2Ready": true,
+      "newNodeAndTypedContainerAbsent": true,
+      "volumeBirth": "2026-11-11T18:53:14Z",
+      "noContainerVolumeUsers": true,
+      "targets": {
+        "containers": [],
+        "volumes": [
+          "kvml-d32afbf634e8-a-m03"
+        ],
+        "networks": []
+      },
+      "fullProfileMinusOnlyPendingEqualsOriginal": true,
+      "candidateSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+      "preservedMode": "0o600"
+    },
+    "restoredProfileSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+    "allNewLabelTargetsEmpty": true,
+    "newNodeAbsent": true,
+    "originalBaselineExactlyEqual": true,
+    "originalFAILJournalsUnchanged": true,
+    "completedAt": "2026-11-11T19:00:34.177888+00:00",
+    "cleanupElapsedSeconds": 90.490807056427,
+    "within120s": true
+  },
+  "profileRollbackProof": "candidate full bytes SHA equals captured original SHA; remove only pending nonCPm03, no unrelated field changes",
+  "journalsImmutable": true,
+  "helperUnchanged": true,
+  "RUN_CLEAREDSourceStillFalse": true,
+  "phaseElapsedSecondsAtFinalization": 684.91028,
+  "withinOriginal720s": true,
+  "cleanupIncludingFinalizationSeconds": 253.531437,
+  "cleanupWithin180sIncludingFinalization": false,
+  "cleanupMutatingStageWithin120s": true,
+  "noNewAddRetryRePOSTNodeDeleteOrGeneralUpDown": true,
+  "publicJournalRedaction": "Noheaders/nonce/token/env/body; original immutable journals stored privately and hashed",
+  "rootReportedAppSource": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "helperSHA256": "7f17ba97182d34dbfcb35c12ea8ce3d62fd9882fa485696150f677944bc7fe58",
+  "wrapperSHA256": "70b31142d33526f642392b504de9e0e1787c11f6e568323e582a34f8201abd69",
+  "cleanupWrapperSHA256": "ab8c850161412c94376e2bbfb62a9c1320fc226fad9994f0bfc070163ac6ab23",
+  "finalizedAt": "2026-11-11T19:03:17.218532+00:00",
+  "cleanupReportTimingOutcome": "FAIL: reporting exceeded180s; operational cleanup completed90.491s within120s"
+}

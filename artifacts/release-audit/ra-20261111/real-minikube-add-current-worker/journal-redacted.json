@@ -1,0 +1,222 @@
+{
+  "schema": 1,
+  "startedAt": "2026-11-11T18:53:12.899383+00:00",
+  "issued": true,
+  "expectedMachine": "kvml-d32afbf634e8-a-m03",
+  "baseline": {
+    "hosts": {
+      "kvml-d32afbf634e8-a": {
+        "name": "kvml-d32afbf634e8-a",
+        "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+        "created": "2026-11-11T12:25:42.786922134Z",
+        "labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+          "role.minikube.sigs.k8s.io": ""
+        },
+        "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+        "IP": "172.29.232.2",
+        "mounts": [
+          {
+            "type": "volume",
+            "name": "kvml-d32afbf634e8-a"
+          },
+          {
+            "type": "bind",
+            "name": null
+          }
+        ]
+      },
+      "kvml-d32afbf634e8-a-m02": {
+        "name": "kvml-d32afbf634e8-a-m02",
+        "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+        "created": "2026-11-11T12:25:55.149367334Z",
+        "labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+          "role.minikube.sigs.k8s.io": ""
+        },
+        "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+        "IP": "172.29.232.3",
+        "mounts": [
+          {
+            "type": "volume",
+            "name": "kvml-d32afbf634e8-a-m02"
+          },
+          {
+            "type": "bind",
+            "name": null
+          }
+        ]
+      }
+    },
+    "network": {
+      "id": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+      "created": "2026-11-11T12:25:18.078000053Z",
+      "labels": {
+        "manual.kubeview.local/lab-id": "kvml-d32afbf634e8"
+      }
+    },
+    "volumes": {
+      "kvml-d32afbf634e8-a": {
+        "Name": "kvml-d32afbf634e8-a",
+        "CreatedAt": "2026-11-11T12:25:41Z",
+        "Driver": "local",
+        "Labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a"
+        }
+      },
+      "kvml-d32afbf634e8-a-m02": {
+        "Name": "kvml-d32afbf634e8-a-m02",
+        "CreatedAt": "2026-11-11T12:25:53Z",
+        "Driver": "local",
+        "Labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02"
+        }
+      }
+    },
+    "knownDaemonSets": {
+      "kube-system/cilium": "144ba330-5232-4969-b850-7a23bacfddbb",
+      "kube-system/cilium-envoy": "2ee3ea8b-2d77-4df7-9aeb-4548241ce4d3",
+      "kube-system/kube-proxy": "3a85e654-153d-4a0b-a454-d4731eabf3bb"
+    },
+    "Cilium": {
+      "kube-system/cilium": {
+        "uid": "144ba330-5232-4969-b850-7a23bacfddbb",
+        "specSHA256": "44e4747e32f9a6c66f89de089d868c90b8b2c6ba16563e5077ac9ba25d13c310"
+      },
+      "kube-system/cilium-envoy": {
+        "uid": "2ee3ea8b-2d77-4df7-9aeb-4548241ce4d3",
+        "specSHA256": "b55162fc4f782c48d04b43e6b0fddc5be06385c0328c3e83ad1ec8e28e57909d"
+      },
+      "kube-system/kube-proxy": {
+        "uid": "3a85e654-153d-4a0b-a454-d4731eabf3bb",
+        "specSHA256": "04156285886789b3d0c00a0d5155b2716f703957c2a4359c837f07b7ac56ef4d"
+      }
+    },
+    "fixtures": {
+      "kvml-fbf634e8-06-client/traffic": {
+        "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+        "specSHA256": "c5913cdf8e898b89ec3e884608e1af5da2d399523a7b02aaaaf964386d23b10a",
+        "podUIDs": []
+      },
+      "kvml-fbf634e8-06-server/http-server": {
+        "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+        "specSHA256": "8223893c731657b2776018955d8b19b280436a4f64a7ff8778d7d536f7828f0d",
+        "podUIDs": [
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ]
+      }
+    },
+    "labFileSHA256": "f3e824f2a51a8205f40808c62a16f4f2a206d7c518bdaddb5086a528b4498b27"
+  },
+  "timeline": [
+    {
+      "at": "2026-11-11T18:53:12.899539+00:00",
+      "event": "durable_plan_before_any_POST",
+      "proof": {
+        "MaxNodes": 3,
+        "expected": "kvml-d32afbf634e8-a-m03",
+        "cleanupReserveSeconds": 180,
+        "reportReserveSeconds": 60
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:13.089417+00:00",
+      "event": "owned_gateway_management_enabled",
+      "proof": {
+        "pid": 90910,
+        "birth": "Wed Nov 11 21:53:12 2026",
+        "port": 19849
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:13.388358+00:00",
+      "event": "POST_intent_committed_no_replay_after_interruption",
+      "proof": null
+    },
+    {
+      "at": "2026-11-11T18:53:13.679052+00:00",
+      "event": "first_POST_accepted",
+      "proof": {
+        "operationID": "8ce1a91c-509b-4129-8bff-778b87f48888"
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:13.998988+00:00",
+      "event": "same_key_second_POST_same_operation",
+      "proof": {
+        "operationID": "8ce1a91c-509b-4129-8bff-778b87f48888"
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:14.011944+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "8ce1a91c-509b-4129-8bff-778b87f48888",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 91166,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:15.075778+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "8ce1a91c-509b-4129-8bff-778b87f48888",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 91166,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:15.099713+00:00",
+      "event": "failure_before_cleanup",
+      "proof": {
+        "errorClass": "KeyError"
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:15.113564+00:00",
+      "event": "pending_partial_cleanup",
+      "proof": {
+        "safeCategory": "KeyError"
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:15.136665+00:00",
+      "event": "partial_stop_refused",
+      "proof": {
+        "errorClass": "KeyError"
+      }
+    },
+    {
+      "at": "2026-11-11T18:53:15.137211+00:00",
+      "event": "issued_failure_retained",
+      "proof": {
+        "errorClass": "KeyError",
+        "cleanupComplete": false
+      }
+    }
+  ],
+  "keyHash": "06dd5f9943ebbcfaf0ab5a6a1e7b603da28c71ed9dae6602d8ea4353c0f5af99",
+  "operationStartedAt": "2026-11-11T18:53:13.388337+00:00",
+  "operationID": "8ce1a91c-509b-4129-8bff-778b87f48888",
+  "result": "FAIL",
+  "pendingCleanup": true,
+  "watchdogEvents": []
+}

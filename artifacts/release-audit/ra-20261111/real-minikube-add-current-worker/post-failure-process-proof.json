@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-11T18:57:12.319085+00:00",
+  "operationCount": 1,
+  "operations": [
+    {
+      "id": "8ce1a91c-509b-4129-8bff-778b87f48888",
+      "context": "kvml-d32afbf634e8-a",
+      "profile": "kvml-d32afbf634e8-a",
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "status": "reconciling",
+      "expectedName": "kvml-d32afbf634e8-a-m03",
+      "nodeName": null,
+      "nodeUID": null,
+      "processPID": 91166,
+      "processExited": true,
+      "claimVerified": true,
+      "cancelRequested": null,
+      "stageSource": "minikube-command-confirmed-worker-name"
+    }
+  ],
+  "ownedAppPID": 90910,
+  "ownedAppBirth": "Wed Nov 11 21:53:12 2026",
+  "recordedAppAndCLIPIDs": [
+    90910,
+    91166
+  ],
+  "processRowsAfterStop": [],
+  "allRecordedPIDsAbsentAfterStop": true,
+  "listen19849PIDs": [],
+  "newNodeAssignedPodCount": 0,
+  "newNodeAssignedPodUIDs": [],
+  "noSignalsOrMutationInInspection": true
+}

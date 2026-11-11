@@ -1,5 +1,11 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — gerçek worker denemesi başarısız, kaynaklar geri alındı
+
+- GerçekAPI/CLIadd girişimi samekey ikiPOST için aynıoperation verdi, fakat helper kısmiDocker metadata aşamasında durdu; Ready doğrulanmadı.
+- Yalnız provennewvolume ve pendingprofilentry guardlı exactSHA rollback ile temizlendi; ilkFAIL, immutablejournallar ve cleanup rapor zaman aşımı korunur.
+
+
 ## 2026-11-11 — aktif yüzey ikinci incelemesi
 
 - Güncel endpoint envanteri ayrı worker tarafından kaynak/byte/hash/HTTP sonuçlarıyla doğrulandı; TEST01.01VERIFIED_DONE. İlk yardımcıFAIL, explicitreplay ayrımı ve gerçek işlev/paket sınırları korunur.
