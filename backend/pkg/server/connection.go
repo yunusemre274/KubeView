@@ -70,10 +70,10 @@ func (s *Server) operator(r *http.Request, w http.ResponseWriter) (string, *oper
 	}
 	key := operatorKey(r, id)
 	if key != id && s.operators[id] == nil {
-		rootCtx, rootCancel := context.WithCancel(context.Background())
+		rootCtx, rootCancel := context.WithDeadline(context.Background(), now.Add(8*time.Hour))
 		s.operators[id] = &operatorSession{nonce: uuid.NewString(), expires: now.Add(8 * time.Hour), ctx: rootCtx, cancel: rootCancel}
 	}
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithDeadline(context.Background(), now.Add(8*time.Hour))
 	session := &operatorSession{nonce: uuid.NewString(), expires: now.Add(8 * time.Hour), ctx: ctx, cancel: cancel}
 	s.operators[key] = session
 	http.SetCookie(w, &http.Cookie{Name: s.operatorCookieName(), Value: id, HttpOnly: true, Secure: r.TLS != nil, SameSite: http.SameSiteStrictMode, Path: "/", MaxAge: 28800})
@@ -82,7 +82,9 @@ func (s *Server) operator(r *http.Request, w http.ResponseWriter) (string, *oper
 
 func resetOperator(session *operatorSession) {
 	session.cancel()
-	session.ctx, session.cancel = context.WithCancel(context.Background())
+	// Streams already attach to this context. Expiry must cancel them even if
+	// no subsequent HTTP request runs the opportunistic map cleanup.
+	session.ctx, session.cancel = context.WithDeadline(context.Background(), session.expires)
 	session.nonce, session.enabled = uuid.NewString(), false
 	session.members = nil
 	session.streamGeneration = ""

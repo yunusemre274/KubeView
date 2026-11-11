@@ -1,0 +1,61 @@
+[
+  {
+    "log": "existing-tests-1.log",
+    "counts_top_level_only": {
+      "PASS": 32,
+      "FAIL": 0,
+      "SKIP": 3
+    },
+    "exit_code": 0,
+    "skips": [
+      "TestDedicatedClusterRestrictedRBAC",
+      "TestOwnedV11RealMinikubeManagementGate",
+      "TestOwnedWorkspaceRealAPIIsolation"
+    ]
+  },
+  {
+    "log": "existing-tests-2.log",
+    "counts_top_level_only": {
+      "PASS": 4,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "exit_code": 0,
+    "skips": []
+  },
+  {
+    "log": "existing-tests-3.log",
+    "counts_top_level_only": {
+      "PASS": 10,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "exit_code": 0,
+    "skips": []
+  },
+  {
+    "log": "regression-secret-discovery.log",
+    "counts_top_level_only": {
+      "PASS": 0,
+      "FAIL": 1,
+      "SKIP": 0
+    },
+    "exit_code": 1,
+    "skips": []
+  },
+  {
+    "log": "retest-sec001.log",
+    "counts_top_level_only": {
+      "PASS": 34,
+      "FAIL": 0,
+      "SKIP": 3
+    },
+    "exit_code": 0,
+    "skips": [
+      "TestDedicatedClusterRestrictedRBAC",
+      "TestOwnedV11RealMinikubeManagementGate",
+      "TestOwnedWorkspaceRealAPIIsolation"
+    ],
+    "typed_endpoint_matrix_request_cases": 80
+  }
+]

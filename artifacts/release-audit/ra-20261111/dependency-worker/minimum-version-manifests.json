@@ -1,0 +1,44 @@
+[
+  {
+    "module": "golang.org/x/net",
+    "version": "v0.62.0",
+    "source": "https://proxy.golang.org/golang.org/x/net/@v/v0.62.0.mod",
+    "status": "error",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  },
+  {
+    "module": "golang.org/x/text",
+    "version": "v0.41.0",
+    "source": "https://proxy.golang.org/golang.org/x/text/@v/v0.41.0.mod",
+    "status": "error",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  },
+  {
+    "module": "golang.org/x/sys",
+    "version": "v0.44.0",
+    "source": "https://proxy.golang.org/golang.org/x/sys/@v/v0.44.0.mod",
+    "status": "error",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  },
+  {
+    "module": "golang.org/x/oauth2",
+    "version": "v0.27.0",
+    "source": "https://proxy.golang.org/golang.org/x/oauth2/@v/v0.27.0.mod",
+    "status": "error",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  },
+  {
+    "module": "github.com/moby/spdystream",
+    "version": "v0.5.1",
+    "source": "https://proxy.golang.org/github.com/moby/spdystream/@v/v0.5.1.mod",
+    "status": "error",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  },
+  {
+    "module": "github.com/gorilla/websocket",
+    "version": "v1.5.3",
+    "source": "https://proxy.golang.org/github.com/gorilla/websocket/@v/v1.5.3.mod",
+    "status": "error",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  }
+]

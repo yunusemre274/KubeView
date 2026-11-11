@@ -1,0 +1,6 @@
+=== RUN   TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest
+    release_session_expiry_test.go:22: expired operator context stayed live without another HTTP request
+--- FAIL: TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest (0.25s)
+FAIL
+FAIL	github.com/k8s-tersane/tersane/backend/pkg/server	0.966s
+FAIL

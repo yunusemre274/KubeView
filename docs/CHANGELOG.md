@@ -230,3 +230,9 @@ Projedeki tüm önemli değişiklikler mevcuttur. Format [Keep a Changelog](http
 ### 10 Kasım — manuel paket ve ölçüm sınırı
 
 Temiz ca3b9ec binary'de gerçek05/06 ve yön tuşu/Canvas16 kontrolü; scoped concurrent-operation4 ve native workspace-record5 gerçek kontrolü geçti. İlk generation assertionFAIL test sözleşmesiydi; Kubernetes1.35.1 kaynağına göre yalnız test düzeltildi.40liman geçişinde GPU geometri ikinci tur57'de kaldı; global leak/CPU kazancı iddiası yok. Son1200s koşu pil9% korumasında~19dk'da kesildi ve kabul edilmedi; ilk faz-farklı CPU oturumu dışlandı. Yedi manuel profil saklanıp lab'lar durduruldu; otomatik QA sahiplik doğrulamasıyla temizlendi. Stable yayın ve kullanıcı kabulü beklenir.
+# 11 Kasım2026 — yayın güvenliği adayı (stable değildir)
+
+- Eksik API discovery'nin typed Secret/log/exec/forward selector kontrolünü atlaması engellendi; ilk red ve ayrı retest saklandı.
+- Operatörün mutlak oturum süresi stream context'ine bağlandı; reset özgün deadline'ı uzatmıyor.
+- Go minimum/build toolchain1.26.11; Gorilla1.5.3/SPDY0.5.1 ve x/net0.62 uyumlu graph. Kubernetes0.30.0 değişmedi; güncel main source advisory taraması0finding.
+-199 fazlı canlı `ROADMAP_FOR_TESTS.md`, tehdit modeli ve bulgu kayıtları eklendi. Uzun koşu/gerçek TLS/paket/perf kapıları henüz kabul edilmedi; stable yayın/merge yok.

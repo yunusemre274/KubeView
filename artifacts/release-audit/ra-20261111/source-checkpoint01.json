@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-11T13:43:38.650778+03:00",
+  "baseCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+  "candidateSourceChanges": {
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/workspace_scope.go": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+    "frontend/src/harbor/cameraViews.js": "17783d344d043466d3ff7211ffd1a12ff4f0389dc99e4823a115e41b7f0ef584",
+    "frontend/src/harbor/HarborScene.jsx": "4c24ed2f35409962bb9f5aab7306f4c9d1b68377dc36ddca71bbfa07c8088bc4",
+    "Dockerfile": "6db13bba3c51af80ba58b25622ab07dc379614afeb1fb4fc62f695d170d845ca",
+    ".github/workflows/ci.yml": "d67b59ee47363baf00a6c3b2ebd486c49ce03121aba99fc7d1a23cc8202be20a"
+  },
+  "govulnFindings": 0,
+  "raceTopLevel": {
+    "pass": 96,
+    "skip": 25
+  },
+  "frontendTests": {
+    "pass": 220,
+    "fail": 0,
+    "skip": 0
+  },
+  "testKinds": "synthetic source/unit/race; opt-in real tests SKIP",
+  "govulnConfig": {
+    "protocol_version": "v1.0.0",
+    "scanner_name": "govulncheck",
+    "scanner_version": "v1.9.0",
+    "db": "https://vuln.go.dev",
+    "db_last_modified": "2026-11-11T02:51:11Z",
+    "go_version": "go1.26.11",
+    "scan_level": "symbol",
+    "scan_mode": "source"
+  }
+}

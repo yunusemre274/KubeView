@@ -1,0 +1,43 @@
+# Yayın adayı güvenlik bulguları — 11 Kasım 2026
+
+Bu kayıt `36d5b8f90c8afdec437bdb6e5516541b5bb859bd` başlangıcından yürütülen
+[canlı kabul defterine](../ROADMAP_FOR_TESTS.md) bağlıdır. Test/araç sonucu,
+profesyonel bağımsız penetrasyon testi veya bilinmeyen açıkların bulunmadığı
+garantisi değildir. Gerçek kullanıcı credential veya Secret içeriği kaydedilmedi.
+
+| Kimlik | Önem / önkoşul | İlk sonuç | Düzeltme / tekrar test | Kalan sınır |
+|---|---|---|---|---|
+| SEC-001 | HIGH: backend kimliği hedef Secret'ı okuyabiliyor; API Discovery hedef GVR'yi eksik döndürüyor | Liman selector'ı dışındaki sentetik Secret normalde403, eksik keşifte200 | `authorizeWorkspace` çözümlenemeyen named GVR'de reddeder. Secret/log/exec/forward için80 sentetik istek;34 top-level PASS/3 gerçek-lab SKIP. Root kod incelemesi yapıldı. | Bu, Kubernetes RBAC bypass veya anonim internet saldırısı değildir. Gerçek kısıtlı kimlik/final paket kapıları ayrıca açık. |
+| SEC-002 | MEDIUM: önceden yetkilendirilmiş uzun akış sekiz saatlik operatör ömrünü aşabiliyor | Başka HTTP isteği gelmezse süresi dolan session context'i canlı kaldı; kısa deadline regresyonu FAIL | Session oluşturma ve scope reset context'i özgün mutlak expiry'ye bağlandı. Yeni session deadline ve reset/iptal kontrolleri PASS; scope/grant komşu testleri ve odaklı race PASS. | Kısa süreli sentetik test; sekiz saat gerçek kullanıcı oturumu çalıştırılmış sayılmaz. |
+| DEP-001 | Sürüme/kod yoluna bağlı Go advisory eşleşmeleri; hepsi doğrulanmış exploit değildir |42 advisory:21symbol/15package/6module. `http.FileServer` Range yolu doğrudan runtime adayı; diğerlerinin önkoşulları ayrı incelendi. | Go1.26.11 ve minimal uyumlu modül tabanı; Kubernetes0.30.0 korunur. Main source govulncheck1.9.0:0finding.94 top-level unit PASS/25 opt-in SKIP; vet PASS. Docker/CI toolchain aynı patch'e taşındı. | Darwin/arm64 main source taraması. Final binary, container/OS ve gerçek SPDY/exec kabulü ayrı. |
+
+SEC-001'in ilk başarısız testi
+[`regression-secret-discovery.log`](../artifacts/release-audit/ra-20261111/security-worker/regression-secret-discovery.log),
+ayrı başarılı tekrarı
+[`retest-sec001.log`](../artifacts/release-audit/ra-20261111/security-worker/retest-sec001.log)
+ile korunur. SEC-002'nin
+[ilk FAIL](../artifacts/release-audit/ra-20261111/session-expiry-red.log),
+[retest](../artifacts/release-audit/ra-20261111/session-scope-retest.log) ve
+[race kaydı](../artifacts/release-audit/ra-20261111/security-race.jsonl) ayrıdır.
+
+Bağımlılık değerlendirmesi, advisory aralıkları, exact source uyuşmazlığı bulunan
+Gorilla uyarısı ve transitive sürüm maliyeti
+[worker raporunda](../artifacts/release-audit/ra-20261111/dependency-worker/REPORT.md)
+saklanır. npm lock/dev/runtime taraması0advisory; izole zafiyetli lock pozitif
+kontrolü scanner'ın tespit yapabildiğini doğruladı.
+
+Tarihsel sır taramasında386 aday ayrıca inceleniyor; scanner sayısı gerçek sır
+sayısı değildir. Değerler redakte edilir. Çalışma ağacı/final arşiv taraması ve
+kalan tehdit zincirleri tamamlanmadan yayın güvenliği kabulü verilmez.
+
+## Tekrar üretme
+
+```sh
+cd backend
+GOTOOLCHAIN=go1.26.11 GOMAXPROCS=2 go test -p 1 -parallel 2 -timeout 90s ./pkg/server -run 'Test(Release|Management|ScopeSwitch|Workspace.*(Grant|Cookie)|DelayedManagement)' -count=1
+GOTOOLCHAIN=go1.26.11 GOMAXPROCS=2 go test -race -p 1 -parallel 2 -timeout 120s ./pkg/server -run 'Test(Release|Workspace.*(Grant|Cookie|Offline|Credential|HTTP|MultiNamespace)|PortForwardSandbox|ScopeSwitch)' -count=1
+```
+
+Bu komutlar sentetik istemci kullanır; gerçek küme testi için açık opt-in ve
+owned cluster/namespace kimlikleri gerekir. `-p1/-parallel2` kaynak bütçesidir;
+`-race` ağır tanılamadır, production CPU karşılaştırmasına karıştırılmaz.

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "npm",
+    "audit",
+    "--json"
+  ],
+  "cwd_relative_to_repository": "frontend",
+  "started_at_utc": "2026-11-11T10:20:24.657075+00:00",
+  "finished_at_utc": "2026-11-11T10:20:25.329114+00:00",
+  "duration_seconds": 0.672,
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+  "stdout_file": "npm-audit.stdout",
+  "stderr_file": "npm-audit.stderr"
+}

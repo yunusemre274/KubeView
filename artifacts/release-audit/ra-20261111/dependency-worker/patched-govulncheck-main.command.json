@@ -1,0 +1,22 @@
+{
+  "command": [
+    "env",
+    "GOTOOLCHAIN=go1.26.11",
+    "GOFLAGS=-p=1",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/tools/govulncheck",
+    "-json",
+    "."
+  ],
+  "cwd_relative_to_repository": "backend",
+  "started_at_utc": "2026-11-11T10:30:53.768882+00:00",
+  "finished_at_utc": "2026-11-11T10:30:57.208268+00:00",
+  "duration_seconds": 3.439,
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+  "stdout_file": "patched-govulncheck-main.stdout.gz",
+  "stderr_file": "patched-govulncheck-main.stderr",
+  "stdout_encoding": "gzip; decompress to original unmodified concatenated JSON stream",
+  "stdout_sha256_uncompressed": "bfd6061eb55de08af8f09e8ba07308a98afc90219f03775d20d6bb967355caa4"
+}

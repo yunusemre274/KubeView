@@ -202,3 +202,11 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 - [ ] Yeni fullTLS/Hubble gerçek E2E iki bootstrapFAIL sonrası BLOCKED;12unit bunu kapatmaz.
 - [ ] A–O güncel tabloda belirtilen kalan gerçek revoke/timeout/background/migration/metrics geniş senaryoları.
 - [ ] V11-16/V11-18/V11-19 ve kullanıcı MANUAL kabulü açık; stable yayın/merge/milestone kapanışı yapılmaz.
+# 11 Kasım2026 — yayın öncesi kapsamlı kabul
+
+- [x] `ROADMAP_FOR_TESTS.md`:199 bağımsız faz,21 kategori, canlı alt adım/kaynak/kanıt defteri; genel durum NOT_RELEASE_READY.
+- [x] SEC-001 eksik discovery typed selector bypass: sentetik red→fail-closed düzeltme→80 istek kontrolü; gerçek paket/RBAC kabulü ayrıca açık.
+- [x] Go1.26.11 ve advisory gideren uyumlu modüller; main source scanner0finding, vet/unit; opt-in SKIP korunur.
+- [x] SEC-002 absolute session expiry: ek HTTP beklemeden stream context deadline, kısa süreli regresyon ve odaklı race.
+- [ ] İki liman gerçek final paket UI; dar global harita kadrajı düzeltmesi ve görsel tekrar.
+- [ ] Yeni fullTLS cold lab, bounded pentest/load,5 eşleşmiş A/B ve60dk koşusu; eski V11-16/18/19+MANUAL açık.

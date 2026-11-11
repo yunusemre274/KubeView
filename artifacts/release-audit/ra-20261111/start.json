@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-11T13:18:48.526515+03:00",
+  "source": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+  "branch": "redesign/harbor-workbench",
+  "trackedDiffInitiallyEmpty": true,
+  "phases": 199,
+  "dockerInitiallyAvailable": false,
+  "releaseDecision": "NOT_RELEASE_READY"
+}

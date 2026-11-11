@@ -1,0 +1,18 @@
+{
+  "module": "github.com/gorilla/websocket",
+  "version": "v1.5.1",
+  "file": "<GOMODCACHE>/github.com/gorilla/websocket@v1.5.1/conn.go",
+  "file_sha256": "9ae2bd7ffbc353842cc0d0875c9fd45f2110145d5f7dda3ef7592a0f04282669",
+  "observed_import": {
+    "line": 9,
+    "text": "\t\"crypto/rand\""
+  },
+  "observed_mask_source": {
+    "start_line": 184,
+    "end_line": 195,
+    "text": "// maskRand is an io.Reader for generating mask bytes. The reader is initialized\n// to crypto/rand Reader. Tests swap the reader to a math/rand reader for\n// reproducible results.\nvar maskRand = rand.Reader\n\n// newMaskKey returns a new 32 bit value for masking client frames.\nfunc newMaskKey() [4]byte {\n\tvar k [4]byte\n\t_, _ = io.ReadFull(maskRand, k[:])\n\treturn k\n}\n"
+  },
+  "advisory": "GO-2026-6278",
+  "upstream_fix": "https://github.com/gorilla/websocket/commit/d67f41855da42d7bccd9ef050c49f7e54e783b95",
+  "assessment": "Unreviewed broad advisory version range conflicts with exact installed crypto/rand implementation; no weak-PRNG claim."
+}

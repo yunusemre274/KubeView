@@ -1,0 +1,11 @@
+{
+  "time": "2026-11-11T10:27:17.468222+00:00",
+  "source": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+  "binary_sha256": "47a5a1b13ec4ec4db19b11c014ff094c7fcff6ffbea5fb2d1a9bf4e87933123d",
+  "source_archive_sha256": "3f20716e478c4b365a6c05323c598386f1f5414b6e5f67adfac94e5bdfde4218",
+  "invalid_archive_attempt": {
+    "path": ".git/release-audit/baseline-36d5b8f.tar",
+    "reason": "LICENSE absent; git archive failed; zero-byte file invalid"
+  },
+  "lock_sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+}

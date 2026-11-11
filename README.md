@@ -108,7 +108,7 @@ Bayrakla açık `--context` seçimi, henüz workspace dosyası yoksa tek-liman k
 
 ## Kaynaktan derleme ve geliştirme
 
-Kaynaktan üretimde Node/npm ve Go gerekir; repo `go.mod` alt sınırı 1.22'dir, Docker derlemesi Node 24 / Go 1.26 kullanır. Çalıştırılmış araç/platform sürümleri kabul raporundan ayrıca değerlendirilir.
+Kaynaktan üretimde Node/npm ve Go gerekir; repo `go.mod` alt sınırı1.26.11'dir; CI ve Docker aynı Go patch sürümünü kullanır. Docker frontend derlemesi Node24 kullanır. Çalıştırılmış araç/platform sürümleri kabul raporundan ayrıca değerlendirilir.
 
 ```sh
 make build

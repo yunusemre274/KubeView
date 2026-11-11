@@ -199,6 +199,9 @@ func (s *Server) authorizeWorkspace(ctx context.Context, c *Clients, verb, group
 		resources, _ := discover(c)
 		for _, resource := range resources {
 			if resource.Group == group && resource.Resource == res {
+				if resource.Version == "" || !resource.Namespaced {
+					return scopeForbidden(schemaGVR(group, resource.Version, res), name)
+				}
 				base := c
 				if wrapped, ok := c.Dynamic.(*workspaceDynamic); ok {
 					base = wrapped.c
@@ -210,9 +213,12 @@ func (s *Server) authorizeWorkspace(ctx context.Context, c *Clients, verb, group
 				if !s.scopeContains(ctx, base, scope, obj, 0) {
 					return scopeForbidden(schemaGVR(group, resource.Version, res), name)
 				}
-				break
+				return nil
 			}
 		}
+		// Typed handlers rely on this check without a workspaceDynamic adapter.
+		// Missing discovery must never turn selector membership into a no-op.
+		return scopeForbidden(schemaGVR(group, "", res), name)
 	}
 	return nil
 }

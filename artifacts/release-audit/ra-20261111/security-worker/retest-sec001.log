@@ -1,0 +1,285 @@
+source_base_sha: 36d5b8f90c8afdec437bdb6e5516541b5bb859bd
+source_delta: SEC-001 fix in workspace_scope.go plus related regression tests
+source_sha256: {"backend/pkg/server/workspace_scope.go": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d", "backend/pkg/server/release_security_regression_test.go": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca"}
+start_utc: 2026-11-11T10:30:41.531913+00:00
+command_argv: ["go", "test", "-p", "1", "-parallel", "2", "-timeout", "90s", "-count=1", "-v", "./pkg/server", "-run", "^Test(ManagementStartsReadOnlyAndCannotBypassSession|DelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|ConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|OriginHostJSONAndSessionNegatives|ConnectionErrorsDoNotExposeCredentials|MergedKubeconfigSelectionReloadAndNoGlobalMutation|ScopeSwitchCancelsInFlightStreams|PortForwardSandboxStripsGatewayCredentialsAndBindsOperator|ReadOnlyAndNamespaceEnforced|DeletePreconditionsAndUIDRecreation|SecretSanitizationDoesNotMutateSource|OriginAndAuthentication|NamespaceScopeBlocksClusterCRUD|PortforwardScopeUIDAndPortValidation|LocalServerRejectsDNSRebindingHost|ClusterScopedReviewsIgnoreWatchNamespace|PurposefulSecretRevealIncludesGVKAndIdentity|WorkspaceHTTPPersistenceCSRFAndScope|WorkspaceMultiNamespaceAndDistinctConnectionIdentity|WorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|WorkspaceNodeImpactRequiresAcknowledgement|WorkspaceScopeEnvelopeRejectsWrongWorkspace|WorkspaceClusterCatalogReadsAndPVNamespaceRelation|WorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache|WorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|WorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts|WorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant|WorkspaceCookieNamesKeepLegacyGatewayContract|TrafficIdentityScopeAndCredentialRotation|SecretPurposeEditorPreservesMetadataWithoutBulkLeak|TemplateCapabilityDoesNotReadSecretBodies|LogGuardRequiresUIDAndEchoesSessionIdentity|OwnedV11RealMinikubeManagementGate|DedicatedClusterRestrictedRBAC|OwnedWorkspaceRealAPIIsolation|ReleaseSecurity.*)$"]
+environment: synthetic missing KUBECONFIG; providers disabled; GOMAXPROCS=2; -p 1; -parallel 2
+=== RUN   TestManagementStartsReadOnlyAndCannotBypassSession
+--- PASS: TestManagementStartsReadOnlyAndCannotBypassSession (0.00s)
+=== RUN   TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip
+--- PASS: TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip (0.00s)
+=== RUN   TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList
+--- PASS: TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList (0.00s)
+=== RUN   TestOriginHostJSONAndSessionNegatives
+=== RUN   TestOriginHostJSONAndSessionNegatives/foreign-origin
+=== RUN   TestOriginHostJSONAndSessionNegatives/wrong-scheme
+=== RUN   TestOriginHostJSONAndSessionNegatives/opaque-origin
+=== RUN   TestOriginHostJSONAndSessionNegatives/origin-userinfo
+=== RUN   TestOriginHostJSONAndSessionNegatives/dns-rebind
+=== RUN   TestOriginHostJSONAndSessionNegatives/fetch-site
+=== RUN   TestOriginHostJSONAndSessionNegatives/form-json-substring
+=== RUN   TestOriginHostJSONAndSessionNegatives/multiple-json
+=== RUN   TestOriginHostJSONAndSessionNegatives/tls-downgrade
+--- PASS: TestOriginHostJSONAndSessionNegatives (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/foreign-origin (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/wrong-scheme (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/opaque-origin (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/origin-userinfo (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/dns-rebind (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/fetch-site (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/form-json-substring (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/multiple-json (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/tls-downgrade (0.00s)
+=== RUN   TestConnectionErrorsDoNotExposeCredentials
+--- PASS: TestConnectionErrorsDoNotExposeCredentials (0.00s)
+=== RUN   TestMergedKubeconfigSelectionReloadAndNoGlobalMutation
+--- PASS: TestMergedKubeconfigSelectionReloadAndNoGlobalMutation (0.00s)
+=== RUN   TestScopeSwitchCancelsInFlightStreams
+--- PASS: TestScopeSwitchCancelsInFlightStreams (0.00s)
+=== RUN   TestPortForwardSandboxStripsGatewayCredentialsAndBindsOperator
+--- PASS: TestPortForwardSandboxStripsGatewayCredentialsAndBindsOperator (0.00s)
+=== RUN   TestLogGuardRequiresUIDAndEchoesSessionIdentity
+--- PASS: TestLogGuardRequiresUIDAndEchoesSessionIdentity (0.00s)
+=== RUN   TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak
+--- PASS: TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak (0.00s)
+=== RUN   TestTemplateCapabilityDoesNotReadSecretBodies
+--- PASS: TestTemplateCapabilityDoesNotReadSecretBodies (0.00s)
+=== RUN   TestDedicatedClusterRestrictedRBAC
+    rbac_integration_test.go:30: requires explicitly isolated kubeview-test / kubeview-qa
+--- SKIP: TestDedicatedClusterRestrictedRBAC (0.00s)
+=== RUN   TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource
+--- PASS: TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource (0.04s)
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/forward-raw
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/secret
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/log
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/exec
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/forward-create
+=== RUN   TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/forward-raw
+--- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery (0.28s)
+    --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete (0.04s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/allowed/forward-raw (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/complete/outside/forward-raw (0.00s)
+    --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted (0.03s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/allowed/forward-raw (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/omitted/outside/forward-raw (0.00s)
+    --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error (0.03s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/allowed/forward-raw (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/error/outside/forward-raw (0.00s)
+    --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version (0.03s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/allowed/forward-raw (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/invalid-version/outside/forward-raw (0.00s)
+    --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version (0.03s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/allowed/forward-raw (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/empty-version/outside/forward-raw (0.00s)
+    --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version (0.03s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/allowed/forward-raw (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unsupported-version/outside/forward-raw (0.00s)
+    --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope (0.03s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/allowed/forward-raw (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/wrong-resource-scope/outside/forward-raw (0.00s)
+    --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error (0.04s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/allowed/forward-raw (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/secret (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/log (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/exec (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/forward-create (0.00s)
+        --- PASS: TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery/unrelated-partial-error/outside/forward-raw (0.00s)
+=== RUN   TestReadOnlyAndNamespaceEnforced
+--- PASS: TestReadOnlyAndNamespaceEnforced (0.00s)
+=== RUN   TestDeletePreconditionsAndUIDRecreation
+--- PASS: TestDeletePreconditionsAndUIDRecreation (0.00s)
+=== RUN   TestSecretSanitizationDoesNotMutateSource
+--- PASS: TestSecretSanitizationDoesNotMutateSource (0.00s)
+=== RUN   TestOriginAndAuthentication
+--- PASS: TestOriginAndAuthentication (0.00s)
+=== RUN   TestNamespaceScopeBlocksClusterCRUD
+--- PASS: TestNamespaceScopeBlocksClusterCRUD (0.00s)
+=== RUN   TestPortforwardScopeUIDAndPortValidation
+--- PASS: TestPortforwardScopeUIDAndPortValidation (0.00s)
+=== RUN   TestLocalServerRejectsDNSRebindingHost
+--- PASS: TestLocalServerRejectsDNSRebindingHost (0.00s)
+=== RUN   TestClusterScopedReviewsIgnoreWatchNamespace
+--- PASS: TestClusterScopedReviewsIgnoreWatchNamespace (0.00s)
+=== RUN   TestPurposefulSecretRevealIncludesGVKAndIdentity
+--- PASS: TestPurposefulSecretRevealIncludesGVKAndIdentity (0.00s)
+=== RUN   TestTrafficIdentityScopeAndCredentialRotation
+--- PASS: TestTrafficIdentityScopeAndCredentialRotation (0.00s)
+=== RUN   TestOwnedV11RealMinikubeManagementGate
+    v11_provider_gate_integration_test.go:30: requires explicit owned provider gate opt-in
+--- SKIP: TestOwnedV11RealMinikubeManagementGate (0.00s)
+=== RUN   TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts
+=== RUN   TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/operator_nonce_and_grant
+=== RUN   TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/independent_access_tokens
+--- PASS: TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts (0.06s)
+    --- PASS: TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/operator_nonce_and_grant (0.03s)
+    --- PASS: TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/independent_access_tokens (0.02s)
+=== RUN   TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant
+--- PASS: TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant (0.01s)
+=== RUN   TestWorkspaceCookieNamesKeepLegacyGatewayContract
+--- PASS: TestWorkspaceCookieNamesKeepLegacyGatewayContract (0.03s)
+=== RUN   TestOwnedWorkspaceRealAPIIsolation
+    workspace_real_isolation_test.go:73: requires explicit owned workspace API phase
+--- SKIP: TestOwnedWorkspaceRealAPIIsolation (0.00s)
+=== RUN   TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache
+--- PASS: TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache (0.19s)
+=== RUN   TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity
+--- PASS: TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity (0.03s)
+=== RUN   TestWorkspaceHTTPPersistenceCSRFAndScope
+--- PASS: TestWorkspaceHTTPPersistenceCSRFAndScope (0.06s)
+=== RUN   TestWorkspaceMultiNamespaceAndDistinctConnectionIdentity
+--- PASS: TestWorkspaceMultiNamespaceAndDistinctConnectionIdentity (0.11s)
+=== RUN   TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes
+--- PASS: TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes (0.11s)
+=== RUN   TestWorkspaceNodeImpactRequiresAcknowledgement
+--- PASS: TestWorkspaceNodeImpactRequiresAcknowledgement (0.06s)
+=== RUN   TestWorkspaceScopeEnvelopeRejectsWrongWorkspace
+--- PASS: TestWorkspaceScopeEnvelopeRejectsWrongWorkspace (0.04s)
+=== RUN   TestWorkspaceClusterCatalogReadsAndPVNamespaceRelation
+--- PASS: TestWorkspaceClusterCatalogReadsAndPVNamespaceRelation (0.04s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	1.503s
+end_utc: 2026-11-11T10:30:45.134300+00:00
+exit_code: 0

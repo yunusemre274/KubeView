@@ -1,0 +1,13238 @@
+# KubeView — yayın öncesi canlı test ve kabul kaydı
+
+- Son güncelleme: 2026-11-11T13:43:38.656115+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`, `redesign/harbor-workbench`; başlangıçta izlenen runtime farkı yok. Kullanıcının untracked prompt/reference ve tarihsel kanıtları korunur.
+- Build/paket: yeni dondurulmuş yayın adayı henüz üretilmedi; mevcut `bin/kubeview` önceki36d5b8f adayıdır. Baseline source arşivi ve runtime hash kaydı: artifacts/release-audit/ra-20261111/baseline.json; ilk boş/geçersiz arşiv denemesi kullanılmadı.
+- Ortam: Apple M5/32GiB, macOS27.0.1, AC güç (başlangıç35% şarj), yerel Chromium/erişilebilir Playwright WebKit; native Safari/Retina ayrı. Linux/Docker/Helm kapsamı ilan edildiği biçimde ayrıca test edilecek.
+- Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
+- Toplam test fazı: **199**. NOT_STARTED:191; IN_PROGRESS:4; FAILED:0; BLOCKED:0; RETEST_REQUIRED:2; VERIFIED_DONE:2; NOT_APPLICABLE:0.
+- Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
+- Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; final paket/gerçek yetki incelemesi açık.42Go advisory patch sonrası main source0finding; hepsi istismar sayılmadı. İncelenmemiş kategori vardır; güvenlik garantisi değildir.
+- Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
+- Son tamamlanan faz: TEST-07.04 (npm lock scan+pozitif kontrol). Sıradaki uygulanabilir faz: güvenlik düzeltmesi/root inceleme; final kaynak Go scan/race; gerçek02 candidate UI.
+- Süreç/lab: Docker Desktop başlatıldı; yeni private19842/02 lab cold-up sürüyor (owned runner). Henüz uygulama testi tamamlanmadı. Diğer projelerin süreçleri hedef değildir.
+- Devam: bu dosyanın durum/dependency satırını ve `artifacts/release-audit/ra-20261111/` kayıtlarını okuyun; otomatik bütün lab'ı yeniden başlatmayın.
+- **Genel karar: NOT_RELEASE_READY**.
+
+## Merkezi kaynak ve güvenlik bütçesi
+
+Ana müdür roadmap/Git/index/allowlist sahibidir. Başlangıç iki test worker; her biri tek sonlu iş. Normal testte root+2 worker, worker içi test paralelliği1–2. Ölçüm/60dk koşusunda diğer ağır işler durur. Aktif saldırı hedefi yalnız owned uygulama loopback portları19840–19849 ve owned private lab kapsamıdır; üçüncü taraf/üretim hedefleri yok. Canary yalnız loopback. İlk aktif HTTP yük tavanı10 istek/sn, eşzamanlılık4,60sn; fuzz ilk tur10sn/1worker; body negatiflerinde en fazla8MiB ve en fazla10 istek. Bu değerler ilgili faz başlamadan gerekçeli daraltılabilir/genişletilebilir. Global stop: owned test uygulaması RSS>2GiB, toplam owned browser RSS>6GiB, boş disk<10GiB veya thermal/power kesintisi; cluster bootstrap ayrı doctor bütçesi olmadan başlamaz. Ağır uzun koşu düşük pille başlamaz. Hiçbir sahip olunmayan süreç kapatılmaz.
+
+A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn steady. M≥55draw/s p95≤20ms p99≤33.3ms; L≥30 p95≤40 p99≤50ms (önce60 ise30'a indirme yok). Görüntü/DPR/kalite/kapsam/güncellik eşit. Normal callback→store≤100ms/burst≤250ms; view proxy≤250/500ms; toplam CPU tüm ilgili süreçlerde. Pratik regresyon eşiği başlangıç planında medyan +5% ve dağılım/belirsizlikle birlikte değerlendirilecek; bu eşik eski açıklanmamış farkı otomatik aklamaz.60dk koşusu kesintisiz;20dk ara kontrol,50panel/log,3reconnect. Her testin kendi güvenlik sınırı ayrıca aşağıya yazılır.
+
+## Kategori özeti
+
+| Kategori | Faz | Durum | Geçerli kanıt |
+|---|---:|---|---|
+| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
+| CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, RETEST_REQUIRED:1 | Henüz yok |
+| CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:11 | Henüz yok |
+| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:18 | Henüz yok |
+| CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:14 | Henüz yok |
+| CAT-07 — Statik analiz/bağımlılık/sır | 10 | NOT_STARTED:7, IN_PROGRESS:1, VERIFIED_DONE:2 | Henüz yok |
+| CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:6 | Henüz yok |
+| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
+| CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
+| CAT-11 — XSS ve önizleme | 7 | NOT_STARTED:7 | Henüz yok |
+| CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:10 | Henüz yok |
+| CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:10 | Henüz yok |
+| CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
+| CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
+| CAT-16 — A/B benchmark | 13 | NOT_STARTED:13 | Henüz yok |
+| CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
+| CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:5 | Henüz yok |
+| CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:9 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:14 | Henüz yok |
+| CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
+
+## Standart ve kanıt politikası
+
+ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kaynaklardan doğrulanıyor; eşleme henüz tamamlanmadı. Standart adı sertifika değildir. Eski unit/replay/gerçek Kubernetes sonuçları kendi kaynak kimliğinde tarihsel kalır. SKIP/NOT_RUN/BLOCKED PASS değildir. Aşağıdaki checkbox'lar test çalışmadan işaretlenmez. Her alt adım sonucu root tarafından hemen eklenir; ham veri bu dosyaya gömülmez. Kaynak değişikliği etkilenen fazı RETEST_REQUIRED yapar, belge-only yeniden kullanım gerekçesi ayrı yazılır.
+
+
+## CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi
+
+### TEST-01.01 — Aktif HTTP/WS/statik/debug/provider endpoint envanteri
+
+- Kategori: CAT-01.
+- Amaç / kullanıcı riski: Aktif HTTP/WS/statik/debug/provider endpoint envanteri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: KV-SECURITY-WORKER
+- Kaynak / build / paket kimliği: 36d5b8f; runtime değişikliği henüz yok
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: 2026-11-11T13:20:48.364084+03:00
+- Bitiş zamanı: —
+- Durum: IN_PROGRESS
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-01.01-S1 — Hazırlık
+- [x] Sahip olunan repo/fixture sınırı ve kaynak kimliği doğrulandı.
+- Yapılan: worker görevi, dosya sahipliği, tarama/test bütçesi ve kaynak SHA kaydedildi.
+- Kullanılan komut / çalışma dizini: git rev-parse HEAD; /Users/yunusemre/Desktop/KubeView.
+- Beklenen: yalnız bu repo ve sentetik test hedefleri.
+- Gözlenen: izlenen runtime temiz,36d5b8f; dış üretim hedefi yok.
+- Kanıt: artifacts/release-audit/ra-20261111/start.json; worker raporu devam ediyor.
+- Sonuç: hazırlık tamam; pozitif/negatif sonuç henüz yok.
+
+#### TEST-01.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-01.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-01.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-01.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-01.02 — Auth/session/write-grant/RBAC veri akışı
+
+- Kategori: CAT-01.
+- Amaç / kullanıcı riski: Auth/session/write-grant/RBAC veri akışı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-01.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-01.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-01.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-01.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-01.03 — Workspace/harbor/connection/cache güven sınırları
+
+- Kategori: CAT-01.
+- Amaç / kullanıcı riski: Workspace/harbor/connection/cache güven sınırları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-01.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-01.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-01.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-01.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-01.04 — Browser/backend/Kubernetes/Hubble/minikube/host sınırları
+
+- Kategori: CAT-01.
+- Amaç / kullanıcı riski: Browser/backend/Kubernetes/Hubble/minikube/host sınırları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-01.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-01.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-01.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-01.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-01.05 — Zararlı web sayfası, reader ve workload tehditleri
+
+- Kategori: CAT-01.
+- Amaç / kullanıcı riski: Zararlı web sayfası, reader ve workload tehditleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-01.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-01.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-01.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-01.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-01.06 — Local-first ve uzak/in-cluster tehdit modeli
+
+- Kategori: CAT-01.
+- Amaç / kullanıcı riski: Local-first ve uzak/in-cluster tehdit modeli; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-01.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-01.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-01.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-01.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-01.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-02 — İki liman ve temel UX
+
+### TEST-02.01 — 02 profilinde temiz paketten iki gerçek proje
+
+- Kategori: CAT-02.
+- Amaç / kullanıcı riski: 02 profilinde temiz paketten iki gerçek proje; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: 2026-11-11T13:35:03.936403+03:00
+- Bitiş zamanı: —
+- Durum: IN_PROGRESS
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-02.01-S1 — Hazırlık
+- [x] Yeni owned private lab02 ilk kurulumla hazırlandı.
+- Yapılan: mevcut runner; labId kvml-aed6bc565b30, kube-system UID a51d8e09-b035-4571-a5b3-4f0a40401f91,2ReadyNode/2namespace/2ReadyPod.
+- Kullanılan komut / çalışma dizini: scripts/manual_lab.py up --profile02-ortak-kume (bayrak ayrımı lab logunda); repo.
+- Beklenen: global kubeconfig ve eski manuel lab korunmalı.
+- Gözlenen: yeni private state; baseline36d ikilisi19842de açıldı,2kayıt planı.
+- Kanıt: artifacts/release-audit/ra-20261111/lab02-cold-up.log; lab02-status-initial.json; lab02-app-baseline.log
+- Sonuç: baseline hazırlık geçti; son temiz paket henüz doğrulanmadı.
+
+#### TEST-02.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-02.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-02.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-02.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-02.02 — Uzak görünümde iki merkez/iskele/isim/konum
+
+- Kategori: CAT-02.
+- Amaç / kullanıcı riski: Uzak görünümde iki merkez/iskele/isim/konum; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: 2026-11-11T13:42:17.092651+03:00
+- Bitiş zamanı: —
+- Durum: RETEST_REQUIRED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-02.02-S1 — Hazırlık
+- [x] Owned iki-harbor gerçek Kubernetes başlangıç UIı açıldı.
+- Yapılan:36d baseline embeddedbinary, Chromium/Metal/1440×900,1280×800,768×900; video açık işlev testi.
+- Beklenen: normal workspace globalmapte iki tesis sınırı görünür.
+- Gözlenen:1440/1280 iki merkez/rıhtım ayrı ve tıklanabilir; dar globalmapte rıhtımlar kenardan kırpıldı.
+- Kanıt: artifacts/release-audit/ra-20261111/ui02-baseline-chromium-3/world-768.png; video; result.json
+- Sonuç: runtime kadraj kusuru bulundu.
+
+#### TEST-02.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.02-S3 — Negatif / sınır / arıza kontrolü
+- [x] Dar aspect ve24derece lens için mevcut camera fit örnekleri sınandı.
+- Yapılan: global LOD örnekleme unit regresyonu.
+- Beklenen: aktif veuzakgeometri16köşe.
+- Gözlenen: eski fonksiyon8köşe; FAIL.
+- Kanıt: artifacts/release-audit/ra-20261111/global-overview-red.log
+- Sonuç: UI-001 kök neden doğrulandı.
+
+#### TEST-02.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: UI-001 (P2).
+- Kök neden: global overview viewport/lens ve actualbounds yerine liman merkez aralığından sabitmesafe hesaplıyordu.
+- Değiştirilen dosya / fonksiyon: HarborScene overviewWorkspace; cameraViews harborFitSamples explicitall.
+- Düzeltme çalışma farkı: mevcut fitHarborView kullanılıyor; normal kullanıcı kamerası yalnız globalmap eyleminde değişir.
+
+#### TEST-02.02-S5 — Tekrar test ve regresyon
+- [x] Global fit regresyonu ve tümfrontendunit220/220PASS.
+- [x] Production frontend build PASS.
+- [ ] Yeni embedded ikilide normal pointer/görsel tekrar bekliyor.
+- Sonuç ve kanıt: frontend-unit-candidate.log; frontend-build-candidate.log. İlk kamera-poll ve darnameplate helperFAILleri silinmedi.
+
+#### TEST-02.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-02.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-02.03 — Liman seçme, yaklaşma ve genel görünüme dönüş
+
+- Kategori: CAT-02.
+- Amaç / kullanıcı riski: Liman seçme, yaklaşma ve genel görünüme dönüş; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-02.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-02.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-02.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-02.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-02.04 — 1440/1280/dar pointer ve klavye erişimi
+
+- Kategori: CAT-02.
+- Amaç / kullanıcı riski: 1440/1280/dar pointer ve klavye erişimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-02.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-02.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-02.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-02.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-02.05 — Tam ekran dünya ve Soft UI görsel regresyon
+
+- Kategori: CAT-02.
+- Amaç / kullanıcı riski: Tam ekran dünya ve Soft UI görsel regresyon; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-02.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-02.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-02.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-02.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-02.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-03 — Workspace ve izolasyon
+
+### TEST-03.01 — Aynı kümede farklı namespace projeleri
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Aynı kümede farklı namespace projeleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.02 — Aynı namespace farklı label seçicileri
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Aynı namespace farklı label seçicileri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.03 — Örtüşen ve çok namespace proje
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Örtüşen ve çok namespace proje; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.04 — Aynı adlı kaynaklarla bağımsız iki küme
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Aynı adlı kaynaklarla bağımsız iki küme; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.05 — Aynı kümede farklı yetkili iki bağlantı
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Aynı kümede farklı yetkili iki bağlantı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.06 — Cluster/Node UID ile ortak Node gösterimi
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Cluster/Node UID ile ortak Node gösterimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.07 — Ortak kaynak/kapasite dedup
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Ortak kaynak/kapasite dedup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.08 — Liman silmenin yalnız uygulama kaydını silmesi
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Liman silmenin yalnız uygulama kaydını silmesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.09 — Restart/migration/export/import/bozuk config recovery
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Restart/migration/export/import/bozuk config recovery; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.10 — 50 A→B→A selection/form/log/request geçişi
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: 50 A→B→A selection/form/log/request geçişi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-03.11 — Çok tarayıcı sekmesinde scope/write-grant
+
+- Kategori: CAT-03.
+- Amaç / kullanıcı riski: Çok tarayıcı sekmesinde scope/write-grant; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-03.11-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.11-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.11-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-03.11-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-03.11-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-03.11-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-03.11-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-04 — Gerçek Kubernetes işlemleri
+
+### TEST-04.01 — Bağlantı/context/namespace seçimi
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Bağlantı/context/namespace seçimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.02 — Deployment server dry-run
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Deployment server dry-run; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.03 — Deployment gerçek create ve owner/Ready
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Deployment gerçek create ve owner/Ready; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.04 — Scale 2→3→1
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Scale 2→3→1; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.05 — CPU/RAM request/limit edit
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: CPU/RAM request/limit edit; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.06 — Rollout restart ve gözlenen sonuç
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Rollout restart ve gözlenen sonuç; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.07 — Pod DELETE/controller replacement
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Pod DELETE/controller replacement; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.08 — Deployment DELETE
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Deployment DELETE; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.09 — StatefulSet işlemleri
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: StatefulSet işlemleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.10 — DaemonSet işlemleri
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: DaemonSet işlemleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.11 — Finalizer/Terminating/aynı ad-yeni UID
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Finalizer/Terminating/aynı ad-yeni UID; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.11-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.11-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.11-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.11-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.11-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.11-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.11-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.12 — CronJob işlemleri
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: CronJob işlemleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.12-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.12-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.12-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.12-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.12-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.12-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.12-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.13 — Rollback işlemi
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Rollback işlemi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.13-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.13-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.13-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.13-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.13-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.13-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.13-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.14 — Drain ve PDB
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Drain ve PDB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.14-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.14-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.14-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.14-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.14-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.14-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.14-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.15 — Pod resize capability ve uygulanmış sonuç
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Pod resize capability ve uygulanmış sonuç; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.15-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.15-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.15-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.15-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.15-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.15-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.15-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.16 — RBAC/quota/admission/conflict/timeout/image negatifleri
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: RBAC/quota/admission/conflict/timeout/image negatifleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.16-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.16-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.16-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.16-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.16-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.16-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.16-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.17 — Reconnect kaçırılmış DELETE/kapsam uzlaştırması
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Reconnect kaçırılmış DELETE/kapsam uzlaştırması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.17-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.17-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.17-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.17-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.17-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.17-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.17-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-04.18 — Çift submit/retry ve hedef değişmezliği
+
+- Kategori: CAT-04.
+- Amaç / kullanıcı riski: Çift submit/retry ve hedef değişmezliği; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-04.18-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.18-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.18-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-04.18-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-04.18-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-04.18-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-04.18-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-05 — Log/metrics/Secret
+
+### TEST-05.01 — Current/previous app/init/ephemeral log
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Current/previous app/init/ephemeral log; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.02 — Pause/resume/double-open/close cleanup
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Pause/resume/double-open/close cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.03 — Eski UID ve aynı-ad log replacement yarışı
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Eski UID ve aynı-ad log replacement yarışı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.04 — Log satır/byte/partial/flush sınırları
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Log satır/byte/partial/flush sınırları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.05 — Metrics dolu/yok/403/stale
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Metrics dolu/yok/403/stale; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.06 — Usage/request/limit/allocatable ayrımı
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Usage/request/limit/allocatable ayrımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.07 — Secret reveal/hide/edit yetkisi
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Secret reveal/hide/edit yetkisi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.08 — Bilinmeyen label/annotation edit korunumu
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Bilinmeyen label/annotation edit korunumu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.09 — Maskeli Secret gerçek veri olarak yazılmıyor
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Maskeli Secret gerçek veri olarak yazılmıyor; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-05.10 — Genel WS/error/export/artifact hassas veri sınırı
+
+- Kategori: CAT-05.
+- Amaç / kullanıcı riski: Genel WS/error/export/artifact hassas veri sınırı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-05.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-05.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-05.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-05.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-05.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-06 — Hubble/TLS/provisioning
+
+### TEST-06.01 — Temiz Cilium/Hubble bootstrap
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Temiz Cilium/Hubble bootstrap; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.02 — Relay Ready ve gerçek mTLS
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Relay Ready ve gerçek mTLS; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.03 — Aynı Node farklı Pod gerçek iletişim
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Aynı Node farklı Pod gerçek iletişim; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.04 — Cross-Node farklı Pod gerçek iletişim
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Cross-Node farklı Pod gerçek iletişim; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.05 — İki proje/namespace ölçülmüş trafik
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: İki proje/namespace ölçülmüş trafik; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.06 — Start/increase/stop ve pencerenin boşalması
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Start/increase/stop ve pencerenin boşalması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.07 — Provider stale/recovery
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Provider stale/recovery; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.08 — Restricted kimlik/namespace flow izolasyonu
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Restricted kimlik/namespace flow izolasyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.09 — IP/UID reuse eşlemesi
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: IP/UID reuse eşlemesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.10 — down/up güvenli tekrar bağlantı
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: down/up güvenli tekrar bağlantı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.11 — Ayrı temiz state ile cold-start
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Ayrı temiz state ile cold-start; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.11-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.11-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.11-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.11-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.11-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.11-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.11-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.12 — Minikube gerçek hedef/UID kontrolü
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Minikube gerçek hedef/UID kontrolü; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.12-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.12-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.12-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.12-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.12-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.12-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.12-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.13 — Minikube idempotency/profile lock
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Minikube idempotency/profile lock; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.13-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.13-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.13-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.13-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.13-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.13-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.13-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-06.14 — Minikube hata/timeout/reconcile/cleanup
+
+- Kategori: CAT-06.
+- Amaç / kullanıcı riski: Minikube hata/timeout/reconcile/cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-06.14-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.14-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.14-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-06.14-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-06.14-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-06.14-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-06.14-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-07 — Statik analiz/bağımlılık/sır
+
+### TEST-07.01 — Go vet ve lint/tip kontrolü
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: Go vet ve lint/tip kontrolü; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-07.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-07.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-07.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-07.02 — Güvenlik odaklı kaynak analizi
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: Güvenlik odaklı kaynak analizi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-07.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-07.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-07.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-07.03 — Govulncheck erişilebilir Go zafiyetleri
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: Govulncheck erişilebilir Go zafiyetleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: KV-DEPENDENCY-WORKER
+- Kaynak / build / paket kimliği: 36d5b8f + source-checkpoint01.json exact runtime hashes; Go1.26.11
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: 2026-11-11T13:20:48.364084+03:00
+- Bitiş zamanı: 2026-11-11T13:43:38.650778+03:00
+- Durum: VERIFIED_DONE
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.03-S1 — Hazırlık
+- [x] Sahip olunan repo/fixture sınırı ve kaynak kimliği doğrulandı.
+- Yapılan: worker görevi, dosya sahipliği, tarama/test bütçesi ve kaynak SHA kaydedildi.
+- Kullanılan komut / çalışma dizini: git rev-parse HEAD; /Users/yunusemre/Desktop/KubeView.
+- Beklenen: yalnız bu repo ve sentetik test hedefleri.
+- Gözlenen: izlenen runtime temiz,36d5b8f; dış üretim hedefi yok.
+- Kanıt: artifacts/release-audit/ra-20261111/start.json; worker raporu devam ediyor.
+- Sonuç: hazırlık tamam; pozitif/negatif sonuç henüz yok.
+
+#### TEST-07.03-S2 — Normal kullanım / pozitif kontrol
+- [x] Güncel kaynak ve main-only govulncheck tarandı.
+- Yapılan: Go1.26.5, govulncheck1.9.0; ./... ve main giriş noktası ayrı.
+- Beklenen: bilinen erişilebilir ciddi açık bulunmamalı; uyarılar triyaj edilmeli.
+- Gözlenen:42 unique advisory;21symbol/15package/6module. JSON exit0 temiz sonuç anlamına gelmedi.
+- Kanıt: artifacts/release-audit/ra-20261111/dependency-worker/go-findings-summary.json; go-advisories.json
+- Sonuç: kabul FAILED; ulaşılabilirlik ve sürüm düzeltmesi devam ediyor.
+
+#### TEST-07.03-S3 — Negatif / sınır / arıza kontrolü
+- [x] Scanner finding içeriği ve bilinen baseline pozitif kontrolü değerlendirildi.
+- Yapılan:42baseline advisorynin affect/reachability/önkoşulu triyaj edildi; JSON exit0 temiz sayılmadı.
+- Beklenen: source giriş noktası düzeltme sonrası0finding; package/module eşleşmesi exploit gibi yazılmamalı.
+- Gözlenen: patched main JSON config Go1.26.11;0finding. Son runtime değişiklikleri sonrası ayrı root tekrarında da0.
+- Kanıt: dependency-worker/go-baseline-triage.json; dependency-worker/remediation-manifest.json; candidate-main-govulncheck.jsonl
+- Sonuç: source tarama kapısı geçti; container/binary/native platform testleri ayrı.
+
+#### TEST-07.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: DEP-001 (42baseline advisory, farklı kanıt seviyeleri).
+- Önem derecesi: her advisory önkoşulu worker triage tablosunda; hepsi doğrulanmış exploit sayılmadı.
+- Kök neden: Go1.26.5 ve eski x/net/text/SPDY graph.
+- Değiştirilen dosya: backend/go.mod/sum; Dockerfile/CI builder1.26.11. Kubernetes0.30.0 korundu.
+- Düzeltme: çalışma farkı; source-checkpoint01.json hash kaydı.
+
+#### TEST-07.03-S5 — Tekrar test ve regresyon
+- [x] Root final kaynak main scan0finding.
+- [x] Worker vet+unit ve root final race geçti; opt-in25SKIP korunur.
+- [x] Frontend220/220 vebuild komşu kapısı geçti.
+- Sonuç ve kanıt: source-checkpoint01.json; final-go-race.jsonl; frontend-unit-candidate.log. Gerçek SPDY/provider kabulü sayılmaz.
+
+#### TEST-07.03-S6 — Temizlik ve inceleme
+- [x] Scanner/baseline fixture ve ham redakte çıktılar hashleriyle saklandı; localtool .git içinde.
+- [x] Final modül/scope/session source hashleri ilişkilendirildi.
+- [x] Root minimum sürümleri, graph değişimini ve parsed JSON config/finding countunu inceledi.
+- İnceleyen: ANA MÜDÜR, worker ile aynı ajan sistemi.
+- Kalan sınırlar: Darwin/arm64 main source, bugünkü advisory DB. Binary/Linux/OS taraması CAT07.05/20de.
+
+#### TEST-07.03-K — Faz kararı
+- [x] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: baseline findingler triyaj ve patched main0finding iki source checkpointinde doğrulandı.
+- Yeniden çalıştırma: bağımlılık, toolchain, import graph, platform/buildtag değişimi veya yeniadvisory.
+
+### TEST-07.04 — JS lockfile/dev/runtime advisory taraması
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: JS lockfile/dev/runtime advisory taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: KV-DEPENDENCY-WORKER
+- Kaynak / build / paket kimliği: 36d5b8f; frontend lock SHA ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90 (değişmedi)
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: 2026-11-11T13:20:48.364084+03:00
+- Bitiş zamanı: 2026-11-11T13:35:03.936403+03:00
+- Durum: VERIFIED_DONE
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.04-S1 — Hazırlık
+- [x] Sahip olunan repo/fixture sınırı ve kaynak kimliği doğrulandı.
+- Yapılan: worker görevi, dosya sahipliği, tarama/test bütçesi ve kaynak SHA kaydedildi.
+- Kullanılan komut / çalışma dizini: git rev-parse HEAD; /Users/yunusemre/Desktop/KubeView.
+- Beklenen: yalnız bu repo ve sentetik test hedefleri.
+- Gözlenen: izlenen runtime temiz,36d5b8f; dış üretim hedefi yok.
+- Kanıt: artifacts/release-audit/ra-20261111/start.json; worker raporu devam ediyor.
+- Sonuç: hazırlık tamam; pozitif/negatif sonuç henüz yok.
+
+#### TEST-07.04-S2 — Normal kullanım / pozitif kontrol
+- [x] Gerçek frontend lockfile npm audit ile tarandı.
+- Yapılan: npm audit --json, tüm prod/dev lock kapsamı.
+- Beklenen: advisory envanteri doğru; sadece exit koduna dayanılmamalı.
+- Gözlenen:0 advisory;204 locked package.
+- Kanıt: artifacts/release-audit/ra-20261111/dependency-worker/npm-audit-validation.json
+- Sonuç: bu lockfile ve veri tabanı anı için negatif tarama.
+
+#### TEST-07.04-S3 — Negatif / sınır / arıza kontrolü
+- [x] Bilinen zafiyetli izole pozitif kontrol sınandı.
+- Yapılan: .git altında lodash4.17.20 lock-only/ignore-scripts; yükleme/çalıştırma yok.
+- Beklenen: scanner bilinen advisoryyi bulmalı.
+- Gözlenen: exit1 ve GHSA-35jh tespiti; node_modules oluşturulmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/dependency-worker/npm-positive-audit.stdout
+- Sonuç: scanner pozitif kontrol geçti; nihai inceleme bekliyor.
+
+#### TEST-07.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: bu lockfile için npm advisory eşleşmesi yok.
+- Önem derecesi ve gerekçesi: N/A; bilinmeyen açık garantisi verilmez.
+- Kök neden / değiştirilen dosya: N/A, frontend bağımlılığı değiştirilmedi.
+
+#### TEST-07.04-S5 — Tekrar test ve regresyon
+- [x] İlgili normal lockfile envanteri ve audit JSON içeriği doğrulandı.
+- [x] Bilinen zafiyetli izole lock-only pozitif kontrol tarayıcının çalıştığını doğruladı.
+- İlk sorunu üreten test: NOT_APPLICABLE; bu taramada ürün bulgusu yok.
+- Sonuç ve kanıt: artifacts/release-audit/ra-20261111/dependency-worker/npm-audit-validation.json; 204/204 envanter eşliği,0advisory; pozitif kontrolde4advisory/exit1.
+
+#### TEST-07.04-S6 — Temizlik ve inceleme
+- [x] Pozitif fixture yalnız .git içinde saklandı; hiçbir paket çalıştırılmadı veya global kurulmadı.
+- [x] Frontend lock hash kaynak manifestiyle eşleşti.
+- [x] Root JSON, komut ve pozitif kontrol çıktısını ikinci kez inceledi.
+- İnceleyen: ANA MÜDÜR; worker ile aynı ajan sistemi, profesyonel bağımsız pentest değildir.
+- Kalan sınırlar: npm registry advisory DB revision bildirmiyor; gizli/unknown açıklar test dışı.
+
+#### TEST-07.04-K — Faz kararı
+- [x] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: lock tüm prod/dev kapsamıyla0advisory ve scanner pozitif kontrolüyle doğrulandı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: package/lock veya advisory verisi değişimi.
+
+### TEST-07.05 — Container/base image/manifest taraması
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: Container/base image/manifest taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-07.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-07.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-07.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-07.06 — Çalışma ağacında sır taraması
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: Çalışma ağacında sır taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-07.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-07.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-07.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-07.07 — İlgili Git geçmişinde sır taraması
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: İlgili Git geçmişinde sır taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: KV-DEPENDENCY-WORKER bağımsız redakte inceleme; root tarama
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: 2026-11-11T13:35:03.936403+03:00
+- Bitiş zamanı: —
+- Durum: IN_PROGRESS
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.07-S1 — Hazırlık
+- [x] Yerel Git geçmişi tarama hedefi olarak doğrulandı.
+- Yapılan: gitleaks8.30.1 git --all;90s üst sınır,redact100, harici yükleme yok.
+- Beklenen: olası sırlar değerleri görünmeden sınıflandırılmalı.
+- Gözlenen:84commit/324.19MB,11.4s;386generic-api-key adayının tamamı tarihsel benchmark/artifact dosyalarında.
+- Kanıt: artifacts/release-audit/ra-20261111/secrets-history.log; secrets-history-redacted.json
+- Sonuç: henüz temiz/güvensiz kararı verilmedi; tüm adaylar triyajda.
+
+#### TEST-07.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-07.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-07.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-07.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-07.08 — Son dağıtım arşivlerinde sır taraması
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: Son dağıtım arşivlerinde sır taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-07.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-07.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-07.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-07.09 — SBOM ve dependency envanteri
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: SBOM ve dependency envanteri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-07.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-07.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-07.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-07.10 — Bağımlılık düzeltmesi build/işlev regresyonu
+
+- Kategori: CAT-07.
+- Amaç / kullanıcı riski: Bağımlılık düzeltmesi build/işlev regresyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-07.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-07.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-07.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-07.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-07.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-08 — Portlar/erişim/TLS
+
+### TEST-08.01 — Loopback IPv4/IPv6 ve LAN bind
+
+- Kategori: CAT-08.
+- Amaç / kullanıcı riski: Loopback IPv4/IPv6 ve LAN bind; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-08.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-08.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-08.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-08.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-08.02 — Dev/metrics/profiler/debug port yüzeyi
+
+- Kategori: CAT-08.
+- Amaç / kullanıcı riski: Dev/metrics/profiler/debug port yüzeyi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-08.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-08.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-08.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-08.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-08.03 — WS/forward/provider child lifecycle ve LISTEN cleanup
+
+- Kategori: CAT-08.
+- Amaç / kullanıcı riski: WS/forward/provider child lifecycle ve LISTEN cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-08.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-08.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-08.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-08.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-08.04 — Yanlış Host/Origin/proxy/redirect
+
+- Kategori: CAT-08.
+- Amaç / kullanıcı riski: Yanlış Host/Origin/proxy/redirect; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-08.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-08.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-08.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-08.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-08.05 — TLS chain/hostname/expiry/mTLS client reddi
+
+- Kategori: CAT-08.
+- Amaç / kullanıcı riski: TLS chain/hostname/expiry/mTLS client reddi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-08.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-08.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-08.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-08.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-08.06 — Plaintext/insecure fallback ve güvenilir özel endpoint ayrımı
+
+- Kategori: CAT-08.
+- Amaç / kullanıcı riski: Plaintext/insecure fallback ve güvenilir özel endpoint ayrımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-08.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-08.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-08.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-08.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-08.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-09 — Session/CSRF/WebSocket
+
+### TEST-09.01 — Session/nonce entropy/expiry/revoke/replay
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Session/nonce entropy/expiry/revoke/replay; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: 2026-11-11T13:42:17.092651+03:00
+- Bitiş zamanı: —
+- Durum: IN_PROGRESS
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.01-S1 — Hazırlık
+- [x] Üretim operator() / resetOperator() / protect() akışı izlendi.
+- Yapılan: sentetik kısa absolute expiry; gerçek8saat bekleme yok, dış hedef yok.
+- Kullanılan komut / çalışma dizini: backend; go test ... -run TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest.
+- Beklenen: süre bitince başka HTTP olmadan context iptali.
+- Gözlenen: eski WithCancel250ms sonra da canlı kaldı; ayrı red log korundu.
+- Kanıt: artifacts/release-audit/ra-20261111/session-expiry-red.log
+- Sonuç: SEC-002 MEDIUM yeniden üretildi.
+
+#### TEST-09.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.01-S3 — Negatif / sınır / arıza kontrolü
+- [x] Kısa expiry, yeni session deadline ve reset iptali sınandı.
+- Yapılan:25ms sentetik expiry; reset eski ctxi iptal eder, yeni ctx özgün deadlinea bağlı.
+- Beklenen: yeni/eskiscope lifetime uzamamalı.
+- Gözlenen: context deadline ve iptal assertionları PASS.
+- Kanıt: artifacts/release-audit/ra-20261111/session-scope-retest.log
+- Sonuç: dar regresyon geçti; bütün session/replay/browser kapıları henüz kapanmadı.
+
+#### TEST-09.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: SEC-002.
+- Önem derecesi ve gerekçesi: MEDIUM; önceden yetkili aktif stream session expiry sonrası HTTP gelmezse sürebiliyor.
+- Kök neden: expiry yalnız operator() opportunistic cleanup ve yeni authorizationda kontrol ediliyordu.
+- Değiştirilen dosya / fonksiyon: connection.go operator/resetOperator context.WithDeadline; public TTL ayarı veya yeni loop yok.
+- Düzeltme çalışma farkı: mevcut candidate; root yaptı, worker bu ikinci testi araç engeli yüzünden yapamadı.
+
+#### TEST-09.01-S5 — Tekrar test ve regresyon
+- [x] İlk kısa expiry regresyonu tekrar çalıştırıldı.
+- [x] Session/scope/grant komşu unitler PASS.
+- [x] Odaklı race16top-level PASS.
+- Sonuç ve kanıt: session-scope-retest.log; security-race.jsonl. Gerçek8saat stream/browser replay kabulü sayılmaz.
+
+#### TEST-09.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.02 — Backend read-only doğrudan endpoint
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Backend read-only doğrudan endpoint; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.03 — Hedefe bağlı write-grant
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Hedefe bağlı write-grant; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.04 — Foreign/null/eksik Origin politikası
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Foreign/null/eksik Origin politikası; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.05 — Kontrollü saldırgan sayfasından CSRF
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Kontrollü saldırgan sayfasından CSRF; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.06 — Cross-site WS erişimi
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Cross-site WS erişimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.07 — DNS rebinding sınırı
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: DNS rebinding sınırı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.08 — Management enable endpoint koruması
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Management enable endpoint koruması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.09 — Context/credential değişiminde eski grant
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Context/credential değişiminde eski grant; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-09.10 — Token URL/history/referrer/log sızıntısı
+
+- Kategori: CAT-09.
+- Amaç / kullanıcı riski: Token URL/history/referrer/log sızıntısı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-09.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-09.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-09.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-09.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-09.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-10 — API nesne/işlem yetkilendirmesi
+
+### TEST-10.01 — Workspace/harbor/connection/namespace/GVR/UID/container/operation ID manipülasyonu
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Workspace/harbor/connection/namespace/GVR/UID/container/operation ID manipülasyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-10.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-10.02 — Başka limanın kaynağı read/write
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Başka limanın kaynağı read/write; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: KV-SECURITY-WORKER; root ikinci inceleme
+- Kaynak / build / paket kimliği: 36d5b8f baseline; düzeltme henüz uygulanıyor
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: 2026-11-11T13:27:50.872547+03:00
+- Bitiş zamanı: —
+- Durum: RETEST_REQUIRED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.02-S1 — Hazırlık
+- [x] Sahip olunan sentetik fixture hazırlandı.
+- Yapılan: httptest + fake Kubernetes; out-of-selector sentetik Secret, gerçek credential yok.
+- Kullanılan komut / çalışma dizini: go test -p 1 ./pkg/server -run TestReleaseSecretDiscovery -count=1; backend.
+- Beklenen: keşif eksik olsa da liman kapsamı dışındaki Secret reddedilmeli.
+- Gözlenen: normal keşifte403; yalnız Secret keşif girişi kaldırılınca200.
+- Kanıt: artifacts/release-audit/ra-20261111/security-worker/regression-secret-discovery.log
+- Sonuç: başlangıç kusuru yeniden üretildi.
+
+#### TEST-10.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.02-S3 — Negatif / sınır / arıza kontrolü
+- [x] Eksik API Discovery ile kapsam aşımı sentetik olarak yeniden üretildi.
+- Yapılan: aynı istek ve yetki; yalnız keşifte Secrets çıkarıldı.
+- Beklenen:403, hassas alan dönmemeli.
+- Gözlenen:200 ve sentetik canary döndü; test assertion FAILED.
+- Kanıt: artifacts/release-audit/ra-20261111/security-worker/regression-secret-discovery.log
+- Sonuç: SEC-001 HIGH doğrulandı; düzeltme/retest açık.
+
+#### TEST-10.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: SEC-001.
+- Önem derecesi ve gerekçesi: HIGH; seçili limanın selector kapsamı dışındaki Secret broad backend credential ile okunabiliyor.
+- Kök neden: authorizeWorkspace hedef GVR keşifte bulunmadığında fail-open.
+- Değiştirilen dosya / fonksiyon: backend/pkg/server/workspace_scope.go / authorizeWorkspace (worker sahibi).
+- Düzeltme commit veya çalışma farkı: devam ediyor; henüz kapatılmadı.
+
+#### TEST-10.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-10.03 — Aynı adlı farklı küme kaynağında işlem
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Aynı adlı farklı küme kaynağında işlem; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-10.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-10.04 — Reader→admin cache/metrics/Secret/flow sızıntısı
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Reader→admin cache/metrics/Secret/flow sızıntısı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-10.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-10.05 — Client capability/owner/admin enjeksiyonu
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Client capability/owner/admin enjeksiyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-10.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-10.06 — Generic YAML/patch kapsam aşımı
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Generic YAML/patch kapsam aşımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-10.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-10.07 — Reveal/exec/forward/provisioning alternatif auth
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Reveal/exec/forward/provisioning alternatif auth; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-10.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-10.08 — Revoke sonrası watch/cached yanıt
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Revoke sonrası watch/cached yanıt; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-10.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-10.09 — Paylaşılan Node etki onayı
+
+- Kategori: CAT-10.
+- Amaç / kullanıcı riski: Paylaşılan Node etki onayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-10.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-10.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-10.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-10.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-10.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-11 — XSS ve önizleme
+
+### TEST-11.01 — Stored/reflected/DOM XSS kaynak/log/event/import
+
+- Kategori: CAT-11.
+- Amaç / kullanıcı riski: Stored/reflected/DOM XSS kaynak/log/event/import; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-11.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-11.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-11.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-11.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-11.02 — Metin/markdown/HTML ve link şemaları
+
+- Kategori: CAT-11.
+- Amaç / kullanıcı riski: Metin/markdown/HTML ve link şemaları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-11.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-11.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-11.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-11.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-11.03 — ANSI/control/clipboard sınırları
+
+- Kategori: CAT-11.
+- Amaç / kullanıcı riski: ANSI/control/clipboard sınırları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-11.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-11.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-11.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-11.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-11.04 — Aşırı uzun içerik ve render maliyeti
+
+- Kategori: CAT-11.
+- Amaç / kullanıcı riski: Aşırı uzun içerik ve render maliyeti; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-11.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-11.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-11.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-11.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-11.05 — CSP/frame-ancestors/MIME/nosniff
+
+- Kategori: CAT-11.
+- Amaç / kullanıcı riski: CSP/frame-ancestors/MIME/nosniff; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-11.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-11.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-11.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-11.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-11.06 — Workload preview HTML/JS yönetim origin izolasyonu
+
+- Kategori: CAT-11.
+- Amaç / kullanıcı riski: Workload preview HTML/JS yönetim origin izolasyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-11.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-11.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-11.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-11.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-11.07 — Preview upstream cookie/header/token temizliği
+
+- Kategori: CAT-11.
+- Amaç / kullanıcı riski: Preview upstream cookie/header/token temizliği; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-11.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-11.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-11.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-11.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-11.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-12 — Import/dosya/host komutları
+
+### TEST-12.01 — Kubeconfig exec plugin trust sınırı
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: Kubeconfig exec plugin trust sınırı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.02 — Path/symlink/traversal/archive çıkarma
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: Path/symlink/traversal/archive çıkarma; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.03 — YAML/JSON depth/size/alias/duplicate politikası
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: YAML/JSON depth/size/alias/duplicate politikası; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.04 — Prototype pollution
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: Prototype pollution; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.05 — Kısmi config/migration/restore
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: Kısmi config/migration/restore; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.06 — Export credential/write-grant taşımıyor
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: Export credential/write-grant taşımıyor; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.07 — Minikube/Hubble command/argument injection
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: Minikube/Hubble command/argument injection; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.08 — PATH/cwd/sabit binary seçimi
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: PATH/cwd/sabit binary seçimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.09 — SSRF/redirect credential canary
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: SSRF/redirect credential canary; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-12.10 — Test/debug endpoint release yüzeyi
+
+- Kategori: CAT-12.
+- Amaç / kullanıcı riski: Test/debug endpoint release yüzeyi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-12.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-12.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-12.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-12.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-12.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-13 — Fuzz/race/eşzamanlılık
+
+### TEST-13.01 — Workspace/import/parser bounded fuzz
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: Workspace/import/parser bounded fuzz; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.02 — UID/isim/context generation
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: UID/isim/context generation; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.03 — Duplicate/out-of-order/resync/reconnect
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: Duplicate/out-of-order/resync/reconnect; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.04 — Eşzamanlı edit/delete
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: Eşzamanlı edit/delete; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.05 — İki limanda eşzamanlı mutation
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: İki limanda eşzamanlı mutation; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.06 — Revoke sırasında log/metrics/flow publish
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: Revoke sırasında log/metrics/flow publish; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.07 — Timeout/cancel/geç callback
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: Timeout/cancel/geç callback; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.08 — Go race
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: Go race; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.09 — Frontend mount/unmount yaşam döngüsü
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: Frontend mount/unmount yaşam döngüsü; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-13.10 — Kritik guard/reducer sınırlı mutation testing
+
+- Kategori: CAT-13.
+- Amaç / kullanıcı riski: Kritik guard/reducer sınırlı mutation testing; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-13.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-13.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-13.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-13.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-13.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-14 — Kontrollü pentest zincirleri
+
+### TEST-14.01 — Authentication-aware pasif/aktif owned endpoint taraması
+
+- Kategori: CAT-14.
+- Amaç / kullanıcı riski: Authentication-aware pasif/aktif owned endpoint taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-14.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-14.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-14.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-14.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-14.02 — Reader→yanlış nesne→işlem canary zinciri
+
+- Kategori: CAT-14.
+- Amaç / kullanıcı riski: Reader→yanlış nesne→işlem canary zinciri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-14.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-14.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-14.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-14.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-14.03 — Zararlı preview→yönetim API canary zinciri
+
+- Kategori: CAT-14.
+- Amaç / kullanıcı riski: Zararlı preview→yönetim API canary zinciri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-14.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-14.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-14.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-14.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-14.04 — Bulgu PoC red/fix/retest ve normal kullanıcı regresyonu
+
+- Kategori: CAT-14.
+- Amaç / kullanıcı riski: Bulgu PoC red/fix/retest ve normal kullanıcı regresyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-14.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-14.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-14.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-14.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-14.05 — İkinci reviewer bulgu/düzeltme incelemesi
+
+- Kategori: CAT-14.
+- Amaç / kullanıcı riski: İkinci reviewer bulgu/düzeltme incelemesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P0.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-14.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-14.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-14.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-14.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-14.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-15 — Yük ve tükenme
+
+### TEST-15.01 — Normal beklenen yük
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Normal beklenen yük; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-15.02 — Kademeli artan yük
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Kademeli artan yük; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-15.03 — Kısa spike
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Kısa spike; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-15.04 — Yavaş istemci ve bağlantı fırtınası
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Yavaş istemci ve bağlantı fırtınası; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-15.05 — Büyük body/message/log
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Büyük body/message/log; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-15.06 — Çok liman/abonelik isteği
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Çok liman/abonelik isteği; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-15.07 — Event/flow burst
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Event/flow burst; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-15.08 — Bounded queue/backpressure/reddetme
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Bounded queue/backpressure/reddetme; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-15.09 — Yük kalkınca UI/data/cleanup toparlanması
+
+- Kategori: CAT-15.
+- Amaç / kullanıcı riski: Yük kalkınca UI/data/cleanup toparlanması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-15.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-15.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-15.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-15.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-15.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-16 — A/B benchmark
+
+### TEST-16.01 — Harness saat/PID/güç/fixture/kamera/faz/env doğrulaması
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Harness saat/PID/güç/fixture/kamera/faz/env doğrulaması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.02 — Instrumentation açık/kapalı maliyeti
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Instrumentation açık/kapalı maliyeti; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.03 — M aynı veri 1/5/10/20 liman AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: M aynı veri 1/5/10/20 liman AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.04 — L aynı veri 1/5/10/20 liman AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: L aynı veri 1/5/10/20 liman AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.05 — Yakın/iki liman/geniş harita AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Yakın/iki liman/geniş harita AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.06 — Panel açık/kapalı AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Panel açık/kapalı AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.07 — Log statik/akış/uzun satır AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Log statik/akış/uzun satır AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.08 — Trafik açık/kapalı AB sabit provider
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Trafik açık/kapalı AB sabit provider; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.09 — Normal/burst veri AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Normal/burst veri AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.10 — Tek/çok arıza AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Tek/çok arıza AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.11 — Motion-off idle AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Motion-off idle AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.11-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.11-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.11-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.11-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.11-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.11-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.11-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.12 — Cold start/liman switch AB
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: Cold start/liman switch AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.12-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.12-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.12-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.12-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.12-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.12-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.12-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-16.13 — V11-18 eski CPU kapısının ayrı değerlendirilmesi
+
+- Kategori: CAT-16.
+- Amaç / kullanıcı riski: V11-18 eski CPU kapısının ayrı değerlendirilmesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-16.13-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.13-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.13-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-16.13-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-16.13-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-16.13-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-16.13-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-17 — Kaynak optimizasyonu
+
+### TEST-17.01 — Frontend React/store profiler adayı
+
+- Kategori: CAT-17.
+- Amaç / kullanıcı riski: Frontend React/store profiler adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-17.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-17.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-17.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-17.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-17.02 — Log/tablo/layout allocation adayı
+
+- Kategori: CAT-17.
+- Amaç / kullanıcı riski: Log/tablo/layout allocation adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-17.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-17.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-17.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-17.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-17.03 — Raycast/matris/traversal/material adayı
+
+- Kategori: CAT-17.
+- Amaç / kullanıcı riski: Raycast/matris/traversal/material adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-17.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-17.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-17.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-17.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-17.04 — Backend watch/JSON/snapshot/izin/lock adayı
+
+- Kategori: CAT-17.
+- Amaç / kullanıcı riski: Backend watch/JSON/snapshot/izin/lock adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-17.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-17.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-17.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-17.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-17.05 — Çok liman güvenli abonelik paylaşımı adayı
+
+- Kategori: CAT-17.
+- Amaç / kullanıcı riski: Çok liman güvenli abonelik paylaşımı adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-17.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-17.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-17.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-17.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-17.06 — Worker/WASM/dil göçü net maliyet kararı
+
+- Kategori: CAT-17.
+- Amaç / kullanıcı riski: Worker/WASM/dil göçü net maliyet kararı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-17.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-17.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-17.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-17.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-17.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-18 — Uzun kararlılık ve kurtarma
+
+### TEST-18.01 — Final60dk kesintisiz karma kullanım ve20dk ara kontrol
+
+- Kategori: CAT-18.
+- Amaç / kullanıcı riski: Final60dk kesintisiz karma kullanım ve20dk ara kontrol; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-18.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-18.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-18.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-18.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-18.02 — 50 panel/log çevrimi ve3 reconnect cleanup
+
+- Kategori: CAT-18.
+- Amaç / kullanıcı riski: 50 panel/log çevrimi ve3 reconnect cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-18.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-18.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-18.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-18.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-18.03 — Son canonical içerik ve aynı working-set trendleri
+
+- Kategori: CAT-18.
+- Amaç / kullanıcı riski: Son canonical içerik ve aynı working-set trendleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-18.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-18.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-18.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-18.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-18.04 — Gerçek hidden/minimize ve geri dönüş
+
+- Kategori: CAT-18.
+- Amaç / kullanıcı riski: Gerçek hidden/minimize ve geri dönüş; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-18.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-18.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-18.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-18.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-18.05 — Uyku/enerji/disk kesinti kurtarma
+
+- Kategori: CAT-18.
+- Amaç / kullanıcı riski: Uyku/enerji/disk kesinti kurtarma; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-18.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-18.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-18.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-18.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-18.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-19 — Gecikme/erişilebilirlik/tarayıcı
+
+### TEST-19.01 — İlk geri bildirim p95≤100ms proxy
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: İlk geri bildirim p95≤100ms proxy; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-19.02 — Temel panel gerekli kontrolleri p95≤200ms proxy
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: Temel panel gerekli kontrolleri p95≤200ms proxy; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-19.03 — İki liman haritası/switch gecikmesi
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: İki liman haritası/switch gecikmesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-19.04 — Arama/focus/form/log/terminal gecikmesi
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: Arama/focus/form/log/terminal gecikmesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-19.05 — Klavye/Escape/focus dönüşü
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: Klavye/Escape/focus dönüşü; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-19.06 — Dar ekran/tema/reduced-motion
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: Dar ekran/tema/reduced-motion; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-19.07 — Etiket/traffic başlığı kırpılması
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: Etiket/traffic başlığı kırpılması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-19.08 — V11-16 fiziksel sunum ayrı kabul kapısı
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: V11-16 fiziksel sunum ayrı kabul kapısı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-19.09 — Native Safari/Retina ile WebKit ayrımı
+
+- Kategori: CAT-19.
+- Amaç / kullanıcı riski: Native Safari/Retina ile WebKit ayrımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-19.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-19.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-19.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-19.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-19.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-20 — Paket/güncelleme/CI
+
+### TEST-20.01 — Repo/Go/Node/Vite olmadan temiz arşiv açılışı
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Repo/Go/Node/Vite olmadan temiz arşiv açılışı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.02 — Boş config/ilk liman gerçek bağlantısı
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Boş config/ilk liman gerçek bağlantısı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.03 — Temiz pakette iki liman gerçek kullanım
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Temiz pakette iki liman gerçek kullanım; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.04 — Eksik araç/dolu port/expired credential
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Eksik araç/dolu port/expired credential; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.05 — Restart/veri/migration/backup
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Restart/veri/migration/backup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.06 — Başarısız update rollback
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Başarısız update rollback; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.07 — macOS native runtime
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: macOS native runtime; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.08 — Linux ilan edilen runtime/emülasyon ayrımı
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Linux ilan edilen runtime/emülasyon ayrımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.09 — Docker/Helm ilan edilen destek
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Docker/Helm ilan edilen destek; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.10 — Paket test endpoint/private veri yokluğu
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Paket test endpoint/private veri yokluğu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.11 — CI token/PR secret/checkout/workflow injection
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: CI token/PR secret/checkout/workflow injection; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.11-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.11-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.11-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.11-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.11-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.11-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.11-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.12 — Action pin/cache/artifact/release yetkisi
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: Action pin/cache/artifact/release yetkisi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.12-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.12-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.12-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.12-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.12-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.12-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.12-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.13 — SBOM/checksum/provenance
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: SBOM/checksum/provenance; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.13-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.13-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.13-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.13-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.13-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.13-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.13-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-20.14 — İmza/attestation yetenek ve doğrulama
+
+- Kategori: CAT-20.
+- Amaç / kullanıcı riski: İmza/attestation yetenek ve doğrulama; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-20.14-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.14-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.14-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-20.14-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-20.14-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-20.14-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-20.14-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+
+## CAT-21 — Manuel teslim/son inceleme
+
+### TEST-21.01 — Final profil01 boş başlangıç
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Final profil01 boş başlangıç; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.01-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.01-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.01-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.01-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.01-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.01-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.01-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.02 — Final profil02 ortak küme iki liman
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Final profil02 ortak küme iki liman; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.02-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.02-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.02-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.02-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.02-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.02-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.02-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.03 — Final profil03 bağımsız kümeler
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Final profil03 bağımsız kümeler; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.03-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.03-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.03-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.03-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.03-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.03-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.03-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.04 — Final profil04 restricted
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Final profil04 restricted; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.04-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.04-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.04-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.04-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.04-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.04-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.04-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.05 — Final profil05 arıza/recovery
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Final profil05 arıza/recovery; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.05-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.05-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.05-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.05-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.05-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.05-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.05-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.06 — Final profil06 limanlar arası ağ
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Final profil06 limanlar arası ağ; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.06-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.06-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.06-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.06-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.06-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.06-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.06-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.07 — Final profil07 açık replay
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Final profil07 açık replay; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.07-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.07-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.07-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.07-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.07-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.07-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.07-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.08 — Cold/idempotent up/down-up/reset/cleanup
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Cold/idempotent up/down-up/reset/cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.08-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.08-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.08-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.08-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.08-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.08-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.08-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.09 — Rehber/doğrulanmış temiz terminal komutu
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Rehber/doğrulanmış temiz terminal komutu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.09-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.09-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.09-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.09-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.09-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.09-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.09-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.10 — Kullanıcı PASS/FAIL alanları boş ve ağır lab durumu
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Kullanıcı PASS/FAIL alanları boş ve ağır lab durumu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.10-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.10-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.10-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.10-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.10-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.10-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.10-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.11 — Roadmap/kanıt/paket ikinci incelemesi
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: Roadmap/kanıt/paket ikinci incelemesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.11-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.11-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.11-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.11-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.11-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.11-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.11-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+### TEST-21.12 — V11-19 final teslim ve manuel onay
+
+- Kategori: CAT-21.
+- Amaç / kullanıcı riski: V11-19 final teslim ve manuel onay; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
+- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- Öncelik: P1.
+- Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
+- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Başlangıç zamanı: —
+- Bitiş zamanı: —
+- Durum: NOT_STARTED
+- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+
+#### TEST-21.12-S1 — Hazırlık
+- [ ] Sahip olunan ortam ve fixture hazırlandı.
+- Yapılan: henüz çalışılmadı.
+- Kullanılan komut / çalışma dizini: —
+- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.12-S2 — Normal kullanım / pozitif kontrol
+- [ ] Yetkili normal davranış doğrulandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.12-S3 — Negatif / sınır / arıza kontrolü
+- [ ] Riskli veya hatalı durum kontrollü sınandı.
+- Yapılan: henüz çalışılmadı.
+- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
+- Gözlenen: —
+- Kanıt: —
+- Sonuç: NOT_STARTED
+
+#### TEST-21.12-S4 — Bulgular ve düzeltme
+- Bulgu kimliği: henüz değerlendirilmedi.
+- Önem derecesi ve gerekçesi: —
+- Kök neden: —
+- Değiştirilen dosya / fonksiyon: —
+- Düzeltme commit'i veya çalışma farkı: —
+- Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+#### TEST-21.12-S5 — Tekrar test ve regresyon
+- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
+- [ ] İlgili normal kullanım hâlâ çalışıyor.
+- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
+- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+#### TEST-21.12-S6 — Temizlik ve inceleme
+- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
+- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
+- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
+- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
+- Kalan sınırlar: henüz test edilmedi.
+
+#### TEST-21.12-K — Faz kararı
+- [ ] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
+- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
