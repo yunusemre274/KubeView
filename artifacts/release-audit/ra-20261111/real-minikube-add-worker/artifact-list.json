@@ -1,0 +1,32 @@
+[
+  {
+    "path": "REPORT.md",
+    "bytes": 2659,
+    "sha256": "897d92702b5c5126b162680097f2800f2477b69aebf4513027896552e3a8bcd6"
+  },
+  {
+    "path": "cleanup-ready-safety.json",
+    "bytes": 1511,
+    "sha256": "3d2bfaafbcf49c42df3ef78b2d9400da69b543a6c5ecc6b450c91ed4168d0ceb"
+  },
+  {
+    "path": "cleanup-scope-baseline.json",
+    "bytes": 2201,
+    "sha256": "cfc10ec47144393c53a217145687c5eee2394fd9cb49d39518e657e0ff649177"
+  },
+  {
+    "path": "cleanup-source-hashes.json",
+    "bytes": 414,
+    "sha256": "017fb046b9e20a5803053b0b84156ea55f73002bed0bf5edd016eef4c5a3ca09"
+  },
+  {
+    "path": "manifest.json",
+    "bytes": 2199,
+    "sha256": "0261b95e3da109a1ea5c1f36d6cdf7f061cc6dfa9cfe86f97fa6e6f7acc05417"
+  },
+  {
+    "path": "preflight.json",
+    "bytes": 386,
+    "sha256": "a39f90a02e2a8558e877dd25b248fc581e30d9c8fdc77d0ba5d101cc813f2a6f"
+  }
+]

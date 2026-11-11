@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — provider hazırlık ve cleanup hedefi
+
+- Gerçek minikube API/adapter ve exact hedef cleanup kaynakları incelendi; original volume/network kimlikleri korundu. Read-only hazırlık ve helper zaman kapısı nedeniyle çalışmayan actual test ayrı kaydedildi; yeni worker oluşturulmuş sayılmadı.
+
 ## 2026-11-11 — session replay ve cookie sözleşmesi
 
 - İki yeni dar test, yönetim cookie/nonce freshness/biçim, cookie flagları ve süresi dolmuş yetkinin replay/reset/regrant sınırını doğruladı. Değerler kayda alınmadı; önceki absolute-expiry/revoke kanıtı değişmeyen kaynağıyla korundu.

@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:44:23.316569+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:59:46.856901+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:147; IN_PROGRESS:19; FAILED:1; BLOCKED:2; RETEST_REQUIRED:1; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:146; IN_PROGRESS:20; FAILED:1; BLOCKED:2; RETEST_REQUIRED:1; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:7, IN_PROGRESS:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
@@ -3945,12 +3945,12 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Sorumlu: KV-DEPENDENCY-WORKER; root mutasyon/cleanup hedefi ve Git incelemesi
+- Kaynak / build / paket kimliği: 42a5abde çalışma ağacı; production pkg/provision ve provider_handlers.go kaynak incelemesi. CLIpatched.4 hash98e42baf…; gerçek yeni worker testi henüz çalışmadı.
+- Ortam / kullanılan kimlik ve yetki: Yalnız owned kvml-d32afbf634e8-a, iki original Node Ready. Gerçek admin kubeconfig private; başka context/hedef veya Secret değeri okunmadı.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.12-S1 — Hazırlık
@@ -3961,6 +3961,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+- Read-only provider preflight: API→pkg/provision fixed add-worker yolu ve targetUID/context/profile lock/journal incelendi. Docker VM8.32GB/10CPU, mevcut2×2GiB hard limit; üçüncü2GiB için6GiB declared toplam. VM eksi limit hesabı gerçek boş bellek değildir.
+- Bu preflight raporu145.249sn/120sn sınırını aştı: INCOMPLETE olarak kaldı, mutasyon/manager/POST yok. Kanıt: minikube-provision-preflight-worker/REPORT.md.
 
 #### TEST-06.12-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -3977,6 +3980,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+- İlk actual-attempt hazırlığı BLOCKED: güvenli HTTP/adoption/cleanup helper150sn setup kapısında yetişmedi; karar179.950sn'de kaydedildi, overall720sn tükenmedi. POST/manager/CLIadd/delete ve kaynak edit0; gerçek provisioning PASS yok.
+- Exact m03 label filtresi container/volume/network seçmiyor; original volume/network ID/birth/owner snapshotlandı. Root pinli CLIargs[0],Retrieve/MachineName ve filteredPossibleLeftOvers kaynaklarını okudu. CLI drain --disable-eviction/force kullandığından yalnız doğrulanmış yeni host ve bilinen ownedDaemonSetPod guard'ıyla kullanılabilir; başka Pod varsa durur.
 
 #### TEST-06.12-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -3999,10 +4005,13 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
 
+- [x] İlk iki preparation/blocked job source/receipt/checksumları root tarafından okundu; yeniNode veya app yok. İki original node sonraki kontrollü iş için sıcak.
+- Sonraki iş helper kodunu ayrı somut implementation aşamasında hazırlamak, syntax/pureguard kontrolü ve checkpoint sonrası tek gerçek deneme. Root onayı internal ownership gate'dir; kullanıcıdan yeni genel izin istenmedi.
+
 #### TEST-06.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- IN_PROGRESS: uygulamanın gerçek provider yolu var; bu güncel CLI/adaya yeni worker ADD/Ready doğrulanmadı. İlk preparation INCOMPLETE ve mutation-before-setup BLOCKED sonuçları ayrı korunur.
+- Gerçek aşama yalnız exact owned UID/profile/CLI ve kayıtlı new-host cleanup guard'larıyla çalışabilir; Kubernetes'e boş Node POST etmek veya eski worker resume bu kanıtı kapatmaz.
 
 ### TEST-06.13 — Minikube idempotency/profile lock
 
@@ -11268,6 +11277,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 - [x] Yeni job206.97622sn içinde finalizasyon+cleanupPASS: exact PID/birth doğrulandı, SIGTERM exit0, port19849 boş. Bundle/workspace korunur.8app-child örneğinde çocuk süreç yok; tam kernel/network audit iddiası yok.
 - [x] Root16checksum, helper/launcher/manifest ve iki gerçek PNG'yi inceledi. ROOT_REVIEW.md kapsamı ve önceki report-overrun sınırını ayırır. Runtime/shipped input yolları merge537..current6db arasında yalnız yeni server test dosyası farkı taşır; veri/UI kodu değişmediği için gereksiz tekrar yok.
+
+- Sonraki fark yalnız docs/SECURITY.md içinde statik erişim anahtarı/cookie TTL açıklamasıdır; runtime/asset/packager kodu değişmedi. Bu temel startup kanıtı doc-only gerekçeyle tekrar kullanılabilir. Yeni final arşivde güncel Markdown/hash/provenance ayrıca TEST20.13 kapsamında doğrulanmalı; eski arşiv güncel belgeyi içeriyormuş gibi sunulmaz.
 
 #### TEST-20.01-K — Faz kararı
 - [x] BİTTİ / DOĞRULANDI — bu exact adayın temel standalone paket başlangıcı: gerçek native macOS harici bundle/boş app PATH ve ayrı Linux copy-out CI smoke, embedded UI, ilk liman formu ve cleanup geçti.

@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — yeni worker testinin hazırlık sınırı
+
+- [x] Gerçek provider yolu, exact CLI cleanup hedefi ve m03 label-filter/original volume/network ayrımı incelendi; iki mevcut Node kimliği/Ready korundu.
+- [ ] Preflight rapor süre aşımı INCOMPLETE ve actual-attempt hazırlık kapısı BLOCKED; hiç POST/add/delete çalışmadı. Güvenli yardımcı kodu ayrı hazırlık aşamasında tamamlanıyor; gerçek yeni worker kanıtı hâlâ açık.
+
 ## 11 Kasım — yönetim session yaşam döngüsü
 
 - [x] Operator cookie/nonce CSPRNG kaynağı, küçük örnek freshness, cookie flagları ve expired replay/reset/regrant için iki dar test geçti; eski expiry/revoke/race kanıtı kaynak hashleriyle tekrar kullanılabildi.

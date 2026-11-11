@@ -1,0 +1,83 @@
+{
+  "labelTargets": [
+    {
+      "fullMachineLabel": "kvml-d32afbf634e8-a",
+      "containerIDs": [
+        "97cc52cfe048"
+      ],
+      "volumeNames": [
+        "kvml-d32afbf634e8-a"
+      ]
+    },
+    {
+      "fullMachineLabel": "kvml-d32afbf634e8-a-m02",
+      "containerIDs": [
+        "c6f18a25a514"
+      ],
+      "volumeNames": [
+        "kvml-d32afbf634e8-a-m02"
+      ]
+    },
+    {
+      "fullMachineLabel": "kvml-d32afbf634e8-a-m03",
+      "containerIDs": [],
+      "volumeNames": []
+    }
+  ],
+  "originals": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "name": "kvml-d32afbf634e8-a",
+      "created": "2026-11-11T12:25:42.786922134Z",
+      "mounts": [
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/lib/modules"
+        },
+        {
+          "type": "volume",
+          "name": "kvml-d32afbf634e8-a",
+          "destination": "/var"
+        }
+      ],
+      "networks": {
+        "kvml-d32afbf634e8-a": {
+          "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+          "endpointID": "564e38221e1e59017a81b03865c70c3b7da9ff3bce13c680e1e5f9c65bb73cf9",
+          "IP": "172.29.232.2"
+        }
+      }
+    },
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "name": "kvml-d32afbf634e8-a-m02",
+      "created": "2026-11-11T12:25:55.149367334Z",
+      "mounts": [
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/lib/modules"
+        },
+        {
+          "type": "volume",
+          "name": "kvml-d32afbf634e8-a-m02",
+          "destination": "/var"
+        }
+      ],
+      "networks": {
+        "kvml-d32afbf634e8-a": {
+          "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+          "endpointID": "aa7dd3ad97b8a2cbaed7d318c1696f17896b0b9690a21bae318cb545a145d48d",
+          "IP": "172.29.232.3"
+        }
+      }
+    }
+  ],
+  "network": {
+    "id": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+    "name": "kvml-d32afbf634e8-a",
+    "subnet": "172.29.232.0/24"
+  },
+  "newExpectedName": "kvml-d32afbf634e8-a-m03"
+}

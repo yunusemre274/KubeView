@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-11T17:53:45.026350+00:00",
+  "labelFilter": "name.minikube.sigs.k8s.io=kvml-d32afbf634e8-a-m03",
+  "newContainerTargetsEmpty": true,
+  "newVolumeTargetsEmpty": true,
+  "newNetworkTargets": [],
+  "originalVolumes": [
+    {
+      "name": "kvml-d32afbf634e8-a",
+      "createdAt": "2026-11-11T12:25:41Z",
+      "driver": "local",
+      "labels": {
+        "created_by.minikube.sigs.k8s.io": "true",
+        "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a"
+      }
+    },
+    {
+      "name": "kvml-d32afbf634e8-a-m02",
+      "createdAt": "2026-11-11T12:25:53Z",
+      "driver": "local",
+      "labels": {
+        "created_by.minikube.sigs.k8s.io": "true",
+        "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02"
+      }
+    }
+  ],
+  "sharedNetwork": {
+    "id": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+    "name": "kvml-d32afbf634e8-a",
+    "created": "2026-11-11T12:25:18.078000053Z",
+    "labels": {
+      "manual.kubeview.local/lab-id": "kvml-d32afbf634e8"
+    }
+  },
+  "cleanupSourceScope": "exact node args[0]\u2192Retrieve/MachineName\u2192target drain/reset/deleteHost; PossibleLeftOvers exact full-worker label container/volume/network cleanup plus filtered volume prune, not broad prune",
+  "destructiveDrainGuardRequired": "Only current new-node Pods with known pre-snapshot DaemonSet ownerUID; any other Pod STOP",
+  "readyToMutate": false,
+  "reason": "Focused HTTP/ownership/adoption/cleanup helper not yet prepared; no POST or manager opened"
+}
