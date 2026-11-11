@@ -14,6 +14,19 @@ garantisi değildir. Gerçek kullanıcı credential veya Secret içeriği kayded
 
 ## 11 Kasım — ek sağlayıcı taraması ve dar araç yaması
 
+### PROV-CACHE-001 — cached worker sonucunun eski küme UID'sine bağlanması
+
+MEDIUM kapsam bütünlüğü/P1 doğruluk: geçerli yerel yönetim oturumu ve aynı
+idempotency key, context adı aynı kalıp canlı kube-system UID değiştiğinde eski
+terminal işlemi202 ile döndürdü. Yeni CLI/worker çalışmadı; Secret sızıntısı veya
+uzak kod yürütme gösterilmedi. Public handler UNIT testi, doğru scope ve yanlış
+context kontrolleriyle birlikte sorunu yeniden üretti.
+
+POST, cached `Manager.Begin` dalından önce güncel UID'yi kontrol etmiyor;
+GET yolunda bu kontrol zaten var. İlk
+[RED kanıtı](../artifacts/release-audit/ra-20261111/provider-cache-scope-worker/REPORT.md)
+korunur. Düzeltme ve tekrar test bekleniyor; risk kabulü verilmedi.
+
 | Kimlik | Önem / kanıt | Düzeltme / tekrar | Açık sınır |
 |---|---|---|---|
 | DEP-002 | Collector1.20.2 dört ARM64 imajında20HighID/131bileşen satırı,0Critical; her eşleşme exploit değildir | Resmi1.20.4 adayında aynıDB/platform3HighID/15satır. Yalnız tarandı, kurulmadı. | x/net HTML parser, apt/libapt ve operator go-jose kalıntıları açık; exactbinary/source incelemesi sürüyor. Risk kabulü verilmedi. App container/final paket taraması ayrı. |

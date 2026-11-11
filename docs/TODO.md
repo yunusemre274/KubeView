@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — PROV-CACHE-001 yeniden üretimi
+
+- [x] Public provider POST, changed canlı kube-system UID altında eski cachedoperation202 döndürdü; iki pozitif/yanlışcontext kontrolü ayrıldı. İlkRED ve source hashleri korundu; gerçek CLI/worker çalışmadı.
+- [ ] Cached response öncesi actualUID guard düzeltmesi, aynıPoC ve403/erişilemiyor komşu kontrolleri gerekiyor. Gerçek provisioning ayrı kapıdır.
+
 ## 11 Kasım — yeni worker testinin hazırlık sınırı
 
 - [x] Gerçek provider yolu, exact CLI cleanup hedefi ve m03 label-filter/original volume/network ayrımı incelendi; iki mevcut Node kimliği/Ready korundu.

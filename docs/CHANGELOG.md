@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — provider cached-scope regresyonu RED
+
+- Yeni public-handler testi, canlı küme UID'si değiştiğinde aynı anahtarın eski ready işlemini döndürebildiğini gösterdi. Authenticated local scope/yanlış durum sorunu olarak kaydedildi; yeni worker, RCE veya Secret sızıntısı iddia edilmedi. İlk test RED bırakıldı; ürün düzeltmesi sonraki checkpoint'tedir.
+
 ## 2026-11-11 — provider hazırlık ve cleanup hedefi
 
 - Gerçek minikube API/adapter ve exact hedef cleanup kaynakları incelendi; original volume/network kimlikleri korundu. Read-only hazırlık ve helper zaman kapısı nedeniyle çalışmayan actual test ayrı kaydedildi; yeni worker oluşturulmuş sayılmadı.

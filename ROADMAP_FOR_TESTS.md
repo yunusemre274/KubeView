@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:59:46.856901+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T21:08:24.139295+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:146; IN_PROGRESS:20; FAILED:1; BLOCKED:2; RETEST_REQUIRED:1; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:2; BLOCKED:2; RETEST_REQUIRED:1; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:7, IN_PROGRESS:1, VERIFIED_DONE:6 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
@@ -4020,12 +4020,12 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: KV-SECURITY-WORKER; root provider mutasyon/kapsam incelemesi
+- Kaynak / build / paket kimliği: 42a5abde + test SHA1e6f3d029240f96dbff0327aece205c78b14eb510d50e0d2516a631d68aaeacf. Provider handlerb1963e28… değişmedi; firstRED snapshot.
+- Ortam / kullanılan kimlik ve yetki: UNIT production Register/protect + fake Kubernetes/runner + private terminal journal; geçerli local session/grant. Gerçek CLI/Node/cluster/browser yok.
+- Başlangıç zamanı: 2026-11-11T18:02:56.905572Z
+- Bitiş zamanı: 2026-11-11T18:03:09.047861Z; tek koşu, iki kontrol PASS/changedUIDRED; retry0.
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.13-S1 — Hazırlık
@@ -4037,6 +4037,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+- Production provision.New ile private terminal journal ve fakeRunner kullanıldı; public POST/cookie/nonce/grant/loopback/Origin yolu gerçek handler'dır. No manager.Verify/Begin mock'u, no actualCLI.
+
 #### TEST-06.13-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -4044,6 +4046,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+- [x] Doğru configured context+UID+samekey202 cachedoperation, Add0. Yanlış selectedcontext geçerli grant ile409/nooperation/Add0. Pozitif yol kullanılabilirken changedUID özel negatif ayrıldı.
 
 #### TEST-06.13-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -4053,6 +4057,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+- [x] PROV-CACHE-001 RED: canlı fake kube-system UID farklıyken beklenen409 yerine202+oldcachedoperation; freshNamespaceUIDGet0/ProfileUIDcheck0/Add0. Yeni worker veya RCE/Secret sızıntısı kanıtı yok.
+
 #### TEST-06.13-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
 - Önem derecesi ve gerekçesi: —
@@ -4060,6 +4066,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Değiştirilen dosya / fonksiyon: —
 - Düzeltme commit'i veya çalışma farkı: —
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+- Kök neden: providerWorker POST context check sonrası Begin çağırır; Begin cached-key branch Verify'den önce döner. GET yolu freshUIDcheck yaparken POST atlar. Authenticated local cached-scope integrity/yanlış işlem durumu sorunu, MEDIUM güvenlik/P1 doğruluk olarak değerlendirildi; CVSS veya remote exploit iddiası yok.
 
 #### TEST-06.13-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
@@ -4074,10 +4082,12 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
 
+- [x] Geçici fake journal/lock ve Server test cleanup; listener/CLI/cluster başlamadı. Root source/test/rapor ve3checksum doğruladı; ilkRED korunur. Farklı StateDir arasında global lock kanıtı yok.
+
 #### TEST-06.13-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- FAILED: PROV-CACHE-001 public cached-operation UID sınırı yeniden üretildi. İlkRED/pozitif/yanlışcontext kontrolleri korunur. Root POST cached response öncesi actualselectedUID kontrolünü düzeltecek; sonra aynıPoC ve komşu izin/error testleri tekrar çalışır.
+- Gerçek same-key yeniworker tekliği ve profilelock/concurrency kapsamı ayrıca açık; unit fake kaynak gerçekprovisioning değildir.
 
 ### TEST-06.14 — Minikube hata/timeout/reconcile/cleanup
 
