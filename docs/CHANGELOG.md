@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — current helper gerçek Scale kabulü
+
+- Ortak Resources helper değişikliğinin Scale regresyonu tek gerçek2→3→1 koşusuyla geçti. Aynı Deployment UID, gözlenen controller sayıları ve owner zincirleri;403/409 negatifler ile UID/RV404 ve Pod/RS cleanup doğrulandı. Eski PASS yeni kaynağa varsayılmadı.
+- Yalnız exact owned iki node resume edildi; yeni worker veya CNI kurulmadı. Güç/kimlik guardları ve süre sınırları kaydedildi; ürün kodu değişmedi.
+
 ## 2026-11-11 — tarihsel preview browser job checkpoint'i
 
 - Önceden doğrulanmış browser sandbox/CSRF/header sınırına ait iki helper ve küçük redakte kanıtlar Git'e alındı. Kaynak hashleri değişmediği için yeni test gibi sayılmadı veya tekrar çalıştırılmadı; fake transport ve gerçek Kubernetes sınırı korundu.

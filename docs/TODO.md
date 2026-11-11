@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — current helper Scale regresyonu
+
+- [x] Resources guard değişikliğinden sonra aynı current helper üzerinde gerçek2→3→1 tekrar doğrulandı: desired/current/Ready/updated/available, owner UID,403/409 ve exact cleanup. Tek koşu; helper değiştirilmedi.
+- [ ] İki original owned node sonraki kontrollü iş için sıcak; app/relay/trafik kapalı. Bu yeni worker provisioning veya performans kabulü değildir.
+
 ## 11 Kasım — preview browser kanıtının korunması
 
 - [x] Önceden tamamlanan opaque preview/CSRF Chromium+WebKit job'ı ve iki helper, exact10kaynak hash eşitliğiyle checkpoint edildi. İlk FAIL ve ayrı PASS korundu; gereksiz yeniden koşu yapılmadı.

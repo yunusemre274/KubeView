@@ -1,0 +1,748 @@
+package server
+
+// This explicit opt-in owns one temporary profile06 Deployment. It does not
+// reuse the profile02 helper or alter the running application gateway.
+import (
+	"context"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"fmt"
+	"net"
+	"net/http"
+	"net/http/cookiejar"
+	"net/http/httptest"
+	"net/url"
+	"os"
+	"path/filepath"
+	"reflect"
+	"sort"
+	"strings"
+	"sync"
+	"testing"
+	"time"
+
+	"github.com/google/uuid"
+	ws "github.com/k8s-tersane/tersane/backend/pkg/workspace"
+	appsv1 "k8s.io/api/apps/v1"
+	corev1 "k8s.io/api/core/v1"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
+	"k8s.io/apimachinery/pkg/api/resource"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/apimachinery/pkg/types"
+	"k8s.io/client-go/tools/clientcmd"
+)
+
+type releaseOperationPodRecord struct {
+	UID               types.UID       `json:"uid"`
+	OwnerRSUID        types.UID       `json:"ownerReplicaSetUID"`
+	Phase             corev1.PodPhase `json:"phase"`
+	DeletionTimestamp *metav1.Time    `json:"deletionTimestamp,omitempty"`
+	OwnerVerified     bool            `json:"ownerVerified"`
+	LimitCPUMilli     int64           `json:"declaredLimitCPUMilli"`
+	LimitMemoryBytes  int64           `json:"declaredLimitMemoryBytes"`
+}
+
+// Resources may retain only exact old terminal+deleting API records in
+// addition to at most two current Pods. This is a declared envelope, not usage.
+func releaseOperationPodEnvelope(operation string, strategy appsv1.DeploymentStrategyType, pods []releaseOperationPodRecord, old map[types.UID]types.UID) error {
+	if operation != "resources" {
+		if len(pods) > 3 {
+			return fmt.Errorf("scale_owned_Pod_ceiling3")
+		}
+		return nil
+	}
+	if strategy != appsv1.RecreateDeploymentStrategyType {
+		return fmt.Errorf("resources_requires_Recreate")
+	}
+	if len(pods) > 4 {
+		return fmt.Errorf("resources_API_object_ceiling4")
+	}
+	seen := map[types.UID]bool{}
+	active := 0
+	residue := 0
+	var cpu, memory int64
+	for _, p := range pods {
+		if p.UID == "" || seen[p.UID] || !p.OwnerVerified || p.OwnerRSUID == "" {
+			return fmt.Errorf("unknown_or_unverified_Pod_owner")
+		}
+		seen[p.UID] = true
+		if p.LimitCPUMilli <= 0 || p.LimitMemoryBytes <= 0 {
+			return fmt.Errorf("missing_declared_resource_limits")
+		}
+		cpu += p.LimitCPUMilli
+		memory += p.LimitMemoryBytes
+		terminal := p.Phase == corev1.PodSucceeded || p.Phase == corev1.PodFailed
+		if !terminal {
+			active++
+		}
+		rs, known := old[p.UID]
+		if known && rs != p.OwnerRSUID {
+			return fmt.Errorf("known_old_Pod_RS_changed")
+		}
+		qualifies := known && terminal && p.DeletionTimestamp != nil
+		if qualifies {
+			residue++
+		}
+		if len(pods) > 2 {
+			if known && !qualifies {
+				return fmt.Errorf("extra_old_Pod_not_terminal_and_deleting")
+			}
+			if !known && (terminal || p.DeletionTimestamp != nil) {
+				return fmt.Errorf("unknown_UID_cannot_be_old_API_residue")
+			}
+		}
+	}
+	if active > 2 {
+		return fmt.Errorf("resources_active_Pod_ceiling2")
+	}
+	if len(pods)-residue > 2 || residue > 2 {
+		return fmt.Errorf("resources_extra_records_not_exact_old_residue")
+	}
+	if cpu > 300 || memory > 192*1024*1024 {
+		return fmt.Errorf("declared_limits_exceed_300m_192Mi")
+	}
+	return nil
+}
+
+func TestReleaseResourcesPodEnvelope(t *testing.T) {
+	deletion := metav1.Now()
+	old := map[types.UID]types.UID{"old-a": "old-rs", "old-b": "old-rs"}
+	makePod := func(uid types.UID, terminal bool) releaseOperationPodRecord {
+		p := releaseOperationPodRecord{UID: uid, OwnerRSUID: "new-rs", Phase: corev1.PodRunning, OwnerVerified: true, LimitCPUMilli: 100, LimitMemoryBytes: 64 * 1024 * 1024}
+		if terminal {
+			p.OwnerRSUID = "old-rs"
+			p.Phase = corev1.PodSucceeded
+			p.DeletionTimestamp = &deletion
+			p.LimitCPUMilli = 50
+			p.LimitMemoryBytes = 32 * 1024 * 1024
+		}
+		return p
+	}
+	oldA, oldB := makePod("old-a", true), makePod("old-b", true)
+	newA, newB := makePod("new-a", false), makePod("new-b", false)
+	wrong := oldA
+	wrong.UID = "unknown-old"
+	badOwner := newA
+	badOwner.OwnerVerified = false
+	for _, tc := range []struct {
+		name, operation string
+		strategy        appsv1.DeploymentStrategyType
+		pods            []releaseOperationPodRecord
+		allow           bool
+	}{
+		{"known_old_terminal_deleting2_plus_new2", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{oldA, oldB, newA, newB}, true},
+		{"initial2_allowed", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{newA, newB}, true},
+		{"four_active_rejected", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{newA, newB, makePod("new-c", false), makePod("new-d", false)}, false},
+		{"wrong_old_UID_rejected", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{wrong, oldB, newA, newB}, false},
+		{"five_total_rejected", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{oldA, oldB, newA, newB, makePod("new-c", false)}, false},
+		{"wrong_owner_rejected", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{badOwner, newB}, false},
+		{"wrong_strategy_rejected", "resources", appsv1.RollingUpdateDeploymentStrategyType, []releaseOperationPodRecord{newA, newB}, false},
+		{"scale_ceiling3_preserved", "scale", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{oldA, oldB, newA, newB}, false},
+		{"scale_three_allowed", "scale", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{oldA, newA, newB}, true},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := releaseOperationPodEnvelope(tc.operation, tc.strategy, tc.pods, old) == nil; got != tc.allow {
+				t.Fatalf("envelope allowed=%t want%t", got, tc.allow)
+			}
+		})
+	}
+}
+
+func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
+	if os.Getenv("KUBEVIEW_RELEASE_REAL_SCALE") != "owned-profile06-2-3-1" {
+		t.Skip("requires explicit owned profile06 scale opt-in")
+	}
+	runReleaseOwnedOperation(t, "scale")
+}
+
+func TestReleaseOwnedResourcesTemplate(t *testing.T) {
+	if os.Getenv("KUBEVIEW_RELEASE_REAL_RESOURCES") != "owned-profile06-template-resources" {
+		t.Skip("requires explicit owned profile06 resource-template opt-in")
+	}
+	runReleaseOwnedOperation(t, "resources")
+}
+
+// Shared private fixture/HTTP/identity/cleanup harness. Each real mutation phase
+// remains separately opt-in; no wrapper enables any other phase.
+func runReleaseOwnedOperation(t *testing.T, operation string) {
+	started := time.Now()
+	output := os.Getenv("KUBEVIEW_RELEASE_REAL_OUTPUT")
+	statePath := os.Getenv("KUBEVIEW_RELEASE_REAL_STATE")
+	configPath := os.Getenv("KUBEVIEW_RELEASE_REAL_KUBECONFIG")
+	const labID = "kvml-d32afbf634e8"
+	const contextName = labID + "-a"
+	const clusterUID = "e84bb50e-8d64-4bc2-905c-9b5ba193e53a"
+	const namespace = "kvml-fbf634e8-06-client"
+	const namespaceUID = "863e13d5-da6d-481d-9484-64eb088d8df8"
+	const profile = "06-limanlar-arasi-ag"
+	runLabel := "manual.kubeview.local/release-" + operation + "-run"
+	for _, p := range []string{output, statePath, configPath} {
+		if !filepath.IsAbs(p) {
+			t.Fatal("explicit absolute owned output/state/config required")
+		}
+	}
+	if filepath.Base(configPath) != "admin.json" || filepath.Dir(filepath.Dir(configPath)) != filepath.Dir(statePath) {
+		t.Fatal("private config/state relationship refused")
+	}
+	evidence := map[string]interface{}{"kind": "real Kubernetes typed/dynamic + production HTTP gateway", "startedAt": started.UTC(), "clusterUID": clusterUID, "namespaceUID": namespaceUID, "profile": profile, "operation": operation, "timeline": []interface{}{}}
+	var mu sync.Mutex
+	var maxGap time.Duration
+	var lastWall = time.Now().UnixNano()
+	stop := make(chan struct{})
+	done := make(chan struct{})
+	go func() {
+		defer close(done)
+		ticker := time.NewTicker(250 * time.Millisecond)
+		defer ticker.Stop()
+		for {
+			select {
+			case <-stop:
+				return
+			case <-ticker.C:
+				now := time.Now().UnixNano()
+				mu.Lock()
+				gap := time.Duration(now - lastWall)
+				if gap > maxGap {
+					maxGap = gap
+				}
+				lastWall = now
+				mu.Unlock()
+			}
+		}
+	}()
+	mark := func(name string, data interface{}) {
+		mu.Lock()
+		defer mu.Unlock()
+		evidence["timeline"] = append(evidence["timeline"].([]interface{}), map[string]interface{}{"at": time.Now().UTC(), "step": name, "proof": data})
+		snapshot, err := json.MarshalIndent(evidence, "", "  ")
+		if err != nil {
+			t.Fatal("safe timeline encoding failed before further operations")
+		}
+		if err = os.WriteFile(filepath.Join(output, "timeline.json.tmp"), append(snapshot, '\n'), 0644); err != nil {
+			t.Fatal("safe timeline flush failed before further operations")
+		}
+		if err = os.Rename(filepath.Join(output, "timeline.json.tmp"), filepath.Join(output, "timeline.json")); err != nil {
+			t.Fatal("safe timeline rename failed before further operations")
+		}
+	}
+	t.Cleanup(func() {
+		close(stop)
+		<-done
+		mu.Lock()
+		gap := maxGap
+		mu.Unlock()
+		if gap > 5*time.Second {
+			t.Error("environment sample gap exceeds5s; bounded outcome invalid")
+		}
+		evidence["maxSampleGapSeconds"] = gap.Seconds()
+		evidence["elapsedSeconds"] = time.Since(started).Seconds()
+		evidence["failed"] = t.Failed()
+		evidence["validBounded"] = !t.Failed() && gap <= 5*time.Second && time.Since(started) <= 180*time.Second
+		b, _ := json.MarshalIndent(evidence, "", "  ")
+		if err := os.WriteFile(filepath.Join(output, "result.json"), append(b, '\n'), 0644); err != nil {
+			t.Error("safe evidence write failed")
+		}
+	})
+	localProbe := t.TempDir()
+	localInfo, localErr := os.Stat(localProbe)
+	if localErr != nil {
+		t.Fatal("local temp stat unavailable")
+	}
+	_, localOpenErr := ws.Open(localProbe, "", "")
+	localClass := "none"
+	if localOpenErr != nil {
+		if localOpenErr.Error() == "workspace directory must be private (0700); existing directory permissions were not changed" {
+			localClass = "workspace_directory_not_private_0700"
+		} else {
+			localClass = "other_workspace_setup_error"
+		}
+	}
+	mark("local_actual_T_TempDir_permission_probe", map[string]interface{}{"mode": fmt.Sprintf("%04o", localInfo.Mode().Perm()), "safeErrorClass": localClass})
+	data, err := os.ReadFile(statePath)
+	if err != nil {
+		t.Fatal("owned lab state unavailable")
+	}
+	var lab workspaceRealLab
+	if json.Unmarshal(data, &lab) != nil || lab.LabID != labID || lab.Clusters["a"].Name != contextName || lab.Clusters["a"].UID != clusterUID || lab.Clusters["a"].MarkerUID != "0cded75c-bc00-472f-b69f-39dfd43251f3" {
+		t.Fatal("owned lab manifest identity refused")
+	}
+	found := false
+	for _, n := range lab.Profiles[profile].Namespaces {
+		if n.Name == namespace && n.UID == namespaceUID && n.Cluster == "a" {
+			found = true
+		}
+	}
+	if !found {
+		t.Fatal("explicit profile06 namespace not in manifest")
+	}
+	raw, err := clientcmd.LoadFromFile(configPath)
+	if err != nil || raw.Contexts[contextName] == nil {
+		t.Fatal("explicit private config context unavailable")
+	}
+	cc := raw.Contexts[contextName]
+	cl := raw.Clusters[cc.Cluster]
+	auth := raw.AuthInfos[cc.AuthInfo]
+	if cl == nil || auth == nil || auth.Exec != nil || auth.AuthProvider != nil {
+		t.Fatal("config cluster or static auth guard refused")
+	}
+	apiURL, err := url.Parse(cl.Server)
+	if err != nil || apiURL.Scheme != "https" || apiURL.User != nil || apiURL.RawQuery != "" {
+		t.Fatal("explicit API URL refused")
+	}
+	ip := net.ParseIP(apiURL.Hostname())
+	if ip == nil || !ip.IsLoopback() {
+		t.Fatal("owned API endpoint must be loopback")
+	}
+	t.Setenv("KUBECONFIG", configPath)
+	t.Setenv("KUBE_CONTEXT", contextName)
+	t.Setenv("KV_HUBBLE_ENABLED", "false")
+	t.Setenv("KV_MINIKUBE_ENABLED", "false")
+	t.Setenv("KUBEVIEW_REPLAY", "")
+	s := New()
+	s.ReadOnly = false
+	s.Namespace = namespace
+	s.Token = ""
+	t.Cleanup(s.Close)
+	c, err := s.client(contextName)
+	if err != nil {
+		t.Fatal("explicit owned API client unavailable")
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 135*time.Second)
+	t.Cleanup(cancel)
+	guard := func(ctx context.Context) error {
+		system, e := c.Typed.CoreV1().Namespaces().Get(ctx, "kube-system", metav1.GetOptions{})
+		if e != nil || string(system.UID) != clusterUID {
+			return fmt.Errorf("cluster UID guard")
+		}
+		marker, e := c.Typed.CoreV1().ConfigMaps("kube-system").Get(ctx, "kubeview-manual-lab-owner", metav1.GetOptions{})
+		if e != nil || string(marker.UID) != lab.Clusters["a"].MarkerUID || marker.Labels[workspaceRealOwnerLabel] != labID {
+			return fmt.Errorf("owner marker guard")
+		}
+		ns, e := c.Typed.CoreV1().Namespaces().Get(ctx, namespace, metav1.GetOptions{})
+		if e != nil || string(ns.UID) != namespaceUID || ns.Labels[workspaceRealOwnerLabel] != labID || ns.Labels[workspaceRealProfileLabel] != profile {
+			return fmt.Errorf("namespace UID/owner/profile guard")
+		}
+		return nil
+	}
+	if err = guard(ctx); err != nil {
+		t.Fatal("pre-mutation identity guard failed")
+	}
+	worker, err := c.Typed.CoreV1().Nodes().Get(ctx, lab.Clusters["a"].Worker, metav1.GetOptions{})
+	if err != nil || string(worker.UID) != lab.Clusters["a"].NodeUIDs[worker.Name] {
+		t.Fatal("worker UID guard failed")
+	}
+	mark("identity_allowlist", map[string]interface{}{"apiLoopback": apiURL.Host, "clusterUID": clusterUID, "namespaceUID": namespaceUID, "workerUID": worker.UID})
+	type fixtureProof struct {
+		UID     types.UID `json:"uid"`
+		SpecSHA string    `json:"specSHA256"`
+		PodUIDs []string  `json:"podUIDs"`
+	}
+	hash := func(x interface{}) string {
+		b, _ := json.Marshal(x)
+		d := sha256.Sum256(b)
+		return hex.EncodeToString(d[:])
+	}
+	captureFixture := func(ns, name string, expected types.UID) fixtureProof {
+		d, e := c.Typed.AppsV1().Deployments(ns).Get(ctx, name, metav1.GetOptions{})
+		if e != nil || d.UID != expected || d.Labels[workspaceRealOwnerLabel] != labID || d.Labels[workspaceRealProfileLabel] != profile {
+			t.Fatal("existing fixture identity guard failed")
+		}
+		sel, e := metav1.LabelSelectorAsSelector(d.Spec.Selector)
+		if e != nil {
+			t.Fatal("fixture selector unavailable")
+		}
+		pods, e := c.Typed.CoreV1().Pods(ns).List(ctx, metav1.ListOptions{LabelSelector: sel.String()})
+		if e != nil {
+			t.Fatal("fixture Pod read failed")
+		}
+		uids := []string{}
+		for _, pod := range pods.Items {
+			uids = append(uids, string(pod.UID))
+		}
+		sort.Strings(uids)
+		return fixtureProof{d.UID, hash(d.Spec), uids}
+	}
+	serverBefore := captureFixture("kvml-fbf634e8-06-server", "http-server", "fff4de0c-4ef4-46d1-8255-4c98dc9fe921")
+	trafficBefore := captureFixture(namespace, "traffic", "4a3780de-63c1-4df7-89f1-1021f26c44d7")
+	checkFixtures := func() {
+		if !reflect.DeepEqual(serverBefore, captureFixture("kvml-fbf634e8-06-server", "http-server", serverBefore.UID)) || !reflect.DeepEqual(trafficBefore, captureFixture(namespace, "traffic", trafficBefore.UID)) {
+			t.Fatal("existing fixture UID/spec/PodUID changed")
+		}
+		mark("other_fixtures_unchanged", map[string]interface{}{"server": serverBefore, "traffic": trafficBefore})
+	}
+	if err = s.ConfigureWorkspace(filepath.Join(t.TempDir(), "app-data"), contextName, namespace); err != nil {
+		t.Fatal("isolated workspace unavailable")
+	}
+	doc := s.workspace.store.Snapshot()
+	var harbor ws.Harbor
+	for _, h := range doc.Harbors {
+		if reflect.DeepEqual(h.Namespaces, []string{namespace}) {
+			harbor = h
+		}
+	}
+	if harbor.ID == "" {
+		t.Fatal("isolated scoped harbor unavailable")
+	}
+	mux := http.NewServeMux()
+	s.Register(mux)
+	gateway := httptest.NewServer(mux)
+	t.Cleanup(gateway.Close)
+	base, _ := url.Parse(gateway.URL)
+	if ip := net.ParseIP(base.Hostname()); ip == nil || !ip.IsLoopback() {
+		t.Fatal("gateway loopback guard")
+	}
+	evidence["gatewayURL"] = gateway.URL
+	mark("isolated_gateway", map[string]interface{}{"loopbackURL": gateway.URL, "workspaceID": doc.ID, "harborID": harbor.ID, "activeAppPortUntouched": 19846})
+	jar, _ := cookiejar.New(nil)
+	transport := &http.Transport{Proxy: nil, ResponseHeaderTimeout: 4 * time.Second}
+	t.Cleanup(transport.CloseIdleConnections)
+	client := &http.Client{Jar: jar, Transport: transport, Timeout: 5 * time.Second}
+	scope := url.Values{"workspaceId": {doc.ID}, "harborId": {harbor.ID}, "tabId": {"owned-" + operation + "-phase"}}
+	nonce := ""
+	req := func(method, path string, q url.Values, body interface{}) workspaceAcceptanceResponse {
+		return workspaceAcceptanceRequest(ctx, client, base, method, path, q, body, nonce, "")
+	}
+	requireCode := func(v workspaceAcceptanceResponse, want int, label string) {
+		if v.err != nil || v.status != want {
+			t.Fatalf("%s HTTP%d expected%d; no response body logged", label, v.status, want)
+		}
+		mark(label, map[string]interface{}{"httpStatus": v.status})
+	}
+	diagnostic := req("GET", "/api/connection", scope, nil)
+	requireCode(diagnostic, 200, "readonly_session_diagnostic")
+	var info struct {
+		ConnectionID      string             `json:"connectionID"`
+		ReadOnly          bool               `json:"readOnly"`
+		ManagementEnabled bool               `json:"managementEnabled"`
+		Identity          connectionIdentity `json:"identity"`
+	}
+	if json.Unmarshal(diagnostic.body, &info) != nil || info.ConnectionID == "" || !info.ReadOnly || info.ManagementEnabled || info.Identity.ClusterUID != clusterUID || info.Identity.Confidence != "verified" {
+		t.Fatal("gateway session identity/readonly guard")
+	}
+	nonce = info.ConnectionID
+	runID := operation + "-" + strings.ReplaceAll(uuid.NewString(), "-", "")[:16]
+	name := "qa-" + runID
+	selector := runLabel + "=" + runID
+	var ownedUID types.UID
+	cleanup := func() {
+		clean, stopClean := context.WithTimeout(context.Background(), 35*time.Second)
+		defer stopClean()
+		if e := guard(clean); e != nil {
+			t.Error("cleanup identity guard failed")
+			return
+		}
+		d, e := c.Typed.AppsV1().Deployments(namespace).Get(clean, name, metav1.GetOptions{})
+		if e == nil {
+			if d.Labels[runLabel] != runID || d.Labels[workspaceRealOwnerLabel] != labID || (ownedUID != "" && d.UID != ownedUID) {
+				t.Error("cleanup ownership guard refused")
+				return
+			}
+			ownedUID = d.UID
+			rv := d.ResourceVersion
+			fg := metav1.DeletePropagationForeground
+			five := int64(5)
+			e = c.Typed.AppsV1().Deployments(namespace).Delete(clean, name, metav1.DeleteOptions{Preconditions: &metav1.Preconditions{UID: &ownedUID, ResourceVersion: &rv}, PropagationPolicy: &fg, GracePeriodSeconds: &five})
+			if e != nil && !apierrors.IsNotFound(e) {
+				t.Error("UID/RV cleanup rejected")
+				return
+			}
+		} else if !apierrors.IsNotFound(e) {
+			t.Error("cleanup GET unavailable")
+			return
+		}
+		gvr := schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}
+		for clean.Err() == nil {
+			_, e1 := c.Typed.AppsV1().Deployments(namespace).Get(clean, name, metav1.GetOptions{})
+			_, e2 := c.Dynamic.Resource(gvr).Namespace(namespace).Get(clean, name, metav1.GetOptions{})
+			pods, e3 := c.Typed.CoreV1().Pods(namespace).List(clean, metav1.ListOptions{LabelSelector: selector})
+			sets, e4 := c.Typed.AppsV1().ReplicaSets(namespace).List(clean, metav1.ListOptions{LabelSelector: selector})
+			if apierrors.IsNotFound(e1) && apierrors.IsNotFound(e2) && e3 == nil && e4 == nil && len(pods.Items) == 0 && len(sets.Items) == 0 {
+				mark("cleanup_verified", map[string]interface{}{"deploymentUID": ownedUID, "typedGET404": true, "dynamicGVKGET404": true, "podLabelListCount": 0, "replicaSetLabelListCount": 0, "UIDAndRVDeletePreconditions": true})
+				evidence["cleanupVerified"] = true
+				priorCtx := ctx
+				ctx = clean
+				checkFixtures()
+				ctx = priorCtx
+				evidence["postCleanupFixtureHashesEqual"] = true
+				return
+			}
+			time.Sleep(200 * time.Millisecond)
+		}
+		t.Error("owned cleanup absence deadline")
+	}
+	t.Cleanup(cleanup)
+	if _, e := c.Typed.AppsV1().Deployments(namespace).Get(ctx, name, metav1.GetOptions{}); !apierrors.IsNotFound(e) {
+		t.Fatal("unique fixture absence not proved")
+	}
+	labels := map[string]string{runLabel: runID, workspaceRealOwnerLabel: labID, workspaceRealProfileLabel: profile}
+	two := int32(2)
+	five := int64(5)
+	dep := &appsv1.Deployment{TypeMeta: metav1.TypeMeta{APIVersion: "apps/v1", Kind: "Deployment"}, ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: namespace, Labels: labels}, Spec: appsv1.DeploymentSpec{Replicas: &two, Selector: &metav1.LabelSelector{MatchLabels: map[string]string{runLabel: runID}}, Strategy: appsv1.DeploymentStrategy{Type: appsv1.RecreateDeploymentStrategyType}, Template: corev1.PodTemplateSpec{ObjectMeta: metav1.ObjectMeta{Labels: labels}, Spec: corev1.PodSpec{TerminationGracePeriodSeconds: &five, Affinity: &corev1.Affinity{NodeAffinity: &corev1.NodeAffinity{RequiredDuringSchedulingIgnoredDuringExecution: &corev1.NodeSelector{NodeSelectorTerms: []corev1.NodeSelectorTerm{{MatchFields: []corev1.NodeSelectorRequirement{{Key: "metadata.name", Operator: corev1.NodeSelectorOpIn, Values: []string{worker.Name}}}}}}}}, Containers: []corev1.Container{{Name: "idle", Image: "busybox:1.37.0", ImagePullPolicy: corev1.PullIfNotPresent, Command: []string{"sh", "-c", "trap 'exit 0' TERM; while true; do sleep 1; done"}, Resources: corev1.ResourceRequirements{Requests: corev1.ResourceList{corev1.ResourceCPU: resource.MustParse("5m"), corev1.ResourceMemory: resource.MustParse("8Mi")}, Limits: corev1.ResourceList{corev1.ResourceCPU: resource.MustParse("50m"), corev1.ResourceMemory: resource.MustParse("32Mi")}}}}}}}}
+	q := url.Values{}
+	for k, v := range scope {
+		q[k] = v
+	}
+	q.Set("group", "apps")
+	q.Set("version", "v1")
+	q.Set("resource", "deployments")
+	q.Set("namespace", namespace)
+	sequence := []int{2, 3, 1}
+	if operation == "resources" {
+		sequence = []int{2, 2}
+	}
+	mark("owned_fixture_plan_before_mutation", map[string]interface{}{"namespace": namespace, "namespaceUID": namespaceUID, "name": name, "runLabelKey": runLabel, "runLabelValue": runID, "ownerLabelKey": workspaceRealOwnerLabel, "ownerLabelValue": labID, "profile": profile, "kind": "Deployment", "image": "busybox:1.37.0", "replicas": sequence, "operation": operation})
+	// Prove production session grant enforcement without mutating Kubernetes.
+	requireCode(req("POST", "/api/resources", q, map[string]interface{}{"object": dep}), 403, "readonly_create_rejected")
+	requireCode(req("POST", "/api/management", scope, map[string]interface{}{"enabled": true, "context": contextName, "namespace": namespace, "connectionID": nonce}), 200, "explicit_management_grant")
+	if err = guard(ctx); err != nil {
+		t.Fatal("pre-create guard")
+	}
+	requireCode(req("POST", "/api/resources", q, map[string]interface{}{"object": dep}), 201, "owned_deployment_create")
+	gvr := schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}
+	knownOldPodRS := map[types.UID]types.UID{}
+	var observedPodRecords []releaseOperationPodRecord
+	readReady := func(want int32) *appsv1.Deployment {
+		until := time.Now().Add(40 * time.Second)
+		for time.Now().Before(until) && ctx.Err() == nil {
+			d, e := c.Typed.AppsV1().Deployments(namespace).Get(ctx, name, metav1.GetOptions{})
+			if e != nil || d.Labels[runLabel] != runID || d.Labels[workspaceRealOwnerLabel] != labID {
+				t.Fatal("owned typed GET identity failed")
+			}
+			if ownedUID != "" && d.UID != ownedUID {
+				t.Fatal("owned UID changed")
+			}
+			ownedUID = d.UID
+			u, e := c.Dynamic.Resource(gvr).Namespace(namespace).Get(ctx, name, metav1.GetOptions{})
+			if e != nil || u.GetUID() != ownedUID || u.GetKind() != "Deployment" || u.GetAPIVersion() != "apps/v1" {
+				t.Fatal("dynamic GVK/UID readback failed")
+			}
+			pods, e := c.Typed.CoreV1().Pods(namespace).List(ctx, metav1.ListOptions{LabelSelector: selector})
+			if e != nil {
+				t.Fatal("owned Pod LIST failed")
+			}
+			if operation != "resources" && len(pods.Items) > 3 {
+				t.Fatal("more than3ownedPods")
+			}
+			if operation == "resources" {
+				records := []releaseOperationPodRecord{}
+				for _, pod := range pods.Items {
+					rec := releaseOperationPodRecord{UID: pod.UID, Phase: pod.Status.Phase, DeletionTimestamp: pod.DeletionTimestamp}
+					if len(pod.Spec.Containers) != 1 || pod.Spec.Containers[0].Name != "idle" {
+						t.Fatal("unexpected resource fixture container")
+					}
+					rec.LimitCPUMilli = pod.Spec.Containers[0].Resources.Limits.Cpu().MilliValue()
+					rec.LimitMemoryBytes = pod.Spec.Containers[0].Resources.Limits.Memory().Value()
+					for _, ref := range pod.OwnerReferences {
+						if ref.Kind != "ReplicaSet" || ref.Controller == nil || !*ref.Controller {
+							continue
+						}
+						rs, e := c.Typed.AppsV1().ReplicaSets(namespace).Get(ctx, ref.Name, metav1.GetOptions{})
+						if e != nil || rs.UID != ref.UID || rs.Labels[runLabel] != runID {
+							t.Fatal("resource envelope ReplicaSet identity guard")
+						}
+						rec.OwnerRSUID = rs.UID
+						for _, parent := range rs.OwnerReferences {
+							if parent.Kind == "Deployment" && parent.UID == ownedUID && parent.Controller != nil && *parent.Controller {
+								rec.OwnerVerified = true
+							}
+						}
+					}
+					records = append(records, rec)
+				}
+				observedPodRecords = records
+				envelopeErr := releaseOperationPodEnvelope(operation, d.Spec.Strategy.Type, records, knownOldPodRS)
+				if len(records) > 2 || envelopeErr != nil {
+					category := "allowed_exact_old_terminal_deleting_records"
+					if envelopeErr != nil {
+						category = envelopeErr.Error()
+					}
+					mark("resource_API_Pod_envelope_trace", map[string]interface{}{"totalAPIObjects": len(records), "strategy": d.Spec.Strategy.Type, "knownOldPodReplicaSets": knownOldPodRS, "records": records, "category": category, "declaredWorstLimits": map[string]interface{}{"cpuMilli": 300, "memoryBytes": 192 * 1024 * 1024}, "usageClaim": false})
+				}
+				if envelopeErr != nil {
+					t.Fatal("resource Pod envelope rejected; exact safe trace retained")
+				}
+			}
+			ready := int32(0)
+			chain := []interface{}{}
+			for _, pod := range pods.Items {
+				ok := false
+				for _, condition := range pod.Status.Conditions {
+					if condition.Type == corev1.PodReady && condition.Status == corev1.ConditionTrue && pod.DeletionTimestamp == nil {
+						ok = true
+					}
+				}
+				if !ok {
+					continue
+				}
+				if pod.Labels[runLabel] != runID || pod.Spec.NodeName != worker.Name {
+					t.Fatal("Pod owner/node guard")
+				}
+				linked := false
+				for _, ref := range pod.OwnerReferences {
+					if ref.Kind != "ReplicaSet" || ref.Controller == nil || !*ref.Controller {
+						continue
+					}
+					rs, e := c.Typed.AppsV1().ReplicaSets(namespace).Get(ctx, ref.Name, metav1.GetOptions{})
+					if e != nil || rs.UID != ref.UID || rs.Labels[runLabel] != runID {
+						t.Fatal("ReplicaSet UID guard")
+					}
+					for _, parent := range rs.OwnerReferences {
+						if parent.Kind == "Deployment" && parent.UID == ownedUID && parent.Controller != nil && *parent.Controller {
+							linked = true
+							chain = append(chain, map[string]interface{}{"podUID": pod.UID, "replicaSetUID": rs.UID, "deploymentUID": ownedUID})
+						}
+					}
+				}
+				if !linked {
+					t.Fatal("Pod→ReplicaSet→Deployment chain missing")
+				}
+				ready++
+			}
+			if d.Spec.Replicas != nil && *d.Spec.Replicas == want && d.Status.ObservedGeneration >= d.Generation && d.Status.Replicas == want && d.Status.ReadyReplicas == want && d.Status.AvailableReplicas == want && d.Status.UpdatedReplicas == want && ready == want && len(pods.Items) == int(want) {
+				mark("actual_rollout_ready", map[string]interface{}{"replicas": want, "UID": ownedUID, "resourceVersion": d.ResourceVersion, "generation": d.Generation, "observedGeneration": d.Status.ObservedGeneration, "typedDynamicUIDMatch": true, "ownerChains": chain})
+				return d
+			}
+			time.Sleep(300 * time.Millisecond)
+		}
+		t.Fatal("actual controller/Ready convergence deadline")
+		return nil
+	}
+	initial := readReady(2)
+	checkFixtures()
+	if operation == "resources" {
+		for _, rec := range observedPodRecords {
+			knownOldPodRS[rec.UID] = rec.OwnerRSUID
+		}
+		if len(knownOldPodRS) != 2 {
+			t.Fatal("initial two exact old Pod/ReplicaSet UIDs not captured")
+		}
+		mark("initial_known_old_Pod_UID_RS_set", knownOldPodRS)
+		podUIDs := func() []string {
+			pods, e := c.Typed.CoreV1().Pods(namespace).List(ctx, metav1.ListOptions{LabelSelector: selector})
+			if e != nil || len(pods.Items) != 2 {
+				t.Fatal("resource phase requires exactly2ownedPods")
+			}
+			ids := []string{}
+			for _, pod := range pods.Items {
+				ids = append(ids, string(pod.UID))
+			}
+			sort.Strings(ids)
+			return ids
+		}
+		beforePodUIDs := podUIDs()
+		beforeTemplateSHA := hash(initial.Spec.Template)
+		quantities := func(cpuRequest, memoryRequest, cpuLimit, memoryLimit string) map[string]interface{} {
+			return map[string]interface{}{"requests": map[string]interface{}{"cpu": cpuRequest, "memory": memoryRequest}, "limits": map[string]interface{}{"cpu": cpuLimit, "memory": memoryLimit}}
+		}
+		body := func(d *appsv1.Deployment, values map[string]interface{}) map[string]interface{} {
+			return map[string]interface{}{"context": contextName, "group": "apps", "version": "v1", "resource": "deployments", "namespace": namespace, "name": name, "uid": string(d.UID), "resourceVersion": d.ResourceVersion, "action": "resources", "containers": []interface{}{map[string]interface{}{"name": "idle", "resources": values}}}
+		}
+		current := func() *appsv1.Deployment {
+			d, e := c.Typed.AppsV1().Deployments(namespace).Get(ctx, name, metav1.GetOptions{})
+			if e != nil || d.UID != ownedUID || d.Labels[runLabel] != runID || d.Labels[workspaceRealOwnerLabel] != labID {
+				t.Fatal("resource template exact UID/owner read failed")
+			}
+			return d
+		}
+		for _, bad := range []struct {
+			name   string
+			values map[string]interface{}
+		}{
+			{"invalid_quantity", quantities("not-a-quantity", "8Mi", "50m", "32Mi")},
+			{"request_exceeds_limit", quantities("200m", "8Mi", "100m", "32Mi")},
+		} {
+			if err = guard(ctx); err != nil {
+				t.Fatal("pre-resource-negative identity guard")
+			}
+			d := current()
+			requireCode(req("POST", "/api/actions", scope, body(d, bad.values)), 422, "resources_"+bad.name+"_rejected")
+			after := current()
+			if after.Generation != initial.Generation || hash(after.Spec.Template) != beforeTemplateSHA || !reflect.DeepEqual(podUIDs(), beforePodUIDs) {
+				t.Fatal("rejected resource request changed template or PodUIDs")
+			}
+			mark("rejected_resources_template_unchanged", map[string]interface{}{"case": bad.name, "deploymentUID": ownedUID, "generation": after.Generation, "templateSHA256": beforeTemplateSHA, "podUIDs": beforePodUIDs})
+		}
+		want := quantities("10m", "16Mi", "100m", "64Mi")
+		if err = guard(ctx); err != nil {
+			t.Fatal("pre-resource-positive identity guard")
+		}
+		requireCode(req("POST", "/api/actions", scope, body(current(), want)), 202, "resources_template_HTTP_accepted")
+		after := readReady(2)
+		if after.UID != initial.UID || after.Generation != initial.Generation+1 || after.Status.ObservedGeneration < after.Generation {
+			t.Fatal("resource template generation/UID proof failed")
+		}
+		assertQuantities := func(containers []corev1.Container) {
+			if len(containers) != 1 || containers[0].Name != "idle" {
+				t.Fatal("resource fixture container identity changed")
+			}
+			rr := containers[0].Resources
+			if len(rr.Requests) != 2 || len(rr.Limits) != 2 {
+				t.Fatal("resource request/limit dimensions changed")
+			}
+			for _, check := range []struct {
+				got  resource.Quantity
+				want string
+			}{{rr.Requests[corev1.ResourceCPU], "10m"}, {rr.Requests[corev1.ResourceMemory], "16Mi"}, {rr.Limits[corev1.ResourceCPU], "100m"}, {rr.Limits[corev1.ResourceMemory], "64Mi"}} {
+				if check.got.Cmp(resource.MustParse(check.want)) != 0 {
+					t.Fatal("actual CPU/memory request/limit quantity mismatch")
+				}
+			}
+		}
+		assertQuantities(after.Spec.Template.Spec.Containers)
+		preserved := after.Spec.DeepCopy()
+		preserved.Template.Spec.Containers[0].Resources = initial.Spec.Template.Spec.Containers[0].Resources
+		if hash(preserved) != hash(initial.Spec) {
+			t.Fatal("resource action changed unrelated Deployment spec fields")
+		}
+		pods, e := c.Typed.CoreV1().Pods(namespace).List(ctx, metav1.ListOptions{LabelSelector: selector})
+		if e != nil || len(pods.Items) != 2 {
+			t.Fatal("resource rollout exact2Pod readback failed")
+		}
+		newIDs := []string{}
+		for _, pod := range pods.Items {
+			assertQuantities(pod.Spec.Containers)
+			if pod.Labels[runLabel] != runID {
+				t.Fatal("new Pod run ownership changed")
+			}
+			for _, oldUID := range beforePodUIDs {
+				if string(pod.UID) == oldUID {
+					t.Fatal("template update did not replace both PodUIDs")
+				}
+			}
+			newIDs = append(newIDs, string(pod.UID))
+		}
+		sort.Strings(newIDs)
+		checkFixtures()
+		mark("resource_template_and_Pod_quantities_verified", map[string]interface{}{"deploymentUID": ownedUID, "generationBefore": initial.Generation, "generationAfter": after.Generation, "observedGeneration": after.Status.ObservedGeneration, "resources": want, "oldPodUIDs": beforePodUIDs, "newPodUIDs": newIDs, "unrelatedDeploymentSpecPreserved": true, "readinessProof": "actual2Ready with owner chains", "metricsOrUsageClaim": false})
+		return
+	}
+	action := func(d *appsv1.Deployment, want int64, uid, rv string) workspaceAcceptanceResponse {
+		return req("POST", "/api/actions", scope, Action{Context: contextName, Group: "apps", Version: "v1", Resource: "deployments", Namespace: namespace, Name: name, UID: uid, ResourceVersion: rv, Action: "scale", Replicas: want})
+	}
+	if err = guard(ctx); err != nil {
+		t.Fatal("pre-negative guard")
+	}
+	requireCode(action(initial, 3, "synthetic-wrong-uid", initial.ResourceVersion), 409, "stale_UID_scale_rejected")
+	if err = guard(ctx); err != nil {
+		t.Fatal("pre-scale3 guard")
+	}
+	requireCode(action(initial, 3, string(ownedUID), initial.ResourceVersion), 202, "scale_to3_HTTP_accepted")
+	three := readReady(3)
+	checkFixtures()
+	if err = guard(ctx); err != nil {
+		t.Fatal("pre-staleRV guard")
+	}
+	requireCode(action(three, 1, string(ownedUID), initial.ResourceVersion), 409, "stale_RV_scale_rejected")
+	if err = guard(ctx); err != nil {
+		t.Fatal("pre-scale1 guard")
+	}
+	requireCode(action(three, 1, string(ownedUID), three.ResourceVersion), 202, "scale_to1_HTTP_accepted")
+	one := readReady(1)
+	if one.Generation <= initial.Generation {
+		t.Fatal("scale generation did not advance")
+	}
+	checkFixtures()
+	mark("scale_sequence_complete", []int{2, 3, 1})
+}

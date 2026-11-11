@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "phase": "TEST04.04 current-helper Scale regression",
+  "rootReportedHead": "9e87141b",
+  "helperSHA256": "92637b06e8bcec63e8be979123d14f075ce0f17c68c75441f989765b4266d0cc",
+  "helperUnchanged": true,
+  "sourceUnchangedDuringTest": true,
+  "singleScaleRealTestOnly": true,
+  "strictScaleAPIPodCeiling": 3,
+  "readySequence": [
+    {
+      "replicas": 2,
+      "UID": "aecaaf08-ae77-422c-841f-8ffac74e25f4",
+      "generation": 1,
+      "observedGeneration": 1,
+      "ownerChainCount": 2
+    },
+    {
+      "replicas": 3,
+      "UID": "aecaaf08-ae77-422c-841f-8ffac74e25f4",
+      "generation": 2,
+      "observedGeneration": 2,
+      "ownerChainCount": 3
+    },
+    {
+      "replicas": 1,
+      "UID": "aecaaf08-ae77-422c-841f-8ffac74e25f4",
+      "generation": 3,
+      "observedGeneration": 3,
+      "ownerChainCount": 1
+    }
+  ],
+  "negativeHTTPStatuses": {
+    "readonly_create_rejected": 403,
+    "stale_UID_scale_rejected": 409,
+    "stale_RV_scale_rejected": 409
+  },
+  "cleanup": {
+    "UIDAndRVDeletePreconditions": true,
+    "deploymentUID": "aecaaf08-ae77-422c-841f-8ffac74e25f4",
+    "dynamicGVKGET404": true,
+    "podLabelListCount": 0,
+    "replicaSetLabelListCount": 0,
+    "typedGET404": true
+  },
+  "postCleanupFixtureHashesEqual": true,
+  "resumeElapsedSeconds": 105.723,
+  "resumeMaxMonitorGapSeconds": 0.308,
+  "realTestElapsedSeconds": 8.66092525,
+  "testProcessElapsedSeconds": 16.234,
+  "maxRealTestGapSeconds": 0.256054,
+  "maxOuterGapSeconds": 0.288,
+  "phaseElapsedSecondsAtFinalization": 430.129894,
+  "withinTotal540s": true,
+  "powerAndDiskGatesHeld": true,
+  "initialBatteryPercent": 21,
+  "finalBatteryPercent": 24,
+  "nodesKeptWarm": 2,
+  "noAppRelayProcessRegistered": true,
+  "notNewMinikubeWorkerProvisioningAcceptance": true,
+  "actualDynamicCoverage": "GVK/UID cross-check; exact counts and observedGeneration from typed GET",
+  "finalizedAt": "2026-11-11T17:35:11.294087+00:00"
+}

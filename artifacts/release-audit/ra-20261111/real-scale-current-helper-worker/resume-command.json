@@ -1,0 +1,183 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py",
+    "up",
+    "--profile",
+    "06-limanlar-arasi-ag",
+    "--telemetry",
+    "--state-dir",
+    "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01",
+    "--minikube-binary",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+    "--hubble-binary",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/patched-hubble-v1.20.2/hubble-v1.20.2-kubeview-patched.1"
+  ],
+  "startedAt": "2026-11-11T17:30:11.472066+00:00",
+  "warmupMaxSeconds": 240,
+  "effectiveDeadline": "2026-11-11T17:32:26.164193+00:00",
+  "powerSamples": [
+    {
+      "at": "2026-11-11T17:30:11.482717+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453400940544
+    },
+    {
+      "at": "2026-11-11T17:30:15.550949+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453400215552
+    },
+    {
+      "at": "2026-11-11T17:30:19.620543+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453401509888
+    },
+    {
+      "at": "2026-11-11T17:30:23.670504+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453399973888
+    },
+    {
+      "at": "2026-11-11T17:30:27.723324+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453396832256
+    },
+    {
+      "at": "2026-11-11T17:30:31.798281+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453397143552
+    },
+    {
+      "at": "2026-11-11T17:30:35.850830+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453396004864
+    },
+    {
+      "at": "2026-11-11T17:30:39.909205+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453395841024
+    },
+    {
+      "at": "2026-11-11T17:30:43.974557+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453395886080
+    },
+    {
+      "at": "2026-11-11T17:30:48.038581+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453395664896
+    },
+    {
+      "at": "2026-11-11T17:30:52.096792+00:00",
+      "AC": true,
+      "batteryPercent": 22,
+      "freeDiskBytes": 453395681280
+    },
+    {
+      "at": "2026-11-11T17:30:56.169254+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453395316736
+    },
+    {
+      "at": "2026-11-11T17:31:00.228449+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453396307968
+    },
+    {
+      "at": "2026-11-11T17:31:04.291357+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453393391616
+    },
+    {
+      "at": "2026-11-11T17:31:08.382131+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453391331328
+    },
+    {
+      "at": "2026-11-11T17:31:12.484903+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453389598720
+    },
+    {
+      "at": "2026-11-11T17:31:16.550623+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387878400
+    },
+    {
+      "at": "2026-11-11T17:31:20.618216+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387407360
+    },
+    {
+      "at": "2026-11-11T17:31:24.685721+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387399168
+    },
+    {
+      "at": "2026-11-11T17:31:28.753766+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387227136
+    },
+    {
+      "at": "2026-11-11T17:31:32.831405+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387362304
+    },
+    {
+      "at": "2026-11-11T17:31:36.900374+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453388029952
+    },
+    {
+      "at": "2026-11-11T17:31:40.972498+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387984896
+    },
+    {
+      "at": "2026-11-11T17:31:45.049955+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387780096
+    },
+    {
+      "at": "2026-11-11T17:31:49.103201+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387829248
+    },
+    {
+      "at": "2026-11-11T17:31:53.163019+00:00",
+      "AC": true,
+      "batteryPercent": 23,
+      "freeDiskBytes": 453387735040
+    }
+  ],
+  "exitCode": 0,
+  "stopReason": null,
+  "elapsedSeconds": 105.723,
+  "maxMonitorGapSeconds": 0.308,
+  "completedAt": "2026-11-11T17:31:57.195514+00:00",
+  "status": "PASS"
+}

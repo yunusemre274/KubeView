@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:32:59.949594+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:39:52.194020+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:147; IN_PROGRESS:21; FAILED:1; BLOCKED:2; RETEST_REQUIRED:1; VERIFIED_DONE:28; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:147; IN_PROGRESS:20; FAILED:1; BLOCKED:2; RETEST_REQUIRED:1; VERIFIED_DONE:29; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -27,7 +27,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
-| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:3, VERIFIED_DONE:1 | Henüz yok |
+| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
@@ -1637,11 +1637,11 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-DEPENDENCY-WORKER; root kodinceleme
-- Kaynak / build / paket kimliği: APIserver d0be9753/ef6875b0 runtimebyte eşit; opt-in helperd6c246b2…; exactmanifest
-- Ortam / kullanılan kimlik ve yetki: Owned06 e84bb50e…/ns863e13d5…; ayrıloopbackgateway56907, adminscope HTTP/session/grant/SSAR; aktif19846değişmedi.
+- Kaynak / build / paket kimliği: Current helper SHA92637b06e8bcec63e8be979123d14f075ce0f17c68c75441f989765b4266d0cc, önce/sonra eşit; sourceHEAD9e87141b + sonraki yalnız audit/test checkpoint'leri. Ürün handler'ı değişmedi.
+- Ortam / kullanılan kimlik ve yetki: Owned06 actual Kubernetes1.35.1, exact cluster/marker/namespace/worker UID; ayrı loopback gateway59914 + gerçek session/grant/SSAR. AC mevcut, battery21→24%.
 - Başlangıç zamanı: 2026-11-11T16:09:18.858977Z
-- Bitiş zamanı: 2026-11-11T16:16:51Z;9.438sn actualtest/18.206snouter
-- Durum: IN_PROGRESS
+- Bitiş zamanı: real-scale-current-helper-worker/manifest.json kesin UTC; actual8.66092525sn/outer16.234sn; toplam430.130sn/540sn sınırı.
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-04.04-S1 — Hazırlık
@@ -1662,6 +1662,9 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - ProdHTTPsession+scopedgrant+deployments/scaleSSAR+scale-subresource gerçekKubernetesAPI kullandı. API202tekbaşınabaşarısayılmadı.
 - Kanıt: artifacts/release-audit/ra-20261111/real-scale-retest-worker/REPORT.md; result.json; timeline.json
 
+- [x] Current helper üzerinde tek gerçek Scale2→3→1: aynı Deployment UIDaecaaf08-ae77-422c-841f-8ffac74e25f4, generation/observed1→2→3. Typed desired/current/Ready/updated/available ve her Ready Pod→RS→Deployment owner UID zinciri doğrulandı; dinamik GET GVK/UID eşleşti.
+- HTTP202 tek başına başarı sayılmadı; gerçek controller convergence gözlendi.
+
 #### TEST-04.04-S3 — Negatif / sınır / arıza kontrolü
 - [ ] StaleUID/RV409vepozitifscale kontrolleriçalışmadı.
 - Guardsonrasıda hiçbirKubernetesmutation/listener/grant yok; ilkFAILsilinmedi.
@@ -1670,6 +1673,8 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - [x] Retestreadonlycreate403+wrongUIDscale409+staleRVscale409; ardındanyetkiliscaleaccepted+realReady.
 - [x] Grace5s/UID+RVForegroundDelete; typedveDynamicGET404, Pod/RSrunlabelLIST0. DiğerHTTPserver/trafficUID/specSHA/PodUIDlericleanupsonrasıdaeşit.
 - [x] Gap0.256344s, bounded9.438s; CPU/FPSkanıtıdeğil.
+
+- [x] Readonlycreate403, yanlışUID409, eski resourceVersion409 tekrar geçti. Scale strict max3 Pod korundu; Resources modu çalıştırılmadı ve helper değiştirilmedi.
 
 #### TEST-04.04-S4 — Bulgular ve düzeltme
 - Bulgu: testfixturekurulumu; ürünscalehatası kanıtlanmadı.
@@ -1687,16 +1692,21 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 
 - Ortak helper Resources testi için çıkarıldı/ayrık exact opt-in eklendi. 46ec5508 gerçek scalePASS tarihsel olarak korunur; yeni helper kaynağı için bir Scale regresyonu gereklidir. Ürün scale handler'ı değişmedi, eski kanıt silinmedi.
 
+- [x] Ortak helper değişikliğinden doğan güncel Scale regresyonu bu ayrı real run ile geçti. Eski46ec5508 PASS kendi kaynağında kalır; yeni koşu aynı helperSHA ile önce/sonra doğrulandı.
+- İlk offline/Docker UID guard ve exact mevcut-node resume105.723sn; test örnekleme gap0.256054/0.288sn, güç kesintisi yok. Bunlar performans/CPU ölçümü değildir.
+
 #### TEST-04.04-S6 — Temizlik ve inceleme
 - [x] Yalnızrunlabel+UID/RVileownDeploymentdelete; Pod/RS0, ikiGET404. MevcutfixturehashesvePodUIDleraynı. Gateway/transport/ServerClose döndü, WebSocket açılmadı.
 - [x]22checksumrootyenidenokuyupdoğruladı; roothelperdiff+cleanupkodunuinceledi. Aynıajansistemi, profesyonelüçüncüparti değil.
 - Kanıt: real-scale-retest-worker/SHA256SUMS; source-comparison; first-failure-preservation.
 - Kalan: görselUIscale/animasyon/finalpaket ayrıca; bunlarAPIphasebaşarısıylakapanmaz.
 
+- [x] UID/RV deletion sonrası typed+dynamic404 ve runlabel Pod/RS LIST0; mevcut server/traffic UID/spec/PodUID eşitliği tüm aşamalarda ve cleanup sonrası korundu. Gateway/transport kapandı.
+- [x] Root rapor/current helper source ve21checksum doğruladı. İki original owned node containerı sonraki iş için sıcak; app/host relay kayıtları boş, trafik başlamadı. Bu minikube.4 yeni worker provisioning kabulü değildir.
+
 #### TEST-04.04-K — Faz kararı
-- [x] BİTTİ / DOĞRULANDI
-- Karar: guardedrealKubernetes+prodHTTPscale2→3→1, negatiflervecleanupdoğrulandı. İlkfixtureFAILtarihselkalır.
-- Yenidenkoşul: scalehandler/RBAC/workspace/session/clientversiyonu veya hedeflabkimliği/fixturedeğişimi.
+- [x] BİTTİ / DOĞRULANDI — current helper ile tek gerçek2→3→1 controller/Ready/owner/negatif/cleanup regresyonu geçti. Başarısız ilk setup ve önceki kaynak PASS kayıtları silinmedi.
+- UI/animasyon, restricted kimlik, yeni worker provisioning, final bütün sürüm/performance kapsamına taşınmadı. İlgili helper/scale handler/resource identity sözleşmesi değişirse retest gerekir.
 
 ### TEST-04.05 — CPU/RAM request/limit edit
 
