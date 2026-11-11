@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-11T10:05:24.919001+00:00",
+  "sourceCommit": "cd674800a5724a6d69fefd18ad7629a2f79dd420",
+  "version": {
+    "arch": "arm64",
+    "commit": "cd67480",
+    "os": "darwin",
+    "version": "1.1.0-candidate"
+  },
+  "binary": "bin/kubeview",
+  "binarySHA256": "da5a95552034da0ba300501b39932fc1ae36ed9aa7123d8625a4db2fce415eb6",
+  "embeddedIndexSHA256": "be5e5fa86bd7e8cee74801171b715233a0ec59ac061e46e69c212d5400b52a48",
+  "embeddedMatchesFrontendBuild": true,
+  "scope": "owned empty data dir, absent kubeconfig, loopback18942, readOnly=true; no Kubernetes connection",
+  "remoteRefVerified": true,
+  "stableRelease": false
+}
