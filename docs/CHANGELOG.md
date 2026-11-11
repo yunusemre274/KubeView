@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — backend read-only guard doğrulaması
+
+- Geçerli yönetim oturumu korunurken global read-only'nin doğrudan endpointlerde yazmayı/transport girişini durdurduğu test edildi. Fake mutation sayaçları ve ayrı write-enabled kontroller7test/27alt durumda geçti; Secret okuma ve desteklenmeyen PATCH ayrı tutuldu.
+- Ürün kodu değiştirilmedi. İlk loopback fixture hatası ve düzeltmesi korundu; gerçek Kubernetes/SPDY/provider completion sonucu üretilmedi.
+
 ## 2026-11-11 — dağıtılmış arşiv ve native version kontrolü
 
 - Gerçek CI arşivinin ZIP/tar ve iç/dış provenance kontrolleri kaydedildi. İlk kimlik farkı ve Markdown dönüşümleri exact kaynakla çözüldü; binary çalıştırılmadan guard uygulandı.

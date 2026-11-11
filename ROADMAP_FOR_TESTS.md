@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:06:52.855822+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:11:44.038771+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:148; IN_PROGRESS:22; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:26; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:148; IN_PROGRESS:21; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:27; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -32,7 +32,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
-| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:4, VERIFIED_DONE:2 | Henüz yok |
+| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:3, VERIFIED_DONE:3 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
@@ -5288,12 +5288,12 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: RELEASE SECURITY WORKER + ANA MÜDÜR
-- Kaynak / build / paket kimliği: 4ec526b7 backend runtime aynı; yeni release_origin_preview_test.go sentetik test farkı
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Sorumlu: KV-SECURITY-WORKER; root kanıt/kaynak ikinci incelemesi
+- Kaynak / build / paket kimliği: de0b41eb + yeni test helper SHA13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e. Ürün server/auth/resource kaynakları değişmedi.
+- Ortam / kullanılan kimlik ve yetki: In-process production Register/protect, gerçek session/nonce/grant, typed/dynamic fake client ve sentetik nesneler. Gerçek Kubernetes/SPDY/provider veya browser testi değil.
+- Başlangıç zamanı: 2026-11-11T17:08:05.794317Z (başarılı retest; ilk FAIL ayrı tutulur)
+- Bitiş zamanı: 2026-11-11T17:08:12.024351Z;7top/27alt durum PASS,0SKIP.
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-09.02-S1 — Hazırlık
@@ -5307,36 +5307,33 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md ve preview-final-tests.log
 - Sonuç: unit alt kapsam PASS, geniş faz açık.
 
+- [x] Yeni paired unit kontrol: gerçek diagnostic+nonce+enabled grant tutulurken globalReadOnly=true yazmaları403 ile durdurdu. Write-enabled CRUD/restart/resize pozitifleri fake mutation'a ulaştı. Exec/forward pozitifleri Pod GET sonrası eksik transport503, provider pozitif unconfigured503: gerçek işlem başarısı iddiası yok.
+- [x] Secret metadata GET200 kaldı; unsupported generic PATCH405 read-only guard başarısı sayılmadı. İlk gerçek owned Resources/Scale create403 kanıtları kendi source/run sınırlarında ayrıca korunur.
+
 #### TEST-09.02-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Eksik gerçek/browser/final paket koşulları raporda açık tutulur; SKIP/PASS karışmaz.
 - Gözlenen: ilkCONNECT405varsayım testiFAIL, standard authority404red ile düzeltildi; runtime bypass değildi.
 - Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log ve preview-final-tests.log
 
+- [x] Create/replace/delete/action/resize PATCH/exec/previewcreate/rawforward/provision: geçerli session/grant ile açık read-only403 ve sıfır fake mutation; Pod transport preflight öncesi red doğrulandı. Mevcut management/nonce/namespace/drain ve capability komşu testleri7top/27alt durumla geçti.
+- Gerçek cluster/SPDY/provider tamamlanması bu guard fazının kapsamı değildir; ilgili E2E fazları açık.
+
 #### TEST-09.02-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Yeni üretim bypass bulgusu yok. İlk provisioning fixture, httptest'in non-loopback192.0.2.1 adresinde localOperator tarafından daha erken reddedildi; yalnız sentetik RemoteAddr loopback yapıldı. Güvenlik kontrolü veya assertion gevşetilmedi.
+- Yeni dosya backend/pkg/server/release_readonly_endpoints_test.go; ürün değişmedi. Root'un task faz numarası yanlıştı: worker09.03 yazdı, canonical09.02'dir. Raw rapor korunur ve ROOT_REVIEW.md eşlemeyi açıklar.
 
 #### TEST-09.02-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] İlk harness FAIL korundu; izinli tek loopback-fixture retesti7top/27alt durum,0SKIP ile geçti. GOMAXPROCS1/-p1/-parallel1/timeout30s; önceki ilk45s argv ayrı kayıtlı.
+- [x] Write-enabled pozitifler ve komşu management/namespace/drain/capability yolları geçti. Bu guard deneyi gerçek API operation completion veya concurrency kabulü değildir.
 
 #### TEST-09.02-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Listener/browser/cluster/provider/app başlamadı; sahte clientlar test ömründe kapandı. Root kaynak/rapor ve5checksum doğruladı; yeni ROOT_REVIEW eşleme/sınır kaydını ekledi.
+- Aynı ajan sistemi ikinci incelemesidir; bağımsız profesyonel pentest değildir.
+- Açık existing-preview/global-flag transition testi yapılmadı; READ_ONLY startup yapılandırmasıdır ve geçerli üretim transition yolu saptanmadı. Yeni runtime toggling eklenirse bu yol ayrıca sınanmalı.
 
 #### TEST-09.02-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI — doğrudan endpoint read-only guard ve ayrı write-enabled kontrolleri, sahte mutasyon/transport sayaçlarıyla doğrulandı. İlk hatalı harness denemesi korunur.
+- Kapsam UNIT/synthetic HTTP + önceki gerçek create403 gözlemidir; gerçek exec/forward/provider veya bütün Kubernetes işlemleri geçti denmez. Ayrı TEST09.03 write-grant fazı kapanmaz. Server authorize/routes/session/read-only sözleşmesi değişirse retest gerekir.
 
 ### TEST-09.03 — Hedefe bağlı write-grant
 

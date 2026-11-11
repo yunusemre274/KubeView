@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — doğrudan read-only endpoint kontrolü
+
+- [x] Geçerli session/nonce/grant ile create/replace/delete/action/resize/exec/forward/provider read-only reddi ve sıfır fake mutasyon doğrulandı; write-enabled kontroller ayrı geçti.7test/27alt durum,0SKIP; ilk sentetik adres hatası korundu.
+- [ ] Bu guard kontrolü gerçek exec/SPDY/provider işlemi veya ayrı hedef write-grant izolasyonu değildir. Existing-preview/startup flag-transition sınırı açıkça kaydedildi.
+
 ## 11 Kasım — gerçek CI arşiv incelemesi
 
 - [x] Gerçek ZIP/tar/provenance, bounded member ve runtime allowlist kontrolleri; Markdown dönüşümleri kaynak ve çıktı hashleri ayrılarak doğrulandı. Native Mac `--version` doğru merge kimliğiyle, Go/Node/Vite bulunmayan PATH üzerinde çalıştı ve data dizini açmadı.
