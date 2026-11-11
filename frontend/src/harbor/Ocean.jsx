@@ -198,8 +198,8 @@ export function createOceanResources(quality = "medium", bounds) {
         vec3 sunDirection = normalize(vec3(-0.735, 0.550, -0.396));
         vec3 sunHalf = normalize(sunDirection + worldView);
         float sunAngle = max(dot(surfaceNormal, sunHalf), 0.0);
-        float brokenGlint = pow(sunAngle, 1200.0) * 0.12;
-        float softSheen = pow(sunAngle, 85.0) * 0.008;
+        float brokenGlint = pow(sunAngle, 1200.0) * 0.10;
+        float softSheen = pow(sunAngle, 85.0) * 0.0065;
         waterAppearance += vec3(1.0, 0.92, 0.79) * (brokenGlint + softSheen) * detailFade;
       }
       #include <opaque_fragment>
@@ -389,7 +389,7 @@ export function ShipWake({
       motion.sea !== false && Math.abs(velocity) > 0.02;
     if (mesh.current) mesh.current.visible = Boolean(enabled);
     resources.uniforms.uOpacity.value = enabled
-      ? Math.min(0.86, Math.abs(velocity) * 0.21)
+      ? Math.min(0.70, Math.abs(velocity) * 0.17)
       : 0;
     if (enabled) {
       resources.uniforms.uSpeed.value = Math.min(1.5, Math.abs(velocity) / 9);

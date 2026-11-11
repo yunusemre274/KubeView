@@ -1,5 +1,7 @@
 # Güncel görev durumu
 
+- [x] Kullanıcı incelemesi sonrası dalga/köpük beyazlığı ve güneş parlaması hafif azaltıldı; animasyon ve yoğunluk dağılımı korundu.
+
 ## 11 Kasım — UI 2.0 ikinci görsel düzeltme
 
 - [x] Referansın dört su bölgesinde renk/dalga analizi; mavi-gri/petrol rengi, solda güneş ve ince yatay dalga ayarı.

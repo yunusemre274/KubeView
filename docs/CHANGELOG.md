@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — beyaz dalga izini yumuşatma
+
+- Köpük opaklık tavanı0,86→0,70; güneş parıltısı0,12→0,10 olarak hafif azaltıldı. Hareket, hız ilişkisi ve kıçtan uzaklaştıkça seyrelme korunur.
+
 ## 2026-11-11 — köpük yoğunluğu, referans su rengi ve titreme
 
 - Köpük yakın mesafede yoğun, geride seyrek; zaman/hızla ilerleyen çalkantı ve ince parçalanma. Mevcut deniz/iz/pause/reduced ayarları korunur.
