@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-11-11T15:58:03.800336+00:00",
+  "sourceHEAD": "4a05095ab94fa40ace4785f9da2d7cfe4688f398",
+  "frontendReference": "550400a3",
+  "runtimeReference": "4a05095a",
+  "version": "1.1.0-csp07-4a05095a",
+  "indexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+  "distEmbedAllFilesEqual": true,
+  "serverRuntimeMatchesReference": true,
+  "binary": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/candidate-runtime-csp07/kubeview",
+  "sourceSHA256": {
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "scripts/manual_lab.py": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5",
+    "backend/pkg/server/portforward.go": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be"
+  },
+  "buildCommand": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "build",
+    "-p",
+    "1",
+    "-trimpath",
+    "-ldflags",
+    "-s -w -X main.version=1.1.0-csp07-4a05095a -X main.commit=4a05095ab94fa40ace4785f9da2d7cfe4688f398-main-csp-working-diff",
+    "-o",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/candidate-runtime-csp07/kubeview",
+    "."
+  ],
+  "binarySHA256": "322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2",
+  "buildFinishedAt": "2026-11-11T15:58:06.895791+00:00",
+  "appPID": 13278,
+  "port": 19847,
+  "variant": "M-h05",
+  "non07ProcessRecordsUnchanged": true,
+  "hubbleProcessRecordsAndIdentityUnchanged": true,
+  "appFinishedAt": "2026-11-11T15:58:07.862980+00:00"
+}

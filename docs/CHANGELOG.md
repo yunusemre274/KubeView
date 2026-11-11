@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — ana arayüz CSP savunması
+
+- Frontend handler'a same-origin script ve açık blob Worker kaynağı politikası eklendi. API ve opaque port-forward sandbox'ı global policy eklenmesinden korunur.
+- Main7test/32alt durum PASS; yeni private binary ana module/dünya/header kontrolünü geçti. Normal Chromium tıklama otomasyonu iki kez tamamlanamadığı için runtime kapısı açık; WebKit/inline/worker ve log akışı geçmiş sayılmadı. İlkFAIL ve retest korunur.
+
 ## 2026-11-11 — sağlayıcı bileşen taraması
 
 - Collector1.20.2 ve resmi1.20.4 adayının aynıDB/ARM64 karşılaştırması kaydedildi; kalan High eşleşmeleri açık. İmajlar otomatik kurulmadı, kullanıcı CNI'si değiştirilmedi.

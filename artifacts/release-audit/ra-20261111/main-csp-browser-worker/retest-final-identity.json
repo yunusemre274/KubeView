@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-11T16:06:50.058329+00:00",
+  "owned07PID": 13278,
+  "owned07Port": 19847,
+  "binarySHA256": "322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2",
+  "allOwnedIdentitiesAndListenersVerified": true,
+  "hubbleProcesses": [
+    {
+      "pid": 80336,
+      "port": 19846
+    },
+    {
+      "pid": 80393,
+      "port": 19848
+    }
+  ],
+  "executedRetestHelperSHA256": "6a27b28cc80090e25dd6ca455a426318a86e642410ab0c1c5cb4b7e026fd6980"
+}

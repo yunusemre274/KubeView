@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — güvenlik tarayıcı kabulü
+
+- [x] Ana UI-only CSP ve preview'dan ayrı header bileşimi:7main test/32alt durum.
+- [ ] Aynı adayda normal UI tıklama otomasyonu tamamlanmadı; CSP ihlali gösterilmedi. WebKit/inline/blobWorker/log/settings kabulü açık (TEST11.05).
+- [ ] Hubble1.20.4 CLI adayı iki sonlu buildde binary üretmedi; ikinci koşu gerçek uyku aralığıyla çakıştı. Eski aday/ham kanıtlar korunur; otomatik yeni retry yok.
+
 ## 11 Kasım — uzak harita görünürlüğü
 
 - [x] Sabit sis ufkunda kaybolan tesisler ve dar dikey Pod etiketi;229frontend test/build ve6Chromium/WebKit REPLAY ekranı.

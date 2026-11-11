@@ -1,0 +1,58 @@
+{
+  "startedAt": "2026-11-11T15:59:10.717Z",
+  "source": "Actual private embedded CSP binary + owned M5 TEST/REPLAY HTTP/WS/UI; not real Kubernetes or forward-JS acceptance",
+  "binarySHA256": "322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2",
+  "appPID": 13278,
+  "browsers": [
+    {
+      "engine": "chromium",
+      "startedAt": "2026-11-11T15:59:10.718Z",
+      "status": "FAIL",
+      "stages": [
+        {
+          "name": "01-world",
+          "at": "2026-11-11T15:59:25.242Z",
+          "elapsedWallMs": 14524,
+          "elapsedMonotonicMs": 14523.93375
+        },
+        {
+          "name": "FIRST-FAIL",
+          "at": "2026-11-11T15:59:50.394Z",
+          "elapsedWallMs": 39676,
+          "elapsedMonotonicMs": 39676.113790999996
+        }
+      ],
+      "pageErrors": [],
+      "httpCount": 18,
+      "sleepOrStallGaps": [],
+      "version": "156.0.8078.4",
+      "mainCSP": "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; script-src 'self'; worker-src 'self' blob:",
+      "world": {
+        "nodes": 20,
+        "pods": 300
+      },
+      "resources": {
+        "node": {
+          "uid": "node-0",
+          "name": "worker-001"
+        },
+        "pod": {
+          "uid": "pod-0",
+          "name": "app-0",
+          "namespace": "bench-0"
+        }
+      },
+      "failure": {
+        "type": "TimeoutError",
+        "message": "locator.click: Timeout 7000ms exceeded."
+      },
+      "browserClosed": true,
+      "finishedAt": "2026-11-11T16:00:00.091Z",
+      "elapsedWallMs": 49373,
+      "elapsedMonotonicMs": 49372.56174999999,
+      "boundedValid": true
+    }
+  ],
+  "finishedAt": "2026-11-11T16:00:00.091Z",
+  "status": "FAIL"
+}

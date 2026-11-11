@@ -52,6 +52,14 @@ Pod logları gerçek Kubernetes logs API'sinden, beklenen Pod UID/container ve s
 
 Exec, seçili Pod/container içinde gerçek `pods/exec` yetkisiyle çalışan non-TTY pipe arayüzüdür; host terminali veya tam TTY garantisi değildir. Port-forward kullanıcı yolu seçili UID/port'a bağlı, süreli gerçek HTTP önizlemesidir; genel host/shell proxy veya UDP tüneli değildir. Önizlemede CSP sandbox `allow-scripts allow-forms` kullanılır, `allow-same-origin` verilmez. Upstream yanıt cookie/CORS alanları ve upstream'e giden gateway Authorization/Cookie/connection nonce bilgileri temizlenir. Oturum listesi/okuma/kapatma operatör cookie'sine bağlıdır; revoke/kapsam değişimi oturumları kapatır.
 
+Ana gömülü arayüz `script-src 'self'; worker-src 'self' blob:` politikasını kullanır;
+inline/eval izni eklenmez. Bu politika yalnız frontend handler'a aittir; API/WS veya
+önizlemenin ayrı sandbox politikasına global olarak eklenmez. CSP, güvenilmeyen
+metni güvenli render etmenin yerine geçmez. UI/preview route bileşimi unit ile
+doğrulandı; yeni adayın tam tarayıcı kabulü tıklama otomasyonu sorunu nedeniyle
+henüz açık ([TEST11.05](../ROADMAP_FOR_TESTS.md)). Vite geliştirme sunucusu bu Go
+header politikasını kendiliğinden devralmaz.
+
 ## İsteğe bağlı metrics, Hubble ve worker
 
 Metrics API gerçek ölçüm zamanı/birimiyle sunulur; request/limit/allocatable kullanım değildir. API yokluğu, Forbidden ve eski veri durumları sahte sıfır/rastgele seriyle örtülmez. Oturum belleği uzun dönem metrics deposu değildir.

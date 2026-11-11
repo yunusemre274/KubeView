@@ -1,0 +1,56 @@
+{
+  "startedAt": "2026-11-11T16:03:51.937Z",
+  "source": "Actual private embedded CSP binary + owned M5 TEST/REPLAY HTTP/WS/UI; not real Kubernetes or forward-JS acceptance",
+  "binarySHA256": "322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2",
+  "appPID": 13278,
+  "browsers": [
+    {
+      "engine": "chromium",
+      "startedAt": "2026-11-11T16:03:51.937Z",
+      "status": "FAIL",
+      "stages": [
+        {
+          "name": "01-world",
+          "at": "2026-11-11T16:04:06.691Z",
+          "elapsedWallMs": 14753,
+          "elapsedMonotonicMs": 14753.205624999999
+        }
+      ],
+      "pageErrors": [],
+      "httpCount": 17,
+      "sleepOrStallGaps": [],
+      "version": "156.0.8078.4",
+      "mainCSP": "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; script-src 'self'; worker-src 'self' blob:",
+      "world": {
+        "nodes": 20,
+        "pods": 300
+      },
+      "resources": {
+        "node": {
+          "uid": "node-0",
+          "name": "worker-001"
+        },
+        "pod": {
+          "uid": "pod-0",
+          "name": "app-0",
+          "namespace": "bench-0"
+        }
+      },
+      "lastAction": "open finder Node",
+      "failure": {
+        "type": "TimeoutError",
+        "message": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Bul', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"world-find\" aria-label=\"Bul\" class=\"world-tool\" aria-pressed=\"false\" title=\"Bul · Cmd/Ctrl+K\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n",
+        "stack": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Bul', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"world-find\" aria-label=\"Bul\" class=\"world-tool\" aria-pressed=\"false\" title=\"Bul · Cmd/Ctrl+K\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\n    at resource (/Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp.mjs:16:192)\n    at async file:///Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp.mjs:30:3",
+        "lastAction": "open finder Node"
+      },
+      "finalCSPViolations": [],
+      "browserClosed": true,
+      "finishedAt": "2026-11-11T16:04:51.263Z",
+      "elapsedWallMs": 59325,
+      "elapsedMonotonicMs": 59325.597834,
+      "boundedValid": true
+    }
+  ],
+  "finishedAt": "2026-11-11T16:04:51.264Z",
+  "status": "FAIL"
+}

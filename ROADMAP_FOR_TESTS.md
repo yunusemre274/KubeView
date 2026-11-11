@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T19:03:17.140512+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T19:09:42.451649+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4a05095ab94fa40ace4785f9da2d7cfe4688f398`; remote tip aynı. Önceki550400a3 CI43030094174 SUCCESS. UI-only CSP1satır ve yeniheader testleri çalışmafarkında; gerçekbinarycsp07SHA322bd5b5… ile tarayıcıkapısı sürüyor.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:152; IN_PROGRESS:21; FAILED:1; BLOCKED:1; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:152; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -34,7 +34,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:4, VERIFIED_DONE:2 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
-| CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:5, VERIFIED_DONE:2 | Henüz yok |
+| CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, FAILED:1, VERIFIED_DONE:2 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
@@ -6610,55 +6610,49 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: RELEASE SECURITY WORKER + ANA MÜDÜR
-- Kaynak / build / paket kimliği: 4ec526b7 backend runtime aynı; yeni release_origin_preview_test.go sentetik test farkı
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Sorumlu: KV-SECURITY-WORKER + root ikinciinceleme
+- Kaynak / build / paket kimliği: 4a05095a +main.go CSPdiff; binary322bd5b5… (csp07), frontend550400a3 eşdeğer/index0e478e0c…
+- Ortam / kullanılan kimlik ve yetki: Owned07 M5REPLAY app19847PID13278; Go1.26.11; Chromium156; privateoutput. GerçekK8sforward değil.
+- Başlangıç zamanı: unitmanifest/red-meta ve browser2026-11-11T15:59:10.717Z
+- Bitiş zamanı: Sonretstguard2026-11-11T16:06:50Z; runtimegate eksik.
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.05-S1 — Hazırlık
-- [x] Listener/cluster açmadan in-process ServeMux ve sentetik net.Pipe canary hazırlandı.
-- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/source-identity.json
-- Sonuç: yalnız owned/sentetik fixture.
+- [x] MevcutfrontendHandler ve siblingAPI/WS/previewroute sınırı incelendi; frontend/embedded bytes eşit. Mevcutbundle inlinebootstrap/eval/Function/workerimport code göstermedi; bu statiktarama runtimekabulü değil.
+- Kaynak/argv/provenance: artifacts/release-audit/ra-20261111/main-csp-worker/green-meta.json; main-csp-browser-worker/candidate.json
 
 #### TEST-11.05-S2 — Normal kullanım / pozitif kontrol
-- [x] Dar sentetik normal+negatif kontroller yürütüldü.
-- Gözlenen: Aktif static frontend frame-ancestors/nosniff ve preview CSP/no-referrer/no-store header assertionları geçti; gerçek malicious browser flow ayrı.
-- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md ve preview-final-tests.log
-- Sonuç: unit alt kapsam PASS, geniş faz açık.
+- [x] Main7top/32subcasePASS, SKIPyok; UIHTML/JS/MIME/header, routeboundary, realinprocessServeMux+ReverseProxyHeaderAdd.
+- [x] Actualbinary anaHTML/module200,indexSHA,CSPheader,20Node/300PodREPLAYworld,oneCanvas geçti.
+- [ ] NormalNode/Pod/containerlog/settings/ESC ve WebKit tamakışıgeçmedi.
 
 #### TEST-11.05-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Eksik gerçek/browser/final paket koşulları raporda açık tutulur; SKIP/PASS karışmaz.
-- Gözlenen: ilkCONNECT405varsayım testiFAIL, standard authority404red ile düzeltildi; runtime bypass değildi.
-- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log ve preview-final-tests.log
+- [x] İlk8policyredsubcaseFAIL→UI-onlyscript-srcself/worker-srcselfblobfix→green. Unsafeinline/eval izni yok; API/previewüstüne globalheader eklenmedi.
+- [x] Encoded/query/canonicalredirect ve6previewvaryantında yalnıztekopaqueSandboxCSP korunur; gövdeJSsilinmez. Sentetiktransport, gerçekK8sforwardJSkanıtıdeğil.
+- [ ] Browser inline/Crossoriginscriptreddi veblobWorkerpositive henüzçalışmadı.
 
 #### TEST-11.05-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Değişiklik: backend/main.go frontendHandler birpolicysatırı; yeni security_headers_test.go. ÖncekiXSSsetinde bypassbulunmadı; bu defense-in-depth, exploitseverityiddiasıyok.
+- RuntimeilkFAILdeNodepaneli açık; hangiilkhelperclicktakıldığı kaydedilmedi. Retesttamlog: Bulbuttonvisible/enabled/stable, performingclick aşamasındatimeout. Videotaildialogunaçıldığınıgösterir; awaittamamlanmadı.
+- RootnedenCSP veyaGPU/CPU/harness olarak kanıtlanmadı; ürünhatası/başarıdiyevarsayılmadı.
 
 #### TEST-11.05-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Mainunitred→smallfix→green7/32.
+- [x] Tekizinlibrowserretst deFAIL; ilk49.373sn ve retst59.325sn, heartbeatgap0/boundedtrue fakat assertiongeçmedi. RetstCSPviolations[]/pageerrors[] yalnızulaşılanakış.
+- [ ] WebKit, inline/blockWorker/log/settings ve gerçekK8sforwardJS açık.
+- Kanıt: main-csp-browser-worker/result.json; retest-01/result.json; retest-action-log.txt; REPORT.md
 
 #### TEST-11.05-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Tarayıcılar kapandı; app19847PID13278+binary322bd… aktif, diğerownedprocess kayıtları değişmedi. Hubble80336/80393 korunur.
+- [x] Rootmaincodeveunitleri okudu; rootFIRSTFAILPNG, workerworld/FAIL/videotailkarelerini açtı.
+- [ ] Tamruntimekabulün ikinciincelemesi yapılamadı; gateFAILED.
+- OrijinalWebMyereldekorunur, Git PNG/rapor/hashaltkümesi DELIVERY_SHA256SUMS iledoğrulanır.
 
 #### TEST-11.05-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Gerekçe: unit/headerpozitifler geçti; ikiUIactiontestFAIL, kalanmandatorybrowsercasesçalışmadı. Failedharness ürüngüvenlikkusurusayılmadı.
+- Yenidentest: önceclickcompletion nedeniniayır; aynıDPR/kalite/kaynakyoğunluğukorunsun, körtimeoutartışıveotoretryyok.
 
 ### TEST-11.06 — Workload preview HTML/JS yönetim origin izolasyonu
 
