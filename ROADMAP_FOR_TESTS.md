@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T13:43:38.656115+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`, `redesign/harbor-workbench`; başlangıçta izlenen runtime farkı yok. Kullanıcının untracked prompt/reference ve tarihsel kanıtları korunur.
+- Son güncelleme: 2026-11-11T14:31:09.530924+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: `49999815cf27ca47888fdc5d62cb1f7caf3bbd11` (remote doğrulandı), başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`, `redesign/harbor-workbench`; başlangıçta izlenen runtime farkı yoktu. Şimdi global kamera kadrajı düzeltmesi ve UI test helperı commit bekliyor. Kullanıcının untracked prompt/reference ve tarihsel kanıtları korunur.
 - Build/paket: yeni dondurulmuş yayın adayı henüz üretilmedi; mevcut `bin/kubeview` önceki36d5b8f adayıdır. Baseline source arşivi ve runtime hash kaydı: artifacts/release-audit/ra-20261111/baseline.json; ilk boş/geçersiz arşiv denemesi kullanılmadı.
 - Ortam: Apple M5/32GiB, macOS27.0.1, AC güç (başlangıç35% şarj), yerel Chromium/erişilebilir Playwright WebKit; native Safari/Retina ayrı. Linux/Docker/Helm kapsamı ilan edildiği biçimde ayrıca test edilecek.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **199**. NOT_STARTED:191; IN_PROGRESS:4; FAILED:0; BLOCKED:0; RETEST_REQUIRED:2; VERIFIED_DONE:2; NOT_APPLICABLE:0.
+- Toplam test fazı: **199**. NOT_STARTED:184; IN_PROGRESS:7; FAILED:0; BLOCKED:0; RETEST_REQUIRED:2; VERIFIED_DONE:6; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; final paket/gerçek yetki incelemesi açık.42Go advisory patch sonrası main source0finding; hepsi istismar sayılmadı. İncelenmemiş kategori vardır; güvenlik garantisi değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -25,30 +25,30 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | Kategori | Faz | Durum | Geçerli kanıt |
 |---|---:|---|---|
 | CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
-| CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, RETEST_REQUIRED:1 | Henüz yok |
-| CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:11 | Henüz yok |
-| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:18 | Henüz yok |
+| CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
+| CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:10, RETEST_REQUIRED:1 | Henüz yok |
+| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:17, IN_PROGRESS:1 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:14 | Henüz yok |
-| CAT-07 — Statik analiz/bağımlılık/sır | 10 | NOT_STARTED:7, IN_PROGRESS:1, VERIFIED_DONE:2 | Henüz yok |
+| CAT-07 — Statik analiz/bağımlılık/sır | 10 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | NOT_STARTED:7 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:10 | Henüz yok |
+| CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:8, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
 | CAT-16 — A/B benchmark | 13 | NOT_STARTED:13 | Henüz yok |
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:5 | Henüz yok |
-| CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:9 | Henüz yok |
+| CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:8, IN_PROGRESS:1 | Henüz yok |
 | CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:14 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
 
-ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kaynaklardan doğrulanıyor; eşleme henüz tamamlanmadı. Standart adı sertifika değildir. Eski unit/replay/gerçek Kubernetes sonuçları kendi kaynak kimliğinde tarihsel kalır. SKIP/NOT_RUN/BLOCKED PASS değildir. Aşağıdaki checkbox'lar test çalışmadan işaretlenmez. Her alt adım sonucu root tarafından hemen eklenir; ham veri bu dosyaya gömülmez. Kaynak değişikliği etkilenen fazı RETEST_REQUIRED yapar, belge-only yeniden kullanım gerekçesi ayrı yazılır.
+ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı; seçili ASVS kontrol kimlikleri resmi5.0.0CSVden kontrol edildi (docs/RELEASE_THREAT_MODEL.md). WSTG faza özel kimlik doğrulaması henüz yok; kaynak adı uyumluluk anlamına gelmez. Standart adı sertifika değildir. Eski unit/replay/gerçek Kubernetes sonuçları kendi kaynak kimliğinde tarihsel kalır. SKIP/NOT_RUN/BLOCKED PASS değildir. Aşağıdaki checkbox'lar test çalışmadan işaretlenmez. Her alt adım sonucu root tarafından hemen eklenir; ham veri bu dosyaya gömülmez. Kaynak değişikliği etkilenen fazı RETEST_REQUIRED yapar, belge-only yeniden kullanım gerekçesi ayrı yazılır.
 
 
 ## CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi
@@ -57,7 +57,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-01.
 - Amaç / kullanıcı riski: Aktif HTTP/WS/statik/debug/provider endpoint envanteri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-SECURITY-WORKER
@@ -123,7 +123,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-01.
 - Amaç / kullanıcı riski: Auth/session/write-grant/RBAC veri akışı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -189,7 +189,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-01.
 - Amaç / kullanıcı riski: Workspace/harbor/connection/cache güven sınırları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -255,7 +255,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-01.
 - Amaç / kullanıcı riski: Browser/backend/Kubernetes/Hubble/minikube/host sınırları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -321,7 +321,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-01.
 - Amaç / kullanıcı riski: Zararlı web sayfası, reader ve workload tehditleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -387,7 +387,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-01.
 - Amaç / kullanıcı riski: Local-first ve uzak/in-cluster tehdit modeli; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-01 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -456,7 +456,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-02.
 - Amaç / kullanıcı riski: 02 profilinde temiz paketten iki gerçek proje; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ürün CAT02: gerçek iki liman, viewport ve erişim; güvenlik standardı sertifikası iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR
@@ -522,15 +522,15 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-02.
 - Amaç / kullanıcı riski: Uzak görünümde iki merkez/iskele/isim/konum; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ürün CAT02: gerçek iki liman, viewport ve erişim; güvenlik standardı sertifikası iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Kaynak / build / paket kimliği: candidate02-binary.json SHA1003a43a…7bf0;runtimehashler kayıtlı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: 2026-11-11T13:42:17.092651+03:00
-- Bitiş zamanı: —
-- Durum: RETEST_REQUIRED
+- Bitiş zamanı: 2026-11-11T14:31:09.525082+03:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-02.02-S1 — Hazırlık
@@ -564,28 +564,28 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 - Düzeltme çalışma farkı: mevcut fitHarborView kullanılıyor; normal kullanıcı kamerası yalnız globalmap eyleminde değişir.
 
 #### TEST-02.02-S5 — Tekrar test ve regresyon
-- [x] Global fit regresyonu ve tümfrontendunit220/220PASS.
-- [x] Production frontend build PASS.
-- [ ] Yeni embedded ikilide normal pointer/görsel tekrar bekliyor.
-- Sonuç ve kanıt: frontend-unit-candidate.log; frontend-build-candidate.log. İlk kamera-poll ve darnameplate helperFAILleri silinmedi.
+- [x] Global fitunit red→green;223unit/buildPASS.
+- [x] Gerçek embeddedcandidate02 normalpointer Chromium15/WebKit15: iki tesis+merkez+doğru PodUID,Canlı,0workspace403/0pageerror.
+- Kanıt: ui02-scope02-chromium/result.json; ui02-scope02-webkit/result.json; UI_REVIEW.md
+- Sonuç: gerçekiki-namespaceharitaları ve ayrı konumlar doğrulandı;CPU/nativeSafari/finalarchive değil.
 
 #### TEST-02.02-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Yalnızownedlab;fixture/deploybaseline korunur,arayüztestiK8smutationyapmadı.
+- [x] Binary/index/runtimehashler exactmanifestte.
+- [x] Root1440/768/center768veWebKit768karelerini,4s/13svideokareleriniaçtı.
+- İnceleyen: ANA MÜDÜR; ekikinci ajan görselreviewhenüzyok.
+- Kalan sınır: seçiliPodlabel sağkenarkırpılmasıP2,CAT19.07de;390phone/finalpackage/yetkiçeşitleri ayrıfazlar.
 
 #### TEST-02.02-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar:1440/1280/768normalglobalmapteikiayrımerkez/rıhtım/konum,isimlevhasıveUID erişimi gerçekveriyle görüldü.
+- Yenidençalıştırma:layout/camera/worldplacement/LOD/scope değişimi; finalpackage ayrıca.
 
 ### TEST-02.03 — Liman seçme, yaklaşma ve genel görünüme dönüş
 
 - Kategori: CAT-02.
 - Amaç / kullanıcı riski: Liman seçme, yaklaşma ve genel görünüme dönüş; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ürün CAT02: gerçek iki liman, viewport ve erişim; güvenlik standardı sertifikası iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -651,7 +651,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-02.
 - Amaç / kullanıcı riski: 1440/1280/dar pointer ve klavye erişimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ürün CAT02: gerçek iki liman, viewport ve erişim; güvenlik standardı sertifikası iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -717,7 +717,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-02.
 - Amaç / kullanıcı riski: Tam ekran dünya ve Soft UI görsel regresyon; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-02 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ürün CAT02: gerçek iki liman, viewport ve erişim; güvenlik standardı sertifikası iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -786,7 +786,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Aynı kümede farklı namespace projeleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -852,7 +852,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Aynı namespace farklı label seçicileri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -918,7 +918,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Örtüşen ve çok namespace proje; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -984,7 +984,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Aynı adlı kaynaklarla bağımsız iki küme; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1050,7 +1050,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Aynı kümede farklı yetkili iki bağlantı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1116,7 +1116,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Cluster/Node UID ile ortak Node gösterimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1182,7 +1182,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Ortak kaynak/kapasite dedup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1248,7 +1248,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Liman silmenin yalnız uygulama kaydını silmesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1314,7 +1314,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Restart/migration/export/import/bozuk config recovery; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1380,55 +1380,48 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: 50 A→B→A selection/form/log/request geçişi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: candidate01 4a782bc8…6557;4999981+globalcamera farkı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Başlangıç zamanı: 2026-11-11T14:05:10.000694+03:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: RETEST_REQUIRED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-03.10-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Owned02,iki gerçeknamespace/Pod ve üçgeçiş diagnostic hazırlandı.
+- Beklenen: eski namespace yeni corea taşınmamalı;50geçiş nihai kapı.
+- Gözlenen: başlangıç kaynak kimlikleri lab02-status-initial.json.
+- Kanıt: ui-scope-diagnostic.json; candidate01-binary.json (bu run).
+- Sonuç: normal UI ve gerçekWS kullanıldı,fixtureinjection yok.
 
 #### TEST-03.10-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Gerçek iki liman/merkez/PodUID yolu ilk15assertionda görüldü.
+- Gözlenen: görsel incelemede stale frame bulundu; ilkhelperPASS final kabul sayılmadı.
+- Kanıt: ui02-candidate-chromium/result.json ve açılan kareler.
+- Sonuç: canlılık ek koşulu istendi.
 
 #### TEST-03.10-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] A→B→A gerçekWS/HTTP diagnostic.
+- Beklenen: A yalnızp1aboneliği.
+- Gözlenen: A SNAPSHOT içinde p2 Podscope forbidden; UIKısmi erişim kalıyor. Backend403 doğru, veri sızıntısı görülmedi.
+- Kanıt: ui-scope-diagnostic.json; ui02-candidate-chromium-fresh2/result.json.
+- Sonuç: WS-001 P1 doğrulandı.
 
 #### TEST-03.10-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği: WS-001 P1.
+- Kök neden: kaynak geçişinin eski passive selection effecti yeni retainKind callbackini çağırıyor; on-demand scope kayıt sınırı clientta yoktu.
+- Değiştirilen dosya: App.jsx sourceguard; ShipyardClusterContext.jsx registerScope/loadKind namespace preflight.
+- Kanıt: harbor-subscription-red-v2.log (alpha+beta vs yalnızbeta); ilkredharness no-op override hatası ayrı harbor-subscription-red.log olarak korunur.
+- Çalışma farkı: candidate02 hazırlanıyor; Kubernetes/backend yetkisi gevşetilmedi.
 
 #### TEST-03.10-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Gerçek davranışı gözleyen iki unit red→green; frontend222/222PASS.
+- [ ] Ek liste-preflight testi ve final candidate real50geçiş bekliyor.
+- Sonuç ve kanıt: frontend-scope-retest.log; sonbuild/realUI henüz yok.
 
 #### TEST-03.10-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -1446,7 +1439,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-03.
 - Amaç / kullanıcı riski: Çok tarayıcı sekmesinde scope/write-grant; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-03 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1515,7 +1508,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Bağlantı/context/namespace seçimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1581,7 +1574,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Deployment server dry-run; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1647,15 +1640,15 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Deployment gerçek create ve owner/Ready; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: candidate02-binary.json;1003a43a…7bf0;backend49999815
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Başlangıç zamanı: 2026-11-11T14:27:01.564220+03:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-04.03-S1 — Hazırlık
@@ -1668,20 +1661,16 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 - Sonuç: NOT_STARTED
 
 #### TEST-04.03-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] GerçekAPI create→watchADD→Deployment/RS/PodownerUID→Ready çalıştı.
+- Gözlenen:Deploymentb12f7c52…ddaf,RS3399e209…a9d9,Pod76b84d74…6531,Nodebf794757…cabf.
+- Kanıt: real-api-smoke/run.log ve gerçeksonuçJSON.
+- Sonuç: API/watchaltakışıPASS;normalUIformcreatevefailure/recoverykabulüayrıbekliyor.
 
 #### TEST-04.03-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Readonly403,serverdryrunpersistGET404,yanlışnamespaceGET/create403 kontrolleri geçti.
+- Gözlenen:5gerçekaltsenaryoPASS;0skip;cleanupownUIDGET404+auditedDeploy/RS/Podlist0.
+- Kanıt: real-api-smoke/run.log/sonuçJSON.
+- Sonuç: buAPInegatiflerigerçeklabdaPASS;yetki/quota/admissiongenelini kapatmaz.
 
 #### TEST-04.03-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -1713,7 +1702,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Scale 2→3→1; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1779,7 +1768,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: CPU/RAM request/limit edit; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1845,7 +1834,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Rollout restart ve gözlenen sonuç; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1911,7 +1900,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Pod DELETE/controller replacement; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -1977,7 +1966,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Deployment DELETE; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2043,7 +2032,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: StatefulSet işlemleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2109,7 +2098,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: DaemonSet işlemleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2175,7 +2164,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Finalizer/Terminating/aynı ad-yeni UID; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2241,7 +2230,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: CronJob işlemleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2307,7 +2296,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Rollback işlemi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2373,7 +2362,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Drain ve PDB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2439,7 +2428,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Pod resize capability ve uygulanmış sonuç; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2505,7 +2494,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: RBAC/quota/admission/conflict/timeout/image negatifleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2571,7 +2560,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Reconnect kaçırılmış DELETE/kapsam uzlaştırması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2637,7 +2626,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-04.
 - Amaç / kullanıcı riski: Çift submit/retry ve hedef değişmezliği; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-04 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.3.1; API5:2023; CAT04 gerçek işlem. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2706,7 +2695,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Current/previous app/init/ephemeral log; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2772,7 +2761,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Pause/resume/double-open/close cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2838,7 +2827,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Eski UID ve aynı-ad log replacement yarışı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2904,7 +2893,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Log satır/byte/partial/flush sınırları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -2970,7 +2959,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Metrics dolu/yok/403/stale; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3036,7 +3025,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Usage/request/limit/allocatable ayrımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3102,7 +3091,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Secret reveal/hide/edit yetkisi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3168,7 +3157,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Bilinmeyen label/annotation edit korunumu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3234,7 +3223,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Maskeli Secret gerçek veri olarak yazılmıyor; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3300,7 +3289,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-05.
 - Amaç / kullanıcı riski: Genel WS/error/export/artifact hassas veri sınırı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-05 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3369,7 +3358,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Temiz Cilium/Hubble bootstrap; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3435,7 +3424,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Relay Ready ve gerçek mTLS; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3501,7 +3490,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Aynı Node farklı Pod gerçek iletişim; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3567,7 +3556,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Cross-Node farklı Pod gerçek iletişim; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3633,7 +3622,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: İki proje/namespace ölçülmüş trafik; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3699,7 +3688,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Start/increase/stop ve pencerenin boşalması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3765,7 +3754,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Provider stale/recovery; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3831,7 +3820,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Restricted kimlik/namespace flow izolasyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3897,7 +3886,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: IP/UID reuse eşlemesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -3963,7 +3952,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: down/up güvenli tekrar bağlantı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4029,7 +4018,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Ayrı temiz state ile cold-start; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4095,7 +4084,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Minikube gerçek hedef/UID kontrolü; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4161,7 +4150,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Minikube idempotency/profile lock; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4227,7 +4216,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-06.
 - Amaç / kullanıcı riski: Minikube hata/timeout/reconcile/cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-06 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4296,7 +4285,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: Go vet ve lint/tip kontrolü; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4362,7 +4351,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: Güvenlik odaklı kaynak analizi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4428,7 +4417,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: Govulncheck erişilebilir Go zafiyetleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-DEPENDENCY-WORKER
@@ -4493,7 +4482,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: JS lockfile/dev/runtime advisory taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-DEPENDENCY-WORKER
@@ -4556,25 +4545,22 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: Container/base image/manifest taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: ANA MÜDÜR + KV-DEPENDENCY-WORKER
+- Kaynak / build / paket kimliği: runtime-binary-worker exacttools; containerhenüzüretilmedi
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-07.05-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Trivy0.74DB yeni privatecachee güncellendi; externalGobinaryler matchedfinding iletarandı.
+- Gözlenen: KubeViewcandidate01binary0finding; resmiHubble1.20.2=17advisory; minikube1.38.1=97.
+- Kanıt: runtime-binary-worker/REPORT.md; trivy-db-update.log.
+- Sonuç: container/source/externaltoplamı aynısayılmaz; araçlar ayrıtriyajda.
 
 #### TEST-07.05-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -4593,12 +4579,11 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 - Sonuç: NOT_STARTED
 
 #### TEST-07.05-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu: externalscanner semboleşleşmesi actualkomutexploitkanıtı değildir.
+- Hubble1.20.4 adayı17→3kaldığıiçin temizdiye kabul edilmedi.
+- Aynıtag customHubbleGo1.27.4/net0.62/cel0.30 tekderlemede0finding;RootSHA doğruladı,CLIhelpuyumuPASS;gerçekmTLS/provideraçık.
+- Minikube1.39resmibinary97→39matchedadvisory;ilkRoot325catalogsayımı yanlıştı, geçmişJSONkorundu,doğrufindingjoinworkerda.
+- Riskkabulü/kapama: verilmedi; containerveexternalfeasibility incelemesi sürüyor.
 
 #### TEST-07.05-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
@@ -4622,81 +4607,74 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: Çalışma ağacında sır taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: ANA MÜDÜR + KV-DEPENDENCY-WORKER ikinci inceleme
+- Kaynak / build / paket kimliği: source-checkpoint01 runtime + audit artifacts; scanner8.30.1
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Başlangıç zamanı: 2026-11-11T13:46:51.372718+03:00
+- Bitiş zamanı: 2026-11-11T13:46:51.372718+03:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-07.06-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Yalnızrepo workingtree,redact100,90s/4MiB ilk sınır.
+- Yapılan/komut: gitleaks dir . --redact=100 --timeout90 --max-target-megabytes4 (ayrı flags rawlogda).
+- Gözlenen:509.82MB/24.6s,1451aday,98skippedlarger files.
+- Kanıt: secrets-worktree.log; secrets-worktree-redacted.json (bu run).
+- Sonuç: sınır kaydedildi.
 
 #### TEST-07.06-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Tüm1451aday ayrıworker tarafından kaynak/üreticiyle sınıflandırıldı.
+- Beklenen: hash gibi görüneni otomatik geçme.
+- Gözlenen:1161SHA256,13keyHash,10generationUUID,2resourceUID,189publicGitmetadata,76ölçümgroupkey;unresolved0.
+- Kanıt: secret-review/worktree/REPORT.md; classified-findings.json
+- Sonuç: credential adayı kalmadı.
 
 #### TEST-07.06-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İlkboyutsınırında kalan13JSON/txt dosya ayrı20s/file bütçesiyle tarandı.
+- Beklenen: bunlar taranmadan text kapsamı temiz sayılmamalı.
+- Gözlenen:13/13exit0,0finding,timeout0;binary/video/archive bu text fazı dışındadır.
+- Kanıt: secrets-large-text.json; secrets-large-text/; secrets-positive-control.json
+- Sonuç: plaintext boyut boşluğu kapandı; archive/binary paket fazlarında.
 
 #### TEST-07.06-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği:1451 teknik sınıflandırılmış scanner yanlış pozitif; gerçek authsecret yok.
+- Değişiklik: ignore veya kullanıcı verisi silme yok.
+- Kök neden: provenance/kimlik/gruplama alan isimleri heuristic eşleşmesi.
 
 #### TEST-07.06-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Root ikinci inceleme ve13büyüktext supplement sonuçlarını kontrol etti.
+- [x] Detector sentetikgithub-pat pozitifkontrolü PASS.
+- Ürün retesti: NOT_APPLICABLE; ürünbulgusu yok.
+- Sonuç ve kanıt: secrets-positive-control.json; secret-review/worktree/review-manifest.json.
 
 #### TEST-07.06-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Sahte pozitif token dosyası temizlendi.
+- [x] Exactscan findingleriredakte vehashli saklandı.
+- [x] Root+worker incelemesi tamamlandı.
+- İnceleyen: ANA MÜDÜR + KV-DEPENDENCY-WORKER; profesyonel3.taraf değildir.
+- Kalan sınırlar: binary/video/archive/privateharicistate bu plaintext fazı dışında; scanner unknownmiss mümkün.
 
 #### TEST-07.06-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar gerekçesi: tümtext kapsamındaki adaylar ve büyüktext boşlukları değerlendirildi; bilinmeyen açık/sır garantisi yok.
+- Yeniden çalıştırma: yeni runtime/config/kanıt içeriği veya finalpackage.
 
 ### TEST-07.07 — İlgili Git geçmişinde sır taraması
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: İlgili Git geçmişinde sır taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-DEPENDENCY-WORKER bağımsız redakte inceleme; root tarama
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Kaynak / build / paket kimliği: başlangıç36d5b8f tüm84commit/refs;49999815 artifact-only kayıt eklemesi ayrıca final arşivde taranacak
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: 2026-11-11T13:35:03.936403+03:00
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Bitiş zamanı: 2026-11-11T13:46:51.372718+03:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-07.07-S1 — Hazırlık
@@ -4708,52 +4686,48 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 - Sonuç: henüz temiz/güvensiz kararı verilmedi; tüm adaylar triyajda.
 
 #### TEST-07.07-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Yerel84commit/324.19MB tarandı;386aday içerik/üretici koduyla sınıflandırıldı.
+- Beklenen: herfinding açıklanmalı, gerçeksır outputa çıkmamalı.
+- Gözlenen:365source/assetSHA256,13idempotencyhash,6generationUUID,2resourceUIDlog;unresolved0.
+- Kanıt: secret-review/REPORT.md; classified-findings.json; producer-verification.json (bu run dizini).
+- Sonuç: bu tarihsel kapsamda rotationgerektiren authsecret adayı yok.
 
 #### TEST-07.07-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İzole sahte github-PAT biçimli pozitif scanner kontrolü çalıştırıldı.
+- Yapılan: yalnız .git geçici dosya; sağlayıcıya gönderilmedi, sonra silindi.
+- Beklenen: github-pat kuralı eşleşmeli.
+- Gözlenen:exit1,github-patfinding;redact100.
+- Kanıt: artifacts/release-audit/ra-20261111/secrets-positive-control.json; secrets-positive-redacted.json
+- Sonuç: detector pozitif kontrolü geçti.
 
 #### TEST-07.07-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği:386scanner adayının tamamı teknik bağlamla yanlış pozitif olarak sınıflandırıldı.
+- Önem/kök neden: hash/UUID alanlarının anahtar adları genel-api-key kuralına takıldı;2log da resourceUID.
+- Değiştirilen dosya: yok; ignore,history rewrite veya credential silme yapılmadı.
 
 #### TEST-07.07-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Root tümfindingcount/rule/path dağılımı ve üretici ispatlarını inceledi.
+- [x] Sahte pozitif kontrol PASS.
+- Ürün sorunu retesti: NOT_APPLICABLE; authsecret bulunmadı.
+- Sonuç ve kanıt: secret-review/review-manifest.json + producer-verification.json.
 
 #### TEST-07.07-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Geçici pozitif token dosyası silindi; hesap/credential yaratılmadı.
+- [x] Redakte scan ve386fingerprint sınıflandırması kaynak kimliğiyle saklandı.
+- [x] KV-DEPENDENCY-WORKER bağımsız ikinci inceleme tamamlandı; aynıajan sistemi.
+- İnceleyen: worker ve ANA MÜDÜR.
+- Kalan sınırlar: scanner misses/diğer özel state kapsamı yok; yeni commit/final package ayrıca taranır.
 
 #### TEST-07.07-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar gerekçesi:84commit taraması,386finding tektek teknik sınıflandırma ve pozitif kontrol.
+- Yeniden çalıştırma: yeni sırşüphesi/ilgili commit veya scannerkuralı değişimi.
 
 ### TEST-07.08 — Son dağıtım arşivlerinde sır taraması
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: Son dağıtım arşivlerinde sır taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4819,7 +4793,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: SBOM ve dependency envanteri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4885,7 +4859,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-07.
 - Amaç / kullanıcı riski: Bağımlılık düzeltmesi build/işlev regresyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-07 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: Go security/govulncheck; NIST SSDF1.1 (süreç çerçevesi,sertifika değil); CAT07. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -4954,7 +4928,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-08.
 - Amaç / kullanıcı riski: Loopback IPv4/IPv6 ve LAN bind; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.4.1/V4.4.1 (loopback HTTP için uygulanabilirlik ayrıca); CAT08. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5020,7 +4994,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-08.
 - Amaç / kullanıcı riski: Dev/metrics/profiler/debug port yüzeyi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.4.1/V4.4.1 (loopback HTTP için uygulanabilirlik ayrıca); CAT08. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5086,7 +5060,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-08.
 - Amaç / kullanıcı riski: WS/forward/provider child lifecycle ve LISTEN cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.4.1/V4.4.1 (loopback HTTP için uygulanabilirlik ayrıca); CAT08. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5152,7 +5126,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-08.
 - Amaç / kullanıcı riski: Yanlış Host/Origin/proxy/redirect; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.4.1/V4.4.1 (loopback HTTP için uygulanabilirlik ayrıca); CAT08. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5218,7 +5192,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-08.
 - Amaç / kullanıcı riski: TLS chain/hostname/expiry/mTLS client reddi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.4.1/V4.4.1 (loopback HTTP için uygulanabilirlik ayrıca); CAT08. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5284,7 +5258,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-08.
 - Amaç / kullanıcı riski: Plaintext/insecure fallback ve güvenilir özel endpoint ayrımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-08 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.4.1/V4.4.1 (loopback HTTP için uygulanabilirlik ayrıca); CAT08. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5353,7 +5327,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Session/nonce entropy/expiry/revoke/replay; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR
@@ -5418,7 +5392,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Backend read-only doğrudan endpoint; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5484,7 +5458,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Hedefe bağlı write-grant; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5550,7 +5524,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Foreign/null/eksik Origin politikası; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5616,7 +5590,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Kontrollü saldırgan sayfasından CSRF; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5682,7 +5656,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Cross-site WS erişimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5748,7 +5722,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: DNS rebinding sınırı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5814,7 +5788,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Management enable endpoint koruması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5880,7 +5854,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Context/credential değişiminde eski grant; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -5946,7 +5920,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-09.
 - Amaç / kullanıcı riski: Token URL/history/referrer/log sızıntısı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-09 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6015,7 +5989,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Workspace/harbor/connection/namespace/GVR/UID/container/operation ID manipülasyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6081,7 +6055,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Başka limanın kaynağı read/write; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-SECURITY-WORKER; root ikinci inceleme
@@ -6146,7 +6120,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Aynı adlı farklı küme kaynağında işlem; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6212,7 +6186,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Reader→admin cache/metrics/Secret/flow sızıntısı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6278,7 +6252,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Client capability/owner/admin enjeksiyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6344,7 +6318,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Generic YAML/patch kapsam aşımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6410,7 +6384,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Reveal/exec/forward/provisioning alternatif auth; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6476,7 +6450,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Revoke sonrası watch/cached yanıt; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6542,7 +6516,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-10.
 - Amaç / kullanıcı riski: Paylaşılan Node etki onayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-10 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6611,7 +6585,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-11.
 - Amaç / kullanıcı riski: Stored/reflected/DOM XSS kaynak/log/event/import; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6677,7 +6651,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-11.
 - Amaç / kullanıcı riski: Metin/markdown/HTML ve link şemaları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6743,7 +6717,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-11.
 - Amaç / kullanıcı riski: ANSI/control/clipboard sınırları; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6809,7 +6783,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-11.
 - Amaç / kullanıcı riski: Aşırı uzun içerik ve render maliyeti; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6875,7 +6849,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-11.
 - Amaç / kullanıcı riski: CSP/frame-ancestors/MIME/nosniff; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -6941,7 +6915,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-11.
 - Amaç / kullanıcı riski: Workload preview HTML/JS yönetim origin izolasyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7007,7 +6981,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-11.
 - Amaç / kullanıcı riski: Preview upstream cookie/header/token temizliği; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-11 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7076,7 +7050,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: Kubeconfig exec plugin trust sınırı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7142,7 +7116,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: Path/symlink/traversal/archive çıkarma; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7208,7 +7182,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: YAML/JSON depth/size/alias/duplicate politikası; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7274,7 +7248,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: Prototype pollution; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7340,7 +7314,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: Kısmi config/migration/restore; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7406,7 +7380,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: Export credential/write-grant taşımıyor; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7472,7 +7446,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: Minikube/Hubble command/argument injection; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7538,7 +7512,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: PATH/cwd/sabit binary seçimi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7604,7 +7578,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: SSRF/redirect credential canary; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7670,7 +7644,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-12.
 - Amaç / kullanıcı riski: Test/debug endpoint release yüzeyi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-12 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7739,33 +7713,28 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: Workspace/import/parser bounded fuzz; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Sorumlu: KV-DEPENDENCY-WORKER; root ekparserkapsamı
 - Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Başlangıç zamanı: 2026-11-11T14:05:10.000694+03:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-13.01-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] MevcutFuzzWorkspaceDocument aynıGo1.26.11kaynakta;GOMAXPROCS2,parallel1,fuzztime10s.
+- Gözlenen:3kaynakseed+65mevcutcache;max2MiB.
+- Kanıt: fuzz-mutation-worker/fuzz-corpus-manifest.json
+- Sonuç: bounded başlangıç.
 
 #### TEST-13.01-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Validate-accepted→Export invariants111850yürütmedePASS.
+- Gözlenen:50yeniinteresting,115cache+3seed,hata/failurecorpus0.
+- Kanıt: fuzz-mutation-worker/REPORT.md.
+- Sonuç: acceptedexportinvariantsfuzz; tüm invalidimport/parserreddi değildir.
 
 #### TEST-13.01-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -7805,7 +7774,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: UID/isim/context generation; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7871,7 +7840,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: Duplicate/out-of-order/resync/reconnect; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -7937,7 +7906,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: Eşzamanlı edit/delete; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8003,7 +7972,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: İki limanda eşzamanlı mutation; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8069,7 +8038,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: Revoke sırasında log/metrics/flow publish; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8135,7 +8104,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: Timeout/cancel/geç callback; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8201,7 +8170,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: Go race; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8267,7 +8236,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: Frontend mount/unmount yaşam döngüsü; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8333,68 +8302,59 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-13.
 - Amaç / kullanıcı riski: Kritik guard/reducer sınırlı mutation testing; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-13 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: KV-DEPENDENCY-WORKER + root ikinci inceleme
+- Kaynak / build / paket kimliği: 49999815 resourceStore.js/resourceScopes.js/tests/store.test.js exacthash; bu kaynaklar değişmedi
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Başlangıç zamanı: 2026-11-11T14:05:10.000694+03:00
+- Bitiş zamanı: 2026-11-11T14:05:10.000694+03:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-13.10-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Gerçek reducer ve17mevcuttest izole .git kopyalarına alındı.
+- Yapılan: tekseriNode işi,30s/run;prodhashlerbaşta/sonda aynı.
+- Beklenen: öncebaselineçalışmalı.
+- Gözlenen:17/17PASS.
+- Kanıt: fuzz-mutation-worker/REPORT.md; mutation-source-manifest.json
+- Sonuç: izolasyon doğrulandı.
 
 #### TEST-13.10-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Değişmemiş reducer/test normal kontrolü geçti.
+- Gözlenen:17PASS/0FAIL.
+- Kanıt: fuzz-mutation-worker/mutation-results.json
+- Sonuç: testloader/syntax kontrolü var.
 
 #### TEST-13.10-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İki yanlış mantık mutasyonu ve bir eşdeğer kontrol çalıştı.
+- Yapılan: generationguard kapalı;DELETE UID yerineaddress;1000→10**3eşdeğer.
+- Beklenen: mantıkmutantları assertion ile yakalanmalı.
+- Gözlenen:2ve3ERR_ASSERTIONFAIL;syntax/loadhatası0;eşdeğer17PASSvebaşarıpuanına katılmadı.
+- Kanıt: mutations.patch + mutation-results.json aynı worker dizininde.
+- Sonuç: iki kritikguard için test duyarlılığı kanıtlandı; repogenelimutationcoverage iddiası yok.
 
 #### TEST-13.10-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu: yeniürünhatası yok; testduyarlılığı deneyi.
+- Üretim değişikliği: yok.
 
 #### TEST-13.10-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] İki mutant ilk gerçekassertionlaöldü.
+- [x] Baseline/eşdeğer17/17normal davranış.
+- Komşu gerçekUI/Kubernetes: NOT_APPLICABLE, bu safreducerfazı.
+- Kanıt: fuzz-mutation-worker/REPORT.md.
 
 #### TEST-13.10-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] İzole .git fixture korundu;runtimehashleri değişmedi.
+- [x] Kaynak/test/patch/hash sonuçları eşleştirildi.
+- [x] ANA MÜDÜR hataadlarını veeşdeğer kontrolünü inceledi.
+- Kalan sınır: yalnıziki yanlış davranış; unknownbuggenelcoverage yok.
 
 #### TEST-13.10-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
-
+- [x] BİTTİ / DOĞRULANDI
+- Karar: seçilmişguardtestleri gerçekyanlışmantığı yakalıyor; eşdeğer/syntaxmutant skoru şişirmedi.
+- Yenidençalıştırma: reducer/generation/UIDDELETE veya ilgiliassertion değişimi.
 
 ## CAT-14 — Kontrollü pentest zincirleri
 
@@ -8402,7 +8362,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-14.
 - Amaç / kullanıcı riski: Authentication-aware pasif/aktif owned endpoint taraması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V3.5.1/V16.5.3; API1/API7:2023; CAT14 owned canary. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8468,7 +8428,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-14.
 - Amaç / kullanıcı riski: Reader→yanlış nesne→işlem canary zinciri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V3.5.1/V16.5.3; API1/API7:2023; CAT14 owned canary. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8534,7 +8494,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-14.
 - Amaç / kullanıcı riski: Zararlı preview→yönetim API canary zinciri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V3.5.1/V16.5.3; API1/API7:2023; CAT14 owned canary. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8600,7 +8560,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-14.
 - Amaç / kullanıcı riski: Bulgu PoC red/fix/retest ve normal kullanıcı regresyonu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V3.5.1/V16.5.3; API1/API7:2023; CAT14 owned canary. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8666,7 +8626,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-14.
 - Amaç / kullanıcı riski: İkinci reviewer bulgu/düzeltme incelemesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-14 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V3.5.1/V16.5.3; API1/API7:2023; CAT14 owned canary. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8735,7 +8695,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Normal beklenen yük; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8801,7 +8761,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Kademeli artan yük; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8867,7 +8827,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Kısa spike; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8933,7 +8893,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Yavaş istemci ve bağlantı fırtınası; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -8999,7 +8959,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Büyük body/message/log; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9065,7 +9025,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Çok liman/abonelik isteği; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9131,7 +9091,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Event/flow burst; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9197,7 +9157,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Bounded queue/backpressure/reddetme; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9263,7 +9223,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-15.
 - Amaç / kullanıcı riski: Yük kalkınca UI/data/cleanup toparlanması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-15 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: API4:2023 sınırsız kaynak tüketimi; CAT15 önceden kaydedilen hız/boyut/stop bütçesi. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9332,7 +9292,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Harness saat/PID/güç/fixture/kamera/faz/env doğrulaması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9398,7 +9358,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Instrumentation açık/kapalı maliyeti; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9464,7 +9424,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: M aynı veri 1/5/10/20 liman AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9530,7 +9490,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: L aynı veri 1/5/10/20 liman AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9596,7 +9556,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Yakın/iki liman/geniş harita AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9662,7 +9622,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Panel açık/kapalı AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9728,7 +9688,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Log statik/akış/uzun satır AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9794,7 +9754,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Trafik açık/kapalı AB sabit provider; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9860,7 +9820,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Normal/burst veri AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9926,7 +9886,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Tek/çok arıza AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -9992,7 +9952,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Motion-off idle AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10058,7 +10018,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: Cold start/liman switch AB; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10124,7 +10084,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-16.
 - Amaç / kullanıcı riski: V11-18 eski CPU kapısının ayrı değerlendirilmesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-16 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10193,7 +10153,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-17.
 - Amaç / kullanıcı riski: Frontend React/store profiler adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT17 ölçülen net kaynak kazancı ve eşit kalite/işlev; teknoloji değişimi kanıt gerektirir. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10259,7 +10219,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-17.
 - Amaç / kullanıcı riski: Log/tablo/layout allocation adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT17 ölçülen net kaynak kazancı ve eşit kalite/işlev; teknoloji değişimi kanıt gerektirir. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10325,7 +10285,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-17.
 - Amaç / kullanıcı riski: Raycast/matris/traversal/material adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT17 ölçülen net kaynak kazancı ve eşit kalite/işlev; teknoloji değişimi kanıt gerektirir. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10391,7 +10351,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-17.
 - Amaç / kullanıcı riski: Backend watch/JSON/snapshot/izin/lock adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT17 ölçülen net kaynak kazancı ve eşit kalite/işlev; teknoloji değişimi kanıt gerektirir. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10457,7 +10417,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-17.
 - Amaç / kullanıcı riski: Çok liman güvenli abonelik paylaşımı adayı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT17 ölçülen net kaynak kazancı ve eşit kalite/işlev; teknoloji değişimi kanıt gerektirir. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10523,7 +10483,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-17.
 - Amaç / kullanıcı riski: Worker/WASM/dil göçü net maliyet kararı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-17 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT17 ölçülen net kaynak kazancı ve eşit kalite/işlev; teknoloji değişimi kanıt gerektirir. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10592,7 +10552,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-18.
 - Amaç / kullanıcı riski: Final60dk kesintisiz karma kullanım ve20dk ara kontrol; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT18 kesintisiz60dk/50panel/3reconnect/canonical eşitlik; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10658,7 +10618,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-18.
 - Amaç / kullanıcı riski: 50 panel/log çevrimi ve3 reconnect cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT18 kesintisiz60dk/50panel/3reconnect/canonical eşitlik; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10724,7 +10684,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-18.
 - Amaç / kullanıcı riski: Son canonical içerik ve aynı working-set trendleri; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT18 kesintisiz60dk/50panel/3reconnect/canonical eşitlik; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10790,7 +10750,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-18.
 - Amaç / kullanıcı riski: Gerçek hidden/minimize ve geri dönüş; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT18 kesintisiz60dk/50panel/3reconnect/canonical eşitlik; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10856,7 +10816,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-18.
 - Amaç / kullanıcı riski: Uyku/enerji/disk kesinti kurtarma; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-18 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT18 kesintisiz60dk/50panel/3reconnect/canonical eşitlik; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10925,7 +10885,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: İlk geri bildirim p95≤100ms proxy; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -10991,7 +10951,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: Temel panel gerekli kontrolleri p95≤200ms proxy; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11057,7 +11017,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: İki liman haritası/switch gecikmesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11123,7 +11083,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: Arama/focus/form/log/terminal gecikmesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11189,7 +11149,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: Klavye/Escape/focus dönüşü; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11255,7 +11215,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: Dar ekran/tema/reduced-motion; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11321,15 +11281,15 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: Etiket/traffic başlığı kırpılması; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Sorumlu: ANA MÜDÜR
 - Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Başlangıç zamanı: 2026-11-11T14:31:09.525082+03:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-19.07-S1 — Hazırlık
@@ -11350,12 +11310,11 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 - Sonuç: NOT_STARTED
 
 #### TEST-19.07-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] PlaywrightWebKit768worldkaresi root tarafındanaçıldı.
+- Beklenen: seçili kaynaklabeli kenarda okunmalı.
+- Gözlenen: Poddurumlabeli sağkenardan taşıyorveProje2levhasını kısmenörtüyor; kaynağa finder/panelerişimi çalışıyor.
+- Kanıt: ui02-scope02-webkit/world-768.png
+- Sonuç: UI-002 P2; kaynak/doğruişlemhatası değildir,clamp/okunurluk işi açık.
 
 #### TEST-19.07-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -11387,7 +11346,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: V11-16 fiziksel sunum ayrı kabul kapısı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11453,7 +11412,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-19.
 - Amaç / kullanıcı riski: Native Safari/Retina ile WebKit ayrımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-19 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT19 ilkfeedback100ms/temelpanel200ms ve fiziksel-proxy ayrımı; klavye/focus/reduced-motion. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11522,7 +11481,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Repo/Go/Node/Vite olmadan temiz arşiv açılışı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11588,7 +11547,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Boş config/ilk liman gerçek bağlantısı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11654,7 +11613,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Temiz pakette iki liman gerçek kullanım; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11720,7 +11679,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Eksik araç/dolu port/expired credential; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11786,7 +11745,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Restart/veri/migration/backup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11852,7 +11811,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Başarısız update rollback; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11918,7 +11877,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: macOS native runtime; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -11984,7 +11943,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Linux ilan edilen runtime/emülasyon ayrımı; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12050,7 +12009,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Docker/Helm ilan edilen destek; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12116,7 +12075,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Paket test endpoint/private veri yokluğu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12182,7 +12141,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: CI token/PR secret/checkout/workflow injection; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12248,7 +12207,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: Action pin/cache/artifact/release yetkisi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12314,7 +12273,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: SBOM/checksum/provenance; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12380,7 +12339,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-20.
 - Amaç / kullanıcı riski: İmza/attestation yetenek ve doğrulama; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-20 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12449,7 +12408,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Final profil01 boş başlangıç; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12515,7 +12474,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Final profil02 ortak küme iki liman; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12581,7 +12540,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Final profil03 bağımsız kümeler; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12647,7 +12606,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Final profil04 restricted; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12713,7 +12672,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Final profil05 arıza/recovery; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12779,7 +12738,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Final profil06 limanlar arası ağ; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12845,7 +12804,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Final profil07 açık replay; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12911,7 +12870,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Cold/idempotent up/down-up/reset/cleanup; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -12977,7 +12936,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Rehber/doğrulanmış temiz terminal komutu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -13043,7 +13002,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Kullanıcı PASS/FAIL alanları boş ve ağır lab durumu; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -13109,7 +13068,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: Roadmap/kanıt/paket ikinci incelemesi; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
@@ -13175,7 +13134,7 @@ ASVS/WSTG/API Top10/Kubernetes/SSDF sürüm ve kontrol kimlikleri birincil kayna
 
 - Kategori: CAT-21.
 - Amaç / kullanıcı riski: V11-19 final teslim ve manuel onay; yanlış işlem/veri sızıntısı/kayıp veya yanıltıcı kabulü önlemek.
-- İlgili gereksinim / güvenlik standardı kontrolü: kullanıcının CAT-21 sözleşmesi; uygulanabilir standart kontrol eşlemesi hazırlıkta doğrulanacak.
+- İlgili gereksinim / güvenlik standardı kontrolü: CAT21 yedi manuel profil,gerçek/replay ayrımı,kullanıcı kararı ve V11-19. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).

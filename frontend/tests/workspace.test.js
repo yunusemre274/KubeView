@@ -12,6 +12,31 @@ const connection = (id = "A") => ({ id, name: id, context: "same-context", bound
 const harbor = (id, connectionRef = "A") => ({ id, name: id, connectionRef, namespaces: ["alpha"], selector: "app=web" });
 const workspace = (harbors, connections = [connection()]) => ({ id: "workspace-unit", schemaVersion: 1, connections, harbors });
 function fakeCore(scope) { return { workspaceScope: scope, state: { ...initialState(scope.scopeKey), configured: true, context: scope.context, mode: "live", resources: { same: pod() }, discovery: [], activeNamespace: "alpha" }, epoch: 1, socketSerial: 1, listeners: new Set(), start() {}, cleanup() { this.closed = true; }, connect() { ++this.socketSerial; }, streamSession() { return { key: String(this.socketSerial), ready: true }; }, diagnostics() { return {}; } }; }
+test("on-demand scope registration rejects a foreign namespace before opening a watch", () => {
+  const manager = createSourceManager({ workspaceId: "w", harborId: "h", tabId: "t", scopeKey: "scope", context: "A", namespaces: ["alpha"], bound: true });
+  const descriptor = { group: "", version: "v1", resource: "pods", kind: "Pod", namespaced: true };
+  const release = manager.retainKind("Pod", "beta", descriptor);
+  assert.equal(manager.scopeSubscriptions.size, 0);
+  assert.equal(manager.refreshQueued, false);
+  release();
+  manager.retainKind("Pod", "alpha", descriptor)();
+  assert.equal(manager.scopeSubscriptions.size, 1);
+  manager.cleanup();
+});
+test("foreign on-demand list never sends a request while union and cluster scopes remain usable", async () => {
+  const manager = createSourceManager({ workspaceId: "w", harborId: "h", tabId: "t", scopeKey: "scope", context: "A", namespaces: ["alpha", "beta"], bound: true });
+  const descriptor = { group: "", version: "v1", resource: "pods", kind: "Pod", namespaced: true };
+  let reads = 0;
+  manager.request = async () => { reads++; return { items: [] }; };
+  try {
+    await assert.rejects(manager.loadKind("Pod", "foreign", descriptor), error => error.status === 403);
+    assert.equal(reads, 0); assert.equal(manager.scopeSubscriptions.size, 0); assert.deepEqual(manager.state.errors, []);
+    await manager.loadKind("Pod", "beta", descriptor); assert.equal(reads, 1);
+    manager.retainKind("Pod", "all", descriptor)();
+    manager.retainKind("Node", "", { ...descriptor, resource: "nodes", kind: "Node", namespaced: false })();
+    assert.equal(manager.scopeSubscriptions.size, 3);
+  } finally { manager.cleanup(); }
+});
 test("20 identical harbors share one canonical core; their grants and requests stay distinct", () => {
   let created = 0;
   const registry = new WorkspaceRegistry("unit-tab-id", (scope) => { ++created; return fakeCore(scope); });

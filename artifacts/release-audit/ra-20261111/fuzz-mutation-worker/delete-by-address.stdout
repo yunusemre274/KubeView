@@ -1,0 +1,108 @@
+✔ snapshot includes unscheduled pod without creating a fictitious node (3.799417ms)
+✖ same-name recreation, delayed DELETE, and opaque resourceVersion remain safe (2.534083ms)
+✔ generation rejects previous session messages and resync removes vanished resources (0.4565ms)
+✔ Running and Ready differ; deletionTimestamp stays canonical until DELETE (0.408917ms)
+✔ restart update preserves identity; missing measurements never become zero (0.530292ms)
+✔ limited reconnect snapshot cannot declare an unlisted custom resource deleted (1.24225ms)
+✔ real CR DELETE and offline delete confirmed by scoped relist remove only that UID (0.63025ms)
+✔ RBAC loss and unavailable CR API retain explicitly unverified data, never tombstone it (0.38275ms)
+✔ specific namespace authority is usable when cluster-wide list is denied; a later exact denial is explicit (0.31375ms)
+✖ a CR recreated at the same address has new UID, and delayed old DELETE cannot remove it (3.632458ms)
+✔ namespace/GVR authority and connection identity do not leak across scopes or contexts (0.419667ms)
+✔ empty scoped authority preserves unknown objects while explicit legacy full snapshot reconciles them (0.243959ms)
+✔ in-flight list cannot undo a newer watch update, DELETE, ADD or UID replacement (0.622167ms)
+✖ scope and tombstone identities stay stable on unrelated normal updates; deletion cache is bounded (2915.41325ms)
+✔ namespace narrowing forgets only unleased coverage without inventing DELETE or replacing context (1.008917ms)
+✔ a later scoped snapshot marks only its actual UIDs as baseline; live ADD and Pending assignment stay separate (0.754042ms)
+✔ snapshot provenance replaces rather than accumulates UID history and resets with source (4.242791ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 14
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3126.351583
+
+✖ failing tests:
+
+test at tests/store.test.js:49:1
+✖ same-name recreation, delayed DELETE, and opaque resourceVersion remain safe (2.534083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'new'
+  - ]
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/.git/release-audit/fuzz-mutation-49999815/delete-by-address/tests/store.test.js:57:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'new' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/store.test.js:237:1
+✖ a CR recreated at the same address has new UID, and delayed old DELETE cannot remove it (3.632458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   apiVersion: 'audit.kubeview.local/v1',
+  -   kind: 'AuditCargo',
+  -   metadata: {
+  -     name: 'cargo',
+  -     namespace: 'test',
+  -     resourceVersion: 'opaque-A',
+  -     uid: 'new'
+  -   },
+  -   spec: {
+  -     note: 'retained-real-data'
+  -   }
+  - }
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/.git/release-audit/fuzz-mutation-49999815/delete-by-address/tests/store.test.js:246:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { apiVersion: 'audit.kubeview.local/v1', kind: 'AuditCargo', metadata: { uid: 'new', name: 'cargo', namespace: 'test', resourceVersion: 'opaque-A' }, spec: { note: 'retained-real-data' } },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/store.test.js:322:1
+✖ scope and tombstone identities stay stable on unrelated normal updates; deletion cache is bounded (2915.41325ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/.git/release-audit/fuzz-mutation-49999815/delete-by-address/tests/store.test.js:348:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

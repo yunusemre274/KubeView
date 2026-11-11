@@ -395,13 +395,15 @@ export default function App() {
         `${d.group ? d.group + "/" : ""}${d.version}` === selected.apiVersion,
     );
   useEffect(() => {
-    if (!selectedDescriptor) return;
+    // A layout source switch schedules a new selection, but the previous
+    // render's passive effect can still run with the new committed callback.
+    if (!selectedDescriptor || selectedSource !== sourceKey) return;
     return retainKind(
       selectedDescriptor.kind,
       selected?.metadata.namespace || "",
       selectedDescriptor,
     );
-  }, [selectedDescriptor, selected?.metadata.namespace, sourceKey, retainKind]);
+  }, [selectedDescriptor, selected?.metadata.namespace, sourceKey, selectedSource, retainKind]);
   const selectedNode =
     selected?.kind === "Node"
       ? selected

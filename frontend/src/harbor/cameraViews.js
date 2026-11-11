@@ -41,12 +41,12 @@ export function captureHarborCamera(position, target, transition, harborId, offs
   return harborId ? { space: "harbor-local-v1", harborId, fov: effectiveFov, position: [p[0] - offset[0], p[1], p[2] - offset[1]], target: [t[0] - offset[0], t[1], t[2] - offset[1]] } : { fov: effectiveFov, position: [...p], target: [...t] };
 }
 
-export function harborFitSamples(scene, fleet, bounds, offset = [0, 0], includeNearby = false) {
+export function harborFitSamples(scene, fleet, bounds, offset = [0, 0], includeNearby = false, includeAllHarbors = false) {
   const samples = [], instance = new THREE.Matrix4(), matrix = new THREE.Matrix4();
   scene.updateMatrixWorld(true);
   scene.traverse((object) => {
     for (let parent = object; parent; parent = parent.parent)
-      if (!parent.visible || (parent.userData?.workspaceSilhouette && !(includeNearby && parent.userData?.workspaceDetail))) return;
+      if (!parent.visible || (parent.userData?.workspaceSilhouette && !includeAllHarbors && !(includeNearby && parent.userData?.workspaceDetail))) return;
     if (!object.isMesh || object.name === "harbor:ocean" || object.name === "harbor:vessel-wake" || object.geometry.userData?.waterGrid || object.material?.name?.includes("wake") || ["PlaneGeometry", "RingGeometry"].includes(object.geometry.type)) return;
     object.geometry.computeBoundingBox();
     const box = object.geometry.boundingBox;

@@ -1679,12 +1679,13 @@ function ViewController({
       capture: () => controls.current && viewOwner.current?.sourceKey === sourceKey && viewOwner.current?.harborId === activeHarborId ? captureHarborCamera(camera.position.toArray(), controls.current.target.toArray(), transition.current ? { position: transition.current.to.toArray(), target: transition.current.toTarget.toArray() } : null, activeHarborId, worldOffset, camera.getEffectiveFOV()) : null,
       cancelTransition() { transition.current = null; },
       overviewWorkspace() {
-        const positions = workspaceHarbors.map((harbor, index) => harborPosition(harbor, index));
-        if (!positions.length) return fit();
-        const minX = Math.min(...positions.map((position) => position[0])), maxX = Math.max(...positions.map((position) => position[0])), minZ = Math.min(...positions.map((position) => position[1])), maxZ = Math.max(...positions.map((position) => position[1]));
-        const center = new THREE.Vector3((minX + maxX) / 2, 0, (minZ + maxZ) / 2), distance = Math.max(maxX - minX, maxZ - minZ) * 1.5 + 700;
+        if (!workspaceHarbors.length) return fit();
+        // A fixed distance based on harbor centers crops the piers in a narrow
+        // viewport. Include actual detailed/LOD geometry and the current lens.
+        const samples = harborFitSamples(scene, null, bounds, worldOffset, true, true);
+        const { center, position, distance } = fitHarborView(samples, size.width / size.height, camera.fov);
         transition.current = null;
-        camera.position.copy(center).add(new THREE.Vector3(0, distance, distance * 0.7));
+        camera.position.copy(position); camera.lookAt(center); updateHarborDepth(camera, center);
         controls.current?.target.copy(center); camera.far = distance * 5; camera.updateProjectionMatrix(); controls.current?.update(); invalidate();
       },
     };

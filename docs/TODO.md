@@ -208,5 +208,5 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 - [x] SEC-001 eksik discovery typed selector bypass: sentetik red→fail-closed düzeltme→80 istek kontrolü; gerçek paket/RBAC kabulü ayrıca açık.
 - [x] Go1.26.11 ve advisory gideren uyumlu modüller; main source scanner0finding, vet/unit; opt-in SKIP korunur.
 - [x] SEC-002 absolute session expiry: ek HTTP beklemeden stream context deadline, kısa süreli regresyon ve odaklı race.
-- [ ] İki liman gerçek final paket UI; dar global harita kadrajı düzeltmesi ve görsel tekrar.
+- [x] İki liman gerçek embedded candidate02 UI: Chromium15/WebKit15; namespace passive-effect ve dar harita kadrajı düzeltmesi,223unit/build. Final temiz paket tekrarı ayrı açık.
 - [ ] Yeni fullTLS cold lab, bounded pentest/load,5 eşleşmiş A/B ve60dk koşusu; eski V11-16/18/19+MANUAL açık.

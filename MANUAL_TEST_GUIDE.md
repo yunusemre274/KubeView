@@ -63,6 +63,13 @@ kullanıcının eklediği bağımsız kaynaklar ve workspace tercihleri korunur.
 
 Uygulamanın yazdığı URL'yi kendi tarayıcınızda açın. Deniz haritası için
 **Limanlar ve deniz haritası**, kayıt yönetimi için **Limanlar** kullanılır.
+
+İki limanı birlikte görmenin en kısa yolu:02 profilini açın, **Limanlar ve deniz
+haritası → Denizi uzaktan gör** seçin. İki ayrı Proje levhası ve merkez/rıhtım
+görünmelidir. Bir levhadan limanı açın; **Limana dön** aktif limanı okunur kadraja
+alır. Dar ekranda bütün deniz için tekrar **Denizi uzaktan gör** kullanın.
+Merkezden seçtiğiniz Pod'un namespace ve UID'sini kontrol edin; diğer limana
+geçişte önceki Pod yeni limanın yükü olarak gösterilmemelidir.
 Boş workspace'te **İlk limanını bağla** → **Liman ekle** yolunu izleyin.
 **Liman adı**, **Güvenilir bağlantı**, **Cluster / context**,
 **Namespace kapsamı (virgülle)** ve **Label seçicisi** alanlarını doldurun;

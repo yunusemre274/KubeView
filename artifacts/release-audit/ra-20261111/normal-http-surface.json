@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-11T13:54:11.788573+03:00",
+  "target": "http://127.0.0.1:19842",
+  "probes": [
+    {
+      "path": "/healthz",
+      "status": 200,
+      "contentType": "text/plain",
+      "bytesReadAtMost": 2
+    },
+    {
+      "path": "/api/version",
+      "status": 200,
+      "contentType": "application/json",
+      "bytesReadAtMost": 84
+    },
+    {
+      "path": "/api/workspace",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bytesReadAtMost": 1024
+    },
+    {
+      "path": "/api/contexts",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bytesReadAtMost": 228
+    },
+    {
+      "path": "/debug/pprof/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytesReadAtMost": 587
+    },
+    {
+      "path": "/api/benchmark/state",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8"
+    },
+    {
+      "path": "/api/replay/status",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8"
+    }
+  ]
+}

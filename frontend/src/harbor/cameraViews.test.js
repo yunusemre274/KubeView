@@ -44,6 +44,25 @@ test("empty harbor fit fallback and user camera capture retain the correct coord
   assert.deepEqual(captured.position, [100, 60, 100]); assert.deepEqual(restoreHarborCamera(captured, "b", [1400, 200]).position, [1500, 60, 300]);
 });
 
+test("global workspace overview includes distant harbor silhouettes and fits a narrow 24-degree viewport", () => {
+  const scene = new THREE.Scene(), geometry = new THREE.BoxGeometry(180, 45, 300), material = new THREE.MeshBasicMaterial();
+  const active = new THREE.Mesh(geometry, material), remote = new THREE.Group();
+  remote.userData.workspaceSilhouette = true; remote.position.set(550, 0, 240);
+  remote.add(new THREE.Mesh(geometry, material)); scene.add(active, remote);
+  try {
+    const local = harborFitSamples(scene, null, {}, [0, 0]);
+    const global = harborFitSamples(scene, null, {}, [0, 0], true, true);
+    assert.equal(local.length, 8);
+    assert.equal(global.length, 16, "explicit global map must include the other harbor's geometry");
+    const fit = fitHarborView(global, 768 / 900, 24), camera = new THREE.PerspectiveCamera(24, 768 / 900, .5, 10000);
+    camera.position.copy(fit.position); camera.lookAt(fit.center); camera.updateMatrixWorld();
+    for (const point of global) {
+      const ndc = point.clone().project(camera);
+      assert.ok(Math.abs(ndc.x) <= .881 && Math.abs(ndc.y) <= .881 && ndc.z > -1 && ndc.z < 1);
+    }
+  } finally { geometry.dispose(); material.dispose(); }
+});
+
 test("UI2 camera fit frames two ports without near-plane runaway on desktop and narrow screens", () => {
   for (const aspect of [1672/941,1440/900,1280/800,768/900]) {
     const points = [0,550].flatMap(x => [-212,212].flatMap(dx => [-183,276].flatMap(z => [0,42].map(y => new THREE.Vector3(x+dx,y,z+x*.44)))));

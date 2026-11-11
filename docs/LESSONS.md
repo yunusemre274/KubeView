@@ -210,3 +210,10 @@ Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm 
 - Deployment metadata annotation değişikliği Kubernetes1.35.1 PrepareForUpdate içinde generation artırır; “metadata edit → generation aynı” evrensel kuralı yoktur. G testinin ilk beklentisi bu nedenle yanlıştı. Spec/PodUID/target/202+409 korumaları korunarak before+1 sınandı; birleşik assertion'lar ayrı tanılama verir. Gerçek ürün hatası olarak kaydedilmedi.
 - Restore sonrası ilk0Ready durumu ile kalıcı arıza farklıdır. Aynı UID'nin bounded read-only sonraki gözleminde2/2 olduğu kaydedildi; ilkFAIL veya formatterKeyError silinmedi, restore/reset tekrar edilmedi.
 - Three renderer geometri sayısı ile scene UUID sayısı eşdeğer değildir: frustum'dan ilk geçiş GPU kaydını artırabilir. Aynı kaynak/kamera/limana ikinci dönüşte57→57 ve scene62→62 görülmesi sınırlı ısınma kanıtıdır; genel sızıntısızlık veya VRAM MB kanıtı değildir.
+## 11 Kasım2026 — güven sınırı ve gerçek UI kanıtı
+
+- API discovery hedef GVR'yi göstermediğinde typed endpoint selector kontrolü fail-open olmamalı. Normal kapsam dışı403 kontrolünün yanına aynı API/kimlikte eksik-keşif negatifini eklemek gerçek Secret hatasını buldu.
+- Cookie/session expiry yalnız sonraki istekte denetlenirse mevcut stream uzayabilir. Context deadline özgün mutlak ömre bağlı olmalı; reset eski scope'u iptal etmeli ve ömrü uzatmamalı.
+- Layout source değişiminin eski passive selection effect'i yeni committed callback'i çağırabilir. Önceki namespace'in yeni limana aboneliğini hem render source guard'ı hem core scope preflight önler. Test fixture'ının callback override'ını gerçekten kullandığı doğrulanmalıdır; no-op'a bakan ilk hatalı helper ayrı saklanır.
+- Başlık/kanonik adet PASS'i, güncel iki liman UI'ı anlamına gelmedi. Karelerde stale/partial durum görüldü; yeni test Canlı ve exact UID'yi bekleyince gerçek yanlış-namespace aboneliği yeniden üretildi.
+- Global kamera mesafesi yalnız liman merkez aralığından hesaplanırsa dar aspect/lens rıhtımları keser. Mevcut geometri/LOD sınırları kamera uzayında fit edilmelidir; snapshot/gemi güncellemesi kullanıcı kamerasını kendiliğinden değiştirmez.

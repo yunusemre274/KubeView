@@ -30,7 +30,7 @@ function connection(patch = {}) {
   const resources = patch.resources || [];
   return { ...state, resources, resourceIndex: buildResourceIndex(resources, null, state.sourceKey),
     api: { context: "unit", mode: "live", request: async () => ({}), streamSession: () => ({ key: state.sourceKey, ready: false }), subscribeStreamSession: () => () => {} },
-    observeNamespace() {}, retainKind: () => () => {}, resourceObservation: (resource) => resourceObservation({ ...state, resources: Object.fromEntries(resources.map((item) => [item.metadata.uid, item])) }, resource),
+    observeNamespace() {}, retainKind: patch.retainKind || (() => () => {}), resourceObservation: (resource) => resourceObservation({ ...state, resources: Object.fromEntries(resources.map((item) => [item.metadata.uid, item])) }, resource),
   };
 }
 function environment() {
@@ -77,6 +77,17 @@ async function withApp(run) {
   }
 }
 const live = (view, resources, patch = {}) => connection({ workspace: view, sourceKey: `source:${view.activeId}`, resources, snapshotReady: true, stale: false, isConnected: true, upstream: true, ...patch });
+test("switching namespaces never retains the previous Pod in the new harbor core", async () => withApp(async (app) => {
+  const a = workspace(), b = workspace("b", { uid: "beta-uid", kind: "Pod", namespace: "beta" });
+  b.activeHarbor.namespaces = ["beta"];
+  const beta = { ...pod("beta-uid"), metadata: { ...pod("beta-uid").metadata, namespace: "beta" } };
+  const descriptor = { group: "", version: "v1", resource: "pods", kind: "Pod", namespaced: true };
+  const calls = [];
+  app.render(live(a, [pod()], { discovery: [descriptor] }));
+  app.render(live(b, [beta], { discovery: [descriptor], retainKind: (kind, namespace) => { calls.push(namespace); return () => {}; } }));
+  assert.deepEqual(calls, ["beta"], "a passive effect from the previous render must not subscribe alpha on B");
+  assert.equal(app.details()?.props.resource.metadata.uid, "beta-uid");
+}));
 test("closed log panel stays closed across warm harbor return while its UID highlight survives", async () => withApp(async (app) => {
   const a = workspace(), b = workspace("b", { uid: "other", kind: "Pod", namespace: "alpha" });
   app.render(live(a, [pod()])); app.details().props.onTabChange("logs"); app.render();

@@ -103,7 +103,13 @@ export const singletonManager = {
       if (epoch === this.epoch && this.started) this.connect();
     });
   },
+  allowsResourceScope(scope) {
+    const allowed = this.workspaceScope?.namespaces;
+    return !allowed || allowed.includes("*") || !scope.namespace ||
+      scope.namespace === "*" || allowed.includes(scope.namespace);
+  },
   registerScope(scope, retain = false) {
+    if (!this.allowsResourceScope(scope)) return null;
     const key = scopeKey(scope);
     const existing = this.scopeSubscriptions.get(key);
     if (existing) {
@@ -518,6 +524,11 @@ export const singletonManager = {
       requestedDescriptor || this.state.discovery.find((d) => d.kind === kind);
     if (!descriptor) return;
     const scope = resourceScope(descriptor, namespace);
+    if (!this.allowsResourceScope(scope)) {
+      const error = new Error("Kaynak namespace'i bu limanın kapsamında değil.");
+      error.status = 403;
+      throw error;
+    }
     this.registerScope(scope);
     const key = scopeKey(scope);
     const previous = this.scopeRequests.get(key);

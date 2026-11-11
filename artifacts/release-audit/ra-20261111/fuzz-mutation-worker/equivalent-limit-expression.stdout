@@ -1,0 +1,25 @@
+✔ snapshot includes unscheduled pod without creating a fictitious node (7.934917ms)
+✔ same-name recreation, delayed DELETE, and opaque resourceVersion remain safe (6.346917ms)
+✔ generation rejects previous session messages and resync removes vanished resources (0.703666ms)
+✔ Running and Ready differ; deletionTimestamp stays canonical until DELETE (0.545875ms)
+✔ restart update preserves identity; missing measurements never become zero (2.403667ms)
+✔ limited reconnect snapshot cannot declare an unlisted custom resource deleted (1.816125ms)
+✔ real CR DELETE and offline delete confirmed by scoped relist remove only that UID (0.772375ms)
+✔ RBAC loss and unavailable CR API retain explicitly unverified data, never tombstone it (0.378833ms)
+✔ specific namespace authority is usable when cluster-wide list is denied; a later exact denial is explicit (0.308084ms)
+✔ a CR recreated at the same address has new UID, and delayed old DELETE cannot remove it (1.3245ms)
+✔ namespace/GVR authority and connection identity do not leak across scopes or contexts (3.760916ms)
+✔ empty scoped authority preserves unknown objects while explicit legacy full snapshot reconciles them (0.438583ms)
+✔ in-flight list cannot undo a newer watch update, DELETE, ADD or UID replacement (0.616625ms)
+✔ scope and tombstone identities stay stable on unrelated normal updates; deletion cache is bounded (2804.770417ms)
+✔ namespace narrowing forgets only unleased coverage without inventing DELETE or replacing context (0.682375ms)
+✔ a later scoped snapshot marks only its actual UIDs as baseline; live ADD and Pending assignment stay separate (0.526834ms)
+✔ snapshot provenance replaces rather than accumulates UID history and resets with source (2.794833ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3192.593084

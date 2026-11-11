@@ -1,5 +1,11 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — iki limanda güncellik ve harita kadrajı
+
+- Eski seçimin passive effect'inin yeni limana yanlış namespace aboneliği taşıması giderildi; on-demand scope/list ayrıca liman kapsamını kontrol ediyor. Backend reddi gevşetilmedi.
+- Global deniz haritası gerçek tesis/LOD sınırlarını, viewport ve lensi kullanır; dar ekranda rıhtım kenarları kesilmez. Normal panel açma/kapatma kamera fit başlatmaz.
+-223 frontend unit/build, gerçek iki-namespace/two-harbor Chromium15 ve PlaywrightWebKit15 kontrolü geçti; üç viewport, doğru PodUID, aynı Canvas ve0workspace reddi. Video/kareler açılarak inceleniyor; bu CPU/physical-latency kabulü değildir.
+
 ## 2026-11-11 — beyaz dalga izini yumuşatma
 
 - Köpük opaklık tavanı0,86→0,70; güneş parıltısı0,12→0,10 olarak hafif azaltıldı. Hareket, hız ilişkisi ve kıçtan uzaklaştıkça seyrelme korunur.
