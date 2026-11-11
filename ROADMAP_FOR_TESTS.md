@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T21:47:50.810279+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T21:48:43.983007+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:19; FAILED:3; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:29; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:29; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -42,7 +42,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-16 — A/B benchmark | 13 | NOT_STARTED:13 | Henüz yok |
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
-| CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:2, BLOCKED:1 | Henüz yok |
+| CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:3 | Henüz yok |
 | CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:2, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
@@ -11161,7 +11161,7 @@ Ownedapp82905/birth/PGID finallyexit0; noLISTEN19849, child0, realCONTROLabsent,
 - Ortam / kullanılan kimlik ve yetki: macOS27.0.1/Apple M5; installed safaridriver Safari27.0.1, owned port19845. Session/OS ayarı/kişisel sayfa erişimi yok.
 - Başlangıç zamanı: 2026-11-11T17:17:48.720855Z
 - Bitiş zamanı: Retest2026-11-11T17:23:29.515876Z,0.211336sn/45sn sınırı. Session yaratılmadı; Safari uygulama kabulü yok.
-- Durum: BLOCKED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-19.09-S1 — Hazırlık
@@ -11190,6 +11190,8 @@ Ayrı compatible probe: documented2024-11-05 agreement→initialized→tools/lis
 - Sonuç: NOT_STARTED
 
 İlk owned-tab uygulama smoke görevi NOT_RUN_TIME_BUDGET ile durdu:300sn içinde plan/source review sonrası güvenli runtime süresi kalmadı;18:44:19 kaydı korunur. Candidatef9 hash doğrulandı fakat app/driver/tab/tools-call0. Bu ne productFAIL ne automationdenial ne SafariPASS. Kanıt: native-safari-owned-tab-worker/REPORT.md/result.json.
+
+Gerçek capability: owned MCP child86590, create_tab(about:blank) tek yeni handle döndürdü; yalnız o handle close_tab ile kapandı.0.941306sn/403byte, EOFexit0. Bu gerçek browser tool invocationdır; KubeView UI/DPR/Retina veya performance değildir. İzin ayarı değiştirilmedi, mevcut sekmeler okunmadı. Kanıt: native-safari-blank-tab-worker/REPORT.md/result.json.
 
 #### TEST-19.09-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -11236,10 +11238,12 @@ MCPmetadata probe child80131 stdinEOF ile exit0; bütünpipes kapandı. Session/
 
 Root compatible receipt/SHA/projection sınırını inceledi; toolnames doğru, sadece structural schema taşındı. XPC HTTP guardı gevşetilmedi; alternatif directownedstdio transport doğrulandı. Gerçek fresh-owned-tab uygulama smoke ayrı uygulanabilir sonraki iş.
 
+Root iki worker artefakt hashini ve exact-created-handle cleanup sonucunu inceledi. Stdio native yol artık gerçek blanktab düzeyinde çalıştığı için eski HTTPXPC helper engeli alternatif yolla aşıldı; genel faz actualapp/Retina için IN_PROGRESS kalır.
+
 #### TEST-19.09-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- BLOCKED: XPC listener için mevcut test yardımcısında authoritative owned responsibility mapping yok; session yaratılmadı. İlk harness FAILED kaydı ayrı korunur. Native Safari uygulama/Retina/performance ve izin durumu hâlâ doğrulanmamış.
-- Sonraki somut iş: doğrulanmış native driver yolu veya XPC responsibility kanıtını elde edip aynı kapsamı bounded test etmek. WebKit PASS yerine kullanılamaz; OS automation ayarı kendiliğinden açılmadı.
+- IN_PROGRESS: İlk HTTP attribution ve NOT RUN kayıtları korundu. Alternatif ownedstdio yolunda gerçek boş sekme açma/kapatma geçti; KubeView uygulama/render/Retina kapsamı henüz doğrulanmadı. WebKit veya metadata PASS ile yerine konmadı.
+- Sonraki iş: yalnız owned app sekmesinde native Safari UI ve gerçek raporlananDPR/framebuffer kaydı; fiziksel gecikme/performans kabulü ayrı kalır.
 
 ## CAT-20 — Paket/güncelleme/CI
 

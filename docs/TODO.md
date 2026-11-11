@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — gerçek Safari boş sekme capability
+
+- [x] Yeni owned about:blank sekmesi gerçek create_tab ile açıldı ve exact handle ile kapandı;0.94sn, driver EOF exit0.
+- [ ] KubeView UI/Retina/performance henüz doğrulanmadı; actual app smoke devam ediyor.
+
+
 ## 11 Kasım — Safari uygulama smoke zaman sınırı
 
 - [ ] İlk uygulama smoke görevi kaynak incelemesinden sonra NOT RUN kaldı; hiçbir app/sekme açılmadı. Kayıt korundu, kabul sayılmadı.

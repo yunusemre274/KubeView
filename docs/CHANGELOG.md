@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — native Safari gerçek tool çağrısı
+
+- Owned stdio üzerinden yeni boş sekmenin açılıp yalnız kendi handle değeriyle kapatılması doğrulandı. OS ayarı veya mevcut sekmeler kullanılmadı; UI/performans sonucu sayılmadı.
+
+
 ## 2026-11-11 — Safari NOT RUN kaydı
 
 -300sn görevin güvenli runtime penceresi kalmadığından ilk app smoke başlatılmadı. Bu kaynak hash kontrolü dışında platform kabulü üretmez.
