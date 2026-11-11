@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T22:35:36.989353+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T22:35:39.430920+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
@@ -3971,6 +3971,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 Ayrı düzeltilmişcase02: runtimef9/4c, helper8645; firstPOST19:13:56.336/samekeysecond19:13:56.637 aynıoperation0aab9c6d… .19:14:15ProcessLookupError, actualstack power→cmd→bounded_process→OwnedGroup.capture, Ready/adoption yok. App93925/CLI93976 yok/19849boş, immutablejournallar private600. Kanıt: real-minikube-add-fixed-worker/REPORT.md/result.json.
 
 Case03 gerçekworker: firstPOST19:29:13.849/samekeysecond19:29:14.153 tekoperatione71e7301… .Kayıt19:29:21.429, Ready19:29:22.930; NodeUID01fb8dc0-b1d6-4831-9561-277ca390fe8a ve Docker30e5834e… doğrulandı. Helper exactknownDS/newUID cleanup19:29:29.754 tamam/journalPASS. OUTERFAIL: assignedPodGC20s içinde bitmedi; finalPodUIDs saklanmadı. ProfileSHA c826→4733 fakat privateparsedJSONtamaynı/diff0. Runtime38.262sn/report142.310sn<720. No4thadd; ilk ikiFAIL korunur. Kanıt: artifacts/release-audit/ra-20261111/real-minikube-add-racefixed-worker/REPORT.md.
+
+İlk saltokunurGCfollowup defaulthelperACpowerguardında BLOCKED; hiçbirKubernetes/Dockerread yok. CurrentGC/profileobservationUNKNOWN, öncekiFAIL değişmez. Powercondition cihazBattery90 olarak değişti; kullanıcıpildevam yetkisiyle ayrı kısaREADONLY politika uygulanacak, auth/UIDguardları değişmez. Kanıt: artifacts/release-audit/ra-20261111/real-minikube-add-gc-followup-worker/REPORT.md.
 
 #### TEST-06.12-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
