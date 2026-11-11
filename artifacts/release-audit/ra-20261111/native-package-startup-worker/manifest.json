@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "phase": "TEST20.01 native package startup partial",
+  "phaseElapsedSecondsAtFinalization": 206.97622,
+  "workCompletedBefore180s": true,
+  "withinTotal240s": true,
+  "mergeCommit": "5373657169e8bf332940fd2366022925f48eb85c",
+  "sourceTree": "2112579043ca1325013f7b5bac6b95fc7d0d3164",
+  "canonicalMergeProofSHA256": "956b8c50d4d03c167c3ecce2f1132defa628ee0028c0b2801871dae12ae8e42d",
+  "binarySHA256": "191fb0ca99a4f1b4327a92f04681edd93b74d1cd22236dcdedbb20be1d32c406",
+  "externalRoot": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261111-01",
+  "appPID": 45303,
+  "appBirth": "Wed Nov 11 20:10:17 2026",
+  "appChildSnapshotCount": 8,
+  "allObservedAppChildListsEmpty": true,
+  "http": {
+    "healthOK": true,
+    "version": {
+      "arch": "arm64",
+      "commit": "5373657169e8bf332940fd2366022925f48eb85c",
+      "os": "darwin",
+      "version": "1.1.0"
+    },
+    "workspaceHarborCount": 0,
+    "workspaceConnectionCount": 0,
+    "contextCount": 0,
+    "htmlSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+    "assets": [
+      {
+        "path": "/assets/index-DDfzt6ML.js",
+        "bytes": 438030,
+        "sha256": "b48977d352b3f17f8e2e2987f5ac04d98c89f593c2fcce6479b01aa110562313",
+        "contentType": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/assets/three-BKmXRbXN.js",
+        "bytes": 973665,
+        "sha256": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+        "contentType": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/assets/index-CCZQtIvj.css",
+        "bytes": 64427,
+        "sha256": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+        "contentType": "text/css; charset=utf-8"
+      }
+    ],
+    "missingKubeconfigStillAbsent": true,
+    "auth": "empty configured token; loopback only; no token cookie recorded"
+  },
+  "browserStatus": "PASS",
+  "renderer": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)"
+  },
+  "normalUI": [
+    "embedded normal empty-workspace onboarding and one Metal canvas",
+    "normal onboarding form open/type/close preserves identical canvas"
+  ],
+  "pageErrors": [],
+  "mutationRequests": [],
+  "externalPageRequestsBlocked": [],
+  "cleanup": {
+    "ownedPIDExited": true,
+    "exitCode": 0,
+    "portNoListener": true
+  },
+  "externalBundleAndWorkspacePreserved": true,
+  "automationRuntimeSeparation": "Absolute Node + headed Playwright Chromium are automation tools, not app runtime dependencies",
+  "helperSHA256": "dac6141c997caada2bae6cd22d932f322a9d271331e86bdcdf724d052707c134",
+  "limitations": [
+    "No real namespace/manual-profile connection or Kubernetes API request was initiated by this harness",
+    "Explicit nonexistent kubeconfig, zero contexts/connections/harbors and no save/preview; no default context selected",
+    "No kernel-level network or process-exec audit; child-process snapshots are bounded observations",
+    "Not nativeSafari, performance, real provider or final manual acceptance"
+  ],
+  "finalizedAt": "2026-11-11T17:11:45.884645+00:00"
+}

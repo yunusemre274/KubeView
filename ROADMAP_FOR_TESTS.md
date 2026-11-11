@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:11:44.038771+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:15:06.607025+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:148; IN_PROGRESS:21; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:27; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:148; IN_PROGRESS:20; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:28; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -43,7 +43,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:7, IN_PROGRESS:2 | Henüz yok |
-| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:3 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:2, VERIFIED_DONE:1 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
@@ -11162,8 +11162,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kaynak / build / paket kimliği: Son başarılı CI: PR head3bdb7c0c; gerçek checkout/build5373657169e8bf332940fd2366022925f48eb85c. Her iki full Git tree2112579043ca1325013f7b5bac6b95fc7d0d3164 eşit. Artifact13874845784 ZIP SHA4a2d8905… doğrulandı; final teslim kabulü değil.
 - Ortam / kullanılan kimlik ve yetki: GitHub Actions native Ubuntu Linux CI; ayrı macOS native arşiv incelemesi sürüyor. Yerel AC Power/charging düşük pil; ağır lab/perf/soak kapalı.
 - Başlangıç zamanı: 2026-11-11T13:20:17.412070+00:00
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Bitiş zamanı: Native finalization2026-11-11T17:11:45.884645Z. Faz206.97622sn,240sn sınırında. CI43062361657 ayrı native Linux smokePASS.
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-20.01-S1 — Hazırlık
@@ -11187,6 +11187,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Arşiv incelemesi: ZIP/both tar checksum, iç/dış provenance ve exact allowlist60member/118,777,814expanded-byte sınırında doğrulandı. Link/special/encrypted/duplicate/traversal girişleri kabul edilmedi; extractall kullanılmadı.
 - Tek native darwin-arm64 --version0.578202sn/exit0; gerçek build5373657, PATH/usr/bin:/bin, HOME korundu. Fresh cwd boş ve --data-dir yok kaldı. Server/UI veya provider başlamadı.
 
+- [x] Yeni native Mac standalone job: repo/.git dışında yeni0700 bundle, uygulama PATH'i boş owned tools dizini; HOME korundu ve explicit nonexistent kubeconfig kullanıldı. Gerçek embedded HTML/JS/CSS hashleri, health/version,0workspace/contexts ve Chromium/Metal ilk liman formu open/type/close/aynıcanvas geçti.
+- Otomasyon Node/Chromium ayrı test aracıdır; app process/runtime gereksinimi değildir. Host'tan Go/Node kaldırılmış olduğu iddia edilmedi.
+
 #### TEST-20.01-S3 — Negatif / sınır / arıza kontrolü
 - [x] Output çakışması/symlink, yarışta çıkan arşivin ezilmemesi, eksik/symlink frontend, kirli manual/doc/RBAC girdisi kontrollü test edildi.
 - İlk red: 8PASS/2FAIL; clean kapsamı ve hash/provenance yokluğu yeniden üretildi.
@@ -11194,6 +11197,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kanıt: artifacts/release-audit/ra-20261111/packaging-root-retest/initial-red.log
 
 - İlk PR-head/build SHA guard farkı korundu; root exact merge parent/full tree kanıtıyla bağladı.12Markdown input/output hash farkı exact merge kaynağından paketleyicinin link dönüşümüyle birebir yeniden üretildi. Source-input ve shipped-output hashleri birbirinin yerine yazılmadı.
+
+- [x] Yeni external bundle hedefi mevcutsa reddedilir; bounded extraction link/special/traversal/duplicate kabul etmez. Port free/PID/birth guard ve read-only/optional-provider kapalı allowlist env kullanıldı. Global kubeconfig veya mevcut kullanıcı scope'u benimsenmedi.
+- Yeni app örneğinde kubeconfig yokluğu0context/bağlantısız olarak kaldı; sahte Node/sağlıklı cluster gösterilmedi. Dolu port/expiredcredential/yetkili bağlantı kendi ayrı fazlarındadır.
 
 #### TEST-20.01-S4 — Bulgular ve düzeltme
 - Bulgu: PKG-001 P1 paket doğruluğu; eski output ezme ve seçili olmayan paket girdilerinin temiz sanılması.
@@ -11224,10 +11230,13 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Root inceleme raporu/manifest/native argv ve17checksum doğruladı. Extracted binary/private ZIP .git alanında; credential veya gerçek cluster içeriği yok. Kanıt: artifacts/release-audit/ra-20261111/ci-package-inspection-worker/REPORT.md.
 - Genel job INCOMPLETE: report finalization244.683sn ile240sn faz sınırını4.683sn aştı. Native/inspection gözlemleri orijinal deadline içinde tamamlandı; bu zaman ihlali gizlenmedi ve faz tam PASS yapılmadı. Final temiz kurulum ve manuel profiller hâlâ açık.
 
+- [x] Yeni job206.97622sn içinde finalizasyon+cleanupPASS: exact PID/birth doğrulandı, SIGTERM exit0, port19849 boş. Bundle/workspace korunur.8app-child örneğinde çocuk süreç yok; tam kernel/network audit iddiası yok.
+- [x] Root16checksum, helper/launcher/manifest ve iki gerçek PNG'yi inceledi. ROOT_REVIEW.md kapsamı ve önceki report-overrun sınırını ayırır. Runtime/shipped input yolları merge537..current6db arasında yalnız yeni server test dosyası farkı taşır; veri/UI kodu değişmediği için gereksiz tekrar yok.
+
 #### TEST-20.01-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- IN_PROGRESS: yeni exact merge kaynağında temiz copy-out Linux startup/browser smoke PASS; tarihsel DNS blocker güncel tek engel değildir. Final paket, araçsız/native kullanıcı yolculuğu ve manuel profiller henüz kabul edilmedi.
-- Güncel CI kanıtı ci-package-success-3bdb7c0c/REPORT.md; önceki FAIL ci-package-dns-evidence/REPORT.md. İlgili paket girdileri/runtime değişince retest yapılır.
+- [x] BİTTİ / DOĞRULANDI — bu exact adayın temel standalone paket başlangıcı: gerçek native macOS harici bundle/boş app PATH ve ayrı Linux copy-out CI smoke, embedded UI, ilk liman formu ve cleanup geçti.
+- Kanıt: native-package-startup-worker/REPORT.md, ROOT_REVIEW.md; ci-package-success-3bdb7c0c/REPORT.md. Önceki DNS FAIL ve archive-inspection INCOMPLETE tarihsel kalır.
+- Bu karar final bütün sürüm/paket/provenance, imza, gerçek manuel profiller, migration/restart, native Safari/Retina veya manuel onay değildir. Runtime/asset/shipped input/packaging değişirse ilgili startup gate RETEST_REQUIRED olur.
 
 ### TEST-20.02 — Boş config/ilk liman gerçek bağlantısı
 

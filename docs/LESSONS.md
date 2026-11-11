@@ -1,5 +1,11 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — PR paket kimliği ve kaynak dönüşümü
+
+- Pull request CI varsayılan olarak geçici merge commit'ini derleyebilir. Head SHA'sı ile binary sürümündeki SHA farklıysa çalıştırmadan önce gerçek checkout, parent ve kaynak tree kimliğini doğrulayın; kimlikleri aynı diye yeniden yazmayın.
+- Source-input hash'i paket içindeki dönüşmüş Markdown byte hash'i değildir. Kaynak hash'ini koruyun, belgelenen link dönüşümünü exact kaynak üzerinde yeniden üretip çıktı hash'ini ayrıca doğrulayın.
+- Uygulamayı boş PATH ile repo dışında çalıştırmak, host'taki Go/Node'u kaldırmış olmak değildir. Ayrı otomasyon aracının Node gereksinimi uygulamanın runtime bağımlılığı olarak sunulmamalı; süreç gözleminin örnekleme sınırı korunmalı.
+
 ## 11 Kasım — tarayıcı koşulu ve HTTP test sınırı
 
 - Playwright click completion ve görünür dialog ayrı gözlemlerdir. Yazılımsal SwiftShader ile gerçek Metal koşulunu karıştırmayın; yükleme tamamlanmasını ve tür filtresini kaydedin. Farklı koşuldaki başarılı tekrar önceki başarısızlığın tek nedenini kanıtlamaz.

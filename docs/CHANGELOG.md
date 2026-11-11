@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — standalone native startup kabulü
+
+- Gerçek darwin-arm64 CI paketi yeni harici dizinden, boş uygulama PATH'iyle çalıştırıldı. Embedded asset kimlikleri, empty workspace/context ve Metal üzerinde normal ilk liman formu doğrulandı; uygulama PID/birth guard ile kapanıp portu bıraktı.
+- Temel standalone startup fazı bu adayda geçti. Final bütün sürüm, gerçek Kubernetes profilleri, imza, performans veya native Safari kabulü kapatılmadı. Önceki DNS hataları ve rapor süre aşımı kaydı korundu.
+
 ## 2026-11-11 — backend read-only guard doğrulaması
 
 - Geçerli yönetim oturumu korunurken global read-only'nin doğrudan endpointlerde yazmayı/transport girişini durdurduğu test edildi. Fake mutation sayaçları ve ayrı write-enabled kontroller7test/27alt durumda geçti; Secret okuma ve desteklenmeyen PATCH ayrı tutuldu.

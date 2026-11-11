@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — standalone paket başlangıcı
+
+- [x] TEST20.01 temel startup: gerçek native Mac bundle repo dışında, boş app PATH ve korunmuş HOME ile embedded UI/ilk liman formu açtı; aynı canvas ve exact PID cleanup geçti. Ayrı Linux CI copy-out smoke da geçti.
+- [ ] Final provenance/signature, native Safari/Retina, gerçek manuel profiller, restart/migration ve performans/uzun kullanım kabulü ayrı kalır. Bu sonuç stable yayın veya manuel onay değildir.
+
 ## 11 Kasım — doğrudan read-only endpoint kontrolü
 
 - [x] Geçerli session/nonce/grant ile create/replace/delete/action/resize/exec/forward/provider read-only reddi ve sıfır fake mutasyon doğrulandı; write-enabled kontroller ayrı geçti.7test/27alt durum,0SKIP; ilk sentetik adres hatası korundu.
