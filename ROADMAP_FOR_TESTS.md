@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T19:55:37.638835+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:00:26.697754+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:149; IN_PROGRESS:20; FAILED:1; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:26; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:148; IN_PROGRESS:21; FAILED:1; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:26; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -43,7 +43,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:7, IN_PROGRESS:2 | Henüz yok |
-| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:12, IN_PROGRESS:1, BLOCKED:1 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:2, BLOCKED:1 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
@@ -11819,64 +11819,41 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Sorumlu: KV-SECURITY-WORKER; root kaynak/rapor ikinci incelemesi
+- Kaynak / build / paket kimliği: f1a26cbb çalışma ağacı; .github/workflows/ci.yml ve ilgili paket/test script hashleri ci-trust-review-worker/source-manifest.json içinde.
+- Ortam / kullanılan kimlik ve yetki: Salt okunur yerel kaynak incelemesi ve resmi GitHub güvenlik dokümanları; admin/fork ayarları ve gerçek external PR deneyi erişilmedi.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-20.11-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Tek aktif workflow ve çağırdığı paket/test scriptleri hash/satır kimliğiyle incelendi. Yeni test/build/lab veya credential isteği başlatılmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/ci-trust-review-worker/source-manifest.json ve workflow-numbered.txt.
 
 #### TEST-20.11-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Kaynakta contents:read, full SHA action pinleri ve persist-credentials:false doğrulandı; shell'e doğrudan untrusted expression yok. Yeni exact3bdb7c0c CI normal test/build/clean-Linux smoke/upload adımları başarıyla çalıştı.
+- Sınır: gerçek runner token yetkilerinin tamamı veya fork/organizasyon politikası bu gözlemden çıkarılmadı.
 
 #### TEST-20.11-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Gerçek kontrollü external PR/token/cache poisoning deneyi ve repository/org admin ayarları NOT RUN/BLOCKED. Secret isim/değerleri istenmedi.
+- Statik incelemede pull_request_target, ayrıcalıklı workflow_run tüketicisi, doğrudan expression-to-shell veya publish/release adımı bulunmadı. Bu sınır bütün olası saldırıların yokluğu değildir.
 
 #### TEST-20.11-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- CI-TRUST-01 informational: imzasız tested-builds artifact adı güvenilir yayıncı veya promotion kanıtı değildir. Mevcut ayrıcalıklı consumer bulunmadığı için gösterilmiş escalation yok.
+- CI-TRUST-02: admin/fork/token ayarlarının ve gerçek dış PR denemesinin kanıt boşluğu. CI-TRUST-03: action/transitive/runner provenance incelemesi tamamlanmadı.
+- Ürün/workflow değişikliği veya risk kabulü yok; root rapor ve kaynak sınırını doğruladı.
 
 #### TEST-20.11-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- NOT_APPLICABLE: doğrulanmış exploit/düzeltme olmadığı için PoC red→green tekrarı yok. Dinamik/admin negatifleri ayrıca yapılmalı; statik inceleme onların PASS sonucu değildir.
 
 #### TEST-20.11-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Yeni yalnız rapor dizini üretildi; worker test/browser/build/lab/credential/Git işlemi yapmadı. Root4checksum ve ilgili workflow/script sınırlarını okudu.
+- Aynı ajan sistemi ikinci incelemesidir; profesyonel bağımsız pentest veya sertifika değildir.
 
 #### TEST-20.11-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- IN_PROGRESS: bounded statik trust incelemesi tamamlandı; admin/fork/token/cache dinamik kapıları ve action/transitive provenance açık. Exact kaynak CI smoke sonucu ayrı kaydedildi. İlgili workflow/runner/permissions/consumer değişince retest gerekir.
 
 ### TEST-20.12 — Action pin/cache/artifact/release yetkisi
 

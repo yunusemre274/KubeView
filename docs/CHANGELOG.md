@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — CI trust kaynak incelemesi
+
+- Aktif workflow ve çağrılan scriptlerin bounded statik trust incelemesi kaydedildi. Minimum izin/pin/checkout ve shell expression sınırı ile mevcut publish tüketicisi yokluğu ayrıştırıldı; fork/admin/dinamik test ve imza boşlukları açık kaldı. Workflow değiştirilmedi.
+
 ## 2026-11-11 — başarısız CI ve güvenli duruş kaydı
 
 - Üç exact CI job'ında test ve paket derleme başarısı ile apt DNS kaynaklı clean-Linux startup/upload atlaması ayrı kanıtlandı. Workflow, TLS veya destek kapsamı gevşetilmedi; final paket kabulü BLOCKED kaldı.

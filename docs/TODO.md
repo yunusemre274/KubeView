@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — CI güven sınırı incelemesi
+
+- [x] Tek aktif workflow, read-only token beyanı, SHA pinleri, credential persistence ve untrusted expression/publish tüketici sınırı kaynakta incelendi; gösterilmiş injection/escalation bulunmadı.
+- [ ] Gerçek external-PR/token/cache deneyi, repository/org ayarları ve action/transitive provenance doğrulanmadı. İmzasız artifact adı yayıncı kimliği veya manuel onay değildir.
+
 ## 11 Kasım — CI ve düşük pil checkpoint'i
 
 - [x] Üç exact CI kaynağının test/paket build success ile temiz Linux startup/artifact upload SKIP sonuçları ayrıldı. Ubuntu apt DNS hatası ham excerpt/job kimliğiyle kaydedildi.
