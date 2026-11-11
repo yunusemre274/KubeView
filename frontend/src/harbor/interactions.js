@@ -26,6 +26,19 @@ export function containerInstances(pods) {
     })),
   );
 }
+
+// HTML labels stay beside their real anchor, but remain readable at the edge
+// of the canvas. Dimensions are cached on mount/content/viewport changes, not
+// read from layout during the scene's frame loop.
+export function resourceLabelPosition(x, y, width, height, viewportWidth, viewportHeight, pod = false, offset = 0) {
+  const halfWidth = Math.min(width, Math.max(0, viewportWidth - 32)) / 2;
+  const halfHeight = Math.min(height, Math.max(0, viewportHeight - 32)) / 2;
+  const clamp = (value, half, extent) => Math.max(16 + half, Math.min(extent - 16 - half, value));
+  return [
+    clamp(x + offset + (pod ? halfWidth + 26 : 0), halfWidth, viewportWidth) - offset,
+    clamp(y - (pod ? 12 : 0), halfHeight, viewportHeight),
+  ];
+}
 export class PointerGesture {
   constructor(threshold = 5) {
     this.threshold = threshold;

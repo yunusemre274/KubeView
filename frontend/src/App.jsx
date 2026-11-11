@@ -902,7 +902,7 @@ export default function App() {
             <span>Namespace kapsamı</span>
           </button>
         )}
-        {panel?.type === "facility" && (
+        {panel?.type === "facility" && selectedSource === sourceKey && (
           <FacilityWindow
             key={panel.id}
             id={panel.id}
@@ -924,7 +924,7 @@ export default function App() {
             onFlowSelect={selectFlow}
           />
         )}
-        {panel?.type === "resource" && selected && (
+        {panel?.type === "resource" && selected && selectedSource === sourceKey && (
           <ResourceDetails
             key={selected.metadata.uid}
             resource={detailResource}

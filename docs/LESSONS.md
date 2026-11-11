@@ -1,5 +1,12 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım2026 — ara render ve gerçek istek kimliği
+
+- Layout effect içinde seçimi düzeltmek, eski seçimin yeni API ile bir kez çocuğa verilmesini engellemez. Yalnız son DOM/UID doğru diye kabul vermek yerine bütün log requestlerinin harbor/namespace/UID’sini izleyin. WS002normalUI’da iki yanlışscope isteği verdi; kaynak eşleşmeden resource/facility çocuğunu mountetmeyen guard ile50cycle0yanlışscope elde edildi.
+- İlk yakalamada HTTPstatus kaydedilmediyse backend403 veya veri sızıntısı sonucunu varsaymayın; request abort edilmiş olabilir.299requestin199u headeröncesiaborttu; yalnız100gerçekHTTP200opening başarı olarak raporlandı.
+- Frustum içindeki3Dnokta, DOMkontrolünün altında kalıyorsa tıklanabilir kullanıcı hedefi değildir. Dar ekranda normal Limanadön eylemiylekadraj yapıp gerçekpointer akışını sınayın; testhelper varsayımını ürün hatasıyla karıştırmayın.
+- Binaryscanner localreplace(devel) sürümünü tanımıyorsa bulgu azalması yamaya kanıt değildir. SDK sürümünü overlay/provenance ilekoruyun, eski advisory/env koşullarını ayrı değerlendirin.
+
 ## 11 Kasım — uzak kamerada derinlik ve referans su rengi
 
 - Kilometre ölçeğinde0,5m near plane ile12,5mm katmanlar aynı24-bit derinliğe yuvarlanabilir. Renk veya shadow bias'ı rastgele değiştirmek yerine gerçek kamera/kaplama çiftlerini projekte edin. Uzaklığa bağlı near, poz/açı/zoom'u değiştirmeden45/48 çakışmayı sıfırladı; yakın inceleme de test edildi.

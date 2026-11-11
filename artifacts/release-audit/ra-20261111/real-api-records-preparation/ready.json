@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "purpose": "workspace-record-acceptance",
+  "labId": "kvml-aed6bc565b30",
+  "clusterUID": "a51d8e09-b035-4571-a5b3-4f0a40401f91",
+  "workspaceId": "b8063a24-0be0-4536-b5ba-80ec1029b5e4",
+  "pid": 69230,
+  "baseURL": "http://127.0.0.1:19849",
+  "binarySha256": "1003a43a6a808193d0d36695a4d7782fee8b754fb92df99ab0220511df1f7bf0"
+}

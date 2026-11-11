@@ -1,5 +1,13 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — yayın adayı kapsam ve paket sınırı
+
+- Liman geçişinde eski Pod panelinin yeni API ile ara renderı engellendi. Gerçek50A→B→A, per-harbor taslak ve299log request cleanup/kimlik kontrolü geçti; toplamCPU iyileşmesi iddiası yok.
+- Seçili dünya etiketi mevcutDrei pozisyonlayıcısında viewporta sığdırılır; ölçüm yalnız mount/content/resize sırasında, ek timer/renderloop yok. Telefon isim-balonu çakışması açıkP2 olarak korunur.
+- Paket scripti explicit yeni outputdizini, overwrite reddi ve runtime-only manual-lab allowlist kullanır.8izole test gerçekarşiv testi yerinegeçmez; CI bu testi çalıştırır ve checkoutcredentials saklamaz.
+- Yeni source/gerçekAPI/bind/origin kanıtları canlıtestdefterindedir; bütünlük/perf/sağlayıcı ve manuelkabul kapıları açık, stable yayın yok.
+
+
 ## 2026-11-11 — iki limanda güncellik ve harita kadrajı
 
 - Eski seçimin passive effect'inin yeni limana yanlış namespace aboneliği taşıması giderildi; on-demand scope/list ayrıca liman kapsamını kontrol ediyor. Backend reddi gevşetilmedi.

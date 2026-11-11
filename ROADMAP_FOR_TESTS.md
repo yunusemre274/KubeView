@@ -1,16 +1,16 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T14:31:09.530924+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: `49999815cf27ca47888fdc5d62cb1f7caf3bbd11` (remote doğrulandı), başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`, `redesign/harbor-workbench`; başlangıçta izlenen runtime farkı yoktu. Şimdi global kamera kadrajı düzeltmesi ve UI test helperı commit bekliyor. Kullanıcının untracked prompt/reference ve tarihsel kanıtları korunur.
-- Build/paket: yeni dondurulmuş yayın adayı henüz üretilmedi; mevcut `bin/kubeview` önceki36d5b8f adayıdır. Baseline source arşivi ve runtime hash kaydı: artifacts/release-audit/ra-20261111/baseline.json; ilk boş/geçersiz arşiv denemesi kullanılmadı.
+- Son güncelleme: 2026-11-11T15:20:07.480399+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: `4ec526b7ce1bc39c21b603864c9096f72eb39184`, origin eşit/CI43013585717 SUCCESS; App source-panel guardı ve labelclamp çalışma farkı candidate04 içinde hashli. Packaging/CI/explicitmanualCLI değişikliği ayrıca sürüyor. Kullanıcı untracked dosyaları korunur.
+- Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32GiB, macOS27.0.1, AC güç (başlangıç35% şarj), yerel Chromium/erişilebilir Playwright WebKit; native Safari/Retina ayrı. Linux/Docker/Helm kapsamı ilan edildiği biçimde ayrıca test edilecek.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **199**. NOT_STARTED:184; IN_PROGRESS:7; FAILED:0; BLOCKED:0; RETEST_REQUIRED:2; VERIFIED_DONE:6; NOT_APPLICABLE:0.
+- Toplam test fazı: **199**. NOT_STARTED:166; IN_PROGRESS:17; FAILED:0; BLOCKED:0; RETEST_REQUIRED:1; VERIFIED_DONE:15; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; final paket/gerçek yetki incelemesi açık.42Go advisory patch sonrası main source0finding; hepsi istismar sayılmadı. İncelenmemiş kategori vardır; güvenlik garantisi değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST-07.04 (npm lock scan+pozitif kontrol). Sıradaki uygulanabilir faz: güvenlik düzeltmesi/root inceleme; final kaynak Go scan/race; gerçek02 candidate UI.
-- Süreç/lab: Docker Desktop başlatıldı; yeni private19842/02 lab cold-up sürüyor (owned runner). Henüz uygulama testi tamamlanmadı. Diğer projelerin süreçleri hedef değildir.
+- Son tamamlanan faz: TEST03.10gerçek50A→B→A/299kapalırequest; TEST03.05gerçekreaderizolasyonu; TEST08.01gerçekIPv4/IPv6/LANguard. Sıradaki: normalA2down→ayrıHubblecoldstate; yeniözelCLIactualsağlayıcı ve sonpaketkapıları.
+- Süreç/lab: owned02app19842 ve04app19844/A2çalışıyor; tarayıcıkoşularıbitti. Workerlar: özelminikubeSDK/gRPCvendoradayı; explicitminikubeCLIrunner. Hubblecoldstate doctorhazır, clusterhenüzyok. İlgisizloncaDocker süreçlerine dokunulmaz.
 - Devam: bu dosyanın durum/dependency satırını ve `artifacts/release-audit/ra-20261111/` kayıtlarını okuyun; otomatik bütün lab'ı yeniden başlatmayın.
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -26,24 +26,24 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 |---|---:|---|---|
 | CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
-| CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:10, RETEST_REQUIRED:1 | Henüz yok |
-| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:17, IN_PROGRESS:1 | Henüz yok |
+| CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
+| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:16, IN_PROGRESS:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:14 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:13, IN_PROGRESS:1 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 10 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:4 | Henüz yok |
-| CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:6 | Henüz yok |
-| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
+| CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
+| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:5, IN_PROGRESS:4, VERIFIED_DONE:1 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
-| CAT-11 — XSS ve önizleme | 7 | NOT_STARTED:7 | Henüz yok |
+| CAT-11 — XSS ve önizleme | 7 | NOT_STARTED:4, IN_PROGRESS:3 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:8, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
+| CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
 | CAT-16 — A/B benchmark | 13 | NOT_STARTED:13 | Henüz yok |
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:8, IN_PROGRESS:1 | Henüz yok |
-| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:14 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:13, IN_PROGRESS:1 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
@@ -855,64 +855,52 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7; binary1003a43a6a80… (4999981+hashli frontend farkı), final arşiv değil
+- Ortam / kullanılan kimlik ve yetki: owned kvml-aed6bc565b30-a, kube-systemUIDa51d8e09…; explicit private admin, yalnız UID/label korumalı02 fixture
+- Başlangıç zamanı: 2026-11-11 önceki checkpoint; raw run.log
+- Bitiş zamanı: 2026-11-11T14:41+03:00; önceki koşu sonucu bu checkpointte incelendi
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-03.02-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Sahip olunan cluster/namespace UID ve fixture etiketi guard ile doğrulandı.
+- Yapılan: üç geçici harbor; iki gerçek Deployment.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-selector/workspace-real-selector-multins-overlap-qa-ws-471a793fc34f49d8.json
+- Sonuç: PASS; default/production context yok.
 
 #### TEST-03.02-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] aynı namespace label selector gerçek API ve authoritative WS snapshot üzerinden doğrulandı.
+- Gözlenen: gerçek UID/owner/Ready, scoped LIST ve UPDATE içerikleri doğru.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-selector/run.log
+- Sonuç: PASS; normal UI form veya animasyon kanıtı değildir.
 
 #### TEST-03.02-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Selector dışı create/read reddi, label çıkışı/reentry, eski session generation ve DELETE tüm örtüşmelerde kontrol edildi.
+- Gözlenen: OUT_OF_SCOPE yalnız metadata; kaynak gerçek API’de durur. Aynı UID geri girer, reconnect stream nesli değişir, gerçek UID/RV DELETE kaybolur.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-selector/workspace-real-selector-multins-overlap-qa-ws-471a793fc34f49d8.json
+- Sonuç: 7alt kontrol PASS; SKIP0.
 
 #### TEST-03.02-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği: bu dar gerçek selector/union koşusunda yeni hata bulunmadı.
+- Kapsam: iki namespace, üç geçici harbor; reader/cross-cluster ayrı faz.
 
 #### TEST-03.02-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [ ] İlk sorunu üreten retest: NOT_APPLICABLE; bu koşuda yeni ürün hatası üremedi.
+- [x] Normal liste/update/delete ve komşu selector durumları aynı koşuda geçti.
+- Kanıt: run.log; eski başarılı kaynak otomatik taşınmadı.
 
 #### TEST-03.02-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Her owned Deployment UID GET404, Deployment/RS/Pod audit LIST0.
+- [x] Üç geçici harbor silindi; özgün belge revision dışında aynı.
+- [x] Root test fonksiyonunu ve redakte raw çıktıyı ayrı okudu.
+- İnceleyen: ANA MÜDÜR; profesyonel bağımsız pentest değildir.
+- Kalan sınırlar: normal UI selector düzenleme, reader ve final paket ayrı fazlarda.
 
 #### TEST-03.02-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: aynı namespace label selector için gerçek API/watch ve içerik/UID/cleanup kabulü sağlandı.
+- Yeniden test: backend scope/filter/union/stream protokolü değişirse.
 
 ### TEST-03.03 — Örtüşen ve çok namespace proje
 
@@ -921,64 +909,52 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7; binary1003a43a6a80… (4999981+hashli frontend farkı), final arşiv değil
+- Ortam / kullanılan kimlik ve yetki: owned kvml-aed6bc565b30-a, kube-systemUIDa51d8e09…; explicit private admin, yalnız UID/label korumalı02 fixture
+- Başlangıç zamanı: 2026-11-11 önceki checkpoint; raw run.log
+- Bitiş zamanı: 2026-11-11T14:41+03:00; önceki koşu sonucu bu checkpointte incelendi
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-03.03-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Sahip olunan cluster/namespace UID ve fixture etiketi guard ile doğrulandı.
+- Yapılan: üç geçici harbor; iki gerçek Deployment.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-selector/workspace-real-selector-multins-overlap-qa-ws-471a793fc34f49d8.json
+- Sonuç: PASS; default/production context yok.
 
 #### TEST-03.03-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] örtüşen/çok namespace birleşimi gerçek API ve authoritative WS snapshot üzerinden doğrulandı.
+- Gözlenen: gerçek UID/owner/Ready, scoped LIST ve UPDATE içerikleri doğru.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-selector/run.log
+- Sonuç: PASS; normal UI form veya animasyon kanıtı değildir.
 
 #### TEST-03.03-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Selector dışı create/read reddi, label çıkışı/reentry, eski session generation ve DELETE tüm örtüşmelerde kontrol edildi.
+- Gözlenen: OUT_OF_SCOPE yalnız metadata; kaynak gerçek API’de durur. Aynı UID geri girer, reconnect stream nesli değişir, gerçek UID/RV DELETE kaybolur.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-selector/workspace-real-selector-multins-overlap-qa-ws-471a793fc34f49d8.json
+- Sonuç: 7alt kontrol PASS; SKIP0.
 
 #### TEST-03.03-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği: bu dar gerçek selector/union koşusunda yeni hata bulunmadı.
+- Kapsam: iki namespace, üç geçici harbor; reader/cross-cluster ayrı faz.
 
 #### TEST-03.03-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [ ] İlk sorunu üreten retest: NOT_APPLICABLE; bu koşuda yeni ürün hatası üremedi.
+- [x] Normal liste/update/delete ve komşu selector durumları aynı koşuda geçti.
+- Kanıt: run.log; eski başarılı kaynak otomatik taşınmadı.
 
 #### TEST-03.03-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Her owned Deployment UID GET404, Deployment/RS/Pod audit LIST0.
+- [x] Üç geçici harbor silindi; özgün belge revision dışında aynı.
+- [x] Root test fonksiyonunu ve redakte raw çıktıyı ayrı okudu.
+- İnceleyen: ANA MÜDÜR; profesyonel bağımsız pentest değildir.
+- Kalan sınırlar: normal UI selector düzenleme, reader ve final paket ayrı fazlarda.
 
 #### TEST-03.03-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: örtüşen/çok namespace birleşimi için gerçek API/watch ve içerik/UID/cleanup kabulü sağlandı.
+- Yeniden test: backend scope/filter/union/stream protokolü değişirse.
 
 ### TEST-03.04 — Aynı adlı kaynaklarla bağımsız iki küme
 
@@ -1053,64 +1029,47 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: candidate04 binary08bd0cee…; backend runtime4ec ile aynı, normalUI değil
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Başlangıç zamanı: 2026-11-11T12:16:09.392290+00:00
+- Bitiş zamanı: 2026-11-11T12:16:26.270747+00:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-03.05-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] OwnedA2clusterUID ve02/04namespaceUID/label; ayrı04privateSAconfig, tokenexpiration>2dk;02ve04binarySHA eşleşmesi.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-isolation04/run.json
 
 #### TEST-03.05-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Reader kendi gerçekPodlarını okudu; adminA scale/restart gerçekReady replacementUIDs ve Bspec/PodUID değişmezliğiyle geçti.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-isolation04/run.log
+- Sonuç:5altcasePASS; gerçekK8s1.35.1.
 
 #### TEST-03.05-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Readerclusteridentity403, dryruncreate403+GET404; outsideNSlogs/metrics/flows403; yanlışlogUID409; reader isteğinde admincontext409.
+- Gözlenen: readerconfidenceunknown, clusterUIDboş; başka bağlantı/grant ödünç alınmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-isolation04/run.log
+- Sonuç: bu ikiidentity/scope için izolasyonPASS.
 
 #### TEST-03.05-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği: bu gerçekrestrictionkoşusunda yeni ürün hatası bulunmadı.
+- Scope: Secretbody/Hubblefullflow/activecachecredentialrevoke bu fazda test edilmedi.
 
 #### TEST-03.05-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [ ] İlk ürünhatasi retest: NOT_APPLICABLE; yeni hata yok.
+- [x] PozitifownPod/adminişlemleri, negatifreader ve Bunchangedreadback birlikte geçti.
 
 #### TEST-03.05-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] ExactUID DeploymentGET404/auditLIST0; normal02fixtures ve04SA/profile manuel teslim için korunur.
+- [x] UID/binary/timestampreceiptler eşleşir.
+- [x] Root kaynak/rapor/fingerprintvecleanupJSONunu inceledi.
+- Kalan sınırlar: actualreaderUI, bütünGVR/cache/Secret/flow içerikleri ve finalarchive ayrı kapılar.
 
 #### TEST-03.05-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: aynıclusterde farklıyetkili iki gerçek bağlantı bu API/UID/grantnegatifleriyle ayrıldı.
+- Yeniden test: broker credential/cache/scope/typedrouteguarddeğişirse.
 
 ### TEST-03.06 — Cluster/Node UID ile ortak Node gösterimi
 
@@ -1251,64 +1210,50 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.2/V8.3.1/V8.3.2; API1/API3:2023; CAT03. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7; binary1003a43a6a80…; API/watch kanıtı, final paket değil
+- Ortam / kullanılan kimlik ve yetki: Owned A2/02; ayrı19849 private QA data-dir, boş workspace; sentetik kayıtlar, explicit private admin
+- Başlangıç zamanı: 2026-11-11T11:50:36.482705+00:00
+- Bitiş zamanı: 2026-11-11T11:50:43.715887+00:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-03.08-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Ayrı private QA app/session receipt, binary SHA, cluster/namespace UID ve başlangıç boş kayıt doğrulandı.
+- İlk deneme: receipt eksikken guard FAIL; artifacts/release-audit/ra-20261111/real-api-records/run.log korunur.
+- Sonuç: tekrarın hazırlığı PASS.
 
 #### TEST-03.08-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Native create/rename/export/import/bind ve exact ID remove çalıştı.
+- Gözlenen: UID/context bağları doğru; gerçek02 canary okunabiliyor.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-records-retest/run.log
+- Sonuç:5/5alt kontrol PASS.
 
 #### TEST-03.08-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Export context/bound taşımadı; import yeni connection/harbor ID verdi. Unbound read/enable409; açık bind sonrası readonly action403.
+- Gözlenen: iki namespace Deployment/Pod tam fingerprint’i aynı; yalnız uygulama kayıtları kaldırıldı.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-records-retest/workspace-real-workspace-record-acceptance-qa-ws-3527b7e6872d4915.json
+- Sonuç: PASS; Secret içerikleri okunmadı.
 
 #### TEST-03.08-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği: ilk helper çağrısında eksik receipt; ürün hatası değil.
+- Düzeltme: doğru ayrı app+private receipt hazırlığı; runtime değişmedi.
 
 #### TEST-03.08-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Güvenli hazırlık düzeltilerek aynı native kayıt testinin5alt kontrolü geçti.
+- [x] Normal okuma/bind ve readonly red/readback kontrolü korundu.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-records-retest/run.log
 
 #### TEST-03.08-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Yalnız QA record exactID’leri kaldırıldı; default02workspace ve K8s fingerprint aynı.
+- [x] Binary/source receipts eşleştirildi.
+- [x] Root helper/kaynak/sonuç/cleanup kayıtlarını okudu.
+- Kalan sınırlar: UI remove/export/import ve restart/migration TEST03.09’da açık.
 
 #### TEST-03.08-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: native API liman kaldırma Kubernetes Deployment/Pod içeriğini değiştirmedi; yetki bind sınırı geçti.
+- Yeniden test: workspace store/remove/import veya authority bağlama değişirse.
 
 ### TEST-03.09 — Restart/migration/export/import/bozuk config recovery
 
@@ -1322,33 +1267,21 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-03.09-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İlk eksik-receipt guard FAIL korundu; ayrı private QA app/receipt hazırlanarak tekrarlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-records/run.log ve artifacts/release-audit/ra-20261111/real-api-records-retest/run.json
 
 #### TEST-03.09-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Native API rename/export/import/unbound409/bind/readonly403/remove5kontrol geçti.
+- Gözlenen: metadata/connection kimlikleri doğru; iki namespace workload fingerprint’i değişmedi.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-records-retest/run.log
 
 #### TEST-03.09-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Disk restart, schema migration ve bozuk config recovery henüz çalışmadı.
+- Sonuç: faz açık; import alt testi bunların yerine geçmez.
 
 #### TEST-03.09-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -1384,56 +1317,54 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR
-- Kaynak / build / paket kimliği: candidate01 4a782bc8…6557;4999981+globalcamera farkı
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: 2026-11-11T14:05:10.000694+03:00
-- Bitiş zamanı: —
-- Durum: RETEST_REQUIRED
+- Kaynak / build / paket kimliği: 4ec526b7+candidate04 hashli App/label farkı; binary08bd0cee5a5d…; finalpaket değil
+- Ortam / kullanılan kimlik ve yetki: Chromium156/Metal1440×900DPR1; owned02 gerçekK8s1.35.1 A2; scoped UI management intent; create taslakları SUBMIT EDİLMEDİ
+- Başlangıç zamanı: 2026-11-11T12:02:39.699Z
+- Bitiş zamanı: 2026-11-11T12:05:05.415Z
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-03.10-S1 — Hazırlık
-- [x] Owned02,iki gerçeknamespace/Pod ve üçgeçiş diagnostic hazırlandı.
-- Beklenen: eski namespace yeni corea taşınmamalı;50geçiş nihai kapı.
-- Gözlenen: başlangıç kaynak kimlikleri lab02-status-initial.json.
-- Kanıt: ui-scope-diagnostic.json; candidate01-binary.json (bu run).
-- Sonuç: normal UI ve gerçekWS kullanıldı,fixtureinjection yok.
+- [x] Önceki WS-001 foreign lease düzeltmesi4ec526b7push/CI SUCCESS. Owned02 gerçek UID fixtureları ve scoped app hazır.
+- Yapılan: aynı normal UI helper’a sonlu50cycle, scoped log request/close ve per-harbor draft kontrolleri eklendi.
+- Sonuç: helper hazırlığı tamam; yürütme henüz başlamadı.
+- Güvenlik bütçesi:150..900sn tavan,2 gerçek Pod, hiçbir create submit yok; draftlar yalnız tarayıcı belleği.
 
 #### TEST-03.10-S2 — Normal kullanım / pozitif kontrol
-- [x] Gerçek iki liman/merkez/PodUID yolu ilk15assertionda görüldü.
-- Gözlenen: görsel incelemede stale frame bulundu; ilkhelperPASS final kabul sayılmadı.
-- Kanıt: ui02-candidate-chromium/result.json ve açılan kareler.
-- Sonuç: canlılık ek koşulu istendi.
+- [x]50A→B→A gerçek UI cycle ve100zorunlu log açılışı; fixturePodUID/namespace/harbor doğrulandı.
+- [x]6checkpointte açıkdirtyAform→Bform→Arestore; taslak/namespace doğruharborda, ikisi de kendi discard akışıyla kapandı.
+- Gözlenen:56kontrol,0pageerror/0workspaceDenial; Canvas instance aynı.
+- Kanıt: artifacts/release-audit/ra-20261111/ui04-cycles50/result.json ve ui04-cycles50/after-cycles.png
 
 #### TEST-03.10-S3 — Negatif / sınır / arıza kontrolü
-- [x] A→B→A gerçekWS/HTTP diagnostic.
-- Beklenen: A yalnızp1aboneliği.
-- Gözlenen: A SNAPSHOT içinde p2 Podscope forbidden; UIKısmi erişim kalıyor. Backend403 doğru, veri sızıntısı görülmedi.
-- Kanıt: ui-scope-diagnostic.json; ui02-candidate-chromium-fresh2/result.json.
-- Sonuç: WS-001 P1 doğrulandı.
+- [x] Normal UI A/B switch sırasında yanlışharborId + eskiPodUID/namespace log isteği yeniden üretildi.
+- Gözlenen:2invalid request; her stream kapandı. Backend scope guardı ayrı testlerde reddediyor; bu UI capture ilkkoşuda HTTPstatus saklamadı, istek abort edilmiş olabilir. Veri sızıntısı kanıtı yok.
+- Kanıt: artifacts/release-audit/ra-20261111/ui03-cycles-preflight-capture/result.json
+- Sonuç: FAIL;50uzun koşusuna geçmeden düzeltme gerekir.
 
 #### TEST-03.10-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: WS-001 P1.
-- Kök neden: kaynak geçişinin eski passive selection effecti yeni retainKind callbackini çağırıyor; on-demand scope kayıt sınırı clientta yoktu.
-- Değiştirilen dosya: App.jsx sourceguard; ShipyardClusterContext.jsx registerScope/loadKind namespace preflight.
-- Kanıt: harbor-subscription-red-v2.log (alpha+beta vs yalnızbeta); ilkredharness no-op override hatası ayrı harbor-subscription-red.log olarak korunur.
-- Çalışma farkı: candidate02 hazırlanıyor; Kubernetes/backend yetkisi gevşetilmedi.
+- Bulgu kimliği: WS-002, P1.
+- Kök neden: App eski selection/panel state’ini yeni API ile source-switch renderında çocuk bileşene verdi; layout restoration sonrası düzelmesi o renderın passive log effect’ini önlemiyor.
+- Değişen: App.jsx resource/facility panel renderı captured selectedSource===sourceKey ile korunur.
+- Düzeltme: çalışma farkı; JSX guard dışı mimari değişmedi.
+- Kanıt: transient-panel-red.log gerçek ara renderı FAIL; transient-panel-retest.log PASS.
 
 #### TEST-03.10-S5 — Tekrar test ve regresyon
-- [x] Gerçek davranışı gözleyen iki unit red→green; frontend222/222PASS.
-- [ ] Ek liste-preflight testi ve final candidate real50geçiş bekliyor.
-- Sonuç ve kanıt: frontend-scope-retest.log; sonbuild/realUI henüz yok.
+- [x] İlk transientpanel unit FAIL→App guard→11hedeflitest/226tamfrontendtest PASS.
+- [x] Gerçek1cycle tekrar ve50cycle kabulü PASS;299log requestinin0yanlışkimlik,299u kapalı.100HTTP200opening,199request responseöncesiabort; tümü başarılıstream sayılmaz.
+- [x]5çiftkonumlu merkez/finder akışı önceki gerçek UI testinde korundu; yeni WebKit/phone regresyonu ayrıca kaydediliyor.
+- Sonuç: WS-002dar gerçek geçiş hatası kapalı; performans veya60dk/gerçekproviderkanıtı değildir.
 
 #### TEST-03.10-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Unsentsafe taslaklar normaldiscard ile bırakıldı; gerçekK8screate/delete yapılmadı.
+- [x]299/299log request bitti/abort;0açık.
+- [x] Root sonuçJSON ve finalPNG açıp inceledi; raw başlangıçFAILkorunur.
+- Kalan sınırlar: nativeSafari, gerçekcredentialrotasyon/crosscluster, finalarchive ve60dk ayrı faz.
 
 #### TEST-03.10-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: bu iki gerçek namespace/harbor için50A→B→A selection/log/request ve güvenlidraft izolasyonu geçti.
+- Yeniden test: App source/panel/renderguard, log API/session veya harbor cache davranışı değişirse.
 
 ### TEST-03.11 — Çok tarayıcı sekmesinde scope/write-grant
 
@@ -2634,7 +2565,7 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-04.18-S1 — Hazırlık
@@ -2647,20 +2578,15 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Sonuç: NOT_STARTED
 
 #### TEST-04.18-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Gerçek eşzamanlı çift scale: accepted1/conflict1; tek generation artışı.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-operations/run.log
+- Sonuç: dar pozitif/duplicate PASS.
 
 #### TEST-04.18-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Gerçek timeout/cancel ve bilinmeyen sonuç retry sınırı henüz çalışmadı.
+- Yapılan: yalnız bilinen200 yanıtı sentetik transportta gizlenip readback/no-retry doğrulandı; gerçek timeout diye raporlanmaz.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-operations/run.log
+- Sonuç: kısmi; faz açık.
 
 #### TEST-04.18-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -3361,22 +3287,20 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.3.1/V8.3.3; API10:2023; CAT06 gerçek mTLS/provider. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7+hashli App/label düzeltmesi; patched Hubble378850e0a4d1… özel aday
+- Ortam / kullanılan kimlik ve yetki: Yeni private release-audit-hubble-20261111-cold01 state planlandı; henüz cluster yaratılmadı.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.01-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Doctor: Docker29.5.3/8GiBVM, minikube1.38.1, Helm4.2.3, customHubble1.20.2patched CLI/requiredflags doğrulandı.
+- Yapılan: eski normalA CNI değiştirilmeyecek; gerçek50cycle bitince ownnormalA2 down, fresh telemetryA2 tek başına.
+- Kanıt: artifacts/release-audit/ra-20261111/hubble-cold01-doctor.json
+- Bütçe:2×2048MiB/2CPU node, toplamcoldbootstrap15dk; disk10GiBstop; providerTLS kapatılmayacak.
+- Sonuç: hazırlık PASS; coldstart henüz çalışmadı.
 
 #### TEST-06.01-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -4931,64 +4855,49 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.4.1/V4.4.1 (loopback HTTP için uygulanabilirlik ayrıca); CAT08. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: candidate04 binary08bd0cee5a5d…; backend runtime4ec aynı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Başlangıç zamanı: 2026-11-11T12:03:44Z
+- Bitiş zamanı: 2026-11-11T12:06:00Z
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-08.01-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Ownedloopback19849 boş; ayrıprivate config/data ve bilinenbinary.
+- Yapılan: iki explicit replaymode listener; normalmode nonloopback negatifinde explicit boş kubeconfig.
+- Sınır: ağ taraması yok, başka süreç kapatılmadı.
 
 #### TEST-08.01-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Gerçek LISTEN varsayılan127.0.0.1:19849 ve açık IPv6[::1]:19849; HTTP200normalcontexts.
+- Kanıt: artifacts/release-audit/ra-20261111/bind-surface/result.json
+- Sonuç: PASS; listenerguard aynıproductionmain.
 
 #### TEST-08.01-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] YanlışHost403; replayLANconfigexit2; normalmode0.0.0.0tokensizexit1 (API_TOKEN gerekir).
+- Gözlenen: porttaLISTENkalmadı.
+- Kanıt: bind-surface/normal-lan-no-token-retest.json
+- Sonuç: PASS; LAN port taraması yapılmadı.
 
 #### TEST-08.01-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu: ilk normalmode test driverı İngilizce loopback kelimesi aradı; Türkçe retmetni assertionFAIL verdi.
+- Düzeltme: dildenbağımsız API_TOKEN/127.0.0.1 kontrolü; runtime değişmedi.
+- Kanıt: bind-surface/normal-lan-first-driver-error.md
 
 #### TEST-08.01-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Aynı normalmode negatif doğru assertion ile tekrarlandı, exit1/remainingListenerfalse.
+- [x] IPv4/IPv6 normalGET ve yanlışHost kontrolü ayrı geçti.
 
 #### TEST-08.01-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Herownedapp SIGTERM/bekleme veya kendi retçıkışı; lsof19849boş.
+- [x] Binaryhash/başlangıçbitiş kayıtlı.
+- [x] Rootkomutlar ve rawçıktı incelemesi tamamlandı.
+- Kalan sınırlar: externalTLS/proxy/forwardchild diğerfazlar.
 
 #### TEST-08.01-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: defaultIPv4loopback, explicitIPv6 ve tokensizLANbaşlangıçreddi geçti.
+- Yeniden test: CLIconfigure/mainlistener/TokenHostguard değişirse.
 
 ### TEST-08.02 — Dev/metrics/profiler/debug port yüzeyi
 
@@ -5395,38 +5304,29 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: RELEASE SECURITY WORKER + ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7 backend runtime aynı; yeni release_origin_preview_test.go sentetik test farkı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-09.02-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Listener/cluster açmadan in-process ServeMux ve sentetik net.Pipe canary hazırlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/source-identity.json
+- Sonuç: yalnız owned/sentetik fixture.
 
 #### TEST-09.02-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Dar sentetik normal+negatif kontroller yürütüldü.
+- Gözlenen: Forward create server/browser read-only403; gerçek API smoke genel create readonly403. Bütün mutasyon aileleri henüz ayrı doğrulanmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md ve preview-final-tests.log
+- Sonuç: unit alt kapsam PASS, geniş faz açık.
 
 #### TEST-09.02-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Eksik gerçek/browser/final paket koşulları raporda açık tutulur; SKIP/PASS karışmaz.
+- Gözlenen: ilkCONNECT405varsayım testiFAIL, standard authority404red ile düzeltildi; runtime bypass değildi.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log ve preview-final-tests.log
 
 #### TEST-09.02-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -5461,38 +5361,29 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: RELEASE SECURITY WORKER + ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7 backend runtime aynı; yeni release_origin_preview_test.go sentetik test farkı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-09.03-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Listener/cluster açmadan in-process ServeMux ve sentetik net.Pipe canary hazırlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/source-identity.json
+- Sonuç: yalnız owned/sentetik fixture.
 
 #### TEST-09.03-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Dar sentetik normal+negatif kontroller yürütüldü.
+- Gözlenen: Preview current/missing/stale nonce, owner ve grant sınandı; gerçek cross-harbor grant/testleri ayrı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md ve preview-final-tests.log
+- Sonuç: unit alt kapsam PASS, geniş faz açık.
 
 #### TEST-09.03-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Eksik gerçek/browser/final paket koşulları raporda açık tutulur; SKIP/PASS karışmaz.
+- Gözlenen: ilkCONNECT405varsayım testiFAIL, standard authority404red ile düzeltildi; runtime bypass değildi.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log ve preview-final-tests.log
 
 #### TEST-09.03-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -5527,64 +5418,47 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: RELEASE SECURITY WORKER; root ikinci kaynak/kanıt incelemesi
+- Kaynak / build / paket kimliği: 4ec526b7 backend runtime; yeni test dosyası hash/source-identity.json
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Başlangıç zamanı: 2026-11-11T11:46:26Z
+- Bitiş zamanı: 2026-11-11T11:54:54Z
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-09.04-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Gerçek Register/protect guardı, sentetik operatör/token ve listener açmayan net.Pipe hedefi.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/test-runs.json
 
 #### TEST-09.04-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Same-origin+cookie-only ve eksikOrigin CLI normalpreview/login geçti; WS doğruOrigin missingUpgrade400handshake kapısına ulaştı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-final-tests.log
+- Sonuç: normal handler erişimi PASS, kurulmuşWS iddiası yok.
 
 #### TEST-09.04-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Foreign/null/scheme/port/FetchMetadata crosssite reddi; denied çağrı workload transport’a ulaşmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-final-tests.log ve existing-security-tests.log
+- Sonuç: Origin politikası unit kabulü PASS. BrowserCSRF/DNSrebinding ayrı faz.
 
 #### TEST-09.04-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği: bu origin politikasında yeni bypass doğrulanmadı.
+- İlk CONNECT405beklentiFAIL testin authority-form varsayımıydı; runtime değişmedi.
 
 #### TEST-09.04-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] CONNECT test girdisi/404 beklentisi düzeltildi; ayrıretest ve finaltest logları PASS.
+- [x] Yetkili cookie-onlynormalpreview/login ve mevcutguardregresyonları korundu.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md
 
 #### TEST-09.04-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] In-process bağlantı/transport temizliği; süreç/listener/lab oluşturulmadı.
+- [x]16benzersiztoptest/29yenisubcase,0sonFAIL/0SKIP; kaynak kimliği ayrı.
+- [x] Root kod+rapor+ilkFAIL ve sonlogayı okudu.
+- Kalan sınırlar: gerçek saldırgan sayfa/WS/previewJS davranışları bu fazın dışındaki09.05/09.06/11.06’da açık.
 
 #### TEST-09.04-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: Foreign/null/missingOrigin politika matrisi aktif backend guard yolunda geçti.
+- Yeniden test: protect/Origin/FetchMetadata/router/preview auth değişirse.
 
 ### TEST-09.05 — Kontrollü saldırgan sayfasından CSRF
 
@@ -5659,38 +5533,29 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: RELEASE SECURITY WORKER + ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7 backend runtime aynı; yeni release_origin_preview_test.go sentetik test farkı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-09.06-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Listener/cluster açmadan in-process ServeMux ve sentetik net.Pipe canary hazırlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/source-identity.json
+- Sonuç: yalnız owned/sentetik fixture.
 
 #### TEST-09.06-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Dar sentetik normal+negatif kontroller yürütüldü.
+- Gözlenen: Login/WS origin gate unit geçti; acceptedWS missing-upgrade400, gerçek handshake değil. Browser cross-site WS henüz çalışmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md ve preview-final-tests.log
+- Sonuç: unit alt kapsam PASS, geniş faz açık.
 
 #### TEST-09.06-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Eksik gerçek/browser/final paket koşulları raporda açık tutulur; SKIP/PASS karışmaz.
+- Gözlenen: ilkCONNECT405varsayım testiFAIL, standard authority404red ile düzeltildi; runtime bypass değildi.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log ve preview-final-tests.log
 
 #### TEST-09.06-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -6852,38 +6717,29 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: RELEASE SECURITY WORKER + ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7 backend runtime aynı; yeni release_origin_preview_test.go sentetik test farkı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.05-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Listener/cluster açmadan in-process ServeMux ve sentetik net.Pipe canary hazırlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/source-identity.json
+- Sonuç: yalnız owned/sentetik fixture.
 
 #### TEST-11.05-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Dar sentetik normal+negatif kontroller yürütüldü.
+- Gözlenen: Aktif static frontend frame-ancestors/nosniff ve preview CSP/no-referrer/no-store header assertionları geçti; gerçek malicious browser flow ayrı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md ve preview-final-tests.log
+- Sonuç: unit alt kapsam PASS, geniş faz açık.
 
 #### TEST-11.05-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Eksik gerçek/browser/final paket koşulları raporda açık tutulur; SKIP/PASS karışmaz.
+- Gözlenen: ilkCONNECT405varsayım testiFAIL, standard authority404red ile düzeltildi; runtime bypass değildi.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log ve preview-final-tests.log
 
 #### TEST-11.05-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -6918,38 +6774,29 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: RELEASE SECURITY WORKER + ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7 backend runtime aynı; yeni release_origin_preview_test.go sentetik test farkı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.06-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Listener/cluster açmadan in-process ServeMux ve sentetik net.Pipe canary hazırlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/source-identity.json
+- Sonuç: yalnız owned/sentetik fixture.
 
 #### TEST-11.06-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Dar sentetik normal+negatif kontroller yürütüldü.
+- Gözlenen: Opaque CSP header override unit geçti; gerçek browser storage/opener/JS ve yönetimAPI izolasyonu henüz doğrulanmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md ve preview-final-tests.log
+- Sonuç: unit alt kapsam PASS, geniş faz açık.
 
 #### TEST-11.06-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Eksik gerçek/browser/final paket koşulları raporda açık tutulur; SKIP/PASS karışmaz.
+- Gözlenen: ilkCONNECT405varsayım testiFAIL, standard authority404red ile düzeltildi; runtime bypass değildi.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log ve preview-final-tests.log
 
 #### TEST-11.06-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -6984,38 +6831,29 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: RELEASE SECURITY WORKER + ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7 backend runtime aynı; yeni release_origin_preview_test.go sentetik test farkı
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.07-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Listener/cluster açmadan in-process ServeMux ve sentetik net.Pipe canary hazırlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/source-identity.json
+- Sonuç: yalnız owned/sentetik fixture.
 
 #### TEST-11.07-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Dar sentetik normal+negatif kontroller yürütüldü.
+- Gözlenen: Sentetik net.Pipe reverseproxy credential/header/cookie temizliği geçti; gerçek workload/browser forward kabulü ayrı.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md ve preview-final-tests.log
+- Sonuç: unit alt kapsam PASS, geniş faz açık.
 
 #### TEST-11.07-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [ ] Eksik gerçek/browser/final paket koşulları raporda açık tutulur; SKIP/PASS karışmaz.
+- Gözlenen: ilkCONNECT405varsayım testiFAIL, standard authority404red ile düzeltildi; runtime bypass değildi.
+- Kanıt: artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log ve preview-final-tests.log
 
 #### TEST-11.07-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -7975,64 +7813,47 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4ec526b7; binary1003a43a6a80…
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Başlangıç zamanı: 2026-11-11T11:46:47Z
+- Bitiş zamanı: 2026-11-11T11:46:58Z
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-13.05-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İki owned namespace ve UID/label korumalı gerçek Ready fixture hazırlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-operations/run.json
 
 #### TEST-13.05-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Barrier ile aynı anda A scale ve B metadata PUT gönderildi.
+- Gözlenen: A accepted1/conflict1; B accepted; A generation+1, B spec ve Pod UID kümesi değişmedi.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-operations/run.log
+- Sonuç: PASS.
 
 #### TEST-13.05-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Aynı UID/RV scale iki kez; tek kabul+409. Kabul edildiği bilinen yanıt test transportunda gizlendi, UID GET ile reconciliation; retry yok.
+- Sonuç: PASS; gerçek ağ timeout/cancel testi DEĞİLDİR.
 
 #### TEST-13.05-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği: bu sonlu eşzamanlı dispatch testinde yeni bulgu yok.
+- Kök neden/düzeltme: NOT_APPLICABLE.
 
 #### TEST-13.05-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [ ] İlk hata retest: NOT_APPLICABLE (yeni hata yok).
+- [x] Yetkili normal işlemler ve B spec/Pod UID izolasyonu readback ile geçti.
+- Kanıt: artifacts/release-audit/ra-20261111/real-api-operations/run.log
 
 #### TEST-13.05-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Exact UID cleanup ve audit LIST0; default workspace değişmedi.
+- [x] Kaynak/binary kimliği receiptte doğrulandı.
+- [x] Root test kodunu/JSON ve logu inceledi.
+- Kalan sınırlar: gerçek ağ timeout/cancel, normal UI ve cross-cluster başka fazlar.
 
 #### TEST-13.05-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: iki limanda eşzamanlı gerçek mutation, çift UID/RV ve final içerik izolasyonu geçti.
+- Yeniden test: dispatch/UID-RV/grant/scope değişirse.
 
 ### TEST-13.06 — Revoke sırasında log/metrics/flow publish
 
@@ -8173,64 +7994,47 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Sorumlu: ANA MÜDÜR
+- Kaynak / build / paket kimliği: 4999981 backend kaynak;4ec526b7 aynı backend hashleri (yalnız frontend ve kanıt commit değişikliği)
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Başlangıç zamanı: 2026-11-11T13:41:27.239056+03:00
+- Bitiş zamanı: 2026-11-11T13:41:48.070118+03:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-13.08-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Go1.26.11, GOMAXPROCS2, -p1/-parallel2 ve explicit opt-in guardlarıyla tam ./... race koşusu.
+- Kanıt: artifacts/release-audit/ra-20261111/final-go-race.jsonl
 
 #### TEST-13.08-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] {'pass': 96, 'fail': 0, 'skip': 25} top-level test sonucu; race diagnostic yok.
+- Gözlenen:96PASS/25SKIP; SKIP gerçek-lab opt-inler, PASS sayılmaz.
+- Kanıt: final-go-race.jsonl
+- Sonuç: çalıştırılan Go testlerinde race kabulü PASS.
 
 #### TEST-13.08-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Aynı test kümesindeki eşzamanlı stream/cancel/scope/grant testleri race instrumentation altında geçti.
+- Sınır: race dedektörü çalışmayan gerçek-lab yollarını veya bütün olası yarışları kanıtlamaz.
 
 #### TEST-13.08-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bulgu kimliği: bu race koşusunda yeni data race bulunmadı.
+- Düzeltme: NOT_APPLICABLE; önceki SEC001/002 düzeltmelerini kapsar.
 
 #### TEST-13.08-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [ ] İlk race hatası retest: NOT_APPLICABLE; yeni hata yok.
+- [x] Odaklı SEC001/002 race ve normal suite de geçti.
+- Kaynak yeniden kullanım:4ec backend runtime değişmedi, frontend-only fark Go race’i etkilemez.
 
 #### TEST-13.08-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Test süreci bitti; fixture cleanup in-process.
+- [x] Kaynak ve toolchain kayıtları eşleştirildi.
+- [x] Root JSON start/end/fail/race ve top-level sayımları inceledi.
+- Kalan sınırlar:25opt-in SKIP, gerçek E2E ilgili fazlarda açık.
 
 #### TEST-13.08-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: çalıştırılan sentetik/backend suite için Go race kontrolü geçti.
+- Yeniden test: backend concurrency/cache/session/stream/runtime modül değişikliği.
 
 ### TEST-13.09 — Frontend mount/unmount yaşam döngüsü
 
@@ -11302,19 +11106,17 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Sonuç: NOT_STARTED
 
 #### TEST-19.07-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] UI-002viewport dışına taşan seçiliPod etiketi gerçekPNG ile doğrulandı.
+- Düzeltme: mevcutDreiHtml calculatePosition içinde worldanchor projeksiyonu ve cached label ölçüsüyle viewportclamp; içerik/resize sırasında ölçüm, framebaşına DOMread/observer/timer yok.
+- Gözlenen:226frontendtest/build, WebKit1440/1280/76815kontrol PASS; rootworld768PNG açtı, etiket viewportta ve Proje2 adı okunur.
+- Kanıt: ui04-label-webkit/result.json; world-768.png; label-fit-unit.log
+- Sınır: bütün trafikbaşlığı/overlay konumları henüz test edilmedi.
 
 #### TEST-19.07-S3 — Negatif / sınır / arıza kontrolü
-- [x] PlaywrightWebKit768worldkaresi root tarafındanaçıldı.
-- Beklenen: seçili kaynaklabeli kenarda okunmalı.
-- Gözlenen: Poddurumlabeli sağkenardan taşıyorveProje2levhasını kısmenörtüyor; kaynağa finder/panelerişimi çalışıyor.
-- Kanıt: ui02-scope02-webkit/world-768.png
-- Sonuç: UI-002 P2; kaynak/doğruişlemhatası değildir,clamp/okunurluk işi açık.
+- [x]390phone kullanıcı Limanadön eylemi sonrası iki merkez/finder5kontrol PASS; ilkhelpercachedkadrajFAILkorundu.
+- [ ]390globalmaptePodetiketi Proje1isim-balonu ileörtüşüyor; viewporttaşmasıgiderildi fakat buP2açık.
+- Kanıt: ui04-phone-framing-chromium/world-390.png rootgerçektengörüntüledi; center390panelkendi scrolluylaokunur.
+- Sonuç: kapsamın yalnız clipping bölümü geçti; bütün etiket/trafficbaşlığıkabulü kapanmaz.
 
 #### TEST-19.07-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -12347,25 +12149,17 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-20.14-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Packaging/CI worker gerçekbuild-script ve workflowları inceledi; runtime allowlist/readiness sınırları belgelendi.
+- Kanıt: artifacts/release-audit/ra-20261111/packaging-worker/REPORT.md
 
 #### TEST-20.14-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Yeni explicit --output-dir ve çakışma koruma testleri8/8stub-executor PASS.
+- Sınır: gerçekbuild/paket/SBOM/signature/provenance hâlâbekliyor; unit sonucu finalpaketkanıtı değildir.
+- Kanıt: packaging-worker/test.log
 
 #### TEST-20.14-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.

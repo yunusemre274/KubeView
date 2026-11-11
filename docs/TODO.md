@@ -1,5 +1,15 @@
 # Güncel görev durumu
 
+## 11 Kasım2026 — yayın öncesi test devamı
+
+- [x] Kaynak/oturum guardları SEC001/002, eski seçim lease’i WS001 ve ara panel/log renderı WS002 için red/green; normal UI50A→B→A/299kapalırequest ve gerçek selector/union/concurrent/readback.
+- [x] Viewport label clamp ve explicit global camera fit; WebKit15 ve390phone5normal UI kontrol. Telefon uzakharitada Podetiketi/Proje1isim çakışması P2 hâlâaçık; yalnız viewport taşması giderildi.
+- [x] Sentetik origin/preview29altcase ve paket output çakışma8fixturetest; bunlar gerçek sandbox/finalarchive kabulü değildir.
+- [ ] Gerçekrestricted04, Hubblecold/mTLS/flow, patchedminikube provider ve güvenlikverdictleri; son paket/perf/60dk/nativeplatform kapıları.
+- [ ] Kullanıcımanuelonayı ayrı; stabletag/release/merge/milestone yapılmaz.
+
+Canlıdurum: [ROADMAP_FOR_TESTS](../ROADMAP_FOR_TESTS.md).
+
 - [x] Kullanıcı incelemesi sonrası dalga/köpük beyazlığı ve güneş parlaması hafif azaltıldı; animasyon ve yoğunluk dağılımı korundu.
 
 ## 11 Kasım — UI 2.0 ikinci görsel düzeltme

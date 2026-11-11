@@ -1,0 +1,63 @@
+source_sha: 4ec526b7ce1bc39c21b603864c9096f72eb39184
+source_delta: new release_origin_preview_test.go only by this worker
+start_utc: 2026-11-11T11:50:22.623865+00:00
+command_argv: ["go", "test", "-p", "1", "-parallel", "1", "-timeout", "90s", "-count=1", "-v", "./pkg/server", "-run", "^TestReleaseOriginPreview.*$"]
+environment: GOMAXPROCS=1; providers disabled; synthetic absent KUBECONFIG; no credential read
+=== RUN   TestReleaseOriginPreviewOriginAndHeaderMatrix
+=== RUN   TestReleaseOriginPreviewOriginAndHeaderMatrix/same-origin
+=== RUN   TestReleaseOriginPreviewOriginAndHeaderMatrix/missing-origin-cli
+=== RUN   TestReleaseOriginPreviewOriginAndHeaderMatrix/foreign-origin
+=== RUN   TestReleaseOriginPreviewOriginAndHeaderMatrix/opaque-origin
+=== RUN   TestReleaseOriginPreviewOriginAndHeaderMatrix/wrong-port
+=== RUN   TestReleaseOriginPreviewOriginAndHeaderMatrix/wrong-scheme
+=== RUN   TestReleaseOriginPreviewOriginAndHeaderMatrix/cross-site-without-origin
+--- PASS: TestReleaseOriginPreviewOriginAndHeaderMatrix (0.00s)
+    --- PASS: TestReleaseOriginPreviewOriginAndHeaderMatrix/same-origin (0.00s)
+    --- PASS: TestReleaseOriginPreviewOriginAndHeaderMatrix/missing-origin-cli (0.00s)
+    --- PASS: TestReleaseOriginPreviewOriginAndHeaderMatrix/foreign-origin (0.00s)
+    --- PASS: TestReleaseOriginPreviewOriginAndHeaderMatrix/opaque-origin (0.00s)
+    --- PASS: TestReleaseOriginPreviewOriginAndHeaderMatrix/wrong-port (0.00s)
+    --- PASS: TestReleaseOriginPreviewOriginAndHeaderMatrix/wrong-scheme (0.00s)
+    --- PASS: TestReleaseOriginPreviewOriginAndHeaderMatrix/cross-site-without-origin (0.00s)
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate//api/session/http://localhost
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate//ws?context=test&namespace=qa/http://localhost
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate//api/session/
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate//ws?context=test&namespace=qa/
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate//api/session/null
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate//ws?context=test&namespace=qa/null
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate//api/session/https://attacker.invalid
+=== RUN   TestReleaseOriginPreviewLoginAndWebSocketOriginGate//ws?context=test&namespace=qa/https://attacker.invalid
+--- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate (0.00s)
+    --- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate//api/session/http://localhost (0.00s)
+    --- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate//ws?context=test&namespace=qa/http://localhost (0.00s)
+    --- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate//api/session/ (0.00s)
+    --- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate//ws?context=test&namespace=qa/ (0.00s)
+    --- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate//api/session/null (0.00s)
+    --- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate//ws?context=test&namespace=qa/null (0.00s)
+    --- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate//api/session/https://attacker.invalid (0.00s)
+    --- PASS: TestReleaseOriginPreviewLoginAndWebSocketOriginGate//ws?context=test&namespace=qa/https://attacker.invalid (0.00s)
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/missing-operator
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/missing-access
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/missing-nonce
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/stale-nonce
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/disabled-grant
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/expired-forward
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/replaced-pod
+=== RUN   TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/connect-method
+    release_origin_preview_test.go:212: preview grant/identity gate: status=404 want=405
+--- FAIL: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant (0.00s)
+    --- PASS: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/missing-operator (0.00s)
+    --- PASS: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/missing-access (0.00s)
+    --- PASS: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/missing-nonce (0.00s)
+    --- PASS: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/stale-nonce (0.00s)
+    --- PASS: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/disabled-grant (0.00s)
+    --- PASS: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/expired-forward (0.00s)
+    --- PASS: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/replaced-pod (0.00s)
+    --- FAIL: TestReleaseOriginPreviewRequiresCurrentOwnerAndGrant/connect-method (0.00s)
+FAIL
+FAIL	github.com/k8s-tersane/tersane/backend/pkg/server	0.691s
+FAIL
+end_utc: 2026-11-11T11:50:25.940376+00:00
+exit_code: 1

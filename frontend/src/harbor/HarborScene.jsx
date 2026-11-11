@@ -63,6 +63,7 @@ import {
   containerInstances,
   PointerGesture,
   arrivalVisual,
+  resourceLabelPosition,
 } from "./interactions.js";
 import { hashColor, makeMaterials, makeSurfaceMaps } from "./materials.js";
 import {
@@ -102,6 +103,7 @@ const labelStyle = {
   userSelect: "none",
 };
 const statusLabelStyle = { fontSize: 12, color: "#536776", marginTop: 2 };
+const labelPoint = new THREE.Vector3();
 
 function Terrain({ materials: m, bounds, lowDetail }) {
   const blocks = useMemo(() => {
@@ -266,6 +268,25 @@ function ResourceLabel({
     visualRef = useRef(),
     nameRef = useRef(),
     last = useRef({});
+  const size = useThree((state) => state.size);
+  const labelSize = useRef([420, 72]);
+  const measureLabel = useCallback((node) => {
+    ref.current = node;
+    if (node) labelSize.current = [node.offsetWidth, node.offsetHeight];
+  }, []);
+  const state = readyState(resource);
+  useLayoutEffect(() => {
+    if (ref.current) labelSize.current = [ref.current.offsetWidth, ref.current.offsetHeight];
+  }, [resource.metadata?.name, resource.metadata?.namespace, selected, hover, labels, state, size.width, size.height]);
+  const calculatePosition = useCallback((object, camera, viewport) => {
+    labelPoint.setFromMatrixPosition(object.matrixWorld).project(camera);
+    return resourceLabelPosition(
+      (labelPoint.x + 1) * viewport.width / 2,
+      (1 - labelPoint.y) * viewport.height / 2,
+      ...labelSize.current, viewport.width, viewport.height,
+      resource.kind === "Pod", offset,
+    );
+  }, [resource.kind, offset]);
   useFrame(() => {
     if (!visualStatus) return;
     const visual = visualStatus(),
@@ -303,23 +324,23 @@ function ResourceLabel({
     }
   });
   if (!labels && !selected && !hover && !onlyWhileLoading) return null;
-  const state = readyState(resource);
   return (
     <Html
       style={{ pointerEvents: "none" }}
       center
       position={position}
       zIndexRange={[8, 0]}
+      calculatePosition={calculatePosition}
     >
       <div
-        ref={ref}
+        ref={measureLabel}
         style={{
           ...labelStyle,
           borderColor: selected ? "#4b89d1" : "#d5dfe3",
           marginLeft: offset,
-          ...(resource.kind === "Pod"
-            ? { transform: "translate(calc(50% + 26px), -12px)" }
-            : {}),
+          maxWidth: "min(420px, calc(100vw - 32px))",
+          whiteSpace: "normal",
+          overflowWrap: "anywhere",
         }}
       >
         <span
@@ -342,6 +363,7 @@ function ResourceLabel({
             overflow: "hidden",
             textOverflow: "ellipsis",
             verticalAlign: "middle",
+            whiteSpace: "nowrap",
           }}
         >
           {resource.metadata?.name}

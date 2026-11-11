@@ -1,6 +1,20 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {containersForPod,containerInstances,PointerGesture} from './interactions.js'
+import {containersForPod,containerInstances,PointerGesture,resourceLabelPosition} from './interactions.js'
+
+test('selected resource labels fit all canvas edges without changing their world anchor or reading layout per frame', () => {
+  assert.deepEqual(resourceLabelPosition(300, 200, 200, 48, 1440, 900, true), [426, 188]);
+  for (const [w,h] of [[1440,900],[768,900],[390,844]]) {
+    for (const [x,y] of [[w-5,h/2],[5,5],[w+100,h+100],[-100,-100]]) {
+      for (const pod of [true,false]) {
+        const labelWidth=Math.min(420,w-32), labelHeight=72, offset=12;
+        const [left,top]=resourceLabelPosition(x,y,labelWidth,labelHeight,w,h,pod,offset);
+        assert.ok(left+offset-labelWidth/2>=16 && left+offset+labelWidth/2<=w-16);
+        assert.ok(top-labelHeight/2>=16 && top+labelHeight/2<=h-16);
+      }
+    }
+  }
+});
 
 test('every regular, init, restartable init and ephemeral container maps to its exact Pod UID and raw name',()=>{
   const resource={kind:'Pod',metadata:{uid:'pod-uid',name:'plain-api-name',namespace:'test'},spec:{containers:[{name:'api'},{name:'metrics'},{name:'proxy'},{name:'fourth'}],initContainers:[{name:'prepare'},{name:'init-sidecar',restartPolicy:'Always'}],ephemeralContainers:[{name:'debug'}]}}

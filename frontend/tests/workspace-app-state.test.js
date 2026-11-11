@@ -68,8 +68,8 @@ function mount(initial, renderComponent = () => App()) {
     async settle() { for (let index = 0; index < 12; index++) await Promise.resolve(); if (mounted) render(); },
     unmount() { mounted = false; hooks.forEach((hook) => hook.cleanup?.()); } };
 }
-async function withApp(run) {
-  const env = environment(), app = mount(connection());
+async function withApp(run, renderComponent) {
+  const env = environment(), app = mount(connection(), renderComponent);
   try { await run(app); }
   finally {
     try { env.flushFrames(); app.unmount(); await app.settle(); assert.equal(app.lateUpdates, 0); assert.equal(env.timers.size, 0); assert.equal(env.frames.size, 0); assert.equal(env.listeners.size, 0); }
@@ -77,6 +77,39 @@ async function withApp(run) {
   }
 }
 const live = (view, resources, patch = {}) => connection({ workspace: view, sourceKey: `source:${view.activeId}`, resources, snapshotReady: true, stale: false, isConnected: true, upstream: true, ...patch });
+test("a harbor switch never commits an old Pod panel with the new harbor API before layout restoration", async () => {
+  const frames = [];
+  await withApp(async (app) => {
+    const a = workspace(), b = workspace("b", { uid: "beta-uid", kind: "Pod", namespace: "beta" });
+    b.activeHarbor.namespaces = ["beta"];
+    const beta = { ...pod("beta-uid"), metadata: { ...pod("beta-uid").metadata, namespace: "beta" } };
+    app.render(live(a, [pod()])); app.details().props.onTabChange("logs"); app.render();
+    app.render(live(b, [beta]));
+    assert.equal(app.details()?.props.resource.metadata.uid, "beta-uid");
+    assert.ok(!frames.some(frame => frame.source === "source:b" && frame.uid === "old-uid"),
+      "even the render before layout restoration must not give A's Pod to B's API");
+    app.render(live(a, [pod()]));
+    assert.equal(app.details()?.props.resource.metadata.uid, "old-uid");
+    assert.ok(!frames.some(frame => frame.source === "source:a" && frame.uid === "beta-uid"));
+  }, (current) => {
+    const tree = App(), details = nodes(tree).find(node => node.props?.onSelectContainer && node.props?.resource);
+    if (details) frames.push({ source: current.sourceKey, uid: details.props.resource.metadata.uid });
+    return tree;
+  });
+});
+test("a harbor switch never gives a facility the old namespace and new connection together", async () => {
+  const frames = [];
+  await withApp(async (app) => {
+    const a = workspace(), b = workspace("b", null); b.activeHarbor.namespaces = ["beta"];
+    app.render(live(a, [pod()])); app.scene().props.onOpenFacility("center"); app.render();
+    app.render(live(b, []));
+    assert.ok(!frames.some(frame => frame.source === "source:b" && frame.namespace === "alpha"));
+  }, (current) => {
+    const tree = App(), facility = nodes(tree).find(node => node.props?.onNamespace && node.props?.id);
+    if (facility) frames.push({ source: current.sourceKey, namespace: facility.props.namespace });
+    return tree;
+  });
+});
 test("switching namespaces never retains the previous Pod in the new harbor core", async () => withApp(async (app) => {
   const a = workspace(), b = workspace("b", { uid: "beta-uid", kind: "Pod", namespace: "beta" });
   b.activeHarbor.namespaces = ["beta"];

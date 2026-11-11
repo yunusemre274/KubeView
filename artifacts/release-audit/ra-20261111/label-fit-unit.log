@@ -1,0 +1,15 @@
+✔ selected resource labels fit all canvas edges without changing their world anchor or reading layout per frame (0.5855ms)
+✔ every regular, init, restartable init and ephemeral container maps to its exact Pod UID and raw name (0.136ms)
+✔ drag greater than 5 CSS pixels suppresses selection including a drag returned to its starting point (0.340041ms)
+✔ moving vessel or container identity changing between pointer down/up cancels picking (0.076833ms)
+✔ queued fallback shrinks to invisible before the same UID grows on its actual vessel (0.845875ms)
+✔ wall-time bound also shrinks fallback while full crane transfers stay opaque (0.07025ms)
+✔ a crane handover preserves the existing box visibility instead of replaying its arrival scale (0.074875ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 41.059166
