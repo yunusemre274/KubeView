@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — native-safari-evaluation-contract-worker
+
+- [ ] Farklı ve bounded tanı gerçek kurulu araç sözleşmesini gösterdi: evaluate_javascript functionbody ve explicitreturn istiyor. Ownedblanktab üç sabit expression:1+1→null,JSON.stringify→null,return1+1→2; ham yanıtlar korundu. Önceki app yardımcı kodundaki dışreturn eksikliği belirlendi; uygulama render sonucu hâlâ kanıtlanmadı.0.888sn, exactownhandleclose/EOFexit0.
+- [ ] Native uygulama UI/Retina kabulü genel fazı henüz kapanmadı.
+
+
 ## 11 Kasım — native-safari-app-smoke-retest-worker
 
 - [ ] Ayrı düzeltme sonrası0700 verified, actualapp88301 sağlıklı ve19843listener owned; native ownsekme88305 açıldı. İlk evaluate yanıtı decodednull olduğundan tüm UI/PNG/DPR assertionları durdu; raw successfulresponse saklanmadı. App/sekme/driver temiz kapandı; port boş. Bu ürünrenderFAIL kanıtı değildir.
