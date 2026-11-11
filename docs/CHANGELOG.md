@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — aktif yüzey ikinci incelemesi
+
+- Güncel endpoint envanteri ayrı worker tarafından kaynak/byte/hash/HTTP sonuçlarıyla doğrulandı; TEST01.01VERIFIED_DONE. İlk yardımcıFAIL, explicitreplay ayrımı ve gerçek işlev/paket sınırları korunur.
+
+
 ## 2026-11-11 — native Safari kısmi app gözlemi
 
 - Native JS sözleşmesi düzeltilmiş yardımcı gerçek boş landing durumuna ulaştı; reportedDPR2 kaydedildi. Screenshot format assertionı durdu; dünya/form/PNG veya fiziksel Retina kabulü iddia edilmedi.

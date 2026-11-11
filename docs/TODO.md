@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — endpoint envanteri kabulü
+
+- [x] TEST01.01 dar kapsamı ikinci kaynak/kanıt incelemesinden geçti:25normal/21protect+2replay ve37+7HTTP kontrolü.
+- [ ] Final paket, gerçek işlemler, WSupgrade ve diğer güvenlik kategorileri ayrı açık; test sayısıyla kapanmadı.
+
+
 ## 11 Kasım — native Safari uygulama JS gözlemi
 
 - [x] Correct outerreturn ile gerçek Safari27.0.1 uygulama JS/boşlanding kontrolları gözlendi; exact tab/app/driver temiz kapandı.
