@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — endpoint inventory ilk denemesi
+
+- Gerçek binary üzerinde normal25pattern/21protect envanteri ve ilk28kontrol kaydedildi. Yardımcı contexts assertion hatası FAIL olarak korundu; kalan negatif kontroller henüz çalışmadı.
+
+
 ## 2026-11-11 — provider ön kontrol başarısızlığı
 
 - Gerçek HTTP/OSpreflight ilkFAIL ve fazla rapor süresi değişmeden korundu. Son snapshot eşitliği bozuldu; kayıt eksikliği nedeniyle kök neden belirlenmedi. Hiç worker oluşturulmadı, app güvenle kapandı.

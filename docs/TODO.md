@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — endpoint envanteri ilk yardımcı kontrolü
+
+- [ ] TEST01.01 ilk28GET sonrasında contexts yanıtı nesne/array assertion hatasında kaldı. Mevcut sözleşmeye uyumlu yardımcı retesti gerekiyor; ürün değişmedi.
+- [x] İlk kaynak/sonuç ve app/port cleanup kanıtı korundu.
+
+
 ## 11 Kasım — provider HTTP preflight ilk FAIL
 
 - [x] Gerçek readonly/grant/provider/400 ve bağımsızOSwatchdog kontrolleri çalıştı; app/port temiz.
