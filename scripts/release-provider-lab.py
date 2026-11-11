@@ -147,6 +147,10 @@ def cleanup_pod_guard(pods, known):
         key=pod["metadata"]["namespace"]+"/"+refs[0]["name"]
         require(key in ALLOWED_DS and known.get(key)==refs[0]["uid"],"unknown_DaemonSet_UID_blocks_drain")
 
+def canonical_mounts(records):
+    # Preserve every record and multiplicity; order alone is not mount identity.
+    return sorted(records,key=lambda item:json.dumps(item,sort_keys=True))
+
 def context_guard(context, uid): require(context==PROFILE and uid==SYSTEM,"misbound_context_or_system_UID")
 
 def cleanup_record(journal):
@@ -196,6 +200,11 @@ def self_test():
         reject('live_run_remains_locked',main);require(not constructed,'runtime_gate_constructed_Transaction')
     finally:sys.argv=original_argv;globals()['Transaction']=original_transaction
     frozen=DeadlineBudget('cleanup',clock=lambda:fake[0]);end=frozen.deadline();frozen.stage='cleanup';fake[0]+=10;frozen.begin_cleanup();require(frozen.deadline()==end,'cleanup_deadline_extended');cases.append('cleanup_reentry_does_not_extend_budget')
+    mounts=[{'type':'bind','name':None},{'type':'volume','name':PROFILE}]
+    require(canonical_mounts(mounts)==canonical_mounts(list(reversed(mounts))),'mount_reverse_equality');cases.append('reversed_identical_mount_records_equal')
+    require(canonical_mounts(mounts)!=canonical_mounts([mounts[0],{'type':'volume','name':'changed'}]),'changed_volume_hidden');cases.append('changed_volume_stays_unequal')
+    require(canonical_mounts(mounts)!=canonical_mounts(mounts[:1]),'dropped_mount_hidden');cases.append('dropped_mount_stays_unequal')
+    require(canonical_mounts(mounts)!=canonical_mounts(mounts+[mounts[0]]),'mount_multiplicity_hidden');cases.append('mount_multiplicity_preserved')
     print(json.dumps({"status":"PASS","pureCases":cases,"runtimeActions":False}))
 
 class Transaction:
@@ -234,7 +243,7 @@ class Transaction:
         self.budget.check();code,out,_=bounded_process(['/usr/local/bin/docker','inspect',name],5,deadline=self.budget.deadline(),controller=self.budget)
         if code:return None
         x=json.loads(out)[0];nets=x['NetworkSettings']['Networks'];n=nets.get(PROFILE,{})
-        return {'name':x['Name'].lstrip('/'),'id':x['Id'],'created':x['Created'],'labels':x['Config'].get('Labels',{}),'networkID':n.get('NetworkID'),'IP':n.get('IPAddress'),'mounts':[{'type':m['Type'],'name':m.get('Name')}for m in x['Mounts']]}
+        return {'name':x['Name'].lstrip('/'),'id':x['Id'],'created':x['Created'],'labels':x['Config'].get('Labels',{}),'networkID':n.get('NetworkID'),'IP':n.get('IPAddress'),'mounts':canonical_mounts([{'type':m['Type'],'name':m.get('Name')}for m in x['Mounts']])}
     def label_targets(self):
         result={}
         for kind,args in [('containers',['ps','-aq','--no-trunc']),('volumes',['volume','ls','-q']),('networks',['network','ls','-q'])]:

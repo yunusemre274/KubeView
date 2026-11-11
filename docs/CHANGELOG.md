@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — provider preflight retesti
+
+- Test yardımcısında yalnız mount sırası kararlılaştırıldı.21saf kontrol ve gerçek HTTP retesti başarılı; journal null/API[] farkı kaynakla doğrulandı. Ürün runtime veya Kubernetes kaynağı değişmedi.
+
+
 ## 2026-11-11 — native Safari gerçek tool çağrısı
 
 - Owned stdio üzerinden yeni boş sekmenin açılıp yalnız kendi handle değeriyle kapatılması doğrulandı. OS ayarı veya mevcut sekmeler kullanılmadı; UI/performans sonucu sayılmadı.

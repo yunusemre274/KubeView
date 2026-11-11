@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — provider HTTP retest başarılı
+
+- [x] Canonical mount sıralama kayıt/multiplicity koruyor;21saf test ve tek gerçek HTTP retest geçti. Kalıcı before/after diff0, profilehash aynı, app/port temiz. İlkFAIL korunur.
+- [ ] Gerçek yeniworker/Ready/samekey/cleanup ayrı sıradaki kapıdır; kaynak run gate kapalı.
+
+
 ## 11 Kasım — gerçek Safari boş sekme capability
 
 - [x] Yeni owned about:blank sekmesi gerçek create_tab ile açıldı ve exact handle ile kapandı;0.94sn, driver EOF exit0.
