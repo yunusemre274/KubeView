@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — başarısız CI ve güvenli duruş kaydı
+
+- Üç exact CI job'ında test ve paket derleme başarısı ile apt DNS kaynaklı clean-Linux startup/upload atlaması ayrı kanıtlandı. Workflow, TLS veya destek kapsamı gevşetilmedi; final paket kabulü BLOCKED kaldı.
+- Düşük pilde yalnız sahip olunan lab uygulama/relay/node süreçleri guard'lı runner ile durduruldu. Profiller, private state ve manuel fixture dosyaları korunur; kaynak/port kontrolü kaydedildi. Uzun test geçmiş sayılmadı.
+
 ## 2026-11-11 — provider bulgularının erişilebilirlik sınırı
 
 - Exact1.20.4 aday dosyalarının bounded statik incelemesi kaydedildi. Stripped GoDB sembol fallback'ı gerçek linkage kanıtından ayrıldı; operator JWK parser ve APT belirsizlikleri açık bırakıldı. Yeni provider kurulmadı ve güvenlik riski kabul edilmedi.

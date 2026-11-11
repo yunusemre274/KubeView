@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — CI ve düşük pil checkpoint'i
+
+- [x] Üç exact CI kaynağının test/paket build success ile temiz Linux startup/artifact upload SKIP sonuçları ayrıldı. Ubuntu apt DNS hatası ham excerpt/job kimliğiyle kaydedildi.
+- [x] Yalnız owned uygulama, relay ve node containerları durduruldu; private state/profiller korundu, ilgili üç loopback portu boş. Diğer projelerin çalışan containerlarına dokunulmadı.
+- [ ] Final temiz paket, Scale güncel helper regresyonu, beş eşleşmiş A/B tekrarı ve kesintisiz60dk koşusu açık. Pil %8 iken uzun/ağır test başlamaz; CI DNS engeli PASS değildir.
+
 ## 11 Kasım — provider erişilebilirlik incelemesi
 
 - [x] Dört exact aday imajdan on Go ELF için sınırlı statik link/source incelemesi; extraction containerları başlatılmadan temizlendi. İlk eksik analiz ve düzeltmesi korunur.

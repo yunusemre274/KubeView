@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T19:51:43.332328+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: `96adbf6092cba098cef351072b045e0946a4525a`; remote tip aynı. Bekleyen fark yalnız gerçek Resources test guard ve test/kanıt kayıtlarıdır; CSP ürün düzeltmesi `d0be9753` içinde commitlidir.
+- Son güncelleme: 2026-11-11T19:55:37.638835+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %14, Battery Power. Yeni A/B/60dk koşusu başlamadı. Düşük pilde owned ağır lab süreçleri durduruldu; Chromium/Metal, WebKit ve native Safari sonuçları ayrı tutulur.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:149; IN_PROGRESS:21; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:26; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:149; IN_PROGRESS:20; FAILED:1; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:26; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST04.05 gerçek CPU/RAM template değişikliği, iki yeni Ready Pod, negatifler ve cleanup. CSP target browser kapısı geçti; son header kontrollerinin incelemesi sürüyor. TEST04.04 Scale güncel helper regresyonu açık.
+- Son tamamlanan faz: TEST11.05 CSP/MIME — normal Chromium/Metal ve WebKit akışı, inline reddi, blob Worker;8unit/40alt durum. Öncesinde TEST04.05 gerçek resource rollout geçti. TEST04.04 güncel helper Scale regresyonu açık.
 - Süreç/lab: Owned normal A ve fresh Hubble `kvml-d32afbf634e8-a` node containerları durduruldu; app19846/19847 ve relay19848 listenerları kapandı. Private state, workspace ve manuel profiller korundu. Diğer projelerin dört çalışan DB containerına dokunulmadı. Benchmark/soak yok.
-- Devam: bu dosyanın durum/dependency satırını ve `artifacts/release-audit/ra-20261111/` kayıtlarını okuyun; otomatik bütün lab'ı yeniden başlatmayın.
+- Devam: Önce bu dosya, owned-lab-stop-checkpoint/result.json ve ci-package-dns-evidence/REPORT.md okunur. State/profiller korunur. Ağır lab/perf/soak kararlı güç olmadan otomatik yeniden başlatılmaz; yalnız gereken hedefli faz seçilir.
 - **Genel karar: NOT_RELEASE_READY**.
 
 ## Merkezi kaynak ve güvenlik bütçesi
@@ -43,7 +43,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:7, IN_PROGRESS:2 | Henüz yok |
-| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:12, IN_PROGRESS:2 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:12, IN_PROGRESS:1, BLOCKED:1 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
@@ -3502,7 +3502,7 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 
 #### TEST-06.05-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %14, Battery Power. Yeni A/B/60dk koşusu başlamadı. Düşük pilde owned ağır lab süreçleri durduruldu; Chromium/Metal, WebKit ve native Safari sonuçları ayrı tutulur.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -3557,7 +3557,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 #### TEST-06.06-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %14, Battery Power. Yeni A/B/60dk koşusu başlamadı. Düşük pilde owned ağır lab süreçleri durduruldu; Chromium/Metal, WebKit ve native Safari sonuçları ayrı tutulur.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -11162,11 +11162,11 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR + packaging worker
-- Kaynak / build / paket kimliği: 496729e2 + scripts/build-release çalışma farkı; exact SHA manifestte. Henüz gerçek final arşiv yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Kaynak / build / paket kimliği: Paket düzeltmesi2461bbfb; CI exact46ec5508/df656bf2/96adbf60 gerçek darwin-arm64 ve linux-amd64 derlemesini geçti. Final kullanıcı paketi henüz üretilip temiz ortamda kabul edilmedi.
+- Ortam / kullanılan kimlik ve yetki: GitHub Actions ubuntu-latest; public apt mirror DNS erişimi kurulumda başarısız. Yerel Apple M5 Battery8%; yeni ağır build/uzun test başlatılmadı.
 - Başlangıç zamanı: 2026-11-11T13:20:17.412070+00:00
 - Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Durum: BLOCKED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-20.01-S1 — Hazırlık
@@ -11180,6 +11180,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Sınır: executor sahte; gerçek binary/tar/temiz paket başlangıcı henüz çalışılmadı.
 - Tarihsel ilk8 test: artifacts/release-audit/ra-20261111/packaging-worker/packaging-fixture-tests.log
 - Yeni retest: artifacts/release-audit/ra-20261111/packaging-root-retest/packaging.log
+
+- Üç exact kaynak CI koşusunda frontend ve gerçek darwin-arm64/linux-amd64 paket derleme adımı success. Bunlar temiz runtime kabulü veya opt-in gerçek Kubernetes testlerinin geçtiği anlamına gelmez.
+- Job/step ve seçili public APT hata kanıtı: artifacts/release-audit/ra-20261111/ci-package-dns-evidence/results.json.
 
 #### TEST-20.01-S3 — Negatif / sınır / arıza kontrolü
 - [x] Output çakışması/symlink, yarışta çıkan arşivin ezilmemesi, eksik/symlink frontend, kirli manual/doc/RBAC girdisi kontrollü test edildi.
@@ -11197,6 +11200,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - [ ] Gerçek final arşiv/binary temiz başlangıç ve idempotent manual runner doğrulaması bekliyor.
 - Sonuç: fixture11PASS; gerçek kabul IN_PROGRESS.
 
+- [ ] CI temiz Linux startup/browser kontrolü çalışmadı: Playwright apt bağımlılık kurulumunda Ubuntu/archive/security DNS hatası, APT100/install1. Sonraki clean-start ve artifact-upload adımları SKIPPED.
+- Aynı işi geçene kadar yeniden başlatma, DNS/TLS bypass veya platform/kapsam azaltma yapılmadı. Yeni commit'in CI sonucu önceki koşulardan bağımsız doğrulanmalıdır.
+
 #### TEST-20.01-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -11204,10 +11210,13 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
 
+- Root üç job'ın gerçek step durumları ve hata excerpt'lerini GitHub connector üzerinden okudu. Kod/test/paket derleme success ile temiz paket startup SKIP ayrı tutuldu.
+- Yerel owned lab'lar düşük pilde mevcut runner guard'larıyla durduruldu. Private state/profiller korunur, 19846/19847/19848 loopback listenerları kapalı; kullanıcı DB containerları korunur. Kanıt: owned-lab-stop-checkpoint/result.json.
+
 #### TEST-20.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Gerekçe: paketleme fixture düzeltmesi geçti; gerçek teslim arşivinin kabulü açık.
-- Yeniden test: build/embeddedfrontend/manualruntime/packaging değişikliği.
+- BLOCKED: CI clean-Linux startup Playwright bağımlılık kurulumu DNS hatasında çalışmadı; yerel final arşiv/temiz runtime kabulü de tamamlanmadı. Başarılı paket derlemesi bu kapıyı kapatmaz.
+- Sonraki uygulanabilir iş: DNS erişimi sağlanan owned CI ortamında aynı zorunlu clean-start adımını final kaynak/paketle çalıştırmak; kararlı güçte yerel final arşivi ve manuel profilleri ayrıca doğrulamak. Eski başarısız runlar korunur.
 
 ### TEST-20.02 — Boş config/ilk liman gerçek bağlantısı
 
