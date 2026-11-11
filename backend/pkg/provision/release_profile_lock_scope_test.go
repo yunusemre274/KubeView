@@ -3,9 +3,14 @@
 package provision
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
+	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 )
@@ -73,4 +78,122 @@ func TestReleaseProfileLockSpansStateDirs(t *testing.T) {
 	}
 	replacement.Close()
 	t.Log("control: fake operation joined and profile lock released after Close")
+}
+
+func TestReleaseProfileLockAcrossProcesses(t *testing.T) {
+	cfg, _, runner := testSetup(t)
+	first, err := New(cfg, runner)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer first.Close()
+	childCfg := cfg
+	childCfg.StateDir = t.TempDir()
+	runReleaseProfileLockChild(t, childCfg, "PROFILE_LOCK_CHILD_REJECTED")
+	first.Close()
+	runReleaseProfileLockChild(t, childCfg, "PROFILE_LOCK_CHILD_ACQUIRED_RELEASED")
+}
+
+// The child is this Go test binary, with only synthetic configuration supplied.
+// Neither branch starts an operation or executes a provider binary.
+func TestReleaseProfileLockChild(t *testing.T) {
+	if os.Getenv("KV_RELEASE_PROFILE_LOCK_CHILD") != "synthetic-only" {
+		t.Skip("internal subprocess fixture; requires parent-owned synthetic config")
+	}
+	data, err := os.ReadFile(os.Getenv("KV_RELEASE_PROFILE_LOCK_CONFIG"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var cfg Config
+	if err := json.Unmarshal(data, &cfg); err != nil {
+		t.Fatal(err)
+	}
+	manager, err := New(cfg, &testRunner{})
+	if err != nil {
+		if !strings.Contains(err.Error(), "başka bir KubeView sağlayıcı süreci") {
+			t.Fatal("unexpected constructor error", err)
+		}
+		fmt.Println("PROFILE_LOCK_CHILD_REJECTED")
+		return
+	}
+	manager.Close()
+	fmt.Println("PROFILE_LOCK_CHILD_ACQUIRED_RELEASED")
+}
+
+func runReleaseProfileLockChild(t *testing.T, cfg Config, expected string) {
+	t.Helper()
+	path := filepath.Join(t.TempDir(), "synthetic-config.json")
+	data, err := json.Marshal(cfg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(path, data, 0600); err != nil {
+		t.Fatal(err)
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, os.Args[0], "-test.run=^TestReleaseProfileLockChild$", "-test.timeout=8s", "-test.v")
+	cmd.Env = []string{"GOMAXPROCS=1", "KV_RELEASE_PROFILE_LOCK_CHILD=synthetic-only", "KV_RELEASE_PROFILE_LOCK_CONFIG=" + path}
+	output, err := cmd.CombinedOutput()
+	if err != nil || !bytes.Contains(output, []byte(expected+"\n")) {
+		t.Fatalf("synthetic lock child: expected %s, exit=%v, output=%s", expected, err, output)
+	}
+	t.Log(expected)
+}
+
+func TestReleaseProfileLockHomeSymlinkAlias(t *testing.T) {
+	cfg, _, runner := testSetup(t)
+	first, err := New(cfg, runner)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer first.Close()
+	alias := filepath.Join(t.TempDir(), "home-alias")
+	if err := os.Symlink(cfg.Home, alias); err != nil {
+		t.Fatal(err)
+	}
+	otherCfg := cfg
+	otherCfg.Home, otherCfg.StateDir = alias, t.TempDir()
+	if second, err := New(otherCfg, runner); err == nil {
+		second.Close()
+		t.Fatal("Home symlink alias bypassed physical profile lock")
+	}
+	first.Close()
+	replacement, err := New(otherCfg, runner)
+	if err != nil {
+		t.Fatal("alias lock did not release after Close", err)
+	}
+	replacement.Close()
+}
+
+func TestReleaseProfileLockConstructorFailureReleasesBoth(t *testing.T) {
+	cfg, _, runner := testSetup(t)
+	journal := filepath.Join(cfg.StateDir, "minikube-"+cfg.Profile+".json")
+	if err := os.WriteFile(journal, []byte("invalid synthetic journal"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	if manager, err := New(cfg, runner); err == nil {
+		manager.Close()
+		t.Fatal("invalid synthetic journal was accepted")
+	}
+	for _, path := range []string{
+		filepath.Join(cfg.StateDir, "minikube-"+cfg.Profile+".lock"),
+		filepath.Join(cfg.Home, ".kubeview-provider-locks", "minikube-"+cfg.Profile+".lock"),
+	} {
+		lock, err := lockProfile(path)
+		if err != nil {
+			t.Fatal("constructor failure retained a profile/journal lock", err)
+		}
+		if err := lock.Close(); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := os.WriteFile(journal, []byte("[]"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	replacement, err := New(cfg, runner)
+	if err != nil {
+		t.Fatal("constructor cleanup prevented valid reacquisition", err)
+	}
+	replacement.Close()
 }

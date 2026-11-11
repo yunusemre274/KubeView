@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — physical minikube profilini ortak kilitle
+
+- FarklıStateDir aynıHome/Profile için ikinciManager artık fizikselkilit alamaz; eskijournal lock korunur. Hata/Close cleanup ve ayrıprocesskontrolleri geçti. API/klavye/sahne davranışı değiştirilmedi; finalpaket açık.
+
+
 ## 2026-11-11 — profile lock kapsam regresyonu
 
 - PROV-LOCK-002 odaklıGo testi RED: physicalprofile iki ayrıStateDir üstünden eşzamanlısahipleniliyor. Yetkisizuzakexploit iddiası yok; ilksetup ve gerçekRED korunur.

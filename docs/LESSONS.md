@@ -1,5 +1,11 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — journal sınırı physical kaynak değildir
+
+- Aynı host kaynağını yöneten bağımsız journal dizinleri, kaynağın ortak kilidini atlayamamalıdır. Kilit kimliğini gerçekHome/Profile ile bağlayın; geriuyumlu journal kilidini bırakmayın ve constructor/Close yollarında FD yaşam döngüsünü sınayın.
+- Sadece aynıStateDir testi geçmesi farklıStateDir/symlink veya ayrıprocess dışlamasını kanıtlamaz. Bu guardın düzelmesi gerçekCLI/VM/GUI kabulü yerine geçmez.
+
+
 ## 11 Kasım — completed child kimliği
 
 - ProcessLookupError tek başına yanlış PID veya saldırı demek değildir: kısa child ölçüm sırasında normal tamamlanabilir. FreshPopen sahipliği/exit durumunu kontrol edin; livekimlik hatasını görmezden gelmeyin ve capture öncesi hatada ownchild/pipe cleanup sağlayın.

@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — physical profile lock fix/retest
+
+- [x] PROV-LOCK-002: physicalHome/Profile ortak kilidi+legacyStateDirlock; originalRED→GREEN ve process/alias/constructorcleanup/server/race kontrolleri geçti.
+- [ ] Yeni runtime/finalpaket ve kalan provider idempotency/recovery kapıları açık; eski gerçekworkerReady farklısource kimliğinde korunur.
+
+
 ## 11 Kasım — physical profile lock RED
 
 - [x] FarklıStateDir/sameHome/Profile ikiManagerNew kilit alabiliyor; sameStateDir veilkoperation/Close kontrolleri ayrı geçti. GerçekCLI yok.

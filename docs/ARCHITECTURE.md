@@ -153,3 +153,9 @@ Ortak Node üyeliği yalnız doğrulanmış cluster+Node UID üzerinden açıkla
 `--replay-profile M|L` yalnız açık manuel yük kaynağıdır: embedded benchmark-v2/seed20261024 verisi, read-only fake upstream, normal informer/WebSocket/store yolu. Canlı bağlantı hatasının fallback'i değildir. TEST/REPLAY kimliği gerçek cluster doğrulaması sayılmaz, metrics yokluğu korunur, sentetik loglar ayrıca etiketlenir. Sınırlı nonce-korumalı fixture üreticisi yalnız bu modda kayıtlıdır; canlı Kubernetes mutation servisi yerine geçmez.
 
 Uygulanan parçaların kabulü: [WORKSPACE_ACCEPTANCE.md](WORKSPACE_ACCEPTANCE.md). Önceki kaynaklara ait testler yeni kod için otomatik PASS değildir. Kullanıcının manuel kabulü ve eski CPU/fiziksel latency kapıları açık kalır.
+
+## 11 Kasım — physical minikube profile sahipliği
+
+Provider journalı StateDir içinde kalır. Manager.New, eski journal kilidine ek olarak güvenilir cfg.Home/.kubeview-provider-locks altındaki profile dosyasını nonblocking kilitler. Böylece farklı journal dizinleri ve test edilen Home symlink aliası aynı physicalprofileı eşzamanlı sahiplenemez. Constructor hataları ikiFDyi de kapatır; Close önce çalışan işlemi iptal edip bekler, sonra kilitleri bırakır. Bu host yetkisi veya global idempotency sağlayan bir auth mekanizması değildir; mevcut yerel operatör/RBAC/grant denetimleri sürer.
+
+[PROV-LOCK-002 dar regresyon ve retest](../artifacts/release-audit/ra-20261111/provider-profile-lock-retest-worker/REPORT.md) gerçek OS filelock ve iki Go test sürecini, sentetik provider/client ile sınar. Gerçek CLI/E2E/finalpaket kabulü yerine geçmez.

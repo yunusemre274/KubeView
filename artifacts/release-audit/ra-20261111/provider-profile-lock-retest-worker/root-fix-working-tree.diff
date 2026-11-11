@@ -1,0 +1,67 @@
+diff --git a/backend/pkg/provision/minikube.go b/backend/pkg/provision/minikube.go
+index bc677950..d19cdf53 100644
+--- a/backend/pkg/provision/minikube.go
++++ b/backend/pkg/provision/minikube.go
+@@ -66,16 +66,17 @@ type Operation struct {
+ 	ClaimVerified   bool              `json:"claimVerified"`
+ }
+ type Manager struct {
+-	mu         sync.Mutex
+-	cfg        Config
+-	runner     Runner
+-	operations []Operation
+-	cancel     context.CancelFunc
+-	closed     bool
+-	lock       io.Closer
+-	life       context.Context
+-	stop       context.CancelFunc
+-	wg         sync.WaitGroup
++	mu          sync.Mutex
++	cfg         Config
++	runner      Runner
++	operations  []Operation
++	cancel      context.CancelFunc
++	closed      bool
++	lock        io.Closer
++	profileLock io.Closer
++	life        context.Context
++	stop        context.CancelFunc
++	wg          sync.WaitGroup
+ }
+ 
+ var profilePattern = regexp.MustCompile(`^[a-z0-9][a-z0-9-]{0,62}$`)
+@@ -146,9 +147,24 @@ func New(cfg Config, runner Runner) (*Manager, error) {
+ 	defer func() {
+ 		if !loaded {
+ 			m.stop()
++			if m.profileLock != nil {
++				_ = m.profileLock.Close()
++			}
+ 			_ = lock.Close()
+ 		}
+ 	}()
++	// Journals remain independent, but mutations of one physical profile must
++	// share ownership even when gateways use different journal directories.
++	// Retain the original journal lock for same-StateDir compatibility.
++	profileLockDir := filepath.Join(cfg.Home, ".kubeview-provider-locks")
++	if err := os.MkdirAll(profileLockDir, 0700); err != nil {
++		return nil, err
++	}
++	profileLock, profileLockErr := lockProfile(filepath.Join(profileLockDir, "minikube-"+cfg.Profile+".lock"))
++	if profileLockErr != nil {
++		return nil, profileLockErr
++	}
++	m.profileLock = profileLock
+ 	data, err := os.ReadFile(m.journal())
+ 	if err != nil && !os.IsNotExist(err) {
+ 		return nil, err
+@@ -511,6 +527,9 @@ func (m *Manager) Close() {
+ 	_ = m.persist()
+ 	m.mu.Unlock()
+ 	m.wg.Wait()
++	if m.profileLock != nil {
++		_ = m.profileLock.Close()
++	}
+ 	_ = m.lock.Close()
+ }
+ func (m *Manager) Configuration() map[string]interface{} {

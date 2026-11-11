@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T22:50:31.215885+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T23:00:50.303020+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:19; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, FAILED:2, VERIFIED_DONE:6 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
@@ -102,6 +102,8 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - [x] Farklı worker normal25/21+replay2,37+7durum, üç eski/yeniSHA listesi, currentfilebyteeşitliği ve rootfallback düzeltmesini ikinci kez inceledi.
 - İnceleyen: release_security; aynı ajan sistemi, profesyonel üçüncü taraf pentest değildir. WSTG4.2INFO06 birincil kaynak eşlemesi doğrulandı; sertifikasyon iddiası yok.
 - Sınır: final arşiv ve gerçek işlevler bu fazdan ayrı.
+
+Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/provision/New/Close physicalfilesystem kilididir. Envanterin beşRegister/auth/static/replay kaynağı değişmedi;37normal/7replayprobu providersdisabled veya authguard-öncesi dalda New çağırmaz. Bu dar envanter kanıtı korunur; yeni finalpaket/runtime startup ve provider davranışı ayrıca retest edilir.
 
 #### TEST-01.01-K — Faz kararı
 - [x] BİTTİ / DOĞRULANDI
@@ -4058,11 +4060,11 @@ Rootdarfilecleanup: aynıiki lock ve actualoriginal2/system/ns guardları; liveN
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-SECURITY-WORKER; root provider mutasyon/kapsam incelemesi
-- Kaynak / build / paket kimliği: d82bd7c2 RED checkpoint + provider_handlers.go fix SHA34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94; strengthenedtestb9e19ca5…
+- Kaynak / build / paket kimliği: Root productpatch minikube.go8e57040b…; augmentedteste1576b46…; orijinalred2a146f46… korunur
 - Ortam / kullanılan kimlik ve yetki: UNIT production Register/protect + fake Kubernetes/runner + private terminal journal; geçerli local session/grant. Gerçek CLI/Node/cluster/browser yok.
 - Başlangıç zamanı: 2026-11-11T18:02:56.905572Z
 - Bitiş zamanı: Unit/race retest tamam; kesin argv/UTC provider-cache-scope-retest-worker JSONlarında. Gerçek same-key/profile concurrency kapısı açık.
-- Durum: FAILED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.13-S1 — Hazırlık
@@ -4114,6 +4116,8 @@ PROV-LOCK-002 RED: aynı gerçekHome/Profile fakat farklıStateDir ile ikiManage
 
 Kök neden: physicalCLIinventory Home/Profile iken nonblockinglock StateDir/Profile konumunda. Localtrustedikiapp/customStateDir önkoşulluMEDIUM/P1 concurrency doğruluk bulgusu; anonim/RBAC bypass gösterilmedi. Runtimefix henüz yok.
 
+PROV-LOCK-002 düzeltmesi: cfg.Home/.kubeview-provider-locks physicalprofil kilidi eklendi, eskiStateDirjournal kilidi korundu. Constructor hatasında her ikisi bırakılır; Close cancel/wgjoin sonrasında ikisini bırakır. Journalformat/workerAPI/türler değişmedi. OrijinalPoC2a146… aynıkaldığı ilk koşudaGREEN oldu.
+
 #### TEST-06.13-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
@@ -4123,6 +4127,8 @@ Kök neden: physicalCLIinventory Home/Profile iken nonblockinglock StateDir/Prof
 - [x] Orijinal1e6f test değiştirilmeden bir kez retest edildi:3casePASS; good/wrongcontext/changedUID namespace reads1/0/1, cachedgood202sameoperation, bad409/nooperation, CLI0.
 - [x] Ek valid-session namespace403/503/404 negatifleri ve combined12top/33subcase/0SKIP geçti. Dar2test/6subcase race dePASS; tamrace/gerçekcluster yerine sunulmadı. İlkRED korunur.
 - Source davranış sınırı: unsupportedmethod/body ve cancel öncesi UIDerror önceliği artık ortakguard'dan gelir; cancel Verify kendi ekread'ini korur. Kontrol atomik clusterUID garantisi değildir.
+
+RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS,0SKIP; focusedrace5PASS+1internalchildSKIP. Internalchild varsayılanSKIP olsa da iki ayrıGoTestbinary subprocess parenttesttegerçek çalıştı; aynıphysicalHome/differentStateDir dışlama veClose sonrası bırakma, Homesymlinkalias veinvalidjournalfailurecleanup doğrulandı. Rootkaynak/review.json ve24checksum inceledi. Kanıt: provider-profile-lock-retest-worker/REPORT.md.
 
 #### TEST-06.13-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -4135,6 +4141,8 @@ Kök neden: physicalCLIinventory Home/Profile iken nonblockinglock StateDir/Prof
 
 - [x] Root productiondiff/test ve8checksum/raporu okudu; temporary manager/lock/journal cleanupPASS. Repo dışı provider/CLI veya gerçekNode çalışmadı.
 - Gerçek helper eski binary ile hard-blocked; yeni fixruntimeSHA gelmeden actualtest çalışmaz.
+
+176.128sn/360; indirilenyeniSDK/dependency, gerçekCLI/VM/K8s0. Dar localfilesystem concurrencyfix doğrulandı; providerUI/gerçekE2E ve eskiPendingjournalrecovery genel kapıları kapanmadı. Yeni runtime/binary/finalpaket gerekir; gerçekworkerkanıtı eski4c/sourcekimliğinde kalır.
 
 #### TEST-06.13-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
