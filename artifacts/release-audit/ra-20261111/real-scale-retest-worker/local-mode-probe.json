@@ -1,0 +1,1 @@
+{"childMode":"-rwxr-xr-x","newPrivateChildMode":"-rwx------","newPrivateChildOpenSucceeded":true,"probe":"installed testing.T.TempDir child semantics: os.Mkdir(mode0777), normal process umask; isolated local workspace only","temporaryProbeRemovedOnExit":true,"wsOpenReason":"workspace directory must be private (0700); existing directory permissions were not changed"}

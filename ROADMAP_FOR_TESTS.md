@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T19:13:56.709833+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T19:20:48.312497+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4a05095ab94fa40ace4785f9da2d7cfe4688f398`; remote tip aynı. Önceki550400a3 CI43030094174 SUCCESS. UI-only CSP1satır ve yeniheader testleri çalışmafarkında; gerçekbinarycsp07SHA322bd5b5… ile tarayıcıkapısı sürüyor.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:151; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:151; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:1; VERIFIED_DONE:25; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -27,7 +27,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
-| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:15, IN_PROGRESS:2, FAILED:1 | Henüz yok |
+| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:15, IN_PROGRESS:2, VERIFIED_DONE:1 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
@@ -1637,11 +1637,11 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-DEPENDENCY-WORKER; root kodinceleme
-- Kaynak / build / paket kimliği: 52c80a31 serverruntimebyteeşit; yeni opt-in release_operations_real_test.go SHAfa8c2977…
-- Ortam / kullanılan kimlik ve yetki: Exact owned06lab/cluster/nsUID; privateadmin.json yalnızchildtestenv; aktifapp19846read-onlydeğişmedi.
+- Kaynak / build / paket kimliği: APIserver d0be9753/ef6875b0 runtimebyte eşit; opt-in helperd6c246b2…; exactmanifest
+- Ortam / kullanılan kimlik ve yetki: Owned06 e84bb50e…/ns863e13d5…; ayrıloopbackgateway56907, adminscope HTTP/session/grant/SSAR; aktif19846değişmedi.
 - Başlangıç zamanı: 2026-11-11T16:09:18.858977Z
-- Bitiş zamanı: Outer10.620sn; actualtest0.045sn, kurulumaşamasındaFAIL.
-- Durum: FAILED
+- Bitiş zamanı: 2026-11-11T16:16:51Z;9.438sn actualtest/18.206snouter
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-04.04-S1 — Hazırlık
@@ -1654,29 +1654,44 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Gözlenen: ConfigureWorkspace(t.TempDir(),...) hata verdi; hata içeriği güvenlikamacıyla loglanmadığından tamneden doğrudankanıtlıdeğil.
 - Sonuç: kurulumGoTestFAIL; gerçekscaleNOTRUN.
 
+- [x] Düzeltilmiş fixture ile realretestPASS: aynıDeploymentUIDf4754930… için2→3→1Ready/current/updated/available/desired; generation/observedGeneration1→2→3.
+- [x] HerReadyPod→ReplicaSetUID→DeploymentUIDownerchain ve gerçeknodeName; atmost3ownedPod. TypedGETReady/speckanıtı, dynamicGETGVK/UIDcrosscheck (dynamicReadyölçümüiddiasıyok).
+- ProdHTTPsession+scopedgrant+deployments/scaleSSAR+scale-subresource gerçekKubernetesAPI kullandı. API202tekbaşınabaşarısayılmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/real-scale-retest-worker/REPORT.md; result.json; timeline.json
+
 #### TEST-04.04-S3 — Negatif / sınır / arıza kontrolü
 - [ ] StaleUID/RV409vepozitifscale kontrolleriçalışmadı.
 - Guardsonrasıda hiçbirKubernetesmutation/listener/grant yok; ilkFAILsilinmedi.
 - Bounded:0.045sGo/10.620souter; maxoutergaps0.256s, performanskanıtıdeğil.
+
+- [x] Retestreadonlycreate403+wrongUIDscale409+staleRVscale409; ardındanyetkiliscaleaccepted+realReady.
+- [x] Grace5s/UID+RVForegroundDelete; typedveDynamicGET404, Pod/RSrunlabelLIST0. DiğerHTTPserver/trafficUID/specSHA/PodUIDlericleanupsonrasıdaeşit.
+- [x] Gap0.256344s, bounded9.438s; CPU/FPSkanıtıdeğil.
 
 #### TEST-04.04-S4 — Bulgular ve düzeltme
 - Bulgu: testfixturekurulumu; ürünscalehatası kanıtlanmadı.
 - Kaynakdesteklilead: installedGoT.TempDir child0777(umask), ws.Openprivate0700zorunlu; eskihelperyenichildfilepath.Join kullanıyor. Gerçekmode/errorhenüzkaydedilmedi.
 - Rootdüzeltmeyolu: privateapp-datachild, safetyguardgevşetmeyok; fixturehedeflemeNodehostnamevarsayımıyerinerequiredmetadata.nameaffinity.
 
+- Kök neden doğrulandı: actualT.TempDir0755; ws.Open sabithata workspace_directory_not_private_0700. Yeniapp-datachild0700kabul. Productguarddeğişmedi.
+- Helpermetadata.nameRequiredAffinityilehostnamevarsayımınıkaldırır. İlkmutationdanönceowner/name/runlabelplanıtimeline dosyasınaatomicflush; kontrollücleanupcreateöncekayıtlı.
+
 #### TEST-04.04-S5 — Tekrar test ve regresyon
-- [ ] İlksetupFAILretsthenüzçalışmadı.
-- Testönceexactmode/staticsafeerrorclassificationkaydedilecek; rootcheckpointpushsonrasıyeni1sonluretest.
+- [x] İlksetupFAILüretilenmode/error doğrulandı, privatechildfixtureile1retestPASS. İlk12failedartifact/sourcesnapshotkorunur.
+- [x] Pozitif2→3→1+ownerchain/currentconditionsve komşureadonly/UID/RVredleri birliktegeçti.
+- [x] Exactcleanup/sonfixtureeşitliği, kaynakdurumu veboundedtime kaydedildi.
+- Sınır: normalUI/aktifapp/restrictedRBAC/relay bu testin kabulüdeğil.
 
 #### TEST-04.04-S6 — Temizlik ve inceleme
-- [x] Mutasyonyok; mevcutapp/relay/clusterdeğişmedi, cleanupgerekenkargooluşmadı.
-- [x] Worker12artifact/11checksumdoğruladı; roottümhelpermutasyon+cleanupkodunuokudu.
-- Kanıt: artifacts/release-audit/ra-20261111/real-scale-worker/REPORT.md; go-test.jsonl; releasetestsource snapshot.
+- [x] Yalnızrunlabel+UID/RVileownDeploymentdelete; Pod/RS0, ikiGET404. MevcutfixturehashesvePodUIDleraynı. Gateway/transport/ServerClose döndü, WebSocket açılmadı.
+- [x]22checksumrootyenidenokuyupdoğruladı; roothelperdiff+cleanupkodunuinceledi. Aynıajansistemi, profesyonelüçüncüparti değil.
+- Kanıt: real-scale-retest-worker/SHA256SUMS; source-comparison; first-failure-preservation.
+- Kalan: görselUIscale/animasyon/finalpaket ayrıca; bunlarAPIphasebaşarısıylakapanmaz.
 
 #### TEST-04.04-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar: FAILEDfixture kurulumassertion; scalevecontrollerkabulüNOTRUN, başarılıAPIişlemiddiasıyok.
-- Yenidentest: privateworkspacefixturekurulumu düzeltildikten sonra aynıownedlab/source ile1test.
+- [x] BİTTİ / DOĞRULANDI
+- Karar: guardedrealKubernetes+prodHTTPscale2→3→1, negatiflervecleanupdoğrulandı. İlkfixtureFAILtarihselkalır.
+- Yenidenkoşul: scalehandler/RBAC/workspace/session/clientversiyonu veya hedeflabkimliği/fixturedeğişimi.
 
 ### TEST-04.05 — CPU/RAM request/limit edit
 

@@ -87,6 +87,16 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 		mu.Lock()
 		defer mu.Unlock()
 		evidence["timeline"] = append(evidence["timeline"].([]interface{}), map[string]interface{}{"at": time.Now().UTC(), "step": name, "proof": data})
+		snapshot, err := json.MarshalIndent(evidence, "", "  ")
+		if err != nil {
+			t.Fatal("safe timeline encoding failed before further operations")
+		}
+		if err = os.WriteFile(filepath.Join(output, "timeline.json.tmp"), append(snapshot, '\n'), 0644); err != nil {
+			t.Fatal("safe timeline flush failed before further operations")
+		}
+		if err = os.Rename(filepath.Join(output, "timeline.json.tmp"), filepath.Join(output, "timeline.json")); err != nil {
+			t.Fatal("safe timeline rename failed before further operations")
+		}
 	}
 	t.Cleanup(func() {
 		close(stop)
@@ -106,6 +116,21 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 			t.Error("safe evidence write failed")
 		}
 	})
+	localProbe := t.TempDir()
+	localInfo, localErr := os.Stat(localProbe)
+	if localErr != nil {
+		t.Fatal("local temp stat unavailable")
+	}
+	_, localOpenErr := ws.Open(localProbe, "", "")
+	localClass := "none"
+	if localOpenErr != nil {
+		if localOpenErr.Error() == "workspace directory must be private (0700); existing directory permissions were not changed" {
+			localClass = "workspace_directory_not_private_0700"
+		} else {
+			localClass = "other_workspace_setup_error"
+		}
+	}
+	mark("local_actual_T_TempDir_permission_probe", map[string]interface{}{"mode": fmt.Sprintf("%04o", localInfo.Mode().Perm()), "safeErrorClass": localClass})
 	data, err := os.ReadFile(statePath)
 	if err != nil {
 		t.Fatal("owned lab state unavailable")
@@ -218,7 +243,7 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 		}
 		mark("other_fixtures_unchanged", map[string]interface{}{"server": serverBefore, "traffic": trafficBefore})
 	}
-	if err = s.ConfigureWorkspace(t.TempDir(), contextName, namespace); err != nil {
+	if err = s.ConfigureWorkspace(filepath.Join(t.TempDir(), "app-data"), contextName, namespace); err != nil {
 		t.Fatal("isolated workspace unavailable")
 	}
 	doc := s.workspace.store.Snapshot()
@@ -307,6 +332,11 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 			if apierrors.IsNotFound(e1) && apierrors.IsNotFound(e2) && e3 == nil && e4 == nil && len(pods.Items) == 0 && len(sets.Items) == 0 {
 				mark("cleanup_verified", map[string]interface{}{"deploymentUID": ownedUID, "typedGET404": true, "dynamicGVKGET404": true, "podLabelListCount": 0, "replicaSetLabelListCount": 0, "UIDAndRVDeletePreconditions": true})
 				evidence["cleanupVerified"] = true
+				priorCtx := ctx
+				ctx = clean
+				checkFixtures()
+				ctx = priorCtx
+				evidence["postCleanupFixtureHashesEqual"] = true
 				return
 			}
 			time.Sleep(200 * time.Millisecond)
@@ -320,7 +350,7 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	labels := map[string]string{runLabel: runID, workspaceRealOwnerLabel: labID, workspaceRealProfileLabel: profile}
 	two := int32(2)
 	five := int64(5)
-	dep := &appsv1.Deployment{TypeMeta: metav1.TypeMeta{APIVersion: "apps/v1", Kind: "Deployment"}, ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: namespace, Labels: labels}, Spec: appsv1.DeploymentSpec{Replicas: &two, Selector: &metav1.LabelSelector{MatchLabels: map[string]string{runLabel: runID}}, Strategy: appsv1.DeploymentStrategy{Type: appsv1.RecreateDeploymentStrategyType}, Template: corev1.PodTemplateSpec{ObjectMeta: metav1.ObjectMeta{Labels: labels}, Spec: corev1.PodSpec{TerminationGracePeriodSeconds: &five, NodeSelector: map[string]string{"kubernetes.io/hostname": worker.Name}, Containers: []corev1.Container{{Name: "idle", Image: "busybox:1.37.0", ImagePullPolicy: corev1.PullIfNotPresent, Command: []string{"sh", "-c", "trap 'exit 0' TERM; while true; do sleep 1; done"}, Resources: corev1.ResourceRequirements{Requests: corev1.ResourceList{corev1.ResourceCPU: resource.MustParse("5m"), corev1.ResourceMemory: resource.MustParse("8Mi")}, Limits: corev1.ResourceList{corev1.ResourceCPU: resource.MustParse("50m"), corev1.ResourceMemory: resource.MustParse("32Mi")}}}}}}}}
+	dep := &appsv1.Deployment{TypeMeta: metav1.TypeMeta{APIVersion: "apps/v1", Kind: "Deployment"}, ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: namespace, Labels: labels}, Spec: appsv1.DeploymentSpec{Replicas: &two, Selector: &metav1.LabelSelector{MatchLabels: map[string]string{runLabel: runID}}, Strategy: appsv1.DeploymentStrategy{Type: appsv1.RecreateDeploymentStrategyType}, Template: corev1.PodTemplateSpec{ObjectMeta: metav1.ObjectMeta{Labels: labels}, Spec: corev1.PodSpec{TerminationGracePeriodSeconds: &five, Affinity: &corev1.Affinity{NodeAffinity: &corev1.NodeAffinity{RequiredDuringSchedulingIgnoredDuringExecution: &corev1.NodeSelector{NodeSelectorTerms: []corev1.NodeSelectorTerm{{MatchFields: []corev1.NodeSelectorRequirement{{Key: "metadata.name", Operator: corev1.NodeSelectorOpIn, Values: []string{worker.Name}}}}}}}}, Containers: []corev1.Container{{Name: "idle", Image: "busybox:1.37.0", ImagePullPolicy: corev1.PullIfNotPresent, Command: []string{"sh", "-c", "trap 'exit 0' TERM; while true; do sleep 1; done"}, Resources: corev1.ResourceRequirements{Requests: corev1.ResourceList{corev1.ResourceCPU: resource.MustParse("5m"), corev1.ResourceMemory: resource.MustParse("8Mi")}, Limits: corev1.ResourceList{corev1.ResourceCPU: resource.MustParse("50m"), corev1.ResourceMemory: resource.MustParse("32Mi")}}}}}}}}
 	q := url.Values{}
 	for k, v := range scope {
 		q[k] = v
@@ -329,6 +359,7 @@ func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	q.Set("version", "v1")
 	q.Set("resource", "deployments")
 	q.Set("namespace", namespace)
+	mark("owned_fixture_plan_before_mutation", map[string]interface{}{"namespace": namespace, "namespaceUID": namespaceUID, "name": name, "runLabelKey": runLabel, "runLabelValue": runID, "ownerLabelKey": workspaceRealOwnerLabel, "ownerLabelValue": labID, "profile": profile, "kind": "Deployment", "image": "busybox:1.37.0", "replicas": []int{2, 3, 1}})
 	// Prove production session grant enforcement without mutating Kubernetes.
 	requireCode(req("POST", "/api/resources", q, map[string]interface{}{"object": dep}), 403, "readonly_create_rejected")
 	requireCode(req("POST", "/api/management", scope, map[string]interface{}{"enabled": true, "context": contextName, "namespace": namespace, "connectionID": nonce}), 200, "explicit_management_grant")

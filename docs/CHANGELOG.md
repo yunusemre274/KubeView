@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — gerçek scale retesti
+
+- Özel test workspace'i private0700 child kullanır; koruma gevşetilmedi. Test hedeflemesi hostname varsayımı yerine scheduler metadata.name affinity kullanır ve mutasyon öncesi sahiplik planını kalıcı kaydeder.
+- Gerçek2→3→1 Ready/owner zinciri, scoped HTTP/session/SSAR scale, readonly403 ve UID/RV409 geçti. Exact cleanup ile mevcut iş yüklerinin içerik/PodUID eşitliği doğrulandı. İlk setupFAIL korundu; ürün scale handler'ı değiştirilmedi.
+
 ## 2026-11-11 — ana arayüz CSP savunması
 
 - Frontend handler'a same-origin script ve açık blob Worker kaynağı politikası eklendi. API ve opaque port-forward sandbox'ı global policy eklenmesinden korunur.

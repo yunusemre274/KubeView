@@ -1,0 +1,50 @@
+[
+  {
+    "path": "REPORT.md",
+    "sha256": "7246389e28aadb6f883ef6e4456d89e49bb8b79b34a7a3fe758321d0aa959f2f"
+  },
+  {
+    "path": "SHA256SUMS",
+    "sha256": "40f7e30cd13f4c6bfd24fff0afcc4da48970d2a7b44dffb5ccf237f22898b1a4"
+  },
+  {
+    "path": "attempt-runner.py",
+    "sha256": "1237ebea51cc496be468670fe9cda6a4489fd2bcc5ed75a75e7d6a785e3cf2c7"
+  },
+  {
+    "path": "command.json",
+    "sha256": "90cf51b4ec0a4a0db60b9c3e7d97a52e23e16d909c8ca1800e96179f834d83b5"
+  },
+  {
+    "path": "go-test.jsonl",
+    "sha256": "6d00ed6e5e22ea69b6ab54a13c82ac459b7abc409d95c222b3463f6886b880ca"
+  },
+  {
+    "path": "go-test.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "manifest.json",
+    "sha256": "4d6d88408de5af76149157aa51cd2ecd773f8159f37245670cd0a036b7c58ab8"
+  },
+  {
+    "path": "release_operations_real_test.go",
+    "sha256": "fa8c29772aa0f2b571caff8aaed0d9553584a5aaf5f1a4d07f9ef43885ca8972"
+  },
+  {
+    "path": "result.json",
+    "sha256": "2590030de98477a923622055b0e764a3c4c804e97fc03b397dcc25b04e1c273d"
+  },
+  {
+    "path": "source-after.json",
+    "sha256": "5ba554951a26560bea32c73a62321490d33102f89bed9e76d380dcfdb586bdb5"
+  },
+  {
+    "path": "source-before.json",
+    "sha256": "5ba554951a26560bea32c73a62321490d33102f89bed9e76d380dcfdb586bdb5"
+  },
+  {
+    "path": "source-comparison.json",
+    "sha256": "885758c54985f6408472006de9dd25fac0cee35f6fd58850e444e1fbb464f00c"
+  }
+]

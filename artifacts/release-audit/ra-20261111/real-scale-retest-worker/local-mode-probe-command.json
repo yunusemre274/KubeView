@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "go",
+    "-C",
+    "backend",
+    "run",
+    "-p=1",
+    "../.git/release-audit/scale-workspace-mode-probe/main.go"
+  ],
+  "env": {
+    "GOTOOLCHAIN": "go1.26.11",
+    "GOMAXPROCS": "1"
+  },
+  "exitCode": 0,
+  "outputFile": "local-mode-probe.json",
+  "scope": "local disposable temp directory only; no Kubernetes client or gateway",
+  "initialPreparationFailureRetained": "local-probe-setup-failure.json"
+}

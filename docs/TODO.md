@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — gerçek scale kabulü
+
+- [x] Owned06 izole HTTP gateway üzerinden2→3→1 gerçek Ready/owner zinciri, read-only403 ve UID/RV409; UID/RV cleanup ve mevcut fixture eşitliği.
+- [ ] Bu API sonucu normal UI/animasyon, restricted kimlik veya final paket kabulünün yerine geçmez.
+
 ## 11 Kasım — güvenlik tarayıcı kabulü
 
 - [x] Ana UI-only CSP ve preview'dan ayrı header bileşimi:7main test/32alt durum.

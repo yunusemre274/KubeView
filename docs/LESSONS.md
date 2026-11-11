@@ -1,5 +1,10 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — private workspace test fixture
+
+- Bu Go1.26.11 ortamında T.TempDir child0755 oluştu ve private0700 workspace guard'ı doğru olarak reddetti. Yeni app-data child oluşturun; güvenlik kuralını teste uydurmak için gevşetmeyin.
+- Yapılandırma hatasının bütün metnini kaldırmak tanıyı zorlaştırır. Gizli değer içermeyen sabit hata sınıfını ve gerçek dizin modunu ayrı kaydedin. İlk başarısız kaynak/kanıt korunmalıdır.
+
 ## 11 Kasım — görünürlük ve test binary'si
 
 - Frustum ve draw sayısı pozitif olsa bile sis ufkunun gerisindeki tesis tamamen görünmez olabilir. Dar global haritada gerçek PNG'yi inceleyin; lens/kamera değiştirmeden atmosfer sınırını hedef mesafesiyle uyumlu tutun.
