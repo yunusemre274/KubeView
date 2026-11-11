@@ -12,6 +12,18 @@ garantisi değildir. Gerçek kullanıcı credential veya Secret içeriği kayded
 | DEP-001 | Sürüme/kod yoluna bağlı Go advisory eşleşmeleri; hepsi doğrulanmış exploit değildir |42 advisory:21symbol/15package/6module. `http.FileServer` Range yolu doğrudan runtime adayı; diğerlerinin önkoşulları ayrı incelendi. | Go1.26.11 ve minimal uyumlu modül tabanı; Kubernetes0.30.0 korunur. Main source govulncheck1.9.0:0finding.94 top-level unit PASS/25 opt-in SKIP; vet PASS. Docker/CI toolchain aynı patch'e taşındı. | Darwin/arm64 main source taraması. Final binary, container/OS ve gerçek SPDY/exec kabulü ayrı. |
 | WS-002 | P1 doğruluk: liman geçişinin ara renderı eski Pod’u yeni API’ye veriyor | Gerçek UI1cycle iki log isteğinde eskiUID/namespace + yeniHarborID; scope guard ayrı testte reddediyor; bu UI capture HTTPstatus saklamadı, abort olabilir; doğrulanmış sızıntı yok | App resource/facility paneli captured source eşleşmeden mount etmez; ara-render unit red→green | Gerçek1cycle ve50A→B→A PASS;299/299requestkapalı,0yanlış UID/namespace/harbor.100HTTP200,199responseöncesiabort. İlkFAIL ui03-cycles-preflight-capture, retest ui04-cycles50/result.json. |
 
+## 11 Kasım — ek sağlayıcı taraması ve dar araç yaması
+
+| Kimlik | Önem / kanıt | Düzeltme / tekrar | Açık sınır |
+|---|---|---|---|
+| DEP-002 | Collector1.20.2 dört ARM64 imajında20HighID/131bileşen satırı,0Critical; her eşleşme exploit değildir | Resmi1.20.4 adayında aynıDB/platform3HighID/15satır. Yalnız tarandı, kurulmadı. | x/net HTML parser, apt/libapt ve operator go-jose kalıntıları açık; exactbinary/source incelemesi sürüyor. Risk kabulü verilmedi. App container/final paket taraması ayrı. |
+| DEP-003 | HIGH CVE-2026-116587: özel minikube.3 SBOM'unda go-jose4.1.4; önceki GoDB bu ID'yi göstermedi | Dar patched.4 yalnız4.1.4→4.1.6; build/version/help PASS. AynıDB'de go-jose High ve ikiMedium eşleşmesi kalktı; binary98e42baf… | Gerçek worker sağlama/final araç teslimi test edilmedi. Kalan Docker daemon/distribution ile main/devel/native kapsam boşlukları korunur. |
+
+[İmaj karşılaştırması](../artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/REPORT.md),
+[patched.4 kaynak/build tarifi](../artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/RECIPE.md)
+ve [tekrar tarama](../artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/REPORT.md)
+ayrı kaynak kimlikleriyle saklanır. Hiçbir özel CLI resmi upstream binary olarak sunulmaz.
+
 SEC-001'in ilk başarısız testi
 [`regression-secret-discovery.log`](../artifacts/release-audit/ra-20261111/security-worker/regression-secret-discovery.log),
 ayrı başarılı tekrarı

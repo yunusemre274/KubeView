@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T16:32:17.588191+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T16:35:32.046170+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `2461bbfb6824455a06c4fd9366ecd72a7928654e`; remote aynı, CI43028369803 SUCCESS. Beş frontend dosyasındaki label/fog düzeltmesi sonraki test checkpointi; user dosyaları korunur.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32GiB, macOS27.0.1; şu an Battery Power %76 (önceki AC koşulundan farklı). Chromium156 ve Playwright WebKit27.2 ayrı; native Safari/Retina henüz yeni runtime kabulü değil. CPU A/B ve uzun koşu henüz başlamadı.
@@ -4468,6 +4468,9 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
 - [ ] Komşu davranışlar gerektiği ölçüde sınandı.
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+- DEP003 dar özel minikube patched.4 build+version/help PASS. Yalnız go-jose4.1.4→4.1.6; exactbinary98e42baf… ve214component SBOM:8→5row/3→2HighID, üçgo-jose kaydı kalktı. KalanDockerdaemon/distribution/main/devel kapsamı ayrı. Gerçek worker sağlama henüz yapılmadı.
+- Kanıt: artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/REPORT.md; RECIPE.md; binary-identity.json; trivy-sbom-summary.json
 
 #### TEST-07.05-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/tools/govulncheck",
+    "-json",
+    "-mode=binary",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4"
+  ],
+  "started_at_utc": "2026-11-11T13:19:55.970908+00:00",
+  "timeout_seconds": 45,
+  "cwd": ".",
+  "exit_code": 0,
+  "timed_out": false,
+  "duration_seconds": 2.51,
+  "finished_at_utc": "2026-11-11T13:19:58.481162+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "label": "cilium-envoy",
+  "target": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+  "command": [
+    "/opt/homebrew/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-patch-candidate-worker/trivy.yaml",
+    "image",
+    "--image-src",
+    "remote",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-patch-candidate-worker/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-patch-candidate-worker/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-patch-candidate-worker/cilium-envoy.json",
+    "--timeout",
+    "150s",
+    "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+  ],
+  "started_at_utc": "2026-11-11T13:07:47.385979+00:00",
+  "timeout_seconds": 150,
+  "rss_limit_bytes": 1610612736,
+  "minimum_free_bytes": 10737418240,
+  "GOMAXPROCS": 1,
+  "GOMEMLIMIT": "1024MiB",
+  "parallel": 1,
+  "image_executed": false,
+  "credentials": "empty private config; credential environment removed",
+  "finished_at_utc": "2026-11-11T13:07:53.646957+00:00",
+  "duration_seconds": 6.261,
+  "exit_code": 0,
+  "stop_reason": null,
+  "peak_owned_rss_bytes": 317931520,
+  "minimum_observed_free_bytes": 458601644032,
+  "status": "PASS_SCAN_WITH_OR_WITHOUT_FINDINGS",
+  "platform_observed": {
+    "os": "linux",
+    "architecture": "arm64"
+  },
+  "metadata": {
+    "ImageID": "sha256:6e928459a9dd9599aebd9d21bc60f1e5afc4fa528bb7fe6e6278b6e559753bfb",
+    "DiffIDs": [
+      "sha256:9a354992483c962fa69075527e7a2690fd9103f53d2c10af083fb31f24335256",
+      "sha256:d7f8cfac6f1fb8c79131297d6cb1f90fe15395ade151e0a6fd1280ae18416ebc",
+      "sha256:ee8fa9aaac81e8a3c40c7ff288388b559d338f699a9405c7dbaa37e76c9b8d37"
+    ],
+    "RepoTags": null,
+    "RepoDigests": [
+      "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+    ],
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "24.04"
+    },
+    "Size": 223045632
+  },
+  "scanner_created_at": "2026-11-11T16:07:53.367827+03:00",
+  "raw_json_sha256": "eb5cbf053a9b55e96ad571a349e8aae8f7e954811fce380ac927d09434b2c1be",
+  "package_advisory_rows": 29,
+  "unique_advisory_ids": 20,
+  "row_severity_counts": {
+    "HIGH": 2,
+    "MEDIUM": 23,
+    "LOW": 4
+  },
+  "high_critical_unique_ids": [
+    "CVE-2026-109518"
+  ]
+}

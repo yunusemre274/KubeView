@@ -1,0 +1,300 @@
+[
+  {
+    "image": "operator-generic",
+    "digest_ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "target": "usr/bin/cilium-operator-generic",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-116587",
+    "pkg": "github.com/go-jose/go-jose/v4",
+    "pkg_path": null,
+    "installed": "v4.1.4",
+    "fixed": "4.1.6",
+    "status": "fixed",
+    "severity": "HIGH",
+    "severity_source": "ghsa",
+    "title": "github.com/go-jose/go-jose: go-jose: Denial of Service via crafted RSA parameters in JWKs",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-116587",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-116587",
+      "https://github.com/go-jose/go-jose",
+      "https://github.com/go-jose/go-jose/commit/a0111f82742fa92bceec9ede40845e73319e6230",
+      "https://github.com/go-jose/go-jose/releases/tag/v4.1.6",
+      "https://github.com/go-jose/go-jose/security/advisories/GHSA-mgcc-cww5-fp2q",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-116587",
+      "https://www.cve.org/CVERecord?id=CVE-2026-116587"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      }
+    }
+  },
+  {
+    "image": "operator-generic",
+    "digest_ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "target": "usr/bin/cilium-operator-generic",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-116585",
+    "pkg": "github.com/go-jose/go-jose/v4",
+    "pkg_path": null,
+    "installed": "v4.1.4",
+    "fixed": "4.1.5",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ghsa",
+    "title": "github.com/go-jose/go-jose: go-jose: Denial of Service via empty ciphertext buffer during JWE decryption",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-116585",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-116585",
+      "https://github.com/go-jose/go-jose",
+      "https://github.com/go-jose/go-jose/commit/35883f7999e87cbd1b1f4cda07fdad8cd71c3dd6",
+      "https://github.com/go-jose/go-jose/commit/74114c2fa22669a2b2a296746eaa82e15566fd54",
+      "https://github.com/go-jose/go-jose/pull/292",
+      "https://github.com/go-jose/go-jose/releases/tag/v4.1.5",
+      "https://github.com/go-jose/go-jose/security/advisories/GHSA-4w3g-jfj2-cw2q",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-116585",
+      "https://www.cve.org/CVERecord?id=CVE-2026-116585"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+        "V40Score": 6.9
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      }
+    }
+  },
+  {
+    "image": "operator-generic",
+    "digest_ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "target": "usr/bin/cilium-operator-generic",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-116586",
+    "pkg": "github.com/go-jose/go-jose/v4",
+    "pkg_path": null,
+    "installed": "v4.1.4",
+    "fixed": "4.1.5",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ghsa",
+    "title": "github.com/go-jose/go-jose: go-jose: Denial of Service via deeply nested JSON parsing",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-116586",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-116586",
+      "https://github.com/go-jose/go-jose",
+      "https://github.com/go-jose/go-jose/commit/a31af25836222f4c45d366d6e8f9b1049dd9935a",
+      "https://github.com/go-jose/go-jose/pull/290",
+      "https://github.com/go-jose/go-jose/releases/tag/v4.1.5",
+      "https://github.com/go-jose/go-jose/security/advisories/GHSA-vvm8-gf78-28g4",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-116586",
+      "https://www.cve.org/CVERecord?id=CVE-2026-116586"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+        "V40Score": 6.9
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      }
+    }
+  },
+  {
+    "image": "operator-generic",
+    "digest_ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "target": "usr/bin/cilium-operator-generic",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-119299",
+    "pkg": "github.com/gopacket/gopacket",
+    "pkg_path": null,
+    "installed": "v1.6.1",
+    "fixed": "1.7.2",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ghsa",
+    "title": "github.com/gopacket/gopacket: gopacket: Denial of Service via crafted SCTP packets",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-119299",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-119299",
+      "https://github.com/gopacket/gopacket",
+      "https://github.com/gopacket/gopacket/commit/508044327cc2c065b3db753c010a027e7d1ca621",
+      "https://github.com/gopacket/gopacket/releases/tag/v1.7.2",
+      "https://github.com/gopacket/gopacket/security/advisories/GHSA-358w-w75h-x6rx",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-119299",
+      "https://www.cve.org/CVERecord?id=CVE-2026-119299"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 5.9
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 5.9
+      }
+    }
+  },
+  {
+    "image": "operator-generic",
+    "digest_ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "target": "usr/bin/cilium-operator-generic",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "GO-2026-5932",
+    "pkg": "golang.org/x/crypto",
+    "pkg_path": null,
+    "installed": "v0.57.0",
+    "fixed": "0.58.1-0.20261009181718-2f1f834330b2",
+    "status": "fixed",
+    "severity": "UNKNOWN",
+    "severity_source": null,
+    "title": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+    "primary_url": null,
+    "references": [
+      "https://go.dev/issue/44226",
+      "https://go.dev/issue/81227",
+      "https://pkg.go.dev/vuln/GO-2026-5932"
+    ],
+    "data_source": {
+      "ID": "govulndb",
+      "Name": "The Go Vulnerability Database",
+      "URL": "https://pkg.go.dev/vuln/"
+    },
+    "cvss": null
+  },
+  {
+    "image": "operator-generic",
+    "digest_ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "target": "usr/bin/cilium-operator-generic",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "pkg_path": null,
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "status": "fixed",
+    "severity": "HIGH",
+    "severity_source": null,
+    "title": "golang.org/x/net/html: golang.org/x/net/html: Denial of Service via crafted HTML input",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-78661",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-78661",
+      "https://go.dev/cl/849365",
+      "https://go.dev/issue/82224",
+      "https://groups.google.com/g/golang-announce/c/sqrs2vTx_Xs",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-78661",
+      "https://pkg.go.dev/vuln/GO-2026-6860",
+      "https://www.cve.org/CVERecord?id=CVE-2026-78661"
+    ],
+    "data_source": {
+      "ID": "govulndb",
+      "Name": "The Go Vulnerability Database",
+      "URL": "https://pkg.go.dev/vuln/"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      }
+    }
+  },
+  {
+    "image": "operator-generic",
+    "digest_ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "target": "usr/bin/cilium-operator-generic",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-97045",
+    "pkg": "golang.org/x/net",
+    "pkg_path": null,
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": null,
+    "title": "golang.org/x/net/html: golang.org/x/net/html: Cross-Site Scripting via improper namespace handling during HTML rendering",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-97045",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-97045",
+      "https://go.dev/cl/855121",
+      "https://go.dev/issue/82622",
+      "https://groups.google.com/g/golang-announce/c/sqrs2vTx_Xs",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-97045",
+      "https://pkg.go.dev/vuln/GO-2026-6866",
+      "https://www.cve.org/CVERecord?id=CVE-2026-97045"
+    ],
+    "data_source": {
+      "ID": "govulndb",
+      "Name": "The Go Vulnerability Database",
+      "URL": "https://pkg.go.dev/vuln/"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "V3Score": 6.1
+      }
+    }
+  },
+  {
+    "image": "operator-generic",
+    "digest_ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "target": "usr/bin/gops",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-39824",
+    "pkg": "golang.org/x/sys",
+    "pkg_path": null,
+    "installed": "v0.30.0",
+    "fixed": "0.44.0",
+    "status": "fixed",
+    "severity": "UNKNOWN",
+    "severity_source": null,
+    "title": "Invoking integer overflow in NewNTUnicodeString in golang.org/x/sys/windows",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-39824",
+    "references": [
+      "https://go.dev/cl/770080",
+      "https://go.dev/issue/78916",
+      "https://groups.google.com/g/golang-announce/c/6MMI8Lj-Atg",
+      "https://pkg.go.dev/vuln/GO-2026-5024"
+    ],
+    "data_source": {
+      "ID": "govulndb",
+      "Name": "The Go Vulnerability Database",
+      "URL": "https://pkg.go.dev/vuln/"
+    },
+    "cvss": null
+  }
+]

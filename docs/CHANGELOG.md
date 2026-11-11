@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — sağlayıcı bileşen taraması
+
+- Collector1.20.2 ve resmi1.20.4 adayının aynıDB/ARM64 karşılaştırması kaydedildi; kalan High eşleşmeleri açık. İmajlar otomatik kurulmadı, kullanıcı CNI'si değiştirilmedi.
+- Yerel özel minikube adayında yalnız go-jose4.1.4→4.1.6 yaması derlendi; ilgili üç eşleşme kalktı. Exact kaynak/vendor farkı, bileşen envanteri ve tekrar üretim tarifi kaydedildi. Gerçek worker kabulü henüz yok.
+
 ## 2026-11-11 — uzak deniz haritasında görünürlük ve seçili etiket
 
 - Çoklu limanın uzak kadrajı sabit sis ufkunu aştığında tesisler görünmez oluyordu. Var olan kamera kare yolunda sis mesafesi orbit hedefini izler; yakın görünümün atmosferi, kamera açısı ve zoom korunur.

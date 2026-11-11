@@ -1,0 +1,37 @@
+[
+  {
+    "elapsed_seconds": 0.038,
+    "owned_rss_bytes": 25067520,
+    "free_disk_bytes": 458816987136
+  },
+  {
+    "elapsed_seconds": 1.07,
+    "owned_rss_bytes": 119750656,
+    "free_disk_bytes": 458817093632
+  },
+  {
+    "elapsed_seconds": 2.105,
+    "owned_rss_bytes": 134725632,
+    "free_disk_bytes": 458817048576
+  },
+  {
+    "elapsed_seconds": 3.136,
+    "owned_rss_bytes": 136069120,
+    "free_disk_bytes": 458817044480
+  },
+  {
+    "elapsed_seconds": 4.164,
+    "owned_rss_bytes": 142770176,
+    "free_disk_bytes": 458814976000
+  },
+  {
+    "elapsed_seconds": 5.194,
+    "owned_rss_bytes": 170246144,
+    "free_disk_bytes": 458814902272
+  },
+  {
+    "elapsed_seconds": 6.226,
+    "owned_rss_bytes": 239435776,
+    "free_disk_bytes": 458814898176
+  }
+]

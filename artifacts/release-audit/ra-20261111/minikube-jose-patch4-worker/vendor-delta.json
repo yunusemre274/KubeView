@@ -1,0 +1,22 @@
+{
+  "changed_paths": [
+    "github.com/go-jose/go-jose/v4/asymmetric.go",
+    "github.com/go-jose/go-jose/v4/cipher/cbc_hmac.go",
+    "github.com/go-jose/go-jose/v4/crypter.go",
+    "github.com/go-jose/go-jose/v4/json/scanner.go",
+    "github.com/go-jose/go-jose/v4/jwe.go",
+    "github.com/go-jose/go-jose/v4/jwk.go",
+    "github.com/go-jose/go-jose/v4/jws.go",
+    "github.com/go-jose/go-jose/v4/opaque.go",
+    "github.com/go-jose/go-jose/v4/shared.go",
+    "github.com/go-jose/go-jose/v4/signing.go",
+    "github.com/go-jose/go-jose/v4/symmetric.go",
+    "github.com/go-jose/go-jose/v4/tests.Containerfile",
+    "github.com/go-jose/go-jose/v4/threat_model.md",
+    "modules.txt"
+  ],
+  "only_jose_and_modules_txt": true,
+  "sdk_alias_hash_preserved": "c3a2fcd7bab86793ba247516a792e83e454724068a14b55784d7adf31196b420",
+  "vendor_tree_digest": "4e3db3b50108f970d040e9916154cac2f27e656032637f7841ca8c9bceb02baa",
+  "modules_txt_sha256": "0b8997084a4b3c0827135ec66bb5f6e47d470ff02de87f40113da9fee2ec69b9"
+}

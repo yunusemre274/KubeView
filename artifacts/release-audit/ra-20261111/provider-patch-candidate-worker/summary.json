@@ -1,0 +1,144 @@
+{
+  "completed_at_utc": "2026-11-11T13:12:15.236149+00:00",
+  "status": "OFFICIAL_PATCH_REDUCES_FINDINGS_HIGH_REMAIN",
+  "images": [
+    {
+      "image": "hubble-relay",
+      "old_digest": "quay.io/cilium/hubble-relay@sha256:d309c977870e9dbede7122a10eee09a4c9d66685e8d52af62d9c3c113f815b0f",
+      "candidate_digest": "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1",
+      "old_rows": 40,
+      "candidate_rows": 4,
+      "old_ids": 21,
+      "candidate_ids": 4,
+      "old_high_rows": 12,
+      "candidate_high_rows": 1,
+      "old_high_unique": 7,
+      "candidate_high_unique": 1,
+      "removed_high_ids": [
+        "CVE-2026-111943",
+        "CVE-2026-56851",
+        "CVE-2026-78667",
+        "CVE-2026-78669",
+        "CVE-2026-84445",
+        "CVE-2026-97031"
+      ],
+      "remaining_high_ids": [
+        "CVE-2026-78661"
+      ],
+      "new_high_ids": []
+    },
+    {
+      "image": "cilium",
+      "old_digest": "quay.io/cilium/cilium@sha256:2939231d0d3e3ebddcd80fffa168b7ddcc78fdf0dc864d1c8c126ff523c54f01",
+      "candidate_digest": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+      "old_rows": 391,
+      "candidate_rows": 84,
+      "old_ids": 93,
+      "candidate_ids": 50,
+      "old_high_rows": 100,
+      "candidate_high_rows": 10,
+      "old_high_unique": 19,
+      "candidate_high_unique": 2,
+      "removed_high_ids": [
+        "CVE-2026-111943",
+        "CVE-2026-33818",
+        "CVE-2026-39821",
+        "CVE-2026-46600",
+        "CVE-2026-56851",
+        "CVE-2026-56853",
+        "CVE-2026-56854",
+        "CVE-2026-56858",
+        "CVE-2026-56859",
+        "CVE-2026-56860",
+        "CVE-2026-56862",
+        "CVE-2026-63209",
+        "CVE-2026-78667",
+        "CVE-2026-78669",
+        "CVE-2026-84445",
+        "CVE-2026-84782",
+        "CVE-2026-97031"
+      ],
+      "remaining_high_ids": [
+        "CVE-2026-109518",
+        "CVE-2026-78661"
+      ],
+      "new_high_ids": []
+    },
+    {
+      "image": "operator-generic",
+      "old_digest": "quay.io/cilium/operator-generic@sha256:64d8798350e8569b8e7622563fed6e44dce2625f311e4651b774816516c744fc",
+      "candidate_digest": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+      "old_rows": 49,
+      "candidate_rows": 8,
+      "old_ids": 30,
+      "candidate_ids": 8,
+      "old_high_rows": 15,
+      "candidate_high_rows": 2,
+      "old_high_unique": 10,
+      "candidate_high_unique": 2,
+      "removed_high_ids": [
+        "CVE-2026-111943",
+        "CVE-2026-56851",
+        "CVE-2026-56854",
+        "CVE-2026-63209",
+        "CVE-2026-78667",
+        "CVE-2026-78669",
+        "CVE-2026-84445",
+        "CVE-2026-97031"
+      ],
+      "remaining_high_ids": [
+        "CVE-2026-116587",
+        "CVE-2026-78661"
+      ],
+      "new_high_ids": []
+    },
+    {
+      "image": "cilium-envoy",
+      "old_digest": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+      "candidate_digest": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+      "old_rows": 44,
+      "candidate_rows": 29,
+      "old_ids": 29,
+      "candidate_ids": 20,
+      "old_high_rows": 4,
+      "candidate_high_rows": 2,
+      "old_high_unique": 2,
+      "candidate_high_unique": 1,
+      "removed_high_ids": [
+        "CVE-2026-84782"
+      ],
+      "remaining_high_ids": [
+        "CVE-2026-109518"
+      ],
+      "new_high_ids": []
+    }
+  ],
+  "baseline_total_rows": 524,
+  "candidate_total_rows": 125,
+  "baseline_unique_ids": 105,
+  "candidate_unique_ids": 59,
+  "baseline_high_rows": 131,
+  "candidate_high_rows": 15,
+  "baseline_high_unique_ids": 20,
+  "candidate_high_unique_ids": 3,
+  "candidate_high_ids": [
+    "CVE-2026-109518",
+    "CVE-2026-116587",
+    "CVE-2026-78661"
+  ],
+  "candidate_critical_rows": 0,
+  "candidate_severity_rows": {
+    "UNKNOWN": 7,
+    "MEDIUM": 93,
+    "HIGH": 15,
+    "LOW": 10
+  },
+  "same_db_metadata": true,
+  "same_platform": "linux/arm64",
+  "caps_respected": true,
+  "active_image_scan_seconds": 34.249,
+  "no_images_or_cli_executed": true,
+  "no_pin_cluster_source_install_changes": true,
+  "baseline_report_sha256": "b7f5cdba6f9337680cef475d1ca87fbc97bf331a03829338ff29383751701315",
+  "baseline_report_matches_previous_worker_hash": true
+}
