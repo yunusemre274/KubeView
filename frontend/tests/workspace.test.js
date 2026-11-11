@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { build } from "esbuild";
-import { harborScopeKey, physicalClusterKey, canonicalResourceKey, sharedResources, safeHarborView, browserTabId, HarborViewCache, authorizedFlowHarbors, flowHarborEndpoints, workspaceRelations, nextHarborPosition, harborViewNamespace } from "../src/world/workspace.js";
+import { harborScopeKey, physicalClusterKey, canonicalResourceKey, sharedResources, safeHarborView, browserTabId, HarborViewCache, authorizedFlowHarbors, flowHarborEndpoints, workspaceRelations, nextHarborPosition, harborViewNamespace, harborWorldPosition, nearbyHarbors } from "../src/world/workspace.js";
 import { saveHarborConfiguration } from "../src/world/workspaceMutations.js";
 import { initialState, reduceMessage } from "../src/data/resourceStore.js";
 import { resourceObservation } from "../src/data/resourceScopes.js";
@@ -157,7 +157,7 @@ test("interharbor endpoint anchors require explicit authorized same-credential m
   assert.deepEqual(authorizedFlowHarbors(config, "a"), ["a", "b"]);
   assert.equal(flowHarborEndpoints(config, "a", snapshots, [c, other], ["a"]).has("beta"), false);
   const endpoints = flowHarborEndpoints(config, "a", snapshots, [c, other], ["a", "b", "foreign"]);
-  assert.equal(endpoints.get("beta").harborId, "b"); assert.deepEqual(endpoints.get("beta").position, [1300, 0]); assert.equal(endpoints.has("forbidden"), false);
+  assert.equal(endpoints.get("beta").harborId, "b"); assert.deepEqual(endpoints.get("beta").position, harborWorldPosition(config.harbors[1], 1)); assert.equal(endpoints.has("forbidden"), false);
   c.identity = { confidence: "unknown" }; assert.equal(flowHarborEndpoints(config, "a", snapshots, [c, other], ["a", "b"]).size, 0);
 });
 test("multi-namespace authority remains the harbor union while the local beta filter changes", async () => {
@@ -392,4 +392,23 @@ test("accepted detached mutation remains on its original harbor without retry or
     assert.equal(a.state.detachedOperations[0].harborId, "a"); assert.equal(a.state.detachedOperations[0].operationId, "accepted-original-a");
     assert.equal(a.state.detachedOperations[0].status, "accepted"); assert.doesNotMatch(JSON.stringify(a.state.detachedOperations), /SYNTHETIC_DO_NOT_RETAIN|data|annotations/);
   } finally { registry.dispose(); globalThis.window = priorWindow; globalThis.fetch = priorFetch; }
+});
+
+test("UI2 presentation preserves saved coordinates and keeps resource scopes independent", () => {
+  const a = { ...harbor("a"), position: [0, 0] }, b = { ...harbor("b"), position: [1300, 0] }, c = { ...harbor("c"), position: [2600, 0] };
+  const before = JSON.stringify([a, b, c]);
+  const pa = harborWorldPosition(a), pb = harborWorldPosition(b);
+  assert.ok(Math.abs(Math.hypot(pb[0]-pa[0], pb[1]-pa[1])-500) < 1e-9);
+  assert.ok(pb[0] > 400, "full hull patrol envelopes remain separated");
+  assert.deepEqual(nearbyHarbors([a,b,c], "a").map(h=>h.id), ["b"]);
+  assert.deepEqual(nearbyHarbors([c,b,a], "a").map(h=>h.id), ["b"]);
+  assert.equal(JSON.stringify([a,b,c]), before, "no workspace migration or coordinate write");
+  assert.deepEqual(nearbyHarbors([a,b], "missing"), []);
+});
+
+test("camera view persistence keeps only a valid effective FOV for projection migration", () => {
+  const camera = { position: [10, 20, 30], target: [0, 0, 0], fov: 24, token: "not-a-view-field" };
+  assert.equal(safeHarborView({ camera }).camera.fov, 24);
+  assert.equal(safeHarborView({ camera }).camera.token, undefined);
+  for (const fov of [0, -1, 180, Infinity, "24", null]) assert.equal(safeHarborView({ camera: { ...camera, fov } }).camera.fov, undefined);
 });

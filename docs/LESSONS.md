@@ -1,5 +1,13 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım 2026 — iki ayrıntılı liman ve görsel test sınırları
+
+- Canvas varlığı ve canonical sayı, görünür render kanıtı değildir. İlk çift-liman fit'i kameranın arkasındaki noktaları iteratif projekte edip milyon birime kaçtı; gerçek mesh sınırlarıyla analitik camera-space fit, draw>0 ve sonlu kamera kontrolü eklendi.
+- FOV değişirken kayıtlı position/target yeterli değildir. Efektif FOV saklanıp mesafe aynı bakış ışını üzerinde uyarlanmalı; eski kayıtları silmek veya her panelde fit etmek çözüm değildir.
+- Komşu sahne, normal lifecycle'ın snapshotReady/snapshotUIDs sözleşmesini ve son görsel pause kontrolünü taşımalı. Aynı tesis adının iki limanda bulunması, global getObjectByName ile yanlış odak üretir; arama aktif alt ağaçla sınırlandı. Açık odak isteği önceki liman kamera geçişini de iptal etmelidir; iki durum normal UI'da red/green ile görüldü.
+- Eski statik raycast testinin ilk ekran koordinatları hareketli UID değildir. Aynı PID/kaynak korunarak güncel hedef projeksiyonu kullanılmalı; kargo kuyruğunun gerçek10s/2.1s sınırı test deadline'ına dahil edilmeli. Dikey sönüm ve floating-point yuvarlama için yalnız fiziksel olarak anlamsız küçük toleranslar kullanıldı.
+- İki ayrıntılı limanın ek draw/texture maliyeti, tek ayrıntılı limanla aynı iş diye kıyaslanamaz. Video açık2.5s örneği CPU/FPS kabulü değildir. Ara FAIL ve headed kamera sapması korunur; nedeni kanıtlanmadan ürüne veya donanıma atfedilmez.
+
 ## 9 Kasım2026 — aynı kaynak, fiili iş ve cleanup kanıtı
 
 - Aynı canonical/görünür adet ve kamera, aynı fiili render işi anlamına gelmez. Serbest yaşayan L koşusunda başlangıç fazı/drawcall/üçgen dağılımı değişti; report valid=true yalnız protokol/tamlık/kare bütçesini kapatır, CPU nedenselliğini kendiliğinden ispatlamaz. Fazı sabit kontrollü deney ayrıca etiketlenmeli; güç veya seçimi farklı seriler pool yapılmamalı.

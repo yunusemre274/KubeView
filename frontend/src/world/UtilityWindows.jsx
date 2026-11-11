@@ -536,12 +536,12 @@ export function PreferencesWindow({
         {toggle(
           "bob",
           "Hafif gemi salınımı",
-          "Demirli veya ilerleyen gemilerde sınırlı su salınımı.",
+          "Dalga ile uyumlu yükselme ve yatma. Deniz hareketi kapalıyken salınım da durur; tercihiniz korunur.",
         )}
         {toggle(
           "sea",
           "Deniz yüzeyi hareketi",
-          "Hafif yüzey hareketi ve güneş yansımaları.",
+          "Dalga ve akıntıyı canlandırır. Kapatınca su, salınım ve köpük durur; gemi devriyesi ve canlı veriler sürer.",
         )}
         <label className="form-field">
           <span>Deniz hareketi şiddeti</span>
@@ -556,9 +556,14 @@ export function PreferencesWindow({
           </select>
         </label>
         {toggle(
+          "sunGlint",
+          "Güneş yansımaları",
+          "Su üzerindeki güneş parlaması. Deniz durduğunda sabit kalır; ayrı kapatarak yansıma efektini kaldırabilirsiniz.",
+        )}
+        {toggle(
           "wake",
           "Gemi izi",
-          "Hareket eden gemilerin arkasında ölçülü su izi.",
+          "İlerleyen gemilerin arkasında köpük ve dalga izi. Deniz ve devriye açıkken, orta/yüksek kalitede görünür; duran gemi iz üretmez.",
         )}
         <label className="form-field">
           <span>Operasyon animasyonları</span>

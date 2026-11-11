@@ -108,7 +108,7 @@ export function flowHarborEndpoints(workspace, activeId, snapshots, connections,
     seen.add(snapshot.resources);
     for (const resource of Object.values(snapshot.resources)) {
       if (resource.kind !== "Pod" || endpoints.has(resource.metadata.uid)) continue;
-      endpoints.set(resource.metadata.uid, { resource, harborId: harbor.id, harborName: harbor.name, position: harborPosition(harbor, workspace.harbors.indexOf(harbor)) });
+      endpoints.set(resource.metadata.uid, { resource, harborId: harbor.id, harborName: harbor.name, position: harborWorldPosition(harbor, workspace.harbors.indexOf(harbor)) });
     }
   }
   return endpoints;
@@ -119,6 +119,7 @@ export function safeHarborView(value = {}) {
   const result = {};
   if (value.camera && [value.camera.position, value.camera.target].every((v) => Array.isArray(v) && v.length === 3 && v.every((number) => Number.isFinite(number) && Math.abs(number) <= 1e6))) {
     result.camera = { position: [...value.camera.position], target: [...value.camera.target] };
+    if (Number.isFinite(value.camera.fov) && value.camera.fov > 0 && value.camera.fov < 180) result.camera.fov = value.camera.fov;
     if (value.camera.space === "harbor-local-v1" && typeof value.camera.harborId === "string") Object.assign(result.camera, { space: value.camera.space, harborId: value.camera.harborId.slice(0, 128) });
   }
   if (value.selection?.uid && value.selection.kind !== "Secret")
@@ -142,6 +143,23 @@ export function browserTabId(_storage, uuid = () => globalThis.crypto.randomUUID
 export function harborPosition(harbor, index = 0) {
   return Array.isArray(harbor.position) && harbor.position.length === 2 && harbor.position.every(Number.isFinite)
     ? harbor.position : [(index % 4) * W.PORT_SPACING, Math.floor(index / 4) * W.PORT_SPACING];
+}
+// Convert saved layout coordinates to the shared sea. Use this for every
+// rendered anchor (including flows); never use it to rewrite workspace records.
+export function harborWorldPosition(harbor, index = 0) {
+  const [px, pz] = harborPosition(harbor, index);
+  const x = px * W.WORLD_SPACING / W.PORT_SPACING, z = pz * W.WORLD_ROW_SPACING / W.PORT_SPACING;
+  const c = Math.cos(W.WORLD_ROTATION), s = Math.sin(W.WORLD_ROTATION);
+  return [x * c - z * s, x * s + z * c];
+}
+export function nearbyHarbors(harbors = [], activeId, limit = W.NEARBY_DETAIL_LIMIT) {
+  const index = harbors.findIndex((harbor) => harbor.id === activeId);
+  if (index < 0) return [];
+  const origin = harborWorldPosition(harbors[index], index);
+  return harbors.map((harbor, i) => ({ harbor, distance: Math.hypot(...harborWorldPosition(harbor, i).map((value, axis) => value - origin[axis])) }))
+    .filter(({ harbor }) => harbor.id !== activeId)
+    .sort((a, b) => a.distance - b.distance || a.harbor.id.localeCompare(b.harbor.id))
+    .slice(0, limit).map(({ harbor }) => harbor);
 }
 export function nextHarborPosition(harbors) {
   const occupied = harbors.map(harborPosition);

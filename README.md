@@ -10,13 +10,19 @@ Temiz macOS paketi `ca3b9ec` runtime'ını içerir; gerçek05/06 arayüz/yön tu
 
 Kullanıcı testine ayrılan yedi profil ve sekiz replay varyantı korunmuştur; ağır lab'lar kapalıdır. Yeni1200s koşu pil9% korumasında~19dk'da kesildi; üç eşleşmiş CPU bloğu ve fullTLS/Hubble lab E2E açık. Native Safari/fiziksel gecikme ve eski CPU kapıları kapanmadı. Bu nedenle stable sürüm veya eksiksiz performans kabulü iddiası yoktur. [Güncel A–O kabul tablosu](docs/WORKSPACE_ACCEPTANCE.md), [ölçüm geçerlilik kararı](docs/PERFORMANCE_REPORT.md), [manuel komutlar](MANUAL_TEST_GUIDE.md).
 
+## 11 Kasım — UI 2.0 görünümü
+
+Kök dizindeki UI 2.0 referansına göre petrol mavisi, ince dalgalı ve güneş parıltılı deniz; ayrıntılı gemi gövdeleri, vinçler ve hangarlar uygulandı. Geniş ekranda aktif liman ile en yakın bir liman aynı dünyada ayrıntılı görünür. Liman levhaları gerçek proje adını taşır; komşu gemi/kutuya tıklamak o limanın kendi kaynak panelini açar. Referansı doldurmak için canlı moda örnek Node veya Pod eklenmez.
+
+**Görünüm ve ayarlar → Liman hareketi** içindeki deniz hareketi, gemi izi, salınım, devriye ve yeni **Güneş yansımaları** seçenekleri ayrı kontrol edilir. Toplu duraklatma ve azaltılmış hareket de korunur. Panellerin Soft UI görünümü, tam ekran Canvas, klavye kamerası ve Kubernetes servisleri korunmuştur. Görsel karşılaştırma ve test sınırları: [UI 2.0 uygulama kaydı](docs/UI_2_0.md).
+
 ## Birden fazla proje, ayrı limanlar
 
 Bir workspace, güvenilir Kubernetes bağlantıları ve bu bağlantılara bağlı proje/liman kayıtları içerir. Bir liman açık namespace kümesi ve isteğe bağlı label seçicisi kullanır. **Limanlar** pusulası veya merkez üzerinden eklenir; ilk boş kurulumda **İlk limanını bağla** açılır. İzinli namespace adı, namespace LIST izni olmadan elle girilebilir. Bağlantı ve kapsam gerçek API ile önizlenir. Liman kaydetmek, yeniden adlandırmak veya kaldırmak Kubernetes kaynaklarını yaratmaz, taşımaz veya silmez.
 
 Aynı doğrulanmış cluster ve Node UID'si birden fazla projede **Paylaşılan Node** görünümü olabilir; bunlar ayrı sunucu değildir. Yalnız ilgili projenin yükleri gösterilir. Bilinmeyen cluster kimlikleri güvenli biçimde ayrı tutulur. Ortak altyapı, yapılandırılmış ilişki ve Hubble'dan ölçülmüş trafik farklı anlam taşır. Farklı kümeler tek scheduler/CPU havuzu değildir; doğrulanmış ağ altyapısı olmadan cross-cluster trafik iddiası yoktur.
 
-Uygulama bir ayrıntılı Canvas kullanır; diğer limanlar uzak görünüm ve ortak veri abonelikleriyle temsil edilir. Paneller, kamera ve kaynak seçimi liman bağlamındadır. Yazma niyeti liman ve tarayıcı sekmesine bağlıdır; kayıt/import bunu açmaz. Paylaşılan Node ve diğer cluster kapsamlı işlemlerde etki ayrıca onaylanır. Label filtresi Kubernetes RBAC yerine geçmez.
+Uygulama tek Canvas kullanır; aktif ve en yakın komşu liman ayrıntılı, kalan limanlar hafif uzak temsillerle gösterilir. Her görünüm kendi yetkili veri aboneliğini kullanır. Paneller, kamera ve kaynak seçimi liman bağlamındadır. Yazma niyeti liman ve tarayıcı sekmesine bağlıdır; kayıt/import bunu açmaz. Paylaşılan Node ve diğer cluster kapsamlı işlemlerde etki ayrıca onaylanır. Label filtresi Kubernetes RBAC yerine geçmez.
 
 Workspace, varsayılan kullanıcı yapılandırma dizinindeki `KubeView/workspace.json` dosyasına atomik ve yedekli yazılır. `--data-dir` ayrı profiller sağlar; bozuk/gelecek şema kullanıcı verisini sıfırlamaz. Güvenli export credential, mutlak kubeconfig yolu veya Secret taşımaz; import bağlantıları güvenilir context'e açıkça bağlanmadan erişim açmaz. Bu sözleşmelerin test durumu kabul defterindedir; kullanıcı manuel PASS/FAIL alanları önceden doldurulmaz.
 
@@ -40,7 +46,7 @@ Sağlıklı Node gemileri varsayılan olarak kapalı ve güvenli su rotasında d
 
 Gözlenen yeni yük için uygun gemi geçici yanaşır, vinç işi bitince ayrılır. Görsel yaklaşma uzun sürecekse yaklaşık10 saniye sonra hedef gemide kısa varış kullanılır; bu, gerçek yanaşma olayı olarak kaydedilmez. Kanonik Node/Pod ataması ve Ready bilgisi animasyonları beklemez.
 
-**Görünüm ve ayarlar**: seyir, hız, salınım, deniz, dalga şiddeti, iz, operasyon biçimi; sistem/azaltılmış/tam hareket; otomatik kalite; açık/koyu/sistem panel teması ve yüksek kontrast. Sol üstteki duraklatma düğmesi yalnız görsel hareketi durdurur. Node/Pod panelindeki **Görsel seyir ve kamera** bölümünden tek gemi durdurulabilir veya açıkça kamera takibi başlatılır. Elle kamera hareketi takibi bırakır. Bunlar Kubernetes cordon/scale işlemi değildir.
+**Görünüm ve ayarlar**: seyir, hız, salınım, deniz, dalga şiddeti, güneş yansımaları, iz, operasyon biçimi; sistem/azaltılmış/tam hareket; otomatik kalite; açık/koyu/sistem panel teması ve yüksek kontrast. Sol üstteki duraklatma düğmesi yalnız görsel hareketi durdurur. Node/Pod panelindeki **Görsel seyir ve kamera** bölümünden tek gemi durdurulabilir veya açıkça kamera takibi başlatılır. Elle kamera hareketi takibi bırakır. Bunlar Kubernetes cordon/scale işlemi değildir.
 
 Deniz kapatılınca su fazı ve iz/salınım durur, yüzey yumuşakça statik hâle gelir; seyir ve gerçek veri akışı sürer. Tercihler sürümlü küçük yerel kayıtta doğrulanarak saklanır; depolama erişilemezse uygulama çalışmaya devam eder. Mat Neumorphism paneller opaktır; log/YAML/tablo yüzeyleri okunaklı tutulur.
 

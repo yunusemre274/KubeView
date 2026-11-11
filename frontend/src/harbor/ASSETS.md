@@ -15,3 +15,24 @@ Every regular, init (including restartable init sidecars) and ephemeral containe
 Full viewport composition uses an approximately 39-degree elevation. Initial/snapshot state and the real resource store stay separate from visual transitions. Picking any object opens its panel without changing the camera; only explicit `focusRequest` or `focusFacilityRequest` actions move it. Outer gantry jibs now extend to local x=32, covering all deck columns.
 
 The moving-fleet extension keeps these ship/gantry/hangar models unchanged. `Ocean.jsx` and `waterModel.js` add original analytic waves, procedural ripple normals and a bounded wake mesh, using the same asset license. No external bitmap/model/CDN is introduced. `fleet.js` uses exact arc-length rounded paths and swept vessel capsules. Cargo uses controlled world transforms and one UID picking instance; no non-uniform Object3D.attach reparenting is required.
+
+## UI 2.0 reference finish — November 2026
+
+`Kubeview_UI_2.0.png` is the user's visual target, not a background image or a
+runtime texture. The new finish is still original procedural source. The cargo
+hull uses a curved bow, layered chine, isolated flat deck cap and dark waterline;
+its 72 × 16 metre bounds and local +Z bow axis are unchanged. The railings follow
+the actual hull contour, and bridge glazing, wing decks, ladders and mooring
+fittings use the existing shared instance batches. Container/Pod transforms and
+picking identities have not been replaced by decorative loads.
+
+Hangars have recessed service bays, pitched gables, gutter/eave details and
+clerestory windows. Cranes retain their real moving trolley/hoist attachment
+points; structural braces, access ladders and beam flanges clarify the load path.
+Concrete grain and corrugated metal maps are reused for shallow bump detail.
+There are still three locally generated surface textures; the additional
+cladding material is shared and disposed with the scene palette. No per-frame
+geometry construction, texture allocation, external model, logo or CDN was
+introduced. These are visual/model changes, not a claim of measured performance
+improvement. Browser visual and motion acceptance is recorded separately by the
+UI 2.0 integration work.

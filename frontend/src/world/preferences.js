@@ -8,6 +8,7 @@ export const DEFAULT_PREFERENCES = Object.freeze({
   bob: true,
   sea: true,
   seaStrength: "light",
+  sunGlint: true,
   wake: true,
   operations: "full",
   motionPreference: "system",
@@ -25,7 +26,7 @@ const choices = {
   theme: ["system", "light", "dark"],
   contrast: ["normal", "high"],
 };
-const booleanKeys = ["patrol", "bob", "sea", "wake", "paused"];
+const booleanKeys = ["patrol", "bob", "sea", "sunGlint", "wake", "paused"];
 export function validatePreferences(value) {
   const validated = { ...DEFAULT_PREFERENCES };
   if (!value || typeof value !== "object" || Array.isArray(value))
@@ -101,6 +102,9 @@ export function resolvePreferences(preferences, environment = {}) {
     motion: {
       patrol: value.patrol && !stopped,
       sea: value.sea && !stopped,
+      // Reflection is a surface appearance, not an independent animation clock.
+      // With sea/visual motion paused, its last/static surface remains lit.
+      sunGlint: value.sunGlint,
       bob: value.bob && value.sea && !stopped,
       wake:
         value.wake &&

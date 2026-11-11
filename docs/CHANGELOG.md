@@ -1,5 +1,12 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — UI 2.0 referans görünümü
+
+- Tam ekran dünyaya yakın komşu limanın gerçek kapsamlı görünümü, proje levhaları ve kompakt lacivert araçlar eklendi; Soft UI nesne panelleri korundu.
+- Gemi gövdesi/baş/kıç/kaplama/korkuluk, vinç yapısı ve hangar detayları ortak geometriyle geliştirildi. Suda ince GPU dokusu, güneş parlaması ve hızla değişen kıç izi uygulandı; Güneş yansımaları ayrı ayardır.
+- Kamera fit taşması, eski FOV kayıt göçü, komşu limanda pause/snapshot baseline, görsel cache nesli ve aynı adlı tesisin yanlış limana odağı düzeltildi. Dar rehber/rozet çakışması giderildi.
+- 218 unit, Chromium24/WebKit24 normal UI, raycast2; ayrı odak red/green. Yeni kaynak/kanıt sınırları [UI_2_0.md](UI_2_0.md). Backend ve gerçek Kubernetes yönetim kapsamı değişmedi; stable release oluşturulmadı.
+
 ## 2026-11-10 — çoklu liman doğruluk devamı
 
 - Kapatılmış log panelinin limana dönüşte kendiliğinden açılması düzeltildi; seçim korunuyor, istenmeyen log stream açılmıyor.202 frontend test/build ve normalUI3kontrol geçti; CPU kazancı yüzdesi ölçülmedi.

@@ -41,8 +41,9 @@ import {
 import LifecycleEffects, { NodeArrivalCaption } from "./LifecycleEffects.jsx";
 import MeasuredTraffic from "./MeasuredTraffic.jsx";
 import WorkspaceHarbors from "./WorkspaceHarbors.jsx";
-import { captureHarborCamera, restoreHarborCamera, harborFitSamples } from "./cameraViews.js";
-import { harborPosition } from "../world/workspace.js";
+import { cacheVisualView, pruneVisualViews } from "./visualViews.js";
+import { captureHarborCamera, restoreHarborCamera, harborFitSamples, fitHarborView } from "./cameraViews.js";
+import { harborWorldPosition as harborPosition, nearbyHarbors } from "../world/workspace.js";
 import WorldFacilities, { FacilityHit } from "./WorldFacilities.jsx";
 import Ocean, { ShipWake } from "./Ocean.jsx";
 import {
@@ -395,6 +396,7 @@ function FleetFrame({
   lifecycle,
   slots,
   worldOffset = [0, 0],
+  primary = true,
 }) {
   const { invalidate, scene } = useThree(),
     lastReport = useRef(-Infinity),
@@ -403,16 +405,17 @@ function FleetFrame({
     invalidate();
   }, [motion, shipControls, visible, invalidate]);
   useEffect(() => {
+    if (!primary) return;
     const snapshot = () => fleet.snapshot();
     scene.userData.fleetStates = snapshot;
     return () => {
       if (scene.userData.fleetStates === snapshot)
         delete scene.userData.fleetStates;
     };
-  }, [fleet, scene]);
+  }, [fleet, scene, primary]);
   useEffect(() => {
     const probe = globalThis.__KUBEVIEW_BENCHMARK__;
-    if (!probe) return;
+    if (!probe || !primary) return;
     // Diagnostic setup only, outside measured time. Canonical resources are untouched.
     const reset = () => {
       const ships = [...fleet.ships.values()];
@@ -441,7 +444,7 @@ function FleetFrame({
     return () => {
       if (probe.resetVisual === reset) delete probe.resetVisual;
     };
-  }, [fleet, clock, waterState, motion, invalidate]);
+  }, [fleet, clock, waterState, motion, invalidate, primary]);
   useFrame((_, delta) => {
     const enabled =
         visible &&
@@ -449,7 +452,7 @@ function FleetFrame({
         !motion.reduced &&
         !globalThis.__KUBEVIEW_BENCHMARK__?.visualHold,
       dt = enabled ? Math.min(0.2, Math.max(0, delta)) : 0;
-    if (dt) clock.current += dt;
+    if (dt && primary) clock.current += dt;
     const amplitude = motion.sea
       ? (motion.seaAmplitude ??
         (typeof motion.seaStrength === "number"
@@ -457,8 +460,10 @@ function FleetFrame({
           : ({ calm: 0.15, light: 0.45, noticeable: 1 }[motion.seaStrength] ??
             0.45)))
       : 0;
-    if (motion.reduced) waterState.current.strength = 0;
-    advanceWaterState(waterState.current, dt, amplitude);
+    if (primary) {
+      if (motion.reduced) waterState.current.strength = 0;
+      advanceWaterState(waterState.current, dt, amplitude);
+    }
     fleet.syncLoadingOwners(
       new Set(
         [...coordinator.current.active, ...coordinator.current.queue].map(
@@ -466,7 +471,10 @@ function FleetFrame({
         ),
       ),
     );
-    fleet.tick(dt, clock.current, motion, shipControls);
+    // A neighboring view continues this harbor's last explicit visual pause
+    // controls; absence of an active panel is not a request to resume its ships.
+    if (primary) fleet.presentationControls = shipControls;
+    fleet.tick(dt, clock.current, motion, primary ? shipControls : fleet.presentationControls);
     for (const ship of fleet.ships.values()) {
       const steady = ["docking", "docked", "departing", "approaching"].includes(
         ship.mode,
@@ -1538,6 +1546,7 @@ function ViewController({
   workspaceHarbors = [],
 }) {
   const { camera, size, invalidate, scene, gl } = useThree();
+  const focusLensScale = Math.tan(THREE.MathUtils.degToRad(19)) / Math.tan(THREE.MathUtils.degToRad(camera.getEffectiveFOV() / 2));
   const panKeys = useRef(new Set()),
     panStarting = useRef(false),
     endFollow = useRef(onFollowEnd);
@@ -1622,60 +1631,19 @@ function ViewController({
     lastOverview = useRef(overviewRequest);
   const transition = useRef(null), lastHarbor = useRef(activeHarborId), viewOwner = useRef(null);
   const fit = useCallback(() => {
-    const center = new THREE.Vector3(worldOffset[0], 0, (bounds.minZ + bounds.maxZ) / 2 + worldOffset[1]);
-    const width = bounds.maxX - bounds.minX,
-      depth = bounds.maxZ - bounds.minZ;
-    const verticalFov = THREE.MathUtils.degToRad(camera.fov);
-    const aspect = Math.max(0.5, size.width / size.height);
-    let distance =
-      Math.max(depth * 0.65 + width * 0.3, (width + depth * 0.4) / aspect) /
-      (2 * Math.tan(verticalFov / 2));
-    const direction = new THREE.Vector3(0.44, 0.88, 1).normalize();
-    const corner = new THREE.Vector3(), samples = harborFitSamples(scene, fleet, bounds, worldOffset);
-    for (let iteration = 0; iteration < 8; iteration++) {
-      camera.position.copy(center).addScaledVector(direction, distance);
-      camera.lookAt(center);
-      camera.updateMatrixWorld();
-      camera.updateProjectionMatrix();
-      let minX = Infinity,
-        maxX = -Infinity,
-        minY = Infinity,
-        maxY = -Infinity;
-      for (const sample of samples) {
-        corner.copy(sample).project(camera);
-        minX = Math.min(minX, corner.x);
-        maxX = Math.max(maxX, corner.x);
-        minY = Math.min(minY, corner.y);
-        maxY = Math.max(maxY, corner.y);
-      }
-      const extent = Math.max((maxX - minX) / 2, (maxY - minY) / 2);
-      const offsetX = (minX + maxX) / 2,
-        offsetY = (minY + maxY) / 2;
-      const planeHeight = 2 * Math.tan(verticalFov / 2) * distance;
-      const right = new THREE.Vector3(1, 0, 0).applyQuaternion(
-        camera.quaternion,
-      );
-      const up = new THREE.Vector3(0, 1, 0).applyQuaternion(camera.quaternion);
-      const groundUp = new THREE.Vector3(up.x, 0, up.z).normalize();
-      center
-        .addScaledVector(right, (offsetX * planeHeight * aspect) / 2)
-        .addScaledVector(
-          groundUp,
-          (offsetY * planeHeight) / 2 / Math.max(0.2, groundUp.dot(up)),
-        );
-      // The 3D view has a narrow aspect ratio in split mode: fill its height
-      // while preserving the entire long-pier silhouette and a small margin.
-      distance *= Math.max(0.7, Math.min(1.4, extent / 0.9));
-    }
-    camera.position.copy(center).addScaledVector(direction, distance);
+    transition.current = null;
+    const pair = size.width >= 1100 && nearbyHarbors(workspaceHarbors, activeHarborId).length > 0;
+    const samples = harborFitSamples(scene, pair ? null : fleet, bounds, worldOffset, pair);
+    const { center, position, distance } = fitHarborView(samples, size.width / size.height, camera.fov);
+    camera.position.copy(position);
     camera.lookAt(center);
     camera.near = 0.5;
-    camera.far = Math.max(2000, distance * 4);
+    camera.far = Math.max(2500, distance * 5);
     camera.updateProjectionMatrix();
     controls.current?.target.copy(center);
     controls.current?.update();
     invalidate();
-  }, [camera, size.width, size.height, bounds.maxZ, worldOffset[0], worldOffset[1]]);
+  }, [camera, size.width, size.height, bounds.maxZ, worldOffset[0], worldOffset[1], workspaceHarbors, activeHarborId]);
   const fittedData = useRef(false);
   useEffect(() => {
     const from = camera.position.clone(), fromTarget = controls.current?.target.clone();
@@ -1687,7 +1655,7 @@ function ViewController({
       invalidate();
       return;
     }
-    const restored = restoreHarborCamera(harborView?.camera, activeHarborId, worldOffset);
+    const restored = restoreHarborCamera(harborView?.camera, activeHarborId, worldOffset, camera.getEffectiveFOV());
     fittedData.current = Boolean(restored);
     if (restored) {
       camera.position.fromArray(restored.position);
@@ -1708,7 +1676,7 @@ function ViewController({
     if (!viewBridge) return;
     const bridge = {
       harborId: activeHarborId,
-      capture: () => controls.current && viewOwner.current?.sourceKey === sourceKey && viewOwner.current?.harborId === activeHarborId ? captureHarborCamera(camera.position.toArray(), controls.current.target.toArray(), transition.current ? { position: transition.current.to.toArray(), target: transition.current.toTarget.toArray() } : null, activeHarborId, worldOffset) : null,
+      capture: () => controls.current && viewOwner.current?.sourceKey === sourceKey && viewOwner.current?.harborId === activeHarborId ? captureHarborCamera(camera.position.toArray(), controls.current.target.toArray(), transition.current ? { position: transition.current.to.toArray(), target: transition.current.toTarget.toArray() } : null, activeHarborId, worldOffset, camera.getEffectiveFOV()) : null,
       cancelTransition() { transition.current = null; },
       overviewWorkspace() {
         const positions = workspaceHarbors.map((harbor, index) => harborPosition(harbor, index));
@@ -1723,8 +1691,11 @@ function ViewController({
     viewBridge.current = bridge;
     return () => { if (viewBridge.current === bridge) viewBridge.current = null; };
   }, [viewBridge, camera, controls, activeHarborId, workspaceHarbors, fit]);
+  const fittedSize = useRef([size.width, size.height]);
   useEffect(() => {
-    if (!activeHarborId) fit();
+    if (fittedSize.current[0] === size.width && fittedSize.current[1] === size.height) return;
+    fittedSize.current = [size.width, size.height];
+    fit();
   }, [size.width, size.height]);
   useEffect(() => {
     if (!fittedData.current && nodesByName.size) {
@@ -1746,8 +1717,9 @@ function ViewController({
         resourcePosition(selected, nodesByName, slots));
     if (!p) return;
     lastFocus.current = focusRequest;
+    transition.current = null;
     const center = new THREE.Vector3(p[0] + worldOffset[0], p[1], p[2] + worldOffset[1]);
-    camera.position.copy(center).add(new THREE.Vector3(55, 60, 75));
+    camera.position.copy(center).add(new THREE.Vector3(55, 60, 75).multiplyScalar(focusLensScale));
     controls.current?.target.copy(center);
     controls.current?.update();
     invalidate();
@@ -1765,14 +1737,15 @@ function ViewController({
     if (!focusFacilityRequest?.id) return;
     const key = `${focusFacilityRequest.id}:${focusFacilityRequest.revision}`;
     if (key === lastFacilityFocus.current) return;
-    const object = scene.getObjectByName(`facility:${focusFacilityRequest.id}`);
+    const object = scene.getObjectByName("workspace:active-harbor")?.getObjectByName(`facility:${focusFacilityRequest.id}`);
     if (!object) return;
     lastFacilityFocus.current = key;
+    transition.current = null;
     const center = new THREE.Box3()
       .setFromObject(object)
       .getCenter(new THREE.Vector3());
     center.y = Math.min(24, center.y);
-    camera.position.copy(center).add(new THREE.Vector3(42, 51, 68));
+    camera.position.copy(center).add(new THREE.Vector3(42, 51, 68).multiplyScalar(focusLensScale));
     controls.current?.target.copy(center);
     controls.current?.update();
     invalidate();
@@ -1837,8 +1810,8 @@ function ViewController({
       followOffset.current
         .copy(camera.position)
         .sub(new THREE.Vector3(pose.position[0] + worldOffset[0], pose.position[1], pose.position[2] + worldOffset[1]));
-      if (followOffset.current.length() > 190)
-        followOffset.current.set(55, 60, 75);
+      if (followOffset.current.length() > 190 * focusLensScale)
+        followOffset.current.set(55, 60, 75).multiplyScalar(focusLensScale);
     }
     const target = new THREE.Vector3(pose.position[0] + worldOffset[0], pose.position[1], pose.position[2] + worldOffset[1]);
     const desired = target.clone().add(followOffset.current);
@@ -1855,6 +1828,87 @@ function ViewController({
   });
 
   return null;
+}
+
+// A neighboring port reads its own already-authorized session. It does not
+// create a transport, borrow the active scope or synthesize Node/Pod resources.
+function NearbyHarbor({ harbor, index, session, views, protectedSources, materials, quality, layers, clock, waterState, motion, visible, canSelect, onPickStart, onHarborSelect, onSelect }) {
+  const [snapshot, setSnapshot] = useState(() => session?.state || null);
+  const [hovered, setHovered] = useState(null);
+  useLayoutEffect(() => {
+    const receive = next => setSnapshot(previous => previous?.resources === next?.resources && previous?.sourceKey === next?.sourceKey && previous?.stale === next?.stale && previous?.snapshotReady === next?.snapshotReady ? previous : next);
+    receive(session?.state || null);
+    session?.listeners.add(receive);
+    return () => session?.listeners.delete(receive);
+  }, [session]);
+  const source = snapshot?.sourceKey || `unbound:${harbor.id}`;
+  const visual = useMemo(() => {
+    let saved = views.get(source);
+    if (!saved) { saved = { slots: new HarborSlots(), fleet: new FleetSimulator() }; cacheVisualView(views, source, saved, harbor.id, protectedSources); }
+    return saved;
+  }, [source, views]);
+  const slots = useMemo(() => ({ current: visual.slots }), [visual]);
+  const fleet = visual.fleet;
+  const coordinator = useMemo(() => ({ current: new TransferCoordinator() }), [source]);
+  const lifecycle = useMemo(() => ({ current: { visual: new VisualLifecycle(source), containers: new ContainerTransitions(), ghosts: [] } }), [source]);
+  const resources = useMemo(() => Object.values(snapshot?.resources || {}), [snapshot?.resources]);
+  const nodes = useMemo(() => resources.filter(r => r.kind === "Node"), [resources]);
+  const nodesByName = useMemo(() => new Map(nodes.map(node => [node.metadata.name, node])), [nodes]);
+  slots.current.reconcile(resources);
+  nodes.forEach(node => slots.current.node(uidOf(node)));
+  const window = nodeWindow(nodes, slots.current, 0, F.VISIBLE_CAPACITY);
+  slots.current.windowOffset = window.offset;
+  const pods = useMemo(() => resources.filter(r => r.kind === "Pod" && (!r.spec?.nodeName || nodes.some(n => n.metadata.name === r.spec.nodeName && slots.current.node(uidOf(n)) < F.VISIBLE_CAPACITY) || !nodesByName.has(r.spec.nodeName))), [resources, nodes, nodesByName, slots]);
+  const position = useMemo(() => harborPosition(harbor, index), [harbor.position?.[0], harbor.position?.[1], index]);
+  const bounds = useMemo(() => ({ ...sceneBounds(7), maxZ: F.PIER_END }), []);
+  fleet.reconcile(window.visible, uid => slots.current.node(uid) - window.offset, clock.current, { snapshot: true, patrol: motion.patrol, canonicalUIDs: new Set(nodes.map(uidOf)) });
+  slots.current.fleet = fleet; coordinator.current.fleet = fleet;
+  slots.current.visiblePodUIDs = new Set(pods.map(uidOf));
+  useEffect(() => {
+    // Overview displays the current fault state, never a backlog of unseen events.
+    lifecycle.current.visual.observe(nodes, pods, { now: clock.current * 1000, source, simple: true, snapshotReady: !!snapshot?.snapshotReady, snapshotUIDs: new Set(resources.map(uidOf)) });
+  }, [nodes, pods, lifecycle, source, snapshot?.snapshotReady, resources]);
+  const select = (resource, options) => onSelect?.(harbor.id, resource, options);
+  const pickStart = key => onPickStart(`${harbor.id}:${key}`);
+  const canPick = (event, key) => canSelect(event, key ? `${harbor.id}:${key}` : undefined);
+  const lowDetail = quality === "low" || nodes.length > 12;
+  return <group name={`workspace:nearby-harbor:${harbor.id}`} position={[position[0], 0, position[1]]} userData={{ workspaceSilhouette: true, workspaceDetail: true, harborId: harbor.id }}>
+    <FleetFrame primary={false} fleet={fleet} slots={slots} coordinator={coordinator} lifecycle={lifecycle}
+      clock={clock} waterState={waterState} motion={motion} visible={visible} worldOffset={position} />
+    <Terrain materials={materials} bounds={bounds} lowDetail={lowDetail} />
+    <WorldFacilities materials={materials} pierEnd={bounds.maxZ} canSelect={canPick} onOpenFacility={facilityId => onHarborSelect?.(harbor.id, facilityId)} />
+    {[0, 1, 2].map(i => <WorkingCrane key={i} index={i} materials={materials} coordinator={coordinator}
+      lowDetail={lowDetail} reducedMotion={motion.reduced || motion.paused} clock={clock}
+      onOpenFacility={id => onHarborSelect?.(harbor.id, id)} canSelect={canPick} />)}
+    {layers.nodes !== false && window.visible.map(node => {
+      const uid = uidOf(node), state = readyState(node);
+      return <VesselGroup key={uid} uid={uid} fleet={fleet} motion={motion} clock={clock} waterState={waterState}>
+        <group name={`node:${uid}`} userData={{ harborTarget: { type: "node", uid, name: node.metadata.name, local: [0, 11.8, -21.8] } }} onPointerDown={event => { event.stopPropagation(); pickStart(`node:${uid}`); }}>
+          <CargoShip position={[0, 0, 0]} materials={materials} state={state} slot={slots.current.node(uid)} lowDetail={lowDetail}
+            hovered={hovered === uid} radarData={{ uid, name: node.metadata.name }}
+            onClick={event => { event.stopPropagation(); if (canPick(event, `node:${uid}`)) select(node); }}
+            onPointerOver={event => { event.stopPropagation(); setHovered(uid); document.body.style.cursor = "pointer"; }}
+            onPointerOut={event => { event.stopPropagation(); setHovered(null); document.body.style.cursor = "auto"; }} />
+          <ResourceLabel resource={node} position={[0, 19, -22]} hover={hovered === uid} labels={layers.labels !== false && nodes.length <= 12} />
+        </group>
+      </VesselGroup>;
+    })}
+    {layers.pods !== false && <PodCargo pods={pods} nodesByName={nodesByName} slots={slots.current} materials={materials} onSelect={select}
+      onHover={resource => setHovered(resource ? uidOf(resource) : null)} hovering={hovered} labels={false}
+      transfers={coordinator} reducedMotion={motion.reduced || motion.paused} lowDetail={lowDetail}
+      canSelect={canPick} onPickStart={pickStart} clock={clock} lifecycle={lifecycle} />}
+    <HarborNameplate harbor={harbor} position={[0, 0]} stale={snapshot?.stale} onSelect={onHarborSelect} />
+  </group>;
+}
+
+function HarborNameplate({ harbor, position, onSelect, active = false, stale = false }) {
+  return <Html position={[position[0] - 28, 84, position[1] - 76]} center zIndexRange={[5, 0]}>
+    <button className="harbor-nameplate" data-active={active} aria-label={`${harbor.name} — limanı aç`} title={`${harbor.namespaces.join(", ")}${stale ? " · Son bilinen veri" : ""}`}
+      onPointerDown={event => event.stopPropagation()} onClick={event => { event.stopPropagation(); onSelect?.(harbor.id); }}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m12 2 10 5.5v9L12 22 2 16.5v-9Z M2 7.5l10 5.5 10-5.5M12 13v9M7 4.75l10 5.5" /></svg>
+      <span>{harbor.name}</span>{stale && <small>Eski veri</small>}
+    </button>
+  </Html>;
 }
 
 function SceneWorld({
@@ -1895,30 +1949,42 @@ function SceneWorld({
   harborView,
   viewBridge,
   harborEndpoints,
+  workspaceRegistry,
+  onHarborResourceSelect,
 }) {
   const { invalidate, gl, scene } = useThree();
   const controls = useRef(),
     slots = useRef(new HarborSlots()),
     coordinator = useRef(new TransferCoordinator()),
     lastSource = useRef(sourceKey),
+    lastHarbor = useRef(activeHarborId),
     fleet = useRef(new FleetSimulator()),
     clock = useRef(0),
     waterState = useRef(createWaterState(0)), visualViews = useRef(new Map());
   const activeHarbor = workspaceHarbors.find((harbor) => harbor.id === activeHarborId);
   const worldOffset = useMemo(() => activeHarbor ? harborPosition(activeHarbor, workspaceHarbors.indexOf(activeHarbor)) : [0, 0], [activeHarbor?.id, activeHarbor?.position?.[0], activeHarbor?.position?.[1]]);
-  const lightTarget = useMemo(() => { const object = new THREE.Object3D(); object.position.set(worldOffset[0], 0, worldOffset[1]); return object; }, [worldOffset]);
+  const nearby = useMemo(() => nearbyHarbors(workspaceHarbors, activeHarborId), [workspaceHarbors, activeHarborId]);
+  const lightCenter = useMemo(() => {
+    const other = nearby[0];
+    if (!other) return worldOffset;
+    const point = harborPosition(other, workspaceHarbors.indexOf(other));
+    return [(point[0] + worldOffset[0]) / 2, (point[1] + worldOffset[1]) / 2];
+  }, [nearby, workspaceHarbors, worldOffset]);
+  const lightTarget = useMemo(() => { const object = new THREE.Object3D(); object.position.set(lightCenter[0], 0, lightCenter[1]); return object; }, [lightCenter]);
+  const protectedSources = [sourceKey, ...nearby.map(harbor => workspaceRegistry?.sessions.get(harbor.id)?.state.sourceKey)].filter(Boolean);
+  pruneVisualViews(visualViews.current, workspaceHarbors.map(harbor => harbor.id));
   if (lastSource.current !== sourceKey) {
-    if (activeHarborId) {
-      visualViews.current.set(lastSource.current, { slots: slots.current, fleet: fleet.current });
-      while (visualViews.current.size > 64) visualViews.current.delete(visualViews.current.keys().next().value);
-    }
+    if (lastHarbor.current && workspaceHarbors.some(harbor => harbor.id === lastHarbor.current))
+      cacheVisualView(visualViews.current, lastSource.current, { slots: slots.current, fleet: fleet.current }, lastHarbor.current, protectedSources);
     lastSource.current = sourceKey;
+    lastHarbor.current = activeHarborId;
     const saved = activeHarborId && visualViews.current.get(sourceKey);
     slots.current = saved?.slots || new HarborSlots();
     coordinator.current.reset();
     fleet.current = saved?.fleet || new FleetSimulator();
     if (!activeHarborId) { clock.current = 0; waterState.current = createWaterState(0); }
   }
+  if (activeHarborId) cacheVisualView(visualViews.current, sourceKey, { slots: slots.current, fleet: fleet.current }, activeHarborId, protectedSources);
   const [visible, setVisible] = useState(!document.hidden);
   const maps = useMemo(() => makeSurfaceMaps(), []);
   const materials = useMemo(() => makeMaterials(maps), [maps]);
@@ -2318,29 +2384,34 @@ function SceneWorld({
   );
   return (
     <>
-      <fog attach="fog" args={["#c7dadc", 600, 1800]} />
-      <hemisphereLight args={["#f7f3e5", "#78949a", 1.65]} />
-      <ambientLight intensity={0.45} />
+      <fog attach="fog" args={["#43808c", 2800, 14000]} />
+      <hemisphereLight args={["#eaf4f7", "#536b70", 1.5]} />
+      <ambientLight intensity={0.3} />
       <directionalLight
-        position={[worldOffset[0] - 110, 170, worldOffset[1] + 90]}
+        position={[lightCenter[0] - 550, 360, lightCenter[1] - 140]}
         target={lightTarget}
         intensity={2.4}
         color="#fff0ce"
         castShadow={quality !== "low"}
         shadow-mapSize-width={quality === "high" ? 4096 : 2048}
         shadow-mapSize-height={quality === "high" ? 4096 : 2048}
-        shadow-camera-left={-180}
-        shadow-camera-right={180}
-        shadow-camera-top={180}
-        shadow-camera-bottom={-180}
-        shadow-camera-far={600}
+        shadow-camera-left={nearby.length ? -540 : -280}
+        shadow-camera-right={nearby.length ? 540 : 280}
+        shadow-camera-top={nearby.length ? 440 : 280}
+        shadow-camera-bottom={nearby.length ? -440 : -280}
+        shadow-camera-far={1200}
         shadow-normalBias={0.06}
         shadow-bias={-0.00012}
         shadow-radius={3}
       />
       <primitive object={lightTarget} />
-      <WorkspaceHarbors harbors={workspaceHarbors} activeId={activeHarborId} materials={materials} onSelect={onHarborSelect} canSelect={canSelect} onPickStart={onPickStart} relations={workspaceRelations} showRelations={layers.network} onRelations={onHarborRelations} />
-      <group name="workspace:active-harbor" position={[worldOffset[0], 0, worldOffset[1]]}>
+      <WorkspaceHarbors detailedIds={nearby.map(h => h.id)} harbors={workspaceHarbors} activeId={activeHarborId} materials={materials} onSelect={onHarborSelect} canSelect={canSelect} onPickStart={onPickStart} relations={workspaceRelations} showRelations={layers.network} onRelations={onHarborRelations} />
+      {nearby.map(harbor => <NearbyHarbor key={harbor.id} harbor={harbor} index={workspaceHarbors.indexOf(harbor)}
+        session={workspaceRegistry?.sessions.get(harbor.id)} views={visualViews.current} protectedSources={protectedSources}
+        materials={materials} quality={quality} layers={layers} clock={clock} waterState={waterState} motion={motion} visible={visible}
+        canSelect={canSelect} onPickStart={onPickStart} onHarborSelect={onHarborSelect} onSelect={onHarborResourceSelect} />)}
+      {activeHarbor && <HarborNameplate harbor={activeHarbor} position={worldOffset} active onSelect={onHarborSelect} />}
+      <group name="workspace:active-harbor" userData={{ harborId: activeHarborId }} position={[worldOffset[0], 0, worldOffset[1]]}>
       <FleetFrame
         fleet={fleet.current}
         clock={clock}
@@ -2623,7 +2694,7 @@ function SceneWorld({
         enableDamping
         dampingFactor={0.13}
         minDistance={32}
-        maxDistance={Math.max(650, bounds.maxZ * 2.5, workspaceHarbors.length > 1 ? 15000 : 0)}
+        maxDistance={Math.max(1800, bounds.maxZ * 2.5, workspaceHarbors.length > 1 ? 15000 : 0)}
         minPolarAngle={Math.PI / 10}
         maxPolarAngle={Math.PI / 2.4}
         enablePan
@@ -2734,6 +2805,8 @@ function HarborScene({
   harborView,
   viewBridge,
   harborEndpoints,
+  workspaceRegistry,
+  onHarborResourceSelect,
 }) {
   const [lost, setLost] = useState(false),
     [fallback, setFallback] = useState(false),
@@ -2795,6 +2868,7 @@ function HarborScene({
           ),
         ];
         const project = (descriptor, object, local, instance) => {
+          for (let parent = object; parent; parent = parent.parent) if (parent.userData?.harborId) { descriptor = { ...descriptor, harborId: parent.userData.harborId }; break; }
           if (
             Object.entries(filter).some(
               ([key, value]) => descriptor[key] !== value,
@@ -2945,7 +3019,7 @@ function HarborScene({
             localQuality === "low" ? 1 : localQuality === "high" ? 1.75 : 1.4,
           ]}
           shadows={localQuality !== "low"}
-          camera={{ fov: 38, near: 0.5, far: 2500, position: [180, 220, 280] }}
+          camera={{ fov: 24, near: 0.5, far: 2500, position: [180, 220, 280] }}
           gl={{
             antialias: localQuality !== "low",
             alpha: false,
@@ -3002,6 +3076,8 @@ function HarborScene({
               harborView={harborView}
               viewBridge={viewBridge}
               harborEndpoints={harborEndpoints}
+              workspaceRegistry={workspaceRegistry}
+              onHarborResourceSelect={onHarborResourceSelect}
             />
           </Suspense>
         </Canvas>

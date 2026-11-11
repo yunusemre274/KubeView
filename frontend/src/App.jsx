@@ -221,15 +221,16 @@ export default function App() {
         ? { uid: cachedResource.metadata.uid, kind: cachedResource.kind, namespace: cachedResource.metadata.namespace || "" }
         : savedSelection);
       const selectionView = { ...(pendingSelection ? {} : cached?.selection || {}),
-        containerName: cached?.selection?.containerName || savedSelection?.containerName,
-        tab: cached?.selection?.tab || workspace?.view?.tab };
+        containerName: pendingSelection ? pendingSelection.containerName : cached?.selection?.containerName || savedSelection?.containerName,
+        containerRole: pendingSelection?.containerRole || cached?.selection?.containerRole,
+        tab: pendingSelection ? undefined : cached?.selection?.tab || workspace?.view?.tab };
       const openResourcePanel = Boolean(pendingSelection || !cached || cached.panel?.type === "resource");
       const restored = savedSelectionResource(byUID, descriptor);
       pendingSelectionRestore.current = !restored && descriptor?.uid && descriptor.kind !== "Secret" && (!snapshotReady || stale)
         ? { sourceKey, harborId: workspace?.activeId, descriptor, selectionView, openResourcePanel } : null;
       setSelection(restored ? { ...selectionView, resource: restored } : null);
       setSelectedFlow(null);
-      setPanel(!pendingSelection && cached?.panel?.type === "facility" ? cached.panel : restored && openResourcePanel ? { type: "resource" } : null);
+      setPanel(pendingSelection?.facilityId ? { type: "facility", id: pendingSelection.facilityId } : !pendingSelection && cached?.panel?.type === "facility" ? cached.panel : restored && openResourcePanel ? { type: "resource" } : null);
       setForm(cached?.form?.sourceKey === sourceKey && (!cached.form.resource?.metadata?.uid || byUID.has(cached.form.resource.metadata.uid)) ? { ...cached.form, restoredDraft: cached.draft } : null);
       safeDraft.current = cached?.draft || null;
       sensitiveDraft.current = false;
@@ -443,7 +444,20 @@ export default function App() {
   });
   const harborEndpoints = workspace?.record ? flowHarborEndpoints(workspace.record, workspace.activeId, workspace.registry.snapshots(), workspace.registry.connections(workspace.record.connections), worldProviders.measuredFlows.authorizedHarborIds) : new Map();
   const harborRelations = workspace?.record && layers.network ? deriveWorkspaceRelations(workspace.record, workspace.registry.snapshots(), workspace.registry.connections(workspace.record.connections)) : [];
-  const inspectHarbor = useCommittedEvent((id) => { switchHarbor(id); setUtility("connection"); });
+  const inspectHarbor = useCommittedEvent((id, facilityId) => {
+    if (formRef.current) return;
+    if (facilityId) {
+      if (id === workspace?.activeId) { openFacility(facilityId); return; }
+      pendingHarborSelection.current = { harborId: id, facilityId };
+      switchHarbor(id); setUtility(null);
+    } else { switchHarbor(id); setUtility("connection"); }
+  });
+  const inspectHarborResource = useCommittedEvent((id, resource, options = {}) => {
+    if (formRef.current) return;
+    if (id === workspace?.activeId) return detailSelectResource(resource, options);
+    pendingHarborSelection.current = { harborId: id, uid: resource.metadata.uid, kind: resource.kind, namespace: resource.metadata.namespace || "", ...options };
+    switchHarbor(id);
+  });
   const openProviders = useCommittedEvent(() => {
     captureTrigger();
     setUtility("providers");
@@ -729,6 +743,8 @@ export default function App() {
             sourceKey={sourceKey}
             isStale={mode !== "demo" && stale && Boolean(lastUpdated)}
             workspaceHarbors={workspace?.record?.harbors}
+            workspaceRegistry={workspace?.registry}
+            onHarborResourceSelect={inspectHarborResource}
             activeHarborId={workspace?.activeId}
             onHarborSelect={inspectHarbor}
             onHarborRelations={() => setUtility("harbors")}

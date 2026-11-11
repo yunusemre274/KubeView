@@ -1,5 +1,15 @@
 # Veri, işlem ve 3D mimarisi
 
+## 11 Kasım 2026 — UI 2.0 sunum katmanı
+
+`HarborScene` tek Canvas ve mevcut demand render döngüsünü kullanır. `NearbyHarbor`, `WorkspaceRegistry` içindeki en yakın bir yetkili session'a abone olur; yeni Kubernetes bağlantısı/endpoint açmaz. Namespace kapsamı diğer limandan ödünç alınmaz. Aktif/komşu görünümler ortak materyal/geometri ve tek görsel saat kullanır; filo ve slotlar kaynak nesli/liman bazında ayrıdır. `visualViews` en fazla64 kaydı tutar; eski kaynak nesli ve kaldırılmış limanlar temizlenir. Kullanıcının tek gemi duraklatması komşu görünümde de korunur.
+
+`harborWorldPosition`, kayıtlı harita koordinatlarını yalnız render için ölçekleyip döndürür; uzak siluet ve trafik anchor'ları aynı dönüşümü kullanır. Varsayılan yatay/dikey ayrım500/600 birimdir. `fitHarborView` gerçek görünür mesh sınırlarını kamera uzayında hesaplar; geniş ekranda iki liman, dar ekranda aktif liman önceliklidir. Kayıtlı kamera yeni efektif FOV alanıyla saklanır; eski38° kayıtlar yeni24° projeksiyonda hedef/açı ve görünen ölçek korunarak uyarlanır. Panel açılışı Canvas'ı yeniden oluşturmaz.
+
+`Ocean` bir adet deterministik256×256 mipmap dokusu, mevcut analitik dalga ve GPU normal/parıltı shader'ı kullanır. Deniz zamanı ve gemi salınımı aynı modelden türetilir. `sunGlint` tercihi mevcut material uniform'unu değiştirir; geometri/doku yeniden kurulmaz. Kıç izi hızla ölçeklenen üç şerittir; duruşta, deniz kapalıyken ve azaltılmış harekette kapanır. Malzeme/texture disposal ve ortak saat temizliği korunur. Yeni dış asset, Worker, physics motoru veya sürekli timer eklenmedi.
+
+Bu yeni görünüm eski tek ayrıntılı liman benchmark'ıyla aynı çizim kapsamı değildir: iki limanda toplam16 gemi/240 Pod'a kadar görünür içerik olabilir. Kısa video tanılamaları M/L CPU veya fiziksel gecikme kabulü olarak kullanılmaz. [Kaynak, test ve görsel kanıtlar](UI_2_0.md).
+
 ## 10 Kasım 2026 — aktif çoklu liman kaynağı
 
 Son doğruluk checkpoint'i `42222c1184d66f3813fd98693b75bc9cb50b06ee`, `redesign/harbor-workbench` dalındadır. Bu bir **manuel kabul adayıdır**; stable yayın veya kullanıcı onayı değildir. Aktif model aşağıdaki **çoklu proje / çoklu liman genişletmesi** bölümüdür. Önceki `32a0468` tek-bağlantı açıklamaları kendi tarihsel kaynaklarını anlatır; güncel broker'ın yerine geçen tek global mutable Kubernetes istemcisi yoktur.

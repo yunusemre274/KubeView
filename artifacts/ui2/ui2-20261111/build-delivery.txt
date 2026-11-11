@@ -1,0 +1,15 @@
+
+> tersane-frontend@1.1.0 build
+> vite build
+
+vite v6.4.5 building for production...
+transforming...
+✓ 2215 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                        0.59 kB │ gzip:   0.36 kB
+dist/assets/index-CCZQtIvj.css        64.43 kB │ gzip:  12.38 kB
+dist/assets/HarborScene-Gh-TrbCV.js  230.79 kB │ gzip:  80.10 kB
+dist/assets/index--_-0t7N0.js        437.61 kB │ gzip: 132.44 kB
+dist/assets/three-BKmXRbXN.js        973.67 kB │ gzip: 270.82 kB
+✓ built in 1.81s

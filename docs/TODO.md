@@ -1,5 +1,15 @@
 # Güncel görev durumu
 
+## 11 Kasım 2026 — UI 2.0 referans uygulaması
+
+- [x] Referans görseli açıldı; canlı veri yerine resim/örnek kaynak koymadan iki yakın liman, ayrıntılı gemi/vinç/hangar ve kompakt araç görünümü uygulandı.
+- [x] Ortak saatli GPU dalga/akıntı, kontrollü güneş yansıması, hızla ölçeklenen kıç izi; bağımsız ayarlar ve reduced motion doğrulandı.
+- [x] Yakın liman UID/container seçimi, scope, pause/rota korunması, sınırlı görsel cache ve eski FOV kayıt göçü.
+- [x] 218 unit, production build, Chromium24/WebKit24 ve raycast2 kontrolü; aktif merkez odağı için ayrı red/green; zamanlı görsel kanıt incelendi.
+- [ ] Referansla kullanıcı görsel kabulü; native Safari/Retina ve eski v1.1 CPU/fiziksel gecikme/uzun test kapıları bu görevle kapanmaz.
+
+Ayrıntı: [UI_2_0.md](UI_2_0.md). Önceki manuel lab ve tarihsel ölçümler korunmuştur.
+
 ## 9–10 Kasım 2026 — çoklu liman / manuel kabul (aktif)
 
 - [x] HEAD0029672, doğru upstream ve iki mantıksal dal; immutable kaynak arşivi, başlangıç kimliği ve eski açık kapılar korundu.

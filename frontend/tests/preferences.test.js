@@ -176,6 +176,70 @@ test("sea-off, low quality and patrol-off simplify only effective motion", () =>
   assert.equal(docked.preferences.operations, "full");
 });
 
+test("UI 2.0 sunlight preference is additive, validated and persisted without resetting existing choices", () => {
+  const prior = {
+    ...DEFAULT_PREFERENCES,
+    patrol: false,
+    sea: false,
+    bob: false,
+    quality: "high",
+    theme: "dark",
+    motionPreference: "full",
+  };
+  delete prior.sunGlint;
+  const storage = memoryStorage({
+    [PREFERENCES_STORAGE_KEY]: JSON.stringify(prior),
+  });
+  const migrated = loadPreferences(storage);
+  assert.equal(migrated.sunGlint, true);
+  for (const [key, value] of Object.entries(prior))
+    assert.equal(migrated[key], value, `keeps existing ${key}`);
+  assert.equal(savePreferences({ ...migrated, sunGlint: false }, storage), true);
+  assert.equal(loadPreferences(storage).sunGlint, false);
+  assert.equal(validatePreferences({ sunGlint: "false" }).sunGlint, true);
+  assert.equal(validatePreferences({ sunGlint: 0 }).sunGlint, true);
+});
+
+test("sea, foam, hull motion and sunlight switches preserve independent behavior", () => {
+  const options = { ...DEFAULT_PREFERENCES, quality: "medium", motionPreference: "full" };
+  const moving = resolvePreferences(options).motion;
+  assert.equal(moving.patrol, true);
+  assert.equal(moving.sea, true);
+  assert.equal(moving.bob, true);
+  assert.equal(moving.wake, true);
+  assert.equal(moving.sunGlint, true);
+  const stillWater = resolvePreferences({ ...options, sea: false });
+  assert.equal(stillWater.motion.patrol, true);
+  assert.equal(stillWater.motion.sea, false);
+  assert.equal(stillWater.motion.bob, false);
+  assert.equal(stillWater.motion.wake, false);
+  assert.equal(stillWater.motion.sunGlint, true);
+  assert.equal(stillWater.motion.seaAmplitude, 0);
+  assert.equal(stillWater.preferences.wake, true);
+  assert.equal(stillWater.preferences.bob, true);
+  const noFoam = resolvePreferences({ ...options, wake: false }).motion;
+  assert.equal(noFoam.wake, false);
+  assert.equal(noFoam.patrol, true);
+  assert.equal(noFoam.sea, true);
+  assert.equal(noFoam.bob, true);
+  const noBob = resolvePreferences({ ...options, bob: false }).motion;
+  assert.equal(noBob.bob, false);
+  assert.equal(noBob.sea, true);
+  assert.equal(noBob.wake, true);
+  const noGlint = resolvePreferences({ ...options, sunGlint: false }).motion;
+  assert.equal(noGlint.sunGlint, false);
+  for (const key of ["patrol", "sea", "bob", "wake", "seaAmplitude"])
+    assert.equal(noGlint[key], moving[key], `${key} is independent from sunlight`);
+  for (const overrides of [{ paused: true }, { motionPreference: "reduced" }]) {
+    const stopped = resolvePreferences({ ...options, ...overrides });
+    for (const key of ["patrol", "sea", "bob", "wake"])
+      assert.equal(stopped.motion[key], false);
+    assert.equal(stopped.motion.seaAmplitude, 0);
+    assert.equal(stopped.motion.operations, "simple");
+    assert.equal(stopped.motion.sunGlint, true, "static reflection does not animate independently");
+  }
+});
+
 test("actual light/dark/high-contrast CSS tokens meet text, boundary and focus contrast targets", async () => {
   const { readFile } = await import("node:fs/promises");
   const css = await readFile(

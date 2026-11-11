@@ -246,6 +246,12 @@ export const VISUAL_EVENT_DIMENSIONS = Object.freeze({
 
 export const WORKSPACE_DIMENSIONS = Object.freeze({
   PORT_SPACING: 1300,
+  // Presentation only. Persisted workspace coordinates and resource scopes do
+  // not change. A rotated 500 m separation keeps both patrol envelopes clear.
+  WORLD_SPACING: 500,
+  WORLD_ROW_SPACING: 600,
+  WORLD_ROTATION: -Math.atan(0.7),
+  NEARBY_DETAIL_LIMIT: 1,
   SILHOUETTE_BASE: Object.freeze([180, 3, 150]),
   SILHOUETTE_CENTER: Object.freeze([45, 16, 30]),
   SILHOUETTE_TOWER: Object.freeze([12, 35, 12]),

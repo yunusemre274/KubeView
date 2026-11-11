@@ -61,3 +61,9 @@ Bir Node gemisi küme kapsamındadır. Aynı doğrulanmış cluster+Node UID, ik
 Ortak altyapı çizgisi aynı doğrulanmış kaynağı; yapılandırılmış çizgi gözlenen/elle belirtilen bağımlılığı; ölçülmüş akış yalnız sağlayıcının zamanlı gözlemini anlatır. İlk ikisi canlı paket veya bant genişliği kanıtı değildir. Harita üzerinde ilişki eklemek ağ erişimi yaratmaz. Tek-cluster Hubble gözlemi cross-cluster bağlantı sağladığımız anlamına gelmez.
 
 Yakındaki liman ayrıntılı, diğerleri hafif uzak temsildir; tek Canvas, paylaşılan deniz ve mevcut deniz/seyir/vinç/arıza davranışları korunur. Görsel uyku canonical state'i geciktirmez. Liman kaldırmak yalnız uygulama kaydını ve aboneliği bırakır; Kubernetes kaynağı silmez. TEST/REPLAY yük profili açıkça sentetiktir; gerçek scheduler, worker sağlama veya trafik ölçümü yerine sayılmaz.
+
+## 11 Kasım 2026 — referans görünümü ve komşu liman
+
+Aktif proje ve en yakın komşu aynı denizde ayrıntılı gösterilir; daha uzak projeler hafif tesis siluetidir. Levhalardaki adlar workspace kayıtlarından, gemi ve yükler her limanın kendi yetkili oturumundan gelir. Aynı fiziksel Node'un iki projede görünmesi iki sunucu yaratmaz. Komşu kutuya tıklama önce doğru proje bağlamına geçer, sonra gerçek Pod UID/container panelini açar.
+
+Güneş parlaması, küçük dalgalar ve hızla değişen kıç izi dekoratif deniz anlatımıdır; metrik veya ağ trafiği değildir. Deniz, seyir, salınım, iz ve güneş yansıması ayrı tercihlerdir. Kayıtlı yerleşim koordinatları değiştirilmeden görsel haritaya dönüştürülür; kapsam, UID ve gerçek Kubernetes yerleşimi değişmez. Ayrıntı ve kanıt: [UI 2.0](docs/UI_2_0.md).

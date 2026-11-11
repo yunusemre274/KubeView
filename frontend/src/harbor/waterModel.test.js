@@ -88,9 +88,10 @@ async function loadOceanFactories() {
 test('Ocean owns finite static geometry and material disposal; uniforms stay stable over animation', async () => {
   const { createOceanResources } = await loadOceanFactories()
   const resources = createOceanResources('medium', { maxZ: 510 })
-  let geometryDisposed = 0, materialDisposed = 0
+  let geometryDisposed = 0, materialDisposed = 0, textureDisposed = 0
   resources.geometry.addEventListener('dispose', () => geometryDisposed++)
   resources.material.addEventListener('dispose', () => materialDisposed++)
+  resources.uniforms.uWaterSurface.value.addEventListener('dispose', () => textureDisposed++)
   const originalPositions = resources.geometry.attributes.position.array.slice()
   const uniforms = resources.uniforms
   const shader = { uniforms: {}, vertexShader: THREE.ShaderLib.standard.vertexShader, fragmentShader: THREE.ShaderLib.standard.fragmentShader }
@@ -107,6 +108,40 @@ test('Ocean owns finite static geometry and material disposal; uniforms stay sta
   resources.dispose()
   assert.equal(geometryDisposed, 1)
   assert.equal(materialDisposed, 1)
+  assert.equal(textureDisposed, 1)
+})
+
+test('sun reflection toggles preserve texture, geometry, material and the held water phase', async () => {
+  const { createOceanResources, updateOceanUniforms } = await loadOceanFactories()
+  const resources = createOceanResources('medium')
+  const texture = resources.uniforms.uWaterSurface.value
+  const geometry = resources.geometry, material = resources.material
+  const positions = geometry.attributes.position.array.slice(), version = material.version
+  const phase = createWaterState(0.45)
+  phase.time = 17
+  for (let i = 0; i < 20; i++) {
+    updateOceanUniforms(resources, phase.time, phase.strength, false)
+    assert.equal(resources.uniforms.uSunGlint.value, 0)
+    assert.equal(resources.uniforms.uWaterTime.value, 17)
+    updateOceanUniforms(resources, phase.time, phase.strength, true)
+    assert.equal(resources.uniforms.uSunGlint.value, 1)
+  }
+  updateOceanUniforms(resources, 17, 0)
+  assert.equal(resources.uniforms.uSunGlint.value, 1)
+  assert.equal(resources.uniforms.uWaterTime.value, 17)
+  assert.strictEqual(resources.uniforms.uWaterSurface.value, texture)
+  assert.strictEqual(resources.geometry, geometry)
+  assert.strictEqual(resources.material, material)
+  assert.equal(material.version, version)
+  assert.deepEqual(geometry.attributes.position.array, positions)
+  assert.equal(texture.image.width, 256)
+  assert.equal(texture.image.height, 256)
+  assert.equal(texture.wrapS, THREE.RepeatWrapping)
+  assert.equal(texture.wrapT, THREE.RepeatWrapping)
+  assert.equal(texture.minFilter, THREE.LinearMipmapLinearFilter)
+  assert.equal(texture.generateMipmaps, true)
+  assert.equal(texture.colorSpace, THREE.NoColorSpace)
+  resources.dispose()
 })
 
 test('wake is bounded aft geometry and disposes its own resources without touching shared assets', async () => {
@@ -117,8 +152,11 @@ test('wake is bounded aft geometry and disposes its own resources without touchi
   resources.material.addEventListener('dispose', () => disposed++)
   const positions = resources.geometry.attributes.position
   for (let i = 0; i < positions.count; i++) assert.ok(positions.getZ(i) < -30 && positions.getZ(i) > -70)
+  assert.deepEqual(new Set(resources.geometry.attributes.wakeLane.array), new Set([-1, 0, 1]))
+  assert.ok(resources.geometry.index.count / 3 <= 108)
   assert.equal(resources.uniforms.uOpacity.value, 0)
   assert.equal(resources.material.depthWrite, false)
+  assert.equal(resources.material.forceSinglePass, true)
   resources.dispose()
   assert.equal(disposed, 2)
 })

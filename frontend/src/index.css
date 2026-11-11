@@ -1859,3 +1859,47 @@ a:focus-visible,
   outline-offset: 3px;
   box-shadow: 0 0 0 6px var(--nm-base), var(--nm-helper-shadow);
 }
+
+/* UI 2.0 reference: compact navy instruments over sunlit water. Contextual
+   management windows retain the opaque light/dark Soft UI theme above. */
+.world-overlay > .world-brand-control,
+.world-overlay .world-tool,
+.world-overlay .world-first-guide,
+.world-overlay .world-scope-chip {
+  background: #1d303f;
+  color: #f0f6fa;
+  border: 1px solid #91abb9;
+  box-shadow: 0 4px 12px #061c3052, inset 0 1px 0 #c8e1ee30;
+}
+.world-brand-control .connection-short,
+.world-scope-chip span { color: #c6d6e1; }
+.world-brand-control .brand-separator { background: #a5bcc9; }
+.world-brand-control .connection-light { background: #78d5b0; }
+.world-brand-control.is-stale .connection-light { background: #f5c87e; }
+.world-brand-control.is-demo .connection-light { background: #f5c87e; }
+.world-brand-control.is-demo .connection-short { color: #f5c87e; }
+.world-overlay .world-tool:hover,
+.world-overlay .world-tool[aria-pressed="true"] { background: #304b5e; color: #ffffff; }
+.world-overlay .world-first-guide { bottom: 42px; }
+.world-first-guide .icon-button { color: #f0f6fa; background: #203746; border-color: #91abb9; box-shadow: inset 0 1px 0 #c8e1ee30; }
+.world-overlay .world-tool:focus-visible,
+.world-overlay .world-brand-control:focus-visible,
+.world-overlay .world-first-guide button:focus-visible { outline-color: #e2f5ff; box-shadow: 0 0 0 6px #102936; }
+.harbor-nameplate {
+  display: flex; align-items: center; gap: 9px; min-height: 36px;
+  color: #f6fafc; background: #245668; border: 1px solid #c8e6ef;
+  border-radius: 22px; padding: 6px 16px; font: 600 16px/1.35 system-ui, sans-serif;
+  box-shadow: inset 0 1px 0 #d7f4ff22, 0 3px 8px #12384930;
+  white-space: nowrap; cursor: pointer; position: relative;
+}
+.harbor-nameplate span { max-width: 240px; overflow: hidden; text-overflow: ellipsis; }
+.harbor-nameplate::after { content: ""; position: absolute; top: 100%; left: 48%; width: 1px; height: 48px; background: #d2eff8; transform: rotate(18deg); transform-origin: top; pointer-events: none; }
+.harbor-nameplate::before { content: ""; position: absolute; top: calc(100% + 46px); left: calc(48% - 17px); width: 5px; height: 5px; border-radius: 50%; background: #e0f8ff; box-shadow: 0 0 5px #dbf7ff; pointer-events: none; }
+.harbor-nameplate:hover { background: #2e697e; }
+.harbor-nameplate:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+.harbor-nameplate small { font-size: 12px; color: #ffdf9a; }
+@media (max-width: 900px) {
+  .world-overlay .world-first-guide { bottom: 112px; max-width: calc(100% - 32px); }
+  .harbor-nameplate { font-size: 13px; padding: 5px 12px; }
+  .harbor-nameplate span { max-width: 170px; }
+}
