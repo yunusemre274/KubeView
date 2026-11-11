@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T19:50:45.691562+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T19:51:43.332328+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `96adbf6092cba098cef351072b045e0946a4525a`; remote tip aynı. Bekleyen fark yalnız gerçek Resources test guard ve test/kanıt kayıtlarıdır; CSP ürün düzeltmesi `d0be9753` içinde commitlidir.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %14, Battery Power. Yeni A/B/60dk koşusu başlamadı. Düşük pilde owned ağır lab süreçleri durduruldu; Chromium/Metal, WebKit ve native Safari sonuçları ayrı tutulur.
@@ -4428,6 +4428,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+- Bounded statik erişilebilirlik incelemesi: yalnız dört exact1.20.4 aday imajı network-none/read-only/Running=false containerlardan veri olarak çıkarıldı; kod çalıştırılmadı. On Go ELF dosyasının tam function-name tabloları ve üç ana binary raw-byte kontrolünde HTML parser ismi bulunmadı. Bu exact dosyalar için sınırlı link kanıtıdır; bütün x/net veya native/dynamic kod için genel istisna değildir.
+- Kaynak: artifacts/release-audit/ra-20261111/provider-reachability-worker/REPORT.md; pcln.py; *-pclntab.json; binary-string-crosscheck.json.
+
 #### TEST-07.05-S4 — Bulgular ve düzeltme
 - Bulgu: externalscanner semboleşleşmesi actualkomutexploitkanıtı değildir.
 - Hubble1.20.4 adayı17→3kaldığıiçin temizdiye kabul edilmedi.
@@ -4437,6 +4440,10 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 - DEP-002: provider bağımlılıklarında High eşleşmeleri; exacttetikleyici ve sürüm/erişilebilirlik değerlendirmesi raporda. Override/ignore uygulanmadı.
 - DEP-003: özel minikube.3 go-jose4.1.4→4.1.6 yeniHigh; bir darpatched.4build görevi verildi, henüz retest sonucu yok.
+
+- govulncheck1.9.0 stripped ELF için sembol bilgisi yoksa bilinen advisory fonksiyonlarını konservatif olarak rapora ekleyebilir. Relay/agent JSON fonksiyon adları gözlenen link kanıtı diye kullanılmadı; scanner kaynak excerpt/hash ile sınırlama doğrulandı.
+- Operator go-jose RSA private JWK parser'ı gerçekten linkli. Saldırgan girdisinden çağrı zinciri kanıtlanmadı; aynı commit'teki SPIRE girişinin X509Source kullanması tek başına JWKS erişimini kanıtlamaz. Bulgu açık; risk kabulü veya patch uygulanmadı.
+- APT chart/default startup yollarında çalıştırılmıyor; paket hâlâ taranan etkilenmiş sürümde. Runtime bakım yolu incelenmedi. Mevcut1.20.2 lab ayarları çalışan1.20.4 adayı kanıtı değildir.
 
 #### TEST-07.05-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
@@ -4454,10 +4461,13 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
 
+- [x] Dört owned extraction containerı exact ID/owner guard sonrası silindi; hiçbiri başlatılmadı. Binaryler private .git alanında, yalnız küçük rapor/kaynak/receipt verileri artefakttadır. Image cache korunur, kullanıcı containerlarına dokunulmadı.
+- [x] Root rapor/parser/correction kaydını okudu;50checksum doğruladı. İlk startswith-only sonuç ve erken vendor-prefix açıklaması superseded olarak korunur; geçerli kanıt diye kullanılmaz. Bağımsız profesyonel üçüncü taraf inceleme değildir.
+
 #### TEST-07.05-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Karar: IN_PROGRESS. Candidate tarama ve sınırlı binary/source erişilebilirlik analizi tamamlandı; operator linked parser ingress belirsizliği ve etkilenmiş APT paketleri açık. Final KubeView image/manifest/paket ve gerçek yeni provider kurulumu kabulü yoktur.
+- Otomatik ignore/risk kabulü yok. İmaj, kaynak, komut, config veya dağıtım yolu değişirse ilgili analiz/test yenilenir.
 
 ### TEST-07.06 — Çalışma ağacında sır taraması
 

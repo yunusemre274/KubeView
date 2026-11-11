@@ -24,6 +24,23 @@ garantisi değildir. Gerçek kullanıcı credential veya Secret içeriği kayded
 ve [tekrar tarama](../artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/REPORT.md)
 ayrı kaynak kimlikleriyle saklanır. Hiçbir özel CLI resmi upstream binary olarak sunulmaz.
 
+### DEP-002 — exact aday binary erişilebilirlik incelemesi
+
+[Statik inceleme](../artifacts/release-audit/ra-20261111/provider-reachability-worker/REPORT.md)
+yalnız dört aday digest'ten çıkarılan on Go ELF dosyasını kapsar; image kodu
+çalıştırılmadı. Tam function-name tablolarında x/net HTML parser adı bulunmadı;
+üç ana binary raw-byte kontrolü de bunu destekledi. Stripped ELF için GoDB'nin
+advisory fonksiyonlarını konservatif ekleyebilmesi, doğrudan gözlenen sembol
+olarak yorumlanmadı. Bu sonuç bütün x/net veya native/dynamic kod için genel
+istisna değildir; önceki eksik filtre ve erken açıklama superseded olarak korunur.
+
+Operator RSA private JWK parser'ı gerçekten linklidir; saldırgan girdisinin
+bu yola ulaşması gösterilemedi. APT chart/default startup yolunda görülmedi,
+ancak etkilenmiş paket hâlâ yüklüdür ve runtime bakım yolu incelenmedi.
+Her iki açık sınır korunur; risk kabulü veya provider pin güncellemesi yapılmadı.
+Mevcut lab1.20.2'dir; aday1.20.4 çalıştırılmış sayılmaz. Final image/paket ve
+gerçek yeni provider kurulum kabulü açık kalır.
+
 SEC-001'in ilk başarısız testi
 [`regression-secret-discovery.log`](../artifacts/release-audit/ra-20261111/security-worker/regression-secret-discovery.log),
 ayrı başarılı tekrarı

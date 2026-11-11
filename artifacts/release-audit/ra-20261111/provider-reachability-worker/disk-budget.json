@@ -1,0 +1,7 @@
+{
+  "conservative_image_size_sum_bytes": 1194989056,
+  "three_times_size_allowance_bytes": 3584967168,
+  "new_disk_cap_bytes": 4294967296,
+  "within_cap": true,
+  "method": "Conservative allowance for compressed+unpacked image caches and extracted binaries; each extraction limited to named files, no rootfs tar archive kept"
+}

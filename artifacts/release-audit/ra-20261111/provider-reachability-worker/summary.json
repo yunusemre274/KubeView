@@ -1,0 +1,52 @@
+{
+  "completed_at_utc": "2026-11-11T13:37:32.220608+00:00",
+  "status": "BOUNDED_STATIC_REACHABILITY_EVIDENCE_NO_WAIVER",
+  "allowlisted_images": 4,
+  "extracted_go_binaries": 10,
+  "additional_chart_entrypoint_programs": 1,
+  "all_owned_stopped_containers_removed": true,
+  "images_never_started": true,
+  "no_existing_container_or_image_deleted": true,
+  "html_full_name_tables_empty": true,
+  "html_raw_main_binary_strings_absent": true,
+  "go_jose_private_rsa_parser_linked": true,
+  "go_jose_attacker_controlled_ingress": "NOT_ESTABLISHED; feature-gated SPIRE/X509 reference path examined",
+  "apt_default_entrypoint_call": "NOT_OBSERVED_IN_INSPECTED_CHART_COMMANDS; runtime maintenance not enumerated",
+  "go_db_coverage": "3 main binaries; remaining7 covered by complete function-table parsing only",
+  "extracted_file_bytes": 596663598,
+  "source_tag_commit": "beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+  "source_buildinfo_vcs": [
+    {
+      "image": "hubble-relay",
+      "vcs": [
+        "build\tvcs.revision=beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+        "build\tvcs.time=2026-10-23T14:07:20Z",
+        "build\tvcs.modified=false"
+      ]
+    },
+    {
+      "image": "cilium",
+      "vcs": [
+        "build\tvcs.revision=beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+        "build\tvcs.time=2026-10-23T14:07:20Z",
+        "build\tvcs.modified=false"
+      ]
+    },
+    {
+      "image": "operator-generic",
+      "vcs": [
+        "dep\tgithub.com/spiffe/go-spiffe/v2\tv2.8.1",
+        "build\tvcs.revision=beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+        "build\tvcs.time=2026-10-23T14:07:20Z",
+        "build\tvcs.modified=false"
+      ]
+    }
+  ],
+  "retained_gaps": [
+    "Dynamic/plugin loading and unidentified native paths not proved absent",
+    "No exploit/RPC input test",
+    "Owned lab read is current1.20.2 values, not a running1.20.4 candidate",
+    "No root risk acceptance or release decision"
+  ],
+  "correction_record": "analysis-correction.json"
+}

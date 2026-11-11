@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — provider erişilebilirlik incelemesi
+
+- [x] Dört exact aday imajdan on Go ELF için sınırlı statik link/source incelemesi; extraction containerları başlatılmadan temizlendi. İlk eksik analiz ve düzeltmesi korunur.
+- [ ] Operator linked JWK parser girişinin belirsizliği, etkilenmiş APT paketleri, gerçek yeni provider ve final image/paket kapıları açık. Risk kabulü verilmedi.
+
 ## 11 Kasım — gerçek CPU/RAM retesti
 
 - [x] Gerçek `/api/actions` isteği sonrası template ve iki yeni Ready Pod üzerinde dört request/limit değeri, owner UID zinciri ve ilgisiz spec korunumu doğrulandı. İlk başarısız koşu korunur.

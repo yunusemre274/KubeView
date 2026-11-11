@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — provider bulgularının erişilebilirlik sınırı
+
+- Exact1.20.4 aday dosyalarının bounded statik incelemesi kaydedildi. Stripped GoDB sembol fallback'ı gerçek linkage kanıtından ayrıldı; operator JWK parser ve APT belirsizlikleri açık bırakıldı. Yeni provider kurulmadı ve güvenlik riski kabul edilmedi.
+
 ## 2026-11-11 — CSP hedef tarayıcı ve MIME kabulü
 
 - Aynı private adayda Chromium/Metal Apple M5 ve Playwright WebKit normal Bul/Node/Pod/container log açılışı/settings/ESC ile aynı canvas korunumunu doğruladı. Inline script gerçek CSP ihlaliyle engellendi; blob Worker çalıştı ve temizlendi. External script canary veya gerçek Kubernetes preview kabulü iddia edilmedi.

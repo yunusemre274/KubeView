@@ -1,0 +1,24 @@
+{
+  "node_id": "TA_kwDOAt4Wt9oAKDY2NjBkNmVhYzdmOTNhMjE3NmFjMDM5ZjAzZTdmMmJmODg1YmRiMmU",
+  "sha": "6660d6eac7f93a2176ac039f03e7f2bf885bdb2e",
+  "url": "https://api.github.com/repos/cilium/cilium/git/tags/6660d6eac7f93a2176ac039f03e7f2bf885bdb2e",
+  "tagger": {
+    "name": "Andr\u00e9 Martins",
+    "email": "andre@cilium.io",
+    "date": "2026-10-23T14:11:32Z"
+  },
+  "object": {
+    "sha": "beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+    "type": "commit",
+    "url": "https://api.github.com/repos/cilium/cilium/git/commits/beb276d2f38d4aadfda14710acf8d14a0f1ba723"
+  },
+  "tag": "v1.20.4",
+  "message": "Release v1.20.4\n-----BEGIN PGP SIGNATURE-----\n\niQHEBAABCgAuFiEEIxaqI6crQ+prI0NEo40vuogNFqsFAmrbaxQQHGFuZHJlQGNp\nbGl1bS5pbwAKCRCjjS+6iA0WqwjcC/4+Ry5y+w4qif3zkH4LI9qhStqp1iXcM2zr\nSRxwy3gD9nY98boOwsTBRZbIe8FSwwk046ZTkMcsGjdX0/tqM1n3MWbhuQqvOpg9\nVaHJDS4Qlr4n3TejOVwIarz1h2nTAUJz83EjC1EPuhDBtff/IsJLAIwXlqOJnTs8\nIvbOVhKcZqDcIUSRAUBnVtQ0uvEWTC54iKjdP50lf9ymEs4SIC2pl2W/jXrDF9Hq\nLs4Wj0ZwdLO8z5gToeZvsRiDplRCnNSbgJiLgQUfItUAuI6iV3IXCXORrF8rbCyl\ngJHNnHePe7aqhaE/gDxosYLVH61EBwQg4dsdp/xETSX59Wyym8nE58OAz3BW423q\nbMz1tPeDYZ4QuBZKvGLHCBHJ3qyI6y8zCIFOm+8jri4RohWSmAgMmgdmGepYShIn\ny6jPIbf2ZSEdQV72DIUb0q1W4MVnnpdVCgvrr7ku68l3/XeVIDg/grnR8hsB3kdQ\n2rO+lM+JwApi17bdg947nD13pAYqAn4=\n=dwRa\n-----END PGP SIGNATURE-----\n",
+  "verification": {
+    "verified": true,
+    "reason": "valid",
+    "signature": "-----BEGIN PGP SIGNATURE-----\n\niQHEBAABCgAuFiEEIxaqI6crQ+prI0NEo40vuogNFqsFAmrbaxQQHGFuZHJlQGNp\nbGl1bS5pbwAKCRCjjS+6iA0WqwjcC/4+Ry5y+w4qif3zkH4LI9qhStqp1iXcM2zr\nSRxwy3gD9nY98boOwsTBRZbIe8FSwwk046ZTkMcsGjdX0/tqM1n3MWbhuQqvOpg9\nVaHJDS4Qlr4n3TejOVwIarz1h2nTAUJz83EjC1EPuhDBtff/IsJLAIwXlqOJnTs8\nIvbOVhKcZqDcIUSRAUBnVtQ0uvEWTC54iKjdP50lf9ymEs4SIC2pl2W/jXrDF9Hq\nLs4Wj0ZwdLO8z5gToeZvsRiDplRCnNSbgJiLgQUfItUAuI6iV3IXCXORrF8rbCyl\ngJHNnHePe7aqhaE/gDxosYLVH61EBwQg4dsdp/xETSX59Wyym8nE58OAz3BW423q\nbMz1tPeDYZ4QuBZKvGLHCBHJ3qyI6y8zCIFOm+8jri4RohWSmAgMmgdmGepYShIn\ny6jPIbf2ZSEdQV72DIUb0q1W4MVnnpdVCgvrr7ku68l3/XeVIDg/grnR8hsB3kdQ\n2rO+lM+JwApi17bdg947nD13pAYqAn4=\n=dwRa\n-----END PGP SIGNATURE-----\n",
+    "payload": "object beb276d2f38d4aadfda14710acf8d14a0f1ba723\ntype commit\ntag v1.20.4\ntagger Andr\u00e9 Martins <andre@cilium.io> 1792764692 +0200\n\nRelease v1.20.4\n",
+    "verified_at": "2026-10-23T14:11:36Z"
+  }
+}

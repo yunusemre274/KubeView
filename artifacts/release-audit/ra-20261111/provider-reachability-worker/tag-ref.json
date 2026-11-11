@@ -1,0 +1,10 @@
+{
+  "ref": "refs/tags/v1.20.4",
+  "node_id": "MDM6UmVmNDgxMDkyMzk6cmVmcy90YWdzL3YxLjIwLjQ=",
+  "url": "https://api.github.com/repos/cilium/cilium/git/refs/tags/v1.20.4",
+  "object": {
+    "sha": "6660d6eac7f93a2176ac039f03e7f2bf885bdb2e",
+    "type": "tag",
+    "url": "https://api.github.com/repos/cilium/cilium/git/tags/6660d6eac7f93a2176ac039f03e7f2bf885bdb2e"
+  }
+}

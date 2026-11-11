@@ -1,0 +1,79 @@
+[
+  {
+    "path_in_image": "/usr/bin/hubble-relay",
+    "local_path": ".git/release-audit/provider-reachability-worker/hubble-relay/hubble-relay",
+    "sha256": "849470e7b06c960cb1fcdcf31a507698235ff68ae06659935943d9d1fbbd7fd9",
+    "bytes": 68354210,
+    "execution": false
+  },
+  {
+    "path_in_image": "/opt/cni/bin/cilium-cni",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium/cilium-cni",
+    "sha256": "f150eee8501ccac18eb8a73d12382cd801c39017f21456b2b8cb76f1ebc75384",
+    "bytes": 16210424,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/cilium-agent",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium/cilium-agent",
+    "sha256": "0144e472f4f0573684a13a0a2e7d1ff304fb78bc06b5f9cc9d9221dd934ab03e",
+    "bytes": 125730200,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/cilium-bugtool",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium/cilium-bugtool",
+    "sha256": "172757f640066ec8e9d4deedbb5bf8a9ae37e785af6453fa092555c1bb32edfd",
+    "bytes": 10803368,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/cilium-dbg",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium/cilium-dbg",
+    "sha256": "57e5785aca0239a07261313a5b0797a3f7a5fc7c7f4a37e976e7568557a2142b",
+    "bytes": 92797488,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/cilium-envoy-bootstrap-locality",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium/cilium-envoy-bootstrap-locality",
+    "sha256": "69c81e396daf71c2830c9b720813915363e0e01ffd94b36be73da7e6b8e201ac",
+    "bytes": 24685208,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/cilium-health",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium/cilium-health",
+    "sha256": "2e0d6464b73c77141e384fc43ee625c775e0d952577cc154c80bdef98b9fa54d",
+    "bytes": 11993216,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/cilium-mount",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium/cilium-mount",
+    "sha256": "3165e60bd1a82c283de944062f5288f6984c1400239ef924c809fcea79edb374",
+    "bytes": 7098560,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/hubble",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium/hubble",
+    "sha256": "b0db823658d23310c4d19f0a239cb63873c07f0e0473dbb6a890ab9d4725ec98",
+    "bytes": 70116352,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/cilium-operator-generic",
+    "local_path": ".git/release-audit/provider-reachability-worker/operator-generic/cilium-operator-generic",
+    "sha256": "b8820c0b796229914ed0345c78c8ab40560be9af5e54fb4be6ac62029789e219",
+    "bytes": 168158964,
+    "execution": false
+  },
+  {
+    "path_in_image": "/usr/bin/cilium-envoy-starter",
+    "local_path": ".git/release-audit/provider-reachability-worker/cilium-envoy/cilium-envoy-starter",
+    "sha256": "1e0baa446c1cdfba5e2c69fdd7e2efad67bb6b8258509f16c76045efc22ea3c6",
+    "bytes": 715608,
+    "execution": false
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "records": [
+    {
+      "image": "hubble-relay",
+      "path_in_image": "/usr/bin/hubble-relay",
+      "sha256": "849470e7b06c960cb1fcdcf31a507698235ff68ae06659935943d9d1fbbd7fd9",
+      "bytes": 68354210,
+      "status": "PARSED_ALL_FUNCTION_ENTRIES",
+      "elf_machine": 183,
+      "symtab_present": false,
+      "pclntab_magic": "0xfffffff1",
+      "pclntab_sha256": "e4ea44e593499a6412301359907e7f97e4c9f521ba62d0f7e0c1a08f00143ff7",
+      "function_entries": 102118,
+      "parsed_function_entries": 102118,
+      "funcname_table_names": 110072,
+      "html_function_entries": [],
+      "html_all_name_entries_including_inlining": [],
+      "jose_linked_function_count": 0,
+      "jose_parser_name_entries": [],
+      "identity_package_name_entries": [
+        "google.golang.org/grpc/internal/credentials.SPIFFEIDFromState",
+        "google.golang.org/grpc/internal/credentials.SPIFFEIDFromCert"
+      ],
+      "scope": "Go function table and complete funcname table (including inlined names); no image execution"
+    }
+  ],
+  "python_peak_rss_bytes_macos": 124616704,
+  "parser_primary_source": "Installed Go1.27.4 src/debug/gosym/pclntab.go ver118/ver120 funcdata and name offsets; exact source hash recorded separately"
+}
