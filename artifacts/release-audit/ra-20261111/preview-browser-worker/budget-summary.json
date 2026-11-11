@@ -1,0 +1,22 @@
+{
+  "attempt": "attempt-02",
+  "note": "Playwright route interception omits redirect-follow requests; browser-visible response paths and server denied API paths are disjoint in this run. Their sum is the observed HTTP request total.",
+  "browsers": [
+    {
+      "engine": "chromium",
+      "route_interceptions": 14,
+      "browser_visible_responses": 10,
+      "server_observed_cors_denied_requests": 6,
+      "observed_total_nonoverlapping_requests": 16,
+      "elapsed_seconds": 0.3
+    },
+    {
+      "engine": "webkit",
+      "route_interceptions": 14,
+      "browser_visible_responses": 10,
+      "server_observed_cors_denied_requests": 6,
+      "observed_total_nonoverlapping_requests": 16,
+      "elapsed_seconds": 0.471
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — tarihsel preview browser job checkpoint'i
+
+- Önceden doğrulanmış browser sandbox/CSRF/header sınırına ait iki helper ve küçük redakte kanıtlar Git'e alındı. Kaynak hashleri değişmediği için yeni test gibi sayılmadı veya tekrar çalıştırılmadı; fake transport ve gerçek Kubernetes sınırı korundu.
+
 ## 2026-11-11 — Safari driver attribution retesti
 
 - Exact-port tanılama ayrı HTTPService XPC listener PID'sini ve loopback bind'lerini doğruladı. Parent zinciri owned launcher'a ulaşmadığından helper session göndermeden BLOCKED kaldı; ilk FAIL korundu. Native uygulama/performance veya izin sonucu çıkarılmadı.

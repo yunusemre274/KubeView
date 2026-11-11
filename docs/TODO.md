@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — preview browser kanıtının korunması
+
+- [x] Önceden tamamlanan opaque preview/CSRF Chromium+WebKit job'ı ve iki helper, exact10kaynak hash eşitliğiyle checkpoint edildi. İlk FAIL ve ayrı PASS korundu; gereksiz yeniden koşu yapılmadı.
+- [ ] Bu sentetik upstream/fake yetki kanıtıdır; gerçek Kubernetes/SPDY veya native Safari olarak sunulmaz. Default opt-in SKIP yalnız guard gözlemidir.
+
 ## 11 Kasım — native Safari attribution sınırı
 
 - [x] Tek bounded tanılama gerçek listener'ın farklı PID/PPID1 Apple HTTPService XPC olduğunu gösterdi; loopback adresleri ve cleanup kaydedildi.
