@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — güncel endpoint retesti
+
+- [x]25normal/21protect ve2conditionalreplay pattern ayrımı;37normal+7replayGET assertion geçti, ilkhelperFAIL korundu.
+- [ ] Dar ikinci kaynak/kanıt incelemesi beklenir; gerçekKubernetes/provider/paket kabulü ayrı.
+
+
 ## 11 Kasım — native-safari-evaluation-contract-worker
 
 - [ ] Farklı ve bounded tanı gerçek kurulu araç sözleşmesini gösterdi: evaluate_javascript functionbody ve explicitreturn istiyor. Ownedblanktab üç sabit expression:1+1→null,JSON.stringify→null,return1+1→2; ham yanıtlar korundu. Önceki app yardımcı kodundaki dışreturn eksikliği belirlendi; uygulama render sonucu hâlâ kanıtlanmadı.0.888sn, exactownhandleclose/EOFexit0.

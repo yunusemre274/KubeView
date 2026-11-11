@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T21:53:53.666599+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T22:00:17.619857+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:21; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:29; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:22; FAILED:1; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:29; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -24,7 +24,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 
 | Kategori | Faz | Durum | Geçerli kanıt |
 |---|---:|---|---|
-| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, FAILED:1 | Henüz yok |
+| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
@@ -61,11 +61,11 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-SECURITY-WORKER
-- Kaynak / build / paket kimliği: 36d5b8f; runtime değişikliği henüz yok
+- Kaynak / build / paket kimliği: Runtime4c6c2ac5; provider09f9e70b60; sourcefileSHA/result/probe normal+replay kayıtlarında
 - Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
 - Başlangıç zamanı: 2026-11-11T13:20:48.364084+03:00
 - Bitiş zamanı: —
-- Durum: FAILED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-01.01-S1 — Hazırlık
@@ -87,6 +87,8 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 
 Güncel binary f9/4c ile owned19844, synthetic API key ve boş workspace üzerinde28GET kontrolü çalıştı.25normalpattern/21protect kaynağa bağlandı; yetkisiz401 ve yetkiliworkspace/contexts200 gözlendi. İlk yardımcı contexts nesnesini array sandığı için assertionFAIL; ürün değiştirilmedi. Debug/replay/fallback son kontroller çalışmadı. Kanıt: runtime-surface-current/REPORT.md/result.json/probe.py.
 
+Ayrı normalretst37/37GET ve explicitreplay7/7GET geçti;21protect APIunauth401, yetkili boşworkspace/contexts200, publicshell/health/version200, foreignorigin403. Normal25pattern ve conditional2 kaynak+runtime ile ayrıldı. İlkhelperFAIL korunur. Kanıt: runtime-surface-retest/REPORT.md ve runtime-surface-replay/result.json.
+
 #### TEST-01.01-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
 - Yapılan: henüz çalışılmadı.
@@ -94,6 +96,8 @@ Güncel binary f9/4c ile owned19844, synthetic API key ve boş workspace üzerin
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+Debug/profiler/test benzeri5yol200 döndürse de exactindexbodySHA ile aynı SPAfallback olduğu doğrulandı; normalreplay/benchmarkAPI404. ExplicitreplaydataSource/profile/noncepresence/auth ve scenariomethod405 ayrı geçti. Hiç Kubernetes/scenario mutation çağrısı yok; bu load/performance ölçümü değildir.
 
 #### TEST-01.01-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -117,6 +121,8 @@ Güncel binary f9/4c ile owned19844, synthetic API key ve boş workspace üzerin
 - Kalan sınırlar: henüz test edilmedi.
 
 Root kendi testindeki hatayı mevcut server.contexts sözleşmesinden belirledi; ilk boş AssertionError korundu. App85661 exactbirth/PGID cleanup exit0 ve noLISTEN19844. Ürün veya Kubernetes işlemi yok; ayrı yardımcı retesti gerekiyor.
+
+Root rawregex rootpattern alternatifini ROOT_ACTIVE_ROUTES.json içinde embedded aktif yol olarak düzeltti; normal25+replay2 inventory. Her ikiapp exactPID/birth/PGIDexit0/noLISTEN. Bağımsız dar kaynak/kanıt incelemesi henüz beklenir; genel faz bu nedenle IN_PROGRESS, VERIFIED değildir.
 
 #### TEST-01.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

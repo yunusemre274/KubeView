@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — normal ve replay yüzeyi
+
+- Güncel özel binaryde normal37 ve explicitreplay7HTTP kontrolü geçti; debugbenzeri200 yanıtlarının SPAfallback olduğu hash ile doğrulandı. Aktif root alternatifi embeddedfrontend olarak düzeltildi; ürünruntime değişmedi.
+
+
 ## 2026-11-11 — native-safari-evaluation-contract-worker
 
 - Farklı ve bounded tanı gerçek kurulu araç sözleşmesini gösterdi: evaluate_javascript functionbody ve explicitreturn istiyor. Ownedblanktab üç sabit expression:1+1→null,JSON.stringify→null,return1+1→2; ham yanıtlar korundu. Önceki app yardımcı kodundaki dışreturn eksikliği belirlendi; uygulama render sonucu hâlâ kanıtlanmadı.0.888sn, exactownhandleclose/EOFexit0.
