@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:20:41.624001+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:25:30.941988+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:147; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:28; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:147; IN_PROGRESS:20; FAILED:1; BLOCKED:2; RETEST_REQUIRED:2; VERIFIED_DONE:28; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -42,7 +42,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-16 — A/B benchmark | 13 | NOT_STARTED:13 | Henüz yok |
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
-| CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:2, FAILED:1 | Henüz yok |
+| CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:2, BLOCKED:1 | Henüz yok |
 | CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:2, VERIFIED_DONE:1 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
@@ -11093,8 +11093,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Kaynak / build / paket kimliği: 87e7dfe8 + private capability helper; snapshot native-safari-capability/first-helper.py. Ürün binary kullanılmadı.
 - Ortam / kullanılan kimlik ve yetki: macOS27.0.1/Apple M5; installed safaridriver Safari27.0.1, owned port19845. Session/OS ayarı/kişisel sayfa erişimi yok.
 - Başlangıç zamanı: 2026-11-11T17:17:48.720855Z
-- Bitiş zamanı: 2026-11-11T17:17:48.889085Z
-- Durum: FAILED
+- Bitiş zamanı: Retest2026-11-11T17:23:29.515876Z,0.211336sn/45sn sınırı. Session yaratılmadı; Safari uygulama kabulü yok.
+- Durum: BLOCKED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-19.09-S1 — Hazırlık
@@ -11107,6 +11107,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Sonuç: NOT_STARTED
 
 - İlk native driver probe: version çıktı, readiness döngüsü sonrası launcher-PID lsof ownership guard exit1/CalledProcessError. Session oluşturma aşamasına ulaşılmadı. Kaynak/result ilk haliyle saklandı.
+
+- Tek somut düzeltme: PID filtresi yerine exact port bütün listenerları okundu. Native launcher53153, HTTPService XPC listener53154/PPID1 farklıdır; iki bind adresi de loopback. Bu canlı veri ilk PID-filtresi eksikliğini açıklar.
 
 #### TEST-19.09-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -11126,6 +11128,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 - [ ] Native Safari uygulama/Retina/automation izni doğrulanmadı. İlk kurulum assertion'ı FAILED; WebKit PASS ile yerine konmadı.
 - OS --enable/ayar değişimi yapılmadı; gerçek üretim veya kişisel sayfa hedeflenmedi.
+
+- Authoritative XPC responsibility→owned launcher bağı kurulamadığı için sıkı guard korundu ve POST/session gönderilmedi. Aynı UID/Apple imzası/HTTP200 tek başına kaynak kimliği kabul edilmedi.
+- Bu mevcut helper'ın instrumentation sınırıdır; Safari uygulaması bozuk, izin reddedilmiş veya platform desteklenmiyor sonucu değildir. Başka doğrulanmış native yöntem/attribution kanıtı gereklidir.
 
 #### TEST-19.09-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -11151,10 +11156,13 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - [x] Owned driver sonlandırıldı. İlk bindfalse sonucu ayrı durur; sonraki lsof/pgrep boş ve connect refused gözlemi var. Bu bir driver leak kanıtı değildir.
 - Kaynak: artifacts/release-audit/ra-20261111/native-safari-capability/REPORT.md; cleanup-followup.json.
 
+- [x] Owned launcher SIGTERM sonrası çıktı; exact port LISTEN kaydı yok. XPC veya kullanıcı PID'si ayrıca öldürülmedi; immediate bindfalse ham kaydı leak diye yorumlanmadı.45sn sınırında, otomatik devam/retry yok.
+- Kanıt: artifacts/release-audit/ra-20261111/native-safari-capability-retest/REPORT.md; result.json; tested-helper.py.
+
 #### TEST-19.09-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- FAILED: native capability harness launcher/listener attribution kontrolünde durdu. Session oluşturulmadı; Safari uygulama uyumluluğu, izin durumu ve Retina hakkında sonuç yok.
-- Sonraki iş: doğru owned listener attribution yolunu somut kanıtla ayırmak; yalnız bu kurulum sorununa yönelik tek bounded retest. Kör timeout/guard gevşetme veya OS ayarını otomatik açma yok.
+- BLOCKED: XPC listener için mevcut test yardımcısında authoritative owned responsibility mapping yok; session yaratılmadı. İlk harness FAILED kaydı ayrı korunur. Native Safari uygulama/Retina/performance ve izin durumu hâlâ doğrulanmamış.
+- Sonraki somut iş: doğrulanmış native driver yolu veya XPC responsibility kanıtını elde edip aynı kapsamı bounded test etmek. WebKit PASS yerine kullanılamaz; OS automation ayarı kendiliğinden açılmadı.
 
 ## CAT-20 — Paket/güncelleme/CI
 

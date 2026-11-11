@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — Safari driver attribution retesti
+
+- Exact-port tanılama ayrı HTTPService XPC listener PID'sini ve loopback bind'lerini doğruladı. Parent zinciri owned launcher'a ulaşmadığından helper session göndermeden BLOCKED kaldı; ilk FAIL korundu. Native uygulama/performance veya izin sonucu çıkarılmadı.
+
 ## 2026-11-11 — native Safari capability ilk denemesi
 
 - Native safaridriver probe session öncesi ownership-inspection hatasında durdu. İlk FAILED kanıtı korunur; ürün/Safari uyumsuzluğu veya permission reddi iddia edilmedi. Driver/listener cleanup ayrıca doğrulandı; otomatik OS ayarı açılmadı.

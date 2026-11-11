@@ -1,0 +1,35 @@
+{
+  "startedAt": "2026-11-11T17:23:29.304397+00:00",
+  "scope": "Native Safari capability probe only; no app or user page navigation, performance or Retina app acceptance",
+  "status": "BLOCKED",
+  "port": 19845,
+  "driverVersion": "Included with Safari 27.0.1 (22625.1.29.11.28)",
+  "launcherPID": 53153,
+  "lsofExitCode": 0,
+  "driverListenEndpoints": [
+    "127.0.0.1:19845",
+    "[::1]:19845"
+  ],
+  "listenerPIDs": [
+    53154
+  ],
+  "lsofStderrClass": "empty",
+  "listenerParentChains": [
+    [
+      {
+        "pid": 53154,
+        "ppid": 1,
+        "comm": "/System/Library/PrivateFrameworks/WebDriver.framework/Versions/A/XPCServices/com.apple.WebDriver.HTTPService.xpc/Contents/MacOS/com.apple.WebDriver.HTTPService"
+      }
+    ]
+  ],
+  "reason": "Listener ancestry to owned launcher not established; no session sent",
+  "probeErrorClass": "RuntimeError",
+  "ownedDriverExited": true,
+  "portFreeAfter": false,
+  "listenerRecordsAfter": [],
+  "noListenerAfter": true,
+  "elapsedSeconds": 0.2113363329990534,
+  "within45s": true,
+  "finishedAt": "2026-11-11T17:23:29.515876+00:00"
+}

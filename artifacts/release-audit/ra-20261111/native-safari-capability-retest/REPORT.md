@@ -1,0 +1,9 @@
+# Native driver attribution retest — BLOCKED, no session sent
+
+One focused correction queried all listeners on the exact owned target19845, retaining the loopback and ownership requirements. The observed native driver launcher PID53153 and HTTP listener PID53154 differed. Both actual listener addresses were loopback (127.0.0.1 and::1). The listener executable was Apple's com.apple.WebDriver.HTTPService XPC service with PPID1. This directly explains why filtering only by the launcher's PID found no listener in the first attempt.
+
+The PPID chain alone does not establish authoritative responsibility back to the launched driver. The strict current helper therefore marked BLOCKED and sent no POST/session. This is a harness/instrumentation attribution limit, not a demonstrated Safari incompatibility or denied automation permission. No --enable/OS setting change, user page access or application/performance/Retina test occurred. A later attempt needs an authoritative XPC responsibility mapping or another validated native-driver method; no blind retry is planned.
+
+The owned launcher was terminated. Subsequent exact-port lsof found no listener; the raw immediate exclusive-bindfalse value remains separate and is not called a leak. Total elapsed0.211336s stayed inside45s. First failed helper/result are preserved in the sibling native-safari-capability directory. Only the owned launcher received a signal; no XPC or user PID was directly killed.
+
+Installed man page `/System/Cryptexes/App/usr/share/man/man1/safaridriver.1` documents localhost-only acceptance, not a launcher/listener PID relationship. The Apple WebDriver documentation's XPC discussion was read during the bounded source diagnosis; it did not by itself prove this live mapping. Current endpoint/executable/PPID facts come from result.json.

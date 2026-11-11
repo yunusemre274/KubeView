@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — native Safari attribution sınırı
+
+- [x] Tek bounded tanılama gerçek listener'ın farklı PID/PPID1 Apple HTTPService XPC olduğunu gösterdi; loopback adresleri ve cleanup kaydedildi.
+- [ ] Authoritative ownership bağı current helper'da doğrulanamadı; TEST19.09 BLOCKED, session/UI/Retina testi yapılmadı. Bu Safari veya permission hatası diye sunulmaz; kör yeni deneme yok.
+
 ## 11 Kasım — native Safari kurulum denemesi
 
 - [ ] TEST19.09 ilk capability helper'ı, session öncesi launcher-PID/listener guard'ında FAILED. Safari uygulama/izin/Retina sonucu üretmedi; WebKit sonucu yerine geçirilmedi.
