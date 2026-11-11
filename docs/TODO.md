@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — real-minikube-add-fixed-cleanup-worker
+
+- [x] Case02 exactcleanup:102.600sn<120 operasyon geçti; container/volume nonforce kaldırıldı, profilec826exactrestore/originalsnapshotaynı/NewNode+Pod+labeltargets0. Failedoperation/journallar değişmez. Finalreport244.087sn>240timingFAIL ayrı korundu; yeniapp/add yok. Source8645eskiFAIL kaydı sabit; makinadizini o alt işte silinmedi.
+- [ ] GerçekworkerReady kapısı hâlâ açık.
+
+
 ## 11 Kasım — native Safari gerçek görsel kanıtı
 
 - [x] Fullviewportworld ve ilkharborform programmaticopen/type/close samecanvas; ikiPNG worker/root tarafından açılıp incelendi, cleanupgeçti.

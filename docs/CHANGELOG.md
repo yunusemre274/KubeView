@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — real-minikube-add-fixed-cleanup-worker
+
+- Case02 exactcleanup:102.600sn<120 operasyon geçti; container/volume nonforce kaldırıldı, profilec826exactrestore/originalsnapshotaynı/NewNode+Pod+labeltargets0. Failedoperation/journallar değişmez. Finalreport244.087sn>240timingFAIL ayrı korundu; yeniapp/add yok. Source8645eskiFAIL kaydı sabit; makinadizini o alt işte silinmedi.
+
+
 ## 2026-11-11 — native Safari dünya ve form kaydı
 
 - GerçekSafari27.0.1 üstünde tamCSSviewport deniz dünyası ve form akışı PNG ile doğrulandı. Screenshot pathkontratı ve asyncviewport beklemesi doğru kullanıldı; reportedDPR2/renderbuffer/physical ayrımı korunur.
