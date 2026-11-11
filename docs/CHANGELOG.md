@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — native Safari capability ilk denemesi
+
+- Native safaridriver probe session öncesi ownership-inspection hatasında durdu. İlk FAILED kanıtı korunur; ürün/Safari uyumsuzluğu veya permission reddi iddia edilmedi. Driver/listener cleanup ayrıca doğrulandı; otomatik OS ayarı açılmadı.
+
 ## 2026-11-11 — standalone native startup kabulü
 
 - Gerçek darwin-arm64 CI paketi yeni harici dizinden, boş uygulama PATH'iyle çalıştırıldı. Embedded asset kimlikleri, empty workspace/context ve Metal üzerinde normal ilk liman formu doğrulandı; uygulama PID/birth guard ile kapanıp portu bıraktı.

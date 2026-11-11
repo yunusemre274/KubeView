@@ -1,5 +1,10 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — driver ve port gözlemi
+
+- PID filtreli lsof exit1 ile gerçek session/API hatasını aynı kabul etmeyin. İlk hatanın hangi setup guard'ında olduğunu ve child ömrünü kaydedin.
+- Kapanıştan hemen sonra exclusive bind başarısızlığı, yaşayan listener kanıtı değildir. Ayrı LISTEN/process ve connection-refused kontrolü yapın; gözlenmeyen TIME_WAIT/XPC nedenini kesinleştirmeyin.
+
 ## 11 Kasım — PR paket kimliği ve kaynak dönüşümü
 
 - Pull request CI varsayılan olarak geçici merge commit'ini derleyebilir. Head SHA'sı ile binary sürümündeki SHA farklıysa çalıştırmadan önce gerçek checkout, parent ve kaynak tree kimliğini doğrulayın; kimlikleri aynı diye yeniden yazmayın.

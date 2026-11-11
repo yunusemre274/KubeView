@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — native Safari kurulum denemesi
+
+- [ ] TEST19.09 ilk capability helper'ı, session öncesi launcher-PID/listener guard'ında FAILED. Safari uygulama/izin/Retina sonucu üretmedi; WebKit sonucu yerine geçirilmedi.
+- [x] İlk kaynak/result korundu; driver cleanup ve sonraki no-listener/connect-refused kontrolü kaydedildi. OS automation ayarı değiştirilmedi.
+
 ## 11 Kasım — standalone paket başlangıcı
 
 - [x] TEST20.01 temel startup: gerçek native Mac bundle repo dışında, boş app PATH ve korunmuş HOME ile embedded UI/ilk liman formu açtı; aynı canvas ve exact PID cleanup geçti. Ayrı Linux CI copy-out smoke da geçti.
