@@ -1,0 +1,8 @@
+{
+  "phaseStartedAt": "2026-11-11T16:39:17.375814+00:00",
+  "phaseBudgetSeconds": 360,
+  "batteryPercent": 17,
+  "externalPower": false,
+  "batteryGatePass": true,
+  "minStartPercentExclusive": 12
+}

@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — gerçek CPU/RAM retesti
+
+- [x] Gerçek `/api/actions` isteği sonrası template ve iki yeni Ready Pod üzerinde dört request/limit değeri, owner UID zinciri ve ilgisiz spec korunumu doğrulandı. İlk başarısız koşu korunur.
+- [x] Recreate sırasında eski terminal/silinen Pod API kayıtlarını yalnız exact eski UID ve owner ile kabul eden sınırlı test guard'ı; dokuz saf guard kontrolü, gerçek negatifler ve cleanup geçti.
+- [ ] Ortak test helper'ı değiştiği için güncel kaynakta gerçek Scale regresyonu gerekli. UI/metrics ve final paket kabulü ayrı kalır.
+
 ## 11 Kasım — gerçek scale kabulü
 
 - [x] Owned06 izole HTTP gateway üzerinden2→3→1 gerçek Ready/owner zinciri, read-only403 ve UID/RV409; UID/RV cleanup ve mevcut fixture eşitliği.

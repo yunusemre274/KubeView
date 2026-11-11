@@ -1,16 +1,16 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T19:35:02.522278+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: `4a05095ab94fa40ace4785f9da2d7cfe4688f398`; remote tip aynı. Önceki550400a3 CI43030094174 SUCCESS. UI-only CSP1satır ve yeniheader testleri çalışmafarkında; gerçekbinarycsp07SHA322bd5b5… ile tarayıcıkapısı sürüyor.
+- Son güncelleme: 2026-11-11T19:47:36.592281+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: `96adbf6092cba098cef351072b045e0946a4525a`; remote tip aynı. Bekleyen fark yalnız gerçek Resources test guard ve test/kanıt kayıtlarıdır; CSP ürün düzeltmesi `d0be9753` içinde commitlidir.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
-- Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %14, Battery Power. Yeni A/B/60dk koşusu başlamadı. Düşük pilde owned ağır lab süreçleri durduruldu; Chromium/Metal, WebKit ve native Safari sonuçları ayrı tutulur.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:149; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:24; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:149; IN_PROGRESS:21; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:25; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
-- Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
+- Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST06.01–06.04: yeni owned cold lab, gerçek mTLS negatif kontrolleri, iki farklı Pod arasında aynı/cross Node gerçek flow ve stop sonrası pencere boşalması. TEST09.05/11.06/11.07: gerçek browser + sahte API/upstream önizleme sınırı. Normal UI trafik testi sürüyor.
-- Süreç/lab: Owned normal A2 durdurulmuş;07 REPLAY app19847 PID13278. Fresh Hubble lab kvml-d32afbf634e8-a UIDe84bb50e-8d64-4bc2-905c-9b5ba193e53a aktif, app19846 PID80336 ve relayforward19848 PID80393. Yalnız owned06 en fazla3 client/5dk UI trafik testi yetkili. Benchmark/soak yok; diğer projelerin süreçleri korunur.
+- Son tamamlanan faz: TEST04.05 gerçek CPU/RAM template değişikliği, iki yeni Ready Pod, negatifler ve cleanup. CSP target browser kapısı geçti; son header kontrollerinin incelemesi sürüyor. TEST04.04 Scale güncel helper regresyonu açık.
+- Süreç/lab: Owned normal A ve fresh Hubble `kvml-d32afbf634e8-a` node containerları durduruldu; app19846/19847 ve relay19848 listenerları kapandı. Private state, workspace ve manuel profiller korundu. Diğer projelerin dört çalışan DB containerına dokunulmadı. Benchmark/soak yok.
 - Devam: bu dosyanın durum/dependency satırını ve `artifacts/release-audit/ra-20261111/` kayıtlarını okuyun; otomatik bütün lab'ı yeniden başlatmayın.
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -27,7 +27,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
-| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, FAILED:1, RETEST_REQUIRED:1 | Henüz yok |
+| CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, RETEST_REQUIRED:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
@@ -1703,11 +1703,11 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: KV-DEPENDENCY-WORKER; root ikinci inceleme
-- Kaynak / build / paket kimliği: 46ec5508 sonrası yalnız ortak opt-in test helper farkı; SHAfa9065f3…
-- Ortam / kullanılan kimlik ve yetki: Exact owned06 cluster/nsUID, ayrı scoped admin gateway57085; aktif19846/relay değişmedi.
+- Kaynak / build / paket kimliği: 96adbf60 + yalnız opt-in test helper farkı; SHA256 92637b06e8bcec63e8be979123d14f075ce0f17c68c75441f989765b4266d0cc. Ürün resource handler'ı değişmedi.
+- Ortam / kullanılan kimlik ve yetki: Owned06 cluster/ns/marker/worker UID guard; ayrı loopback gateway57551, gerçek Kubernetes1.35.1 ve private admin test kimliği. UI ve final dağıtım paketi testi değildir.
 - Başlangıç zamanı: real-resources-worker/result.json
-- Bitiş zamanı: 6.260494sn actual/18.201sn outer; gap0.255964sn.
-- Durum: FAILED
+- Bitiş zamanı: 2026-11-11T16:43:43.962612Z; actual9.38810275sn, outer19.294sn, en büyük örnekleme aralığı0.279sn.
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-04.05-S1 — Hazırlık
@@ -1718,27 +1718,45 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 - [x] İlk2Ready/owner UID chain geçti; gerçek UI ile aynı /api/actions containers{name,resources} modeli kullanıldı.
 - [ ] HTTP202 sonrası yeni2Ready ve dört quantity/PodUID doğrulaması tamamlanmadı; API kabulü başarı sayılmadı.
 
+- [x] Yeni sonlu retest: aynı Deployment UID, generation/observedGeneration1→2 ve final2Ready/current/updated/available doğrulandı. Template ve iki yeni gerçek Pod üzerinde requests10m/16Mi, limits100m/64Mi quantity karşılaştırması geçti; her iki Pod UID değişti, owner zincirleri ve ilgisiz spec alanları korundu.
+- Kanıt: artifacts/release-audit/ra-20261111/real-resources-retest-worker/manifest.json ve result.json. Önceki HTTP202-only başarısız sonuç tarihsel olarak yukarıda korunur.
+
 #### TEST-04.05-S3 — Negatif / sınır / arıza kontrolü
 - [x] Geçersiz quantity422 ve request>limit422; template hash/generation/PodUIDler değişmedi. Readonlycreate403 de geçti.
 - Pozitif rollout sırasında >3 API Pod nesnesi görüldü ve guard testi durdurdu. Exact sayı/phase/deletionTimestamp tutulmadı; cause henüz kanıtlı değil.
+
+- [x] Retest invalid quantity422/request>limit422 ve read-only403 negatiflerini yeniden geçti. Dokuz saf guard case'i geçti; Scale max3 sınırı korundu.
+- Bu koşuda4API nesnesi gerçekten gözlendi: tam iki eski UID, Succeeded+deletionTimestamp+eski RS; iki yeni Pending UID, doğrulanmış yeni RS. Yalnız bu açık sınıflama ve en fazla2aktif/4toplam/300m/192Mi declared-limit güvenlik bütçesi kabul edildi. Bunlar gerçek CPU/RAM kullanımı değildir.
 
 #### TEST-04.05-S4 — Bulgular ve düzeltme
 - Ürün resource bug kanıtı yok; controller geçici nesne örtüşmesi olasılığı incelenecek. Guard veya kabul ölçütü geçmek için sessizce artırılmadı.
 - Kaynak referansı K8s1.35.1 recreate.go oldPodsRunning, terminal Pod nesnelerini saymaz; bu olası açıklamadır, bu koşuda gözlenmiş gerçek değildir.
 - Test fixture ve kapsama sınırı ayrı tutulur.
 
+- Kök neden sınırı: ilk başarısız koşu phase/deletion metadata kaydetmediği için onun kesin nedeni kanıtlanmadı. Yeni koşuda Recreate terminal-eski kayıt örtüşmesi doğrudan gözlendi. Test fixture guard'ı bu doğrulanmış yaşam döngüsünü sınıflandırır; ürün davranışı veya kabul kalite eşiği gevşetilmedi.
+- Değişen dosya: backend/pkg/server/release_operations_real_test.go. Pinli Kubernetes1.35.1 controller kaynak referansı ve ilk yerel URLError kaydı korunur.
+
 #### TEST-04.05-S5 — Tekrar test ve regresyon
 - [ ] İlk sorun için yeni retest yok. Kaynak ve rawFAIL korunur.
 - Yeni kontrol, gerekirse exact eski/yeni UID + phase/termination/owner ve en çok2aktif/4API nesnesi koşulunu açık güvenlik planıyla sınayacak; bilinmeyen artış yine reddedilecek.
+
+- [x] Bir kontrollü gerçek Resources retesti ve9saf guard case'i PASS. Otomatik tekrar yok; geçersiz/wrong UID-owner/4aktif/5toplam senaryoları reddedildi.
+- Ortak helper değiştiği için TEST04.04 Scale gerçek regresyonu RETEST_REQUIRED kalır. Geçmiş Scale PASS güncel kaynakta geçmiş sayılmadı.
 
 #### TEST-04.05-S6 — Temizlik ve inceleme
 - [x] UID/RV foreground delete, typed/dynamic404, Pod/RS runlabel LIST0; diğer fixture UID/spec/PodUIDler eşit.
 - [x] Source helper/snapshot ve20artifact/19checksum worker tarafından doğrulandı. Root raporu okudu; normalUI/metrics/actualresources gate kapanmadı.
 
+- [x] UID/RV delete; typed+dynamic GET404; runlabel Pod/RS LIST0 ve önceki fixture UID/spec/PodUID eşitliği tekrar geçti. Gateway/transport kapandı.
+- [x] Root rapor, kaynak farkı, trace ve19checksum/20dosyayı doğruladı. Bu ikinci ajan incelemesidir, bağımsız profesyonel pentest değildir. Sonradan root yalnız owned lab/app süreçlerini durdurdu; private state/profiller korunur.
+
 #### TEST-04.05-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
 - Gerekçe: positive rollout >3Pod guardında FAIL; final spec/readiness doğrulanmadı. Negatifler ve cleanup ayrı PASS.
 - Sonraki test önce overflow yaşam döngüsünü sınıflandırmalı; kör tekrar yok.
+
+- [x] BİTTİ / DOĞRULANDI — scoped gerçek Kubernetes CPU/RAM template değişikliği, gözlenen rollout, negatifler ve cleanup geçti. İlk FAIL silinmedi.
+- Normal UI, bütün owner türleri, utilization/metrics, native platform ve final paket bu dar fazın kanıtı değildir; kendi fazları açık. Ortak helper/handler/owner/quantity davranışı değişirse gereken retest yapılır.
 
 ### TEST-04.06 — Rollout restart ve gözlenen sonuç
 
@@ -3484,7 +3502,7 @@ ASVS5.0.0, WSTG4.2, API Top10:2023 ve SSDF1.1 kararlı sürümleri doğrulandı;
 
 #### TEST-06.05-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %14, Battery Power. Yeni A/B/60dk koşusu başlamadı. Düşük pilde owned ağır lab süreçleri durduruldu; Chromium/Metal, WebKit ve native Safari sonuçları ayrı tutulur.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -3539,7 +3557,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 #### TEST-06.06-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: AppleM5/32GiB/macOS27.0.1; Battery45%/estimated48min, gerçekClamshellSleep gözlendi. YeniA/B/60dkbaşlamadı; kesintiliCLIderlemesiFAILED. Chromium/WebKit/nativeSafari ayrımı korunur.
+- Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %14, Battery Power. Yeni A/B/60dk koşusu başlamadı. Düşük pilde owned ağır lab süreçleri durduruldu; Chromium/Metal, WebKit ve native Safari sonuçları ayrı tutulur.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 

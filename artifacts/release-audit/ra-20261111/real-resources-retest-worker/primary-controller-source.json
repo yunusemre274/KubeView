@@ -1,0 +1,21 @@
+{
+  "localFetch": {
+    "url": "https://raw.githubusercontent.com/kubernetes/kubernetes/v1.35.1/pkg/controller/deployment/recreate.go",
+    "status": "SOURCE_FETCH_BLOCKED",
+    "errorClass": "URLError"
+  },
+  "webPrimaryVerification": {
+    "status": "VERIFIED",
+    "url": "https://raw.githubusercontent.com/kubernetes/kubernetes/v1.35.1/pkg/controller/deployment/recreate.go",
+    "function": "oldPodsRunning",
+    "functionStartsAtLine": 90,
+    "terminalCaseLines": [
+      101,
+      102,
+      103
+    ],
+    "assessment": "Failed/Succeeded old Pod records are excluded from the running-old-Pod check; this does not itself authorize unknown/deleting records in the test envelope.",
+    "rawByteSHA256": null,
+    "receipt": "Official primary source read via web open; local urllib retrieval failed with URLError and remains recorded."
+  }
+}

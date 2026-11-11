@@ -1,5 +1,10 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — Recreate ve API nesnesi sayısı
+
+- Terminal ve silinmekte olan eski Pod kayıtları, Recreate yeni Pod'ları hazırlarken API'de kısa süre kalabilir. Güvenlik sınırında yalnız toplam sayı yerine exact eski/yeni UID, owner, phase ve deletionTimestamp kaydedin. Çalışan yük sınırı ile API nesnesi sayısını ayrı tutun.
+- İlk koşuda bu metadata yoksa sonraki koşunun açıklamasını geriye dönük kesin kök neden saymayın. Test guard değişikliği ortak helper'ı etkiliyorsa önceki Scale PASS'i güncel kaynakta otomatik geçerli kabul etmeyin.
+
 ## 11 Kasım — private workspace test fixture
 
 - Bu Go1.26.11 ortamında T.TempDir child0755 oluştu ve private0700 workspace guard'ı doğru olarak reddetti. Yeni app-data child oluşturun; güvenlik kuralını teste uydurmak için gevşetmeyin.

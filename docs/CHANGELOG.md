@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — gerçek kaynak ayarı doğrulaması
+
+- Owned test kümesinde gerçek resource action sonrası aynı Deployment UID, iki yeni Ready Pod, template/Pod request ve limit değerleri ile owner zincirleri doğrulandı. Quantity hataları ve read-only reddi mevcut kaynağı değiştirmedi; exact cleanup ve komşu fixture eşitliği geçti.
+- İlk koşunun eksik yaşam döngüsü kaydı ve FAIL sonucu korundu. Yeni koşuda iki eski Succeeded/deleting API kaydı ile iki yeni Pod örtüşmesi doğrudan kaydedildi; yalnız bu exact UID/owner durumuna izin veren test guard'ı eklendi. Scale sınırı üç kaldı. Ürün handler'ı değiştirilmedi; ortak helper'ın Scale regresyonu açık.
+
 ## 2026-11-11 — gerçek scale retesti
 
 - Özel test workspace'i private0700 child kullanır; koruma gevşetilmedi. Test hedeflemesi hostname varsayımı yerine scheduler metadata.name affinity kullanır ve mutasyon öncesi sahiplik planını kalıcı kaydeder.

@@ -34,6 +34,122 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 )
 
+type releaseOperationPodRecord struct {
+	UID               types.UID       `json:"uid"`
+	OwnerRSUID        types.UID       `json:"ownerReplicaSetUID"`
+	Phase             corev1.PodPhase `json:"phase"`
+	DeletionTimestamp *metav1.Time    `json:"deletionTimestamp,omitempty"`
+	OwnerVerified     bool            `json:"ownerVerified"`
+	LimitCPUMilli     int64           `json:"declaredLimitCPUMilli"`
+	LimitMemoryBytes  int64           `json:"declaredLimitMemoryBytes"`
+}
+
+// Resources may retain only exact old terminal+deleting API records in
+// addition to at most two current Pods. This is a declared envelope, not usage.
+func releaseOperationPodEnvelope(operation string, strategy appsv1.DeploymentStrategyType, pods []releaseOperationPodRecord, old map[types.UID]types.UID) error {
+	if operation != "resources" {
+		if len(pods) > 3 {
+			return fmt.Errorf("scale_owned_Pod_ceiling3")
+		}
+		return nil
+	}
+	if strategy != appsv1.RecreateDeploymentStrategyType {
+		return fmt.Errorf("resources_requires_Recreate")
+	}
+	if len(pods) > 4 {
+		return fmt.Errorf("resources_API_object_ceiling4")
+	}
+	seen := map[types.UID]bool{}
+	active := 0
+	residue := 0
+	var cpu, memory int64
+	for _, p := range pods {
+		if p.UID == "" || seen[p.UID] || !p.OwnerVerified || p.OwnerRSUID == "" {
+			return fmt.Errorf("unknown_or_unverified_Pod_owner")
+		}
+		seen[p.UID] = true
+		if p.LimitCPUMilli <= 0 || p.LimitMemoryBytes <= 0 {
+			return fmt.Errorf("missing_declared_resource_limits")
+		}
+		cpu += p.LimitCPUMilli
+		memory += p.LimitMemoryBytes
+		terminal := p.Phase == corev1.PodSucceeded || p.Phase == corev1.PodFailed
+		if !terminal {
+			active++
+		}
+		rs, known := old[p.UID]
+		if known && rs != p.OwnerRSUID {
+			return fmt.Errorf("known_old_Pod_RS_changed")
+		}
+		qualifies := known && terminal && p.DeletionTimestamp != nil
+		if qualifies {
+			residue++
+		}
+		if len(pods) > 2 {
+			if known && !qualifies {
+				return fmt.Errorf("extra_old_Pod_not_terminal_and_deleting")
+			}
+			if !known && (terminal || p.DeletionTimestamp != nil) {
+				return fmt.Errorf("unknown_UID_cannot_be_old_API_residue")
+			}
+		}
+	}
+	if active > 2 {
+		return fmt.Errorf("resources_active_Pod_ceiling2")
+	}
+	if len(pods)-residue > 2 || residue > 2 {
+		return fmt.Errorf("resources_extra_records_not_exact_old_residue")
+	}
+	if cpu > 300 || memory > 192*1024*1024 {
+		return fmt.Errorf("declared_limits_exceed_300m_192Mi")
+	}
+	return nil
+}
+
+func TestReleaseResourcesPodEnvelope(t *testing.T) {
+	deletion := metav1.Now()
+	old := map[types.UID]types.UID{"old-a": "old-rs", "old-b": "old-rs"}
+	makePod := func(uid types.UID, terminal bool) releaseOperationPodRecord {
+		p := releaseOperationPodRecord{UID: uid, OwnerRSUID: "new-rs", Phase: corev1.PodRunning, OwnerVerified: true, LimitCPUMilli: 100, LimitMemoryBytes: 64 * 1024 * 1024}
+		if terminal {
+			p.OwnerRSUID = "old-rs"
+			p.Phase = corev1.PodSucceeded
+			p.DeletionTimestamp = &deletion
+			p.LimitCPUMilli = 50
+			p.LimitMemoryBytes = 32 * 1024 * 1024
+		}
+		return p
+	}
+	oldA, oldB := makePod("old-a", true), makePod("old-b", true)
+	newA, newB := makePod("new-a", false), makePod("new-b", false)
+	wrong := oldA
+	wrong.UID = "unknown-old"
+	badOwner := newA
+	badOwner.OwnerVerified = false
+	for _, tc := range []struct {
+		name, operation string
+		strategy        appsv1.DeploymentStrategyType
+		pods            []releaseOperationPodRecord
+		allow           bool
+	}{
+		{"known_old_terminal_deleting2_plus_new2", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{oldA, oldB, newA, newB}, true},
+		{"initial2_allowed", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{newA, newB}, true},
+		{"four_active_rejected", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{newA, newB, makePod("new-c", false), makePod("new-d", false)}, false},
+		{"wrong_old_UID_rejected", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{wrong, oldB, newA, newB}, false},
+		{"five_total_rejected", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{oldA, oldB, newA, newB, makePod("new-c", false)}, false},
+		{"wrong_owner_rejected", "resources", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{badOwner, newB}, false},
+		{"wrong_strategy_rejected", "resources", appsv1.RollingUpdateDeploymentStrategyType, []releaseOperationPodRecord{newA, newB}, false},
+		{"scale_ceiling3_preserved", "scale", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{oldA, oldB, newA, newB}, false},
+		{"scale_three_allowed", "scale", appsv1.RecreateDeploymentStrategyType, []releaseOperationPodRecord{oldA, newA, newB}, true},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := releaseOperationPodEnvelope(tc.operation, tc.strategy, tc.pods, old) == nil; got != tc.allow {
+				t.Fatalf("envelope allowed=%t want%t", got, tc.allow)
+			}
+		})
+	}
+}
+
 func TestReleaseOwnedScaleTwoThreeOne(t *testing.T) {
 	if os.Getenv("KUBEVIEW_RELEASE_REAL_SCALE") != "owned-profile06-2-3-1" {
 		t.Skip("requires explicit owned profile06 scale opt-in")
@@ -385,6 +501,8 @@ func runReleaseOwnedOperation(t *testing.T, operation string) {
 	}
 	requireCode(req("POST", "/api/resources", q, map[string]interface{}{"object": dep}), 201, "owned_deployment_create")
 	gvr := schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}
+	knownOldPodRS := map[types.UID]types.UID{}
+	var observedPodRecords []releaseOperationPodRecord
 	readReady := func(want int32) *appsv1.Deployment {
 		until := time.Now().Add(40 * time.Second)
 		for time.Now().Before(until) && ctx.Err() == nil {
@@ -404,8 +522,47 @@ func runReleaseOwnedOperation(t *testing.T, operation string) {
 			if e != nil {
 				t.Fatal("owned Pod LIST failed")
 			}
-			if len(pods.Items) > 3 {
+			if operation != "resources" && len(pods.Items) > 3 {
 				t.Fatal("more than3ownedPods")
+			}
+			if operation == "resources" {
+				records := []releaseOperationPodRecord{}
+				for _, pod := range pods.Items {
+					rec := releaseOperationPodRecord{UID: pod.UID, Phase: pod.Status.Phase, DeletionTimestamp: pod.DeletionTimestamp}
+					if len(pod.Spec.Containers) != 1 || pod.Spec.Containers[0].Name != "idle" {
+						t.Fatal("unexpected resource fixture container")
+					}
+					rec.LimitCPUMilli = pod.Spec.Containers[0].Resources.Limits.Cpu().MilliValue()
+					rec.LimitMemoryBytes = pod.Spec.Containers[0].Resources.Limits.Memory().Value()
+					for _, ref := range pod.OwnerReferences {
+						if ref.Kind != "ReplicaSet" || ref.Controller == nil || !*ref.Controller {
+							continue
+						}
+						rs, e := c.Typed.AppsV1().ReplicaSets(namespace).Get(ctx, ref.Name, metav1.GetOptions{})
+						if e != nil || rs.UID != ref.UID || rs.Labels[runLabel] != runID {
+							t.Fatal("resource envelope ReplicaSet identity guard")
+						}
+						rec.OwnerRSUID = rs.UID
+						for _, parent := range rs.OwnerReferences {
+							if parent.Kind == "Deployment" && parent.UID == ownedUID && parent.Controller != nil && *parent.Controller {
+								rec.OwnerVerified = true
+							}
+						}
+					}
+					records = append(records, rec)
+				}
+				observedPodRecords = records
+				envelopeErr := releaseOperationPodEnvelope(operation, d.Spec.Strategy.Type, records, knownOldPodRS)
+				if len(records) > 2 || envelopeErr != nil {
+					category := "allowed_exact_old_terminal_deleting_records"
+					if envelopeErr != nil {
+						category = envelopeErr.Error()
+					}
+					mark("resource_API_Pod_envelope_trace", map[string]interface{}{"totalAPIObjects": len(records), "strategy": d.Spec.Strategy.Type, "knownOldPodReplicaSets": knownOldPodRS, "records": records, "category": category, "declaredWorstLimits": map[string]interface{}{"cpuMilli": 300, "memoryBytes": 192 * 1024 * 1024}, "usageClaim": false})
+				}
+				if envelopeErr != nil {
+					t.Fatal("resource Pod envelope rejected; exact safe trace retained")
+				}
 			}
 			ready := int32(0)
 			chain := []interface{}{}
@@ -455,6 +612,13 @@ func runReleaseOwnedOperation(t *testing.T, operation string) {
 	initial := readReady(2)
 	checkFixtures()
 	if operation == "resources" {
+		for _, rec := range observedPodRecords {
+			knownOldPodRS[rec.UID] = rec.OwnerRSUID
+		}
+		if len(knownOldPodRS) != 2 {
+			t.Fatal("initial two exact old Pod/ReplicaSet UIDs not captured")
+		}
+		mark("initial_known_old_Pod_UID_RS_set", knownOldPodRS)
 		podUIDs := func() []string {
 			pods, e := c.Typed.CoreV1().Pods(namespace).List(ctx, metav1.ListOptions{LabelSelector: selector})
 			if e != nil || len(pods.Items) != 2 {
