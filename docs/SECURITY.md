@@ -22,6 +22,14 @@ HTTP ve WebSocket denetimleri tarayıcı Origin'inin **gerçek bağlantı scheme
 
 Vite yalnız geliştirme yoludur; `/api` ve `/ws` same-origin proxy'sinde `changeOrigin:false` upstream'e tarayıcı Host'unu korur. Production paketi gömülü frontend ve API/WS'yi aynı Go sürecinden sunar. `STATIC_DIR` yalnız güvenilir, sürümle uyumlu statik arayüz için override'dır; bu dizini değiştirme yetkisi uygulama kodunu değiştirme yetkisidir.
 
+`API_TOKEN` statik uygulama erişim anahtarıdır. `kubeview_session` cookie'sinin
+sekiz saatlik `MaxAge` değeri tarayıcıda saklama süresidir; bu anahtara ayrı bir
+sunucu tarafı sekiz saatlik bearer süresi eklemez. Anahtar geçerli kaldıkça doğru
+Bearer değeriyle erişim mümkündür. Yönetim modunu kapatmak bu anahtarı iptal etmez;
+per-user giriş/çıkış ve bağımsız iptal edilebilir erişim oturumları sunulmaz.
+Anahtarın ömrü ve rotasyonu yerel operatörün yapılandırma sorumluluğudur.
+Bu sözleşme, aşağıdaki ayrı yönetim oturumunun mutlak sunucu deadline'ından farklıdır.
+
 ## Salt okunur başlangıç ve yönetim onayı
 
 `READ_ONLY=true` varsayılandır. `--write` veya `READ_ONLY=false` yalnız sunucunun yazma kilidini açar. Her tarayıcı başlangıçta salt okunurdur; **Yönetim modunu aç** eylemi ayrıca gerekir. Bir Role adı, UI'da düğmenin görünmesi veya başarılı dry-run izin/uygulama kanıtı değildir. Gerçek Kubernetes API server son yetki ve admission kararını verir.

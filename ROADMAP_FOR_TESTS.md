@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T20:39:52.194020+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T20:44:23.316569+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `a97e74d5321e72209586e36b5efc2a0bc22f35fb`; remote tip aynı. Resources118e7380 ve CSP3bdb7c0c fazları pushlandı; bekleyen fark CI/cleanup kanıtı ve kayıtlarıdır.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; son pil %8, Battery Power/early warning. Yeni A/B/60dk/build/browser koşusu başlatılmadı. Owned ağır lab süreçleri durduruldu; yalnız hafif kanıt/CI incelemesi sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:147; IN_PROGRESS:20; FAILED:1; BLOCKED:2; RETEST_REQUIRED:1; VERIFIED_DONE:29; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:147; IN_PROGRESS:19; FAILED:1; BLOCKED:2; RETEST_REQUIRED:1; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -32,7 +32,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:8, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
-| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:3, VERIFIED_DONE:3 | Henüz yok |
+| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
@@ -5236,12 +5236,12 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Sorumlu: KV-SECURITY-WORKER ve root ikinci kaynak/kanıt incelemesi
+- Kaynak / build / paket kimliği: 9e87141b + test SHA8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568. Runtime connection.go/server.go ve eski expiry testleri49999815 ile byte-eşit.
+- Ortam / kullanılan kimlik ve yetki: UNIT/fake/in-process HTTP ve simulatedTLS request flag. Gerçek TLS/browser/8saat/cluster veya istatistiksel entropy deneyi değil.
 - Başlangıç zamanı: 2026-11-11T13:42:17.092651+03:00
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Bitiş zamanı: 2026-11-11T17:33:17.319906Z; dar2top/2HTTP-TLSalt durum PASS,0SKIP, retry0, package0.721sn.
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-09.01-S1 — Hazırlık
@@ -5254,12 +5254,9 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Sonuç: SEC-002 MEDIUM yeniden üretildi.
 
 #### TEST-09.01-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] UUIDv4 cookie/nonce biçimi ve küçük örnek freshness:8creation/16kimlik, değerler kayda alınmadı. Statik pinned uuidv1.3.0 kaynağı crypto/rand.Reader kullanır; repo override yok. Küçük örnek istatistiksel entropy kanıtı değildir.
+- [x] HttpOnly/Strict/path/28800MaxAge ve HTTP/simulatedTLS Secure flagları doğrulandı. Geçerli grant ile fake PUT pozitif, yeni cookie+nonce sonrası açık regrant ile tekrar pozitif geçti.
+- Access cookie configured API_TOKEN taşır; yeni UUID yönetim cookie/nonce ile karıştırılmadı. API_TOKEN server8h-expiring bearer session değildir.
 
 #### TEST-09.01-S3 — Negatif / sınır / arıza kontrolü
 - [x] Kısa expiry, yeni session deadline ve reset iptali sınandı.
@@ -5268,6 +5265,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Gözlenen: context deadline ve iptal assertionları PASS.
 - Kanıt: artifacts/release-audit/ra-20261111/session-scope-retest.log
 - Sonuç: dar regresyon geçti; bütün session/replay/browser kapıları henüz kapanmadı.
+
+- [x] Yeni expire/replay: geçerli grant sonrası fixture past-expiry; aynı operator cookie+nonce PUT403, past deadline reset context'i iptal durumda tutar; eski cookie re-enable403, yeni cookie altında eski nonce409, rejected paths fake workload mutation0. Yeni kimlik açık regrant olmadan yazamaz.
 
 #### TEST-09.01-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: SEC-002.
@@ -5282,17 +5281,17 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - [x] Odaklı race16top-level PASS.
 - Sonuç ve kanıt: session-scope-retest.log; security-race.jsonl. Gerçek8saat stream/browser replay kabulü sayılmaz.
 
+- [x] Eksik iki dar test tek koşuda2top/2alt durum PASS; retry0. Mevcut operator/revoke/scope grupları runtime/test hashleri49999815 ile aynı olduğu için yeniden çalıştırılmadı; önceki loglar kendi kaynağında bağlandı.
+- Kanıt: artifacts/release-audit/ra-20261111/session-lifecycle-worker/REPORT.md ve result.json; mevcut session-scope-retest.log/expiry-red/security-race kaynakları korunur.
+
 #### TEST-09.01-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Listener/browser/cluster başlamadı, yalnız fake fixture ömrü; product/global RNG/init değişmedi. Root yeni test/rapor ve3checksum okudu. Önceki expiry/revoke/reset kanıtları exact runtime/test hash eşitliğiyle yeniden kullanılabildi; gereksiz tekrar yok.
+- Gerçek8saat, RNG failure, gerçek TLS/browser cookie kalıcılığı, fiziksel gizlilik ve genel auth-key revocation kabulü yok. Statik erişim anahtarı sözleşmesi docs/SECURITY.md içinde açıkça ayrılır.
 
 #### TEST-09.01-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI — mevcut operator session/nonce CSPRNG kaynak kullanımı, cookie flagları, absolute deadline/reset/revoke ve expired replay/regrant kontrolleri scoped UNIT kanıtla doğrulandı; eski SEC002 red→fix→retest/race tarihçesi korundu.
+- API_TOKEN statik uygulama erişim anahtarıdır; access cookie8h browser retention server-side bearer expiry değildir. Bu faz onu per-user revocable authsession olarak onaylamaz; local-first tek operatör sınırı ve ayrı auth threat-model kapıları korunur.
+- Değişen session/auth/crypto/expiry/cookie/context sözleşmesi ilgili retesti gerektirir. Native browser/TLS/8h gerçek runtime veya ASVS sertifikası iddia edilmez.
 
 ### TEST-09.02 — Backend read-only doğrudan endpoint
 

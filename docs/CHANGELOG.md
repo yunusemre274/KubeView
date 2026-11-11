@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — session replay ve cookie sözleşmesi
+
+- İki yeni dar test, yönetim cookie/nonce freshness/biçim, cookie flagları ve süresi dolmuş yetkinin replay/reset/regrant sınırını doğruladı. Değerler kayda alınmadı; önceki absolute-expiry/revoke kanıtı değişmeyen kaynağıyla korundu.
+- Statik uygulama erişim anahtarının browser cookie saklama süresi ile ayrı operator server deadline'ı açıklandı. Ürün/auth framework'ü değiştirilmedi; gerçek8saat veya per-user session altyapısı iddia edilmedi.
+
 ## 2026-11-11 — current helper gerçek Scale kabulü
 
 - Ortak Resources helper değişikliğinin Scale regresyonu tek gerçek2→3→1 koşusuyla geçti. Aynı Deployment UID, gözlenen controller sayıları ve owner zincirleri;403/409 negatifler ile UID/RV404 ve Pod/RS cleanup doğrulandı. Eski PASS yeni kaynağa varsayılmadı.

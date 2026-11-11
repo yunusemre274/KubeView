@@ -1,5 +1,10 @@
 # Güncel görev durumu
 
+## 11 Kasım — yönetim session yaşam döngüsü
+
+- [x] Operator cookie/nonce CSPRNG kaynağı, küçük örnek freshness, cookie flagları ve expired replay/reset/regrant için iki dar test geçti; eski expiry/revoke/race kanıtı kaynak hashleriyle tekrar kullanılabildi.
+- [x] Statik API_TOKEN/access cookie browser TTL ile operator server deadline ayrımı belgelendi. Gerçek8saat, gerçek TLS/browser ve genel revocable authsession sonucu iddia edilmedi.
+
 ## 11 Kasım — current helper Scale regresyonu
 
 - [x] Resources guard değişikliğinden sonra aynı current helper üzerinde gerçek2→3→1 tekrar doğrulandı: desired/current/Ready/updated/available, owner UID,403/409 ve exact cleanup. Tek koşu; helper değiştirilmedi.
