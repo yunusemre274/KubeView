@@ -87,7 +87,7 @@ export function createWaterSurfaceTexture() {
       return (a + (b - a) * sx) * (1 - sy) + (c + (d - c) * sx) * sy;
     };
   };
-  const broad = gradientField(7, 21, 3), fine = gradientField(19, 47, 7);
+  const broad = gradientField(9, 29, 3), fine = gradientField(23, 59, 7);
   const warp = gradientField(3, 4, 11);
   for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
     const u = x / size, v = y / size, bend = warp(u, v) * 0.08;
@@ -116,13 +116,15 @@ export function createWaterSurfaceTexture() {
 
 const RIPPLE_GLSL = `
 vec3 harborRipples(vec2 position, float seconds) {
-  vec2 uv = position * 0.009 + vec2(0.0022, -0.0014) * seconds;
+  // Long crests across the harbor, short uneven gaps between crests.
+  vec2 aligned = vec2(dot(position, vec2(0.8192, -0.5735)), dot(position, vec2(0.5735, 0.8192)));
+  vec2 uv = aligned * 0.009 + vec2(0.0011, -0.0038) * seconds;
   vec3 first = texture2D(uWaterSurface, uv).rgb * 2.0 - 1.0;
   if (uWaterDetail < 0.7) return first;
-  mat2 rotation = mat2(0.80, -0.60, 0.60, 0.80);
-  vec2 secondUV = rotation * position * 0.015 + vec2(-0.0016, -0.0019) * seconds;
+  mat2 rotation = mat2(0.985, -0.174, 0.174, 0.985);
+  vec2 secondUV = rotation * aligned * 0.016 + vec2(-0.0008, -0.0031) * seconds;
   vec3 second = texture2D(uWaterSurface, secondUV).rgb * 2.0 - 1.0;
-  second.xy = mat2(0.80, 0.60, -0.60, 0.80) * second.xy;
+  second.xy = mat2(0.985, 0.174, -0.174, 0.985) * second.xy;
   vec3 ripples = first * 0.68 + second * 0.32;
   if (uWaterDetail > 1.2) {
     vec3 fine = texture2D(uWaterSurface, position * 0.029 + vec2(0.0010, 0.0014) * seconds).rgb * 2.0 - 1.0;
@@ -150,7 +152,7 @@ export function createOceanResources(quality = "medium", bounds) {
   material.name = "KubeView calm harbor water";
   material.extensions = { ...material.extensions, derivatives: true };
   material.userData.oceanUniforms = uniforms;
-  material.customProgramCacheKey = () => "kubeview-sunlit-harbor-water-v2.2";
+  material.customProgramCacheKey = () => "kubeview-sunlit-harbor-water-v3";
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
     shader.vertexShader =
@@ -185,27 +187,26 @@ export function createOceanResources(quality = "medium", bounds) {
       "#include <opaque_fragment>",
       `
       vec3 worldView = inverseTransformDirection(normalize(vViewPosition), viewMatrix);
-      vec3 reflectedSkyDirection = reflect(-worldView, surfaceNormal);
-      float skyHeight = clamp(reflectedSkyDirection.y, 0.0, 1.0);
-      vec3 quietSky = mix(vec3(0.16, 0.27, 0.30), vec3(0.29, 0.43, 0.48), skyHeight);
-      float waterFresnel = 0.045 + 0.955 * pow(1.0 - clamp(dot(surfaceNormal, worldView), 0.0, 1.0), 5.0);
-      // Keep the standard shadowed diffuse lighting but replace its broad
-      // plastic-looking hotspot with water's broken directional sun reflection.
-      // The separate setting actually removes the specular contribution.
-      outgoingLight = max(vec3(0.0), outgoingLight - totalSpecular);
-      outgoingLight *= 0.84 + surfaceRipples.z * 0.25 * detailFade;
-      outgoingLight = mix(outgoingLight, quietSky, waterFresnel * 0.74);
+      float skyAmount = pow(smoothstep(0.30, 0.58, 1.0 - worldView.y), 1.3);
+      vec3 waterBody = mix(vec3(0.00304, 0.07036, 0.10224), vec3(0.023, 0.147, 0.212), skyAmount);
+      float rippleShade = 1.0 + surfaceRipples.z * mix(0.43, 0.74, skyAmount) * detailFade;
+      float directionalCrest = dot(surfaceRipples.xy, vec2(-0.35, 0.65));
+      rippleShade += directionalCrest * mix(0.16, 0.27, skyAmount) * detailFade;
+      vec3 waterAppearance = waterBody * max(0.65, rippleShade);
+      waterAppearance *= 0.72 + 0.28 * getShadowMask();
       if (uSunGlint > 0.5) {
-        vec3 sunDirection = normalize(vec3(-1.10, 0.72, -0.28));
+        vec3 sunDirection = normalize(vec3(-0.735, 0.550, -0.396));
         vec3 sunHalf = normalize(sunDirection + worldView);
         float sunAngle = max(dot(surfaceNormal, sunHalf), 0.0);
-        float brokenGlint = pow(sunAngle, 1100.0) * 0.54;
-        float softSheen = pow(sunAngle, 80.0) * 0.022;
-        outgoingLight += vec3(1.0, 0.90, 0.72) * (brokenGlint + softSheen) * detailFade;
+        float brokenGlint = pow(sunAngle, 1200.0) * 0.12;
+        float softSheen = pow(sunAngle, 85.0) * 0.008;
+        waterAppearance += vec3(1.0, 0.92, 0.79) * (brokenGlint + softSheen) * detailFade;
       }
       #include <opaque_fragment>
     `,
     );
+    shader.fragmentShader = shader.fragmentShader.replace("#include <shadowmap_pars_fragment>", "#include <shadowmap_pars_fragment>\n#include <shadowmask_pars_fragment>");
+    shader.fragmentShader = shader.fragmentShader.replace("#include <tonemapping_fragment>", "#include <tonemapping_fragment>\ngl_FragColor.rgb = waterAppearance;");
   };
   return {
     geometry,
@@ -275,18 +276,18 @@ function createWakeGeometry() {
     lanes = [],
     indices = [];
   const stern = -D.SHIP_LENGTH / 2 + 1.5,
-    rows = 18;
+    rows = D.WAKE_ROWS;
   for (const side of [-1, 0, 1]) {
     const offset = positions.length / 3;
     for (let row = 0; row <= rows; row++) {
       const along = row / rows,
         center = side * (D.SHIP_WIDTH * 0.29 + along * 9.5),
-        width = side === 0 ? 1.2 + along * 3.8 : 0.65 + along * 2.0;
+        width = side === 0 ? 1.8 + along * 4 : 0.9 + along * 1.6;
       for (const edge of [-1, 1]) {
         positions.push(
           center + edge * width,
-          SEA_LEVEL + 0.016,
-          stern - along * 34,
+          SEA_LEVEL + 0.045,
+          stern - along * D.WAKE_LENGTH,
         );
         uvs.push((edge + 1) / 2, along);
         lanes.push(side);
@@ -312,6 +313,7 @@ export function createWakeResources() {
   const geometry = createWakeGeometry();
   const uniforms = {
     uTime: { value: 0 },
+    uSpeed: { value: 0 },
     uOpacity: { value: 0 },
     uWaterTime: { value: 0 },
     uWaterStrength: { value: 0 },
@@ -322,9 +324,10 @@ export function createWakeResources() {
     uniforms,
     side: THREE.DoubleSide,
     forceSinglePass: true,
+    polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1,
     vertexShader: `uniform float uWaterTime; uniform float uWaterStrength; attribute float wakeLane; varying vec2 vUv; varying float vLane; ${WATER_GLSL} void main() { vUv = uv; vLane = wakeLane; vec3 displaced = position; vec2 worldXZ = (modelMatrix * vec4(position, 1.0)).xz; displaced.y += harborWave(worldXZ, uWaterTime, uWaterStrength).x; gl_Position = projectionMatrix * modelViewMatrix * vec4(displaced, 1.0); }`,
     fragmentShader: `
-    uniform float uTime; uniform float uOpacity; varying vec2 vUv; varying float vLane;
+    uniform float uTime; uniform float uOpacity; uniform float uSpeed; varying vec2 vUv; varying float vLane;
     float wakeHash(vec2 p) {
       return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
     }
@@ -334,17 +337,22 @@ export function createWakeResources() {
       return mix(mix(wakeHash(i), wakeHash(i + vec2(1.0, 0.0)), f.x), mix(wakeHash(i + vec2(0.0, 1.0)), wakeHash(i + vec2(1.0)), f.x), f.y);
     }
     void main() {
-      float flow = vUv.y * 28.0 - uTime * 1.7;
-      float noise = wakeNoise(vec2(vUv.x * 9.0 + vLane * 12.0, flow));
-      float turbulence = wakeNoise(vec2(vUv.x * 21.0, flow * 2.3 + 11.7));
-      float width = vUv.x + (noise - 0.5) * 0.16;
-      float edge = smoothstep(0.0, 0.28, width) * (1.0 - smoothstep(0.72, 1.0, width));
-      float age = smoothstep(0.0, 0.055, vUv.y) * pow(1.0 - vUv.y, 1.15);
-      float crests = 0.5 + 0.5 * sin(vUv.y * 91.0 - uTime * 2.2 + noise * 7.0 + vUv.x * 9.0);
-      float foam = smoothstep(0.26, 0.80, noise * 0.65 + turbulence * 0.35 + crests * 0.28);
+      float along = vUv.y;
+      float flow = along * 35.0 - uTime * (2.0 + uSpeed * 1.5);
+      float noise = wakeNoise(vec2(vUv.x * 7.0 + vLane * 12.0, flow));
+      float turbulence = wakeNoise(vec2(vUv.x * 19.0 + noise * 1.8, flow * 2.5 + 11.7));
+      float churn = wakeNoise(vec2(vUv.x * 35.0 - uTime * 0.6, flow * 4.1));
+      float width = vUv.x + (noise - 0.5) * 0.20;
+      float edge = smoothstep(0.0, 0.20, width) * (1.0 - smoothstep(0.80, 1.0, width));
+      float age = smoothstep(0.0, 0.025, along) * pow(1.0 - along, 1.45);
+      // Coverage AND opacity decay aft: dense churn at the transom breaks into
+      // isolated flecks rather than a uniformly translucent ribbon.
+      float coverage = mix(0.14, 0.74, pow(1.0 - along, 1.3));
+      float foam = smoothstep(1.0 - coverage - 0.12, 1.0 - coverage + 0.12, noise * 0.40 + turbulence * 0.36 + churn * 0.24);
+      foam *= mix(0.48, 1.0, smoothstep(0.20, 0.70, churn));
       float propeller = 1.0 - abs(vLane);
-      float opacity = edge * age * (0.22 + foam * 0.78) * mix(1.0, 0.65, propeller) * uOpacity;
-      gl_FragColor = vec4(mix(vec3(0.48, 0.72, 0.75), vec3(0.92, 0.97, 0.92), foam), opacity);
+      float opacity = edge * age * foam * mix(1.0, 0.90, propeller) * uOpacity;
+      gl_FragColor = vec4(mix(vec3(0.55, 0.76, 0.79), vec3(0.95, 0.98, 0.96), turbulence), opacity);
       #include <tonemapping_fragment>
       #include <colorspace_fragment>
     }
@@ -381,9 +389,10 @@ export function ShipWake({
       motion.sea !== false && Math.abs(velocity) > 0.02;
     if (mesh.current) mesh.current.visible = Boolean(enabled);
     resources.uniforms.uOpacity.value = enabled
-      ? Math.min(0.64, Math.abs(velocity) * 0.17)
+      ? Math.min(0.86, Math.abs(velocity) * 0.21)
       : 0;
     if (enabled) {
+      resources.uniforms.uSpeed.value = Math.min(1.5, Math.abs(velocity) / 9);
       resources.uniforms.uTime.value = clock?.current || 0;
       resources.uniforms.uWaterTime.value = waterState?.current?.time || 0;
       resources.uniforms.uWaterStrength.value =

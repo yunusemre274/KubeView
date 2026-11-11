@@ -151,9 +151,9 @@ test('wake is bounded aft geometry and disposes its own resources without touchi
   resources.geometry.addEventListener('dispose', () => disposed++)
   resources.material.addEventListener('dispose', () => disposed++)
   const positions = resources.geometry.attributes.position
-  for (let i = 0; i < positions.count; i++) assert.ok(positions.getZ(i) < -30 && positions.getZ(i) > -70)
+  for (let i = 0; i < positions.count; i++) assert.ok(positions.getZ(i) < -30 && positions.getZ(i) > -83)
   assert.deepEqual(new Set(resources.geometry.attributes.wakeLane.array), new Set([-1, 0, 1]))
-  assert.ok(resources.geometry.index.count / 3 <= 108)
+  assert.ok(resources.geometry.index.count / 3 <= 144)
   assert.equal(resources.uniforms.uOpacity.value, 0)
   assert.equal(resources.material.depthWrite, false)
   assert.equal(resources.material.forceSinglePass, true)

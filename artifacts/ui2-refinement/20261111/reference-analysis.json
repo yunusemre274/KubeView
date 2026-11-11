@@ -1,0 +1,274 @@
+{
+  "at": "2026-11-11T09:56:21.277969+00:00",
+  "method": "Fixed water-only rectangular ROI RGB medians, p10/p90 and mean absolute first differences; no image editing or registration",
+  "limits": "This checks sampled water color and texture scale, not pixel identity, whole-scene similarity, physical realism or performance. Ships/time/TEST badge differ.",
+  "regions": {
+    "upper": [
+      500,
+      85,
+      1100,
+      180
+    ],
+    "middle": [
+      820,
+      320,
+      900,
+      740
+    ],
+    "lower": [
+      500,
+      680,
+      1120,
+      800
+    ],
+    "sun_left": [
+      25,
+      160,
+      105,
+      320
+    ]
+  },
+  "files": {
+    "reference": "Kubeview_UI_2.0.png",
+    "before": "artifacts/ui2/ui2-delivery-chromium-20261111/01-world-reference.png",
+    "after": "artifacts/ui2/ui2-refine-final-chromium-r2-20261111/01-world-reference.png"
+  },
+  "samples": {
+    "reference": {
+      "upper": {
+        "medianRGB": [
+          39.0,
+          104.0,
+          123.0
+        ],
+        "p10": [
+          30.0,
+          96.0,
+          115.0
+        ],
+        "p90": [
+          49.0,
+          112.0,
+          131.0
+        ],
+        "meanAbsHorizontalDifference": 1.1700612131329995,
+        "meanAbsVerticalDifference": 4.896217494089835
+      },
+      "middle": {
+        "medianRGB": [
+          16.0,
+          83.0,
+          98.0
+        ],
+        "p10": [
+          10.0,
+          76.0,
+          90.0
+        ],
+        "p90": [
+          23.0,
+          91.0,
+          106.0
+        ],
+        "meanAbsHorizontalDifference": 0.9087201125175809,
+        "meanAbsVerticalDifference": 2.4280926809864756
+      },
+      "lower": {
+        "medianRGB": [
+          10.0,
+          75.0,
+          90.0
+        ],
+        "p10": [
+          7.0,
+          71.0,
+          86.0
+        ],
+        "p90": [
+          14.0,
+          80.0,
+          95.0
+        ],
+        "meanAbsHorizontalDifference": 0.681085083467959,
+        "meanAbsVerticalDifference": 1.5773018884973344
+      },
+      "sun_left": {
+        "medianRGB": [
+          51.0,
+          112.0,
+          128.0
+        ],
+        "p10": [
+          37.0,
+          102.0,
+          119.0
+        ],
+        "p90": [
+          83.0,
+          132.0,
+          143.0
+        ],
+        "meanAbsHorizontalDifference": 4.375052742616034,
+        "meanAbsVerticalDifference": 11.12617924528302
+      }
+    },
+    "before": {
+      "upper": {
+        "medianRGB": [
+          6.0,
+          83.0,
+          96.0
+        ],
+        "p10": [
+          0.0,
+          79.0,
+          92.0
+        ],
+        "p90": [
+          18.0,
+          88.0,
+          101.0
+        ],
+        "meanAbsHorizontalDifference": 1.4337052983041911,
+        "meanAbsVerticalDifference": 3.9433156028368797
+      },
+      "middle": {
+        "medianRGB": [
+          0.0,
+          80.0,
+          93.0
+        ],
+        "p10": [
+          0.0,
+          76.0,
+          90.0
+        ],
+        "p90": [
+          0.0,
+          84.0,
+          97.0
+        ],
+        "meanAbsHorizontalDifference": 0.5569921639541893,
+        "meanAbsVerticalDifference": 1.0619828957836117
+      },
+      "lower": {
+        "medianRGB": [
+          0.0,
+          79.0,
+          93.0
+        ],
+        "p10": [
+          0.0,
+          76.0,
+          90.0
+        ],
+        "p90": [
+          0.0,
+          83.0,
+          96.0
+        ],
+        "meanAbsHorizontalDifference": 0.495346436905403,
+        "meanAbsVerticalDifference": 0.6621306587150989
+      },
+      "sun_left": {
+        "medianRGB": [
+          11.0,
+          84.0,
+          97.0
+        ],
+        "p10": [
+          4.0,
+          80.0,
+          93.0
+        ],
+        "p90": [
+          20.0,
+          89.0,
+          101.0
+        ],
+        "meanAbsHorizontalDifference": 2.064451476793249,
+        "meanAbsVerticalDifference": 2.7490041928721176
+      }
+    },
+    "after": {
+      "upper": {
+        "medianRGB": [
+          40.0,
+          105.0,
+          124.0
+        ],
+        "p10": [
+          37.0,
+          98.0,
+          116.0
+        ],
+        "p90": [
+          43.0,
+          111.0,
+          132.0
+        ],
+        "meanAbsHorizontalDifference": 0.9535893155258764,
+        "meanAbsVerticalDifference": 4.213528368794326
+      },
+      "middle": {
+        "medianRGB": [
+          18.0,
+          81.0,
+          97.0
+        ],
+        "p10": [
+          11.0,
+          74.0,
+          89.0
+        ],
+        "p90": [
+          29.0,
+          92.0,
+          109.0
+        ],
+        "meanAbsHorizontalDifference": 0.5065400843881857,
+        "meanAbsVerticalDifference": 2.1447891805887034
+      },
+      "lower": {
+        "medianRGB": [
+          11.0,
+          75.0,
+          90.0
+        ],
+        "p10": [
+          10.0,
+          72.0,
+          86.0
+        ],
+        "p90": [
+          15.0,
+          79.0,
+          95.0
+        ],
+        "meanAbsHorizontalDifference": 0.4845674026207144,
+        "meanAbsVerticalDifference": 1.7067046173308034
+      },
+      "sun_left": {
+        "medianRGB": [
+          44.0,
+          106.0,
+          125.0
+        ],
+        "p10": [
+          40.0,
+          99.0,
+          117.0
+        ],
+        "p90": [
+          74.0,
+          116.0,
+          134.0
+        ],
+        "meanAbsHorizontalDifference": 3.467431434599156,
+        "meanAbsVerticalDifference": 8.507625786163523
+      }
+    }
+  },
+  "beforeMedianRGB_MAE": 18.416666666666668,
+  "afterMedianRGB_MAE": 2.0833333333333335
+}

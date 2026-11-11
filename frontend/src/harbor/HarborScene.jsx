@@ -42,7 +42,7 @@ import LifecycleEffects, { NodeArrivalCaption } from "./LifecycleEffects.jsx";
 import MeasuredTraffic from "./MeasuredTraffic.jsx";
 import WorkspaceHarbors from "./WorkspaceHarbors.jsx";
 import { cacheVisualView, pruneVisualViews } from "./visualViews.js";
-import { captureHarborCamera, restoreHarborCamera, harborFitSamples, fitHarborView } from "./cameraViews.js";
+import { captureHarborCamera, restoreHarborCamera, harborFitSamples, fitHarborView, updateHarborDepth } from "./cameraViews.js";
 import { harborWorldPosition as harborPosition, nearbyHarbors } from "../world/workspace.js";
 import WorldFacilities, { FacilityHit } from "./WorldFacilities.jsx";
 import Ocean, { ShipWake } from "./Ocean.jsx";
@@ -1637,7 +1637,7 @@ function ViewController({
     const { center, position, distance } = fitHarborView(samples, size.width / size.height, camera.fov);
     camera.position.copy(position);
     camera.lookAt(center);
-    camera.near = 0.5;
+    updateHarborDepth(camera, center);
     camera.far = Math.max(2500, distance * 5);
     camera.updateProjectionMatrix();
     controls.current?.target.copy(center);
@@ -1760,6 +1760,7 @@ function ViewController({
   const followOffset = useRef(new THREE.Vector3(55, 60, 75)),
     lastFollow = useRef(null);
   useFrame((_, delta) => {
+    updateHarborDepth(camera, controls.current?.target);
     const keys = panKeys.current;
     if (keys.size) transition.current = null;
     if (transition.current && !keys.size) {
@@ -1883,7 +1884,7 @@ function NearbyHarbor({ harbor, index, session, views, protectedSources, materia
     {layers.nodes !== false && window.visible.map(node => {
       const uid = uidOf(node), state = readyState(node);
       return <VesselGroup key={uid} uid={uid} fleet={fleet} motion={motion} clock={clock} waterState={waterState}>
-        <group name={`node:${uid}`} userData={{ harborTarget: { type: "node", uid, name: node.metadata.name, local: [0, 11.8, -21.8] } }} onPointerDown={event => { event.stopPropagation(); pickStart(`node:${uid}`); }}>
+        <group name={`node:${uid}`} userData={{ harborTarget: { type: "node", uid, name: node.metadata.name, local: [0, 11.8 + D.SHIP_FREEBOARD_LIFT, -21.8] } }} onPointerDown={event => { event.stopPropagation(); pickStart(`node:${uid}`); }}>
           <CargoShip position={[0, 0, 0]} materials={materials} state={state} slot={slots.current.node(uid)} lowDetail={lowDetail}
             hovered={hovered === uid} radarData={{ uid, name: node.metadata.name }}
             onClick={event => { event.stopPropagation(); if (canPick(event, `node:${uid}`)) select(node); }}
@@ -1902,7 +1903,7 @@ function NearbyHarbor({ harbor, index, session, views, protectedSources, materia
 }
 
 function HarborNameplate({ harbor, position, onSelect, active = false, stale = false }) {
-  return <Html position={[position[0] - 28, 84, position[1] - 76]} center zIndexRange={[5, 0]}>
+  return <Html position={[position[0] + 8, 110, position[1] - 76]} center zIndexRange={[5, 0]}>
     <button className="harbor-nameplate" data-active={active} aria-label={`${harbor.name} — limanı aç`} title={`${harbor.namespaces.join(", ")}${stale ? " · Son bilinen veri" : ""}`}
       onPointerDown={event => event.stopPropagation()} onClick={event => { event.stopPropagation(); onSelect?.(harbor.id); }}>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m12 2 10 5.5v9L12 22 2 16.5v-9Z M2 7.5l10 5.5 10-5.5M12 13v9M7 4.75l10 5.5" /></svg>
@@ -2388,7 +2389,7 @@ function SceneWorld({
       <hemisphereLight args={["#eaf4f7", "#536b70", 1.5]} />
       <ambientLight intensity={0.3} />
       <directionalLight
-        position={[lightCenter[0] - 550, 360, lightCenter[1] - 140]}
+        position={[lightCenter[0] - 368, 275, lightCenter[1] - 198]}
         target={lightTarget}
         intensity={2.4}
         color="#fff0ce"
@@ -2467,7 +2468,7 @@ function SceneWorld({
                     type: "node",
                     uid,
                     name: node.metadata.name,
-                    local: [0, 11.8, -21.8],
+                    local: [0, 11.8 + D.SHIP_FREEBOARD_LIFT, -21.8],
                   },
                 }}
                 onPointerDown={(e) => {

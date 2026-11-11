@@ -1,0 +1,1978 @@
+{
+  "id": "ui2-refine-final-webkit-20261111",
+  "engine": "webkit",
+  "headless": true,
+  "baseline": false,
+  "startedAt": "2026-11-11T09:55:52.644Z",
+  "status": "PASS",
+  "source": "TEST/REPLAY — isolated read-only mocked HTTP and WebSocket; NOT Kubernetes E2E",
+  "fixtureSHA256": "bc9bf4d8de6e1ab2a8b40f3b80f9ea8856254d22cb875db09194cee6de213cd0",
+  "referenceSHA256": "c3506ec7e5b482c99c7756c7ab14ce59c51ce073ae32d56aaa9cbeb5c2a6e69e",
+  "checks": [
+    {
+      "name": "normal-startup-full-viewport-with-no-dashboard",
+      "status": "PASS",
+      "state": {
+        "rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "viewport": [
+          1672,
+          941
+        ],
+        "canvasCount": 1,
+        "camera": [
+          809.0474631045334,
+          817.3600495368627,
+          841.8347467277367
+        ],
+        "target": [
+          173.32298013141792,
+          0,
+          -66.3430860909997
+        ],
+        "quaternion": [
+          -0.2978988943751739,
+          0.285597640102567,
+          0.09390435404348588,
+          0.9060199826657078
+        ],
+        "zoom": 1,
+        "fleet": [
+          {
+            "uid": "ui2-test-node-1",
+            "name": "worker-01",
+            "slot": 0,
+            "progress": 895.192669411542,
+            "position": [
+              -70.82100000000139,
+              0.01017119027159945,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0008431629201109224,
+            "roll": -0.0007605348040066823,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "ui2-test-node-2",
+            "name": "worker-02",
+            "slot": 1,
+            "progress": 1068.7855867644305,
+            "position": [
+              -175,
+              -0.06415808399880737,
+              149.27191735288056
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.002244490625393837,
+            "roll": -0.002834667805091341,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "water": {
+          "uWaterTime": 1.7689999999999988,
+          "uWaterStrength": 0.45,
+          "uWaterDetail": 1,
+          "uSunGlint": 1
+        },
+        "wakes": [
+          {
+            "visible": true,
+            "opacity": 0.86,
+            "time": 1.8689999999999987
+          },
+          {
+            "visible": true,
+            "opacity": 0.86,
+            "time": 1.8689999999999987
+          },
+          {
+            "visible": true,
+            "opacity": 0.86,
+            "time": 1.8689999999999987
+          },
+          {
+            "visible": true,
+            "opacity": 0.86,
+            "time": 1.8689999999999987
+          }
+        ],
+        "render": {
+          "frame": 96,
+          "calls": 373,
+          "triangles": 79172,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 59,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "geometries": 64,
+        "materials": 45,
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        }
+      }
+    },
+    {
+      "name": "visible-motion-progress",
+      "status": "PASS",
+      "fromWaterTime": 1.7689999999999988,
+      "toWaterTime": 4.349999999999993,
+      "fleet": [
+        {
+          "uid": "ui2-test-node-1",
+          "name": "worker-01",
+          "slot": 0,
+          "progress": 918.4216694115423,
+          "position": [
+            -94.05000000000166,
+            -0.04930057942149494,
+            238
+          ],
+          "yaw": -1.5707963267948966,
+          "pitch": 0.003113745560699643,
+          "roll": 0.0012038126922194999,
+          "state": "patrolling",
+          "speed": 9.000000000014552,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "ui2-test-node-2",
+          "name": "worker-02",
+          "slot": 1,
+          "progress": 1092.0145867644349,
+          "position": [
+            -175,
+            0.020087677403695416,
+            126.0429173528762
+          ],
+          "yaw": 3.141592653589793,
+          "pitch": -0.0017562985098159578,
+          "roll": 0.0029209452385396376,
+          "state": "patrolling",
+          "speed": 8.999999999964025,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        }
+      ]
+    },
+    {
+      "name": "sea-off-freezes-water-and-wake-with-independent-fleet",
+      "status": "PASS",
+      "seaOff": {
+        "rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "viewport": [
+          1672,
+          941
+        ],
+        "canvasCount": 1,
+        "camera": [
+          809.0474631045334,
+          817.3600495368627,
+          841.8347467277367
+        ],
+        "target": [
+          173.32298013141792,
+          0,
+          -66.3430860909997
+        ],
+        "quaternion": [
+          -0.2978988943751739,
+          0.285597640102567,
+          0.09390435404348588,
+          0.9060199826657078
+        ],
+        "zoom": 1,
+        "fleet": [
+          {
+            "uid": "ui2-test-node-1",
+            "name": "worker-01",
+            "slot": 0,
+            "progress": 937.4836694115413,
+            "position": [
+              -113.11200000000065,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 9.000000000001558,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "ui2-test-node-2",
+            "name": "worker-02",
+            "slot": 1,
+            "progress": 1111.0765867644398,
+            "position": [
+              -175,
+              0,
+              106.9809173528713
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 9.000000000001558,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "water": {
+          "uWaterTime": 4.586999999999992,
+          "uWaterStrength": 0,
+          "uWaterDetail": 1,
+          "uSunGlint": 1
+        },
+        "wakes": [
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 4.686999999999993
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 4.686999999999993
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 4.686999999999993
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 4.686999999999993
+          }
+        ],
+        "render": {
+          "frame": 362,
+          "calls": 369,
+          "triangles": 78596,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 59,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "geometries": 64,
+        "materials": 45,
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": false,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        }
+      },
+      "seaStill": {
+        "rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "viewport": [
+          1672,
+          941
+        ],
+        "canvasCount": 1,
+        "camera": [
+          809.0474631045334,
+          817.3600495368627,
+          841.8347467277367
+        ],
+        "target": [
+          173.32298013141792,
+          0,
+          -66.3430860909997
+        ],
+        "quaternion": [
+          -0.2978988943751739,
+          0.285597640102567,
+          0.09390435404348588,
+          0.9060199826657078
+        ],
+        "zoom": 1,
+        "fleet": [
+          {
+            "uid": "ui2-test-node-1",
+            "name": "worker-01",
+            "slot": 0,
+            "progress": 941.515669411541,
+            "position": [
+              -117.14400000000035,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 8.999999999976657,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "ui2-test-node-2",
+            "name": "worker-02",
+            "slot": 1,
+            "progress": 1115.1085867644404,
+            "position": [
+              -175,
+              0,
+              102.94891735287071
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 9.000000000013367,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "water": {
+          "uWaterTime": 4.586999999999992,
+          "uWaterStrength": 0,
+          "uWaterDetail": 1,
+          "uSunGlint": 1
+        },
+        "wakes": [
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 4.686999999999993
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 4.686999999999993
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 4.686999999999993
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 4.686999999999993
+          }
+        ],
+        "render": {
+          "frame": 387,
+          "calls": 369,
+          "triangles": 78596,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 59,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "geometries": 64,
+        "materials": 45,
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": false,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        }
+      }
+    },
+    {
+      "name": "independent-glint-bob-wake-preferences",
+      "status": "PASS",
+      "state": {
+        "rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "viewport": [
+          1672,
+          941
+        ],
+        "canvasCount": 1,
+        "camera": [
+          809.0474631045334,
+          817.3600495368627,
+          841.8347467277367
+        ],
+        "target": [
+          173.32298013141792,
+          0,
+          -66.3430860909997
+        ],
+        "quaternion": [
+          -0.2978988943751739,
+          0.285597640102567,
+          0.09390435404348588,
+          0.9060199826657078
+        ],
+        "zoom": 1,
+        "fleet": [
+          {
+            "uid": "ui2-test-node-1",
+            "name": "worker-01",
+            "slot": 0,
+            "progress": 945.412669411541,
+            "position": [
+              -121.04100000000028,
+              -0.0002558996056931311,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.000013645433852070276,
+            "roll": -0.0000026951898487675017,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "ui2-test-node-2",
+            "name": "worker-02",
+            "slot": 1,
+            "progress": 1119.0055867644421,
+            "position": [
+              -175,
+              0.00016982016089315955,
+              99.05191735286894
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -4.901843401985468e-7,
+            "roll": 0.0000082693557759749,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "water": {
+          "uWaterTime": 4.912999999999991,
+          "uWaterStrength": 0.37643742006453423,
+          "uWaterDetail": 1,
+          "uSunGlint": 0
+        },
+        "wakes": [
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          }
+        ],
+        "render": {
+          "frame": 420,
+          "calls": 369,
+          "triangles": 78596,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 59,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "geometries": 64,
+        "materials": 45,
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": false,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": false,
+          "wake": false,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        }
+      }
+    },
+    {
+      "name": "patrol-off-keeps-water-live",
+      "status": "PASS",
+      "stopped": {
+        "rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "viewport": [
+          1672,
+          941
+        ],
+        "canvasCount": 1,
+        "camera": [
+          809.0474631045334,
+          817.3600495368627,
+          841.8347467277367
+        ],
+        "target": [
+          173.32298013141792,
+          0,
+          -66.3430860909997
+        ],
+        "quaternion": [
+          -0.2978988943751739,
+          0.285597640102567,
+          0.09390435404348588,
+          0.9060199826657078
+        ],
+        "zoom": 1,
+        "fleet": [
+          {
+            "uid": "ui2-test-node-1",
+            "name": "worker-01",
+            "slot": 0,
+            "progress": 946.258669411541,
+            "position": [
+              -121.88700000000028,
+              -0.0000069642171436596025,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -3.7135564983721923e-7,
+            "roll": -7.334863724922021e-8,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "Devriye kapalı",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "ui2-test-node-2",
+            "name": "worker-02",
+            "slot": 1,
+            "progress": 1119.8515867644426,
+            "position": [
+              -175,
+              0.00000462159553793685,
+              98.20591735286848
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -1.3340193222719843e-8,
+            "roll": 2.2504758890142658e-7,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "Devriye kapalı",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "water": {
+          "uWaterTime": 5.813999999999993,
+          "uWaterStrength": 0.45,
+          "uWaterDetail": 1,
+          "uSunGlint": 0
+        },
+        "wakes": [
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          }
+        ],
+        "render": {
+          "frame": 474,
+          "calls": 369,
+          "triangles": 78596,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 59,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "geometries": 64,
+        "materials": 45,
+        "preferences": {
+          "version": 1,
+          "patrol": false,
+          "speed": "normal",
+          "bob": false,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": false,
+          "wake": false,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        }
+      },
+      "still": {
+        "rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "viewport": [
+          1672,
+          941
+        ],
+        "canvasCount": 1,
+        "camera": [
+          809.0474631045334,
+          817.3600495368627,
+          841.8347467277367
+        ],
+        "target": [
+          173.32298013141792,
+          0,
+          -66.3430860909997
+        ],
+        "quaternion": [
+          -0.2978988943751739,
+          0.285597640102567,
+          0.09390435404348588,
+          0.9060199826657078
+        ],
+        "zoom": 1,
+        "fleet": [
+          {
+            "uid": "ui2-test-node-1",
+            "name": "worker-01",
+            "slot": 0,
+            "progress": 946.258669411541,
+            "position": [
+              -121.88700000000028,
+              -0.0000011283825123680525,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -6.016917802841471e-8,
+            "roll": -1.1884368030281715e-8,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "Devriye kapalı",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "ui2-test-node-2",
+            "name": "worker-02",
+            "slot": 1,
+            "progress": 1119.8515867644426,
+            "position": [
+              -175,
+              7.488174875468902e-7,
+              98.20591735286848
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -2.161454824514247e-9,
+            "roll": 3.646350458761292e-8,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "Devriye kapalı",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "water": {
+          "uWaterTime": 6.268999999999992,
+          "uWaterStrength": 0.45,
+          "uWaterDetail": 1,
+          "uSunGlint": 0
+        },
+        "wakes": [
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 7.191999999999999
+          }
+        ],
+        "render": {
+          "frame": 500,
+          "calls": 369,
+          "triangles": 78596,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 59,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "geometries": 64,
+        "materials": 45,
+        "preferences": {
+          "version": 1,
+          "patrol": false,
+          "speed": "normal",
+          "bob": false,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": false,
+          "wake": false,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        }
+      }
+    },
+    {
+      "name": "global-pause-freezes-visual-state",
+      "status": "PASS",
+      "state": {
+        "rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "viewport": [
+          1672,
+          941
+        ],
+        "canvasCount": 1,
+        "camera": [
+          809.0474631045334,
+          817.3600495368627,
+          841.8347467277367
+        ],
+        "target": [
+          173.32298013141792,
+          0,
+          -66.3430860909997
+        ],
+        "quaternion": [
+          -0.2978988943751739,
+          0.285597640102567,
+          0.09390435404348588,
+          0.9060199826657078
+        ],
+        "zoom": 1,
+        "fleet": [
+          {
+            "uid": "ui2-test-node-1",
+            "name": "worker-01",
+            "slot": 0,
+            "progress": 946.2645404115403,
+            "position": [
+              -121.89287099999967,
+              -0.0061690055167853124,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.002253294747375546,
+            "roll": -0.00020651337354237083,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "ui2-test-node-2",
+            "name": "worker-02",
+            "slot": 1,
+            "progress": 1119.8574577644429,
+            "position": [
+              -175,
+              0.013195796053469315,
+              98.20004635286818
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.000030399940863882434,
+            "roll": -0.0008899241610635217,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "water": {
+          "uWaterTime": 6.50399999999999,
+          "uWaterStrength": 0.45,
+          "uWaterDetail": 1,
+          "uSunGlint": 1
+        },
+        "wakes": [
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 9.040000000000004
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 9.040000000000004
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 9.040000000000004
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 9.040000000000004
+          }
+        ],
+        "render": {
+          "frame": 524,
+          "calls": 369,
+          "triangles": 78596,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 59,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "geometries": 64,
+        "materials": 45,
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": true,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        }
+      }
+    },
+    {
+      "name": "reduced-motion-keeps-state-and-disables-decoration",
+      "status": "PASS",
+      "state": {
+        "rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "viewport": [
+          1672,
+          941
+        ],
+        "canvasCount": 1,
+        "camera": [
+          809.0474631045334,
+          817.3600495368627,
+          841.8347467277367
+        ],
+        "target": [
+          173.32298013141792,
+          0,
+          -66.3430860909997
+        ],
+        "quaternion": [
+          -0.2978988943751739,
+          0.285597640102567,
+          0.09390435404348588,
+          0.9060199826657078
+        ],
+        "zoom": 1,
+        "fleet": [
+          {
+            "uid": "ui2-test-node-1",
+            "name": "worker-01",
+            "slot": 0,
+            "progress": 946.2645404115403,
+            "position": [
+              -121.89287099999967,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "ui2-test-node-2",
+            "name": "worker-02",
+            "slot": 1,
+            "progress": 1119.8574577644429,
+            "position": [
+              -175,
+              0,
+              98.20004635286818
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "water": {
+          "uWaterTime": 6.50399999999999,
+          "uWaterStrength": 0,
+          "uWaterDetail": 1,
+          "uSunGlint": 1
+        },
+        "wakes": [
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 9.040000000000004
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 9.040000000000004
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 9.040000000000004
+          },
+          {
+            "visible": false,
+            "opacity": 0,
+            "time": 9.040000000000004
+          }
+        ],
+        "render": {
+          "frame": 525,
+          "calls": 369,
+          "triangles": 78596,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 59,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "geometries": 64,
+        "materials": 45,
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "reduced",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        }
+      }
+    },
+    {
+      "name": "physical-node-click",
+      "status": "PASS",
+      "target": {
+        "type": "node",
+        "uid": "ui2-test-node-1",
+        "name": "worker-01",
+        "harborId": "ui2-harbor-a",
+        "x": 154.94299025009533,
+        "y": 546.738799691741,
+        "visible": true,
+        "focusedForReadability": false
+      }
+    },
+    {
+      "name": "physical-container-click",
+      "status": "PASS",
+      "target": {
+        "type": "container",
+        "uid": "ui2-test-pod-a",
+        "name": "workload-a",
+        "namespace": "namespace-a",
+        "containerName": "metrics",
+        "containerRole": "container",
+        "harborId": "ui2-harbor-a",
+        "x": 145.04818481509903,
+        "y": 540.5654316898883,
+        "visible": true,
+        "focusedForReadability": false
+      }
+    },
+    {
+      "name": "panel-open-close-retains-canvas",
+      "status": "PASS"
+    },
+    {
+      "name": "paused-node-pose-survives-active-to-nearby-transition",
+      "status": "PASS",
+      "pausedA": {
+        "harborId": "ui2-harbor-a",
+        "uid": "ui2-test-node-1",
+        "matrix": [
+          2.220446049250313e-16,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -1,
+          0,
+          2.220446049250313e-16,
+          0,
+          -124.99572299999738,
+          0,
+          238,
+          1
+        ],
+        "position": [
+          -124.99572299999738,
+          0,
+          238
+        ],
+        "nearby": false
+      },
+      "neighboringA": {
+        "harborId": "ui2-harbor-a",
+        "uid": "ui2-test-node-1",
+        "matrix": [
+          2.220446049250313e-16,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -1,
+          0,
+          2.220446049250313e-16,
+          0,
+          -124.99572299999738,
+          0,
+          238,
+          1
+        ],
+        "position": [
+          -124.99572299999738,
+          0,
+          238
+        ],
+        "nearby": true
+      },
+      "neighboringALater": {
+        "harborId": "ui2-harbor-a",
+        "uid": "ui2-test-node-1",
+        "matrix": [
+          2.220446049250313e-16,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -1,
+          0,
+          2.220446049250313e-16,
+          0,
+          -124.99572299999738,
+          0,
+          238,
+          1
+        ],
+        "position": [
+          -124.99572299999738,
+          0,
+          238
+        ],
+        "nearby": true
+      },
+      "movingB": {
+        "harborId": "ui2-harbor-b",
+        "uid": "ui2-test-node-1",
+        "matrix": [
+          -0.21872214155066882,
+          0,
+          0.9757871821229713,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -0.9757871821229713,
+          0,
+          -0.21872214155066882,
+          0,
+          269.7734638897401,
+          0,
+          -49.82074898613041,
+          1
+        ],
+        "position": [
+          269.7734638897401,
+          0,
+          -49.82074898613041
+        ],
+        "nearby": false
+      },
+      "movingBLater": {
+        "harborId": "ui2-harbor-b",
+        "uid": "ui2-test-node-1",
+        "matrix": [
+          -0.2998207085985498,
+          0,
+          0.953995567440155,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -0.953995567440155,
+          0,
+          -0.2998207085985498,
+          0,
+          266.1240283725855,
+          0,
+          -50.80137164685715,
+          1
+        ],
+        "position": [
+          266.1240283725855,
+          0,
+          -50.80137164685715
+        ],
+        "nearby": false
+      }
+    },
+    {
+      "name": "return-to-harbor-keeps-paused-button-state-and-normal-resume",
+      "status": "PASS"
+    },
+    {
+      "name": "physical-neighbor-container-click",
+      "status": "PASS",
+      "target": {
+        "type": "container",
+        "uid": "ui2-test-pod-b",
+        "name": "workload-b",
+        "namespace": "namespace-b",
+        "containerName": "metrics",
+        "containerRole": "container",
+        "harborId": "ui2-harbor-b",
+        "x": 942.6328781558448,
+        "y": 515.3514155374158,
+        "visible": true,
+        "focusedForReadability": false
+      }
+    },
+    {
+      "name": "neighbor-harbor-click-activates-correct-scoped-resources",
+      "status": "PASS"
+    },
+    {
+      "name": "neighbor-finder-exposes-only-its-scoped-pod",
+      "status": "PASS"
+    },
+    {
+      "name": "textbox-arrow-keys-preserve-native-caret-and-camera",
+      "status": "PASS"
+    },
+    {
+      "name": "focused-arrow-translates-camera-and-target-horizontally-then-stops",
+      "status": "PASS",
+      "cameraDelta": [
+        9.585013470072795,
+        0,
+        -6.709509429050854
+      ],
+      "targetDelta": [
+        9.585013470072795,
+        0,
+        -6.709509429050968
+      ]
+    },
+    {
+      "name": "visual-preferences-survive-reload-without-changing-resource-scope",
+      "status": "PASS"
+    },
+    {
+      "name": "fullscreen-1440",
+      "status": "PASS",
+      "rect": [
+        0,
+        0,
+        1440,
+        900
+      ]
+    },
+    {
+      "name": "fullscreen-1280",
+      "status": "PASS",
+      "rect": [
+        0,
+        0,
+        1280,
+        800
+      ]
+    },
+    {
+      "name": "fullscreen-768",
+      "status": "PASS",
+      "rect": [
+        0,
+        0,
+        768,
+        900
+      ]
+    },
+    {
+      "name": "scoped-delete-and-duplicate-remove-only-B-pod-and-preserve-node-count",
+      "status": "PASS"
+    },
+    {
+      "name": "same-name-new-UID-does-not-retarget-deleted-selection",
+      "status": "PASS"
+    },
+    {
+      "name": "A-pod-remains-selectable-after-B-delete-and-replacement",
+      "status": "PASS"
+    }
+  ],
+  "screenshots": [
+    "01-world-reference.png",
+    "02-world-moving.png",
+    "03-settings.png",
+    "04-effects-disabled.png",
+    "05-reduced-motion.png",
+    "06-node-panel.png",
+    "07-pod-container-panel.png",
+    "08-neighbor-scope.png",
+    "09-world-restored.png",
+    "10-world-1440.png",
+    "10-world-1280.png",
+    "10-world-768.png",
+    "11-selected-B-deleted.png",
+    "12-restored-world-after-replay.png"
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "prohibitedWrites": [],
+  "unexpectedAPI": [],
+  "scopes": [
+    {
+      "harborId": "ui2-harbor-a",
+      "namespace": "namespace-a",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-a"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-b",
+      "namespace": "namespace-b",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-b"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-a",
+      "namespace": "namespace-a",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-a"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-a",
+      "namespace": "namespace-a",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-a"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-b",
+      "namespace": "namespace-b",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-b"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-b",
+      "namespace": "namespace-b",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-b"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-a",
+      "namespace": "namespace-a",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-a"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-b",
+      "namespace": "namespace-b",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-b"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-b",
+      "namespace": "namespace-b",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-b"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-a",
+      "namespace": "namespace-a",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-a"
+      ]
+    },
+    {
+      "harborId": "ui2-harbor-a",
+      "namespace": "namespace-a",
+      "nodeUIDs": [
+        "ui2-test-node-1",
+        "ui2-test-node-2"
+      ],
+      "podUIDs": [
+        "ui2-test-pod-a"
+      ]
+    }
+  ],
+  "streamEvents": [
+    {
+      "source": "synthetic WebSocket replay, not Kubernetes E2E",
+      "harborId": "ui2-harbor-b",
+      "action": "DELETE",
+      "uid": "ui2-test-pod-b",
+      "namespace": "namespace-b",
+      "resourceVersion": "test-rv-deleted",
+      "at": "2026-11-11T09:56:14.835Z"
+    },
+    {
+      "source": "synthetic WebSocket replay, not Kubernetes E2E",
+      "harborId": "ui2-harbor-b",
+      "action": "DELETE",
+      "uid": "ui2-test-pod-b",
+      "namespace": "namespace-b",
+      "resourceVersion": "test-rv-deleted",
+      "at": "2026-11-11T09:56:14.883Z"
+    },
+    {
+      "source": "synthetic WebSocket replay, not Kubernetes E2E",
+      "harborId": "ui2-harbor-b",
+      "action": "ADD",
+      "uid": "ui2-test-pod-b-replacement",
+      "namespace": "namespace-b",
+      "resourceVersion": "test-rv-replacement",
+      "at": "2026-11-11T09:56:15.159Z"
+    }
+  ],
+  "limits": [
+    "No real cluster, mutation, provisioning or traffic collector was used. Scoped fixture identity is synthetic.",
+    "Video and short JS draw samples are visual diagnostics, not production CPU/FPS or physical feedback acceptance.",
+    "Read-only existing scene probes inspect poses/material uniforms; interactions use normal DOM and pointer paths.",
+    "Playwright WebKit is not native Safari hardware performance."
+  ],
+  "indexSHA256": "be5e5fa86bd7e8cee74801171b715233a0ec59ac061e46e69c212d5400b52a48",
+  "movingDrawDiagnostic": {
+    "elapsedMs": 2503,
+    "jsDraws": 143,
+    "jsDrawsPerSecond": 57.13144226927687,
+    "p95RafObservedDrawIntervalMs": 34,
+    "p99RafObservedDrawIntervalMs": 36,
+    "stats": {
+      "frame": 241,
+      "calls": 373,
+      "triangles": 79172,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 59,
+        "textures": 4
+      },
+      "lifecycle": {
+        "canonicalNodes": 2,
+        "visibleNodes": 2,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 1,
+        "visiblePods": 1,
+        "nodeSlots": 2,
+        "podSlots": 1,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "videoEnabled": true
+  },
+  "movingEnd": {
+    "rect": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ],
+    "canvasCount": 1,
+    "camera": [
+      809.0474631045334,
+      817.3600495368627,
+      841.8347467277367
+    ],
+    "target": [
+      173.32298013141792,
+      0,
+      -66.3430860909997
+    ],
+    "quaternion": [
+      -0.2978988943751739,
+      0.285597640102567,
+      0.09390435404348588,
+      0.9060199826657078
+    ],
+    "zoom": 1,
+    "fleet": [
+      {
+        "uid": "ui2-test-node-1",
+        "name": "worker-01",
+        "slot": 0,
+        "progress": 918.4216694115423,
+        "position": [
+          -94.05000000000166,
+          -0.04930057942149494,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": 0.003113745560699643,
+        "roll": 0.0012038126922194999,
+        "state": "patrolling",
+        "speed": 9.000000000014552,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "ui2-test-node-2",
+        "name": "worker-02",
+        "slot": 1,
+        "progress": 1092.0145867644349,
+        "position": [
+          -175,
+          0.020087677403695416,
+          126.0429173528762
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0017562985098159578,
+        "roll": 0.0029209452385396376,
+        "state": "patrolling",
+        "speed": 8.999999999964025,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "water": {
+      "uWaterTime": 4.349999999999993,
+      "uWaterStrength": 0.45,
+      "uWaterDetail": 1,
+      "uSunGlint": 1
+    },
+    "wakes": [
+      {
+        "visible": true,
+        "opacity": 0.86,
+        "time": 4.449999999999995
+      },
+      {
+        "visible": true,
+        "opacity": 0.86,
+        "time": 4.449999999999995
+      },
+      {
+        "visible": true,
+        "opacity": 0.86,
+        "time": 4.449999999999995
+      },
+      {
+        "visible": true,
+        "opacity": 0.86,
+        "time": 4.449999999999995
+      }
+    ],
+    "render": {
+      "frame": 241,
+      "calls": 373,
+      "triangles": 79172,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 59,
+        "textures": 4
+      },
+      "lifecycle": {
+        "canonicalNodes": 2,
+        "visibleNodes": 2,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 1,
+        "visiblePods": 1,
+        "nodeSlots": 2,
+        "podSlots": 1,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "geometries": 64,
+    "materials": 45,
+    "preferences": {
+      "version": 1,
+      "patrol": true,
+      "speed": "normal",
+      "bob": true,
+      "sea": true,
+      "seaStrength": "light",
+      "sunGlint": true,
+      "wake": true,
+      "operations": "full",
+      "motionPreference": "full",
+      "paused": false,
+      "quality": "medium",
+      "theme": "light",
+      "contrast": "normal"
+    }
+  },
+  "finishedAt": "2026-11-11T09:56:16.389Z",
+  "browserVersion": "27.2"
+}

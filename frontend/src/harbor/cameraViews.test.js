@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import * as THREE from "three";
-import { captureHarborCamera, restoreHarborCamera, harborFitSamples, fitHarborView } from "./cameraViews.js";
+import { captureHarborCamera, restoreHarborCamera, harborFitSamples, fitHarborView, updateHarborDepth } from "./cameraViews.js";
 import { safeHarborView } from "../world/workspace.js";
 
 test("50 interrupted switches save each harbor's intended destination rather than the previous interpolated camera", () => {
@@ -118,4 +118,18 @@ test("camera FOV validation rejects degenerate lenses while unversioned captures
   assert.equal(captured.fov, 24);
   assert.deepEqual(captured.position, transition.position);
   assert.deepEqual(captured.target, transition.target);
+});
+
+test("overview depth separates the actual 12.5 mm pier overlay while preserving camera pose and zoom", () => {
+  const camera = new THREE.PerspectiveCamera(24, 1672/941, 0.5, 7000), target = new THREE.Vector3(173, 0, -66);
+  camera.position.set(809, 817, 842); camera.lookAt(target); camera.updateMatrixWorld();
+  const pose = camera.position.clone(), angle = camera.quaternion.clone(), zoom = camera.zoom;
+  const depth = (x, y, z) => Math.round((new THREE.Vector3(x, y, z).project(camera).z * 0.5 + 0.5) * 16777215);
+  const ties = () => { let count=0; for(const x of [-80,0,80]) for(let z=0;z<=150;z+=10) if(depth(x,1,z)===depth(x,1.0125,z))count++; return count; };
+  assert.ok(ties() > 30, "old overview maps separate surfaces to the same 24-bit depth");
+  assert.equal(updateHarborDepth(camera, target), true); assert.equal(ties(), 0);
+  assert.deepEqual(camera.position, pose); assert.deepEqual(camera.quaternion.toArray(), angle.toArray()); assert.equal(camera.zoom, zoom);
+  assert.equal(updateHarborDepth(camera, target), false, "stationary frames do not rebuild projection");
+  camera.position.copy(target).add(new THREE.Vector3(0,20,25)); updateHarborDepth(camera,target);
+  assert.ok(camera.near < 1, "close inspection keeps its nearby surfaces");
 });

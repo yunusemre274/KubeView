@@ -131,13 +131,26 @@ const settings = async () => { await page.getByRole('button', { name: 'Görünü
 const closeSettings = () => page.getByRole('dialog', { name: 'Görünüm ve ayarlar', exact: true }).getByRole('button', { name: 'Pencereyi kapat', exact: true }).click();
 const saved = () => page.evaluate(() => JSON.parse(localStorage.getItem('kubeview.preferences.v1')));
 async function pick(match) {
-  let point;
+  let point, focusedForReadability = false;
+  if (match.type === 'container') {
+    const visible = await page.locator('canvas').evaluate((canvas, match) => canvas.__harbor.projectTargets(match).some(target => target.visible), match);
+    if (!visible) {
+      // A tiny/occluded box in the two-port overview is inspected via the
+      // existing user-facing Node focus action, never by forcing a hidden hit.
+      const pod = livePods.find(pod => pod.metadata.uid === match.uid), node = nodes.find(node => node.metadata.name === pod?.spec.nodeName);
+      assert.ok(node, 'A known real fixture owner is needed before focusing');
+      await closePanels(page); await pick({ type: 'node', uid: node.metadata.uid, harborId: match.harborId || workspace.harbors.find(harbor => harbor.namespaces.includes(pod.metadata.namespace)).id });
+      await expect(page.locator('.resource-details h2')).toHaveText(node.metadata.name);
+      await page.getByRole('button', { name: 'Sahnede göster', exact: true }).click(); await settleCamera(); focusedForReadability = true;
+    }
+  }
   await expect.poll(async () => { point = await page.locator('canvas').evaluate((canvas, match) => canvas.__harbor.projectTargets(match).find(target => target.visible), match); return !!point; }).toBe(true);
-  await page.mouse.click(point.x, point.y); return point;
+  await page.mouse.click(point.x, point.y); return { ...point, focusedForReadability };
 }
 async function selectHarbor(id) {
   const harbor = workspace.harbors.find(item => item.id === id);
   await closePanels(page);
+  await page.getByRole('button', { name: 'Limana dön', exact: true }).click(); await settleCamera();
   await page.getByRole('button', { name: `${harbor.name} — limanı aç`, exact: true }).click();
   await expect(page.locator('.world-cluster-name')).toContainText(harbor.name);
   await closePanels(page); // Nameplate intentionally opens the connection window.
@@ -184,7 +197,46 @@ try {
   assert.ok(result.movingEnd.water.uWaterTime > initial.water.uWaterTime, 'The shared sea clock must advance with sea enabled');
   assert.notDeepEqual(result.movingEnd.fleet, initial.fleet, 'The fleet must move while enabled');
   record('visible-motion-progress', { fromWaterTime: initial.water.uWaterTime, toWaterTime: result.movingEnd.water.uWaterTime, fleet: result.movingEnd.fleet });
-  if (baseline) { result.status = 'BASELINE_CAPTURED'; }
+  if (baseline) { assert.equal(result.errors.length, 0); assert.equal(result.consoleErrors.length, 0); result.status = 'BASELINE_CAPTURED'; }
+  else if (process.env.KV_UI2_SURFACE_ONLY === '1') {
+    await pick({ type: 'node', uid: nodes[0].metadata.uid, harborId: 'ui2-harbor-a' });
+    await page.getByRole('button', { name: 'Sahnede göster', exact: true }).click(); await settleCamera();
+    await capture('foam-close-0'); await page.waitForTimeout(700); await capture('foam-close-1');
+    const precision = await page.locator('canvas').evaluate(canvas => ({ near: canvas.__harbor.camera.near, far: canvas.__harbor.camera.far }));
+    assert.ok(precision.near > 1); record('close-ship-water-and-live-foam', { precision });
+    await page.getByRole('button', { name: 'Limana dön', exact: true }).click(); await settleCamera();
+    // Isolated GPU rendering of the actual product material. This is shader
+    // evidence, separately labeled from the normal App pointer flow above.
+    const gpu = await page.locator('canvas').evaluate(async canvas => {
+      const THREE = await import('/node_modules/.vite/deps/three.js');
+      const { createWakeResources } = await import('/src/harbor/Ocean.jsx');
+      const scene = canvas.__harbor.scene; let root;
+      scene.traverse(object => { root ||= object.__r3f?.root?.getState?.(); });
+      const renderer = root.gl, resources = createWakeResources(), target = new THREE.WebGLRenderTarget(256, 512);
+      const isolated = new THREE.Scene(), camera = new THREE.OrthographicCamera(-20, 20, 25, -25, .1, 150);
+      camera.up.set(0,0,1); camera.position.set(0,100,-58.5); camera.lookAt(0,0,-58.5);
+      isolated.add(new THREE.Mesh(resources.geometry, resources.material));
+      const priorTarget = renderer.getRenderTarget(), clear = renderer.getClearColor(new THREE.Color()), alpha = renderer.getClearAlpha();
+      const read = time => {
+        resources.uniforms.uTime.value=time; renderer.setRenderTarget(target); renderer.setClearColor(0,0); renderer.clear(); renderer.render(isolated,camera);
+        const pixels=new Uint8Array(256*512*4); renderer.readRenderTargetPixels(target,0,0,256,512,pixels); return pixels;
+      };
+      try {
+        resources.uniforms.uOpacity.value=.86; resources.uniforms.uSpeed.value=1;
+        const a=read(0), b=read(.7);
+        const band = (lo,hi) => { let alpha=0,covered=0,n=0; for(let y=lo;y<hi;y++)for(let x=0;x<256;x++){const value=a[(y*256+x)*4+3];alpha+=value;covered+=value>20;n++;} return {meanAlpha:alpha/n,coverage:covered/n}; };
+        const near=band(350,480),far=band(25,155); let changed=0;for(let i=3;i<a.length;i+=4)if(Math.abs(a[i]-b[i])>8)changed++;
+        resources.uniforms.uOpacity.value=0; const off=read(.7); let offAlpha=0; for(let i=3;i<off.length;i+=4)offAlpha+=off[i];
+        return { source:'isolated GPU readback of actual createWakeResources material, NOT Kubernetes',near,far,changedPixels:changed,offAlpha,triangles:resources.geometry.index.count/3 };
+      } finally { renderer.setRenderTarget(priorTarget); renderer.setClearColor(clear,alpha); resources.dispose(); target.dispose(); canvas.__harbor.invalidate(); }
+    });
+    assert.ok(gpu.near.meanAlpha > gpu.far.meanAlpha*2); assert.ok(gpu.near.coverage > gpu.far.coverage); assert.ok(gpu.changedPixels > 500); assert.equal(gpu.offAlpha,0); record('actual-wake-GPU-animation-near-to-far-density',gpu);
+    const before = await state();
+    await page.mouse.move(800,600); await page.mouse.down(); await page.mouse.move(850,610,{steps:16}); await page.mouse.up(); await settleCamera(); await capture('harbor-after-orbit');
+    const after = await state(); assert.ok(delta(before.camera,after.camera)>1); assert.equal(after.render.lifecycle.canonicalNodes,2); assert.equal(after.canvasCount,1);
+    record('orbit-retains-harbors-with-adaptive-depth', { beforeNear:precision.near, state:after });
+    assert.equal(result.errors.length,0); assert.equal(result.consoleErrors.length,0); result.status='PASS';
+  }
   else if (process.env.KV_UI2_FACILITY_ONLY === '1') {
     for (const side of ['a', 'b']) {
       const harborId = `ui2-harbor-${side}`;
@@ -241,6 +293,7 @@ try {
     await expect(page.locator('.resource-details h2')).toHaveText('metrics'); await expect(page.locator('.resource-details')).toContainText(pods[0].metadata.name); await expect(page.locator('.resource-details')).toContainText(pods[0].metadata.namespace); await capture('07-pod-container-panel');
     await closePanels(page); const same = await page.locator('canvas').evaluate((canvas, original) => canvas === original, originalCanvas); assert.equal(same, true);
     record('panel-open-close-retains-canvas');
+    await page.getByRole('button', { name: 'Limana dön', exact: true }).click(); await settleCamera();
 
     // Isolate horizontal patrol from legitimate water-driven heave/roll using
     // normal preferences, then exercise per-harbor pause through the Node panel.

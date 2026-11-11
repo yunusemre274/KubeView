@@ -36,3 +36,7 @@ geometry construction, texture allocation, external model, logo or CDN was
 introduced. These are visual/model changes, not a claim of measured performance
 improvement. Browser visual and motion acceptance is recorded separately by the
 UI 2.0 integration work.
+
+### 11 Kasım takip düzeltmesi
+
+Gövde/güverte/fittings ve gerçek yük ankrajları1m freeboard artışını ortak sabitten alır; yatay hull72×16 ve su hattı korunur. Köpük, yeni dış asset olmadan mevcut shader'da akış/gözenek ve yakın/uzak coverage ile üretilir; üç şerit144 üçgen, aynı tek draw/material. Su dokusu256² kalır; per-frame doku/geometri üretimi yoktur. Referans PNG renk/ölçek analizi için kullanıldı; ürün texture'ı olarak kopyalanmadı.

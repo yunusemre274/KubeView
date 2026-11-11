@@ -1,5 +1,13 @@
 # Güncel görev durumu
 
+## 11 Kasım — UI 2.0 ikinci görsel düzeltme
+
+- [x] Referansın dört su bölgesinde renk/dalga analizi; mavi-gri/petrol rengi, solda güneş ve ince yatay dalga ayarı.
+- [x] Hareketli, kıça yakın yoğun ve uzakta seyrek köpük; gemi gövdesi/güverte/container/radar yüksekliğinin birlikte1m artırılması.
+- [x] Uzak kadrajda ince yüzeylerin derinlik çakışması:45/48→0/48; kamera poz/açı/zoom ve yakın inceleme korunuyor.
+- [x] 219 unit, Chromium24/WebKit24, raycast2 ve ayrıGPU/Orbit5 kontrol; görsel kareler/kayıt incelendi.
+- [ ] Bütün ekranın birebir görsel kullanıcı kabulü; önceki v1.1 CPU/fiziksel gecikme/uzun kararlılık kapıları ayrı ve açık.
+
 ## 11 Kasım 2026 — UI 2.0 referans uygulaması
 
 - [x] Referans görseli açıldı; canlı veri yerine resim/örnek kaynak koymadan iki yakın liman, ayrıntılı gemi/vinç/hangar ve kompakt araç görünümü uygulandı.

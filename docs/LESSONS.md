@@ -1,5 +1,12 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 11 Kasım — uzak kamerada derinlik ve referans su rengi
+
+- Kilometre ölçeğinde0,5m near plane ile12,5mm katmanlar aynı24-bit derinliğe yuvarlanabilir. Renk veya shadow bias'ı rastgele değiştirmek yerine gerçek kamera/kaplama çiftlerini projekte edin. Uzaklığa bağlı near, poz/açı/zoom'u değiştirmeden45/48 çakışmayı sıfırladı; yakın inceleme de test edildi.
+- Yalnız renk hex'ini değiştirmek, ACES altında hedef rengi garanti etmez. Referans ve tarayıcı görüntüsünün aynı su bölgelerinde RGB/kontrast ölçümü, kırmızı kanal kesilmesini gösterdi. Küçük bölge uyumu bütün ekranın birebir olduğu iddiası değildir.
+- Yoğunluğu geriye azaltılan köpükte yalnız alpha değil coverage da azalmalıdır. Actual material GPU okuması yakın/uzak farkını, zamanlı desen değişimini ve off=0 sonucunu doğruladı; gerçek trafik/cluster kanıtı yerine geçmez.
+- Kod değiştirilirken Vite üzerinden alınan before çekimi HMR ile bozulabilir; ilk çekim NaN uyarıları nedeniyle geçersiz bırakıldı ve önceki donmuş3091327 kanıtı kullanıldı. Bir testte Three Quaternion'un dahili callback kimliği yerine gerçek sayısal dönüşümünü karşılaştırmak gerekir. Çok küçük kutu hedefleri mevcut kullanıcı odak eylemiyle yakınlaştırılmalı, görünmez hit zorlanmamalıdır.
+
 ## 11 Kasım 2026 — iki ayrıntılı liman ve görsel test sınırları
 
 - Canvas varlığı ve canonical sayı, görünür render kanıtı değildir. İlk çift-liman fit'i kameranın arkasındaki noktaları iteratif projekte edip milyon birime kaçtı; gerçek mesh sınırlarıyla analitik camera-space fit, draw>0 ve sonlu kamera kontrolü eklendi.

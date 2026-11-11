@@ -91,9 +91,9 @@ function hullGeometry(bottom, top, bottomScale, topScale, chine = false) {
   geometry.computeVertexNormals()
   return geometry
 }
-export const HULL = hullGeometry(0.45,3.5,0.90,1,true)
+export const HULL = hullGeometry(0.45,3.5+D.SHIP_FREEBOARD_LIFT,0.90,1,true)
 const KEEL = hullGeometry(-2.3,0.45,0.64,0.90,true)
-const DECK = hullGeometry(3.49,3.8,0.985,0.985)
+const DECK = hullGeometry(3.49+D.SHIP_FREEBOARD_LIFT,3.8+D.SHIP_FREEBOARD_LIFT,0.985,0.985)
 const WATERLINE = hullGeometry(0.44,0.68,0.90,0.918)
 const HULL_EDGES=new THREE.EdgesGeometry(HULL,18)
 
@@ -145,6 +145,8 @@ export function CargoShip({ position, materials: m, selected, state = 'unknown',
         }
       }
     }
+    for (const parts of [windows, white, accents, dark, red, mast, steel])
+      for (const part of parts) part.p[1] += D.SHIP_FREEBOARD_LIFT
     return { windows, white, accents, dark, red, mast, steel }
   }, [lowDetail])
   return <group position={position} rotation={[0,0,0]} onClick={onClick} onPointerOver={onPointerOver} onPointerOut={onPointerOut}>
@@ -162,13 +164,13 @@ export function CargoShip({ position, materials: m, selected, state = 'unknown',
     {!lowDetail && <>
       <Lettering position={[8.03,1.55,2]} rotation={[0,Math.PI/2,0]} size={1.55} material={m.white}>KUBEVIEW</Lettering>
       <Lettering position={[-8.03,1.55,-2]} rotation={[0,-Math.PI/2,0]} size={1.55} material={m.white}>KUBEVIEW</Lettering>
-      <Lettering position={[0,6.3,-33.79]} rotation={[0,Math.PI,0]} size={1.25} material={m.dark}>{`NODE ${String(slot+1).padStart(2,'0')}`}</Lettering>
+      <Lettering position={[0,6.3+D.SHIP_FREEBOARD_LIFT,-33.79]} rotation={[0,Math.PI,0]} size={1.25} material={m.dark}>{`NODE ${String(slot+1).padStart(2,'0')}`}</Lettering>
     </>}
-    <group position={[0,18.3,-24]} name="node-radar" userData={{harborTarget:radarData?{type:'node-radar',...radarData,local:[0,0.9,0]}:undefined}} onClick={event=>{event.stopPropagation();onClick?.(event)}}>
+    <group position={[0,18.3+D.SHIP_FREEBOARD_LIFT,-24]} name="node-radar" userData={{harborTarget:radarData?{type:'node-radar',...radarData,local:[0,0.9,0]}:undefined}} onClick={event=>{event.stopPropagation();onClick?.(event)}}>
       <Cylinder position={[0,0.3,0]} scale={[0.3,1,0.3]} material={m.rail}/><Box position={[0,1.1,0]} scale={[4.2,0.9,0.7]} rotation={[0,0.35,0]} material={m.white}/>
       <Box position={[0,1.1,0.4]} scale={[3.7,0.55,0.15]} rotation={[0,0.35,0]} material={m.window}/>
     </group>
-    <Cylinder position={[-4.5,13.4,-24]} scale={[0.38,0.5,0.38]} material={state === 'ready' ? m.yellow : state === 'failed' ? m.rust : m.rail}/>
+    <Cylinder position={[-4.5,13.4+D.SHIP_FREEBOARD_LIFT,-24]} scale={[0.38,0.5,0.38]} material={state === 'ready' ? m.yellow : state === 'failed' ? m.rust : m.rail}/>
     {(selected||hovered)&&<lineSegments geometry={HULL_EDGES} raycast={()=>null} scale={[1.015,1.015,1.005]} position={[0,0.05,0]} dispose={null}><lineBasicMaterial color={selected?'#4a8bd8':'#e5be62'} transparent opacity={0.95} depthTest={false}/></lineSegments>}
   </group>
 }

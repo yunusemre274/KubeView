@@ -90,3 +90,14 @@ export function fitHarborView(samples, aspect, fov = 38) {
   }
   return { center, distance, position: center.clone().addScaledVector(direction, distance) };
 }
+
+// Keep millimetre-scale pier markings separable at an overview distance. A
+// fixed 0.5 m near plane loses centimetres of 24-bit depth precision at 1 km.
+export function updateHarborDepth(camera, target) {
+  if (!target) return false;
+  const near = Math.max(0.5, camera.position.distanceTo(target) / 50);
+  if (Math.abs(near - camera.near) <= Math.max(0.0001, near * 0.005)) return false;
+  camera.near = near;
+  camera.updateProjectionMatrix();
+  return true;
+}

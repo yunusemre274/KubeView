@@ -1,5 +1,12 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — köpük yoğunluğu, referans su rengi ve titreme
+
+- Köpük yakın mesafede yoğun, geride seyrek; zaman/hızla ilerleyen çalkantı ve ince parçalanma. Mevcut deniz/iz/pause/reduced ayarları korunur.
+- Referanstan su renkleri örneklendi; aşırı turkuazı önleyen renk, ince yatay dalga ve kırık güneş izi uygulandı. Gemilerin freeboard/güverte ve yükleri1m yükseldi.
+- Uzak kamerada ince beton katmanlarının z-fighting riski uzaklığa bağlı near plane ile giderildi; su/köpük yüzey ayrımı artırıldı.
+- 219 unit, Chromium24/WebKit24, raycast2 veGPU/Orbit5 kontrol; [ayrıntı ve sınırlar](UI_2_0.md). Gerçek Kubernetes servislerine yeni kapsam eklenmedi.
+
 ## 2026-11-11 — UI 2.0 referans görünümü
 
 - Tam ekran dünyaya yakın komşu limanın gerçek kapsamlı görünümü, proje levhaları ve kompakt lacivert araçlar eklendi; Soft UI nesne panelleri korundu.
