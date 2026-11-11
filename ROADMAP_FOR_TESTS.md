@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T16:42:29.735916+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T16:44:24.131727+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `2461bbfb6824455a06c4fd9366ecd72a7928654e`; remote aynı, CI43028369803 SUCCESS. Beş frontend dosyasındaki label/fog düzeltmesi sonraki test checkpointi; user dosyaları korunur.
 - Build/paket: candidate04 binary08bd0cee5a5d…/indexfdf10156… (`candidate04-binary.json`); finaltemizarşiv değil. Başlangıç36d5b8f kaynak/binaryarşivi korunur; hiçbir eski dist çıktısı ezilmedi.
 - Ortam: Apple M5/32GiB, macOS27.0.1; şu an Battery Power %76 (önceki AC koşulundan farklı). Chromium156 ve Playwright WebKit27.2 ayrı; native Safari/Retina henüz yeni runtime kabulü değil. CPU A/B ve uzun koşu henüz başlamadı.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **199**. NOT_STARTED:157; IN_PROGRESS:17; FAILED:0; BLOCKED:0; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
+- Toplam test fazı: **199**. NOT_STARTED:153; IN_PROGRESS:21; FAILED:0; BLOCKED:0; RETEST_REQUIRED:1; VERIFIED_DONE:24; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM düzeltme+dar retest geçti; geniş final paket kapısı açık. Main Go kaynağı güncel Go DB ile0 bulgu; provider1.20.2 imajlarında20 farklı High ID tarama eşleşmesi var, resmi1.20.4 adayında azalsa da kalan apt/x-net/go-jose bulguları analiz/düzeltme bekliyor. minikube özel CLI go-jose4.1.4→4.1.6 High yeni saptandı; risk kabulü verilmedi. Scanner eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -34,7 +34,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:4, VERIFIED_DONE:2 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
-| CAT-11 — XSS ve önizleme | 7 | NOT_STARTED:4, IN_PROGRESS:1, VERIFIED_DONE:2 | Henüz yok |
+| CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:5, VERIFIED_DONE:2 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
@@ -6363,64 +6363,47 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: KV-SECURITY-WORKER; root ikinciinceleme
+- Kaynak / build / paket kimliği: visual06 e582a5bd… (550400a3 frontend eşdeğer); TEST/REPLAY browser intercept, sourcehash manifestte
+- Ortam / kullanılan kimlik ve yetki: Owned07app19847PID925; Chromium156; 7inertpayload/60toplamHTTP/≤64KiB; backend mutasyonu yok.
+- Başlangıç zamanı: 2026-11-11T13:32:41.481Z
+- Bitiş zamanı: Dar fixture işi 2026-11-11T13:35:52.123Z; fazın kalan kontrolleri açık.
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.01-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Exact owned07 PID/listener/binarySHA doğrulandı; API/WS yalnız tarayıcı içinde açıkTEST/REPLAY fixture ile intercept edildi. Kubernetes/veri/kamera/selectionhook enjeksiyonu yok.
+- Komutlar/sourcehash: artifacts/release-audit/ra-20261111/untrusted-content-worker/source-and-results.json
 
 #### TEST-11.01-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Normal finder/Node/Pod açma, plainad/UID, annotation/event/log/error pozitif metni ve arama test edildi; YAMLcopy/download kontrolleri enabled, tıklanmadı.
+- Gözlenen: ilkiki denemede4ortakcheckPASS; üçüncü kalan5checkPASS. Tekkesintisiz9checkgreenrun iddiası yok.
 
 #### TEST-11.01-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İnert HTML/SVG/script/javascript/data veANSI/longstring denenmişyüzeylerde çalıştırılabilirDOM üretmedi; canaryrequest veexecutionflag0.
+- İlkikiFAIL: Olaylar1 accessible adı içinhelperselector timeout; ürünXSS değil, rawFAILkorundu.
+- Özel sınır: HTMLbenzeri fixturePodadı geçerli Kubernetesadı değildir, gerçekrename veya API doğruluğu sayılmaz.
+- Stored/frontendDOM/log/event/error literal kontrolleri var; import/backend reflection ve gerçekK8s kaynak teslimi henüz ayrı çalışılmadı.
 
 #### TEST-11.01-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bu dar fixture setinde exploit/bypass bulunmadı; genelgüvenlikgarantisi değil. Ürünkodudeğişmedi.
+- Helperselector onarımı ayrı ilkFAIL/remainingPASS kayıtlarında. Main CSP script-src yokluğu ayrıdefense-in-depth incelemesine taşındı; XSSengeli CSP’ye yanlışbağlanmadı.
 
 #### TEST-11.01-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Kalan event/log/error kontrolleri normalfinderile tekrar çalıştırıldı.
+- [ ] Bu fazın tümkapsamı henüz doğrulanmadı.
+- Sonuç: toplam9ayrıkontrolPASS; ilk2harnessFAILsilinmedi; sınırlı fixturekanıtı.
 
 #### TEST-11.01-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Tarayıcılar/contextler kapandı; applab değişmedi. Clipboard/hostwrite/outboundexfil yok.
+- [x] Worker önemli PNG/video karelerini açtı; root annotation/logPNGlerini ayrıca açtı.
+- Kanıt: artifacts/release-audit/ra-20261111/untrusted-content-worker/REPORT.md; owned-identity.json; attempt-*/result.json
+- Orijinal77MiBWebM seti yerelde korunur; Gitaltkümesi PNG/JSON/log/helper/rapor; DELIVERY_SHA256SUMS ile doğrulanır.
 
 #### TEST-11.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Gerekçe: dar frontendfixture senaryoları geçti; Stored/frontendDOM/log/event/error literal kontrolleri var; import/backend reflection ve gerçekK8s kaynak teslimi henüz ayrı çalışılmadı.
+- Yeniden test: ilgili render/HTML/link/logparser/clipboard/CSP/sourcepayload değişimi.
 
 ### TEST-11.02 — Metin/markdown/HTML ve link şemaları
 
@@ -6429,64 +6412,47 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: KV-SECURITY-WORKER; root ikinciinceleme
+- Kaynak / build / paket kimliği: visual06 e582a5bd… (550400a3 frontend eşdeğer); TEST/REPLAY browser intercept, sourcehash manifestte
+- Ortam / kullanılan kimlik ve yetki: Owned07app19847PID925; Chromium156; 7inertpayload/60toplamHTTP/≤64KiB; backend mutasyonu yok.
+- Başlangıç zamanı: 2026-11-11T13:32:41.481Z
+- Bitiş zamanı: Dar fixture işi 2026-11-11T13:35:52.123Z; fazın kalan kontrolleri açık.
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.02-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Exact owned07 PID/listener/binarySHA doğrulandı; API/WS yalnız tarayıcı içinde açıkTEST/REPLAY fixture ile intercept edildi. Kubernetes/veri/kamera/selectionhook enjeksiyonu yok.
+- Komutlar/sourcehash: artifacts/release-audit/ra-20261111/untrusted-content-worker/source-and-results.json
 
 #### TEST-11.02-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Normal finder/Node/Pod açma, plainad/UID, annotation/event/log/error pozitif metni ve arama test edildi; YAMLcopy/download kontrolleri enabled, tıklanmadı.
+- Gözlenen: ilkiki denemede4ortakcheckPASS; üçüncü kalan5checkPASS. Tekkesintisiz9checkgreenrun iddiası yok.
 
 #### TEST-11.02-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İnert HTML/SVG/script/javascript/data veANSI/longstring denenmişyüzeylerde çalıştırılabilirDOM üretmedi; canaryrequest veexecutionflag0.
+- İlkikiFAIL: Olaylar1 accessible adı içinhelperselector timeout; ürünXSS değil, rawFAILkorundu.
+- Özel sınır: HTMLbenzeri fixturePodadı geçerli Kubernetesadı değildir, gerçekrename veya API doğruluğu sayılmaz.
+- img/SVG/script/javascript/data metinleri element/anchor olmadı; markdown/linkify varyantları kapsam dışı kaldı.
 
 #### TEST-11.02-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bu dar fixture setinde exploit/bypass bulunmadı; genelgüvenlikgarantisi değil. Ürünkodudeğişmedi.
+- Helperselector onarımı ayrı ilkFAIL/remainingPASS kayıtlarında. Main CSP script-src yokluğu ayrıdefense-in-depth incelemesine taşındı; XSSengeli CSP’ye yanlışbağlanmadı.
 
 #### TEST-11.02-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Kalan event/log/error kontrolleri normalfinderile tekrar çalıştırıldı.
+- [ ] Bu fazın tümkapsamı henüz doğrulanmadı.
+- Sonuç: toplam9ayrıkontrolPASS; ilk2harnessFAILsilinmedi; sınırlı fixturekanıtı.
 
 #### TEST-11.02-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Tarayıcılar/contextler kapandı; applab değişmedi. Clipboard/hostwrite/outboundexfil yok.
+- [x] Worker önemli PNG/video karelerini açtı; root annotation/logPNGlerini ayrıca açtı.
+- Kanıt: artifacts/release-audit/ra-20261111/untrusted-content-worker/REPORT.md; owned-identity.json; attempt-*/result.json
+- Orijinal77MiBWebM seti yerelde korunur; Gitaltkümesi PNG/JSON/log/helper/rapor; DELIVERY_SHA256SUMS ile doğrulanır.
 
 #### TEST-11.02-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Gerekçe: dar frontendfixture senaryoları geçti; img/SVG/script/javascript/data metinleri element/anchor olmadı; markdown/linkify varyantları kapsam dışı kaldı.
+- Yeniden test: ilgili render/HTML/link/logparser/clipboard/CSP/sourcepayload değişimi.
 
 ### TEST-11.03 — ANSI/control/clipboard sınırları
 
@@ -6495,64 +6461,47 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: KV-SECURITY-WORKER; root ikinciinceleme
+- Kaynak / build / paket kimliği: visual06 e582a5bd… (550400a3 frontend eşdeğer); TEST/REPLAY browser intercept, sourcehash manifestte
+- Ortam / kullanılan kimlik ve yetki: Owned07app19847PID925; Chromium156; 7inertpayload/60toplamHTTP/≤64KiB; backend mutasyonu yok.
+- Başlangıç zamanı: 2026-11-11T13:32:41.481Z
+- Bitiş zamanı: Dar fixture işi 2026-11-11T13:35:52.123Z; fazın kalan kontrolleri açık.
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.03-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Exact owned07 PID/listener/binarySHA doğrulandı; API/WS yalnız tarayıcı içinde açıkTEST/REPLAY fixture ile intercept edildi. Kubernetes/veri/kamera/selectionhook enjeksiyonu yok.
+- Komutlar/sourcehash: artifacts/release-audit/ra-20261111/untrusted-content-worker/source-and-results.json
 
 #### TEST-11.03-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Normal finder/Node/Pod açma, plainad/UID, annotation/event/log/error pozitif metni ve arama test edildi; YAMLcopy/download kontrolleri enabled, tıklanmadı.
+- Gözlenen: ilkiki denemede4ortakcheckPASS; üçüncü kalan5checkPASS. Tekkesintisiz9checkgreenrun iddiası yok.
 
 #### TEST-11.03-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İnert HTML/SVG/script/javascript/data veANSI/longstring denenmişyüzeylerde çalıştırılabilirDOM üretmedi; canaryrequest veexecutionflag0.
+- İlkikiFAIL: Olaylar1 accessible adı içinhelperselector timeout; ürünXSS değil, rawFAILkorundu.
+- Özel sınır: HTMLbenzeri fixturePodadı geçerli Kubernetesadı değildir, gerçekrename veya API doğruluğu sayılmaz.
+- ANSI CSI/OSC8/CR/backspace/bidi rawtext, komut veya link değil. Clipboard yazılmadı, bidi escape sunumu yok; tümclipboard sınırı kapanmaz.
 
 #### TEST-11.03-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bu dar fixture setinde exploit/bypass bulunmadı; genelgüvenlikgarantisi değil. Ürünkodudeğişmedi.
+- Helperselector onarımı ayrı ilkFAIL/remainingPASS kayıtlarında. Main CSP script-src yokluğu ayrıdefense-in-depth incelemesine taşındı; XSSengeli CSP’ye yanlışbağlanmadı.
 
 #### TEST-11.03-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Kalan event/log/error kontrolleri normalfinderile tekrar çalıştırıldı.
+- [ ] Bu fazın tümkapsamı henüz doğrulanmadı.
+- Sonuç: toplam9ayrıkontrolPASS; ilk2harnessFAILsilinmedi; sınırlı fixturekanıtı.
 
 #### TEST-11.03-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Tarayıcılar/contextler kapandı; applab değişmedi. Clipboard/hostwrite/outboundexfil yok.
+- [x] Worker önemli PNG/video karelerini açtı; root annotation/logPNGlerini ayrıca açtı.
+- Kanıt: artifacts/release-audit/ra-20261111/untrusted-content-worker/REPORT.md; owned-identity.json; attempt-*/result.json
+- Orijinal77MiBWebM seti yerelde korunur; Gitaltkümesi PNG/JSON/log/helper/rapor; DELIVERY_SHA256SUMS ile doğrulanır.
 
 #### TEST-11.03-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Gerekçe: dar frontendfixture senaryoları geçti; ANSI CSI/OSC8/CR/backspace/bidi rawtext, komut veya link değil. Clipboard yazılmadı, bidi escape sunumu yok; tümclipboard sınırı kapanmaz.
+- Yeniden test: ilgili render/HTML/link/logparser/clipboard/CSP/sourcepayload değişimi.
 
 ### TEST-11.04 — Aşırı uzun içerik ve render maliyeti
 
@@ -6561,64 +6510,47 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.2.2/V3.4.3/V3.4.4/V3.4.5/V3.4.6/V3.5.4; CAT11. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: KV-SECURITY-WORKER; root ikinciinceleme
+- Kaynak / build / paket kimliği: visual06 e582a5bd… (550400a3 frontend eşdeğer); TEST/REPLAY browser intercept, sourcehash manifestte
+- Ortam / kullanılan kimlik ve yetki: Owned07app19847PID925; Chromium156; 7inertpayload/60toplamHTTP/≤64KiB; backend mutasyonu yok.
+- Başlangıç zamanı: 2026-11-11T13:32:41.481Z
+- Bitiş zamanı: Dar fixture işi 2026-11-11T13:35:52.123Z; fazın kalan kontrolleri açık.
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-11.04-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Exact owned07 PID/listener/binarySHA doğrulandı; API/WS yalnız tarayıcı içinde açıkTEST/REPLAY fixture ile intercept edildi. Kubernetes/veri/kamera/selectionhook enjeksiyonu yok.
+- Komutlar/sourcehash: artifacts/release-audit/ra-20261111/untrusted-content-worker/source-and-results.json
 
 #### TEST-11.04-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Normal finder/Node/Pod açma, plainad/UID, annotation/event/log/error pozitif metni ve arama test edildi; YAMLcopy/download kontrolleri enabled, tıklanmadı.
+- Gözlenen: ilkiki denemede4ortakcheckPASS; üçüncü kalan5checkPASS. Tekkesintisiz9checkgreenrun iddiası yok.
 
 #### TEST-11.04-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] İnert HTML/SVG/script/javascript/data veANSI/longstring denenmişyüzeylerde çalıştırılabilirDOM üretmedi; canaryrequest veexecutionflag0.
+- İlkikiFAIL: Olaylar1 accessible adı içinhelperselector timeout; ürünXSS değil, rawFAILkorundu.
+- Özel sınır: HTMLbenzeri fixturePodadı geçerli Kubernetesadı değildir, gerçekrename veya API doğruluğu sayılmaz.
+- 61.943byte fixturelog yanıtı16.876karakter boundedgörünüm+truncation; CPU/GC/rendercost ölçülmedi, yük/perf fazı kapanmaz.
 
 #### TEST-11.04-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bu dar fixture setinde exploit/bypass bulunmadı; genelgüvenlikgarantisi değil. Ürünkodudeğişmedi.
+- Helperselector onarımı ayrı ilkFAIL/remainingPASS kayıtlarında. Main CSP script-src yokluğu ayrıdefense-in-depth incelemesine taşındı; XSSengeli CSP’ye yanlışbağlanmadı.
 
 #### TEST-11.04-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Kalan event/log/error kontrolleri normalfinderile tekrar çalıştırıldı.
+- [ ] Bu fazın tümkapsamı henüz doğrulanmadı.
+- Sonuç: toplam9ayrıkontrolPASS; ilk2harnessFAILsilinmedi; sınırlı fixturekanıtı.
 
 #### TEST-11.04-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Tarayıcılar/contextler kapandı; applab değişmedi. Clipboard/hostwrite/outboundexfil yok.
+- [x] Worker önemli PNG/video karelerini açtı; root annotation/logPNGlerini ayrıca açtı.
+- Kanıt: artifacts/release-audit/ra-20261111/untrusted-content-worker/REPORT.md; owned-identity.json; attempt-*/result.json
+- Orijinal77MiBWebM seti yerelde korunur; Gitaltkümesi PNG/JSON/log/helper/rapor; DELIVERY_SHA256SUMS ile doğrulanır.
 
 #### TEST-11.04-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Gerekçe: dar frontendfixture senaryoları geçti; 61.943byte fixturelog yanıtı16.876karakter boundedgörünüm+truncation; CPU/GC/rendercost ölçülmedi, yük/perf fazı kapanmaz.
+- Yeniden test: ilgili render/HTML/link/logparser/clipboard/CSP/sourcepayload değişimi.
 
 ### TEST-11.05 — CSP/frame-ancestors/MIME/nosniff
 

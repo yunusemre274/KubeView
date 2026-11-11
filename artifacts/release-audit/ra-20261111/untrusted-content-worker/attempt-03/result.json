@@ -1,0 +1,58 @@
+{
+  "startedAt": "2026-11-11T13:35:18.929Z",
+  "source": "TEST/REPLAY browser-injected HTTP/WS resource/log/error fixtures; NOT real K8s/SSRF/production data",
+  "status": "PASS",
+  "uniqueHarmlessPayloads": 7,
+  "maxPayloadBytes": 61943,
+  "httpRequests": 19,
+  "canaryRequests": 0,
+  "blockedExternal": 0,
+  "checks": [
+    {
+      "name": "event reason/message literal + plain event positive",
+      "status": "PASS"
+    },
+    {
+      "name": "HTML/SVG/script/javascript/data log content remains text; normal log/download affordance positive",
+      "status": "PASS"
+    },
+    {
+      "name": "ANSI/OSC/control retained as literal text, no terminal/link interpretation; 60KiB line bounded to16KiB",
+      "status": "PASS",
+      "renderedCharacters": 16876,
+      "rawEscRetained": true
+    },
+    {
+      "name": "plain positive and malicious literal search both function safely",
+      "status": "PASS"
+    },
+    {
+      "name": "HTTP error HTML/javascript literal + plain error positive; previous logs cleared",
+      "status": "PASS"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "03-events-literal",
+      "at": "2026-11-11T13:35:35.328Z"
+    },
+    {
+      "name": "04-logs-literal-bounded",
+      "at": "2026-11-11T13:35:40.576Z"
+    },
+    {
+      "name": "05-search-literal",
+      "at": "2026-11-11T13:35:44.586Z"
+    },
+    {
+      "name": "06-error-literal",
+      "at": "2026-11-11T13:35:50.845Z"
+    }
+  ],
+  "pageErrors": [],
+  "browser": "156.0.8078.4",
+  "mainDocumentCSPPresent": true,
+  "mainDocumentCSPHasUnsafeInline": false,
+  "browserClosed": true,
+  "finishedAt": "2026-11-11T13:35:52.123Z"
+}
