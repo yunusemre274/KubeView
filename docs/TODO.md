@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — native Safari MCP ilk metadata
+
+- [x] Owned stdio initialize yanıtı alındı ve child temiz kapandı.
+- [ ] İlk client/server protocol uyuşmazlığı nedeniyle tools/list çalışmadı; native app/Retina kabulü açık.
+
+
 ## 11 Kasım — worker helper watchdog checkpoint
 
 - [x] İlk süre-aşımı draft korundu; ayrı bounded işte syntax+17saf guard geçti. Owned PID/birth+PGID watchdog, bounded I/O ve conservative partial cleanup eklendi.

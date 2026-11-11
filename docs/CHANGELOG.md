@@ -1,5 +1,10 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-11 — Safari MCP metadata sınırı
+
+- Doğrudan owned stdio capability denemesi, protocol teklif/uzlaşma ayrımı ve temiz EOF kanıtı kaydedildi. Bu test Safari uygulama veya performans kabulü değildir.
+
+
 ## 2026-11-11 — worker helper için sınırlı yürütme
 
 - Private owned lab kimliklerine bağlı test helper ve değişmez ilk draft kanıtı;17saf guard/syntax, timeout ve cleanup reserve kayıtları. Gerçek provisioning PASS iddiası yok; helper live gate kapalı.

@@ -1,0 +1,33 @@
+{
+  "startedAt": "2026-11-11T18:30:35.110057+00:00",
+  "status": "BLOCKED",
+  "scope": "Owned stdio MCP initialize + tools/list metadata ONLY; no tools/call, session/browser/page/OS setting action",
+  "argv": [
+    "/usr/bin/safaridriver",
+    "--mcp"
+  ],
+  "requestedProtocol": "2025-11-25",
+  "outputLimitBytes": 65536,
+  "processLimitSeconds": 10,
+  "methodsSent": [
+    "initialize"
+  ],
+  "executableResolved": "/System/Volumes/Preboot/Cryptexes/App/usr/bin/safaridriver",
+  "executableSHA256": "0e113cd573e6cfdcf0329107c78c50fca01a15ed448e1b6827042df5335d33e8",
+  "ownedChildPID": 80131,
+  "ownership": "Direct Popen child handle plus exclusively owned stdin/stdout pipes; no HTTP listener ancestry inference",
+  "negotiatedProtocol": "2024-11-05",
+  "serverInfo": {
+    "name": "Safari",
+    "version": "1.0.0"
+  },
+  "errorClass": "RuntimeError",
+  "reason": "UNSUPPORTED_NEGOTIATED_PROTOCOL",
+  "ownedChildExited": true,
+  "exitCode": 0,
+  "bytesReadStdoutAndStderr": 144,
+  "elapsedSeconds": 0.20491299999775947,
+  "within10s": true,
+  "finishedAt": "2026-11-11T18:30:35.314966+00:00",
+  "helperSHA256": "12387d9762cd130e944e75bf1b09fe688bf79d1a1ec8b19d2e8045dd8372edaf"
+}

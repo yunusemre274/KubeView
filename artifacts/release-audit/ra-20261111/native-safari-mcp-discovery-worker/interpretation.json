@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-11-11T18:31:45.734854+00:00",
+  "clientSupportedProtocols": [
+    "2025-11-25"
+  ],
+  "serverProposedProtocol": "2024-11-05",
+  "negotiationAccepted": false,
+  "toolsListSent": false,
+  "toolNames": "NOT DISCOVERED",
+  "sessionOrToolActionSent": false,
+  "rawReceiptPreserved": true
+}
