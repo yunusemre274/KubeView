@@ -1,0 +1,384 @@
+{
+  "schema": 1,
+  "startedAt": "2026-11-11T19:29:13.073412+00:00",
+  "issued": true,
+  "expectedMachine": "kvml-d32afbf634e8-a-m03",
+  "baseline": {
+    "hosts": {
+      "kvml-d32afbf634e8-a": {
+        "name": "kvml-d32afbf634e8-a",
+        "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+        "created": "2026-11-11T12:25:42.786922134Z",
+        "labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+          "role.minikube.sigs.k8s.io": ""
+        },
+        "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+        "IP": "172.29.232.2",
+        "mounts": [
+          {
+            "type": "volume",
+            "name": "kvml-d32afbf634e8-a"
+          },
+          {
+            "type": "bind",
+            "name": null
+          }
+        ]
+      },
+      "kvml-d32afbf634e8-a-m02": {
+        "name": "kvml-d32afbf634e8-a-m02",
+        "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+        "created": "2026-11-11T12:25:55.149367334Z",
+        "labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+          "role.minikube.sigs.k8s.io": ""
+        },
+        "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+        "IP": "172.29.232.3",
+        "mounts": [
+          {
+            "type": "volume",
+            "name": "kvml-d32afbf634e8-a-m02"
+          },
+          {
+            "type": "bind",
+            "name": null
+          }
+        ]
+      }
+    },
+    "network": {
+      "id": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+      "created": "2026-11-11T12:25:18.078000053Z",
+      "labels": {
+        "manual.kubeview.local/lab-id": "kvml-d32afbf634e8"
+      }
+    },
+    "volumes": {
+      "kvml-d32afbf634e8-a": {
+        "Name": "kvml-d32afbf634e8-a",
+        "CreatedAt": "2026-11-11T12:25:41Z",
+        "Driver": "local",
+        "Labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a"
+        }
+      },
+      "kvml-d32afbf634e8-a-m02": {
+        "Name": "kvml-d32afbf634e8-a-m02",
+        "CreatedAt": "2026-11-11T12:25:53Z",
+        "Driver": "local",
+        "Labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02"
+        }
+      }
+    },
+    "knownDaemonSets": {
+      "kube-system/cilium": "144ba330-5232-4969-b850-7a23bacfddbb",
+      "kube-system/cilium-envoy": "2ee3ea8b-2d77-4df7-9aeb-4548241ce4d3",
+      "kube-system/kube-proxy": "3a85e654-153d-4a0b-a454-d4731eabf3bb"
+    },
+    "Cilium": {
+      "kube-system/cilium": {
+        "uid": "144ba330-5232-4969-b850-7a23bacfddbb",
+        "specSHA256": "44e4747e32f9a6c66f89de089d868c90b8b2c6ba16563e5077ac9ba25d13c310"
+      },
+      "kube-system/cilium-envoy": {
+        "uid": "2ee3ea8b-2d77-4df7-9aeb-4548241ce4d3",
+        "specSHA256": "b55162fc4f782c48d04b43e6b0fddc5be06385c0328c3e83ad1ec8e28e57909d"
+      },
+      "kube-system/kube-proxy": {
+        "uid": "3a85e654-153d-4a0b-a454-d4731eabf3bb",
+        "specSHA256": "04156285886789b3d0c00a0d5155b2716f703957c2a4359c837f07b7ac56ef4d"
+      }
+    },
+    "fixtures": {
+      "kvml-fbf634e8-06-client/traffic": {
+        "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+        "specSHA256": "c5913cdf8e898b89ec3e884608e1af5da2d399523a7b02aaaaf964386d23b10a",
+        "podUIDs": []
+      },
+      "kvml-fbf634e8-06-server/http-server": {
+        "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+        "specSHA256": "8223893c731657b2776018955d8b19b280436a4f64a7ff8778d7d536f7828f0d",
+        "podUIDs": [
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ]
+      }
+    },
+    "labFileSHA256": "f3e824f2a51a8205f40808c62a16f4f2a206d7c518bdaddb5086a528b4498b27"
+  },
+  "timeline": [
+    {
+      "at": "2026-11-11T19:29:13.073537+00:00",
+      "event": "durable_plan_before_any_POST",
+      "proof": {
+        "MaxNodes": 3,
+        "expected": "kvml-d32afbf634e8-a-m03",
+        "cleanupReserveSeconds": 180,
+        "reportReserveSeconds": 60
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:13.264378+00:00",
+      "event": "owned_gateway_management_enabled",
+      "proof": {
+        "pid": 95388,
+        "birth": "Wed Nov 11 22:29:13 2026",
+        "port": 19849
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:13.572185+00:00",
+      "event": "POST_intent_committed_no_replay_after_interruption",
+      "proof": null
+    },
+    {
+      "at": "2026-11-11T19:29:13.848993+00:00",
+      "event": "first_POST_accepted",
+      "proof": {
+        "operationID": "e71e7301-ee53-46ab-aee7-82f9d22b3978"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:14.152985+00:00",
+      "event": "same_key_second_POST_same_operation",
+      "proof": {
+        "operationID": "e71e7301-ee53-46ab-aee7-82f9d22b3978"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:14.164608+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 95441,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:15.194582+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 95441,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:16.232074+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 95441,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:17.273249+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 95441,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:18.308622+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 95441,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:19.360245+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 95441,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:20.389751+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "provisioning",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": null,
+        "nodeUID": null,
+        "processPID": 95441,
+        "processExited": false,
+        "claimVerified": true,
+        "stageSource": "minikube-command-confirmed-worker-name"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:21.428275+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "registered",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": "kvml-d32afbf634e8-a-m03",
+        "nodeUID": "01fb8dc0-b1d6-4831-9561-277ca390fe8a",
+        "processPID": 95441,
+        "processExited": true,
+        "claimVerified": true,
+        "stageSource": "minikube-profile-and-kubelet-node-observation"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:21.889148+00:00",
+      "event": "new_host_and_Node_adopted",
+      "proof": {
+        "dockerID": "30e5834e9265eee210568affd5827c8be3921d9061ad76677f3cdb108753ea01",
+        "NodeUID": "01fb8dc0-b1d6-4831-9561-277ca390fe8a",
+        "ready": true
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:22.929515+00:00",
+      "event": "operation_observation",
+      "proof": {
+        "id": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+        "status": "ready",
+        "expectedName": "kvml-d32afbf634e8-a-m03",
+        "nodeName": "kvml-d32afbf634e8-a-m03",
+        "nodeUID": "01fb8dc0-b1d6-4831-9561-277ca390fe8a",
+        "processPID": 95441,
+        "processExited": true,
+        "claimVerified": true,
+        "stageSource": "minikube-profile-and-kubelet-node-observation"
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:23.357371+00:00",
+      "event": "new_host_and_Node_adopted",
+      "proof": {
+        "dockerID": "30e5834e9265eee210568affd5827c8be3921d9061ad76677f3cdb108753ea01",
+        "NodeUID": "01fb8dc0-b1d6-4831-9561-277ca390fe8a",
+        "ready": true
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:23.705064+00:00",
+      "event": "new_host_and_Node_adopted",
+      "proof": {
+        "dockerID": "30e5834e9265eee210568affd5827c8be3921d9061ad76677f3cdb108753ea01",
+        "NodeUID": "01fb8dc0-b1d6-4831-9561-277ca390fe8a",
+        "ready": true
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:24.169328+00:00",
+      "event": "cleanup_exact_target_and_DaemonSet_Pods_verified",
+      "proof": {
+        "dockerID": "30e5834e9265eee210568affd5827c8be3921d9061ad76677f3cdb108753ea01",
+        "NodeUID": "01fb8dc0-b1d6-4831-9561-277ca390fe8a",
+        "podUIDs": [
+          "30d0f0e4-217a-4e19-b3dc-5107f102d4c1",
+          "08b1d12a-028a-4184-b426-4088c1c73285",
+          "1dc97b71-de34-411f-9ec7-393e9d13297e"
+        ],
+        "labelTargets": {
+          "containers": [
+            "30e5834e9265eee210568affd5827c8be3921d9061ad76677f3cdb108753ea01"
+          ],
+          "volumes": [
+            "kvml-d32afbf634e8-a-m03"
+          ],
+          "networks": []
+        }
+      }
+    },
+    {
+      "at": "2026-11-11T19:29:29.753064+00:00",
+      "event": "cleanup_restored_exact_originals",
+      "proof": null
+    },
+    {
+      "at": "2026-11-11T19:29:29.753852+00:00",
+      "event": "transaction_pass_after_verified_cleanup",
+      "proof": null
+    }
+  ],
+  "operationStartedAt": "2026-11-11T19:29:13.572166+00:00",
+  "operationID": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+  "new": {
+    "name": "kvml-d32afbf634e8-a-m03",
+    "id": "30e5834e9265eee210568affd5827c8be3921d9061ad76677f3cdb108753ea01",
+    "created": "2026-11-11T19:29:15.579639513Z",
+    "labels": {
+      "created_by.minikube.sigs.k8s.io": "true",
+      "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m03",
+      "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m03",
+      "role.minikube.sigs.k8s.io": ""
+    },
+    "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+    "IP": "172.29.232.4",
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "kvml-d32afbf634e8-a-m03"
+      },
+      {
+        "type": "bind",
+        "name": null
+      }
+    ],
+    "NodeUID": "01fb8dc0-b1d6-4831-9561-277ca390fe8a",
+    "nodeCreationTimestamp": "2026-11-11T19:29:20Z",
+    "role": "worker",
+    "ready": true
+  },
+  "readyVerified": true,
+  "cleanupComplete": true,
+  "result": "PASS",
+  "watchdogEvents": []
+}

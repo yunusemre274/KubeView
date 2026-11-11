@@ -1,0 +1,29 @@
+{
+  "status": "FAIL",
+  "familyActualAttempt": 3,
+  "noFourthAttempt": true,
+  "start": "2026-11-11T19:29:12.215395+00:00",
+  "receiptAt": "2026-11-11T19:31:34.525746+00:00",
+  "runtimeSeconds": 38.26237201690674,
+  "receiptElapsedSeconds": 142.310351,
+  "wholeLimitSeconds": 720,
+  "within720AtReceipt": true,
+  "mainExitCode": 0,
+  "helperJournalResult": "PASS",
+  "outerResult": "FAIL",
+  "actualReadyVerified": true,
+  "cleanupCompleteByHelper": true,
+  "outerCleanupAcceptance": "FAIL",
+  "blockers": [
+    "new_Node_Pod_GC_deadline at <=20 s final Pod wait",
+    "full profile byte SHA changed; exact parsed JSON equality"
+  ],
+  "operationID": "e71e7301-ee53-46ab-aee7-82f9d22b3978",
+  "helperSHA256": "1a0db67621ed41059632bc246c23891d497cb02c8e23ab84c9f5bc415953d2e8",
+  "appSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "runtimeSource": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "checkpoint": "4450b5aa",
+  "noHelperOrProductEdits": true,
+  "originalFailuresUnchanged": true,
+  "noPostFailureAPIMutationOrProfileWrite": true
+}

@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T22:27:55.786965+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-11T22:35:36.989353+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
 - Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
 - Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:1; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
 | CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
-| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, RETEST_REQUIRED:1, VERIFIED_DONE:6 | Henüz yok |
+| CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:2, FAILED:1, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
@@ -3939,7 +3939,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 - Ortam / kullanılan kimlik ve yetki: Yalnız owned kvml-d32afbf634e8-a, iki original Node Ready. Gerçek admin kubeconfig private; başka context/hedef veya Secret değeri okunmadı.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: RETEST_REQUIRED
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-06.12-S1 — Hazırlık
@@ -3969,6 +3969,8 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 İlk gerçek API/CLI worker denemesi:18:53:13.679POST202; aynıkey ikinciPOST18:53:13.999 aynıoperation8ce1a91c-509b-4129-8bff-778b87f48888. CLI91166 exactm03claim ile başladı. Helper18:53:15KeyError; Ready/newNodeUID doğrulanmadı. Hiç körretry yapılmadı. Runtimef9/4c, helper7f17 ve patchedCLI98e42 aynı. Kanıt: real-minikube-add-current-worker/REPORT.md/result.json/progress.jsonl.
 
 Ayrı düzeltilmişcase02: runtimef9/4c, helper8645; firstPOST19:13:56.336/samekeysecond19:13:56.637 aynıoperation0aab9c6d… .19:14:15ProcessLookupError, actualstack power→cmd→bounded_process→OwnedGroup.capture, Ready/adoption yok. App93925/CLI93976 yok/19849boş, immutablejournallar private600. Kanıt: real-minikube-add-fixed-worker/REPORT.md/result.json.
+
+Case03 gerçekworker: firstPOST19:29:13.849/samekeysecond19:29:14.153 tekoperatione71e7301… .Kayıt19:29:21.429, Ready19:29:22.930; NodeUID01fb8dc0-b1d6-4831-9561-277ca390fe8a ve Docker30e5834e… doğrulandı. Helper exactknownDS/newUID cleanup19:29:29.754 tamam/journalPASS. OUTERFAIL: assignedPodGC20s içinde bitmedi; finalPodUIDs saklanmadı. ProfileSHA c826→4733 fakat privateparsedJSONtamaynı/diff0. Runtime38.262sn/report142.310sn<720. No4thadd; ilk ikiFAIL korunur. Kanıt: artifacts/release-audit/ra-20261111/real-minikube-add-racefixed-worker/REPORT.md.
 
 #### TEST-06.12-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -4043,8 +4045,8 @@ Rootdarfilecleanup: aynıiki lock ve actualoriginal2/system/ns guardları; liveN
 
 #### TEST-06.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- FAILED: case02 gerçekCLI yola çıktı ve samekey tekoperation görüldü; kısa ömürlü helperchild identitycapture ProcessLookupError verdi. YeniNodeReady/doğrulanmışsağlama yok; cleanup ayrıdevam ediyor.
-- İlkcaseFAIL ve exactrollback değişmedi. Sıradaki iş: completedchild/PIDprobe sınırını düzeltmek ve kısmi kaynakları yalnız provenkimlikle temizlemek. Yeniadd otomatik tekrar edilemez.
+- FAILED: case03gerçekNodeReady ve anahelpercleanup kanıtlandı, fakat final20sPodGC/profilebyte kontrolleri geçmedi. İlk üç case kendi sonucunda korunur. SaltokunurGCfollowup ve semantikprofil incelemesiyle durum netleştirilecek; yeniNodeAdd yok.
+- Sonraki iş: gerçek kalanPodidentity/GC ve profileformat tanısı; deadlineveFAIL sonuçları sessizcePASS yapılamaz.
 
 ### TEST-06.13 — Minikube idempotency/profile lock
 

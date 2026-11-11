@@ -1,0 +1,20 @@
+[
+  {
+    "privatePath": ".git/release-audit/real-minikube-add-racefixed-worker/attempt-full-private.json",
+    "SHA256": "f4c2792cc1e0e50542dc78bb1139ccf3f74db02ba0c6ed754917d46a23cebd69",
+    "bytes": 12536,
+    "mode": "0o600"
+  },
+  {
+    "privatePath": ".git/release-audit/real-minikube-add-racefixed-worker/profile-after-full-private.json",
+    "SHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+    "bytes": 4744,
+    "mode": "0o600"
+  },
+  {
+    "privatePath": ".git/release-audit/real-minikube-add-racefixed-worker/profile-before-full.json",
+    "SHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+    "bytes": 3946,
+    "mode": "0o600"
+  }
+]

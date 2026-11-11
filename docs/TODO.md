@@ -1,5 +1,11 @@
 # Güncel görev durumu
 
+## 11 Kasım — real-minikube-add-racefixed-worker
+
+- [ ] Case03 gerçekworker: firstPOST19:29:13.849/samekeysecond19:29:14.153 tekoperatione71e7301… .Kayıt19:29:21.429, Ready19:29:22.930; NodeUID01fb8dc0-b1d6-4831-9561-277ca390fe8a ve Docker30e5834e… doğrulandı. Helper exactknownDS/newUID cleanup19:29:29.754 tamam/journalPASS. OUTERFAIL: assignedPodGC20s içinde bitmedi; finalPodUIDs saklanmadı. ProfileSHA c826→4733 fakat privateparsedJSONtamaynı/diff0. Runtime38.262sn/report142.310sn<720. No4thadd; ilk ikiFAIL korunur.
+- [ ] Genelproviderfazı açık; görseljoin/performanceveoldjournalrecovery ayrı.
+
+
 ## 11 Kasım — provider-machine-quarantine
 
 - [x] Rootdarfilecleanup: aynıiki lock ve actualoriginal2/system/ns guardları; liveNEWresource0/profilec826 doğrulandı. Yalnız case02operationdan sonra doğmuş exactm03config/id_rsa/id_rsa.pub ve configName/driver bağlandı. Active machines/m03 dizini privateCONTROL02/quarantined-machine-m03 konumuna atomik taşındı, silinmedi; dosyaiçerikleri yayımlanmadı. Sourcepathyok, targetconfigSHAaynı, originalsnapshot/profileaynı. Bu yeniNode veya oldpendingoperationrecovery başarısı değildir.

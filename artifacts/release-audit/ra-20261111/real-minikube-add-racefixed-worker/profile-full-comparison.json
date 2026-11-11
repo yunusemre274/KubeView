@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-11-11T19:30:18.164137+00:00",
+  "beforeSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+  "afterSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "parsedJSONEqual": true,
+  "recursiveDiff": [],
+  "privateBeforePath": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/real-minikube-add-racefixed-worker/profile-before-full.json",
+  "privateAfterPath": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/real-minikube-add-racefixed-worker/profile-after-full-private.json"
+}
