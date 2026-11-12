@@ -1,3 +1,8 @@
+## 12 Kasım 2026 — aktifwatchrevoke RED
+
+- [x] SSARdeny+freshHTTP403 sonrasında establishedWS exactPodUID/RV/canary yayını controlledfakeAPI/watchE2Eile yenidenüretildi; ilkFAILkorundu.
+- [ ] SEC-WATCH-REVOKE-001minimalfix, strictclosure/timeouttesti, GREEN/regresyon/race ve gerçekownedRoleBindingE2E. TEST10.08FAILED; actualSecret/cluster sızıntısıiddiasıyok.
+
 ## 12 Kasım 2026 — submitted-work guard düzeltmesi
 
 - [x] Eksik/farklıçizimverisinin otomatikCPUkarşılaştırmasını geçirmesi RED→GREEN49/49 veimmutable40offline retestile engellendi; sayısaldeğerler/signedΔdeğişmedi.

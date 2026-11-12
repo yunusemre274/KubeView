@@ -1,3 +1,8 @@
+## 12 Kasım 2026 — watchpermissionyenileme güvenlikbulgusu
+
+- ÖnceizinlivereadablePodUPDATEsonrası aynıkimliktePodSSARdeny/newHTTP403 uygulanırken eskiWS15sheartbeatsonrasıyenicanaryUPDATEyayımladı. TeksyntheticAPI/watchE2EREDkaydı+cleanupkorundu; ürünfixihenüzyok.
+- MEDIUMSEC-WATCH-REVOKE-001açık. Failingtestsourcekanıtta; CIpassedgibigösterilmedi, gerçekKubernetesE2Edenayrıldı.
+
 ## 12 Kasım 2026 — benchmark karşılaştırması fail-closed çizim incelemesi
 
 - Eşleşmişsubmittedcounters belirsiz/farklıysa automaticeligibilitydurur; renderWorkReviewalanıeklenir, CPU/Δçıktılarıkorunur. Allocationayrıgözlem, batchinglegitimiteliği semantikincelemeye bırakılır.

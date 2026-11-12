@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T23:26:03.777316+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T23:32:48.759406+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12; HEAD7c9e9ffb3dd132775be7cc4953266eaef08d651e remote ile aynı. Canlı ROADMAP farkı belge-only; frozen frontend/common backend ve14harnessSHA korunur. Final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:136; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:37; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:135; IN_PROGRESS:20; FAILED:4; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:37; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -34,7 +34,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:1, FAILED:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:3, IN_PROGRESS:2, VERIFIED_DONE:5 | Henüz yok |
-| CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
+| CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:7, FAILED:1, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:8, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
@@ -6328,12 +6328,12 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Sorumlu: ANA MÜDÜR + Backend worker (yalnız önce kontrollü yeniden üretim)
+- Kaynak / build / paket kimliği: HEAD0ef8ea4e harness-only; productruntimef32 hâlâ değişmedi. Kaynaktaki risk runtimebug diye sınıflandırılmadı.
+- Ortam / kullanılan kimlik ve yetki: Sahip olunan fakeK8s istemcileri + gerçek in-processHTTP/loopbackWS/informer production yolu; kullanıcı/gerçekcluster yok.
+- Başlangıç zamanı: 2026-11-12T23:29:36.786379+03:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-10.08-S1 — Hazırlık
@@ -6345,6 +6345,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+Kaynakriskinin dar testi başladı: stream.go bindingbaşlangıcında list/watchSSAR, heartbeat15sde credentialID+ServerVersion kontrolü var; aktifstreamdeRBACyenileme netdeğil. Mevcutupstreamwatchaçık kalırken fakeSSARAllowedtrue→false, yeniHTTPread403 ve heartbeatsonrasıaynıPodUID/newopaqueRVcanaryUPDATE. BirsonluGop1/count1job/max60test/90wall, syntheticfixture, cleanup. ÖnceREDkanıt, ürünfixiyok. GerçekKubernetesRoleBindingiptaliE2E henüzkoşulmadı.
+
 #### TEST-10.08-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -6352,6 +6354,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+Tek gerçekGoçağrısında productionRegister/workspace/actualownedloopbackWS/informer/broker üzerinden ilkSNAPSHOT+exactUID/RV/annotationpozitifUPDATE doğrulandı. Client/context/credentialID sabit; kaynakf32. Bu controlledfakeK8sAPI/WATCH E2Edir, gerçekKuberneteskümeE2Edeğil.
 
 #### TEST-10.08-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -6361,6 +6365,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+RED: fakeSSARget/list/watchdeny sonrası aynıyetkiyle yeniHTTPget/list403; mevcut15sheartbeat synced/reachabletruegelirken upstreamwatchaçık kaldı. SonrakisamePodUID/newopaqueRV/annotationcanary eskiWSyeRESOURCE_EVENTUPDATEolarakyayımlandı. GüvenlibeklentiassertionFAIL; test15.11s/wall18.240s. Süreççıkışı1başarıdeğil. Expectation/prodsource/retrydeğiştirilmedi.
+
 #### TEST-10.08-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
 - Önem derecesi ve gerekçesi: —
@@ -6368,6 +6374,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Değiştirilen dosya / fonksiyon: —
 - Düzeltme commit'i veya çalışma farkı: —
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
+
+SEC-WATCH-REVOKE-001: establishedupstreamwatchaçık kalırken uygulama aktifWSyetkisini yenidenkontroletmediği için iziniptalinden sonra yenikaynakverisi yayını. Controlledfixturedoğrulandı; gerçekkümeRoleBindingE2Ehenüzyok. Local-first/tekoperatör/öncedenyetkilireaderkapsamı önem derecesini sınırlar; genelanonimadminbypassiddiasıyok. Kök kaynakstream.go initialSSAR vsheartbeatcredentialID/ServerVersion kontrolü; minimalboundedperiodicSSARfixhazırlanıyor.
 
 #### TEST-10.08-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
@@ -6381,6 +6389,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - [ ] Gereken bağımsız ikinci inceleme tamamlandı.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
+
+İlkREDcleanup: brokerEmpty/ownedlistenerclosed/upstreamwatchStoppedtrue; kaynak/testöncesihashvehamJSONkorunur. Yeni.GoTESTuncommitted, kodfixi/retetbekleniyor; rootbugkanıtını ayrıcommitlerkenfailingtestigreenCIgibisunmayacak. Workerfinalrapor veikinciincelemebekleniyor.
 
 #### TEST-10.08-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

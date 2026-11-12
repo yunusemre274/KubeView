@@ -1,3 +1,26 @@
+## 12 Kasım 2026 — SEC-WATCH-REVOKE-001: aktif watch yetkisinin yenilenmemesi
+
+**MEDIUM, AÇIK; kontrollü sentetikAPI/watch E2E ile doğrulandı.** Yereltekoperatör
+modelinde öncedenyetkilendirilmiş birreader ve açık upstreamwatch gerekir.
+Aynıcredential/contextaltında Podget/list/watch SSARdenyolduktan sonra yeniHTTP
+list/get403alırken eskiWS,15sheartbeatsonrası aynıPodUID/yeniopaqueRV ve harmless
+annotationcanary UPDATE'ini yayımladı. BaşarılıilkUPDATEveexplicit403pozitif/negatif
+kontrolleri vardı; testexactiçerikassertionıFAILoldu. Anonimadminbypass/hostRCE,
+Secretdeğeri veya başkaNamespace sızıntısı gösterilmedi.
+
+[İlkRED ve cleanupkanıtı](../artifacts/release-audit/ra-20261112/active-watch-authz-repro-worker/REPORT.md).
+Bu, gerçekKubernetesRoleBindingiptali veya apiserver davranışı için E2Ekanıtıdeğil.
+Kaynakriskitekbaşınaruntimebugsayılmadı; gerçekproductionRegister/workspace/WS/
+informer/broker yolu fakeK8sAPIile denendi. Runtimef32değişmedi; düzeltme/retest
+bekleniyor. Failingtest henüzCIyastageedilmedi; immutabletestsourcekanıtta korunur.
+Readtimeout'u closuregibikabul eden testdalı buREDsonucuna etki etmedi fakat GREEN
+öncesi sıkılaştırılacak. GerçekRoleBindingE2E, ilgiliyeniperformancevefinalpaket açık.
+
+[Kaynakmitigasyonincelemesi](../artifacts/release-audit/ra-20261112/active-watch-authz-design-worker/REPORT.md)
+yalnızöneridir; uygulanmışkontrol veya riskkabulü değildir. [KubernetesSSARaçıklaması](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#checking-api-access)
+ve [hedef1.35.1authorizefilterkaynağı](https://github.com/kubernetes/apiserver/blob/v0.35.1/pkg/endpoints/filters/authorization.go)
+teknikreferanstır; bu uygulama veya gerçektest başarısını kanıtlamaz.
+
 # Yayın adayı güvenlik bulguları — 11 Kasım 2026
 
 Bu kayıt `36d5b8f90c8afdec437bdb6e5516541b5bb859bd` başlangıcından yürütülen

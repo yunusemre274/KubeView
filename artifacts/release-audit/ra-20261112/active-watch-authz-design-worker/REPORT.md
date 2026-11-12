@@ -1,0 +1,21 @@
+# Active watch authorization: minimal mitigation design
+
+**Source-only design; runtime repro and severity remain pending.** Reviewed stream.go SHA `1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0` at2026-11-12T20:32:33.789440Z. No code, test, app, browser, build or cluster operation ran.
+
+stream.go:websocket310 authorizes list/watch at523 for admitted GVR/namespace bindings. Its15s heartbeat711/727 checks credential generation and ServerVersion738; there is no evident repeat list/watch decision for unchanged credentials. This does not establish live API-server watch semantics or a runtime defect without the controlled repro.
+
+Minimal change: reuse that heartbeat and sole writer. Build a deduplicated snapshot of already-active binding scopes; review **both list and watch for every required scope**, using exact Group/Resource and effective namespace, retaining GVR/version identity. Explicit multi-namespace workspace scopes must not widen into an all-namespace check. Use existing authorize read semantics (resources.go21/49) and inspect Allowed. Give the **whole batch one5s child context**, rather than5s per binding. Run SSAR/network outside gate/operator/broker locks; stop on first denial/error/deadline. Use existing admission bounds; incomplete budget coverage must not become partial authorization success. No per-event SSAR or additional UI timer/endpoint is needed.
+
+While the synchronous heartbeat checks run, the writer does not publish queued resources. On known failure, briefly lock gate, mark this consumer terminal/ready=false/watchFailed=true, snapshot failure metadata, then unlock. Send terminal STATUS directly and return/cancel; do not enqueue it behind resource messages. Dispatch at720 should also gate resource-send admission on local failed/cancelled state, rather than assume select prioritizes watchFailure. Do not hold gate during network/WS writes. Already in-flight bytes cannot be recalled and periodic refresh is not instantaneous revocation.
+
+Set Synced/SnapshotReady false and failed scope Authoritative=false. resource_scopes.go42 already distinguishes forbidden from unavailable; preserve safe GVR/namespace failure information. Old cache is stale, not deletion or OUT_OF_SCOPE proof. A healthy ServerVersion is not authorization: avoid an extra context-free liveness call defeating the batch deadline.
+
+Existing deferred handler removal and broker release (stream.go570/595) should close only the failed consumer. workspace_broker.go40 keys sharing on client identity plus scope;77 releases listeners and cancels the last reference. Different credentials must never borrow a peer's authorization through a common cluster UID. Keep workspace_membership.go21/37/62 generation checks. Existing operator/credential resets are separate from changed RBAC under an unchanged credential.
+
+Cost is qualitatively up to2N SSAR calls per refresh forN admitted distinct scopes/namespaces, with explicit namespace expansion accounted for; no per-message storm. The batch budget bounds duration and requires fail-closed incomplete checks. This is extra API/network/Go work, not a measured CPU, latency or energy result.
+
+One focused group should cover unchanged-allow/event delivery, list-or-watch denial with queued marker suppression, transport/error/whole-batch timeout and exact per-consumer/last-ref cleanup with an authorized sibling. Existing repro name is TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat; existing broker/credential-revoke neighbors are listed in result.json. None was run here. Later owned RoleBinding E2E must independently observe real SSAR and established upstream-watch behavior; the fake-server result alone cannot prove Kubernetes implementation semantics.
+
+Logs (stream.go105/128, log_session.go54), exec (sessions.go38/108), forwards (portforward.go63/288) and traffic leases (traffic_handlers.go194/214/230) have start/request/context/UID controls with separate established-session permission-refresh limits. Do not automatically expand this fix into all paths. Root decides severity and next scope within the local-first single-operator threat model.
+
+The approximate180-second source-review target was exceeded; actual review timing is recorded in result.json and is not an application runtime/SLO result.
