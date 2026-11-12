@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T14:26:34.177438+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T15:19:57.905162+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -3070,6 +3070,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
 
 TEST-FIXTURE adayhatası; henüzürüngüvenlikbulgusu değil. RestrictedPUTtypedobjectkind/apiVersionnormalizasyonu ve güvenliParsererror/payloadbooleans yeni retstteexplicitdoğrulanacak. Üretimruntime değişmedi.
+
+İlk normal UI controller önkontrolü BLOCKED_BEFORE_UI: metadata-only HTTP200/PartialObjectMetadataList yanıtında boş items JSONnull geldi, [] bekleyen yardımcı reddetti. Sonraki metadata-only diagnostic UID/owner/seal ve count0 doğruladı; client-go List(nilItems) semantiğiyle fixture normalleştirmesi yapıldı. İlk koşuda Secret/app/browser/UIassertion0; ürün UI hatası veya PASS değildir. İlk513.188/480sn plan aşımı korunur. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-ui-worker/REPORT.md;11/11SHA root doğruladı.
 
 #### TEST-05.07-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.

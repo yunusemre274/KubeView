@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Secret UI ilk önkontrol
+
+- Boş metadataList items:null/[] yardımcı uyumsuzluğu yüzünden gerçek UI başlamadı. İlk source/NOTRUN ve513.188/480sn plan sapması korunur; API yetki reddi veya ürün hatası diye sunulmaz.
+
 ## 2026-11-12 — OS Medium ilk APT denemesi
 
 - İlkCiliumlocal-debinstall --no-download/epochpathname APTinternalerrorile1.943sndeFAIL; EnvoyNOTRUN. SignedSHA/simulation2packagegeçmişolsa da imajfixbaşarısısayılmadı. Exactcontainercleanupve18dosyamühürlü. Tekonaylıv2retryayrıkanıtaltında.
