@@ -1,0 +1,11 @@
+✔ authorized content is accepted only for the same Secret UID/address and a real RV (0.398166ms)
+✔ Secret draft values and annotations cannot escape through operation/result metadata (0.435292ms)
+✔ purpose-authorized edit keeps unknown labels/annotations in its local draft without publishing values (0.052625ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38.460084

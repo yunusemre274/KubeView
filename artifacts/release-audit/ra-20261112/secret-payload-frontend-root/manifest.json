@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-12T11:11:30.140645+00:00",
+  "sourceCommit": "cef8e405084fe69bf10547bbbb88fe2d658adf36",
+  "dataSource": "UNIT actual frontend helpers; no browser or Kubernetes",
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "src/workbench/secretPayload.test.js"
+  ],
+  "node": "v24.16.0",
+  "timeoutSeconds": 20,
+  "sourceFiles": [
+    {
+      "path": "frontend/src/workbench/secretPayload.js",
+      "sha256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1"
+    },
+    {
+      "path": "frontend/src/workbench/secretPayload.test.js",
+      "sha256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e"
+    },
+    {
+      "path": "frontend/src/workbench/ResourceForms.jsx",
+      "sha256": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+    }
+  ]
+}

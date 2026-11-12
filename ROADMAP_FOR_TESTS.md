@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T14:10:19.559576+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T14:19:46.873692+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -9,8 +9,8 @@
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kendi kanıtlarında; finalpaket açık. Tarihselinstalled1.20.2 bulguları korunur. Yereloperatorcandidate0High/1Unknown; APT-onlyCiliumcandidate8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Bu yerel adaylar kurulu değil; gerçekELF/sourceCVE/kalanseverity/runtimeTLS/lisans kapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST12.01 kubeconfig trust31/200 VERIFIED_DONE. TEST06.13 realHTTPkilitassertionlarıPASS, fakat830.384/300sn hazırlıkplan aşımı ve genişprovider/idempotencykapıları ayrı. Gerçekworker case03outerFAIL korunur.
-- Süreç/lab: ANA MÜDÜR; backendworker yeni sentetikSecretgrubu hazırlığı, providerworker ikiAPTimage boundedbuild/scan. OwnedHubblelab orijinal2NodeReady/çalışır, app/CLIportlarıkapalı. Diğerusercontainerlaradokunulmadı; ağırA/B/soakyok.
+- Son tamamlanan faz: TEST05.09 maskeliSecret backendcontract VERIFIED_DONE;32/200. Secret APIretst5.090sn+frontend3UNIT0.132sn ayrıkanıtlardır; normalreveal/hide/editUI05.07/08devam.
+- Süreç/lab: backendworker normalSecretUIpreparasyonu/tekkoşu; providerworker frozenbaseline/harness metadata incelemesi (ölçümbaşlamadı). OwnedHubblelab orijinal2NodeReady, sealedSecretQA namespace rootkontrolünde; kullanıcıcontainerlarına müdahale yok. AğırA/B/60dksoak henüzbaşlamadı.
 - Devam: Yedi tarihselkanıtkümesi ve correctedHTTP/operatörimagekanıtları ayrıpushlandı. Sıradakiuygulanabilir: sentetikSecretpurpose/RBAC ve Cilium/EnvoyAPTtarama. ÜçNodeAddplanıbitti; otomatikdördüncüaddyok. Finalpaket/perf/60dk/manuelonaykapılarıaçık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
@@ -3157,6 +3157,8 @@ Backendgerçekreveal/editRBACmatrixPASS; frontendhide/normalUIakışı henüzayr
 
 Correctedtekretst:5.090sncommand/2.340sntest,131.697/180snfaz; typedrestrictedSecretdeepcopy+v1/KindSecret vehasKind/hasApiVersion/UID/RVbooleanlarınınhepsitrue. İkirealSA/SelfSubjectReview/SSARverdictleri exact; restrictedPUT403+forbidden, maskedkeyNames422+knownmessage, adminnormaledit200; exactdata/type/metadataUID/RVreadback. Yeni7UIDilklerdenayrı/7GET404cleanup; namespacekorundu. Root13/13SHA ve kod/sonuç/değişiklikinceledi. İlk400nedenigeyedönükkesinleştirilmedi; ürünruntimeaynı. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/REPORT.md veROOT_REVIEW.json.
 
+FrontendmevcutsecretPayload3UNITtestiNode24.16.0/sourceSHAmanifestile0.132snPASS. Unknownmetadata localpurpose-draftta korunur; operationsanitizeaynıdraftıdeğiştirmez. AktifResourceFormsyükleme/submitveworldoperationkaynakbağlantısı izlendi. BuUNITilegerçekAPIretestayrıkanıtlardır; normalUIreveal/hide/edit workerı ayrıca çalışıyor. Kanıt: artifacts/release-audit/ra-20261112/secret-payload-frontend-root/REPORT.md.
+
 #### TEST-05.08-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -3210,6 +3212,8 @@ Unknownmetadata/data gerçekhandler+K8sroundtripPASS; frontenddraft/normalformka
 - [x] Tekcorrectedgroupnormal+yetkisiz+maskedkontrolleri2.340sngerçekAPIilePASS.
 - [x] CurrentUID/RVkontrolü nedeniyle409çakışmasımaskeengeliolarağınsunulmadı; gerçeknormaledit200ayrıpozitif.
 - Bu fazadmissionveUIhidegenelkabulünütaşımaz.
+
+Ayrıfrontend3UNITtesti actualvalidateRevealedSecret/secretSafeSubmission üzerinde metadata-keyNamesmaskesini ve yeniUIDyi reddetti; gerçekAPI422kanıtının yerine sayılmadı. SourceUIyükleme+submitguardbağlantısı mevcut. UIreveal/hide05.07kapısıaçık.
 
 #### TEST-05.09-S6 — Temizlik ve inceleme
 - [x] Yeni7fixtureUID/RVguarddelete+GET404; namespacekorundu, profil/labbytestamaynı,2originalNodeReady/metadata/specaynı.

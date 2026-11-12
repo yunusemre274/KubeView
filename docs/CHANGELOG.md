@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Secret frontend payload UNIT
+
+- MevcutüçpayloadhelpertestiNode24.16.0ile3PASS/0.132sn: unknownmetadata/draftkorunumu, resultveriredaksiyonu veUID/keyNamesguard. UIE2Esayılmadı; normalUItesti ayrı. Ürün kodu değişmedi.
+
 ## 2026-11-12 — Gerçek Secret retesti
 
 - TypeMetafixyalnıztestte; iki gerçekrestrictedkimlikPUT403, currentUID/RVmaskeliPUT422/unchanged ve yetkili200/metadata-dataeşitliği geçti.7fixturetemizlendi; namespacekorunur. Maskguardfazı05.09darbackendcontractiletamam; UIhide/admission/normalformakışlarıayrıkaldı. İlkFAIL/sourcekorunur.
