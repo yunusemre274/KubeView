@@ -1,0 +1,160 @@
+package server
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net"
+	"net/http"
+	"net/http/httptest"
+	"os"
+	"path/filepath"
+	"strings"
+	"sync/atomic"
+	"testing"
+	"time"
+
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/tools/clientcmd"
+	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
+)
+
+// Invoked only by client-go's real exec transport in the parent test. The
+// credential and file are synthetic; nothing runs against a user's kubeconfig.
+func TestReleaseExecAuthCanaryHelper(t *testing.T) {
+	if os.Getenv("KV_RELEASE_EXEC_CANARY") != "1" {
+		return
+	}
+	if err := os.WriteFile(os.Getenv("KV_RELEASE_EXEC_MARKER"), []byte("executed"), 0600); err != nil {
+		os.Exit(2)
+	}
+	fmt.Print(`{"kind":"ExecCredential","apiVersion":"client.authentication.k8s.io/v1","status":{"token":"audit-canary"}}`)
+	os.Exit(0)
+}
+
+func TestReleaseKubeconfigTrustExecIsOperatorConfigured(t *testing.T) {
+	t.Setenv("KUBE_CONTEXT", "")
+	t.Setenv("KV_HUBBLE_ENABLED", "false")
+	t.Setenv("KV_MINIKUBE_ENABLED", "false")
+	dir := t.TempDir()
+	marker := filepath.Join(dir, "exec-marker")
+	plugin, err := os.Executable()
+	if err != nil {
+		t.Fatal(err)
+	}
+	var accepted atomic.Int32
+	api := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Header.Get("Authorization") != "Bearer audit-canary" || r.URL.Path != "/api/v1/namespaces/audit" {
+			t.Error("unexpected synthetic upstream request")
+			w.WriteHeader(http.StatusForbidden)
+			return
+		}
+		accepted.Add(1)
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprint(w, `{"apiVersion":"v1","kind":"Namespace","metadata":{"name":"audit"}}`)
+	}))
+	api.Listener.Close()
+	api.Listener, err = net.Listen("tcp", "127.0.0.1:19848")
+	if err != nil {
+		t.Fatal(err)
+	}
+	api.Start()
+	t.Cleanup(api.Close)
+	config := clientcmdapi.NewConfig()
+	config.CurrentContext = "trusted-canary"
+	config.Clusters["canary"] = &clientcmdapi.Cluster{Server: api.URL}
+	config.Contexts["trusted-canary"] = &clientcmdapi.Context{Cluster: "canary", AuthInfo: "canary", Namespace: "audit"}
+	config.AuthInfos["canary"] = &clientcmdapi.AuthInfo{Exec: &clientcmdapi.ExecConfig{
+		Command: plugin, Args: []string{"-test.run=^TestReleaseExecAuthCanaryHelper$"},
+		APIVersion: "client.authentication.k8s.io/v1", InteractiveMode: clientcmdapi.NeverExecInteractiveMode,
+		Env: []clientcmdapi.ExecEnvVar{{Name: "KV_RELEASE_EXEC_CANARY", Value: "1"}, {Name: "KV_RELEASE_EXEC_MARKER", Value: marker}},
+	}}
+	path := filepath.Join(dir, "trusted-config")
+	if err := clientcmd.WriteToFile(*config, path); err != nil {
+		t.Fatal(err)
+	}
+	before, _ := os.ReadFile(path)
+	t.Setenv("KUBECONFIG", path)
+	s := New()
+	t.Cleanup(s.Close)
+	if w := connectionRequest(s, "GET", "/api/contexts", nil, nil, ""); w.Code != http.StatusOK {
+		t.Fatalf("context listing status %d", w.Code)
+	}
+	if !s.trustedWorkspaceContext("trusted-canary") || s.trustedWorkspaceContext("untrusted-canary") {
+		t.Fatal("context trust boundary")
+	}
+	if _, err := s.client("untrusted-canary"); err == nil {
+		t.Fatal("unconfigured context accepted")
+	}
+	if _, err := os.Stat(marker); !os.IsNotExist(err) || accepted.Load() != 0 {
+		t.Fatal("listing or unknown context executed auth plugin")
+	}
+	c, err := s.client("trusted-canary")
+	if err != nil {
+		t.Fatal(err)
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	ns, err := c.Typed.CoreV1().Namespaces().Get(ctx, "audit", metav1.GetOptions{})
+	if err != nil || ns.Name != "audit" || accepted.Load() != 1 {
+		t.Fatal("trusted real exec transport did not authenticate synthetic API")
+	}
+	if b, err := os.ReadFile(marker); err != nil || string(b) != "executed" {
+		t.Fatal("real child execution not observed")
+	}
+	if after, _ := os.ReadFile(path); string(after) != string(before) {
+		t.Fatal("operator kubeconfig mutated")
+	}
+}
+
+func TestReleaseWorkspaceCannotSupplyExecConfiguration(t *testing.T) {
+	f := newWorkspaceFixture(t, false)
+	marker := filepath.Join(t.TempDir(), "must-not-execute")
+	for _, name := range []string{"not-configured", marker, "https://127.0.0.1:19848"} {
+		body := map[string]interface{}{"revision": f.doc.Revision, "connection": map[string]interface{}{
+			"name": "untrusted", "context": name, "bound": true,
+			"kubeconfig": marker, "exec": map[string]interface{}{"command": "/bin/sh", "args": []string{"-c", "touch " + marker}},
+		}}
+		w := f.request("POST", "/api/workspace/connections", body, "", "")
+		if w.Code != http.StatusBadRequest || len(f.s.workspace.store.Snapshot().Connections) != 0 {
+			t.Fatalf("unknown context was persisted: status %d", w.Code)
+		}
+	}
+	// A known server context remains usable. Extra browser fields must never
+	// become executable configuration or survive export/import as authority.
+	w := f.request("POST", "/api/workspace/connections", map[string]interface{}{"revision": f.doc.Revision, "connection": map[string]interface{}{
+		"name": "normal", "context": "test", "kubeconfig": marker,
+		"exec": map[string]interface{}{"command": "/bin/sh", "args": []string{"-c", "touch " + marker}},
+	}}, "", "")
+	if w.Code != http.StatusOK {
+		t.Fatalf("trusted context rejected: %d", w.Code)
+	}
+	f.accept(w)
+	var imported map[string]interface{}
+	b, _ := json.Marshal(f.doc)
+	if err := json.Unmarshal(b, &imported); err != nil {
+		t.Fatal(err)
+	}
+	connection := imported["connections"].([]interface{})[0].(map[string]interface{})
+	connection["context"], connection["bound"] = marker, true
+	connection["exec"] = map[string]interface{}{"command": "/bin/sh", "args": []string{"-c", "touch " + marker}}
+	connection["kubeconfig"] = marker
+	w = f.request("POST", "/api/workspace/import", map[string]interface{}{"revision": f.doc.Revision, "workspace": imported}, "", "")
+	if w.Code != http.StatusOK {
+		t.Fatalf("safe import rejected: %d", w.Code)
+	}
+	f.accept(w)
+	last := f.doc.Connections[len(f.doc.Connections)-1]
+	if last.Context != "" || last.Bound {
+		t.Fatal("import restored context authority")
+	}
+	for _, route := range []string{"/api/workspace", "/api/workspace/export"} {
+		w = f.request("GET", route, nil, "", "")
+		if w.Code != http.StatusOK || strings.Contains(w.Body.String(), marker) || strings.Contains(w.Body.String(), `"exec"`) {
+			t.Fatal("untrusted executable/path persisted or leaked")
+		}
+	}
+	if _, err := os.Stat(marker); !os.IsNotExist(err) {
+		t.Fatal("browser payload executed a host command")
+	}
+}
