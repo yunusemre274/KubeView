@@ -1,3 +1,7 @@
+## 12 Kasım — probe bütçesi bütün istekleri kapsamalı
+
+Başlangıçhealth polling normal assertion counter/deadline dışında kalmamalı. İlkHostprobe actual3.650snPASS kalır fakat global60request/30sn garantisi değildi. Ortakrequestguard+31requestretest/ikiunit kaynak sınırını doğruladı; birOSstallı için mutlakwalltime garantisi verilmez. Publichealth/version/static ile korumalıgatewayyi ayır.
+
 ## 12 Kasım — benchmark runtime ve ölçüm ayrımı
 
 Comparability smoke, CPU örneği değildir. Kamera projeksiyonunun aynı olması kadrajın ürün hedefini karşıladığını kanıtlamaz; logical8/120 ile projected-visible merkezleri ayır. Node executable eski mutlak yolu yerine gerçek kurulu sürüm/path manifestini kullan; launch hatasını testPASS sayma.

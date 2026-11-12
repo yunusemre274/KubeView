@@ -1,3 +1,5 @@
+- KorumalıAPI/session/WS girişinde Host/Origin/forwardedspoof30gerçekHTTPkontrolü doğrulandı; ürün kodu değişmedi. Testhelperstartuprequestbudget eksikliği correctedretest ile giderildi.
+
 - Yerel kurulu olmayanCilium/Envoy OSsecurity2 adaylarında signedpcre2/zlib ile16Medium eşleşme giderildi; ilkAPTinstallFAILkorundu. Rawkalıntılar ve runtime/TLS/kurulum kapıları kapanmadı.
 
 ## 12 Kasım2026 — ölçüm aracı kamera sözleşmesi

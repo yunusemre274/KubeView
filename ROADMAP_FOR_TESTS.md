@@ -1,16 +1,16 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T20:04:09.259365+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T20:09:55.853639+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:139; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:34; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:139; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:35; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST05.07 ve05.08 normalSecret UI/API/unit+ikinciinceleme ile VERIFIED_DONE;34/200 (%17 fazsayısı). Maskguard05.09öncedoğrulandı; CPU/PID/kamera ve globalyayınkapılarıaçık.
-- Süreç/lab: providerworker mevcut Medium-image kanıtını okuyor; backendworker sıradaki PID guard işine atanacak. Performans/browser/app ölçümü çalışmıyor. Owned2Node lab mevcut; kullanıcı süreçlerine müdahale yok.
+- Son tamamlanan faz: TEST09.07 token-free protectedHTTPHost sınırı;35/200 (%17.5 fazsayısı). İlkhelperbudgeteksikliği ve corrected31requestretest ayrı korunur. V11/perf/paket/60dk açık.
+- Süreç/lab: Backendworker PIDbirth/cohortunit+tekchildprobe işinde; providerworker incelemeleri tamam. Owned2NodeHubblelab güvenli durduruldu; manuelveriler ve sealedSecretQA korunur. CPU matrisi henüz başlamadı; diğer projelere dokunulmadı.
 - Devam: TEST16.01 kamera/PID/güç/ortam önkoşullarını tamamla; ardından sınırlı eşleşmiş CPU ailesi. Provider16Medium yerel düzeltme ikinci incelemede; gerçek TLS/kurulum/finalpaket/60dk/manuel kabul açık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
@@ -33,7 +33,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:1, FAILED:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
-| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:3, IN_PROGRESS:3, VERIFIED_DONE:4 | Henüz yok |
+| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:3, IN_PROGRESS:2, VERIFIED_DONE:5 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:8, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
@@ -5638,8 +5638,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Kaynak / build / paket kimliği: runtimef32d6b23 privateprofilelock10 SHA5f1c22b9…; yeni product değişikliği yok
 - Ortam / kullanılan kimlik ve yetki: Owned127.0.0.1:19844; fresh0700 appdata/eksik kubeconfig; providersdisabled; ilk token-free loopback modu
 - Başlangıç zamanı: 2026-11-12T17:01:26.302697+00:00
-- Bitiş zamanı: 2026-11-12T17:01:29.953467+00:00
-- Durum: IN_PROGRESS
+- Bitiş zamanı: 2026-11-12T17:08:06.552467+00:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-09.07-S1 — Hazırlık
@@ -5655,20 +5655,23 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - WSupgrade/gerçekbrowserDNS bu testte yok; post-rebindHTTPguard sınırı doğrulandı.
 
 #### TEST-09.07-S4 — Bulgular ve düzeltme
-- Bu30HTTPkontrolünde güvenlik sınırı ihlali gözlenmedi; ürün düzeltmesi gerekmedi. Tokenliuzak/mod ve gerçekDNS/tarayıcı ayrı kapsamdır.
+- Ürünün30HTTPguard kontrolünde güvenlik sınırı ihlali yok. İkinci inceleme testyardımcısının ilkstartuphealth loopunu ortakrequestbudget dışında buldu; ilk koşu global30s/60requestgarantisi değildir.
+- Sadeceyeni helper request() ortakcounter/deadline/responsetimeout ile düzeltildi. İlkprobe/result/SHA korunur. Publichealth/version/static guarddışıdır; kapsam korumalıAPI/session/WSentrydir.
 
 #### TEST-09.07-S5 — Tekrar test ve regresyon
-- [x] Her negatifgruptan sonra yetkili localpositive korunur;30/30PASS/3.650sn.
-- İlkPoCfix/retest NOT_APPLICABLE: bu sınırlı kontrolde ürün hatası üretilmedi, ürün kodu değişmedi.
-- Kanıt: artifacts/release-audit/ra-20261112/dns-rebinding-root/result.json ve REPORT.md.
+- [x] Aynı30kontrol correctedhelper ilePASS; startup dahil31actualHTTPrequest/3.759sn. İkiUNIT exhaustedcounter/expireddeadline /healthzyi bile ağöncesi reddetti.
+- [x] Pozitifcontexts kontrolleri negatifmatrisin öncesinde ve tamamından sonra200; hergruptan sonra değil.
+- Kanıt: artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root/REPORT.md +result.json+guard-unit.json. Ürün hatası/fixretesti değil, harnesssınırdüzeltmesidir.
 
 #### TEST-09.07-S6 — Temizlik ve inceleme
-- [x] ExactPID/birth/PGID appSIGTERM/exit0, processyok/port19844free/binaryaynı. Privateboşworkspace saklandı, Kubernetesmutation/credentialokuma yok.
-- [ ] İkinci artifact/kaynak incelemesi bekleniyor.
+- [x] Her iki exactPID/birth/PGIDapp exit0/processyok/19844free/binaryaynı. Privateboşworkspace tutuldu; kubeconfig/credential/Kubernetes/provider yüklenmedi.
+- [x] Providerworker ilkkanıt30/30+3manifest/currentfrozen3source/binarySHAyı bağımsızinceledi; globalbudget/publicroute/IPv6/WS sınırlarını belirtti. Rootcorrectedhelperdiff/31request/2UNIT/retest/SHAyı inceledi.
+- Aynıajan sistemi incelemesidir; profesyonel üçüncü taraf pentest değildir.
 
 #### TEST-09.07-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Dar30HTTPguardPASS; ikinciinceleme beklenirken IN_PROGRESS. GerçekDNS/browser/V11/securitytamamı kabulü değildir.
+- [x] BİTTİ / DOĞRULANDI
+- VERIFIED_DONE: token-free varsayılanlocal korumalıAPI/session/WSgirişinde post-rebindHTTPHost sınırı doğrulandı; gerçekDNS dönüşümü/browser/IPv6listener/tokenliuzak/WSupgradegenelgüvenlik kapıları değildir.
+- Guard/SameOrigin/tokenmode/HTTPregister/binding veya ilişkiligüven sınırı değişirse retest.
 
 ### TEST-09.08 — Management enable endpoint koruması
 
@@ -9062,6 +9065,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - [x] Root6+24+18SHA ve neighbor kanıtları doğruladı; ürün runtime aynı.
 - [ ] PID birth/ölçüm cohortu, normal overview kadrajı, güç/arka plan yükü izolasyonu ve final5eşleşmiş ölçüm hazır değil.
 - Güç şimdi Battery74%; daha önceki AC koşularıyla eşleştirilmez. Ağır A/B henüz başlamadı.
+
+12Kasım20:05Istanbul rootlabizolasyonu: orijinal2Nodecontainer/clusterUID/ownerCMUID ve SecretQANSUID/seal gerçekAPIyleguarded; existingLab.down yalnız exactikiDockercontainerı durdurdu,appregistrations0.22.028snPASS; privateworkspace/config/manualmanifest/QA namespace diskleri korunur. Diğerprojeye müdahale yok. Kanıt: artifacts/release-audit/ra-20261112/perf-lab-isolation-root/result.json. Bu CPU/power/hostload kabulü değildir.
 
 #### TEST-16.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
