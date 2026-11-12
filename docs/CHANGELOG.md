@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — provider-official-patch-review-worker
+
+- Resmi1.20.4 metadata incelemesi: gözlem11Kasımda daha yeni stable1.20.x bulunmadı; immutabletag/Helm/source/advisory eşleşti. Kaynak floor gerçek imaj düzeltmesi değildir; üç HighID açık. Mevcutlab1.20.2 değiştirilmedi.
+
 ## 2026-11-11 — physical minikube profilini ortak kilitle
 
 - FarklıStateDir aynıHome/Profile için ikinciManager artık fizikselkilit alamaz; eskijournal lock korunur. Hata/Close cleanup ve ayrıprocesskontrolleri geçti. API/klavye/sahne davranışı değiştirilmedi; finalpaket açık.
