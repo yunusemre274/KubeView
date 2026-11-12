@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "powerCases": [
+    {
+      "case": "positive",
+      "passed": true
+    },
+    {
+      "case": "AC-start",
+      "passed": true
+    },
+    {
+      "case": "source-change",
+      "passed": true
+    },
+    {
+      "case": "lowpower1",
+      "passed": true
+    },
+    {
+      "case": "settings-change",
+      "passed": true
+    },
+    {
+      "case": "below35",
+      "passed": true
+    },
+    {
+      "case": "unknown-battery",
+      "passed": true
+    }
+  ],
+  "reentryCases": [
+    {
+      "case": "execution-exists",
+      "exitCode": 1,
+      "originalBytesUnchanged": true,
+      "noNewArtifactsOrApp": true,
+      "safeMessage": "Existing or incomplete run identity; use a new run directory after ownership review; no files written"
+    },
+    {
+      "case": "supervisor-exists",
+      "exitCode": 1,
+      "originalBytesUnchanged": true,
+      "noNewArtifactsOrApp": true,
+      "safeMessage": "Existing or incomplete run identity; use a new run directory after ownership review; no files written"
+    }
+  ],
+  "controllerSHA256": "6355096b8bafcd40fc58109b9c3b51f316e6ee87442581b204b4736de3b01cd7",
+  "testsExecutePurePowerASTAndPrewriteReentryGuardOnly": true
+}

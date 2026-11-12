@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "fixed-battery-positive",
+      "passed": true
+    },
+    {
+      "case": "ACinitial-rejected",
+      "passed": true
+    },
+    {
+      "case": "source-change-rejected",
+      "passed": true
+    },
+    {
+      "case": "lowpower-already-one-rejected",
+      "passed": true
+    },
+    {
+      "case": "settings-midchange-rejected",
+      "passed": true
+    },
+    {
+      "case": "low-battery-rejected",
+      "passed": true
+    },
+    {
+      "case": "missing-percent-rejected",
+      "passed": true
+    }
+  ],
+  "method": "Execute only actual pure need/checked_power AST functions; no top-level app/process/pmset invocation",
+  "cleanupGateSourcePrecedesValidationAndNextJob": true,
+  "reserveSeconds": 15,
+  "controllerSHA256": "054fc7a951039e551e57f0d93889d3c79264f3bc2ccc822f97a2aa9614f9f036"
+}

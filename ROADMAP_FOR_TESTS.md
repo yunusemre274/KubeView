@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T21:19:27.047551+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T21:41:29.415849+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -9388,6 +9388,8 @@ Gerçekbaşlangıçpreflight tamam: commit3278451b cleantrackedtree/remoteeşle�
 
 BalancedmatrixöncesinormalUIgeçişkontrolü: tekfrozenB/M38/noeventrun open→normalDOMclose→nativeNode0reopen PASS; directkameraöncesi/sonrası arasında prepareCamera/focusyok. Aynıcanvas/selectedlabel+outlineUUID/fleet/UIDlar;herkameraalanırawtamaynı.3fullcanonicalsignatureeşit,eventCount0. AktifUI772ms/10s, app+browser+cleanup33.871/120s,19capturedidentityyok/5192free. Worker veRoot3PNGyi açtı,Root18SHA+raporinceledi. ROOT_VISUAL_REVIEW: labelgörünürlükfarklarını yalnızoocclusionile açıklamıyoruz;03tepaneldışısolCrashLooplabel01denfarklı, olasıframe/effect/portalzamansallığıkanıtlanmadı. Seçim/kameraPASS fizikselUIlatency/CPU/pixelequivalence değildir. Kanıt: artifacts/release-audit/ra-20261112/perf-panel-transition-worker/REPORT.md.
 
+Yeni dengelimatrixplanı: perf-panel-balanced-five-blocks-root/plan.json;5block×2build×4condition40window/30+60,10seri6minjob/max4500s. Builtinconditionreversalonceoddblock, AB/BAbuildorderalternating. İlkopen-onlyv4seti bucausalΔpanelv5matrisinepoolyapılmaz. BaşlangıçBattery≥50/nextjob≥40/live≥35/settingslow0aynı, disk10GiB/RSS2+6GiB. Freshpreflight/rootlaunchhenüzgerekiyor; aktüelrun0.
+
 #### TEST-16.06-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -9423,6 +9425,8 @@ Dörtpairtamam:8/10window,4/5pair; mevcut8validationPASS. SonABçiftiplanınayn�
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
 
 Ölçümsonu maxsinglebrowserPIDRSSBbeşçifttearttı:+4.531…22.063MiB/med9.391;hepsiRenderer. JSused/totalheap farklarıkarışık, nedenbelirsiz. Zamanserisipeak/retainedmemory/leak/noise/genelRAM diye kapanmadı; kaynakdiff5runtime dosyada namespaceguard/camera/labelplacementdeğişimi var fakat nedenselmekanizma kanıtlanmadı. Ek sonlumemorydiagnosticveuzuntrendkapısı açık. REPORT-IDENTITY-001 ilkoffline reducer absentprovenance.commit→nullalanı; ilksonuç/sourcekorundu, frozenidentitychain/offlineretectdüzeltti,13metricaynı/newCPUrun0.
+
+PRE-RUNreview3helpergap(AC/lowpowerguard,perjobcleanupgating,reserve8vs15) buldu; originalNOTREADY/sourcekorundu. CorrectedBattery/settingspoll+jobend/perjobPID+portgate/reserve15 sourcereview ile doğrulandı. Root7powerASTunit+2actualownedprewrite-reentryfixturePASS; hiçbirappbaşlamadı. Finalprewriteguard supervisor/executionvarsa hiçbiroutputyazmadanrejecteder, source/plan/validatorheshleri veexactopenbody/livejobmetadataeklendi. Eskiarchivedwrapperlar reentry-safe değildir; yalnızbirkezrunedildi/kanıtlarıintact, tekraraynıfolderderunönerilmez. Kayıt: perf-panel-balanced-five-blocks-root/ROOT_REVIEW.md +plan-review-worker/REPORT.md.
 
 #### TEST-16.06-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
