@@ -1,0 +1,151 @@
+{
+  "startedAt": "2026-11-11T20:07:44.312322+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "build",
+    "-p=1",
+    "-mod=mod",
+    "-trimpath",
+    "-buildvcs=false",
+    "-tags=osusergo,ipam_provider_operator",
+    "-ldflags",
+    "-X \"github.com/cilium/cilium/pkg/version.ciliumVersion=1.20.4-kubeview-security.2 beb276d2 2026-11-11T20:07:44.312322+00:00\" -X github.com/cilium/cilium/pkg/envoy.requiredEnvoyVersionSHA=8c73b2816bc8239e27f1fd53b271884688137459 -s -w",
+    "-o",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate-02/cilium-operator-generic-v1.20.4-kubeview-security.2-linux-arm64",
+    "."
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate-02/source/operator",
+  "candidateIdentity": "1.20.4-kubeview-security.2 beb276d2 2026-11-11T20:07:44.312322+00:00",
+  "officialRecipe": "operator/Makefile cilium-operator-generic + Makefile.defs osusergo/ipam_provider_operator, ciliumVersion/requiredEnvoyVersionSHA/strip ldflags",
+  "deviations": [
+    "mod=mod instead of official vendor to apply exactly requested security module floors and required MVS minima without stale vendored packages",
+    "trimpath/buildvcs=false and explicit private derived security version identity",
+    "p=1/GOMAXPROCS2/CGO0/LinuxARM64 native cross compile; no container image build"
+  ],
+  "environment": {
+    "GOTOOLCHAIN": "local",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "2GiB",
+    "CGO_ENABLED": "0",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "GOPROXY": "https://proxy.golang.org",
+    "GOSUMDB": "sum.golang.org"
+  },
+  "maxSeconds": 360,
+  "rssLimitBytes": 4294967296,
+  "minFreeDiskBytes": 10737418240,
+  "minBatteryPercent": 30,
+  "status": "BUILD_PASS",
+  "peakOwnedRSSBytes": 1851457536,
+  "maxOwnedProcesses": 2,
+  "samples": [
+    {
+      "elapsed": 0.025,
+      "ownedRSSBytes": 15171584,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 453875908608,
+      "batteryPercent": 83,
+      "wallGapSeconds": 0.0
+    },
+    {
+      "elapsed": 1.045,
+      "ownedRSSBytes": 53723136,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 453866405888,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.021
+    },
+    {
+      "elapsed": 2.079,
+      "ownedRSSBytes": 103038976,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 453858099200,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.033
+    },
+    {
+      "elapsed": 3.096,
+      "ownedRSSBytes": 156352512,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453858660352,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 4.11,
+      "ownedRSSBytes": 151814144,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453829734400,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 5.131,
+      "ownedRSSBytes": 318078976,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453804085248,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.021
+    },
+    {
+      "elapsed": 6.146,
+      "ownedRSSBytes": 296140800,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453743583232,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.015
+    },
+    {
+      "elapsed": 7.159,
+      "ownedRSSBytes": 559202304,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453738090496,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 8.171,
+      "ownedRSSBytes": 960102400,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453738913792,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.012
+    },
+    {
+      "elapsed": 9.184,
+      "ownedRSSBytes": 1448820736,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453738766336,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 10.205,
+      "ownedRSSBytes": 1851457536,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453738483712,
+      "batteryPercent": 83,
+      "wallGapSeconds": 1.021
+    }
+  ],
+  "toolchainVersion": "go version go1.26.11 darwin/arm64",
+  "toolchainSHA256": "20e07ffb4f08faaf125e413db024b6e988d3ec2799dcb3568a720d14be0ad133",
+  "preflightBatteryPercent": 83,
+  "preflightFreeBytes": 453876420608,
+  "ownedBuildPID": 4854,
+  "ownedBuildBirth": "Wed Nov 11 23:07:44 2026",
+  "ownedBuildPGID": 4854,
+  "ownedCaffeinatePID": 4856,
+  "exitCode": 0,
+  "binarySHA256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "binaryBytes": 114819234,
+  "binaryMagic": "7f454c460201010000000000000000000200b700",
+  "ownedCaffeinateExited": true,
+  "ownedBuildExited": true,
+  "go.modSHA256": "e4381df43efe82dfc467569f7fb730918b331037dc296ab2fc17f335f9c9a1e8",
+  "go.sumSHA256": "518297b010d56308b1e793d715919aa2b12b51628ced2685824a9a0fd6d3fb77",
+  "elapsedSeconds": 11.329858791999868,
+  "finishedAt": "2026-11-11T20:07:55.642252+00:00",
+  "helperSHA256": "aaebdb74926217093e3022c0d05c56054e8060d86a590c5527bd35996bee2b15"
+}

@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — provider-operator-candidate02-worker
+
+- Privateoperatorcandidate02 ELF9cde6566… gerçekbuildPASS; cryptoexactpseudo+gopacket1.7.2 dışında incrementalgraph değişmedi. AynıDB164componentinventory0finding, fullimage/anaCiliummodülü kapsandı demek değildir. KısıtlıLinuxARM64Docker --version gerçekexit0 veexactCIDcleanup; henüz labinstall/TLS/controller kabulü yok.
+
 ## 2026-11-12 — provider-operator-findings-review-worker
 
 - Candidate1 OpenPGP advisorysi unsafeOpenPGP modülüne ait; fullpclntab172260entry/184657name içindeOpenPGPyok. SCTPsinkgerçeklinked fakat operatorattacker-ingress kanıtlanmadı. Waiver yok; exactcrypto/gopacket iki floor önerildi; kaynak+advisory/proposedpatch ayrı korunur.

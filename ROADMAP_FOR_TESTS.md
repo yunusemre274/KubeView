@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:26:24.576584+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T13:26:27.781243+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -4554,6 +4554,8 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 - Kanıt: artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/REPORT.md; RECIPE.md; binary-identity.json; trivy-sbom-summary.json
 
 12 Kasım tarihsel kanıt inceleme/checkpoint: Privateoperatorcandidate1 ELF7bba6629… gerçekten üretildi; x/net0.62+jose4.1.6/Go1.26.11. İlkELFscanner0Results BLOCKED ve ilkSBOMflagFAIL korunur; düzeltilmiş164componentinventoryde MediumSCTP+UnknownOpenPGP kaldı. İmaj/kuruluoperator/TLS kabulü değildir. Kanıt: artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/REPORT.md; SHA256SUMS bütün satırları root tarafından doğrulandı. İlk başarısızlıklar değiştirilmedi.
+
+12 Kasım tarihsel kanıt inceleme/checkpoint: Privateoperatorcandidate02 ELF9cde6566… gerçekbuildPASS; cryptoexactpseudo+gopacket1.7.2 dışında incrementalgraph değişmedi. AynıDB164componentinventory0finding, fullimage/anaCiliummodülü kapsandı demek değildir. KısıtlıLinuxARM64Docker --version gerçekexit0 veexactCIDcleanup; henüz labinstall/TLS/controller kabulü yok. Kanıt: artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/REPORT.md; SHA256SUMS bütün satırları root tarafından doğrulandı. İlk başarısızlıklar değiştirilmedi.
 
 #### TEST-07.05-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.

@@ -1,0 +1,17 @@
+{
+  "disposition": "FALSE_POSITIVE_PUBLIC_GO_MODULE_CHECKSUMS",
+  "count": 9,
+  "independentLookupReceipts": "../provider-operator-candidate-worker/root-public-sumdb/",
+  "fingerprints": [
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/full-from-official-go.sum.patch:generic-api-key:39",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/buildinfo.txt:generic-api-key:108",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/buildinfo.txt:generic-api-key:134",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/buildinfo.txt:generic-api-key:149",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/buildinfo.txt:generic-api-key:150",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/buildinfo.txt:generic-api-key:151",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/buildinfo.txt:generic-api-key:159",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/buildinfo.txt:generic-api-key:161",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/buildinfo.txt:generic-api-key:163"
+  ],
+  "scope": "Only exact current file/rule/line after public checksum byte match, no global rule suppression"
+}

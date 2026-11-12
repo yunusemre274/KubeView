@@ -1,0 +1,13 @@
+{
+  "source": "go version -m exact candidate02 ELF plus actual stdlib; no fabricated unversioned main PURL",
+  "binarySHA256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "buildinfoSHA256": "8521f2dcab12f8acc02488cefee598c34c9664fe48b0d1dfb2119c0348326277",
+  "sbomSHA256": "3464cdd7b9cae38934be58a685d05df8ccc1a3584760cecbf90e091f19613679",
+  "components": 164,
+  "versions": {
+    "golang.org/x/net": "v0.62.0",
+    "golang.org/x/crypto": "v0.58.1-0.20261009181718-2f1f834330b2",
+    "github.com/go-jose/go-jose/v4": "v4.1.6",
+    "github.com/gopacket/gopacket": "v1.7.2"
+  }
+}
