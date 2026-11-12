@@ -1,0 +1,118 @@
+{
+  "status": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+  "startedAt": "2026-11-12T20:13:26.633039+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=90s",
+    "-run",
+    "^(TestWorkspaceHTTPPersistenceCSRFAndScope|TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|TestWorkspaceNodeImpactRequiresAcknowledgement|TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|TestReleaseReadOnlyEndpointsRetainedGrant|TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource)$",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "captured": [
+    {
+      "pid": 60895,
+      "identity": "Thu Nov 12 23:13:26 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -json -p 1 -parallel 1 -count=1 -timeout=90s -run ^(TestWorkspaceHTTPPersistenceCSRFAndScope|TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|TestWorkspaceNodeImpactRequiresAcknowledgement|TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|TestReleaseReadOnlyEndpointsRetainedGrant|TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource)$ ./pkg/server",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 60902,
+      "identity": "Thu Nov 12 23:13:26 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/link -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build2290038664/b001/server.test -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build2290038664/b001/importcfg.link -s -w -buildmode=pie -buildid=Kbk6JgNBA0rgibxSC-9i/QWyD9smsZ1tFB6Y34zOg/qbyyZCBFAlC5RQNU7mbT/Kbk6JgNBA0rgibxSC-9i -X testing.testBinary=1 -extld=clang /Users/yunusemre/Library/Caches/go-build/29/29b1f076a25eddcc83a2abd4ce3e67c1ad9a92ff2e6d301add9cf99282666fdd-d",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 60908,
+      "identity": "Thu Nov 12 23:13:27 2026     /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build2290038664/b001/server.test -test.paniconexit0 -test.v=test2json -test.parallel=1 -test.count=1 -test.timeout=1m30s -test.run=^(TestWorkspaceHTTPPersistenceCSRFAndScope|TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|TestWorkspaceNodeImpactRequiresAcknowledgement|TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|TestReleaseReadOnlyEndpointsRetainedGrant|TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource)$",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.02057670800058986,
+      "ownedRSSKiB": 5504,
+      "ownedPIDs": [
+        60895
+      ]
+    },
+    {
+      "elapsedSeconds": 0.2406267080004909,
+      "ownedRSSKiB": 58752,
+      "ownedPIDs": [
+        60895
+      ]
+    },
+    {
+      "elapsedSeconds": 0.45286879199920804,
+      "ownedRSSKiB": 543856,
+      "ownedPIDs": [
+        60895,
+        60902
+      ]
+    },
+    {
+      "elapsedSeconds": 0.6628055000001041,
+      "ownedRSSKiB": 58864,
+      "ownedPIDs": [
+        60895
+      ]
+    },
+    {
+      "elapsedSeconds": 0.8982268330000807,
+      "ownedRSSKiB": 59392,
+      "ownedPIDs": [
+        60895,
+        60908
+      ]
+    },
+    {
+      "elapsedSeconds": 1.1410028749996854,
+      "ownedRSSKiB": 59392,
+      "ownedPIDs": [
+        60895,
+        60908
+      ]
+    },
+    {
+      "elapsedSeconds": 1.3691556669982674,
+      "ownedRSSKiB": 93904,
+      "ownedPIDs": [
+        60895,
+        60908
+      ]
+    },
+    {
+      "elapsedSeconds": 1.5902153749993886,
+      "ownedRSSKiB": 59456,
+      "ownedPIDs": [
+        60895
+      ]
+    }
+  ],
+  "safety": "ownedGoTest tree1.5GiB; disk>=10GiB; no externalKUBECONFIG; unit/fake clients, own httptest loopback only; no cluster/provider activity",
+  "limitSeconds": 150,
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "sourceBeforeMatches": true,
+  "exitCode": 0,
+  "topLevelTests": [
+    "TestReleaseReadOnlyEndpointsRetainedGrant",
+    "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource",
+    "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+    "TestWorkspaceHTTPPersistenceCSRFAndScope",
+    "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+    "TestWorkspaceNodeImpactRequiresAcknowledgement"
+  ],
+  "topLevelPassed": 6,
+  "subtestsPassed": 18,
+  "failures": 0,
+  "skips": 0,
+  "sourceAfterMatches": true,
+  "elapsedSeconds": 2.27662699999928,
+  "finishedAt": "2026-11-12T20:13:28.909654+00:00"
+}

@@ -1,3 +1,8 @@
+## 12 Kasım 2026 — auth kapsam eklentisi ve source-faz kapanışı
+
+- Altıworkspace/credential/read-only/Secretdiscovery sentetik kontrolü ayrıgrupta6ana+18altPASS; önceki17ile23unique/31alt veönerilen18kontrolün tamamı kapsandı.
+- TEST01.02yalnızkaynakauthveriakışı+hedefliguard kapsamında kapatıldı. GerçekRBAC/TLS/WS/taşıma veya genelgüvenlikkabulü iddia edilmedi; ürün/runtime değişmedi.
+
 ## 12 Kasım 2026 — araçlırenderkimliği ve auth hedefli doğrulama
 
 - Product/runtime değişmeden2kısa renderidentitykoşusu, kaynak/hash/UUID/attribute/material kayıtları vePNGler eklendi. Tarihsel ekçizim yenidenoluşmadı; finding kapatılmadı.

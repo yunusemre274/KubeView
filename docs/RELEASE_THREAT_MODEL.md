@@ -1,3 +1,26 @@
+## 12 Kasım 2026 — TEST01.02 aktif auth veri akışı ve hedefli guard kanıtı
+
+Aktif23runtime/contextdosyası frozenf32ilebyteeşit; dosya/fonksiyon tablosu
+[auth kaynak incelemesinde](../artifacts/release-audit/ra-20261112/auth-flow-source-review-worker/REPORT.md).
+İki fresh-count1 sentetik fake/in-processHTTP grubu17+6benzersiztest ve13+18altkontrol
+geçti; kaynakönerisi18kontrolün tamamı+5komşu kapsandı. [Rootkapanışvekanıtlar](../artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/ROOT_CLOSURE.json).
+Bu kaynak/veriakışı fazının kabulüdür; gerçekKubernetesRBAC/admission,TLS/CA,
+browser/WS,provider/exec/forward ve bütünendpointgüvenliği kendi fazlarında kalır.
+
+`protect` Host/Origin/opsiyoneltoken ve server-ownedworkspacebağlamını kurar;
+operatorgrant cookie+tab+harbor/nonce/context/namespace/clientgeneration'a bağlıdır.
+ManagementenableSSARçağrısının APIbaşarısı uygulamaniyetidir; hergerçekoperation
+`authorize`içindeSSARAllowed ve upstreamAPIile tekrar karşılaşır. `ReadOnly`backendde
+uygulanır. Internalctxolmayancaller içinmanagementAllowedreturnnil publicroutebypass
+kanıtıdeğildir: bütünkorunanHTTPyollarıoperatorRequestbağlamını ekler.
+
+Statikaccess-token geçerliliği, browseraccess-cookie8hMaxAge ve operator/grant
+absolute8hömür farklıdır. CookieMaxAgeayrıbirservertokenTTLdeğildir. TLS-cookie
+flagunitfixture'ı TLSel sıkışması değildir. SecretpurposeGETokuma yetkisidir;
+yazmagranthakkıyla aynı değildir. Öncedenkabul edilmişupstreamişlem cancellation
+ilegerialınmışsayılmaz. Sourceworker350.073sileyaklaşık300sraportarget'ını aştı;
+bu workflowmiss korunur, ürüngecikmeSLOgeçişi değildir.
+
 # Yayın adayı tehdit modeli
 
 11 Kasım2026; başlangıç36d5b8f. Dağıtım local-first tek operatör uygulamasıdır.

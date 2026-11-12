@@ -1,3 +1,8 @@
+## 12 Kasım 2026 — TEST01.02 dar kabulü
+
+- [x] Auth/session/writegrant/RBAC aktifkaynakharitası,17+6unique/31alt fake/in-processguard kontrolü veiki peerreview ile TEST01.02 kaynakdenetimi tamam. Kaynakönerisindeki6eksikkontrol ayrıkoşuldu; ilk17tekrarlanmadı.
+- [ ] GerçekRBAC/TLS/browser/WS/endpoint/provider/finalpaketkapıları ayrıaçık; sourcephase sayısıyla kapatılmadı. Genel37/200fazdoğrulandı.
+
 ## 12 Kasım 2026 — sınırlı çizim tanısı ve auth guard checkpoint
 
 - [x] İki kısa araçlıA/Bçizimkimliği tanısı ve8worker/4rootPNGincelemesi; BENCH-RENDER-001 yenidenoluşmadı, açık. TamCPUmatrisi tekrarlanmadı.

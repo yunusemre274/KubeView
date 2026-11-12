@@ -1,0 +1,13 @@
+{
+  "artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/plan.json": "9a8ddca216173811e82391e63ff220658fd6691006e42198ca83271b304b3bfd",
+  "artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/run.py": "7abb6166a1675b8c21dde0cef2161cc9bf7a8cbe291f2aae6c00e8d90f91a195",
+  "artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/execution.json": "8ac067b4ec5cbfa5c9343e0d66d8f5b94089a7a7580e14d67c8cb170d090b190",
+  "artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/go-test.jsonl": "f198f7abb32a660e358e08608f5b883b1de98a91e7897fbae52975e3f5e0fefd",
+  "artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/go-test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/supervisor.json": "33ef1e1eb194daae8f444ff14c5c48235d0b2fe4c0e32f328335780c0e599be8",
+  "artifacts/release-audit/ra-20261112/auth-flow-targeted-root/execution.json": "39e77048955292801fe7934b4d780a4d7a81fd5c48018e3a60af756927f1c9e1",
+  "artifacts/release-audit/ra-20261112/auth-flow-targeted-root/go-test.jsonl": "dc49f696aa4d46374657cb0dbb34c0dac7a5a40ab2427488f3e5341aebf82835",
+  "artifacts/release-audit/ra-20261112/auth-flow-targeted-root/run.py": "0962a8a2036d5b6be538d278604d282568392b17d01fe831b3834a28a2f1e7a7",
+  "artifacts/release-audit/ra-20261112/auth-flow-source-review-worker/result.json": "0b48bd232b12d3b47ffe719ac840fba14f00489bf5f13443f1dc9f49955163d4",
+  "artifacts/release-audit/ra-20261112/auth-flow-targeted-second-review-worker/checks.json": "8657c44b1c86ee1afa4d34255c72b1aadb02fd03b9d1b042b01d25475b81c47a"
+}

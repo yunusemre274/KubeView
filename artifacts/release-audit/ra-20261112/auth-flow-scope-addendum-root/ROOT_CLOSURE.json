@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-12T23:18:00.056905+03:00",
+  "phase": "TEST-01.02",
+  "status": "VERIFIED_DONE_BOUNDED_SOURCE_AND_SYNTHETIC_GUARDS",
+  "scope": "Source auth/session/writegrant/RBAC dataflow mapping plus exact fake/in-process guard tests; not wholeCAT09/10/security/runtime/provider/TLS/finalpackage acceptance",
+  "uniqueTopLevelPassed": 23,
+  "nestedPassed": 31,
+  "first17Repeated": false,
+  "all18SourceProposedNamesCovered": true,
+  "sourceRuntime": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "firstInvocation": "2934b8f0679fe7fff0f1ca63e8d4d4db33af1f35",
+  "addendumInvocation": "bf8c87e2b95d56b17ae1f120b2ab09a43941a757",
+  "reviewRootSHAEntries": 4,
+  "evidence": [
+    "../auth-flow-source-review-worker/REPORT.md",
+    "../auth-flow-targeted-root/execution.json",
+    "../auth-flow-targeted-second-review-worker/REPORT.md",
+    "execution.json",
+    "../auth-flow-scope-addendum-review-worker/REPORT.md"
+  ],
+  "limits": [
+    "FakeSSAR is not realRBAC/admission.",
+    "TLS cookie-flags fixture is not realTLS handshake.",
+    "Read-only exec/forward positive503 is transportpreflight, not session success.",
+    "Credentialreload uses synthetic tempkubeconfig; configured static access-token lifetime differs from operatorabsolute8h.",
+    "Observed capturedPID absence is not exhaustivecensus.",
+    "Sourceworker350.073s exceeded approximate300starget; workflowmissretained, notproductSLOpass."
+  ],
+  "fullReleaseStatus": "NOT_RELEASE_READY"
+}
