@@ -1,0 +1,114 @@
+{
+  "name": "cilium-build",
+  "argv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "build",
+    "--cpu-period=100000",
+    "--cpu-quota=200000",
+    "--memory=4g",
+    "--memory-swap=4g",
+    "--network=default",
+    "--force-rm",
+    "--platform=linux/arm64",
+    "--pull=false",
+    "--iidfile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/cilium-image-id.txt",
+    "--tag",
+    "kubeview-private/cilium:1.20.4-apt-security.1",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/build-cilium"
+  ],
+  "startedAt": "2026-11-12T10:41:29.418726+00:00",
+  "maxSeconds": 150,
+  "samples": [
+    {
+      "elapsedSeconds": 2.231,
+      "ownedRSSBytes": 3751936,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454512734208
+    },
+    {
+      "elapsedSeconds": 2.782,
+      "ownedRSSBytes": 26607616,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454512865280
+    },
+    {
+      "elapsedSeconds": 3.357,
+      "ownedRSSBytes": 26607616,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454512652288
+    },
+    {
+      "elapsedSeconds": 3.911,
+      "ownedRSSBytes": 26607616,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454511702016
+    },
+    {
+      "elapsedSeconds": 4.466,
+      "ownedRSSBytes": 26607616,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454512619520
+    },
+    {
+      "elapsedSeconds": 5.019,
+      "ownedRSSBytes": 26607616,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454512553984
+    },
+    {
+      "elapsedSeconds": 5.559,
+      "ownedRSSBytes": 26607616,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454504742912
+    },
+    {
+      "elapsedSeconds": 6.101,
+      "ownedRSSBytes": 26607616,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454506246144
+    },
+    {
+      "elapsedSeconds": 6.643,
+      "ownedRSSBytes": 26607616,
+      "ownedPIDs": [
+        12240
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454504374272
+    }
+  ],
+  "expectedRUNNormalized": "set -eu && export DEBIAN_FRONTEND=noninteractive && printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports resolute-security main' > /tmp/kubeview-apt-security.list && apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; }; apt_safe update && plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1)\" && printf '%s\\n' \"$plan\" && printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg7.0) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done && apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1 && dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg7.0 && dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 3.2.1ubuntu0.1 && dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg7.0)\" ge 3.2.1ubuntu0.1 && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list",
+  "baseReference": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+  "baseManifestID": "sha256:1615b8097f64e1461cd55bd2037b817484d3586d1e065b88014463c797d0832a",
+  "baseConfigID": "sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+  "pid": 12240,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:41:34.415024+00:00"
+}

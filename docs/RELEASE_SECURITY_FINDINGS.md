@@ -103,3 +103,8 @@ Kilit, physicalproviderHome/Profile yerine yalnız journalStateDir/Profile yolun
 ## 12 Kasım — operator yerel imaj retesti
 
 `artifacts/release-audit/ra-20261112/provider-operator-image-worker/REPORT.md`: exactresmîARM64operator üstüne türetilmişcandidate02, iki gerçekGoELFanalyzer; aynıDB baseline2High/4Medium/2Unknown, yeniimaj0High/0Medium/1Unknown. KalanCVE-2026-39824 gopsx/sys0.30.0; henüzdispositionyok. ScratchfilesystemdeAPT yok; Cilium/Envoy gerçekAPTbulguları ayrıca açık. Config/CA/gops/LICENSE.all korunur; yeni bağımlılıkların licenseclosure ve Cilium unversionedrootCVEcoverage henüz doğrulanmadı. Eski binary lowerlayerda kaldığı için imaj küçüldü/sonpakettemiz iddiası yok. Yalnız --version smoke geçmiştir; controller/RBAC/TLS/kurulucluster kabulü değildir. Yerel imaj yayımlanmadı.
+
+
+## 12 Kasım — Cilium/Envoy APT retesti
+
+[Gerçek imaj ve imzalı paket zinciri](../artifacts/release-audit/ra-20261112/provider-apt-images-worker/REPORT.md): yerel adayların aktiffilesysteminde yalnızapt/libaptpaketleri resmîsecuritysürümlerine yükseltildi; dörtCVE-2026-109518satırı kalktı. Config/layerprefixler ve provider/nativebinary/CA/sourcekey/licensehashleri korundu. AynıTrivyDBOS+13/1Goanalizinde Cilium8High/64Medium/6Low/4Unknown, Envoy23Medium/4Low kaldı. Cilium8Highx/netmodulematch için ayrıactualELF/primaryadvisoryadjudication gerekir; bu tarama birwaiver veya tümproviderkabulü değildir. İmajlar yalnızyerel; mevcutkurulum/pinler değiştirilmedi.

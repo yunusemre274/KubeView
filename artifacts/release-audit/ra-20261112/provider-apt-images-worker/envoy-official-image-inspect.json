@@ -1,0 +1,53 @@
+{
+  "Id": "sha256:5a17281b6262e00a8bfe6efa0463f4cbc19aa3d6e0116bc9407ce3c71c629dae",
+  "RepoTags": [
+    "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+  ],
+  "RepoDigests": [
+    "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+  ],
+  "Comment": "buildkit.dockerfile.v0",
+  "Created": "2026-10-23T07:38:06.753367596Z",
+  "Config": {
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    ],
+    "Cmd": [
+      "/bin/bash"
+    ],
+    "Labels": {
+      "maintainer": "maintainer@cilium.io",
+      "org.opencontainers.image.version": "24.04"
+    }
+  },
+  "Architecture": "arm64",
+  "Os": "linux",
+  "Size": 75160521,
+  "RootFS": {
+    "Type": "layers",
+    "Layers": [
+      "sha256:9a354992483c962fa69075527e7a2690fd9103f53d2c10af083fb31f24335256",
+      "sha256:d7f8cfac6f1fb8c79131297d6cb1f90fe15395ade151e0a6fd1280ae18416ebc",
+      "sha256:ee8fa9aaac81e8a3c40c7ff288388b559d338f699a9405c7dbaa37e76c9b8d37"
+    ]
+  },
+  "Metadata": {
+    "LastTagTime": "2026-11-11T13:31:36.584714589Z"
+  },
+  "Descriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:5a17281b6262e00a8bfe6efa0463f4cbc19aa3d6e0116bc9407ce3c71c629dae",
+    "size": 867,
+    "platform": {
+      "architecture": "arm64",
+      "os": "linux"
+    }
+  },
+  "Identity": {
+    "Pull": [
+      {
+        "Repository": "quay.io/cilium/cilium-envoy"
+      }
+    ]
+  }
+}

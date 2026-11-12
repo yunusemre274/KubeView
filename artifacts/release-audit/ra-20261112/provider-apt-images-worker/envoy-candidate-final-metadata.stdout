@@ -1,0 +1,14 @@
+755|1337|1337|8117861|/usr/bin/cilium-envoy-healthcheck
+755|1337|1337|79745496|/usr/bin/cilium-envoy
+755|1337|1337|715608|/usr/bin/cilium-envoy-starter
+644|0|0|180744|/etc/ssl/certs/ca-certificates.crt
+644|0|0|2559|/etc/apt/sources.list.d/ubuntu.sources
+644|0|0|3607|/usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+APT_FILE_HASHES
+83ecc278c77ef74feee5eca0de6c94ca9ca657ac1167eda8c1b4a7a888a08e01  /usr/bin/apt
+72b29af53586c32a444186ee5768975b33bf3d551f41b4e9d75f958f1c84527e  /usr/bin/apt-get
+26d69b1b4d5dafbaebc2ec403a8dd372004fe5bf41ef290c9bd5f8ea65766f0c  /usr/lib/aarch64-linux-gnu/libapt-pkg.so.6.0.0
+
+CACHE_CHECK
+lists_empty_no_archived_deb_no_temporary_source

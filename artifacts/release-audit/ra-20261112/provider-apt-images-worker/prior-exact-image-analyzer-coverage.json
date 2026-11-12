@@ -1,0 +1,132 @@
+[
+  {
+    "label": "cilium",
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "26.04"
+    },
+    "results": [
+      {
+        "Target": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e (ubuntu 26.04)",
+        "Class": "os-pkgs",
+        "Type": "ubuntu",
+        "packages": 124,
+        "findings": 61
+      },
+      {
+        "Target": "cni/loopback",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 7,
+        "findings": 1
+      },
+      {
+        "Target": "opt/cni/bin/cilium-cni",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 84,
+        "findings": 3
+      },
+      {
+        "Target": "usr/bin/cilium-agent",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 186,
+        "findings": 4
+      },
+      {
+        "Target": "usr/bin/cilium-bugtool",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 72,
+        "findings": 2
+      },
+      {
+        "Target": "usr/bin/cilium-dbg",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 155,
+        "findings": 4
+      },
+      {
+        "Target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 48,
+        "findings": 2
+      },
+      {
+        "Target": "usr/bin/cilium-health",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 79,
+        "findings": 2
+      },
+      {
+        "Target": "usr/bin/cilium-health-responder",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 6,
+        "findings": 0
+      },
+      {
+        "Target": "usr/bin/cilium-mount",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 26,
+        "findings": 2
+      },
+      {
+        "Target": "usr/bin/cilium-sysctlfix",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 5,
+        "findings": 0
+      },
+      {
+        "Target": "usr/bin/gops",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 9,
+        "findings": 1
+      },
+      {
+        "Target": "usr/bin/hubble",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 139,
+        "findings": 2
+      },
+      {
+        "Target": "usr/sbin/iptables-wrapper",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 2,
+        "findings": 0
+      }
+    ]
+  },
+  {
+    "label": "envoy",
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "24.04"
+    },
+    "results": [
+      {
+        "Target": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629 (ubuntu 24.04)",
+        "Class": "os-pkgs",
+        "Type": "ubuntu",
+        "packages": 95,
+        "findings": 29
+      },
+      {
+        "Target": "usr/bin/cilium-envoy-healthcheck",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 1,
+        "findings": 0
+      }
+    ]
+  }
+]

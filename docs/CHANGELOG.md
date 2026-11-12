@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Signed APT yerel imaj düzeltmesi
+
+- Cilium/EnvoyAPT-onlycandidateimajlarında dörtCVE-2026-109518componentrowgiderildi. İmzalıresmîmetadata ve exactpin/iki-paketinstall doğrulandı; config/providerbinarySHA korunur. KalanCilium8High ve diğerseverityler açık; install/yayım yok. NobleindexhashilkFAILkorunur.
+
 ## 2026-11-12 — TEST12.01 ikinci inceleme
 
 - Trusttestsource/manifest/retest zinciri farklıworkerincelemesiyle kabul edildi; faz31/200 tamam. İlkfixtureFAIL ve gerçekKuberneteseşdeğeriolmayan sentetiktest sınırı korunur.

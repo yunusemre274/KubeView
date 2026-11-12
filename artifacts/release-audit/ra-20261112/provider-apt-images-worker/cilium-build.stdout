@@ -1,0 +1,47 @@
+Sending build context to Docker daemon  4.608kB
+Step 1/2 : FROM quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e
+ ---> 20fe92e4c866
+Step 2/2 : RUN set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports resolute-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false "$@"; };     apt_safe update &&     plan="$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1)" &&     printf '%s\n' "$plan" &&     printf '%s\n' "$plan" | while IFS=' ' read -r action package rest; do if [ "$action" = Inst ]; then case "$package" in apt|libapt-pkg7.0) ;; *) printf 'Unexpected package change: %s\n' "$package" >&2; exit 81 ;; esac; elif [ "$action" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1 &&     dpkg-query -W -f='${Package}\t${Version}\n' apt libapt-pkg7.0 &&     dpkg --compare-versions "$(dpkg-query -W -f='${Version}' apt)" ge 3.2.1ubuntu0.1 &&     dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libapt-pkg7.0)" ge 3.2.1ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list
+ ---> Running in 3954f209c9e5
+Get:1 https://ports.ubuntu.com/ubuntu-ports resolute-security InRelease [137 kB]
+Get:2 https://ports.ubuntu.com/ubuntu-ports resolute-security/main arm64 Packages [930 kB]
+Fetched 1068 kB in 2s (659 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Solving dependencies...
+The following packages will be upgraded:
+  apt libapt-pkg7.0
+2 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+Inst libapt-pkg7.0 [3.2.0] (3.2.1ubuntu0.1 Ubuntu:26.04/resolute-security [arm64])
+Conf libapt-pkg7.0 (3.2.1ubuntu0.1 Ubuntu:26.04/resolute-security [arm64])
+Inst apt [3.2.0] (3.2.1ubuntu0.1 Ubuntu:26.04/resolute-security [arm64])
+Conf apt (3.2.1ubuntu0.1 Ubuntu:26.04/resolute-security [arm64])
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Solving dependencies...
+The following packages will be upgraded:
+  apt libapt-pkg7.0
+2 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+Need to get 2496 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Get:1 https://ports.ubuntu.com/ubuntu-ports resolute-security/main arm64 libapt-pkg7.0 arm64 3.2.1ubuntu0.1 [1054 kB]
+Get:2 https://ports.ubuntu.com/ubuntu-ports resolute-security/main arm64 apt arm64 3.2.1ubuntu0.1 [1442 kB]
+Fetched 2496 kB in 1s (1765 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 10041 files and directories currently installed.)
+Preparing to unpack .../libapt-pkg7.0_3.2.1ubuntu0.1_arm64.deb ...
+Unpacking libapt-pkg7.0:arm64 (3.2.1ubuntu0.1) over (3.2.0) ...
+Setting up libapt-pkg7.0:arm64 (3.2.1ubuntu0.1) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 10041 files and directories currently installed.)
+Preparing to unpack .../apt_3.2.1ubuntu0.1_arm64.deb ...
+Unpacking apt (3.2.1ubuntu0.1) over (3.2.0) ...
+Setting up apt (3.2.1ubuntu0.1) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+apt	3.2.1ubuntu0.1
+libapt-pkg7.0	3.2.1ubuntu0.1
+ ---> Removed intermediate container 3954f209c9e5
+ ---> 107f572571a1
+Successfully built 107f572571a1
+Successfully tagged kubeview-private/cilium:1.20.4-apt-security.1

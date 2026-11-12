@@ -1,13 +1,13 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:42:10.278103+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T13:50:42.959113+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:144; IN_PROGRESS:19; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:31; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:141; IN_PROGRESS:22; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:31; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
-- Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
+- Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kendi kanıtlarında; finalpaket açık. Tarihselinstalled1.20.2 bulguları korunur. Yereloperatorcandidate0High/1Unknown; APT-onlyCiliumcandidate8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Bu yerel adaylar kurulu değil; gerçekELF/sourceCVE/kalanseverity/runtimeTLS/lisans kapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST12.01 kubeconfig trust31/200 VERIFIED_DONE. TEST06.13 realHTTPkilitassertionlarıPASS, fakat830.384/300sn hazırlıkplan aşımı ve genişprovider/idempotencykapıları ayrı. Gerçekworker case03outerFAIL korunur.
 - Süreç/lab: ANA MÜDÜR; backendworker yeni sentetikSecretgrubu hazırlığı, providerworker ikiAPTimage boundedbuild/scan. OwnedHubblelab orijinal2NodeReady/çalışır, app/CLIportlarıkapalı. Diğerusercontainerlaradokunulmadı; ağırA/B/soakyok.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
-| CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:10 | Henüz yok |
+| CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:7, IN_PROGRESS:3 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:1, FAILED:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
@@ -3022,12 +3022,12 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Sorumlu: release_backend_resume gerçekSecrettekgrup; rootnamespace/Git/roadmap
 - Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Ortam / kullanılan kimlik ve yetki: Ownedkvml-d32afbf634e8-a; yeni sealednamespace rootreceipt, yalnız birsentetikSecret ve2restrictedSA/RBAC. KullanıcıSecretdeğerleri okunmaz.
+- Başlangıç zamanı: 2026-11-12T10:47:32.753407+00:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-05.07-S1 — Hazırlık
@@ -3038,6 +3038,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+12Kasımplanı artifacts/release-audit/ra-20261112/secret-purpose-real-worker/plan.json. Legacykv-repair-onlyhelperyenihedefesanılmadı. Yeni tekGoTestgerçekAPItestfixtureönerisi;105snwork+30cleanup/180wrapper/360executionphase, package1/GOMAXPROCS2. RootfreshnamespaceUID/owner/sealhazırlar; workeruidconditionfixturesınıtemizler. Henüz testPASSyok.
 
 #### TEST-05.07-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -3088,12 +3090,12 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Sorumlu: release_backend_resume gerçekSecrettekgrup; rootnamespace/Git/roadmap
 - Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Ortam / kullanılan kimlik ve yetki: Ownedkvml-d32afbf634e8-a; yeni sealednamespace rootreceipt, yalnız birsentetikSecret ve2restrictedSA/RBAC. KullanıcıSecretdeğerleri okunmaz.
+- Başlangıç zamanı: 2026-11-12T10:47:32.753507+00:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-05.08-S1 — Hazırlık
@@ -3104,6 +3106,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+12Kasımplanı artifacts/release-audit/ra-20261112/secret-purpose-real-worker/plan.json. Legacykv-repair-onlyhelperyenihedefesanılmadı. Yeni tekGoTestgerçekAPItestfixtureönerisi;105snwork+30cleanup/180wrapper/360executionphase, package1/GOMAXPROCS2. RootfreshnamespaceUID/owner/sealhazırlar; workeruidconditionfixturesınıtemizler. Henüz testPASSyok.
 
 #### TEST-05.08-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -3154,12 +3158,12 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
+- Sorumlu: release_backend_resume gerçekSecrettekgrup; rootnamespace/Git/roadmap
 - Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Ortam / kullanılan kimlik ve yetki: Ownedkvml-d32afbf634e8-a; yeni sealednamespace rootreceipt, yalnız birsentetikSecret ve2restrictedSA/RBAC. KullanıcıSecretdeğerleri okunmaz.
+- Başlangıç zamanı: 2026-11-12T10:47:32.753510+00:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-05.09-S1 — Hazırlık
@@ -3170,6 +3174,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+12Kasımplanı artifacts/release-audit/ra-20261112/secret-purpose-real-worker/plan.json. Legacykv-repair-onlyhelperyenihedefesanılmadı. Yeni tekGoTestgerçekAPItestfixtureönerisi;105snwork+30cleanup/180wrapper/360executionphase, package1/GOMAXPROCS2. RootfreshnamespaceUID/owner/sealhazırlar; workeruidconditionfixturesınıtemizler. Henüz testPASSyok.
 
 #### TEST-05.09-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -4567,6 +4573,8 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 
 12Kasım yeni gerçekmergedimage: localoperator image02 descriptor0f5f919c…; exactofficialARM64manifestf72cbe83… üstünecandidate029cde6566…COPY. GerçekTrivyikiGoELFtarget/OSyok: baseline2High/4Medium/2Unknown → candidate0High/0Medium/1Unknown(gopsWindowsadvisory, açık). Operator scratch/APTyok; Cilium/EnvoyAPTkapısı ayrı. CA/gops/license/config/modesaynı; +114819234B uncompressedCOPYlayer, eskioperatorlowerlayerkalır. --version constrainedexit0, exactcontainercleanup. 38/38artifact-relativeSHArootkontrolüPASS. Bu finalcontroller/TLS/lab/lisans/kaynağınanaCVEkapsamı kabulü değildir. Kanıt: artifacts/release-audit/ra-20261112/provider-operator-image-worker/REPORT.md.
 
+12Kasım APT-only localcandidates: Cilium107f5725…resolute apt/libapt3.2.0→3.2.1ubuntu0.1; Envoy5872d9d1…noble2.8.3→2.8.4ubuntu0.1. SignedUbuntuInRelease/gpgv+by-hashPackages ile exact4debSHA doğrulandı. Nobleilkmutableindexhashmismatchreddedildi/korundu. Yalnız2paket/image,noRemv/noekdep; config/layerprefix/providerbinary/CA/license/sourcekeySHAaynı. AynıDB realOS124+13Go/Cilium,95+1Go/Envoy; CVE-2026-1095184rowgiderildi. KalanCilium8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Highx/netadjudicationayrı; taramaPASSfalseclean/genelgatekapanışıdeğil. Actual18.755sn/600, exact15jobcontainer/supervisorcleanup. Root107/107SHAdoğruladı. Kanıt: artifacts/release-audit/ra-20261112/provider-apt-images-worker/REPORT.md.
+
 #### TEST-07.05-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -4576,6 +4584,8 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 
 - [x] Dört owned extraction containerı exact ID/owner guard sonrası silindi; hiçbiri başlatılmadı. Binaryler private .git alanında, yalnız küçük rapor/kaynak/receipt verileri artefakttadır. Image cache korunur, kullanıcı containerlarına dokunulmadı.
 - [x] Root rapor/parser/correction kaydını okudu;50checksum doğruladı. İlk startswith-only sonuç ve erken vendor-prefix açıklaması superseded olarak korunur; geçerli kanıt diye kullanılmaz. Bağımsız profesyonel üçüncü taraf inceleme değildir.
+
+APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/labdeğişmedi. Operatorcandidatebinary9cde…/image0f5f…aynı. EngineboyutartışıCilium1847434B/Envoy1628057B; uncompressedlayer5447680/5099520B ayrıölçüm. Runtime/TLS/anaCVE/lisans ve kalanseveritykapılarıaçık.
 
 #### TEST-07.05-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

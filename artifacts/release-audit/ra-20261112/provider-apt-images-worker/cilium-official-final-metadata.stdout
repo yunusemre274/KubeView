@@ -1,0 +1,24 @@
+755|0|0|2883746|/cni/loopback
+755|0|0|16210424|/opt/cni/bin/cilium-cni
+755|0|0|125730200|/usr/bin/cilium-agent
+755|0|0|10803368|/usr/bin/cilium-bugtool
+755|0|0|92797488|/usr/bin/cilium-dbg
+755|0|0|24685208|/usr/bin/cilium-envoy-bootstrap-locality
+755|0|0|11993216|/usr/bin/cilium-health
+755|0|0|5481552|/usr/bin/cilium-health-responder
+755|0|0|7098560|/usr/bin/cilium-mount
+755|0|0|2810280|/usr/bin/cilium-sysctlfix
+755|0|0|3735714|/usr/bin/gops
+755|0|0|70116352|/usr/bin/hubble
+755|0|0|2228386|/usr/sbin/iptables-wrapper
+755|1337|1337|79745496|/usr/bin/cilium-envoy
+755|1337|1337|715608|/usr/bin/cilium-envoy-starter
+644|0|0|180744|/etc/ssl/certs/ca-certificates.crt
+644|0|0|2571|/etc/apt/sources.list.d/ubuntu.sources
+644|0|0|3607|/usr/share/keyrings/ubuntu-archive-keyring.gpg
+644|0|0|1885503|/LICENSE.all
+
+APT_FILE_HASHES
+c14d73d510fc73656cdd6bb81eaafad9edafa1bc8f9f43c6a67c71ecc9409fd1  /usr/bin/apt
+620b68c91166ed3abb81d6f24d8eaf16cb6d8b01d107d4b8543fb7be729b1782  /usr/bin/apt-get
+76d6d77c339b58d4cc2d4ed2a412112cef63428ce479dd17befc9fe5127b780c  /usr/lib/aarch64-linux-gnu/libapt-pkg.so.7.0.0
