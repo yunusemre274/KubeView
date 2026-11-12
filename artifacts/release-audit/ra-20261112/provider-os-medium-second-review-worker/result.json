@@ -1,0 +1,485 @@
+{
+  "reviewStartedAt": "2026-11-12T16:58:17.165116+00:00",
+  "currentHEADContext": "b844d74e02ba4f8bdf64c087b6fda2e8d32798d9",
+  "runtimeSourceContext": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "shaManifestChecks": {
+    "attempt02": {
+      "count": 64,
+      "allMatch": true,
+      "failures": []
+    },
+    "attempt01": {
+      "count": 18,
+      "allMatch": true,
+      "failures": []
+    },
+    "parentAPT": {
+      "count": 107,
+      "allMatch": true,
+      "failures": []
+    }
+  },
+  "images": {
+    "cilium": {
+      "parentDescriptor": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+      "candidateDescriptor": "sha256:10169bb90a60036756c6e5764fe5154bc15987fb6a700d11bc551d7d2730b9d9",
+      "parentRawImageID": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+      "candidateRawImageID": "sha256:10169bb90a60036756c6e5764fe5154bc15987fb6a700d11bc551d7d2730b9d9",
+      "removedMediumRows": 9,
+      "removedTuples": [
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-103111",
+          "libpcre2-8-0",
+          "10.46-1build1",
+          "10.46-1ubuntu0.1",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-86145",
+          "libpcre2-8-0",
+          "10.46-1build1",
+          "10.46-1ubuntu0.1",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89156",
+          "libpcre2-8-0",
+          "10.46-1build1",
+          "10.46-1ubuntu0.1",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89157",
+          "libpcre2-8-0",
+          "10.46-1build1",
+          "10.46-1ubuntu0.1",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89158",
+          "libpcre2-8-0",
+          "10.46-1build1",
+          "10.46-1ubuntu0.1",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89160",
+          "libpcre2-8-0",
+          "10.46-1build1",
+          "10.46-1ubuntu0.1",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89161",
+          "libpcre2-8-0",
+          "10.46-1build1",
+          "10.46-1ubuntu0.1",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89162",
+          "libpcre2-8-0",
+          "10.46-1build1",
+          "10.46-1ubuntu0.1",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-85091",
+          "zlib1g",
+          "1:1.3.dfsg+really1.3.1-1ubuntu3.1",
+          "1:1.3.dfsg+really1.3.1-1ubuntu3.2",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ]
+      ],
+      "addedFindingRows": 0,
+      "nonTargetFindingTuplesEqual": true,
+      "allGoPackageRowsByteEquivalentAsJSON": true,
+      "GoTargets": 13,
+      "completeRuntimeConfigEqual": true,
+      "originalLayerPrefixEqual": true,
+      "selectedELFNativeCAKeySourceLicenseHashesEqual": true,
+      "assetHashCount": 19,
+      "dpkgExactPackageChanges": {
+        "zlib1g": {
+          "before": [
+            "1:1.3.dfsg+really1.3.1-1ubuntu3.1",
+            "arm64"
+          ],
+          "after": [
+            "1:1.3.dfsg+really1.3.1-1ubuntu3.2",
+            "arm64"
+          ]
+        },
+        "libpcre2-8-0": {
+          "before": [
+            "10.46-1build1",
+            "arm64"
+          ],
+          "after": [
+            "10.46-1ubuntu0.1",
+            "arm64"
+          ]
+        }
+      },
+      "currentFindingCounts": {
+        "MEDIUM": 55,
+        "LOW": 6,
+        "UNKNOWN": 4,
+        "HIGH": 8
+      },
+      "rawAnalyzerCoverage": [
+        {
+          "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+          "class": "os-pkgs",
+          "type": "ubuntu",
+          "packageRows": 124
+        },
+        {
+          "target": "cni/loopback",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 7
+        },
+        {
+          "target": "opt/cni/bin/cilium-cni",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 84
+        },
+        {
+          "target": "usr/bin/cilium-agent",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 186
+        },
+        {
+          "target": "usr/bin/cilium-bugtool",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 72
+        },
+        {
+          "target": "usr/bin/cilium-dbg",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 155
+        },
+        {
+          "target": "usr/bin/cilium-envoy-bootstrap-locality",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 48
+        },
+        {
+          "target": "usr/bin/cilium-health",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 79
+        },
+        {
+          "target": "usr/bin/cilium-health-responder",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 6
+        },
+        {
+          "target": "usr/bin/cilium-mount",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 26
+        },
+        {
+          "target": "usr/bin/cilium-sysctlfix",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 5
+        },
+        {
+          "target": "usr/bin/gops",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 9
+        },
+        {
+          "target": "usr/bin/hubble",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 139
+        },
+        {
+          "target": "usr/sbin/iptables-wrapper",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 2
+        }
+      ],
+      "recordedModesOwnersSizesEqual": true,
+      "rawScanImageIDsMatchGuardedParentAndNewInspectDescriptors": true
+    },
+    "envoy": {
+      "parentDescriptor": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+      "candidateDescriptor": "sha256:4e6caf599bb5162a1d0a60feaf0e3b5d196a6f8815a4581f9c251aec87e22bbc",
+      "parentRawImageID": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+      "candidateRawImageID": "sha256:4e6caf599bb5162a1d0a60feaf0e3b5d196a6f8815a4581f9c251aec87e22bbc",
+      "removedMediumRows": 7,
+      "removedTuples": [
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-103111",
+          "libpcre2-8-0",
+          "10.42-4ubuntu2.1",
+          "10.42-4ubuntu2.2",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-86145",
+          "libpcre2-8-0",
+          "10.42-4ubuntu2.1",
+          "10.42-4ubuntu2.2",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89156",
+          "libpcre2-8-0",
+          "10.42-4ubuntu2.1",
+          "10.42-4ubuntu2.2",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89157",
+          "libpcre2-8-0",
+          "10.42-4ubuntu2.1",
+          "10.42-4ubuntu2.2",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89158",
+          "libpcre2-8-0",
+          "10.42-4ubuntu2.1",
+          "10.42-4ubuntu2.2",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89160",
+          "libpcre2-8-0",
+          "10.42-4ubuntu2.1",
+          "10.42-4ubuntu2.2",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ],
+        [
+          "os-pkgs",
+          "ubuntu",
+          "OS",
+          "CVE-2026-89161",
+          "libpcre2-8-0",
+          "10.42-4ubuntu2.1",
+          "10.42-4ubuntu2.2",
+          "MEDIUM",
+          "fixed",
+          "{\"ID\": \"ubuntu\", \"Name\": \"Ubuntu CVE Tracker\", \"URL\": \"https://git.launchpad.net/ubuntu-cve-tracker\"}"
+        ]
+      ],
+      "addedFindingRows": 0,
+      "nonTargetFindingTuplesEqual": true,
+      "allGoPackageRowsByteEquivalentAsJSON": true,
+      "GoTargets": 1,
+      "completeRuntimeConfigEqual": true,
+      "originalLayerPrefixEqual": true,
+      "selectedELFNativeCAKeySourceLicenseHashesEqual": true,
+      "assetHashCount": 6,
+      "dpkgExactPackageChanges": {
+        "libpcre2-8-0": {
+          "before": [
+            "10.42-4ubuntu2.1",
+            "arm64"
+          ],
+          "after": [
+            "10.42-4ubuntu2.2",
+            "arm64"
+          ]
+        }
+      },
+      "currentFindingCounts": {
+        "MEDIUM": 16,
+        "LOW": 4
+      },
+      "rawAnalyzerCoverage": [
+        {
+          "target": "kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04)",
+          "class": "os-pkgs",
+          "type": "ubuntu",
+          "packageRows": 95
+        },
+        {
+          "target": "usr/bin/cilium-envoy-healthcheck",
+          "class": "lang-pkgs",
+          "type": "gobinary",
+          "packageRows": 1
+        }
+      ],
+      "recordedModesOwnersSizesEqual": true,
+      "rawScanImageIDsMatchGuardedParentAndNewInspectDescriptors": true
+    }
+  },
+  "removedMediumRows": 16,
+  "currentRawFindingRows": 93,
+  "bothCSVsMatchAllRawTuples": true,
+  "normalization": "OS target display label is normalized to OS because local tag differs; class/type/CVE/pkg/version/fixed/severity/status/DataSource retained. Go target paths retained. No finding suppressed.",
+  "noNewImageScanBuildOrLabExecution": true,
+  "elapsedValidationSeconds": 0.038,
+  "status": "SCOPED_LOCAL_CANDIDATE_REMEDIATION_VERIFIED_FROM_RECORDED_EVIDENCE",
+  "sourceChainChecks": [
+    {
+      "image": "cilium",
+      "suite": "resolute-security",
+      "retainedReleaseAndIndexHashesMatchPriorVerifiedChain": true,
+      "priorGpgvStatus": 0,
+      "priorSigningKey": [
+        "F6ECB3762474EDA9D21B7022871920D1991BC93C"
+      ],
+      "signedPackages": [
+        {
+          "Package": "libpcre2-8-0",
+          "Version": "10.46-1ubuntu0.1",
+          "SHA256": "ea8b1bcdd9b045227f3a1252d1dc1ff1579cf5a32abb7d03988c74d5fcfa5df4",
+          "Filename": "pool/main/p/pcre2/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb",
+          "Depends": "libc6 (>= 2.34)"
+        },
+        {
+          "Package": "zlib1g",
+          "Version": "1:1.3.dfsg+really1.3.1-1ubuntu3.2",
+          "SHA256": "b9b5ce1528ac7f885c8ff7dc2314c89c2ba5dd973c2a793dc4cf5d02d74b3810",
+          "Filename": "pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb",
+          "Depends": "libc6 (>= 2.17)"
+        }
+      ],
+      "downloadReceiptsMatchSignedPackageEntries": true,
+      "onlyRetryRecipeDelta": "Actual local-file install --no-download removed; simulation keeps it; RUN networknone and allowlist guards recorded",
+      "packageIndexBytesMatchLiteralSignedInReleaseSHA256Entry": true
+    },
+    {
+      "image": "envoy",
+      "suite": "noble-security",
+      "retainedReleaseAndIndexHashesMatchPriorVerifiedChain": true,
+      "priorGpgvStatus": 0,
+      "priorSigningKey": [
+        "F6ECB3762474EDA9D21B7022871920D1991BC93C"
+      ],
+      "signedPackages": [
+        {
+          "Package": "libpcre2-8-0",
+          "Version": "10.42-4ubuntu2.2",
+          "SHA256": "3209171ab2f528843351af0cb51fced4eab5b5f3456f3f2b025c40bec70bf7a0",
+          "Filename": "pool/main/p/pcre2/libpcre2-8-0_10.42-4ubuntu2.2_arm64.deb",
+          "Depends": "libc6 (>= 2.34)"
+        }
+      ],
+      "downloadReceiptsMatchSignedPackageEntries": true,
+      "onlyRetryRecipeDelta": "Actual local-file install --no-download removed; simulation keeps it; RUN networknone and allowlist guards recorded",
+      "packageIndexBytesMatchLiteralSignedInReleaseSHA256Entry": true
+    }
+  ],
+  "scannerAndDBRecordedIdentitiesUnchanged": true,
+  "attempt01FailureAndRecordedSealPreserved": true,
+  "recordedV2ContainerReferencesAbsent": 6,
+  "recordedV2ExecutorPIDsAbsent": 7,
+  "workerTotalWallSecondsRecomputed": 524.168929,
+  "worker600sMet": true,
+  "materialDiscrepancies": [],
+  "limitations": [
+    {
+      "file": "attempt02/result.json",
+      "field": "ownedIntermediateContainers.865ccf09d284.alreadyAbsentBeforeInspect",
+      "detail": "Envoy RUN completed before live inspect; only short printed reference and absence exist, not fullCID/live limits observation. Honest disclosed evidence limit; build API flags remain recorded."
+    },
+    {
+      "file": "attempt02/final-owned-and-protected-resource-state.json",
+      "field": "containerChecks[1].completeCIDKnown",
+      "detail": "false; no new live cleanup verification performed by this review."
+    },
+    {
+      "file": "attempt02/image-storage-sizes.json",
+      "field": "uncompressedHistoryBytes vs engineSizeBytes",
+      "detail": "Distinct storage measures; old libraries/deb payloads remain in lower layers. Only active merged-image package findings are fixed."
+    }
+  ],
+  "scope": "Artifact-only re-evaluation. No fresh signature execution/image extraction/live status/build/scan/lab/native/CNI/TLS/release test.",
+  "completedAt": "2026-11-12T17:01:32.330757+00:00",
+  "reviewFinishedAt": "2026-11-12T17:03:02.345890+00:00",
+  "reviewWritesLimitedToOwnedOutputAndPrivateScratch": true,
+  "newBuildScanDockerLabOrK8sCommands": 0
+}

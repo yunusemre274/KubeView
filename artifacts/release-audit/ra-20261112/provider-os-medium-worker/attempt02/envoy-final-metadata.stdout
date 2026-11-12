@@ -1,0 +1,12 @@
+755|1337|1337|8117861|/usr/bin/cilium-envoy-healthcheck
+755|1337|1337|79745496|/usr/bin/cilium-envoy
+755|1337|1337|715608|/usr/bin/cilium-envoy-starter
+644|0|0|180744|/etc/ssl/certs/ca-certificates.crt
+644|0|0|2559|/etc/apt/sources.list.d/ubuntu.sources
+644|0|0|3607|/usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+PATCHED_LIBRARY_HASHES
+127de4a771344c3fe17cfe896007d618e1fd904dd322a364698fea2d79d363a8  /usr/lib/aarch64-linux-gnu/libpcre2-8.so.0
+
+CACHE_CHECK
+active_tmp_and_lists_and_archived_debs_empty

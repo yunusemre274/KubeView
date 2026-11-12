@@ -1,0 +1,82 @@
+{
+  "name": "cilium-candidate",
+  "argv": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/trivy.yaml",
+    "image",
+    "--image-src",
+    "docker",
+    "--docker-host",
+    "unix:///var/run/docker.sock",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/cilium-candidate.json",
+    "--timeout",
+    "70s",
+    "kubeview-private/cilium:1.20.4-os-security.2"
+  ],
+  "startedAt": "2026-11-12T11:08:48.712929+00:00",
+  "maxSeconds": 75,
+  "samples": [
+    {
+      "elapsedSeconds": 1.948,
+      "ownedRSSBytes": 39813120,
+      "ownedPIDs": [
+        13408,
+        13432,
+        13433
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454351851520
+    },
+    {
+      "elapsedSeconds": 2.468,
+      "ownedRSSBytes": 128565248,
+      "ownedPIDs": [
+        13408,
+        13432,
+        13435
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454267428864
+    },
+    {
+      "elapsedSeconds": 2.987,
+      "ownedRSSBytes": 128565248,
+      "ownedPIDs": [
+        13408,
+        13432,
+        13437
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454171779072
+    }
+  ],
+  "pid": 13432,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T11:08:50.278275+00:00"
+}

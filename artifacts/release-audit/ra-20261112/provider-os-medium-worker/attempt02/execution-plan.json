@@ -1,0 +1,41 @@
+{
+  "sequence": [
+    {
+      "label": "cilium",
+      "base": "kubeview-private/cilium@sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+      "localTag": "kubeview-private/cilium:1.20.4-os-security.2",
+      "pinnedUpgradePackages": {
+        "libpcre2-8-0": "10.46-1ubuntu0.1",
+        "zlib1g": "1:1.3.dfsg+really1.3.1-1ubuntu3.2"
+      },
+      "buildContext": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/cilium",
+      "guardedInputLocalDescriptorDigest": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+      "inputMutableTag": "kubeview-private/cilium:1.20.4-apt-security.1"
+    },
+    {
+      "label": "envoy",
+      "base": "kubeview-private/cilium-envoy@sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+      "localTag": "kubeview-private/cilium-envoy:1.20.4-os-security.2",
+      "pinnedUpgradePackages": {
+        "libpcre2-8-0": "10.42-4ubuntu2.2"
+      },
+      "buildContext": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/envoy",
+      "guardedInputLocalDescriptorDigest": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+      "inputMutableTag": "kubeview-private/cilium-envoy:1.20.4-apt-security.1"
+    }
+  ],
+  "rootClearance": "Root read both exact Dockerfiles and approved only this medium build/scan job; no localdigest fallback or remote pull",
+  "dataCollectionDeadlineSeconds": 540,
+  "totalDeadlineSeconds": 600,
+  "reservedFinalizationSeconds": 60,
+  "attempt": "02: single root-approved corrected retry",
+  "globalBudget": {
+    "firstAttemptStartedAt": "2026-11-12T11:05:08.105864+00:00",
+    "globalDeadlineEpoch": 1794482108.105864,
+    "remainingSecondsAtSeal": 418.12480115890503,
+    "reservedFinalizationSeconds": 60,
+    "attempt01ReportSHA256": "4591f89667cb329f89a7ac77f549008a5992920a3eec41db4627362d5f025f1b",
+    "attempt01SHA256SUMS_SHA256": "e8e78bdf250402d38d83d6df79f5cdf2fc1af86c29167b9cf5b08b2db2911652",
+    "checks": 18
+  }
+}

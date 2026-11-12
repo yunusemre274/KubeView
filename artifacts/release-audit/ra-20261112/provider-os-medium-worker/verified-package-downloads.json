@@ -1,0 +1,26 @@
+[
+  {
+    "image": "cilium",
+    "URL": "https://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre2/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb",
+    "filename": "libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb",
+    "bytes": 237450,
+    "SHA256": "ea8b1bcdd9b045227f3a1252d1dc1ff1579cf5a32abb7d03988c74d5fcfa5df4",
+    "matchesSignedSnapshot": true
+  },
+  {
+    "image": "cilium",
+    "URL": "https://ports.ubuntu.com/ubuntu-ports/pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb",
+    "filename": "zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb",
+    "bytes": 61624,
+    "SHA256": "b9b5ce1528ac7f885c8ff7dc2314c89c2ba5dd973c2a793dc4cf5d02d74b3810",
+    "matchesSignedSnapshot": true
+  },
+  {
+    "image": "envoy",
+    "URL": "https://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre2/libpcre2-8-0_10.42-4ubuntu2.2_arm64.deb",
+    "filename": "libpcre2-8-0_10.42-4ubuntu2.2_arm64.deb",
+    "bytes": 213218,
+    "SHA256": "3209171ab2f528843351af0cb51fced4eab5b5f3456f3f2b025c40bec70bf7a0",
+    "matchesSignedSnapshot": true
+  }
+]

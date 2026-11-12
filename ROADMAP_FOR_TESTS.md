@@ -1,13 +1,13 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T20:02:07.393406+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T20:04:09.259365+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
 - Toplam test fazı: **200**. NOT_STARTED:139; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:34; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
-- Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kendi kanıtlarında; finalpaket açık. Tarihselinstalled1.20.2 bulguları korunur. Yereloperatorcandidate0High/1Unknown; APT-onlyCiliumcandidate8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Bu yerel adaylar kurulu değil; gerçekELF/sourceCVE/kalanseverity/runtimeTLS/lisans kapıları açık.
+- Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST05.07 ve05.08 normalSecret UI/API/unit+ikinciinceleme ile VERIFIED_DONE;34/200 (%17 fazsayısı). Maskguard05.09öncedoğrulandı; CPU/PID/kamera ve globalyayınkapılarıaçık.
 - Süreç/lab: providerworker mevcut Medium-image kanıtını okuyor; backendworker sıradaki PID guard işine atanacak. Performans/browser/app ölçümü çalışmıyor. Owned2Node lab mevcut; kullanıcı süreçlerine müdahale yok.
@@ -4525,6 +4525,8 @@ OSMediumattempt01FAIL: exactlocalparentFROM/COPY/signeddebsSHA+strict2packagesim
 
 12Kasım APT-only localcandidates: Cilium107f5725…resolute apt/libapt3.2.0→3.2.1ubuntu0.1; Envoy5872d9d1…noble2.8.3→2.8.4ubuntu0.1. SignedUbuntuInRelease/gpgv+by-hashPackages ile exact4debSHA doğrulandı. Nobleilkmutableindexhashmismatchreddedildi/korundu. Yalnız2paket/image,noRemv/noekdep; config/layerprefix/providerbinary/CA/license/sourcekeySHAaynı. AynıDB realOS124+13Go/Cilium,95+1Go/Envoy; CVE-2026-1095184rowgiderildi. KalanCilium8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Highx/netadjudicationayrı; taramaPASSfalseclean/genelgatekapanışıdeğil. Actual18.755sn/600, exact15jobcontainer/supervisorcleanup. Root107/107SHAdoğruladı. Kanıt: artifacts/release-audit/ra-20261112/provider-apt-images-worker/REPORT.md.
 
+12Kasım OS Medium corrected attempt02: actuallocal imagebuild+fullscanPASS. Ciliumpcre2+zlib9Mediumrow, Envoypcre2 7Mediumrow giderildi; ek/değişenhedefdışıtuple0. Config/layerprefix/provider/native/CA/licenseSHAaynı; GoJSON13+1targetaynı. KalanrawCilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low; hiçbirglobalignore/waiver yok. LocalimageID10169bb9…/4e6caf59…, engine+721773/+533459B; lowerlayers eski dosya/deb tutar. Tekretryactual--no-download kaldırır, networknone+signedhash/simülasyon/noRemv/allowlist korunur. Actual8.059sn, toplam524.169/600sn. Kanıt: artifacts/release-audit/ra-20261112/provider-os-medium-worker/attempt02/REPORT.md.
+
 #### TEST-07.05-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -4537,10 +4539,12 @@ OSMediumattempt01FAIL: exactlocalparentFROM/COPY/signeddebsSHA+strict2packagesim
 
 APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/labdeğişmedi. Operatorcandidatebinary9cde…/image0f5f…aynı. EngineboyutartışıCilium1847434B/Envoy1628057B; uncompressedlayer5447680/5099520B ayrıölçüm. Runtime/TLS/anaCVE/lisans ve kalanseveritykapılarıaçık.
 
+12Kasım ikinciinceleme: providerworker rawfullJSONdiff/93remaining+16removedCSV/targetdışıtuple/GoJSON/config/layer/selectedELFasset/signature-receipt/retry ve cleanupkayıtlarını yeniden kontrol etti;64+18+107SHA doğrulandı. Rootattempt0264SHAve2reviewSHA/ikiREPORTokudu. EnvoyshortRUNliveinspect/fullCIDyokluğu aynen korunur; recorded6container/7PIDabsence yeni liveCNI kabulü değildir. Yerelimageskurulmadı/yayımlanmadı, current1.20.2/pinsaynı. Kanıt: artifacts/release-audit/ra-20261112/provider-os-medium-second-review-worker/REPORT.md.
+
 #### TEST-07.05-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar: IN_PROGRESS. Candidate tarama ve sınırlı binary/source erişilebilirlik analizi tamamlandı; operator linked parser ingress belirsizliği ve etkilenmiş APT paketleri açık. Final KubeView image/manifest/paket ve gerçek yeni provider kurulumu kabulü yoktur.
-- Otomatik ignore/risk kabulü yok. İmaj, kaynak, komut, config veya dağıtım yolu değişirse ilgili analiz/test yenilenir.
+- Karar: FAILED (tam ilan edilen kapsam). Yerel operator/APT/pcre2/zlib düzeltmeleri kendi dar taramalarında doğrulandı; eski başarısızlıklar korunur. Kurulu1.20.2 provider/finalKubeViewimage/manifest/paket/native-source/lisans/kalantaramabulguları ve gerçek yeniTLS/CNI kurulumu kabul edilmedi.
+- Raw8High exactELFadjudication ayrı, globalignore/risk kabulü yok. İmaj/kaynak/komut/config/dağıtım yolu değişince ilgili kapılar yenilenir.
 
 ### TEST-07.06 — Çalışma ağacında sır taraması
 

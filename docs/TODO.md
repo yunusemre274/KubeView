@@ -1,3 +1,5 @@
+- [x] Local OSsecurity2 signed pcre2/zlib düzeltmesi16Medium satırını kaldırdı;189kaynakSHA ikinci inceleme+rootreview var. Gerçekkurulum/fullTLS/finalpackage açık.
+
 ## 12 Kasım — performans harness önkoşulları
 
 - [x] Frozen A/B frontend+common backend ve açıkFOV protokolü; comparability-only verisinin CPU sonucu sayılması engellendi.

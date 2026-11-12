@@ -1,0 +1,110 @@
+[
+  {
+    "Comment": "",
+    "Created": 1794480093,
+    "CreatedBy": "/bin/sh -c set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports resolute-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; };     apt_safe update &&     plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg7.0) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1 &&     dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg7.0 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 3.2.1ubuntu0.1 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg7.0)\" ge 3.2.1ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list",
+    "Id": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+    "Size": 5447680,
+    "Tags": [
+      "kubeview-private/cilium:1.20.4-apt-security.1"
+    ]
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792765173,
+    "CreatedBy": "CMD [\"/usr/bin/cilium-dbg\"]",
+    "Id": "sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+    "Size": 0,
+    "Tags": [
+      "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e"
+    ]
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792765173,
+    "CreatedBy": "ENV INITSYSTEM=SYSTEMD",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792765173,
+    "CreatedBy": "WORKDIR /home/cilium",
+    "Id": "<missing>",
+    "Size": 12288,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792765173,
+    "CreatedBy": "COPY /tmp/install/linux/arm64 / # buildkit",
+    "Id": "<missing>",
+    "Size": 371634176,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792764818,
+    "CreatedBy": "ENV HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792764818,
+    "CreatedBy": "COPY /usr/bin/cilium-envoy /usr/bin/cilium-envoy-starter /usr/bin/ # buildkit",
+    "Id": "<missing>",
+    "Size": 80478208,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792764816,
+    "CreatedBy": "RUN |2 TARGETOS=linux TARGETARCH=arm64 /bin/sh -c echo \". /etc/profile.d/bash_completion.sh\" >> /etc/bash.bashrc # buildkit",
+    "Id": "<missing>",
+    "Size": 12288,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792764816,
+    "CreatedBy": "LABEL maintainer=maintainer@cilium.io",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792764816,
+    "CreatedBy": "ARG TARGETARCH=arm64",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792764816,
+    "CreatedBy": "ARG TARGETOS=linux",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792668027,
+    "CreatedBy": "COPY / / # buildkit",
+    "Id": "<missing>",
+    "Size": 281985024,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792668027,
+    "CreatedBy": "LABEL maintainer=maintainer@cilium.io",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  }
+]

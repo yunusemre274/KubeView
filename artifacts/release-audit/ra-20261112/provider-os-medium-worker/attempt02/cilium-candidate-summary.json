@@ -1,0 +1,1533 @@
+{
+  "artifactName": "kubeview-private/cilium:1.20.4-os-security.2",
+  "metadata": {
+    "Size": 727395840,
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "26.04"
+    },
+    "ImageID": "sha256:10169bb90a60036756c6e5764fe5154bc15987fb6a700d11bc551d7d2730b9d9",
+    "DiffIDs": [
+      "sha256:d992b67eeb949fa2c852abc0aa7bd15b8597c796dd959d7f0db58a04f7a5ab94",
+      "sha256:83e50c8b0ef358fc3d32395525d56e3270e8ef484deb3de8064cb213c88ff4c4",
+      "sha256:53bca5db01ebd9bff0a62d14cef846c71e8b8344d1fb2106d38b545978baeb0a",
+      "sha256:bdd8620562c14243e44a9046a174019ad4d8d24d7aba31efbbe294e5c24558dd",
+      "sha256:e53ed60dd113bc5a76584b4e03aa17621a3b2248fdeea07ebb05a446bb48b669",
+      "sha256:5cdc279702a7c8de192be5e94a3377314fe73b6affe88d70f8f39eacac3ba452",
+      "sha256:a553e01af18aa48aef1dec29edbe9213abf9dbefcc0593320e502af7177d07b2",
+      "sha256:35d757a04bf148abe06ce2560e9bdb6a34923ac68a39c41072e1c29c9d8213d2"
+    ],
+    "RepoTags": [
+      "kubeview-private/cilium:1.20.4-os-security.2"
+    ],
+    "RepoDigests": [
+      "kubeview-private/cilium@sha256:10169bb90a60036756c6e5764fe5154bc15987fb6a700d11bc551d7d2730b9d9"
+    ],
+    "Reference": "kubeview-private/cilium:1.20.4-os-security.2",
+    "ImageConfig": {
+      "architecture": "arm64",
+      "created": "2026-11-12T11:08:48.04290359Z",
+      "history": [
+        {
+          "created": "2026-10-22T11:20:27Z",
+          "created_by": "LABEL maintainer=maintainer@cilium.io",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-22T11:20:27Z",
+          "created_by": "COPY / / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-23T14:13:36Z",
+          "created_by": "ARG TARGETOS=linux",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-23T14:13:36Z",
+          "created_by": "ARG TARGETARCH=arm64",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-23T14:13:36Z",
+          "created_by": "LABEL maintainer=maintainer@cilium.io",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-23T14:13:36Z",
+          "created_by": "RUN |2 TARGETOS=linux TARGETARCH=arm64 /bin/sh -c echo \". /etc/profile.d/bash_completion.sh\" >> /etc/bash.bashrc # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-23T14:13:38Z",
+          "created_by": "COPY /usr/bin/cilium-envoy /usr/bin/cilium-envoy-starter /usr/bin/ # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-23T14:13:38Z",
+          "created_by": "ENV HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-23T14:19:33Z",
+          "created_by": "COPY /tmp/install/linux/arm64 / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-23T14:19:33Z",
+          "created_by": "WORKDIR /home/cilium",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-23T14:19:33Z",
+          "created_by": "ENV INITSYSTEM=SYSTEMD",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-23T14:19:33Z",
+          "created_by": "CMD [\"/usr/bin/cilium-dbg\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-11-12T10:41:33Z",
+          "created_by": "/bin/sh -c set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports resolute-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; };     apt_safe update &&     plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg7.0) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1 &&     dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg7.0 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 3.2.1ubuntu0.1 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg7.0)\" ge 3.2.1ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list"
+        },
+        {
+          "created": "2026-11-12T11:05:09Z",
+          "created_by": "/bin/sh -c #(nop) COPY dir:a7fc9fa65933c12fbacb83489f6768a1aa32b690a109d9e2cb33f398be6a58d7 in /tmp/kubeview-os-medium "
+        },
+        {
+          "created": "2026-11-12T11:08:48Z",
+          "created_by": "/bin/sh -c set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     cd /tmp/kubeview-os-medium &&     sha256sum -c SHA256SUMS &&     plan=\"$(apt-get --simulate --no-download --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb /tmp/kubeview-os-medium/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"${package%%:*}\" in libpcre2-8-0|zlib1g) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt-get -y --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb /tmp/kubeview-os-medium/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb &&     test \"$(dpkg-query -W -f='${Version}' libpcre2-8-0)\" = '10.46-1ubuntu0.1' &&     test \"$(dpkg-query -W -f='${Version}' zlib1g)\" = '1:1.3.dfsg+really1.3.1-1ubuntu3.2' &&     cd / &&     rm -rf /tmp/kubeview-os-medium /var/lib/apt/lists/* /var/cache/apt/archives/*.deb"
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:d992b67eeb949fa2c852abc0aa7bd15b8597c796dd959d7f0db58a04f7a5ab94",
+          "sha256:83e50c8b0ef358fc3d32395525d56e3270e8ef484deb3de8064cb213c88ff4c4",
+          "sha256:53bca5db01ebd9bff0a62d14cef846c71e8b8344d1fb2106d38b545978baeb0a",
+          "sha256:bdd8620562c14243e44a9046a174019ad4d8d24d7aba31efbbe294e5c24558dd",
+          "sha256:e53ed60dd113bc5a76584b4e03aa17621a3b2248fdeea07ebb05a446bb48b669",
+          "sha256:5cdc279702a7c8de192be5e94a3377314fe73b6affe88d70f8f39eacac3ba452",
+          "sha256:a553e01af18aa48aef1dec29edbe9213abf9dbefcc0593320e502af7177d07b2",
+          "sha256:35d757a04bf148abe06ce2560e9bdb6a34923ac68a39c41072e1c29c9d8213d2"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "/usr/bin/cilium-dbg"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+          "INITSYSTEM=SYSTEMD"
+        ],
+        "Labels": {
+          "maintainer": "maintainer@cilium.io"
+        },
+        "WorkingDir": "/home/cilium",
+        "ArgsEscaped": true
+      }
+    },
+    "Layers": [
+      {
+        "Size": 268835328,
+        "Digest": "sha256:b0d1946d2ee42bb714c607276725069bdebaebd000ab618a3576b437e1da2199",
+        "DiffID": "sha256:d992b67eeb949fa2c852abc0aa7bd15b8597c796dd959d7f0db58a04f7a5ab94"
+      },
+      {
+        "Size": 5120,
+        "Digest": "sha256:6546a841d334a16c748e3637bec30f7d697382cdf79d8d695275408a40acd2e7",
+        "DiffID": "sha256:83e50c8b0ef358fc3d32395525d56e3270e8ef484deb3de8064cb213c88ff4c4"
+      },
+      {
+        "Size": 80464384,
+        "Digest": "sha256:303fda97996e501ba82c7c1daa19e852fdfb6e74032a51c63f5425336dd605f4",
+        "DiffID": "sha256:53bca5db01ebd9bff0a62d14cef846c71e8b8344d1fb2106d38b545978baeb0a"
+      },
+      {
+        "Size": 371265024,
+        "Digest": "sha256:e62964c21708817303663a9e9aeaf46be54bafba23d6e764cc11f455c1936f84",
+        "DiffID": "sha256:bdd8620562c14243e44a9046a174019ad4d8d24d7aba31efbbe294e5c24558dd"
+      },
+      {
+        "Size": 2048,
+        "Digest": "sha256:5c5dfb6d62c89c25f4a120ef2a9adcdf5804ba3ad0c10a2f612c7fc8160b133f",
+        "DiffID": "sha256:e53ed60dd113bc5a76584b4e03aa17621a3b2248fdeea07ebb05a446bb48b669"
+      },
+      {
+        "Size": 5217792,
+        "Digest": "sha256:1e1336220c445b0a8af2ffce2fa31bd7ce8a0176d34bd31b9c530b82e39cc8fe",
+        "DiffID": "sha256:5cdc279702a7c8de192be5e94a3377314fe73b6affe88d70f8f39eacac3ba452"
+      },
+      {
+        "Size": 303616,
+        "Digest": "sha256:86648b7aba344143805cb8af4088caffb5f2366d61a36725825787f262c9fdbc",
+        "DiffID": "sha256:a553e01af18aa48aef1dec29edbe9213abf9dbefcc0593320e502af7177d07b2"
+      },
+      {
+        "Size": 1302528,
+        "Digest": "sha256:d252a305be6fa1020ca623e52ce928650dafe53b2d4cad93baa15cfa967cbbf0",
+        "DiffID": "sha256:35d757a04bf148abe06ce2560e9bdb6a34923ac68a39c41072e1c29c9d8213d2"
+      }
+    ]
+  },
+  "results": [
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "packages": 124,
+      "findings": 50
+    },
+    {
+      "target": "cni/loopback",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 7,
+      "findings": 1
+    },
+    {
+      "target": "opt/cni/bin/cilium-cni",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 84,
+      "findings": 3
+    },
+    {
+      "target": "usr/bin/cilium-agent",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 186,
+      "findings": 4
+    },
+    {
+      "target": "usr/bin/cilium-bugtool",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 72,
+      "findings": 2
+    },
+    {
+      "target": "usr/bin/cilium-dbg",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 155,
+      "findings": 4
+    },
+    {
+      "target": "usr/bin/cilium-envoy-bootstrap-locality",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 48,
+      "findings": 2
+    },
+    {
+      "target": "usr/bin/cilium-health",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 79,
+      "findings": 2
+    },
+    {
+      "target": "usr/bin/cilium-health-responder",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 6,
+      "findings": 0
+    },
+    {
+      "target": "usr/bin/cilium-mount",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 26,
+      "findings": 2
+    },
+    {
+      "target": "usr/bin/cilium-sysctlfix",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 5,
+      "findings": 0
+    },
+    {
+      "target": "usr/bin/gops",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 9,
+      "findings": 1
+    },
+    {
+      "target": "usr/bin/hubble",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 139,
+      "findings": 2
+    },
+    {
+      "target": "usr/sbin/iptables-wrapper",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "packages": 2,
+      "findings": 0
+    }
+  ],
+  "findingCounts": {
+    "MEDIUM": 55,
+    "LOW": 6,
+    "UNKNOWN": 4,
+    "HIGH": 8
+  },
+  "findings": [
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-78408",
+      "package": "bsdutils",
+      "installed": "1:2.41.3-3ubuntu2.2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-102473",
+      "package": "dash",
+      "installed": "0.5.12-12ubuntu3",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-102473"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-102474",
+      "package": "dash",
+      "installed": "0.5.12-12ubuntu3",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-102474"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-41256",
+      "package": "jq",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-41256"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-41257",
+      "package": "jq",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-41257"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-43895",
+      "package": "jq",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-43895"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-43896",
+      "package": "jq",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-43896"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-44777",
+      "package": "jq",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-44777"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2025-9403",
+      "package": "jq",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "LOW",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2025-9403"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-78408",
+      "package": "libblkid1",
+      "installed": "2.41.3-3ubuntu2.2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-41256",
+      "package": "libjq1",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-41256"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-41257",
+      "package": "libjq1",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-41257"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-43895",
+      "package": "libjq1",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-43895"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-43896",
+      "package": "libjq1",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-43896"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-44777",
+      "package": "libjq1",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-44777"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2025-9403",
+      "package": "libjq1",
+      "installed": "1.8.1-4ubuntu2",
+      "fixed": null,
+      "severity": "LOW",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2025-9403"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-78408",
+      "package": "libmount1",
+      "installed": "2.41.3-3ubuntu2.2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-78408",
+      "package": "libsmartcols1",
+      "installed": "2.41.3-3ubuntu2.2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-40228",
+      "package": "libsystemd0",
+      "installed": "259.9-0ubuntu0.1",
+      "fixed": null,
+      "severity": "LOW",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-40228"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-40228",
+      "package": "libudev1",
+      "installed": "259.9-0ubuntu0.1",
+      "fixed": null,
+      "severity": "LOW",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-40228"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-78408",
+      "package": "libuuid1",
+      "installed": "2.41.3-3ubuntu2.2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-78408",
+      "package": "login",
+      "installed": "1:4.16.0-2+really2.41.3-3ubuntu2.2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2024-56433",
+      "package": "login.defs",
+      "installed": "1:4.17.4-2ubuntu3",
+      "fixed": null,
+      "severity": "LOW",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2024-56433"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-78408",
+      "package": "mount",
+      "installed": "2.41.3-3ubuntu2.2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2024-56433",
+      "package": "passwd",
+      "installed": "1:4.17.4-2ubuntu3",
+      "fixed": null,
+      "severity": "LOW",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2024-56433"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-82560",
+      "package": "perl-base",
+      "installed": "5.40.1-7ubuntu0.3",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-82560"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-9538",
+      "package": "perl-base",
+      "installed": "5.40.1-7ubuntu0.3",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-9538"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35341",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35341"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35344",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35344"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35345",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35345"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35348",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35348"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35350",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35350"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35351",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35351"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35352",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35352"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35354",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35354"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35357",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35357"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35359",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35359"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35360",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35360"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35363",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35363"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35364",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35364"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35367",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35367"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35368",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35368"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35370",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35370"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35371",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35371"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35373",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35373"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35374",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35374"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-35377",
+      "package": "rust-coreutils",
+      "installed": "0.10.0-1ubuntu2~26.04.1",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-35377"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-18477",
+      "package": "tar",
+      "installed": "1.35+dfsg-4ubuntu0.4",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-18477"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-18508",
+      "package": "tar",
+      "installed": "1.35+dfsg-4ubuntu0.4",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-18508"
+    },
+    {
+      "target": "kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04)",
+      "class": "os-pkgs",
+      "type": "ubuntu",
+      "id": "CVE-2026-78408",
+      "package": "util-linux",
+      "installed": "2.41.3-3ubuntu2.2",
+      "fixed": null,
+      "severity": "MEDIUM",
+      "status": "affected",
+      "dataSource": {
+        "ID": "ubuntu",
+        "Name": "Ubuntu CVE Tracker",
+        "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408"
+    },
+    {
+      "target": "cni/loopback",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-39824",
+      "package": "golang.org/x/sys",
+      "installed": "v0.35.0",
+      "fixed": "0.44.0",
+      "severity": "UNKNOWN",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-39824"
+    },
+    {
+      "target": "opt/cni/bin/cilium-cni",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-119299",
+      "package": "github.com/gopacket/gopacket",
+      "installed": "v1.6.1",
+      "fixed": "1.7.2",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "ghsa",
+        "Name": "GitHub Security Advisory Go",
+        "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-119299"
+    },
+    {
+      "target": "opt/cni/bin/cilium-cni",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-78661",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "HIGH",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78661"
+    },
+    {
+      "target": "opt/cni/bin/cilium-cni",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-97045",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-97045"
+    },
+    {
+      "target": "usr/bin/cilium-agent",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-119299",
+      "package": "github.com/gopacket/gopacket",
+      "installed": "v1.6.1",
+      "fixed": "1.7.2",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "ghsa",
+        "Name": "GitHub Security Advisory Go",
+        "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-119299"
+    },
+    {
+      "target": "usr/bin/cilium-agent",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "GO-2026-5932",
+      "package": "golang.org/x/crypto",
+      "installed": "v0.57.0",
+      "fixed": "0.58.1-0.20261009181718-2f1f834330b2",
+      "severity": "UNKNOWN",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": null
+    },
+    {
+      "target": "usr/bin/cilium-agent",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-78661",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "HIGH",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78661"
+    },
+    {
+      "target": "usr/bin/cilium-agent",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-97045",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-97045"
+    },
+    {
+      "target": "usr/bin/cilium-bugtool",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-78661",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "HIGH",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78661"
+    },
+    {
+      "target": "usr/bin/cilium-bugtool",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-97045",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-97045"
+    },
+    {
+      "target": "usr/bin/cilium-dbg",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-119299",
+      "package": "github.com/gopacket/gopacket",
+      "installed": "v1.6.1",
+      "fixed": "1.7.2",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "ghsa",
+        "Name": "GitHub Security Advisory Go",
+        "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-119299"
+    },
+    {
+      "target": "usr/bin/cilium-dbg",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "GO-2026-5932",
+      "package": "golang.org/x/crypto",
+      "installed": "v0.57.0",
+      "fixed": "0.58.1-0.20261009181718-2f1f834330b2",
+      "severity": "UNKNOWN",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": null
+    },
+    {
+      "target": "usr/bin/cilium-dbg",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-78661",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "HIGH",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78661"
+    },
+    {
+      "target": "usr/bin/cilium-dbg",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-97045",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-97045"
+    },
+    {
+      "target": "usr/bin/cilium-envoy-bootstrap-locality",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-78661",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "HIGH",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78661"
+    },
+    {
+      "target": "usr/bin/cilium-envoy-bootstrap-locality",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-97045",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-97045"
+    },
+    {
+      "target": "usr/bin/cilium-health",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-78661",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "HIGH",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78661"
+    },
+    {
+      "target": "usr/bin/cilium-health",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-97045",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-97045"
+    },
+    {
+      "target": "usr/bin/cilium-mount",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-78661",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "HIGH",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78661"
+    },
+    {
+      "target": "usr/bin/cilium-mount",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-97045",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-97045"
+    },
+    {
+      "target": "usr/bin/gops",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-39824",
+      "package": "golang.org/x/sys",
+      "installed": "v0.30.0",
+      "fixed": "0.44.0",
+      "severity": "UNKNOWN",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-39824"
+    },
+    {
+      "target": "usr/bin/hubble",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-78661",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "HIGH",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-78661"
+    },
+    {
+      "target": "usr/bin/hubble",
+      "class": "lang-pkgs",
+      "type": "gobinary",
+      "id": "CVE-2026-97045",
+      "package": "golang.org/x/net",
+      "installed": "v0.60.0",
+      "fixed": "0.62.0",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "dataSource": {
+        "ID": "govulndb",
+        "Name": "The Go Vulnerability Database",
+        "URL": "https://pkg.go.dev/vuln/"
+      },
+      "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-97045"
+    }
+  ]
+}

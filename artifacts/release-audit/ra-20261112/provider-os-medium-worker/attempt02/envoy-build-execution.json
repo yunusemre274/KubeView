@@ -1,0 +1,73 @@
+{
+  "name": "envoy-build",
+  "argv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "build",
+    "--cpu-period=100000",
+    "--cpu-quota=200000",
+    "--memory=4g",
+    "--memory-swap=4g",
+    "--network=none",
+    "--force-rm",
+    "--platform=linux/arm64",
+    "--pull=false",
+    "--iidfile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/envoy-image-id.txt",
+    "--tag",
+    "kubeview-private/cilium-envoy:1.20.4-os-security.2",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/envoy"
+  ],
+  "startedAt": "2026-11-12T11:08:51.116589+00:00",
+  "maxSeconds": 150,
+  "samples": [
+    {
+      "elapsedSeconds": 4.349,
+      "ownedRSSBytes": 42156032,
+      "ownedPIDs": [
+        13408,
+        13455,
+        13456
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454350852096
+    },
+    {
+      "elapsedSeconds": 4.886,
+      "ownedRSSBytes": 64962560,
+      "ownedPIDs": [
+        13408,
+        13455,
+        13460
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454347526144
+    }
+  ],
+  "expectedRUNNormalized": "set -eu && export DEBIAN_FRONTEND=noninteractive && cd /tmp/kubeview-os-medium && sha256sum -c SHA256SUMS && plan=\"$(apt-get --simulate --no-download --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.42-4ubuntu2.2_arm64.deb)\" && printf '%s\\n' \"$plan\" && printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"${package%%:*}\" in libpcre2-8-0) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done && apt-get -y --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.42-4ubuntu2.2_arm64.deb && test \"$(dpkg-query -W -f='${Version}' libpcre2-8-0)\" = '10.42-4ubuntu2.2' && cd / && rm -rf /tmp/kubeview-os-medium /var/lib/apt/lists/* /var/cache/apt/archives/*.deb",
+  "baseReference": "kubeview-private/cilium-envoy@sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+  "baseManifestID": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+  "baseConfigID": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+  "baseLayers": [
+    "sha256:9a354992483c962fa69075527e7a2690fd9103f53d2c10af083fb31f24335256",
+    "sha256:d7f8cfac6f1fb8c79131297d6cb1f90fe15395ade151e0a6fd1280ae18416ebc",
+    "sha256:ee8fa9aaac81e8a3c40c7ff288388b559d338f699a9405c7dbaa37e76c9b8d37",
+    "sha256:1fd340ff6abc1230fa08114cecf1ffed8947d122cd1383cec66476a56f216052"
+  ],
+  "baseRuntimeConfig": {
+    "Cmd": [
+      "/bin/bash"
+    ],
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    ],
+    "Labels": {
+      "maintainer": "maintainer@cilium.io",
+      "org.opencontainers.image.version": "24.04"
+    }
+  },
+  "pid": 13455,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T11:08:52.248422+00:00"
+}
