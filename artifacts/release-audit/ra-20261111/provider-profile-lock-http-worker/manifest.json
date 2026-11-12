@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "partialProved": [
+    "A available/canAdd true with empty operations",
+    "B different provider StateDir same physical Home/Profile unavailable/canAdd false, workers503",
+    "exact original app PIDs stopped, ports empty",
+    "post-failure original baseline/profile bytes/global config stat unchanged"
+  ],
+  "notProved": [
+    "B acquisition after owner close/restart"
+  ],
+  "firstFailure": {
+    "errorClass": "OSError",
+    "safeCategory": "details_omitted"
+  },
+  "runtimeElapsedSeconds": 2.3052690029144287,
+  "runtimeLimitSeconds": 90,
+  "receiptAt": "2026-11-11T20:09:52.012798+00:00",
+  "artifactPhaseElapsedSeconds": 152.990743,
+  "artifactPhaseLimitSeconds": 300,
+  "preArtifactPreparation": "Short local source/receipt inspection before timestamped preflight; no app or network operation then.",
+  "noAppRestartRetry": true,
+  "noWorkerPOST": true,
+  "noVMOrProviderCLIMutation": true,
+  "noTrackedSourceEdits": true,
+  "appSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "originalTwoVMcasesRemainHistorical": true
+}

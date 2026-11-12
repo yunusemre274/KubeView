@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:26:27.781243+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T13:27:52.362686+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -4132,6 +4132,8 @@ PROV-LOCK-002 düzeltmesi: cfg.Home/.kubeview-provider-locks physicalprofil kili
 - Source davranış sınırı: unsupportedmethod/body ve cancel öncesi UIDerror önceliği artık ortakguard'dan gelir; cancel Verify kendi ekread'ini korur. Kontrol atomik clusterUID garantisi değildir.
 
 RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS,0SKIP; focusedrace5PASS+1internalchildSKIP. Internalchild varsayılanSKIP olsa da iki ayrıGoTestbinary subprocess parenttesttegerçek çalıştı; aynıphysicalHome/differentStateDir dışlama veClose sonrası bırakma, Homesymlinkalias veinvalidjournalfailurecleanup doğrulandı. Rootkaynak/review.json ve24checksum inceledi. Kanıt: provider-profile-lock-retest-worker/REPORT.md.
+
+İlk gerçek iki-app HTTP kontrolü (11Kasım): sourcef32/build5f1c22…; Aavailable/canAdd true, farklıStateDir aynıHome/Profile Bavailablefalse/workers503. ExactPID ile ikisi kapandı; B yeniden start öncesi OSError, errno/stack kaydedilmemiş. Bu nedenle gerçek restart kabulü FAIL, ilk hatanın nedeni bilinmiyor. İkiapp/node/profilcleanup iyi olsa da tamfazPASS değildir. HiçworkerPOST/CLI/VM değişikliği yok. Kanıt: artifacts/release-audit/ra-20261111/provider-profile-lock-http-worker/REPORT.md;10/10SHA doğrulandı.
 
 #### TEST-06.13-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.

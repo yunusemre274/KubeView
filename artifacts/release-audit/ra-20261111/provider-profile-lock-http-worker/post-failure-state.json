@@ -1,0 +1,40 @@
+{
+  "noAppOrPOST": true,
+  "status": "PASS",
+  "observedAt": "2026-11-11T20:09:17.703020+00:00",
+  "baselineEqual": true,
+  "profileSHA256Before": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "profileSHA256After": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "globalConfigStatEqual": true,
+  "globalConfigContentsNotRead": true,
+  "originalNodeUIDs": {
+    "kvml-d32afbf634e8-a": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+    "kvml-d32afbf634e8-a-m02": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+  },
+  "bothReady": true,
+  "newLabelTargets": {
+    "containers": [],
+    "volumes": [],
+    "networks": []
+  },
+  "capturedAppPIDsAbsent": {
+    "5138": null,
+    "5130": null
+  },
+  "providerJournals": [
+    {
+      "app": "A",
+      "exists": true,
+      "zeroOperations": true,
+      "literal": "null",
+      "SHA256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    {
+      "app": "B",
+      "exists": false,
+      "zeroOperations": true,
+      "literal": "OMITTED",
+      "SHA256": null
+    }
+  ]
+}

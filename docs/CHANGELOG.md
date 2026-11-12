@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Gerçek profile-lock HTTP ilk deneme
+
+- İkiapp fizikselprofil dışlaması geçti; ownerrelease sonrası B acquire yolu prebindOSError yüzünden FAIL. İlk hata ve gerçekstate/cleanup korunur, kanıtsız başarı yok.
+
 ## 2026-11-12 — provider-operator-candidate02-worker
 
 - Privateoperatorcandidate02 ELF9cde6566… gerçekbuildPASS; cryptoexactpseudo+gopacket1.7.2 dışında incrementalgraph değişmedi. AynıDB164componentinventory0finding, fullimage/anaCiliummodülü kapsandı demek değildir. KısıtlıLinuxARM64Docker --version gerçekexit0 veexactCIDcleanup; henüz labinstall/TLS/controller kabulü yok.
