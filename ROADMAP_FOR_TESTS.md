@@ -1,16 +1,16 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T20:22:14.854580+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T20:29:43.130766+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:139; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:35; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:138; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:36; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST09.07 token-free protectedHTTPHost sınırı;35/200 (%17.5 fazsayısı). İlkhelperbudgeteksikliği ve corrected31requestretest ayrı korunur. V11/perf/paket/60dk açık.
-- Süreç/lab: Backendworker PIDbirth/cohortunit+tekchildprobe işinde; providerworker incelemeleri tamam. Owned2NodeHubblelab güvenli durduruldu; manuelveriler ve sealedSecretQA korunur. CPU matrisi henüz başlamadı; diğer projelere dokunulmadı.
+- Son tamamlanan faz: TEST16.01 darChromiumM38harnessdoğrulaması;36/200 (%18 fazsayısı). Sıradaki TEST16.06 ilk5eşleşmişaçıkpanel/5eventfamily; CPUsonuçları henüz yok.
+- Süreç/lab: ikiworkerın sonlu işleri tamamlandı; ağırölçüm roottekbaşına. Owned2NodeHubblelab durmuş/manueldata+sealedSecretQA saklı. n5preflight/planhazır, gerçekpencere henüz başlamadı; diğerprojelere dokunulmadı.
 - Devam: TEST16.01 kamera/PID/güç/ortam önkoşullarını tamamla; ardından sınırlı eşleşmiş CPU ailesi. Provider16Medium yerel düzeltme ikinci incelemede; gerçek TLS/kurulum/finalpaket/60dk/manuel kabul açık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
@@ -40,7 +40,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
-| CAT-16 — A/B benchmark | 13 | NOT_STARTED:12, IN_PROGRESS:1 | Henüz yok |
+| CAT-16 — A/B benchmark | 13 | NOT_STARTED:11, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:3 | Henüz yok |
@@ -9031,8 +9031,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Kaynak / build / paket kimliği: A36d5b8f / Bf32d6b23 frozen frontend; common backend.test SHA9d35acc9…; harness kaynak SHA manifestlerde
 - Ortam / kullanılan kimlik ve yetki: MacM5/macOS27, Chromium Metal, medium/DPR1/1440x900; read-only sentetik M20Node/300Pod; Kubernetes credential kullanılmadı
 - Başlangıç zamanı: 2026-11-12 (ayrı işler exact zamanları manifestlerde)
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Bitiş zamanı: 2026-11-12T17:29:43.124946+00:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-16.01-S1 — Hazırlık
@@ -9053,6 +9053,8 @@ RootcontrolledM38nativevalidationPASS: iki30sısınma+3snonacceptancepencere73.7
 - [x] Kamera FOV24/38 farkı, eksik/bilinmeyen/gerçek FOV uyumsuzluğu reddedildi; pinned eski38 protokolü ayrı.
 - [x] Performans karşılaştırıcısı yalnız comparability envanterini sonuç diye kabul etmedi.
 - PID-birth halen açık: mevcut CPU collector yalnızPID kullanıyor; PIDreuse/sayaç sıfırlanması koruması eklenip sınanacak. Bu düzelmeden CPU matrisi başlamaz.
+
+GenericCLIconsumer gerçekUNITfixtureRED:12invalidcaseyanlışcomparabletrue/exit0,4bozukgirdi stack/exit1. Düzeltme18/18+expanded28/28GREEN; finalcamera neighborile31/31PASS. Missinginterior/rawsample/identity/role/counter/clock/empty/missing/extra/duplicategrup cleanfalse/exit2, unknownmetricrowyok. Geçerlisentetikpositive ve observed0 korunur. Rawtarihsel raporlar değiştirilmedi. Kanıt: artifacts/release-audit/ra-20261112/perf-generic-comparator-worker/REPORT.md.
 
 #### TEST-16.01-S4 — Bulgular ve düzeltme
 - PERF-HARNESS-CAMERA: açıkFOV veactualcamera/panelUID yalnızharness; üretim kamera/su/seyir/LOD/DPR değişmedi.24smokedarkadraj; yenicontrolled38normaloverview ve actualcollector validation planlı.
@@ -9078,10 +9080,13 @@ Rootnativecollectorvalidation: iki3srun native11process/browsermain+renderer+GPU
 
 Nativevalidationownedrunner/browser/backendkimlikleriyok/5192free/commonbackend+harnessSHAaynı;canonicaltestsourcefake/readonly/noKUBECONFIG. İkiPNGrootgörselincelemesitamam. Hafifcomparatorpureunitjobeşzamanlıolduğu için bu3spencereler normalCPUbenchmarkından açıkça ayrıldı. n5asılölçümde diğerworkerlar/build/scan duracak.
 
+Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestile sınırlı. FreshnativeCoreGraphics60Hz/1470x956/2940x1912 mevcut environmentJSONileeşleşti (perffamilyfresh-display.json). MacM5/macOS27/Chromium156/Metal/DPR1/GPUframebuffer/kaynaklar/kameraseçim/filo/role/cohort ve cleanupkontrolü darChromiumM38harnesskapsamında tamamlandı. NativeSafari/Retina/fizikselsunum ayrıN/A/açık; CPUsonucununkendisi doğrulanmadı.
+
 #### TEST-16.01-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar: IN_PROGRESS. Dar comparability+unit/build kanıtı var; ölçümün bütün önkoşulları yok. V11-18 veya bütün benchmark matrisi geçmedi.
-- Kamera/harness/backend/fixture/kalite veya process-identity değişimi ilgili dar kontrolü yeniler.
+- [x] BİTTİ / DOĞRULANDI
+- VERIFIED_DONE: belirtilenChromium/Metal/M38/medium/DPR1 harness saat/PID/güç/build/fixture/kamera/faz/env kontrolü; gerçekbrowser kısa doğrulama+31generic ve18PID/15neighborunit verootinceleme.
+- OSbirth1s/örneklerarasıgörünmeyenchild sınırı açık. Bu geçerli5A/BCPUsonucu,fullruntimeA/B,Δpanel,V11-18,Retina/nativeSafari veya fizikselFPS/gecikme kabulü değildir.
+- İlgiliharness/runtime/fixture/browser/quality/platform değişimi etkilenenkontrolü yeniden gerektirir.
 
 ### TEST-16.02 — Instrumentation açık/kapalı maliyeti
 
@@ -9354,22 +9359,22 @@ Nativevalidationownedrunner/browser/backendkimlikleriyok/5192free/commonbackend+
 - İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Sorumlu: ANA MÜDÜR; ölçüm sırasında diğer test workerları idle
+- Kaynak / build / paket kimliği: FrozenA36d5b8f frontend/Bf32d6b23 frontend, commonbackend9d35acc9…; newharness checkpoint+exactSHA her manifestte
+- Ortam / kullanılan kimlik ve yetki: MacM5/32GiB/macOS27.0.1, Chromium156/ANGLEMetal/medium/DPR1/1440x900/60HznativeCG; ownedfakeAPI5192/noKUBECONFIG. Gerçeklabstopped
+- Başlangıç zamanı: 2026-11-12T17:29:43.124952+00:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-16.06-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Sonluilkfamilyplan hazır: perf-open-events-five-pairs-root/plan.json;5eşleşmişAB/BA/AB/BA/AB,10seriwindow,her30swarm+60sölçüm,0otomatikretry,1800smax.
+- YalnızaçıkNode0Özet/5event-s/M38;canonical20/300,başlangıçdetailed8/120. Fullruntime veyaΔpanelmatrixdeğil. Kapalı/0event diğer15pair ayrıdır.
+- [x] ÖncekiFOV38nativeharnessscope/camera/pose/role/PNGeşdeğerliği test16.01de; product24default/kalite/su/seyir değişmez.
+- [x] FreshnativeCG60Hz eskienvileeşleşti.
+- [ ] Henüzgerçekn5windowbaşlamadı; sonpower≥40/lowpowermode0, portfree/sourcehash/ownedlabstopped/workeridle preflightsonrası.
+- Herwindow300plan/apply/received+fullsignature/cohort/clock veM55/p9520/p9933.3/callbackstore100/drawproxy250 bütçesi kontrol edilir; ilkFAILsaklanır/stop, olumluörnekseçmeyok. CPUtimecore/RSSperPID ayrı, GPUCPU≠GPUusage/presentedFPS.
+- İlkfeedback/panelreadylatency bu sürekli açıksenaryoda ölçülmez, ayrıV11-16kapısı açık.
 
 #### TEST-16.06-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -9410,8 +9415,8 @@ Nativevalidationownedrunner/browser/backendkimlikleriyok/5192free/commonbackend+
 
 #### TEST-16.06-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- IN_PROGRESS:5pair açıkpanel+5event-s henüzkoşulmadı; bütün4koşul matrisi/fullruntime/V11-18 bufamilyile kapanmaz.
+- Yeni somut soru/invalidpair dışında otomatikekrar yok.
 
 ### TEST-16.07 — Log statik/akış/uzun satır AB
 

@@ -1,3 +1,5 @@
+- GenericbenchmarkCLI eksik/geçersizCPUcohort/boşveeksikrungridi artık cleanfalse/exit2 ile reddeder;31CLI+kameraneighborUNITPASS. GerçekkısaM38harnessdoğrulaması ayrı, henüzCPUkarşılaştırması yok.
+
 - BenchmarkOScollectorPID+birth/PPID/executable/cohort kullanır; invalid/unknownCPUveRSSnull. Browserutility/orphan kapsamı ve aktifchildcachecleanup düzeltildi; üretim ürününe etkisi yok.
 
 - KorumalıAPI/session/WS girişinde Host/Origin/forwardedspoof30gerçekHTTPkontrolü doğrulandı; ürün kodu değişmedi. Testhelperstartuprequestbudget eksikliği correctedretest ile giderildi.

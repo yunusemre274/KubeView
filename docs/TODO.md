@@ -1,3 +1,6 @@
+- [x] TEST16.01 darChromiumM38harnessenv/clock/PID/kamera/actualUI kontrolü tamam; genericCLI31PASS, CPUölçümü değildir.
+- [ ] TEST16.06 ilk5eşleşmişaçıkpanel5eventfamily ve kalan4koşulmatrix;V11-18açık.
+
 - [x] CPUharnessPID-only6RED→18target+15neighborPASS; boundedcohort/OSbirth/counterguard ve tekchildcleanup.
 - [ ] Genericcomparator failclosed ve gerçekbrowser/kadraj doğrulaması olmadan CPUmatrisi başlamaz.
 
