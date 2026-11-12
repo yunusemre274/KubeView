@@ -497,4 +497,4 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 - [ ] Yeni fullTLS cold lab, bounded pentest/load,5 eşleşmiş A/B ve60dk koşusu; eski V11-16/18/19+MANUAL açık.
 
 - [x] Kubeconfig trustedexec taşıması + browser exec/path/import sınırı odaklı testleri geçti; ilkfixtureFAIL korunur.
-- [ ] TEST12.01 bağımsızikinci kaynak incelemesi/fazkararı.
+- [x] TEST12.01 dartrustkapsamı bağımsızikinci kaynak incelemesiyle VERIFIED_DONE; gerçekcluster/genelpentest değildir.

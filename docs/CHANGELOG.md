@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — TEST12.01 ikinci inceleme
+
+- Trusttestsource/manifest/retest zinciri farklıworkerincelemesiyle kabul edildi; faz31/200 tamam. İlkfixtureFAIL ve gerçekKuberneteseşdeğeriolmayan sentetiktest sınırı korunur.
+
 ## 2026-11-12 — kubeconfig trust regresyon testleri
 
 - Gerçekclient-goexecchild/pinnedCAsentetikHTTPSpozitifi ve workspacecontext/path/exec/importnegatifleri3topcasePASS(2asıl+helper). İlkHTTP/400fixtureFAIL ayrı korunur; yalnız test/kanıt/doküman değişti. İkinciinceleme beklenir.

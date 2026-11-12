@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:40:17.688229+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T13:42:10.278103+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:144; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:144; IN_PROGRESS:19; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:31; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST01.01 endpoint inventory VERIFIED_DONE. Toplam30/200. PROV-LOCK-002 dar fix/race geçti; gerçek iki-app restart HTTP kontrolü ilk OSError nedeniyle açık. Gerçekworker case03Ready geçti fakat finaldeadline FAIL korunur.
-- Süreç/lab: ANA MÜDÜR + iki sonlu worker: backend gerçek iki-app HTTP restart; provider derived operator imajı inceleme/build. Başlangıçta ownedlab iki originalNode stopped; yalnız kimlik kontrollü resume yetkilendirildi. Kullanıcı süreçlerine müdahale yok.
-- Devam: Önce yedi bekleyen tarihsel kanıtın SHA/redaksiyon incelemesi ve ayrı geri dönüş commit/pushları; sonra correctedHTTP. İlk üç NodeAdd denemesi kapandı, otomatik dördüncü add yok. Final paket/perf/60dk/manuel kabul açık.
+- Son tamamlanan faz: TEST12.01 kubeconfig trust31/200 VERIFIED_DONE. TEST06.13 realHTTPkilitassertionlarıPASS, fakat830.384/300sn hazırlıkplan aşımı ve genişprovider/idempotencykapıları ayrı. Gerçekworker case03outerFAIL korunur.
+- Süreç/lab: ANA MÜDÜR; backendworker yeni sentetikSecretgrubu hazırlığı, providerworker ikiAPTimage boundedbuild/scan. OwnedHubblelab orijinal2NodeReady/çalışır, app/CLIportlarıkapalı. Diğerusercontainerlaradokunulmadı; ağırA/B/soakyok.
+- Devam: Yedi tarihselkanıtkümesi ve correctedHTTP/operatörimagekanıtları ayrıpushlandı. Sıradakiuygulanabilir: sentetikSecretpurpose/RBAC ve Cilium/EnvoyAPTtarama. ÜçNodeAddplanıbitti; otomatikdördüncüaddyok. Finalpaket/perf/60dk/manuelonaykapılarıaçık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -36,7 +36,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
-| CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:8, IN_PROGRESS:2 | Henüz yok |
+| CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:8, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
@@ -6898,12 +6898,12 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR; kaynak/test ikinci inceleme ayrıca
+- Sorumlu: ANA MÜDÜR; release_backend_resume ayrı kaynak/kanıt incelemesi
 - Kaynak / build / paket kimliği: Runtime f32d6b23; test-only workingdiff release_kubeconfig_trust_test.go SHA7b39ad28075a041ae0b63e57e4e8f3e38154b65e1c6bdb85e27de8373bb6c612; ilk/retestmanifest ayrı
 - Ortam / kullanılan kimlik ve yetki: Sahip olunan loopback19848 canary API, sentetik testbinary exec plugin, temp0700 workspace/kubeconfig; gerçek Kubernetes veya kullanıcıcredential yok.
 - Başlangıç zamanı: 2026-11-12T10:30:45.651639+00:00
-- Bitiş zamanı: Retest 2026-11-12T10:35:18.198976+00:00; ikinci kaynak incelemesi henüz bekleniyor
-- Durum: IN_PROGRESS
+- Bitiş zamanı: 2026-11-12T10:42:10.271638+00:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-12.01-S1 — Hazırlık
@@ -6913,44 +6913,38 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 - Kaynak/devam/test sonuçları artifacts/release-audit/ra-20261112/kubeconfig-trust-root/ altında saklanacak. Diğer kaynak değişirse ilgili kanıt yeniden değerlendirilecek.
 
 #### TEST-12.01-S2 — Normal kullanım / pozitif kontrol
-- [ ] İlk pozitifcanary testFAIL: plainHTTPclient-go authyüklemez, canaryprogram çalışmadı. Normaldavranış kabulü henüz yok.
-- Beklenen gerçektrustedexec taşıması; gözlenen sentetikAPI403. KurulusourceTLSguard tanısı fixture-diagnosis.json içinde.
-- Kanıt: artifacts/release-audit/ra-20261112/kubeconfig-trust-root/REPORT.md ve değişmemişJSONL/ilkGo testkaynağı.
-
-Ayrı retestPASS2.704sn/120: gerçekpinnedCA TLScanary üzerinde client-go trustedexecchild markerı ve exactauthile1namespaceGET gözlendi. Listcontexts/trustquery/unknowncontext öncesindechildmarker/APIGET0, operatörkubeconfigbytesaynı. Helperdefault+iki asıltest3topPASS,0SKIP; anaKubernetesE2E değildir. Kanıt: artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/REPORT.md.
+- [x] Trustedoperator kubeconfig gerçekclient-goexecchild çalıştırdı; marker+exactBearerile1HTTPSnamespaceGET doğrulandı.
+- [x] TLSStartTLS/CADataexactcertificate, insecureverificationyok.
+- [x] Contextlisteleme/trustsorgusu/unknowncontext programı çalıştırmadı; ilkTLSsizfixtureFAILhistoryolarak korunur.
+- Kanıt: artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/REPORT.md; ilkkoşu ../kubeconfig-trust-root/ altında.
+- Veri: sentetikHTTPSAPI+gerçekexecsubprocess; gerçekKubernetesE2Edeğil.
 
 #### TEST-12.01-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Unknowncontext reddedildi422, fakat ilkassertion400beklediği için suiteFAIL. State/ithalexec kontrollerinin tamamı koşulmadı; kalanlarPASSsayılmaz.
-- Yalnızbuownedfixture, hiçbir kullanıcıhostkomutu/gerçekküme yok.
-
-Retestte unknowncontext/path/URL422 veconnections0; trustedcontextnormal200. Browserexec/kubeconfig alanları persist/exportolmadı, importedcontext/bound temizlendi, shellcanarymarker yok. Yetkili gerçekpluginpozitifiyle bu negatifler ayrı sınandı. Tüm yetkilendirme/SSRF/pluginçeşitleri kapsamı değildir.
+- [x] Unknowncontext/stringpath/URL422 veconnections0. Browserexec/kubeconfigalanları çalışmadı/persistolmadı.
+- [x] Knowncontext200 pozitifkullanılabilir; importcontext/bound temizlendi; workspace/exportinjectedpath/execgöstermedi; shellcanarymarker oluşmadı.
+- Browsernegatifler üretimhandler+fakeK8sfixture; arbitrarykubeconfigfile upload yeteneği bulunmadı. SSRF/CAwronghostname/diğerpluginler ayrıfazlardır.
 
 #### TEST-12.01-S4 — Bulgular ve düzeltme
-- Bulgu: TEST-FIXTURE-12.01-A/B, ürün güvenlik açığı olarak sınıflandırılmadı.
-- Kök nedenler: client-go0.30.0 HTTPüzerindeexecauthyüklemez; workspacevalidation422 sözleşmesi.
-- Sonraki dar değişiklik: testTLSsertifikasını CAolarak pinle ve rejectedcontext için422doğrula. Ürünruntime değişmedi.
-
-Fixturefix yalnızgo testinde: StartTLS+CADataexactpinnedcertificate (insecureskipyok), expected422. İlkFAIL unchangedartifactaltında. Üretimclient/handler/mutasyon kodu değişmedi.
+- Ürün güvenlik açığı tespit edilmedi; bu karar yalnızbu testkapsamıyla sınırlı.
+- İlkikiFAIL testfixturekaynaklıydı: plainHTTP client-goauthyüklemez, validation422iken400beklendi.
+- Fixyalnıztest: pinnedCAtestTLS ve422expectation; ilkGoSource/JSONL/manifestsdeğişmedi. Runtimeclient/handler/import kodu değişmedi.
 
 #### TEST-12.01-S5 — Tekrar test ve regresyon
-- [ ] Retest henüz yok; ayrı yeni kanıt dizini gereklidir.
-
-- [x] İlkbaşarısıziki testaynıruntimeile fixture-onlyfixsonrası geçti; firstFAIL ve sourcecopykorundu.
-- [x] Trustedexec normalpozitif ve adversarialworkspace/context/import komşuları aynısonlukoşuda geçti.
-- Gerçekküme/providermatrisinitest-onlydeğişiklikiçintekrar etmek NOT_APPLICABLE; bu fazsentetikHTTPTLS/realexec taşımasıdır.
+- [x] Aynıruntime, fixture-onlyfix ileiki asıltestgeçti;3topPASS=1defaulthelper+2asıltest,0SKIP. Childhelperayrıca gerçektenexecoldu.
+- [x] Normaltrustedexec ve browsercontext/import komşunegatifleri tek2.704snkoşuda doğrulandı.
+- Gerçekküme/providergenelmatrisinitest-onlyiçintekrar etmek NOT_APPLICABLE; bu fazyereltrusttransport/sentetikhandler testidir.
 
 #### TEST-12.01-S6 — Temizlik ve inceleme
-- [x] Ownedcanary19848listenerkapandı, GoTempDircleanup; gerçekcredential/kubeconfigkullanılmadı.
-- [x] İlkmanifest/sourceSHA/JSONL/sourcecopy korunur.
-- İkinci inceleme henüz yok.
-
-Rootretst19848lsof: listenerfree; GoTempDir/t.Cleanup yolları gerçektestlerdeçalıştı; exec.Cmdcredentialchildsynchronouscompleted. Binary/appstate/gerçekküme yok. Ayrıbackendworker kaynak/manifest/testraporincelemesidevam, geçmedenphaseVERIFIED_DONEolmayacak.
+- [x] GoTempDir/envcleanup veapi.Close/s.Close/exec.Cmd.Run wait/reap kaynaktanvebaşarılıkoşudestekli; rootsonraki19848lsof listenerfree. AyrıchildPID/tempdirsnapshotölçülmedi.
+- [x] İlk/retesttestSHA ve runtime/dependencybyteseşitliği farklıworkerincelemesinde doğrulandı;4/4reviewchecksumrootkontrolüPASS.
+- [x] İkinciinceleme176.564/180sn, critical0/NARROW_TEST_EVIDENCE_ACCEPTED. Profesyonelbağımsızüçüncütarafpentestdeğil.
+- Sınır: ayrıwrongCA/hostnamecaseyok; mevcutbefore/afterReadFilehatalarıassertedilmiyor, broadfilesysteminvariantauditdeğildir. Pozitifgerçekclient-call/browsernegatiffakefixturetekgerçekkümeUIE2Edeğildir.
+- Kanıt: artifacts/release-audit/ra-20261112/kubeconfig-trust-second-review-worker/REPORT.md.
 
 #### TEST-12.01-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- FAILED: iki fixtureassertionbaşarısız, güvenlikfazı tamamlanmadı. Ürünbulgusu olarak sunulmaz; düzeltilmiştest ayrıkoşulacak.
-
-RetestPASS, fazIN_PROGRESS: bağımsızikinci kaynak incelemesi bekleniyor. İlkfixtureFAILhistoricalkalır; yeni ürün güvenlik açığı veya bütünpluginuyumluluğu iddiası yok.
+- [x] BİTTİ / DOĞRULANDI
+- Yereloperatörkubeconfigexec trustpozitifi ve browsercontext/exec/path/importauthoritynegatifleri doğrulandı. GerçekKubernetes/pluginçeşitleri veya bütünsecurity/PATH/SSRF/paketkapıları kapanmaz.
+- İlkfixtureFAIL tarihsel korunur. Değişensınırlar server.client/trustedWorkspaceContext/workspaceimport/Connectionmodel/client-goloader ise retest gerekir; yalnızbelge değişimi uzun koşu gerektirmez.
 
 ### TEST-12.02 — Path/symlink/traversal/archive çıkarma
 
