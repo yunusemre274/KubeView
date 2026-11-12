@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T19:57:43.835201+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T20:02:07.393406+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:140; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:34; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:139; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:34; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kendi kanıtlarında; finalpaket açık. Tarihselinstalled1.20.2 bulguları korunur. Yereloperatorcandidate0High/1Unknown; APT-onlyCiliumcandidate8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Bu yerel adaylar kurulu değil; gerçekELF/sourceCVE/kalanseverity/runtimeTLS/lisans kapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -33,7 +33,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:1, FAILED:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
-| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
+| CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:3, IN_PROGRESS:3, VERIFIED_DONE:4 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:8, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
@@ -5630,64 +5630,41 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V3.3.2/V3.3.4/V3.5.1/V4.4.2; CAT09. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Sorumlu: ANA MÜDÜR; ikinci kanıt incelemesi providerworker sonrasında
+- Kaynak / build / paket kimliği: runtimef32d6b23 privateprofilelock10 SHA5f1c22b9…; yeni product değişikliği yok
+- Ortam / kullanılan kimlik ve yetki: Owned127.0.0.1:19844; fresh0700 appdata/eksik kubeconfig; providersdisabled; ilk token-free loopback modu
+- Başlangıç zamanı: 2026-11-12T17:01:26.302697+00:00
+- Bitiş zamanı: 2026-11-12T17:01:29.953467+00:00
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-09.07-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Frozenf32source ve binary5f1c22b9 SHA doğrulandı; fresh0700workspace/eksikkubeconfig/providersdisabled/noAPI_TOKEN; ownedIPv4loopback19844/PID/birth/PGID.
+- Plan30s/≤60request/eşzamanlılık1/110msarası/≤2MiBresponse. GerçekDNSservisi/üçüncü taraf hedefi yok.
 
 #### TEST-09.07-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Localhost/127.0.0.1/[::1]Host+aynıOrigin veCLIOriginyok contexts200;configuredfalse/readOnlytrue/contextsboş. Son yerelolumlu kontrol200; actualversioncommitf32eşleşti.
+- GerçekIPv6listener sınanmadı;IPv4soketteIPv6Host kabulü ayrı birkontroldür.
 
 #### TEST-09.07-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Yedi saldırganHost/alternatifadres gösterimi hemaynıOrigin hemOriginyok403; forwardedheader spoof403; yabancı/opaqueOrigin403; dörtAPI/session/WSgirişi403.
+- WSupgrade/gerçekbrowserDNS bu testte yok; post-rebindHTTPguard sınırı doğrulandı.
 
 #### TEST-09.07-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Bu30HTTPkontrolünde güvenlik sınırı ihlali gözlenmedi; ürün düzeltmesi gerekmedi. Tokenliuzak/mod ve gerçekDNS/tarayıcı ayrı kapsamdır.
 
 #### TEST-09.07-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Her negatifgruptan sonra yetkili localpositive korunur;30/30PASS/3.650sn.
+- İlkPoCfix/retest NOT_APPLICABLE: bu sınırlı kontrolde ürün hatası üretilmedi, ürün kodu değişmedi.
+- Kanıt: artifacts/release-audit/ra-20261112/dns-rebinding-root/result.json ve REPORT.md.
 
 #### TEST-09.07-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] ExactPID/birth/PGID appSIGTERM/exit0, processyok/port19844free/binaryaynı. Privateboşworkspace saklandı, Kubernetesmutation/credentialokuma yok.
+- [ ] İkinci artifact/kaynak incelemesi bekleniyor.
 
 #### TEST-09.07-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Dar30HTTPguardPASS; ikinciinceleme beklenirken IN_PROGRESS. GerçekDNS/browser/V11/securitytamamı kabulü değildir.
 
 ### TEST-09.08 — Management enable endpoint koruması
 
