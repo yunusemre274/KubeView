@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Test listener önkontrolü
+
+- Ownedrestartprebind Go1.26.11 netlistenerSO_REUSEADDR semantiğiyle eşlendi; controlledsocketfixture ve26safcase geçti. İlk gerçekHTTPFAIL nedeni hâlâUNPROVEN; productionlistener değişmedi.
+
 ## 2026-11-12 — Gerçek profile-lock HTTP ilk deneme
 
 - İkiapp fizikselprofil dışlaması geçti; ownerrelease sonrası B acquire yolu prebindOSError yüzünden FAIL. İlk hata ve gerçekstate/cleanup korunur, kanıtsız başarı yok.

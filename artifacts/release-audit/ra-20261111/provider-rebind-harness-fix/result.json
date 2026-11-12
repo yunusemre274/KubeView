@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-11T20:11:37.172899+00:00",
+  "status": "MATCHED_REBIND_PASS",
+  "ownedPort": 19844,
+  "rawBindAfterActiveClose": {
+    "success": false,
+    "errno": 48,
+    "symbol": "EADDRINUSE"
+  },
+  "runtimeMatchingReuseAddrBind": true,
+  "sourceSDKFile": "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/src/net/sockopt_bsd.go",
+  "sourceSDKSHA256": "1915e013449314181275eef5ed0316dc9a7a78209884e500c5128dc04cf7636f",
+  "helperSHA256": "4613d23a1efc216c4de4c2027cf164de77593e902fdb6ddc66da560b8aedbab5",
+  "pureCases": 26,
+  "priorHTTPRestartCause": "UNPROVEN; originalOSError errno/stack absent",
+  "scope": "Controlled socket lifecycle fixture, not app/Kubernetes or performance test",
+  "KubernetesRequests": 0
+}

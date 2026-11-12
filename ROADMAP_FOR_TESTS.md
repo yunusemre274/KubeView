@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:27:52.362686+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T13:27:55.175688+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -4120,6 +4120,8 @@ PROV-LOCK-002 RED: aynı gerçekHome/Profile fakat farklıStateDir ile ikiManage
 Kök neden: physicalCLIinventory Home/Profile iken nonblockinglock StateDir/Profile konumunda. Localtrustedikiapp/customStateDir önkoşulluMEDIUM/P1 concurrency doğruluk bulgusu; anonim/RBAC bypass gösterilmedi. Runtimefix henüz yok.
 
 PROV-LOCK-002 düzeltmesi: cfg.Home/.kubeview-provider-locks physicalprofil kilidi eklendi, eskiStateDirjournal kilidi korundu. Constructor hatasında her ikisi bırakılır; Close cancel/wgjoin sonrasında ikisini bırakır. Journalformat/workerAPI/türler değişmedi. OrijinalPoC2a146… aynıkaldığı ilk koşudaGREEN oldu.
+
+Test-helper prebind düzeltmesi: ownedTCP activeclose fixture barebindEADDRINUSE48, aynıSDKGoListenerSO_REUSEADDRbind başarılı. scripts/release-provider-lab.py preflight GoListener ile aynısocketoptionı kullanıyor; üretimendpoint değişmedi.26safcasePASS ve helperSHA4613d23… . Bu fixture ilk kayıtsızOSError nedenini geriye dönük kanıtlamaz. Kanıt: artifacts/release-audit/ra-20261111/provider-rebind-harness-fix/REPORT.md;4/4SHA doğrulandı. DüzeltilmişgerçekHTTP sonuçları ayrı yeni run-id altında beklenecek.
 
 #### TEST-06.13-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.

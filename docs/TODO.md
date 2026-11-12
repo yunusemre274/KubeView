@@ -1,5 +1,12 @@
 # Güncel görev durumu
 
+## 12 Kasım — yayın denetimine devam
+
+- [x] Bekleyen7 tarihsel kanıt kümesinin checksum/sonuç incelemesi; başarısızlıklar korunur.
+- [x] Test-helper TCPbind seçeneği GoListener ile eşlendi;26safcase/controlledsocketfixture kanıtı saklandı.
+- [ ] Gerçek iki-app ownerrelease/Brestart HTTP kontrolü.
+- [ ] Derivedprovider tamimaj/TLS/lab kabulü; eskiV11/finalpaket/60dk kapıları açık.
+
 ## 11 Kasım — physical profile lock fix/retest
 
 - [x] PROV-LOCK-002: physicalHome/Profile ortak kilidi+legacyStateDirlock; originalRED→GREEN ve process/alias/constructorcleanup/server/race kontrolleri geçti.

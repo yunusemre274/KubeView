@@ -1,5 +1,9 @@
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
+## 12 Kasım — yeniden bind ve hata kanıtı
+
+- Port önkontrolü gerçek listenerın socket seçeneklerine uymalı. TCPactiveclose/TIME_WAIT barebind başarısızken Go SO_REUSEADDR listener çalışabilir. Bir fixture olasılığı gösterir; errno/stack saklanmamış eski hatanın nedeni diye sunulmaz. Hata sınıfının yanında güvenli errno, adım ve traceback saklanır.
+
 ## 11 Kasım — journal sınırı physical kaynak değildir
 
 - Aynı host kaynağını yöneten bağımsız journal dizinleri, kaynağın ortak kilidini atlayamamalıdır. Kilit kimliğini gerçekHome/Profile ile bağlayın; geriuyumlu journal kilidini bırakmayın ve constructor/Close yollarında FD yaşam döngüsünü sınayın.
