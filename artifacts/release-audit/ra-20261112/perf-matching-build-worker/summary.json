@@ -1,0 +1,30 @@
+{
+  "status": "BUILD_PREREQUISITE_COMPLETE_MEASUREMENT_NOT_CLEARED",
+  "comparisonScope": "frontend-browser-common-backend",
+  "frontendTags": {
+    "A": "cat16-36d-20261112T113255Z",
+    "B": "cat16-f32-20261112T113255Z"
+  },
+  "commonBackendTag": "cat16-common-f32-20261112T113255Z",
+  "commonBackendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+  "bothSidesBackendSHAEqual": true,
+  "frontendSourcesByteIdentical": false,
+  "frontendAssetsByteIdentical": false,
+  "newViteBuilds": 2,
+  "newGoTestCompiles": 1,
+  "testsExecuted": 0,
+  "appsBrowsersBenchmarksStarted": 0,
+  "buildFailures": 0,
+  "retries": 0,
+  "protectedProductionCLIAndUIIdentitiesUnchanged": true,
+  "historicalTagsNotOverwritten": true,
+  "ownedProcessReferencesAbsent": 30,
+  "peakOwnedRSSBytes": 1175011328,
+  "rootClearanceStillRequiredForCPUFamily": true,
+  "FOVViewsUIDFleetRuntimeVerified": false,
+  "fullRuntimeAB": false,
+  "V11_18Closed": false,
+  "original600sTotalSeconds": 518.103,
+  "withinOriginal600s": true,
+  "finishedAt": "2026-11-12T11:40:23.780042+00:00"
+}

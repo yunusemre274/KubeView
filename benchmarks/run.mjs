@@ -29,6 +29,7 @@ import { installLifecycleProbe } from "./lifecycle-probe.mjs";
 import { readSceneInventory } from "./scene-inventory.mjs";
 import { buildLockIdentity } from './build-lock.mjs';
 import { workspaceSoakTransition } from './workspace-cycle.mjs';
+import { validatedCameraFov } from './camera-contract.mjs';
 import { summarize, distribution, cpuSeconds, loadBands, measurementWindow } from "./metrics.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const require = createRequire(path.join(root, "frontend/package.json"));
@@ -57,6 +58,9 @@ const phase = option("phase", "baseline"),
 const logMatrix = args.includes("--log-matrix"),
   panelTarget = option("panel-target", "node");
 const lockInput = args.includes('--lock-input');
+const cameraFovOverride = validatedCameraFov(option('camera-fov', args.includes('--camera-fov') ? null : 38));
+const comparabilitySmoke = args.includes('--comparability-smoke');
+if (comparabilitySmoke && (repeats !== 1 || scenarios.join(',') !== 'panel-open' || !panelMatrix || !args.includes('--lock-visual-start'))) throw Error('Comparability smoke requires one panel-open repetition with panel matrix and visual lock');
 const logInitialLines = Number(option('log-initial-lines','1000'));
 if (!Number.isInteger(logInitialLines) || logInitialLines<1 || logInitialLines>20000) throw Error('Log initial lines must be 1..20000');
 const backendTag = option("backend-tag", "");
@@ -206,6 +210,11 @@ const manifest = {
   logInitialLines,
   panelTarget,
   inputLocked: lockInput,
+  cameraFovProtocol: 'explicit-camera-fov-v1',
+  cameraFovOverride,
+  cameraFovSelection: args.includes('--camera-fov') ? 'explicit-CLI' : 'legacy-default38',
+  comparabilitySmoke,
+  measurementPurpose: comparabilitySmoke ? 'COMPARABILITY_SMOKE_NO_PERFORMANCE_WINDOW' : 'historical benchmark protocol',
   backendTag,
   repeatOffset,
   balancedOrder: panelMatrix
@@ -461,7 +470,13 @@ async function inventory() {
         position: c.__harbor.camera.position.toArray(),
         quaternion: c.__harbor.camera.quaternion.toArray(),
         zoom: c.__harbor.camera.zoom,
+        fov: c.__harbor.camera.fov,
+        near: c.__harbor.camera.near,
+        far: c.__harbor.camera.far,
+        target: c.__harbor.scene.__r3f.root.getState().controls.target.toArray(),
+        forward: c.__harbor.camera.getWorldDirection(c.__harbor.camera.position.clone()).toArray(),
       },
+      projectedVisibleNodeUIDs: [...new Set(c.__harbor.projectTargets({type: 'node'}).filter(t => t.visible).map(t => t.uid))].sort(),
       stats: c.__harbor.stats(),
       sceneResources: globalThis.__KUBEVIEW_SCENE_INVENTORY__?.(c.__harbor.scene, p?.gl),
       preferences: JSON.parse(localStorage.getItem("kubeview.preferences.v1")),
@@ -474,6 +489,9 @@ async function inventory() {
         open: Boolean(document.querySelector(".resource-details, .world-window")),
         title: (document.querySelector(".resource-details h2") || document.querySelector('.world-window h1'))?.textContent,
         tab: document.querySelector(".details-tabs button.active")?.textContent,
+        uid: [...document.querySelectorAll('.resource-details code')].map(e => e.textContent).find(text => /^node-\d+$/.test(text)),
+        summaryContent: document.querySelector('.resource-details .details-body')?.textContent?.replace(/\s+/g, ' ').trim(),
+        contextLabel: document.querySelector('.world-cluster-name')?.textContent,
       },
       inputGuard: globalThis.__KUBEVIEW_INPUT_GUARD__ ? {...globalThis.__KUBEVIEW_INPUT_GUARD__.counts} : null,
       cargoBuffers: globalThis.__KUBEVIEW_BUFFER_PROBE__ ? (() => {
@@ -680,7 +698,7 @@ async function prepareCamera(interactive = true) {
         .controls,
   );
   await setInputGuard(!interactive && lockInput);
-  await page.evaluate(({interactive}) => {
+  await page.evaluate(({interactive, cameraFovOverride}) => {
     const canvas = document.querySelector("canvas"),
       harbor = canvas.__harbor;
     const controls = harbor.scene.__r3f.root.getState().controls;
@@ -712,7 +730,7 @@ async function prepareCamera(interactive = true) {
     );
     harbor.camera.position.fromArray(position);
     harbor.camera.zoom = 1;
-    harbor.camera.fov = 38;
+    harbor.camera.fov = cameraFovOverride;
     harbor.camera.near = 0.5;
     harbor.camera.far = 2000;
     controls.update();
@@ -720,7 +738,7 @@ async function prepareCamera(interactive = true) {
     harbor.camera.updateProjectionMatrix();
     harbor.camera.updateMatrixWorld(true);
     harbor.invalidate();
-  }, {interactive});
+  }, {interactive, cameraFovOverride});
   await page.evaluate(
     () =>
       new Promise((resolve) =>
@@ -1044,6 +1062,14 @@ async function run(profile, scenario, repeat) {
     await page.screenshot({
       path: path.join(out, `${profile}-${scenario}-${repeat}-start.png`),
     });
+  if (comparabilitySmoke) {
+    const before = await inventory();
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const after = await inventory();
+    report.runs.push({profile, scenario, repeat, comparabilityOnly: true, before, after});
+    await save();
+    return;
+  }
   const repairBefore = repairPlan ? await page.evaluate(readRepairSnapshot) : null;
   const repairObservations = [], repairPanelCycles = [], workspaceCycles = [];
   const before = await inventory(),

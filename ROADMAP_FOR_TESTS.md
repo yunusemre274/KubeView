@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T15:25:09.304114+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
+- Son güncelleme: 2026-11-12T19:57:43.835201+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:141; IN_PROGRESS:19; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:34; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:140; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:34; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kendi kanıtlarında; finalpaket açık. Tarihselinstalled1.20.2 bulguları korunur. Yereloperatorcandidate0High/1Unknown; APT-onlyCiliumcandidate8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Bu yerel adaylar kurulu değil; gerçekELF/sourceCVE/kalanseverity/runtimeTLS/lisans kapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST05.07 ve05.08 normalSecret UI/API/unit+ikinciinceleme ile VERIFIED_DONE;34/200 (%17 fazsayısı). Maskguard05.09öncedoğrulandı; CPU/PID/kamera ve globalyayınkapılarıaçık.
-- Süreç/lab: backendworker normalSecretUIpreparasyonu/tekkoşu; providerworker frozenbaseline/harness metadata incelemesi (ölçümbaşlamadı). OwnedHubblelab orijinal2NodeReady, sealedSecretQA namespace rootkontrolünde; kullanıcıcontainerlarına müdahale yok. AğırA/B/60dksoak henüzbaşlamadı.
-- Devam: Yedi tarihselkanıtkümesi ve correctedHTTP/operatörimagekanıtları ayrıpushlandı. Sıradakiuygulanabilir: sentetikSecretpurpose/RBAC ve Cilium/EnvoyAPTtarama. ÜçNodeAddplanıbitti; otomatikdördüncüaddyok. Finalpaket/perf/60dk/manuelonaykapılarıaçık.
+- Süreç/lab: providerworker mevcut Medium-image kanıtını okuyor; backendworker sıradaki PID guard işine atanacak. Performans/browser/app ölçümü çalışmıyor. Owned2Node lab mevcut; kullanıcı süreçlerine müdahale yok.
+- Devam: TEST16.01 kamera/PID/güç/ortam önkoşullarını tamamla; ardından sınırlı eşleşmiş CPU ailesi. Provider16Medium yerel düzeltme ikinci incelemede; gerçek TLS/kurulum/finalpaket/60dk/manuel kabul açık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -40,7 +40,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
-| CAT-16 — A/B benchmark | 13 | NOT_STARTED:13 | Henüz yok |
+| CAT-16 — A/B benchmark | 13 | NOT_STARTED:12, IN_PROGRESS:1 | Henüz yok |
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:3 | Henüz yok |
@@ -9043,64 +9043,49 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - İlgili gereksinim / güvenlik standardı kontrolü: CAT16 A/B sabit kalite,5eşleşme,30s+60s; M/L CPU/frame bütçeleri; güvenlik sertifika iddiası yok. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Sorumlu: ANA MÜDÜR + release_backend_resume; sonraki PID kontrolü aynı worker
+- Kaynak / build / paket kimliği: A36d5b8f / Bf32d6b23 frozen frontend; common backend.test SHA9d35acc9…; harness kaynak SHA manifestlerde
+- Ortam / kullanılan kimlik ve yetki: MacM5/macOS27, Chromium Metal, medium/DPR1/1440x900; read-only sentetik M20Node/300Pod; Kubernetes credential kullanılmadı
+- Başlangıç zamanı: 2026-11-12 (ayrı işler exact zamanları manifestlerde)
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-16.01-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Donmuş A/B frontend ve ortak f32 benchmark backend üretildi; ikiVite+birgo test-c, lock/cache sürümleri eşleşti.
+- Kanıt: artifacts/release-audit/ra-20261112/perf-baseline-plan-worker/REPORT.md; perf-matching-build-worker/REPORT.md.
+- Bu yalnız frontend-browser-common-backend ailesidir; full-runtime A/B değildir. Yeni taglar tarihsel artefaktların üzerine yazmaz.
 
 #### TEST-16.01-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Bir A/B comparability smoke, aynı UID/panel/sekme/filo/FOV24 ve draw footprint ile geçti; ikiPNG incelendi.
+- Logical detailed kapsam8Node/120Pod; projected/raycast-visible merkez yalnıznode0/node2, kadraj dar/kırpık. Tam görünüm eşdeğerliği/ölçüme hazır olma henüz sağlanmadı.
+- Kanıt: artifacts/release-audit/ra-20261112/perf-camera-comparability-worker/REPORT.md. CPU/FPS/gecikme ölçüm penceresi yok.
 
 #### TEST-16.01-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Kamera FOV24/38 farkı, eksik/bilinmeyen/gerçek FOV uyumsuzluğu reddedildi; pinned eski38 protokolü ayrı.
+- [x] Performans karşılaştırıcısı yalnız comparability envanterini sonuç diye kabul etmedi.
+- PID-birth halen açık: mevcut CPU collector yalnızPID kullanıyor; PIDreuse/sayaç sıfırlanması koruması eklenip sınanacak. Bu düzelmeden CPU matrisi başlamaz.
 
 #### TEST-16.01-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- PERF-HARNESS-CAMERA: eski runner38 projeksiyonu güncelürün24ten farklıydı; yeni açık --camera-fov ve gerçek kamera alanları yalnızharness düzeltmesidir. Ürün kamera/su/seyir/LOD/DPR değişmedi.
+- PERF-HARNESS-PID: PID doğum kimliği eksikliği kaynakta doğrulandı, henüz yeniden üretim/düzeltme yok.
+- Rapor hazırlama planı aşımı smoke637.148/600sn ayrı korunur; gerçeksmoke68.488/120sn.
 
 #### TEST-16.01-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Root9unit: kamera3 + metrics3 + panel-comparison3 PASS; Node24.16.0, 0.188sn command, skip0.
+- İlk eksik completion receipt ve /usr/local/bin/node artıkbulunmayan yolun launchFAIL kaydı korundu. Gerçek başarılı koşu PATHteki nvm24.16 Node ileattempt03tür. Ürün/build değişmedi.
+- Kanıt: artifacts/release-audit/ra-20261112/camera-neighbor-root/attempt03/result.json.
 
 #### TEST-16.01-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Smoke owned runner/browser/backend cleanup ve5192 port yokluğu kaydedildi.
+- [x] Root6+24+18SHA ve neighbor kanıtları doğruladı; ürün runtime aynı.
+- [ ] PID birth/ölçüm cohortu, normal overview kadrajı, güç/arka plan yükü izolasyonu ve final5eşleşmiş ölçüm hazır değil.
+- Güç şimdi Battery74%; daha önceki AC koşularıyla eşleştirilmez. Ağır A/B henüz başlamadı.
 
 #### TEST-16.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- Karar: IN_PROGRESS. Dar comparability+unit/build kanıtı var; ölçümün bütün önkoşulları yok. V11-18 veya bütün benchmark matrisi geçmedi.
+- Kamera/harness/backend/fixture/kalite veya process-identity değişimi ilgili dar kontrolü yeniler.
 
 ### TEST-16.02 — Instrumentation açık/kapalı maliyeti
 

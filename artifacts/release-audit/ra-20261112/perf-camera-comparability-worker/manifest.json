@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-12T11:54:41.148124+00:00",
+  "files": {
+    "benchmarks/run.mjs": "6e1bd7659db63d0d7fe42e1bf41dbdc2cdd953b79e0549914bec40b814fa94bb",
+    "benchmarks/compare.mjs": "398bd71ecdc97989fc3cfcbcd6d0c1c065bb0fb14c8510ff986f42f38923eeae",
+    "benchmarks/camera-contract.mjs": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7",
+    "benchmarks/camera-contract.test.mjs": "7f4fa1d650857f8c77f7b9c8089d6f8fd71ac97dab85e8a0596aa9cddb07edf9"
+  },
+  "originalRunSHA256": "12f77e64ecc1ad69ef82f2fd0a00722513509521798eabee271d0efe8dd0cc75",
+  "frozenBuildManifestSHA256": "40a9291437815fe678bae72c26bea60ab3ae8773cbc3d613d44a17186cfc10bf",
+  "backendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+  "screenInspection": {
+    "A-comparison.png": "opened, syntheticNodeSummary/Metalworld matching; narrow crop acknowledged",
+    "B-comparison.png": "opened, syntheticNodeSummary/Metalworld matching; narrow crop acknowledged"
+  },
+  "smokeGuardStatus": "PASS_RUNS_COMPLETED_COMPARABILITY_REVIEW_PENDING",
+  "comparison": "COMPARABILITY_SMOKE_PASS"
+}

@@ -1,0 +1,58 @@
+{
+  "status": "COMPARABILITY_SMOKE_PASS_NARROW_POSE24_NOT_PERFORMANCE_ACCEPTANCE",
+  "scope": "frontend-browser-common-backend",
+  "sameBackendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+  "actualFOV": 24,
+  "cameraTargetForwardPoseAndNearEqual": true,
+  "allUIDKeyedFleetStartPosesEqual": true,
+  "canonicalPerSide": {
+    "nodes": 20,
+    "pods": 300
+  },
+  "renderedPerSide": {
+    "nodes": 8,
+    "pods": 120
+  },
+  "projectedRaycastVisibleNodeUIDsPerSide": [
+    "node-0",
+    "node-2"
+  ],
+  "drawPerSide": {
+    "calls": 364,
+    "triangles": 66078,
+    "points": 0,
+    "lines": 60
+  },
+  "actualNodeUID": "node-0",
+  "actualPanelTab": "\u00d6zet",
+  "panelContentAndContextScopeEqual": true,
+  "quality": "medium",
+  "DPR": 1,
+  "viewport": [
+    1440,
+    900
+  ],
+  "registeredHarbors": 1,
+  "actualMetal": true,
+  "screenshotsCapturedAndViewed": 2,
+  "smokeSecondsIncludingCleanup": 68.48810863494873,
+  "smokeLimitSeconds": 120,
+  "unitTests": 3,
+  "unitPASS": true,
+  "phaseReceiptSeconds": 637.148124,
+  "phaseLimitSeconds": 600,
+  "phaseWithinTarget": false,
+  "noPerformanceWindow": true,
+  "fullPerformanceComparatorRejects": true,
+  "wholeAppAB": false,
+  "V11_18Closed": false,
+  "measurementReady": "NOT_ESTABLISHED; pose24 is narrow, no old38 paired visibility runtime sample, n1/no performance window",
+  "noProductSourceEdit": true,
+  "allowedHarnessFiles": [
+    "benchmarks/run.mjs",
+    "benchmarks/compare.mjs",
+    "benchmarks/camera-contract.mjs",
+    "benchmarks/camera-contract.test.mjs"
+  ],
+  "finalComparatorOnlyChangeAfterSmoke": "clean rejection of comparabilityOnly inventories; no benchmark rerun"
+}

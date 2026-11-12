@@ -1,0 +1,23 @@
+{
+  "status": "NOT_READY_TO_MEASURE",
+  "prerequisiteClass": "OWN_BUILD_PREREQUISITE",
+  "externalOrUserAccessBlocked": false,
+  "metadataOnly": true,
+  "baselineProductionCLIAndBoundedLogSourceVerified": true,
+  "candidateProductionCLIAndUIIndexVerified": true,
+  "matchingBenchmarkFrontendAndTestBinaryIdentitiesVerified": false,
+  "actualViewPanelCameraFleetValidated": false,
+  "firstFamilyValidPairsRequired": 5,
+  "firstFamilyPureMinutes": 15,
+  "fullFourConditionPureMinutes": 60,
+  "newMeasurements": 0,
+  "newBuilds": 0,
+  "newScans": 0,
+  "old6GiBLongLogBaselineForbidden": true,
+  "historicalResultsNotRelabeled": true,
+  "rootClearanceRequiredBeforeHeavyActions": true,
+  "metadataTimeBudgetRequirementMet": false,
+  "firstMetadataCompletionSeconds": 252.198,
+  "finalizedAt": "2026-11-12T11:22:22.248649+00:00",
+  "totalFinalizationSeconds": 368.434
+}

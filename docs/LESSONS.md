@@ -1,3 +1,7 @@
+## 12 Kasım — benchmark runtime ve ölçüm ayrımı
+
+Comparability smoke, CPU örneği değildir. Kamera projeksiyonunun aynı olması kadrajın ürün hedefini karşıladığını kanıtlamaz; logical8/120 ile projected-visible merkezleri ayır. Node executable eski mutlak yolu yerine gerçek kurulu sürüm/path manifestini kullan; launch hatasını testPASS sayma.
+
 # LESSONS.md — Deneyimler ve Çıkarılan Dersler
 
 ## 12 Kasım — yeniden bind ve hata kanıtı

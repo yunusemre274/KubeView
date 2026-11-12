@@ -1,0 +1,78 @@
+{
+  "name": "vite-A",
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "/Users/yunusemre/Desktop/KubeView/benchmarks/panel-build.mjs",
+    "cat16-36d-20261112T113255Z",
+    "--source",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/source-A/frontend"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView",
+  "startedAt": "2026-11-12T11:35:20.833583+00:00",
+  "maxSeconds": 120,
+  "environment": {
+    "GOTOOLCHAIN": "local",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "2GiB",
+    "CGO_ENABLED": "0",
+    "GOPROXY": "off",
+    "UV_THREADPOOL_SIZE": "2",
+    "NODE_OPTIONS": "--max-old-space-size=2048"
+  },
+  "samples": [
+    {
+      "at": "2026-11-12T11:35:20.852453+00:00",
+      "ownedPIDs": [
+        14284,
+        14287,
+        14289
+      ],
+      "ownedRSSBytes": 25526272,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454316621824
+    },
+    {
+      "at": "2026-11-12T11:35:21.380256+00:00",
+      "ownedPIDs": [
+        14284,
+        14287,
+        14291,
+        14292,
+        14295
+      ],
+      "ownedRSSBytes": 476004352,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454315040768
+    },
+    {
+      "at": "2026-11-12T11:35:21.907583+00:00",
+      "ownedPIDs": [
+        14284,
+        14287,
+        14291,
+        14292,
+        14297
+      ],
+      "ownedRSSBytes": 848232448,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454315040768
+    },
+    {
+      "at": "2026-11-12T11:35:22.426667+00:00",
+      "ownedPIDs": [
+        14284,
+        14287,
+        14291,
+        14292,
+        14299
+      ],
+      "ownedRSSBytes": 1166475264,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454315040768
+    }
+  ],
+  "pid": 14287,
+  "birth": "Thu Nov 12 14:35:20 2026",
+  "exitCode": 0,
+  "finishedAt": "2026-11-12T11:35:22.936866+00:00"
+}

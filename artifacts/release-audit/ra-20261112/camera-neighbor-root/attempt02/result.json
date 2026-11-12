@@ -1,0 +1,4 @@
+{
+  "classification": "LAUNCH_FAILED_NO_TEST_EXECUTED",
+  "cause": "Recorded /usr/local/bin/node no longer exists; current PATH resolves installed nvm Node v24.16.0."
+}

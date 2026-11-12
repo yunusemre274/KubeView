@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { distribution, processMetrics } from "./metrics.mjs";
+import { cameraComparisonReasons } from './camera-contract.mjs';
 const [beforeDir, afterDir, outFile] = process.argv.slice(2);
 if (!beforeDir || !afterDir)
   throw new Error("Usage: bench:compare -- BEFORE_DIR AFTER_DIR [OUTPUT.json]");
@@ -11,6 +12,7 @@ const read = async (d) =>
 const before = await read(beforeDir),
   after = await read(afterDir);
 const reject = [];
+reject.push(...cameraComparisonReasons(before, after));
 if (
   Number(before.manifest.logPayloadBytes || 0) !==
   Number(after.manifest.logPayloadBytes || 0)
@@ -78,6 +80,10 @@ for (const [key, br] of b) {
   const ar = a.get(key);
   if (!ar) {
     reject.push(`missing after group ${key}`);
+    continue;
+  }
+  if (br.concat(ar).some((run) => run.comparabilityOnly)) {
+    reject.push(`comparability-only inventory has no performance window ${key}`);
     continue;
   }
   const bad = br

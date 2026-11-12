@@ -1,0 +1,25 @@
+{
+  "exitCode": 0,
+  "timedOut": false,
+  "startedAt": "2026-11-12T16:56:47.603839+00:00",
+  "elapsedSeconds": 0.1879487500009418,
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "benchmarks/camera-contract.test.mjs",
+    "benchmarks/panel-compare.test.mjs",
+    "benchmarks/metrics.test.mjs"
+  ],
+  "nodeVersion": "v24.16.0",
+  "dataSource": "UNIT only; no browser or performance measurement",
+  "head": "b844d74e02ba4f8bdf64c087b6fda2e8d32798d9",
+  "sourceSHA256": {
+    "benchmarks/camera-contract.mjs": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7",
+    "benchmarks/camera-contract.test.mjs": "7f4fa1d650857f8c77f7b9c8089d6f8fd71ac97dab85e8a0596aa9cddb07edf9",
+    "benchmarks/panel-compare.mjs": "e23586629e69d3f20952a0988b368d76334743c0efe801843aefb47b77013886",
+    "benchmarks/metrics.mjs": "40e00b9550c43db063db839601586d3f22fdb149dd9ba5bb0491bdaf7cdf36c9",
+    "benchmarks/run.mjs": "6e1bd7659db63d0d7fe42e1bf41dbdc2cdd953b79e0549914bec40b814fa94bb",
+    "benchmarks/compare.mjs": "398bd71ecdc97989fc3cfcbcd6d0c1c065bb0fb14c8510ff986f42f38923eeae"
+  }
+}

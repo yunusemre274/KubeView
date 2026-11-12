@@ -1,3 +1,9 @@
+## 12 Kasım — performans harness önkoşulları
+
+- [x] Frozen A/B frontend+common backend ve açıkFOV protokolü; comparability-only verisinin CPU sonucu sayılması engellendi.
+- [x] Bir sentetik smoke ve9rootunit; ilk eksik/launchFAIL kayıtları korunur.
+- [ ] PIDbirth/cohort koruması, normal overview kadrajı ve5eşleşmiş CPU ölçümü açık; V11-18 kapanmadı.
+
 # Güncel görev durumu
 
 ## 12 Kasım — yayın denetimine devam

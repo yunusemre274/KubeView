@@ -1,0 +1,15 @@
+{
+  "startedAt": "2026-11-12T11:31:45.676995+00:00",
+  "startedEpoch": 1794483105.6771,
+  "deadlineEpoch": 1794483705.6771,
+  "dataDeadlineEpoch": 1794483645.6771011,
+  "onlyBuilds": [
+    "2 Vite",
+    "1 go test -c"
+  ],
+  "GOMAXPROCS": 2,
+  "GOMEMLIMIT": "2GiB",
+  "RSSLimitBytes": 4294967296,
+  "minBatteryPercent": 30,
+  "minDiskBytes": 10737418240
+}

@@ -1,0 +1,146 @@
+{
+  "status": "NOT_READY_TO_MEASURE",
+  "blockClass": "OWN_BUILD_PREREQUISITE_NOT_USER_ACCESS",
+  "authorization": "No measurement/build/browser/server/traffic/node action authorized in this metadata job; root clearance after all UI/security work finishes",
+  "firstFamily": {
+    "validPairsRequired": 5,
+    "orders": [
+      "AB",
+      "BA",
+      "AB",
+      "BA",
+      "AB"
+    ],
+    "orderBalance": "3AB/2BA is closest possible balance for five pairs; exact3/3 requires one explicitly planned sixth BA pair, not hidden retry",
+    "windows": 10,
+    "warmupSecondsPerWindow": 30,
+    "measureSecondsPerWindow": 60,
+    "pureWarmMeasureWallMinutes": 15,
+    "separateSetupCleanupBudgetSecondsPerWindow": 90,
+    "finiteJobCapMinutes": 30,
+    "maxAttempts": 5,
+    "invalidPairPolicy": "Preserve entire invalid pair; no automatic replacement; new finite replacement plan needs root clearance",
+    "commandTemplate": [
+      "node",
+      "benchmarks/run.mjs",
+      "--phase",
+      "PHASE",
+      "--build-tag",
+      "VERIFIED_FROZEN_TAG",
+      "--backend-tag",
+      "VERIFIED_COMMON_BACKEND_TAG",
+      "--repeat-offset",
+      "PAIR_INDEX",
+      "--id",
+      "NEW_UNIQUE_ID",
+      "--reuse-build",
+      "--reuse-binary",
+      "--profiles",
+      "M",
+      "--panel-matrix",
+      "--panel-target",
+      "node",
+      "--scenarios",
+      "panel-open-events",
+      "--repeats",
+      "1",
+      "--warmup",
+      "30",
+      "--seconds",
+      "60",
+      "--dpr",
+      "1",
+      "--lock-input",
+      "--lock-visual-start",
+      "--disable-browser-energy-saver",
+      "--max-minutes",
+      "3"
+    ],
+    "templateIsNotReadyToExecute": true,
+    "perFileSmokeNote": "repeats1 files are smoke-labelled n1; existing panel-accept aggregates distinct repeatIDs with30/60 windows, minimum3 historically; this plan tightens requiredvalidpairs to5",
+    "source": "synthetic benchmark context, /dev/null kubeconfig, readonly Go test fixture; not a realcluster load",
+    "panel": {
+      "NodeUID": "node-0",
+      "NodeName": "worker-001",
+      "kind": "Node",
+      "namespace": null,
+      "tab": "summary / \u00d6zet",
+      "content": "same actual canonical Node status/spec and associated Pod rows, no logs; hash panel DOM/content and selected UID before+after; stable source/harbor key required",
+      "actualVerifiedNow": false
+    },
+    "fixture": {
+      "seed": 20261024,
+      "version": "kubeview-benchmark-v2",
+      "canonicalNodes": 20,
+      "canonicalPods": 300,
+      "eventsPerSecond": 5,
+      "plannedEventsPer60s": 300,
+      "historicalVisibleReference": {
+        "nodes": 8,
+        "pods": 120
+      },
+      "currentUI2PotentialTwoDetailedViews": {
+        "nodes": 16,
+        "pods": 240
+      },
+      "actualViewInventoryRequired": true,
+      "rejectMismatchedVisibleWork": true,
+      "harborFlag": "--harbors1 only if matching A/B source supports same workspace path; omitted historicallegacy path is not automatically equivalent"
+    },
+    "cameraAndPhase": "Existing runner hardcodes FOV38 and fixed position/quaternion; actual UI2.0 FOV24/view topology must be reconciled and source-faithful plan reviewed before acceptance. resetVisual/hold, camera target, all fleet UIDs/poses, counts, clipping and source must agree; no quality/scope reduction"
+  },
+  "continuation": {
+    "conditions": [
+      "panel-open-events (5/s)",
+      "panel-closed-events (5/s)",
+      "panel-open (0/s)",
+      "panel-closed (0/s)"
+    ],
+    "fullMatrixPairs": 20,
+    "fullMatrixWindows": 40,
+    "pureWarmMeasureWallMinutes": 60,
+    "remainingAfterFirstFamilyPairs": 15,
+    "remainingWindows": 30,
+    "remainingPureWallMinutes": 45,
+    "finiteFullMatrixJobCapMinutes": 120,
+    "deltaPanel": "Within-build open-minus-closed at each0/5rate, then paired deltaB-minus-deltaA; no unmatched medians or historicalpool",
+    "longRuns": "No60min continuous/soak run at this power without separate finite plan/power preflight; not part of first family"
+  },
+  "powerPolicy": {
+    "observedSource": "battery",
+    "observedPercent": 45,
+    "observedLowPowerMode": 0,
+    "historicalRunnerStopPercent": 10,
+    "firstFamilyStartThresholdRecommended": 40,
+    "stopOrNoNextPairThresholdRecommended": 30,
+    "long60MinutePlanStartThresholdRecommended": 70,
+    "current45PercentDoesNotAuthorizeOrEstablish60MinuteSafety": true,
+    "sourceOrPowerSettingsChangeInvalidatesPair": true,
+    "memoryStops": {
+      "appRSSGiB": 2,
+      "ownedBrowserTotalRSSGiB": 6
+    },
+    "minimumDiskGiB": 10,
+    "sleepClockDiscontinuityOrThermalInterruptionInvalidatesPair": true,
+    "caffeinate": "Existing owned -di only; no persistent pmset edits"
+  },
+  "metrics": [
+    "total owned browser CPU core-equivalent +renderer/browsermain/GPUprocess CPU separately +backend separately",
+    "PID+birth identity and complete process/time coverage; runtime birth capture must be verified before acceptance",
+    "perPID RSS/JS heap, sharedmemory not naively summed as physicalRAM",
+    "JS draws/sec +p95/p99 intervals +callback-store/draw/DOM proxies; GPUprocessCPU is not GPU usage or presentation",
+    "noFPS/DPR/quality/water/patrol/view-count decrease; no profiler/video in main CPU family"
+  ],
+  "N_ASeparate": [
+    "physical presented FPS/latency",
+    "native Safari performance",
+    "nativeRetina DPR acceptance",
+    "GPU utilization/VRAM bytes"
+  ],
+  "prepareOnlyAfterRootClearance": [
+    "Freeze separate frontend source copies for36d andf32 with panel-build.mjs NEW_A_TAG --source ABSOLUTE_A_FRONTEND and NEW_B_TAG --source ABSOLUTE_B_FRONTEND; no --profile; never overwrite historicaltags",
+    "Use existing go test -c -o ABSOLUTE_NEW_BACKEND_TEST ./pkg/server from the approved common test-harness source with GOMAXPROCS2/GOMEMLIMIT2GiB/-p1; record exact test-source+binarySHA. CLI binary is not backend.test; if testing different backendversions, existing panel-accept expects same backendSHA and requires separately reviewed applicability/equivalence protocol",
+    "Existing workspace queue route is node benchmarks/repair-session.mjs NEW_RUN_ID VERIFIED_A_TAG VERIFIED_B_TAG --suite workspace, only after identities/views/power and source-supported argument schema are verified; it is broader than first openpanel family and must not be invoked as this narrowplan",
+    "Validate frozen source/asset/lock/instrumentation hashes, package versions and actual view counts in setup; current tags/source examples cannot substitute36d/f32; all build preparation itself remains unexecuted now"
+  ]
+}

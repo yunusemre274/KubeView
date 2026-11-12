@@ -1,3 +1,7 @@
+## 12 Kasım2026 — ölçüm aracı kamera sözleşmesi
+
+Benchmark açıkFOV/gerçekkamera/panelUID envanteri ve yalnızcomparability smoke ekler; varsayılan38 protokolü ve üretimUI değişmez. Yeni A/B artefaktları ortakf32backend kullanır; dar kadraj/PID doğum kimliği nedeniyle CPU matrisi henüz geçerli değildir.9unit ve tek smoke kanıtı ROADMAP TEST16.01de.
+
 # CHANGELOG.md — Değişiklik Kaydı
 
 ## 2026-11-12 — Secret UI bağımsızinceleme
