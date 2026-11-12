@@ -1,0 +1,4 @@
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+{"profile":"M","scenario":"panel-open-events","repeat":3,"fps":59.051718411642426,"p95":18.200000002980232,"messages":75}
+Results: /Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z

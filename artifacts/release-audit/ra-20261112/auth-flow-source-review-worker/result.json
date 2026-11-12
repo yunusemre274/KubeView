@@ -1,0 +1,698 @@
+{
+  "status": "SOURCE_FLOW_MAP_COMPLETE_RUNTIME_ACCEPTANCE_PENDING",
+  "reviewedAt": "2026-11-12T20:05:17.087268+00:00",
+  "sourceHEAD": "2934b8f0679fe7fff0f1ca63e8d4d4db33af1f35",
+  "runtimeCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "scope": "Read-only source and historical metadata; no app/browser/Go/Node test/build/scan/cluster/provider execution. Existing GPU diagnostics not touched.",
+  "runtimeSourceChecks": [
+    {
+      "path": "backend/main.go",
+      "SHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "frozenF32SHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "SHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "frozenF32SHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/resource_scopes.go",
+      "SHA256": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "frozenF32SHA256": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "SHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "frozenF32SHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "SHA256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "frozenF32SHA256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/stream.go",
+      "SHA256": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "frozenF32SHA256": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "SHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "frozenF32SHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/template_capability.go",
+      "SHA256": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "frozenF32SHA256": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_projection.go",
+      "SHA256": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "frozenF32SHA256": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/connection_errors.go",
+      "SHA256": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "frozenF32SHA256": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/maintenance.go",
+      "SHA256": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "frozenF32SHA256": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "SHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "frozenF32SHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_broker.go",
+      "SHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "frozenF32SHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/traffic_handlers.go",
+      "SHA256": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "frozenF32SHA256": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "SHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "frozenF32SHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/replay_source.go",
+      "SHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "frozenF32SHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/log_session.go",
+      "SHA256": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "frozenF32SHA256": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/provider_handlers.go",
+      "SHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "frozenF32SHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "SHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "frozenF32SHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/portforward.go",
+      "SHA256": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "frozenF32SHA256": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "backend/pkg/server/placement.go",
+      "SHA256": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "frozenF32SHA256": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "frontend/src/context/ShipyardClusterContext.jsx",
+      "SHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "frozenF32SHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "equalsFrozenF32": true
+    },
+    {
+      "path": "frontend/src/context/WorkspaceProvider.jsx",
+      "SHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "frozenF32SHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "equalsFrozenF32": true
+    }
+  ],
+  "flow": [
+    {
+      "stage": "startup",
+      "file": "backend/main.go",
+      "line": 29,
+      "trace": "configure/main: --write sets READ_ONLY=false at101; trusted kubeconfig/context and token-file stay operator configuration. main198 configures workspace before Register203; non-loopback listener requires API_TOKEN236."
+    },
+    {
+      "stage": "http_guard",
+      "file": "backend/pkg/server/server.go",
+      "line": 114,
+      "trace": "SameOrigin/guard: no-token Host must localhost/loopback; supplied Origin must exact host/scheme with no user/path/query/fragment; cross-site rejected. Optional API_TOKEN checked against Bearer or HttpOnly access cookie. Missing Origin is permitted subject to other guards."
+    },
+    {
+      "stage": "access_login",
+      "file": "backend/pkg/server/server.go",
+      "line": 197,
+      "trace": "session: POST JSON token through guard(false), constant-time configured-token check; HttpOnly/SameSiteStrict cookie, Secure only when actual r.TLS, MaxAge28800. This cookie is distinct from operator write authority."
+    },
+    {
+      "stage": "public_context",
+      "file": "backend/pkg/server/server.go",
+      "line": 156,
+      "trace": "protect always inserts operatorRequest context, even without cookie; workspace binding occurs before handlers. Session cancellation is attached for ordinary protected requests; connection/management are exceptions to that attachment for rebind/revoke sequencing."
+    },
+    {
+      "stage": "server_binding",
+      "file": "backend/pkg/server/workspace.go",
+      "line": 123,
+      "trace": "bindWorkspaceRequest derives workspace/harbor/tab and context from server store; rejects missing/invalid scope, wrong workspace/unbound connection/foreign context. trustedWorkspaceContext102 and connection binding348 require configured local context."
+    },
+    {
+      "stage": "operator_key",
+      "file": "backend/pkg/server/workspace.go",
+      "line": 74,
+      "trace": "operatorKey = cookie|workspace|harbor|tab. ConfigureWorkspace83 derives stable profile-specific cookie names from workspace identity; tab/harbor separation is same-operator intent isolation, not SaaS identity."
+    },
+    {
+      "stage": "operator_grant",
+      "file": "backend/pkg/server/connection.go",
+      "line": 43,
+      "trace": "operator creates bounded128-entry operator map, independent UUID cookie/nonce, absolute8h context deadline. connection149 resets nonce/disabled grant on context/namespace/clientID change; returns diagnostic state/credential generation."
+    },
+    {
+      "stage": "enable_revoke",
+      "file": "backend/pkg/server/connection.go",
+      "line": 220,
+      "trace": "management checks cookie, live nonce/context/namespace and serverReadOnly; enable probes SSAR API access, then re-fetches client generation and rechecks context/session/expiry before grant307. Disable resets nonce/cancels context/closes forwards258."
+    },
+    {
+      "stage": "grant_gate",
+      "file": "backend/pkg/server/connection.go",
+      "line": 93,
+      "trace": "managementAllowed deliberately returns nil only for internal callers lacking operatorRequest; every public protected mutation has that value. Public requests need session, nonempty current nonce, enabled state, same context/clientID and namespace."
+    },
+    {
+      "stage": "rbac",
+      "file": "backend/pkg/server/resources.go",
+      "line": 21,
+      "trace": "authorize first enforces workspace scope; non-read verbs enforce backend ReadOnly and managementAllowed; then SSAR Allowed for exact verb/group/resource/subresource/ns/name. Multi-namespace lists review every explicit namespace. Real Kubernetes API independently authorizes actual operation."
+    },
+    {
+      "stage": "scope_identity",
+      "file": "backend/pkg/server/workspace_scope.go",
+      "line": 184,
+      "trace": "authorizeWorkspace restricts namespace/selector, fails closed on missing discovery, requires explicit cluster-impact acknowledgement for writes; dynamic writeCheck333 and Update351 constrain body/current membership. resources.checkIdentity344 and DELETE preconditions277 bind UID/RV."
+    },
+    {
+      "stage": "operations",
+      "file": "backend/pkg/server/resources.go",
+      "line": 192,
+      "trace": "resources/actions373 route accepted work to real dynamic clients after grant/SSAR; mutation dry-run is still an authorized write. Session exec21 checks create pods/exec and UID; log guard validates get/watch/log and Pod UID; revealSecret server.go527 is purpose GET requiring read SSAR, not write grant."
+    },
+    {
+      "stage": "credential_reload",
+      "file": "backend/pkg/server/server.go",
+      "line": 307,
+      "trace": "client fingerprints trusted transport/credentials with trafficIdentity46; changed generation gets new client UUID and retires old grants/contexts388. workspaceIdentity176 publishes generation/safe authorization key separately from cluster UID; same cluster UID does not equal same permissions."
+    },
+    {
+      "stage": "cancel_scope",
+      "file": "backend/pkg/server/workspace.go",
+      "line": 470,
+      "trace": "invalidateWorkspaceChanges resets affected harbor grants/nonces/contexts and forwards; retireWorkspaceClient632 handles credential generation. Membership generation guards21/37 reject stale stream updates; broker key workspace_broker.go40 includes client identity plus scope, releases cancel final subscription77."
+    },
+    {
+      "stage": "frontend",
+      "file": "frontend/src/context/ShipyardClusterContext.jsx",
+      "line": 236,
+      "trace": "url/request bind workspace/harbor/tab and nonce, track AbortControllers/epoch; resetManagement365 serializes revoke before new diagnostic; setManagement410 rejects stale epoch/scope/socket responses; per-harbor managers855 start read-only. WorkspaceProvider64 uses separate workspace mutation nonce."
+    },
+    {
+      "stage": "providers",
+      "file": "backend/pkg/server/provider_handlers.go",
+      "line": 62,
+      "trace": "flows/provider routes also use protect. Worker mutation additionally requires loopback RemoteAddr, cluster-wide writable mode, exact provider context/cluster UID and create-nodes authorization122. flows traffic_handlers.go194 binds credential fingerprint and namespace/harbor lease with read authorization."
+    }
+  ],
+  "testSelection": [
+    {
+      "name": "TestOriginAndAuthentication",
+      "file": "backend/pkg/server/server_test.go",
+      "line": 117,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestLocalServerRejectsDNSRebindingHost",
+      "file": "backend/pkg/server/server_test.go",
+      "line": 328,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestOriginHostJSONAndSessionNegatives",
+      "file": "backend/pkg/server/connection_test.go",
+      "line": 165,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestManagementStartsReadOnlyAndCannotBypassSession",
+      "file": "backend/pkg/server/connection_test.go",
+      "line": 69,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Unseeded public write403; enable valid intent; missing/stale nonce403/409; authorized fake delete202; backend read-only403.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip",
+      "file": "backend/pkg/server/connection_test.go",
+      "line": 105,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Delayed enable across revoke/context roundtrip must409 and cannot restore write grant.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReleaseSessionCreationShapeFreshnessAndCookieFlags",
+      "file": "backend/pkg/server/release_session_lifecycle_test.go",
+      "line": 32,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant",
+      "file": "backend/pkg/server/release_session_lifecycle_test.go",
+      "line": 92,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Expired operator cookie/nonce cannot mutate or re-enable; fresh session has no inherited grant.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry",
+      "file": "backend/pkg/server/release_session_expiry_test.go",
+      "line": 10,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest",
+      "file": "backend/pkg/server/release_session_expiry_test.go",
+      "line": 31,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts",
+      "file": "backend/pkg/server/workspace_cookie_test.go",
+      "line": 81,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant",
+      "file": "backend/pkg/server/workspace_cookie_test.go",
+      "line": 130,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceHTTPPersistenceCSRFAndScope",
+      "file": "backend/pkg/server/workspace_test.go",
+      "line": 123,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+      "file": "backend/pkg/server/workspace_test.go",
+      "line": 182,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Grant retained in correct harbor/tab; denied crossing tab/harbor; selector edit revokes stale intent.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceNodeImpactRequiresAcknowledgement",
+      "file": "backend/pkg/server/workspace_test.go",
+      "line": 214,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+      "file": "backend/pkg/server/workspace_recovery_test.go",
+      "line": 183,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Synthetic temporary kubeconfig credential change rotates clientID, cancels old scoped grant/stream and removes old identity.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReleaseReadOnlyEndpointsRetainedGrant",
+      "file": "backend/pkg/server/release_readonly_endpoints_test.go",
+      "line": 34,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Fake endpoint matrix keeps retained operator grant but global ReadOnly blocks CRUD/action/exec/forward/provider mutation paths.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource",
+      "file": "backend/pkg/server/release_security_regression_test.go",
+      "line": 19,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReadOnlyAndNamespaceEnforced",
+      "file": "backend/pkg/server/server_test.go",
+      "line": 78,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    }
+  ],
+  "rootSuggestedFiniteGroup": {
+    "cwd": "backend",
+    "argv": [
+      "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+      "test",
+      "-p",
+      "1",
+      "./pkg/server",
+      "-run",
+      "^(TestOriginAndAuthentication|TestLocalServerRejectsDNSRebindingHost|TestOriginHostJSONAndSessionNegatives|TestManagementStartsReadOnlyAndCannotBypassSession|TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|TestReleaseSessionCreationShapeFreshnessAndCookieFlags|TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant|TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry|TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest|TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts|TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant|TestWorkspaceHTTPPersistenceCSRFAndScope|TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|TestWorkspaceNodeImpactRequiresAcknowledgement|TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|TestReleaseReadOnlyEndpointsRetainedGrant|TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource|TestReadOnlyAndNamespaceEnforced)$",
+      "-count",
+      "1",
+      "-parallel",
+      "1",
+      "-timeout",
+      "60s"
+    ],
+    "status": "NOT_EXECUTED; root-controlled after GPU diagnostics; not a timing guarantee"
+  },
+  "separateActualAPIControls": [
+    {
+      "name": "TestDedicatedClusterRestrictedRBAC",
+      "file": "backend/pkg/server/rbac_integration_test.go",
+      "line": 28,
+      "prerequisites": "KUBEVIEW_TEST_CONTEXT=kubeview-test and KUBEVIEW_TEST_NAMESPACE=kubeview-qa; isolated actual cluster/ServiceAccounts/RBAC and explicit owned target clearance.",
+      "status": "NOT_RUN_NOT_IN_CORE_GROUP"
+    },
+    {
+      "name": "TestReleaseOwnedSecretPurposeReal",
+      "file": "backend/pkg/server/release_secret_real_test.go",
+      "line": 36,
+      "prerequisites": "Explicit KUBEVIEW_RELEASE_REAL_SECRET=owned-secret-purpose-v1 and sealed private synthetic fixture state/kubeconfig/receipt/output; owned real API and exact cleanup protocol.",
+      "status": "NOT_RUN_NOT_IN_CORE_GROUP"
+    }
+  ],
+  "historicalApplicability": [
+    {
+      "directory": "artifacts/release-audit/ra-20261111/session-lifecycle-worker",
+      "reportSHA256": "949c414f483c45f0692b84fc19423c836276d5b9ddafb3b5e54df3877ef80087",
+      "metadata": "artifacts/release-audit/ra-20261111/session-lifecycle-worker/result.json",
+      "metadataSHA256": "17922288e7697fb83576405124ddea944eb2a4a4403d3a5de47f0c0d7b103b1b",
+      "recordedSourceChecks": [
+        {
+          "path": "backend/pkg/server/release_session_lifecycle_test.go",
+          "recordedSHA256": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+          "currentSHA256": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/connection.go",
+          "recordedSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "currentSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/server.go",
+          "recordedSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/release_session_expiry_test.go",
+          "recordedSHA256": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+          "currentSHA256": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/connection_test.go",
+          "recordedSHA256": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+          "currentSHA256": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+          "matches": true
+        }
+      ],
+      "allRecordedRepoSourceBytesMatch": true,
+      "interpretation": "Historical source applicability only, no new run or broad gate closure"
+    },
+    {
+      "directory": "artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root",
+      "reportSHA256": "3e720633e3b39305568e3391ee2d45932adf183c0a3712ebac31a819b5bd3906",
+      "metadata": "artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root/result.json",
+      "metadataSHA256": "b0b6bd819eb96dda155e5c8e635fe67d12a8adb57d0ec1f209e6f9af32820e30",
+      "recordedSourceChecks": [
+        {
+          "path": "backend/main.go",
+          "recordedSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+          "currentSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/server.go",
+          "recordedSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/connection.go",
+          "recordedSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "currentSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "matches": true
+        }
+      ],
+      "allRecordedRepoSourceBytesMatch": true,
+      "interpretation": "Historical source applicability only, no new run or broad gate closure"
+    },
+    {
+      "directory": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker",
+      "reportSHA256": "fc876161aa264f7c99fc37602457f2b9e8753df10577633b2dc492324cec6ccc",
+      "metadata": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/source-before.json",
+      "metadataSHA256": "1c3382e8560f3af07ffc046209bb9b5fdf7ba66b347afa10bc35aa5875d7ab95",
+      "recordedSourceChecks": [
+        {
+          "path": "backend/pkg/server/release_secret_real_test.go",
+          "recordedSHA256": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+          "currentSHA256": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/server.go",
+          "recordedSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/resources.go",
+          "recordedSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+          "currentSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/connection.go",
+          "recordedSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "currentSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/workspace_scope.go",
+          "recordedSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+          "currentSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+          "matches": true
+        },
+        {
+          "path": "backend/go.mod",
+          "recordedSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+          "currentSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+          "matches": true
+        },
+        {
+          "path": "backend/go.sum",
+          "recordedSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+          "currentSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+          "matches": true
+        }
+      ],
+      "allRecordedRepoSourceBytesMatch": true,
+      "interpretation": "Historical source applicability only, no new run or broad gate closure"
+    },
+    {
+      "directory": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker",
+      "reportSHA256": "31c12c4deafaac2227ef0cf93e359c4a0487fceb50c59b4db29728deb02c08c6",
+      "metadata": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/source-before.json",
+      "metadataSHA256": "1cd26a20d85e96e1e5f85769757eb1717303433a105904f4b981cf0a8e1798cd",
+      "recordedSourceChecks": [
+        {
+          "path": "frontend/e2e/release-secret-purpose-browser.mjs",
+          "recordedSHA256": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+          "currentSHA256": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+          "matches": true
+        },
+        {
+          "path": "frontend/src/workbench/ResourceDetails.jsx",
+          "recordedSHA256": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+          "currentSHA256": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+          "matches": true
+        },
+        {
+          "path": "frontend/src/workbench/ResourceForms.jsx",
+          "recordedSHA256": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+          "currentSHA256": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+          "matches": true
+        },
+        {
+          "path": "frontend/src/workbench/secretPayload.js",
+          "recordedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+          "currentSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+          "matches": true
+        },
+        {
+          "path": "frontend/dist/index.html",
+          "recordedSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+          "currentSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+          "matches": true
+        },
+        {
+          "path": "backend/internal/webui/dist/index.html",
+          "recordedSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+          "currentSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/server.go",
+          "recordedSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "matches": true
+        },
+        {
+          "path": "backend/pkg/server/resources.go",
+          "recordedSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+          "currentSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+          "matches": true
+        }
+      ],
+      "allRecordedRepoSourceBytesMatch": true,
+      "interpretation": "Historical source applicability only, no new run or broad gate closure"
+    }
+  ],
+  "historicalScope": "Prior session evidence is unit/fake only; Host receipt is local post-rebind HTTP simulation; Secret API/UI receipts cover their recorded owned synthetic scenario only. Historical PASS never becomes a new run or full TEST-01.02 closure.",
+  "boundaryNotesAndGaps": [
+    {
+      "id": "AUTH-SOURCE-01",
+      "kind": "DESIGN_BOUNDARY",
+      "source": "connection.go:289; resources.go:49",
+      "note": "Management enable only checks SSAR request transport/API success, not Status.Allowed. This proves local intent, not authorization for pods or every write. Each actual operation must still pass authorize SSAR Allowed and real API. Do not label managementEnabled as Kubernetes admin."
+    },
+    {
+      "id": "AUTH-SOURCE-02",
+      "kind": "DESIGN_BOUNDARY",
+      "source": "connection.go:93-99; server.go:156",
+      "note": "Internal managementAllowed bypass without operatorRequest is intentional. Public protect always supplies that context; direct helper tests alone cannot substitute for public mux tests."
+    },
+    {
+      "id": "AUTH-SOURCE-03",
+      "kind": "LIFETIME_BOUNDARY",
+      "source": "server.go:215; connection.go:73-88",
+      "note": "Access cookie stores configured static token; MaxAge28800 is browser retention, not independent server expiry for that token. Operator grant deadline is separate absolute8h; revoking write grant does not rotate configured access token."
+    },
+    {
+      "id": "AUTH-SOURCE-04",
+      "kind": "SCOPE_BOUNDARY",
+      "source": "main.go:204-225; server.go:129",
+      "note": "Version/health/static routes are outside gateway guard. Explicit token mode intentionally removes token-free local Host restriction; Origin remains enforced. HTTP loopback Secure=false and operator TLS/tunnel responsibility are not transport-TLS acceptance."
+    },
+    {
+      "id": "AUTH-SOURCE-05",
+      "kind": "UNTESTED_IN_THIS_JOB",
+      "source": "connection.go:307; server.go:184",
+      "note": "Source cancellation/revalidation does not prove atomic rollback of an upstream write already accepted during revoke. No new real RBAC/admission/remote TLS/browser/WS transport race was exercised. Historical Secret fixture explicitly did not run deliberate API admission denial."
+    },
+    {
+      "id": "AUTH-SOURCE-06",
+      "kind": "INTERPRETATION",
+      "source": "server.go:527; workspace.go:74",
+      "note": "Purpose Secret read can legitimately succeed while backend/write UI is read-only if get permission exists. Cookie/tab/harbor nonce separation is local operator intent isolation, not distinct tenant identities or defense against same-origin compromise."
+    }
+  ],
+  "unrunAllSelectedTests": true,
+  "roadmapSectionSHA256": "d23d36adfe1d5dbe1cf7a80f4471b42ab96b9f8f2cbd8e52393bb2c0c46c03ab",
+  "sourceOrProductChanges": false,
+  "fileSHA256": {
+    "artifacts/release-audit/ra-20261111/session-lifecycle-worker/REPORT.md": "949c414f483c45f0692b84fc19423c836276d5b9ddafb3b5e54df3877ef80087",
+    "artifacts/release-audit/ra-20261111/session-lifecycle-worker/result.json": "17922288e7697fb83576405124ddea944eb2a4a4403d3a5de47f0c0d7b103b1b",
+    "artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root/REPORT.md": "3e720633e3b39305568e3391ee2d45932adf183c0a3712ebac31a819b5bd3906",
+    "artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root/result.json": "b0b6bd819eb96dda155e5c8e635fe67d12a8adb57d0ec1f209e6f9af32820e30",
+    "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/REPORT.md": "fc876161aa264f7c99fc37602457f2b9e8753df10577633b2dc492324cec6ccc",
+    "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/source-before.json": "1c3382e8560f3af07ffc046209bb9b5fdf7ba66b347afa10bc35aa5875d7ab95",
+    "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/REPORT.md": "31c12c4deafaac2227ef0cf93e359c4a0487fceb50c59b4db29728deb02c08c6",
+    "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/source-before.json": "1cd26a20d85e96e1e5f85769757eb1717303433a105904f4b981cf0a8e1798cd",
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/connection_errors.go": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+    "backend/pkg/server/connection_test.go": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+    "backend/pkg/server/log_session.go": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+    "backend/pkg/server/maintenance.go": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+    "backend/pkg/server/placement.go": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+    "backend/pkg/server/portforward.go": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+    "backend/pkg/server/provider_handlers.go": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+    "backend/pkg/server/rbac_integration_test.go": "71fdd90c8f95cafe809c14fde7cf772827d9991a041abf51008267bdd38492e7",
+    "backend/pkg/server/release_readonly_endpoints_test.go": "13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e",
+    "backend/pkg/server/release_secret_real_test.go": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+    "backend/pkg/server/release_security_regression_test.go": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+    "backend/pkg/server/release_session_expiry_test.go": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+    "backend/pkg/server/release_session_lifecycle_test.go": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+    "backend/pkg/server/replay_source.go": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+    "backend/pkg/server/resource_scopes.go": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+    "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+    "backend/pkg/server/stream.go": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+    "backend/pkg/server/template_capability.go": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+    "backend/pkg/server/traffic_handlers.go": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/server/workspace_broker.go": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+    "backend/pkg/server/workspace_cookie_test.go": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+    "backend/pkg/server/workspace_membership.go": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+    "backend/pkg/server/workspace_projection.go": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+    "backend/pkg/server/workspace_recovery_test.go": "cc1a8b1f925ee350e4290f10a97474d92cd76d3f88acb48bce30e2077fe98f10",
+    "backend/pkg/server/workspace_scope.go": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+    "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+    "docs/RELEASE_THREAT_MODEL.md": "81df8248855088b9483ebe6cba43c86cedcdc871d9b64e7679efa8b0f62fc251",
+    "frontend/src/context/ShipyardClusterContext.jsx": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+    "frontend/src/context/WorkspaceProvider.jsx": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc"
+  },
+  "reviewTiming": {
+    "targetSeconds": 300,
+    "elapsedAtFinalizationSeconds": 350.073,
+    "withinTarget": false
+  }
+}

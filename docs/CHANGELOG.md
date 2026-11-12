@@ -1,3 +1,8 @@
+## 12 Kasım 2026 — araçlırenderkimliği ve auth hedefli doğrulama
+
+- Product/runtime değişmeden2kısa renderidentitykoşusu, kaynak/hash/UUID/attribute/material kayıtları vePNGler eklendi. Tarihsel ekçizim yenidenoluşmadı; finding kapatılmadı.
+-23f32runtime dosyasında auth/session/grant/RBAC akışı haritalandı;17ana+13alt fake/in-processHTTPkontrolü freshPASS ve peerreviewile kaydedildi.6scope/credentialkontrolü ayrıaçık.
+
 ## 12 Kasım 2026 — dengeli panel ölçümü ve kabul engeli
 
 - SabitA/Bfrontend ve ortakbackend ile40pencere kaydedildi; CPU/Δpanel,52metrik,hamJSONarşivleri ve iki workerın bağımsız sayısal/kapsam incelemesi eklendi.

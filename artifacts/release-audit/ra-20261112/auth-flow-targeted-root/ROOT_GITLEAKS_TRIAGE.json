@@ -1,0 +1,78 @@
+{
+  "count": 9,
+  "scope": "Only exact verified public Git SHA values in source/evidence metadata; no globalignore or unreviewed exceptions.",
+  "rows": [
+    {
+      "file": "artifacts/release-audit/ra-20261112/auth-flow-source-review-worker/result.json",
+      "line": 668,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "2934b8f0679fe7fff0f1ca63e8d4d4db33af1f35:backend/pkg/server/release_secret_real_test.go",
+      "sha256": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z/manifest.json",
+      "line": 194,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd:frontend/src/workbench/secretPayload.js",
+      "sha256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z/manifest.json",
+      "line": 195,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd:frontend/src/workbench/secretPayload.test.js",
+      "sha256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z/summary.json",
+      "line": 195,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd:frontend/src/workbench/secretPayload.js",
+      "sha256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z/summary.json",
+      "line": 196,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd:frontend/src/workbench/secretPayload.test.js",
+      "sha256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-B-20261112T195727Z/manifest.json",
+      "line": 194,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12:frontend/src/workbench/secretPayload.js",
+      "sha256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-B-20261112T195727Z/manifest.json",
+      "line": 195,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12:frontend/src/workbench/secretPayload.test.js",
+      "sha256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-B-20261112T195727Z/summary.json",
+      "line": 195,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12:frontend/src/workbench/secretPayload.js",
+      "sha256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-B-20261112T195727Z/summary.json",
+      "line": 196,
+      "rule": "generic-api-key",
+      "verifiedPublicGitObject": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12:frontend/src/workbench/secretPayload.test.js",
+      "sha256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_PUBLIC_SOURCE_OR_EVIDENCE_SHA_NOT_CREDENTIAL"
+    }
+  ]
+}

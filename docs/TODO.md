@@ -1,3 +1,9 @@
+## 12 Kasım 2026 — sınırlı çizim tanısı ve auth guard checkpoint
+
+- [x] İki kısa araçlıA/Bçizimkimliği tanısı ve8worker/4rootPNGincelemesi; BENCH-RENDER-001 yenidenoluşmadı, açık. TamCPUmatrisi tekrarlanmadı.
+- [x] Auth kaynakharitası ve17ana/13alt sentetikguardPASS; ikinciinceleme tamam.
+- [ ] Önerilen6workspace/credential/directreadonly/Secretdiscoverykontrolünü ayrısonlugrupta çalıştır; TEST01.02henüzkapanmadı.
+
 ## 12 Kasım 2026 — dengeli panel kanıt checkpoint'i
 
 - [x] Beş blok/40pencere panel0/5event matrisi, iki offline ikinci inceleme ve70JSON hash/roundtrip arşivi tamamlandı; kaynak/kalite düşürülmedi.

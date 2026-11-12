@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T22:53:53.578839+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T23:10:55.999989+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12; HEAD7c9e9ffb3dd132775be7cc4953266eaef08d651e remote ile aynı. Canlı ROADMAP farkı belge-only; frozen frontend/common backend ve14harnessSHA korunur. Final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:137; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:36; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:136; IN_PROGRESS:22; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:36; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -25,7 +25,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 
 | Kategori | Faz | Durum | Geçerli kanıt |
 |---|---:|---|---|
-| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | runtime-surface-retest/REPORT.md + second-review |
+| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:4, IN_PROGRESS:1, VERIFIED_DONE:1 | runtime-surface-retest/REPORT.md + second-review |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
@@ -118,12 +118,12 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Sorumlu: ANA MÜDÜR + Provider worker (yalnız kaynak akışı incelemesi; testler root tarafından ayrı)
+- Kaynak / build / paket kimliği: HEAD2934b8f0; runtime f32d6b23. Bu aşama kaynak haritasıdır, finalpaket kabulü değil.
+- Ortam / kullanılan kimlik ve yetki: Kaynak-only inceleme, credential/lab erişimi yok. Planlanan hedefli Go guard testleri GPU tanılaması bittikten sonra çalışacak.
+- Başlangıç zamanı: 2026-11-12T22:59:53.764171+03:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-01.02-S1 — Hazırlık
@@ -135,6 +135,10 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+2026-11-12 devam: auth/session/writegrant/RBAC aktif kaynağı ve geçmiş ownedHost/Secret kanıtının byteuygulanabilirliği tek sonlu readonlyworker işine ayrıldı. Testisimleri/önkoşullar çıkarılacak; henüz yeniGo/API/browser kontrolü çalışmadı. GPUtanılama ile aynıanda ağırtest/build yok; rootanaROADMAP/Git sahibi.
+
+Kaynakworker23runtime/contextdosyasının f32ilebyteeşitliğini ve dörtgeçmişsession/Host/Secretkanıtsetinin kayıtlırepoSHAuygulanabilirliğini doğruladı; root45SHAyı yenidenhesapladı. Önerilen18testlistesi sourcejobda NOT_RUN; sonrakiroot17grubu12ortak+5komşudur, kalan6kontrol yapılmış sayılmaz. Sourcejobyaklaşık300snhedefini~340snileaştı; workflowtimingmiss açık, ürünSLOkanıtıdeğil.
+
 #### TEST-01.02-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -142,6 +146,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+GerçektekGoçağrısı tamam:17exactana+13altPASS/packagePASS,0fail/skip,4.966728sn/150wall. SDK1.26.11/-count1/-p1/-parallel1/-timeout90s; syntheticfakeclient/in-processHTTP. Yetkiliaçıkgrant gerçekfakemutationhedefine ulaşıyor; source/readOnly/namespace/profilecookiepozitifleri var. GerçekKubernetes/RBAC/TLS/providerkabulü değildir.
 
 #### TEST-01.02-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -151,6 +157,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+Aynıgrupta unseededwrite/missing-stalenonce/readOnlydeny, gecikmişenable+revoke/context roundtrip, expiredoperatorcookie/replay, wrongorigin/host/contenttype/session, scopestreamcancel veprofilcookieayrımı geçti. Alt assertionları ayrıfaz saymadık. Sixsourceönerisiscope/directreadonly/credentialkontrolü bu yeni gruptaNOT_RUN; fakeSSARallowfixturegerçekRBACredkanıtıdeğil.
+
 #### TEST-01.02-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
 - Önem derecesi ve gerekçesi: —
@@ -159,11 +167,15 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Düzeltme commit'i veya çalışma farkı: —
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
 
+Yeni doğrulanmışürünhatası yok kararı yalnız kaynakakışı/çalışan17test kapsamındadır; genelgüvenliktemizliği iddiasıyok. ManagementenableSSARtransportbaşarısı writeRBACyetkisi değildir; operationauthorizeAllowedvegerçekAPIsonkarar. StatictokenTTLileoperatorabsolute8h ayrı; internalmanagementAllowedctxbypasspublicprotecti atlamaz.
+
 #### TEST-01.02-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
 - [ ] Komşu davranışlar gerektiği ölçüde sınandı.
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+İlkPoCretestNOT_APPLICABLE: bu grupta yeniürünfixi yok;17mevcutkontrol fresh-count1 koşuldu, tarihselbaşarı yenidenadlandırılmadı. Kaynakworker18önerisinin6eksikkontrolü closureöncesireviewer tarafından değerlendiriliyor.
 
 #### TEST-01.02-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -171,6 +183,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - [ ] Gereken bağımsız ikinci inceleme tamamlandı.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
+
+DörtyakalananGochildidentityyok; sourcebefore/afterSHAaynı.20safetyörneğinde toplamownedGoRSSgözlenenmax648.984MiB/1.5GiB; exactphysicalRAMdeğil. Port5192GPUişibittikten sonrafreekontrolüylebaşlandı; labstopped/KUBECONFIGdevnull. İkinciworker incelemesi bekliyor; fazhenüzkapanmadı. Kanıt: auth-flow-targeted-root/{REPORT,plan,execution}.json/md +auth-flow-source-review-worker/REPORT.md.
 
 #### TEST-01.02-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
@@ -9454,6 +9468,8 @@ PRE-RUNreview3helpergap(AC/lowpowerguard,perjobcleanupgating,reserve8vs15) buldu
 
 Yeni test-aracı bulgusu BENCH-RENDER-001: validator/comparator actualrender-work kimliği/eksik eşdeğerlik kanıtını yeterince denetlemiyor. Henüzürünhatası, bellek sızıntısı veya hover nedeni doğrulanmadı. Enküçüksonraki iş kısa renderedobject/geometry/material+hover/reset tanılamasıdır. İlkarchive helper suffix filtresi0file verdi; ilkRAW_INDEX-initial-zero-files.json başarıdeğil diye korundu. Correctedarchive.py exact70ad/JSONparse/decompress/byteequal ve nooverwrite ile geçti; measurement yenidenkoşulmadı.
 
+Yeni sonlutanılama: yalnız2A/Bjob/30swarm+15active,toplam98.724sn+cleanup/600sphase,0retry. BENCH-RENDER-001 NOT_REPRODUCED; iki tarafta before426/60/32geom, active/after434/60/34. Maincameracallback238→246aynı, sadeceblueNode0outline/R3Fhovermapboş; geçmişfarkınhovernedeni kanıtlanmadı. LiteralUUIDalanları hariçgeometriattribute/indexbyteSHA+material/target/countmultiset4noktadaeşit; bütüninstance/uniform/atomicpose/pixeleşitliğideğil. Hamprofiler=false korunur, ayrıkclassificationinstrumented/noCPUacceptance açık.
+
 #### TEST-16.06-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
@@ -9472,6 +9488,8 @@ Offline reduce.mjs syntax ve tam40cell çalışmasıPASS; mevcutcomparePanels so
 125capturedrefabsent/5192free/backend+harnessSHAaynı/Battery62→59/otherworkersidle.10rawJSONgzip5.09MB→306KB/decompressSHA,indexmanifestvar. Farklıproviderworker58inputhash/13metricsignedpair/10rawframe+300uniqueeventsve14snapshots/window/source98files+6assetsperfront/cleanup/powerinyenidenhesapladı. RootreviewREPORT+2SHAkontrolü yaptı. Finalnestedobjedump yok;sourcefullnestedcanlıverdiktlerininincelenmesidir. Kanıt: perf-open-events-five-pairs-root/REPORT.md +../perf-open-events-second-review-worker/REPORT.md.
 
 [x]247yakalanmışprocessidentityabsent/5192free/14sealedSHA+backendaynı.371powerrecord Battery53→43/aynıpmset/low0. [x]70rawJSON24,481,650byte→1,604,492gzipbyte roundtripSHAilekorundu. [x]Backendworker sayısal, providerworker127input+2outputSHA/kapsam incelemesini bitirdi; aynıajansistemi, profesyonelüçüncütarafdeğil. Guard+dataPASS, RENDER_COMPARABILITY_UNRESOLVED; RSSvegeometrymekanizması açık. Kanıt: perf-panel-balanced-five-blocks-root/{REPORT.md,ACCEPTANCE.json,RAW_INDEX.json} +perf-balanced-{numeric,evidence}-review-worker/REPORT.md.
+
+Tanılamada75+75plan/apply/receive ve fullcanonicalverdikttrue.39capturedidentityabsent/5192free; kaynak/frozenbackendaynı. Worker8PNGyi,Root4before/afterPNGyi gerçektenaçtı;Root41SHAyı doğruladı. AsyncHashsonrasıtransformörnekleri atomicframepozu değildir; maincamera238/246callback shadowpasslarındışıdır. Tanılama518.3/600s; sorunyenidenoluşmadı diye geçmiş40windowkabulü kapatılmadı. Kanıt: perf-render-identity-diag-worker/REPORT.md +ROOT_VISUAL_REVIEW.json.
 
 #### TEST-16.06-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

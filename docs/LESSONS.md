@@ -1,3 +1,9 @@
+## 12 Kasım 2026 — tanılama kimlikleri ve test listesi sınırı
+
+- Yeni sahneler rastgelegeometry/ShapeUUID taşır; hamcontenthash farkı tekbaşına biçimfarkı değildir. RawUUIDlerikoruyup yalnızliteralUUIDanahtarlarını dışlayan attribute/indexbyteSHA+material/countmultisetini ayrıca karşılaştır. Bu işlem bütüninstance/uniform/atomicposeeşitliğini kanıtlamaz.
+- onBeforeRender birframekimlikseti yakalasa da asyncHashsonrasındaseri hale getirilen transformlar sonradanörneklenmiştir; atomicframepozu diye sunulmaz. Tanılama hooku varken rawprofiler=false alanı normalCPUkanıtı olamaz; ayrık açıkclassification gerekir.
+- Kaynakreviewerönerisi18testile rootçaçalıştırılan17test aynıgrup değildir. Kesişimi ve6yapılmayankontrolü açıkçıkar; sayıyakınlığı veya packagePASS ile yapılmamışkontrolü geçti sayma.
+
 ## 12 Kasım 2026 — sayaç doğruluğu, render eşdeğerliği ve arşiv kapsamı
 
 - Kamera/UID/filofazı/canonicaladet eşitliği, actualsubmittedrenderwork eşitliğini tekbaşına kanıtlamaz. Rawframecalls/triangle ve mümkünse renderedobject/geometry/material kimliği birlikte incelenmeli. Draw-call değişikliği tekbaşına kusur değildir; batchingeşdeğerliği veya yeni/eksiknesne nedeni kanıtlanmalı. Açıklanamayan farkı “hover/noise” diye kapatma.
