@@ -1,0 +1,19 @@
+{
+  "repositoryRunSHA256": "1bbe0778389f4b80a88fd9fbc42dab0e4920c201c30a639757974abd2b9f70ec",
+  "privateRunSHA256": "78010db367bcc4d5979f3b3161324246e0d58b6b0f915f4c43c534fe9b0905ac",
+  "SHA256": {
+    "benchmarks/run.mjs": "1bbe0778389f4b80a88fd9fbc42dab0e4920c201c30a639757974abd2b9f70ec",
+    "benchmarks/fixtures.mjs": "c53ffc7cab18c06991437fe0f17ebdade10c28bbb56146ee19ba2ee63a45becc",
+    "benchmarks/probe.mjs": "bec5e6362c57c0ce2c2ed2865d6fa7e05fd8446daa153ea7054fdcdb0089d367",
+    "frontend/src/App.jsx": "92912b2f27bc4e910e966644588a134997c75ea341ee3d3e4a01305caa67e114",
+    "frontend/src/harbor/HarborScene.jsx": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1",
+    "frontend/src/harbor/assets.jsx": "dfc512a3baa639c4f0fdd420b69e64014c537c20dd42a5b1b3da58dd1df35a3b",
+    "benchmarks/.build/cat16-f32-20261112T113255Z.json": "fb96c40c0719f5242309a1a7971f244bcf48193628848419904fd60c1b3d0312",
+    "benchmarks/.build/cat16-f32-20261112T113255Z/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+    "benchmarks/.build/cat16-common-f32-20261112T113255Z/backend.test": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8"
+  },
+  "uniqueMarker": "if (comparabilitySmoke) {",
+  "markerOccurrences": 1,
+  "noPrepareCameraInsideTransition": true,
+  "noFocusCallInsideTransition": true
+}
