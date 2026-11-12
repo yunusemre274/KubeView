@@ -1,3 +1,8 @@
+## 12 Kasım 2026 — çizim sayaç guardı ve semantik eşdeğerlik
+
+- Aynı block/senaryopencereçiftinin actualbefore/after ve framepercentilesayaçları kontrol edilmeden otomatikkarşılaştırma uygunluğu verilmemeli. Eksik/NaNveriUNKNOWN; N/Ayasıfıryazılmaz. Frameörnekadetleri pozitifolmalı amaFPSnenedeniyle eşitbeklenmez.
+- Aktifsubmittedworkcounters ileallocatedgeometry/textureenvanteri farklıkanıttır. Allocation-only farkı aktifnesnedeğişimi demekdeğildir. Meşrubatchingfarkında kaynak/semantik/görselkanıtla ayrıincelemegerekir; guardtekbaşına optimi veya kalitehükmü vermez.
+
 ## 12 Kasım 2026 — tanılama kimlikleri ve test listesi sınırı
 
 - Yeni sahneler rastgelegeometry/ShapeUUID taşır; hamcontenthash farkı tekbaşına biçimfarkı değildir. RawUUIDlerikoruyup yalnızliteralUUIDanahtarlarını dışlayan attribute/indexbyteSHA+material/countmultisetini ayrıca karşılaştır. Bu işlem bütüninstance/uniform/atomicposeeşitliğini kanıtlamaz.

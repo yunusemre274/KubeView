@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T23:18:00.063762+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T23:26:03.777316+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12; HEAD7c9e9ffb3dd132775be7cc4953266eaef08d651e remote ile aynı. Canlı ROADMAP farkı belge-only; frozen frontend/common backend ve14harnessSHA korunur. Final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:136; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:37; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:136; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:37; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -40,7 +40,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
-| CAT-16 — A/B benchmark | 13 | NOT_STARTED:11, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
+| CAT-16 — A/B benchmark | 13 | NOT_STARTED:11, RETEST_REQUIRED:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:3 | Henüz yok |
@@ -9358,7 +9358,7 @@ Source-reuse: değişiklik yalnızpostCPUboundary0eventfullcanonicalcheck+purepr
 - Ortam / kullanılan kimlik ve yetki: MacM5/32GiB/macOS27.0.1, Chromium156/ANGLEMetal/medium/DPR1/1440x900/60HznativeCG; ownedfakeAPI5192/noKUBECONFIG. Gerçeklabstopped
 - Başlangıç zamanı: 2026-11-12T17:29:43.124952+00:00
 - Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Durum: RETEST_REQUIRED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-16.06-S1 — Hazırlık
@@ -9442,6 +9442,8 @@ Yeni test-aracı bulgusu BENCH-RENDER-001: validator/comparator actualrender-wor
 
 Yeni sonlutanılama: yalnız2A/Bjob/30swarm+15active,toplam98.724sn+cleanup/600sphase,0retry. BENCH-RENDER-001 NOT_REPRODUCED; iki tarafta before426/60/32geom, active/after434/60/34. Maincameracallback238→246aynı, sadeceblueNode0outline/R3Fhovermapboş; geçmişfarkınhovernedeni kanıtlanmadı. LiteralUUIDalanları hariçgeometriattribute/indexbyteSHA+material/target/countmultiset4noktadaeşit; bütüninstance/uniform/atomicpose/pixeleşitliğideğil. Hamprofiler=false korunur, ayrıkclassificationinstrumented/noCPUacceptance açık.
 
+BENCH-RENDER-001 otomatikguard kısmı düzeltildi: comparePanels eşleşmişaynıblock+scenario before/aftercalls/triangles/lines/points ve summarycalls/trianglespercentile bilgilerini değerlendirir. Eksik/nonfiniteUNKNOWN, farkREQUIRES_RENDER_EQUIVALENCE_REVIEW; eski otomatikcomparabletrue engellendi. Bu birproduct/sahnefixi değil. Allocationgeometry/texture ayrıobservation; farklıdrawcallsbatchingvarsa semantik/görselincelemeister, otomatikregresyondeğil.
+
 #### TEST-16.06-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
@@ -9449,6 +9451,8 @@ Yeni sonlutanılama: yalnız2A/Bjob/30swarm+15active,toplam98.724sn+cleanup/600s
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
 
 Offline reduce.mjs syntax ve tam40cell çalışmasıPASS; mevcutcomparePanels sonuçları ve52metrikCSV saklandı. Sayısalworker 40window×5CPUrolünü OS sayaç/duvarsüresinden bağımsız türetti,480araörnek/4.786alan max3.55e−14 fark. OlaylıΔpanel Amed0.010467/Bmed0.044199core, pairedΔB−ΔA med+0.013225/range−0.010735…+0.135490. Renderbulgusu nedeniyle nedenselCPUsonucuyok. Güncelürünoptimizasyonu/kalite/refreshdeğişikliği0.
+
+REDoldcomparator5pass/7expectedfail; correctedtargeted+metrics/generic49/49pass,0skip,0.797s. Yeniartifactte eski40cellofflineoldtrue→newfalse/reviewrequired;3pairedcell işaretlendi,bilinenp3B+1call/+12line dahil. CPUtable/delta/samples/inputs exactaynı ve178historicalfileSHAdeğişmedi; yeniCPUwindow0. Rootdiff/testsve22SHAyıikinciinceledi.
 
 #### TEST-16.06-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -9463,11 +9467,13 @@ Offline reduce.mjs syntax ve tam40cell çalışmasıPASS; mevcutcomparePanels so
 
 Tanılamada75+75plan/apply/receive ve fullcanonicalverdikttrue.39capturedidentityabsent/5192free; kaynak/frozenbackendaynı. Worker8PNGyi,Root4before/afterPNGyi gerçektenaçtı;Root41SHAyı doğruladı. AsyncHashsonrasıtransformörnekleri atomicframepozu değildir; maincamera238/246callback shadowpasslarındışıdır. Tanılama518.3/600s; sorunyenidenoluşmadı diye geçmiş40windowkabulü kapatılmadı. Kanıt: perf-render-identity-diag-worker/REPORT.md +ROOT_VISUAL_REVIEW.json.
 
+Guardfix kod/kanıtı render-work-guard-worker/{REPORT.md,result.json,ROOT_REVIEW.json}. Mevcutactualworld/kamera/UID/GC/gölge/su/seyir kaliteveveri yoludeğişmedi. Eski source/baseline kayıtları yeni guardla eskidengerçekleşmiş gibi düzeltilmedi. Mevcutcounterguard tümsemantic/instance/materialeşitliğinin kanıtıdeğil.
+
 #### TEST-16.06-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- IN_PROGRESS:5tamblok/40window ve iki offline inceleme tamam. BENCH-RENDER-001 actualrender-work eşdeğerliğini açık bırakıyor; sayısal doğru sonuçlardan kabul edilmiş nedenselCPU sonucu türetilmedi.
-- İlkopen-only ailesi ayrı tarihsel/kapsamlı kayıttır; bu matrisle havuzlanmaz.
-- Sıradaki kısa kaynak/nesne tanılaması; tam matris için otomatik tekrar yok. Fullruntime/V11-18/continuous60dk/finalpaket ve manuelkapılar açık.
+- RETEST_REQUIRED: otomatiksubmitted-workguard açığı RED→GREEN+offlinehamveriyle giderildi; fakat geçmişekçizimin nesne nedeni/RSSmekanizması ve controlledsame-workCPUmatrisinin kabulü açık.
+- İkikısatanılamadafarkyenidenoluşmadı; bu findingi kapatmaz. Yeni sonluplan/somutsoru olmadan60dkmatris otomatiktekrarlanmaz.
+- Fullruntime/V11-18/continuous60dk/finalpaket ve manuelkapılar ayrıaçık.
 
 ### TEST-16.07 — Log statik/akış/uzun satır AB
 

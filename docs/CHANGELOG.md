@@ -1,3 +1,8 @@
+## 12 Kasım 2026 — benchmark karşılaştırması fail-closed çizim incelemesi
+
+- Eşleşmişsubmittedcounters belirsiz/farklıysa automaticeligibilitydurur; renderWorkReviewalanıeklenir, CPU/Δçıktılarıkorunur. Allocationayrıgözlem, batchinglegitimiteliği semantikincelemeye bırakılır.
+-7REDfailure→49targeted/neighborPASS; eski40cell3çiftteincelemegerektiriyor. YeniCPUkoşusu/productfix/optimizasyoniddiasıyok.
+
 ## 12 Kasım 2026 — auth kapsam eklentisi ve source-faz kapanışı
 
 - Altıworkspace/credential/read-only/Secretdiscovery sentetik kontrolü ayrıgrupta6ana+18altPASS; önceki17ile23unique/31alt veönerilen18kontrolün tamamı kapsandı.

@@ -1,3 +1,9 @@
+## 12 Kasım 2026, 23:23 — otomatik çizim iş yükü guardı düzeltildi
+
+`comparePanels` artık aynıblok/koşulun actualsubmittedcounters bilgisi farklıysa veyaeksikse otomatik kabulü durdurur. RED7beklenenfail sonrası hedefli+komşu49/49PASS. Eski40hücre yeni guardla3eşleşmişhücre içinREQUIRES_RENDER_EQUIVALENCE_REVIEW üretir; bütünCPU/Δtablosu ve178tarihseldosya aynı kaldı. [Kod/test/hamveri retestkanıtı](../artifacts/release-audit/ra-20261112/render-work-guard-worker/REPORT.md).
+
+Allocationgeometri/texture farkı ayrı gözlemdir; tekbaşına fazladanaktifçizim/leakdeğildir. Batchingfarkı semantik/görselincelemeister; otomatikregresyon sayılmaz. Eşitsayaçlar da bütüninstance/material/pixeleşitliğini kanıtlamaz. Ürün/runtime/görselkalite ve CPUwindow değişmedi. Tarihselnesnenedeni/RSSveTEST16.06controlledsame-workkabulü **RETEST_REQUIRED**; genelV11-18yayınkapısıaçık.
+
 ## 12 Kasım 2026, 22:45 — dengeli panel matrisi ölçüldü; karşılaştırma kabulü açık
 
 Beş eşleşmiş blokta40pencere (0/5olay-sn × panelkapalı/açık × A/B), her30sısınma+60sölçüm tamamlandı. Frozenfrontend36d/f32,ortakbackend9d;MacM5/Chromium156Metal/medium/DPR1/1440×900/M38,canonical20Node/300Pod,ayrıntılı8/120,su/seyiraçık,Battery53→43. Ürün/renderkalitesi değiştirilmedi.

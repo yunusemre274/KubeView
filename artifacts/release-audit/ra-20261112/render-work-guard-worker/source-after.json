@@ -1,0 +1,10 @@
+{
+  "SHA256": {
+    "benchmarks/panel-compare.mjs": "66662ee807299a3db414160be75bfbf912e10fc94ff34ba60c0661361fa4a001",
+    "benchmarks/panel-compare.test.mjs": "e0051158134792beefaeb36efcaa5e3e3600744ae3cfe255492b5da575db7d2f"
+  },
+  "onlyOwnedHarnessFiles": [
+    "benchmarks/panel-compare.mjs",
+    "benchmarks/panel-compare.test.mjs"
+  ]
+}

@@ -1,3 +1,8 @@
+## 12 Kasım 2026 — submitted-work guard düzeltmesi
+
+- [x] Eksik/farklıçizimverisinin otomatikCPUkarşılaştırmasını geçirmesi RED→GREEN49/49 veimmutable40offline retestile engellendi; sayısaldeğerler/signedΔdeğişmedi.
+- [ ] BENCH-RENDER-001sahnenesnenedeni/RSSvecontrolledsame-workmatriskabulü: TEST16.06RETEST_REQUIRED. Batching/allocatedmemory farkı otomatikgörselregresyon sayılmadı.
+
 ## 12 Kasım 2026 — TEST01.02 dar kabulü
 
 - [x] Auth/session/writegrant/RBAC aktifkaynakharitası,17+6unique/31alt fake/in-processguard kontrolü veiki peerreview ile TEST01.02 kaynakdenetimi tamam. Kaynakönerisindeki6eksikkontrol ayrıkoşuldu; ilk17tekrarlanmadı.

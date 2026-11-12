@@ -54,6 +54,62 @@ export function settings(run) {
     canonicalPods: b.stats.lifecycle.canonicalPods,
   });
 }
+function reviewSubmittedWork(sides, blocks, scenarios) {
+  const pairs = [], allocationObservations = [];
+  const knownCount = value => Number.isFinite(value) && value >= 0;
+  const compareCount = (path, before, after) => ({
+    path,
+    before: knownCount(before) ? before : null,
+    after: knownCount(after) ? after : null,
+    status: !knownCount(before) || !knownCount(after)
+      ? "UNKNOWN" : before === after ? "MATCHED" : "DIFFERENT",
+  });
+  for (const block of blocks) for (const scenario of scenarios) {
+    const rows = sides.map(side => side.filter(run => run.repeat === block && run.scenario === scenario));
+    const differences = [], unknowns = [];
+    const [before, after] = rows.map(side => side[0]);
+    if (rows.some(side => side.length !== 1)) {
+      unknowns.push({ path: "pairedCell", before: null, after: null, status: "UNKNOWN" });
+    } else {
+      const inspect = (path, a, b) => {
+        const observation = compareCount(path, a, b);
+        if (observation.status === "UNKNOWN") unknowns.push(observation);
+        if (observation.status === "DIFFERENT") differences.push(observation);
+      };
+      for (const boundary of ["before", "after"]) {
+        for (const key of ["calls", "triangles", "lines", "points"])
+          inspect(`${boundary}.stats.${key}`, before[boundary]?.stats?.[key], after[boundary]?.stats?.[key]);
+        for (const key of ["geometries", "textures"])
+          allocationObservations.push({ block, scenario, ...compareCount(
+            `${boundary}.stats.memory.${key}`,
+            before[boundary]?.stats?.memory?.[key], after[boundary]?.stats?.memory?.[key],
+          ) });
+      }
+      for (const key of ["calls", "triangles"]) {
+        const a = before.summary?.[key], b = after.summary?.[key];
+        // Different frame totals are expected; sample counts prove presence only.
+        if (![a?.n, b?.n].every(n => Number.isSafeInteger(n) && n > 0))
+          unknowns.push({ path: `summary.${key}.n`, status: "UNKNOWN",
+            before: Number.isSafeInteger(a?.n) && a.n > 0 ? a.n : null,
+            after: Number.isSafeInteger(b?.n) && b.n > 0 ? b.n : null });
+        for (const percentile of ["p50", "p95", "p99", "min", "max"])
+          inspect(`summary.${key}.${percentile}`, a?.[percentile], b?.[percentile]);
+      }
+    }
+    pairs.push({ block, scenario, status: unknowns.length ? "UNKNOWN"
+      : differences.length ? "REQUIRES_RENDER_EQUIVALENCE_REVIEW" : "MATCHED_COUNTERS_ONLY",
+      differences, unknowns });
+  }
+  const status = pairs.some(pair => pair.status === "UNKNOWN") ? "UNKNOWN"
+    : pairs.some(pair => pair.differences.length) ? "REQUIRES_RENDER_EQUIVALENCE_REVIEW"
+      : pairs.length ? "MATCHED_COUNTERS_ONLY" : "UNKNOWN";
+  return {
+    protocol: "paired-submitted-work-v1", status,
+    automaticEligibility: status === "MATCHED_COUNTERS_ONLY",
+    pairs, allocationObservations,
+    interpretation: "Counter differences or unknown data require external semantic and visual equivalence review; counters alone assign no performance or quality verdict. Matching counters establish only this guard's scope. Allocation observations describe renderer memory inventory separately, without establishing active draws, retained JS or leaks.",
+  };
+}
 export function comparePanels(baselines, candidates) {
   const reasons = [];
   const reference = baselines[0].manifest;
@@ -160,6 +216,9 @@ export function comparePanels(baselines, candidates) {
             .length !== 1
         )
           reasons.push(`missing/duplicate cell ${side}/${block}/${scenario}`);
+  const renderWorkReview = reviewSubmittedWork(sides, blocks[0], groups);
+  if (!renderWorkReview.automaticEligibility)
+    reasons.push(`REQUIRES_RENDER_EQUIVALENCE_REVIEW: ${renderWorkReview.status}`);
   const metrics = {
     browserCPU: (r) => r.process.browserCores,
     rendererCPU: (r) => r.process.rendererProcessCores,
@@ -230,6 +289,7 @@ export function comparePanels(baselines, candidates) {
   return {
     comparable: !reasons.length,
     reasons: [...new Set(reasons)],
+    renderWorkReview,
     inputs: {
       before: baselines.map((r) => r.manifest.id),
       after: candidates.map((r) => r.manifest.id),
@@ -275,6 +335,8 @@ if (
       {
         comparable: result.comparable,
         reasons: result.reasons,
+        renderWorkReview: { status: result.renderWorkReview.status,
+          affectedPairs: result.renderWorkReview.pairs.filter(pair => pair.status !== "MATCHED_COUNTERS_ONLY").length },
         table: result.table.map((r) => ({
           scenario: r.scenario,
           before: r.before.browserCPU,

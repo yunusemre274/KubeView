@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "benchmarks/panel-compare.test.mjs"
+  ],
+  "startedAfterRootGO": true,
+  "exitCode": 1,
+  "elapsedSeconds": 0.062461417001031805,
+  "expected": "RED: new render-work tests fail against unchanged old comparator",
+  "sourceSHA256": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+  "testSHA256": "e0051158134792beefaeb36efcaa5e3e3600744ae3cfe255492b5da575db7d2f",
+  "stdoutSHA256": "7d898e96161a61c294a18b184aac65b6b8ec884288f9795379eef4c4c395b247",
+  "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

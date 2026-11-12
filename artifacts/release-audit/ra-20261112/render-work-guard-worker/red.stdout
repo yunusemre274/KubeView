@@ -1,0 +1,149 @@
+✔ process coverage flags even an intermediate browser child that exits before final sample (1.275292ms)
+✔ sleep-diluted CPU is rejected even with stable browser PIDs (0.091875ms)
+✔ paired comparison retains negative deltas and rejects a missing/duplicate cell (1.76525ms)
+✖ submitted-work differences require review without changing CPU or signed deltas (1.071583ms)
+✖ submitted-work comparison pairs the same block and scenario (0.391792ms)
+✖ render distribution sample counts may differ but must be positive (0.783625ms)
+✖ missing or nonfinite submitted-work metadata is UNKNOWN rather than zero (0.375958ms)
+✖ legacy inputs missing render counters on both sides cannot pass automatically (0.492417ms)
+✖ allocation-only differences are observations and do not imply extra submitted work (0.331958ms)
+✖ batching changes require semantic and visual review without a performance verdict (0.718083ms)
+✔ identity regression rejects simultaneous child exit and PID reuse (0.125ms)
+✔ identity regression rejects a sampled cohort disappearance even when endpoints match (0.088125ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 5
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38.252083
+
+✖ failing tests:
+
+test at benchmarks/panel-compare.test.mjs:91:1
+✖ submitted-work differences require review without changing CPU or signed deltas (1.071583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:97:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/panel-compare.test.mjs:105:1
+✖ submitted-work comparison pairs the same block and scenario (0.391792ms)
+  TypeError: Cannot read properties of undefined (reading 'status')
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:110:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+
+test at benchmarks/panel-compare.test.mjs:113:1
+✖ render distribution sample counts may differ but must be positive (0.783625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:120:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/panel-compare.test.mjs:124:1
+✖ missing or nonfinite submitted-work metadata is UNKNOWN rather than zero (0.375958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:137:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/panel-compare.test.mjs:144:1
+✖ legacy inputs missing render counters on both sides cannot pass automatically (0.492417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:149:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/panel-compare.test.mjs:153:1
+✖ allocation-only differences are observations and do not imply extra submitted work (0.331958ms)
+  TypeError: Cannot read properties of undefined (reading 'status')
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:159:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+
+test at benchmarks/panel-compare.test.mjs:163:1
+✖ batching changes require semantic and visual review without a performance verdict (0.718083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:171:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
