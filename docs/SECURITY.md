@@ -52,6 +52,23 @@ Minimum örnekler: [namespace okuyucu](../deploy/rbac-namespace-readonly.yaml), 
 
 ## Secret, log, terminal ve önizleme
 
+Aktif kaynak WebSocket'i, ilk list/watch izninden sonra mevcut 15 saniyelik
+heartbeat üzerinden aynı credential ve kabul edilmiş kesin GVR/namespace
+kapsamlarının list/watch izinlerini yeniden sorgular. Tüketici başına tek
+asenkron kontrol çalışır; tüm kontrol bütçesi `5sn + 2×kapsam/30sn` olup mevcut
+30QPS/60Burst yükseltilmez. Sağlıklı veri bu sorguyu beklemez. Bilinen ret veya
+kontrolün tamamlanamaması yeni veri yayınını durdurur; kapsam non-authoritative
+bildirilir ve o tüketici kapatılır. Diğer yetkili tüketicinin broker'ı silinmez.
+
+Bu, anlık/atomik izin iptali değildir. Büyük kapsamda kontrol bir heartbeat'ten
+uzun sürebilir; kaçırılan tickler ve devam eden yazı nedeniyle gecikme vardır.
+Örneğin512 kapsamın bütçesi39,13sn; muhafazakâr planlama ifadesi `2B+15sn`, buna
+runtime ve devam eden yazı etkileri ayrıca eklenir. Bu ölçülmüş bir iptal SLO'su
+değildir. Önceden tarayıcıya verilmiş veri geri çağrılamaz. SSAR gerçek ağ maliyeti,
+kısıtlı kimlikli gerçek RoleBinding iptali ve final paket kabulü ayrıca açıktır.
+Log/exec/forward/flow oturumlarının farklı yenileme sınırları bu kaynak-watch
+düzeltmesiyle tamamlanmış sayılmaz. [İzlenebilir kanıt](../artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/REPORT.md).
+
 Toplu resource/watch state'i Secret değerlerini taşımaz. Secret içeriği ayrı, açık ve yetkili reveal/edit akışındadır; maskeli değerler gerçek içerik gibi geri yazılmaz. Kullanıcının bu akışta bilerek açtığı değer tarayıcıda bulunabilir; ekran paylaşımı ve clipboard'a dikkat edin. Uygulama logları veya YAML kullanıcıya ait başka hassas içerikler de taşıyabilir; KubeView bütün serbest metin sırlarını otomatik tanıyan bir redaktör değildir.
 
 **Tanılamayı kopyala** kontrollü bir allowlist kullanır: mod, context/namespace, bağlantı/snapshot/stale/read-only alanları, son kaynak zamanı ve kontrol durumları. Ham hata mesajı, API adresi, bağlantı nonce'u, kubeconfig, kaynak içeriği veya sağlayıcı credential'ı bu özete dahil edilmez. Destek raporuna bunun dışında log/Secret/reveal içeriği eklemeden önce veriyi inceleyin. Kimlik doğrulama, auth plugin, TLS, DNS/ağ, Forbidden, validation/quota/admission ve conflict hataları backend'de güvenli kategorilere dönüştürülür.

@@ -1,0 +1,279 @@
+{
+  "status": "TESTS_PASS_PHASE_TIME_LIMIT_EXCEEDED",
+  "phaseStartedAt": "2026-11-12T20:48:21+00:00",
+  "finishedAt": "2026-11-12T21:03:56.499556+00:00",
+  "phaseElapsedSeconds": 935.499556,
+  "phaseLimitSeconds": 900,
+  "phases": {
+    "strict-red": {
+      "status": "FAIL",
+      "exitCode": 1,
+      "elapsedSeconds": 18.14802645799864,
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=60s",
+        "-run",
+        "^TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat$",
+        "./pkg/server"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+      "goVersion": "go version go1.26.11 darwin/arm64",
+      "sourceBeforeMatches": true,
+      "sourceAfterMatches": true,
+      "sourceSHA256": {
+        "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72",
+        "backend/pkg/server/stream.go": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+        "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+        "backend/pkg/server/workspace_broker.go": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377"
+      },
+      "topPass": [],
+      "topFail": [
+        "TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat"
+      ],
+      "subPass": [],
+      "skips": 0,
+      "packagePass": false,
+      "capturedIdentities": 4,
+      "allCapturedAbsent": true,
+      "stderrEmpty": true,
+      "maxTreeRSSKiB": 666352,
+      "keyOutputs": [
+        "release_active_watch_authz_test.go:45: AUTHZ_REPRO {\"action\":\"UPDATE\",\"at\":\"2026-11-12T20:49:21.743514Z\",\"context\":\"test\",\"elapsedMs\":15097,\"event\":\"post_revoke_canary_published\",\"namespace\":\"qa\",\"sameClientID\":true,\"type\":\"RESOURCE_EVENT\",\"uid\":\"active-watch-authz-pod-uid\",\"uidRVAndAnnotationMatched\":true}"
+      ]
+    },
+    "green": {
+      "status": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+      "exitCode": 0,
+      "elapsedSeconds": 33.71357041600277,
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=120s",
+        "-run",
+        "^(TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat|TestWatchAuthorizationReviewDecisions|TestWatchAuthorizationExactPermissionAttributes|TestWatchAuthorizationBatchDeadlineAndBufferedCancel|TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives|TestWorkspaceSharedBrokerSelectorExitAndLastRelease|TestScopeSwitchCancelsInFlightStreams)$",
+        "./pkg/server"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+      "goVersion": "go version go1.26.11 darwin/arm64",
+      "sourceBeforeMatches": true,
+      "sourceAfterMatches": true,
+      "sourceSHA256": {
+        "backend/pkg/server/stream.go": "94875555bb816a9f9c91d1dc38a78b2f942334446a3b4b198248149bd1e4bc17",
+        "backend/pkg/server/watch_authorization.go": "835059f047256356a6842877851088c681f7e9302ee2b6059e67bc05faa26246",
+        "backend/pkg/server/watch_authorization_test.go": "a18652f82f998ebbf96b615ba595203e5fb7a0d48178fa3338bb884577543250",
+        "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+      },
+      "topPass": [
+        "TestScopeSwitchCancelsInFlightStreams",
+        "TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat",
+        "TestWatchAuthorizationReviewDecisions",
+        "TestWatchAuthorizationExactPermissionAttributes",
+        "TestWatchAuthorizationBatchDeadlineAndBufferedCancel",
+        "TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives",
+        "TestWorkspaceSharedBrokerSelectorExitAndLastRelease"
+      ],
+      "topFail": [],
+      "subPass": [
+        "TestWatchAuthorizationReviewDecisions/allowed",
+        "TestWatchAuthorizationReviewDecisions/list-denied",
+        "TestWatchAuthorizationReviewDecisions/watch-denied",
+        "TestWatchAuthorizationReviewDecisions/api-error",
+        "TestWatchAuthorizationReviewDecisions/parent-cancel",
+        "TestWatchAuthorizationReviewDecisions/whole-batch-deadline"
+      ],
+      "skips": 0,
+      "packagePass": true,
+      "capturedIdentities": 4,
+      "allCapturedAbsent": true,
+      "stderrEmpty": true,
+      "maxTreeRSSKiB": 648112,
+      "keyOutputs": [
+        "release_active_watch_authz_test.go:45: AUTHZ_REPRO {\"at\":\"2026-11-12T20:56:07.429572Z\",\"canaryInjected\":true,\"context\":\"test\",\"elapsedMs\":15098,\"event\":\"strict_forbidden_status_and_closed_stream\",\"namespace\":\"qa\",\"sameClientID\":true,\"timeoutAccepted\":false,\"uid\":\"active-watch-authz-pod-uid\"}",
+        "watch_authorization_test.go:219: healthy UPDATE published while SSAR review remained blocked"
+      ]
+    },
+    "race": {
+      "status": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+      "exitCode": 0,
+      "elapsedSeconds": 45.908354792001774,
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-race",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=180s",
+        "-run",
+        "^(TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat|TestWatchAuthorizationReviewDecisions|TestWatchAuthorizationExactPermissionAttributes|TestWatchAuthorizationPermissionDenialAndError|TestWatchAuthorizationCapacityBudget|TestWatchAuthorizationBatchDeadlineAndBufferedCancel|TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives|TestWorkspaceSharedBrokerSelectorExitAndLastRelease|TestScopeSwitchCancelsInFlightStreams)$",
+        "./pkg/server"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+      "goVersion": "go version go1.26.11 darwin/arm64",
+      "sourceBeforeMatches": true,
+      "sourceAfterMatches": true,
+      "sourceSHA256": {
+        "backend/pkg/server/stream.go": "61302bcd58dd1f77f666255820e84600c94e7865190490af45375959ce5d5a4c",
+        "backend/pkg/server/watch_authorization.go": "650614ce1bce64a54cd51504b86ec8b837db3968e3605b8aa74376c48efa33f9",
+        "backend/pkg/server/watch_authorization_test.go": "948abf2c62c4b50cab559a1d01466df3fb83a4ca1761ff7b1e7878961fca8328",
+        "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+      },
+      "topPass": [
+        "TestScopeSwitchCancelsInFlightStreams",
+        "TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat",
+        "TestWatchAuthorizationReviewDecisions",
+        "TestWatchAuthorizationExactPermissionAttributes",
+        "TestWatchAuthorizationPermissionDenialAndError",
+        "TestWatchAuthorizationCapacityBudget",
+        "TestWatchAuthorizationBatchDeadlineAndBufferedCancel",
+        "TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives",
+        "TestWorkspaceSharedBrokerSelectorExitAndLastRelease"
+      ],
+      "topFail": [],
+      "subPass": [
+        "TestWatchAuthorizationReviewDecisions/allowed",
+        "TestWatchAuthorizationReviewDecisions/list-denied",
+        "TestWatchAuthorizationReviewDecisions/watch-denied",
+        "TestWatchAuthorizationReviewDecisions/api-error",
+        "TestWatchAuthorizationReviewDecisions/parent-cancel",
+        "TestWatchAuthorizationReviewDecisions/whole-batch-deadline",
+        "TestWatchAuthorizationPermissionDenialAndError/list",
+        "TestWatchAuthorizationPermissionDenialAndError/watch",
+        "TestWatchAuthorizationPermissionDenialAndError/transport"
+      ],
+      "skips": 0,
+      "packagePass": true,
+      "capturedIdentities": 4,
+      "allCapturedAbsent": true,
+      "stderrEmpty": true,
+      "maxTreeRSSKiB": 753392,
+      "keyOutputs": [
+        "release_active_watch_authz_test.go:45: AUTHZ_REPRO {\"at\":\"2026-11-12T20:59:29.96661Z\",\"canaryInjected\":true,\"context\":\"test\",\"elapsedMs\":15111,\"event\":\"strict_forbidden_status_and_closed_stream\",\"namespace\":\"qa\",\"sameClientID\":true,\"timeoutAccepted\":false,\"uid\":\"active-watch-authz-pod-uid\"}",
+        "watch_authorization_test.go:192: CAPACITY uniqueScopes=129 SSARChecks=258 actualLimiter=30/60 emptiedBucket elapsed=8.60198025s budget=13.6s broker512Budget=39.133333333s",
+        "watch_authorization_test.go:299: healthy UPDATE published while SSAR review remained blocked"
+      ]
+    },
+    "final-green": {
+      "status": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+      "exitCode": 0,
+      "elapsedSeconds": 42.03682387500157,
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=120s",
+        "-run",
+        "^(TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat|TestWatchAuthorizationReviewDecisions|TestWatchAuthorizationExactPermissionAttributes|TestWatchAuthorizationPermissionDenialAndError|TestWatchAuthorizationCapacityBudget|TestWatchAuthorizationBatchDeadlineAndBufferedCancel|TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives|TestWatchAuthorizationFailureStatus)$",
+        "./pkg/server"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+      "goVersion": "go version go1.26.11 darwin/arm64",
+      "sourceBeforeMatches": true,
+      "sourceAfterMatches": true,
+      "sourceSHA256": {
+        "backend/pkg/server/stream.go": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+        "backend/pkg/server/watch_authorization.go": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+        "backend/pkg/server/watch_authorization_test.go": "b1440b71afb5642c6a5797aab8f92db895af6fda15df123b4cce5d3d2f5a6415",
+        "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+      },
+      "topPass": [
+        "TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat",
+        "TestWatchAuthorizationReviewDecisions",
+        "TestWatchAuthorizationExactPermissionAttributes",
+        "TestWatchAuthorizationPermissionDenialAndError",
+        "TestWatchAuthorizationCapacityBudget",
+        "TestWatchAuthorizationBatchDeadlineAndBufferedCancel",
+        "TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives",
+        "TestWatchAuthorizationFailureStatus"
+      ],
+      "topFail": [],
+      "subPass": [
+        "TestWatchAuthorizationReviewDecisions/allowed",
+        "TestWatchAuthorizationReviewDecisions/list-denied",
+        "TestWatchAuthorizationReviewDecisions/watch-denied",
+        "TestWatchAuthorizationReviewDecisions/api-error",
+        "TestWatchAuthorizationReviewDecisions/parent-cancel",
+        "TestWatchAuthorizationReviewDecisions/whole-batch-deadline",
+        "TestWatchAuthorizationPermissionDenialAndError/list",
+        "TestWatchAuthorizationPermissionDenialAndError/watch",
+        "TestWatchAuthorizationPermissionDenialAndError/transport",
+        "TestWatchAuthorizationFailureStatus/denied",
+        "TestWatchAuthorizationFailureStatus/unauthorized",
+        "TestWatchAuthorizationFailureStatus/deadline",
+        "TestWatchAuthorizationFailureStatus/transport"
+      ],
+      "skips": 0,
+      "packagePass": true,
+      "capturedIdentities": 4,
+      "allCapturedAbsent": true,
+      "stderrEmpty": true,
+      "maxTreeRSSKiB": 666400,
+      "keyOutputs": [
+        "release_active_watch_authz_test.go:45: AUTHZ_REPRO {\"at\":\"2026-11-12T21:00:59.122376Z\",\"canaryInjected\":true,\"context\":\"test\",\"elapsedMs\":15101,\"event\":\"strict_forbidden_status_and_closed_stream\",\"namespace\":\"qa\",\"sameClientID\":true,\"timeoutAccepted\":false,\"uid\":\"active-watch-authz-pod-uid\"}",
+        "watch_authorization_test.go:192: CAPACITY uniqueScopes=129 SSARChecks=258 actualLimiter=30/60 emptiedBucket elapsed=8.600069834s budget=13.6s broker512Budget=39.133333333s",
+        "watch_authorization_test.go:299: healthy UPDATE published while SSAR review remained blocked"
+      ]
+    }
+  },
+  "finalSourceSHA256": {
+    "backend/pkg/server/stream.go": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+    "backend/pkg/server/watch_authorization.go": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+    "backend/pkg/server/watch_authorization_test.go": "b1440b71afb5642c6a5797aab8f92db895af6fda15df123b4cce5d3d2f5a6415",
+    "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+  },
+  "sourceFreeze": "All owned Go files frozen and handed to root after final-green; no worker Go process remains.",
+  "sourceVersionLimits": "strict-red=unchanged stream with tightened regression; green=initial5s implementation; race=adaptive budget/concurrency version; final-green=final source with pure reachability classification. Race does not cover the final pure classifier addition; final non-race does.",
+  "budget": {
+    "heartbeatSeconds": 15,
+    "formula": "5s + 2*unique admitted GVR/namespace scope count /30QPS",
+    "defaultSingleNamespaceFakeActiveN": 3,
+    "defaultSingleNamespaceSSARPerBatch": 6,
+    "valid64NamespaceTwoResourcePlusNodeN": 129,
+    "actualRateLimiterChecks": 258,
+    "actualEmptiedBucketQPS": 30,
+    "actualBurst": 60,
+    "observedRateLimiterSeconds": 8.600069834,
+    "N129BudgetSeconds": 13.6,
+    "brokerScope512BudgetSeconds": 39.133333333,
+    "conservativeLongBatchRevocationWindowSecondsIgnoringSchedulerAndInFlight": 93.266666666,
+    "limits": "When B>15, pending ticks skip; current batch remainder+next admission\u226415+next batch is conservatively2B+15, not simply15+B. Scheduler, concurrent shared-client demand, network and in-flight10s WS writes are additional limits, not measured SLO."
+  },
+  "realKubernetesRBACE2E": "NOT_RUN",
+  "CPUPerformanceOrEnergy": "NOT_RUN",
+  "fullEndpointsSecurityAcceptance": "NOT_RUN",
+  "runtimeSourceProofs": "Production stream behavior changed from f32. Historical f32/private binaries and auth/watch source-equality applicability need root review/rebuild/retest; no new app binary or cluster proof was produced.",
+  "remainingLimits": [
+    "Periodic validation is not instant revoke; unknown permissions remain provisionally valid until result/deadline.",
+    "SSAR work2N per batch can contend with other requests/consumers; aggregate live server load not measured.",
+    "Only admitted scopes are renewed, no per-message SSAR or unsafe credential cache.",
+    "Different-credential broker key semantics unchanged; fresh sibling test uses same credential and different authorized namespace.",
+    "In-flight bytes admitted before known failure cannot be recalled.",
+    "This fixes resource WS authorization renewal only, not established exec/log/forward session authorization.",
+    "Process cleanup proves captured exact identities absent; short-lived/unsampled PID census remains incomplete."
+  ],
+  "phaseWithinLimit": false,
+  "finalizationElapsedSeconds": 956.659998,
+  "finalizationOverrunSeconds": 56.65999799999997,
+  "allFinalizationStoppedAt": "2026-11-12T21:04:17.659998+00:00"
+}

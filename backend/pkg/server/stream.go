@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/google/uuid"
@@ -348,7 +349,26 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		s.streamProbe(generation, "open", envelope{}, 0, 0)
 		defer s.streamProbe(generation, "close", envelope{}, 0, 0)
 	}
+
+	var authorizationFailure atomic.Pointer[watchAuthorizationFailure]
+	var authorizationBatch *watchAuthorizationBatch
+	var stopAuthorizationPublication func(*watchAuthorizationFailure)
 	send := func(msg envelope) error {
+		// This is write admission, not rollback of bytes already in flight.
+		if msg.Synced || msg.Type == "RESOURCE_EVENT" || msg.Type == "SNAPSHOT" || msg.Type == "SNAPSHOT_READY" {
+			if authorizationBatch != nil {
+				if expired := authorizationBatch.expired(); expired != nil {
+					stopAuthorizationPublication(expired)
+				}
+			}
+			if ctx.Err() != nil {
+				return ctx.Err()
+			}
+			if authorizationFailure.Load() != nil {
+				return context.Canceled
+			}
+		}
+
 		if scope := workspaceScopeFrom(r.Context()); scope != nil {
 			msg.WorkspaceID = scope.workspaceID
 			msg.HarborID = scope.harbor.ID
@@ -395,6 +415,23 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 	watchFailed := false
 	watchFailure := make(chan struct{}, 1)
 	overflow := make(chan struct{}, 1)
+	authorizationFailed := make(chan struct{}, 1)
+	stopAuthorizationPublication = func(failure *watchAuthorizationFailure) {
+		if !authorizationFailure.CompareAndSwap(nil, failure) {
+			return
+		}
+		// Notify before taking gate: an emitter may already own it. The writer sees
+		// the terminal atomic state immediately and never waits on a network call.
+		select {
+		case authorizationFailed <- struct{}{}:
+		default:
+		}
+		gate.Lock()
+		ready = false
+		watchFailed = true
+		gate.Unlock()
+	}
+
 	emit := func(action string, obj interface{}, binding *scopeBinding) {
 		u := unwrap(obj)
 		if u == nil {
@@ -409,7 +446,7 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		if s.streamProbe != nil {
 			s.streamProbe(generation, "gate_wait", envelope{}, len(out), time.Since(start))
 		}
-		if !ready || watchFailed || !currentInformerEvent(binding.informer.GetStore(), action, u) {
+		if !ready || watchFailed || authorizationFailure.Load() != nil || !currentInformerEvent(binding.informer.GetStore(), action, u) {
 			return
 		}
 		scope := binding.scope
@@ -463,7 +500,7 @@ func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {
 		}
 		gate.Lock()
 		defer gate.Unlock()
-		if !ready || watchFailed {
+		if !ready || watchFailed || authorizationFailure.Load() != nil {
 			return
 		}
 		seen := map[string]bool{}
@@ -708,23 +745,116 @@ wait:
 	if send(envelope{Type: "SNAPSHOT_READY", Synced: synced, Reachable: true, Errors: errors}) != nil {
 		return
 	}
+
+	gate.Lock()
+	activeScopes := make([]ResourceScope, 0, len(bindings))
+	for _, binding := range bindings {
+		if binding.informer != nil {
+			activeScopes = append(activeScopes, binding.scope)
+		}
+	}
+	gate.Unlock()
+	activeScopes = uniqueWatchAuthorizationScopes(activeScopes)
+	defer func() {
+		if authorizationBatch != nil {
+			authorizationBatch.cancel()
+		}
+	}()
+	sendAuthorizationFailure := func(failure *watchAuthorizationFailure) { send(watchAuthorizationFailureStatus(failure)) }
+
+	terminal := func() bool {
+		if ctx.Err() != nil {
+			return true
+		}
+		if authorizationBatch != nil {
+			if expired := authorizationBatch.expired(); expired != nil {
+				stopAuthorizationPublication(expired)
+			}
+		}
+		if failure := authorizationFailure.Load(); failure != nil {
+			sendAuthorizationFailure(failure)
+			return true
+		}
+		gate.Lock()
+		failed := watchFailed
+		failedScopes := []ResourceScope{}
+		if failed {
+			for _, binding := range bindings {
+				if binding.scope.Status == "forbidden" || binding.scope.Status == "unavailable" {
+					scope := binding.scope
+					scope.Authoritative = false
+					failedScopes = append(failedScopes, scope)
+				}
+			}
+		}
+		gate.Unlock()
+		if failed {
+			send(envelope{Type: "STATUS", Scopes: failedScopes, Synced: false, Reachable: true, Message: "Kaynak watch bağlantısı kesildi; yeniden snapshot alınıyor"})
+			return true
+		}
+		return false
+	}
 	heartbeat := time.NewTicker(15 * time.Second)
 	defer heartbeat.Stop()
 	for {
+		if terminal() {
+			return
+		}
+		var result <-chan *watchAuthorizationFailure
+		var deadline <-chan struct{}
+		if authorizationBatch != nil {
+			result = authorizationBatch.result
+			if !authorizationBatch.completed.Load() {
+				deadline = authorizationBatch.ctx.Done()
+			}
+		}
 		select {
 		case <-ctx.Done():
 			return
+		case <-authorizationFailed: // sole writer sends terminal status at loop top
+		case <-deadline:
+			if terminal() {
+				return
+			}
+		case failure := <-result:
+			authorizationBatch.cancel()
+			authorizationBatch = nil
+			if failure != nil {
+				stopAuthorizationPublication(failure)
+			}
+			if terminal() {
+				return
+			}
+			if send(envelope{Type: "STATUS", Synced: synced, Reachable: true, Message: "Kaynak watch izinleri doğrulandı"}) != nil {
+				if f := authorizationFailure.Load(); f != nil {
+					sendAuthorizationFailure(f)
+				}
+				return
+			}
 		case <-watchFailure:
-			send(envelope{Type: "STATUS", Synced: false, Reachable: true, Message: "Kaynak watch bağlantısı kesildi; yeniden snapshot alınıyor"})
-			return
+			if terminal() {
+				return
+			}
 		case msg := <-out:
+			if terminal() {
+				return
+			}
 			if send(msg) != nil {
+				if f := authorizationFailure.Load(); f != nil {
+					sendAuthorizationFailure(f)
+				}
 				return
 			}
 		case <-overflow:
+			if terminal() {
+				return
+			}
 			send(envelope{Type: "STATUS", Message: "Mesaj kuyruğu doldu; yeniden snapshot gerekiyor", Synced: false, Reachable: true})
 			return
 		case <-heartbeat.C:
+			if terminal() {
+				return
+			}
 			if workspaceScope != nil {
 				latest, err := s.client(workspaceScope.connection.Context)
 				if err != nil || latest.ID+":"+workspaceScope.connection.ID != c.ID {
@@ -732,19 +862,15 @@ wait:
 					return
 				}
 			}
-			gate.Lock()
-			hasWatchError := watchFailed
-			gate.Unlock()
-			_, e := c.Discovery.ServerVersion()
-			message := "Kaynak watch bağlantısı açık"
-			if e != nil {
-				message = safeError(e)
-			}
-			if send(envelope{Type: "STATUS", Synced: synced && e == nil && !hasWatchError, Reachable: e == nil, Message: message}) != nil {
-				return
-			}
+			if authorizationBatch != nil {
+				continue
+			} // never overlap per-consumer reviews
+			authorizationBatch = startWatchAuthorizationBatch(ctx, activeScopes, watchAuthorizationBudgetForScopes(activeScopes), func(reviewCtx context.Context, scope ResourceScope, verb string) error {
+				return reviewWatchPermission(reviewCtx, c, scope, verb)
+			}, stopAuthorizationPublication)
 		}
 	}
+
 }
 
 // Prevent accidental use of path-derived namespace strings as resource names.

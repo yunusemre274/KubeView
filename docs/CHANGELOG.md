@@ -614,3 +614,7 @@ Temiz ca3b9ec binary'de gerçek05/06 ve yön tuşu/Canvas16 kontrolü; scoped co
 ## 12 Kasım — watch kapsamının yetki kaybını koruma
 
 STATUS mesajındaki forbidden/unavailable kapsamları frontend store'a işlenir. Son bilinen canonical UID silinmez, diğer kapsamlar korunur; healthy heartbeat tek başına kapsamı yeniden yetkili ilan edemez. Sentetik reducer RED→GREEN ve46 komşu test geçti; gerçek küme ve UI kabulü değildir.
+
+## 13 Kasım — aktif resource watch yetkisi
+
+Aynı credential altında değişen RBAC, mevcut heartbeat ile kesin GVR/namespace list/watch SSAR yenilemesinde denetlenir. Tek async batch/sonlu bütçe; ret veya unavailable sonucunda o tüketici yeni veri yayını durdurur, failed-scope STATUS ve kapanış alır. İzinli komşu akış ve canonical veriler korunur.64namespace için bütçe mevcut30QPSye göre hesaplanır. Sentetik PoC/race/komşu regresyonları geçti; gerçek RoleBinding E2E ve yeni performans/paket kabulü açık.

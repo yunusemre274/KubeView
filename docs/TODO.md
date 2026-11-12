@@ -552,3 +552,9 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 
 - [x] Failed-scope STATUS'un reducer'da göz ardı edildiği durum bağımsız RED ile üretildi; bildirilen forbidden/unavailable kapsamı canonical kaydı silmeden işlenir. Yeni + komşu46 unit testi geçti. Kanıt: `artifacts/release-audit/ra-20261112/active-watch-frontend-root/REPORT.md`.
 - [ ] Backend aynı credential altındaki yetki iptali düzeltmesi ve gerçek RoleBinding E2E henüz tamamlanmadı; TEST-10.08 açık.
+
+## 13 Kasım — aktif watch yetki yenilemesi
+
+- [x] SEC-WATCH-REVOKE-001 için per-consumer bounded SSAR yenilemesi ve failed-publication bariyeri; strict RED/final8+13/race9+9 ve root23+31/6 komşu testleri.
+- [x]64 namespace desteğinde sabit5sn false-timeout riski giderildi; gerçek client-go limiter129scope/258kontrolü geçti.
+- [ ] Gerçek RoleBinding iptali E2E, SSAR toplam API maliyeti ve yeni final paket kabulü. TEST10.08 açık; sentetik test gerçek kümeye eşit değildir.

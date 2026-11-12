@@ -1,16 +1,16 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T23:58:35.367100+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: HEAD2be79c84e4c936e064897cbae6b35c26e094dea3; doğru uzak dal ile0/0. Son ürün tabanı f32d6b23; frontend failed-scope STATUS düzeltmesi çalışma ağacında, stream yetki yenilemesi çalışma aşamasında. Tarihsel f32 kanıtları korunur; değişen akışların uygulanabilirliği düzeltme sonrası yeniden değerlendirilecek.
+- Son güncelleme: 2026-11-13T00:06:07.972030+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: HEADe73cb0da uzak dalla aynı; frontend failed-scope STATUS düzeltmesi pushlandı. Yeni backend yetki yenilemesi sourceSHA ile donmuş ve hedefli testleri geçmiş çalışma farkı; commit/final binary bekleniyor. Önceki f32 kanıtları tarihsel saklanır.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:135; IN_PROGRESS:20; FAILED:4; BLOCKED:1; RETEST_REQUIRED:4; VERIFIED_DONE:36; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:135; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:4; VERIFIED_DONE:37; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST01.02 sourceauth/session/grant/RBAC+23unique/31alt sentetikguard denetimi;37/200 (%18,5 fazsayısı). TEST16.06 BENCH-RENDER-001 nedeniyle açık; uzunmatris tekrarbaşlatılmadı.
-- Süreç/lab: Backend worker tek900sn düzeltme işi (son21:03:21Z); Provider worker180sn kaynak-only gerçek E2E hazırlığı. Yeni CPU ölçümü veya lab başlangıcı yok. Owned2Node lab stopped; manuel profiller/sealedQA korunur. Pil36%; uzun kararlılık koşusu başlatılmadı.
+- Süreç/lab: Backend düzeltme workerı tamam, runtime işi yok; Provider worker yalnız600sn gerçek test taslağı yazıyor. Root23auth+6snapshot/watch grubu tamam/ownedkimlikler absent. Yeni CPU/kararlılık koşusu veya lab başlangıcı yok. Owned2Node lab stopped; pil35%, manuel profiller/sealedQA korunur.
 - Devam: SEC-WATCH-REVOKE-001 sıkı RED → sınırlı ürün düzeltmesi → hedefli GREEN/race → root inceleme/commit/push. Gerçek RoleBinding E2E için ayrıca owned lab ve güç kontrolü gerekir. BENCH-RENDER-001/RSS, final provider/paket, kesintisiz60dk ve manuel kapılar açık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
@@ -25,7 +25,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 
 | Kategori | Faz | Durum | Geçerli kanıt |
 |---|---:|---|---|
-| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:4, RETEST_REQUIRED:1, VERIFIED_DONE:1 | runtime-surface-retest/REPORT.md + second-review |
+| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:4, VERIFIED_DONE:2 | runtime-surface-retest/REPORT.md + second-review |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
@@ -34,7 +34,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:1, FAILED:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:3, IN_PROGRESS:2, VERIFIED_DONE:5 | Henüz yok |
-| CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:7, FAILED:1, RETEST_REQUIRED:1 | Henüz yok |
+| CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:7, RETEST_REQUIRED:2 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
 | CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:8, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
@@ -119,11 +119,11 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: ANA MÜDÜR + Provider worker (yalnız kaynak akışı incelemesi; testler root tarafından ayrı)
-- Kaynak / build / paket kimliği: HEAD2934b8f0; runtime f32d6b23. Bu aşama kaynak haritasıdır, finalpaket kabulü değil.
+- Kaynak / build / paket kimliği: HEADe73cb0da + sourceSHA ile donmuş yeni watch düzeltmesi. Önceki23 runtime dosyasının22si f32 ile aynı; stream.go değişti,3yeni backendtest/helper eklendi. Final paket kabulü değil.
 - Ortam / kullanılan kimlik ve yetki: Kaynak-only inceleme, credential/lab erişimi yok. Planlanan hedefli Go guard testleri GPU tanılaması bittikten sonra çalışacak.
 - Başlangıç zamanı: 2026-11-12T22:59:53.764171+03:00
-- Bitiş zamanı: 2026-11-12T23:18:00.056905+03:00
-- Durum: RETEST_REQUIRED
+- Bitiş zamanı: 2026-11-12T21:06:07.962047+00:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: Aktif source auth/session/writegrant/RBAC zinciri dosya/fonksiyon ve yetki sınırlarıyla çıkarılmalı; yeni sonlu fake/in-process guard grupları ve ikinci inceleme bunu desteklemeli. GerçekRBAC/TLS/browser/WS/endpoint/finalpaket kabulü kendi fazlarında kalır.
 
 #### TEST-01.02-S1 — Hazırlık
@@ -151,11 +151,15 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - [x] İlkreviewin6NOT_RUN açığı yalnızbu6kontrolle giderildi; 17başarılıtest yenidenkoşulmadı, geçmiş18sourceönerisine sahtePASS yazılmadı.
 - Yeniürünfixi olmadığından ilkPoCretestNOT_APPLICABLE; yeniassertionbeklentisi veya ürün davranışı değiştirilmedi. CIgenişgrup/gerçeklab/platform kabulü bu sayıdan türetilmez.
 
+13 Kasım +03 retest: son source üzerinde23auth ana/31alt test tekrar geçti (2,294sn/0SKIP); değişen stream için ayrıca6snapshot/watch/CR/sharedbroker ADDUPDATEDELETE komşu testi (2,523sn/0SKIP). Tekrar gerekçesi ürün watch-authority yolunun değişmesidir; belge-only tekrar değildir.
+
 #### TEST-01.02-S6 — Temizlik ve inceleme
 - [x] İlk4veilave3yakalanmışchildidentityabsent; tempfixturelarGocleanupilekapanır,sourcebefore/afteraynı. Bu kayıtlar bütünkısayaşayanprocesscensus değildir.
 - [x] Root45sourceSHA,5ilkpeerSHA ve sonpeerSHAmanifestini tekrarhesapladı; ikiayrıworker kaynak/sentetikguard kanıtlarını kendi kapsamlarıyla inceledi. Aynıajansistemi, profesyonelüçüncütarafdeğil.
 - [x] Exactkaynak/build/komut/JSONevent/paketPASS/cleanup/coverageunion bağlantıları ROOT_CLOSURE.json ile birleştirildi; credential/gerçekSecret yok.
 - Sınır: runtimegerçekRBAC/TLS/browser/WS/exec/forward/provider/finalpaket ve genelreleasekapıları açık.
+
+Root23eski runtime source hashini karşılaştırdı:22aynı, yalnızstream.go değişti; yeni3backend dosyası ve async exact-scope renewal/writer failclosed yolu ayrıca okundu. Kanıt: auth-flow-after-watch-fix-root/source-applicability.json; watch-snapshot-neighbors-root/REPORT.md; active-watch-authz-fix-worker/ROOT_REVIEW.json. Önceki bağımsız source incelemesi tarihsel kalır, değişen yol root tarafından ikinci inceleme gördü.
 
 #### TEST-01.02-K — Faz kararı
 - [x] BİTTİ / DOĞRULANDI
@@ -164,6 +168,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Auth/route/session/credential/workspaceauthorization veya ilgili bağımlılık/runtime davranışı değişirse uygulanabilir bu faz tekrar değerlendirilir. Belge-only değişiklik bütünuzuntestleri tekrar gerektirmez.
 
 2026-11-12 yeni kaynak uygulanabilirliği: stream.go aktif watch yetki yenilemesi çalışma ağacında değiştiği için önceki f32 source haritası tarihsel korunur; güncel kaynak için RETEST_REQUIRED. Önceki23unique/31alt başarı silinmedi. Yeni async renewal/bütçe/fail-closed writer yolu ve ilgili guardlar son kaynakta incelenmeden bu faz güncel VERIFIED_DONE sayılmaz.
+
+Güncel dar source+sentetikguard kabulü yeniden VERIFIED_DONE. GerçekRoleBinding/TLS/browser/diğerendpoint/finalpaket kapıları açık; kaynak incelemesi genel güvenlik kabulü değildir.
 
 ### TEST-01.03 — Workspace/harbor/connection/cache güven sınırları
 
@@ -6330,12 +6336,12 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR + Backend worker (ürün düzeltmesi ve sonlu regresyon); Provider worker (gerçek E2E hazırlığı, henüz koşulmadı).
-- Kaynak / build / paket kimliği: HEAD2be79c84 uzak dalla eşit; başarısız ilk testin kanıtları commitlendi. Sıkı RED, değişmemiş f32 stream.go üzerinde tamamlandı; ürün düzeltmesi çalışma aşamasında. Final paket yok.
+- Sorumlu: ANA MÜDÜR + Backend worker (düzeltme/sentetik test); Provider worker (gerçek E2E test hazırlığı).
+- Kaynak / build / paket kimliği: HEADe73cb0da + ROOT_REVIEW.json exact dört backend sourceSHA; yeni final uygulama binary/paketi henüz üretilmedi.
 - Ortam / kullanılan kimlik ve yetki: Sahip olunan fakeK8s istemcileri + gerçek in-processHTTP/loopbackWS/informer production yolu; kullanıcı/gerçekcluster yok.
 - Başlangıç zamanı: 2026-11-12T23:29:36.786379+03:00
 - Bitiş zamanı: —
-- Durum: FAILED
+- Durum: RETEST_REQUIRED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-10.08-S1 — Hazırlık
@@ -6395,6 +6401,8 @@ Frontend komşu hata doğrulandı: reduceMessage STATUS.scopes bilgisini yok say
 
 Frontend ayrı sonlu grup: yeni3 + mevcutstore/workspace testleri toplam46PASS/0FAIL/0SKIP; wall0,507sn. Bu sonuç backend active-watch revalidation veya gerçek RoleBindingE2E kabulü değildir. TEST10.08 FAILED kalır; backendfix/race ve ikinci inceleme bekleniyor.
 
+Son ürün kaynağında8ana/13alt test PASS (42,037sn), önceki concurrency+bütçe sürümünde dar race9ana/9alt PASS (45,908sn); saf Reachable helper sonradan eklendiği için race sürümü açık ayrılır. Root23/31auth ve6snapshot/watch komşu testleri geçti. Failclosed gerçek WS/fakeAPI, blocked SSAR sırasında sağlıklı UPDATE, izinli peer devamı, exact failed scope/gerçek CloseError-EOF ve cleanup doğrulandı. GerçekKubernetesRoleBinding E2E henüz çalışmadı.
+
 #### TEST-10.08-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -6404,10 +6412,14 @@ Frontend ayrı sonlu grup: yeni3 + mevcutstore/workspace testleri toplam46PASS/0
 
 İlkREDcleanup: brokerEmpty/ownedlistenerclosed/upstreamwatchStoppedtrue; kaynak/testöncesihashvehamJSONkorunur. Yeni.GoTESTuncommitted, kodfixi/retetbekleniyor; rootbugkanıtını ayrıcommitlerkenfailingtestigreenCIgibisunmayacak. Workerfinalrapor veikinciincelemebekleniyor.
 
+Root worker36SHAyı ve final-source GREEN source eşitliğini doğruladı; her4Goçağrısının4yakalananownedkimliği absent, kaynak before/after aynı. Worker rapor finalizasyonu900sn bütçeyi56,7sn aştı; ayrıworkflowkusuru olarak korunur. Ownedlab hâlâ stopped; kullanıcı/gerçekcluster/Secret/credential testi yapılmadı.
+
 #### TEST-10.08-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
 - Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
 - Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+İlk hata için ürün düzeltmesi ve sentetik tekrar test geçti; gerçek RoleBinding iptali ve cached-response yetki kapsamı henüz eksik olduğundan faz VERIFIED_DONE değildir, RETEST_REQUIRED. Genel NOT_RELEASE_READY korunur.
 
 ### TEST-10.09 — Paylaşılan Node etki onayı
 

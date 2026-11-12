@@ -1,3 +1,27 @@
+## 13 Kasım +03 — SEC-WATCH-REVOKE-001: dar ürün düzeltmesi ve retest
+
+**Düzeltme uygulandı, sentetik API/watch retesti geçti; gerçek RoleBinding E2E ve final yayın kabulü açık.**
+
+Mevcut heartbeat artık kesin kabul edilmiş kapsamların list/watch yetkisini,
+tüketici başına tek asenkron SSAR grubu ile yeniler. Bilinen ret veya kontrol
+hatası yeni yayınları durdurur; doğrudan non-authoritative STATUS ve kapanış
+gönderilir. Canonical DELETE, sahte Node arızası veya ortak credential cache'i
+eklenmedi. Sağlıklı bekleyen veri ve izinli komşu tüketici korunur.
+
+[Strict RED → ilk GREEN → dar race → son kaynak GREEN](../artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/REPORT.md)
+ve [kök inceleme](../artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/ROOT_REVIEW.json)
+ayrıdır. Final8ana/13alt test, auth23ana/31alt ve snapshot/watch6ana test geçti;
+0SKIP. Race9ana/9alt, sonradan eklenen saf Reachable sınıflaması öncesindeki
+aynı concurrency/bütçe yolundadır; son kaynak sınıflaması non-race test edildi.
+
+Sabit5sn aday bütçesi, desteklenen64 namespace ve30QPS altında geçerli kullanıcıyı
+timeout'a sokacağı için düzeltilmiştir. Yeni bütçe5sn+2N/30sn; gerçek client-go
+rate-limiter testinde129scope/258bekleme8,600sn içinde tamamlandı. Bu gerçek HTTP
+SSAR yük ölçümü değildir. Büyük kapsamda periyodik iptal gecikmesi vardır; anlık
+iptal veya CPU kazancı iddia edilmiyor. Ayrıntılı sınır [güvenlik sözleşmesinde](SECURITY.md).
+Worker900sn hedefi rapor finalizasyonunda56,7sn aşıldı; test süreleri ve bu
+süreç kusuru ayrı saklandı. Gerçek kubernetes E2E henüz NOT_RUN.
+
 ## 12 Kasım — aktif watch düzeltmesinin frontend kontrol noktası
 
 Backend düzeltmesinden bağımsız olarak, `reduceMessage` STATUS mesajındaki

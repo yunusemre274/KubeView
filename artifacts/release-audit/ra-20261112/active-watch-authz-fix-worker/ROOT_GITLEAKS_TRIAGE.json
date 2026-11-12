@@ -1,0 +1,132 @@
+{
+  "reviewedAt": "2026-11-12T21:06:44.782635+00:00",
+  "verified": [
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/final-green/plan.json",
+      "line": 17,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/final-green/plan.json:generic-api-key:17",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/ROOT_REVIEW.json",
+      "line": 11,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/ROOT_REVIEW.json:generic-api-key:11",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/green/plan.json",
+      "line": 16,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/green/plan.json:generic-api-key:16",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/race/plan.json",
+      "line": 18,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/race/plan.json:generic-api-key:18",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json",
+      "line": 6,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json:generic-api-key:6",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json",
+      "line": 10,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json:generic-api-key:10",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json",
+      "line": 19,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json:generic-api-key:19",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json",
+      "line": 25,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json:generic-api-key:25",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json",
+      "line": 31,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/sourceSHA.json:generic-api-key:31",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/strict-red/plan.json",
+      "line": 7,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/strict-red/plan.json:generic-api-key:7",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/auth-flow-after-watch-fix-root/plan.json",
+      "line": 36,
+      "fingerprint": "artifacts/release-audit/ra-20261112/auth-flow-after-watch-fix-root/plan.json:generic-api-key:36",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/watch-snapshot-neighbors-root/plan.json",
+      "line": 19,
+      "fingerprint": "artifacts/release-audit/ra-20261112/watch-snapshot-neighbors-root/plan.json:generic-api-key:19",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/auth-flow-after-watch-fix-root/source-applicability.json",
+      "line": 146,
+      "fingerprint": "artifacts/release-audit/ra-20261112/auth-flow-after-watch-fix-root/source-applicability.json:generic-api-key:146",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json",
+      "line": 31,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json:generic-api-key:31",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json",
+      "line": 77,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json:generic-api-key:77",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json",
+      "line": 135,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json:generic-api-key:135",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json",
+      "line": 198,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json:generic-api-key:198",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json",
+      "line": 243,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/result.json:generic-api-key:243",
+      "classification": "PUBLIC_TEST_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactStagedProof": "artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/regression-strict.go.txt"
+    }
+  ],
+  "globalIgnoreAdded": false
+}

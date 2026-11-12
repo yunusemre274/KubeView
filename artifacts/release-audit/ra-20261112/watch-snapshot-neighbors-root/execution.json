@@ -1,0 +1,136 @@
+{
+  "status": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+  "startedAt": "2026-11-12T21:02:49.131660+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=90s",
+    "-run",
+    "^(TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence|TestForbiddenCustomScopeIsNotAuthoritativeDeletion|TestInformerWebSocketSnapshotAddUpdateDelete|TestInformerEventsCannotRegressSnapshotIdentityOrVersion|TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache|TestWorkspaceSharedBrokerSelectorExitAndLastRelease)$",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "captured": [
+    {
+      "pid": 63301,
+      "identity": "Fri Nov 13 00:02:49 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -json -p 1 -parallel 1 -count=1 -timeout=90s -run ^(TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence|TestForbiddenCustomScopeIsNotAuthoritativeDeletion|TestInformerWebSocketSnapshotAddUpdateDelete|TestInformerEventsCannotRegressSnapshotIdentityOrVersion|TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache|TestWorkspaceSharedBrokerSelectorExitAndLastRelease)$ ./pkg/server",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 63308,
+      "identity": "Fri Nov 13 00:02:49 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/link -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build462449775/b001/server.test -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build462449775/b001/importcfg.link -s -w -buildmode=pie -buildid=YuNkCvlbGLoAfJU76TCR/8bFCjTvwiJMM1nowDSN6/dh-b-dxcQEK8XC4qshVT/YuNkCvlbGLoAfJU76TCR -X testing.testBinary=1 -extld=clang /Users/yunusemre/Library/Caches/go-build/f5/f5b212b5dc78a428adeaf96f395dc9742fec4f16231d3eebe552f27115b15424-d",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 63313,
+      "identity": "Fri Nov 13 00:02:49 2026     /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build462449775/b001/server.test -test.paniconexit0 -test.v=test2json -test.parallel=1 -test.count=1 -test.timeout=1m30s -test.run=^(TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence|TestForbiddenCustomScopeIsNotAuthoritativeDeletion|TestInformerWebSocketSnapshotAddUpdateDelete|TestInformerEventsCannotRegressSnapshotIdentityOrVersion|TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache|TestWorkspaceSharedBrokerSelectorExitAndLastRelease)$",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.021016209000663366,
+      "ownedRSSKiB": 5008,
+      "ownedPIDs": [
+        63301
+      ]
+    },
+    {
+      "elapsedSeconds": 0.24104483400151366,
+      "ownedRSSKiB": 55680,
+      "ownedPIDs": [
+        63301
+      ]
+    },
+    {
+      "elapsedSeconds": 0.4630880420008907,
+      "ownedRSSKiB": 549488,
+      "ownedPIDs": [
+        63301,
+        63308
+      ]
+    },
+    {
+      "elapsedSeconds": 0.6831874590025109,
+      "ownedRSSKiB": 56464,
+      "ownedPIDs": [
+        63301
+      ]
+    },
+    {
+      "elapsedSeconds": 0.9096999169996707,
+      "ownedRSSKiB": 57440,
+      "ownedPIDs": [
+        63301,
+        63313
+      ]
+    },
+    {
+      "elapsedSeconds": 1.1349157500008005,
+      "ownedRSSKiB": 84464,
+      "ownedPIDs": [
+        63301,
+        63313
+      ]
+    },
+    {
+      "elapsedSeconds": 1.3801777500011667,
+      "ownedRSSKiB": 91616,
+      "ownedPIDs": [
+        63301,
+        63313
+      ]
+    },
+    {
+      "elapsedSeconds": 1.616248792000988,
+      "ownedRSSKiB": 94176,
+      "ownedPIDs": [
+        63301,
+        63313
+      ]
+    },
+    {
+      "elapsedSeconds": 1.8385407919995487,
+      "ownedRSSKiB": 57776,
+      "ownedPIDs": [
+        63301
+      ]
+    }
+  ],
+  "safety": {
+    "wallSeconds": 150,
+    "goTimeoutSeconds": 90,
+    "GOMAXPROCS": 2,
+    "p": 1,
+    "parallel": 1,
+    "ownedRSSMiB": 1536,
+    "freeDiskGiB": 10,
+    "providersDisabled": true,
+    "noRealCluster": true
+  },
+  "limitSeconds": 150,
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "sourceBeforeMatches": true,
+  "exitCode": 0,
+  "topLevelTests": [
+    "TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence",
+    "TestForbiddenCustomScopeIsNotAuthoritativeDeletion",
+    "TestInformerWebSocketSnapshotAddUpdateDelete",
+    "TestInformerEventsCannotRegressSnapshotIdentityOrVersion",
+    "TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache",
+    "TestWorkspaceSharedBrokerSelectorExitAndLastRelease"
+  ],
+  "topLevelPassed": 6,
+  "subtestsPassed": 0,
+  "failures": 0,
+  "skips": 0,
+  "sourceAfterMatches": true,
+  "elapsedSeconds": 2.5226908750009898,
+  "finishedAt": "2026-11-12T21:02:51.654340+00:00"
+}

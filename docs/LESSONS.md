@@ -336,3 +336,7 @@ Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm 
 ## 12 Kasım — bağlantı sağlığı kapsam yetkisi değildir
 
 Bir WebSocket STATUS'u global stale alanına indirmek, kapsamın açık forbidden bilgisini kaybedebilir. Kapsam kaybını canonical silme veya yeni yetki kanıtı gibi yorumlamadan işle; eski nesil/context callback testini ve başarılı snapshot ile recovery kontrolünü birlikte tut. Bu ders saf reducer testinde yeniden üretilen hataya dayanır.
+
+## 13 Kasım — güvenlik yenilemesinde kapasiteyi hesaba kat
+
+Sabit toplam kontrol süresi, desteklenen namespace×GVR sayısını ve mevcut istemci rate-limitini aşarsa geçerli kullanıcıları sürekli reconnect döngüsüne sokabilir. İzinleri genişletmek veya QPSyi yükseltmek yerine kabul edilmiş scope sayısından sonlu batch bütçesi türet; gerçek limiter ile pozitif kontrol yap. Daha uzun periyodik iptal penceresini ayrıca açıkla ve gerçek provider/ağ maliyetini ölçülmüş gibi sunma.

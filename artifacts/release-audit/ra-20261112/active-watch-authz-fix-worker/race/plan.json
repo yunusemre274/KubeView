@@ -1,0 +1,21 @@
+{
+  "tests": [
+    "TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat",
+    "TestWatchAuthorizationReviewDecisions",
+    "TestWatchAuthorizationExactPermissionAttributes",
+    "TestWatchAuthorizationPermissionDenialAndError",
+    "TestWatchAuthorizationCapacityBudget",
+    "TestWatchAuthorizationBatchDeadlineAndBufferedCancel",
+    "TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives",
+    "TestWorkspaceSharedBrokerSelectorExitAndLastRelease",
+    "TestScopeSwitchCancelsInFlightStreams"
+  ],
+  "regex": "^(TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat|TestWatchAuthorizationReviewDecisions|TestWatchAuthorizationExactPermissionAttributes|TestWatchAuthorizationPermissionDenialAndError|TestWatchAuthorizationCapacityBudget|TestWatchAuthorizationBatchDeadlineAndBufferedCancel|TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives|TestWorkspaceSharedBrokerSelectorExitAndLastRelease|TestScopeSwitchCancelsInFlightStreams)$",
+  "fileSHA256": {
+    "backend/pkg/server/stream.go": "61302bcd58dd1f77f666255820e84600c94e7865190490af45375959ce5d5a4c",
+    "backend/pkg/server/watch_authorization.go": "650614ce1bce64a54cd51504b86ec8b837db3968e3605b8aa74376c48efa33f9",
+    "backend/pkg/server/watch_authorization_test.go": "948abf2c62c4b50cab559a1d01466df3fb83a4ca1761ff7b1e7878961fca8328",
+    "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+  },
+  "safety": "new concurrency + actual rate limiter coverage; race Go180/wall240; tree2GiB/disk10GiB; same fake/loopback fixtures"
+}
