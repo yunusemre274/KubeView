@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T20:17:48.056981+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T20:22:14.854580+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -9047,6 +9047,8 @@ Yeni sonluplan: perf-native-harness-validation-root/plan.json. ExplicitoldMcontr
 - Logical detailed kapsam8Node/120Pod; projected/raycast-visible merkez yalnıznode0/node2, kadraj dar/kırpık. Tam görünüm eşdeğerliği/ölçüme hazır olma henüz sağlanmadı.
 - Kanıt: artifacts/release-audit/ra-20261112/perf-camera-comparability-worker/REPORT.md. CPU/FPS/gecikme ölçüm penceresi yok.
 
+RootcontrolledM38nativevalidationPASS: iki30sısınma+3snonacceptancepencere73.752/120s. AynıA/Bsource/commonbackend/Chromium156Metal/medium/DPR1;camera/filo/node0Özet/gerçekbody/scopeaynı. Herikiside20/300canonical,8/120detailed veprojectednode0–7;426calls/71170tri/32geometry/4texture. RootikiPNGyi açtı;normalmerkez/iskele/öngemiokunuyor,sağgeometri doğaloverlayarkasında. Production24defaultaynı;bucontrolledhistoricalM38protocolüdür. Kanıt: artifacts/release-audit/ra-20261112/perf-native-harness-validation-root/REPORT.md.
+
 #### TEST-16.01-S3 — Negatif / sınır / arıza kontrolü
 - [x] Kamera FOV24/38 farkı, eksik/bilinmeyen/gerçek FOV uyumsuzluğu reddedildi; pinned eski38 protokolü ayrı.
 - [x] Performans karşılaştırıcısı yalnız comparability envanterini sonuç diye kabul etmedi.
@@ -9064,6 +9066,8 @@ Yeni sonluplan: perf-native-harness-validation-root/plan.json. ExplicitoldMcontr
 - Önceki9kameraneighborunit/ilklaunchFAIL ayrıkanıtında. Kanıt: artifacts/release-audit/ra-20261112/perf-process-identity-worker/REPORT.md.
 - Genericcompare.mjs consumerı yeni valid/null+interiorsamples semantiği için ayrıca denetlenecek; bütünCPUcomparatorkapıları henüz kapanmadı.
 
+Rootnativecollectorvalidation: iki3srun native11process/browsermain+renderer+GPU+other/backend/observerrol+doğum/cohortPASS;clockfark52.9/47.1ms. Tüm8gemipozu ilerledi;su/seyirayarlarıaynı. Bu kısa diagnosticn1CPU/FPSgecikmekabulüdeğildir. Kernelcompleteclaimyok. Genericcomparatorguard ayrıca işleniyor.
+
 #### TEST-16.01-S6 — Temizlik ve inceleme
 - [x] Smoke owned runner/browser/backend cleanup ve5192 port yokluğu kaydedildi.
 - [x] Root6+24+18SHA ve neighbor kanıtları doğruladı; ürün runtime aynı.
@@ -9071,6 +9075,8 @@ Yeni sonluplan: perf-native-harness-validation-root/plan.json. ExplicitoldMcontr
 - Güç şimdi Battery74%; daha önceki AC koşularıyla eşleştirilmez. Ağır A/B henüz başlamadı.
 
 12Kasım20:05Istanbul rootlabizolasyonu: orijinal2Nodecontainer/clusterUID/ownerCMUID ve SecretQANSUID/seal gerçekAPIyleguarded; existingLab.down yalnız exactikiDockercontainerı durdurdu,appregistrations0.22.028snPASS; privateworkspace/config/manualmanifest/QA namespace diskleri korunur. Diğerprojeye müdahale yok. Kanıt: artifacts/release-audit/ra-20261112/perf-lab-isolation-root/result.json. Bu CPU/power/hostload kabulü değildir.
+
+Nativevalidationownedrunner/browser/backendkimlikleriyok/5192free/commonbackend+harnessSHAaynı;canonicaltestsourcefake/readonly/noKUBECONFIG. İkiPNGrootgörselincelemesitamam. Hafifcomparatorpureunitjobeşzamanlıolduğu için bu3spencereler normalCPUbenchmarkından açıkça ayrıldı. n5asılölçümde diğerworkerlar/build/scan duracak.
 
 #### TEST-16.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

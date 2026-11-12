@@ -1,0 +1,4 @@
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+{"profile":"M","scenario":"panel-open","repeat":0,"fps":60.238980874939124,"p95":17.09999999962747,"messages":0}
+Results: /Users/yunusemre/Desktop/KubeView/benchmarks/results/cat16-native38-B-20261112T171902Z
