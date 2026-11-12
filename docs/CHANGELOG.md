@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Exact ELF Go uyarı ayrımı
+
+- SekizCiliumx/nethtmlmodulematch veLinuxoperatorgopsWindowsadvisorysi exactELF/kod/platformkanıtıyla NOT_AFFECTED olarak ayrıldı; rawscannerbulguları/kuruluversiyonlar korunur, waiver değil. Kapsam8/13Ciliumhedefi+tekoperatorgops, globalgateaçık. Rapor374.242/360sn sınır aşımı ayrıca korunur.
+
 ## 2026-11-12 — Gerçek Secret ilk koşu
 
 - Yeniopt-inproductionhandler/realk8sSecret testi ilkrestrictedPUT400/expected403 nedeniyleFAIL; adminreveal/edit/metadata ve list-onlyreadnegatifleri ayrıgözlendi. MissingTypeMeta fixturehipoteziürünbugdiyeilanedilmedi; ikinciSA/maskedNOTRUN.7fixtureexactUIDcleanup404, rootnamespacekorunur. İlkkanıt/testkaynağıkorunur;365.218/360planoverrun açık.

@@ -108,3 +108,8 @@ Kilit, physicalproviderHome/Profile yerine yalnız journalStateDir/Profile yolun
 ## 12 Kasım — Cilium/Envoy APT retesti
 
 [Gerçek imaj ve imzalı paket zinciri](../artifacts/release-audit/ra-20261112/provider-apt-images-worker/REPORT.md): yerel adayların aktiffilesysteminde yalnızapt/libaptpaketleri resmîsecuritysürümlerine yükseltildi; dörtCVE-2026-109518satırı kalktı. Config/layerprefixler ve provider/nativebinary/CA/sourcekey/licensehashleri korundu. AynıTrivyDBOS+13/1Goanalizinde Cilium8High/64Medium/6Low/4Unknown, Envoy23Medium/4Low kaldı. Cilium8Highx/netmodulematch için ayrıactualELF/primaryadvisoryadjudication gerekir; bu tarama birwaiver veya tümproviderkabulü değildir. İmajlar yalnızyerel; mevcutkurulum/pinler değiştirilmedi.
+
+
+## 12 Kasım — Dokuz satır için teknik NOT_AFFECTED
+
+[Satır bazlı kararlar](../artifacts/release-audit/ra-20261112/provider-go-adjudication-worker/row-dispositions.json) exactELFSHA/GoLinuxARM64/platform/completepclntabkanıtına bağlıdır. Cilium8Highx/netrowda affectedhtmlkodyok; operatorgopsadvisorysininWindowskoduLinuxdosyasında yok. Bu scopedfalse-positivekararı riski kabul etmek değildir; scanner8HighveUnknownhamkayıtları değişmedi. Sekizinceleme13hedefintamamıdeğildir. FarklıELF/version/platform/advisory için karar yeniden uygulanamaz; remainingOS/Go/anaCVE/TLS/lisans ve finalpaket kapıları açık.

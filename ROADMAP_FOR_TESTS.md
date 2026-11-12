@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:58:16.738193+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T14:07:59.460417+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -4573,6 +4573,8 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 12 Kasım tarihsel kanıt inceleme/checkpoint: Resmi1.20.4 metadata incelemesi: gözlem11Kasımda daha yeni stable1.20.x bulunmadı; immutabletag/Helm/source/advisory eşleşti. Kaynak floor gerçek imaj düzeltmesi değildir; üç HighID açık. Mevcutlab1.20.2 değiştirilmedi. Kanıt: artifacts/release-audit/ra-20261111/provider-official-patch-review-worker/REPORT.md; SHA256SUMS bütün satırları root tarafından doğrulandı. İlk başarısızlıklar değiştirilmedi.
 
 12 Kasım tarihsel kanıt inceleme/checkpoint: Candidate1 OpenPGP advisorysi unsafeOpenPGP modülüne ait; fullpclntab172260entry/184657name içindeOpenPGPyok. SCTPsinkgerçeklinked fakat operatorattacker-ingress kanıtlanmadı. Waiver yok; exactcrypto/gopacket iki floor önerildi; kaynak+advisory/proposedpatch ayrı korunur. Kanıt: artifacts/release-audit/ra-20261111/provider-operator-findings-review-worker/REPORT.md; SHA256SUMS bütün satırları root tarafından doğrulandı. İlk başarısızlıklar değiştirilmedi.
+
+12Kasım teknikadjudication: exactAPTcandidateCilium8x/netHighrow için GO-2026-6860 affectedhtmlpackage/7symbol tamGoentry+funcname/inliningtablolarında yok; mevcut8ELFSHA eski8/13Ciliumscopeileaynı. OperatorgopsUnknownCVE-2026-39824 primaryWindowsgoos/windowspackageyi kapsar; gerçekLinuxARM64ELF4256entry/6089nameiçinkodyok. Exact9rowNOT_AFFECTED/FALSE_POSITIVE_MODULE_MATCH; moduleversionsbelowfloor/scannerrawsilinmedi, waiver/globalclean/13/13scopeiddiasıyok. ParserilkSyntaxFAILayrı korunur; peakRSS333856768B. Teknikveri360snönce, rapor374.242/360(+14.242)deadlineNotExceededfalse. Root13/13SHA+primaryadvisory/fulltableprojection/rapor inceledi. Kanıt: artifacts/release-audit/ra-20261112/provider-go-adjudication-worker/REPORT.md. Diğerprovider/Medium/Unknown/mainCVE/TLS/lisans/paketkapıları kapanmaz.
 
 #### TEST-07.05-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.

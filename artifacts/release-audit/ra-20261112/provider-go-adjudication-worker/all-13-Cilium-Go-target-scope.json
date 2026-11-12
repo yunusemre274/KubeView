@@ -1,0 +1,161 @@
+{
+  "currentAnalyzerTargets": 13,
+  "oldTenCiliumOverlap": 8,
+  "oldTenOtherGoTargets": [
+    "/usr/bin/hubble-relay",
+    "/usr/bin/cilium-operator-generic (old official binary)"
+  ],
+  "oldManifestAdditionalNativeExtraction": "/usr/bin/cilium-envoy-starter is the eleventh extraction, not one of the ten Go-ELF analyses",
+  "fiveOutsideOldTen": [
+    "cni/loopback",
+    "usr/bin/cilium-health-responder",
+    "usr/bin/cilium-sysctlfix",
+    "usr/bin/gops",
+    "usr/sbin/iptables-wrapper"
+  ],
+  "targets": [
+    {
+      "target": "cni/loopback",
+      "currentELFSHA256": "2331ed30195b26f111054dab6aec12f8d9ea3654290f2193ae0ec10dc50d3263",
+      "currentModuleNet": null,
+      "includedInOldTenGoELFAnalysis": false,
+      "oldELFSHA256": null,
+      "hashMatchesOldELF": false,
+      "xNetHighRowInCurrentScan": false,
+      "freshFullPclntabAvailable": false,
+      "gopsNote": null
+    },
+    {
+      "target": "opt/cni/bin/cilium-cni",
+      "currentELFSHA256": "f150eee8501ccac18eb8a73d12382cd801c39017f21456b2b8cb76f1ebc75384",
+      "currentModuleNet": "v0.60.0",
+      "includedInOldTenGoELFAnalysis": true,
+      "oldELFSHA256": "f150eee8501ccac18eb8a73d12382cd801c39017f21456b2b8cb76f1ebc75384",
+      "hashMatchesOldELF": true,
+      "xNetHighRowInCurrentScan": true,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/cilium-agent",
+      "currentELFSHA256": "0144e472f4f0573684a13a0a2e7d1ff304fb78bc06b5f9cc9d9221dd934ab03e",
+      "currentModuleNet": "v0.60.0",
+      "includedInOldTenGoELFAnalysis": true,
+      "oldELFSHA256": "0144e472f4f0573684a13a0a2e7d1ff304fb78bc06b5f9cc9d9221dd934ab03e",
+      "hashMatchesOldELF": true,
+      "xNetHighRowInCurrentScan": true,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/cilium-bugtool",
+      "currentELFSHA256": "172757f640066ec8e9d4deedbb5bf8a9ae37e785af6453fa092555c1bb32edfd",
+      "currentModuleNet": "v0.60.0",
+      "includedInOldTenGoELFAnalysis": true,
+      "oldELFSHA256": "172757f640066ec8e9d4deedbb5bf8a9ae37e785af6453fa092555c1bb32edfd",
+      "hashMatchesOldELF": true,
+      "xNetHighRowInCurrentScan": true,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/cilium-dbg",
+      "currentELFSHA256": "57e5785aca0239a07261313a5b0797a3f7a5fc7c7f4a37e976e7568557a2142b",
+      "currentModuleNet": "v0.60.0",
+      "includedInOldTenGoELFAnalysis": true,
+      "oldELFSHA256": "57e5785aca0239a07261313a5b0797a3f7a5fc7c7f4a37e976e7568557a2142b",
+      "hashMatchesOldELF": true,
+      "xNetHighRowInCurrentScan": true,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/cilium-envoy-bootstrap-locality",
+      "currentELFSHA256": "69c81e396daf71c2830c9b720813915363e0e01ffd94b36be73da7e6b8e201ac",
+      "currentModuleNet": "v0.60.0",
+      "includedInOldTenGoELFAnalysis": true,
+      "oldELFSHA256": "69c81e396daf71c2830c9b720813915363e0e01ffd94b36be73da7e6b8e201ac",
+      "hashMatchesOldELF": true,
+      "xNetHighRowInCurrentScan": true,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/cilium-health",
+      "currentELFSHA256": "2e0d6464b73c77141e384fc43ee625c775e0d952577cc154c80bdef98b9fa54d",
+      "currentModuleNet": "v0.60.0",
+      "includedInOldTenGoELFAnalysis": true,
+      "oldELFSHA256": "2e0d6464b73c77141e384fc43ee625c775e0d952577cc154c80bdef98b9fa54d",
+      "hashMatchesOldELF": true,
+      "xNetHighRowInCurrentScan": true,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/cilium-health-responder",
+      "currentELFSHA256": "bc583eddbe1338b230ec93e0e98365387fd77e1e2033981fc52d05ee43cb5934",
+      "currentModuleNet": null,
+      "includedInOldTenGoELFAnalysis": false,
+      "oldELFSHA256": null,
+      "hashMatchesOldELF": false,
+      "xNetHighRowInCurrentScan": false,
+      "freshFullPclntabAvailable": false,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/cilium-mount",
+      "currentELFSHA256": "3165e60bd1a82c283de944062f5288f6984c1400239ef924c809fcea79edb374",
+      "currentModuleNet": "v0.60.0",
+      "includedInOldTenGoELFAnalysis": true,
+      "oldELFSHA256": "3165e60bd1a82c283de944062f5288f6984c1400239ef924c809fcea79edb374",
+      "hashMatchesOldELF": true,
+      "xNetHighRowInCurrentScan": true,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/cilium-sysctlfix",
+      "currentELFSHA256": "2c4f4636a498ab3680eec6c96ec9a89437568dfc39ba642ae06db3132734b141",
+      "currentModuleNet": null,
+      "includedInOldTenGoELFAnalysis": false,
+      "oldELFSHA256": null,
+      "hashMatchesOldELF": false,
+      "xNetHighRowInCurrentScan": false,
+      "freshFullPclntabAvailable": false,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/bin/gops",
+      "currentELFSHA256": "61c61208e84c53b9c617b0781a4936cf1aed39175e098c2d9bd26a6a3d90c3e8",
+      "currentModuleNet": null,
+      "includedInOldTenGoELFAnalysis": false,
+      "oldELFSHA256": null,
+      "hashMatchesOldELF": false,
+      "xNetHighRowInCurrentScan": false,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": "Not covered by old ten; identical hash to operator gops newly parsed here; no extra Cilium finding disposition issued"
+    },
+    {
+      "target": "usr/bin/hubble",
+      "currentELFSHA256": "b0db823658d23310c4d19f0a239cb63873c07f0e0473dbb6a890ab9d4725ec98",
+      "currentModuleNet": "v0.60.0",
+      "includedInOldTenGoELFAnalysis": true,
+      "oldELFSHA256": "b0db823658d23310c4d19f0a239cb63873c07f0e0473dbb6a890ab9d4725ec98",
+      "hashMatchesOldELF": true,
+      "xNetHighRowInCurrentScan": true,
+      "freshFullPclntabAvailable": true,
+      "gopsNote": null
+    },
+    {
+      "target": "usr/sbin/iptables-wrapper",
+      "currentELFSHA256": "5ceb7e8c42728ea32fabe3eda31d8c2a30ea258dbe69e122220d1fda1846a6e6",
+      "currentModuleNet": null,
+      "includedInOldTenGoELFAnalysis": false,
+      "oldELFSHA256": null,
+      "hashMatchesOldELF": false,
+      "xNetHighRowInCurrentScan": false,
+      "freshFullPclntabAvailable": false,
+      "gopsNote": null
+    }
+  ]
+}
