@@ -83,3 +83,8 @@ Worker sağlayıcısı açıkça izinli tek minikube docker profile/context/clus
 Süreci durdurmak HTTP/WS, log/forward ve child provider yaşam döngülerini kapatır; kullanıcı Kubernetes workload'larını veya minikube makinelerini silmez. Backend kaynak/metrics/yönetim oturumları bellektedir. Binary/paket dizini kaldırılabilir; tarayıcı site verisini temizlemek görünüm tercihlerini ve cookie'leri kaldırır. Kubeconfig veya Kubernetes credential'ları kaldırma adımı değildir.
 
 Sağlayıcı journal'ı varsayılan olarak `~/.local/state/kubeview/providers` altındadır; `KV_PROVIDER_STATE_DIR` override'ı olabilir. Açık/belirsiz worker işlemi varsa gerçek envanter uzlaştırılmadan journal silinmemelidir. In-cluster kaldırma yalnız size ait KubeView Helm release'i ve ayrıca oluşturduğunuz KubeView RBAC nesneleri için yapılır; kullanıcı namespace/workload/PVC temizliği içermez. Sağlayıcı TLS/token dosyaları operatörün dosyalarıdır; erişim izinlerini ve gerekli saklama süresini ayrıca yönetin.
+
+
+## 12 Kasım — kubeconfig exec trust denetimi
+
+Yerel operatörün seçtiği kubeconfig içindeki `exec` auth programı host üzerinde çalışabilir; dosya seçimi güven sınırıdır. Tarayıcı workspace/import gövdesi yeni executable, kubeconfig yolu veya mevcut olmayan context yaratmaz. Bu sınır, gerçek client-go exec subprocess + sertifikası CA olarak pinlenmiş sentetik HTTPS API ve üretim workspace handler testleriyle sınandı; [ilk başarısız fixture](../artifacts/release-audit/ra-20261112/kubeconfig-trust-root/REPORT.md) ve [ayrı retest](../artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/REPORT.md) korunur. Bu, gerçek Kubernetes cluster veya bütün auth pluginlerinin doğrulaması değildir. Exec plugini güvenilmeyen kubeconfigi güvenli hale getiren bir sandbox bulunmaz.

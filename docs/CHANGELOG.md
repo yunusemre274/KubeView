@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — kubeconfig trust regresyon testleri
+
+- Gerçekclient-goexecchild/pinnedCAsentetikHTTPSpozitifi ve workspacecontext/path/exec/importnegatifleri3topcasePASS(2asıl+helper). İlkHTTP/400fixtureFAIL ayrı korunur; yalnız test/kanıt/doküman değişti. İkinciinceleme beklenir.
+
 ## 2026-11-12 — Gerçek profile lock HTTP retesti
 
 - Aprofileowner/Bblocked→ownerclose→Brestartacquire gerçekHTTP4.549sn geçti. Tamhazırlık/recoveryfazı830.384sn ile300snplanı aştı; eskiFAILler ve bütçeaşımı korunur. YeniworkerPOST/CLI0, originalstate/profileaynı ve exactappcleanup; finalproviderkabulü açık.

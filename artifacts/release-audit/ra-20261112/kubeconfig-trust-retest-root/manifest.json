@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-12T10:35:15.484322+00:00",
+  "head": "574e5a64fd7a6800f3e8cb2e4859cc0c0fb1522b",
+  "runtimeSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "dataSource": "SYNTHETIC_HTTP_AND_REAL_EXEC_AUTH_SUBPROCESS; NOT_REAL_KUBERNETES",
+  "listenerAllowlist": [
+    "127.0.0.1:19848"
+  ],
+  "sourceSHA256": {
+    "backend/pkg/server/release_kubeconfig_trust_test.go": "7b39ad28075a041ae0b63e57e4e8f3e38154b65e1c6bdb85e27de8373bb6c612",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+  },
+  "budgets": {
+    "totalSeconds": 120,
+    "goTestSeconds": 60,
+    "GOMAXPROCS": 2,
+    "GOMEMLIMIT": "2GiB",
+    "packageParallelism": 1
+  },
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-count=1",
+    "-p",
+    "1",
+    "-timeout",
+    "60s",
+    "./pkg/server",
+    "-run",
+    "^TestRelease(KubeconfigTrustExecIsOperatorConfigured|WorkspaceCannotSupplyExecConfiguration|ExecAuthCanaryHelper)$"
+  ],
+  "fixtureTransport": "TLS with exact synthetic server certificate pinned as CA; verification enabled"
+}

@@ -4,7 +4,7 @@
 
 - [x] Bekleyen7 tarihsel kanıt kümesinin checksum/sonuç incelemesi; başarısızlıklar korunur.
 - [x] Test-helper TCPbind seçeneği GoListener ile eşlendi;26safcase/controlledsocketfixture kanıtı saklandı.
-- [ ] Gerçek iki-app ownerrelease/Brestart HTTP kontrolü.
+- [x] Gerçek iki-app ownerrelease/Brestart HTTP assertionları geçti; hazırlık830.384sn/300plan aşımı ayrıca açıkça kaydedildi.
 - [ ] Derivedprovider tamimaj/TLS/lab kabulü; eskiV11/finalpaket/60dk kapıları açık.
 
 ## 11 Kasım — physical profile lock fix/retest
@@ -495,3 +495,6 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 - [x] SEC-002 absolute session expiry: ek HTTP beklemeden stream context deadline, kısa süreli regresyon ve odaklı race.
 - [x] İki liman gerçek embedded candidate02 UI: Chromium15/WebKit15; namespace passive-effect ve dar harita kadrajı düzeltmesi,223unit/build. Final temiz paket tekrarı ayrı açık.
 - [ ] Yeni fullTLS cold lab, bounded pentest/load,5 eşleşmiş A/B ve60dk koşusu; eski V11-16/18/19+MANUAL açık.
+
+- [x] Kubeconfig trustedexec taşıması + browser exec/path/import sınırı odaklı testleri geçti; ilkfixtureFAIL korunur.
+- [ ] TEST12.01 bağımsızikinci kaynak incelemesi/fazkararı.
