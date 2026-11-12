@@ -1,0 +1,62 @@
+{
+  "startedAt": "2026-11-11T19:49:31.956727+00:00",
+  "command": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate/trivy.yaml",
+    "sbom",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "library",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--list-all-pkgs",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate/empty.ignore",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate/trivy-sbom.json",
+    "--timeout",
+    "60s",
+    "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/binary-dependencies.cdx.json"
+  ],
+  "GOMAXPROCS": 1,
+  "parallel": 1,
+  "maxSeconds": 60,
+  "rssLimitBytes": 1610612736,
+  "dbMetadataBefore": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  },
+  "dbMetadataSHA256Before": "62046a71bc29e0ded194e98fe3cde2f51f7179f5ed9d150b7853a33cbe307477",
+  "inputSHA256Before": "7bba6629021f9f1437ba09626c904ff92cba0493cb2655db76eeccb2c75a061a",
+  "peakOwnedRSSBytes": 4849664,
+  "samples": [
+    {
+      "elapsed": 0.068,
+      "rssBytes": 4849664,
+      "freeDiskBytes": 454248091648
+    }
+  ],
+  "ownedScanPID": 2132,
+  "exitCode": 1,
+  "ownedScanExited": true,
+  "status": "SCAN_FAILED_OR_STOPPED",
+  "inputSHA256After": "7bba6629021f9f1437ba09626c904ff92cba0493cb2655db76eeccb2c75a061a",
+  "dbMetadataSHA256After": "62046a71bc29e0ded194e98fe3cde2f51f7179f5ed9d150b7853a33cbe307477",
+  "elapsedSeconds": 0.6265734160042484,
+  "finishedAt": "2026-11-11T19:49:32.583282+00:00",
+  "helperSHA256": "f6d4effa0154ba33a0a330bccf97367b030d38b581cf7167ca54d03226025db2"
+}

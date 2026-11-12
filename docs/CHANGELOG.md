@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — provider-operator-candidate-worker
+
+- Privateoperatorcandidate1 ELF7bba6629… gerçekten üretildi; x/net0.62+jose4.1.6/Go1.26.11. İlkELFscanner0Results BLOCKED ve ilkSBOMflagFAIL korunur; düzeltilmiş164componentinventoryde MediumSCTP+UnknownOpenPGP kaldı. İmaj/kuruluoperator/TLS kabulü değildir.
+
 ## 2026-11-12 — provider-official-patch-review-worker
 
 - Resmi1.20.4 metadata incelemesi: gözlem11Kasımda daha yeni stable1.20.x bulunmadı; immutabletag/Helm/source/advisory eşleşti. Kaynak floor gerçek imaj düzeltmesi değildir; üç HighID açık. Mevcutlab1.20.2 değiştirilmedi.
