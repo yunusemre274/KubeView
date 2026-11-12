@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T15:19:57.905162+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T15:22:27.776842+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -3083,6 +3083,8 @@ TEST-FIXTURE adayhatası; henüzürüngüvenlikbulgusu değil. RestrictedPUTtype
 
 Correctedtekretst:5.090sncommand/2.340sntest,131.697/180snfaz; typedrestrictedSecretdeepcopy+v1/KindSecret vehasKind/hasApiVersion/UID/RVbooleanlarınınhepsitrue. İkirealSA/SelfSubjectReview/SSARverdictleri exact; restrictedPUT403+forbidden, maskedkeyNames422+knownmessage, adminnormaledit200; exactdata/type/metadataUID/RVreadback. Yeni7UIDilklerdenayrı/7GET404cleanup; namespacekorundu. Root13/13SHA ve kod/sonuç/değişiklikinceledi. İlk400nedenigeyedönükkesinleştirilmedi; ürünruntimeaynı. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/REPORT.md veROOT_REVIEW.json.
 
+Ayrı normal UI retesti: headedChromium/actualMetal AppleM5; finder→exactUID/namespace→reveal→hide→grantöncesi editdisabled→normalgrant→purposeYAML→serverdryrun→apply→closed/samecanvas. 8UIcheckPASS, browser5.337sn/controller+cleanup5.898sn, cleanup0.114sn; reveal açıkken screenshot0. ActualK8s UID59c5c80a…/acceptedRV31778=canonicalRV31778, data/type/eskiunknownmetadata eşit. Dört maskedPNG root ve worker tarafından açıldı. Fullreportfinalization260.642/240sn plan hedefini aştı; activebrowser120/cleanup45 sınırları aşılamadı. Bu süreç plan sapması korunur, CPU/physical latency acceptance değildir. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/REPORT.md.
+
 #### TEST-05.07-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -3160,6 +3162,8 @@ Backendgerçekreveal/editRBACmatrixPASS; frontendhide/normalUIakışı henüzayr
 Correctedtekretst:5.090sncommand/2.340sntest,131.697/180snfaz; typedrestrictedSecretdeepcopy+v1/KindSecret vehasKind/hasApiVersion/UID/RVbooleanlarınınhepsitrue. İkirealSA/SelfSubjectReview/SSARverdictleri exact; restrictedPUT403+forbidden, maskedkeyNames422+knownmessage, adminnormaledit200; exactdata/type/metadataUID/RVreadback. Yeni7UIDilklerdenayrı/7GET404cleanup; namespacekorundu. Root13/13SHA ve kod/sonuç/değişiklikinceledi. İlk400nedenigeyedönükkesinleştirilmedi; ürünruntimeaynı. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/REPORT.md veROOT_REVIEW.json.
 
 FrontendmevcutsecretPayload3UNITtestiNode24.16.0/sourceSHAmanifestile0.132snPASS. Unknownmetadata localpurpose-draftta korunur; operationsanitizeaynıdraftıdeğiştirmez. AktifResourceFormsyükleme/submitveworldoperationkaynakbağlantısı izlendi. BuUNITilegerçekAPIretestayrıkanıtlardır; normalUIreveal/hide/edit workerı ayrıca çalışıyor. Kanıt: artifacts/release-audit/ra-20261112/secret-payload-frontend-root/REPORT.md.
+
+Normal purpose YAML formunda iki metadata alanı değiştirildi; gerçek API readback aynıUID/data/type/eskiunknownlabels+annotations korunumunu ve kabulRV=canonicalRV31778 doğruladı. Dryrun ve apply normal UI düğmeleriyle yürüdü, route.fulfill/mock yok. Önceki frontend3UNIT ve realAPIikiSA kanıtları ayrı kalır. Kaynak/PNG ve plan-time sapması 05.07 retst kaydındadır.
 
 #### TEST-05.08-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.

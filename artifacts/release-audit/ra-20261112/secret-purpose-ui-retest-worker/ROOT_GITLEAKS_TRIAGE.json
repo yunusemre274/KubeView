@@ -1,0 +1,30 @@
+{
+  "disposition": "FALSE_POSITIVE_RECOMPUTED_SOURCE_CHECKSUMS",
+  "findings": [
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/source-before.json:generic-api-key:2",
+      "sourceFile": "frontend/e2e/release-secret-purpose-browser.mjs",
+      "sourceSHA256Recomputed": true,
+      "reason": "ordinary public first-party source hash, not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/source-before.json:generic-api-key:5",
+      "sourceFile": "frontend/src/workbench/secretPayload.js",
+      "sourceSHA256Recomputed": true,
+      "reason": "ordinary public first-party source hash, not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/source-after.json:generic-api-key:2",
+      "sourceFile": "frontend/e2e/release-secret-purpose-browser.mjs",
+      "sourceSHA256Recomputed": true,
+      "reason": "ordinary public first-party source hash, not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/source-after.json:generic-api-key:5",
+      "sourceFile": "frontend/src/workbench/secretPayload.js",
+      "sourceSHA256Recomputed": true,
+      "reason": "ordinary public first-party source hash, not credential"
+    }
+  ],
+  "globalIgnoreAdded": false
+}

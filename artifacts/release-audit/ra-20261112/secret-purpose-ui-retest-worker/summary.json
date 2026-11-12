@@ -1,0 +1,62 @@
+{
+  "status": "PASS_NARROW_NORMAL_UI_SECRET_FLOW",
+  "actualRenderer": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)"
+  },
+  "headless": false,
+  "browserSeconds": 5.337,
+  "executionThroughCleanupSeconds": 5.897968292236328,
+  "cleanupSeconds": 0.11351275444030762,
+  "phaseThroughReportReceiptSeconds": 232.790726,
+  "phaseLimitSeconds": 240,
+  "phaseWithinTarget": true,
+  "checks": [
+    "normal_finder_exact_UID_namespace",
+    "revealed_private_DOM_equals_synthetic",
+    "normal_hide_removes_private_DOM",
+    "normal_pregrant_purpose_edit_disabled",
+    "normal_YAML_metadata_edit_only",
+    "normal_server_dryrun_preview_sanitized",
+    "normal_save_accepted_and_canonical_label_observed",
+    "normal_close_same_canvas_private_DOM_clear"
+  ],
+  "actualCanonicalReadback": {
+    "at": "2026-11-12T11:27:15.048894+00:00",
+    "event": "canonical_own_Secret_readback",
+    "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+    "resourceVersion": "31778",
+    "dataEqual": true,
+    "typeEqual": true,
+    "oldUnknownMetadataEqual": true,
+    "newMetadataObserved": true
+  },
+  "normalOperationAcceptedResourceVersion": "31778",
+  "screenshotsCapturedAndOpened": 4,
+  "revealOpenScreenshots": 0,
+  "unsafeScreenshotOrValueExport": false,
+  "requestRecordsPathnameOnly": true,
+  "secretCleanup": {
+    "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+    "GET": 404,
+    "namespaceNotDeleted": true
+  },
+  "namespaceKept": true,
+  "app19843Free": true,
+  "appPIDAbsent": true,
+  "browserProcessExited": true,
+  "privateIPCRemoved": true,
+  "originalTwoNodeUIDsAndFinalReadyVerified": true,
+  "fullNodeMetadataBeforeAfterCapture": false,
+  "runtimeProductSourcesUnchanged": true,
+  "firstPreflightFailurePreserved": true,
+  "priorFrontendUnitNotRerunOrRelabeled": true,
+  "limits": [
+    "one generated synthetic Secret; authorized operator UI only",
+    "browser restricted-identity flow not run here; separate real API evidence exists",
+    "hide proves private DOM removal, not a production heap/GC measurement",
+    "no admission failure, CPU/FPS/physical latency, broad GVR, final package or release acceptance"
+  ],
+  "secretScan": "4 REDACTED FINDINGS; ROOT TRIAGE PENDING",
+  "finalizedAt": "2026-11-12T11:31:29.906303+00:00"
+}

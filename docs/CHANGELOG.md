@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Normal Secret UI retesti
+
+- Gerçek UI reveal/hide/purposeedit/dryrun/save ve canonical UID/RV/data/metadata zinciri geçti;4maskedPNG incelendi. İlk önkontrol korunur. Browser5.337sn, tamfinalizasyon260.642/240sn sapması ayrı; performans/heap veya genel admission iddiası yok.
+
 ## 2026-11-12 — Secret UI ilk önkontrol
 
 - Boş metadataList items:null/[] yardımcı uyumsuzluğu yüzünden gerçek UI başlamadı. İlk source/NOTRUN ve513.188/480sn plan sapması korunur; API yetki reddi veya ürün hatası diye sunulmaz.
