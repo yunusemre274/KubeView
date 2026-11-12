@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Gerçek Secret retesti
+
+- TypeMetafixyalnıztestte; iki gerçekrestrictedkimlikPUT403, currentUID/RVmaskeliPUT422/unchanged ve yetkili200/metadata-dataeşitliği geçti.7fixturetemizlendi; namespacekorunur. Maskguardfazı05.09darbackendcontractiletamam; UIhide/admission/normalformakışlarıayrıkaldı. İlkFAIL/sourcekorunur.
+
 ## 2026-11-12 — Exact ELF Go uyarı ayrımı
 
 - SekizCiliumx/nethtmlmodulematch veLinuxoperatorgopsWindowsadvisorysi exactELF/kod/platformkanıtıyla NOT_AFFECTED olarak ayrıldı; rawscannerbulguları/kuruluversiyonlar korunur, waiver değil. Kapsam8/13Ciliumhedefi+tekoperatorgops, globalgateaçık. Rapor374.242/360sn sınır aşımı ayrıca korunur.

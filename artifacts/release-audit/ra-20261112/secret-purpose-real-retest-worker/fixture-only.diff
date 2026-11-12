@@ -1,0 +1,59 @@
+--- preserved-first-source-41ffd9
++++ corrected-retest-source
+@@ -330,7 +330,24 @@
+ 		if !purpose {
+ 			noLeak(w.Body.Bytes())
+ 		}
+-		mark("handler", map[string]interface{}{"identity": x.alias, "method": method, "path": path, "status": w.Code})
++		fields := map[string]interface{}{"identity": x.alias, "method": method, "path": path, "status": w.Code}
++		if w.Code >= 400 {
++			var failure struct {
++				Category string `json:"category"`
++				Error    string `json:"error"`
++			}
++			_ = json.Unmarshal(w.Body.Bytes(), &failure)
++			category := "other_or_absent"
++			for _, allowed := range []string{"forbidden", "unauthorized", "invalid", "conflict", "not_found", "unavailable", "timeout", "bad_request"} {
++				if failure.Category == allowed {
++					category = allowed
++				}
++			}
++			fields["safeErrorCategory"] = category
++			fields["knownMalformedJSONMessage"] = failure.Error == "Geçersiz JSON"
++			fields["knownMaskedWriteMessage"] = failure.Error == "Maskelenmiş Secret kaydedilemez; değerleri ayrı ve yetkili akışla açın"
++		}
++		mark("handler", fields)
+ 		return w.Code, w.Body.Bytes()
+ 	}
+ 	newSession := func(s *Server, alias string) *session {
+@@ -493,7 +510,29 @@
+ 		if i == 0 {
+ 			checkSanitized(body, true)
+ 		}
+-		code, _ = call(x, "PUT", "/api/resources", resourceQuery, map[string]interface{}{"object": stored}, false)
++		restrictedObject := stored.DeepCopy()
++		restrictedObject.TypeMeta = metav1.TypeMeta{APIVersion: "v1", Kind: "Secret"}
++		envelopeBytes, envelopeErr := json.Marshal(map[string]interface{}{"object": restrictedObject})
++		var envelope struct {
++			Object struct {
++				Kind       string `json:"kind"`
++				APIVersion string `json:"apiVersion"`
++				Metadata   struct {
++					UID             string `json:"uid"`
++					ResourceVersion string `json:"resourceVersion"`
++				} `json:"metadata"`
++			} `json:"object"`
++		}
++		if envelopeErr != nil || json.Unmarshal(envelopeBytes, &envelope) != nil {
++			t.Fatal("restricted envelope serialization failed")
++		}
++		hasKind, hasVersion := envelope.Object.Kind == "Secret", envelope.Object.APIVersion == "v1"
++		uidMatches, rvMatches := envelope.Object.Metadata.UID == string(secret.UID), envelope.Object.Metadata.ResourceVersion == stored.ResourceVersion
++		mark("restricted_PUT_envelope", map[string]interface{}{"identity": alias, "hasKind": hasKind, "hasApiVersion": hasVersion, "UIDMatches": uidMatches, "RVMatches": rvMatches})
++		if !hasKind || !hasVersion || !uidMatches || !rvMatches {
++			t.Fatal("restricted envelope identity guard failed")
++		}
++		code, _ = call(x, "PUT", "/api/resources", resourceQuery, map[string]interface{}{"object": restrictedObject}, false)
+ 		if code != 403 {
+ 			t.Fatal("restricted update did not fail403")
+ 		}
