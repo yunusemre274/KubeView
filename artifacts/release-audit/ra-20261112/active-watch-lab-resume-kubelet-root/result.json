@@ -1,0 +1,70 @@
+{
+  "startedAt": "2026-11-12T21:15:39.447239+00:00",
+  "status": "FAIL",
+  "purpose": "owned lab resume prerequisite, NOT cold bootstrap or feature test",
+  "sourceCommit": "15770296056ca2629601dba540c04741e1822e0d",
+  "mainLimitSeconds": 120,
+  "wholeLimitSeconds": 180,
+  "startedContainers": [
+    "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+    "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9"
+  ],
+  "polls": [
+    {
+      "elapsedSeconds": 18.71217204200002,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 38.91158062500108,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 49.841728749997856,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    }
+  ],
+  "powerStart": {
+    "batteryPercent": 34,
+    "batteryPower": true
+  },
+  "stateBeforeSHA256": "345aa6ac8fc6b7284e7709176f90fd4c9a279f82cd26c11dffb2c86b97d72961",
+  "profileBeforeSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "kubeletRestore": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "before": {
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "inactive",
+        "SubState": "dead"
+      },
+      "startedExactOwnedService": true
+    }
+  ],
+  "portDiagnosis": {
+    "previousConfiguredAPI": "https://127.0.0.1:54902",
+    "actualOwnedLoopbackAPI": "https://127.0.0.1:55045",
+    "changed": true,
+    "firstAttemptOmittedExistingRefresh": true
+  },
+  "credentialsAndOtherContextsUnchanged": true,
+  "transientStartupIOErrors": 7,
+  "failureCategory": "KeyError",
+  "cleanupActive": true,
+  "cleanup": [
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "stopped": true
+    },
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "errorCategory": "LabError"
+    }
+  ],
+  "elapsedSeconds": 62.769343084000866,
+  "finishedAt": "2026-11-12T21:16:42.216577+00:00",
+  "within180Seconds": true
+}

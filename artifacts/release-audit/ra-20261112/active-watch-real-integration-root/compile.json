@@ -1,0 +1,19 @@
+{
+  "kind": "COMPILE_ONLY_NO_FEATURE_TEST_NO_K8S",
+  "exitCode": 0,
+  "command": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout=30s",
+    "-run",
+    "^$",
+    "./pkg/server"
+  ],
+  "elapsedSeconds": 2.8183251249975,
+  "at": "2026-11-12T21:13:16.903837+00:00"
+}

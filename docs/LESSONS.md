@@ -340,3 +340,7 @@ Bir WebSocket STATUS'u global stale alanına indirmek, kapsamın açık forbidde
 ## 13 Kasım — güvenlik yenilemesinde kapasiteyi hesaba kat
 
 Sabit toplam kontrol süresi, desteklenen namespace×GVR sayısını ve mevcut istemci rate-limitini aşarsa geçerli kullanıcıları sürekli reconnect döngüsüne sokabilir. İzinleri genişletmek veya QPSyi yükseltmek yerine kabul edilmiş scope sayısından sonlu batch bütçesi türet; gerçek limiter ile pozitif kontrol yap. Daha uzun periyodik iptal penceresini ayrıca açıkla ve gerçek provider/ağ maliyetini ölçülmüş gibi sunma.
+
+## 13 Kasım — warm lab Ready ve test fixture doğruluğu
+
+Docker start, minikube yenidenbaşlatma adımlarının tamamı değildir: mappedAPIport, CPkubelet ve ownedworker DNS kaydı ayrıca gerekebilir. Eski APIReadyTrue yerine güncelNodeLease ile önkoşulu doğrula. Roothelperlerdeki şema alanı/nodeUids ve parser hataları ilkbaşarısızkanıt olarak saklandı; yeni kanıt olmadan aynıkoşuyu tekrar etme. Çalışmayan fixture için uniqueinactive scheduler kullanmak, olmayanNodea bağlanan Podun orphanGC davranışından daha kararlıdır. PodSecuritynamespacepolitikasını gevşetmek yerine fixture securityContextini doğru kur; privateTemp cleanup sırasını test kaynakları kapanmadan silinmeyecek şekilde tut.

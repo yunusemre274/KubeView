@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-12T21:21:27.029396+00:00",
+  "phase": "PYTHON_PARSE_ONLY_BEFORE_TEST",
+  "result": "FAIL unmatched closing parenthesis in composed env",
+  "goInvocations": 0,
+  "kubernetesRequestsOrFixtures": 0,
+  "correctiveChange": "remove one redundant closing parenthesis; parse helper before actual invocation"
+}

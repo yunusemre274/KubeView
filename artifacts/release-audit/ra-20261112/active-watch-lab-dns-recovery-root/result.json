@@ -1,0 +1,173 @@
+{
+  "startedAt": "2026-11-12T21:24:00.023330+00:00",
+  "status": "PASS_ORIGINAL_UIDS_READY_WITH_FRESH_LEASES",
+  "scope": "OWNED_LAB_DNS_REPAIR_AND_FRESH_LEASE_PREREQUISITE_NOT_APP_E2E",
+  "limitSeconds": 120,
+  "rawKubeletLogsExported": false,
+  "polls": [
+    {
+      "elapsedSeconds": 0.7602964170000632,
+      "nodes": [
+        {
+          "node": "kvml-d32afbf634e8-a",
+          "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+          "ready": "True",
+          "leaseAgeSeconds": 9.70898
+        },
+        {
+          "node": "kvml-d32afbf634e8-a-m02",
+          "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+          "ready": "Unknown",
+          "leaseAgeSeconds": 15528.961196
+        }
+      ],
+      "consecutiveValid": 0
+    },
+    {
+      "elapsedSeconds": 2.9690192500020203,
+      "nodes": [
+        {
+          "node": "kvml-d32afbf634e8-a",
+          "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+          "ready": "True",
+          "leaseAgeSeconds": 1.62303
+        },
+        {
+          "node": "kvml-d32afbf634e8-a-m02",
+          "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+          "ready": "Unknown",
+          "leaseAgeSeconds": 15531.16608
+        }
+      ],
+      "consecutiveValid": 0
+    },
+    {
+      "elapsedSeconds": 5.181781875002343,
+      "nodes": [
+        {
+          "node": "kvml-d32afbf634e8-a",
+          "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+          "ready": "True",
+          "leaseAgeSeconds": 3.830329
+        },
+        {
+          "node": "kvml-d32afbf634e8-a-m02",
+          "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+          "ready": "Unknown",
+          "leaseAgeSeconds": 15533.373379
+        }
+      ],
+      "consecutiveValid": 0
+    },
+    {
+      "elapsedSeconds": 7.378307292001409,
+      "nodes": [
+        {
+          "node": "kvml-d32afbf634e8-a",
+          "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+          "ready": "True",
+          "leaseAgeSeconds": 6.035848
+        },
+        {
+          "node": "kvml-d32afbf634e8-a-m02",
+          "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+          "ready": "Unknown",
+          "leaseAgeSeconds": 15535.578898
+        }
+      ],
+      "consecutiveValid": 0
+    },
+    {
+      "elapsedSeconds": 9.585299917001976,
+      "nodes": [
+        {
+          "node": "kvml-d32afbf634e8-a",
+          "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+          "ready": "True",
+          "leaseAgeSeconds": 8.237569
+        },
+        {
+          "node": "kvml-d32afbf634e8-a-m02",
+          "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+          "ready": "Unknown",
+          "leaseAgeSeconds": 15537.780619
+        }
+      ],
+      "consecutiveValid": 0
+    },
+    {
+      "elapsedSeconds": 11.795131750001019,
+      "nodes": [
+        {
+          "node": "kvml-d32afbf634e8-a",
+          "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+          "ready": "True",
+          "leaseAgeSeconds": 0.287622
+        },
+        {
+          "node": "kvml-d32afbf634e8-a-m02",
+          "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+          "ready": "True",
+          "leaseAgeSeconds": 1.27216
+        }
+      ],
+      "consecutiveValid": 1
+    },
+    {
+      "elapsedSeconds": 14.003891708001902,
+      "nodes": [
+        {
+          "node": "kvml-d32afbf634e8-a",
+          "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+          "ready": "True",
+          "leaseAgeSeconds": 2.495032
+        },
+        {
+          "node": "kvml-d32afbf634e8-a-m02",
+          "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+          "ready": "True",
+          "leaseAgeSeconds": 3.47957
+        }
+      ],
+      "consecutiveValid": 2
+    },
+    {
+      "elapsedSeconds": 16.208991999999853,
+      "nodes": [
+        {
+          "node": "kvml-d32afbf634e8-a",
+          "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+          "ready": "True",
+          "leaseAgeSeconds": 4.703442
+        },
+        {
+          "node": "kvml-d32afbf634e8-a-m02",
+          "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+          "ready": "True",
+          "leaseAgeSeconds": 5.68798
+        }
+      ],
+      "consecutiveValid": 3
+    }
+  ],
+  "before": [
+    {
+      "node": "kvml-d32afbf634e8-a",
+      "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+      "ready": "True"
+    },
+    {
+      "node": "kvml-d32afbf634e8-a-m02",
+      "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+      "ready": "Unknown"
+    }
+  ],
+  "lookupBeforeExit": 2,
+  "onlyOneOwnedHostEntryAppended": true,
+  "hostsBeforeSHA256": "99c9c457ace0fb24235ab5a5e1db98ea1d5e028f8a7c84e0787bb227ad6f8d76",
+  "hostsAfterSHA256": "d3a7db97a966a555fcf912c1a3e01e68363eebc740d435babd32c7bee47706fa",
+  "lookupAfterMatchesOwnedControlPlaneIP": true,
+  "finishedAt": "2026-11-12T21:24:16.232456+00:00",
+  "elapsedSeconds": 16.209144708001986,
+  "within120Seconds": true
+}

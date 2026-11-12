@@ -618,3 +618,7 @@ STATUS mesajındaki forbidden/unavailable kapsamları frontend store'a işlenir.
 ## 13 Kasım — aktif resource watch yetkisi
 
 Aynı credential altında değişen RBAC, mevcut heartbeat ile kesin GVR/namespace list/watch SSAR yenilemesinde denetlenir. Tek async batch/sonlu bütçe; ret veya unavailable sonucunda o tüketici yeni veri yayını durdurur, failed-scope STATUS ve kapanış alır. İzinli komşu akış ve canonical veriler korunur.64namespace için bütçe mevcut30QPSye göre hesaplanır. Sentetik PoC/race/komşu regresyonları geçti; gerçek RoleBinding E2E ve yeni performans/paket kabulü açık.
+
+## 13 Kasım — gerçek active-watch revoke testi
+
+Yeni açık opt-in test, gerçek kısıtlı iki ServiceAccount ve RoleBinding silme ile production HTTP/WS yetki iptalini doğrular; mock/client-reactor kullanılmaz. Restricted PodSecurityye uyumlu, uniqueinactiveSchedulerName ile çalışmayan sentetikPod ve UID/RV preconditionlu temizlik kullanılır. İlkNodeUnknown/fixtureöncesiFAIL korundu; freshlease/rootlabrecovery sonrası gerçektest ve ikincikanıtinceleme geçti. Finalpaket/UI ve genelgüvenlik kabulü ayrı.

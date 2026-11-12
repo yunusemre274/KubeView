@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-12T21:15:39.420209+00:00",
+  "source": "owned docker exec systemctl show during previous120s setup",
+  "cpUnit": {
+    "Result": "success",
+    "ExecMainStatus": "0",
+    "ActiveState": "inactive",
+    "SubState": "dead"
+  },
+  "workerUnit": {
+    "Result": "success",
+    "ExecMainStatus": "0",
+    "ActiveState": "active",
+    "SubState": "running"
+  },
+  "changesDuringDiagnosis": false
+}

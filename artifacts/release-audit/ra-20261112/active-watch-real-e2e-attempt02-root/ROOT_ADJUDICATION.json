@@ -1,0 +1,13 @@
+{
+  "reviewedAt": "2026-11-12T21:26:44.070474+00:00",
+  "realKubernetesRoleBindingE2E": "PASS_WITH_PRODUCTION_HTTP_WS_NOT_BROWSER_FINAL_PACKAGE",
+  "requiredProofFieldsAllTrue": true,
+  "noSkip": true,
+  "sixExactFixtures404": true,
+  "capturedIdentitiesAbsent": 4,
+  "sourceFinalMatches": true,
+  "upstreamWatchLifetime": "NOT_INDEPENDENTLY_INSTRUMENTED_NO_HEARTBEAT_ONLY_CAUSALITY_CLAIM",
+  "firstActualFailure": "attempt01 NodeReadyUnknown before anyfixture; safe-test-result preserved",
+  "physicalLabRecovery": "ownedworker one validatedcontrolplane hostalias; real2NodeUIDsReady/freshLeases beforeandafter; notcoldbootstrap",
+  "userDataOrCredentialValuesRecorded": false
+}

@@ -1,3 +1,25 @@
+## 13 Kasım +03 — SEC-WATCH-REVOKE-001 gerçek küme retesti
+
+**Dar watch/cache yetki iptali düzeltmesi gerçek Kubernetes ile doğrulandı.**
+Product source15770296 ve yeni opt-in testin exactSHA'sı ile, iki gerçek
+TokenRequest/ServiceAccount kimliği normal HTTPsession/workspace/connection/harbor
+ve loopback WebSocket yolundan bağlandı. A'nın owned RoleBinding'i UID/RV ile
+silindiğinde aynıclientID altında SSARAllowedfalse, gerçekAPI/gateway403;
+forbidden non-authoritative STATUS ve gerçek WS kapanışı görüldü. B200 ve exact
+UPDATE almaya devam etti. Bilinen failure sonrası canary A'da görünmedi.
+
+[Gerçektest ve ilkönkoşulFAIL](../artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/REPORT.md),
+[ikinci inceleme](../artifacts/release-audit/ra-20261112/active-watch-real-evidence-review-worker/REPORT.md)
+ve [kök kapanış](../artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/ROOT_CLOSURE.json)
+ayrıdır.1testPASS/0SKIP;6fixtureGET404, broker/listener/süreçtemizliği doğrulandı.
+Labın iki containerı tekrar durdu; manuelveri/profiller korundu.
+
+Periyodikyenileme anlık/atomikiptal değildir; hesaplanan büyük-kapsam
+planlama penceresi ve gerçekAPI/CPU maliyeti açıkça sınırlıdır. Upstreamwatch
+ömürü ayrıca instrument edilmedi: heartbeat-only nedensellik, browser/finalbinary
+veya tümstreamtürleri için kabul verilmedi. Öncekibölümlerin NOT_RUN ifadeleri
+o andaki tarihsel durumu gösterir; ilkbaşarısızlıklar silinmez.
+
 ## 13 Kasım +03 — SEC-WATCH-REVOKE-001: dar ürün düzeltmesi ve retest
 
 **Düzeltme uygulandı, sentetik API/watch retesti geçti; gerçek RoleBinding E2E ve final yayın kabulü açık.**

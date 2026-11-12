@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-12T21:33:28.079174+00:00",
+  "verified": [
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-real-test-draft-worker/PLAN.json",
+      "line": 51,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-real-test-draft-worker/PLAN.json:generic-api-key:51",
+      "classification": "PUBLIC_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactImmutableOrStagedProof": ":backend/pkg/server/release_secret_real_test.go"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-real-test-draft-worker/PLAN.json",
+      "line": 55,
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-real-test-draft-worker/PLAN.json:generic-api-key:55",
+      "classification": "PUBLIC_SOURCE_SHA256_NOT_CREDENTIAL",
+      "exactImmutableOrStagedProof": ":backend/pkg/server/release_active_watch_authz_test.go"
+    }
+  ],
+  "globalIgnoreAdded": false
+}

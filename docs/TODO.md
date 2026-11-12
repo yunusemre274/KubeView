@@ -558,3 +558,9 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 - [x] SEC-WATCH-REVOKE-001 için per-consumer bounded SSAR yenilemesi ve failed-publication bariyeri; strict RED/final8+13/race9+9 ve root23+31/6 komşu testleri.
 - [x]64 namespace desteğinde sabit5sn false-timeout riski giderildi; gerçek client-go limiter129scope/258kontrolü geçti.
 - [ ] Gerçek RoleBinding iptali E2E, SSAR toplam API maliyeti ve yeni final paket kabulü. TEST10.08 açık; sentetik test gerçek kümeye eşit değildir.
+
+## 13 Kasım — gerçek RBAC iptali watch/cache kabulü
+
+- [x] TEST10.08: iki gerçek ServiceAccount + normal HTTP/WS + exactRoleBindingdelete; aynıcredentialA SSARdeny/API403/gateway403/failedscope/trueclose; B200+UPDATE;6fixtureGET404/broker/listener/UID/state/profile ve4ownedprocessref temizliği. İkinci inceleme tamam.
+- [x] Test labı exact2container tekrar stopped; manualprofiller/sealedQA korundu. İlkNodeUnknown preconditionFAIL ve helperhazırlık hataları ayrı saklandı.
+- [ ] Tarayıcı/finalbinary ve diğer log/exec/forward/flow oturumları; toplamAPI/CPU maliyeti ve genelreleasekapıları bu dar kabulle kapanmaz.

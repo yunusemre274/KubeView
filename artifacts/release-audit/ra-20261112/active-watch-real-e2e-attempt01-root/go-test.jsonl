@@ -1,0 +1,9 @@
+{"Time":"2026-11-13T00:21:29.050871+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/server"}
+{"Time":"2026-11-13T00:21:29.617147+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal"}
+{"Time":"2026-11-13T00:21:29.617228+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal","Output":"=== RUN   TestReleaseOwnedWatchRoleBindingRevocationReal\n"}
+{"Time":"2026-11-13T00:21:29.6407+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal","Output":"    release_active_watch_real_test.go:185: original Node UID or Ready mismatch\n"}
+{"Time":"2026-11-13T00:21:29.64097+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal","Output":"--- FAIL: TestReleaseOwnedWatchRoleBindingRevocationReal (0.02s)\n"}
+{"Time":"2026-11-13T00:21:29.640984+03:00","Action":"fail","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal","Elapsed":0.02}
+{"Time":"2026-11-13T00:21:29.641016+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"FAIL\n"}
+{"Time":"2026-11-13T00:21:29.642044+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"FAIL\tgithub.com/k8s-tersane/tersane/backend/pkg/server\t0.591s\n"}
+{"Time":"2026-11-13T00:21:29.64206+03:00","Action":"fail","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Elapsed":0.591}

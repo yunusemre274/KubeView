@@ -1,0 +1,81 @@
+{
+  "startedAt": "2026-11-12T21:17:59.643548+00:00",
+  "status": "PASS_OWNED_RESUME_READY_NOT_COLD_START",
+  "purpose": "owned lab resume prerequisite, NOT cold bootstrap or feature test",
+  "sourceCommit": "15770296056ca2629601dba540c04741e1822e0d",
+  "mainLimitSeconds": 120,
+  "wholeLimitSeconds": 180,
+  "startedContainers": [
+    "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+    "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9"
+  ],
+  "polls": [
+    {
+      "elapsedSeconds": 18.73069920799753,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 38.923273000000336,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 59.08159341599821,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 70.679249290999,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 72.89506695800083,
+      "apiObjectsAvailable": true,
+      "bothNodesReady": true
+    }
+  ],
+  "powerStart": {
+    "batteryPercent": 34,
+    "batteryPower": true
+  },
+  "stateBeforeSHA256": "345aa6ac8fc6b7284e7709176f90fd4c9a279f82cd26c11dffb2c86b97d72961",
+  "profileBeforeSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "kubeletRestore": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "before": {
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "inactive",
+        "SubState": "dead"
+      },
+      "startedExactOwnedService": true
+    }
+  ],
+  "portDiagnosis": {
+    "previousConfiguredAPI": "https://127.0.0.1:55045",
+    "actualOwnedLoopbackAPI": "https://127.0.0.1:55103",
+    "changed": true,
+    "firstAttemptOmittedExistingRefresh": true
+  },
+  "credentialsAndOtherContextsUnchanged": true,
+  "transientStartupIOErrors": 10,
+  "nodes": {
+    "kvml-d32afbf634e8-a": {
+      "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+      "ready": true
+    },
+    "kvml-d32afbf634e8-a-m02": {
+      "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+      "ready": true
+    }
+  },
+  "sealedNamespaceVerified": true,
+  "stateAfterSHA256": "345aa6ac8fc6b7284e7709176f90fd4c9a279f82cd26c11dffb2c86b97d72961",
+  "profileAfterSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "elapsedSeconds": 72.94303904099797,
+  "finishedAt": "2026-11-12T21:19:12.586557+00:00",
+  "within180Seconds": true
+}
