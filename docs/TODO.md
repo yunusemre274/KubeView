@@ -1,3 +1,6 @@
+- [x] TEST16.06 ilk5pair açıkNodeÖzet/5event:10window/3000olay/signedistatistik+ikinciinceleme. CPUgainkanıtıyok; RSS+9.391MiBpairedgözlem açık.
+- [ ] Dengeli4koşulΔpanel/fullmatrix, RSSmekanizması/CAT17profiler,60dk/finalpaket/oldV11kapıları açık.
+
 - [x] TEST16.01 darChromiumM38harnessenv/clock/PID/kamera/actualUI kontrolü tamam; genericCLI31PASS, CPUölçümü değildir.
 - [ ] TEST16.06 ilk5eşleşmişaçıkpanel5eventfamily ve kalan4koşulmatrix;V11-18açık.
 

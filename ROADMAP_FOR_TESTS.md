@@ -1,16 +1,16 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T20:29:43.130766+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T21:01:07.329404+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:138; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:36; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:137; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:36; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST16.01 darChromiumM38harnessdoğrulaması;36/200 (%18 fazsayısı). Sıradaki TEST16.06 ilk5eşleşmişaçıkpanel/5eventfamily; CPUsonuçları henüz yok.
-- Süreç/lab: ikiworkerın sonlu işleri tamamlandı; ağırölçüm roottekbaşına. Owned2NodeHubblelab durmuş/manueldata+sealedSecretQA saklı. n5preflight/planhazır, gerçekpencere henüz başlamadı; diğerprojelere dokunulmadı.
+- Süreç/lab: İlk5pair açıkpanel5event ölçümü10/10window/940.337sn tamam,125capturedrefyok/5192free. Diğerworkerlaridle; owned2Nodelabdurmuş,manueldata/sealedQA korunur. Rootsonuç/commit/push ve sonraki dengelimatrix+memorytanısını koordine ediyor.
 - Devam: TEST16.01 kamera/PID/güç/ortam önkoşullarını tamamla; ardından sınırlı eşleşmiş CPU ailesi. Provider16Medium yerel düzeltme ikinci incelemede; gerçek TLS/kurulum/finalpaket/60dk/manuel kabul açık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
@@ -41,7 +41,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
 | CAT-16 — A/B benchmark | 13 | NOT_STARTED:11, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
-| CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:6 | Henüz yok |
+| CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:3 | Henüz yok |
 | CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:2, RETEST_REQUIRED:1 | Henüz yok |
@@ -9376,6 +9376,8 @@ Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestil
 - Herwindow300plan/apply/received+fullsignature/cohort/clock veM55/p9520/p9933.3/callbackstore100/drawproxy250 bütçesi kontrol edilir; ilkFAILsaklanır/stop, olumluörnekseçmeyok. CPUtimecore/RSSperPID ayrı, GPUCPU≠GPUusage/presentedFPS.
 - İlkfeedback/panelreadylatency bu sürekli açıksenaryoda ölçülmez, ayrıV11-16kapısı açık.
 
+Gerçekbaşlangıçpreflight tamam: commit3278451b cleantrackedtree/remoteeşleşti; Battery62/lowpower0/native60Hz/5192free/ownedlab2stopped/tümtestworkeridle. Kaynak/buildFOV38harness kimlikleri donduruldu; actualseriwindowkoşusu başlatıldı. Kanıt: perf-open-events-five-pairs-root/preflight.json. ÖlçümsırasındakiROADMAPilerlemekaydı yalnızbelgedir; runtime/harness/frozenassetSHAdeğişmez vecontrollerherwindowkontroleder.
+
 #### TEST-16.06-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -9383,6 +9385,16 @@ Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestil
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+İlkpairp0 AB gerçek30/60windowları geçti:2/10window,1/5eşleşme. Herbirinde300plan/apply/received/kalıcıcanonicaltam içerikeşitliği, actualPIDbirth/cohort/clock veMframe/normalcallbackproxy bütçesiPASS. Hamvalidation+p0A/Bsummary veprocesssamples perffamilyklasöründe; n1CPUçıkarımı yok. Sıradaki p1 BA; source/build/kalite/phase sabit, diğerworkerlaridle. BütünfamilyveΔpanelhenüzaçık.
+
+İkinci BA pair tamam:4/10window,2/5pair; bütünperwindow validity/frame/data/normalproxyguardsPASS. İlkdört koşu tarihselçıkarım yapılmadan saklandı; sıradakiAB. Genelphase/Δpanel/fullruntimehenüzaçık.
+
+Üçpairtamam:6/10window,3/5pair; mevcut6validationPASS. Yalnızaçıkpanel5eventfamily; sonuçdeğerlendirmesi5pairsonrası. Retrying/samplediscardyok.
+
+Dörtpairtamam:8/10window,4/5pair; mevcut8validationPASS. SonABçiftiplanınaynısıylasürüyor; beşpairtamamlanmadanCPUsonucuvegenelfazkapanışıyok.
+
+İlkfamilytamam:10/10window,5/5pair,940.337sn/1800;3000plan/apply/received/fullnestedcanonical verdicttrue;MframeveproxybütçeleribütünkoşudaPASS. BrowserCPUmed0.686613→0.682294;pairedΔmed−0.000485core/paired%med−0.073972. Dağılımlarörtüşür;CPUgainiddiasıyok. İlkfamilyyalnızaçıkpanel5event; dengeliΔpanelmatrisiyerinegeçmez.
 
 #### TEST-16.06-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -9400,6 +9412,8 @@ Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestil
 - Düzeltme commit'i veya çalışma farkı: —
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
 
+Ölçümsonu maxsinglebrowserPIDRSSBbeşçifttearttı:+4.531…22.063MiB/med9.391;hepsiRenderer. JSused/totalheap farklarıkarışık, nedenbelirsiz. Zamanserisipeak/retainedmemory/leak/noise/genelRAM diye kapanmadı; kaynakdiff5runtime dosyada namespaceguard/camera/labelplacementdeğişimi var fakat nedenselmekanizma kanıtlanmadı. Ek sonlumemorydiagnosticveuzuntrendkapısı açık. REPORT-IDENTITY-001 ilkoffline reducer absentprovenance.commit→nullalanı; ilksonuç/sourcekorundu, frozenidentitychain/offlineretectdüzeltti,13metricaynı/newCPUrun0.
+
 #### TEST-16.06-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
@@ -9412,6 +9426,8 @@ Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestil
 - [ ] Gereken bağımsız ikinci inceleme tamamlandı.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
+
+125capturedrefabsent/5192free/backend+harnessSHAaynı/Battery62→59/otherworkersidle.10rawJSONgzip5.09MB→306KB/decompressSHA,indexmanifestvar. Farklıproviderworker58inputhash/13metricsignedpair/10rawframe+300uniqueeventsve14snapshots/window/source98files+6assetsperfront/cleanup/powerinyenidenhesapladı. RootreviewREPORT+2SHAkontrolü yaptı. Finalnestedobjedump yok;sourcefullnestedcanlıverdiktlerininincelenmesidir. Kanıt: perf-open-events-five-pairs-root/REPORT.md +../perf-open-events-second-review-worker/REPORT.md.
 
 #### TEST-16.06-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
@@ -9890,22 +9906,19 @@ Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestil
 - İlgili gereksinim / güvenlik standardı kontrolü: CAT17 ölçülen net kaynak kazancı ve eşit kalite/işlev; teknoloji değişimi kanıt gerektirir. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Sorumlu: ANA MÜDÜR; profiler henüz çalışmadı
+- Kaynak / build / paket kimliği: FrozenfrontendA36d/Bf32, commonbackend9d; başlangıç5pairmekanizmaistatistiği
+- Ortam / kullanılan kimlik ve yetki: AynıMacM5/ChromiumM38/DPR1 sentetikcanonicalM; yeni ürün değişikliği yok
+- Başlangıç zamanı: 2026-11-12T18:01:07.324485+00:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-17.01-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Başlangıçölçümü5pair açıkpanel5eventfamilyden alındı; BRendererRSS5/5artış/+9.391MiB medyan;source5runtimefilediff veused/totalJSheapiletriage yapıldı.
+- [ ] HenüzReact/V8allocation/retained/nativeprofilerkoşusu veya küçükürünoptimizasyonadayı uygulanmadı.
+- Somutsoru: RSSartışı retainedJS/cachebüyümesi mi, GC/capacity/native/raster ayrımı mı? Kaynakdiff tekbaşına nedenkanıtıdeğildir.
+- Kanıt: perf-open-events-five-pairs-root/memory-source-triage.json ve REPORT.md.
 
 #### TEST-17.01-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -9924,12 +9937,8 @@ Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestil
 - Sonuç: NOT_STARTED
 
 #### TEST-17.01-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Açıkbellekgözlemi:pairedRSS+Bbeşçiftte4.531…22.063MiB;JSheapused/totalişaretlerikarışık. Noise/leak/leakfreediyekapatılmadı. Backend0.003core/browser0.68core ölçümü bufixtureda tarayıcıyıönceliklendirir; başka dil/backendmigrationıDOM/rendererRSSyi çözerdiye varsayılmaz.
+- Yeni ürünoptimizasyonu/Worker/WASM/dilgeçişi yok. Profiler+hypothesis+netfayda/retest olmadan toplamtasarrufiddiası üretilmedi.
 
 #### TEST-17.01-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
@@ -9946,8 +9955,7 @@ Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestil
 
 #### TEST-17.01-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- IN_PROGRESS: baseline+somutmemorysorusu hazır, mekanizma ve adayın totalcosttanısı henüz yok. Uzunaynıworkingset/GC/cleanup kapıları ayrıca açık.
 
 ### TEST-17.02 — Log/tablo/layout allocation adayı
 

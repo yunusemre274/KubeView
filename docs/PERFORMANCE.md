@@ -1,3 +1,19 @@
+## 12 Kasım2026 — yeni eşleşmiş açık-panel ailesi; genel kabul açık
+
+MacM5/macOS27.0.1/Chromium156Metal/medium/DPR1/1440x900; Battery62→59, controlledM38 aynıpose/8Node120Pod, canonical20/300. Frozenfrontend36d→f32, commonbackend9d;5pair AB/BA/AB/BA/AB,30s+60s,10window/3000event.
+
+| Koşul | A medyan[min,max] | B medyan[min,max] | Eşleşmiş B−A medyan | Karar |
+|---|---|---|---|---|
+| AçıkNodeÖzet/5event browserCPU,çekirdek |0.686613[0.655277,0.707368]|0.682294[0.625851,0.707012]|−0.000485|Kazanç kanıtı yok; ölçüm bütçeleri geçti|
+| EnbüyüktekbrowserPID sonRSS,MiB |387.156[375.984,398.016]|396.859[383.734,407.547]|+9.391|5/5artış; neden/retainedmemorytanısı açık|
+| JSdraw/sn |60.0198|60.0212|+0.0023|FizikselFPS değil|
+| Framep95/p99 koşu medyanı,ms |18.6/19.0|18.7/19.0|~0/0|Bütün10windowMbudgetPASS|
+| Callback→store/drawproxy p95 koşu medyanı,ms |0.8/19.8|0.9/18.0|+0.1/−0.9|Proxy; fizikselpanelhazır kabulü değil|
+
+[13metrik/minmax/hamgirdi/komut/kaynağın tamamı](../artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/REPORT.md). [İkinciinceleme](../artifacts/release-audit/ra-20261112/perf-open-events-second-review-worker/REPORT.md). Finalobjelerlivefullnested signature ile karşılaştırıldı; artefakta ayrıca tamdump edilmedi.14OSsnapshot/window gözlenencohort kapsamıdır;1sdoğum/örneklerarasıblindspot açık. Renderer/GPUprocess/backendCPU ayrıdır; GPUusage/enerji/toplamfizikselRAM N/A.
+
+Δpanel N/A: açık/kapalı ve0/5eventi aynıdengelibloktasınamadık. FullruntimebackendA/B,1/5/10/20harbor/M-L/log/traffic/idle/60dk/finalpaket,V11-16/V11-18/V11-19 açık. EskiAC/pil/farklıFOV/unsafe-log sonuçları buhavuzakatılmadı. İlkmetadataattributionnull kusuru korunup yalnızoffline düzeltildi; sayısal ölçümler değişmedi. GenelCPUoptimizasyonu veya yayınhazırlığı iddia edilmez.
+
 # KubeView performans ölçümü
 
 ## 10 Kasım 2026 — workspace protokolü ve açık kabul

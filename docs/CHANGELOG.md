@@ -1,3 +1,5 @@
+- Yeni5eşleşmiş30/60CPUailesi:20/300canonical,8/120detailed,3.000eventtamverieşitliği/MbudgetPASS. CPU0.686613→0.682294core;pairedmed−0.000485 iyileşmekanıtıdeğil. RendererRSSbeşçiftteartmış;mekanizmaaçık. Eski/hatalımetadata ve bütünrawkorundu.
+
 - GenericbenchmarkCLI eksik/geçersizCPUcohort/boşveeksikrungridi artık cleanfalse/exit2 ile reddeder;31CLI+kameraneighborUNITPASS. GerçekkısaM38harnessdoğrulaması ayrı, henüzCPUkarşılaştırması yok.
 
 - BenchmarkOScollectorPID+birth/PPID/executable/cohort kullanır; invalid/unknownCPUveRSSnull. Browserutility/orphan kapsamı ve aktifchildcachecleanup düzeltildi; üretim ürününe etkisi yok.
