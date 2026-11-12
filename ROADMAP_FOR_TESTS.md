@@ -1,17 +1,18 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-11T23:00:50.303020+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: `4c6c2ac57edc3b6634aecd86f6c927782de01f37`; origin/redesign/harbor-workbench aynı SHA. İzlenen runtime temiz; yeni helper/evidence ve roadmap checkpoint farkları root denetiminde.
-- Build/paket: provider09 özel functional binary `f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4`, linker4c6c2ac5; final dağıtım arşivi değildir. CI43076756577 SUCCESS; actual CI checkout/paket kimliği henüz bu yeni koşu için incelenmedi. Eski baseline/arşivler korunur.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
+- Son güncelleme: 2026-11-12T13:22:31.517826+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
+- Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
+- Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
 - Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:20; FAILED:2; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST09.01 session yaşam döngüsü ve TEST04.04 güncel helper gerçekScale geçti. TEST20.01 yeni provider runtime nedeniyle RETEST_REQUIRED; TEST06.12 gerçek yeniworker henüz çalışmadı.
-- Süreç/lab: Owned Hubble kvml-d32afbf634e8-a iki originalNode sıcak; app/hostrelay kapalı, trafik0. Diğer owned normal lab durdurulmuş, private state/manuel profiller korunur; kullanıcı DB süreçlerine dokunulmadı. Aktif iş: provider HTTP/OS preflight ve Safari metadata; benchmark/soak yok.
-- Devam: scripts/release-provider-lab.py live gate kapalıdır. Sonraki adım exact ownedUID kontrolleriyle yeni binary HTTP/OS preflight; başarılı checkpoint ardından yalnız bir idempotent worker-add işi. Orijinal lab/state guard olmadan genel up/down veya production mutasyonu yok.
+- Son tamamlanan faz: TEST01.01 endpoint inventory VERIFIED_DONE. Toplam30/200. PROV-LOCK-002 dar fix/race geçti; gerçek iki-app restart HTTP kontrolü ilk OSError nedeniyle açık. Gerçekworker case03Ready geçti fakat finaldeadline FAIL korunur.
+- Süreç/lab: ANA MÜDÜR + iki sonlu worker: backend gerçek iki-app HTTP restart; provider derived operator imajı inceleme/build. Başlangıçta ownedlab iki originalNode stopped; yalnız kimlik kontrollü resume yetkilendirildi. Kullanıcı süreçlerine müdahale yok.
+- Devam: Önce yedi bekleyen tarihsel kanıtın SHA/redaksiyon incelemesi ve ayrı geri dönüş commit/pushları; sonra correctedHTTP. İlk üç NodeAdd denemesi kapandı, otomatik dördüncü add yok. Final paket/perf/60dk/manuel kabul açık.
+- **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
 
 ## Merkezi kaynak ve güvenlik bütçesi
@@ -3506,7 +3507,7 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 
 #### TEST-06.05-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
+- Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -3561,7 +3562,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 #### TEST-06.06-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: Apple M5/32 GiB/macOS27.0.1; 21:36 yerel AC Power/%55 charging. Önceki Battery/%8 duruş tarihsel kayıttır. Yeni A/B veya60dk koşusu yok; yalnız bounded functional/preflight işleri.
+- Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -4046,6 +4047,8 @@ Ayrı exactpartialcleanup: iki lock, system/marker/ns/original2Ready, noNode/con
 Case02 exactcleanup:102.600sn<120 operasyon geçti; container/volume nonforce kaldırıldı, profilec826exactrestore/originalsnapshotaynı/NewNode+Pod+labeltargets0. Failedoperation/journallar değişmez. Finalreport244.087sn>240timingFAIL ayrı korundu; yeniapp/add yok. Source8645eskiFAIL kaydı sabit; makinadizini o alt işte silinmedi. Kanıt: artifacts/release-audit/ra-20261111/real-minikube-add-fixed-cleanup-worker/REPORT.md.
 
 Rootdarfilecleanup: aynıiki lock ve actualoriginal2/system/ns guardları; liveNEWresource0/profilec826 doğrulandı. Yalnız case02operationdan sonra doğmuş exactm03config/id_rsa/id_rsa.pub ve configName/driver bağlandı. Active machines/m03 dizini privateCONTROL02/quarantined-machine-m03 konumuna atomik taşındı, silinmedi; dosyaiçerikleri yayımlanmadı. Sourcepathyok, targetconfigSHAaynı, originalsnapshot/profileaynı. Bu yeniNode veya oldpendingoperationrecovery başarısı değildir. Kanıt: artifacts/release-audit/ra-20261111/provider-machine-quarantine/REPORT.md.
+
+12 Kasım yeniden inceleme: case03 sonrasındaki tek salt-okunur pil politikası kontrollü takipte yeni worker’a atanmış Pod0, exact yeni Node/container/volume/network/machine yokluğu ve original iki Ready UID/tam baseline eşitliği doğrulandı. Gözlem2026-11-11T19:36:00.453255UTC; gerçek GC zamanı bilinmiyor. Profil JSON tokenları aynı, yalnız string dışı whitespace değişmiş; bytehash4733b8… korunur. Sonraki sıfır, ilk20sn deadline FAIL sonucunu değiştirmez; dördüncü add yapılmadı. Kanıt: artifacts/release-audit/ra-20261111/real-minikube-add-gc-battery-followup-worker/REPORT.md (6/6 SHA doğrulandı).
 
 #### TEST-06.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

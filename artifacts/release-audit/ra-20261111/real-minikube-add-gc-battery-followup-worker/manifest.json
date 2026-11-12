@@ -1,0 +1,12 @@
+{
+  "status": "READONLY_LATER_PODS0_ALL_GUARDS_PASS",
+  "start": "2026-11-11T19:36:00.102318+00:00",
+  "receiptAt": "2026-11-11T19:36:01.164062+00:00",
+  "workSeconds": 1.0762181282043457,
+  "receiptSeconds": 1.0764029026031494,
+  "workLimit": 45,
+  "phaseLimit": 120,
+  "originalCase03RemainsFAIL": true,
+  "noMutations": true,
+  "instanceOnlyBatteryException": true
+}
