@@ -1,0 +1,43 @@
+{
+  "Architecture": "arm64",
+  "Config": {
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GOPS_CONFIG_DIR=/home/gops"
+    ],
+    "Labels": {
+      "maintainer": "maintainer@cilium.io"
+    },
+    "WorkingDir": "/"
+  },
+  "Created": "2026-11-12T10:25:57.174789636Z",
+  "Descriptor": {
+    "digest": "sha256:0f5f919c630deb02c84c3301f61efe4b6b4aece5bde2dbbcc771e48e8aac7352",
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "size": 1622
+  },
+  "Id": "sha256:0f5f919c630deb02c84c3301f61efe4b6b4aece5bde2dbbcc771e48e8aac7352",
+  "Metadata": {
+    "LastTagTime": "2026-11-12T10:25:57.461037844Z"
+  },
+  "Os": "linux",
+  "Parent": "sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+  "RepoDigests": [
+    "kubeview-private/cilium-operator-generic@sha256:0f5f919c630deb02c84c3301f61efe4b6b4aece5bde2dbbcc771e48e8aac7352"
+  ],
+  "RepoTags": [
+    "kubeview-private/cilium-operator-generic:1.20.4-security.2-image02"
+  ],
+  "RootFS": {
+    "Layers": [
+      "sha256:e0ce01de61c78f52774bac261a5211bb20ef8fb82f667b1fbfa6efbd5afc4495",
+      "sha256:a990b1dd9bfa53d63b2848f817eb02f68606c2cb7ef858e23e21a4f901ebe444",
+      "sha256:fbfe1c7257ecd807fc5baa8fdf836177d045fb143e3c1a5ad2082ec344dffa2a",
+      "sha256:a16afe28728b8ca2149d022444da94cbb98e1e0e4e2b7d7926ae6cc442cd4e24",
+      "sha256:7e38ad3d78c722875b0e23b3f8713d25104ce05dd828209d8d85db018981e90d",
+      "sha256:0cd811de4b178cf09dc17bac786dc7fc167762db3cc81a23351c32e55b5557fd"
+    ],
+    "Type": "layers"
+  },
+  "Size": 97330699
+}

@@ -1,0 +1,148 @@
+{
+  "scope": "Stopped containers only; files read via docker cp tar streams, no image execution",
+  "assets": {
+    "official": {
+      "/etc/ssl/certs/ca-certificates.crt": [
+        {
+          "name": "ca-certificates.crt",
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0,
+          "size": 178791,
+          "type": "0",
+          "linkname": "",
+          "paxHeaders": {},
+          "sha256": "5961c0a3c65459931c023e0075c09733f09aea4ca439cb85bc4a08bb4f3f568b"
+        }
+      ],
+      "/usr/bin/gops": [
+        {
+          "name": "gops",
+          "mode": "0o755",
+          "uid": 0,
+          "gid": 0,
+          "size": 3735714,
+          "type": "0",
+          "linkname": "",
+          "paxHeaders": {},
+          "sha256": "61c61208e84c53b9c617b0781a4936cf1aed39175e098c2d9bd26a6a3d90c3e8"
+        }
+      ],
+      "/LICENSE.all": [
+        {
+          "name": "LICENSE.all",
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0,
+          "size": 1885503,
+          "type": "0",
+          "linkname": "",
+          "paxHeaders": {},
+          "sha256": "206adb38da26fe3ab023bb416200502c19fe1a55817bb0a1aa2dcadf74469f13"
+        }
+      ],
+      "/home/gops": [
+        {
+          "name": "gops",
+          "mode": "0o777",
+          "uid": 0,
+          "gid": 0,
+          "size": 0,
+          "type": "5",
+          "linkname": "",
+          "paxHeaders": {}
+        }
+      ]
+    },
+    "candidate": {
+      "/etc/ssl/certs/ca-certificates.crt": [
+        {
+          "name": "ca-certificates.crt",
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0,
+          "size": 178791,
+          "type": "0",
+          "linkname": "",
+          "paxHeaders": {},
+          "sha256": "5961c0a3c65459931c023e0075c09733f09aea4ca439cb85bc4a08bb4f3f568b"
+        }
+      ],
+      "/usr/bin/gops": [
+        {
+          "name": "gops",
+          "mode": "0o755",
+          "uid": 0,
+          "gid": 0,
+          "size": 3735714,
+          "type": "0",
+          "linkname": "",
+          "paxHeaders": {},
+          "sha256": "61c61208e84c53b9c617b0781a4936cf1aed39175e098c2d9bd26a6a3d90c3e8"
+        }
+      ],
+      "/LICENSE.all": [
+        {
+          "name": "LICENSE.all",
+          "mode": "0o644",
+          "uid": 0,
+          "gid": 0,
+          "size": 1885503,
+          "type": "0",
+          "linkname": "",
+          "paxHeaders": {},
+          "sha256": "206adb38da26fe3ab023bb416200502c19fe1a55817bb0a1aa2dcadf74469f13"
+        }
+      ],
+      "/home/gops": [
+        {
+          "name": "gops",
+          "mode": "0o777",
+          "uid": 0,
+          "gid": 0,
+          "size": 0,
+          "type": "5",
+          "linkname": "",
+          "paxHeaders": {}
+        }
+      ]
+    }
+  },
+  "containers": [
+    {
+      "role": "official",
+      "cid": "e522b8cf94b2078fb04501778bc2f8334ea4c66b30426688b3d74830939d9015",
+      "owner": "kv-operator-image02-assets-b9370669e1db4c8aae68fafe709c4965",
+      "started": false,
+      "removedAndAbsent": true
+    },
+    {
+      "role": "candidate",
+      "cid": "b4a8da85ba35e2a79b470c88851170dd79842ca15607ddb3f06c6bd0dcea1fbc",
+      "owner": "kv-operator-image02-assets-9e225148c3124ec497fcb587a9d9dbc5",
+      "started": false,
+      "removedAndAbsent": true
+    }
+  ],
+  "allSelectedAssetsAndModesEqual": true,
+  "officialLayerDiffIDs": [
+    "sha256:e0ce01de61c78f52774bac261a5211bb20ef8fb82f667b1fbfa6efbd5afc4495",
+    "sha256:a990b1dd9bfa53d63b2848f817eb02f68606c2cb7ef858e23e21a4f901ebe444",
+    "sha256:fbfe1c7257ecd807fc5baa8fdf836177d045fb143e3c1a5ad2082ec344dffa2a",
+    "sha256:a16afe28728b8ca2149d022444da94cbb98e1e0e4e2b7d7926ae6cc442cd4e24",
+    "sha256:7e38ad3d78c722875b0e23b3f8713d25104ce05dd828209d8d85db018981e90d"
+  ],
+  "candidateLayerDiffIDs": [
+    "sha256:e0ce01de61c78f52774bac261a5211bb20ef8fb82f667b1fbfa6efbd5afc4495",
+    "sha256:a990b1dd9bfa53d63b2848f817eb02f68606c2cb7ef858e23e21a4f901ebe444",
+    "sha256:fbfe1c7257ecd807fc5baa8fdf836177d045fb143e3c1a5ad2082ec344dffa2a",
+    "sha256:a16afe28728b8ca2149d022444da94cbb98e1e0e4e2b7d7926ae6cc442cd4e24",
+    "sha256:7e38ad3d78c722875b0e23b3f8713d25104ce05dd828209d8d85db018981e90d",
+    "sha256:0cd811de4b178cf09dc17bac786dc7fc167762db3cc81a23351c32e55b5557fd"
+  ],
+  "officialLayersPreservedAsPrefix": true,
+  "officialEngineSizeBytes": 65721764,
+  "candidateEngineSizeBytes": 97330699,
+  "engineSizeDeltaBytes": 31608935,
+  "copyLayerHistoryBytes": 114819234
+}

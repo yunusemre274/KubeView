@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Yerel operator imajı
+
+- Privatecandidate02 gerçekyerelimaja paketlendi; aynıDB full-image ikiGoELF taramasında High2→0, Medium4→0; gopsUnknown1 açık. ScratchoperatorAPT içermez, diğerimajlarAPT/TLS/lab kabulü ayrı. Runtimeconfig/assets ve constrained--version doğrulandı; imaj yayımlanmadı.
+
 ## 2026-11-12 — Test listener önkontrolü
 
 - Ownedrestartprebind Go1.26.11 netlistenerSO_REUSEADDR semantiğiyle eşlendi; controlledsocketfixture ve26safcase geçti. İlk gerçekHTTPFAIL nedeni hâlâUNPROVEN; productionlistener değişmedi.

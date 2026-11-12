@@ -1,0 +1,53 @@
+{
+  "Id": "sha256:f72cbe831147c52dd5fd3c8ec06fe3e913dfe32490113b9462480ccc21a02cdb",
+  "RepoTags": [
+    "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82"
+  ],
+  "RepoDigests": [
+    "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82"
+  ],
+  "Comment": "buildkit.dockerfile.v0",
+  "Created": "2026-10-23T14:21:15.743982562Z",
+  "Config": {
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GOPS_CONFIG_DIR=/home/gops"
+    ],
+    "WorkingDir": "/",
+    "Labels": {
+      "maintainer": "maintainer@cilium.io"
+    }
+  },
+  "Architecture": "arm64",
+  "Os": "linux",
+  "Size": 65721764,
+  "RootFS": {
+    "Type": "layers",
+    "Layers": [
+      "sha256:e0ce01de61c78f52774bac261a5211bb20ef8fb82f667b1fbfa6efbd5afc4495",
+      "sha256:a990b1dd9bfa53d63b2848f817eb02f68606c2cb7ef858e23e21a4f901ebe444",
+      "sha256:fbfe1c7257ecd807fc5baa8fdf836177d045fb143e3c1a5ad2082ec344dffa2a",
+      "sha256:a16afe28728b8ca2149d022444da94cbb98e1e0e4e2b7d7926ae6cc442cd4e24",
+      "sha256:7e38ad3d78c722875b0e23b3f8713d25104ce05dd828209d8d85db018981e90d"
+    ]
+  },
+  "Metadata": {
+    "LastTagTime": "2026-11-11T13:30:39.049104215Z"
+  },
+  "Descriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:f72cbe831147c52dd5fd3c8ec06fe3e913dfe32490113b9462480ccc21a02cdb",
+    "size": 1243,
+    "platform": {
+      "architecture": "arm64",
+      "os": "linux"
+    }
+  },
+  "Identity": {
+    "Pull": [
+      {
+        "Repository": "quay.io/cilium/operator-generic"
+      }
+    ]
+  }
+}

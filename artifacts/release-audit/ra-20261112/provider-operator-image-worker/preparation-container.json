@@ -1,0 +1,76 @@
+{
+  "baseReference": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+  "owner": "kv-operator-image02-prep-a92666c328d849cba8185334cd5c7ffd",
+  "commands": [
+    [
+      "docker",
+      "create",
+      "--pull=never",
+      "--platform=linux/arm64",
+      "--name",
+      "kv-operator-image02-prep-a92666c328d849cba8185334cd5c7ffd",
+      "--label",
+      "com.kubeview.release-audit.owner=kv-operator-image02-prep-a92666c328d849cba8185334cd5c7ffd",
+      "--network",
+      "none",
+      "--read-only",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--user",
+      "65532:65532",
+      "--memory",
+      "256m",
+      "--cpus",
+      "1",
+      "--pids-limit",
+      "32",
+      "--entrypoint",
+      "/usr/bin/true",
+      "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82"
+    ],
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31:/var/lib/dpkg/status",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/official-dpkg-status.txt"
+      ],
+      "returncode": 1,
+      "stderr": "Error response from daemon: Could not find the file /var/lib/dpkg/status in container 1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31\n"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31:/etc/os-release",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/official-os-release.txt"
+      ],
+      "returncode": 1,
+      "stderr": "Error response from daemon: Could not find the file /etc/os-release in container 1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31\n"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31:/etc/apt",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/official-apt"
+      ],
+      "returncode": 1,
+      "stderr": "Error response from daemon: Could not find the file /etc/apt in container 1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31\n"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31:/usr/share/keyrings/ubuntu-archive-keyring.gpg",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/ubuntu-archive-keyring.gpg"
+      ],
+      "returncode": 1,
+      "stderr": "Error response from daemon: Could not find the file /usr/share/keyrings/ubuntu-archive-keyring.gpg in container 1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31\n"
+    }
+  ],
+  "cid": "1df22b484926dd57de6001894061de64a4fca3a76669c67d0342eafe30a42c31",
+  "removed": true
+}

@@ -1,0 +1,27 @@
+{
+  "name": "version-only",
+  "argv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "start",
+    "--attach",
+    "e95f9292ec5058c841d42c8070e30dba12f1acaf18951dbc0ebf97a65724bb36"
+  ],
+  "startedAt": "2026-11-12T10:25:59.227098+00:00",
+  "maxSeconds": 12,
+  "samples": [
+    {
+      "elapsedSeconds": 5.576,
+      "ownedRSSBytes": 4063232,
+      "ownedPIDs": [
+        10830
+      ],
+      "freeDiskBytes": 454439981056,
+      "batteryPercent": 52
+    }
+  ],
+  "pid": 10830,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:25:59.750930+00:00"
+}

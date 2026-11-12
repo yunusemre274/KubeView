@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:27:55.175688+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T13:33:32.425487+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:145; IN_PROGRESS:19; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:144; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:30; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC-001 HIGH ve SEC-002 MEDIUM dar retestleri geçti; final paket kapısı açık. Ana Go SCA0 bulgu. Provider1.20.2 imajlarında20 farklı High ID eşleşmesi; resmi1.20.4 adayında kalan apt/x-net/go-jose analizi açık. Özel minikube go-jose4.1.6 yaması derlendi ve ilgili tarama eşleşmeleri kalktı; yeni binary gerçek provisioning kabulü henüz yok. Tarama eşleşmesi istismar kanıtı değildir.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -36,7 +36,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:4, IN_PROGRESS:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:8, RETEST_REQUIRED:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
-| CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:9, IN_PROGRESS:1 | Henüz yok |
+| CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:8, IN_PROGRESS:2 | Henüz yok |
 | CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
@@ -4561,6 +4561,8 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 
 12 Kasım tarihsel kanıt inceleme/checkpoint: Privateoperatorcandidate02 ELF9cde6566… gerçekbuildPASS; cryptoexactpseudo+gopacket1.7.2 dışında incrementalgraph değişmedi. AynıDB164componentinventory0finding, fullimage/anaCiliummodülü kapsandı demek değildir. KısıtlıLinuxARM64Docker --version gerçekexit0 veexactCIDcleanup; henüz labinstall/TLS/controller kabulü yok. Kanıt: artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/REPORT.md; SHA256SUMS bütün satırları root tarafından doğrulandı. İlk başarısızlıklar değiştirilmedi.
 
+12Kasım yeni gerçekmergedimage: localoperator image02 descriptor0f5f919c…; exactofficialARM64manifestf72cbe83… üstünecandidate029cde6566…COPY. GerçekTrivyikiGoELFtarget/OSyok: baseline2High/4Medium/2Unknown → candidate0High/0Medium/1Unknown(gopsWindowsadvisory, açık). Operator scratch/APTyok; Cilium/EnvoyAPTkapısı ayrı. CA/gops/license/config/modesaynı; +114819234B uncompressedCOPYlayer, eskioperatorlowerlayerkalır. --version constrainedexit0, exactcontainercleanup. 38/38artifact-relativeSHArootkontrolüPASS. Bu finalcontroller/TLS/lab/lisans/kaynağınanaCVEkapsamı kabulü değildir. Kanıt: artifacts/release-audit/ra-20261112/provider-operator-image-worker/REPORT.md.
+
 #### TEST-07.05-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -6892,22 +6894,19 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Sorumlu: ANA MÜDÜR; kaynak/test ikinci inceleme ayrıca
+- Kaynak / build / paket kimliği: Runtime f32d6b23 byte-eşdeğer; son doküman/helper checkpointfbc7dbcb. Yeni test kaynak kimliği koşu manifestinde.
+- Ortam / kullanılan kimlik ve yetki: Sahip olunan loopback19848 canary API, sentetik testbinary exec plugin, temp0700 workspace/kubeconfig; gerçek Kubernetes veya kullanıcıcredential yok.
+- Başlangıç zamanı: 2026-11-12T10:30:45.651639+00:00
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-12.01-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Aktif server.client standart client-go loader ve trustedWorkspaceContext/workspace import sınırı koddan izlendi; eskipkg/k8s/client aktif yol sanılmadı.
+- Fixture: yalnız owned127.0.0.1:19848, testbinary authhelper+tempmarker. Bütçe: iki odaklıtest,60sn testtimeout/120sn wrapper, GOMAXPROCS2/package1; hiçbir host/provider/labmutasyonu yok.
+- Beklenti: açık operatör kubeconfig execplugin çalışabilmeli; browser bağlantı/import payloadı yeni executable/kubeconfig/context yetkisi sağlayamamalı. Normalcontext listeleme authprogram çalıştırmamalı.
+- Kaynak/devam/test sonuçları artifacts/release-audit/ra-20261112/kubeconfig-trust-root/ altında saklanacak. Diğer kaynak değişirse ilgili kanıt yeniden değerlendirilecek.
 
 #### TEST-12.01-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
