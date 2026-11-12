@@ -1,3 +1,20 @@
+## 12 Kasım 2026, 22:45 — dengeli panel matrisi ölçüldü; karşılaştırma kabulü açık
+
+Beş eşleşmiş blokta40pencere (0/5olay-sn × panelkapalı/açık × A/B), her30sısınma+60sölçüm tamamlandı. Frozenfrontend36d/f32,ortakbackend9d;MacM5/Chromium156Metal/medium/DPR1/1440×900/M38,canonical20Node/300Pod,ayrıntılı8/120,su/seyiraçık,Battery53→43. Ürün/renderkalitesi değiştirilmedi.
+
+| Koşul | A browserCPU medyan[min,max],core | B medyan[min,max],core | Eşleşmiş B−A medyan,core |
+|---|---|---|---|
+| Kapalı,0/s |0.621209[0.607889,0.629050]|0.622154[0.606136,0.698428]|+0.002764|
+| Açık,0/s |0.633715[0.619278,0.637350]|0.622300[0.615433,0.702130]|−0.005026|
+| Kapalı,5/s |0.675716[0.628697,0.689483]|0.615717[0.602924,0.682483]|−0.026199|
+| Açık,5/s |0.670831[0.634438,0.696627]|0.682215[0.637502,0.704686]|−0.007992|
+
+İşaretliΔpanel (açık−kapalı) medyanı0/s A0.011389/B0.003702;5/s A0.010467/B0.044199core. EşleşmişΔB−ΔA medyanları−0.001524 ve+0.013225; medyanların farkıyla karıştırılmaz. **Bunlar hesaplanmış gözlemlerdir; kabul edilmiş nedenselCPU sonucu veya optimizasyon değildir.**
+
+İki offline inceleme6000olay/canonicalverdict,40pencereMdraw/frame/proxy,371güçkaydı/247cleanup ve arşivleri doğruladı. Fakat p3B'de fazladan çizim ölçüm boyunca sürdü; bazıB hücrelerinde+1allocatedgeometry var. Gerçekrendernesnesi kaydedilmediği için BENCH-RENDER-001 iş yükü eşdeğerliği **UNRESOLVED**. İlk guardlarınPASS'i bunu kapatmaz. RSSmekanizması,CAT17,genişV11-18/continuous60dk/finalpaket açık; bu10restart60dkkesintisizsoakdeğildir.
+
+[52metrik,dağılım,Δpanel,kaynak ve sınırlar](../artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/REPORT.md),[açık kabul kararı](../artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/ACCEPTANCE.json),[sayısal inceleme](../artifacts/release-audit/ra-20261112/perf-balanced-numeric-review-worker/REPORT.md),[iş yükü incelemesi](../artifacts/release-audit/ra-20261112/perf-balanced-evidence-review-worker/REPORT.md). Önceki açık-only aile ve tarihsel ölçümler aşağıda kendi kapsamıyla korunur; havuzlanmadı. Sıradaki iş kısa renderedobject/hover/reset tanılamasıdır; uzun matris otomatik tekrarlanmıyor.
+
 ## 12 Kasım2026 — yeni eşleşmiş açık-panel ailesi; genel kabul açık
 
 MacM5/macOS27.0.1/Chromium156Metal/medium/DPR1/1440x900; Battery62→59, controlledM38 aynıpose/8Node120Pod, canonical20/300. Frozenfrontend36d→f32, commonbackend9d;5pair AB/BA/AB/BA/AB,30s+60s,10window/3000event.

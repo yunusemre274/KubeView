@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-12T18:43:44.929017+00:00",
+  "head": "7c9e9ffb3dd132775be7cc4953266eaef08d651e",
+  "remoteSameSHA": true,
+  "trackedTreeClean": true,
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t53%; discharging; 9:02 remaining present: true\n",
+  "powerSettings": "Battery Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         120\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           1\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         120\n womp                 1\n networkoversleep     0\n sleep                1\n tcpkeepalive         1\n disksleep            10\n",
+  "ownedLabStopped": [
+    "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+    "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9"
+  ],
+  "port5192Free": true,
+  "otherTestWorkers": "completed/idle confirmed via collaboration.list_agents",
+  "noBuildScanOtherBenchmark": true,
+  "policy": "No other user process stopped"
+}

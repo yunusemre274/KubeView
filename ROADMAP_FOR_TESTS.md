@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T21:41:29.415849+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
+- Son güncelleme: 2026-11-12T22:53:53.578839+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: Runtime f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12; HEAD7c9e9ffb3dd132775be7cc4953266eaef08d651e remote ile aynı. Canlı ROADMAP farkı belge-only; frozen frontend/common backend ve14harnessSHA korunur. Final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
-- Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
+- Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
 - Toplam test fazı: **200**. NOT_STARTED:137; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:36; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST16.01 darChromiumM38harnessdoğrulaması;36/200 (%18 fazsayısı). Sıradaki TEST16.06 ilk5eşleşmişaçıkpanel/5eventfamily; CPUsonuçları henüz yok.
-- Süreç/lab: İlk5pair açıkpanel5event ölçümü10/10window/940.337sn tamam,125capturedrefyok/5192free. Diğerworkerlaridle; owned2Nodelabdurmuş,manueldata/sealedQA korunur. Rootsonuç/commit/push ve sonraki dengelimatrix+memorytanısını koordine ediyor.
-- Devam: TEST16.01 kamera/PID/güç/ortam önkoşullarını tamamla; ardından sınırlı eşleşmiş CPU ailesi. Provider16Medium yerel düzeltme ikinci incelemede; gerçek TLS/kurulum/finalpaket/60dk/manuel kabul açık.
+- Son tamamlanan faz: TEST16.01 dar ChromiumM38 harness doğrulaması;36/200 (%18 faz sayısı). TEST16.06 ilk n5 open-only ailesi tamam; ayrı v5 dengeli 40-pencere matrisi sürüyor.
+- Süreç/lab: Dengeli40pencere10job3677.401sn tamamlandı;247capturedidentity yok/5192free. İki ikinci-inceleme workerı tamam/idle. Owned2Node lab stopped; manuelprofiller/sealedQA korunur. BENCH-RENDER-001 nedeniyle causalCPU kabulü açık.
+- Devam: Bitmişmatrisi yenidenbaşlatma. Yeni kısa renderedobject/geometry/material+hover/reset tanılaması ile BENCH-RENDER-001 kök nedenini ayır; sonramevcutRSSmekanizmasını ölç. Raporlar/sayısalhesaplarkorunur. Provider/TLS/finalpaket/continuous60dk/manüelkapılar açık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -3459,7 +3459,7 @@ Ayrıfrontend3UNITtesti actualvalidateRevealedSecret/secretSafeSubmission üzeri
 
 #### TEST-06.05-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
+- Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -3514,7 +3514,7 @@ amespace çiftleri API/tablo açıklamasında eşleşti.
 
 #### TEST-06.06-S1 — Hazırlık
 - [x] Exact owned06 lab/cluster/namespaceUID ve app/relay PID-doğum/listener/binarySHA her senaryoda doğrulandı.
-- Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
+- Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Komut: node frontend/e2e/release-real-traffic.mjs (exact guard helper owned-traffic.py).
 - Kanıt: artifacts/release-audit/ra-20261111/real-flow-ui-worker/source-identity.json; attempt-02/result.json
 
@@ -9390,6 +9390,8 @@ BalancedmatrixöncesinormalUIgeçişkontrolü: tekfrozenB/M38/noeventrun open→
 
 Yeni dengelimatrixplanı: perf-panel-balanced-five-blocks-root/plan.json;5block×2build×4condition40window/30+60,10seri6minjob/max4500s. Builtinconditionreversalonceoddblock, AB/BAbuildorderalternating. İlkopen-onlyv4seti bucausalΔpanelv5matrisinepoolyapılmaz. BaşlangıçBattery≥50/nextjob≥40/live≥35/settingslow0aynı, disk10GiB/RSS2+6GiB. Freshpreflight/rootlaunchhenüzgerekiyor; aktüelrun0.
 
+Balancedv5actualbaşladı: preflight2026-11-12T18:43:44.929017+00:00; source7c9e9ffb/remoteaynı/cleantracked, Battery53/low0/owned2labstopped/5192free/tümtestworkeridle.10job40window/max4500s,0retry. Source/plan/validator14SHA+selfsealruntimekontrolü aktif; sadeceROADMAP/non-runtimeprogress güncellenir. Bu ayrıdengelimatris1saatliksüresiboyunca appyenidenbaşlattığından60dkcontinuoussoakolaraksayılmaz.
+
 #### TEST-16.06-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -9408,6 +9410,26 @@ Dörtpairtamam:8/10window,4/5pair; mevcut8validationPASS. SonABçiftiplanınayn�
 
 İlkfamilytamam:10/10window,5/5pair,940.337sn/1800;3000plan/apply/received/fullnestedcanonical verdicttrue;MframeveproxybütçeleribütünkoşudaPASS. BrowserCPUmed0.686613→0.682294;pairedΔmed−0.000485core/paired%med−0.073972. Dağılımlarörtüşür;CPUgainiddiasıyok. İlkfamilyyalnızaçıkpanel5event; dengeliΔpanelmatrisiyerinegeçmez.
 
+Balancedv5ilkAjob4/40windowvalid: closed0/open0/closed5/open5 sırası, fullcanonical0/300event/strictcohort-clock/Mbudget vejobendpower+cleanup+portfreePASS. p0-B aynı4koşulda sürüyor; henüzcompletepairedblock0/5, n1Δçıkarımıyok.
+
+2026-11-12 devam kontrolü: 8/40 pencere jobvalidator ile doğrulandı; 1/5 tam A/B blok çifti. Aktif cat16-balanced-p1-B-20261112T185600Z. Ölçüm devam ederken ürün/harness/plan dosyaları değiştirilmedi; diğer worker ve owned lab idle/stopped. Nihai CPU yorumu bütün sonlu aile tamamlanınca yapılacak.
+
+Balancedv5 ikinci B job tamam:12/40window/3job accepted, ilk AB çift tam/1of5; ikinci BA bloğunun A tarafı sürüyor. Perjob4exactcell/fullcanonical0+300/strictcohort-clock/Mbudget ve exactcleanup+portfree/powerguard PASS. Ara CPU çıkarımı veya faz kapanışı yok.
+
+Balancedv5 iki tam blok/16of40window doğrulandı; AB ve BA kaynak sırası ikisi de tamam. Yeni p2AB aynı koşullarla sürüyor. Tamamlanan16cell için tamcanonical ve0/300event, Mdraw/proxy, processbirth/cohort/clock, perjobpower/cleanup kontrolleri geçti. Sonuçlar seçilmeden saklanır; kalan24window ve ikinci inceleme açık.
+
+Balancedv5 20of40window/5seri job doğrulandı; iki tam blok ve üçüncüA tamam. p2B devam ediyor. İlk5job Mframe, fullnestedcanonical0/300, strictcohort-clock, perjobpower+cleanup+5192free PASS. Sonlu aileye ek tekrar yapılmadı; CPU/Δpanel yorumu n5 tamblok ve ikinci inceleme sonrası.
+
+Balancedv5 üç tamblok/24of40window doğrulandı; AB/BA/AB kaynak sırası tamam. Dördüncü BA blok sürüyor. Mframe/fullcanonical0+300/strictobservedcohort-clock ve herjobsonu güç+exactcleanup+portfree PASS; CPUsonucuseçimi/otomatikretry yok. Son iki blok+ikinci inceleme açık.
+
+Balancedv5 28of40window/7job accepted: üç tam blok + dördüncüB. DördüncüA koşul sırasının builtin ters haliyle devam ediyor; ilk28cell için validity/Mframe/fullcanonical/producer/cohort-clock+jobcleanup PASS. Ölçüm sonuna kadar diğer testworkerları idle ve lab stopped; ürün/harness değişikliği yok.
+
+Balancedv5 dört tamblok/32of40window doğrulandı. Planın son AB bloğu başladı; ek tekrar yok. İlk8job ve32cell Mframe/fullcanonical0+300/producer/strictcohort-clock+power/cleanup/portfree kontrolleri PASS. Son8window, tamoffline değerlendirme ve ikinci inceleme açık.
+
+Balancedv5 36of40window/9job accepted; son A da geçti. Planın yalnız son B4koşulu kaldı. Tamamlanan36cell ve9job için Mframe/data/producer/cohort-clock/power/cleanup PASS; ailesonu, tamoffline değerlendirme ve ikinci inceleme bekleniyor. Ürün kaynağı/kalite/ölçüm planı değişmedi; ek tekrar yok.
+
+2026-11-12 22:45:02+03:00: 40/40pencere,5tamblok ve10seri job3677.400941sn içinde tamamlandı.0/300eventhücrelerinde toplam6000plan/apply/receive ve fullnestedcanonical verdictPASS; Mdraw59.991–60.030/sn,worstp9519.1/p9921.9ms. Bunlar mevcutvalidator kapsamındaki sonuçlardır; aşağıdaki ek renderbulgusu nedeniyle aile nedenselCPU kabulü değildir.
+
 #### TEST-16.06-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
 - Yapılan: henüz çalışılmadı.
@@ -9415,6 +9437,8 @@ Dörtpairtamam:8/10window,4/5pair; mevcut8validationPASS. SonABçiftiplanınayn�
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+BENCH-RENDER-001: Root ve ikinci reviewer tüm40envanter/rawframe dağılımlarını okudu. p3-B açık5/s fazladan çizim ölçüm boyunca sürüyor: ilk2frame435vs434, sonraki12frame445vs444. BazıB hücrelerinde +1allocatedgeometry var. Kamera/fleet/UID/panel/triangle eşitliği tekbaşına actualrender-work eşdeğerliğini kanıtlamıyor; rawframe line/objectUUID yok. Mevcut automatedcomparator comparable=true yalnız eksikguard evrenini gösterir. Aile kabulü AÇIK; ek60dk koşu otomatik başlatılmadı.
 
 #### TEST-16.06-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -9428,11 +9452,15 @@ Dörtpairtamam:8/10window,4/5pair; mevcut8validationPASS. SonABçiftiplanınayn�
 
 PRE-RUNreview3helpergap(AC/lowpowerguard,perjobcleanupgating,reserve8vs15) buldu; originalNOTREADY/sourcekorundu. CorrectedBattery/settingspoll+jobend/perjobPID+portgate/reserve15 sourcereview ile doğrulandı. Root7powerASTunit+2actualownedprewrite-reentryfixturePASS; hiçbirappbaşlamadı. Finalprewriteguard supervisor/executionvarsa hiçbiroutputyazmadanrejecteder, source/plan/validatorheshleri veexactopenbody/livejobmetadataeklendi. Eskiarchivedwrapperlar reentry-safe değildir; yalnızbirkezrunedildi/kanıtlarıintact, tekraraynıfolderderunönerilmez. Kayıt: perf-panel-balanced-five-blocks-root/ROOT_REVIEW.md +plan-review-worker/REPORT.md.
 
+Yeni test-aracı bulgusu BENCH-RENDER-001: validator/comparator actualrender-work kimliği/eksik eşdeğerlik kanıtını yeterince denetlemiyor. Henüzürünhatası, bellek sızıntısı veya hover nedeni doğrulanmadı. Enküçüksonraki iş kısa renderedobject/geometry/material+hover/reset tanılamasıdır. İlkarchive helper suffix filtresi0file verdi; ilkRAW_INDEX-initial-zero-files.json başarıdeğil diye korundu. Correctedarchive.py exact70ad/JSONparse/decompress/byteequal ve nooverwrite ile geçti; measurement yenidenkoşulmadı.
+
 #### TEST-16.06-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
 - [ ] Komşu davranışlar gerektiği ölçüde sınandı.
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+Offline reduce.mjs syntax ve tam40cell çalışmasıPASS; mevcutcomparePanels sonuçları ve52metrikCSV saklandı. Sayısalworker 40window×5CPUrolünü OS sayaç/duvarsüresinden bağımsız türetti,480araörnek/4.786alan max3.55e−14 fark. OlaylıΔpanel Amed0.010467/Bmed0.044199core, pairedΔB−ΔA med+0.013225/range−0.010735…+0.135490. Renderbulgusu nedeniyle nedenselCPUsonucuyok. Güncelürünoptimizasyonu/kalite/refreshdeğişikliği0.
 
 #### TEST-16.06-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -9443,10 +9471,13 @@ PRE-RUNreview3helpergap(AC/lowpowerguard,perjobcleanupgating,reserve8vs15) buldu
 
 125capturedrefabsent/5192free/backend+harnessSHAaynı/Battery62→59/otherworkersidle.10rawJSONgzip5.09MB→306KB/decompressSHA,indexmanifestvar. Farklıproviderworker58inputhash/13metricsignedpair/10rawframe+300uniqueeventsve14snapshots/window/source98files+6assetsperfront/cleanup/powerinyenidenhesapladı. RootreviewREPORT+2SHAkontrolü yaptı. Finalnestedobjedump yok;sourcefullnestedcanlıverdiktlerininincelenmesidir. Kanıt: perf-open-events-five-pairs-root/REPORT.md +../perf-open-events-second-review-worker/REPORT.md.
 
+[x]247yakalanmışprocessidentityabsent/5192free/14sealedSHA+backendaynı.371powerrecord Battery53→43/aynıpmset/low0. [x]70rawJSON24,481,650byte→1,604,492gzipbyte roundtripSHAilekorundu. [x]Backendworker sayısal, providerworker127input+2outputSHA/kapsam incelemesini bitirdi; aynıajansistemi, profesyonelüçüncütarafdeğil. Guard+dataPASS, RENDER_COMPARABILITY_UNRESOLVED; RSSvegeometrymekanizması açık. Kanıt: perf-panel-balanced-five-blocks-root/{REPORT.md,ACCEPTANCE.json,RAW_INDEX.json} +perf-balanced-{numeric,evidence}-review-worker/REPORT.md.
+
 #### TEST-16.06-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
-- IN_PROGRESS:5pair açıkpanel+5event-s henüzkoşulmadı; bütün4koşul matrisi/fullruntime/V11-18 bufamilyile kapanmaz.
-- Yeni somut soru/invalidpair dışında otomatikekrar yok.
+- IN_PROGRESS:5tamblok/40window ve iki offline inceleme tamam. BENCH-RENDER-001 actualrender-work eşdeğerliğini açık bırakıyor; sayısal doğru sonuçlardan kabul edilmiş nedenselCPU sonucu türetilmedi.
+- İlkopen-only ailesi ayrı tarihsel/kapsamlı kayıttır; bu matrisle havuzlanmaz.
+- Sıradaki kısa kaynak/nesne tanılaması; tam matris için otomatik tekrar yok. Fullruntime/V11-18/continuous60dk/finalpaket ve manuelkapılar açık.
 
 ### TEST-16.07 — Log statik/akış/uzun satır AB
 

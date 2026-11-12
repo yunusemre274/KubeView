@@ -1,3 +1,9 @@
+## 12 Kasım 2026 — dengeli panel ölçümü ve kabul engeli
+
+- SabitA/Bfrontend ve ortakbackend ile40pencere kaydedildi; CPU/Δpanel,52metrik,hamJSONarşivleri ve iki workerın bağımsız sayısal/kapsam incelemesi eklendi.
+- Mevcutguardlar geçse de renderiş yükündeki ekçizim/geometry farkı bulundu; BENCH-RENDER-001 nedeniyle karşılaştırma kabulü açık tutuldu. Ürünoptimizasyonu veya yayınhazırlığı iddia edilmedi.
+- Arşivhelperındaki sıfırdosya filtresi ilk kayıt korunarak exact70dosya/nooverwrite/roundtrip guardıyla düzeltildi. Ürün/runtime/görselayarlar değiştirilmedi.
+
 - Benchmarkpanelv5: sıfır-olaykoşulları da tamcanonical eşitlik kontrolü alır; ölçülmeyendelaynull kalır, producercoercionhatayıreddeder. DeğişiklikCPUwindowsonrasıharnesssözleşmesidir, üretimoptimizasyonu değil.
 
 - Yeni5eşleşmiş30/60CPUailesi:20/300canonical,8/120detailed,3.000eventtamverieşitliği/MbudgetPASS. CPU0.686613→0.682294core;pairedmed−0.000485 iyileşmekanıtıdeğil. RendererRSSbeşçiftteartmış;mekanizmaaçık. Eski/hatalımetadata ve bütünrawkorundu.

@@ -1,3 +1,10 @@
+## 12 Kasım 2026 — dengeli panel kanıt checkpoint'i
+
+- [x] Beş blok/40pencere panel0/5event matrisi, iki offline ikinci inceleme ve70JSON hash/roundtrip arşivi tamamlandı; kaynak/kalite düşürülmedi.
+- [ ] BENCH-RENDER-001: p3B'de ölçüm boyunca ekçizimin nesne/hover/reset kaynağı. AileCPUkarşılaştırması kabul edilmedi; TEST16.06 açık.
+- [ ] RSSmekanizması ve olaylıΔpanelvaryansı: kısa tanılama; otomatikuzun tekrar yok. Genelrelease/V11-16/V11-18/V11-19/continuous60dk açık.
+- Kanıt: [dengeli panel raporu](../artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/REPORT.md).
+
 - [x] Panelprotocol5 sıfırolayda fullcanonicalcompare; üreticide null-delay<100coercion RED→42unit+9target ve actual1sdata smokePASS. Eski10CPUproducerkayıdı offlineuyumlu; rendererkodu aynı.
 
 - [x] TEST16.06 ilk5pair açıkNodeÖzet/5event:10window/3000olay/signedistatistik+ikinciinceleme. CPUgainkanıtıyok; RSS+9.391MiBpairedgözlem açık.

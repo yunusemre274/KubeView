@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-12T22:55:17.009025+03:00",
+  "status": "NUMERIC_AND_GUARD_PASS_RENDER_COMPARABILITY_UNRESOLVED",
+  "reviewChecksums": [
+    {
+      "review": "perf-balanced-numeric-review-worker",
+      "rootVerifiedLines": 6,
+      "sha256": "e94b87b80e5387312e0fff5fec13967433253952135b3e3ea48f4bb97ebdf037"
+    },
+    {
+      "review": "perf-balanced-evidence-review-worker",
+      "rootVerifiedLines": 129,
+      "sha256": "71cef9875e9f0ed2bf14307bdeba8c93f30f0695ab6407462a242aa69c073fed"
+    }
+  ],
+  "port5192FreeActual": true,
+  "runtimeProductChanges": false,
+  "newLongRunStarted": false,
+  "readingAndReview": "Root opened both reports, verified all listed checksums and inspected every before/after draw footprint. Numeric correctness is separate from submitted-work equivalence.",
+  "next": "Bounded renderedobject/geometry/material and hover/reset diagnostic; no blind full matrix retry."
+}

@@ -1,3 +1,9 @@
+## 12 Kasım 2026 — sayaç doğruluğu, render eşdeğerliği ve arşiv kapsamı
+
+- Kamera/UID/filofazı/canonicaladet eşitliği, actualsubmittedrenderwork eşitliğini tekbaşına kanıtlamaz. Rawframecalls/triangle ve mümkünse renderedobject/geometry/material kimliği birlikte incelenmeli. Draw-call değişikliği tekbaşına kusur değildir; batchingeşdeğerliği veya yeni/eksiknesne nedeni kanıtlanmalı. Açıklanamayan farkı “hover/noise” diye kapatma.
+- Sayısalcomparatorun comparable=true alanı yalnız uygulanmışguardların sonucudur; eksikguard ikinci incelemeyle bulunduğunda CPUkabulüne taşınmaz. Tarihselhamveri ve başarısızlık korunur; aynı60dkmatris sebepsiz tekrarlanmaz.
+- Path.suffix '.json' döndürür. 'json' karşılaştırması0dosya seçip hatalıbaşarı etiketi üretebilir. Arşivkabulü exactbeklenen70dosyaadı/sayı/JSONparse/SHA/decompressbyteequality ve nooverwrite ister. İlk0dosyakayıt başarı diye kullanılmaz.
+
 ## 12 Kasım — sıfır iş ile eksik ölçüm farklıdır
 
 JSnull<100true yüzünden pozitifproducerkaydı eksikdelay ile kabul edilmemeli. Plan/completed/error/örneksayısı açıkdoğrulanmalı;0event delayn0/null, nonzero finitep95 ister. Canonical içeriği olayyokken de karşılaştır. Protokol değişirse eskiCPUsetini sessizcepoolyapma.
