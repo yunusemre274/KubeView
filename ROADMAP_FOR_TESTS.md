@@ -1,15 +1,15 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T15:22:27.776842+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T15:25:09.304114+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:141; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:32; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:141; IN_PROGRESS:19; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:34; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kendi kanıtlarında; finalpaket açık. Tarihselinstalled1.20.2 bulguları korunur. Yereloperatorcandidate0High/1Unknown; APT-onlyCiliumcandidate8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Bu yerel adaylar kurulu değil; gerçekELF/sourceCVE/kalanseverity/runtimeTLS/lisans kapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST05.09 maskeliSecret backendcontract VERIFIED_DONE;32/200. Secret APIretst5.090sn+frontend3UNIT0.132sn ayrıkanıtlardır; normalreveal/hide/editUI05.07/08devam.
+- Son tamamlanan faz: TEST05.07 ve05.08 normalSecret UI/API/unit+ikinciinceleme ile VERIFIED_DONE;34/200 (%17 fazsayısı). Maskguard05.09öncedoğrulandı; CPU/PID/kamera ve globalyayınkapılarıaçık.
 - Süreç/lab: backendworker normalSecretUIpreparasyonu/tekkoşu; providerworker frozenbaseline/harness metadata incelemesi (ölçümbaşlamadı). OwnedHubblelab orijinal2NodeReady, sealedSecretQA namespace rootkontrolünde; kullanıcıcontainerlarına müdahale yok. AğırA/B/60dksoak henüzbaşlamadı.
 - Devam: Yedi tarihselkanıtkümesi ve correctedHTTP/operatörimagekanıtları ayrıpushlandı. Sıradakiuygulanabilir: sentetikSecretpurpose/RBAC ve Cilium/EnvoyAPTtarama. ÜçNodeAddplanıbitti; otomatikdördüncüaddyok. Finalpaket/perf/60dk/manuelonaykapılarıaçık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
-| CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:7, IN_PROGRESS:2, VERIFIED_DONE:1 | Henüz yok |
+| CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:7, VERIFIED_DONE:3 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:1, FAILED:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
@@ -3022,84 +3022,49 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: release_backend_resume gerçekSecrettekgrup; rootnamespace/Git/roadmap
-- Kaynak / build / paket kimliği: Runtimef32byteeşdeğer; newopt-inGoTest41ffd9af…; Secretfirst source/reportSHAmanifest içinde
-- Ortam / kullanılan kimlik ve yetki: Ownedkvml-d32afbf634e8-a; yeni sealednamespace rootreceipt, yalnız birsentetikSecret ve2restrictedSA/RBAC. KullanıcıSecretdeğerleri okunmaz.
+- Sorumlu: release_backend_resume uygulama testi; release_provider_resume ikinci inceleme; root görsel/SHA/verdict
+- Kaynak / build / paket kimliği: Actualapp5f1c22…/runtimef32; embeddedUI0e478…; helper79d3…/source manifests. RealAPI correctedtest9ac2… ve frontendUNIT ayrı.
+- Ortam / kullanılan kimlik ve yetki: macOS27/M5, headedChromium actualMetal,1440×900; ownedK8s1.35.1/UIDe84bb50e…/sealednamespace56a3bd1d…; yalnızsyntheticSecret/adminUI;2restrictedSA API ayrı
 - Başlangıç zamanı: 2026-11-12T10:47:32.753407+00:00
-- Bitiş zamanı: 2026-11-12 ilkexecutionFAIL; rapor365.218/360sn
-- Durum: IN_PROGRESS
+- Bitiş zamanı: 2026-11-12T12:25:09.296852+00:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-05.07-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
-
-12Kasımplanı artifacts/release-audit/ra-20261112/secret-purpose-real-worker/plan.json. Legacykv-repair-onlyhelperyenihedefesanılmadı. Yeni tekGoTestgerçekAPItestfixtureönerisi;105snwork+30cleanup/180wrapper/360executionphase, package1/GOMAXPROCS2. RootfreshnamespaceUID/owner/sealhazırlar; workeruidconditionfixturesınıtemizler. Henüz testPASSyok.
+- [x] Freshroot-ownednamespace UID/owner/seal, staticverifiedTLS/privateconfig, livecluster+marker UID veactualapp/embeddedUIhash hazırlandı.
+- Sadece generatedSecret; normalUI fixture/app/browser sınırları120+45sn, screenshotmaximum4; rawvalue/cookie/nonce/response/HAR/video kaydı yok.
+- İlkmetadataList-null controllerreddi UI başlamadan oluştu;11dosya/ilk513.188/480sapkayıt ayrı korunur, API403sanılmadı.
 
 #### TEST-05.07-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
-
-İlk gerçekAPIkoşusu: adminpurposeReveal200+sentetikdataeşit, grantöncesiPUT403/unchanged, managedmetadataPUT200/data+unknownmetadataeşit. List-onlySA gerçekTokenRequest/SelfSubjectReview+SSAR listtrue/getfalse/updatefalse; reveal403/listmetadata200sanitize.
+- [x] Normalfinder exactSecretUID/namespace açtı; yetkili değer açma→gizleme gerçekAPI/privateDOMbooleans ile geçti. Açıkdeğer screenshotı0.
+- [x] Yönetimniyetiöncesi editdisabled, normalgrant→Gizliiçeriğidüzenle→YAML→Serverdryrun→Uygula, normalclose/samecanvas geçti.
+- [x] AynıUIkabulRV31778=gerçekcanonicalRV31778; UID/data/type/oldmetadataeşitliği ve yeni2metadataalanı doğrulandı.
 
 #### TEST-05.07-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
-
-İlkvalidauthorizationnegatifinin PUTbody’si typedGETSecretilehazırlandı; beklenen403yerine400, suiteFAIL. MissingTypeMeta parserguard olasılığı kurulusourceile destekli fakat payloadbooleans/rawerrorsaklanmadığından exactnedenRETROSPECTIVELYUNPROVEN. Yetkisizacceptedwritegözlenmedi. İkinciSA/maskedcaseNOTRUN.
+- [x] GerçekAPIikiTokenRequestSA: list-onlyreveal403/update403 veget-onlylist403/update403; izinliyolayrı200. Browseröncesi grantolmayanwrite403 ve UIeditdisabled ayrıkontrollerdir.
+- [x] Bulk/named/error responseNoLeak gerçekAPIgrubunda; maskguard422 ayrı05.09. RestrictedSA browsergirişleri/admissionfuzz bu darfazda çalıştırılmadı, genelkabuliddiasıyok.
 
 #### TEST-05.07-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
-
-TEST-FIXTURE adayhatası; henüzürüngüvenlikbulgusu değil. RestrictedPUTtypedobjectkind/apiVersionnormalizasyonu ve güvenliParsererror/payloadbooleans yeni retstteexplicitdoğrulanacak. Üretimruntime değişmedi.
-
-İlk normal UI controller önkontrolü BLOCKED_BEFORE_UI: metadata-only HTTP200/PartialObjectMetadataList yanıtında boş items JSONnull geldi, [] bekleyen yardımcı reddetti. Sonraki metadata-only diagnostic UID/owner/seal ve count0 doğruladı; client-go List(nilItems) semantiğiyle fixture normalleştirmesi yapıldı. İlk koşuda Secret/app/browser/UIassertion0; ürün UI hatası veya PASS değildir. İlk513.188/480sn plan aşımı korunur. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-ui-worker/REPORT.md;11/11SHA root doğruladı.
+- Ürünhatası bu kapsamda tespitedilmedi. İlkUIcontrolleritems[] beklentisi, HTTP200/POMList/itemsnullcount0 ileuyumsuzdu; yalnızfixture-normalizasyonudüzeltildi.
+- İlkAPIgrubunun typedGETbodyTypeMeta400olasılığı eskiFAILolarakkorundu; kesinilkpayloadkanıtıyok, düzeltilmişfixtureikirestricted403 verdi. Runtimeürünkodu değişmedi.
 
 #### TEST-05.07-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
-
-İlkkoşuFAILkorundu; otomatiksınırsızretestyok. Ayrırootfixture-onlyclearancebekleniyor.
-
-Correctedtekretst:5.090sncommand/2.340sntest,131.697/180snfaz; typedrestrictedSecretdeepcopy+v1/KindSecret vehasKind/hasApiVersion/UID/RVbooleanlarınınhepsitrue. İkirealSA/SelfSubjectReview/SSARverdictleri exact; restrictedPUT403+forbidden, maskedkeyNames422+knownmessage, adminnormaledit200; exactdata/type/metadataUID/RVreadback. Yeni7UIDilklerdenayrı/7GET404cleanup; namespacekorundu. Root13/13SHA ve kod/sonuç/değişiklikinceledi. İlk400nedenigeyedönükkesinleştirilmedi; ürünruntimeaynı. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/REPORT.md veROOT_REVIEW.json.
-
-Ayrı normal UI retesti: headedChromium/actualMetal AppleM5; finder→exactUID/namespace→reveal→hide→grantöncesi editdisabled→normalgrant→purposeYAML→serverdryrun→apply→closed/samecanvas. 8UIcheckPASS, browser5.337sn/controller+cleanup5.898sn, cleanup0.114sn; reveal açıkken screenshot0. ActualK8s UID59c5c80a…/acceptedRV31778=canonicalRV31778, data/type/eskiunknownmetadata eşit. Dört maskedPNG root ve worker tarafından açıldı. Fullreportfinalization260.642/240sn plan hedefini aştı; activebrowser120/cleanup45 sınırları aşılamadı. Bu süreç plan sapması korunur, CPU/physical latency acceptance değildir. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/REPORT.md.
+- [x] TeknormalUIretsti8checkPASS; actualheadedMetal ve4maskedscreenshot root/worker tarafından incelendi.
+- [x] AyrırealAPIauthorization/data+frontend3UNIT kanıtlarıyla sourcewiring eşleştirildi; unitlerUIE2Esayılmadı.
+- [x] İkinciinceleme normalUI vecanonicalroundtrip darPASS sonucunu destekliyor.
+- Kanıt: secret-purpose-ui-retest-worker/REPORT.md; secret-purpose-ui-second-review-worker/REPORT.md; secret-purpose-real-retest-worker/REPORT.md (hepsi artifacts/release-audit/ra-20261112/).
 
 #### TEST-05.07-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
-
-Root14/14SHA doğruladı;7/7exactfixtureUID+RVdelete/GET404, namespaceUID/owner/sealaynıvekorunur. Profil/labbytestamaynı,original2ReadyNodeidentity/metadata/specaynı. Değer/tokenlarpublickanıtayazılmadı. Command5.928sn/test1.508sn; faz365.218/360+5.218snreportingoverrun ayrı açık. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-real-worker/REPORT.md.
+- [x] Secret exactUID/RV delete veGET404; appPID/birth/PGID/browser kapandı,19843free,privateControlAbsent bağımsızsonkontrolde doğrulandı. Namespace root sahipliğinde sonrakiQA için korunur; manuel01–07 profilleri silinmedi.
+- [x] Root20UI/7reviewchecksum vehelperhash eşleştirdi;4maskedscreenshot açıldı. Dörtgitleaks bulgusu gerçek sourceSHA recomputation ile doğrulandı; credentialdeğil, rawscanner raporu korunur.
+- [x] Ayrıworker dar kaynağı/kanıtı inceledi; aynıajan sistemi profesyonelüçüncütarafpentest değildir.
+- Açık süreçplanı sapmaları: UIworkerfull260.642/240sn,review198.154/180sn; successful activebrowser5.337/controller+cleanup5.898s,120/45safetybounds geçilmedi. Rapor hedefleri PASS sayılmaz; ürünlatencySLOölçülmedi.
+- Heapsecureerase/physicalFPS/geneladmission/CPUbudgets bu faza dahil değildir.
 
 #### TEST-05.07-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
-
-Backendgerçekreveal/editRBACmatrixPASS; frontendhide/normalUIakışı henüzayrıkanıtbekler. AdmissionNOTRUN CAT04kapısınıkapatmaz; fazIN_PROGRESS.
+- [x] BİTTİ / DOĞRULANDI — Secret reveal/hide/purposeedit işlevi ve ilgili gerçekAPIyetkisi/data/cleanup kapsamı.
+- TamLLMiş/raporlama sürehedefleri başarısız kaldı ve üsttekisüreçsapmasıkaydında açıktır; bu kapatma onlarıPASSyapmaz. AktifUIload/cleanup safetybounds içinde tamamlandı.
+- UI/sanitize/auth/Secretpayloadscope/handlerdeğişirse retest gerekir; admission/heap/perf/diğerRBAC/finalpaketkapıları kapanmaz.
 
 ### TEST-05.08 — Bilinmeyen label/annotation edit korunumu
 
@@ -3108,78 +3073,46 @@ Backendgerçekreveal/editRBACmatrixPASS; frontendhide/normalUIakışı henüzayr
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.3/V14.3.3/V16.2.5; CAT05. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: release_backend_resume gerçekSecrettekgrup; rootnamespace/Git/roadmap
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: Ownedkvml-d32afbf634e8-a; yeni sealednamespace rootreceipt, yalnız birsentetikSecret ve2restrictedSA/RBAC. KullanıcıSecretdeğerleri okunmaz.
+- Sorumlu: release_backend_resume uygulama testi; release_provider_resume ikinci inceleme; root görsel/SHA/verdict
+- Kaynak / build / paket kimliği: Actualapp5f1c22…/runtimef32; embeddedUI0e478…; helper79d3…/source manifests. RealAPI correctedtest9ac2… ve frontendUNIT ayrı.
+- Ortam / kullanılan kimlik ve yetki: macOS27/M5, headedChromium actualMetal,1440×900; ownedK8s1.35.1/UIDe84bb50e…/sealednamespace56a3bd1d…; yalnızsyntheticSecret/adminUI;2restrictedSA API ayrı
 - Başlangıç zamanı: 2026-11-12T10:47:32.753507+00:00
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Bitiş zamanı: 2026-11-12T12:25:09.296852+00:00
+- Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-05.08-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
-
-12Kasımplanı artifacts/release-audit/ra-20261112/secret-purpose-real-worker/plan.json. Legacykv-repair-onlyhelperyenihedefesanılmadı. Yeni tekGoTestgerçekAPItestfixtureönerisi;105snwork+30cleanup/180wrapper/360executionphase, package1/GOMAXPROCS2. RootfreshnamespaceUID/owner/sealhazırlar; workeruidconditionfixturesınıtemizler. Henüz testPASSyok.
+- [x] Root-seal namespace ve yalnızgeneratedSecret unknownlabels/annotations/data/typefixture; başlangıçUID/RV/datahash/scope kimliği hazırlandı.
+- RealAPI+frontendhelperUNIT+normalUI üçayrıkanıt katmanı olarak ayrıldı.
 
 #### TEST-05.08-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
-
-İlkSecretgrubunda managedPUT200/data/type/UID/unknownlabel+annotationeşitliği geçti. Grupsonraki restrictedPUT400nedeniyleFAIL; faz henüzgenelolarak kabul edilmez. Kanıt: secret-purpose-real-worker/REPORT.md.
+- [x] YetkilipurposeYAML formu iki metadataalanı ekledi; gerçekcanonicalreadback eskiunknownlabel/annotation, data/type/UIDyi korudu. KabulRV31778=storeRV31778.
+- [x] Frontendhelpertesti authorizeddraft unknownmetadata/annotationskorunumunu ve operationsanitizeın özgündraftıdeğiştirmediğini doğruladı.
 
 #### TEST-05.08-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Grantöncesi write403 veiki farklıgerçekrestrictedidentity update403, UID/RV/data/metahash unchanged. Metadata-onlyliste/sonuç annotations/value taşımaz; bu gizleme localauthorizeddraft metadata kaybı değildir.
+- [x] MaskeliPUT422/unchanged ayrı05.09; normalhideDOMdeğerinikaldırdı. HerAPIadmissionhatası/secureheaperase/genelgenericresourceformiddiası yok.
 
 #### TEST-05.08-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Unknownmetadata kaybı bu kaynakta yenidenüretilmedi; ürünbugfixyapılmışgibi sunulmadı.
+- TestfixtureTypeMeta veempty-metadataListnullable düzeltmeleri iletarihselilkFAIL ayrıdosyalardakorundu. Ürünserializer/renderer değişmedi.
 
 #### TEST-05.08-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
-
-Correctedtekretst:5.090sncommand/2.340sntest,131.697/180snfaz; typedrestrictedSecretdeepcopy+v1/KindSecret vehasKind/hasApiVersion/UID/RVbooleanlarınınhepsitrue. İkirealSA/SelfSubjectReview/SSARverdictleri exact; restrictedPUT403+forbidden, maskedkeyNames422+knownmessage, adminnormaledit200; exactdata/type/metadataUID/RVreadback. Yeni7UIDilklerdenayrı/7GET404cleanup; namespacekorundu. Root13/13SHA ve kod/sonuç/değişiklikinceledi. İlk400nedenigeyedönükkesinleştirilmedi; ürünruntimeaynı. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/REPORT.md veROOT_REVIEW.json.
-
-FrontendmevcutsecretPayload3UNITtestiNode24.16.0/sourceSHAmanifestile0.132snPASS. Unknownmetadata localpurpose-draftta korunur; operationsanitizeaynıdraftıdeğiştirmez. AktifResourceFormsyükleme/submitveworldoperationkaynakbağlantısı izlendi. BuUNITilegerçekAPIretestayrıkanıtlardır; normalUIreveal/hide/edit workerı ayrıca çalışıyor. Kanıt: artifacts/release-audit/ra-20261112/secret-payload-frontend-root/REPORT.md.
-
-Normal purpose YAML formunda iki metadata alanı değiştirildi; gerçek API readback aynıUID/data/type/eskiunknownlabels+annotations korunumunu ve kabulRV=canonicalRV31778 doğruladı. Dryrun ve apply normal UI düğmeleriyle yürüdü, route.fulfill/mock yok. Önceki frontend3UNIT ve realAPIikiSA kanıtları ayrı kalır. Kaynak/PNG ve plan-time sapması 05.07 retst kaydındadır.
+- [x] Frontend3UNIT, gerçekAPIroundtrip/restrictednegatifler ve normalUI8checks ayrıkaynağıylaPASS.
+- [x] Root4screenshotıaçtı; normalYAMLkontrolününkullanılması helpermock değil; routefulfill yok, gerçekappAPI/canonicalreadback eşleşti.
+- [x] Ayrıworkerreview data/type/oldunknownmetadata eşitliğini veprivacylimitlerinidoğruladı.
 
 #### TEST-05.08-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
-
-7/7fixturecleanup404vebaselineeşit; ilksonuçhashleri/root14SHAkorunur.
+- [x] Secret exactUID/RV delete veGET404; appPID/birth/PGID/browser kapandı,19843free,privateControlAbsent bağımsızsonkontrolde doğrulandı. Namespace root sahipliğinde sonrakiQA için korunur; manuel01–07 profilleri silinmedi.
+- [x] Root20UI/7reviewchecksum vehelperhash eşleştirdi;4maskedscreenshot açıldı. Dörtgitleaks bulgusu gerçek sourceSHA recomputation ile doğrulandı; credentialdeğil, rawscanner raporu korunur.
+- [x] Ayrıworker dar kaynağı/kanıtı inceledi; aynıajan sistemi profesyonelüçüncütarafpentest değildir.
+- Açık süreçplanı sapmaları: UIworkerfull260.642/240sn,review198.154/180sn; successful activebrowser5.337/controller+cleanup5.898s,120/45safetybounds geçilmedi. Rapor hedefleri PASS sayılmaz; ürünlatencySLOölçülmedi.
+- Heapsecureerase/physicalFPS/geneladmission/CPUbudgets bu faza dahil değildir.
 
 #### TEST-05.08-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
-
-Unknownmetadata/data gerçekhandler+K8sroundtripPASS; frontenddraft/normalformkaynakkanıtı ayrıcaelealınacak, fazIN_PROGRESS.
+- [x] BİTTİ / DOĞRULANDI — Secret purposeedit unknownmetadata/data korunumunun bu gerçekUI/API/unit kapsamı.
+- Süreçraporhedefi aşımı yukarıda açık; CPU/latency/diğerGVR/genericadmission/finalpaket kabulü değildir.
+- Secretmetadata merge/purposeeditor/sanitize/UIDscope/model değişirse retest gerekir.
 
 ### TEST-05.09 — Maskeli Secret gerçek veri olarak yazılmıyor
 

@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Secret UI bağımsızinceleme
+
+- Normalreveal/hide/purposeedit ve unknownmetadata korunumu gerçekUI+canonicalAPI+ayrıUNIT/ikiSAAPIkanitıyla doğrulandı;34/200faz. Root4PNGve20+7SHAinceledi; sourcehashgitleaksfalsepositiveleri recompute edildi. AktifUI/cleanup sınırlarıgeçti, worker260.642/240ve review198.154/180 raporlamahedefsapmalarıaçıkkorundu; performans/heap/admissiongenelkabulü yok.
+
 ## 2026-11-12 — Normal Secret UI retesti
 
 - Gerçek UI reveal/hide/purposeedit/dryrun/save ve canonical UID/RV/data/metadata zinciri geçti;4maskedPNG incelendi. İlk önkontrol korunur. Browser5.337sn, tamfinalizasyon260.642/240sn sapması ayrı; performans/heap veya genel admission iddiası yok.

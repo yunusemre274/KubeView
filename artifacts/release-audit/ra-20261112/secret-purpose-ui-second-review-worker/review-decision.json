@@ -1,0 +1,23 @@
+{
+  "technicalFunctionalVerdict": "PASS_NARROW_NORMAL_UI_AND_CANONICAL_METADATA_ROUNDTRIP",
+  "workerCompletePlanTimingVerdict": "FAIL_FULL_FINALIZATION_OVER_240",
+  "browserSeconds": 5.337,
+  "executionAndCleanupSeconds": 5.897968292236328,
+  "cleanupSeconds": 0.11351275444030762,
+  "receiptSeconds": 232.790726,
+  "receiptWithin240": true,
+  "fullFinalizationSeconds": 260.641827,
+  "fullWithin240": false,
+  "overrunSeconds": 20.641827,
+  "phaseWithinTargetFieldInterpretation": "Receipt only; does not establish complete phase-time pass",
+  "phase05_07_08Recommendation": "Support narrow functional verification from UI+realAPI+unit evidence; preserve separate plan-time failure. Do not infer admission/broadRBAC/restrictedUI/heap-erasure/full-release acceptance",
+  "UIDReadbackMatchesOperation": true,
+  "acceptedRVEqualsCanonicalRV": true,
+  "dataTypeOldUnknownMetadataEqual": true,
+  "privacy": "No raw values/cookies/nonces/headers/bodies/raw DOM/HAR/trace/video retained by reviewed helper; only pathname/method/status and safe projections",
+  "cleanup": "Guarded exactUID/RV delete GET404; PIDbirth+PGID guard; app/port/browser absent and privateControlAbsent independently recorded",
+  "cleanupFieldCaveat": "controller privateFilesRemoved records pre-removal existence; independent final-readonly-check privateControlAbsent is absence evidence",
+  "gitleaks4Disposition": "Recomputed ordinary source SHA256 false positives; root final triage required, raw scanner report preserved",
+  "unitAndAPISeparate": "3 frontend unit assertions not relabelled UI; actual restricted SA API evidence separate; real admission failure not run",
+  "newTestsAppsBrowsersBuildsScansOrK8sCommands": 0
+}
