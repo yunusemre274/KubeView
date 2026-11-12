@@ -246,6 +246,19 @@ export function reduceMessage(state, message, { pinnedUIDs = [] } = {}) {
     };
   }
   if (message.type === "STATUS" || message.type === "SNAPSHOT_READY") {
+    // A failed watch refresh changes coverage, never canonical existence.
+    // Only a successful list/snapshot may establish scope authority again.
+    const failedScopes = (payload.scopes || []).filter(
+      (scope) => scope.status === "forbidden" || scope.status === "unavailable",
+    );
+    const scopes = failedScopes.length ? { ...state.scopes } : state.scopes;
+    for (const scope of failedScopes) {
+      const key = scopeKey(scope);
+      scopes[key] = {
+        ...scopes[key], ...scope, authoritative: false,
+        timestamp: message.timestamp || payload.timestamp || new Date().toISOString(),
+      };
+    }
     const upstream =
       payload.upstream ??
       payload.apiReachable ??
@@ -254,6 +267,7 @@ export function reduceMessage(state, message, { pinnedUIDs = [] } = {}) {
       state.upstream;
     return {
       ...state,
+      scopes,
       upstream,
       synced: payload.synced ?? state.synced,
       stale: !upstream || payload.synced === false,

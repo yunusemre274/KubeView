@@ -610,3 +610,7 @@ Temiz ca3b9ec binary'de gerçek05/06 ve yön tuşu/Canvas16 kontrolü; scoped co
 - Operatörün mutlak oturum süresi stream context'ine bağlandı; reset özgün deadline'ı uzatmıyor.
 - Go minimum/build toolchain1.26.11; Gorilla1.5.3/SPDY0.5.1 ve x/net0.62 uyumlu graph. Kubernetes0.30.0 değişmedi; güncel main source advisory taraması0finding.
 -199 fazlı canlı `ROADMAP_FOR_TESTS.md`, tehdit modeli ve bulgu kayıtları eklendi. Uzun koşu/gerçek TLS/paket/perf kapıları henüz kabul edilmedi; stable yayın/merge yok.
+
+## 12 Kasım — watch kapsamının yetki kaybını koruma
+
+STATUS mesajındaki forbidden/unavailable kapsamları frontend store'a işlenir. Son bilinen canonical UID silinmez, diğer kapsamlar korunur; healthy heartbeat tek başına kapsamı yeniden yetkili ilan edemez. Sentetik reducer RED→GREEN ve46 komşu test geçti; gerçek küme ve UI kabulü değildir.

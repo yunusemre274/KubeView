@@ -332,3 +332,7 @@ Başka projenin simülatör/Java yükü sırasında süreç sorgusu ve ölçüm 
 - Layout source değişiminin eski passive selection effect'i yeni committed callback'i çağırabilir. Önceki namespace'in yeni limana aboneliğini hem render source guard'ı hem core scope preflight önler. Test fixture'ının callback override'ını gerçekten kullandığı doğrulanmalıdır; no-op'a bakan ilk hatalı helper ayrı saklanır.
 - Başlık/kanonik adet PASS'i, güncel iki liman UI'ı anlamına gelmedi. Karelerde stale/partial durum görüldü; yeni test Canlı ve exact UID'yi bekleyince gerçek yanlış-namespace aboneliği yeniden üretildi.
 - Global kamera mesafesi yalnız liman merkez aralığından hesaplanırsa dar aspect/lens rıhtımları keser. Mevcut geometri/LOD sınırları kamera uzayında fit edilmelidir; snapshot/gemi güncellemesi kullanıcı kamerasını kendiliğinden değiştirmez.
+
+## 12 Kasım — bağlantı sağlığı kapsam yetkisi değildir
+
+Bir WebSocket STATUS'u global stale alanına indirmek, kapsamın açık forbidden bilgisini kaybedebilir. Kapsam kaybını canonical silme veya yeni yetki kanıtı gibi yorumlamadan işle; eski nesil/context callback testini ve başarılı snapshot ile recovery kontrolünü birlikte tut. Bu ders saf reducer testinde yeniden üretilen hataya dayanır.

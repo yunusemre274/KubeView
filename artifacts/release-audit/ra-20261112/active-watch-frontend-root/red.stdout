@@ -1,0 +1,57 @@
+✖ watch authorization STATUS marks only its scope unverified without deleting canonical resources (1.449458ms)
+✔ late authorization STATUS from another context or connection generation is ignored (0.30975ms)
+✖ a healthy STATUS cannot restore failed scope authority without a successful snapshot (0.104666ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.3965
+
+✖ failing tests:
+
+test at frontend/tests/release-watch-authz.test.js:28:1
+✖ watch authorization STATUS marks only its scope unverified without deleting canonical resources (1.449458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'live'
+  - 'forbidden'
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/release-watch-authz.test.js:39:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'live',
+    expected: 'forbidden',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at frontend/tests/release-watch-authz.test.js:56:1
+✖ a healthy STATUS cannot restore failed scope authority without a successful snapshot (0.104666ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'live'
+  - 'forbidden'
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/release-watch-authz.test.js:60:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'live',
+    expected: 'forbidden',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -547,3 +547,8 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 
 - [x] Kubeconfig trustedexec taşıması + browser exec/path/import sınırı odaklı testleri geçti; ilkfixtureFAIL korunur.
 - [x] TEST12.01 dartrustkapsamı bağımsızikinci kaynak incelemesiyle VERIFIED_DONE; gerçekcluster/genelpentest değildir.
+
+## 12 Kasım — aktif watch kapsam hatası: frontend kontrol noktası
+
+- [x] Failed-scope STATUS'un reducer'da göz ardı edildiği durum bağımsız RED ile üretildi; bildirilen forbidden/unavailable kapsamı canonical kaydı silmeden işlenir. Yeni + komşu46 unit testi geçti. Kanıt: `artifacts/release-audit/ra-20261112/active-watch-frontend-root/REPORT.md`.
+- [ ] Backend aynı credential altındaki yetki iptali düzeltmesi ve gerçek RoleBinding E2E henüz tamamlanmadı; TEST-10.08 açık.

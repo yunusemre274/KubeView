@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T23:32:48.759406+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif kaynak: Runtime f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12; HEAD7c9e9ffb3dd132775be7cc4953266eaef08d651e remote ile aynı. Canlı ROADMAP farkı belge-only; frozen frontend/common backend ve14harnessSHA korunur. Final paket henüz yok.
+- Son güncelleme: 2026-11-12T23:58:35.367100+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif kaynak: HEAD2be79c84e4c936e064897cbae6b35c26e094dea3; doğru uzak dal ile0/0. Son ürün tabanı f32d6b23; frontend failed-scope STATUS düzeltmesi çalışma ağacında, stream yetki yenilemesi çalışma aşamasında. Tarihsel f32 kanıtları korunur; değişen akışların uygulanabilirliği düzeltme sonrası yeniden değerlendirilecek.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:135; IN_PROGRESS:20; FAILED:4; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:37; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:135; IN_PROGRESS:20; FAILED:4; BLOCKED:1; RETEST_REQUIRED:4; VERIFIED_DONE:36; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST01.02 sourceauth/session/grant/RBAC+23unique/31alt sentetikguard denetimi;37/200 (%18,5 fazsayısı). TEST16.06 BENCH-RENDER-001 nedeniyle açık; uzunmatris tekrarbaşlatılmadı.
-- Süreç/lab: Dengeli40pencere10job3677.401sn tamamlandı;247capturedidentity yok/5192free. İki ikinci-inceleme workerı tamam/idle. Owned2Node lab stopped; manuelprofiller/sealedQA korunur. BENCH-RENDER-001 nedeniyle causalCPU kabulü açık.
-- Devam: Bitmişmatrisi yenidenbaşlatma. Yeni kısa renderedobject/geometry/material+hover/reset tanılaması ile BENCH-RENDER-001 kök nedenini ayır; sonramevcutRSSmekanizmasını ölç. Raporlar/sayısalhesaplarkorunur. Provider/TLS/finalpaket/continuous60dk/manüelkapılar açık.
+- Süreç/lab: Backend worker tek900sn düzeltme işi (son21:03:21Z); Provider worker180sn kaynak-only gerçek E2E hazırlığı. Yeni CPU ölçümü veya lab başlangıcı yok. Owned2Node lab stopped; manuel profiller/sealedQA korunur. Pil36%; uzun kararlılık koşusu başlatılmadı.
+- Devam: SEC-WATCH-REVOKE-001 sıkı RED → sınırlı ürün düzeltmesi → hedefli GREEN/race → root inceleme/commit/push. Gerçek RoleBinding E2E için ayrıca owned lab ve güç kontrolü gerekir. BENCH-RENDER-001/RSS, final provider/paket, kesintisiz60dk ve manuel kapılar açık.
 - **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -25,7 +25,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 
 | Kategori | Faz | Durum | Geçerli kanıt |
 |---|---:|---|---|
-| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:4, VERIFIED_DONE:2 | runtime-surface-retest/REPORT.md + second-review |
+| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:4, RETEST_REQUIRED:1, VERIFIED_DONE:1 | runtime-surface-retest/REPORT.md + second-review |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
@@ -123,7 +123,7 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Ortam / kullanılan kimlik ve yetki: Kaynak-only inceleme, credential/lab erişimi yok. Planlanan hedefli Go guard testleri GPU tanılaması bittikten sonra çalışacak.
 - Başlangıç zamanı: 2026-11-12T22:59:53.764171+03:00
 - Bitiş zamanı: 2026-11-12T23:18:00.056905+03:00
-- Durum: VERIFIED_DONE
+- Durum: RETEST_REQUIRED
 - Kabul ölçütü: Aktif source auth/session/writegrant/RBAC zinciri dosya/fonksiyon ve yetki sınırlarıyla çıkarılmalı; yeni sonlu fake/in-process guard grupları ve ikinci inceleme bunu desteklemeli. GerçekRBAC/TLS/browser/WS/endpoint/finalpaket kabulü kendi fazlarında kalır.
 
 #### TEST-01.02-S1 — Hazırlık
@@ -162,6 +162,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - VERIFIED_DONE: yalnız aktifauth/session/writegrant/RBAC SOURCE veri akışı haritası +23unique/31alt sentetikguard denetimi. Tüm CAT09/CAT10 veya genelgüvenlikkapıları kapanmaz.
 - Kanıt: artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/ROOT_CLOSURE.json ve bağlıiki execution/ikipeer/source raporu.
 - Auth/route/session/credential/workspaceauthorization veya ilgili bağımlılık/runtime davranışı değişirse uygulanabilir bu faz tekrar değerlendirilir. Belge-only değişiklik bütünuzuntestleri tekrar gerektirmez.
+
+2026-11-12 yeni kaynak uygulanabilirliği: stream.go aktif watch yetki yenilemesi çalışma ağacında değiştiği için önceki f32 source haritası tarihsel korunur; güncel kaynak için RETEST_REQUIRED. Önceki23unique/31alt başarı silinmedi. Yeni async renewal/bütçe/fail-closed writer yolu ve ilgili guardlar son kaynakta incelenmeden bu faz güncel VERIFIED_DONE sayılmaz.
 
 ### TEST-01.03 — Workspace/harbor/connection/cache güven sınırları
 
@@ -6328,8 +6330,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.2.1/V8.2.2/V8.2.3/V8.3.1/V8.3.2; API1/API3/API5:2023; CAT10. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR + Backend worker (yalnız önce kontrollü yeniden üretim)
-- Kaynak / build / paket kimliği: HEAD0ef8ea4e harness-only; productruntimef32 hâlâ değişmedi. Kaynaktaki risk runtimebug diye sınıflandırılmadı.
+- Sorumlu: ANA MÜDÜR + Backend worker (ürün düzeltmesi ve sonlu regresyon); Provider worker (gerçek E2E hazırlığı, henüz koşulmadı).
+- Kaynak / build / paket kimliği: HEAD2be79c84 uzak dalla eşit; başarısız ilk testin kanıtları commitlendi. Sıkı RED, değişmemiş f32 stream.go üzerinde tamamlandı; ürün düzeltmesi çalışma aşamasında. Final paket yok.
 - Ortam / kullanılan kimlik ve yetki: Sahip olunan fakeK8s istemcileri + gerçek in-processHTTP/loopbackWS/informer production yolu; kullanıcı/gerçekcluster yok.
 - Başlangıç zamanı: 2026-11-12T23:29:36.786379+03:00
 - Bitiş zamanı: —
@@ -6367,6 +6369,8 @@ Tek gerçekGoçağrısında productionRegister/workspace/actualownedloopbackWS/i
 
 RED: fakeSSARget/list/watchdeny sonrası aynıyetkiyle yeniHTTPget/list403; mevcut15sheartbeat synced/reachabletruegelirken upstreamwatchaçık kaldı. SonrakisamePodUID/newopaqueRV/annotationcanary eskiWSyeRESOURCE_EVENTUPDATEolarakyayımlandı. GüvenlibeklentiassertionFAIL; test15.11s/wall18.240s. Süreççıkışı1başarıdeğil. Expectation/prodsource/retrydeğiştirilmedi.
 
+2026-11-12 23:52 +03 kontrol noktası: timeout artık kapanış başarısı sayılmayan sıkılaştırılmış regresyon, değişmemiş ürün üzerinde tek koşuda tekrar FAIL oldu (wall18,148sn). Aynı UID/RV/canary sızıntısı ve healthy heartbeat görüldü. Önceki RED korunur; geçene kadar tekrar yapılmıyor. Kanıt: artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/strict-red/.
+
 #### TEST-10.08-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
 - Önem derecesi ve gerekçesi: —
@@ -6377,11 +6381,19 @@ RED: fakeSSARget/list/watchdeny sonrası aynıyetkiyle yeniHTTPget/list403; mevc
 
 SEC-WATCH-REVOKE-001: establishedupstreamwatchaçık kalırken uygulama aktifWSyetkisini yenidenkontroletmediği için iziniptalinden sonra yenikaynakverisi yayını. Controlledfixturedoğrulandı; gerçekkümeRoleBindingE2Ehenüzyok. Local-first/tekoperatör/öncedenyetkilireaderkapsamı önem derecesini sınırlar; genelanonimadminbypassiddiasıyok. Kök kaynakstream.go initialSSAR vsheartbeatcredentialID/ServerVersion kontrolü; minimalboundedperiodicSSARfixhazırlanıyor.
 
+Düzeltme işi için mutlak sonlu sınır 2026-11-12T21:03:21Z: mevcut heartbeat üzerinden bir defada tek, toplam5sn sınırlı asenkron list/watch SSAR yenilemesi; yetki kaybında yayını durdurma, non-authoritative STATUS ve stream cleanup. Hedefli GREEN ve dar race henüz çalışmadı. Mevcut kaynak sahipliği Backend worker’da; root eşzamanlı build/test çalıştırmıyor.
+
+Frontend komşu hata doğrulandı: reduceMessage STATUS.scopes bilgisini yok saydığı için resourceObservation yetki kaybını live gösterebiliyordu. Ayrı değişmemiş-ürün RED (2FAIL/1PASS), ardından yalnız forbidden/unavailable kapsam merge düzeltmesi. Canonical referans ve UID korunur; healthy heartbeat yeniden authority vermez. Kanıt: artifacts/release-audit/ra-20261112/active-watch-frontend-root/.
+
+İlk backend GREEN grubu 7top/6alt PASS (33,714sn), fakat bu source final değildir. Root ikinci incelemede64 namespace desteği için sabit5sn batch bütçesinin QPS30 altında false-timeout üreteceğini buldu. Sınırlı plan değişikliği: 5sn + 2×unique-admitted-scope/30sn; tek pending iş/QPS/Burst sabit. Final-source rate-limiter pozitif ve dar race henüz bekleniyor. İptal periyodiktir, atomik değildir; bekleme penceresi açık raporlanacak.
+
 #### TEST-10.08-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
 - [ ] Komşu davranışlar gerektiği ölçüde sınandı.
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+Frontend ayrı sonlu grup: yeni3 + mevcutstore/workspace testleri toplam46PASS/0FAIL/0SKIP; wall0,507sn. Bu sonuç backend active-watch revalidation veya gerçek RoleBindingE2E kabulü değildir. TEST10.08 FAILED kalır; backendfix/race ve ikinci inceleme bekleniyor.
 
 #### TEST-10.08-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.

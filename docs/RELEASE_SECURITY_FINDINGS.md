@@ -1,3 +1,17 @@
+## 12 Kasım — aktif watch düzeltmesinin frontend kontrol noktası
+
+Backend düzeltmesinden bağımsız olarak, `reduceMessage` STATUS mesajındaki
+`forbidden` / `unavailable` kapsamlarını işlemiyordu. Sentetik protokol testi
+beklenen `forbidden` yerine `live` gördü. Minimal düzeltme, yalnız bildirilen
+başarısız kapsamı non-authoritative yapar; canonical UID ve diğer namespace
+kapsamları korunur. Healthy heartbeat yetkiyi geri vermez; başarılı snapshot gerekir.
+
+Yeni üç test ve mevcut store/workspace komşularında **46 PASS, 0 SKIP**;
+[RED, retest ve kök inceleme](../artifacts/release-audit/ra-20261112/active-watch-frontend-root/REPORT.md)
+ile [ikinci kaynak incelemesi](../artifacts/release-audit/ra-20261112/active-watch-frontend-review-worker/REPORT.md)
+ayrıdır. Bu saf reducer kanıtıdır; gerçek UI veya RoleBinding E2E değildir.
+SEC-WATCH-REVOKE-001 backend düzeltmesi ve gerçek küme kabulü halen açıktır.
+
 ## 12 Kasım 2026 — SEC-WATCH-REVOKE-001: aktif watch yetkisinin yenilenmemesi
 
 **MEDIUM, AÇIK; kontrollü sentetikAPI/watch E2E ile doğrulandı.** Yereltekoperatör
