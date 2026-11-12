@@ -31,7 +31,7 @@ import { buildLockIdentity } from './build-lock.mjs';
 import { workspaceSoakTransition } from './workspace-cycle.mjs';
 import { validatedCameraFov } from './camera-contract.mjs';
 import { parseProcessRows, collectScopedProcesses } from './process-identity.mjs';
-import { summarize, distribution, cpuSeconds, loadBands, measurementWindow } from "./metrics.mjs";
+import { summarize, distribution, cpuSeconds, loadBands, measurementWindow, validEventProducer } from "./metrics.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const require = createRequire(path.join(root, "frontend/package.json"));
 const { chromium, webkit } = require("playwright");
@@ -168,7 +168,7 @@ const manifest = {
   workspaceInterpretation: harborCount ? "Same canonical fixture and active detailed world; registered harbors share one compatible connection/scope. Far-harbor render inventory is reported, not silently treated as byte-equivalent work." : "Historical legacy single-source harness",
   repairScenarioVersion: REPAIR_SCENARIO_VERSION,
   repairHarnessSHA256: hash(await readFile(path.join(root, "benchmarks/repair-scenarios.mjs"))),
-  scenarioVersion: (panelMatrix || logMatrix) ? (lockInput ? 4 : 3) : 2,
+  scenarioVersion: panelMatrix ? 5 : logMatrix ? (lockInput ? 4 : 3) : 2,
   replaySHA256: hash(replay.toString()),
   snapshotOrder:
     "kind/namespace/name/UID before serialization; deterministic fixture-only initial slot allocation",
@@ -1397,7 +1397,7 @@ async function run(profile, scenario, repeat) {
     if(logMatrix && ['log-normal','log-long'].includes(scenario) && Math.abs(result.logSource.producedLines-duration*10)>2) integrity.push('Independent log producer did not maintain the planned 10 lines/s');
   }
   result.workloadIntegrity={valid:!integrity.length,reasons:integrity};
-  if (events.length || scenario === "workspace-cycle") {
+  if (events.length || panelMatrix || scenario === "workspace-cycle") {
     const upstream = await state();
     result.loadBands = loadBands(events, raw.messages, {
       burst: scenario === "events",
@@ -1424,10 +1424,7 @@ async function run(profile, scenario, repeat) {
         JSON.stringify(signature(expected)) ===
         JSON.stringify(signature(upstream.resources)),
     };
-    result.producer.valid =
-      result.producer.completed === events.length &&
-      !result.producer.errors.length &&
-      result.producer.delayMs.p95 < 100;
+    result.producer.valid = validEventProducer(result.producer);
   }
   if (repairPlan) {
     const repairAfter = await page.evaluate(readRepairSnapshot);

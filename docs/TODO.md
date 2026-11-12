@@ -1,3 +1,5 @@
+- [x] Panelprotocol5 sıfırolayda fullcanonicalcompare; üreticide null-delay<100coercion RED→42unit+9target ve actual1sdata smokePASS. Eski10CPUproducerkayıdı offlineuyumlu; rendererkodu aynı.
+
 - [x] TEST16.06 ilk5pair açıkNodeÖzet/5event:10window/3000olay/signedistatistik+ikinciinceleme. CPUgainkanıtıyok; RSS+9.391MiBpairedgözlem açık.
 - [ ] Dengeli4koşulΔpanel/fullmatrix, RSSmekanizması/CAT17profiler,60dk/finalpaket/oldV11kapıları açık.
 

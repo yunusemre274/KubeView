@@ -1,3 +1,7 @@
+## 12 Kasım — sıfır iş ile eksik ölçüm farklıdır
+
+JSnull<100true yüzünden pozitifproducerkaydı eksikdelay ile kabul edilmemeli. Plan/completed/error/örneksayısı açıkdoğrulanmalı;0event delayn0/null, nonzero finitep95 ister. Canonical içeriği olayyokken de karşılaştır. Protokol değişirse eskiCPUsetini sessizcepoolyapma.
+
 ## 12 Kasım — PID tekbaşına CPU kimliği değildir
 
 Yeniden kullanılanPID veya araörnekten kaybolançocuk eski endpointkümelerinde görünmeyebilir. Doğum/PPID/executable/rol ve bütün gözlenen cohort karşılaştırılmalı; azalan/eksiksayaç unknownolmalı. OS1sdoğum ve örneklerarası görünmeyenchild sınırını tamkerneltrace diye sunma. Tarihselraporu yenişemaya uydurup PASS yapma.

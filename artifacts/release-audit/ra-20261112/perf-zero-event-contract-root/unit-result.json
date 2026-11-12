@@ -1,0 +1,18 @@
+{
+  "exitCode": 0,
+  "elapsedSeconds": 0.8263487499971234,
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "benchmarks/metrics.test.mjs",
+    "benchmarks/panel-compare.test.mjs",
+    "benchmarks/compare.test.mjs"
+  ],
+  "dataSource": "UNIT only",
+  "sourceSHA256": {
+    "benchmarks/run.mjs": "80cc55ad70f65857c5df2fa5eb79155aae5b8a5daec2d21916b8c588e39bb850",
+    "benchmarks/metrics.mjs": "ae87553d77a399b0814acf6de3e61c411c492481aae203fe26517a050c0c81ee",
+    "benchmarks/metrics.test.mjs": "d42b77900db94d92d0bcefd0cf068dddba258441c42109218887b754b46e90b3"
+  }
+}

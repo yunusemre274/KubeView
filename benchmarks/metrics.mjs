@@ -72,6 +72,17 @@ export function cpuSeconds(time) {
   return parseCpuTime(time);
 }
 
+// No-event cells have no delay measurement; positive work needs a real sample
+// for every planned event. Never coerce a missing percentile to numeric zero.
+export function validEventProducer(producer) {
+  if (!producer || !Number.isSafeInteger(producer.planned) || producer.planned < 0 ||
+      producer.completed !== producer.planned || !Array.isArray(producer.errors) ||
+      producer.errors.length) return false;
+  if (producer.planned === 0) return producer.delayMs?.n === 0 && producer.delayMs.p95 === null;
+  return producer.delayMs?.n === producer.planned &&
+    Number.isFinite(producer.delayMs.p95) && producer.delayMs.p95 >= 0 && producer.delayMs.p95 < 100;
+}
+
 export function processMetrics(before, after) {
   const cohort = inspectProcessCohort([before,after]);
   const unknown = {valid:false,reasons:cohort.reasons,browserCores:null,gpuProcessCores:null,rendererProcessCores:null,backendCores:null,maxBrowserProcessRSSKiB:null,backendRSSKiB:null};

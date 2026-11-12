@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { summarize, cpuSeconds, loadBands, measurementWindow, processMetrics } from "./metrics.mjs";
+import { summarize, cpuSeconds, loadBands, measurementWindow, processMetrics, validEventProducer } from "./metrics.mjs";
 test('measurement windows allow boundary IPC overhead and reject sleep/time jumps',()=>{
   const run=(wall,active=60044)=>({osBefore:{time:100},osAfter:{time:wall+100},summary:{durationMs:active}});
   assert.equal(measurementWindow(run(60273)).valid,true);
@@ -73,4 +73,18 @@ test("identity regression unknown role metrics are null rather than synthetic ze
   const [a,b] = processPair([identityRow(1, 0, {command:"/frozen/backend.test", cohort:"backend", role:"backend"})], [identityRow(1, 1, {command:"/frozen/backend.test", cohort:"backend", role:"backend"})]);
   assert.equal(processMetrics(a,b).browserCores, null);
   assert.equal(processMetrics(a,b).maxBrowserProcessRSSKiB, null);
+});
+
+test('zero-event producer has no fabricated delay; positive work requires measured samples',()=>{
+  assert.equal(validEventProducer({planned:0,completed:0,errors:[],delayMs:{n:0,p95:null}}),true);
+  assert.equal(validEventProducer({planned:0,completed:0,errors:[],delayMs:{n:0,p95:0}}),false);
+  assert.equal(validEventProducer({planned:300,completed:300,errors:[],delayMs:{n:300,p95:5}}),true);
+  for (const p95 of [null,undefined,NaN,Infinity,-1,100])
+    assert.equal(validEventProducer({planned:300,completed:300,errors:[],delayMs:{n:300,p95}}),false);
+  assert.equal(validEventProducer({planned:300,completed:300,errors:[],delayMs:{n:0,p95:null}}),false);
+});
+test('producer completion rejects malformed counts, missing samples and failed work',()=>{
+  const p={planned:5,completed:5,errors:[],delayMs:{n:5,p95:1}};
+  for (const invalid of [null,{}, {...p,planned:-1},{...p,planned:1.5},{...p,completed:4},{...p,errors:null},{...p,errors:['fixture error']},{...p,delayMs:null},{...p,delayMs:{n:4,p95:1}}])
+    assert.equal(validEventProducer(invalid),false);
 });

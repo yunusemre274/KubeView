@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T21:13:49.034472+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T21:19:27.047551+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -9031,7 +9031,7 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Kaynak / build / paket kimliği: A36d5b8f / Bf32d6b23 frozen frontend; common backend.test SHA9d35acc9…; harness kaynak SHA manifestlerde
 - Ortam / kullanılan kimlik ve yetki: MacM5/macOS27, Chromium Metal, medium/DPR1/1440x900; read-only sentetik M20Node/300Pod; Kubernetes credential kullanılmadı
 - Başlangıç zamanı: 2026-11-12 (ayrı işler exact zamanları manifestlerde)
-- Bitiş zamanı: 2026-11-12T17:29:43.124946+00:00
+- Bitiş zamanı: 2026-11-12T18:19:27.042531+00:00
 - Durum: VERIFIED_DONE
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
@@ -9061,6 +9061,8 @@ GenericCLIconsumer gerçekUNITfixtureRED:12invalidcaseyanlışcomparabletrue/exi
 - PERF-HARNESS-PID: PID-only gerçekhesaplayıcıya karşı6deterministikRED üretildi. Collector C-localeOS lstart/PID/PPID/comm/cohort/role doğrular; browserın gözlenen tümchild/orphanları ayrı backend veobserverdışında sayar. UnknownCPU/RSSnull, gerçek0ayrı. Araörnekcohort/decreasingcounter/missing/reuse/timejump reddi.
 - Childkimlikcache yalnızaktifexactidentityleri tutar;30nesilchurn büyümüyor. OS lstart1s, örneklerarası hiçgörülmeyenchild veöncedenorphan körnoktaları açık; kernel-completeCPUiddiasıyok.
 
+Zerocell post-window sözleşmesi darharness değişikliği: panelMatrix v5 artık0eventte de fullcanonicalcompare yapacak; positive producer null-delay alanınınJS<100coercion ilevalidolmasıREDolaraküretildi. validEventProducer yeni explicit0vsnonzeroörnekkuralı;42unitPASS+zero-null9targetPASS. Ürün/renderer/PID/kamera koduaynı;yalnızpostwindowdataretstbekler.
+
 #### TEST-16.01-S5 — Tekrar test ve regresyon
 - [x] WorkerPIDregresyon6/6RED→18/18hedefliPASS;repair-sessionneighbor15/15PASS. İlk17/18fixtureşemaFAIL ve nativeprobeimport prechildFAIL korunur. Onaylısyntheticpositivefixturebirth/cohort eklenirken missingbirthnegatifkorundu.
 - [x] TekownednativeNodechild168ms/10s;PID/PPID/birth/counter/RSSparse veSIGTERM→absent. App/browser/CPUperformansölçümü değildir;Linux yalnızunit.
@@ -9069,6 +9071,10 @@ GenericCLIconsumer gerçekUNITfixtureRED:12invalidcaseyanlışcomparabletrue/exi
 - Genericcompare.mjs consumerı yeni valid/null+interiorsamples semantiği için ayrıca denetlenecek; bütünCPUcomparatorkapıları henüz kapanmadı.
 
 Rootnativecollectorvalidation: iki3srun native11process/browsermain+renderer+GPU+other/backend/observerrol+doğum/cohortPASS;clockfark52.9/47.1ms. Tüm8gemipozu ilerledi;su/seyirayarlarıaynı. Bu kısa diagnosticn1CPU/FPSgecikmekabulüdeğildir. Kernelcompleteclaimyok. Genericcomparatorguard ayrıca işleniyor.
+
+Sıradaki sonlu data-smoke: frozenB/commonbackend, panel-open/M38/warm0/1s, tekkoşu≤30s+ownedcleanup/noK8s; performans/FPSkabulü değil. Actual0producerdelayN0/null ve client/upstream/plannedfullnested equality expected. Başarısızkoşu korunur/otomatikretryyok. Kamera/selection/PIDeskiunchangedkanıtıyenidençoğaltılmaz.
+
+Postwindowv5darretsttamam:42unitPASS+zero-nulltightening9targetPASS, legacy300/n0/nullpredicateRED korundu. TekactualBwarm0/1sdata smoke4.283/30s,noerrors/protocol5/producer0completed0/n0null/validtrue/bothfullcanonicalverdicttrue/workloadintegritytrue. Ownedcleanup/5192free. İlkcontrollerhazırlamaSyntaxErrornoapp kaydı ayrıkorunur. Offline10validnonzerokayıt yenihelperilePASS; eskiCPUseti rerun/overwriteedilmedi. Kanıt: perf-zero-event-contract-root/REPORT.md.
 
 #### TEST-16.01-S6 — Temizlik ve inceleme
 - [x] Smoke owned runner/browser/backend cleanup ve5192 port yokluğu kaydedildi.
@@ -9081,6 +9087,8 @@ Rootnativecollectorvalidation: iki3srun native11process/browsermain+renderer+GPU
 Nativevalidationownedrunner/browser/backendkimlikleriyok/5192free/commonbackend+harnessSHAaynı;canonicaltestsourcefake/readonly/noKUBECONFIG. İkiPNGrootgörselincelemesitamam. Hafifcomparatorpureunitjobeşzamanlıolduğu için bu3spencereler normalCPUbenchmarkından açıkça ayrıldı. n5asılölçümde diğerworkerlar/build/scan duracak.
 
 Root19genericSHA/REPORT+diff inceledi; helperwritekapsamı compare+comparetestile sınırlı. FreshnativeCoreGraphics60Hz/1470x956/2940x1912 mevcut environmentJSONileeşleşti (perffamilyfresh-display.json). MacM5/macOS27/Chromium156/Metal/DPR1/GPUframebuffer/kaynaklar/kameraseçim/filo/role/cohort ve cleanupkontrolü darChromiumM38harnesskapsamında tamamlandı. NativeSafari/Retina/fizikselsunum ayrıN/A/açık; CPUsonucununkendisi doğrulanmadı.
+
+Source-reuse: değişiklik yalnızpostCPUboundary0eventfullcanonicalcheck+pureproducerpredicate/scenarioVersion5. Renderer/clock/PID/probe/FOV/sourcefixtures/kalite/frontassets/backend değişmedi; öncekinativecamera/PID/selectionkanıtları buunchangedyollarda yenidenkullanıldı. Dar0dataactualretst+pozitifoffline10+unit ileilgiligapkapandı; bütünCPUmatrisi/fullruntimekabülü değildir.
 
 #### TEST-16.01-K — Faz kararı
 - [x] BİTTİ / DOĞRULANDI
