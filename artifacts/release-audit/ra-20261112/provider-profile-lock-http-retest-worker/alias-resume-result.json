@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "startedAt": "2026-11-12T10:33:12.886791+00:00",
+  "rootClearance": "one existing repair_owned_worker_hosts offline call; original exact2 owned containers only",
+  "noContainerStart": true,
+  "noBootstrap": true,
+  "noMinikubeCLI": true,
+  "noWorkerPOST": true,
+  "helperCalls": 1,
+  "aliasWrites": [
+    {
+      "containerID": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "alias": "control-plane.minikube.internal",
+      "IP": "172.29.232.2"
+    },
+    {
+      "containerID": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "alias": "control-plane.minikube.internal",
+      "IP": "172.29.232.2"
+    }
+  ],
+  "identity": [
+    {
+      "name": "kvml-d32afbf634e8-a",
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "mountsEqualStoredReceipt": true
+    },
+    {
+      "name": "kvml-d32afbf634e8-a-m02",
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "mountsEqualStoredReceipt": true
+    }
+  ],
+  "before": [
+    {
+      "containerID": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "exitCode": 2,
+      "resolvedIP": null,
+      "matchesOwnedCP": false
+    },
+    {
+      "containerID": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "exitCode": 2,
+      "resolvedIP": null,
+      "matchesOwnedCP": false
+    }
+  ],
+  "changed": true,
+  "after": [
+    {
+      "containerID": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "exitCode": 0,
+      "resolvedIP": "172.29.232.2",
+      "matchesOwnedCP": true
+    },
+    {
+      "containerID": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "exitCode": 0,
+      "resolvedIP": "172.29.232.2",
+      "matchesOwnedCP": true
+    }
+  ],
+  "profileSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "completedAt": "2026-11-12T10:33:13.494278+00:00",
+  "elapsedSeconds": 0.6074981689453125,
+  "limitSeconds": 40
+}

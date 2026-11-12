@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:34:18.581271+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T13:37:19.008088+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -4137,6 +4137,8 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 
 İlk gerçek iki-app HTTP kontrolü (11Kasım): sourcef32/build5f1c22…; Aavailable/canAdd true, farklıStateDir aynıHome/Profile Bavailablefalse/workers503. ExactPID ile ikisi kapandı; B yeniden start öncesi OSError, errno/stack kaydedilmemiş. Bu nedenle gerçek restart kabulü FAIL, ilk hatanın nedeni bilinmiyor. İkiapp/node/profilcleanup iyi olsa da tamfazPASS değildir. HiçworkerPOST/CLI/VM değişikliği yok. Kanıt: artifacts/release-audit/ra-20261111/provider-profile-lock-http-worker/REPORT.md;10/10SHA doğrulandı.
 
+12Kasım correctedHTTP: sourcef32/build5f1c22… . Aavailable/canAddtrue200; aynıHome/Profile farklıStateDir B503/false; exactA+Bclose sonrası BsameState restart200/true. 19HTTPattempt(max8/sn), concurrency1,3managementPOST; workerPOST/CLI0. HTTPassertions4.549sn/300PASS. Ancak hazırlık/recovery dahil kayıtlıphasewall830.384sn,300snplan+530.384 aşımı; bütçeuyumu geçti diye sunulmaz. İlkOSError ve yeniresumeAttributeError/interrupt/transporttimeout ayrı korunur. Mevcutownedlab kubelet+CPalias normalresume onarımları ayrıca kayıtlıdır; CNI/bootstrap/newNode yapılmadı. Kanıt: artifacts/release-audit/ra-20261112/provider-profile-lock-http-retest-worker/REPORT.md.
+
 #### TEST-06.13-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
 - [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
@@ -4150,6 +4152,8 @@ RetestPASS: tümprovision10PASS+1internalchildSKIP; targetedserver6top/30altPASS
 - Gerçek helper eski binary ile hard-blocked; yeni fixruntimeSHA gelmeden actualtest çalışmaz.
 
 176.128sn/360; indirilenyeniSDK/dependency, gerçekCLI/VM/K8s0. Dar localfilesystem concurrencyfix doğrulandı; providerUI/gerçekE2E ve eskiPendingjournalrecovery genel kapıları kapanmadı. Yeni runtime/binary/finalpaket gerekir; gerçekworkerkanıtı eski4c/sourcekimliğinde kalır.
+
+12Kasım root34/34artifact-relativeSHA ve rapor incelemesi: exact3appPID/birth/PGID kapandı/exit0,19846/47free, appchildren0, original2NodeUID/Ready+fullbaseline/stablemetadata/spec eşit. Profil4733b8…byteaynı; globalconfigyalnızstat. Journalnull/0; intentional0600lock. İki ownedlabcontainer sonrakiuygulanabilirtest için çalışır bırakıldı. GerçekHTTPkilitleme kanıtı, gerçeksame-keynewworker/lifecycle/finalpaketgenel kabulünün yerine geçmez.
 
 #### TEST-06.13-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

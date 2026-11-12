@@ -1,0 +1,66 @@
+{
+  "status": "FAIL",
+  "startedAt": "2026-11-12T10:28:33.673466+00:00",
+  "mode": "read-only guard continuation; no second resume",
+  "priorResumeResultPreserved": "resume-result.json",
+  "priorHarnessError": "except tuple m.mod.LabError; helper module has no mod attribute, correct owner is tx.mod",
+  "mutations": false,
+  "powerBefore": {
+    "batteryPercent": 52,
+    "freeDiskBytes": 454552920064
+  },
+  "firstFailure": {
+    "errorClass": "Guard",
+    "trace": [
+      {
+        "file": "resume-guard.py",
+        "line": 27,
+        "function": "<module>"
+      },
+      {
+        "file": "resume-guard.py",
+        "line": 22,
+        "function": "<module>"
+      },
+      {
+        "file": "release-provider-lab.py",
+        "line": 286,
+        "function": "guard"
+      },
+      {
+        "file": "manual_lab.py",
+        "line": 392,
+        "function": "guard_cluster"
+      },
+      {
+        "file": "manual_lab.py",
+        "line": 361,
+        "function": "get"
+      },
+      {
+        "file": "manual_lab.py",
+        "line": 294,
+        "function": "kubectl"
+      },
+      {
+        "file": "release-provider-lab.py",
+        "line": 268,
+        "function": "guarded_run"
+      },
+      {
+        "file": "release-provider-lab.py",
+        "line": 129,
+        "function": "bounded_process"
+      },
+      {
+        "file": "release-provider-lab.py",
+        "line": 27,
+        "function": "require"
+      }
+    ],
+    "safeCategory": "fixed_command_timeout"
+  },
+  "completedAt": "2026-11-12T10:29:55.632397+00:00",
+  "elapsedSeconds": 81.95895195007324,
+  "limitSeconds": 90
+}

@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Gerçek profile lock HTTP retesti
+
+- Aprofileowner/Bblocked→ownerclose→Brestartacquire gerçekHTTP4.549sn geçti. Tamhazırlık/recoveryfazı830.384sn ile300snplanı aştı; eskiFAILler ve bütçeaşımı korunur. YeniworkerPOST/CLI0, originalstate/profileaynı ve exactappcleanup; finalproviderkabulü açık.
+
 ## 2026-11-12 — Yerel operator imajı
 
 - Privatecandidate02 gerçekyerelimaja paketlendi; aynıDB full-image ikiGoELF taramasında High2→0, Medium4→0; gopsUnknown1 açık. ScratchoperatorAPT içermez, diğerimajlarAPT/TLS/lab kabulü ayrı. Runtimeconfig/assets ve constrained--version doğrulandı; imaj yayımlanmadı.

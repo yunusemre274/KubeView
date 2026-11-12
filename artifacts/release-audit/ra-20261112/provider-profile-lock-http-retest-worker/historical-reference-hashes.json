@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-12T10:29:44.875521+00:00",
+  "priorFirstHTTPFailureRetained": true,
+  "references": {
+    "artifacts/release-audit/ra-20261111/provider-profile-lock-http-worker/result.json": "2d9cc091991f2b6e3470d710aab962368b5d8ba2581c8aa63576dcfaff0de7a5",
+    "artifacts/release-audit/ra-20261111/provider-profile-lock-http-worker/manifest.json": "c213e3c00974ad20c2e11fd54beee69517a45a0a0eeaacf58136dc4a457ef92b",
+    "artifacts/release-audit/ra-20261111/provider-rebind-harness-fix/result.json": "cf80cda569e395728ca71e324ab5379b64bf3ef090633c247fab1b51f328f58b",
+    ".git/release-audit/PAUSE_RESUME_20261111.json": "75cea3b59cc693dbc9ce3731149470c49f7d2fb562e2cfc486bdc93b2afb8184"
+  }
+}

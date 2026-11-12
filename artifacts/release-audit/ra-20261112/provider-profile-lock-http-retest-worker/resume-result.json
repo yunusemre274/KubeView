@@ -1,0 +1,59 @@
+{
+  "status": "FAIL",
+  "startedAt": "2026-11-12T10:23:54.385629+00:00",
+  "rootClearance": "2026-11-12 root approved only exact original two-container resume and private API port refresh",
+  "noBootstrap": true,
+  "noMinikubeCLI": true,
+  "noWorkerPOST": true,
+  "events": [
+    {
+      "at": "2026-11-12T10:23:54.623607+00:00",
+      "event": "exact_original_container_started",
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599"
+    },
+    {
+      "at": "2026-11-12T10:23:54.720594+00:00",
+      "event": "exact_original_container_started",
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9"
+    },
+    {
+      "at": "2026-11-12T10:23:54.820045+00:00",
+      "event": "private_admin_API_refreshed_by_existing_helper",
+      "globalConfigContentsNotRead": true
+    }
+  ],
+  "powerBefore": {
+    "at": "2026-11-12T10:23:54.428795+00:00",
+    "batteryPercent": 52,
+    "AC": false,
+    "freeDiskBytes": 454803668992
+  },
+  "originalContainersBefore": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "name": "kvml-d32afbf634e8-a",
+      "created": "2026-11-11T12:25:42.786922134Z",
+      "running": false
+    },
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "name": "kvml-d32afbf634e8-a-m02",
+      "created": "2026-11-11T12:25:55.149367334Z",
+      "running": false
+    }
+  ],
+  "firstFailure": {
+    "step": "live_UID_marker_NodeReady_guard",
+    "errorClass": "AttributeError",
+    "trace": [
+      {
+        "file": "resume.py",
+        "line": 63,
+        "function": "<module>"
+      }
+    ]
+  },
+  "completedAt": "2026-11-12T10:24:35.275657+00:00",
+  "elapsedSeconds": 40.890061140060425,
+  "limitSeconds": 180
+}
