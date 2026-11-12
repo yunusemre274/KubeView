@@ -1,0 +1,7 @@
+# OS Medium attempt01 — FAILED, preserved
+
+Cilium build stopped with apt-get exit100 after1.943s; Envoy build was not started. Exact local parent descriptor107f5725… was accepted without fallback/pull. Copied deb SHA checks and strict simulation passed (only libpcre2-8-0 and zlib1g upgrades, zero additions/removals). Actual `apt-get --no-download install /absolute/local.deb` then failed with an internal non-absolute install pathname containing the epoch-encoded zlib filename. No candidate final image was produced or scanner run. The verified COPY parent layer remains available to the private build cache.
+
+The exact RUN container f9791f54d5e04080a6824077948b0f71fe44fb3f700e587db988af7df0ee10c4 was discovered from this job stdout and verified by normalized command, COPY image identity/ancestry,2CPU/4GiB memory/swap and networknone. It was force-removed and observed absent; cleanupErrors is absent. Parent images and the previous operator were not modified. Source, stdout/stderr, execution/resource records, copied package chain proofs and result JSON are retained in this directory. This failed attempt does not establish a package fix.
+
+Root separately approved one corrected v2 retry: keep simulation --no-download, remove it only from actual local-file installation, retain networknone/SHA/only-upgrade/no-removal/exact-package guards. V2 evidence goes to sibling attempt02; this attempt01 directory is sealed by SHA256SUMS and will not be changed by the worker after this finalization.

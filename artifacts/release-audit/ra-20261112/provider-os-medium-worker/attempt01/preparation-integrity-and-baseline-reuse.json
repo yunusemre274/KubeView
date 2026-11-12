@@ -1,0 +1,124 @@
+[
+  {
+    "image": "cilium",
+    "rows": 9,
+    "priorOfficialCSVSource": "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/candidate-all-findings.csv",
+    "priorCSV_SHA256": "261f7fd1958d88a505c7257e9561efb88b75a6dc53bc66b257794a88c5395a42",
+    "currentCSVSummaryRawTuplesEqual": true,
+    "retainedSignatureAndIndexEvidenceHashesMatch": true,
+    "newMetadataDownloads": 0,
+    "inputDescriptorDigest": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+    "inputConfigAndLayersEqualPriorScanImage": true,
+    "baselineReuse": "Exact local descriptor/config/layers match the already-scanned candidate; previous raw scan hash and artifact manifest verified; no APT/fullimage baseline rerun needed",
+    "dependencyFloors": {
+      "libpcre2-8-0": {
+        "Depends": "libc6 (>= 2.34)",
+        "installedLibc6Version": "2.43-2ubuntu2.4"
+      },
+      "zlib1g": {
+        "Depends": "libc6 (>= 2.17)",
+        "installedLibc6Version": "2.43-2ubuntu2.4"
+      }
+    },
+    "signedPackages": [
+      {
+        "Package": "libpcre2-8-0",
+        "Source": "pcre2",
+        "Priority": "required",
+        "Section": "libs",
+        "Installed-Size": "669",
+        "Maintainer": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
+        "Architecture": "arm64",
+        "Version": "10.46-1ubuntu0.1",
+        "Depends": "libc6 (>= 2.34)",
+        "Filename": "pool/main/p/pcre2/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb",
+        "Size": "237450",
+        "MD5sum": "7284b35423a8b0916846713db04edeca",
+        "SHA1": "3861028713b4e8d5e7160e906fed94028be6a0ee",
+        "SHA256": "ea8b1bcdd9b045227f3a1252d1dc1ff1579cf5a32abb7d03988c74d5fcfa5df4",
+        "SHA512": "c5cbabbacc7b6edf705b43ac46cf7961c7f00d13f302e28adcfe33394637db6b8c05e3c7c80aa56d49776cdbbc0b60e808fa9c57f5cf6fc7c5feaeca60948593",
+        "Homepage": "https://github.com/PCRE2Project/pcre2",
+        "Description": "New Perl Compatible Regular Expression Library- 8 bit runtime files",
+        "Description-md5": "c7a3d45ed09bfb032aada6998b70c4e1",
+        "Multi-Arch": "same",
+        "Original-Maintainer": "Matthew Vernon <matthew@debian.org>",
+        "Origin": "Ubuntu",
+        "Bugs": "https://bugs.launchpad.net/ubuntu/+filebug",
+        "Task": "cloud-minimal, minimal, server-minimal"
+      },
+      {
+        "Package": "zlib1g",
+        "Source": "zlib",
+        "Priority": "required",
+        "Section": "libs",
+        "Installed-Size": "181",
+        "Maintainer": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
+        "Architecture": "arm64",
+        "Version": "1:1.3.dfsg+really1.3.1-1ubuntu3.2",
+        "Provides": "libz1",
+        "Depends": "libc6 (>= 2.17)",
+        "Conflicts": "zlib1 (<= 1:1.0.4-7)",
+        "Breaks": "libxml2 (<< 2.7.6.dfsg-2), texlive-binaries (<< 2023.20230311.66589-8)",
+        "Filename": "pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb",
+        "Size": "61624",
+        "MD5sum": "5f03985353da21df2fb550def1605060",
+        "SHA1": "afc75d6cc2f3aced6b4ebdc75472d9d5c69e8109",
+        "SHA256": "b9b5ce1528ac7f885c8ff7dc2314c89c2ba5dd973c2a793dc4cf5d02d74b3810",
+        "SHA512": "643dbdd18a2d8e6b40a421215741d23ec96267285e501b0358b81ebce1c5341bd51b82f5595eb58dd3577c12017b19f609c93e6c74de3e8d90b48794aa5859ec",
+        "Homepage": "http://zlib.net/",
+        "Description": "compression library - runtime",
+        "Description-md5": "567f396aeeb2b2b63295099aed237057",
+        "Multi-Arch": "same",
+        "Original-Maintainer": "Mark Brown <broonie@debian.org>",
+        "Origin": "Ubuntu",
+        "Bugs": "https://bugs.launchpad.net/ubuntu/+filebug",
+        "Task": "cloud-minimal, minimal, server-minimal"
+      }
+    ]
+  },
+  {
+    "image": "envoy",
+    "rows": 7,
+    "priorOfficialCSVSource": "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/candidate-all-findings.csv",
+    "priorCSV_SHA256": "261f7fd1958d88a505c7257e9561efb88b75a6dc53bc66b257794a88c5395a42",
+    "currentCSVSummaryRawTuplesEqual": true,
+    "retainedSignatureAndIndexEvidenceHashesMatch": true,
+    "newMetadataDownloads": 0,
+    "inputDescriptorDigest": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+    "inputConfigAndLayersEqualPriorScanImage": true,
+    "baselineReuse": "Exact local descriptor/config/layers match the already-scanned candidate; previous raw scan hash and artifact manifest verified; no APT/fullimage baseline rerun needed",
+    "dependencyFloors": {
+      "libpcre2-8-0": {
+        "Depends": "libc6 (>= 2.34)",
+        "installedLibc6Version": "2.39-0ubuntu8.9"
+      }
+    },
+    "signedPackages": [
+      {
+        "Package": "libpcre2-8-0",
+        "Source": "pcre2",
+        "Priority": "required",
+        "Section": "libs",
+        "Installed-Size": "604",
+        "Maintainer": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
+        "Architecture": "arm64",
+        "Version": "10.42-4ubuntu2.2",
+        "Depends": "libc6 (>= 2.34)",
+        "Filename": "pool/main/p/pcre2/libpcre2-8-0_10.42-4ubuntu2.2_arm64.deb",
+        "Size": "213218",
+        "MD5sum": "6bda2f1b208eba474b187cb6555ffb00",
+        "SHA1": "c92c689af773e051f82b89b1886dfe25135b7f50",
+        "SHA256": "3209171ab2f528843351af0cb51fced4eab5b5f3456f3f2b025c40bec70bf7a0",
+        "SHA512": "4c4fe414909f9f15f63a33d991ba0980bddf2adebc50bf4a5e3fe27fbb7fa1341a38a03190fb5cb8726f56bae17cae6a3cf0fbb464e4b6fa9a5c2472e92e8463",
+        "Homepage": "https://pcre.org/",
+        "Description": "New Perl Compatible Regular Expression Library- 8 bit runtime files",
+        "Description-md5": "c7a3d45ed09bfb032aada6998b70c4e1",
+        "Multi-Arch": "same",
+        "Original-Maintainer": "Matthew Vernon <matthew@debian.org>",
+        "Origin": "Ubuntu",
+        "Bugs": "https://bugs.launchpad.net/ubuntu/+filebug",
+        "Task": "cloud-minimal, minimal, server-minimal"
+      }
+    ]
+  }
+]

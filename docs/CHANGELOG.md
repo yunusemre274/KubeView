@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — OS Medium ilk APT denemesi
+
+- İlkCiliumlocal-debinstall --no-download/epochpathname APTinternalerrorile1.943sndeFAIL; EnvoyNOTRUN. SignedSHA/simulation2packagegeçmişolsa da imajfixbaşarısısayılmadı. Exactcontainercleanupve18dosyamühürlü. Tekonaylıv2retryayrıkanıtaltında.
+
 ## 2026-11-12 — Secret frontend payload UNIT
 
 - MevcutüçpayloadhelpertestiNode24.16.0ile3PASS/0.132sn: unknownmetadata/draftkorunumu, resultveriredaksiyonu veUID/keyNamesguard. UIE2Esayılmadı; normalUItesti ayrı. Ürün kodu değişmedi.
