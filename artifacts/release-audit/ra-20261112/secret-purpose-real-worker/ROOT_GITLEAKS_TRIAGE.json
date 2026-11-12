@@ -1,0 +1,32 @@
+{
+  "disposition": "FALSE_POSITIVE_TYPED_NONCREDENTIAL_METADATA",
+  "findings": [
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-worker/command-result.json:generic-api-key:33",
+      "reason": "Exact source file SHA256, independently recomputed; not credential",
+      "fileSHA256": "734a95918b759000e0e12ec4152372af62dd7c9a98d1be7fce409de727e3a8ee"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-worker/source-after.json:generic-api-key:2",
+      "reason": "Exact source file SHA256, independently recomputed; not credential",
+      "fileSHA256": "305fe137ba98a47cbc031162c0e367afb408e9cc4b85751ed20fdc4bccf1eea0"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-worker/preparation-source-identities.json:generic-api-key:18",
+      "reason": "Exact source file SHA256, independently recomputed; not credential",
+      "fileSHA256": "47e5b71e31f8a61984d169dee730391008e1f1a080a13619f149297fd337a6a1"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-worker/source-before.json:generic-api-key:2",
+      "reason": "Exact source file SHA256, independently recomputed; not credential",
+      "fileSHA256": "305fe137ba98a47cbc031162c0e367afb408e9cc4b85751ed20fdc4bccf1eea0"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-worker/result.json:generic-api-key:2",
+      "reason": "Kubernetes resource UID matches recorded owned fixture and exact cleanup; not Secret data or credential",
+      "fileSHA256": "e4d90fab6934640ed022c470d98cd04949a0db0d557a46aecfde67ddafcbc984"
+    }
+  ],
+  "globalIgnoreAdded": false,
+  "scope": "Only exact current staged file/rule/line; no Secret/token values were read or ignored"
+}

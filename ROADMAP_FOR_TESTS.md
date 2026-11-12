@@ -1,11 +1,11 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T13:50:42.959113+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T13:58:16.738193+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime/fix commit `f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12`; doğru uzak dal ile0/0. Yerel fark yalnız kayıt ve SO_REUSEADDR test-helper düzeltmesi; kullanıcı dosyaları korunur.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:141; IN_PROGRESS:22; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:31; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:141; IN_PROGRESS:21; FAILED:4; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:31; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kendi kanıtlarında; finalpaket açık. Tarihselinstalled1.20.2 bulguları korunur. Yereloperatorcandidate0High/1Unknown; APT-onlyCiliumcandidate8High/64Medium/6Low/4Unknown, Envoy0High/23Medium/4Low. Bu yerel adaylar kurulu değil; gerçekELF/sourceCVE/kalanseverity/runtimeTLS/lisans kapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
@@ -29,7 +29,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
-| CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:7, IN_PROGRESS:3 | Henüz yok |
+| CAT-05 — Log/metrics/Secret | 10 | NOT_STARTED:7, IN_PROGRESS:2, FAILED:1 | Henüz yok |
 | CAT-06 — Hubble/TLS/provisioning | 14 | NOT_STARTED:6, IN_PROGRESS:1, FAILED:1, VERIFIED_DONE:6 | Henüz yok |
 | CAT-07 — Statik analiz/bağımlılık/sır | 11 | NOT_STARTED:4, IN_PROGRESS:1, FAILED:2, VERIFIED_DONE:4 | Henüz yok |
 | CAT-08 — Portlar/erişim/TLS | 6 | NOT_STARTED:5, VERIFIED_DONE:1 | Henüz yok |
@@ -3023,11 +3023,11 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
 - Sorumlu: release_backend_resume gerçekSecrettekgrup; rootnamespace/Git/roadmap
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
+- Kaynak / build / paket kimliği: Runtimef32byteeşdeğer; newopt-inGoTest41ffd9af…; Secretfirst source/reportSHAmanifest içinde
 - Ortam / kullanılan kimlik ve yetki: Ownedkvml-d32afbf634e8-a; yeni sealednamespace rootreceipt, yalnız birsentetikSecret ve2restrictedSA/RBAC. KullanıcıSecretdeğerleri okunmaz.
 - Başlangıç zamanı: 2026-11-12T10:47:32.753407+00:00
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
+- Bitiş zamanı: 2026-11-12 ilkexecutionFAIL; rapor365.218/360sn
+- Durum: FAILED
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-05.07-S1 — Hazırlık
@@ -3049,6 +3049,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+İlk gerçekAPIkoşusu: adminpurposeReveal200+sentetikdataeşit, grantöncesiPUT403/unchanged, managedmetadataPUT200/data+unknownmetadataeşit. List-onlySA gerçekTokenRequest/SelfSubjectReview+SSAR listtrue/getfalse/updatefalse; reveal403/listmetadata200sanitize.
+
 #### TEST-05.07-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
 - Yapılan: henüz çalışılmadı.
@@ -3056,6 +3058,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+İlkvalidauthorizationnegatifinin PUTbody’si typedGETSecretilehazırlandı; beklenen403yerine400, suiteFAIL. MissingTypeMeta parserguard olasılığı kurulusourceile destekli fakat payloadbooleans/rawerrorsaklanmadığından exactnedenRETROSPECTIVELYUNPROVEN. Yetkisizacceptedwritegözlenmedi. İkinciSA/maskedcaseNOTRUN.
 
 #### TEST-05.07-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -3065,11 +3069,15 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Düzeltme commit'i veya çalışma farkı: —
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
 
+TEST-FIXTURE adayhatası; henüzürüngüvenlikbulgusu değil. RestrictedPUTtypedobjectkind/apiVersionnormalizasyonu ve güvenliParsererror/payloadbooleans yeni retstteexplicitdoğrulanacak. Üretimruntime değişmedi.
+
 #### TEST-05.07-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
 - [ ] Komşu davranışlar gerektiği ölçüde sınandı.
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+İlkkoşuFAILkorundu; otomatiksınırsızretestyok. Ayrırootfixture-onlyclearancebekleniyor.
 
 #### TEST-05.07-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -3077,6 +3085,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - [ ] Gereken bağımsız ikinci inceleme tamamlandı.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
+
+Root14/14SHA doğruladı;7/7exactfixtureUID+RVdelete/GET404, namespaceUID/owner/sealaynıvekorunur. Profil/labbytestamaynı,original2ReadyNodeidentity/metadata/specaynı. Değer/tokenlarpublickanıtayazılmadı. Command5.928sn/test1.508sn; faz365.218/360+5.218snreportingoverrun ayrı açık. Kanıt: artifacts/release-audit/ra-20261112/secret-purpose-real-worker/REPORT.md.
 
 #### TEST-05.07-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
@@ -3117,6 +3127,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+İlkSecretgrubunda managedPUT200/data/type/UID/unknownlabel+annotationeşitliği geçti. Grupsonraki restrictedPUT400nedeniyleFAIL; faz henüzgenelolarak kabul edilmez. Kanıt: secret-purpose-real-worker/REPORT.md.
+
 #### TEST-05.08-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
 - Yapılan: henüz çalışılmadı.
@@ -3145,6 +3157,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - [ ] Gereken bağımsız ikinci inceleme tamamlandı.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
+
+7/7fixturecleanup404vebaselineeşit; ilksonuçhashleri/root14SHAkorunur.
 
 #### TEST-05.08-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
@@ -3192,6 +3206,8 @@ Source-reuse değerlendirmesi: sonrakiPROV-LOCK-002 değişikliği yalnızpkg/pr
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+İlkgrup önceki restrictedPUT400assertionında durdu; masked-writecaseNOTRUN, PASSsayılmaz. Kapsamlı retestbekleniyor.
 
 #### TEST-05.09-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.

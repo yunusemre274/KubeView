@@ -1,0 +1,13 @@
+{
+  "classification": "FIRST_REAL_JOB_FAIL_EXPECTED403_ACTUAL400; NOT_CONFIRMED_PRODUCT_BUG",
+  "actualStatus": 400,
+  "expectedStatus": 403,
+  "stage": "first list-only ServiceAccount PUT; get-only identity and masked-write stage not reached",
+  "observedTypeMetaOnFailingRequest": "NOT_CAPTURED; raw response/request deliberately not exported",
+  "sourceEvidence": "restricted PUT passes typed GET stored object without explicitly restoring apiVersion/kind; previous successful admin PUT used purpose-reveal object with explicit TypeMeta; Unstructured.UnmarshalJSON rejects missing kind before authorize",
+  "causeStatus": "LIKELY_TEST_PAYLOAD_TYPEMETA; not retrospectively proved from missing payload/error capture",
+  "noRetry": true,
+  "cleanup": "7 exact fixture UIDs deleted and GET404; namespace retained; original profile/lab/Node metadata unchanged",
+  "runtimeChangeMade": false,
+  "suggestedCorrectionOnlyIfRootApproves": "set stored.TypeMeta to v1 Secret before sending restricted PUT and record safe payload-kind/API-version-present booleans; retain this first source/result"
+}

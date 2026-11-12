@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — Gerçek Secret ilk koşu
+
+- Yeniopt-inproductionhandler/realk8sSecret testi ilkrestrictedPUT400/expected403 nedeniyleFAIL; adminreveal/edit/metadata ve list-onlyreadnegatifleri ayrıgözlendi. MissingTypeMeta fixturehipoteziürünbugdiyeilanedilmedi; ikinciSA/maskedNOTRUN.7fixtureexactUIDcleanup404, rootnamespacekorunur. İlkkanıt/testkaynağıkorunur;365.218/360planoverrun açık.
+
 ## 2026-11-12 — Signed APT yerel imaj düzeltmesi
 
 - Cilium/EnvoyAPT-onlycandidateimajlarında dörtCVE-2026-109518componentrowgiderildi. İmzalıresmîmetadata ve exactpin/iki-paketinstall doğrulandı; config/providerbinarySHA korunur. KalanCilium8High ve diğerseverityler açık; install/yayım yok. NobleindexhashilkFAILkorunur.
