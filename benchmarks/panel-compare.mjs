@@ -2,6 +2,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { distribution, processMetrics, measurementWindow } from "./metrics.mjs";
+import { inspectProcessCohort, processIdentity } from './process-identity.mjs';
 const browser = (p) => /Chrome|Chromium|MiniBrowser/.test(p.command);
 const round = (value) =>
   JSON.parse(
@@ -14,33 +15,27 @@ export function processCoverage(run, samples = []) {
     a = run.osAfter;
   const snapshots = [
     b,
-    ...samples.filter((s) => s.time > b.time && s.time < a.time),
+    ...samples.filter((s) => !Number.isFinite(s?.time) || s.time > b?.time && s.time < a?.time),
     a,
   ];
-  const first = new Set(b.processes.filter(browser).map((p) => p.pid));
-  const last = new Set(a.processes.filter(browser).map((p) => p.pid));
-  const all = new Set(
-    snapshots.flatMap((s) => s.processes.filter(browser).map((p) => p.pid)),
-  );
-  const churn = [...all].filter((pid) => !first.has(pid) || !last.has(pid));
-  const start = new Map(b.processes.map((p) => [p.pid, p]));
-  const main = a.processes.filter(
-    (p) => browser(p) && /\/Google Chrome for Testing$/.test(p.command),
-  );
-  const mainCores =
-    main.reduce(
-      (n, p) =>
-        n + (start.has(p.pid) ? p.cpuSeconds - start.get(p.pid).cpuSeconds : 0),
-      0,
-    ) /
-    ((a.time - b.time) / 1000);
+  const cohort = inspectProcessCohort(snapshots), metrics = processMetrics(b,a);
   const clockWindow = measurementWindow(run);
+  const accounting = b?.processes || [];
+  const complete = cohort.valid && metrics.valid && clockWindow.valid && accounting.some(p => p.role === 'browser-main') && accounting.some(p => p.role === 'backend');
+  let mainCores = null;
+  if (complete) {
+    const initial = new Map(b.processes.map(p => [processIdentity(p),p]));
+    mainCores = a.processes.filter(p => p.role === 'browser-main').reduce((sum,p) => sum+p.cpuSeconds-initial.get(processIdentity(p)).cpuSeconds,0)/((a.time-b.time)/1000);
+  }
+  const measured = complete ? metrics : Object.fromEntries(Object.keys(metrics).filter(k => k.endsWith('Cores') || k.endsWith('RSSKiB')).map(k => [k,null]));
   return {
-    ...processMetrics(b, a),
+    ...measured,
+    valid: complete,
+    reasons: [...cohort.reasons,...(!metrics.valid?metrics.reasons:[]),...(!accounting.some(p=>p.role==='browser-main')?['Missing browser root']:[]),...(!accounting.some(p=>p.role==='backend')?['Missing backend root']:[])],
     browserMainCores: mainCores,
-    churn,
+    churn: cohort.churn,
     clockWindow,
-    complete: !churn.length && clockWindow.valid,
+    complete,
   };
 }
 export function settings(run) {

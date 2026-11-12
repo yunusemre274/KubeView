@@ -1,0 +1,23 @@
+✔ workspace plan is finite: paired four-condition blocks, separate source controls and one final soak (1.043209ms)
+✔ finite primary plan is exactly 49 cells in 27 serial jobs; panel reversal occurs once (0.229875ms)
+✔ real one-repeat smoke manifests are valid only with full windows and three pooled independent pairs (0.301875ms)
+✔ battery guard accepts 10%, rejects unknown/below threshold and any source change (0.127458ms)
+✔ resume keeps accepted and pending IDs, gives failed jobs new IDs and retains every exclusion (0.240958ms)
+✔ resume and measured identity reject altered source, assets, browser and power (0.184375ms)
+✔ frozen identity covers nested frontend assets, backend binary and source provenance (9.909042ms)
+✔ 49-cell ledger rejects missing, duplicate, unexpected and misidentified cells (0.742583ms)
+✔ cadence and interaction gates reject missing, infinite, negative and over-budget values (0.195125ms)
+✔ repair gates require the three named full canonical checks and matching digest (0.127125ms)
+✔ event gate requires complete producer, full canonical equality and finite latency bands (0.139125ms)
+✔ long gate requires 20 unique stream cycles, 40 checkpoints, resync and reconnects (0.448666ms)
+✔ CPU coverage rejects missing/churning PIDs, counter regression and sleep clock gaps (0.825708ms)
+✔ panel deltas retain signed open-minus-closed values and reject ambiguous pairs (0.142292ms)
+✔ session-wide conditions reject power/browser/hardware changes across separate blocks (0.167958ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.096208

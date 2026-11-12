@@ -1,3 +1,7 @@
+## 12 Kasım — PID tekbaşına CPU kimliği değildir
+
+Yeniden kullanılanPID veya araörnekten kaybolançocuk eski endpointkümelerinde görünmeyebilir. Doğum/PPID/executable/rol ve bütün gözlenen cohort karşılaştırılmalı; azalan/eksiksayaç unknownolmalı. OS1sdoğum ve örneklerarası görünmeyenchild sınırını tamkerneltrace diye sunma. Tarihselraporu yenişemaya uydurup PASS yapma.
+
 ## 12 Kasım — probe bütçesi bütün istekleri kapsamalı
 
 Başlangıçhealth polling normal assertion counter/deadline dışında kalmamalı. İlkHostprobe actual3.650snPASS kalır fakat global60request/30sn garantisi değildi. Ortakrequestguard+31requestretest/ikiunit kaynak sınırını doğruladı; birOSstallı için mutlakwalltime garantisi verilmez. Publichealth/version/static ile korumalıgatewayyi ayır.

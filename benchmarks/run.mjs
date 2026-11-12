@@ -30,6 +30,7 @@ import { readSceneInventory } from "./scene-inventory.mjs";
 import { buildLockIdentity } from './build-lock.mjs';
 import { workspaceSoakTransition } from './workspace-cycle.mjs';
 import { validatedCameraFov } from './camera-contract.mjs';
+import { parseProcessRows, collectScopedProcesses } from './process-identity.mjs';
 import { summarize, distribution, cpuSeconds, loadBands, measurementWindow } from "./metrics.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const require = createRequire(path.join(root, "frontend/package.json"));
@@ -345,43 +346,19 @@ let network;
 const base = `http://127.0.0.1:${port}`;
 const owned = new Set(),
   samples = [];
+const processRootBindings = new Map();
 let lastPressure = 0;
 async function sampleOS() {
   try {
     const { stdout } = await exec(
       "ps",
-      ["-axo", "pid=,ppid=,time=,rss=,comm="],
-      { maxBuffer: 4 << 20 },
+      ["-axo", "pid=,ppid=,lstart=,time=,rss=,comm="],
+      { maxBuffer: 4 << 20, env: {...process.env, LC_ALL: 'C'} },
     );
-    const rows = stdout
-      .trim()
-      .split("\n")
-      .map((line) => {
-        const m = line.trim().match(/^(\d+)\s+(\d+)\s+(\S+)\s+(\d+)\s+(.+)$/);
-        return m
-          ? {
-              pid: +m[1],
-              ppid: +m[2],
-              cpuSeconds: cpuSeconds(m[3]),
-              rssKiB: +m[4],
-              command: m[5],
-            }
-          : null;
-      })
-      .filter(Boolean);
-    const parents = new Set([browserPID, child?.pid, process.pid]);
-    let changed = true;
-    while (changed) {
-      changed = false;
-      for (const r of rows)
-        if (parents.has(r.ppid) && !parents.has(r.pid)) {
-          parents.add(r.pid);
-          changed = true;
-        }
-    }
-    const selected = rows.filter((r) => parents.has(r.pid));
+    const rows = parseProcessRows(stdout, process.platform);
+    const selected = collectScopedProcesses(rows, {browser: browserPID, backend: child?.pid, observer: process.pid}, processRootBindings);
     for (const r of selected) owned.add(r.pid);
-    const record = { time: Date.now(), processes: selected };
+    const record = { time: Date.now(), processIdentityVersion: 'os-birth-cohort-v1', birthResolutionMs: 1000, processes: selected };
     if (Date.now() - lastPressure > 30000) {
       lastPressure = Date.now();
       const pressure = await exec("memory_pressure", ["-Q"])
@@ -423,7 +400,9 @@ async function sampleOS() {
     return record;
   } catch (e) {
     if (e.message.startsWith("Resource guard")) throw e;
-    return { error: e.message };
+    const record = {time:Date.now(),processes:null,error:'Process sampling failed',errorClass:e.name};
+    samples.push(record);
+    return record;
   }
 }
 const state = async () => {
@@ -563,6 +542,8 @@ async function launchProfile(profile, scenario = "") {
       stdio: ["ignore", "pipe", "pipe"],
     },
   );
+  // A freshly launched explicit fixture is a new root, outside any CPU span.
+  processRootBindings.delete('backend');
   child.stdout.on("data", (b) => process.stdout.write(b));
   child.stderr.on("data", (b) => {
     report.errors.push(b.toString());

@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-11-12T17:10:24.016Z",
+  "status": "PASS",
+  "processesStarted": 1,
+  "scope": "One owned idle Node child identity probe; no app/browser/build/lab/performance comparison",
+  "before": {
+    "pid": 19130,
+    "ppid": 19129,
+    "birth": "2026-11-12T17:10:24.000Z",
+    "birthRaw": "Thu Nov 12 20:10:24 2026",
+    "birthSource": "darwin-ps-lstart",
+    "birthResolutionMs": 1000,
+    "cpuSeconds": 0,
+    "rssKiB": 544,
+    "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+  },
+  "after": {
+    "pid": 19130,
+    "ppid": 19129,
+    "birth": "2026-11-12T17:10:24.000Z",
+    "birthRaw": "Thu Nov 12 20:10:24 2026",
+    "birthSource": "darwin-ps-lstart",
+    "birthResolutionMs": 1000,
+    "cpuSeconds": 0.02,
+    "rssKiB": 42128,
+    "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+  },
+  "sameObservedIdentity": true,
+  "expectedPPID": 19129,
+  "childAbsent": true,
+  "exitCode": null,
+  "exitSignal": "SIGTERM",
+  "elapsedMs": 168,
+  "within10Seconds": true,
+  "completedAt": "2026-11-12T17:10:24.184Z"
+}

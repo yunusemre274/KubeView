@@ -1,0 +1,46 @@
+{
+  "purpose": "HARNESS_VALIDATION_ONLY_NOT_PERFORMANCE_ACCEPTANCE",
+  "sides": [
+    "36d5b8f frozen frontend A",
+    "f32d6b23 frozen frontend B"
+  ],
+  "commonBackendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+  "cameraProtocol": "Explicit historical controlled M FOV38 same old position/target for both; product FOV24 untouched. Previous FOV24 comparability pair cropped; not used for CPU. Controlled38 analytically includes8Node centers; verify runtime/screenshots and all8UID/120Pod detailed actual draw. No hiding/DPR/quality/FPS reduction.",
+  "quality": "medium",
+  "DPR": 1,
+  "viewport": [
+    1440,
+    900
+  ],
+  "canonical": {
+    "nodes": 20,
+    "pods": 300
+  },
+  "scenario": "panel-open node0 worker-001 \u00d6zet; noevent",
+  "warmupSeconds": 30,
+  "measurementSeconds": 3,
+  "repeats": 1,
+  "sidesSerial": true,
+  "maximumActualWallSeconds": 120,
+  "powerSource": "new current Battery; changes fail pair",
+  "minBatteryPercent": 30,
+  "minDiskGiB": 10,
+  "maxSummedOwnedBrowserRSSGiB": 6,
+  "maxAppRSSGiB": 2,
+  "port": 5192,
+  "requires": [
+    "Backend worker releases harness ownership",
+    "Root source diff/unit/native-child review",
+    "Commit and push new PID identity guards",
+    "No owned real lab running/no simultaneous build/scan/other benchmark"
+  ],
+  "acceptance": [
+    "Same actual camera/UID/fleet/preference/quality/framebuffer",
+    "Readable uncropped target overview checked by opening PNGs",
+    "Real ps birth/cohort/roles accepted by processCoverage; no process-source fallback",
+    "Both app/browser process sets absent and port free after",
+    "Short windows and n1 never treated as CPU/frame/latency acceptance"
+  ],
+  "maxAttempts": 1,
+  "failurePolicy": "Preserve first failure. No silent rerun/replacement; investigate concrete cause before any new plan."
+}

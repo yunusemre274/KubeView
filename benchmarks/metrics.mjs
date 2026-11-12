@@ -1,4 +1,5 @@
 // CPU uses the OS wall clock; browser performance.now can stop during Mac sleep.
+import { parseCpuTime, inspectProcessCohort, processIdentity } from './process-identity.mjs';
 // Permit up to 1s for inventory/IPC at window boundaries, never minutes of sleep.
 export function measurementWindow(run) {
   const wallMs = run.osAfter?.time - run.osBefore?.time;
@@ -68,34 +69,35 @@ export function summarize(raw) {
   };
 }
 export function cpuSeconds(time) {
-  const parts = time.split(":").map(Number);
-  return parts.reduce((n, v) => n * 60 + v, 0);
+  return parseCpuTime(time);
 }
 
 export function processMetrics(before, after) {
-  if (!before?.processes || !after?.processes) return {};
-  const initial = new Map(before.processes.map((p) => [p.pid, p]));
+  const cohort = inspectProcessCohort([before,after]);
+  const unknown = {valid:false,reasons:cohort.reasons,browserCores:null,gpuProcessCores:null,rendererProcessCores:null,backendCores:null,maxBrowserProcessRSSKiB:null,backendRSSKiB:null};
+  if (!cohort.valid) return unknown;
+  const initial = new Map(before.processes.map((p) => [processIdentity(p), p]));
   const span = (after.time - before.time) / 1000;
+  if (!Number.isFinite(span) || span <= 0) return {...unknown,reasons:['Invalid process span']};
   const delta = (match) =>
-    after.processes
-      .filter((p) => initial.has(p.pid) && match(p.command))
+    after.processes.filter(match).length ? after.processes
+      .filter(match)
       .reduce(
-        (sum, p) => sum + p.cpuSeconds - initial.get(p.pid).cpuSeconds,
+        (sum, p) => sum + p.cpuSeconds - initial.get(processIdentity(p)).cpuSeconds,
         0,
-      ) / span;
+      ) / span : null;
   const maxRSS = (match) => {
-    const rows = after.processes.filter((p) => match(p.command));
+    const rows = after.processes.filter(match);
     return rows.length ? Math.max(...rows.map((p) => p.rssKiB)) : null;
   };
   return {
-    browserCores: delta((c) => /Chrome|Chromium|MiniBrowser/.test(c)),
-    gpuProcessCores: delta((c) => /Helper \(GPU\)/.test(c)),
-    rendererProcessCores: delta((c) => /Helper \(Renderer\)/.test(c)),
-    backendCores: delta((c) => c.endsWith("backend.test")),
-    maxBrowserProcessRSSKiB: maxRSS((c) =>
-      /Chrome|Chromium|MiniBrowser/.test(c),
-    ),
-    backendRSSKiB: maxRSS((c) => c.endsWith("backend.test")),
+    valid: true, reasons: [],
+    browserCores: delta((p) => p.cohort === 'browser'),
+    gpuProcessCores: delta((p) => p.role === 'browser-gpu'),
+    rendererProcessCores: delta((p) => p.role === 'browser-renderer'),
+    backendCores: delta((p) => p.cohort === 'backend'),
+    maxBrowserProcessRSSKiB: maxRSS((p) => p.cohort === 'browser'),
+    backendRSSKiB: maxRSS((p) => p.cohort === 'backend'),
   };
 }
 

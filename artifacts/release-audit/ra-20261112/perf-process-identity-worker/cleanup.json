@@ -1,0 +1,9 @@
+{
+  "probeChildPID": 19130,
+  "probeChildAbsent": true,
+  "exitSignal": "SIGTERM",
+  "probeParentCommandCompletedExit0": true,
+  "newNativeProbeChildren": 1,
+  "appsBrowsersBuildsScansLabRuns": 0,
+  "rootOwnsRunMjsAfterThisReceipt": true
+}

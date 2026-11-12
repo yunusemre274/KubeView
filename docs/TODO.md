@@ -1,3 +1,6 @@
+- [x] CPUharnessPID-only6RED→18target+15neighborPASS; boundedcohort/OSbirth/counterguard ve tekchildcleanup.
+- [ ] Genericcomparator failclosed ve gerçekbrowser/kadraj doğrulaması olmadan CPUmatrisi başlamaz.
+
 - [x] TEST09.07 defaultlocal korumalıHost sınırı30HTTPPASS+ikinciinceleme; helperglobalcounter/deadline düzeltmesi31requestretest ile doğrulandı.
 
 - [x] Local OSsecurity2 signed pcre2/zlib düzeltmesi16Medium satırını kaldırdı;189kaynakSHA ikinci inceleme+rootreview var. Gerçekkurulum/fullTLS/finalpackage açık.

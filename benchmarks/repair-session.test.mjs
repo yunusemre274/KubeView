@@ -144,9 +144,10 @@ test('long gate requires 20 unique stream cycles, 40 checkpoints, resync and rec
 });
 
 test('CPU coverage rejects missing/churning PIDs, counter regression and sleep clock gaps',()=>{
- const processes=cpu=>[{pid:1,command:'/Chrome.app/Google Chrome for Testing',cpuSeconds:cpu,rssKiB:100},{pid:2,command:'/frozen/backend.test',cpuSeconds:cpu/10,rssKiB:20}];
+ const processes=cpu=>[{pid:1,ppid:50,birth:'2026-11-12T16:00:00.000Z',birthSource:'darwin-ps-lstart',cohort:'browser',role:'browser-main',command:'/Chrome.app/Google Chrome for Testing',cpuSeconds:cpu,rssKiB:100},{pid:2,ppid:50,birth:'2026-11-12T16:00:00.000Z',birthSource:'darwin-ps-lstart',cohort:'backend',role:'backend',command:'/frozen/backend.test',cpuSeconds:cpu/10,rssKiB:20}];
  const r={summary:{durationMs:60000},osBefore:{time:1000,processes:processes(10)},osAfter:{time:61000,processes:processes(40)}},samples=[{time:31000,processes:processes(25)}];
  assert.equal(repairProcessCoverage(r,samples).complete,true);
+ const legacy=clone(r);delete legacy.osBefore.processes[0].birth;assert.equal(repairProcessCoverage(legacy,samples).complete,false);
  for(const mutate of [x=>x.osBefore.processes.pop(),x=>x.osAfter.processes.shift(),x=>x.osAfter.processes[0].cpuSeconds=NaN,x=>x.osAfter.processes[1].cpuSeconds=0,x=>x.osAfter.time+=1001]){const bad=clone(r);mutate(bad);assert.equal(repairProcessCoverage(bad,samples).complete,false);}
  const churn=clone(samples);churn[0].processes[1].pid=3;assert.equal(repairProcessCoverage(r,churn).complete,false);
  const regression=clone(samples);regression[0].processes[0].cpuSeconds=50;assert.equal(repairProcessCoverage(r,regression).complete,false);

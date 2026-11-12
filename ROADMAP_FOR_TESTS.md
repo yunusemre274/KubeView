@@ -1,6 +1,6 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-12T20:09:55.853639+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-12T20:17:48.056981+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif kaynak: Runtime f32d6b23; HEADb844d74e checkpoint sonrası harness-only farkı. Kullanıcı dosyaları korunur; final paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; başlangıç Battery53%, disk424GiB. Docker29.5.3 yeniden açıldı. Ağır A/B/soak henüz başlamadı; pilde kısa işler önceki yetkiyle sürer.
@@ -9040,6 +9040,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Kanıt: artifacts/release-audit/ra-20261112/perf-baseline-plan-worker/REPORT.md; perf-matching-build-worker/REPORT.md.
 - Bu yalnız frontend-browser-common-backend ailesidir; full-runtime A/B değildir. Yeni taglar tarihsel artefaktların üzerine yazmaz.
 
+Yeni sonluplan: perf-native-harness-validation-root/plan.json. ExplicitoldMcontrolledFOV38 aynıpose iki frozenfrontendte, production24değişmez. Aynıoldpose/FOV24te8gemiden2merkezfrustumdaydı; safprojection38te8/8, gerçekPNG/UID/draw kapsamı henüz sınanacak. İki seri30sısınma+3skısa harnesspenceresi/tekçift≤120s; performans kabulü değil. PIDworkercompletion/rootreview/commit sonrası; ownedrealLabdurdu, ağırscan/build yok. İlkFAIL saklanır, otomatikretry yok.
+
 #### TEST-16.01-S2 — Normal kullanım / pozitif kontrol
 - [x] Bir A/B comparability smoke, aynı UID/panel/sekme/filo/FOV24 ve draw footprint ile geçti; ikiPNG incelendi.
 - Logical detailed kapsam8Node/120Pod; projected/raycast-visible merkez yalnıznode0/node2, kadraj dar/kırpık. Tam görünüm eşdeğerliği/ölçüme hazır olma henüz sağlanmadı.
@@ -9051,14 +9053,16 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - PID-birth halen açık: mevcut CPU collector yalnızPID kullanıyor; PIDreuse/sayaç sıfırlanması koruması eklenip sınanacak. Bu düzelmeden CPU matrisi başlamaz.
 
 #### TEST-16.01-S4 — Bulgular ve düzeltme
-- PERF-HARNESS-CAMERA: eski runner38 projeksiyonu güncelürün24ten farklıydı; yeni açık --camera-fov ve gerçek kamera alanları yalnızharness düzeltmesidir. Ürün kamera/su/seyir/LOD/DPR değişmedi.
-- PERF-HARNESS-PID: PID doğum kimliği eksikliği kaynakta doğrulandı, henüz yeniden üretim/düzeltme yok.
-- Rapor hazırlama planı aşımı smoke637.148/600sn ayrı korunur; gerçeksmoke68.488/120sn.
+- PERF-HARNESS-CAMERA: açıkFOV veactualcamera/panelUID yalnızharness; üretim kamera/su/seyir/LOD/DPR değişmedi.24smokedarkadraj; yenicontrolled38normaloverview ve actualcollector validation planlı.
+- PERF-HARNESS-PID: PID-only gerçekhesaplayıcıya karşı6deterministikRED üretildi. Collector C-localeOS lstart/PID/PPID/comm/cohort/role doğrular; browserın gözlenen tümchild/orphanları ayrı backend veobserverdışında sayar. UnknownCPU/RSSnull, gerçek0ayrı. Araörnekcohort/decreasingcounter/missing/reuse/timejump reddi.
+- Childkimlikcache yalnızaktifexactidentityleri tutar;30nesilchurn büyümüyor. OS lstart1s, örneklerarası hiçgörülmeyenchild veöncedenorphan körnoktaları açık; kernel-completeCPUiddiasıyok.
 
 #### TEST-16.01-S5 — Tekrar test ve regresyon
-- [x] Root9unit: kamera3 + metrics3 + panel-comparison3 PASS; Node24.16.0, 0.188sn command, skip0.
-- İlk eksik completion receipt ve /usr/local/bin/node artıkbulunmayan yolun launchFAIL kaydı korundu. Gerçek başarılı koşu PATHteki nvm24.16 Node ileattempt03tür. Ürün/build değişmedi.
-- Kanıt: artifacts/release-audit/ra-20261112/camera-neighbor-root/attempt03/result.json.
+- [x] WorkerPIDregresyon6/6RED→18/18hedefliPASS;repair-sessionneighbor15/15PASS. İlk17/18fixtureşemaFAIL ve nativeprobeimport prechildFAIL korunur. Onaylısyntheticpositivefixturebirth/cohort eklenirken missingbirthnegatifkorundu.
+- [x] TekownednativeNodechild168ms/10s;PID/PPID/birth/counter/RSSparse veSIGTERM→absent. App/browser/CPUperformansölçümü değildir;Linux yalnızunit.
+- [x] Root26SHA,REPORT/kaynakdiff+boundedcachecase inceledi. Orijinal900s+somutrootreview180s ekbütçe;980.151s/1080.
+- Önceki9kameraneighborunit/ilklaunchFAIL ayrıkanıtında. Kanıt: artifacts/release-audit/ra-20261112/perf-process-identity-worker/REPORT.md.
+- Genericcompare.mjs consumerı yeni valid/null+interiorsamples semantiği için ayrıca denetlenecek; bütünCPUcomparatorkapıları henüz kapanmadı.
 
 #### TEST-16.01-S6 — Temizlik ve inceleme
 - [x] Smoke owned runner/browser/backend cleanup ve5192 port yokluğu kaydedildi.

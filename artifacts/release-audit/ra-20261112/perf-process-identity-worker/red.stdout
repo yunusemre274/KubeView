@@ -1,0 +1,138 @@
+✖ identity regression rejects same PID with a new OS birth (0.919792ms)
+✖ identity regression never publishes a falling CPU counter (0.08675ms)
+✖ identity regression rejects zero span and missing OS birth (0.075834ms)
+✖ identity regression unknown role metrics are null rather than synthetic zero (0.072292ms)
+✖ identity regression rejects simultaneous child exit and PID reuse (0.7675ms)
+✖ identity regression rejects a sampled cohort disappearance even when endpoints match (0.493166ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40.521291
+
+✖ failing tests:
+
+test at benchmarks/metrics.test.mjs:58:1
+✖ identity regression rejects same PID with a new OS birth (0.919792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== null
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/metrics.test.mjs:60:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/metrics.test.mjs:62:1
+✖ identity regression never publishes a falling CPU counter (0.08675ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  -1 !== null
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/metrics.test.mjs:64:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: -1,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/metrics.test.mjs:66:1
+✖ identity regression rejects zero span and missing OS birth (0.075834ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  Infinity !== null
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/metrics.test.mjs:68:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Infinity,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/metrics.test.mjs:72:1
+✖ identity regression unknown role metrics are null rather than synthetic zero (0.072292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== null
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/metrics.test.mjs:74:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/panel-compare.test.mjs:86:1
+✖ identity regression rejects simultaneous child exit and PID reuse (0.7675ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:88:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/panel-compare.test.mjs:91:1
+✖ identity regression rejects a sampled cohort disappearance even when endpoints match (0.493166ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/panel-compare.test.mjs:93:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

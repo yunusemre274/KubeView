@@ -1,3 +1,5 @@
+- BenchmarkOScollectorPID+birth/PPID/executable/cohort kullanır; invalid/unknownCPUveRSSnull. Browserutility/orphan kapsamı ve aktifchildcachecleanup düzeltildi; üretim ürününe etkisi yok.
+
 - KorumalıAPI/session/WS girişinde Host/Origin/forwardedspoof30gerçekHTTPkontrolü doğrulandı; ürün kodu değişmedi. Testhelperstartuprequestbudget eksikliği correctedretest ile giderildi.
 
 - Yerel kurulu olmayanCilium/Envoy OSsecurity2 adaylarında signedpcre2/zlib ile16Medium eşleşme giderildi; ilkAPTinstallFAILkorundu. Rawkalıntılar ve runtime/TLS/kurulum kapıları kapanmadı.
