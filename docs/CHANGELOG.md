@@ -1,5 +1,9 @@
 # CHANGELOG.md — Değişiklik Kaydı
 
+## 2026-11-12 — provider-operator-findings-review-worker
+
+- Candidate1 OpenPGP advisorysi unsafeOpenPGP modülüne ait; fullpclntab172260entry/184657name içindeOpenPGPyok. SCTPsinkgerçeklinked fakat operatorattacker-ingress kanıtlanmadı. Waiver yok; exactcrypto/gopacket iki floor önerildi; kaynak+advisory/proposedpatch ayrı korunur.
+
 ## 2026-11-12 — provider-operator-candidate-worker
 
 - Privateoperatorcandidate1 ELF7bba6629… gerçekten üretildi; x/net0.62+jose4.1.6/Go1.26.11. İlkELFscanner0Results BLOCKED ve ilkSBOMflagFAIL korunur; düzeltilmiş164componentinventoryde MediumSCTP+UnknownOpenPGP kaldı. İmaj/kuruluoperator/TLS kabulü değildir.
