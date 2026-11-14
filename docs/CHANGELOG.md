@@ -638,3 +638,7 @@ ResourceForms YAMLhatasi/duplicate/multidoc/alias/cyclicJSON, unknownfieldkorunu
 ## 14 Kasım — native release test/debug yüzeyi
 
 Defaultveactualbenchmarkfixtureenv, releasebinaryde test-onlyroutes/pprof/expvar açmıyor. İlkabsentPOSTfixture404beklentisi405olarakdüzeltildi; tümownedTCP LISTENveactualADDRkontrolleri ikinciincelemeönerisiyle eklendi. İlkFAILve42+21PASSayrıkanıt. Ürünfixyok; explicitread-onlyTEST/REPLAY üretimözelliği korunur. TEST12.10darPASS, genelrelease/Secretarchivekabulü değil.
+
+## 14 Kasım — workspace export regresyonu
+
+Yeni1ana/8alt test, production HTTP login/grant/export/import yolunda credential/session/Secret markerlarının taşınmadığını ve içe aktarılan bağlantının unbound kaldığını doğrular. Kaynak workspace ve açık yönetim izni korunur. Kubernetes istemcileri sentetik; runtime ürün değişmedi. TEST-12.06 dar kapsamda kapandı.

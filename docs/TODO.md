@@ -584,3 +584,8 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 
 - [x] TEST12.10 nativeCI114default/actualfixtureenv: inactivebenchmark/pprof/expvar, exactSPA/POST405/API404; normalhealth/workspace, tümownedLISTENveSIGTERMcleanup, ikinciinceleme. İlkfixtureFAIL/eskiPORTkeynotu korundu.
 - [ ] TEST20.10privatearchive/SecretveenabledReplay/diğerplatform/provider/CPU/60dk kapıları açık. Mainkoşullumerge read-onlyincelendi; açıkkapılar nedeniyle main dalına dokunulmadı.41/200faz, NOT_RELEASE_READY.
+
+## 14 Kasım — workspace export güven sınırı
+
+- [x] TEST-12.06: gerçek yerel HTTP oturum/yönetim izniyle export→import; metadata korunumu, credential/grant yokluğu, orijinal kaynak değişmezliği ve sekiz pozitif/negatif kontrol geçti. Root kaynak/ham kanıt incelemesi tamamlandı.
+- [ ] Gerçek Kubernetes, native paket/download, genel hassas arşiv taraması ve CI/fork/admin kabulü ayrı açık. Toplam42/200 faz; NOT_RELEASE_READY.
