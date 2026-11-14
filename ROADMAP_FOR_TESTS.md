@@ -1,18 +1,18 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-13T00:31:21.031473+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-14T15:41:04.076032+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif ürün kaynağı:15770296056ca2629601dba540c04741e1822e0d (uzak dala pushlandı). Bu checkpoint aynı ürün+sonuçSHAya bağlı yeni gerçek opt-in test/kanıt farkını kapsar; kayıt commit kimliği GitHEADden doğrulanır. Finalbinary/paket henüz yok.
 - Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:135; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:38; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:134; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:39; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST10.08 gerçekRoleBinding/revoke watch-cache sözleşmesi + ikinciinceleme;38/200 (%19 fazsayısı). Genel NOT_RELEASE_READY; uzunmatris/kritik açık kapılar kapanmadı.
-- Süreç/lab: Gerçektest/ikinciinceleme bitti;4capturedGochild absent,19846listener kapalı. Owned2Node lab tekrarSTOPPED (11,828sn); sealedQAempty ve manualprofiller korundu. Başka ağır iş/CPU/60dk ölçümü yok; pil33%.
-- Devam: GerçekRoleBinding test/kanıt/ROADMAP kontrol noktasını commit/pushla; mevcutbilinen güvenlik/provider/benchmark/finalpaket/kararlılık kapılarından sonraki uygulanabilir sonlu faza geç. Stabletag/merge/milestone manuelonaysız yok.
-- **Çalışma: AKTİF — sonlu iki worker; performans ölçümleri ağır işlerden ayrı.**
+- Son tamamlanan faz: TEST13.01 boundedworkspace/import/parser;39/200 (%19,5fazsayısı). Genel NOT_RELEASE_READY; kritik açık kapılar ve manuelonay sürer.
+- Süreç/lab: Bu devamda yeni test çalıştırılmadı; önceki iki workerın kayıtları rootkontrolünden geçti. Sonownedlabkaydı STOPPED; manuelveri korunur. Pil28%; ağırölçüm/60dkkoşusu başlatılmıyor.
+- Devam: TEST13.01 test/kanıt/docs kontrol noktasını secret-scan ardından commit/push; sonra CI114 exactpaket/native temizbaşlangıç retesti. TEST12.03/YAML, providerTLS, CPU/render/RSS, uzunkararlılık ve manuelkapılar açık. Stabletag/merge/milestone manuelonaysız yok.
+- **Çalışma: AKTİF — kullanıcı devam talimatı; tamamlanmış testler tekrar edilmeden sonuçlar birleştiriliyor.**
 - **Genel karar: NOT_RELEASE_READY**.
 
 ## Merkezi kaynak ve güvenlik bütçesi
@@ -36,8 +36,8 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-09 — Session/CSRF/WebSocket | 10 | NOT_STARTED:3, IN_PROGRESS:2, VERIFIED_DONE:5 | Henüz yok |
 | CAT-10 — API nesne/işlem yetkilendirmesi | 9 | NOT_STARTED:7, RETEST_REQUIRED:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-11 — XSS ve önizleme | 7 | IN_PROGRESS:4, VERIFIED_DONE:3 | Henüz yok |
-| CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:8, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
-| CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, IN_PROGRESS:1, VERIFIED_DONE:3 | Henüz yok |
+| CAT-12 — Import/dosya/host komutları | 10 | NOT_STARTED:7, IN_PROGRESS:2, VERIFIED_DONE:1 | Henüz yok |
+| CAT-13 — Fuzz/race/eşzamanlılık | 10 | NOT_STARTED:6, VERIFIED_DONE:4 | Henüz yok |
 | CAT-14 — Kontrollü pentest zincirleri | 5 | NOT_STARTED:5 | Henüz yok |
 | CAT-15 — Yük ve tükenme | 9 | NOT_STARTED:9 | Henüz yok |
 | CAT-16 — A/B benchmark | 13 | NOT_STARTED:11, RETEST_REQUIRED:1, VERIFIED_DONE:1 | Henüz yok |
@@ -6943,12 +6943,12 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Sorumlu: ANA MÜDÜR + Provider worker (önce yalnız workspace JSON parser altkapsamı; YAML/resource parser ayrı açık).
+- Kaynak / build / paket kimliği: HEAD362e91c3/runtime15770296; yeni parserguard testdosyası çalışma aşamasında.
+- Ortam / kullanılan kimlik ve yetki: In-process/fakeK8s workspacehandler; ençok4MiB/2largebody,1sonluGoçalışması, gerçekK8s/credential/browser yok.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-12.03-S1 — Hazırlık
@@ -6960,6 +6960,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+13 Kasım +03: mevcutJSONdecode MIME/2MiB/singlevalue ve workspaceImport/Store.Update sözleşmesi için yeni sınırlı pozitif/negatiftestler hazırlanıyor. FutureSchema, unsafePreferences, badreference, deepnest, malformed/trailingJSON/largebody ve mevcutduplicate-last/unknown-ignore politikasında authority/persistence güveni incelenecek. YAMLalias/diğerresourceparser/prototypepollution bu küçükJSON grubuyla tamamlanmış sayılmayacak.
+
 #### TEST-12.03-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -6968,6 +6970,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+14 Kasım rootkapanışı: workspaceJSONpozitifleri ve3ana/9alt son retest + ImportInto boundedfuzz kaynak/kanıtları doğrulandı (TEST13.01). Bu fazın YAML/alias/diğerkaynakparser bölümleri çalışmadı.
+
 #### TEST-12.03-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
 - Yapılan: henüz çalışılmadı.
@@ -6975,6 +6979,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+WorkspaceJSON için MIME/size/depth/tekdeğer/unsafe/schema/reference/nonce ve duplicateobject/scalarpolitiği doğrulandı. Unknownfieldignore persist/yetki üretmez. YAMLalias/duplikasyon ve genericresourceparser için bu sonuç otomatikPASS değildir.
 
 #### TEST-12.03-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
@@ -7001,6 +7007,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - [ ] BİTTİ / DOĞRULANDI
 - Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
 - Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+IN_PROGRESS: yalnız workspaceJSON altkanıtı var; YAML/alias/diğerparser sınırları tamamlanmadı, bu faz VERIFIED_DONE yapılmadı.
 
 ### TEST-12.04 — Prototype pollution
 
@@ -7462,59 +7470,47 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.5.2/V16.5.3; CAT13 bounded fuzz/race/yaşam döngüsü. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: KV-DEPENDENCY-WORKER; root ekparserkapsamı
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Sorumlu: ANA MÜDÜR; önceki Backend/Provider worker uygulama ve karşılıklı ikinci incelemeleri.
+- Kaynak / build / paket kimliği: Runtime15770296/auditHEAD362e91c3 + iki yeni test. FinalparserSHA71b3a61b23a939ff8dc66ba75cf7810a13bb3a1bb856fd7d8b6d4073cea00e4d; exactdiğerkaynak/kanıtSHA ROOT_REVIEW.json.
+- Ortam / kullanılan kimlik ve yetki: Sentetikdoküman/privateTemp/in-processhandler; SDKGo1.26.11;2sonluworker p1/parallel1/GOMAXPROCS2, yeniFuzzImport10sn; ownedlabstopped/gerçekK8s yok.
 - Başlangıç zamanı: 2026-11-11T14:05:10.000694+03:00
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
-- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+- Bitiş zamanı: 2026-11-14T12:41:04.069043+00:00
+- Durum: VERIFIED_DONE
+- Kabul ölçütü: Sınırlı workspace Validate/Export, ImportInto/Store.Update invariants ve production JSON handler pozitif/negatifleri; exactkaynak/hamsonuç/temizlik/ikinciinceleme. Tüm YAML/parser/endpoints güvenliği değildir.
 
 #### TEST-13.01-S1 — Hazırlık
-- [x] MevcutFuzzWorkspaceDocument aynıGo1.26.11kaynakta;GOMAXPROCS2,parallel1,fuzztime10s.
-- Gözlenen:3kaynakseed+65mevcutcache;max2MiB.
-- Kanıt: fuzz-mutation-worker/fuzz-corpus-manifest.json
-- Sonuç: bounded başlangıç.
+- [x] Önceki111850-case Validate→Export fuzzın store.go/store_test.go/go.mod/go.sum4SHA eşitliği doğrulandı; yeniden koşulmadı.
+- [x] Yeni ImportInto fuzz8seed/64KiBcap/10sn/1worker; unit ve HTTPgrupları ayrı Go1.26.11/p1/parallel1/GOMAXPROCS2/RSS1.5GiB/disk10GiB sınırlarıyla çalıştı. Kaynak ve planlar kanıtta.
 
 #### TEST-13.01-S2 — Normal kullanım / pozitif kontrol
-- [x] Validate-accepted→Export invariants111850yürütmedePASS.
-- Gözlenen:50yeniinteresting,115cache+3seed,hata/failurecorpus0.
-- Kanıt: fuzz-mutation-worker/REPORT.md.
-- Sonuç: acceptedexportinvariantsfuzz; tüm invalidimport/parserreddi değildir.
+- [x] Import3ana/9alt PASS: authoritystrip, mevcuttrustedstate/prefix, yeniID/ref/ilişki remap, sourcemutation/alias kontrolleri; kapasite transaction reddinde disk/snapshot/revision/reopen değişmezliği.
+- [x] NormalJSON nonce+namespace/selectorUID ve validHTTPimport pozitifleri; son rootretesti mevcutconnection/harbor prefixini de doğrudan doğruladı.
 
 #### TEST-13.01-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] HTTPmalformed/trailing400; MIME415; nonce403; futureSchema/unsafe/depth/reference422;2097435bytebody400. Her ret snapshot/revision/directory/backupbytes değişmezliğini kontrol eder.
+- [x] Duplicateobjectunsafe→safe merge credentialı sakladığı için422+değişmezlik; scalarduplicate revision sondeğeri ile200; unknownfieldpersist/authority yok.
+- [x] Yeni fuzz563506motor yürütmesi/17interesting/8seedPASS; geçerliimport sayısı değildir.64KiBüstü kapsam dışı; bütünbüyükbodygüvenliği iddiası yok.
 
 #### TEST-13.01-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+- Ürün kusuru/fixi bulunmadı. İlkparserfixture200beklentisi yanlıştı; gerçek422 güvenli reddir. İlkRED/ilk kaynak immutableattempt01de; yeni pozitif/negatifayrımı test-onlydüzeltmedir.
+- Peerreview post-importexistingbinding assertion eksikliğini buldu. Rootikiassertion ekleyip ayrıfinalsource kısa retest yaptı; önceki grubun kapsamı geriye doğru genişletilmedi.
+- Rootmanifestpath/basename varsayımı doğrulayıcıda hata oluşturdu; kayıt korunarak gerçekdosya yollarıyla kontrol tamamlandı.
 
 #### TEST-13.01-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Correctedparserattempt02:3ana/9altPASS; finalprefixsource rootretesti3ana/9altPASS/0SKIP(3,422sn).
+- [x] Unit/fuzz/raw packagePASS ve before/after sourcechecks; ilkRED ayrı. Eski111850fuzz yenidenkoşulmadı; yeniImportfuzz tek çağrı.
+- Kanıt: workspace-import-parser-closure-root/REPORT.md ve ROOT_REVIEW.json; bağlıunit/fuzz/parserattempt02/rootretetleri.
 
 #### TEST-13.01-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Dört manifestte36+2+19+2girdi doğrulandı; eskiparsertestSHA exactarchivedattempt02source ile, güncel71b3source ayrıretetplanıyla eşleşir.
+- [x] Capturedprocess/groupcleanup, privateTemp ve corpuskorunumu receipts/source ile kontrol edildi; corpus17dosya metadata/sha peerincelemesinde doğrulandı.
+- [x] Karşılıklıpeerreview (aynıajansistemi, profesyonelüçüncütarafdeğil); parserpeer124,5/120sn süreçhedefi aşımı ayrı saklanır.
+- Kalan: YAML/alias/diğerparser/endpointler, actualKubernetes/UI/finalbinary, tümvaliditepolitikasını bağımsızoracleileispat ve unsampledprocesscensus yok.
 
 #### TEST-13.01-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI
+- Yalnız tanımlı boundedworkspace/import/parser sözleşmesi. TEST12.03kısmiJSON olarak açık; genel NOT_RELEASE_READY değişmez.
+- Import/Export/Validate, storetransaction, JSONdecode/handler veya ilgili dependency değişirse ilgili kontroller retestgerekir. Test/doc-only değişim eski uzunkoşuları kendiliğinden yeniden gerektirmez.
 
 ### TEST-13.02 — UID/isim/context generation
 

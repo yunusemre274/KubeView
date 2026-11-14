@@ -564,3 +564,8 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 - [x] TEST10.08: iki gerçek ServiceAccount + normal HTTP/WS + exactRoleBindingdelete; aynıcredentialA SSARdeny/API403/gateway403/failedscope/trueclose; B200+UPDATE;6fixtureGET404/broker/listener/UID/state/profile ve4ownedprocessref temizliği. İkinci inceleme tamam.
 - [x] Test labı exact2container tekrar stopped; manualprofiller/sealedQA korundu. İlkNodeUnknown preconditionFAIL ve helperhazırlık hataları ayrı saklandı.
 - [ ] Tarayıcı/finalbinary ve diğer log/exec/forward/flow oturumları; toplamAPI/CPU maliyeti ve genelreleasekapıları bu dar kabulle kapanmaz.
+
+## 14 Kasım — bounded import/parser kontrol noktası
+
+- [x] TEST13.01: yeni ImportInto unit/fuzz ve JSONhandler guardları, peerreview kapsam düzeltmesi ve finalHTTPprefix retesti kaynak/kanıt ile doğrulandı. Eski111850fuzz tekrar edilmedi.
+- [ ] TEST12.03 yalnızkısmiworkspaceJSON; YAML/alias/genericparser kapıları açık. Finalpaket/performans/kararlılık bu kabulle kapanmaz.

@@ -1,0 +1,16 @@
+{
+  "tests": [
+    "TestReleaseImportRejectsInvalidWithoutMutation",
+    "TestReleaseImportRemapsAuthorityIDsAndRelations",
+    "TestReleaseImportTransactionCapacityPreservesDisk"
+  ],
+  "regex": "^(TestReleaseImportRejectsInvalidWithoutMutation|TestReleaseImportRemapsAuthorityIDsAndRelations|TestReleaseImportTransactionCapacityPreservesDisk)$",
+  "fileSHA256": {
+    "backend/pkg/workspace/release_import_fuzz_test.go": "c65955e90f357987e9057a305bb051af432ba9ddedacec3ed357ec39fb79345d",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/pkg/workspace/store_test.go": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+  },
+  "safety": "deterministic ImportInto tests only; p1/parallel1/GOMAXPROCS2; Go60/wall90; RSS1.5GiB/disk10GiB; no credentials/K8s"
+}

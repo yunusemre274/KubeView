@@ -344,3 +344,7 @@ Sabit toplam kontrol süresi, desteklenen namespace×GVR sayısını ve mevcut i
 ## 13 Kasım — warm lab Ready ve test fixture doğruluğu
 
 Docker start, minikube yenidenbaşlatma adımlarının tamamı değildir: mappedAPIport, CPkubelet ve ownedworker DNS kaydı ayrıca gerekebilir. Eski APIReadyTrue yerine güncelNodeLease ile önkoşulu doğrula. Roothelperlerdeki şema alanı/nodeUids ve parser hataları ilkbaşarısızkanıt olarak saklandı; yeni kanıt olmadan aynıkoşuyu tekrar etme. Çalışmayan fixture için uniqueinactive scheduler kullanmak, olmayanNodea bağlanan Podun orphanGC davranışından daha kararlıdır. PodSecuritynamespacepolitikasını gevşetmek yerine fixture securityContextini doğru kur; privateTemp cleanup sırasını test kaynakları kapanmadan silinmeyecek şekilde tut.
+
+## 14 Kasım — JSON tekrarlı alanlar ve kanıt kapsamı
+
+GoJSON scalar tekrarda sondeğeri kullanabilir; object/map tekrarları birleştirilerek önceki unsafeanahtarı koruyabilir. Genel lastwins beklentisini güvenlik testi diye dayatma. HTTPimport için yeniobjeleri doğrulamak mevcuttrustedbindingin korunduğunu doğrudan ispatlamaz; postconditionı ayrıcaassertet. Sonradan eklenenassertion eskipeerreviewe yazılmaz; ayrısourceSHA/retet ile bağlanır. Manifestrelativepath biçimini ve gerçekarchivedbasenamei okumadan varsaymak rootdoğrulayıcı hatasıdır, ürün kusuru değildir.

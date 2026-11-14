@@ -622,3 +622,7 @@ Aynı credential altında değişen RBAC, mevcut heartbeat ile kesin GVR/namespa
 ## 13 Kasım — gerçek active-watch revoke testi
 
 Yeni açık opt-in test, gerçek kısıtlı iki ServiceAccount ve RoleBinding silme ile production HTTP/WS yetki iptalini doğrular; mock/client-reactor kullanılmaz. Restricted PodSecurityye uyumlu, uniqueinactiveSchedulerName ile çalışmayan sentetikPod ve UID/RV preconditionlu temizlik kullanılır. İlkNodeUnknown/fixtureöncesiFAIL korundu; freshlease/rootlabrecovery sonrası gerçektest ve ikincikanıtinceleme geçti. Finalpaket/UI ve genelgüvenlik kabulü ayrı.
+
+## 14 Kasım — import/parser doğrulaması
+
+İki yeni Go test dosyası: kaynak/destination değişmezliği, importauthority/ID/ref/prefix, transactionkapasite rollback ve boundedImportfuzz; ayrıca productionJSONhandler negatifleri. Yeni10sn fuzz563506motor yürütmesi hata bulmadı; validimport sayısı değildir. İlkduplicate-mapfixtureRED ve düzeltme korundu. SonHTTPtrustedprefix assertionı ayrı kısa retestte geçti. Runtimeürün kodu değişmedi.
