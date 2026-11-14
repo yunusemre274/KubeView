@@ -348,3 +348,7 @@ Docker start, minikube yenidenbaşlatma adımlarının tamamı değildir: mapped
 ## 14 Kasım — JSON tekrarlı alanlar ve kanıt kapsamı
 
 GoJSON scalar tekrarda sondeğeri kullanabilir; object/map tekrarları birleştirilerek önceki unsafeanahtarı koruyabilir. Genel lastwins beklentisini güvenlik testi diye dayatma. HTTPimport için yeniobjeleri doğrulamak mevcuttrustedbindingin korunduğunu doğrudan ispatlamaz; postconditionı ayrıcaassertet. Sonradan eklenenassertion eskipeerreviewe yazılmaz; ayrısourceSHA/retet ile bağlanır. Manifestrelativepath biçimini ve gerçekarchivedbasenamei okumadan varsaymak rootdoğrulayıcı hatasıdır, ürün kusuru değildir.
+
+## 14 Kasım — Canvas yerleşiminden önce boyut dondurma
+
+Canvas DOMnode varlığı, R3F/ResizeObserver/CSS yerleşiminin bittiği anlamına gelmez. Test300×150 defaultölçüyü önce dondurursa normal1440×900 ilkyerleşimini panelresize hatası sanabilir. İlanedilenviewport ölçüsünü boundedpoll ile doğruladıktan sonra aynınode/boundsassertionını koru; ürüne gereksizfix veya assertiongevşetme yapma. İlkfollow-upFAIL ve exactsource ayrı tutuldu.

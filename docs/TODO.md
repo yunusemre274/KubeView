@@ -569,3 +569,8 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 
 - [x] TEST13.01: yeni ImportInto unit/fuzz ve JSONhandler guardları, peerreview kapsam düzeltmesi ve finalHTTPprefix retesti kaynak/kanıt ile doğrulandı. Eski111850fuzz tekrar edilmedi.
 - [ ] TEST12.03 yalnızkısmiworkspaceJSON; YAML/alias/genericparser kapıları açık. Finalpaket/performans/kararlılık bu kabulle kapanmaz.
+
+## 14 Kasım — CI114 standalone paket retesti
+
+- [x] TEST20.01 güncel ürünle eşleşen22shippedinput/118runtime/nativepaket; yeni0700repo-dışı bundle ve boşappPATH ile gerçekMac/ChromiumMetalstartup, normalform/wheel/sameCanvas ve cleanup. AyrıLinuxCIstartupsuccess/ikinciinceleme kanıtlı.
+- [ ] Finalpaket/SBOM/provenance/gerçekilkbağlantı/manuel01–07/Safari/Retina/CPU/60dk/V11-16/18/19 açık; genel40/200faz, NOT_RELEASE_READY.

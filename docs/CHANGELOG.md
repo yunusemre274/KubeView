@@ -626,3 +626,7 @@ Yeni açık opt-in test, gerçek kısıtlı iki ServiceAccount ve RoleBinding si
 ## 14 Kasım — import/parser doğrulaması
 
 İki yeni Go test dosyası: kaynak/destination değişmezliği, importauthority/ID/ref/prefix, transactionkapasite rollback ve boundedImportfuzz; ayrıca productionJSONhandler negatifleri. Yeni10sn fuzz563506motor yürütmesi hata bulmadı; validimport sayısı değildir. İlkduplicate-mapfixtureRED ve düzeltme korundu. SonHTTPtrustedprefix assertionı ayrı kısa retestte geçti. Runtimeürün kodu değişmedi.
+
+## 14 Kasım — güncel standalone paket kanıtı
+
+CI114exactnativebinary Go/Node/Vite olmadan boşappPATH+repo-dışı freshbundle ile başladı; embeddedasset/health/version/emptyworkspace/ilkform ve normalpointerwheel altbutonerişimi doğrulandı. İlk300×150 karşılaştırmaFAIL testyerleşimvarsayımıydı, ilkkanıt korundu ve tekhedefliretestPASS oldu. Ürün/runtime değişmedi.22input/118runtimesourcehash+ikinciinceleme, SIGTERM/port/browserkimlikcleanup kanıtı eklendi; TEST20.01 darretetkabulü, genelrelease/performancekabulü değil.

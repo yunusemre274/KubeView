@@ -1,0 +1,317 @@
+{
+  "reviewedAt": "2026-11-14T12:54:06.729358+00:00",
+  "reviewType": "same-agent-system second review; not independent external professional audit",
+  "scope": "source/archive/evidence read-only; no new app/browser/cluster execution",
+  "zip": {
+    "bytes": 26238940,
+    "sha256": "15b43aef1c8038cf33cdd0fe8b0581fead498b550b1bf468488b34fda818cb4d"
+  },
+  "status": "PASS_WITH_LIMITS",
+  "git": {
+    "currentHEAD": "6ffd1b22a164c6be83ca2783f4daf7e8346aa0d3",
+    "merge": "71b4098314c71d7c9473d88356edf7200fe62f1f",
+    "PRHead": "362e91c3f0117aee8f518c20674832da159c0061",
+    "mergeTree": "26f2bd210eb17229ccd46543517c77fbd07721d8",
+    "PRHeadTree": "26f2bd210eb17229ccd46543517c77fbd07721d8"
+  },
+  "build": {
+    "version": "1.1.0",
+    "commit": "71b4098314c71d7c9473d88356edf7200fe62f1f",
+    "targets": [
+      "darwin-arm64",
+      "linux-amd64"
+    ],
+    "builtAt": "2026-11-12T21:35:28.790Z",
+    "inputs": [
+      {
+        "path": "README.md",
+        "sha256": "02ced4d9f8b1d2adaa40d23fb5172b84b3a3960a150ad8ccf2607c9f7fe08fe0",
+        "matchesCurrent": true
+      },
+      {
+        "path": "MANUAL_TEST_GUIDE.md",
+        "sha256": "194483d7ed8f43d112c00b409efec45801be773ba3bbf9c76d652eafc671af5a",
+        "matchesCurrent": true
+      },
+      {
+        "path": "docs/SECURITY.md",
+        "sha256": "8b3284afe93a860306960b741b96e6b23a5b456538b66abf6fc02a53c3c8b595",
+        "matchesCurrent": true
+      },
+      {
+        "path": "docs/RELEASE_NOTES_v1.1.0.md",
+        "sha256": "eb8561352d77fe4eafd9e446a9a50300f0619ce64462ac79551a72ec5f0985c3",
+        "matchesCurrent": true
+      },
+      {
+        "path": "docs/V11_ACCEPTANCE_REPORT.md",
+        "sha256": "9e30dc470232a42b11ccb366f16676bd81852d6da648dc79b22b05d766053d03",
+        "matchesCurrent": true
+      },
+      {
+        "path": "docs/WORKSPACE_ACCEPTANCE.md",
+        "sha256": "6ac91d1a9144764275e6280daa6c623dca088a35484bbd8f3a234f89b11dcbe2",
+        "matchesCurrent": true
+      },
+      {
+        "path": "deploy/rbac-namespace-readonly.yaml",
+        "sha256": "600ed9252890a7a4d76c6194611d7033786c2872ce43ad825a800e5b13ed2fed",
+        "matchesCurrent": true
+      },
+      {
+        "path": "deploy/rbac-namespace-write.yaml",
+        "sha256": "e61cdfffcbc5c0300fdd4c1426fe321b416e5dea76aa3dc1ba60bd97f85f4ec2",
+        "matchesCurrent": true
+      },
+      {
+        "path": "deploy/rbac-namespace-observability.yaml",
+        "sha256": "21c38465624cb0372b68f4a51519543f1a364252cdccb6baf15877f69218647a",
+        "matchesCurrent": true
+      },
+      {
+        "path": "deploy/rbac-node-observability.yaml",
+        "sha256": "541d5a50ebd4a600a16da3c436882add3c0986d188cad15add5ada703a2a74d0",
+        "matchesCurrent": true
+      },
+      {
+        "path": "scripts/manual-lab.sh",
+        "sha256": "c6ad10b2a4497774f35a45f174a3e028c44c7f3b4fe36634a5e9d3c96f613d7a",
+        "matchesCurrent": true
+      },
+      {
+        "path": "scripts/manual_lab.py",
+        "sha256": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5",
+        "matchesCurrent": true
+      },
+      {
+        "path": "manual-lab/profiles.json",
+        "sha256": "2a93d43b62551511e023d9636bb557dbc4f2047f0436e067f31a85bdfdeb3699",
+        "matchesCurrent": true
+      },
+      {
+        "path": "manual-lab/telemetry.py",
+        "sha256": "71fb19ae92aa9f4adaed79c8469ce2e30e779a8b7342ba7f7cf481a126ddfebf",
+        "matchesCurrent": true
+      },
+      {
+        "path": "manual-lab/DEPENDENCIES.md",
+        "sha256": "00b4f5e40c88993c65e09362582294d0243dd88044b782351d12aa7f502ce6e7",
+        "matchesCurrent": true
+      },
+      {
+        "path": "manual-lab/templates/README.md",
+        "sha256": "51dcb40c1667d6a150619b3cf511a9822889d42b2a0486f51d7ab3a7aa61ff0d",
+        "matchesCurrent": true
+      },
+      {
+        "path": "manual-lab/templates/telemetry-values.json",
+        "sha256": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796",
+        "matchesCurrent": true
+      },
+      {
+        "path": "manual-lab/tests/real_scenarios.py",
+        "sha256": "3d37ce98ef4b092ea109cc4d7b5c695a2f53ee78b6e0894ac8dfd1cad83e64cb",
+        "matchesCurrent": true
+      },
+      {
+        "path": "backend/go.mod",
+        "sha256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+        "matchesCurrent": true
+      },
+      {
+        "path": "backend/go.sum",
+        "sha256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+        "matchesCurrent": true
+      },
+      {
+        "path": "frontend/package.json",
+        "sha256": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+        "matchesCurrent": true
+      },
+      {
+        "path": "frontend/package-lock.json",
+        "sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+        "matchesCurrent": true
+      }
+    ]
+  },
+  "archives": [
+    {
+      "name": "kubeview_1.1.0_darwin-arm64.tar.gz",
+      "sha256": "a0f7f82dd16da860a3fe448a5ade848e350bea5ed8cba4ff7af35921ca784774",
+      "memberCount": 28,
+      "expandedBytes": 45410434,
+      "binarySHA256": "24ef0ce34d3381644fc14dc16a768bbeb7b8c580d19813ff580780e536378e68",
+      "innerOuterProvenanceInputsEqual": true,
+      "innerOuterFrontendAssetsEqual": true,
+      "noSBOMMember": true
+    },
+    {
+      "name": "kubeview_1.1.0_linux-amd64.tar.gz",
+      "sha256": "dfba4276de9a8bb0fed755cc09f0302b6efcdcb7e84e0bf1dbcb88cadc28061b",
+      "memberCount": 28,
+      "expandedBytes": 46993089,
+      "binarySHA256": "c0fb09547e492b67b7d324bf9cd652ddda22ca60ca18f323e207ffb6b1c8a069",
+      "innerOuterProvenanceInputsEqual": true,
+      "innerOuterFrontendAssetsEqual": true,
+      "noSBOMMember": true
+    }
+  ],
+  "currentCommittedChangesSincePRHead": [
+    "ROADMAP_FOR_TESTS.md",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-review-worker/REPORT.md",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-review-worker/SHA256SUMS",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-review-worker/result.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/PLAN.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/REPORT.md",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/SHA256SUMS",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/corpus-SHA256.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/198327597dd8ded2",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/19981bffc2abbaf1",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/19bfb2278ecfafd1",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/2b5ae89d1e7a2baa",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/34564772f6002875",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/3a9de1852b8ffab2",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/499eba404bd2f511",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/6485cd8b482db4ce",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/8727b16d337d7b81",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/9a15ff0c3faf6867",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/9cc52906ed53ef5f",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/a87d6c0077a9a55c",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/bb7702bc8401ab8c",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/d49b2338d6369a09",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/d6ae6a9d8112ab1c",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/f9938266d588e567",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/fbab04f43516aa5e",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/execution.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/go-test.jsonl",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/go-test.stderr",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/plan.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/run.py",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/supervisor.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/historical-source-reuse.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/result.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/seed-protocol.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/test-source.go.txt",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/execution.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/go-test.jsonl",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/go-test.stderr",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/plan.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/run.py",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/supervisor.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-parser-closure-root/REPORT.md",
+    "artifacts/release-audit/ra-20261112/workspace-import-parser-closure-root/ROOT_REVIEW.json",
+    "artifacts/release-audit/ra-20261112/workspace-import-parser-closure-root/SHA256SUMS",
+    "artifacts/release-audit/ra-20261112/workspace-import-parser-closure-root/initial-verifier-issue.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-binding-retest-root/SHA256SUMS",
+    "artifacts/release-audit/ra-20261112/workspace-parser-binding-retest-root/execution.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-binding-retest-root/go-test.jsonl",
+    "artifacts/release-audit/ra-20261112/workspace-parser-binding-retest-root/go-test.stderr",
+    "artifacts/release-audit/ra-20261112/workspace-parser-binding-retest-root/plan.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-binding-retest-root/run.py",
+    "artifacts/release-audit/ra-20261112/workspace-parser-binding-retest-root/supervisor.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-review-worker/REPORT.md",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-review-worker/SHA256SUMS",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-review-worker/result.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/REPORT.md",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/REPORT.md",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/SHA256SUMS",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/execution.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/go-test.jsonl",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/plan.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/release_workspace_parser_test.go.txt",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/SHA256SUMS",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/execution.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/go-test.jsonl",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/plan.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/release_workspace_parser_test.go.txt",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/run-focused.py",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/execution.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/go-test.jsonl",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/plan.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/result.json",
+    "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/run-focused.py",
+    "backend/pkg/server/release_workspace_parser_test.go",
+    "backend/pkg/workspace/release_import_fuzz_test.go",
+    "docs/CHANGELOG.md",
+    "docs/LESSONS.md",
+    "docs/TODO.md"
+  ],
+  "runtimeSourceFilesComparedWithCurrentWorktree": 118,
+  "native-ci114-startup-root": {
+    "status": "PASS",
+    "browserStatus": "PASS",
+    "failure": null,
+    "elapsedSeconds": 3.156548023223877,
+    "appCleanup": {
+      "ownedPIDExited": true,
+      "exitCode": 0,
+      "portNoListener": true
+    },
+    "appSnapshotsWithoutChildren": true,
+    "appSnapshotCount": 5,
+    "capturedBrowserReferenceCount": 8,
+    "allCapturedBrowserIdentitiesAbsent": true,
+    "mutationRequestCount": 0,
+    "pageErrorCount": 0,
+    "externalRequestCount": 0
+  },
+  "native-ci114-form-scroll-root": {
+    "status": "FAIL",
+    "browserStatus": "FAIL",
+    "failure": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   height: 900,\n+   width: 1440,\n-   height: 150,\n-   width: 300,\n    x: 0,\n    y: 0\n  }\n",
+    "elapsedSeconds": 2.412973165512085,
+    "appCleanup": {
+      "ownedPIDExited": true,
+      "exitCode": 0,
+      "portNoListener": true
+    },
+    "appSnapshotsWithoutChildren": true,
+    "appSnapshotCount": 4,
+    "capturedBrowserReferenceCount": 8,
+    "allCapturedBrowserIdentitiesAbsent": true,
+    "mutationRequestCount": 0,
+    "pageErrorCount": 0,
+    "externalRequestCount": 0
+  },
+  "limitations": [
+    "No new runtime test was executed by reviewer",
+    "Current worktree matching product inputs does not change binary build commit",
+    "PATH exclusion is not host uninstall or sandbox; absolute fallback not globally disproved",
+    "Sampled subprocess identities are not exhaustive lifetime/kernel telemetry",
+    "No proof of real Kubernetes, all manual profiles, native Safari/Retina, p95 latency, performance, signing, SBOM or final release acceptance",
+    "First form-scroll FAIL preserved; corrected await initial1440x900 does not weaken post-open equal-bounds assertion, final root retest PASS reviewed."
+  ],
+  "formScrollRetest": {
+    "status": "PASS",
+    "elapsedSeconds": 2.9746921062469482,
+    "initialCanvasBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 900
+    },
+    "formActions": {
+      "normalWheelReachesPreviewAndSave": true,
+      "saveDisabledWithoutContext": true,
+      "canvasBoundsPreserved": true,
+      "bodyScrollY": 0
+    },
+    "appCleanup": {
+      "ownedPIDExited": true,
+      "exitCode": 0,
+      "portNoListener": true
+    },
+    "appSnapshotCount": 5,
+    "allAppSnapshotsNoChildren": true,
+    "capturedBrowserReferenceCount": 8,
+    "allCapturedBrowserIdentitiesAbsent": true,
+    "mutationRequestCount": 0,
+    "pageErrorCount": 0,
+    "screenshotActuallyOpenedByReviewer": true,
+    "screenshotSHA256": "35057b985c1029196b10fc02c0947e2a561684bb04163bf1e42d892894673aa8",
+    "screenshotObservation": "Normal internal wheel reveals preview, Vazge\u00e7 and disabled save; form stays over full-screen opaque Soft UI panel and water canvas."
+  },
+  "recommendation": "Support narrow TEST20.01 candidate standalone startup retest closure after root links separate Linux CI result; no full release gate closure."
+}

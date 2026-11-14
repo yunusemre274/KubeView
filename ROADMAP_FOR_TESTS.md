@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-14T15:41:04.076032+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif ürün kaynağı:15770296056ca2629601dba540c04741e1822e0d (uzak dala pushlandı). Bu checkpoint aynı ürün+sonuçSHAya bağlı yeni gerçek opt-in test/kanıt farkını kapsar; kayıt commit kimliği GitHEADden doğrulanır. Finalbinary/paket henüz yok.
-- Build/paket: profilelock10 private binary5f1c22b9…/sourcef32d6b23, Go1.26.11, index0e478e0c…; final dağıtım arşivi değildir. Eski f9/4c ve bütün başarısız deneyler korunur.
+- Son güncelleme: 2026-11-14T15:56:59.681076+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif ürün kaynağı: 15770296056ca2629601dba540c04741e1822e0d; denetimHEAD6ffd1b22. NativeCI114binary build71b40983;22shippedinput/118runtime eşitliği kanıtlı. Test/belge commitleri binaryyenidenbuild iddiası değildir.
+- Build/paket: CI114candidate: ZIP15b43aef…/nativea0f7f82d…/binary24ef0ce3…; darstartup14Kasım doğrulandı. Finalbütünpaket/SBOM/manuelgate açık; eskiprofilelock10binary tarihsel.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:134; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:3; VERIFIED_DONE:39; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:134; IN_PROGRESS:20; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:40; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST13.01 boundedworkspace/import/parser;39/200 (%19,5fazsayısı). Genel NOT_RELEASE_READY; kritik açık kapılar ve manuelonay sürer.
-- Süreç/lab: Bu devamda yeni test çalıştırılmadı; önceki iki workerın kayıtları rootkontrolünden geçti. Sonownedlabkaydı STOPPED; manuelveri korunur. Pil28%; ağırölçüm/60dkkoşusu başlatılmıyor.
-- Devam: TEST13.01 test/kanıt/docs kontrol noktasını secret-scan ardından commit/push; sonra CI114 exactpaket/native temizbaşlangıç retesti. TEST12.03/YAML, providerTLS, CPU/render/RSS, uzunkararlılık ve manuelkapılar açık. Stabletag/merge/milestone manuelonaysız yok.
+- Son tamamlanan faz: TEST20.01 CI114 darstandalone/normalscroll;40/200faz VERIFIED_DONE. Genel NOT_RELEASE_READY; kritik açıkkapılar ve manuelonay sürer.
+- Süreç/lab: Native3kısa probe tamam/ownedapp+8capturedrefcleanup; dışbundle/state korunur,19849boş. İkiworkerpaketreviewtamam/YAMLsonlugrupçalışıyor. SonownedlabSTOPPED, manuelverikorunur. Pil24%; ağırölçüm/60dk başlatılmıyor.
+- Devam: TEST20.01kanit/docs secret-scan→commit/push; TEST12.03YAML/resourceparser sonucu kökincelemesi. ProviderTLS, CPU/render/RSS,60dk veV11-16/18/19/manualkapıları açık. Stabletag/merge/milestone manuelonaysız yok.
 - **Çalışma: AKTİF — kullanıcı devam talimatı; tamamlanmış testler tekrar edilmeden sonuçlar birleştiriliyor.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -44,7 +44,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:3 | Henüz yok |
-| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:2, RETEST_REQUIRED:1 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:11, IN_PROGRESS:2, VERIFIED_DONE:1 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
@@ -6943,9 +6943,9 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V1.3.6/V1.5.2/V5.3.2; API7:2023; CAT12. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P0.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR + Provider worker (önce yalnız workspace JSON parser altkapsamı; YAML/resource parser ayrı açık).
-- Kaynak / build / paket kimliği: HEAD362e91c3/runtime15770296; yeni parserguard testdosyası çalışma aşamasında.
-- Ortam / kullanılan kimlik ve yetki: In-process/fakeK8s workspacehandler; ençok4MiB/2largebody,1sonluGoçalışması, gerçekK8s/credential/browser yok.
+- Sorumlu: ANA MÜDÜR + yaml_parser_guards worker (frontendformparser sonlugrup; workspaceJSONkanıtı13.01de).
+- Kaynak / build / paket kimliği: Runtime15770296/auditHEAD6ffd1b22; yeniuniquefrontendparserguard testleri hazırlık.
+- Ortam / kullanılan kimlik ve yetki: Node gerçekformharness/kuruluYAML2.9.1; ençok10payload×256KiB/nest256/alias10000,child15sn/toplam60sn/tekworker. Gerçekcluster/browser/build yok.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
 - Durum: IN_PROGRESS
@@ -6961,6 +6961,8 @@ APTjoblocalimages/contextdurdurulmuşyereldetutulur; registry/CNI/currentpins/la
 - Sonuç: NOT_STARTED
 
 13 Kasım +03: mevcutJSONdecode MIME/2MiB/singlevalue ve workspaceImport/Store.Update sözleşmesi için yeni sınırlı pozitif/negatiftestler hazırlanıyor. FutureSchema, unsafePreferences, badreference, deepnest, malformed/trailingJSON/largebody ve mevcutduplicate-last/unknown-ignore politikasında authority/persistence güveni incelenecek. YAMLalias/diğerresourceparser/prototypepollution bu küçükJSON grubuyla tamamlanmış sayılmayacak.
+
+14 Kasım: aktifResourceForms parseYAML→yamlparse→shape guard→preview/API yolu inceleniyor. Yeni10payloadsonlugrup preflight veilksonuç korunur; runtime şuanda değişmedi. YAMLexplicit size/depthlimityokluğu tekbaşınaexploit sayılmadı; actualbounded davranış testsonrası yazılacak.
 
 #### TEST-12.03-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
@@ -11302,18 +11304,20 @@ Bu scope temel nativeSafari boşbaşlangıç ve programmaticDOM akışıdır. Re
 - İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR + packaging worker
-- Kaynak / build / paket kimliği: Son başarılı CI: PR head3bdb7c0c; gerçek checkout/build5373657169e8bf332940fd2366022925f48eb85c. Her iki full Git tree2112579043ca1325013f7b5bac6b95fc7d0d3164 eşit. Artifact13874845784 ZIP SHA4a2d8905… doğrulandı; final teslim kabulü değil.
-- Ortam / kullanılan kimlik ve yetki: GitHub Actions native Ubuntu Linux CI; ayrı macOS native arşiv incelemesi sürüyor. Yerel AC Power/charging düşük pil; ağır lab/perf/soak kapalı.
+- Sorumlu: ANA MÜDÜR; package_evidence_review worker ayrı read-only ikinci inceleme.
+- Kaynak / build / paket kimliği: CI114/run43311457621/build71b4098314c71d7c9473d88356edf7200fe62f1f; PRhead362e91c3 fulltree26f2bd21 eşit. Native tara0f7f82d/binary24ef0ce3.22shippedinput+118runtime current6ffd1b22 ile aynı; binarykimliği eskiyeniHEADe çevrilmedi.
+- Ortam / kullanılan kimlik ve yetki: MacM5/macOS27.0.1/darwin-arm64; headedChromium156/ANGLEMetal/1440×900/DPR1; fresh0700repo-dışı bundle/emptyappPATH/HOMEkorunmuş/explicitnonexistentkubeconfig/readonly/providersoff. Kısa işlevtesti, performans veya60dk değil.
 - Başlangıç zamanı: 2026-11-11T13:20:17.412070+00:00
-- Bitiş zamanı: Native finalization2026-11-11T17:11:45.884645Z. Faz206.97622sn,240sn sınırında. CI43062361657 ayrı native Linux smokePASS.
-- Durum: RETEST_REQUIRED
-- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+- Bitiş zamanı: 14 Kasım retest 2026-11-14T12:53:38.857448+00:00; rootreview 2026-11-14T12:56:59.674486+00:00. Önceki11Kasım koşuları tarihsel.
+- Durum: VERIFIED_DONE
+- Kabul ölçütü: Exactcandidate standalone binary repo dışında/minimalappPATH ile health/version/embeddedUI/emptyworkspace/ilkform/normalwheel/sameCanvas/ownedcleanup; ayrıLinuxcopyoutCI. Gerçekbağlantı/manuelprofiller/finalrelease bu darfazda değil.
 
 #### TEST-20.01-S1 — Hazırlık
 - [x] Yeni, özel output dizini ve sentetik build executor fixture hazırlandı; önceki arşivlere dokunulmadı.
 - Komut: node --test --test-concurrency=1 scripts/build-release.test.mjs
 - Kanıt: artifacts/release-audit/ra-20261111/packaging-root-retest/manifest.json
+
+14 Kasım: öncekiCI114ZIP ve iki nestedtar checksumu/path/type/mode/28entry sınırları yeniden doğrulandı. Buildmerge71b…/PR362… tamGittree26f2bd21 eşit; shippedinputs currenthashler eşit. Yeni180snfaz/120snwork/45snbrowser; mevcutnativehelper yenidenkullanılır. FonksiyonelMetalChromium smoke tarayıcıotomasyonunun Node bağımlılığı appgereksinimi değildir.
 
 #### TEST-20.01-S2 — Normal kullanım / pozitif kontrol
 - [x] Hazırlanmış/normal frontend, hedef/platform seçimi ve runtime-only manual-lab dosya akışı fixture ile sınandı.
@@ -11334,6 +11338,8 @@ Bu scope temel nativeSafari boşbaşlangıç ve programmaticDOM akışıdır. Re
 - [x] Yeni native Mac standalone job: repo/.git dışında yeni0700 bundle, uygulama PATH'i boş owned tools dizini; HOME korundu ve explicit nonexistent kubeconfig kullanıldı. Gerçek embedded HTML/JS/CSS hashleri, health/version,0workspace/contexts ve Chromium/Metal ilk liman formu open/type/close/aynıcanvas geçti.
 - Otomasyon Node/Chromium ayrı test aracıdır; app process/runtime gereksinimi değildir. Host'tan Go/Node kaldırılmış olduğu iddia edilmedi.
 
+14 Kasım güncel CI114: native startupPASS3,156548sn; emptyworkspace0harbor/0connection/context0, embeddedHTML/JS/Three/CSS aynıhash, MetalCanvas ve normalilkform open/type/close. Harici Node/Playwright sadece testaracı. NormalwheelretetPASS2,974692sn: preview/saveviewport, contextyok save-disabled, Canvas1440×900/bodyScroll0/sameDOMnode. Mutasyon0/pageerror0/externalrequest0. Bu süreler toplamhelper süresi, latency/CPU sonucu değil.
+
 #### TEST-20.01-S3 — Negatif / sınır / arıza kontrolü
 - [x] Output çakışması/symlink, yarışta çıkan arşivin ezilmemesi, eksik/symlink frontend, kirli manual/doc/RBAC girdisi kontrollü test edildi.
 - İlk red: 8PASS/2FAIL; clean kapsamı ve hash/provenance yokluğu yeniden üretildi.
@@ -11345,10 +11351,14 @@ Bu scope temel nativeSafari boşbaşlangıç ve programmaticDOM akışıdır. Re
 - [x] Yeni external bundle hedefi mevcutsa reddedilir; bounded extraction link/special/traversal/duplicate kabul etmez. Port free/PID/birth guard ve read-only/optional-provider kapalı allowlist env kullanıldı. Global kubeconfig veya mevcut kullanıcı scope'u benimsenmedi.
 - Yeni app örneğinde kubeconfig yokluğu0context/bağlantısız olarak kaldı; sahte Node/sağlıklı cluster gösterilmedi. Dolu port/expiredcredential/yetkili bağlantı kendi ayrı fazlarındadır.
 
+14 Kasım follow-up FAIL korundu: normal form scroll sonrası canvas1440×900; ilk kayıt layout öncesi300×150. Test karşılaştırma başlangıcı erken alınmış; ürün kusuru doğrulanmadı. Gerçek preview/save görünürlüğü assertionları bu noktaya kadar geçti; sonuç toplamFAIL, cleanupPASS. Kanıt: artifacts/release-audit/ra-20261114/native-ci114-form-scroll-root/result.json ve browser-result.json.
+
 #### TEST-20.01-S4 — Bulgular ve düzeltme
 - Bulgu: PKG-001 P1 paket doğruluğu; eski output ezme ve seçili olmayan paket girdilerinin temiz sanılması.
 - Düzeltme: scripts/build-release.mjs exclusive output/archive; runtime allowlist; shipped input clean kapsamı; dış build ve iç provenance hashleri.
 - İmza/signed attestasyon üretilmedi. Hazırlanmış frontend hash kaydı source eşitliği kanıtı değildir.
+
+Yeniürünkusuru/düzeltmesi yok. İlkfollow-upFAIL testbaşlangıcı300×150 varsayılanCanvas ölçüsünü R3Fyerleşimiöncesi dondurmuş. Sınırlı normal1440×900 yerleşimbekleme ile hedefliretest; eşitboundsassertionı korundu. İlkFAIL ve exacthelper ayrıyerinde.
 
 #### TEST-20.01-S5 — Tekrar test ve regresyon
 - [x] İlk red kontrolleri ve normal fixture yolları tekrar geçti.
@@ -11360,6 +11370,12 @@ Bu scope temel nativeSafari boşbaşlangıç ve programmaticDOM akışıdır. Re
 
 - [x] Önceki CI DNS engeli yeni bağımsız koşuda tekrarlanmadı; source build ve Linux smoke bu exact merge kaynağında geçti. İndirilen ZIP26,217,476byte/SHA eşleşti. İlk urllib URLError ve tek verified-TLS native curl başarısı ayrı kaydedildi.
 - [ ] Bu CI runner'da Go/Node kurulu olduğundan, tamamen araçsız final paket/manual-lab kabulü kapanmadı. macOS native minimal path ve paket girdileri ayrı inceleniyor.
+
+Yeni dar retest planlandı, HENÜZÇALIŞMADI: CI114 exactnativepaketi repo/.git/Go/Node/Vite olmadan ayrı0700yoldan başlat; embeddedasset/version/emptyworkspace ve ilkform open/type/close/samecanvas; ownedPID/birth/port/browsercleanup. ÖncekitarihselPASS ayrı tutulur.
+
+Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra pointerwheel/preview/save-disabled/body-scroll0/sameCanvas kontrolü. Yeni evidence form-scroll-retest-root/fresh external03;180/120/45sn bütçe aynı. Henüz çalışmadı; runtime değişmedi.
+
+14 Kasım güncel retest TAMAMLANDI: artifacts/release-audit/ra-20261114/native-ci114-startup-root/REPORT.md, ../native-ci114-form-scroll-root/FAIL ve ../native-ci114-form-scroll-retest-root/PASS. CI114Linuxcopyout+productionbrowser step success ayrıca ci-status.jsonda. CI115/6ffd1b22 success fakat onun arşivi bu koşuda indirilmedi/tested sayılmaz. ÖncekiHENÜZÇALIŞMADI/DNS/SKIP/eski537... ifadeleri yalnız tarihsel aşamalardır.
 
 #### TEST-20.01-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -11381,10 +11397,12 @@ Bu scope temel nativeSafari boşbaşlangıç ve programmaticDOM akışıdır. Re
 
 - Yeni runtime providerWorker guard düzeltmesi sonrasında final paketin kimliği değişecek: eski5373657 startupPASS tarihsel kalır. Yeni derlenmiş/ambalajlı adayda gerekli temel startup kontrolü tekrar doğrulanacak; yalnız bu değişmiş runtime/paket yolu hedeflenir, eski uzun testler körlemesine tekrarlanmaz.
 
+14 Kasım kapanış: [x] Üçfreshroot/bundle/data korunur; appSIGTERMexit0/19849LISTENyok, herkoşuda8capturedbrowseridentity yok, sampledappchildren boş. [x] TümbeşdizinSHA doğrulandı;22input/118runtime/tree/member/provenance eşitliği ikinciworker ile kontrol edildi. [x] RootilkikiPNG+retest03ü açtı; reviewer03ü ayrıca açtı, altbutonlar okunur. İkinciinceleme native-ci114-package-review-worker/REPORT.md+result.json; aynıajansistemi, profesyonelüçüncütaraf değil. Gözlenmeyenkısaömürlüprocess/tümkernel/lifetimeresource garantisi verilmez.
+
 #### TEST-20.01-K — Faz kararı
-- [x] BİTTİ / DOĞRULANDI — bu exact adayın temel standalone paket başlangıcı: gerçek native macOS harici bundle/boş app PATH ve ayrı Linux copy-out CI smoke, embedded UI, ilk liman formu ve cleanup geçti.
-- Kanıt: native-package-startup-worker/REPORT.md, ROOT_REVIEW.md; ci-package-success-3bdb7c0c/REPORT.md. Önceki DNS FAIL ve archive-inspection INCOMPLETE tarihsel kalır.
-- Bu karar final bütün sürüm/paket/provenance, imza, gerçek manuel profiller, migration/restart, native Safari/Retina veya manuel onay değildir. Runtime/asset/shipped input/packaging değişirse ilgili startup gate RETEST_REQUIRED olur.
+- [x] BİTTİ / DOĞRULANDI — **14 Kasım CI114 dar standalone başlangıç retesti**. Nativeharicibundle/boşappPATH/embeddedUI/normalilkform/wheel/sameCanvas ve ownedcleanup; ayrıLinuxcopyoutCIsuccess.
+- Kanıt: artifacts/release-audit/ra-20261114/native-ci114-startup-root/REPORT.md ve ci-status.json; bağlıilkFAIL/retest/ikinciinceleme. Eski5373657PASS ve DNS/inspectionINCOMPLETE kayıtları tarihsel kalır.
+- Finalbütünpaket/provenance/SBOM/imza/gerçekbağlantı/01–07/migration/restart/nativeSafari/Retina/CPU/p95/fizikselgörüntü/60dk/manuelonay bu kabulle kapanmaz. Genel NOT_RELEASE_READY. Runtime/asset/shippedinput/packaging değişiminde ilgilitest RETEST_REQUIRED olur.
 
 ### TEST-20.02 — Boş config/ilk liman gerçek bağlantısı
 

@@ -1,0 +1,138 @@
+{
+  "status": "FAIL",
+  "checks": [
+    "CI114 full verified bundle extracted outside repo into new0700 root; port initially free"
+  ],
+  "cleanup": {
+    "ownedPIDExited": true,
+    "exitCode": 0,
+    "portNoListener": true
+  },
+  "externalRoot": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261114-02",
+  "appProcessSnapshots": [
+    {
+      "at": "2026-11-14T12:48:56.391882+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-14T12:48:56.416509+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-14T12:48:56.962904+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-14T12:48:57.522063+00:00",
+      "children": []
+    }
+  ],
+  "appInvocation": {
+    "argv": [
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261114-02/kubeview_1.1.0_darwin-arm64/kubeview",
+      "--kubeconfig",
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261114-02/nonexistent-kubeconfig",
+      "--data-dir",
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261114-02/app-data",
+      "--bind",
+      "127.0.0.1",
+      "--port",
+      "19849"
+    ],
+    "cwd": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261114-02/kubeview_1.1.0_darwin-arm64",
+    "env": {
+      "HOME": "/Users/yunusemre",
+      "PATH": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261114-02/empty-tools",
+      "READ_ONLY": "true",
+      "KV_MINIKUBE_ENABLED": "false",
+      "KV_HUBBLE_ENABLED": "false"
+    },
+    "HOME_preserved": true,
+    "inheritedOverridesExcluded": true,
+    "runtimeToolsDirectoryEmpty": true,
+    "binarySHA256": "24ef0ce34d3381644fc14dc16a768bbeb7b8c580d19813ff580780e536378e68"
+  },
+  "pid": 3181,
+  "birth": "Sat Nov 14 15:48:55 2026",
+  "http": {
+    "healthOK": true,
+    "version": {
+      "arch": "arm64",
+      "commit": "71b4098314c71d7c9473d88356edf7200fe62f1f",
+      "os": "darwin",
+      "version": "1.1.0"
+    },
+    "workspaceHarborCount": 0,
+    "workspaceConnectionCount": 0,
+    "contextCount": 0,
+    "htmlSHA256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb",
+    "assets": [
+      {
+        "path": "/assets/index-DxIumOcP.js",
+        "bytes": 438286,
+        "sha256": "6dbe0611b28befc777524ab53f6fe2a07258fcd5edcb3b721a5a46964b39d91d",
+        "contentType": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/assets/three-BKmXRbXN.js",
+        "bytes": 973665,
+        "sha256": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+        "contentType": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/assets/index-CCZQtIvj.css",
+        "bytes": 64427,
+        "sha256": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+        "contentType": "text/css; charset=utf-8"
+      }
+    ],
+    "missingKubeconfigStillAbsent": true,
+    "auth": "empty configured token; loopback only; no token cookie recorded"
+  },
+  "failure": "Browser first failure",
+  "browserCapturedCleanup": [
+    {
+      "pid": 3202,
+      "identitySHA256": "8919c72416e5e37e42a43ecd16ba86302c9ecdbe08435497e19ce35f8794b5fc",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 3207,
+      "identitySHA256": "74c159bee53cc01be6c8c87540c3e790b6ae90c51df43bf2534327584910d3c0",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 3215,
+      "identitySHA256": "55e08d3643c52bcb6f1d8e76adc8ccaefdb3d0ec9c28dd3d527d03de517f4f92",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 3216,
+      "identitySHA256": "befe73f697d31ed6a8ae7a5cb079b743745d551afcbd3a8b9bf8f9479928f2ec",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 3217,
+      "identitySHA256": "6dbfcb2e14f450d0c5c6c48e9a29a9f158106533de1f5da7c1ee725615dffdec",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 3219,
+      "identitySHA256": "10aa523eaec9a538857cdf2d0886f1086c6620801421a22285bb902cbcb652bc",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 3221,
+      "identitySHA256": "b213201f12b3d08cae7b87740269c7d589674b8e9a90a6abd2f82a3bc5d69968",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 3222,
+      "identitySHA256": "c6c7594d98e09d327f062e7b3b56548a86a397f217e16ed65452814ab4641fb3",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "externalBundleAndStatePreserved": true,
+  "elapsedSeconds": 2.412973165512085,
+  "completedAt": "2026-11-14T12:48:58.078823+00:00"
+}

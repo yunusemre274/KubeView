@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-12T21:43:01.776648+00:00",
+  "artifactId": 13985259117,
+  "workflowRun": 43311457621,
+  "workflowHead": "362e91c3f0117aee8f518c20674832da159c0061",
+  "artifactSHA256": "15b43aef1c8038cf33cdd0fe8b0581fead498b550b1bf468488b34fda818cb4d",
+  "bytes": 26238940,
+  "zipEntries": [
+    {
+      "name": "SHA256SUMS",
+      "bytes": 201
+    },
+    {
+      "name": "build.json",
+      "bytes": 3152
+    },
+    {
+      "name": "kubeview_1.1.0_darwin-arm64.tar.gz",
+      "bytes": 12722111
+    },
+    {
+      "name": "kubeview_1.1.0_linux-amd64.tar.gz",
+      "bytes": 13739837
+    }
+  ],
+  "pathTraversalAndSymlinkRejected": true,
+  "executed": false,
+  "nativeRuntimeOrFinalReleasePASS": false,
+  "downloadAttempts": "Python CA FAIL; curl20s partialtimeout; bounded range resume1.584s completed with TLSverificationON; no insecurefallback"
+}

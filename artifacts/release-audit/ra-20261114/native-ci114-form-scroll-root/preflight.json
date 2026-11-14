@@ -1,0 +1,18 @@
+{
+  "preparedAt": "2026-11-14T12:45:10.735445+00:00",
+  "archiveSHA256": "a0f7f82dd16da860a3fe448a5ade848e350bea5ed8cba4ff7af35921ca784774",
+  "zipSHA256": "15b43aef1c8038cf33cdd0fe8b0581fead498b550b1bf468488b34fda818cb4d",
+  "binarySHA256": "24ef0ce34d3381644fc14dc16a768bbeb7b8c580d19813ff580780e536378e68",
+  "sourceMerge": "71b4098314c71d7c9473d88356edf7200fe62f1f",
+  "sourcePRHead": "362e91c3f0117aee8f518c20674832da159c0061",
+  "gitTreeEqual": "26f2bd210eb17229ccd46543517c77fbd07721d8",
+  "currentAuditHEAD": "6ffd1b22a164c6be83ca2783f4daf7e8346aa0d3",
+  "allShippedInputHashesMatchCurrentSource": true,
+  "scope": "NORMAL_POINTER_WHEEL_REACHABILITY_OF_FIRST_HARBOR_FORM_ACTIONS_NOT_PERFORMANCE",
+  "phaseLimitSeconds": 180,
+  "workLimitSeconds": 120,
+  "browserLimitSeconds": 45,
+  "runtimePath": "empty owned tools directory; HOME unchanged",
+  "maxExpandedBytes": 268435456,
+  "maxMembers": 1000
+}
