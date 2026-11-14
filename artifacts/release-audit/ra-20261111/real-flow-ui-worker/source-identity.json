@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-11T13:22:08.310265+00:00",
+  "sourceHEAD": "2461bbfb6824455a06c4fd9366ecd72a7928654e",
+  "appBinarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+  "files": {
+    "frontend/e2e/release-real-traffic.mjs": "d18ef2bafda25d605a38ab0487f0e88ab731d4246856cb45c18dfc829bb94083",
+    "artifacts/release-audit/ra-20261111/real-flow-ui-worker/owned-traffic.py": "dfb57f849dce090c3fdb107833c5537bf7c466684ef079b568c56a1d61891824",
+    "scripts/release-flow-lab.py": "ff6b47ad9bf30321ef8b6463b8011a065b06c7ff28d870b8f00ea526e8c37820",
+    "scripts/manual_lab.py": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5"
+  },
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 GOMAXPROCS=1 python3 artifacts/release-audit/ra-20261111/real-flow-ui-worker/owned-traffic.py inspect",
+    "GOMAXPROCS=1 node frontend/e2e/release-real-traffic.mjs attempt-01",
+    "GOMAXPROCS=1 node frontend/e2e/release-real-traffic.mjs attempt-02"
+  ]
+}

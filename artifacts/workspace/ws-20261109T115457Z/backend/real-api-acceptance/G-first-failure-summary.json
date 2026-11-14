@@ -1,0 +1,38 @@
+{
+  "status": "FIRST_FAILURE_STOP",
+  "G": {
+    "status": "FAIL",
+    "passedLeafCount": 1,
+    "failedLeaf": "concurrent_duplicate_scale_and_other_harbor_update",
+    "laterLeafCountNotRun": 2,
+    "metadata": "G-20261110T121959Z-meta.json",
+    "raw": "G-20261110T121959Z.jsonl",
+    "proof": "workspace-real-operations-acceptance-qa-ws-ee0652fb4cbb4e1c.json",
+    "elapsedSeconds": 10.13,
+    "sourceUnchanged": true,
+    "sourceSHA256": "92d9dd1c5af824b356b8b48679d2be065dfcaa4eca3cf9c8f7a8a820ed595a17",
+    "goPID": 48693,
+    "goProcessAliveAfterCompletion": false,
+    "phaseProcessesRunningAfterCompletion": 0,
+    "reachedBeforeFailure": [
+      "two exact audited Deployments Ready",
+      "concurrent response target/status checks",
+      "one A202 and one A409 duplicate outcome check",
+      "B PUT200 target check",
+      "actual A rollout2 readback"
+    ],
+    "failure": "compound post-readback assertion; individual predicate diagnostics were not captured",
+    "hypothesisNotProven": "The test requires B Generation unchanged after changing Deployment annotations. This may be an invalid expectation; root review needed. Do not classify as a product defect without narrowing the predicates.",
+    "cleanup": [
+      "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0",
+      "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0"
+    ],
+    "allOwnedObjectsGet404": true
+  },
+  "H": {
+    "status": "NOT_RUN",
+    "reason": "G first failure; no H request dispatched"
+  },
+  "rootOwnedQAServer": "No stop or data-dir deletion by this agent",
+  "changes": "No product, tests, Git, build, broad suite or retries performed in this run."
+}

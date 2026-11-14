@@ -1,0 +1,84 @@
+{
+  "scope": "real backend/API proof, not UI/performance; corrected test-only expectation",
+  "sourceCitation": "https://raw.githubusercontent.com/kubernetes/kubernetes/v1.35.1/pkg/registry/apps/deployment/strategy.go",
+  "testCorrection": "generation-contract-correction-meta.json",
+  "firstFailurePreserved": "G-first-failure-summary.json",
+  "results": {
+    "G": {
+      "status": "PASS",
+      "passedLeafCount": 4,
+      "passedSteps": [
+        "owned_distinct_harbor_fixtures_ready",
+        "concurrent_duplicate_scale_and_other_harbor_update",
+        "known_accepted_response_suppression_reread_without_retry",
+        "default_workspace_records_unchanged"
+      ],
+      "elapsedSeconds": 10.742,
+      "metadata": "G-corrected-20261110T122340Z-meta.json",
+      "raw": "G-corrected-20261110T122340Z.jsonl",
+      "proof": "workspace-real-operations-acceptance-qa-ws-f4dbeac2e71b47ce.json",
+      "goPID": 49184,
+      "goProcessAliveAfterCompletion": false,
+      "sourceUnchanged": true,
+      "sourceSHA256": "c09e69d0e495d824f7e10322476b426c5f3fae7875643f176c684e18aaa944a6",
+      "testSourceSHA256": "bd26dc88c17163ad371206ed407e0349c3f1262da392faf6a4ebc38113615bfe",
+      "binarySHA256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+      "objects": [
+        {
+          "namespace": "kvml-e731dabd-02-p1",
+          "name": "qa-ws-f4dbeac2e71b47ce-concurrent-a",
+          "uid": "065c4695-f5b9-4e3a-8818-7ba660bf71e8",
+          "cleanupGet404": true
+        },
+        {
+          "namespace": "kvml-e731dabd-02-p2",
+          "name": "qa-ws-f4dbeac2e71b47ce-concurrent-b",
+          "uid": "d81ef145-520d-4cb3-8455-b66c13cc9c77",
+          "cleanupGet404": true
+        }
+      ],
+      "cleanup": [
+        "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0",
+        "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "passedLeafCount": 5,
+      "passedSteps": [
+        "fresh_qa_workspace_and_guarded_canary_ready",
+        "native_create_and_rename_preserve_harbor_and_kubernetes_identity",
+        "native_export_import_remaps_ids_and_stays_unbound",
+        "explicit_binding_allows_read_without_inheriting_write_grant",
+        "native_remove_only_qa_records_kubernetes_canary_survives"
+      ],
+      "elapsedSeconds": 7.104,
+      "metadata": "H-20261110T122351Z-meta.json",
+      "raw": "H-20261110T122351Z.jsonl",
+      "proof": "workspace-real-workspace-record-acceptance-qa-ws-4115769912274bbb.json",
+      "goPID": 49200,
+      "goProcessAliveAfterCompletion": false,
+      "sourceUnchanged": true,
+      "sourceSHA256": "c09e69d0e495d824f7e10322476b426c5f3fae7875643f176c684e18aaa944a6",
+      "testSourceSHA256": "bd26dc88c17163ad371206ed407e0349c3f1262da392faf6a4ebc38113615bfe",
+      "binarySHA256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+      "objects": [],
+      "cleanup": [
+        "fresh QA native removed exact harbor ID d8116b56-2383-4418-9bc3-84c20805d2f8",
+        "fresh QA native removed exact harbor ID 4b4ef610-dc24-4d28-a989-aeaec85b747e",
+        "fresh QA native removed exact connection ID bd849a89-69e5-404a-b341-d6c835c1cddc",
+        "fresh QA native removed exact connection ID dbf53920-18fc-4158-bfe3-f3a2af44d5f8",
+        "fresh QA original empty workspace/preferences preserved except revision",
+        "guarded Deployment/Pod fingerprint unchanged; existing manual canary not registered for deletion"
+      ]
+    }
+  },
+  "phaseProcessesRunningAfterCompletion": 0,
+  "remainingLimits": [
+    "known accepted HTTP200 response suppression is a simulation; actual network timeout/cancel recovery NOT RUN",
+    "H verifies Deployment/Pod identities/metadata/specs in guarded02 namespaces, not every Kubernetes GVR",
+    "selector helper8unitcases do not upgrade earlier actual per-event RV/snapshot inventory proof",
+    "QA server PID48614 remains Root-owned; no server kill or data-dir removal by this agent",
+    "telemetry E2E remains BLOCKED"
+  ]
+}

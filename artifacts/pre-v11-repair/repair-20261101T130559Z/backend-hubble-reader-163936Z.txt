@@ -1,0 +1,5 @@
+=== RUN   TestOwnedRepairRealHubbleRestrictedNamespace
+    repair_traffic_integration_test.go:143: REAL Hubble TLS reader flow API contextAlias=kv-flow-reader-770f4a66 allowedNamespace=kv-repair-log status=live flows=0; local Pod LIST allowed while namespace/Node LIST and other/all-namespace flow reads403; scoped TokenRequest credentials stayed private; zero-flow endpoint Node-field coverage is unit-tested separately
+--- PASS: TestOwnedRepairRealHubbleRestrictedNamespace (1.07s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	1.546s

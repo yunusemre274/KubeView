@@ -1,0 +1,37 @@
+[
+  {
+    "path": "REPORT.md",
+    "bytes": 8012,
+    "sha256": "cdbaa3868e38f627535bc47c5766bc7537b934813b96c887511be07c8cb5a688"
+  },
+  {
+    "path": "attempt01-result.json",
+    "bytes": 580,
+    "sha256": "a070553632741e8842f65285076449341d192024a49c63a891f857247a5bcc89"
+  },
+  {
+    "path": "attempt01.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt01.stdout",
+    "bytes": 11601,
+    "sha256": "2155cfa27995e7266644b8c9578add2ee16d3f8291209fbe6e70613360172100"
+  },
+  {
+    "path": "preflight.json",
+    "bytes": 2389,
+    "sha256": "5deb893212a08b127a935c9ff031bb7508546fa6005b0023080c75d3e765d1be"
+  },
+  {
+    "path": "result-summary.json",
+    "bytes": 1557,
+    "sha256": "67b8bc358bcdddd78372ba29d1a10e1c33bee20cdd4be6972b3c96db2fd11eb4"
+  },
+  {
+    "path": "test-source-attempt01.go.txt",
+    "bytes": 14138,
+    "sha256": "ca0f91743bbe16420238eb21cb0e262a213f1268c3978948533f021e14742d80"
+  }
+]

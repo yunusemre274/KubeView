@@ -1,0 +1,27 @@
+{
+  "observedAt": "2026-11-12T17:26:50.510670+00:00",
+  "pidGuardCheckpoint": "9af17078",
+  "readOnlyCurrentHEAD": "6bd08974573f73ae1ef38a447283db8b02f18351",
+  "changedSourcePaths": [
+    "benchmarks/compare.mjs",
+    "benchmarks/compare.test.mjs"
+  ],
+  "readOnlyDependencies": [
+    "benchmarks/panel-compare.mjs",
+    "benchmarks/metrics.mjs",
+    "benchmarks/process-identity.mjs",
+    "benchmarks/camera-contract.mjs",
+    "benchmarks/camera-contract.test.mjs"
+  ],
+  "SHA256": {
+    "benchmarks/compare.mjs": "e8c2685ceef1b674ea0331d1fc93a91bed5dacdd14bf324ecf8c844a7f78c397",
+    "benchmarks/compare.test.mjs": "89f86d1fa52c33d18ade4c804a9ce5cb21fc5d6c853c51285d65bdcd3fdb9659",
+    "benchmarks/panel-compare.mjs": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+    "benchmarks/metrics.mjs": "9181e3d5a486d4cbddd18debfccf0a55cd26f064354cce6a6c379ec063b0fe81",
+    "benchmarks/process-identity.mjs": "b2790f88e7d5111ec43babf8362605ca5f0718ad5fd3fac122ba9ad361956a32",
+    "benchmarks/camera-contract.mjs": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7",
+    "benchmarks/camera-contract.test.mjs": "7f4fa1d650857f8c77f7b9c8089d6f8fd71ac97dab85e8a0596aa9cddb07edf9"
+  },
+  "preservedOriginalCompareSHA256": "398bd71ecdc97989fc3cfcbcd6d0c1c065bb0fb14c8510ff986f42f38923eeae",
+  "preservedRedGeneratorSHA256": "de43e1882e0d56fc688479249c552ea718daf4c61794433eccc5df50c11cf1dd"
+}

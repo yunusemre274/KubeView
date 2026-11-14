@@ -1,0 +1,16 @@
+go: downloading golang.org/x/net v0.62.0
+go: downloading golang.org/x/text v0.43.0
+go: downloading golang.org/x/sys v0.49.0
+go: downloading golang.org/x/oauth2 v0.27.0
+go: downloading github.com/gorilla/websocket v1.5.3
+go: downloading github.com/moby/spdystream v0.5.1
+go: downloading golang.org/x/term v0.47.0
+go: downloading golang.org/x/tools v0.51.0
+go: upgraded go 1.22.0 => 1.26.11
+go: upgraded github.com/gorilla/websocket v1.5.1 => v1.5.3
+go: upgraded github.com/moby/spdystream v0.2.0 => v0.5.1
+go: upgraded golang.org/x/net v0.23.0 => v0.62.0
+go: upgraded golang.org/x/oauth2 v0.10.0 => v0.27.0
+go: upgraded golang.org/x/sys v0.18.0 => v0.49.0
+go: upgraded golang.org/x/term v0.18.0 => v0.47.0
+go: upgraded golang.org/x/text v0.14.0 => v0.43.0

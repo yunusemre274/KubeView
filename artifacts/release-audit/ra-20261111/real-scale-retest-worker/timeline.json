@@ -1,0 +1,281 @@
+{
+  "cleanupVerified": true,
+  "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+  "gatewayURL": "http://127.0.0.1:56907",
+  "kind": "real Kubernetes typed/dynamic + production HTTP gateway",
+  "namespaceUID": "863e13d5-da6d-481d-9484-64eb088d8df8",
+  "profile": "06-limanlar-arasi-ag",
+  "startedAt": "2026-11-11T16:16:41.802947Z",
+  "timeline": [
+    {
+      "at": "2026-11-11T16:16:41.803208Z",
+      "proof": {
+        "mode": "0755",
+        "safeErrorClass": "workspace_directory_not_private_0700"
+      },
+      "step": "local_actual_T_TempDir_permission_probe"
+    },
+    {
+      "at": "2026-11-11T16:16:41.821695Z",
+      "proof": {
+        "apiLoopback": "127.0.0.1:53873",
+        "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+        "namespaceUID": "863e13d5-da6d-481d-9484-64eb088d8df8",
+        "workerUID": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+      },
+      "step": "identity_allowlist"
+    },
+    {
+      "at": "2026-11-11T16:16:41.843934Z",
+      "proof": {
+        "activeAppPortUntouched": 19846,
+        "harborID": "6a04dd1a-80d5-4d5f-8a2a-500690879814",
+        "loopbackURL": "http://127.0.0.1:56907",
+        "workspaceID": "1845231c-86ac-42fb-94ca-1210fb5af211"
+      },
+      "step": "isolated_gateway"
+    },
+    {
+      "at": "2026-11-11T16:16:41.859497Z",
+      "proof": {
+        "httpStatus": 200
+      },
+      "step": "readonly_session_diagnostic"
+    },
+    {
+      "at": "2026-11-11T16:16:41.860996Z",
+      "proof": {
+        "image": "busybox:1.37.0",
+        "kind": "Deployment",
+        "name": "qa-scale-1bd89cf5d6d24a88",
+        "namespace": "kvml-fbf634e8-06-client",
+        "namespaceUID": "863e13d5-da6d-481d-9484-64eb088d8df8",
+        "ownerLabelKey": "manual.kubeview.local/lab-id",
+        "ownerLabelValue": "kvml-d32afbf634e8",
+        "profile": "06-limanlar-arasi-ag",
+        "replicas": [
+          2,
+          3,
+          1
+        ],
+        "runLabelKey": "manual.kubeview.local/release-scale-run",
+        "runLabelValue": "scale-1bd89cf5d6d24a88"
+      },
+      "step": "owned_fixture_plan_before_mutation"
+    },
+    {
+      "at": "2026-11-11T16:16:41.865941Z",
+      "proof": {
+        "httpStatus": 403
+      },
+      "step": "readonly_create_rejected"
+    },
+    {
+      "at": "2026-11-11T16:16:41.86811Z",
+      "proof": {
+        "httpStatus": 200
+      },
+      "step": "explicit_management_grant"
+    },
+    {
+      "at": "2026-11-11T16:16:41.880616Z",
+      "proof": {
+        "httpStatus": 201
+      },
+      "step": "owned_deployment_create"
+    },
+    {
+      "at": "2026-11-11T16:16:44.056298Z",
+      "proof": {
+        "UID": "f4754930-4f24-489c-8743-a888bb740f48",
+        "generation": 1,
+        "observedGeneration": 1,
+        "ownerChains": [
+          {
+            "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+            "podUID": "358de9c3-8cc6-42f7-9c2e-d1a9c13bb9a0",
+            "replicaSetUID": "c35bcb1a-eb5e-494f-aef3-a4428e98e984"
+          },
+          {
+            "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+            "podUID": "b63e98e1-bc13-464d-b1fc-34cc5c5c95ae",
+            "replicaSetUID": "c35bcb1a-eb5e-494f-aef3-a4428e98e984"
+          }
+        ],
+        "replicas": 2,
+        "resourceVersion": "10703",
+        "typedDynamicUIDMatch": true
+      },
+      "step": "actual_rollout_ready"
+    },
+    {
+      "at": "2026-11-11T16:16:44.06258Z",
+      "proof": {
+        "server": {
+          "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+          "specSHA256": "03086bf2bb47713becf3206e633430fcadcef9439b7e6af77932b5a77350ce69",
+          "podUIDs": [
+            "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+          ]
+        },
+        "traffic": {
+          "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+          "specSHA256": "a2a80f7869a744511edaa022f824a08541b9b54bec55290237c3b776cdc116b3",
+          "podUIDs": []
+        }
+      },
+      "step": "other_fixtures_unchanged"
+    },
+    {
+      "at": "2026-11-11T16:16:44.069246Z",
+      "proof": {
+        "httpStatus": 409
+      },
+      "step": "stale_UID_scale_rejected"
+    },
+    {
+      "at": "2026-11-11T16:16:44.083861Z",
+      "proof": {
+        "httpStatus": 202
+      },
+      "step": "scale_to3_HTTP_accepted"
+    },
+    {
+      "at": "2026-11-11T16:16:46.276257Z",
+      "proof": {
+        "UID": "f4754930-4f24-489c-8743-a888bb740f48",
+        "generation": 2,
+        "observedGeneration": 2,
+        "ownerChains": [
+          {
+            "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+            "podUID": "358de9c3-8cc6-42f7-9c2e-d1a9c13bb9a0",
+            "replicaSetUID": "c35bcb1a-eb5e-494f-aef3-a4428e98e984"
+          },
+          {
+            "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+            "podUID": "b965f21e-5052-4d40-8203-6f33faf451e0",
+            "replicaSetUID": "c35bcb1a-eb5e-494f-aef3-a4428e98e984"
+          },
+          {
+            "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+            "podUID": "b63e98e1-bc13-464d-b1fc-34cc5c5c95ae",
+            "replicaSetUID": "c35bcb1a-eb5e-494f-aef3-a4428e98e984"
+          }
+        ],
+        "replicas": 3,
+        "resourceVersion": "10725",
+        "typedDynamicUIDMatch": true
+      },
+      "step": "actual_rollout_ready"
+    },
+    {
+      "at": "2026-11-11T16:16:46.285433Z",
+      "proof": {
+        "server": {
+          "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+          "specSHA256": "03086bf2bb47713becf3206e633430fcadcef9439b7e6af77932b5a77350ce69",
+          "podUIDs": [
+            "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+          ]
+        },
+        "traffic": {
+          "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+          "specSHA256": "a2a80f7869a744511edaa022f824a08541b9b54bec55290237c3b776cdc116b3",
+          "podUIDs": []
+        }
+      },
+      "step": "other_fixtures_unchanged"
+    },
+    {
+      "at": "2026-11-11T16:16:46.297213Z",
+      "proof": {
+        "httpStatus": 409
+      },
+      "step": "stale_RV_scale_rejected"
+    },
+    {
+      "at": "2026-11-11T16:16:46.314907Z",
+      "proof": {
+        "httpStatus": 202
+      },
+      "step": "scale_to1_HTTP_accepted"
+    },
+    {
+      "at": "2026-11-11T16:16:49.115733Z",
+      "proof": {
+        "UID": "f4754930-4f24-489c-8743-a888bb740f48",
+        "generation": 3,
+        "observedGeneration": 3,
+        "ownerChains": [
+          {
+            "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+            "podUID": "358de9c3-8cc6-42f7-9c2e-d1a9c13bb9a0",
+            "replicaSetUID": "c35bcb1a-eb5e-494f-aef3-a4428e98e984"
+          }
+        ],
+        "replicas": 1,
+        "resourceVersion": "10754",
+        "typedDynamicUIDMatch": true
+      },
+      "step": "actual_rollout_ready"
+    },
+    {
+      "at": "2026-11-11T16:16:49.122298Z",
+      "proof": {
+        "server": {
+          "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+          "specSHA256": "03086bf2bb47713becf3206e633430fcadcef9439b7e6af77932b5a77350ce69",
+          "podUIDs": [
+            "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+          ]
+        },
+        "traffic": {
+          "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+          "specSHA256": "a2a80f7869a744511edaa022f824a08541b9b54bec55290237c3b776cdc116b3",
+          "podUIDs": []
+        }
+      },
+      "step": "other_fixtures_unchanged"
+    },
+    {
+      "at": "2026-11-11T16:16:49.122636Z",
+      "proof": [
+        2,
+        3,
+        1
+      ],
+      "step": "scale_sequence_complete"
+    },
+    {
+      "at": "2026-11-11T16:16:51.232819Z",
+      "proof": {
+        "UIDAndRVDeletePreconditions": true,
+        "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+        "dynamicGVKGET404": true,
+        "podLabelListCount": 0,
+        "replicaSetLabelListCount": 0,
+        "typedGET404": true
+      },
+      "step": "cleanup_verified"
+    },
+    {
+      "at": "2026-11-11T16:16:51.239594Z",
+      "proof": {
+        "server": {
+          "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+          "specSHA256": "03086bf2bb47713becf3206e633430fcadcef9439b7e6af77932b5a77350ce69",
+          "podUIDs": [
+            "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+          ]
+        },
+        "traffic": {
+          "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+          "specSHA256": "a2a80f7869a744511edaa022f824a08541b9b54bec55290237c3b776cdc116b3",
+          "podUIDs": []
+        }
+      },
+      "step": "other_fixtures_unchanged"
+    }
+  ]
+}

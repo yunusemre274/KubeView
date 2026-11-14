@@ -1,0 +1,20 @@
+--- candidate1/go.mod
++++ proposed-candidate2/go.mod
+@@ -55,7 +55,7 @@
+ 	github.com/google/gops v0.3.28
+ 	github.com/google/renameio/v2 v2.0.2
+ 	github.com/google/uuid v1.6.0
+-	github.com/gopacket/gopacket v1.6.1
++	github.com/gopacket/gopacket v1.7.2
+ 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.3
+ 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
+ 	github.com/hashicorp/go-hclog v1.6.3
+@@ -107,7 +107,7 @@
+ 	go.uber.org/zap v1.28.0
+ 	go.yaml.in/yaml/v3 v3.0.4
+ 	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba
+-	golang.org/x/crypto v0.58.0
++	golang.org/x/crypto v0.58.1-0.20261009181718-2f1f834330b2
+ 	golang.org/x/exp v0.0.0-20260611194520-c48552f49976
+ 	golang.org/x/mod v0.41.0
+ 	golang.org/x/net v0.62.0

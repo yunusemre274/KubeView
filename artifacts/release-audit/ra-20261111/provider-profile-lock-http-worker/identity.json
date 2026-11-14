@@ -1,0 +1,15 @@
+{
+  "appSHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+  "buildReceiptSHA256": "18cd745218e4520aaed75cec681632ecbc9b399cbab1046a5c2cb05003adf341",
+  "helperSHA256": "1a0db67621ed41059632bc246c23891d497cb02c8e23ab84c9f5bc415953d2e8",
+  "providerSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+  "provisionSHA256": "8e57040b6535a530e9bc7f39a80618960984ec0a39ad919eb394279b88a2dfff",
+  "goModSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+  "goSumSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+  "intentionalPhysicalLockFile": {
+    "path": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01/minikube/.minikube/.kubeview-provider-locks/minikube-kvml-d32afbf634e8-a.lock",
+    "mode": "0o600",
+    "bytes": 0
+  },
+  "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12"
+}

@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "local_path": ".git/release-audit/cilium-operator-security-candidate/cilium-operator-generic-v1.20.4-kubeview-security.1-linux-arm64",
+      "path_in_image": "PRIVATE_CANDIDATE_ELF_NOT_IMAGE",
+      "sha256": "7bba6629021f9f1437ba09626c904ff92cba0493cb2655db76eeccb2c75a061a",
+      "bytes": 114753698
+    }
+  ]
+}

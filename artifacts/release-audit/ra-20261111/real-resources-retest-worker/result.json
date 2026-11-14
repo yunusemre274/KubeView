@@ -1,0 +1,404 @@
+{
+  "cleanupVerified": true,
+  "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+  "elapsedSeconds": 9.38810275,
+  "failed": false,
+  "gatewayURL": "http://127.0.0.1:57551",
+  "kind": "real Kubernetes typed/dynamic + production HTTP gateway",
+  "maxSampleGapSeconds": 0.270312,
+  "namespaceUID": "863e13d5-da6d-481d-9484-64eb088d8df8",
+  "operation": "resources",
+  "postCleanupFixtureHashesEqual": true,
+  "profile": "06-limanlar-arasi-ag",
+  "startedAt": "2026-11-11T16:41:20.271842Z",
+  "timeline": [
+    {
+      "at": "2026-11-11T16:41:20.272209Z",
+      "proof": {
+        "mode": "0755",
+        "safeErrorClass": "workspace_directory_not_private_0700"
+      },
+      "step": "local_actual_T_TempDir_permission_probe"
+    },
+    {
+      "at": "2026-11-11T16:41:20.291806Z",
+      "proof": {
+        "apiLoopback": "127.0.0.1:53873",
+        "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+        "namespaceUID": "863e13d5-da6d-481d-9484-64eb088d8df8",
+        "workerUID": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+      },
+      "step": "identity_allowlist"
+    },
+    {
+      "at": "2026-11-11T16:41:20.317162Z",
+      "proof": {
+        "activeAppPortUntouched": 19846,
+        "harborID": "9575a103-420e-4bc8-ad5f-2fc9b5c73a03",
+        "loopbackURL": "http://127.0.0.1:57551",
+        "workspaceID": "bbc466a4-d2dc-4b0d-ac91-204688910a88"
+      },
+      "step": "isolated_gateway"
+    },
+    {
+      "at": "2026-11-11T16:41:20.33441Z",
+      "proof": {
+        "httpStatus": 200
+      },
+      "step": "readonly_session_diagnostic"
+    },
+    {
+      "at": "2026-11-11T16:41:20.336507Z",
+      "proof": {
+        "image": "busybox:1.37.0",
+        "kind": "Deployment",
+        "name": "qa-resources-f5e0081537354e95",
+        "namespace": "kvml-fbf634e8-06-client",
+        "namespaceUID": "863e13d5-da6d-481d-9484-64eb088d8df8",
+        "operation": "resources",
+        "ownerLabelKey": "manual.kubeview.local/lab-id",
+        "ownerLabelValue": "kvml-d32afbf634e8",
+        "profile": "06-limanlar-arasi-ag",
+        "replicas": [
+          2,
+          2
+        ],
+        "runLabelKey": "manual.kubeview.local/release-resources-run",
+        "runLabelValue": "resources-f5e0081537354e95"
+      },
+      "step": "owned_fixture_plan_before_mutation"
+    },
+    {
+      "at": "2026-11-11T16:41:20.342163Z",
+      "proof": {
+        "httpStatus": 403
+      },
+      "step": "readonly_create_rejected"
+    },
+    {
+      "at": "2026-11-11T16:41:20.344943Z",
+      "proof": {
+        "httpStatus": 200
+      },
+      "step": "explicit_management_grant"
+    },
+    {
+      "at": "2026-11-11T16:41:20.359348Z",
+      "proof": {
+        "httpStatus": 201
+      },
+      "step": "owned_deployment_create"
+    },
+    {
+      "at": "2026-11-11T16:41:22.5765Z",
+      "proof": {
+        "UID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+        "generation": 1,
+        "observedGeneration": 1,
+        "ownerChains": [
+          {
+            "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+            "podUID": "de1e6801-4774-4b46-a3df-cf57bdc0f225",
+            "replicaSetUID": "7854de8f-2700-46bc-812c-716ebddda849"
+          },
+          {
+            "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+            "podUID": "ad241586-3b6f-4dba-9732-a25de6ef0926",
+            "replicaSetUID": "7854de8f-2700-46bc-812c-716ebddda849"
+          }
+        ],
+        "replicas": 2,
+        "resourceVersion": "12979",
+        "typedDynamicUIDMatch": true
+      },
+      "step": "actual_rollout_ready"
+    },
+    {
+      "at": "2026-11-11T16:41:22.669219Z",
+      "proof": {
+        "server": {
+          "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+          "specSHA256": "03086bf2bb47713becf3206e633430fcadcef9439b7e6af77932b5a77350ce69",
+          "podUIDs": [
+            "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+          ]
+        },
+        "traffic": {
+          "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+          "specSHA256": "a2a80f7869a744511edaa022f824a08541b9b54bec55290237c3b776cdc116b3",
+          "podUIDs": []
+        }
+      },
+      "step": "other_fixtures_unchanged"
+    },
+    {
+      "at": "2026-11-11T16:41:22.669992Z",
+      "proof": {
+        "ad241586-3b6f-4dba-9732-a25de6ef0926": "7854de8f-2700-46bc-812c-716ebddda849",
+        "de1e6801-4774-4b46-a3df-cf57bdc0f225": "7854de8f-2700-46bc-812c-716ebddda849"
+      },
+      "step": "initial_known_old_Pod_UID_RS_set"
+    },
+    {
+      "at": "2026-11-11T16:41:22.701009Z",
+      "proof": {
+        "httpStatus": 422
+      },
+      "step": "resources_invalid_quantity_rejected"
+    },
+    {
+      "at": "2026-11-11T16:41:22.70918Z",
+      "proof": {
+        "case": "invalid_quantity",
+        "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+        "generation": 1,
+        "podUIDs": [
+          "ad241586-3b6f-4dba-9732-a25de6ef0926",
+          "de1e6801-4774-4b46-a3df-cf57bdc0f225"
+        ],
+        "templateSHA256": "e8725c3c67e230fa10820e86e320f805e8d9a15c651938d7082c01f62cd1347b"
+      },
+      "step": "rejected_resources_template_unchanged"
+    },
+    {
+      "at": "2026-11-11T16:41:22.733335Z",
+      "proof": {
+        "httpStatus": 422
+      },
+      "step": "resources_request_exceeds_limit_rejected"
+    },
+    {
+      "at": "2026-11-11T16:41:22.746747Z",
+      "proof": {
+        "case": "request_exceeds_limit",
+        "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+        "generation": 1,
+        "podUIDs": [
+          "ad241586-3b6f-4dba-9732-a25de6ef0926",
+          "de1e6801-4774-4b46-a3df-cf57bdc0f225"
+        ],
+        "templateSHA256": "e8725c3c67e230fa10820e86e320f805e8d9a15c651938d7082c01f62cd1347b"
+      },
+      "step": "rejected_resources_template_unchanged"
+    },
+    {
+      "at": "2026-11-11T16:41:22.780339Z",
+      "proof": {
+        "httpStatus": 202
+      },
+      "step": "resources_template_HTTP_accepted"
+    },
+    {
+      "at": "2026-11-11T16:41:25.093959Z",
+      "proof": {
+        "category": "allowed_exact_old_terminal_deleting_records",
+        "declaredWorstLimits": {
+          "cpuMilli": 300,
+          "memoryBytes": 201326592
+        },
+        "knownOldPodReplicaSets": {
+          "ad241586-3b6f-4dba-9732-a25de6ef0926": "7854de8f-2700-46bc-812c-716ebddda849",
+          "de1e6801-4774-4b46-a3df-cf57bdc0f225": "7854de8f-2700-46bc-812c-716ebddda849"
+        },
+        "records": [
+          {
+            "uid": "de1e6801-4774-4b46-a3df-cf57bdc0f225",
+            "ownerReplicaSetUID": "7854de8f-2700-46bc-812c-716ebddda849",
+            "phase": "Succeeded",
+            "deletionTimestamp": "2026-11-11T16:41:27Z",
+            "ownerVerified": true,
+            "declaredLimitCPUMilli": 50,
+            "declaredLimitMemoryBytes": 33554432
+          },
+          {
+            "uid": "ad241586-3b6f-4dba-9732-a25de6ef0926",
+            "ownerReplicaSetUID": "7854de8f-2700-46bc-812c-716ebddda849",
+            "phase": "Succeeded",
+            "deletionTimestamp": "2026-11-11T16:41:27Z",
+            "ownerVerified": true,
+            "declaredLimitCPUMilli": 50,
+            "declaredLimitMemoryBytes": 33554432
+          },
+          {
+            "uid": "4fe075a0-3235-4d7f-945e-9a7c43c114b1",
+            "ownerReplicaSetUID": "2949c416-8daf-4562-b668-5eafd61a086b",
+            "phase": "Pending",
+            "ownerVerified": true,
+            "declaredLimitCPUMilli": 100,
+            "declaredLimitMemoryBytes": 67108864
+          },
+          {
+            "uid": "3ca4b1ff-ab59-4e17-ae54-248f059354d7",
+            "ownerReplicaSetUID": "2949c416-8daf-4562-b668-5eafd61a086b",
+            "phase": "Pending",
+            "ownerVerified": true,
+            "declaredLimitCPUMilli": 100,
+            "declaredLimitMemoryBytes": 67108864
+          }
+        ],
+        "strategy": "Recreate",
+        "totalAPIObjects": 4,
+        "usageClaim": false
+      },
+      "step": "resource_API_Pod_envelope_trace"
+    },
+    {
+      "at": "2026-11-11T16:41:25.457659Z",
+      "proof": {
+        "category": "allowed_exact_old_terminal_deleting_records",
+        "declaredWorstLimits": {
+          "cpuMilli": 300,
+          "memoryBytes": 201326592
+        },
+        "knownOldPodReplicaSets": {
+          "ad241586-3b6f-4dba-9732-a25de6ef0926": "7854de8f-2700-46bc-812c-716ebddda849",
+          "de1e6801-4774-4b46-a3df-cf57bdc0f225": "7854de8f-2700-46bc-812c-716ebddda849"
+        },
+        "records": [
+          {
+            "uid": "de1e6801-4774-4b46-a3df-cf57bdc0f225",
+            "ownerReplicaSetUID": "7854de8f-2700-46bc-812c-716ebddda849",
+            "phase": "Succeeded",
+            "deletionTimestamp": "2026-11-11T16:41:27Z",
+            "ownerVerified": true,
+            "declaredLimitCPUMilli": 50,
+            "declaredLimitMemoryBytes": 33554432
+          },
+          {
+            "uid": "ad241586-3b6f-4dba-9732-a25de6ef0926",
+            "ownerReplicaSetUID": "7854de8f-2700-46bc-812c-716ebddda849",
+            "phase": "Succeeded",
+            "deletionTimestamp": "2026-11-11T16:41:27Z",
+            "ownerVerified": true,
+            "declaredLimitCPUMilli": 50,
+            "declaredLimitMemoryBytes": 33554432
+          },
+          {
+            "uid": "4fe075a0-3235-4d7f-945e-9a7c43c114b1",
+            "ownerReplicaSetUID": "2949c416-8daf-4562-b668-5eafd61a086b",
+            "phase": "Pending",
+            "ownerVerified": true,
+            "declaredLimitCPUMilli": 100,
+            "declaredLimitMemoryBytes": 67108864
+          },
+          {
+            "uid": "3ca4b1ff-ab59-4e17-ae54-248f059354d7",
+            "ownerReplicaSetUID": "2949c416-8daf-4562-b668-5eafd61a086b",
+            "phase": "Pending",
+            "ownerVerified": true,
+            "declaredLimitCPUMilli": 100,
+            "declaredLimitMemoryBytes": 67108864
+          }
+        ],
+        "strategy": "Recreate",
+        "totalAPIObjects": 4,
+        "usageClaim": false
+      },
+      "step": "resource_API_Pod_envelope_trace"
+    },
+    {
+      "at": "2026-11-11T16:41:26.732601Z",
+      "proof": {
+        "UID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+        "generation": 2,
+        "observedGeneration": 2,
+        "ownerChains": [
+          {
+            "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+            "podUID": "4fe075a0-3235-4d7f-945e-9a7c43c114b1",
+            "replicaSetUID": "2949c416-8daf-4562-b668-5eafd61a086b"
+          },
+          {
+            "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+            "podUID": "3ca4b1ff-ab59-4e17-ae54-248f059354d7",
+            "replicaSetUID": "2949c416-8daf-4562-b668-5eafd61a086b"
+          }
+        ],
+        "replicas": 2,
+        "resourceVersion": "13044",
+        "typedDynamicUIDMatch": true
+      },
+      "step": "actual_rollout_ready"
+    },
+    {
+      "at": "2026-11-11T16:41:26.748029Z",
+      "proof": {
+        "server": {
+          "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+          "specSHA256": "03086bf2bb47713becf3206e633430fcadcef9439b7e6af77932b5a77350ce69",
+          "podUIDs": [
+            "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+          ]
+        },
+        "traffic": {
+          "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+          "specSHA256": "a2a80f7869a744511edaa022f824a08541b9b54bec55290237c3b776cdc116b3",
+          "podUIDs": []
+        }
+      },
+      "step": "other_fixtures_unchanged"
+    },
+    {
+      "at": "2026-11-11T16:41:26.74925Z",
+      "proof": {
+        "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+        "generationAfter": 2,
+        "generationBefore": 1,
+        "metricsOrUsageClaim": false,
+        "newPodUIDs": [
+          "3ca4b1ff-ab59-4e17-ae54-248f059354d7",
+          "4fe075a0-3235-4d7f-945e-9a7c43c114b1"
+        ],
+        "observedGeneration": 2,
+        "oldPodUIDs": [
+          "ad241586-3b6f-4dba-9732-a25de6ef0926",
+          "de1e6801-4774-4b46-a3df-cf57bdc0f225"
+        ],
+        "readinessProof": "actual2Ready with owner chains",
+        "resources": {
+          "limits": {
+            "cpu": "100m",
+            "memory": "64Mi"
+          },
+          "requests": {
+            "cpu": "10m",
+            "memory": "16Mi"
+          }
+        },
+        "unrelatedDeploymentSpecPreserved": true
+      },
+      "step": "resource_template_and_Pod_quantities_verified"
+    },
+    {
+      "at": "2026-11-11T16:41:29.637717Z",
+      "proof": {
+        "UIDAndRVDeletePreconditions": true,
+        "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+        "dynamicGVKGET404": true,
+        "podLabelListCount": 0,
+        "replicaSetLabelListCount": 0,
+        "typedGET404": true
+      },
+      "step": "cleanup_verified"
+    },
+    {
+      "at": "2026-11-11T16:41:29.657084Z",
+      "proof": {
+        "server": {
+          "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+          "specSHA256": "03086bf2bb47713becf3206e633430fcadcef9439b7e6af77932b5a77350ce69",
+          "podUIDs": [
+            "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+          ]
+        },
+        "traffic": {
+          "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+          "specSHA256": "a2a80f7869a744511edaa022f824a08541b9b54bec55290237c3b776cdc116b3",
+          "podUIDs": []
+        }
+      },
+      "step": "other_fixtures_unchanged"
+    }
+  ],
+  "validBounded": true
+}

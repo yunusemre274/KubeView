@@ -1,0 +1,133 @@
+[
+  {
+    "case": "baseline",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "tests/store.test.js"
+    ],
+    "cwd": ".git/release-audit/fuzz-mutation-49999815/baseline",
+    "started_at_utc": "2026-11-11T10:51:51.511469+00:00",
+    "finished_at_utc": "2026-11-11T10:51:54.849615+00:00",
+    "duration_seconds": 3.338,
+    "exit_code": 0,
+    "timed_out": false,
+    "timeout_seconds": 30,
+    "summary_lines": [
+      "\u2139 tests 17",
+      "\u2139 suites 0",
+      "\u2139 pass 17",
+      "\u2139 fail 0",
+      "\u2139 cancelled 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0",
+      "\u2139 duration_ms 3089.257459"
+    ],
+    "failed_test_lines": [],
+    "has_syntax_error": false,
+    "contains_assertion_failure": false,
+    "assertion_error_count": 0,
+    "disposition": "baseline-pass"
+  },
+  {
+    "case": "generation-guard-disabled",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "tests/store.test.js"
+    ],
+    "cwd": ".git/release-audit/fuzz-mutation-49999815/generation-guard-disabled",
+    "started_at_utc": "2026-11-11T10:51:54.864922+00:00",
+    "finished_at_utc": "2026-11-11T10:51:58.363695+00:00",
+    "duration_seconds": 3.499,
+    "exit_code": 1,
+    "timed_out": false,
+    "timeout_seconds": 30,
+    "summary_lines": [
+      "\u2139 tests 17",
+      "\u2139 suites 0",
+      "\u2139 pass 15",
+      "\u2139 fail 2",
+      "\u2139 cancelled 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0",
+      "\u2139 duration_ms 3196.496792"
+    ],
+    "failed_test_lines": [
+      "generation rejects previous session messages and resync removes vanished resources",
+      "namespace/GVR authority and connection identity do not leak across scopes or contexts"
+    ],
+    "has_syntax_error": false,
+    "contains_assertion_failure": true,
+    "assertion_error_count": 4,
+    "disposition": "non-equivalent-mutant-killed-by-assertion"
+  },
+  {
+    "case": "delete-by-address",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "tests/store.test.js"
+    ],
+    "cwd": ".git/release-audit/fuzz-mutation-49999815/delete-by-address",
+    "started_at_utc": "2026-11-11T10:51:58.364460+00:00",
+    "finished_at_utc": "2026-11-11T10:52:01.635954+00:00",
+    "duration_seconds": 3.272,
+    "exit_code": 1,
+    "timed_out": false,
+    "timeout_seconds": 30,
+    "summary_lines": [
+      "\u2139 tests 17",
+      "\u2139 suites 0",
+      "\u2139 pass 14",
+      "\u2139 fail 3",
+      "\u2139 cancelled 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0",
+      "\u2139 duration_ms 3126.351583"
+    ],
+    "failed_test_lines": [
+      "same-name recreation, delayed DELETE, and opaque resourceVersion remain safe",
+      "a CR recreated at the same address has new UID, and delayed old DELETE cannot remove it",
+      "scope and tombstone identities stay stable on unrelated normal updates; deletion cache is bounded"
+    ],
+    "has_syntax_error": false,
+    "contains_assertion_failure": true,
+    "assertion_error_count": 6,
+    "disposition": "non-equivalent-mutant-killed-by-assertion"
+  },
+  {
+    "case": "equivalent-limit-expression",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "tests/store.test.js"
+    ],
+    "cwd": ".git/release-audit/fuzz-mutation-49999815/equivalent-limit-expression",
+    "started_at_utc": "2026-11-11T10:52:01.636834+00:00",
+    "finished_at_utc": "2026-11-11T10:52:05.036356+00:00",
+    "duration_seconds": 3.4,
+    "exit_code": 0,
+    "timed_out": false,
+    "timeout_seconds": 30,
+    "summary_lines": [
+      "\u2139 tests 17",
+      "\u2139 suites 0",
+      "\u2139 pass 17",
+      "\u2139 fail 0",
+      "\u2139 cancelled 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0",
+      "\u2139 duration_ms 3192.593084"
+    ],
+    "failed_test_lines": [],
+    "has_syntax_error": false,
+    "contains_assertion_failure": false,
+    "assertion_error_count": 0,
+    "disposition": "equivalent-control-pass"
+  }
+]

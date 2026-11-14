@@ -1,0 +1,1159 @@
+{
+  "startedAt": "2026-11-11T19:45:36.299453+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "build",
+    "-p=1",
+    "-mod=mod",
+    "-trimpath",
+    "-buildvcs=false",
+    "-tags=osusergo,ipam_provider_operator",
+    "-ldflags",
+    "-X \"github.com/cilium/cilium/pkg/version.ciliumVersion=1.20.4-kubeview-security.1 beb276d2 2026-11-11T19:45:36.299453+00:00\" -X github.com/cilium/cilium/pkg/envoy.requiredEnvoyVersionSHA=8c73b2816bc8239e27f1fd53b271884688137459 -s -w",
+    "-o",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate/cilium-operator-generic-v1.20.4-kubeview-security.1-linux-arm64",
+    "."
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate/source/operator",
+  "candidateIdentity": "1.20.4-kubeview-security.1 beb276d2 2026-11-11T19:45:36.299453+00:00",
+  "officialRecipe": "operator/Makefile cilium-operator-generic + Makefile.defs osusergo/ipam_provider_operator, ciliumVersion/requiredEnvoyVersionSHA/strip ldflags",
+  "deviations": [
+    "mod=mod instead of official vendor to apply exactly requested security module floors and required MVS minima without stale vendored packages",
+    "trimpath/buildvcs=false and explicit private derived security version identity",
+    "p=1/GOMAXPROCS2/CGO0/LinuxARM64 native cross compile; no container image build"
+  ],
+  "environment": {
+    "GOTOOLCHAIN": "local",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "2GiB",
+    "CGO_ENABLED": "0",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "GOPROXY": "https://proxy.golang.org",
+    "GOSUMDB": "sum.golang.org"
+  },
+  "maxSeconds": 360,
+  "rssLimitBytes": 4294967296,
+  "minFreeDiskBytes": 10737418240,
+  "minBatteryPercent": 30,
+  "status": "BUILD_PASS",
+  "peakOwnedRSSBytes": 1652719616,
+  "maxOwnedProcesses": 2,
+  "samples": [
+    {
+      "elapsed": 0.024,
+      "ownedRSSBytes": 15122432,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 457199857664,
+      "batteryPercent": 90,
+      "wallGapSeconds": 0.0
+    },
+    {
+      "elapsed": 1.041,
+      "ownedRSSBytes": 34193408,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 457198452736,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 2.057,
+      "ownedRSSBytes": 43319296,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 457169096704,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 3.073,
+      "ownedRSSBytes": 43466752,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 457152724992,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 4.087,
+      "ownedRSSBytes": 43614208,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 457144365056,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.015
+    },
+    {
+      "elapsed": 5.104,
+      "ownedRSSBytes": 48218112,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 457100201984,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 6.121,
+      "ownedRSSBytes": 50331648,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 457086967808,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 7.136,
+      "ownedRSSBytes": 61652992,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 457050943488,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.015
+    },
+    {
+      "elapsed": 8.151,
+      "ownedRSSBytes": 62636032,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 456969048064,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 9.168,
+      "ownedRSSBytes": 62717952,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 456904884224,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 10.184,
+      "ownedRSSBytes": 62717952,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 456903065600,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 11.208,
+      "ownedRSSBytes": 65388544,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 456892334080,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.023
+    },
+    {
+      "elapsed": 12.225,
+      "ownedRSSBytes": 96436224,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456887402496,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 13.241,
+      "ownedRSSBytes": 339820544,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456883822592,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 14.257,
+      "ownedRSSBytes": 130613248,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456839667712,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 15.271,
+      "ownedRSSBytes": 121307136,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456813518848,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 16.288,
+      "ownedRSSBytes": 152010752,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456796196864,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 17.305,
+      "ownedRSSBytes": 105938944,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 456773722112,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 18.321,
+      "ownedRSSBytes": 153534464,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456754171904,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 19.338,
+      "ownedRSSBytes": 122470400,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456729718784,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 20.355,
+      "ownedRSSBytes": 123076608,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456704139264,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 21.375,
+      "ownedRSSBytes": 147537920,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456678948864,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.02
+    },
+    {
+      "elapsed": 22.388,
+      "ownedRSSBytes": 128942080,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456653156352,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 23.4,
+      "ownedRSSBytes": 153239552,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456628293632,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 24.416,
+      "ownedRSSBytes": 144982016,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456595202048,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 25.431,
+      "ownedRSSBytes": 184467456,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456565899264,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 26.448,
+      "ownedRSSBytes": 113786880,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 456536817664,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 27.461,
+      "ownedRSSBytes": 118652928,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456512131072,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 28.474,
+      "ownedRSSBytes": 158334976,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456487780352,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 29.491,
+      "ownedRSSBytes": 151961600,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456452853760,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 30.509,
+      "ownedRSSBytes": 133873664,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456425635840,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 31.534,
+      "ownedRSSBytes": 206192640,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456407908352,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.025
+    },
+    {
+      "elapsed": 32.552,
+      "ownedRSSBytes": 213221376,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456380219392,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 33.57,
+      "ownedRSSBytes": 181354496,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456344453120,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 34.583,
+      "ownedRSSBytes": 146997248,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456320626688,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 35.601,
+      "ownedRSSBytes": 186679296,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456300122112,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 36.619,
+      "ownedRSSBytes": 156811264,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456272547840,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 37.636,
+      "ownedRSSBytes": 145145856,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456242708480,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 38.653,
+      "ownedRSSBytes": 146341888,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456216915968,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 39.67,
+      "ownedRSSBytes": 226672640,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456193826816,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 40.688,
+      "ownedRSSBytes": 187318272,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456151752704,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 41.711,
+      "ownedRSSBytes": 117194752,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456294383616,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.023
+    },
+    {
+      "elapsed": 42.729,
+      "ownedRSSBytes": 153255936,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456264552448,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 43.746,
+      "ownedRSSBytes": 148570112,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456234041344,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 44.759,
+      "ownedRSSBytes": 201605120,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456200093696,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.012
+    },
+    {
+      "elapsed": 45.777,
+      "ownedRSSBytes": 157974528,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456166256640,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 46.793,
+      "ownedRSSBytes": 135233536,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456126058496,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 47.808,
+      "ownedRSSBytes": 117800960,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456092393472,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.015
+    },
+    {
+      "elapsed": 48.825,
+      "ownedRSSBytes": 300449792,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456078401536,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 49.844,
+      "ownedRSSBytes": 538558464,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456078163968,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 50.862,
+      "ownedRSSBytes": 146456576,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 456014651392,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.019
+    },
+    {
+      "elapsed": 51.883,
+      "ownedRSSBytes": 152371200,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455979945984,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.021
+    },
+    {
+      "elapsed": 52.899,
+      "ownedRSSBytes": 211451904,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455955009536,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 53.914,
+      "ownedRSSBytes": 171409408,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455917289472,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 54.928,
+      "ownedRSSBytes": 165904384,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455869173760,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 55.941,
+      "ownedRSSBytes": 182665216,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455835754496,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 56.957,
+      "ownedRSSBytes": 149340160,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455798571008,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 57.973,
+      "ownedRSSBytes": 151879680,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455764463616,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 58.987,
+      "ownedRSSBytes": 144850944,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455728992256,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 59.999,
+      "ownedRSSBytes": 155680768,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455695646720,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.012
+    },
+    {
+      "elapsed": 61.016,
+      "ownedRSSBytes": 116768768,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 455655940096,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 62.035,
+      "ownedRSSBytes": 155762688,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455609729024,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.02
+    },
+    {
+      "elapsed": 63.047,
+      "ownedRSSBytes": 134168576,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455552995328,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.012
+    },
+    {
+      "elapsed": 64.064,
+      "ownedRSSBytes": 157220864,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455504928768,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 65.08,
+      "ownedRSSBytes": 165953536,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455454302208,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 66.096,
+      "ownedRSSBytes": 164184064,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455404732416,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 67.109,
+      "ownedRSSBytes": 163463168,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455341998080,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 68.127,
+      "ownedRSSBytes": 193282048,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455292174336,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 69.143,
+      "ownedRSSBytes": 137871360,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455246254080,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 70.159,
+      "ownedRSSBytes": 284999680,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455206330368,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 71.172,
+      "ownedRSSBytes": 135086080,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455153819648,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 72.194,
+      "ownedRSSBytes": 152240128,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455110619136,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.022
+    },
+    {
+      "elapsed": 73.211,
+      "ownedRSSBytes": 189759488,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455071883264,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 74.224,
+      "ownedRSSBytes": 254590976,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 455028781056,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 75.241,
+      "ownedRSSBytes": 117932032,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 454968729600,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 76.257,
+      "ownedRSSBytes": 118390784,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454909665280,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 77.271,
+      "ownedRSSBytes": 167362560,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454849880064,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 78.288,
+      "ownedRSSBytes": 211353600,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454810087424,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 79.3,
+      "ownedRSSBytes": 147718144,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454749851648,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.012
+    },
+    {
+      "elapsed": 80.317,
+      "ownedRSSBytes": 190300160,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454698053632,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 81.334,
+      "ownedRSSBytes": 216858624,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454647980032,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 82.357,
+      "ownedRSSBytes": 152338432,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454589509632,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.023
+    },
+    {
+      "elapsed": 83.374,
+      "ownedRSSBytes": 365608960,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454561587200,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 84.386,
+      "ownedRSSBytes": 291831808,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454505250816,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.012
+    },
+    {
+      "elapsed": 85.399,
+      "ownedRSSBytes": 181288960,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454443028480,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 86.414,
+      "ownedRSSBytes": 117932032,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454383030272,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.015
+    },
+    {
+      "elapsed": 87.426,
+      "ownedRSSBytes": 196345856,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454321926144,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.012
+    },
+    {
+      "elapsed": 88.443,
+      "ownedRSSBytes": 118587392,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454253506560,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 89.459,
+      "ownedRSSBytes": 172998656,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454192402432,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 90.474,
+      "ownedRSSBytes": 149684224,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454129053696,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.015
+    },
+    {
+      "elapsed": 91.487,
+      "ownedRSSBytes": 140312576,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454064861184,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 92.51,
+      "ownedRSSBytes": 204767232,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 454004674560,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.023
+    },
+    {
+      "elapsed": 93.523,
+      "ownedRSSBytes": 161382400,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453939654656,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 94.539,
+      "ownedRSSBytes": 153812992,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453900288000,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 95.556,
+      "ownedRSSBytes": 207683584,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453856894976,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 96.571,
+      "ownedRSSBytes": 152469504,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453811122176,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.015
+    },
+    {
+      "elapsed": 97.585,
+      "ownedRSSBytes": 138231808,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453771276288,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 98.601,
+      "ownedRSSBytes": 120012800,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453734473728,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 99.618,
+      "ownedRSSBytes": 261439488,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453681590272,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 100.634,
+      "ownedRSSBytes": 168427520,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453569073152,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 101.65,
+      "ownedRSSBytes": 462798848,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453556178944,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 102.67,
+      "ownedRSSBytes": 138395648,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453501894656,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.02
+    },
+    {
+      "elapsed": 103.685,
+      "ownedRSSBytes": 223117312,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453475037184,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 104.702,
+      "ownedRSSBytes": 202735616,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453431910400,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 105.718,
+      "ownedRSSBytes": 195444736,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453391290368,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 106.734,
+      "ownedRSSBytes": 159186944,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453350383616,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 107.746,
+      "ownedRSSBytes": 226197504,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453310234624,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.012
+    },
+    {
+      "elapsed": 108.76,
+      "ownedRSSBytes": 144179200,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453264453632,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 109.773,
+      "ownedRSSBytes": 166379520,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453224456192,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 110.786,
+      "ownedRSSBytes": 167313408,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453185056768,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 111.803,
+      "ownedRSSBytes": 231178240,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453149937664,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 112.828,
+      "ownedRSSBytes": 413548544,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453123231744,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.025
+    },
+    {
+      "elapsed": 113.844,
+      "ownedRSSBytes": 361512960,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453073764352,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 114.862,
+      "ownedRSSBytes": 189202432,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 453017366528,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 115.878,
+      "ownedRSSBytes": 162136064,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452975550464,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 116.895,
+      "ownedRSSBytes": 225640448,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452938911744,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 117.912,
+      "ownedRSSBytes": 146325504,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452893089792,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 118.928,
+      "ownedRSSBytes": 158810112,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452858822656,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 119.941,
+      "ownedRSSBytes": 139100160,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452817674240,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 120.954,
+      "ownedRSSBytes": 156647424,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452782112768,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 121.967,
+      "ownedRSSBytes": 145162240,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452742582272,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 122.99,
+      "ownedRSSBytes": 159449088,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452703358976,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.023
+    },
+    {
+      "elapsed": 124.004,
+      "ownedRSSBytes": 149422080,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452667199488,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 125.017,
+      "ownedRSSBytes": 152551424,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452630155264,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 126.029,
+      "ownedRSSBytes": 138280960,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452591304704,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.011
+    },
+    {
+      "elapsed": 127.045,
+      "ownedRSSBytes": 242876416,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452553154560,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 128.062,
+      "ownedRSSBytes": 347521024,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452511506432,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 129.078,
+      "ownedRSSBytes": 148701184,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452468826112,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.017
+    },
+    {
+      "elapsed": 130.094,
+      "ownedRSSBytes": 281624576,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452436574208,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.016
+    },
+    {
+      "elapsed": 131.108,
+      "ownedRSSBytes": 363102208,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452403105792,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.014
+    },
+    {
+      "elapsed": 132.127,
+      "ownedRSSBytes": 272465920,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452345532416,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.018
+    },
+    {
+      "elapsed": 133.15,
+      "ownedRSSBytes": 229146624,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452297256960,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.024
+    },
+    {
+      "elapsed": 134.172,
+      "ownedRSSBytes": 118702080,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 452245712896,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.022
+    },
+    {
+      "elapsed": 135.194,
+      "ownedRSSBytes": 285736960,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452204691456,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.022
+    },
+    {
+      "elapsed": 136.215,
+      "ownedRSSBytes": 424280064,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452179787776,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.022
+    },
+    {
+      "elapsed": 137.228,
+      "ownedRSSBytes": 1652719616,
+      "ownedProcesses": 2,
+      "freeDiskBytes": 452179775488,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.013
+    },
+    {
+      "elapsed": 138.25,
+      "ownedRSSBytes": 118767616,
+      "ownedProcesses": 1,
+      "freeDiskBytes": 454195351552,
+      "batteryPercent": 90,
+      "wallGapSeconds": 1.022
+    }
+  ],
+  "toolchainVersion": "go version go1.26.11 darwin/arm64",
+  "toolchainSHA256": "20e07ffb4f08faaf125e413db024b6e988d3ec2799dcb3568a720d14be0ad133",
+  "preflightBatteryPercent": 90,
+  "preflightFreeBytes": 457200984064,
+  "ownedBuildPID": 98598,
+  "ownedBuildBirth": "Wed Nov 11 22:45:36 2026",
+  "ownedBuildPGID": 98598,
+  "ownedCaffeinatePID": 98600,
+  "exitCode": 0,
+  "binarySHA256": "7bba6629021f9f1437ba09626c904ff92cba0493cb2655db76eeccb2c75a061a",
+  "binaryBytes": 114753698,
+  "binaryMagic": "7f454c460201010000000000000000000200b700",
+  "ownedCaffeinateExited": true,
+  "ownedBuildExited": true,
+  "go.modSHA256": "b34fe204a2d0f8d817798d01af6e5fe8453e6ee7cdf9717e162f465630964ff4",
+  "go.sumSHA256": "f67b0322352cd93fcbb3b79230853b544957d8bc604fa618f7c1c8062cac9c44",
+  "elapsedSeconds": 139.3352208330034,
+  "finishedAt": "2026-11-11T19:47:55.635446+00:00",
+  "helperSHA256": "aab49a60c24057c4d19e54c99fbc6dd1129af3c46b4081b8abdd71b0c7ba8d52"
+}

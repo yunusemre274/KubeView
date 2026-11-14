@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-09T08:54:20.465853+00:00",
+  "status": "PASS",
+  "commit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "binarySHA256": "180941247e252f34d71300967fc71ae146174a3dea3caba734d947e1da80f548",
+  "version": {
+    "arch": "arm64",
+    "commit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+    "os": "darwin",
+    "version": "1.1.0"
+  },
+  "cleanWorkingDirectoryFiles": [
+    "kubeview"
+  ],
+  "sameOrigin": "http://127.0.0.1:18410",
+  "embeddedIndexSHA256": "2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395",
+  "frontendDistIndexSHA256": "2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395",
+  "actualNormalUIEvidence": "frontend/status-resume/runs/2026-11-09T08-47-09-785Z/result.json",
+  "earlierFullNormalDeploymentJourney": "qa/runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+  "note": "Current embedded binary from private clean install cwd; no Node/Go/Vite/STATIC_DIR used to serve. Earlier complete Deployment source differs only Job/DaemonSet status branches and formatting; scoped applicability is recorded separately, not whole-source equality."
+}

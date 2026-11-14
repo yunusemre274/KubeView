@@ -1,0 +1,72 @@
+{
+  "sources": {
+    "A": {
+      "commit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "root": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/source-A",
+      "archiveSHA256": "3f20716e478c4b365a6c05323c598386f1f5414b6e5f67adfac94e5bdfde4218",
+      "frontendLockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+    },
+    "B": {
+      "commit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "root": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/source-B",
+      "archiveSHA256": "fd75063861699e10c67d59b93fac0458cc6edb1797be02f71c26dd5ad70e6c1c",
+      "frontendLockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+    }
+  },
+  "sharedCachedNodeModules": "/Users/yunusemre/Desktop/KubeView/frontend/node_modules",
+  "allThreeSourceLockSHAsIdentical": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+  "cachedHiddenLockMismatch": [],
+  "cachedHiddenLockPackageCount": 155,
+  "requiredInstalledManifestVersions": {
+    "vite": {
+      "installed": "6.4.5",
+      "lock": "6.4.5",
+      "manifestSHA256": "0ac6ea0598168f203cad40e7b6e0f892987109262a296e29abf039f1b26099ee",
+      "engine": {
+        "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+      }
+    },
+    "react": {
+      "installed": "18.3.1",
+      "lock": "18.3.1",
+      "manifestSHA256": "d4e68a5c96babb20cad1daafea8b78822eae45b341552cf5418d06a5304fa64c",
+      "engine": {
+        "node": ">=0.10.0"
+      }
+    },
+    "react-dom": {
+      "installed": "18.3.1",
+      "lock": "18.3.1",
+      "manifestSHA256": "d2f29e31bd48b833e48cd7bbf41f192e8ee4ff8da249fdbe10d4ac4114b8b12e",
+      "engine": null
+    },
+    "three": {
+      "installed": "0.164.1",
+      "lock": "0.164.1",
+      "manifestSHA256": "de347731cf61fe027c5123835804358c7386ff4374e32a7d8ec0654b86006a0d",
+      "engine": null
+    },
+    "@react-three/fiber": {
+      "installed": "8.18.0",
+      "lock": "8.18.0",
+      "manifestSHA256": "d012a392a93d61497e4cfdb9ff2dd1a91bbd50d566cbcba71d079ba59c7e0fdd",
+      "engine": null
+    },
+    "@react-three/drei": {
+      "installed": "9.122.0",
+      "lock": "9.122.0",
+      "manifestSHA256": "33136f30c8b3cda54374a387fb0a2c32b1611a2dcc72ce043ca73d558387912b",
+      "engine": null
+    }
+  },
+  "nodeModulesPolicy": "Existing verified lock-identical modules shared through existing panel-build symlink; no install or latest resolution",
+  "currentMFixtureBackendSHA256": "0ed76eaddeeeeeab94dad2b1d388f7bc6867dba1c0265ef468eddfd3c2b6a76e",
+  "MFixtureCodeCurrentEqualsFrozenF32": true,
+  "tags": {
+    "A": "cat16-36d-20261112T113255Z",
+    "B": "cat16-f32-20261112T113255Z",
+    "common": "cat16-common-f32-20261112T113255Z"
+  },
+  "commonBackendSource": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/source-B/backend",
+  "backendFixtureIncludesTestServer": true
+}

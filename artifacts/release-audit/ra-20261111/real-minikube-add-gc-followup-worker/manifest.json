@@ -1,0 +1,11 @@
+{
+  "status": "BLOCKED_POWER_GUARD",
+  "startedAt": "2026-11-11T19:33:37.738776+00:00",
+  "receiptAt": "2026-11-11T19:34:00.386963+00:00",
+  "recordedWorkSeconds": 0.028792142868041992,
+  "scriptStartToReceiptSeconds": 22.648187,
+  "phaseLimitSeconds": 120,
+  "noLiveObservation": true,
+  "noMutations": true,
+  "originalCase03UnchangedFAIL": true
+}

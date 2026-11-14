@@ -1,0 +1,1 @@
+{"status":"FAIL","browsers":[{"engine":"chromium","status":"FAIL","elapsedWallMs":49373,"boundedValid":true,"failure":{"type":"TimeoutError","message":"locator.click: Timeout 7000ms exceeded."}}]}

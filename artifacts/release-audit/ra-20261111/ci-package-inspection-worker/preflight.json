@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-11T16:59:21.750234+00:00",
+  "deadlineAt": "2026-11-11T17:03:21.750234+00:00",
+  "zipPath": ".git/release-audit/ci-3bdb7c0c-tested-builds.zip",
+  "zipBytes": 26217476,
+  "zipSHA256": "4a2d89059db9590e5d619c6dfa5ae78691015b703bbbd3d0ddf5ce862ef657da",
+  "expectedBytes": 26217476,
+  "expectedSHA256": "4a2d89059db9590e5d619c6dfa5ae78691015b703bbbd3d0ddf5ce862ef657da",
+  "ciRun": 43062361657,
+  "artifact": 13874845784,
+  "maxMembers": 1000,
+  "maxExpandedBytes": 268435456,
+  "networkBuildClusterForbidden": true
+}

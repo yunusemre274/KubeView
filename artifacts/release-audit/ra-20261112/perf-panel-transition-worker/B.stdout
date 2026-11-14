@@ -1,0 +1,3 @@
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+Results: /Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261112/perf-panel-transition-worker/runtime/cat16-panel-transition-B-20261112T180554Z

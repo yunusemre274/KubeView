@@ -1,0 +1,8 @@
+{
+  "label": "vertical02-integration",
+  "at": "2026-11-09T15:23:42.046962+00:00",
+  "baseCommit": "0029672c7dce2c6cdf5f19c49fea956bc618c7d3",
+  "binarySHA256": "936faed57e78bded7ee05f969e1588a72011715d7212021237e0cc93896c806f",
+  "indexSHA256": "0847de7713b56621a106433fba5d46147646daa9456e09fa4742a99f25e7cad7",
+  "note": "Cookie/profile isolation, camera and contrast fixes. Manual acceptance and old V11 gates remain open."
+}

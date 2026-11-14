@@ -1,0 +1,14 @@
+{"Time":"2026-11-13T00:41:10.09935+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace"}
+{"Time":"2026-11-13T00:41:10.364641+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto"}
+{"Time":"2026-11-13T00:41:10.364719+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Output":"=== RUN   FuzzReleaseImportInto\n"}
+{"Time":"2026-11-13T00:41:10.36609+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Output":"fuzz: elapsed: 0s, gathering baseline coverage: 0/8 completed\n"}
+{"Time":"2026-11-13T00:41:10.382924+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Output":"fuzz: elapsed: 0s, gathering baseline coverage: 8/8 completed, now fuzzing with 1 workers\n"}
+{"Time":"2026-11-13T00:41:13.368115+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Output":"fuzz: elapsed: 3s, execs: 211 (70/sec), new interesting: 1 (total: 9)\n"}
+{"Time":"2026-11-13T00:41:16.368097+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Output":"fuzz: elapsed: 6s, execs: 207765 (69185/sec), new interesting: 12 (total: 20)\n"}
+{"Time":"2026-11-13T00:41:19.368095+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Output":"fuzz: elapsed: 9s, execs: 457351 (83195/sec), new interesting: 12 (total: 20)\n"}
+{"Time":"2026-11-13T00:41:21.371551+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Output":"fuzz: elapsed: 11s, execs: 563506 (52986/sec), new interesting: 17 (total: 25)\n"}
+{"Time":"2026-11-13T00:41:21.371583+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Output":"--- PASS: FuzzReleaseImportInto (11.01s)\n"}
+{"Time":"2026-11-13T00:41:21.37159+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Test":"FuzzReleaseImportInto","Elapsed":11.01}
+{"Time":"2026-11-13T00:41:21.371598+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Output":"PASS\n"}
+{"Time":"2026-11-13T00:41:21.37201+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Output":"ok  \tgithub.com/k8s-tersane/tersane/backend/pkg/workspace\t11.272s\n"}
+{"Time":"2026-11-13T00:41:21.372026+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/workspace","Elapsed":11.273}

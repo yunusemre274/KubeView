@@ -1,0 +1,16 @@
+=== RUN   TestOwnedWorkspaceRealWorkspaceRecordAcceptance
+=== RUN   TestOwnedWorkspaceRealWorkspaceRecordAcceptance/fresh_qa_workspace_and_guarded_canary_ready
+    workspace_real_acceptance_test.go:526: FRESH_QA workspaceID=b8063a24-0be0-4536-b5ba-80ec1029b5e4 isolated from default02; Kubernetes fingerprint=b83588417e8bd8f95f683bbcc2cb3062bda49163f8f756f0dd9ee708131a3c08
+=== RUN   TestOwnedWorkspaceRealWorkspaceRecordAcceptance/native_create_and_rename_preserve_harbor_and_kubernetes_identity
+=== RUN   TestOwnedWorkspaceRealWorkspaceRecordAcceptance/native_export_import_remaps_ids_and_stays_unbound
+=== RUN   TestOwnedWorkspaceRealWorkspaceRecordAcceptance/explicit_binding_allows_read_without_inheriting_write_grant
+=== RUN   TestOwnedWorkspaceRealWorkspaceRecordAcceptance/native_remove_only_qa_records_kubernetes_canary_survives
+    workspace_real_acceptance_test.go:648: REAL native rename/export/import/bind/remove: QA records only; both guarded namespaces' Deployment/Pod fingerprints unchanged. No Secret body, other GVR, real timeout, or UI claim
+--- PASS: TestOwnedWorkspaceRealWorkspaceRecordAcceptance (5.91s)
+    --- PASS: TestOwnedWorkspaceRealWorkspaceRecordAcceptance/fresh_qa_workspace_and_guarded_canary_ready (0.09s)
+    --- PASS: TestOwnedWorkspaceRealWorkspaceRecordAcceptance/native_create_and_rename_preserve_harbor_and_kubernetes_identity (1.00s)
+    --- PASS: TestOwnedWorkspaceRealWorkspaceRecordAcceptance/native_export_import_remaps_ids_and_stays_unbound (1.00s)
+    --- PASS: TestOwnedWorkspaceRealWorkspaceRecordAcceptance/explicit_binding_allows_read_without_inheriting_write_grant (1.40s)
+    --- PASS: TestOwnedWorkspaceRealWorkspaceRecordAcceptance/native_remove_only_qa_records_kubernetes_canary_survives (1.40s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	6.263s

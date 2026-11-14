@@ -1,0 +1,54 @@
+{
+  "started_at_utc": "2026-11-11T13:27:20.804857+00:00",
+  "deadline_utc": "2026-11-11T13:36:20.804857+00:00",
+  "targets": [
+    {
+      "label": "hubble-relay",
+      "ref": "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1",
+      "official_tag": "v1.20.4",
+      "source": "https://github.com/cilium/cilium/releases/tag/v1.20.4",
+      "binary_paths": [
+        "usr/bin/hubble-relay"
+      ]
+    },
+    {
+      "label": "cilium",
+      "ref": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+      "official_tag": "v1.20.4",
+      "source": "https://github.com/cilium/cilium/releases/tag/v1.20.4",
+      "binary_paths": [
+        "opt/cni/bin/cilium-cni",
+        "usr/bin/cilium-agent",
+        "usr/bin/cilium-bugtool",
+        "usr/bin/cilium-dbg",
+        "usr/bin/cilium-envoy-bootstrap-locality",
+        "usr/bin/cilium-health",
+        "usr/bin/cilium-mount",
+        "usr/bin/hubble"
+      ]
+    },
+    {
+      "label": "operator-generic",
+      "ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+      "official_tag": "v1.20.4",
+      "source": "https://github.com/cilium/cilium/releases/tag/v1.20.4",
+      "binary_paths": [
+        "usr/bin/cilium-operator-generic"
+      ]
+    },
+    {
+      "label": "cilium-envoy",
+      "ref": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+      "official_tag": "v1.39.5-1792733054-8c73b2816bc8239e27f1fd53b271884688137459",
+      "source": "https://helm.cilium.io/cilium-1.20.4.tgz",
+      "binary_paths": []
+    }
+  ],
+  "docker_binary": "/usr/local/bin/docker",
+  "docker_host": "unix:///var/run/docker.sock",
+  "max_new_disk_bytes": 4294967296,
+  "rss_limit_bytes": 1610612736,
+  "per_command_timeout_seconds": 150,
+  "GOMAXPROCS": 1,
+  "create_only": true
+}

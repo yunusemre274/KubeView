@@ -1,0 +1,64 @@
+{
+  "created_at_utc": "2026-11-11T10:51:18.407270+00:00",
+  "source_files": [
+    {
+      "path": "frontend/src/data/resourceStore.js",
+      "sha256": "825a3503c74876ac464a35a2b7c16746a2f41a377f8a7d486716b3d49852f0bd"
+    },
+    {
+      "path": "frontend/src/data/resourceScopes.js",
+      "sha256": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158"
+    },
+    {
+      "path": "frontend/tests/store.test.js",
+      "sha256": "e0602bb6627b32a2ae15999d4a457ddee6116f3d2ba5a69ca05c8f5c4239ab27"
+    }
+  ],
+  "cases": [
+    {
+      "case": "baseline",
+      "isolated_directory": ".git/release-audit/fuzz-mutation-49999815/baseline",
+      "source_sha256": "825a3503c74876ac464a35a2b7c16746a2f41a377f8a7d486716b3d49852f0bd",
+      "equivalent_control": false,
+      "type": "baseline"
+    },
+    {
+      "case": "generation-guard-disabled",
+      "isolated_directory": ".git/release-audit/fuzz-mutation-49999815/generation-guard-disabled",
+      "source_sha256": "6e3b524f1ea746856cfba9f3ff1b0bb798cce7e635727cc9eb858ccda3c5f969",
+      "equivalent_control": false,
+      "type": "logic-mutation"
+    },
+    {
+      "case": "delete-by-address",
+      "isolated_directory": ".git/release-audit/fuzz-mutation-49999815/delete-by-address",
+      "source_sha256": "730a62531150e6d3eeb444ffca59acc39021fa790621687d90d142623ee6b6db",
+      "equivalent_control": false,
+      "type": "logic-mutation"
+    },
+    {
+      "case": "equivalent-limit-expression",
+      "isolated_directory": ".git/release-audit/fuzz-mutation-49999815/equivalent-limit-expression",
+      "source_sha256": "fc13d761b5b021089c73512d5a2e7a84d15eb952107db7d435efd65c5a0c687e",
+      "equivalent_control": true,
+      "type": "equivalent"
+    }
+  ],
+  "mutations": {
+    "generation-guard-disabled": {
+      "before": "generation !== state.generation",
+      "after": "false && generation !== state.generation",
+      "intended_wrong_behavior": "Accept old generation events"
+    },
+    "delete-by-address": {
+      "before": "if (payload.action === \"DELETE\") {\n      delete resources[identity(r)];\n      recordDeletion(identity(r), \"delete-event\");",
+      "after": "if (payload.action === \"DELETE\") {\n      for (const [uid, old] of Object.entries(resources))\n        if (address(old) === address(r)) delete resources[uid];\n      recordDeletion(identity(r), \"delete-event\");",
+      "intended_wrong_behavior": "A delayed DELETE for old UID removes same-name replacement UID"
+    },
+    "equivalent-limit-expression": {
+      "before": "const MAX_TOMBSTONES = 1000;",
+      "after": "const MAX_TOMBSTONES = 10 ** 3;",
+      "expected_behavior": "unchanged numeric value"
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "phase": "TEST04.05 controlled resources retest",
+  "singleRealRun": true,
+  "pureGuardCasesPassed": [
+    "known_old_terminal_deleting2_plus_new2",
+    "initial2_allowed",
+    "four_active_rejected",
+    "wrong_old_UID_rejected",
+    "five_total_rejected",
+    "wrong_owner_rejected",
+    "wrong_strategy_rejected",
+    "scale_ceiling3_preserved",
+    "scale_three_allowed"
+  ],
+  "currentRunOldTerminalDeletingOverlapConfirmed": true,
+  "earlierFailedRunCauseStillUnproven": true,
+  "observedEnvelopeTraces": [
+    {
+      "at": "2026-11-11T16:41:25.093959Z",
+      "totalAPIObjects": 4,
+      "oldKnownTerminalDeletingCount": 2,
+      "newNonterminalNondeletingCount": 2,
+      "declaredTotalCPULimitMilli": 300,
+      "declaredTotalMemoryLimitBytes": 201326592,
+      "allOwnersVerified": true,
+      "category": "allowed_exact_old_terminal_deleting_records"
+    },
+    {
+      "at": "2026-11-11T16:41:25.457659Z",
+      "totalAPIObjects": 4,
+      "oldKnownTerminalDeletingCount": 2,
+      "newNonterminalNondeletingCount": 2,
+      "declaredTotalCPULimitMilli": 300,
+      "declaredTotalMemoryLimitBytes": 201326592,
+      "allOwnersVerified": true,
+      "category": "allowed_exact_old_terminal_deleting_records"
+    }
+  ],
+  "resourceAcceptance": {
+    "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+    "generationAfter": 2,
+    "generationBefore": 1,
+    "metricsOrUsageClaim": false,
+    "newPodUIDs": [
+      "3ca4b1ff-ab59-4e17-ae54-248f059354d7",
+      "4fe075a0-3235-4d7f-945e-9a7c43c114b1"
+    ],
+    "observedGeneration": 2,
+    "oldPodUIDs": [
+      "ad241586-3b6f-4dba-9732-a25de6ef0926",
+      "de1e6801-4774-4b46-a3df-cf57bdc0f225"
+    ],
+    "readinessProof": "actual2Ready with owner chains",
+    "resources": {
+      "limits": {
+        "cpu": "100m",
+        "memory": "64Mi"
+      },
+      "requests": {
+        "cpu": "10m",
+        "memory": "16Mi"
+      }
+    },
+    "unrelatedDeploymentSpecPreserved": true
+  },
+  "rollouts": [
+    {
+      "replicas": 2,
+      "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+      "generation": 1,
+      "observedGeneration": 1,
+      "ownerChainCount": 2
+    },
+    {
+      "replicas": 2,
+      "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+      "generation": 2,
+      "observedGeneration": 2,
+      "ownerChainCount": 2
+    }
+  ],
+  "negativeHTTPStatuses": {
+    "readonly_create_rejected": 403,
+    "resources_invalid_quantity_rejected": 422,
+    "resources_request_exceeds_limit_rejected": 422
+  },
+  "cleanup": {
+    "UIDAndRVDeletePreconditions": true,
+    "deploymentUID": "c19783a2-977f-423e-aa37-15f6f75ac124",
+    "dynamicGVKGET404": true,
+    "podLabelListCount": 0,
+    "replicaSetLabelListCount": 0,
+    "typedGET404": true
+  },
+  "postCleanupFixtureHashesEqual": true,
+  "testExecutionSeconds": 9.38810275,
+  "outerJobSeconds": 19.294,
+  "maxTestSampleGapSeconds": 0.270312,
+  "maxOuterSampleGapSeconds": 0.279,
+  "phaseElapsedSecondsAtFinalization": 266.586798,
+  "initialBatteryPercent": 17,
+  "validBounded": true,
+  "firstFAIL20FilesUnchanged": true,
+  "scaleCeilingStill3": true,
+  "actualScaleRegression": "NOT_RUN / RETEST_REQUIRED after shared helper changes",
+  "onlyRepositorySource": "backend/pkg/server/release_operations_real_test.go",
+  "sourceSHA256": "92637b06e8bcec63e8be979123d14f075ce0f17c68c75441f989765b4266d0cc",
+  "sourceUnchangedDuringJob": true,
+  "noMetricsOrQualityBudgetClaim": true,
+  "finalizedAt": "2026-11-11T16:43:43.962612+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-09T10:31:46.454988+00:00",
+  "purpose": "two narrow UI evidence supplements only; not CPU measurement",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "nodes": [
+    {
+      "name": "kv-repair-1101",
+      "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+      "ready": "True"
+    },
+    {
+      "name": "kv-repair-1101-m02",
+      "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+      "ready": "True"
+    },
+    {
+      "name": "kv-repair-1101-m03",
+      "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+      "ready": "True"
+    }
+  ],
+  "globalKubeconfigWritten": false,
+  "binarySHA256": "180941247e252f34d71300967fc71ae146174a3dea3caba734d947e1da80f548"
+}

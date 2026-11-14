@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-11T20:11:55.155345+00:00",
+  "command": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "container",
+    "inspect",
+    "d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03"
+  ],
+  "exitCode": 1,
+  "safeStderr": "Error response from daemon: No such container: d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03\n",
+  "explicitNoSuchObject": true,
+  "existingContainerOrImageMutation": false
+}

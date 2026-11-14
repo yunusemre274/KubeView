@@ -1,0 +1,47 @@
+[
+  {
+    "path": "REPORT.md",
+    "bytes": 4028,
+    "sha256": "8c68338c58bb1412c22e59484c5d65d39ad03575119d2b5f93ad1f1341b22ad4"
+  },
+  {
+    "path": "actual-inventory.json",
+    "bytes": 2759,
+    "sha256": "d3e34b088bd5edb786fd4cd566fb596d28a587ac76770d3e294df318cf953dd0"
+  },
+  {
+    "path": "cli-help-commands.json",
+    "bytes": 626,
+    "sha256": "f2cdef2032c7e47a637aee8be94bb509816fd0ae5fdc0eb36c30cd4573eb0ba5"
+  },
+  {
+    "path": "node-add-help.txt",
+    "bytes": 577,
+    "sha256": "3480a619ea050bbce0b5a53543f5f7be959dd20bff39f2dcde8ba2d4c87a0f20"
+  },
+  {
+    "path": "node-delete-help.txt",
+    "bytes": 173,
+    "sha256": "e3841b9e2b7b20ab394d5aa1101a92fcf4c6f2af58b71f5b908f70f8de613d5d"
+  },
+  {
+    "path": "operational-plan.json",
+    "bytes": 3897,
+    "sha256": "e7751fdb8ddb1f08d15bf8da6d626086b3dc98895a72d7bc5ff1093cfc1cd6f5"
+  },
+  {
+    "path": "preflight.json",
+    "bytes": 193,
+    "sha256": "225f1f3250369fd58f1738ee835bd6117edd8b98ad69c1cc069ad5d1e4e24d85"
+  },
+  {
+    "path": "private-profile-summary.json",
+    "bytes": 366,
+    "sha256": "d1d35842def47cca138231bcbe2e035f5a3d798d51fb6c283a066ec8ad1a0939"
+  },
+  {
+    "path": "source-hashes.json",
+    "bytes": 658,
+    "sha256": "6668150fc4aec8dfbe8e0bc0dff18c64b5e7ccd2d2775937b8169ee7422333a7"
+  }
+]

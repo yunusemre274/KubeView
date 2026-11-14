@@ -1,0 +1,145 @@
+{
+  "attempt": "doctor-02",
+  "exitCode": 0,
+  "elapsedSeconds": 0.839,
+  "filesUnchanged": true,
+  "sourceSHA256": "efa80d5ceb050ae54f552151fe12485eac36a35178b9c2bfdd0da1721f88fe8e",
+  "error": "",
+  "doctor": {
+    "readOnly": true,
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.14",
+    "stateDir": "/Users/yunusemre/Library/Application Support/KubeView/manual-lab-v1",
+    "stateExists": true,
+    "pins": {
+      "minikube": "v1.38.1",
+      "kubernetes": "v1.35.1",
+      "baseImage": "gcr.io/k8s-minikube/kicbase:v0.0.50",
+      "nginx": "nginx:1.27.5-alpine",
+      "busybox": "busybox:1.37.0",
+      "alpine": "alpine:3.21.3"
+    },
+    "tools": {
+      "minikube": {
+        "available": true,
+        "version": "v1.38.1",
+        "error": null
+      },
+      "kubectl": {
+        "available": true,
+        "version": "{\n  \"clientVersion\": {\n    \"major\": \"1\",\n    \"minor\": \"34\",\n    \"gitVersion\": \"v1.34.1\",\n    \"gitCommit\": \"93248f9ae092f571eb870b7664c534bfc7d00f03\",\n    \"gitTreeState\": \"clean\",\n    \"buildDate\": \"2025-09-09T19:44:50Z\",\n    \"goVersion\": \"go1.24.6\",\n    \"compiler\": \"gc\",\n    \"platform\": \"darwin/arm64\"\n  },\n  \"kustomizeVersion\": \"v5.7.1\"\n}",
+        "error": null
+      },
+      "docker": {
+        "available": true,
+        "version": "29.5.3",
+        "error": null
+      }
+    },
+    "ports": {
+      "01-bos-baslangic": {
+        "port": 19701,
+        "free": true
+      },
+      "02-ortak-kume": {
+        "port": 19702,
+        "free": false
+      },
+      "03-bagimsiz-kumeler": {
+        "port": 19703,
+        "free": true
+      },
+      "04-kisitli-yetki": {
+        "port": 19704,
+        "free": true
+      },
+      "05-ariza-toparlanma": {
+        "port": 19705,
+        "free": true
+      },
+      "06-limanlar-arasi-ag": {
+        "port": 19706,
+        "free": true
+      },
+      "07-yuk-ve-gecis": {
+        "port": 19707,
+        "free": true
+      }
+    },
+    "budgets": {
+      "A": "2 nodes × 2 CPU/2048MiB; ~4GiB + Docker overhead",
+      "A+B": "3 nodes; ~6GiB + overhead",
+      "telemetry": "explicit separate state only; no default CNI changes"
+    },
+    "network": [
+      "First up: Kubernetes v1.35.1 binaries/images from minikube registries",
+      "Fixture images: nginx:1.27.5-alpine and busybox:1.37.0",
+      "Optional telemetry downloads require separate explicit opt-in"
+    ],
+    "automaticInstall": false,
+    "verifiedStartFlags": {
+      "--keep-context": true,
+      "--embed-certs": true,
+      "--nodes": true,
+      "--listen-address": true,
+      "--cni": true
+    },
+    "dockerResources": {
+      "cpus": 10,
+      "memoryBytes": 8321515520,
+      "architecture": "aarch64"
+    },
+    "localBaseImage": "sha256:ffefe6978189e82227982f54b97fb3725fc1414883a54a0339111dac4870e7a7 arm64",
+    "diskFreeBytes": 495314169856,
+    "binary": {
+      "path": "/private/var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/kubeview-workspace-bundle-mg3ji5eh/kubeview",
+      "sha256": "cf82f975632e5b2a4be737164d4b330d058e825c55ef347f56fb4108b8ba9eba",
+      "version": "KubeView 1.1.0 (0029672-workspace-dirty) darwin/arm64"
+    },
+    "globalKubeconfigHashes": {
+      "/Users/yunusemre/.kube/config": "290dbb3ee808e86875580e62e3faedc92d5d7392fa32ac41a74222010e170ec7"
+    },
+    "processOwnershipTool": {
+      "available": true,
+      "tool": "lsof"
+    },
+    "readerTokens": {
+      "04-kisitli-yetki": {
+        "serverExpiryKnown": false,
+        "expiresAt": null,
+        "refreshBefore": null
+      }
+    },
+    "optionalTelemetry": {
+      "ciliumChart": "1.20.2",
+      "hubbleRequired": "1.20.2",
+      "ciliumCLIRequired": false,
+      "automaticPackageInstall": false,
+      "helm": {
+        "available": true,
+        "version": "v4.2.3+g43e8b7f",
+        "verifiedRequiredFlags": true,
+        "contentCacheFlag": true
+      },
+      "hubble": {
+        "available": false
+      },
+      "forwardPort": {
+        "port": 19708,
+        "free": true
+      }
+    },
+    "ownership": {
+      "labId": "kvml-ccdfe731dabd",
+      "stateMode": "0o700",
+      "privateFileModes": {
+        "04-kisitli-yetki.json": "0o600",
+        "02-ortak-kume.json": "0o600",
+        "05-ariza-toparlanma.json": "0o600",
+        "06-limanlar-arasi-ag.json": "0o600",
+        "admin.json": "0o600"
+      }
+    }
+  },
+  "pass": true
+}

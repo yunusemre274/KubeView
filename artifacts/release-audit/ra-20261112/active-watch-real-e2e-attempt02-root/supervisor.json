@@ -1,0 +1,5 @@
+{
+  "pid": 64413,
+  "identity": "Fri Nov 13 00:25:24 2026     /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/run.py",
+  "purpose": "SIGTERM/SIGINT triggers owned captured-child cleanup"
+}

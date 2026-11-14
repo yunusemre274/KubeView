@@ -1,0 +1,7 @@
+{
+  "stage": "red-before-production-change",
+  "finishedOrSampledAt": "2026-11-11T13:43:42.212732+00:00",
+  "sourceHEAD": "6f1e745365dc51c863bb5781c7ec94cca281b742",
+  "mainGoSHA256": "d6e6ca96084c62447df46cf55c7837d40dac89d1f4a6a90bc1201d00fb91e4e5",
+  "command": "GOMAXPROCS=1 GOTOOLCHAIN=local /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go -C backend test -p 1 -parallel 1 -timeout 60s -count 1 -run TestMainUI -v ."
+}

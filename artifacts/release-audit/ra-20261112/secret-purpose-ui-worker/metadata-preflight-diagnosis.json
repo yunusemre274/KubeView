@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-12T11:24:58.934539+00:00",
+  "namespaceUIDSealGuard": true,
+  "metadataOnlyAccept": true,
+  "HTTPStatus": 200,
+  "kind": "PartialObjectMetadataList",
+  "itemsJSONType": "NoneType",
+  "itemCount": 0,
+  "hasAnyDataOrStringDataField": false,
+  "mutations": 0,
+  "appOrBrowserStarted": false
+}

@@ -1,0 +1,8 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/68 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 68/68 completed, now fuzzing with 1 workers
+fuzz: elapsed: 3s, execs: 38201 (12725/sec), new interesting: 21 (total: 89)
+fuzz: elapsed: 6s, execs: 78491 (13435/sec), new interesting: 40 (total: 108)
+fuzz: elapsed: 9s, execs: 111850 (11116/sec), new interesting: 50 (total: 118)
+fuzz: elapsed: 11s, execs: 111850 (0/sec), new interesting: 50 (total: 118)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/workspace	11.269s

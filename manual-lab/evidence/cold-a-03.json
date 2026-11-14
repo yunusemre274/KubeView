@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "startedAt": 1794227643.3260539,
+  "command": "up --profile 02-ortak-kume",
+  "cwd": "outside bundle /tmp",
+  "attempt": "cold-a-03",
+  "priorAttempt": "cold-a-02 null DockerIPAM failed before any newcluster/container; retained",
+  "exitCode": 1,
+  "elapsedSeconds": 0.211,
+  "output": "Traceback (most recent call last):\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 1065, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 1054, in main\n    getattr(lab, args.command)()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 594, in up\n    self.ensure_cluster(key)\n    ~~~~~~~~~~~~~~~~~~~^^^^^\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 332, in ensure_cluster\n    self.capture_containers(key, allow_partial=True)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 375, in capture_containers\n    labels = actual[\"Config\"].get(\"Labels\") or {}\n             ~~~~~~^^^^^^^^^^\nKeyError: 'Config'\n"
+}

@@ -1,0 +1,26 @@
+755|0|0|2883746|/cni/loopback
+755|0|0|16210424|/opt/cni/bin/cilium-cni
+755|0|0|125730200|/usr/bin/cilium-agent
+755|0|0|10803368|/usr/bin/cilium-bugtool
+755|0|0|92797488|/usr/bin/cilium-dbg
+755|0|0|24685208|/usr/bin/cilium-envoy-bootstrap-locality
+755|0|0|11993216|/usr/bin/cilium-health
+755|0|0|5481552|/usr/bin/cilium-health-responder
+755|0|0|7098560|/usr/bin/cilium-mount
+755|0|0|2810280|/usr/bin/cilium-sysctlfix
+755|0|0|3735714|/usr/bin/gops
+755|0|0|70116352|/usr/bin/hubble
+755|0|0|2228386|/usr/sbin/iptables-wrapper
+755|1337|1337|79745496|/usr/bin/cilium-envoy
+755|1337|1337|715608|/usr/bin/cilium-envoy-starter
+644|0|0|180744|/etc/ssl/certs/ca-certificates.crt
+644|0|0|2571|/etc/apt/sources.list.d/ubuntu.sources
+644|0|0|3607|/usr/share/keyrings/ubuntu-archive-keyring.gpg
+644|0|0|1885503|/LICENSE.all
+
+PATCHED_LIBRARY_HASHES
+e06efbb331b4d8318b032e5822a2b705ff3e00bb8f347ed6589f2044cc0399d0  /usr/lib/aarch64-linux-gnu/libpcre2-8.so.0
+2d2437c87551b247720b69dd3d761227b4d6f7ee9a20a10ee75e6efc2808b79a  /usr/lib/aarch64-linux-gnu/libz.so.1
+
+CACHE_CHECK
+active_tmp_and_lists_and_archived_debs_empty

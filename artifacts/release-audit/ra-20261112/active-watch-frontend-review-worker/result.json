@@ -1,0 +1,58 @@
+{
+  "status": "SOURCE_REVIEW_PASS_TYPED_PROTOCOL_WITH_LIMITS",
+  "finishedAt": "2026-11-12T20:59:39.153268+00:00",
+  "newTestsAppUIBuildCluster": false,
+  "sourceBeforeCommit": "2be79c84e4c936e064897cbae6b35c26e094dea3",
+  "originalSourceSHAIndependentlyVerified": true,
+  "sourceAfterSHA256": {
+    "frontend/src/data/resourceStore.js": "a88fd60b1519c23e622ac986fe6d96caf8a1a8e780bb2f36d603b4eedbdeb525",
+    "frontend/src/data/resourceScopes.js": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158",
+    "frontend/tests/release-watch-authz.test.js": "de4a2f8741ecf17d90e4a386dbd7f3b47b081f51a2542b37e99f420315c4a215"
+  },
+  "rootManifestVerified": 8,
+  "RED": {
+    "tests": 3,
+    "pass": 1,
+    "fail": 2,
+    "skipped": 0
+  },
+  "GREEN": {
+    "tests": 46,
+    "pass": 46,
+    "fail": 0,
+    "skipped": 0
+  },
+  "sourceVerdicts": {
+    "canonicalUIDAndResourceReferencePreserved": true,
+    "tombstonesAndOutOfScopePreservedByStateSpread": true,
+    "affectedScopeCopiedAndForcedNonAuthoritative": true,
+    "otherNamespaceScopeAndResourcePreserved": true,
+    "previousStateNotMutated": true,
+    "explicitWrongContextGenerationIgnoredBeforeMerge": true,
+    "healthySTATUSDoesNotRestoreScopeAuthority": true,
+    "successfulSnapshotRecoveryCovered": true
+  },
+  "limitations": [
+    "New scopes.filter assumes array/non-null scope entries; malformed metadata can throw and is not tested. Typed production Go scope-array protocol has no demonstrated regression here.",
+    "Direct new tests use empty tombstones; nonempty tombstone/outOfScope, wildcard overlaps, missing-generation legacy messages and multi-failure arrays lack direct cases. Source leaves those state fields unchanged.",
+    "Global heartbeat synced/stale fields follow existing policy; failed per-resource scope authority remains separate.",
+    "No runtime/browser/realRoleBinding/WebSocketE2E/secureerase/instantrevoke/CPU/finalpackage acceptance."
+  ],
+  "timing": {
+    "targetSeconds": 90,
+    "elapsedBeforeFinalizationSeconds": 120.828
+  },
+  "inputSHA256": {
+    "artifacts/release-audit/ra-20261112/active-watch-frontend-root/PLAN.json": "1c5d356b8b2a59939ce5531a3d08dc27e87c6cd2e5e2e6d0218da9440daa37c5",
+    "artifacts/release-audit/ra-20261112/active-watch-frontend-root/REPORT.md": "c8dc98f04cdd2b3d9aaf7f4838af9ea4156e6e075b6a0a3fbbe0db595944f1b1",
+    "artifacts/release-audit/ra-20261112/active-watch-frontend-root/green.json": "9d574670f84c1dcc0dc1a4eb48d239cc129949cc755a5d2005e56f7a6469eda1",
+    "artifacts/release-audit/ra-20261112/active-watch-frontend-root/green.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/release-audit/ra-20261112/active-watch-frontend-root/green.stdout": "c65226f85bf606aa669c061ee1d279e9f0235cedcf5ef0fac97da611fa58514a",
+    "artifacts/release-audit/ra-20261112/active-watch-frontend-root/red.json": "cb35a1d0a4f8e69821ad75e810653c64f09298877e72b176aada07827ddce03e",
+    "artifacts/release-audit/ra-20261112/active-watch-frontend-root/red.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/release-audit/ra-20261112/active-watch-frontend-root/red.stdout": "73a44f5f0876e49612d187b3efc92cd2c0affa73866a1fe4d6e031a52725ac74",
+    "frontend/src/data/resourceStore.js": "a88fd60b1519c23e622ac986fe6d96caf8a1a8e780bb2f36d603b4eedbdeb525",
+    "frontend/src/data/resourceScopes.js": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158",
+    "frontend/tests/release-watch-authz.test.js": "de4a2f8741ecf17d90e4a386dbd7f3b47b081f51a2542b37e99f420315c4a215"
+  }
+}

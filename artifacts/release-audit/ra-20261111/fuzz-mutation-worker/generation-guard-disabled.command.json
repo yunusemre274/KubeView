@@ -1,0 +1,35 @@
+{
+  "case": "generation-guard-disabled",
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/store.test.js"
+  ],
+  "cwd": ".git/release-audit/fuzz-mutation-49999815/generation-guard-disabled",
+  "started_at_utc": "2026-11-11T10:51:54.864922+00:00",
+  "finished_at_utc": "2026-11-11T10:51:58.363695+00:00",
+  "duration_seconds": 3.499,
+  "exit_code": 1,
+  "timed_out": false,
+  "timeout_seconds": 30,
+  "summary_lines": [
+    "\u2139 tests 17",
+    "\u2139 suites 0",
+    "\u2139 pass 15",
+    "\u2139 fail 2",
+    "\u2139 cancelled 0",
+    "\u2139 skipped 0",
+    "\u2139 todo 0",
+    "\u2139 duration_ms 3196.496792"
+  ],
+  "failed_test_lines": [
+    "generation rejects previous session messages and resync removes vanished resources",
+    "namespace/GVR authority and connection identity do not leak across scopes or contexts",
+    "failing tests:",
+    "generation rejects previous session messages and resync removes vanished resources",
+    "namespace/GVR authority and connection identity do not leak across scopes or contexts"
+  ],
+  "has_syntax_error": false,
+  "contains_assertion_failure": true
+}

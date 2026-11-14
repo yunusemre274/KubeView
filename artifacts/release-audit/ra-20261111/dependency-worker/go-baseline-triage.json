@@ -1,0 +1,1184 @@
+[
+  {
+    "id": "GO-2024-3333",
+    "summary": "Non-linear parsing of case-insensitive content in golang.org/x/net/html",
+    "aliases": [
+      "CVE-2024-45338",
+      "GHSA-w32m-9786-jp63"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2024-3333",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.33.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2024-3333",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2025-3488",
+    "summary": "Unexpected memory consumption during token parsing in golang.org/x/oauth2",
+    "aliases": [
+      "CVE-2025-22868"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2025-3488",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "module",
+    "modules": {
+      "golang.org/x/oauth2": {
+        "installed_version": "v0.10.0",
+        "fixed_version": "v0.27.0",
+        "symbol_traces": 0,
+        "imported_packages": []
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2025-3488",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "module-only",
+    "assessment": "oauth2 module is selected but no vulnerable token parsing symbol/package call was reported in current build.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2025-3503",
+    "summary": "HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net",
+    "aliases": [
+      "CVE-2025-22870",
+      "GHSA-qxp5-gwg8-xv66"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2025-3503",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.36.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/proxy"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2025-3503",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2025-3595",
+    "summary": "Incorrect Neutralization of Input During Web Page Generation in x/net in golang.org/x/net",
+    "aliases": [
+      "CVE-2025-22872"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2025-3595",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.38.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2025-3595",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-4440",
+    "summary": "Quadratic parsing complexity in golang.org/x/net/html",
+    "aliases": [
+      "CVE-2025-47911"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-4440",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.45.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-4440",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-4441",
+    "summary": "Infinite parsing loop in golang.org/x/net",
+    "aliases": [
+      "CVE-2025-58190"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-4441",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.45.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-4441",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-4918",
+    "summary": "Infinite loop in HTTP/2 transport when given bad SETTINGS_MAX_FRAME_SIZE in net/http/internal/http2 in golang.org/x/net",
+    "aliases": [
+      "CVE-2026-33814"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-4918",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.53.0",
+        "symbol_traces": 4,
+        "imported_packages": [
+          "golang.org/x/net/http2"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-4918",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-peer",
+    "assessment": "Current Kubernetes HTTP/2 client path exists. Crafted settings must come from an upstream peer; ordinary browser JSON is not that peer.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-4958",
+    "summary": "Uncontrolled resource consumption when parsing SPDY frames in github.com/moby/spdystream",
+    "aliases": [
+      "CVE-2026-35469",
+      "GHSA-pc3f-x583-g7j2"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-4958",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "github.com/moby/spdystream": {
+        "installed_version": "v0.2.0",
+        "fixed_version": "v0.5.1",
+        "symbol_traces": 4,
+        "imported_packages": [
+          "github.com/moby/spdystream",
+          "github.com/moby/spdystream/spdy"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-4958",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-peer",
+    "assessment": "Current NewSPDYExecutor and port-forward dialer use the parser; a peer sending malformed SPDY frames can cause OOM. Trusted kubeconfig/TLS and RBAC constrain who supplies frames.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5024",
+    "summary": "Invoking integer overflow in NewNTUnicodeString in golang.org/x/sys/windows",
+    "aliases": [
+      "CVE-2026-39824"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5024",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "module",
+    "modules": {
+      "golang.org/x/sys": {
+        "installed_version": "v0.18.0",
+        "fixed_version": "v0.44.0",
+        "symbol_traces": 0,
+        "imported_packages": []
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5024",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "platform-not-in-scan",
+    "assessment": "Vulnerable x/sys/windows symbol is absent from Darwin build; Linux/Windows source scans were not run. Module match is not a current Darwin exploit.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5025",
+    "summary": "Invoking incorrect handling of namespaced elements in foreign content in golang.org/x/net/html",
+    "aliases": [
+      "CVE-2026-42506"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5025",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.55.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5025",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5026",
+    "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna",
+    "aliases": [
+      "CVE-2026-39821"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5026",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.55.0",
+        "symbol_traces": 1,
+        "imported_packages": [
+          "golang.org/x/net/idna"
+        ]
+      },
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.6",
+        "symbol_traces": 3,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5026",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-input",
+    "assessment": "IDNA conversion symbols exist in outbound transport paths; no app hostname ACL based on the converted Unicode form was found. Privilege escalation prerequisite is not established.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5027",
+    "summary": "Invoking incorrect handling of HTML elements in foreign content in golang.org/x/net/html",
+    "aliases": [
+      "CVE-2026-42502"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5027",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.55.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5027",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5028",
+    "summary": "Invoking denial of service when parsing arbitrary HTML in golang.org/x/net/html",
+    "aliases": [
+      "CVE-2026-25680"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5028",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.55.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5028",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5029",
+    "summary": "Invoking incorrect handling of character references in DOCTYPE nodes in golang.org/x/net/html",
+    "aliases": [
+      "CVE-2026-25681"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5029",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.55.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5029",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5030",
+    "summary": "Invoking duplicate attributes can cause XSS in golang.org/x/net/html",
+    "aliases": [
+      "CVE-2026-27136"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5030",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.55.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5030",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5942",
+    "summary": "Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage",
+    "aliases": [
+      "CVE-2026-46600"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5942",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.56.0",
+        "symbol_traces": 0,
+        "imported_packages": []
+      },
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.6",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "net"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5942",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "DNS package import exists but vulnerable SVCB/HTTPS record parser symbol was not reached in current static analysis.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5970",
+    "summary": "Infinite loop on invalid input in golang.org/x/text",
+    "aliases": [
+      "CVE-2026-56852"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5970",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "golang.org/x/text": {
+        "installed_version": "v0.14.0",
+        "fixed_version": "v0.39.0",
+        "symbol_traces": 4,
+        "imported_packages": [
+          "golang.org/x/text/unicode/norm"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5970",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-input",
+    "assessment": "Unicode normalization is used by IDNA. Invalid UTF-8 must reach the relevant normalization operation; malicious hostname/redirect condition was not demonstrated.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-5972",
+    "summary": "Enforce maximum recursion depth in encoding/asn1",
+    "aliases": [
+      "CVE-2026-33818"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-5972",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.6",
+        "symbol_traces": 1,
+        "imported_packages": [
+          "encoding/asn1"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-5972",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-input",
+    "assessment": "Certificate ASN.1 parsing is reached from trusted kubeconfig/in-cluster and TLS paths; applicability of attacker-controlled recursive structure was not exercised.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6088",
+    "summary": "Add recursion depth guard during decode in encoding/xml",
+    "aliases": [
+      "CVE-2026-56859"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6088",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.6",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "encoding/xml"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6088",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "encoding/xml is imported but vulnerable decode symbol is not reached in current static analysis.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6089",
+    "summary": "Apply ReadHeaderTimeout when doing unencrypted HTTP/2 check in net/http",
+    "aliases": [
+      "CVE-2026-56853"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6089",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.6",
+        "symbol_traces": 1,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6089",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "configuration-not-present",
+    "assessment": "Gateway Server.Serve uses plain HTTP with no UnencryptedHTTP2 protocol enablement. Symbol reachability alone does not enable this protocol.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6090",
+    "summary": "Limit handshake messages we are willing to accept post-handshake in crypto/tls",
+    "aliases": [
+      "CVE-2026-56862"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6090",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.6",
+        "symbol_traces": 4,
+        "imported_packages": [
+          "crypto/tls"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6090",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "configuration-not-present",
+    "assessment": "Advisory describes malicious-client TLS-server post-handshake work. Gateway has no TLS listener; outbound TLS symbol matches do not establish that server condition.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6091",
+    "summary": "Fix Javascript regexp context tracking in html/template",
+    "aliases": [
+      "CVE-2026-56858"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6091",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "module",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.6",
+        "symbol_traces": 0,
+        "imported_packages": []
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6091",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "module-only",
+    "assessment": "No html/template import/vulnerable symbol path in current application build.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6218",
+    "summary": "Avoid quadratic complexity in resolvePath in net/url",
+    "aliases": [
+      "CVE-2026-56860"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6218",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.6",
+        "symbol_traces": 1,
+        "imported_packages": [
+          "net/url"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6218",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-input",
+    "assessment": "Outbound client redirect processing can resolve relative URLs. Attacker-controlled long relative Location input is a prerequisite; no exploit was run.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6278",
+    "summary": "Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key in github.com/gorilla/websocket",
+    "aliases": [
+      "GHSA-w67g-5rqw-f597"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6278",
+      "review_status": "UNREVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "github.com/gorilla/websocket": {
+        "installed_version": "v1.5.1",
+        "fixed_version": "v1.5.3",
+        "symbol_traces": 14,
+        "imported_packages": [
+          "github.com/gorilla/websocket"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6278",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "advisory-range-discrepancy",
+    "assessment": "Unreviewed <1.5.3 range conflicts with installed1.5.1 conn.go crypto/rand.Reader implementation. Browser WebSockets are server-side; current exec selects SPDY. Do not claim weak PRNG exploit.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6599",
+    "summary": "Reset context tracking on consecutive template expressions in html/template",
+    "aliases": [
+      "CVE-2026-94448"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6599",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "module",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 0,
+        "imported_packages": []
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6599",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "module-only",
+    "assessment": "No html/template import/vulnerable symbol path in current application build.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6600",
+    "summary": "Recognize yield as regexp preceder keyword in html/template",
+    "aliases": [
+      "CVE-2026-97030"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6600",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "module",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 0,
+        "imported_packages": []
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6600",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "module-only",
+    "assessment": "No html/template import/vulnerable symbol path in current application build.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6603",
+    "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+    "aliases": [
+      "CVE-2026-78659"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6603",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.60.0",
+        "symbol_traces": 24,
+        "imported_packages": [
+          "golang.org/x/net/http2"
+        ]
+      },
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 136,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6603",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "configuration-not-present",
+    "assessment": "HTTP/2 server Trailer memory condition; gateway does not enable a TLS/unencrypted HTTP/2 server.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6604",
+    "summary": "Root.Mkdir(All) can follow junctions out of the root on Windows in os",
+    "aliases": [
+      "CVE-2026-56857"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6604",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "os"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6604",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "platform-not-in-scan",
+    "assessment": "Windows os.Root junction condition; os package imported but affected Windows operation is not established in Darwin scan.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6605",
+    "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
+    "aliases": [
+      "CVE-2026-56866"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6605",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 4,
+        "imported_packages": [
+          "net/http",
+          "net/http/httputil"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6605",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "prerequisite-blocked",
+    "assessment": "Preview proxy rejects CONNECT and uses Proxy:nil and DisableKeepAlives:true; body-bearing CONNECT with pooled shared transport is not established.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6607",
+    "summary": "Reject malformed ECH outer extension references in crypto/tls",
+    "aliases": [
+      "CVE-2026-97031"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6607",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 4,
+        "imported_packages": [
+          "crypto/tls"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6607",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "configuration-not-present",
+    "assessment": "Advisory describes malicious ECH ClientHello input to a TLS server. Gateway has no TLS listener; outbound TLS imports alone do not establish the condition.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6608",
+    "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
+    "aliases": [
+      "CVE-2026-94440"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6608",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 1,
+        "imported_packages": [
+          "mime/multipart",
+          "net/textproto"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6608",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "prerequisite-not-established",
+    "assessment": "No ParseMultipartForm/MultipartReader route found. ReadMIMEHeader is shared with HTTP request parsing; matching that symbol does not establish the multipart remaining-memory condition.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6609",
+    "summary": "Lack of limit on size of parsed Range headers in net/http",
+    "aliases": [
+      "CVE-2026-78667"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6609",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 1,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6609",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "direct-runtime-candidate",
+    "assessment": "Production frontendHandler calls http.FileServer for embedded/STATIC_DIR assets; incoming Range header reaches affected code. Excess CPU candidate; no payload or active scan executed.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6610",
+    "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+    "aliases": [
+      "CVE-2026-78660"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6610",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.60.0",
+        "symbol_traces": 4,
+        "imported_packages": [
+          "golang.org/x/net/http2"
+        ]
+      },
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 6,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6610",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "prerequisite-not-established",
+    "assessment": "Kubernetes HTTP/2 clients are present. Preview proxy upstream is HTTP/1, and log/API bodies are not a raw HTTP/2-to-HTTP/1 header proxy; response-smuggling bridge not established.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6611",
+    "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+    "aliases": [
+      "CVE-2026-78669"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6611",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.60.0",
+        "symbol_traces": 24,
+        "imported_packages": [
+          "golang.org/x/net/http2"
+        ]
+      },
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 136,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6611",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-peer",
+    "assessment": "Malicious HTTP/2 client or server peer can send repeated window-size settings; current outbound Kubernetes HTTP/2 peer path matters even though gateway HTTP/2 server is disabled.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6612",
+    "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+    "aliases": [
+      "CVE-2026-78663"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6612",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.60.0",
+        "symbol_traces": 24,
+        "imported_packages": [
+          "golang.org/x/net/http2"
+        ]
+      },
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 136,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6612",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "configuration-not-present",
+    "assessment": "HTTP/2 server receive-flow-control refund condition; gateway HTTP/2 server is not enabled.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6613",
+    "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
+    "aliases": [
+      "CVE-2026-94439"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6613",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 41,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6613",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-deployment",
+    "assessment": "Some health/version handlers can return2xx to CONNECT without hijacking. Request-smuggling impact requires an intermediary treating it as a tunnel; documented deployment excludes arbitrary reverse proxies.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6617",
+    "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
+    "aliases": [
+      "CVE-2026-97032"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6617",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.60.0",
+        "symbol_traces": 24,
+        "imported_packages": [
+          "golang.org/x/net/http2"
+        ]
+      },
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.9",
+        "symbol_traces": 136,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6617",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "configuration-not-present",
+    "assessment": "HTTP/2 server HPACK race condition; gateway HTTP/2 server is not enabled.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6629",
+    "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text",
+    "aliases": [
+      "CVE-2026-56851"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6629",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "module",
+    "modules": {
+      "golang.org/x/text": {
+        "installed_version": "v0.14.0",
+        "fixed_version": "v0.41.0",
+        "symbol_traces": 0,
+        "imported_packages": []
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6629",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "module-only",
+    "assessment": "x/text/secure/precis package/vulnerable symbol not imported in current application build.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6809",
+    "summary": "Distrust compromised intermediate certificates in crypto/x509",
+    "aliases": [
+      "CVE-2026-111943"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6809",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.10",
+        "symbol_traces": 1,
+        "imported_packages": [
+          "crypto/x509"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6809",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "conditional-runtime-trust-store",
+    "assessment": "TLS certificate verification is reached. Exploitation depends on compromised intermediates and affected trust-store behavior; not validated on every target OS.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6859",
+    "summary": "HTTP/1 server crash due to MaxBytesReader header race in net/http",
+    "aliases": [
+      "CVE-2026-97054"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6859",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "symbol",
+    "modules": {
+      "stdlib": {
+        "installed_version": "v1.26.5",
+        "fixed_version": "v1.26.11",
+        "symbol_traces": 41,
+        "imported_packages": [
+          "net/http"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6859",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "prerequisite-not-established",
+    "assessment": "JSON decoder uses MaxBytesReader synchronously before response writes. Advisory requires concurrent body reads and header writes; no such path was demonstrated.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6860",
+    "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+    "aliases": [
+      "CVE-2026-78661"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6860",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.62.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6860",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  },
+  {
+    "id": "GO-2026-6866",
+    "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+    "aliases": [
+      "CVE-2026-97045"
+    ],
+    "database_specific": {
+      "url": "https://pkg.go.dev/vuln/GO-2026-6866",
+      "review_status": "REVIEWED"
+    },
+    "highest_evidence_level": "package",
+    "modules": {
+      "golang.org/x/net": {
+        "installed_version": "v0.23.0",
+        "fixed_version": "v0.62.0",
+        "symbol_traces": 0,
+        "imported_packages": [
+          "golang.org/x/net/html"
+        ]
+      }
+    },
+    "primary_report": "https://pkg.go.dev/vuln/GO-2026-6866",
+    "impact": "Go runtime dependency/source inventory; no build-only/dev exemption inferred",
+    "assessment_category": "package-only",
+    "assessment": "x/net/html is imported transitively; vulnerable parsing/rendering symbol is not reached in current static analysis. Other platforms, tags or future calls need separate review.",
+    "exploit_test": "NOT RUN; read-only static review only"
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-11T13:44:54.689921+00:00",
+  "sourceHEAD": "fd448e8a98ff90ae68253359de2eccae818d2528",
+  "commands": [
+    "GOMAXPROCS=1 GOTOOLCHAIN=local go1.26.11 -C backend test -p 1 -parallel 1 -timeout 60s -count 1 -run TestMainUI -v .",
+    "GOMAXPROCS=1 GOTOOLCHAIN=local go1.26.11 -C backend test -p 1 -parallel 1 -timeout 60s -count 1 -v ."
+  ],
+  "sourceSHA256": {
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "backend/security_headers_test.go": "328bca34b886a2be802d19b5915b21d64a3cab84d15599d794c6d2c01fc44bd0"
+  },
+  "existingDistStaticScan": {
+    "files": [
+      {
+        "file": "frontend/dist/assets/index-DDfzt6ML.js",
+        "sha256": "b48977d352b3f17f8e2e2987f5ac04d98c89f593c2fcce6479b01aa110562313"
+      },
+      {
+        "file": "frontend/dist/assets/HarborScene-COc_bafo.js",
+        "sha256": "19fbdfb18c72962a265056080c5ecb6e5679e5fb4f76a3facdb7e5a436005046"
+      },
+      {
+        "file": "frontend/dist/assets/three-BKmXRbXN.js",
+        "sha256": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f"
+      }
+    ],
+    "patterns": {
+      "eval": "\\beval\\s*\\(",
+      "Function": "\\bFunction\\s*\\(",
+      "Worker": "\\b(?:Shared)?Worker\\s*\\(",
+      "importScripts": "\\bimportScripts\\s*\\(",
+      "WebAssembly": "\\bWebAssembly\\b",
+      "external-js": "https?://[^\\s\"\\x27`<>]+\\.js"
+    },
+    "hits": [],
+    "limit": "Static pattern search is not browser runtime acceptance; installed Troika dependency has optional blob importScripts but is absent from this built bundle scan."
+  }
+}

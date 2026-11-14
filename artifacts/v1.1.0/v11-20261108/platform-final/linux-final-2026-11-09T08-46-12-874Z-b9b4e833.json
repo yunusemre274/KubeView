@@ -1,0 +1,181 @@
+{
+  "runID": "linux-final-2026-11-09T08-46-12-874Z-b9b4e833",
+  "status": "FAIL",
+  "startedAt": "2026-11-09T08:46:12.874Z",
+  "kind": "Final Linux AMD64 production binary install/API smoke under Docker emulation on macOS ARM64; not native Intel or a browser/performance test",
+  "checks": [
+    {
+      "name": "actual Linux AMD64 binary version and isolated runtime",
+      "status": "FAIL",
+      "startedAt": "2026-11-09T08:46:13.411Z",
+      "error": "Actual runtime image architecture mismatch",
+      "finishedAt": "2026-11-09T08:46:13.649Z"
+    }
+  ],
+  "clusterMutations": 0,
+  "providersEnabled": false,
+  "credentialValuesLogged": false,
+  "sourceBuildIdentity": {
+    "expectedCommit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+    "expectedBinarySHA256": "25576de72112b7ac97882fb36d839452d6c5496abaef0295072524ef31697b24",
+    "sourceProof": "artifacts/v1.1.0/v11-20261108/candidate-frozen-32a0468.json",
+    "sourceProofSHA256": "c588980f8df41771f8b52cf3f1c3ae37b31f0b7f14c8b253fbf6fc978d212e29"
+  },
+  "privateLogsOnly": true,
+  "sourceBefore": {
+    "commit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+    "distBuildSHA256": "68359923724cb407e63b2637e4e32fe222ebb36fac890bd28b989acbe364663d",
+    "binarySHA256": "25576de72112b7ac97882fb36d839452d6c5496abaef0295072524ef31697b24",
+    "sourceProofSHA256": "c588980f8df41771f8b52cf3f1c3ae37b31f0b7f14c8b253fbf6fc978d212e29",
+    "gatewayRuntime16": {
+      "backend/pkg/server/connection.go": "02863427c5546eea2218db16a0cc9b3d974c14120dfe55560a1dc604fa2d49ca",
+      "backend/pkg/server/connection_errors.go": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "backend/pkg/server/log_session.go": "1f575b4bb24bb8a26dcf3b04a9b1ec82d884ee758789a0bc57d2029c354e0ede",
+      "backend/pkg/server/maintenance.go": "4708bcf04a91202e84c7b0c0f1d843fb8d4d2fb99d6c7c53cbf4c8f9f7982efd",
+      "backend/pkg/server/placement.go": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "backend/pkg/server/portforward.go": "8bd00d7e80d4190e97cf09b7cb3d02684dd520b5927056bcdaef5e1e67f2f3ca",
+      "backend/pkg/server/provider_handlers.go": "131539d99c818f52f0518e81fd3defefe791bf8dabd86cb44b799126bbd427bd",
+      "backend/pkg/server/resource_scopes.go": "e0e0c13db9fe0bbef1f3ae6b65d50b55364c1d93264f9fe391d92592704eacbd",
+      "backend/pkg/server/resources.go": "01c50606e3812238aa641f3e0e355b82b637c7771dfdbf2d2554ccce6ea5f72c",
+      "backend/pkg/server/server.go": "ce4174bbeb11af011d404e7687b5bafb7a63941fe4bb7a5079f0a625b2429a58",
+      "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "backend/pkg/server/stream.go": "705934ae746929790ee2ed253ad7e9ca16d92ad1a7c7bbae0dda578ad6c43718",
+      "backend/pkg/server/template_capability.go": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "backend/pkg/server/traffic_handlers.go": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+      "backend/go.mod": "9063188102dfa5ed6f60be6b7f34adaf150fdf87fc54cbecb9be0a3501a5344f",
+      "backend/go.sum": "9b3181f96a3e08d824d0b8861442f07353806b27b358b8a30f3fb5b9631c0679"
+    },
+    "frozenFrontendFileCount": 86,
+    "frozenFrontendSourceSHA256": "e61447de244192dca130675866abf81bc87daa20a7a128ee8534b5c6ae1fe164",
+    "frontendAssets": {
+      "assets/HarborScene-Vy8ofl7a.js": "2a9f5af570bd149ae58864e94746d5356c737898409fcb2d3a7f1f0d4e557682",
+      "assets/index-Fq0GeGG9.js": "8f1642f5ceac657ff83f862ead027f18f0e09d5730dd2cc4204b0041c1b821ab",
+      "assets/index-rMaX6C_M.css": "b7c89199f9a8afc3717f5f5ca228ea792d062e8993d06c21597621fcdbc578e8",
+      "assets/three-CGmfrzlm.js": "73750ce17c108e479ff3b2c1e6245c518daa3d863e7140807c774295245e5036",
+      "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+      "index.html": "2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395"
+    },
+    "frontendAssetsSHA256": "5786b26a87b6fecb6a03420ae128b4d26e2417b232c8ddbcfc45e62a9ad60b6a"
+  },
+  "guardBefore": {
+    "context": "kv-repair-1101",
+    "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+    "controlPlaneID": "4d805a40fcfb9f6ac32fb551642d73685f65bd7210e7ad785cb0d9e5dc5ec851",
+    "network": {
+      "name": "kv-repair-1101",
+      "id": "179a46f1646f9db38f6522f45147b5e2a0a09f49e468fd0d944c6cb127bbe953",
+      "internalAPIHost": "192.168.76.2",
+      "internalAPIPort": 8443
+    },
+    "actualNodeUIDs": {
+      "kv-repair-1101": "f8b02052-1800-4d5a-9620-2d041485e891",
+      "kv-repair-1101-m02": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+      "kv-repair-1101-m03": "f61df3b2-d0b7-4c08-8847-5883e5d74caa"
+    },
+    "CAValidationRetained": true,
+    "identityContentPublished": false
+  },
+  "container": {
+    "id": "40eef6cf798977307cd2276ff53b1f6e69b7cf419e8bbde55ab443ce4947b0c5",
+    "name": "kv-v11-platform-9fb29564f323",
+    "owner": "v11-20261108",
+    "platform": "linux/amd64",
+    "image": "alpine:3.21",
+    "readonlyRootFilesystem": true,
+    "cwd": "/tmp",
+    "bindMountCount": 3,
+    "sourceTreeMounted": false,
+    "publishedHostIP": "127.0.0.1",
+    "port": 18511,
+    "privateRuntime": ".git/kv-v11-runtime/linux-final-2026-11-09T08-46-12-874Z-b9b4e833"
+  },
+  "error": "Actual runtime image architecture mismatch",
+  "cleanup": {
+    "exactOwnedID": "40eef6cf798977307cd2276ff53b1f6e69b7cf419e8bbde55ab443ce4947b0c5",
+    "ownerLabelsVerifiedBeforeStopAndRemove": true,
+    "removed": true,
+    "port18511Free": true
+  },
+  "sourceAfter": {
+    "commit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+    "distBuildSHA256": "68359923724cb407e63b2637e4e32fe222ebb36fac890bd28b989acbe364663d",
+    "binarySHA256": "25576de72112b7ac97882fb36d839452d6c5496abaef0295072524ef31697b24",
+    "sourceProofSHA256": "c588980f8df41771f8b52cf3f1c3ae37b31f0b7f14c8b253fbf6fc978d212e29",
+    "gatewayRuntime16": {
+      "backend/pkg/server/connection.go": "02863427c5546eea2218db16a0cc9b3d974c14120dfe55560a1dc604fa2d49ca",
+      "backend/pkg/server/connection_errors.go": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "backend/pkg/server/log_session.go": "1f575b4bb24bb8a26dcf3b04a9b1ec82d884ee758789a0bc57d2029c354e0ede",
+      "backend/pkg/server/maintenance.go": "4708bcf04a91202e84c7b0c0f1d843fb8d4d2fb99d6c7c53cbf4c8f9f7982efd",
+      "backend/pkg/server/placement.go": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "backend/pkg/server/portforward.go": "8bd00d7e80d4190e97cf09b7cb3d02684dd520b5927056bcdaef5e1e67f2f3ca",
+      "backend/pkg/server/provider_handlers.go": "131539d99c818f52f0518e81fd3defefe791bf8dabd86cb44b799126bbd427bd",
+      "backend/pkg/server/resource_scopes.go": "e0e0c13db9fe0bbef1f3ae6b65d50b55364c1d93264f9fe391d92592704eacbd",
+      "backend/pkg/server/resources.go": "01c50606e3812238aa641f3e0e355b82b637c7771dfdbf2d2554ccce6ea5f72c",
+      "backend/pkg/server/server.go": "ce4174bbeb11af011d404e7687b5bafb7a63941fe4bb7a5079f0a625b2429a58",
+      "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "backend/pkg/server/stream.go": "705934ae746929790ee2ed253ad7e9ca16d92ad1a7c7bbae0dda578ad6c43718",
+      "backend/pkg/server/template_capability.go": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "backend/pkg/server/traffic_handlers.go": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+      "backend/go.mod": "9063188102dfa5ed6f60be6b7f34adaf150fdf87fc54cbecb9be0a3501a5344f",
+      "backend/go.sum": "9b3181f96a3e08d824d0b8861442f07353806b27b358b8a30f3fb5b9631c0679"
+    },
+    "frozenFrontendFileCount": 86,
+    "frozenFrontendSourceSHA256": "e61447de244192dca130675866abf81bc87daa20a7a128ee8534b5c6ae1fe164",
+    "frontendAssets": {
+      "assets/HarborScene-Vy8ofl7a.js": "2a9f5af570bd149ae58864e94746d5356c737898409fcb2d3a7f1f0d4e557682",
+      "assets/index-Fq0GeGG9.js": "8f1642f5ceac657ff83f862ead027f18f0e09d5730dd2cc4204b0041c1b821ab",
+      "assets/index-rMaX6C_M.css": "b7c89199f9a8afc3717f5f5ca228ea792d062e8993d06c21597621fcdbc578e8",
+      "assets/three-CGmfrzlm.js": "73750ce17c108e479ff3b2c1e6245c518daa3d863e7140807c774295245e5036",
+      "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+      "index.html": "2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395"
+    },
+    "frontendAssetsSHA256": "5786b26a87b6fecb6a03420ae128b4d26e2417b232c8ddbcfc45e62a9ad60b6a"
+  },
+  "sourceUnchanged": true,
+  "guardAfter": {
+    "context": "kv-repair-1101",
+    "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+    "controlPlaneID": "4d805a40fcfb9f6ac32fb551642d73685f65bd7210e7ad785cb0d9e5dc5ec851",
+    "network": {
+      "name": "kv-repair-1101",
+      "id": "179a46f1646f9db38f6522f45147b5e2a0a09f49e468fd0d944c6cb127bbe953",
+      "internalAPIHost": "192.168.76.2",
+      "internalAPIPort": 8443
+    },
+    "actualNodeUIDs": {
+      "kv-repair-1101": "f8b02052-1800-4d5a-9620-2d041485e891",
+      "kv-repair-1101-m02": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+      "kv-repair-1101-m03": "f61df3b2-d0b7-4c08-8847-5883e5d74caa"
+    },
+    "CAValidationRetained": true,
+    "identityContentPublished": false
+  },
+  "guardUnchanged": true,
+  "finishedAt": "2026-11-09T08:46:14.117Z",
+  "wallSeconds": 1.243,
+  "counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "noOtherContainersMutated": true,
+  "nativeLinuxBrowserOrIntelPerformanceProof": false,
+  "post_failure_image_tag_observation": {
+    "scope": "post-failure read-only inspection of the same alpine:3.21 tag; no pull/retry",
+    "imageID": "sha256:87a4361f6c819618a6bafa2ed5228714cb0bb22195d2b49c95eb26799990128a",
+    "Os": "",
+    "Architecture": "",
+    "Variant": null,
+    "top_level_keys_include_Manifests": false,
+    "raw_image_config_not_published": true
+  },
+  "platform_specific_image_observation": {
+    "scope": "same-image read-only platform-specific metadata diagnostic; no run/pull/retry",
+    "exit_code": 0,
+    "imageID": "sha256:2d8a11041a92082ba21e364dec73559ce44f1de69b60fa68315f6d3774e59117",
+    "Os": "linux",
+    "Architecture": "amd64",
+    "Variant": null
+  },
+  "failure_interpretation": "Generic image inspect returned empty Os/Architecture for the local OCI image index; the initial guard could not establish architecture. This is a helper metadata-assumption failure, not proof of an actual wrong-architecture runtime. Original FAIL is retained."
+}

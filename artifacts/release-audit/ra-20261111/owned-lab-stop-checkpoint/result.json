@@ -1,0 +1,83 @@
+{
+  "at": "2026-11-11T16:54:04.802859+00:00",
+  "action": "Existing manual_lab.py down only; no destroy/reset/user process stop",
+  "labs": [
+    {
+      "stateName": "release-audit-lab-20261111",
+      "labId": "kvml-aed6bc565b30",
+      "privateStatePreserved": true,
+      "remainingAppRecords": 0,
+      "clusters": [
+        {
+          "key": "a",
+          "name": "kvml-aed6bc565b30-a",
+          "systemUID": "a51d8e09-b035-4571-a5b3-4f0a40401f91",
+          "markerUID": "d14e8b03-29d1-4bdc-b236-7d478d997c27",
+          "containers": [
+            {
+              "id": "8a954a5b7f9a156f4f186aa77bc6d05c8288c888f8c58fe8d9edb801ec17ff25",
+              "created": "2026-11-11T10:28:19.309576346Z",
+              "running": false,
+              "status": "exited"
+            },
+            {
+              "id": "f6af1a30e8d34f8c01074b896b9e72ad640d307e6a5d10ad08a6ce95b2385448",
+              "created": "2026-11-11T10:28:58.861758753Z",
+              "running": false,
+              "status": "exited"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stateName": "release-audit-hubble-20261111-cold01",
+      "labId": "kvml-d32afbf634e8",
+      "privateStatePreserved": true,
+      "remainingAppRecords": 0,
+      "clusters": [
+        {
+          "key": "a",
+          "name": "kvml-d32afbf634e8-a",
+          "systemUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+          "markerUID": "0cded75c-bc00-472f-b69f-39dfd43251f3",
+          "containers": [
+            {
+              "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+              "created": "2026-11-11T12:25:42.786922134Z",
+              "running": false,
+              "status": "exited"
+            },
+            {
+              "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+              "created": "2026-11-11T12:25:55.149367334Z",
+              "running": false,
+              "status": "exited"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "port": 19846,
+      "IPv4LoopbackBindFree": true
+    },
+    {
+      "port": 19847,
+      "IPv4LoopbackBindFree": true
+    },
+    {
+      "port": 19848,
+      "IPv4LoopbackBindFree": true
+    }
+  ],
+  "battery": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t8%; discharging; 0:10 remaining present: true\n\tBattery Warning: Early\n",
+  "noNewLongRun": true,
+  "otherProjectContainerCountObservedRunning": 4,
+  "redaction": {
+    "description": "Unrelated project container names/IDs omitted from public evidence; original retained privately. No credential content read.",
+    "privateOriginalSHA256": "d72537870cac6a8317e36287bbc39ec858fe7f7c7a5b8f21b82e5cd04d19c631"
+  }
+}

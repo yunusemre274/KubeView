@@ -1,0 +1,31 @@
+{
+  "started_at_utc": "2026-11-11T10:34:20.450536+00:00",
+  "finished_at_utc": "2026-11-11T10:38:38.312995+00:00",
+  "source_commit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+  "input_files": [
+    {
+      "path": "artifacts/release-audit/ra-20261111/secrets-history-redacted.json",
+      "sha256": "112537fff470240ea78fee42e1ce0f8ebb1a987a93ddd3dee2d94d18c387fbf1"
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/secrets-history-triage.json",
+      "sha256": "f58ea45241708fb7519e842e978f331e31648b9bf9bee2754d913d60089784bd"
+    }
+  ],
+  "finding_count": 386,
+  "classified_count": 386,
+  "classifications": {
+    "source-or-asset-sha256": 365,
+    "client-generation-identifier": 6,
+    "kubernetes-resource-uid-log": 2,
+    "idempotency-digest": 13
+  },
+  "digest_context_verified_count": 378,
+  "historical_producer_checks": 5,
+  "historical_producer_all_pass": true,
+  "unresolved": [],
+  "credential_values_written": false,
+  "rotation_required_for_reviewed_findings": false,
+  "scanner_ignore_rules_written": false,
+  "git_history_mutated": false
+}

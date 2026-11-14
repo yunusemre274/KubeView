@@ -1,0 +1,833 @@
+{
+  "date": "2026-10-24T16:30:29.366Z",
+  "browser": "156.0.8078.4",
+  "source": "Synthetic fixture; genuine native window minimization, no Kubernetes mutations",
+  "errors": [],
+  "before": {
+    "hidden": false,
+    "visibilityState": "visible",
+    "stats": {
+      "frame": 63,
+      "calls": 296,
+      "triangles": 61446,
+      "points": 0,
+      "lines": 0,
+      "memory": {
+        "geometries": 55,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 8,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 32,
+        "visiblePods": 32,
+        "nodeSlots": 8,
+        "podSlots": 32,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0
+      }
+    },
+    "fleet": [
+      {
+        "uid": "fixture-node-0",
+        "name": "worker-01",
+        "slot": 0,
+        "progress": 889.6648694115331,
+        "position": [
+          -65.29319999999245,
+          -0.001795720945123639,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.001782640995574623,
+        "roll": -0.0019861164137974213,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      },
+      {
+        "uid": "fixture-node-1",
+        "name": "worker-02",
+        "slot": 1,
+        "progress": 1063.2577867644156,
+        "position": [
+          -175,
+          -0.06817022282303471,
+          154.7997173528954
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0012861659315048528,
+        "roll": -0.003991475862600326,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-2",
+        "name": "worker-03",
+        "slot": 2,
+        "progress": 1236.8507041173013,
+        "position": [
+          -175,
+          0.01856411785392463,
+          -18.793199999990293
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.003915313511937589,
+        "roll": -0.001559624120072131,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-3",
+        "name": "worker-04",
+        "slot": 3,
+        "progress": 21.700282647103222,
+        "position": [
+          -108.29971735289678,
+          0.0549048599252234,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.0023852682998115196,
+        "roll": -0.00021631984554596812,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-4",
+        "name": "worker-05",
+        "slot": 4,
+        "progress": 195.29319999999007,
+        "position": [
+          65.29319999999007,
+          -0.0189216978431579,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.0059698342599841655,
+        "roll": 0.0006892467258469392,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-5",
+        "name": "worker-06",
+        "slot": 5,
+        "progress": 368.8861173528762,
+        "position": [
+          175,
+          -0.05200036812988544,
+          -61.799717352894106
+        ],
+        "yaw": 0,
+        "pitch": 0.002893233465311776,
+        "roll": -0.002258717389897589,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-6",
+        "name": "worker-07",
+        "slot": 6,
+        "progress": 542.4790347057617,
+        "position": [
+          175,
+          0.08068282026845659,
+          111.79319999999137
+        ],
+        "yaw": 0,
+        "pitch": 0.00048599535646427555,
+        "roll": -0.0032789417761791735,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-7",
+        "name": "worker-08",
+        "slot": 7,
+        "progress": 716.0719520586474,
+        "position": [
+          108.29971735289325,
+          0.03483938113899133,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.001543611837731406,
+        "roll": 0.001319494819572656,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "water": {
+      "time": 1.1547999999988825,
+      "strength": 0.44926384013266335
+    }
+  },
+  "nativeBounds": {
+    "bounds": {
+      "left": 22,
+      "top": 55,
+      "width": 1200,
+      "height": 805,
+      "windowState": "minimized"
+    }
+  },
+  "minimized": {
+    "hidden": true,
+    "visibilityState": "hidden",
+    "stats": {
+      "frame": 99,
+      "calls": 296,
+      "triangles": 61446,
+      "points": 0,
+      "lines": 0,
+      "memory": {
+        "geometries": 55,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 8,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 32,
+        "visiblePods": 32,
+        "nodeSlots": 8,
+        "podSlots": 32,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0
+      }
+    },
+    "fleet": [
+      {
+        "uid": "fixture-node-0",
+        "name": "worker-01",
+        "slot": 0,
+        "progress": 895.0567694115468,
+        "position": [
+          -70.68510000000617,
+          0.00995101709589814,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.000874396941408747,
+        "roll": -0.0008046338745602403,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      },
+      {
+        "uid": "fixture-node-1",
+        "name": "worker-02",
+        "slot": 1,
+        "progress": 1068.6496867644307,
+        "position": [
+          -175,
+          -0.0644610135474572,
+          149.40781735288033
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0022221409621175445,
+        "roll": -0.002875627248766679,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-2",
+        "name": "worker-03",
+        "slot": 2,
+        "progress": 1242.2426041173164,
+        "position": [
+          -175,
+          -0.015645247001767025,
+          -24.185100000005377
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.0037964954111701014,
+        "roll": -0.001731632466690072,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-3",
+        "name": "worker-04",
+        "slot": 3,
+        "progress": 27.092182647116488,
+        "position": [
+          -102.90781735288351,
+          0.06811871963434606,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.001832596888907199,
+        "roll": -0.00035267208712583134,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-4",
+        "name": "worker-05",
+        "slot": 4,
+        "progress": 200.6851000000031,
+        "position": [
+          70.6851000000031,
+          0.0005995506259060095,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.00623438631941472,
+        "roll": 0.0007353066880593571,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-5",
+        "name": "worker-06",
+        "slot": 5,
+        "progress": 374.2780173528897,
+        "position": [
+          175,
+          -0.05448893295423856,
+          -56.40781735288061
+        ],
+        "yaw": 0,
+        "pitch": 0.002397494818262259,
+        "roll": -0.0032160648807992086,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-6",
+        "name": "worker-07",
+        "slot": 6,
+        "progress": 547.870934705775,
+        "position": [
+          175,
+          0.09098584246071538,
+          117.18510000000464
+        ],
+        "yaw": 0,
+        "pitch": 0.000892725808674111,
+        "roll": -0.0024738046905090276,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-7",
+        "name": "worker-08",
+        "slot": 7,
+        "progress": 721.4638520586611,
+        "position": [
+          102.90781735287953,
+          0.03371276219219717,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": 0.0012555854178883082,
+        "roll": 0.001814819524525124,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "water": {
+      "time": 1.7539000000003726,
+      "strength": 0.45
+    }
+  },
+  "hiddenMs": 60001,
+  "during": {
+    "hidden": true,
+    "visibilityState": "hidden",
+    "stats": {
+      "frame": 99,
+      "calls": 296,
+      "triangles": 61446,
+      "points": 0,
+      "lines": 0,
+      "memory": {
+        "geometries": 55,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 8,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 33,
+        "visiblePods": 33,
+        "nodeSlots": 8,
+        "podSlots": 33,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0
+      }
+    },
+    "fleet": [
+      {
+        "uid": "fixture-node-0",
+        "name": "worker-01",
+        "slot": 0,
+        "progress": 895.0567694115468,
+        "position": [
+          -70.68510000000617,
+          0.00995101709589814,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.000874396941408747,
+        "roll": -0.0008046338745602403,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      },
+      {
+        "uid": "fixture-node-1",
+        "name": "worker-02",
+        "slot": 1,
+        "progress": 1068.6496867644307,
+        "position": [
+          -175,
+          -0.0644610135474572,
+          149.40781735288033
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0022221409621175445,
+        "roll": -0.002875627248766679,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-2",
+        "name": "worker-03",
+        "slot": 2,
+        "progress": 1242.2426041173164,
+        "position": [
+          -175,
+          -0.015645247001767025,
+          -24.185100000005377
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.0037964954111701014,
+        "roll": -0.001731632466690072,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-3",
+        "name": "worker-04",
+        "slot": 3,
+        "progress": 27.092182647116488,
+        "position": [
+          -102.90781735288351,
+          0.06811871963434606,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.001832596888907199,
+        "roll": -0.00035267208712583134,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-4",
+        "name": "worker-05",
+        "slot": 4,
+        "progress": 200.6851000000031,
+        "position": [
+          70.6851000000031,
+          0.0005995506259060095,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.00623438631941472,
+        "roll": 0.0007353066880593571,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-5",
+        "name": "worker-06",
+        "slot": 5,
+        "progress": 374.2780173528897,
+        "position": [
+          175,
+          -0.05448893295423856,
+          -56.40781735288061
+        ],
+        "yaw": 0,
+        "pitch": 0.002397494818262259,
+        "roll": -0.0032160648807992086,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-6",
+        "name": "worker-07",
+        "slot": 6,
+        "progress": 547.870934705775,
+        "position": [
+          175,
+          0.09098584246071538,
+          117.18510000000464
+        ],
+        "yaw": 0,
+        "pitch": 0.000892725808674111,
+        "roll": -0.0024738046905090276,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-7",
+        "name": "worker-08",
+        "slot": 7,
+        "progress": 721.4638520586611,
+        "position": [
+          102.90781735287953,
+          0.03371276219219717,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": 0.0012555854178883082,
+        "roll": 0.001814819524525124,
+        "state": "patrolling",
+        "speed": 9.000000000000233,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "water": {
+      "time": 1.7539000000003726,
+      "strength": 0.45
+    }
+  },
+  "after": {
+    "hidden": false,
+    "visibilityState": "visible",
+    "stats": {
+      "frame": 154,
+      "calls": 296,
+      "triangles": 61518,
+      "points": 0,
+      "lines": 0,
+      "memory": {
+        "geometries": 55,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 8,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 33,
+        "visiblePods": 33,
+        "nodeSlots": 8,
+        "podSlots": 33,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0
+      }
+    },
+    "fleet": [
+      {
+        "uid": "fixture-node-0",
+        "name": "worker-01",
+        "slot": 0,
+        "progress": 904.7956694115626,
+        "position": [
+          -80.42400000002192,
+          0.007952093013019239,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": 0.0011938218809671847,
+        "roll": 0.0017674881372001941,
+        "state": "patrolling",
+        "speed": 8.999999999994369,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      },
+      {
+        "uid": "fixture-node-1",
+        "name": "worker-02",
+        "slot": 1,
+        "progress": 1078.388586764442,
+        "position": [
+          -175,
+          -0.03410978125880031,
+          139.66891735286913
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0029178651552868597,
+        "roll": -0.00018047035561331198,
+        "state": "patrolling",
+        "speed": 8.999999999994369,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-2",
+        "name": "worker-03",
+        "slot": 2,
+        "progress": 1251.9815041173276,
+        "position": [
+          -175,
+          -0.06282091931624828,
+          -33.92400000001658
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.0021419054449496916,
+        "roll": -0.0011379930491013433,
+        "state": "patrolling",
+        "speed": 8.999999999994369,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-3",
+        "name": "worker-04",
+        "slot": 3,
+        "progress": 36.831082647127914,
+        "position": [
+          -93.16891735287209,
+          0.08169645697058624,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.0003420707369137577,
+        "roll": -0.0008253383178376063,
+        "state": "patrolling",
+        "speed": 8.999999999994369,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-4",
+        "name": "worker-05",
+        "slot": 4,
+        "progress": 210.42400000001635,
+        "position": [
+          80.42400000001635,
+          0.03758609973191059,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.005872774685077816,
+        "roll": 0.00032282719995871195,
+        "state": "patrolling",
+        "speed": 8.999999999994369,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-5",
+        "name": "worker-06",
+        "slot": 5,
+        "progress": 384.0169173529032,
+        "position": [
+          175,
+          -0.04567887528857888,
+          -46.66891735286714
+        ],
+        "yaw": 0,
+        "pitch": 0.001264617170565538,
+        "roll": -0.004831464623272346,
+        "state": "patrolling",
+        "speed": 9.000000000007903,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-6",
+        "name": "worker-07",
+        "slot": 6,
+        "progress": 557.6098347057889,
+        "position": [
+          175,
+          0.09194797185261305,
+          126.9240000000186
+        ],
+        "yaw": 0,
+        "pitch": 0.00192494516886808,
+        "roll": -0.0005303681466066713,
+        "state": "patrolling",
+        "speed": 9.000000000009596,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "fixture-node-7",
+        "name": "worker-08",
+        "slot": 7,
+        "progress": 731.2027520586769,
+        "position": [
+          93.16891735286379,
+          -0.02235914516315431,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": 0.004583715992833367,
+        "roll": 0.0016322586228838067,
+        "state": "patrolling",
+        "speed": 8.999999999994369,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    ],
+    "water": {
+      "time": 2.7360000000018627,
+      "strength": 0.45
+    }
+  },
+  "progressDelta": 15.130800000029467
+}

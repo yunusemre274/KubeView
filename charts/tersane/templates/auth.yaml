@@ -1,0 +1,17 @@
+{{- if not .Values.auth.existingSecret }}
+{{- $name := include "tersane.authSecret" . }}
+{{- $existing := lookup "v1" "Secret" .Release.Namespace $name }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "tersane.labels" . | nindent 4 }}
+type: Opaque
+data:
+  {{- if and $existing $existing.data }}
+  token: {{ index $existing.data "token" | quote }}
+  {{- else }}
+  token: {{ randAlphaNum 48 | b64enc | quote }}
+  {{- end }}
+{{- end }}

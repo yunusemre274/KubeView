@@ -1,0 +1,841 @@
+{
+  "id": "ws-20261110-battery-02",
+  "suite": "workspace",
+  "createdAt": "2026-11-10T11:54:03.620Z",
+  "powerSource": "battery",
+  "initialPower": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t17%; discharging; 0:56 remaining present: true\n",
+  "baselineTag": "v11-final-32a0468",
+  "candidateTag": "workspace-final-20261110",
+  "buildIdentities": {
+    "v11-final-32a0468": {
+      "buildIndexSHA256": "2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395",
+      "backendBinarySHA256": "a8fa664be2f70574f98d090e5f8e748667ae5323a06b4c91a385f6b9c5caf9b8",
+      "buildProvenanceSHA256": "991b44faab3aa16e4b7c447d3b59527f9dcdc88d81231f0e351f8995ff3b7971",
+      "assetsSHA256": "014a79fd573e889d1ebbcce1ad088669c7914b0d8ec3b6755e54cb324032254c"
+    },
+    "workspace-final-20261110": {
+      "buildIndexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+      "backendBinarySHA256": "2113f0de6f5b21b2af7359fecd2cb253f519495a933a60363eb2f248c74c172c",
+      "buildProvenanceSHA256": "4b617a8723d1197b662206fdc9d17917faead34f2c7e013f158029b1d6177d03",
+      "assetsSHA256": "3df19ddffccde5822717d4e46461a8faeed93ab256946386427b2a25d3c91564"
+    }
+  },
+  "browserVersion": "156.0.8078.4",
+  "source": "Synthetic tracker → production informer/WebSocket/store/Harbor; not live Kubernetes E2E",
+  "order": "Three paired blocks, alternating build order; matrix reversal owned once by run.mjs. No automatic retry.",
+  "expectedCells": 46,
+  "totalMinimumWindowSeconds": 5280,
+  "jobs": [
+    {
+      "id": "ws-20261110-battery-02-h20-long",
+      "group": "workspace-long",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "long"
+      ],
+      "repeats": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "longSeconds": 1200,
+      "timeoutSeconds": 1500,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "failed",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "workspace-final-20261110",
+        "--backend-tag",
+        "workspace-final-20261110",
+        "--reuse-build",
+        "--reuse-binary",
+        "--id",
+        "ws-20261110-battery-02-h20-long",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "long",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "30",
+        "--seconds",
+        "60",
+        "--long-seconds",
+        "1200",
+        "--max-minutes",
+        "25",
+        "--dpr",
+        "1",
+        "--lock-input",
+        "--disable-browser-energy-saver",
+        "--lifecycle-counts",
+        "--experiment-family",
+        "ws-20261110-battery-02",
+        "--scene-inventory",
+        "--lock-visual-start",
+        "--harbors",
+        "20"
+      ],
+      "startedAt": "2026-11-10T11:54:03.656Z",
+      "result": {
+        "code": 1,
+        "signal": null,
+        "pid": 25810,
+        "timedOut": false,
+        "interrupted": null,
+        "error": null,
+        "cleanupComplete": true,
+        "outputDrained": true,
+        "durationMs": 1176470,
+        "ownership": [
+          {
+            "pid": 25810,
+            "ppid": 25781,
+            "pgid": 25810,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:54:03 2026",
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node"
+          },
+          {
+            "pid": 25947,
+            "ppid": 25810,
+            "pgid": 25810,
+            "state": "S",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/usr/bin/caffeinate"
+          },
+          {
+            "pid": 25948,
+            "ppid": 25810,
+            "pgid": 25948,
+            "state": "Rs",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+          },
+          {
+            "pid": 25956,
+            "ppid": 25948,
+            "pgid": 25948,
+            "state": "R",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)"
+          },
+          {
+            "pid": 25957,
+            "ppid": 25948,
+            "pgid": 25948,
+            "state": "S",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 25958,
+            "ppid": 25948,
+            "pgid": 25948,
+            "state": "R",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper"
+          },
+          {
+            "pid": 25980,
+            "ppid": 25810,
+            "pgid": 25810,
+            "state": "S",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/workspace-final-20261110/backend.test"
+          },
+          {
+            "pid": 25981,
+            "ppid": 25948,
+            "pgid": 25948,
+            "state": "R",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 25983,
+            "ppid": 25948,
+            "pgid": 25948,
+            "state": "S",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 25984,
+            "ppid": 25948,
+            "pgid": 25948,
+            "state": "S",
+            "birth": "Tue Nov 10 14:54:04 2026",
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)"
+          },
+          {
+            "pid": 34788,
+            "ppid": 25810,
+            "pgid": 25810,
+            "state": "R",
+            "birth": "Tue Nov 10 15:02:09 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 35630,
+            "ppid": 25810,
+            "pgid": 25810,
+            "state": "R",
+            "birth": "Tue Nov 10 15:02:54 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 38405,
+            "ppid": 25810,
+            "pgid": 25810,
+            "state": "R",
+            "birth": "Tue Nov 10 15:05:29 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 47007,
+            "ppid": 25810,
+            "pgid": 25810,
+            "state": "R",
+            "birth": "Tue Nov 10 15:13:14 2026",
+            "command": "(ps)"
+          }
+        ],
+        "cleanup": {
+          "complete": true,
+          "remaining": [],
+          "unknownGroupMembers": [],
+          "signals": [],
+          "scanErrors": [],
+          "overflow": false,
+          "childPipesClosed": true
+        }
+      },
+      "finishedAt": "2026-11-10T12:13:40.127Z"
+    },
+    {
+      "id": "ws-20261110-battery-02-source-baseline-b0",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "v11-final-32a0468",
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-source-optimized-b0",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-source-optimized-b1",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-source-baseline-b1",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "v11-final-32a0468",
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-source-baseline-b2",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "v11-final-32a0468",
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-source-optimized-b2",
+      "group": "workspace-source",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h1-b0",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h5-b0",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h10-b0",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h20-b0",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h1-b0",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h5-b0",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h10-b0",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h20-b0",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 0,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h20-b1",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h10-b1",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h5-b1",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h1-b1",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h20-b1",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h10-b1",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h5-b1",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h1-b1",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h1-b2",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h5-b2",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h10-b2",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-M-h20-b2",
+      "group": "workspace-overhead",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h1-b2",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "baseline",
+      "tag": "workspace-final-20261110",
+      "harbors": 1,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h5-b2",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 5,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h10-b2",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 10,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-L-h20-b2",
+      "group": "workspace-overhead",
+      "profile": "L",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "living"
+      ],
+      "block": 2,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 240,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-h20-panel",
+      "group": "workspace-panel",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "panel-closed",
+        "panel-open"
+      ],
+      "matrix": true,
+      "repeats": 3,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 840,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-h20-events",
+      "group": "workspace-events",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "events"
+      ],
+      "repeats": 3,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 480,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-h20-idle",
+      "group": "workspace-idle",
+      "profile": "M",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "idle"
+      ],
+      "repeats": 3,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 480,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    },
+    {
+      "id": "ws-20261110-battery-02-h20-interaction",
+      "group": "workspace-interaction",
+      "profile": "S",
+      "phase": "optimized",
+      "tag": "workspace-final-20261110",
+      "harbors": 20,
+      "scenarios": [
+        "interaction"
+      ],
+      "repeats": 3,
+      "warmup": 30,
+      "seconds": 60,
+      "timeoutSeconds": 480,
+      "sceneInventory": true,
+      "visualStartLocked": true,
+      "status": "pending"
+    }
+  ],
+  "status": "failed",
+  "error": "Error: Acceptance queue stopped at ws-20261110-battery-02-h20-long; no automatic retry\n    at main (file:///Users/yunusemre/Desktop/KubeView/benchmarks/repair-session.mjs:152:34)\n    at async file:///Users/yunusemre/Desktop/KubeView/benchmarks/repair-session.mjs:158:75",
+  "finishedAt": "2026-11-10T12:13:40.131Z",
+  "finalPower": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t9%; discharging; 0:21 remaining present: true\n\tBattery Warning: Early\n"
+}

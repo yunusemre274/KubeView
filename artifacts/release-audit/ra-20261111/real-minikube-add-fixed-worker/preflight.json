@@ -1,0 +1,11 @@
+{
+  "startedAt": "2026-11-11T19:12:42.043203+00:00",
+  "deadlineAt": "2026-11-11T19:24:42.043203+00:00",
+  "clearanceSHA256": "893987f3a63bc0260def31721ce96900fbe804f4e4e8bd5a99f914f1ccdcad25",
+  "clearanceMode": "0o600",
+  "helperSHA256": "8645fc24fa959835970f2576ef3b1794b59c0d67fc7b2d5813024cc46676d9e1",
+  "appSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "control": "release-provider-one-worker-20261111-02",
+  "singleNewCase": true,
+  "oldCasePreserved": true
+}

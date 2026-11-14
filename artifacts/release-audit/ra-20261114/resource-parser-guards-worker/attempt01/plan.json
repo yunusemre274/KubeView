@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-14T13:00:26.822948+00:00",
+  "auditHEAD": "57ad606e059d31f50d316a12f6a218f6a2edb11a",
+  "runtimeSource": "15770296056ca2629601dba540c04741e1822e0d",
+  "tests": [
+    "TestReleaseResourceParserBoundedJSONTransport"
+  ],
+  "regex": "^TestReleaseResourceParserBoundedJSONTransport$",
+  "fileSHA256": {
+    "backend/pkg/server/release_resource_parser_test.go": "f3ff6a789ab8081a162678a38bdcee0aa3b4808a9641649ebf16b16747f1f209",
+    "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/placement.go": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+  },
+  "safety": {
+    "wallSeconds": 90,
+    "goSeconds": 60,
+    "GOMAXPROCS": 2,
+    "parallel": 1,
+    "RSSMiB": 1536,
+    "diskMinimumGiB": 10,
+    "maxPayloads": 12,
+    "maxPayloadBytes": 3145728,
+    "maxTotalPayloadBytes": 8388608,
+    "deepPayloadMaxBytes": 131072,
+    "deepMaxNesting": 10001,
+    "scope": "owned httptest loopback only; no actual Kubernetes/browser/provider"
+  },
+  "acceptance": "Exactly1 top/12sub PASS/0skip;10rejects no upstream create;2positive exactclient-goHTTP namespaceqa dryRunAll FieldValidationStrict; numeric/unknown/duplicate policy preserved",
+  "limitations": "TypedSSARfixture fake; dynamic realclient-go targets minimalHTTPecho, no Kubernetes schema/admission validation or UI E2E."
+}

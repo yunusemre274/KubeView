@@ -1,0 +1,24 @@
+{
+  "status": "FAIL",
+  "operationRemainsFAIL": true,
+  "NodeDeleteOrRePOST": false,
+  "volumeRemoved": false,
+  "profileRestored": false,
+  "startedAt": "2026-11-11T19:00:31.846419+00:00",
+  "guardsPassed": {
+    "systemMarkerNamespaceOriginal2Ready": true,
+    "newNodeAndTypedContainerAbsent": true,
+    "volumeBirth": "2026-11-11T18:53:14Z",
+    "noContainerVolumeUsers": true,
+    "targets": {
+      "containers": [],
+      "volumes": [
+        "kvml-d32afbf634e8-a-m03"
+      ],
+      "networks": []
+    },
+    "fullProfileMinusOnlyPendingEqualsOriginal": true,
+    "candidateSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+    "preservedMode": "0o600"
+  }
+}

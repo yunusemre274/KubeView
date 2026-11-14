@@ -1,0 +1,17 @@
+✔ measurement windows allow boundary IPC overhead and reject sleep/time jumps (0.305334ms)
+✔ render rate is total frames/active wall time; missing metrics stay null (0.198875ms)
+✔ load correlation uses opaque RV equality and handles DELETE's last stored version (0.169417ms)
+✔ identity regression rejects same PID with a new OS birth (0.333416ms)
+✔ identity regression never publishes a falling CPU counter (0.060125ms)
+✔ identity regression rejects zero span and missing OS birth (0.07175ms)
+✔ identity regression unknown role metrics are null rather than synthetic zero (0.10625ms)
+✔ zero-event producer has no fabricated delay; positive work requires measured samples (0.068459ms)
+✔ producer completion rejects malformed counts, missing samples and failed work (0.062833ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.897667

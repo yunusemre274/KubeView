@@ -1,0 +1,33 @@
+vulncheck/binary.go lines105-114
+	// Group symbols per package to avoid querying affVulns all over again.
+	var pkgSymbols map[string][]string
+	if len(bin.PkgSymbols) == 0 {
+		// The binary exe is stripped. We currently cannot detect inlined
+		// symbols for stripped binaries (see #57764), so we report
+		// vulnerabilities at the go.mod-level precision.
+		pkgSymbols = allKnownVulnerableSymbols(affVulns)
+	} else {
+		pkgSymbols = packagesAndSymbols(bin)
+	}
+
+buildinfo/additions_scan.go lines80-99
+	x, err := openExe(bin)
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	value, base, r, err := x.SymbolInfo(funcSymName)
+	if err != nil {
+		if errors.Is(err, ErrNoSymbols) {
+			// bin is stripped, so return just module info and metadata.
+			return debugModulesToPackagesModules(bi.Deps), nil, bi, nil
+		}
+		return nil, nil, nil, fmt.Errorf("reading %v: %v", funcSymName, err)
+	}
+
+	pclntab, textOffset := x.PCLNTab()
+	if pclntab == nil {
+		// If we have build information, but not PCLN table, fall
+		// back to much higher granularity vulnerability checking.
+		return debugModulesToPackagesModules(bi.Deps), nil, bi, nil
+	}

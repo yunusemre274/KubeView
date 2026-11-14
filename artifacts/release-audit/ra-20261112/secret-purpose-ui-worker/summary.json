@@ -1,0 +1,17 @@
+{
+  "status": "BLOCKED_BEFORE_UI",
+  "controllerResult": "FAIL",
+  "UIAssertions": 0,
+  "fixtureCreates": 0,
+  "appStarts": 0,
+  "browserStarts": 0,
+  "firstFailureExactSubcondition": "UNKNOWN_FROM_ORIGINAL_OUTPUT",
+  "laterReadOnlyDiagnosis": "200 POMList with present items:null/count0; strict [] comparison is incompatible with nil-empty semantics",
+  "namespaceKept": true,
+  "privateFilesRemoved": true,
+  "port19843Free": true,
+  "phaseElapsedSeconds": 513.187822,
+  "phaseTargetSeconds": 480,
+  "within480": false,
+  "noOriginalUIAcceptance": true
+}

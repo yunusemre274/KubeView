@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-11T14:13:24.748571+03:00",
+  "baseCommit": "49999815cf27ca47888fdc5d62cb1f7caf3bbd11",
+  "binary": ".git/release-audit/candidate-runtime-scope02/kubeview",
+  "binarySHA256": "1003a43a6a808193d0d36695a4d7782fee8b754fb92df99ab0220511df1f7bf0",
+  "indexSHA256": "29b73d5325ec01a5c4ffe0ff20002c7ec131b46c40c2ce4b2ac614cc957834db",
+  "dirtyRuntime": {
+    "frontend/src/App.jsx": "2601cdaa4431cdd1aaa05f3def877110d372f067a5d1f9bd1437ee306bed3868",
+    "frontend/src/context/ShipyardClusterContext.jsx": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+    "frontend/src/harbor/HarborScene.jsx": "4c24ed2f35409962bb9f5aab7306f4c9d1b68377dc36ddca71bbfa07c8088bc4",
+    "frontend/src/harbor/cameraViews.js": "17783d344d043466d3ff7211ffd1a12ff4f0389dc99e4823a115e41b7f0ef584"
+  },
+  "notFinalPackage": true,
+  "tests": {
+    "frontend": 223,
+    "failed": 0,
+    "skipped": 0
+  }
+}

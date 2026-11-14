@@ -1,0 +1,50 @@
+{
+  "startedAt": "2026-11-12T21:02:49.106263+00:00",
+  "status": "PLANNED",
+  "sourceCommit": "e73cb0da3a051c332b2c15092648bfdd42ce0f00",
+  "worktree": "backend watch authorization fix WIP frozen by worker; frontend committed e73cb0da",
+  "purpose": "Changedstream neighboring snapshot/add/update/delete/CRreconnect/sharedbroker cleanup fakeAPI tests; NOTrealKubernetes",
+  "tests": [
+    "TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence",
+    "TestForbiddenCustomScopeIsNotAuthoritativeDeletion",
+    "TestInformerWebSocketSnapshotAddUpdateDelete",
+    "TestInformerEventsCannotRegressSnapshotIdentityOrVersion",
+    "TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache",
+    "TestWorkspaceSharedBrokerSelectorExitAndLastRelease"
+  ],
+  "regex": "^(TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence|TestForbiddenCustomScopeIsNotAuthoritativeDeletion|TestInformerWebSocketSnapshotAddUpdateDelete|TestInformerEventsCannotRegressSnapshotIdentityOrVersion|TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache|TestWorkspaceSharedBrokerSelectorExitAndLastRelease)$",
+  "fileSHA256": {
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/connection_test.go": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+    "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72",
+    "backend/pkg/server/release_session_expiry_test.go": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+    "backend/pkg/server/release_session_lifecycle_test.go": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+    "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+    "backend/pkg/server/stream.go": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+    "backend/pkg/server/watch_authorization.go": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+    "backend/pkg/server/watch_authorization_test.go": "b1440b71afb5642c6a5797aab8f92db895af6fda15df123b4cce5d3d2f5a6415",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/server/workspace_broker.go": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+    "backend/pkg/server/workspace_cookie_test.go": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+    "backend/pkg/server/workspace_membership.go": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+    "backend/pkg/server/workspace_scope.go": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+    "frontend/src/data/resourceStore.js": "a88fd60b1519c23e622ac986fe6d96caf8a1a8e780bb2f36d603b4eedbdeb525",
+    "backend/pkg/server/correctness_test.go": "589f7642c24030dcad4b494438777844173ebbff633286fecb080c761e2cd04b",
+    "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+    "backend/pkg/server/workspace_recovery_test.go": "cc1a8b1f925ee350e4290f10a97474d92cd76d3f88acb48bce30e2077fe98f10"
+  },
+  "safety": {
+    "wallSeconds": 150,
+    "goTimeoutSeconds": 90,
+    "GOMAXPROCS": 2,
+    "p": 1,
+    "parallel": 1,
+    "ownedRSSMiB": 1536,
+    "freeDiskGiB": 10,
+    "providersDisabled": true,
+    "noRealCluster": true
+  }
+}

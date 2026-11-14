@@ -1,0 +1,9 @@
+Case02 remains FAIL. The separately authorized exact partial cleanup passed; this is not provisioning acceptance.
+
+At 2026-11-11T19:20:34.512891+00:00, the recorded container was stopped with `docker container stop --time 5 <exact-ID>`, then removed without force or `-v`. Node absence and zero assigned Pods were checked again after stop. The exact volume was removed without force after birth, labels, exclusive targets and no-user guards. Only the pending non-control-plane m03 profile entry differed from the private full original; CAS and same-directory atomic 0600/fsync/rename restored exact original bytes. Profile SHA256 is `c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5`. Full original Node/container/fixture/Cilium/network/volume/lab-state baseline compared equal; new Node/assigned Pods and all new label targets were absent.
+
+The owned `machines/kvml-d32afbf634e8-a-m03` directory remains. Its three files were copied privately for forensics; no machine file was deleted. Public evidence contains metadata only. This residual private machine state is handed to root for disposition and is not clean provisioning state.
+
+Operational elapsed: 102.600 s / 120 s. Receipt elapsed: 244.087 s / 240 s (within limit: False). No API calls followed the cleanup verification. The failed case02 result, immutable journals and historical cleanup files were preserved; helper ownership belongs to root. App/CLI groups had already been verified absent and port 19849 free before this cleanup; this receipt does not claim a later process recheck.
+
+Exact failed helper SHA256: `8645fc24fa959835970f2576ef3b1794b59c0d67fc7b2d5813024cc46676d9e1`. Operation: `0aab9c6d-1a75-4e24-9c23-5a7548d922bc`. Reproducible executed cleanup script and its hash are referenced in `historical-proof-references.json`; it is historical evidence, not authorization to rerun. No helper/product/Git/index/roadmap changes and no additional transaction.

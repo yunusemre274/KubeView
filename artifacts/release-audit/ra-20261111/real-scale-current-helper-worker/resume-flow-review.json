@@ -1,0 +1,17 @@
+{
+  "telemetryAlreadyInstalled": true,
+  "telemetryVersion": "1.20.2",
+  "telemetryMode": "separate-A-only",
+  "alreadyRecordedBootstrapRepair": true,
+  "resourceUIDCount": 6,
+  "storedProcessKeys": [],
+  "runnerSHA256": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5",
+  "telemetryRunnerSHA256": "71fb19ae92aa9f4adaed79c8469ce2e30e779a8b7342ba7f7cf481a126ddfebf",
+  "flowReview": [
+    "Existing containers with uid+marker resume branch starts only exact owned Docker IDs, restores owned in-container CP alias if absent, starts existing kubelet units, refreshes private API port preserving CA/auth, rechecks live API/NodeUID",
+    "Installed telemetry path performs ownership and rollout/CNI readiness checks; first-install Helm path not selected",
+    "Recorded bootstrap repair makes another relay repair refuse rather than mutate on invalid state",
+    "up does not call app or telemetry.forward; existing fixture ensure methods retain owned objects; no scenario command",
+    "No new minikube start branch is selected when exact stored container/UID/marker branch passes"
+  ]
+}

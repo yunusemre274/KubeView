@@ -1,0 +1,1 @@
+İlk normal-mode binary denemesi nonzero exit ile API_TOKEN / BIND_ADDR=127.0.0.1 hatasını verdi. Test sürücüsü İngilizce “loopback” kelimesini aradığından Türkçe hata metninde assertion FAIL verdi. Ürün bind hatası değildir. İlk süreç kapandı; ilk ham stdout yalnız private bind-tests/normal-lan-no-token.log içinde korunur. Bu ayrı tekrar doğru, dilden bağımsız kontrolü kullanır.

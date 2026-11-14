@@ -1,0 +1,10 @@
+{
+  "time": "2026-11-10T12:15:53.688664+00:00",
+  "returncode": 0,
+  "tests": {
+    "pass": 9,
+    "skip": 2,
+    "fail": 0
+  },
+  "scope": "New selector predicates unit/compile only. Real G/H tests opt-in SKIP; not real API evidence."
+}

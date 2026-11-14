@@ -1,0 +1,19 @@
+✔ strict argument parsing preserves prepared/clean/target and default targets (0.685167ms)
+✔ existing explicit output directories and symlinks fail before any command (5.223209ms)
+✔ default dist rejects every conflicting archive, binary folder or manifest before build (13.529083ms)
+✔ fresh relative output dry-run preserves prepared flow and packages only manual runtime (7.833916ms)
+✔ fresh absolute output keeps both default targets isolated from historical dist (8.997875ms)
+✔ default output preserves unrelated historical files and keeps normal frontend flow (6.02025ms)
+✔ require-clean rejection never reserves output or invokes frontend/build tools (2.654958ms)
+✔ require-clean includes the manual runtime, shipped docs and RBAC inputs (19.419833ms)
+✔ bundle provenance binds shipped inputs and prepared frontend bytes (10.359083ms)
+✔ missing or symlinked prepared frontend cannot reach embed or compilation (5.625667ms)
+✔ archive published during build cannot be overwritten and temporary output is removed (5.166875ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 121.937541

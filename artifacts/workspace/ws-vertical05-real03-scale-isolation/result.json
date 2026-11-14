@@ -1,0 +1,59 @@
+{
+  "id": "ws-vertical05-real03-scale-isolation",
+  "startedAt": "2026-11-09T17:53:05.825Z",
+  "source": "Real Kubernetes API + normal scale form; owned manual profile03",
+  "checks": [
+    {
+      "name": "failure-cleanup-only",
+      "at": "2026-11-09T17:53:11.636Z",
+      "detail": {
+        "restoredReplica1": true,
+        "method": "Direct owned UID/RV guarded API; not normal UI success"
+      }
+    },
+    {
+      "name": "final-owned-fixture-restored",
+      "at": "2026-11-09T17:53:11.836Z",
+      "detail": {
+        "a": {
+          "uid": "4ba19cc9-9fbc-44d5-84c5-83d1a01cb6cc",
+          "replicas": 1,
+          "generation": 3,
+          "templateHash": "e820640827bf1f78f0255e7dfb316b99bca62face23bd8eed3ecb75b271bde41"
+        },
+        "b": {
+          "uid": "37f1b711-a541-4dd5-a40d-361b72a203db",
+          "replicas": 1,
+          "generation": 1,
+          "templateHash": "e820640827bf1f78f0255e7dfb316b99bca62face23bd8eed3ecb75b271bde41"
+        },
+        "bPodUIDs": [
+          "44f6c10f-3db5-41f6-8cfb-5b3566aeabaa",
+          "5fe00f0b-3054-4eed-8e22-68b085656901"
+        ]
+      }
+    }
+  ],
+  "status": "failed",
+  "errors": [],
+  "before": {
+    "a": {
+      "uid": "4ba19cc9-9fbc-44d5-84c5-83d1a01cb6cc",
+      "replicas": 1,
+      "generation": 1,
+      "templateHash": "e820640827bf1f78f0255e7dfb316b99bca62face23bd8eed3ecb75b271bde41"
+    },
+    "b": {
+      "uid": "37f1b711-a541-4dd5-a40d-361b72a203db",
+      "replicas": 1,
+      "generation": 1,
+      "templateHash": "e820640827bf1f78f0255e7dfb316b99bca62face23bd8eed3ecb75b271bde41"
+    },
+    "bPodUIDs": [
+      "44f6c10f-3db5-41f6-8cfb-5b3566aeabaa",
+      "5fe00f0b-3054-4eed-8e22-68b085656901"
+    ]
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n202 !== 200\n\n    at scale (file:///Users/yunusemre/Desktop/KubeView/benchmarks/workspace-real-scale.mjs:56:43)\n    at async file:///Users/yunusemre/Desktop/KubeView/benchmarks/workspace-real-scale.mjs:65:19",
+  "finishedAt": "2026-11-09T17:53:11.899Z"
+}

@@ -1,0 +1,215 @@
+✔ snapshot includes unscheduled pod without creating a fictitious node (9.304625ms)
+✔ same-name recreation, delayed DELETE, and opaque resourceVersion remain safe (2.73125ms)
+✖ generation rejects previous session messages and resync removes vanished resources (4.956541ms)
+✔ Running and Ready differ; deletionTimestamp stays canonical until DELETE (0.7395ms)
+✔ restart update preserves identity; missing measurements never become zero (0.862625ms)
+✔ limited reconnect snapshot cannot declare an unlisted custom resource deleted (3.340666ms)
+✔ real CR DELETE and offline delete confirmed by scoped relist remove only that UID (0.620125ms)
+✔ RBAC loss and unavailable CR API retain explicitly unverified data, never tombstone it (0.444709ms)
+✔ specific namespace authority is usable when cluster-wide list is denied; a later exact denial is explicit (0.449584ms)
+✔ a CR recreated at the same address has new UID, and delayed old DELETE cannot remove it (0.620417ms)
+✖ namespace/GVR authority and connection identity do not leak across scopes or contexts (1.575958ms)
+✔ empty scoped authority preserves unknown objects while explicit legacy full snapshot reconciles them (0.478542ms)
+✔ in-flight list cannot undo a newer watch update, DELETE, ADD or UID replacement (0.781167ms)
+✔ scope and tombstone identities stay stable on unrelated normal updates; deletion cache is bounded (2713.004667ms)
+✔ namespace narrowing forgets only unleased coverage without inventing DELETE or replacing context (7.62475ms)
+✔ a later scoped snapshot marks only its actual UIDs as baseline; live ADD and Pending assignment stay separate (0.862ms)
+✔ snapshot provenance replaces rather than accumulates UID history and resets with source (3.312666ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 15
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3196.496792
+
+✖ failing tests:
+
+test at tests/store.test.js:61:1
+✖ generation rejects previous session messages and resync removes vanished resources (4.956541ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      completeSnapshot: true,
+      errors: [],
+  +   events: [
+  +     {
+  +       action: 'ADD',
+  +       id: 'stale:opaque:ADD',
+  +       kind: 'Pod',
+  +       message: 'Pod same-name · ADD',
+  +       name: 'same-name',
+  +       namespace: 'test',
+  +       resource: {
+  +         apiVersion: 'v1',
+  +         kind: 'Pod',
+  +         metadata: {
+  +           name: 'same-name',
+  +           namespace: 'test',
+  +           resourceVersion: 'opaque',
+  +           uid: 'stale'
+  +         },
+  +         spec: {
+  +           nodeName: ''
+  +         },
+  +         status: {
+  +           conditions: [
+  +             {
+  +               status: 'False',
+  +               type: 'Ready'
+  +             }
+  +           ],
+  +           phase: 'Running'
+  +         }
+  +       },
+  +       timestamp: '2026-11-11T10:51:55.526Z'
+  +     }
+  +   ],
+  -   events: [],
+      generation: 2,
+      isConnected: false,
+      lastUpdated: '2026-11-11T10:51:55.526Z',
+      metricHistory: [],
+      metrics: null,
+      outOfScope: {},
+      resources: {
+  +     stale: {
+  -     current: {
+          apiVersion: 'v1',
+          kind: 'Pod',
+          metadata: {
+            name: 'same-name',
+            namespace: 'test',
+            resourceVersion: 'opaque',
+  +         uid: 'stale'
+  -         uid: 'current'
+          },
+          spec: {
+            nodeName: ''
+          },
+          status: {
+  ...
+      synced: true,
+  +   tombstones: {
+  +     current: {
+  +       reason: 'replaced',
+  +       timestamp: '2026-11-11T10:51:55.526Z'
+  +     }
+  +   },
+  -   tombstones: {},
+      upstream: true
+    }
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/.git/release-audit/fuzz-mutation-49999815/generation-guard-disabled/tests/store.test.js:67:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { sourceKey: '', generation: 2, resources: { stale: [Object] }, snapshotUIDs: Set(1) { 'current' }, scopes: {}, tombstones: { current: [Object] }, outOfScope: {}, completeSnapshot: true, snapshotReady: true, synced: true, upstream: true, isConnected: false, stale: false, errors: [], lastUpdated: '2026-11-11T10:51:55.526Z', events: [ [Object] ], metrics: null, metricHistory: [] },
+    expected: { sourceKey: '', generation: 2, resources: { current: [Object] }, snapshotUIDs: Set(1) { 'current' }, scopes: {}, tombstones: {}, outOfScope: {}, completeSnapshot: true, snapshotReady: true, synced: true, upstream: true, isConnected: false, stale: false, errors: [], lastUpdated: '2026-11-11T10:51:55.526Z', events: [], metrics: null, metricHistory: [] },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/store.test.js:251:1
+✖ namespace/GVR authority and connection identity do not leak across scopes or contexts (1.575958ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      completeSnapshot: false,
+      context: 'context-a',
+      errors: [],
+  +   events: [
+  +     {
+  +       action: 'UPDATE',
+  +       id: 'a:opaque-A:UPDATE',
+  +       kind: 'AuditCargo',
+  +       message: 'AuditCargo cargo · UPDATE',
+  +       name: 'cargo',
+  +       namespace: 'test',
+  +       resource: {
+  +         apiVersion: 'audit.kubeview.local/v1',
+  +         kind: 'AuditCargo',
+  +         metadata: {
+  +           name: 'cargo',
+  +           namespace: 'test',
+  +           resourceVersion: 'opaque-A',
+  +           uid: 'a'
+  +         },
+  +         spec: {
+  +           note: 'retained-real-data'
+  +         }
+  +       },
+  +       timestamp: '2026-11-11T10:51:55.539Z'
+  +     }
+  +   ],
+  -   events: [],
+      generation: 'two',
+      isConnected: true,
+      lastUpdated: '2026-11-11T10:51:55.539Z',
+      metricHistory: [],
+      metrics: null,
+  ...
+      resources: {
+  +     a: {
+  +       apiVersion: 'audit.kubeview.local/v1',
+  +       kind: 'AuditCargo',
+  +       metadata: {
+  +         name: 'cargo',
+  +         namespace: 'test',
+  +         resourceVersion: 'opaque-A',
+  +         uid: 'a'
+  +       },
+  +       spec: {
+  +         note: 'retained-real-data'
+  +       }
+  +     },
+        b: {
+          apiVersion: 'audit.kubeview.local/v1',
+          kind: 'AuditCargo',
+          metadata: {
+            name: 'cargo',
+  ...
+          authoritative: true,
+  +       generation: 'one',
+  -       generation: 'two',
+          group: 'audit.kubeview.local',
+          kind: 'AuditCargo',
+          namespace: 'test',
+          resource: 'auditcargo',
+          source: 'watch',
+  ...
+      synced: true,
+  +   tombstones: {},
+  -   tombstones: {
+  -     a: {
+  -       reason: 'authoritative-absence',
+  -       timestamp: '2026-11-11T10:51:55.539Z'
+  -     }
+  -   },
+      upstream: true
+    }
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/.git/release-audit/fuzz-mutation-49999815/generation-guard-disabled/tests/store.test.js:268:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { sourceKey: 'live:context-a', generation: 'two', resources: { b: [Object], a: [Object] }, snapshotUIDs: Set(0) {}, scopes: { '["audit.kubeview.local","v1","auditcargo","*"]': [Object], '["audit.kubeview.local","v1","auditcargo","test"]': [Object] }, tombstones: {}, outOfScope: {}, completeSnapshot: false, snapshotReady: true, synced: true, upstream: true, isConnected: true, stale: false, errors: [], lastUpdated: '2026-11-11T10:51:55.539Z', events: [ [Object] ], metrics: null, metricHistory: [], context: 'context-a', mode: 'live' },
+    expected: { sourceKey: 'live:context-a', generation: 'two', resources: { b: [Object] }, snapshotUIDs: Set(0) {}, scopes: { '["audit.kubeview.local","v1","auditcargo","*"]': [Object], '["audit.kubeview.local","v1","auditcargo","test"]': [Object] }, tombstones: { a: [Object] }, outOfScope: {}, completeSnapshot: false, snapshotReady: true, synced: true, upstream: true, isConnected: true, stale: false, errors: [], lastUpdated: '2026-11-11T10:51:55.539Z', events: [], metrics: null, metricHistory: [], context: 'context-a', mode: 'live' },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

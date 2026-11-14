@@ -1,0 +1,8 @@
+{
+  "binarySHA256": "4df0498a39252ca0c717c20ce67df4b7581aead3a6a056a135a39068977e94f8",
+  "frontendSourceSHA256": "ff682d9b633c86062fa3e1379aef7c92747f2bee0b31a9cbaec0995cda9219b9",
+  "indexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+  "backendRuntimeSHA256": "654c6b1939dfa2d83b48daf79213f569bf71deb95444c46c3aed8575cbe02940",
+  "changes": "Closed resource panel intent survives harbor/source return; selection retained; cold/explicit/open selection preserved",
+  "seconds": 1.994
+}

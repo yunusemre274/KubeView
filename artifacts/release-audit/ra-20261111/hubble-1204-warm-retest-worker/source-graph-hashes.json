@@ -1,0 +1,12 @@
+{
+  "private_source": ".git/release-audit/hubble-v1.20.4-patched1/source/cilium-hubble-3e268bb",
+  "go_mod_sha256": "c38e35d77f19d61403c8fe9aee8507f4b16118e456e07613e6401b1a4792aea9",
+  "go_sum_sha256": "62d7d558528fedd03a23b7b271777772d55512cdaf4b099238139ff7ac263d0b",
+  "source_before_sha256": "88de58d83462f9104324ca1d9763a30aa5b9e3a533d26c526f2e9ac9b9c4080c",
+  "source_after_sha256": "88de58d83462f9104324ca1d9763a30aa5b9e3a533d26c526f2e9ac9b9c4080c",
+  "same_file_hashes_before_after": true,
+  "first_fail_report_sha256": "3b8fdaf6a548f402df37d29fca909dea902f012bf6b1f23f9a5354d4a3cdcde9",
+  "first_fail_checksums_sha256": "5475abb35910dc56eb1b016ebfa438d579fecdbe6e9925b378af191c4f3183da",
+  "old_1202_binary_sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2",
+  "free_disk_bytes_final": 452217835520
+}

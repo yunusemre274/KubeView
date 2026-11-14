@@ -1,0 +1,135 @@
+{
+  "engine": "webkit",
+  "startedAt": "2026-11-11T12:34:31.026Z",
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "cookie-only-normal-preview-opaque-isolation",
+      "pass": true,
+      "evidence": {
+        "jsRan": true,
+        "opaqueOrigin": true,
+        "openerAbsent": true,
+        "cookieDenied": true,
+        "storageDenied": true,
+        "attempts": [
+          {
+            "kind": "read",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          },
+          {
+            "kind": "managementSimple",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          },
+          {
+            "kind": "managementJSON",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          }
+        ]
+      },
+      "deniedRequestCount": 3,
+      "deniedRequests": [
+        {
+          "knownNonce": true,
+          "method": "GET",
+          "origin": "null",
+          "path": "/api/connection",
+          "status": 403
+        },
+        {
+          "knownNonce": true,
+          "method": "POST",
+          "origin": "null",
+          "path": "/api/management",
+          "status": 403
+        },
+        {
+          "knownNonce": true,
+          "method": "OPTIONS",
+          "origin": "null",
+          "path": "/api/management",
+          "status": 403
+        }
+      ],
+      "finalPath": "/api/portforward/synthetic/",
+      "upstreamCredentialsStripped": true,
+      "takeoverCookieAbsent": true
+    }
+  ],
+  "statuses": [
+    {
+      "path": "/__test/control",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    },
+    {
+      "path": "/__test/stats",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    },
+    {
+      "path": "/api/portforward/synthetic/",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false,
+      "csp": "sandbox allow-scripts allow-forms",
+      "setCookiePresent": false,
+      "corsOriginPresent": false,
+      "corsCredentialPresent": false,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/__test/stats",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    },
+    {
+      "path": "/api/portforward/synthetic/redirect",
+      "method": "GET",
+      "status": 302,
+      "origin": null,
+      "authorizationHeaderPresent": false,
+      "setCookiePresent": false,
+      "corsOriginPresent": false,
+      "corsCredentialPresent": false,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/api/portforward/synthetic/canary",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false,
+      "csp": "sandbox allow-scripts allow-forms",
+      "setCookiePresent": false,
+      "corsOriginPresent": false,
+      "corsCredentialPresent": false,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/__test/stats",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    }
+  ],
+  "requestCount": 12,
+  "externalRequestsBlocked": 0,
+  "version": "27.2",
+  "error": {
+    "name": "AssertionError",
+    "message": "The expression evaluated to a falsy value:\n\n  assert(mainResponses.every(item => item.csp === 'sandbox allow-scripts allow-forms' && !item.setCookiePresent && !item.corsOriginPresent && !item.corsCredentialPresent && item.referrerPolicy === 'no-referrer'))\n"
+  },
+  "finishedAt": "2026-11-11T12:34:31.704Z"
+}

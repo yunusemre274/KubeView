@@ -1,0 +1,84 @@
+{
+  "status": "PASS_CORRECTED_OS_MEDIUM_LOCAL_IMAGES_SCOPED",
+  "executionAttempt02Seconds": 8.059,
+  "original600sTotalElapsedSecondsAtFinalization": 524.169,
+  "original600sRequirementMet": true,
+  "reservedFinalizationSeconds": 60,
+  "firstAttempt": "../attempt01/REPORT.md",
+  "firstAttemptPreservedUnchanged": true,
+  "rootApprovedCorrectedRetries": 1,
+  "targetMediumRowsRemoved": 16,
+  "remainingRawCSVRows": 93,
+  "newSignedMetadataDownloads": 0,
+  "preparationVerifiedDebPayloadGETs": 3,
+  "retryNetworkDownloads": 0,
+  "scannerBaselineReruns": 0,
+  "DBBytesUnchanged": true,
+  "images": {
+    "cilium": {
+      "tag": "kubeview-private/cilium:1.20.4-os-security.2",
+      "localDescriptorDigest": "sha256:10169bb90a60036756c6e5764fe5154bc15987fb6a700d11bc551d7d2730b9d9",
+      "registryPublished": false,
+      "packageChanges": {
+        "libpcre2-8-0": {
+          "before": {
+            "version": "10.46-1build1",
+            "architecture": "arm64"
+          },
+          "after": {
+            "version": "10.46-1ubuntu0.1",
+            "architecture": "arm64"
+          }
+        },
+        "zlib1g": {
+          "before": {
+            "version": "1:1.3.dfsg+really1.3.1-1ubuntu3.1",
+            "architecture": "arm64"
+          },
+          "after": {
+            "version": "1:1.3.dfsg+really1.3.1-1ubuntu3.2",
+            "architecture": "arm64"
+          }
+        }
+      },
+      "removedMediumRows": 9,
+      "remainingRawCounts": {
+        "MEDIUM": 55,
+        "LOW": 6,
+        "UNKNOWN": 4,
+        "HIGH": 8
+      },
+      "GoFindingsUnchanged": true
+    },
+    "envoy": {
+      "tag": "kubeview-private/cilium-envoy:1.20.4-os-security.2",
+      "localDescriptorDigest": "sha256:4e6caf599bb5162a1d0a60feaf0e3b5d196a6f8815a4581f9c251aec87e22bbc",
+      "registryPublished": false,
+      "packageChanges": {
+        "libpcre2-8-0": {
+          "before": {
+            "version": "10.42-4ubuntu2.1",
+            "architecture": "arm64"
+          },
+          "after": {
+            "version": "10.42-4ubuntu2.2",
+            "architecture": "arm64"
+          }
+        }
+      },
+      "removedMediumRows": 7,
+      "remainingRawCounts": {
+        "MEDIUM": 16,
+        "LOW": 4
+      },
+      "GoFindingsUnchanged": true
+    }
+  },
+  "protectedParentsAndOperatorUnchanged": true,
+  "allOwnedV2ContainersAbsent": true,
+  "nativeTLSCNIAcceptanceEstablished": false,
+  "completeSecurityGateClosed": false,
+  "riskAccepted": false,
+  "finishedAt": "2026-11-12T11:13:52.274793+00:00",
+  "allRecordedExecutorClientPIDsAbsent": true
+}

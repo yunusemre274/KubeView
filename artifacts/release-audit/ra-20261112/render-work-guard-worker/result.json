@@ -1,0 +1,155 @@
+{
+  "status": "PASS_HARNESS_GUARD_FIX_NO_PRODUCT_OR_RUNTIME_ACCEPTANCE",
+  "completedAt": "2026-11-12T20:23:02.287267+00:00",
+  "scope": "BENCH-RENDER-001 automatic submitted-work guard only. No new benchmark/app/browser/build/cluster/provider or product changes.",
+  "sourceBefore": {
+    "at": "2026-11-12T20:17:36.814205+00:00",
+    "SHA256": {
+      "benchmarks/panel-compare.mjs": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+      "benchmarks/panel-compare.test.mjs": "37c10038cca843c966effbdedc02404769d783ea8d4ab633271f101a6f95bbcb"
+    },
+    "testsRun": 0,
+    "oldFortyCellProcessingRun": 0
+  },
+  "sourceAfter": {
+    "benchmarks/panel-compare.mjs": "66662ee807299a3db414160be75bfbf912e10fc94ff34ba60c0661361fa4a001",
+    "benchmarks/panel-compare.test.mjs": "e0051158134792beefaeb36efcaa5e3e3600744ae3cfe255492b5da575db7d2f"
+  },
+  "red": {
+    "argv": [
+      "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "benchmarks/panel-compare.test.mjs"
+    ],
+    "startedAfterRootGO": true,
+    "exitCode": 1,
+    "elapsedSeconds": 0.062461417001031805,
+    "expected": "RED: new render-work tests fail against unchanged old comparator",
+    "sourceSHA256": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+    "testSHA256": "e0051158134792beefaeb36efcaa5e3e3600744ae3cfe255492b5da575db7d2f",
+    "stdoutSHA256": "7d898e96161a61c294a18b184aac65b6b8ec884288f9795379eef4c4c395b247",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "counts": {
+      "tests": 12,
+      "pass": 5,
+      "fail": 7,
+      "skipped": 0
+    }
+  },
+  "green": {
+    "argv": [
+      "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "benchmarks/panel-compare.test.mjs",
+      "benchmarks/metrics.test.mjs",
+      "benchmarks/compare.test.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.7974032909987727,
+    "neighborsReason": "metrics supplies distributions/process counters; generic compare tests guard shared counter/identity contract",
+    "sourceSHA256": "66662ee807299a3db414160be75bfbf912e10fc94ff34ba60c0661361fa4a001",
+    "testSHA256": "e0051158134792beefaeb36efcaa5e3e3600744ae3cfe255492b5da575db7d2f",
+    "stdoutSHA256": "0cb5d7b8c32339307efa85e9cc5c011ff3033ff44079efe281369722517893bc",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "counts": {
+      "tests": 49,
+      "pass": 49,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "offlineHistoricalRetest": {
+    "status": "PASS_OFFLINE_GUARD_RETEST_NO_NEW_MEASUREMENTS",
+    "originalComparable": true,
+    "correctedComparable": false,
+    "renderWorkStatus": "REQUIRES_RENDER_EQUIVALENCE_REVIEW",
+    "affectedPairedCells": 3,
+    "knownCounterExample": {
+      "block": 3,
+      "scenario": "panel-open-events",
+      "status": "REQUIRES_RENDER_EQUIVALENCE_REVIEW",
+      "differences": [
+        {
+          "path": "before.stats.calls",
+          "before": 426,
+          "after": 427,
+          "status": "DIFFERENT"
+        },
+        {
+          "path": "before.stats.lines",
+          "before": 60,
+          "after": 72,
+          "status": "DIFFERENT"
+        },
+        {
+          "path": "summary.calls.p50",
+          "before": 434,
+          "after": 435,
+          "status": "DIFFERENT"
+        },
+        {
+          "path": "summary.calls.p95",
+          "before": 440,
+          "after": 441,
+          "status": "DIFFERENT"
+        },
+        {
+          "path": "summary.calls.p99",
+          "before": 443,
+          "after": 444,
+          "status": "DIFFERENT"
+        },
+        {
+          "path": "summary.calls.max",
+          "before": 444,
+          "after": 445,
+          "status": "DIFFERENT"
+        }
+      ],
+      "unknowns": []
+    },
+    "numericTableDeltasSamplesInputsUnchanged": true,
+    "historicalFilesVerifiedUnchanged": 178,
+    "originalSourceSHA256": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+    "currentSourceSHA256": "66662ee807299a3db414160be75bfbf912e10fc94ff34ba60c0661361fa4a001",
+    "importRebinding": "Only original relative imports resolved to their original directory; original source preserved.",
+    "newPerformanceWindows": 0
+  },
+  "contract": {
+    "pairedSameBlockScenario": true,
+    "submittedBoundaryFields": [
+      "calls",
+      "triangles",
+      "lines",
+      "points"
+    ],
+    "summaryDistributionFields": [
+      "calls",
+      "triangles"
+    ],
+    "comparedPercentiles": [
+      "p50",
+      "p95",
+      "p99",
+      "min",
+      "max"
+    ],
+    "sampleN": "Positive safe-integer count required on both sides; actual n equality is not required.",
+    "unknown": "Missing/nonfinite/invalid counts are UNKNOWN/null, never converted to measured zero.",
+    "differingSubmittedCounters": "REQUIRES_RENDER_EQUIVALENCE_REVIEW; comparable=false prevents automatic eligibility, without performance/regression/quality verdict.",
+    "allocatedGeometryTextures": "Separate observations, including UNKNOWN; allocation-only differences do not imply active submitted draws or reject an otherwise matched counter comparison.",
+    "positiveProofLimit": "MATCHED_COUNTERS_ONLY is guard-scoped; it does not prove instance/material/visual/semantic equivalence.",
+    "numericOutputs": "No early return; original table/deltas/samples/inputs preserved even when review is required.",
+    "APICompatibility": "Existing comparable/reasons/table/deltas retained; renderWorkReview added. CLI still exits2 for non-comparable output, now printing render-review status."
+  },
+  "historicalFilesUnchangedFinal": 178,
+  "newPerformanceWindows": 0,
+  "remainingLimits": [
+    "External semantic/visual equivalence review still required for legitimate batching changes.",
+    "Known historical extra draw/geometry cause remains unproven; no product correction or full-family acceptance.",
+    "RSS mechanism and event-load delta variance remain unresolved.",
+    "This counter guard does not establish kernel-complete processes, native Safari/Retina, physical FPS, energy or continuous-soak acceptance."
+  ]
+}

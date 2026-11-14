@@ -1,0 +1,17 @@
+image,target,class,type,id,pkg,installed,fixed,severity,status,severity_source,primary_url
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-103111,libpcre2-8-0,10.46-1build1,10.46-1ubuntu0.1,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-103111
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-86145,libpcre2-8-0,10.46-1build1,10.46-1ubuntu0.1,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-86145
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-89156,libpcre2-8-0,10.46-1build1,10.46-1ubuntu0.1,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89156
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-89157,libpcre2-8-0,10.46-1build1,10.46-1ubuntu0.1,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89157
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-89158,libpcre2-8-0,10.46-1build1,10.46-1ubuntu0.1,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89158
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-89160,libpcre2-8-0,10.46-1build1,10.46-1ubuntu0.1,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89160
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-89161,libpcre2-8-0,10.46-1build1,10.46-1ubuntu0.1,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89161
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-89162,libpcre2-8-0,10.46-1build1,10.46-1ubuntu0.1,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89162
+cilium,kubeview-private/cilium:1.20.4-apt-security.1 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-85091,zlib1g,1:1.3.dfsg+really1.3.1-1ubuntu3.1,1:1.3.dfsg+really1.3.1-1ubuntu3.2,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-85091
+envoy,kubeview-private/cilium-envoy:1.20.4-apt-security.1 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-103111,libpcre2-8-0,10.42-4ubuntu2.1,10.42-4ubuntu2.2,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-103111
+envoy,kubeview-private/cilium-envoy:1.20.4-apt-security.1 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-86145,libpcre2-8-0,10.42-4ubuntu2.1,10.42-4ubuntu2.2,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-86145
+envoy,kubeview-private/cilium-envoy:1.20.4-apt-security.1 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-89156,libpcre2-8-0,10.42-4ubuntu2.1,10.42-4ubuntu2.2,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89156
+envoy,kubeview-private/cilium-envoy:1.20.4-apt-security.1 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-89157,libpcre2-8-0,10.42-4ubuntu2.1,10.42-4ubuntu2.2,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89157
+envoy,kubeview-private/cilium-envoy:1.20.4-apt-security.1 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-89158,libpcre2-8-0,10.42-4ubuntu2.1,10.42-4ubuntu2.2,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89158
+envoy,kubeview-private/cilium-envoy:1.20.4-apt-security.1 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-89160,libpcre2-8-0,10.42-4ubuntu2.1,10.42-4ubuntu2.2,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89160
+envoy,kubeview-private/cilium-envoy:1.20.4-apt-security.1 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-89161,libpcre2-8-0,10.42-4ubuntu2.1,10.42-4ubuntu2.2,MEDIUM,fixed,ubuntu,https://avd.aquasec.com/nvd/cve-2026-89161

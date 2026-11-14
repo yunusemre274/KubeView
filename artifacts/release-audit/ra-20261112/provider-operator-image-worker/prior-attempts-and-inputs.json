@@ -1,0 +1,63 @@
+{
+  "priorArtifactsUnmodifiedByThisWorker": true,
+  "priorFailedFSAttempt": "candidate1 direct trivy fs returned exit0, num0 language files / no analyzer packages: BLOCKED_GOBINARY_COVERAGE; never counted clean; not repeated",
+  "thisPreparationMissingPaths": "stopped official-container copy attempts found no dpkg/status, os-release, apt sources or Ubuntu keyring; negative evidence retained in preparation-container.json",
+  "thisSessionBuildOrScanRetries": 0,
+  "inputs": [
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/REPORT.md",
+      "sha256": "1ebc6bea6cf988f5c6dd7bfbdafa7cdc097d05ca5ebfb2cc352ecd1bb4eeeae0",
+      "bytes": 6283
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/trivy.json",
+      "sha256": "591b9f4d04df1f85f87f6e22fa73917d2b1f3c5782c568afd43b225ea0d41894",
+      "bytes": 2460
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/trivy.stderr",
+      "sha256": "6acdad752b7262079478a5a4808de024aa3166f3f4a914e11c08c0fb6ade67b4",
+      "bytes": 360
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/trivy-raw.json.gz",
+      "sha256": "28d2fef1eadba33723d4684fd27f977b520edd19150bc5a3ac5cf7d21c4180c4",
+      "bytes": 295
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-findings-review-worker/REPORT.md",
+      "sha256": "4d6c4b892d129d24c889644f845db7f2dcf73c20ea369ee3904cfa270008d92c",
+      "bytes": 4920
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/REPORT.md",
+      "sha256": "4f39abe6a98ff0526193d5d0a8a37384b7312b875b6f9338dfe84f3e28bc8376",
+      "bytes": 4434
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/result.json",
+      "sha256": "1ea4c4ecacd9762ee97b118104ccd0e5807bba59a1e2155912c6fe64719dd34e",
+      "bytes": 2305
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/binary-dependencies.cdx.json",
+      "sha256": "3464cdd7b9cae38934be58a685d05df8ccc1a3584760cecbf90e091f19613679",
+      "bytes": 30146
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/trivy-sbom-corrected-raw.json.gz",
+      "sha256": "cf39c11c95b027880551a343a698951efe535e43258429ae2efbe9dbe01a5742",
+      "bytes": 7693
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-official-patch-review-worker/REPORT.md",
+      "sha256": "a22930767d801a3d4a5662f0940a3aeab24df1bb8da531638ec77b8e38dfaab5",
+      "bytes": 5824
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/operator-generic-findings.json",
+      "sha256": "7870554a18d5111f20c7df3398c88383c5eab98ddb8242280778cc676a8fd671",
+      "bytes": 11150
+    }
+  ]
+}

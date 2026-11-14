@@ -1,0 +1,12 @@
+{
+  "attempt": "runs/2026-11-09T07-53-02-870Z-chromium-ff2aff6c/result.json",
+  "productFailure": "Four dirty CPU/RAM quantities were replaced by the unchanged real server template after a real native WebSocket close, actual stale state, and same-UID scoped snapshot reconnect.",
+  "uid": "a04d7d1c-ab30-4712-85f8-8096f0ab1dd1",
+  "resourceVersionBeforeAndAfter": "27013",
+  "expected": ["25m", "175m", "28Mi", "112Mi"],
+  "actual": ["10m", "100m", "16Mi", "64Mi"],
+  "sourceLocation": "frontend/src/workbench/ResourceForms.jsx:405 initial-load effect depends on readOnly/api and unconditionally setObject(draft) on fresh GET",
+  "secondProbeHarnessCorrection": "Real POST management enabled=false automatically closes the server WebSocket. Observe that actual close and reconnect instead of requiring another native close() on a socket that has already closed.",
+  "cleanup": "Exact owned replica-zero Deployment deleted and API404 observed",
+  "originalEvidencePreserved": true
+}

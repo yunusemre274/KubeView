@@ -1,0 +1,26 @@
+{
+  "exclusiveSession": "repair-final-battery-20261106",
+  "mainQueueUnchanged": true,
+  "afterMain": [
+    {
+      "check": "strict complete comparison",
+      "repeat": "none unless concrete invalid gate"
+    },
+    {
+      "check": "GPU async timer diagnostic",
+      "duration": "30s warmup + 60s; separate from normal CPU comparison"
+    },
+    {
+      "check": "actual video clip selection",
+      "duration": "six planned clips plus full status-injection fire video; encoding only outside measurement"
+    },
+    {
+      "check": "direct material inventory cleanup",
+      "reason": "existing main probe records GPU geometry/textures but not unique scene materials",
+      "action": "separate opt-in read-only scene inventory with disposal/WeakRef tracking; no product change; use existing long runner; write documentation while exclusive run proceeds"
+    },
+    {
+      "check": "curated evidence / final docs / commit and verified push"
+    }
+  ]
+}

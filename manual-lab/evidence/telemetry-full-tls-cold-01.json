@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "attempt": "telemetry-full-tls-cold-01",
+  "startedAt": "2026-11-10T08:55:48.201543+00:00",
+  "status": "FAIL_STOPPED_AT_UP",
+  "binarySha256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "basePort": 19900,
+  "appPort": 19906,
+  "forwardPort": 19908,
+  "freshStateBeforeStart": true,
+  "maxWallSeconds": 1800,
+  "stages": [
+    {
+      "name": "real-fresh-telemetry-up",
+      "exitCode": 2,
+      "elapsedSeconds": 362.67,
+      "pass": false
+    },
+    {
+      "name": "official-down-after-first-failure",
+      "exitCode": 0,
+      "elapsedSeconds": 21.64,
+      "pass": true
+    }
+  ],
+  "defaultABSecretRead": false,
+  "secretValuesOrPrivatePathsRecorded": false,
+  "labId": "kvml-f99e938d3301",
+  "clusters": {
+    "a": {
+      "name": "kvml-f99e938d3301-a",
+      "uid": "14c33366-442c-45a4-8ca7-1e56e7251ca5",
+      "nodeUids": {
+        "kvml-f99e938d3301-a": "c5bc395a-2168-487b-9df2-7b8bdea6c3ce",
+        "kvml-f99e938d3301-a-m02": "a6e4eaa7-2ee7-42aa-8193-3a07c5436d69"
+      },
+      "cni": "false",
+      "containerIds": [
+        {
+          "name": "kvml-f99e938d3301-a",
+          "id": "39252f220ab78bec54f75b42ca16cad98b6ee00d9fc89a3d53431830e3376f3f"
+        },
+        {
+          "name": "kvml-f99e938d3301-a-m02",
+          "id": "6ba2921a596bd441d08d706af59d7828625d30c309603b3300ac1ec89682ed32"
+        }
+      ]
+    }
+  },
+  "telemetry": {
+    "enabled": true,
+    "version": "1.20.2",
+    "mode": "separate-A-only",
+    "resourceUids": {},
+    "chartSha256": "b2afd87b7f75f875f92a14559f14f59b7babbb479d968e3fd625a20bf30ec20e"
+  },
+  "elapsedSeconds": 384.31,
+  "failureClass": "HelmWaitTimeout",
+  "failureDiagnostic": {
+    "helmTimeoutMessagePresent": true,
+    "relayUnmanagedBeforeCiliumReady": true,
+    "relayPodIPOutsideItsNodePodCIDR": true,
+    "relayInternalDnsTimeout": true,
+    "tlsHandshakeNotReached": true
+  },
+  "finalStoppedVerifiedAt": "2026-11-10T09:02:55.586387+00:00",
+  "finalContainers": [
+    {
+      "name": "kvml-f99e938d3301-a",
+      "id": "39252f220ab78bec54f75b42ca16cad98b6ee00d9fc89a3d53431830e3376f3f",
+      "running": false
+    },
+    {
+      "name": "kvml-f99e938d3301-a-m02",
+      "id": "6ba2921a596bd441d08d706af59d7828625d30c309603b3300ac1ec89682ed32",
+      "running": false
+    }
+  ],
+  "finalProcessLedgerEmpty": true
+}

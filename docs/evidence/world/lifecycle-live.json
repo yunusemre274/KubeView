@@ -1,0 +1,36 @@
+{
+  "source": "Gerçek Kubernetes verisi",
+  "cluster": "kubeview-test",
+  "namespace": "kubeview-qa",
+  "date": "2026-10-24T14:55:58.572Z",
+  "mutations": [
+    {
+      "path": "/api/resources",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "path": "/api/resources",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "path": "/api/resources",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "path": "/api/resources",
+      "method": "POST",
+      "status": 201
+    }
+  ],
+  "errors": [],
+  "transferObserved": true,
+  "store": {
+    "samples": 31,
+    "p50Ms": 0.20000000018626451,
+    "p95Ms": 1.800000000745058,
+    "maxMs": 2.2000000001862645
+  }
+}

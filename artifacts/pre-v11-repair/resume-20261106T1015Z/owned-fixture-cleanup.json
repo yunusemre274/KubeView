@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-06T10:28:47.190024+00:00",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "scope": "exact3ownedQAfixtureUIDsandexactownedCNPUIDonly",
+  "records": [
+    {
+      "name": "flow-client",
+      "uid": "c3787c43-ad96-4bba-b67a-71f150959e20",
+      "acceptedHTTP": 202,
+      "url": "http://127.0.0.1:18081/api/resources?context=kv-repair-1101&namespace=kv-repair-qa&resource=pods&version=v1&name=flow-client",
+      "observedHTTP404": true
+    },
+    {
+      "name": "flow-same",
+      "uid": "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+      "acceptedHTTP": 202,
+      "url": "http://127.0.0.1:18081/api/resources?context=kv-repair-1101&namespace=kv-repair-qa&resource=pods&version=v1&name=flow-same",
+      "observedHTTP404": true
+    },
+    {
+      "name": "flow-cross",
+      "uid": "c8aae56b-d81a-49c0-85ae-05e8bdb97e29",
+      "acceptedHTTP": 202,
+      "url": "http://127.0.0.1:18081/api/resources?context=kv-repair-1101&namespace=kv-repair-qa&resource=pods&version=v1&name=flow-cross",
+      "observedHTTP404": true
+    },
+    {
+      "name": "kv-flow-protocol-1718",
+      "uid": "7dd9c4a2-cd46-43a3-be8e-2f884a71a30d",
+      "acceptedHTTP": 202,
+      "url": "http://127.0.0.1:18081/api/resources?context=kv-repair-1101&namespace=kv-repair-qa&group=cilium.io&resource=ciliumnetworkpolicies&version=v2&name=kv-flow-protocol-1718",
+      "observedHTTP404": true
+    }
+  ]
+}

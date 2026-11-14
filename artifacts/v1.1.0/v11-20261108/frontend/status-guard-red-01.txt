@@ -1,0 +1,72 @@
+✔ Running is distinct from Ready and terminating remains visible (0.532667ms)
+✔ Unknown Node is not healthy and UID recreation does not alias (0.060042ms)
+✖ a suspended Job with no terminal condition is suspended instead of running (0.5075ms)
+✔ Job terminal conditions retain priority over suspend and normal running stays unchanged (0.067667ms)
+✖ DaemonSet missing, partial or stale observations never imply healthy readiness (0.118458ms)
+✔ DaemonSet known counts and current observed generation preserve real Ready including zero eligible Nodes (0.057125ms)
+✔ CPU and binary memory quantity parse without invented defaults (0.188667ms)
+✔ editable object preserves unknown fields and resourceVersion without mutating observed state (0.071291ms)
+✔ metrics are matched by raw namespace/name and missing data stays missing (0.109375ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 7
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.194083
+
+✖ failing tests:
+
+test at src/workbench/resourceUtils.test.js:57:1
+✖ a suspended Job with no terminal condition is suspended instead of running (0.5075ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   label: 'Çalışıyor',
+  -   label: 'Askıya alındı',
+      tone: 'warning'
+    }
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/src/workbench/resourceUtils.test.js:58:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { label: 'Çalışıyor', tone: 'warning' },
+    expected: { label: 'Askıya alındı', tone: 'warning' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at src/workbench/resourceUtils.test.js:93:1
+✖ DaemonSet missing, partial or stale observations never imply healthy readiness (0.118458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   label: 'Hazır',
+  +   tone: 'success'
+  -   label: 'Uygulanıyor',
+  -   tone: 'warning'
+    }
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/src/workbench/resourceUtils.test.js:108:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { label: 'Hazır', tone: 'success' },
+    expected: { label: 'Uygulanıyor', tone: 'warning' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

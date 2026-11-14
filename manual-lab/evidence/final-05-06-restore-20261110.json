@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "attempt": "final-05-06-restore-20261110",
+  "startedAt": "2026-11-10T12:16:46.074379+00:00",
+  "maxWallSeconds": 180,
+  "labId": "kvml-ccdfe731dabd",
+  "expectedClusterUid": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5",
+  "expectedNodeUids": {
+    "kvml-ccdfe731dabd-a": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+    "kvml-ccdfe731dabd-a-m02": "607adac0-75e9-4de1-9903-8e6422f77564"
+  },
+  "sourceMainSha256": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "status": "FAIL_ABORTED_NO_RETRY",
+  "stages": [
+    {
+      "stage": "final-manual-up05",
+      "exitCode": 0,
+      "elapsedSeconds": 5.87,
+      "pass": true
+    },
+    {
+      "stage": "final-manual-up06",
+      "exitCode": 0,
+      "elapsedSeconds": 3.07,
+      "pass": true
+    },
+    {
+      "stage": "official-status",
+      "exitCode": 0,
+      "elapsedSeconds": 1.08,
+      "pass": true
+    }
+  ],
+  "telemetryFlagUsed": false,
+  "telemetryLabAccessed": false,
+  "bStartRequested": false,
+  "appsStarted": false,
+  "resetCalled": false,
+  "clusterUidPreserved": true,
+  "nodeUidsPreserved": true,
+  "a2Ready": true,
+  "a2Running": true,
+  "bStopped": true,
+  "appProcessLedgerEmpty": true,
+  "globalKubeconfigBytesUnchanged": true,
+  "globalKubeconfigFilesChecked": 1,
+  "profiles": {
+    "05-ariza-toparlanma": {
+      "pods": [
+        {
+          "cluster": "a",
+          "namespace": "kvml-e731dabd-05-fault",
+          "name": "two-containers-698996bf57-4dzdm",
+          "uid": "4f89afc8-7893-4235-be53-1f054b44e8cc",
+          "node": "kvml-ccdfe731dabd-a-m02",
+          "phase": "Running",
+          "readyContainers": 0,
+          "containerCount": 2
+        }
+      ],
+      "namespaces": [
+        {
+          "cluster": "a",
+          "name": "kvml-e731dabd-05-fault",
+          "uid": "4e89e4f5-eec6-4696-a867-9908a2acef97"
+        }
+      ]
+    },
+    "06-limanlar-arasi-ag": {
+      "pods": [
+        {
+          "cluster": "a",
+          "namespace": "kvml-e731dabd-06-server",
+          "name": "http-server-79578f575f-jtjjk",
+          "uid": "88cf283f-8275-4da3-922b-56067150e8ad",
+          "node": "kvml-ccdfe731dabd-a-m02",
+          "phase": "Running",
+          "readyContainers": 1,
+          "containerCount": 1
+        }
+      ],
+      "namespaces": [
+        {
+          "cluster": "a",
+          "name": "kvml-e731dabd-06-client",
+          "uid": "2c3a11bf-821a-46e8-a4d5-c76537efd20b"
+        },
+        {
+          "cluster": "a",
+          "name": "kvml-e731dabd-06-server",
+          "uid": "b1a7e774-4512-4e36-a998-ed0685a4e732"
+        }
+      ]
+    }
+  },
+  "failureClass": "PROFILE05_BASELINE_POD_FAILED",
+  "elapsedSeconds": 10.02,
+  "finishedAt": "2026-11-10T12:16:56.096590+00:00"
+}

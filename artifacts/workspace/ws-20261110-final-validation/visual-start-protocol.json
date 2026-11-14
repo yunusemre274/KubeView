@@ -1,0 +1,33 @@
+{
+  "sourceOld": "v11-final-32a0468",
+  "sourceNew": "workspace-final-20261110",
+  "manifestFlag": [
+    true,
+    true
+  ],
+  "entireFleetEqual": true,
+  "cameraEqual": true,
+  "drawWorkEqual": [
+    [
+      425,
+      425
+    ],
+    [
+      61788,
+      61788
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "errors": [
+    [],
+    []
+  ],
+  "note": "3s setup diagnostic only, never CPU/FPS acceptance. Same initial entire fleet pose, not just UID list. Water/patrol run normally during window."
+}

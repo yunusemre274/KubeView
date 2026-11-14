@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-08T20-57-16-288Z-e5ca0734",
+  "startedAt": "2026-11-08T20:57:16.288Z",
+  "tests": [
+    {
+      "title": "V11-02 V11-03 V11-12 same-name different-UID A→B→A isolates normal details and live logs",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 91022,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T20-57-16-480Z-b4bc35f0/v11-real-cluster-V11-02-V1-09150-ormal-details-and-live-logs-chromium/attachments/v11-evidence-53865e12a9cfc043a87694229d8267ab1325a77c.json",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "title": "V11-11 initial read-only, absent/stale nonce and hostile Origin cannot mutate the real lab",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 9523,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T20-57-16-480Z-b4bc35f0/v11-scope-security-V11-11--04a8b--cannot-mutate-the-real-lab-chromium/attachments/v11-evidence-f8cec2d14ccc52b99b46302120a1aeb9514c0af4.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 2,
+  "finishedAt": "2026-11-08T20:58:57.132Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 2,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-08T20-57-16-288Z-e5ca0734.json"
+}

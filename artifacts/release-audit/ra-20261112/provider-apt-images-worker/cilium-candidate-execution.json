@@ -1,0 +1,85 @@
+{
+  "name": "cilium-candidate",
+  "argv": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/trivy.yaml",
+    "image",
+    "--image-src",
+    "docker",
+    "--docker-host",
+    "unix:///var/run/docker.sock",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/cilium-candidate.json",
+    "--timeout",
+    "70s",
+    "kubeview-private/cilium:1.20.4-apt-security.1"
+  ],
+  "startedAt": "2026-11-12T10:41:34.446819+00:00",
+  "maxSeconds": 75,
+  "samples": [
+    {
+      "elapsedSeconds": 7.25,
+      "ownedRSSBytes": 5586944,
+      "ownedPIDs": [
+        12269
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454504280064
+    },
+    {
+      "elapsedSeconds": 7.77,
+      "ownedRSSBytes": 96239616,
+      "ownedPIDs": [
+        12269
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454436532224
+    },
+    {
+      "elapsedSeconds": 8.289,
+      "ownedRSSBytes": 96239616,
+      "ownedPIDs": [
+        12269
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454342647808
+    },
+    {
+      "elapsedSeconds": 8.81,
+      "ownedRSSBytes": 96501760,
+      "ownedPIDs": [
+        12269
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454247284736
+    }
+  ],
+  "pid": 12269,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:41:36.533308+00:00"
+}

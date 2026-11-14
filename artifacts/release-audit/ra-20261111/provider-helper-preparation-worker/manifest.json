@@ -1,0 +1,46 @@
+{
+  "status": "INCOMPLETE_DRAFT_NOT_RUNTIME_CLEARED",
+  "sourceReference": "42a5abde",
+  "helper": "scripts/release-provider-lab.py",
+  "helperSHA256": "5406f4807281b53f406178010e5ad7f5d1e6b15c2be0d76c674339704304312d",
+  "helperLines": 231,
+  "phaseElapsedSecondsAtFinalization": 564.733551,
+  "budgetSeconds": 360,
+  "withinBudget": false,
+  "syntax": "PASS",
+  "pureGuardCaseCount": 8,
+  "pureGuards": [
+    "exact_new_identity_allowed",
+    "original_worker_rejected",
+    "wrong_network_rejected",
+    "original_Node_UID_rejected",
+    "unknown_Pod_rejected",
+    "wrong_DaemonSet_UID_rejected",
+    "misbound_context_rejected",
+    "misbound_system_UID_rejected"
+  ],
+  "runtimeApprovalGate": "APP_SHA=None; run refuses before Transaction/app/manager creation",
+  "phaseCommandsImplemented": [
+    "self-test",
+    "check",
+    "run",
+    "cleanup"
+  ],
+  "runtimeActionsPerformed": false,
+  "appStarted": false,
+  "providerManagerOpened": false,
+  "POSTSent": false,
+  "nodeAddOrDeleteExecuted": false,
+  "original2NodesUntouchedAndRemainWarm": true,
+  "journalIssuedReplayForbidden": true,
+  "noProductHandlerEdits": true,
+  "remainingLimitations": [
+    "APP_SHA intentionallyNone: PROV-CACHE-001 old runtime refused before Transaction creation. Root must provide new fixed app path+SHA.",
+    "Independent hard CLI/global/cleanup watchdog not implemented;275s cancel intent and per-call timeouts are not proof of300s hard bound when adoption/API calls block.",
+    "Failure after issuance preserves private journal and closes owned app, but does not automatically cleanup every partially adopted resource; explicit cleanup requires exact new record and refuses absent/changed identity.",
+    "No real HTTP/workspace/session/provider path has been exercised; fixed-runtime cluster-impact/grant behavior needs bounded review/run after checkpoint.",
+    "Post-delete checks and baseline equality are strict but per-request bounds need a controller-wide cleanup180s deadline before actual execution.",
+    "Partial states with no NodeUID or absentNode/presenthost intentionally stop; manual root disposition is required, not name-only adoption/deletion."
+  ],
+  "finalizedAt": "2026-11-11T18:08:42.099855+00:00"
+}

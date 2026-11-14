@@ -1,0 +1,70 @@
+{
+  "cilium": {
+    "completeConfigEqual": true,
+    "officialConfig": {
+      "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+        "INITSYSTEM=SYSTEMD"
+      ],
+      "Cmd": [
+        "/usr/bin/cilium-dbg"
+      ],
+      "WorkingDir": "/home/cilium",
+      "Labels": {
+        "maintainer": "maintainer@cilium.io"
+      },
+      "ArgsEscaped": true
+    },
+    "candidateConfig": {
+      "ArgsEscaped": true,
+      "Cmd": [
+        "/usr/bin/cilium-dbg"
+      ],
+      "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+        "INITSYSTEM=SYSTEMD"
+      ],
+      "Labels": {
+        "maintainer": "maintainer@cilium.io"
+      },
+      "WorkingDir": "/home/cilium"
+    },
+    "officialLayerPrefixPreserved": true,
+    "newLayerDiffIDs": [
+      "sha256:5cdc279702a7c8de192be5e94a3377314fe73b6affe88d70f8f39eacac3ba452"
+    ]
+  },
+  "envoy": {
+    "completeConfigEqual": true,
+    "officialConfig": {
+      "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "Cmd": [
+        "/bin/bash"
+      ],
+      "Labels": {
+        "maintainer": "maintainer@cilium.io",
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "candidateConfig": {
+      "Cmd": [
+        "/bin/bash"
+      ],
+      "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "Labels": {
+        "maintainer": "maintainer@cilium.io",
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "officialLayerPrefixPreserved": true,
+    "newLayerDiffIDs": [
+      "sha256:1fd340ff6abc1230fa08114cecf1ffed8947d122cd1383cec66476a56f216052"
+    ]
+  }
+}

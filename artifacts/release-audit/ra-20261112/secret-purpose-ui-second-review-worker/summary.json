@@ -1,0 +1,11 @@
+{
+  "status": "SECOND_REVIEW_COMPLETE_NARROW_TECHNICAL_PASS_PLAN_TIME_FAIL_SEPARATE",
+  "workerSHAEntriesVerified": 20,
+  "repoHelperMatchesTestedCopy": true,
+  "screenshotsActuallyOpened": 4,
+  "gitleaksRowsRecomputedAsSourceHashes": 4,
+  "workerFullFinalizationSeconds": 260.641827,
+  "reviewTotalSeconds": 198.154,
+  "reviewWithin180Seconds": false,
+  "limits": "Dar critical review; no broader independent retest or private-value inspection"
+}

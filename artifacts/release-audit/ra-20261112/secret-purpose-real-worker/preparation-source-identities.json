@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-12T10:45:16.757268+00:00",
+  "sourceSHA256": {
+    "backend/pkg/server/repair_resources_integration_test.go": "9dc445506e2e2e5009c2604bef8bcb00dc02a5d7240f435219a2ae66e21f3bce",
+    "backend/pkg/server/correctness_test.go": "589f7642c24030dcad4b494438777844173ebbff633286fecb080c761e2cd04b",
+    "backend/pkg/server/release_security_regression_test.go": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+    "backend/pkg/server/rbac_integration_test.go": "71fdd90c8f95cafe809c14fde7cf772827d9991a041abf51008267bdd38492e7",
+    "backend/pkg/server/repair_traffic_integration_test.go": "5b22c77561ab29eb1923ceee9bfc63838d278c1dfa58a8490bc72498ba37130a",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/workspace_scope.go": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+    "backend/pkg/server/workspace_real_test.go": "1fc2eba98b9c316b1eee45e3c5e9dffaad83aef35a17bbb6bf2fd294492142f0",
+    "backend/pkg/server/release_operations_real_test.go": "92637b06e8bcec63e8be979123d14f075ce0f17c68c75441f989765b4266d0cc",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+    "frontend/src/workbench/ResourceForms.test.js": "fe342f35bf5459ee70af38e5dc8da660b169a81949ee5e9eb382a56e7ee7b2cb",
+    "frontend/src/workbench/secretPayload.test.js": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e"
+  },
+  "runtimeMutationProven": false,
+  "sourceEdits": [],
+  "KubernetesCallsOrMutations": 0,
+  "testsBuildsAppsRun": 0
+}

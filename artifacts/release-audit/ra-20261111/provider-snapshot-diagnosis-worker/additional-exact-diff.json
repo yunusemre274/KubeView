@@ -1,0 +1,30 @@
+{
+  "beforeToAdditional": [
+    {
+      "path": "/hosts/kvml-d32afbf634e8-a/mounts/0/name",
+      "old": null,
+      "new": "kvml-d32afbf634e8-a",
+      "kind": "type_or_value"
+    },
+    {
+      "path": "/hosts/kvml-d32afbf634e8-a/mounts/0/type",
+      "old": "bind",
+      "new": "volume",
+      "kind": "value"
+    },
+    {
+      "path": "/hosts/kvml-d32afbf634e8-a/mounts/1/name",
+      "old": "kvml-d32afbf634e8-a",
+      "new": null,
+      "kind": "type_or_value"
+    },
+    {
+      "path": "/hosts/kvml-d32afbf634e8-a/mounts/1/type",
+      "old": "volume",
+      "new": "bind",
+      "kind": "value"
+    }
+  ],
+  "afterToAdditional": [],
+  "profileSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5"
+}

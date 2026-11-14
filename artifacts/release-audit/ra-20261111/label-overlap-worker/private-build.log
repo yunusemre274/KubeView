@@ -1,0 +1,3 @@
+start_utc: 2026-11-11T12:55:24.855892+00:00
+argv: ["/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go", "build", "-p", "1", "-trimpath", "-ldflags", "-s -w -X main.version=1.1.0-ui-label-worker-496729e2 -X main.commit=496729e2e1df38081496bad3313fd7e594fbe10f-ui-label-worker-dirty", "-o", "/Users/yunusemre/Desktop/KubeView/.git/release-audit/ui-label-worker/kubeview", "."]
+exit_code: 0

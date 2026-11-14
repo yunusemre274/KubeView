@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-11T20:08:01.634423+00:00",
+  "command": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "image",
+    "inspect",
+    "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82"
+  ],
+  "exitCode": 0,
+  "imagePullPerformed": false,
+  "Id": "sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+  "RepoDigests": [
+    "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82"
+  ],
+  "Architecture": "arm64",
+  "Os": "linux",
+  "Config": {
+    "User": null,
+    "Entrypoint": null,
+    "Cmd": null
+  },
+  "eligible": true
+}

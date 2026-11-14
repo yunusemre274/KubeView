@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-11T17:20:41.499397+00:00",
+  "observations": {
+    "lsofLISTEN19845": "no records",
+    "pgrepSafaridriver": "no records",
+    "loopbackConnect19845": "ConnectionRefusedError"
+  },
+  "interpretation": "First exclusive-bind false is not proof of a live listener or leak; actual followup finds no listener. No session was created, no Safari app/Retina result."
+}

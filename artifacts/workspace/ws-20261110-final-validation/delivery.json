@@ -1,0 +1,32 @@
+{
+  "time": "2026-11-10T12:40:12.926906+00:00",
+  "bundle": "/Users/yunusemre/Library/Application Support/KubeView/manual-lab-bundles/20261110-workspace-manual-881b553",
+  "installation": {
+    "channel": "manual-candidate",
+    "stable": false,
+    "runtimeCommit": "ca3b9ec00bf04ce9116fe589a416e0859e6d30e5",
+    "documentationCommit": "881b55386e1b6a3f49ddecb64d0195441abd71c2",
+    "binarySHA256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+    "embeddedIndexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+    "manualAcceptance": "PENDING",
+    "oldV11Gates": "V11-16/18/19 BLOCKED",
+    "workspacePerformance": "BLOCKED: no complete pairedCPUset/1200s soak",
+    "telemetryLab": "BLOCKED:2bootstrapFAIL;12unitnotE2E",
+    "runtimeChangesFromTestedBinary": false
+  },
+  "archives": [
+    {
+      "platform": "darwin-arm64",
+      "path": "/Users/yunusemre/Desktop/KubeView/dist/kubeview_1.1.0_manual_881b553_darwin-arm64.tar.gz",
+      "sha256": "33db9f8dce56f147a0354233a607e21a5dadf38270be3bfddb8fa2d94b92c4dc",
+      "runtimeTested": true
+    },
+    {
+      "platform": "linux-amd64",
+      "path": "/Users/yunusemre/Desktop/KubeView/dist/kubeview_1.1.0_manual_881b553_linux-amd64.tar.gz",
+      "sha256": "5a5c50f06d2834f04641deb22dc9ba84a52fe6c8495c43a8794f39e5ca067a95",
+      "runtimeTested": false
+    }
+  ],
+  "note": "Final docs/evidence packaging only. Exact same tested runtime binary and runner, not another runtime test or stable release."
+}

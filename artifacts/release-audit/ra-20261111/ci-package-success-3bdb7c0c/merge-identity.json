@@ -1,0 +1,17 @@
+{
+  "recordedAt": "2026-11-11T17:02:04.610Z",
+  "repo": "yunusemre274/KubeView",
+  "runID": 43062361657,
+  "jobID": 130668033624,
+  "prHeadCommit": "3bdb7c0c41eff0b45aec169fef89ff6b99f9db8c",
+  "actualCheckoutAndBuildCommit": "5373657169e8bf332940fd2366022925f48eb85c",
+  "parents": [
+    "bed7ad9b463129bb6c120365a67fede7091bed46",
+    "3bdb7c0c41eff0b45aec169fef89ff6b99f9db8c"
+  ],
+  "headTree": "2112579043ca1325013f7b5bac6b95fc7d0d3164",
+  "mergeTree": "2112579043ca1325013f7b5bac6b95fc7d0d3164",
+  "wholeTreeDiffFileCount": 0,
+  "method": "Actual CI checkout log plus git fetch --no-tags of exact commit and git show/diff; no branch checkout/reset/index mutation",
+  "verdict": "Whole source trees equal; commit identities remain distinct. --version must report actual merge build commit. This does not prove reproducible binary equality or publisher authenticity."
+}

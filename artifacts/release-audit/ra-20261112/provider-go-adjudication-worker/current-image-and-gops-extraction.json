@@ -1,0 +1,70 @@
+{
+  "startedAt": "2026-11-12T10:51:37.533793+00:00",
+  "owner": "kv-go-adjudication-ee003a1ee5c24c3a9135d7edee0b7144",
+  "imageExecuted": false,
+  "currentImages": {
+    "cilium": {
+      "localTag": "kubeview-private/cilium:1.20.4-apt-security.1",
+      "localDescriptorDigest": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+      "architecture": "arm64",
+      "os": "linux"
+    },
+    "operator": {
+      "localTag": "kubeview-private/cilium-operator-generic:1.20.4-security.2-image02",
+      "localDescriptorDigest": "sha256:0f5f919c630deb02c84c3301f61efe4b6b4aece5bde2dbbcc771e48e8aac7352",
+      "architecture": "arm64",
+      "os": "linux"
+    }
+  },
+  "cid": "fc7ac656e141c8ccfd07e2931fdaa31c286b9a9b1e6e45c591d2c9cbe7374d56",
+  "createArgv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "create",
+    "--pull=never",
+    "--platform=linux/arm64",
+    "--name",
+    "kv-go-adjudication-ee003a1ee5c24c3a9135d7edee0b7144",
+    "--label",
+    "com.kubeview.release-audit.owner=kv-go-adjudication-ee003a1ee5c24c3a9135d7edee0b7144",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--user",
+    "65532:65532",
+    "--memory",
+    "256m",
+    "--cpus",
+    "1",
+    "--pids-limit",
+    "32",
+    "--entrypoint",
+    "/usr/bin/gops",
+    "kubeview-private/cilium-operator-generic:1.20.4-security.2-image02"
+  ],
+  "gops": {
+    "localPath": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/gops",
+    "imagePath": "/usr/bin/gops",
+    "sha256": "61c61208e84c53b9c617b0781a4936cf1aed39175e098c2d9bd26a6a3d90c3e8",
+    "bytes": 3735714
+  },
+  "stateBeforeCleanup": {
+    "Status": "created",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "0001-01-01T00:00:00Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "removedAndAbsent": true
+}

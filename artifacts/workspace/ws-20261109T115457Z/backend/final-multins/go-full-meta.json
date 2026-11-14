@@ -1,0 +1,22 @@
+{
+  "command": [
+    "go",
+    "test",
+    "-p",
+    "1",
+    "-timeout",
+    "180s",
+    "-json",
+    "./..."
+  ],
+  "exitCode": 0,
+  "seconds": 13.046,
+  "testAndSubtestCounts": {
+    "pass": 140,
+    "fail": 0,
+    "skip": 23
+  },
+  "failed": [],
+  "runtimeScopeSHA256": "13cee96a6793fee156e72d0539331b15a2bd7edb2e11f8faf62dd25416a423b5",
+  "note": "Real E2E opt-in phases skipped here; separate immutable HTTP/API receipts record their actual execution."
+}

@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-11T09:32:32.142599+00:00",
+  "sourceCommit": "3091327c3bb5137e7a9f3c7553ff4b3ea1b8b720",
+  "version": {
+    "arch": "arm64",
+    "commit": "3091327",
+    "os": "darwin",
+    "version": "1.1.0-candidate"
+  },
+  "indexMatchesBuiltFrontend": true,
+  "indexSHA256": "037c059354b6de564712575d14767b139f90bf8e0012e10134ffaf357e9b68fc",
+  "binarySHA256": "e0090d5e6738f1422afce759a9a8f624dc3f91f728eef8fa614a666517a4cba6",
+  "binaryBytes": 63629378,
+  "mode": "embedded, loopback18942, readOnly, owned empty data directory and absent kubeconfig; no Kubernetes connection",
+  "remoteVerified": "origin/redesign/harbor-workbench",
+  "stableRelease": false
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T07-48-14-997Z-5842398a",
+  "startedAt": "2026-11-09T07:48:14.997Z",
+  "tests": [
+    {
+      "title": "V11-09 V11-10 owned workload recovery continues resources/restart/replacement/delete after passed create+scale",
+      "project": "chromium",
+      "status": "FAIL",
+      "durationMs": 21838,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.resource-form-dialog').locator('fieldset.form-dialog-body')\nExpected: disabled\nReceived: enabled\nTimeout:  15000ms\n"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T07-48-15-198Z-e7e6146b/v11-workload-recovery-V11--1bf33-e-after-passed-create-scale-chromium/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T07-48-15-198Z-e7e6146b/v11-workload-recovery-V11--1bf33-e-after-passed-create-scale-chromium/attachments/v11-evidence-e766683b50ef2850d0c9cad83ea31288026a05e2.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T07-48-15-198Z-e7e6146b/v11-workload-recovery-V11--1bf33-e-after-passed-create-scale-chromium/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "Error",
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T07:48:37.200Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T07-48-14-997Z-5842398a.json"
+}

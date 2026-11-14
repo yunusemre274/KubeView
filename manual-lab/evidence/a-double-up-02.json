@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "attempt": "a-double-up-02",
+  "sourceSHA256": "f080db6965462cba7f175aab529e8cc5a885a216a96d575ca1627896facd1b79",
+  "elapsedSeconds": 1.573,
+  "exitCode": 0,
+  "output": "Küme A: zaten Ready; minikube start atlandı, mevcut Pod'lar yeniden başlatılmadı\nHazır: 02-ortak-kume; labId=kvml-ccdfe731dabd; 2 kayıt planı. app komutu ayrı çalıştırılır.\nVarsayılan fixture sağlığı için status; kullanıcının önceki scenario değişiklikleri up ile sıfırlanmaz.\n",
+  "before": {
+    "namespaceUids": {
+      "kvml-e731dabd-02-p1": "9b04c056-f008-4e91-bd94-dacdb40258e6",
+      "kvml-e731dabd-02-p2": "99d01a63-e670-43ef-a455-94d98c87de90"
+    },
+    "deploymentUids": {
+      "kvml-e731dabd-02-p1/web": "8007fb93-6cc4-4c07-972a-84486bf9d2e7",
+      "kvml-e731dabd-02-p2/web": "9d8f152e-46a3-429b-9d6a-5cc0e4cb6ddc"
+    },
+    "pods": {
+      "kvml-e731dabd-02-p1/web-5f76b8f75f-mc5n9": {
+        "uid": "17d8ae2d-d614-4fa1-a832-249b9c171e1f",
+        "node": "kvml-ccdfe731dabd-a-m02",
+        "ready": true
+      },
+      "kvml-e731dabd-02-p2/web-5f76b8f75f-4pnzr": {
+        "uid": "0ea37661-9f95-46b7-8591-a29dba747b34",
+        "node": "kvml-ccdfe731dabd-a-m02",
+        "ready": true
+      }
+    },
+    "nodeUids": {
+      "kvml-ccdfe731dabd-a": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+      "kvml-ccdfe731dabd-a-m02": "607adac0-75e9-4de1-9903-8e6422f77564"
+    },
+    "nodesReady": true
+  },
+  "after": {
+    "namespaceUids": {
+      "kvml-e731dabd-02-p1": "9b04c056-f008-4e91-bd94-dacdb40258e6",
+      "kvml-e731dabd-02-p2": "99d01a63-e670-43ef-a455-94d98c87de90"
+    },
+    "deploymentUids": {
+      "kvml-e731dabd-02-p1/web": "8007fb93-6cc4-4c07-972a-84486bf9d2e7",
+      "kvml-e731dabd-02-p2/web": "9d8f152e-46a3-429b-9d6a-5cc0e4cb6ddc"
+    },
+    "pods": {
+      "kvml-e731dabd-02-p1/web-5f76b8f75f-mc5n9": {
+        "uid": "17d8ae2d-d614-4fa1-a832-249b9c171e1f",
+        "node": "kvml-ccdfe731dabd-a-m02",
+        "ready": true
+      },
+      "kvml-e731dabd-02-p2/web-5f76b8f75f-4pnzr": {
+        "uid": "0ea37661-9f95-46b7-8591-a29dba747b34",
+        "node": "kvml-ccdfe731dabd-a-m02",
+        "ready": true
+      }
+    },
+    "nodeUids": {
+      "kvml-ccdfe731dabd-a": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+      "kvml-ccdfe731dabd-a-m02": "607adac0-75e9-4de1-9903-8e6422f77564"
+    },
+    "nodesReady": true
+  },
+  "systemUid": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5",
+  "exactIdentitiesAndReadyUnchanged": true,
+  "twoPodsReady": true,
+  "sameWorker": true,
+  "globalKubeconfigUnchanged": true,
+  "sourceUnchanged": true,
+  "stateMode": "0o700",
+  "privateConfigModes": {
+    "02-ortak-kume.json": "0o600",
+    "admin.json": "0o600"
+  },
+  "appsStarted": 0,
+  "pass": true
+}

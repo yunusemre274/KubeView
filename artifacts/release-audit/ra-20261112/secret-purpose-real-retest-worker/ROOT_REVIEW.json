@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-12T11:10:19.551926+00:00",
+  "reviewer": "root, distinct from test author; same agent system not professional third-party pentest",
+  "verifiedWorkerChecksumCount": 13,
+  "currentTestSHA256": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+  "reviewedRuntimeSHA256": {
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "frontend/src/workbench/secretPayload.js": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1"
+  },
+  "initialFailurePreserved": true,
+  "testMatrixPASS": true,
+  "fixturesAbsent": 7,
+  "maskRequestCurrentUIDAndRV": true,
+  "maskGuardStatus": 422,
+  "realAPIPurposeEditPositiveStatus": 200,
+  "actualRestrictedIdentities": 2,
+  "rawSecretOrTokenLogged": false,
+  "admissionFailure": "NOT_RUN and separate CAT04 requirement, not the application keyNames guard",
+  "scopeDecision": {
+    "TEST-05.07": "IN_PROGRESS frontend reveal/hide/user flow still unverified",
+    "TEST-05.08": "IN_PROGRESS frontend draft path unit/normal form flow still separate",
+    "TEST-05.09": "VERIFIED_DONE within application masked-payload rejection contract; current UID/RV and stored data equality, normal edit positive"
+  },
+  "limitations": [
+    "Production handlers through httptest, not actual browser\u2192gateway\u2192Kubernetes UI E2E",
+    "No live SEC001 discovery-outage injection",
+    "No Kubernetes admission validation-error case",
+    "Other secret values were not read; only synthetic one plus metadata inventory"
+  ]
+}

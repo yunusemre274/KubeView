@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-08T19:36:17.303902+00:00",
+  "context": "kv-repair-v11-reader",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+  "serviceAccountUID": "40ee58f8-ed2d-4eff-a2ad-f9fa067c79d5",
+  "tokenIssuedAt": "2026-11-08T19:36:17+00:00",
+  "tokenExpiresAt": "2026-11-08T20:36:17+00:00",
+  "credentialRecorded": false,
+  "verification": {
+    "pods": {
+      "exit": 0,
+      "status": "allowed"
+    },
+    "nodes": {
+      "exit": 1,
+      "status": "forbidden"
+    },
+    "namespaces": {
+      "exit": 1,
+      "status": "forbidden"
+    },
+    "metrics": {
+      "exit": 1,
+      "status": "forbidden"
+    }
+  }
+}

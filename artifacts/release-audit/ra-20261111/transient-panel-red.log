@@ -1,0 +1,30 @@
+✖ a harbor switch never commits an old Pod panel with the new harbor API before layout restoration (4.657125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 530.434083
+
+✖ failing tests:
+
+test at frontend/tests/workspace-app-state.test.js:80:1
+✖ a harbor switch never commits an old Pod panel with the new harbor API before layout restoration (4.657125ms)
+  AssertionError [ERR_ASSERTION]: even the render before layout restoration must not give A's Pod to B's API
+      at file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:89:12
+      at withApp (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:73:15)
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:82:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

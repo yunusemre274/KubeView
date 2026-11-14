@@ -1,0 +1,254 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { build } from "esbuild";
+
+// Existing ResourceForms.test.js hook harness reused for bounded parser-only checks.
+// Exercise the component's actual event handlers and effects without a browser.
+// Native fieldset/focus behavior is verified separately by production UI E2E.
+const compiled = await build({
+  stdin: {
+    contents:
+      'export { default as Form } from "./ResourceForms.jsx"; export { default as React } from "react";',
+    resolveDir: new URL(".", import.meta.url).pathname,
+  },
+  bundle: true,
+  platform: "node",
+  format: "esm",
+  write: false,
+  banner: {
+    js: `import { createRequire } from "node:module"; const require = createRequire(${JSON.stringify(import.meta.url)});`,
+  },
+  loader: { ".css": "empty" },
+  define: { "process.env.NODE_ENV": '"production"' },
+});
+const { Form, React } = await import(
+  `data:text/javascript;base64,${Buffer.from(`${compiled.outputFiles[0].text}\n//# sourceURL=ResourceForms-parser-guards-unit.js`).toString("base64")}`
+);
+const dispatcher =
+  React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED
+    .ReactCurrentDispatcher;
+const equalDeps = (a, b) =>
+  a && b && a.length === b.length && a.every((x, i) => Object.is(x, b[i]));
+const nodes = (node) => {
+  if (Array.isArray(node)) return node.flatMap(nodes);
+  if (!node || typeof node !== "object") return [];
+  return [node, ...nodes(node.props?.children)];
+};
+const content = (node) => {
+  if (Array.isArray(node)) return node.map(content).join("");
+  if (node && typeof node === "object") return content(node.props?.children);
+  return node == null || typeof node === "boolean" ? "" : String(node);
+};
+function mount(props) {
+  const hooks = [];
+  let cursor, pending, changed, tree;
+  const oldDocument = globalThis.document;
+  globalThis.document = {
+    activeElement: null,
+    addEventListener() {},
+    removeEventListener() {},
+    querySelector() {
+      return null;
+    },
+  };
+  const hookDispatcher = {
+    useState(initial) {
+      const index = cursor++;
+      if (!hooks[index])
+        hooks[index] = {
+          value: typeof initial === "function" ? initial() : initial,
+        };
+      return [
+        hooks[index].value,
+        (update) => {
+          const next =
+            typeof update === "function" ? update(hooks[index].value) : update;
+          if (!Object.is(next, hooks[index].value)) {
+            hooks[index].value = next;
+            changed = true;
+          }
+        },
+      ];
+    },
+    useRef(value) {
+      const index = cursor++;
+      return (hooks[index] ||= { current: value });
+    },
+    useMemo(fn, deps) {
+      const index = cursor++;
+      if (!hooks[index] || !equalDeps(hooks[index].deps, deps))
+        hooks[index] = { value: fn(), deps };
+      return hooks[index].value;
+    },
+    useEffect(fn, deps) {
+      const index = cursor++;
+      const previous = hooks[index];
+      if (!previous || !equalDeps(previous.deps, deps)) {
+        hooks[index] = { deps, cleanup: previous?.cleanup };
+        pending.push(() => {
+          hooks[index].cleanup?.();
+          hooks[index].cleanup = fn();
+        });
+      }
+    },
+  };
+  const render = (patch = {}) => {
+    props = { ...props, ...patch };
+    let passes = 0;
+    do {
+      assert.ok(
+        ++passes < 20,
+        "form effects must settle without a render loop",
+      );
+      cursor = 0;
+      pending = [];
+      changed = false;
+      const previous = dispatcher.current;
+      dispatcher.current = hookDispatcher;
+      try {
+        tree = Form(props);
+      } finally {
+        dispatcher.current = previous;
+      }
+      pending.forEach((effect) => effect());
+    } while (changed);
+    return tree;
+  };
+  const find = (predicate) => nodes(tree).find(predicate);
+  const button = (label) =>
+    find((node) => node.type === "button" && content(node) === label);
+  render();
+  return {
+    render,
+    find,
+    button,
+    text: () => content(tree),
+    async settle() {
+      await new Promise((resolve) => setImmediate(resolve));
+      render();
+    },
+    close() {
+      hooks.forEach((hook) => hook.cleanup?.());
+      globalThis.document = oldDocument;
+    },
+  };
+}
+const base = {
+  apiVersion: "apps/v1",
+  kind: "Deployment",
+  metadata: {
+    uid: "original",
+    name: "app",
+    namespace: "alpha",
+    resourceVersion: "opaque-a",
+  },
+  spec: {
+    replicas: 0,
+    template: {
+      spec: {
+        containers: [
+          {
+            name: "app",
+            image: "busybox:1.36",
+            resources: {
+              requests: { cpu: "10m", memory: "16Mi" },
+              limits: { cpu: "100m", memory: "64Mi" },
+            },
+          },
+        ],
+      },
+    },
+  },
+};
+const edited = {
+  requests: { cpu: "25m", memory: "28Mi" },
+  limits: { cpu: "175m", memory: "112Mi" },
+};
+const copy = (value) => structuredClone(value);
+const options = (resource, api, extra = {}) => ({
+  action: "resources",
+  resource,
+  api,
+  cluster: "A",
+  sourceKey: "live:A:1",
+  readOnly: false,
+  onClose() {},
+  ...extra,
+});
+const resourceFields = (form) =>
+  form.find((node) => node.type?.name === "ContainerResources");
+const yamlField = (form) =>
+  form.find((node) => node.props?.["aria-label"] === "Kaynak YAML");
+
+
+const deploymentYAML = `apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parser-check
+  namespace: alpha
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: parser-check}
+  template:
+    metadata:
+      labels: {app: parser-check}
+    spec:
+      containers:
+        - {name: app, image: busybox:1.36}
+`;
+const unknown = deploymentYAML + `x-audit:
+  preserved: true
+  __proto__: {kvParserCanary: true}
+`;
+const aliasRows = ["a: &a [one, two, three, four, five, six, seven, eight, nine, ten]"];
+for (const [name, previous] of [["b", "a"], ["c", "b"], ["d", "c"]])
+  aliasRows.push(`${name}: &${name} [${Array(10).fill(`*${previous}`).join(", ")}]`);
+const cases = [
+  {name: "normal preserves unknown map and own prototype key without global pollution", yaml: unknown, accept: true, unknown: true},
+  {name: "malformed sequence blocked before dry-run HTTP", yaml: deploymentYAML + "broken: [", accept: false, error: /flow|sequence|end|YAML|source/i},
+  {name: "duplicate map key rejected before dry-run HTTP", yaml: deploymentYAML + "metadata: {name: other}\n", accept: false, error: /unique|duplicate/i},
+  {name: "multiple documents rejected before dry-run HTTP", yaml: deploymentYAML + "---\n" + deploymentYAML, accept: false, error: /multiple|single|document/i},
+  {name: "sequence root rejected before dry-run HTTP", yaml: "- one\n- two\n", accept: false, error: /Tek bir Kubernetes kaynak nesnesi/},
+  {name: "scalar root rejected before dry-run HTTP", yaml: "scalar-value\n", accept: false, error: /Tek bir Kubernetes kaynak nesnesi/},
+  {name: "small bounded aliases preserve equivalent values", yaml: deploymentYAML + "x-a: &a [one, two]\nx-b: *a\n", accept: true, alias: true},
+  {name: "alias amplification rejected by installed default limit", yaml: deploymentYAML + aliasRows.join("\n") + "\n", accept: false, error: /alias|resource exhaustion/i},
+  {name: "depth128 unknown field preserved within finite test limit", yaml: deploymentYAML + "x-deep: " + "[".repeat(128) + "1" + "]".repeat(128) + "\n", accept: true, depth: 128},
+  {name: "240KiB annotation accepted without truncation within tested limit", yaml: deploymentYAML + 'x-long: "' + "a".repeat(240 * 1024) + '"\n', accept: true, bytes: 240*1024},
+];
+assert.equal(cases.length,10);
+for (const specimen of cases) assert.ok(Buffer.byteLength(specimen.yaml,"utf8")<=256*1024,"payload safety cap");
+test("bounded active ResourceForms YAML parser policy", {timeout:12000}, async (t) => {
+  for (const specimen of cases) await t.test(specimen.name, {timeout:1500}, async () => {
+    const writes=[];
+    const api={resourcePath:()=>"/resource",request:async (_path, opts={})=>{
+      assert.equal(opts.method,"POST");
+      // Mirror production API JSON boundary before treating the fake request as delivered.
+      const wire=JSON.parse(JSON.stringify(opts.body));
+      writes.push(wire);return {object:wire.object};
+    }};
+    const form=mount({action:"create",createKind:"Deployment",api,cluster:"A",sourceKey:"live:A:1",namespace:"alpha",readOnly:false,onClose(){}});
+    try {
+      form.button("YAML").props.onClick();form.render();
+      yamlField(form).props.onChange({target:{value:specimen.yaml}});form.render();
+      assert.equal(yamlField(form).props.value,specimen.yaml,"text retained exactly");
+      const dry=form.button("Server dry-run");assert.ok(dry);
+      if (!specimen.accept) {
+        assert.equal(dry.props.disabled,true,"invalid YAML disables dry-run");
+        assert.match(form.text(),specimen.error);
+        // Direct callback invocation also must not reach API if DOM disabled is bypassed.
+        await dry.props.onClick();form.render();assert.equal(writes.length,0);
+        const submit=form.find(n=>n.type==="button"&&n.props.type==="submit");assert.equal(submit.props.disabled,true);
+      } else {
+        assert.equal(dry.props.disabled,false);
+        await dry.props.onClick();form.render();assert.equal(writes.length,1);assert.equal(writes[0].dryRun,true);
+        const object=writes[0].object;assert.equal(object.metadata.name,"parser-check");assert.equal(object.metadata.namespace,"alpha");
+        if(specimen.unknown){assert.equal(object["x-audit"].preserved,true);assert.ok(Object.hasOwn(object["x-audit"],"__proto__"));assert.equal(object["x-audit"].__proto__.kvParserCanary,true);assert.equal(Object.prototype.kvParserCanary,undefined);assert.equal(({}).kvParserCanary,undefined);}
+        if(specimen.alias)assert.deepEqual(object["x-a"],object["x-b"]);
+        if(specimen.depth){let v=object["x-deep"];for(let i=0;i<specimen.depth;i++){assert.ok(Array.isArray(v));v=v[0];}assert.equal(v,1);}
+        if(specimen.bytes)assert.equal(object["x-long"].length,specimen.bytes);
+        assert.ok(form.find(n=>n.props?.className==="dry-run-preview"));
+      }
+    } finally {form.close();}
+  });
+});

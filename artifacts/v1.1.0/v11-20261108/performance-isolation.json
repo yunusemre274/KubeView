@@ -1,0 +1,44 @@
+{
+  "at": "2026-11-09T08:56:02.804687+00:00",
+  "clusterAndNamespaceIdentityGuards": [
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "namespaceOwnerVerified": true
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "namespaceOwnerVerified": true
+    }
+  ],
+  "stoppedOnlyPinnedOwnedContainers": {
+    "kv-repair-1101": "4d805a40fcfb9f6ac32fb551642d73685f65bd7210e7ad785cb0d9e5dc5ec851",
+    "kv-repair-1101-m02": "48896e53ac0b9dd2ff5446886e5b903ee54c698e6cbc7ceabccb25bfd87d1f92",
+    "kv-repair-1101-m03": "018543c908a7d4ec6066ccc476434bc9ef2561619862ab6144f8b4c7324b2ffc",
+    "kv-repair-v11-b": "8d282993012be6958ae42309fc4d2f904fb218d27b2303abfc6d82d8bc11463f"
+  },
+  "stoppedOwnedGatewayPID": 24397,
+  "stoppedOwnedHubbleForwardPID": 6984,
+  "portsClosed": [
+    18410,
+    19445,
+    5195
+  ],
+  "preservedUserContainers": [
+    {
+      "name": "lonca-redis",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "lonca-postgres",
+      "running": true,
+      "health": "healthy"
+    }
+  ],
+  "noDeletion": true,
+  "reason": "Exclusive same-power/frozen-source performance queue. Owned cluster disks/configs remain; no user container/process is stopped."
+}

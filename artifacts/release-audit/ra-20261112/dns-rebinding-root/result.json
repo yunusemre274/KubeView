@@ -1,0 +1,361 @@
+{
+  "status": "PASS",
+  "startedAt": "2026-11-12T17:01:26.302697+00:00",
+  "binarySHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+  "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "sourceSHA256": {
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4"
+  },
+  "dataSource": "REAL_APPLICATION_HTTP; NO_KUBERNETES; POST_REBIND_HOST_SIMULATION; NO_DNS_QUERY",
+  "limits": {
+    "seconds": 30,
+    "requests": 60,
+    "requestIntervalSeconds": 0.11,
+    "concurrency": 1
+  },
+  "checks": [
+    {
+      "case": "allowed-host-with-origin",
+      "host": "localhost:19844",
+      "origin": "http://localhost:19844",
+      "path": "/api/contexts",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 177,
+      "bodySHA256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "case": "allowed-host-cli",
+      "host": "localhost:19844",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 177,
+      "bodySHA256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "case": "allowed-host-with-origin",
+      "host": "127.0.0.1:19844",
+      "origin": "http://127.0.0.1:19844",
+      "path": "/api/contexts",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 177,
+      "bodySHA256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "case": "allowed-host-cli",
+      "host": "127.0.0.1:19844",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 177,
+      "bodySHA256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "case": "allowed-host-with-origin",
+      "host": "[::1]:19844",
+      "origin": "http://[::1]:19844",
+      "path": "/api/contexts",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 177,
+      "bodySHA256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "case": "allowed-host-cli",
+      "host": "[::1]:19844",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 177,
+      "bodySHA256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "case": "post-rebind-same-origin",
+      "host": "owned-attacker.invalid",
+      "origin": "http://owned-attacker.invalid",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-origin-absent",
+      "host": "owned-attacker.invalid",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-same-origin",
+      "host": "localhost.owned-attacker.invalid",
+      "origin": "http://localhost.owned-attacker.invalid",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-origin-absent",
+      "host": "localhost.owned-attacker.invalid",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-same-origin",
+      "host": "127.0.0.1.owned-attacker.invalid",
+      "origin": "http://127.0.0.1.owned-attacker.invalid",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-origin-absent",
+      "host": "127.0.0.1.owned-attacker.invalid",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-same-origin",
+      "host": "owned-attacker.invalid:19844",
+      "origin": "http://owned-attacker.invalid:19844",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-origin-absent",
+      "host": "owned-attacker.invalid:19844",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-same-origin",
+      "host": "127.1:19844",
+      "origin": "http://127.1:19844",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-origin-absent",
+      "host": "127.1:19844",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-same-origin",
+      "host": "2130706433:19844",
+      "origin": "http://2130706433:19844",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-origin-absent",
+      "host": "2130706433:19844",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-same-origin",
+      "host": "0x7f000001:19844",
+      "origin": "http://0x7f000001:19844",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "post-rebind-origin-absent",
+      "host": "0x7f000001:19844",
+      "origin": null,
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "foreign-protected-or-session-path",
+      "host": "owned-attacker.invalid",
+      "origin": "http://owned-attacker.invalid",
+      "path": "/api/workspace",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "foreign-protected-or-session-path",
+      "host": "owned-attacker.invalid",
+      "origin": "http://owned-attacker.invalid",
+      "path": "/api/management",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "foreign-protected-or-session-path",
+      "host": "owned-attacker.invalid",
+      "origin": "http://owned-attacker.invalid",
+      "path": "/api/session",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "foreign-protected-or-session-path",
+      "host": "owned-attacker.invalid",
+      "origin": "http://owned-attacker.invalid",
+      "path": "/ws",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "forwarded-headers-cannot-authorize-host",
+      "host": "owned-attacker.invalid",
+      "origin": "http://owned-attacker.invalid",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 86,
+      "bodySHA256": "2316ca924c2548931119813ff19398683ef4ed898eb1630f61caf9c1ee38423a"
+    },
+    {
+      "case": "foreign-origin-local-host",
+      "host": "127.0.0.1:19844",
+      "origin": "http://owned-attacker.invalid",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 68,
+      "bodySHA256": "b3d1a6ae73cad93ddb1c0c371b7d380599033f8234c25e37513dccdf255b645d"
+    },
+    {
+      "case": "opaque-origin-local-host",
+      "host": "127.0.0.1:19844",
+      "origin": "null",
+      "path": "/api/contexts",
+      "expected": 403,
+      "status": 403,
+      "passed": true,
+      "bodyBytes": 68,
+      "bodySHA256": "b3d1a6ae73cad93ddb1c0c371b7d380599033f8234c25e37513dccdf255b645d"
+    },
+    {
+      "case": "forwarded-headers-do-not-poison-local-positive",
+      "host": "127.0.0.1:19844",
+      "origin": "http://127.0.0.1:19844",
+      "path": "/api/contexts",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 177,
+      "bodySHA256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "case": "local-positive-after-negatives",
+      "host": "127.0.0.1:19844",
+      "origin": "http://127.0.0.1:19844",
+      "path": "/api/contexts",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 177,
+      "bodySHA256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "case": "runtime-source-identity",
+      "host": "127.0.0.1:19844",
+      "origin": "http://127.0.0.1:19844",
+      "path": "/api/version",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "bodyBytes": 119,
+      "bodySHA256": "21f2a1faf62f0fdb30176f804781950335b6372c1d302a120e038dd2ceed184b"
+    }
+  ],
+  "app": {
+    "pid": 18590,
+    "birth": "Thu Nov 12 20:01:26 2026",
+    "pgid": 18590
+  },
+  "finishedAt": "2026-11-12T17:01:29.953467+00:00",
+  "elapsedSeconds": 3.6504584579997754,
+  "appExitCode": 0,
+  "originalProcessAbsent": true,
+  "portFree": true,
+  "binaryUnchanged": true
+}

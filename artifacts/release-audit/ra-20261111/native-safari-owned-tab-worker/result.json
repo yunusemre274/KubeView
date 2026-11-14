@@ -1,0 +1,30 @@
+{
+  "status": "NOT_RUN_TIME_BUDGET",
+  "taskStartedAt": "2026-11-11T18:39:33+00:00",
+  "recordedAt": "2026-11-11T18:44:19.553963+00:00",
+  "sourceHEAD": "5affead7a01e079102a14e1844c618164bdb4759",
+  "candidateBinary": ".git/release-audit/candidate-runtime-provider09/kubeview",
+  "candidateSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "candidateHashMatchesExpected": true,
+  "selectorSource": "frontend/e2e/release-packaged-startup.mjs",
+  "selectorSourceSHA256": "dac6141c997caada2bae6cd22d932f322a9d271331e86bdcdf724d052707c134",
+  "ownedPort": 19843,
+  "appStarted": false,
+  "driverStarted": false,
+  "tabCreated": false,
+  "browserToolCalls": 0,
+  "pageReads": 0,
+  "osSettingsChanged": false,
+  "productFilesChanged": false,
+  "reason": "Source/selector review and context handoff consumed original 300s wall budget; no browser/app lifecycle started with insufficient cleanup margin. No retry performed.",
+  "notRun": [
+    "Native Safari functional smoke",
+    "Owned tab attribution/origin checks",
+    "Initial one-canvas/zero-resources assertions",
+    "Open/type/close first-harbor form",
+    "Actual UA/DPR/viewport/framebuffer capture",
+    "PNG screenshots/inspection",
+    "Tab/app cleanup exercise"
+  ],
+  "cleanup": "No app/driver/tab was started; nothing to terminate or close."
+}

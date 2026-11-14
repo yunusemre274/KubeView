@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-11-12T10:45:12.873011+00:00",
+  "exactOwnedContainers": [
+    {
+      "cid": "3954f209c9e556a2d900890725712fab82dc788627bf1d72e4eb0e9ff53cd613",
+      "absent": true
+    },
+    {
+      "cid": "426ea862e71b7328aa54ca3be78f5a39e58e6e70f7ca4c876fc54481f3035a3d",
+      "absent": true
+    },
+    {
+      "cid": "b3c7a6876ff8a95a14d594273075c5f68ed79b45c720ee1f0eee3efb54c1ce9c",
+      "absent": true
+    },
+    {
+      "cid": "a6e61ad932d4fd8d6295e2941619d8d36108da9cee1f842baa254e3a9417d700",
+      "absent": true
+    },
+    {
+      "cid": "e8154f078d04221a9ecef0de29d971d93580512d1e0615ffb453c9decbaf6c45",
+      "absent": true
+    },
+    {
+      "cid": "2353fba115aa51d5d6579d3422222870cf5bb2e9fe2d91c573437011cd3e2786",
+      "absent": true
+    },
+    {
+      "cid": "0d890fa10089d671fba9ae5fa920f8967485e3b6c87cc9776f1fb52c0070b638",
+      "absent": true
+    },
+    {
+      "cid": "5a952b7e19c2ede29aa14cd57999127bf1561162511ce379d2a1177d0ed58b72",
+      "absent": true
+    },
+    {
+      "cid": "b5e5640ef89a758715fe499d29292f12787f209eb8b5a320f6c011440b4035d9",
+      "absent": true
+    },
+    {
+      "cid": "d5a7dada3ca235dcc22dd2a2b414b113afd476992a9dc9e2aeebbbaaed49ca18",
+      "absent": true
+    },
+    {
+      "cid": "8abc00c8ab830c5bf8d3ca142c3d9f56443eab1a4e73b05d521d2c569ded3523",
+      "absent": true
+    },
+    {
+      "cid": "b18cd4a07fba485a56ab957c8b600ac7b794bae43a61453626e49190ec64fca6",
+      "absent": true
+    },
+    {
+      "cid": "880403d35a7deb163aabd07f4e88f6192c49994aa0d9674d4ba7e8e7d68fea63",
+      "absent": true
+    },
+    {
+      "cid": "4f816696f727e24cc6364705c1d1e8b9f0a25b7e93628091fa87a49ad4010009",
+      "absent": true
+    },
+    {
+      "cid": "f8da6c3d3648d4b30bb3493b5a8474b007535b636b52557780fd985cf95088b5",
+      "absent": true
+    }
+  ],
+  "allExactOwnedContainersAbsent": true,
+  "supervisorPID": 12219,
+  "supervisorPIDAbsent": true,
+  "supervisorPSIdentityIfPresent": "",
+  "noGlobalPrune": true,
+  "candidateImagesIntentionallyRetained": [
+    "kubeview-private/cilium:1.20.4-apt-security.1",
+    "kubeview-private/cilium-envoy:1.20.4-apt-security.1"
+  ],
+  "privateBuildContextRetained": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images",
+  "protectedOperatorCandidate02BinarySHA256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "protectedOperatorImageDescriptorDigest": "sha256:0f5f919c630deb02c84c3301f61efe4b6b4aece5bde2dbbcc771e48e8aac7352",
+  "protectedOperatorBinaryAndImageUnchanged": true
+}

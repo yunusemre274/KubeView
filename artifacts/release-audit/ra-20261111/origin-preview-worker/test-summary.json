@@ -1,0 +1,86 @@
+[
+  {
+    "log": "existing-security-tests.log",
+    "top_level": {
+      "PASS": 11,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "direct_subcases": {
+      "PASS": 9,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "exit_code": 0
+  },
+  {
+    "log": "preview-inprocess-regressions-initial.log",
+    "top_level": {
+      "PASS": 2,
+      "FAIL": 1,
+      "SKIP": 0
+    },
+    "direct_subcases": {
+      "PASS": 22,
+      "FAIL": 1,
+      "SKIP": 0
+    },
+    "exit_code": 1
+  },
+  {
+    "log": "static-route-test.log",
+    "top_level": {
+      "PASS": 1,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "direct_subcases": {
+      "PASS": 8,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "exit_code": 0
+  },
+  {
+    "log": "preview-inprocess-regressions.log",
+    "top_level": {
+      "PASS": 3,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "direct_subcases": {
+      "PASS": 23,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "exit_code": 0
+  },
+  {
+    "log": "preview-creation-grant-test.log",
+    "top_level": {
+      "PASS": 1,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "direct_subcases": {
+      "PASS": 5,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "exit_code": 0
+  },
+  {
+    "log": "preview-final-tests.log",
+    "top_level": {
+      "PASS": 4,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "direct_subcases": {
+      "PASS": 29,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "exit_code": 0
+  }
+]

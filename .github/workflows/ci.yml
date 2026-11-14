@@ -1,0 +1,60 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: '1.26.11'
+          cache-dependency-path: backend/go.sum
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: node --test --test-concurrency=1 tests/*.test.js src/harbor/*.test.js src/workbench/*.test.js
+        working-directory: frontend
+      - run: go test -p 2 -timeout 180s ./...
+        working-directory: backend
+      - run: node --test benchmarks/*.test.mjs
+      - run: node --test scripts/build-release.test.mjs
+      - run: npm run build
+        working-directory: frontend
+      - run: node scripts/build-release.mjs --prepared --require-clean darwin-arm64 linux-amd64
+      - run: npx playwright install --with-deps chromium
+        working-directory: frontend
+      - name: Clean Linux binary startup (no source tree)
+        run: |
+          work=$(mktemp -d)
+          cp dist/kubeview_*_linux-amd64/kubeview "$work/kubeview"
+          cd "$work"
+          ./kubeview --version
+          KUBECONFIG="$work/absent-kubeconfig" ./kubeview --data-dir "$work/data" --port 18081 > startup.txt 2>&1 &
+          app_pid=$!
+          trap 'kill "$app_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do curl -fsS http://127.0.0.1:18081/healthz && break || sleep 1; done
+          curl -fsS http://127.0.0.1:18081/ | grep -q '<html'
+          curl -fsS http://127.0.0.1:18081/api/version
+          cd "$GITHUB_WORKSPACE/frontend"
+          npx playwright test -c e2e/production-smoke.config.js
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: tested-builds
+          path: |
+            dist/*.tar.gz
+            dist/SHA256SUMS
+            dist/build.json
+          retention-days: 14

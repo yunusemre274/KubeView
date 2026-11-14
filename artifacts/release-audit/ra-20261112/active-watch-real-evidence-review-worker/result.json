@@ -1,0 +1,93 @@
+{
+  "status": "PASS_NARROW_RECORDED_REAL_API_PRODUCTION_HTTP_WS",
+  "finishedAt": "2026-11-12T21:29:15.308571+00:00",
+  "issues": [],
+  "classification": "Real Kubernetes RoleBinding revocation with production HTTP/WS handlers; not browser/finalbinary/fullsecurity/heartbeat-only causal proof",
+  "test": {
+    "topRuns": 1,
+    "topPASS": 1,
+    "SKIP": 0,
+    "packagePASS": true,
+    "safeMainElapsedSeconds": 15.332369375,
+    "wholeGoElapsedSeconds": 18.573919375001424
+  },
+  "source": {
+    "runtimeCommit": "15770296056ca2629601dba540c04741e1822e0d",
+    "beforeAfterMatchRecorded": [
+      true,
+      true
+    ],
+    "finalTestFileSHA256IndependentlyVerified": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb"
+  },
+  "requiredProofFields": {
+    "mainPassed": true,
+    "allSixFixturesAbsent": true,
+    "brokerEmpty": true,
+    "listenerClosed": true,
+    "namespaceNotDeleted": true,
+    "within180Seconds": true,
+    "failed": false
+  },
+  "exactFixtureUIDJournalMatchesSixCleanupAbsences": true,
+  "fixtureCounts": {
+    "serviceaccounts": 2,
+    "roles": 1,
+    "rolebindings": 2,
+    "pods": 1
+  },
+  "eventsVerified": {
+    "two_real_identities_snapshot_and_update": {
+      "differentCredentialIDs": true,
+      "readOnly": true,
+      "samePodUID": true
+    },
+    "real_rbac_denied_same_credential": {
+      "SSARAllowed": false,
+      "actualAPIGet403": true,
+      "gatewayGet403": true,
+      "reviewHTTP403Assumed": false,
+      "sameClientID": true,
+      "siblingGet200": true
+    },
+    "explicit_failed_scope_true_close_and_sibling_positive": {
+      "nonAuthoritative": true,
+      "postFailureCanaryNotPublished": true,
+      "siblingUpdateObserved": true,
+      "synced": false,
+      "timeoutAccepted": false,
+      "trueClose": true
+    }
+  },
+  "processCleanup": {
+    "capturedReferences": 4,
+    "allRecordedAbsent": true
+  },
+  "firstFailure": {
+    "preservedSHA256": "588287f4db9585710e6db19e1977eb3c50ae82c4392f4ada4ca980215e4c95c3",
+    "failed": true,
+    "events": 0,
+    "rootClassification": "attempt01 NodeReadyUnknown before anyfixture; safe-test-result preserved",
+    "notRelabelledPass": true
+  },
+  "limits": [
+    "Upstream lifetime not independently instrumented; do not attribute result exclusively to heartbeat or assume real established-watch behavior.",
+    "Before/after source match is execution receipt evidence; current final test SHA was independently recomputed.",
+    "First attempt safe result proves failed/events0; before-fixture NodeReady cause is root adjudication, not a new runtime diagnosis.",
+    "No current cluster/lease/status probe; root owns exact lab stop separately.",
+    "No private credential/state file, browser, test/build/app/cluster request accessed by this reviewer."
+  ],
+  "timing": {
+    "targetSeconds": 120,
+    "elapsedBeforeFinalWriteSeconds": 84.997
+  },
+  "inputSHA256": {
+    "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/execution.json": "9d8f8c1a6dfdcfd2e6d8e8b5d5876221bfde7fac8a94608332549a27180d73cd",
+    "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/plan.json": "4250f714da52f742fe36b27e7dc39b0938c082a2bbbb7d6fef059573999a392e",
+    "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/go-test.jsonl": "5295315ee28d6b58231afbc8cf53838bf04187a72ee5a924cb7947b2d8b66a41",
+    "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/safe-result.json": "1b059652745db94036609c982472e0920dd653eeeaeb3f189f6e3a59161c5b8e",
+    "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/safe-owned-fixtures.json": "8cd66d0cff4b35acffd5d3ba8a5645b076c4f4b80df0b1a5c8134ae19ab51817",
+    "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/ROOT_ADJUDICATION.json": "a778fd358df08f6ed1f54f9a7a6bb147931707d4bdf061333b020fe18ffe6369",
+    "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt01-root/safe-test-result.json": "588287f4db9585710e6db19e1977eb3c50ae82c4392f4ada4ca980215e4c95c3",
+    "backend/pkg/server/release_active_watch_real_test.go": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb"
+  }
+}

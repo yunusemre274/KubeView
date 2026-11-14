@@ -1,0 +1,8 @@
+{"Time":"2026-11-11T20:33:05.755136+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/server"}
+{"Time":"2026-11-11T20:33:06.525984+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne"}
+{"Time":"2026-11-11T20:33:06.526097+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne","Output":"=== RUN   TestReleaseOwnedScaleTwoThreeOne\n"}
+{"Time":"2026-11-11T20:33:15.188132+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne","Output":"--- PASS: TestReleaseOwnedScaleTwoThreeOne (8.66s)\n"}
+{"Time":"2026-11-11T20:33:15.188222+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne","Elapsed":8.66}
+{"Time":"2026-11-11T20:33:15.188269+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"PASS\n"}
+{"Time":"2026-11-11T20:33:15.192479+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"ok  \tgithub.com/k8s-tersane/tersane/backend/pkg/server\t9.436s\n"}
+{"Time":"2026-11-11T20:33:15.192557+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Elapsed":9.437}

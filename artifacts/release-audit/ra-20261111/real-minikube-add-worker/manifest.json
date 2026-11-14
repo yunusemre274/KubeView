@@ -1,0 +1,30 @@
+{
+  "status": "BLOCKED_BEFORE_MUTATION",
+  "reason": "Complete focused HTTP/adoption/DaemonSet-only cleanup helper was not ready within the fixed150s setup gate. Starting provisioning without that tested ownership/cleanup harness would violate the authorized safety envelope.",
+  "phaseElapsedSecondsAtDecision": 179.950419,
+  "setupLimitSeconds": 150,
+  "setupDeadlineAt": "2026-11-11T17:54:43.452786+00:00",
+  "mutationStarted": false,
+  "newNodeCreated": false,
+  "providerManagerOpened": false,
+  "idempotencyPOSTSent": false,
+  "CLIAddOrDeleteExecuted": false,
+  "originalNodesKeptWarm": true,
+  "noProductOrTestSourceEdits": true,
+  "safetyReceipt": "cleanup-ready-safety.json",
+  "verifiedCleanupScope": [
+    "Only first positional node arg is used; exact profile MachineName is resolved",
+    "Delete/reset/drain target is exact new machine; drain force/disable-eviction/delete-emptydir requires no non-owned/non-DaemonSet Pods",
+    "PossibleLeftOvers lists/deletes containers, volumes and networks by exact name.minikube.sigs.k8s.io=fullm03; filtered prune only, no broadprune",
+    "Fullm03 filter baseline empty for all resource types; original volumes and shared network independently recorded"
+  ],
+  "remainingConcreteImplementation": [
+    "New default-opt-in server test must hold external Lab.lock plus Manager profileflock across POST and cleanup",
+    "Capture immutable original Node/Docker/network/volume and CiliumUID/spec + fixture UID/spec/PodUID baseline; sanitize child environment and exact private paths",
+    "Persist attempt before POST, same-key two HTTP requests one opID, new host only adopted by operation time + DockerID/birth/labels/network + newNodeUID/IP/role",
+    "Keep manager alive/profilelock held while cleanup controller verifies new-node Pods only known baseline DaemonSetUIDs; any other Pod STOP",
+    "Bound minikubeCLI by remaining global budget, max300s; Ready90s; cancel and preserve partial journal on failure",
+    "Cleanup exactm03 CLI only after proof; original lab.json remains2; restore API/profile/Docker/volumes and verify original Cilium/fixture invariance before managerclose"
+  ],
+  "finalizedAt": "2026-11-11T17:55:13.403205+00:00"
+}

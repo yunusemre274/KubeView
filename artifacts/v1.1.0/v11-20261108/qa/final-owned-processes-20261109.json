@@ -1,0 +1,178 @@
+{
+  "at": "2026-11-09T08:37:35.641632+00:00",
+  "activeOwnedQARunners": [],
+  "activeOwnedQARunnerCount": 0,
+  "resumedInvocations": [
+    {
+      "file": "ui-invocation-1794210517207257000.json",
+      "runnerPID": 6136,
+      "caffeinatePID": 6137,
+      "runnerExit": 1,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794210562846255000.json",
+      "runnerPID": 6346,
+      "caffeinatePID": 6347,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794210695010011000.json",
+      "runnerPID": 6717,
+      "caffeinatePID": 6718,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794210799329539000.json",
+      "runnerPID": 6988,
+      "caffeinatePID": 6989,
+      "runnerExit": 1,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794210872695627000.json",
+      "runnerPID": 7286,
+      "caffeinatePID": 7287,
+      "runnerExit": 1,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794211451136256000.json",
+      "runnerPID": 9210,
+      "caffeinatePID": 9211,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794211520156436000.json",
+      "runnerPID": 9491,
+      "caffeinatePID": 9492,
+      "runnerExit": 1,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794211576320427000.json",
+      "runnerPID": 9707,
+      "caffeinatePID": 9708,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794211611072231000.json",
+      "runnerPID": 10450,
+      "caffeinatePID": 10451,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794211707647028000.json",
+      "runnerPID": 10787,
+      "caffeinatePID": 10788,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794211783663888000.json",
+      "runnerPID": 11145,
+      "caffeinatePID": 11146,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794211910577903000.json",
+      "runnerPID": 11461,
+      "caffeinatePID": 11462,
+      "runnerExit": 1,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794211976182188000.json",
+      "runnerPID": 11793,
+      "caffeinatePID": 11794,
+      "runnerExit": 1,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794212334673950000.json",
+      "runnerPID": 13171,
+      "caffeinatePID": 13172,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794212506293462000.json",
+      "runnerPID": 13484,
+      "caffeinatePID": 13485,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794212550742119000.json",
+      "runnerPID": 14264,
+      "caffeinatePID": 14265,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794212742321128000.json",
+      "runnerPID": 14988,
+      "caffeinatePID": 14989,
+      "runnerExit": 1,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794212836856783000.json",
+      "runnerPID": 17306,
+      "caffeinatePID": 17307,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794212897567700000.json",
+      "runnerPID": 17675,
+      "caffeinatePID": 17676,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794213024724470000.json",
+      "runnerPID": 19448,
+      "caffeinatePID": 19449,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    },
+    {
+      "file": "ui-invocation-1794213160019364000.json",
+      "runnerPID": 19886,
+      "caffeinatePID": 19887,
+      "runnerExit": 0,
+      "caffeinateExited": true,
+      "configurationUnchanged": true
+    }
+  ],
+  "allResumedCaffeinateChildrenExited": true,
+  "allResumedConfigurationsUnchanged": true,
+  "limit": "This is QA-owned runner/idle-assertion proof. Other agents browsers, root gateway18410/readonly18414 and root Hubble forwarding are not claimed stopped."
+}

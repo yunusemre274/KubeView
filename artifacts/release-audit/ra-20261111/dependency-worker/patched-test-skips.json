@@ -1,0 +1,127 @@
+[
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestBenchmarkFixtureServer",
+    "output": "=== RUN   TestBenchmarkFixtureServer\n    benchmark_test.go:58: explicit KUBEVIEW_BENCH_FIXTURE required\n--- SKIP: TestBenchmarkFixtureServer (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestDedicatedClusterManagement",
+    "output": "=== RUN   TestDedicatedClusterManagement\n    integration_test.go:24: set KUBEVIEW_TEST_CONTEXT=kubeview-test KUBEVIEW_TEST_NAMESPACE=kubeview-qa for isolated live integration\n--- SKIP: TestDedicatedClusterManagement (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestDedicatedClusterPodSessions",
+    "output": "=== RUN   TestDedicatedClusterPodSessions\n    integration_test.go:168: requires explicitly isolated kubeview-test / kubeview-qa\n--- SKIP: TestDedicatedClusterPodSessions (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestDedicatedClusterTargetedScheduling",
+    "output": "=== RUN   TestDedicatedClusterTargetedScheduling\n    placement_integration_test.go:24: requires explicitly isolated kubeview-test / kubeview-qa\n--- SKIP: TestDedicatedClusterTargetedScheduling (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestDedicatedClusterRestrictedRBAC",
+    "output": "=== RUN   TestDedicatedClusterRestrictedRBAC\n    rbac_integration_test.go:30: requires explicitly isolated kubeview-test / kubeview-qa\n--- SKIP: TestDedicatedClusterRestrictedRBAC (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealLogUIDReplacement",
+    "output": "=== RUN   TestOwnedRepairRealLogUIDReplacement\n    repair_integration_test.go:31: requires explicit owned repair context, kube-system UID and namespace\n--- SKIP: TestOwnedRepairRealLogUIDReplacement (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealCronJobActionsAndCompletion",
+    "output": "=== RUN   TestOwnedRepairRealCronJobActionsAndCompletion\n    repair_lifecycle_integration_test.go:54: requires explicit owned repair context, cluster UID and namespace\n--- SKIP: TestOwnedRepairRealCronJobActionsAndCompletion (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealNativeSidecarAndResize",
+    "output": "=== RUN   TestOwnedRepairRealNativeSidecarAndResize\n    repair_lifecycle_integration_test.go:123: requires explicit owned repair context, cluster UID and namespace\n--- SKIP: TestOwnedRepairRealNativeSidecarAndResize (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealMetricsAvailability",
+    "output": "=== RUN   TestOwnedRepairRealMetricsAvailability\n    repair_lifecycle_integration_test.go:209: requires explicit owned repair context, cluster UID and namespace\n--- SKIP: TestOwnedRepairRealMetricsAvailability (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealDeploymentRollbackRevision",
+    "output": "=== RUN   TestOwnedRepairRealDeploymentRollbackRevision\n    repair_lifecycle_integration_test.go:232: requires explicit owned repair context, cluster UID and namespace\n--- SKIP: TestOwnedRepairRealDeploymentRollbackRevision (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealDrainRespectsPDB",
+    "output": "=== RUN   TestOwnedRepairRealDrainRespectsPDB\n    repair_maintenance_integration_test.go:22: requires explicitly reserved owned worker name and UID\n--- SKIP: TestOwnedRepairRealDrainRespectsPDB (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealHubbleMeasuredProtocols",
+    "output": "=== RUN   TestOwnedRepairRealHubbleMeasuredProtocols\n    repair_protocol_integration_test.go:23: requires explicit owned CP flow-pair and L7 policy UID proof\n--- SKIP: TestOwnedRepairRealHubbleMeasuredProtocols (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealSyntheticSecretMetadataRoundTrip",
+    "output": "=== RUN   TestOwnedRepairRealSyntheticSecretMetadataRoundTrip\n    repair_resources_integration_test.go:159: requires explicit owned repair context, cluster UID and namespace\n--- SKIP: TestOwnedRepairRealSyntheticSecretMetadataRoundTrip (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealTemplateCapabilityTargets",
+    "output": "=== RUN   TestOwnedRepairRealTemplateCapabilityTargets\n    repair_resources_integration_test.go:211: requires explicit owned repair context, cluster UID and namespace\n--- SKIP: TestOwnedRepairRealTemplateCapabilityTargets (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedRepairRealHubbleRestrictedNamespace",
+    "output": "=== RUN   TestOwnedRepairRealHubbleRestrictedNamespace\n    repair_traffic_integration_test.go:27: requires actual configured Hubble TLS provider\n--- SKIP: TestOwnedRepairRealHubbleRestrictedNamespace (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestBenchmarkSlowReaderReconnect",
+    "output": "=== RUN   TestBenchmarkSlowReaderReconnect\n    stream_benchmark_test.go:28: explicit network diagnostic opt-in\n--- SKIP: TestBenchmarkSlowReaderReconnect (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedV11RealCustomScope",
+    "output": "=== RUN   TestOwnedV11RealCustomScope\n    v11_cr_scope_integration_test.go:32: requires explicit owned KUBEVIEW_REPAIR_NAMESPACE_UID\n--- SKIP: TestOwnedV11RealCustomScope (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedV11RealHubbleReadOnlyScope",
+    "output": "=== RUN   TestOwnedV11RealHubbleReadOnlyScope\n    v11_hubble_scope_integration_test.go:32: requires explicit owned real Hubble TLS gate opt-in\n--- SKIP: TestOwnedV11RealHubbleReadOnlyScope (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedV11RealLogRoles",
+    "output": "=== RUN   TestOwnedV11RealLogRoles\n    v11_log_roles_integration_test.go:26: requires explicit owned KUBEVIEW_REPAIR_NAMESPACE_UID\n--- SKIP: TestOwnedV11RealLogRoles (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedV11RealMinikubeManagementGate",
+    "output": "=== RUN   TestOwnedV11RealMinikubeManagementGate\n    v11_provider_gate_integration_test.go:30: requires explicit owned provider gate opt-in\n--- SKIP: TestOwnedV11RealMinikubeManagementGate (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedWorkspaceRealConcurrentOperationsAcceptance",
+    "output": "=== RUN   TestOwnedWorkspaceRealConcurrentOperationsAcceptance\n    workspace_real_acceptance_test.go:115: requires explicit owned workspace API phase\n--- SKIP: TestOwnedWorkspaceRealConcurrentOperationsAcceptance (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedWorkspaceRealWorkspaceRecordAcceptance",
+    "output": "=== RUN   TestOwnedWorkspaceRealWorkspaceRecordAcceptance\n    workspace_real_acceptance_test.go:515: requires explicit owned workspace API phase\n--- SKIP: TestOwnedWorkspaceRealWorkspaceRecordAcceptance (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedWorkspaceRealAPIIsolation",
+    "output": "=== RUN   TestOwnedWorkspaceRealAPIIsolation\n    workspace_real_isolation_test.go:73: requires explicit owned workspace API phase\n--- SKIP: TestOwnedWorkspaceRealAPIIsolation (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedWorkspaceRealAPISmoke",
+    "output": "=== RUN   TestOwnedWorkspaceRealAPISmoke\n    workspace_real_test.go:550: requires explicit owned workspace API phase\n--- SKIP: TestOwnedWorkspaceRealAPISmoke (0.00s)\n"
+  },
+  {
+    "package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+    "test": "TestOwnedWorkspaceRealAPISelectorMultiNSOverlap",
+    "output": "=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap\n    workspace_real_test.go:630: requires explicit owned workspace API phase\n--- SKIP: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap (0.00s)\n"
+  }
+]

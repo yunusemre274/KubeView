@@ -31,6 +31,15 @@ spec:
               value: "8000"
             - name: WATCH_NAMESPACE
               value: ""
+            - name: BIND_ADDR
+              value: "0.0.0.0"
+            - name: READ_ONLY
+              value: "true"
+            - name: API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tersane-auth
+                  key: token
           resources:
             limits:
               cpu: 200m
@@ -52,7 +61,7 @@ spec:
             periodSeconds: 10
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
+            readOnlyRootFilesystem: true
             runAsNonRoot: true
             runAsUser: 10001
             capabilities:

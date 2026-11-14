@@ -1,0 +1,9 @@
+54844508
+github.com/spiffe/spire-api-sdk v1.15.1 h1:EDcUMSQTwtGM7VJdlH3qNHp4yEonoYRB3mAz7T7Om/I=
+github.com/spiffe/spire-api-sdk v1.15.1/go.mod h1:9hXJcMzatM1KwAtBDO3s6HccDCic++/5c2yOc5Iln8Y=
+
+go.sum database tree
+71239636
+lg/V/bEL3IRKVdsfO+Dxt7vN3poeVCSQIyqQUa5nsxs=
+
+— sum.golang.org Az3gri+2Q8RT5dR45I+og6hJi62/fe6wSadsH6lI+j+I7TH4/2E6NAVSe+WR7t3iWiRAjx3aEA6iBZ+tcJx9BtAkfQ0=

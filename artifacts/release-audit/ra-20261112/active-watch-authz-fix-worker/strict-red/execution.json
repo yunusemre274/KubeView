@@ -1,0 +1,644 @@
+{
+  "status": "FAIL",
+  "startedAt": "2026-11-12T20:49:04.202306+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=60s",
+    "-run",
+    "^TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat$",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "captured": [
+    {
+      "pid": 61984,
+      "identity": "Thu Nov 12 23:49:04 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -json -p 1 -parallel 1 -count=1 -timeout=60s -run ^TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat$ ./pkg/server",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 61990,
+      "identity": "Thu Nov 12 23:49:04 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/compile -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build1766744659/b123/_pkg_.a -trimpath /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build1766744659/b123=> -p github.com/k8s-tersane/tersane/backend/pkg/server -lang=go1.26 -complete -buildid E02-MI7-upNKeW4ad5QX/E02-MI7-upNKeW4ad5QX -goversion go1.26.11 -c=2 -shared -nolocalimports -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build1766744659/b123/importcfg -embedcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build1766744659/b123/embedcfg -pack /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection_errors.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/log_session.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/maintenance.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/portforward.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/provider_handlers.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/replay_source.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/resource_scopes.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/resources.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/server.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/sessions.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/stream.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/template_capability.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/traffic_handlers.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_broker.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_membership.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_projection.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_scope.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/benchmark_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/correctness_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/rbac_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_active_watch_authz_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_kubeconfig_trust_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_operations_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_origin_preview_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_preview_browser_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_provider_cache_scope_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_readonly_endpoints_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_secret_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_security_regression_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_session_expiry_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_session_lifecycle_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_lifecycle_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_maintenance_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_protocol_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_resources_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_traffic_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/replay_source_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/server_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/stream_benchmark_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/traffic_handlers_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_cr_scope_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_hubble_scope_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_log_roles_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_provider_gate_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_cookie_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_acceptance_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_helpers_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_isolation_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_recovery_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_scope_list_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_test.go",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 61998,
+      "identity": "Thu Nov 12 23:49:05 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/link -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build1766744659/b001/server.test -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build1766744659/b001/importcfg.link -s -w -buildmode=pie -buildid=INIzDgyjlZyHpmOMvQF2/hzNW46HiCGslpVHzIv3b/B1lnvQ_XigjhKcGJ1biY/INIzDgyjlZyHpmOMvQF2 -X testing.testBinary=1 -extld=clang /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build1766744659/b001/_pkg_.a",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 62018,
+      "identity": "Thu Nov 12 23:49:06 2026     /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build1766744659/b001/server.test -test.paniconexit0 -test.v=test2json -test.parallel=1 -test.count=1 -test.timeout=1m0s -test.run=^TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat$",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.020077999997738516,
+      "ownedRSSKiB": 4496,
+      "ownedPIDs": [
+        61984
+      ]
+    },
+    {
+      "elapsedSeconds": 0.232149166000454,
+      "ownedRSSKiB": 60192,
+      "ownedPIDs": [
+        61984
+      ]
+    },
+    {
+      "elapsedSeconds": 0.44903320799858193,
+      "ownedRSSKiB": 207248,
+      "ownedPIDs": [
+        61984,
+        61990
+      ]
+    },
+    {
+      "elapsedSeconds": 0.6601354159975017,
+      "ownedRSSKiB": 290704,
+      "ownedPIDs": [
+        61984,
+        61990
+      ]
+    },
+    {
+      "elapsedSeconds": 0.871019874997728,
+      "ownedRSSKiB": 350560,
+      "ownedPIDs": [
+        61984,
+        61990
+      ]
+    },
+    {
+      "elapsedSeconds": 1.0861657909990754,
+      "ownedRSSKiB": 414992,
+      "ownedPIDs": [
+        61984,
+        61990
+      ]
+    },
+    {
+      "elapsedSeconds": 1.3034427499987942,
+      "ownedRSSKiB": 92272,
+      "ownedPIDs": [
+        61984,
+        61998
+      ]
+    },
+    {
+      "elapsedSeconds": 1.5185794579992944,
+      "ownedRSSKiB": 666352,
+      "ownedPIDs": [
+        61984,
+        61998
+      ]
+    },
+    {
+      "elapsedSeconds": 1.7339159999974072,
+      "ownedRSSKiB": 60336,
+      "ownedPIDs": [
+        61984
+      ]
+    },
+    {
+      "elapsedSeconds": 1.954378499998711,
+      "ownedRSSKiB": 61328,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 2.193220665998524,
+      "ownedRSSKiB": 61328,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 2.4300499159980973,
+      "ownedRSSKiB": 61328,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 2.671523665998393,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 2.9144634999975096,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 3.1589143329983926,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 3.4045216659978905,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 3.6480909579986474,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 3.8895387499978824,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 4.134726500000397,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 4.3773600829990755,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 4.618341749999672,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 4.863210083000013,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 5.105410457999824,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 5.350726249998843,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 5.5989046249997045,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 5.836173290997976,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 6.079909082996892,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 6.3249036249981145,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 6.569582249998348,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 6.812594082999567,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 7.056329040999117,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 7.298382749999291,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 7.540355290999287,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 7.78205883299961,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 8.024667124998814,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 8.267467957997724,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 8.512707624999166,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 8.751899874998344,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 8.992938415998651,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 9.237918165999872,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 9.482662832997448,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 9.723865541000123,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 9.966935874999763,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 10.2098404999997,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 10.451973957999144,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 10.696319499998935,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 10.940228707997449,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 11.18161549999786,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 11.423886000000493,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 11.667937291000271,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 11.910619832997327,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 12.152705415999662,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 12.396242249997158,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 12.637113374999899,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 12.883118624999042,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 13.124176540997723,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 13.367427707999013,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 13.609949415997107,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 13.850424041000224,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 14.091590374999214,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 14.335035749998497,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 14.577512040999864,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 14.81937566600027,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 15.06067662499845,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 15.303805249997822,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 15.544976540997595,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 15.786180082999635,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 16.02613454099992,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 16.26613924999765,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 16.50792354099758,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 16.752206582998042,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 16.995380874999682,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 17.239169165997737,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    },
+    {
+      "elapsedSeconds": 17.483314540997526,
+      "ownedRSSKiB": 95408,
+      "ownedPIDs": [
+        61984,
+        62018
+      ]
+    }
+  ],
+  "safety": "strict RED against unchanged product, one fake real loopback WS test; Go60/wall90; tree2GiB/disk10GiB",
+  "limitSeconds": 90,
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "sourceBeforeMatches": true,
+  "exitCode": 1,
+  "firstFailure": {
+    "type": "RuntimeError",
+    "safeReason": "Go guard assertion/compile failure"
+  },
+  "sourceAfterMatches": true,
+  "elapsedSeconds": 18.14802645799864,
+  "finishedAt": "2026-11-12T20:49:22.350315+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-11-11T17:17:48.720855+00:00",
+  "scope": "Native Safari capability probe only; no app or user page navigation, performance or Retina app acceptance",
+  "status": "FAILED",
+  "port": 19845,
+  "driverVersion": "Included with Safari 27.0.1 (22625.1.29.11.28)",
+  "probeErrorClass": "CalledProcessError",
+  "ownedDriverExited": true,
+  "portFreeAfter": false,
+  "elapsedSeconds": 0.1680967079992115,
+  "within45s": true,
+  "finishedAt": "2026-11-11T17:17:48.889085+00:00"
+}

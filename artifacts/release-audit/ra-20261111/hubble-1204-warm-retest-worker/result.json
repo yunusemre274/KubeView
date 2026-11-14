@@ -1,0 +1,22 @@
+{
+  "status": "FAIL",
+  "reason": "Single warm build failed or resource/time stopped",
+  "binary_exists": false,
+  "no_retry": true,
+  "elapsed_seconds": 496.282,
+  "classification": "BUILD_TIMEOUT_AND_WALL_CAP_ENFORCEMENT_FAILURE",
+  "requested_compile_budget_seconds": 240,
+  "observed_compile_wall_seconds": 494.59,
+  "compile_wall_overshoot_seconds": 254.59,
+  "requested_total_budget_seconds": 360,
+  "observed_execution_seconds": 496.282,
+  "estimated_build_end_utc_from_recorded_elapsed": "2026-11-11T14:00:23.857332+00:00",
+  "timeout_enforcement_valid": false,
+  "cause": "Unknown. The retained monitor checks time between process-tree sampling calls and sleeps; no sample timestamp or independent hard-kill watchdog receipt exists. No host sleep, clock-change, scheduling or active-CPU explanation is established.",
+  "source_unchanged": true,
+  "first_failed_attempt_unchanged": true,
+  "old_1202_candidate_and_go_mod_sum_unchanged": true,
+  "no_indirect_download_notice_in_stderr": true,
+  "no_security_conclusion": true,
+  "finalized_at_utc": "2026-11-11T15:57:03.771050+00:00"
+}

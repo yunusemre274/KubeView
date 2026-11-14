@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-11-11T18:38:00.141659+00:00",
+  "sourceHEAD": "b499edccaf990032acd865dc8d6b8a0ff6d35cd7",
+  "helperSHA256": "f44900d39cc0c86944058de42f56d835c8f2c4d061f8d0292c611769e502cc17",
+  "priorReceiptSHA256": "fa9b663691da9d0f7acf45882511a8f2628e09cff0445a33b7513863a7ea97a3",
+  "negotiationAccepted": true,
+  "browserOrPageToolInvocations": 0,
+  "safeSchemaProjectionOnly": true
+}

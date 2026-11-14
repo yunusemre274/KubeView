@@ -1,0 +1,117 @@
+{
+  "recorded_at": "2026-11-09T07:48:19.392881+00:00",
+  "kind": "post-test guarded real Kubernetes read-only residual check",
+  "cluster_uid": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace_uid": "42337a2d-ae0b-49ba-bdc5-4badd8a5f92f",
+  "namespace": "kv-repair-v11-backend",
+  "namespace_ownership_labels": {
+    "kubeview.io/repair-owner": "backend-manager",
+    "kubeview.io/v11-owner": "v11-20261108"
+  },
+  "unique_crd": {
+    "name": "repaircargos.v11-8ca40b9f.audit.kubeview.io",
+    "absent": true
+  },
+  "reader_fixture_inventory": [
+    {
+      "resource": "serviceaccounts",
+      "name": "kv-repair-cr-reader-8ca40b9f",
+      "absent": true
+    },
+    {
+      "resource": "roles",
+      "name": "kv-repair-cr-reader-8ca40b9f",
+      "absent": true
+    },
+    {
+      "resource": "rolebindings",
+      "name": "kv-repair-cr-reader-8ca40b9f",
+      "absent": true
+    }
+  ],
+  "runtime_source_equal_to_prior_real_tests": true,
+  "runtime_source_hashes": [
+    {
+      "file": "backend/pkg/server/connection.go",
+      "sha256": "02863427c5546eea2218db16a0cc9b3d974c14120dfe55560a1dc604fa2d49ca",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/connection_errors.go",
+      "sha256": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/log_session.go",
+      "sha256": "1f575b4bb24bb8a26dcf3b04a9b1ec82d884ee758789a0bc57d2029c354e0ede",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/maintenance.go",
+      "sha256": "4708bcf04a91202e84c7b0c0f1d843fb8d4d2fb99d6c7c53cbf4c8f9f7982efd",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/placement.go",
+      "sha256": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/portforward.go",
+      "sha256": "8bd00d7e80d4190e97cf09b7cb3d02684dd520b5927056bcdaef5e1e67f2f3ca",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/provider_handlers.go",
+      "sha256": "131539d99c818f52f0518e81fd3defefe791bf8dabd86cb44b799126bbd427bd",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/resource_scopes.go",
+      "sha256": "e0e0c13db9fe0bbef1f3ae6b65d50b55364c1d93264f9fe391d92592704eacbd",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/resources.go",
+      "sha256": "01c50606e3812238aa641f3e0e355b82b637c7771dfdbf2d2554ccce6ea5f72c",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/server.go",
+      "sha256": "ce4174bbeb11af011d404e7687b5bafb7a63941fe4bb7a5079f0a625b2429a58",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/sessions.go",
+      "sha256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/stream.go",
+      "sha256": "705934ae746929790ee2ed253ad7e9ca16d92ad1a7c7bbae0dda578ad6c43718",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/template_capability.go",
+      "sha256": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/pkg/server/traffic_handlers.go",
+      "sha256": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/go.mod",
+      "sha256": "9063188102dfa5ed6f60be6b7f34adaf150fdf87fc54cbecb9be0a3501a5344f",
+      "equal_to_prior": true
+    },
+    {
+      "file": "backend/go.sum",
+      "sha256": "9b3181f96a3e08d824d0b8861442f07353806b27b358b8a30f3fb5b9631c0679",
+      "equal_to_prior": true
+    }
+  ],
+  "other_cluster_or_QA_namespace_touched": false,
+  "limits": "This job used only cluster A/backend namespace; no B cluster mutation, browser UI, minikube or Hubble execution. Unique CRD itself was cluster-scoped and guarded."
+}

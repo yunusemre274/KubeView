@@ -1,0 +1,4 @@
+{"at": "2026-11-11T18:53:13.679369+00:00", "event": "first_POST_accepted", "proof": {"operationID": "8ce1a91c-509b-4129-8bff-778b87f48888"}}
+{"at": "2026-11-11T18:53:13.999419+00:00", "event": "same_key_second_POST_same_operation", "proof": {"operationID": "8ce1a91c-509b-4129-8bff-778b87f48888"}}
+{"at": "2026-11-11T18:53:15.114095+00:00", "event": "pending_partial_cleanup", "proof": {"safeCategory": "KeyError"}}
+{"status": "FAIL", "mainExitCode": 2, "failure": {"errorClass": "KeyError", "safeCategory": "details_omitted"}, "journalResult": "FAIL", "readyVerified": false, "cleanupComplete": false, "pendingCleanup": true, "profileOriginalNodesAndSettingsEqual": false, "helperUnchanged": true, "RUN_CLEAREDSourceStillFalse": true, "RUN_CLEAREDMemoryResetFalse": true, "totalElapsedSeconds": 82.8300850391388, "within720s": true, "completedAt": "2026-11-11T18:53:15.138404+00:00"}

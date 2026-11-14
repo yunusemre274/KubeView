@@ -1,0 +1,6 @@
+{
+  "status": "SETUP_PATH_FAILURE_CORRECTED",
+  "reason": "Preparation shell cwd was backend; relative output root did not exist, so redirection failed before go run executed. Owned preparatory files moved to intended private root and empty owned directories removed.",
+  "noLabCommandOrMutation": true,
+  "at": "2026-11-11T16:15:28.871586+00:00"
+}

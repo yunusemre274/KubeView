@@ -1,0 +1,33 @@
+{
+  "startedAt": "2026-11-11T18:12:47.751322+00:00",
+  "stage": "original unchanged three-case PoC against root fix",
+  "sourceHEAD": "d82bd7c2023bf2c72e17702e66aa82184d8191c0",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "./pkg/server",
+    "-run",
+    "^TestReleaseProviderCachedKeyRemainsBoundToLiveCluster$",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "30s",
+    "-count",
+    "1",
+    "-v"
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local"
+  },
+  "sourceSHA256": {
+    "backend/pkg/server/release_provider_cache_scope_test.go": "1e6f3d029240f96dbff0327aece205c78b14eb510d50e0d2516a631d68aaeacf",
+    "backend/pkg/server/provider_handlers.go": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94"
+  },
+  "exitCode": 0,
+  "finishedAt": "2026-11-11T18:12:58.312013+00:00"
+}

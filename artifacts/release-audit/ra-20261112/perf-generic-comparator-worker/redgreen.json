@@ -1,0 +1,56 @@
+{
+  "red": {
+    "tests": 18,
+    "pass": 2,
+    "fail": 16,
+    "wrongComparableTrueInvalidCases": [
+      "PID reuse",
+      "legacy missing birth",
+      "interior cohort disappearance",
+      "interior counter regression",
+      "invalid clock",
+      "missing process samples",
+      "empty process samples",
+      "malformed sample body",
+      "both empty runs",
+      "missing declared group on both sides",
+      "extra after group",
+      "duplicate repeat"
+    ],
+    "uncleanExit1Cases": [
+      "missing summary",
+      "malformed summary JSON",
+      "missing run body",
+      "missing errors body"
+    ]
+  },
+  "greenOriginal": {
+    "tests": 18,
+    "pass": 18,
+    "fail": 0
+  },
+  "greenExpanded": {
+    "tests": 28,
+    "pass": 28,
+    "fail": 0
+  },
+  "finalWithCameraNeighbor": {
+    "tests": 31,
+    "pass": 31,
+    "fail": 0,
+    "durationMs": 715.78975
+  },
+  "rawFiles": [
+    "red.stdout",
+    "red.stderr",
+    "red-cli.jsonl",
+    "green.stdout",
+    "green.stderr",
+    "green-cli.jsonl",
+    "green-expanded.stdout",
+    "green-expanded.stderr",
+    "green-expanded-cli.jsonl",
+    "final-neighbor.stdout",
+    "final-neighbor.stderr"
+  ]
+}

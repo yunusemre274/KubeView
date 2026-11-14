@@ -1,0 +1,13 @@
+{
+  "read_at_utc": "2026-11-11T13:33:27.613816+00:00",
+  "labId": "kvml-d32afbf634e8",
+  "telemetry_version": "1.20.2",
+  "owner_label_matches": true,
+  "authentication_mutual_enabled_override": null,
+  "authentication_mutual_spire_enabled_override": null,
+  "ztunnel_enabled_override": null,
+  "command_override_present": false,
+  "operator_command_override_present": false,
+  "apt_word_in_safe_command_overrides": false,
+  "credential_data_copied": false
+}

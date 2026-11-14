@@ -1,0 +1,73 @@
+{
+  "createdAt": "2026-11-12T21:39:34Z",
+  "head": "362e91c3f0117aee8f518c20674832da159c0061",
+  "status": "PRE_TEST_PLAN",
+  "scope": "production ServeMux/handlers with existing fake-client workspaceFixture, in-process httptest; no listener or real Kubernetes",
+  "sourceBefore": {
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+    "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8"
+  },
+  "cases": [
+    "normal JSON patch and exact namespace/selector UID scope",
+    "malformed 400",
+    "second JSON value 400",
+    "future import schema 422",
+    "nested credential preference 422",
+    "bogus harbor connection reference 422",
+    "preference depth >10 422",
+    "one body >2MiB and <4MiB 400",
+    "non-JSON MIME 415",
+    "wrong workspace nonce 403",
+    "duplicate-last and ignored unknown-field policy with no credential/authority persistence",
+    "valid import resets Context/Bound and remaps IDs"
+  ],
+  "rejectionAssertions": [
+    "same complete Store.Snapshot",
+    "same revision",
+    "workspace.json and backup bytes unchanged; no directory entries added"
+  ],
+  "limits": {
+    "hardJobSeconds": 600,
+    "codeFreezeSeconds": 450,
+    "testTimeoutSeconds": 60,
+    "outerTimeoutSeconds": 90,
+    "GOMAXPROCS": 2,
+    "GOMEMLIMIT": "1GiB",
+    "ownedRSSLimitMiB": 1536,
+    "minimumFreeDiskGiB": 10,
+    "largeCases": 1,
+    "parallel": 1,
+    "packageParallelism": 1
+  },
+  "notRun": [
+    "old Validate/Export fuzz",
+    "new Import fuzz owned by other worker",
+    "YAML parsers",
+    "app/browser/real-cluster/release build"
+  ],
+  "testSourceBeforeSHA256": "d7fe179757087e9b5f93864569d593645bf19b7221a70de315f93948ef4bf377",
+  "command": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=60s",
+    "-run",
+    "^TestReleaseWorkspaceParser",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "env": {
+    "GOTOOLCHAIN": "local",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "1GiB",
+    "GOPROXY": "off"
+  }
+}

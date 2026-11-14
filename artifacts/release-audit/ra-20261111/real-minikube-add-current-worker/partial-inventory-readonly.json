@@ -1,0 +1,134 @@
+{
+  "at": "2026-11-11T18:56:06.640130+00:00",
+  "typedContainers": [
+    {
+      "name": "kvml-d32afbf634e8-a",
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "created": "2026-11-11T12:25:42.786922134Z",
+      "running": true,
+      "state": "running",
+      "labels": {
+        "created_by.minikube.sigs.k8s.io": "true",
+        "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+        "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+        "role.minikube.sigs.k8s.io": ""
+      },
+      "network": {
+        "kvml-d32afbf634e8-a": {
+          "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+          "IP": "172.29.232.2"
+        }
+      }
+    },
+    {
+      "name": "kvml-d32afbf634e8-a-m02",
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "created": "2026-11-11T12:25:55.149367334Z",
+      "running": true,
+      "state": "running",
+      "labels": {
+        "created_by.minikube.sigs.k8s.io": "true",
+        "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+        "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+        "role.minikube.sigs.k8s.io": ""
+      },
+      "network": {
+        "kvml-d32afbf634e8-a": {
+          "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+          "IP": "172.29.232.3"
+        }
+      }
+    },
+    {
+      "name": "kvml-d32afbf634e8-a-m03",
+      "containerAbsent": true,
+      "exitCode": 1
+    }
+  ],
+  "typedNewVolume": {
+    "name": "kvml-d32afbf634e8-a-m03",
+    "created": "2026-11-11T18:53:14Z",
+    "driver": "local",
+    "labels": {
+      "created_by.minikube.sigs.k8s.io": "true",
+      "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m03"
+    },
+    "topLevelKeys": [
+      "CreatedAt",
+      "Driver",
+      "Labels",
+      "Mountpoint",
+      "Name",
+      "Options",
+      "Scope"
+    ]
+  },
+  "actualNodes": [
+    {
+      "name": "kvml-d32afbf634e8-a",
+      "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+      "created": "2026-11-11T12:25:49Z",
+      "controlPlane": true,
+      "ready": true,
+      "internalIPs": [
+        "172.29.232.2"
+      ]
+    },
+    {
+      "name": "kvml-d32afbf634e8-a-m02",
+      "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+      "created": "2026-11-11T12:26:00Z",
+      "controlPlane": false,
+      "ready": true,
+      "internalIPs": [
+        "172.29.232.3"
+      ]
+    }
+  ],
+  "privateProfile": {
+    "Name": "kvml-d32afbf634e8-a",
+    "Driver": "docker",
+    "Memory": 2048,
+    "CPUs": 2,
+    "Nodes": [
+      {
+        "Name": "",
+        "IP": "172.29.232.2",
+        "Port": 8443,
+        "ControlPlane": true,
+        "Worker": true
+      },
+      {
+        "Name": "m02",
+        "IP": "172.29.232.3",
+        "Port": 8443,
+        "ControlPlane": false,
+        "Worker": true
+      },
+      {
+        "Name": "m03",
+        "IP": "",
+        "Port": 0,
+        "ControlPlane": false,
+        "Worker": true
+      }
+    ]
+  },
+  "profileSHA256": "da28c0b820f7d4c870bce1ad32c6849cf26f2e3f61b5ebc8b2b9e7f1f79f1dea",
+  "exactNewLabelTargets": {
+    "containers": [],
+    "volumes": [
+      "kvml-d32afbf634e8-a-m03"
+    ],
+    "networks": []
+  },
+  "originalBeforeProfileReceipt": "profile-before.json",
+  "originalBeforeOwnedMetadata": "journal-redacted.json/baseline",
+  "noRemovalResumeRePOST": true,
+  "originalExceptionKeyOrTracebackRecovered": false,
+  "separateReadonlyInspectorFailure": {
+    "key": "Id",
+    "scope": "later metadata inspector, not original helper traceback"
+  },
+  "containerTypeMismatchHypothesis": "typed container absent and typed volume present; generic host parser expects container keys, consistent with root hypothesis; original traceback was not retained"
+}

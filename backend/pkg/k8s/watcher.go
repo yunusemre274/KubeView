@@ -212,6 +212,7 @@ func (w *Watcher) StartInformerFactory(ctx context.Context) error {
 		}))
 
 		<-informerCtx.Done()
+		cancelInformer()
 	}
 }
 
@@ -349,49 +350,121 @@ func (w *Watcher) registerInformers(factory informers.SharedInformerFactory) {
 	// 1. Node Informer
 	nodeInformer := factory.Core().V1().Nodes().Informer()
 	nodeInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if n := unwrapNode(obj); n != nil { w.handleNodeEvent(api.ActionAdd, n) } },
-		UpdateFunc: func(_, newObj interface{}) { if n := unwrapNode(newObj); n != nil { w.handleNodeEvent(api.ActionUpdate, n) } },
-		DeleteFunc: func(obj interface{}) { if n := unwrapNode(obj); n != nil { w.handleNodeEvent(api.ActionDelete, n) } },
+		AddFunc: func(obj interface{}) {
+			if n := unwrapNode(obj); n != nil {
+				w.handleNodeEvent(api.ActionAdd, n)
+			}
+		},
+		UpdateFunc: func(_, newObj interface{}) {
+			if n := unwrapNode(newObj); n != nil {
+				w.handleNodeEvent(api.ActionUpdate, n)
+			}
+		},
+		DeleteFunc: func(obj interface{}) {
+			if n := unwrapNode(obj); n != nil {
+				w.handleNodeEvent(api.ActionDelete, n)
+			}
+		},
 	})
 
 	// 2. Pod Informer
 	podInformer := factory.Core().V1().Pods().Informer()
 	podInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if p := unwrapPod(obj); p != nil { w.handlePodEvent(api.ActionAdd, p) } },
-		UpdateFunc: func(_, newObj interface{}) { if p := unwrapPod(newObj); p != nil { w.handlePodEvent(api.ActionUpdate, p) } },
-		DeleteFunc: func(obj interface{}) { if p := unwrapPod(obj); p != nil { w.handlePodEvent(api.ActionDelete, p) } },
+		AddFunc: func(obj interface{}) {
+			if p := unwrapPod(obj); p != nil {
+				w.handlePodEvent(api.ActionAdd, p)
+			}
+		},
+		UpdateFunc: func(_, newObj interface{}) {
+			if p := unwrapPod(newObj); p != nil {
+				w.handlePodEvent(api.ActionUpdate, p)
+			}
+		},
+		DeleteFunc: func(obj interface{}) {
+			if p := unwrapPod(obj); p != nil {
+				w.handlePodEvent(api.ActionDelete, p)
+			}
+		},
 	})
 
 	// 3. Deployment Informer
 	deployInformer := factory.Apps().V1().Deployments().Informer()
 	deployInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if d := unwrapDeployment(obj); d != nil { w.handleDeploymentEvent(api.ActionAdd, d) } },
-		UpdateFunc: func(_, newObj interface{}) { if d := unwrapDeployment(newObj); d != nil { w.handleDeploymentEvent(api.ActionUpdate, d) } },
-		DeleteFunc: func(obj interface{}) { if d := unwrapDeployment(obj); d != nil { w.handleDeploymentEvent(api.ActionDelete, d) } },
+		AddFunc: func(obj interface{}) {
+			if d := unwrapDeployment(obj); d != nil {
+				w.handleDeploymentEvent(api.ActionAdd, d)
+			}
+		},
+		UpdateFunc: func(_, newObj interface{}) {
+			if d := unwrapDeployment(newObj); d != nil {
+				w.handleDeploymentEvent(api.ActionUpdate, d)
+			}
+		},
+		DeleteFunc: func(obj interface{}) {
+			if d := unwrapDeployment(obj); d != nil {
+				w.handleDeploymentEvent(api.ActionDelete, d)
+			}
+		},
 	})
 
 	// 4. ReplicaSet Informer (for Pod -> ReplicaSet -> Deployment owner chain resolution)
 	rsInformer := factory.Apps().V1().ReplicaSets().Informer()
 	rsInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if rs := unwrapReplicaSet(obj); rs != nil { w.handleReplicaSetEvent(api.ActionAdd, rs) } },
-		UpdateFunc: func(_, newObj interface{}) { if rs := unwrapReplicaSet(newObj); rs != nil { w.handleReplicaSetEvent(api.ActionUpdate, rs) } },
-		DeleteFunc: func(obj interface{}) { if rs := unwrapReplicaSet(obj); rs != nil { w.handleReplicaSetEvent(api.ActionDelete, rs) } },
+		AddFunc: func(obj interface{}) {
+			if rs := unwrapReplicaSet(obj); rs != nil {
+				w.handleReplicaSetEvent(api.ActionAdd, rs)
+			}
+		},
+		UpdateFunc: func(_, newObj interface{}) {
+			if rs := unwrapReplicaSet(newObj); rs != nil {
+				w.handleReplicaSetEvent(api.ActionUpdate, rs)
+			}
+		},
+		DeleteFunc: func(obj interface{}) {
+			if rs := unwrapReplicaSet(obj); rs != nil {
+				w.handleReplicaSetEvent(api.ActionDelete, rs)
+			}
+		},
 	})
 
 	// 5. ServiceAccount Informer
 	saInformer := factory.Core().V1().ServiceAccounts().Informer()
 	saInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if sa := unwrapSA(obj); sa != nil { w.handleSAEvent(api.ActionAdd, sa) } },
-		UpdateFunc: func(_, newObj interface{}) { if sa := unwrapSA(newObj); sa != nil { w.handleSAEvent(api.ActionUpdate, sa) } },
-		DeleteFunc: func(obj interface{}) { if sa := unwrapSA(obj); sa != nil { w.handleSAEvent(api.ActionDelete, sa) } },
+		AddFunc: func(obj interface{}) {
+			if sa := unwrapSA(obj); sa != nil {
+				w.handleSAEvent(api.ActionAdd, sa)
+			}
+		},
+		UpdateFunc: func(_, newObj interface{}) {
+			if sa := unwrapSA(newObj); sa != nil {
+				w.handleSAEvent(api.ActionUpdate, sa)
+			}
+		},
+		DeleteFunc: func(obj interface{}) {
+			if sa := unwrapSA(obj); sa != nil {
+				w.handleSAEvent(api.ActionDelete, sa)
+			}
+		},
 	})
 
 	// 6. Role Informer
 	roleInformer := factory.Rbac().V1().Roles().Informer()
 	roleInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
-		AddFunc:    func(obj interface{}) { if r := unwrapRole(obj); r != nil { w.handleRoleEvent(api.ActionAdd, r) } },
-		UpdateFunc: func(_, newObj interface{}) { if r := unwrapRole(newObj); r != nil { w.handleRoleEvent(api.ActionUpdate, r) } },
-		DeleteFunc: func(obj interface{}) { if r := unwrapRole(obj); r != nil { w.handleRoleEvent(api.ActionDelete, r) } },
+		AddFunc: func(obj interface{}) {
+			if r := unwrapRole(obj); r != nil {
+				w.handleRoleEvent(api.ActionAdd, r)
+			}
+		},
+		UpdateFunc: func(_, newObj interface{}) {
+			if r := unwrapRole(newObj); r != nil {
+				w.handleRoleEvent(api.ActionUpdate, r)
+			}
+		},
+		DeleteFunc: func(obj interface{}) {
+			if r := unwrapRole(obj); r != nil {
+				w.handleRoleEvent(api.ActionDelete, r)
+			}
+		},
 	})
 
 	// 7. K8s Core Events Informer
@@ -406,10 +479,17 @@ func (w *Watcher) registerInformers(factory informers.SharedInformerFactory) {
 }
 
 func (w *Watcher) handleNodeEvent(action api.ResourceAction, node *corev1.Node) {
-	status := "Ready"
+	status := "Unknown"
 	for _, cond := range node.Status.Conditions {
-		if cond.Type == corev1.NodeReady && cond.Status != corev1.ConditionTrue {
-			status = "NotReady"
+		if cond.Type == corev1.NodeReady {
+			switch cond.Status {
+			case corev1.ConditionTrue:
+				status = "Ready"
+			case corev1.ConditionFalse:
+				status = "NotReady"
+			default:
+				status = "Unknown"
+			}
 		}
 	}
 
@@ -463,7 +543,7 @@ func (w *Watcher) handlePodEvent(action api.ResourceAction, pod *corev1.Pod) {
 	if len(pod.OwnerReferences) > 0 {
 		ref := pod.OwnerReferences[0]
 		if ref.Kind == "ReplicaSet" {
-			ownerKind = "Deployment"
+			ownerKind = "ReplicaSet"
 			replicaSetOwner = ref.Name
 			rsKey := fmt.Sprintf("%s/%s", pod.Namespace, ref.Name)
 
@@ -472,9 +552,10 @@ func (w *Watcher) handlePodEvent(action api.ResourceAction, pod *corev1.Pod) {
 			w.mu.RUnlock()
 
 			if exists && len(rs.OwnerReferences) > 0 && rs.OwnerReferences[0].Kind == "Deployment" {
+				ownerKind = "Deployment"
 				ownerName = rs.OwnerReferences[0].Name
 			} else {
-				ownerName = extractDeploymentName(ref.Name)
+				ownerName = ref.Name
 			}
 		} else {
 			ownerKind = ref.Kind
@@ -569,8 +650,8 @@ func (w *Watcher) handleSAEvent(action api.ResourceAction, sa *corev1.ServiceAcc
 	saInfo := api.ServiceAccountInfo{
 		Name:         sa.Name,
 		Namespace:    sa.Namespace,
-		BoundRole:    "view",
-		BoundBinding: fmt.Sprintf("%s-binding", sa.Name),
+		BoundRole:    "",
+		BoundBinding: "",
 		CreatedAt:    sa.CreationTimestamp.Format(time.RFC3339),
 	}
 

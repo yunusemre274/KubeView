@@ -1,0 +1,20 @@
+{
+  "url": "https://api.github.com/repos/gopacket/gopacket/commits/508044327cc2c065b3db753c010a027e7d1ca621",
+  "sha256": "72a31d349a1abfef681fad0bb52843ff892aaa526b7f8002a2c263975476d9c6",
+  "commit": "508044327cc2c065b3db753c010a027e7d1ca621",
+  "message": "layers/sctp: bound chunk sub-decoders and parameters\n\nGHSA-358w-w75h-x6rx. The v1.7.1 hardening (#163) bounded the SCTP chunk\ndispatcher but not the per-type decoders behind it. INIT, INIT-ACK, SACK\nand SHUTDOWN read fixed fields past a short chunk, SACK looped on\nattacker-supplied counts, and decodeSCTPParameter sliced with an\nunchecked TLV length. One crafted chunk panicked.\n\nEach sub-decoder now checks its chunk type's minimum length, SACK\nrejects counts the chunk can't hold, and parameters must fit their\nbuffer.\n\nAlso fixes a panic on valid input: chunk length excludes the last\nparameter's padding (RFC 9260 3.2), so skipping a padded final\nparameter sliced past the end.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+  "files": [
+    {
+      "name": "layers/decode_oob_test.go",
+      "status": "modified",
+      "additions": 49,
+      "deletions": 0
+    },
+    {
+      "name": "layers/sctp.go",
+      "status": "modified",
+      "additions": 59,
+      "deletions": 16
+    }
+  ]
+}

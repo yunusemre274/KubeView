@@ -1,0 +1,100 @@
+{
+  "kind": "local profile cookie collision correction",
+  "reproduction": {
+    "transport": "two httptest.Server instances on distinct127.0.0.1ports; one standards-compatible http cookiejar; separate workspace IDs; Kubernetes clients are fake",
+    "observed": [
+      "Profile B bootstrap/enable invalidated profile A operator grant",
+      "Profile A workspace mutation with its original nonce returned403 after visiting B",
+      "Returning to A invalidated B operator grant",
+      "Login with synthetic32-character tokenB caused profileA cookie-auth request401"
+    ],
+    "sourceSHA256": "a75983eff2f8ad3dc39cd6200e3188f228729931c96befb9ce3a24bbf0190c97",
+    "expectedPreFixFailurePreserved": true
+  },
+  "change": {
+    "namespace": "SHA256(workspaceID) first16hex characters, appended to operator and access cookie names",
+    "cached": "ConfigureWorkspace computes names once and stores them in immutable workspace runtime fields; request guards use cached strings",
+    "legacy": "workspace=nil retains kubeview_operator and kubeview_session",
+    "allPaths": [
+      "operator creation/read",
+      "workspace CSRF",
+      "protect request identity",
+      "management state/revoke/enable",
+      "contexts diagnostic",
+      "API_TOKEN session cookie creation and guard lookup"
+    ],
+    "restart": "same workspace keeps names; operator state/grants remain in memory only; old management/workspace nonces rejected after restart"
+  },
+  "validation": {
+    "steps": [
+      {
+        "phase": "unit",
+        "command": [
+          "go",
+          "test",
+          "-json",
+          "-count=1",
+          "-p=1",
+          "-timeout=90s",
+          "./pkg/server",
+          "-run",
+          "^(TestWorkspace.*|TestManagementStartsReadOnlyAndCannotBypassSession|TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|TestOriginHostJSONAndSessionNegatives|TestPortForwardSandboxStripsGatewayCredentialsAndBindsOperator|TestReadOnlyAndNamespaceEnforced|TestLocalServerRejectsDNSRebindingHost|TestScopeSwitchCancelsInFlightStreams|TestReplayScopedHTTPLogUsesRealSessionGuards)$"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 4.367,
+        "counts": {
+          "pass_top": 23,
+          "pass_subtest": 11
+        },
+        "failedTests": [],
+        "path": "artifacts/workspace/ws-20261109T115457Z/backend/backend-cookie-fixed-unit.jsonl"
+      },
+      {
+        "phase": "race",
+        "command": [
+          "go",
+          "test",
+          "-race",
+          "-json",
+          "-count=1",
+          "-p=1",
+          "-timeout=90s",
+          "./pkg/server",
+          "-run",
+          "^(TestWorkspace.*|TestManagementStartsReadOnlyAndCannotBypassSession|TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|TestOriginHostJSONAndSessionNegatives|TestPortForwardSandboxStripsGatewayCredentialsAndBindsOperator|TestReadOnlyAndNamespaceEnforced|TestLocalServerRejectsDNSRebindingHost|TestScopeSwitchCancelsInFlightStreams|TestReplayScopedHTTPLogUsesRealSessionGuards)$"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 6.401,
+        "counts": {
+          "pass_top": 23,
+          "pass_subtest": 11
+        },
+        "failedTests": [],
+        "path": "artifacts/workspace/ws-20261109T115457Z/backend/backend-cookie-fixed-race.jsonl"
+      }
+    ],
+    "postFixSourceSHA256": "d6394ab909000749605f5d117066f2854b565d60a7fe30b1e2523ca2dccfa152",
+    "sourceEqualBeforeAfter": true,
+    "activeTestChildren": 0
+  },
+  "changedFiles": [
+    "pkg/server/connection.go",
+    "pkg/server/server.go",
+    "pkg/server/workspace.go",
+    "pkg/server/workspace_cookie_test.go",
+    "pkg/server/workspace_test.go"
+  ],
+  "evidence": [
+    "backend-cookie-repro-unit.jsonl",
+    "backend-cookie-repro-meta.json",
+    "backend-cookie-fixed-unit.jsonl",
+    "backend-cookie-fixed-race.jsonl",
+    "backend-cookie-fixed-meta.json"
+  ],
+  "limits": [
+    "This prevents accidental cookie overwrites between trusted local application profiles; browser cookies remain host-scoped and can be sent to another port.",
+    "Existing same-origin, session, API token and Kubernetes RBAC checks remain the security boundaries.",
+    "No real Kubernetes, browser acceptance, provider or CPU benchmark was run for this checkpoint.",
+    "Previous backend proof files were preserved; this checkpoint has separate source manifests and logs."
+  ]
+}

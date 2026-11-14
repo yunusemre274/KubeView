@@ -1,0 +1,63 @@
+{
+  "status": "INCOMPLETE_PHASE_TIME_OVERRUN_READ_ONLY_FINDINGS_RETAINED",
+  "elapsedSeconds": 145.249037,
+  "within120s": false,
+  "actualProviderPackage": "backend/pkg/provision (requested pkg/providers does not exist)",
+  "baselineNodeCount": 2,
+  "baselineBothReady": true,
+  "baselineNodeUIDsMatchStored": true,
+  "dockerVMDeclaredMemoryBytes": 8321515520,
+  "existingContainerHardLimitsBytes": 4294967296,
+  "proposedAddedWorkerProfileMemoryMiB": 2048,
+  "proposedTotal3ContainerHardLimitsBytes": 6442450944,
+  "VMMinusThreeDeclaredLimitsBytes": 1879064576,
+  "notActualMemoryAvailability": true,
+  "APIPath": "POST /api/providers/minikube/workers?context=kvml-d32afbf634e8-a, body action=add-worker + one synthetic 16\u2013128char idempotencyKey",
+  "adapterArgv": [
+    "ABS_PATCHED4",
+    "--profile",
+    "kvml-d32afbf634e8-a",
+    "node",
+    "add",
+    "--worker"
+  ],
+  "expectedNewMachine": "kvml-d32afbf634e8-a-m03",
+  "managerControls": [
+    "loopback + cluster-scope writable gateway + current browser grant/nonce + nodes/create SSAR",
+    "Verify actual selected kube-system UID plus minikube --profile ... kubectl --ssh UID, driverdocker/profile inventory, MaxNodes3",
+    "journal accepted before CLI; keySHA256(context+NUL+key) dedup under mutex; same key should return same operationID",
+    "private StateDir profile flock plus retained journal; no auto retry after restart",
+    "CLI output exact expected name claim, new NodeUID/creation afteroperation, profileIP matches actualInternalIP, actualNodeReady; exit0alone insufficient"
+  ],
+  "requiredExtraHarnessOwnership": [
+    "Hold existing lab .lock for full add/cleanup; provider lock alone is separate and StateDir-scoped",
+    "Keep lab.json original2container/nodeUID inventory unchanged; never weaken runner guards or call general up/down while thirdnodeexists",
+    "Private attempt journal must capture new expectedName, operationID, created-time DockerID, exact minikubelabels/network and newNodeUID after first POST; never adopt by name alone",
+    "Double same-key HTTP POST must produce same one operation, one new Docker host and one actual newNodeUID; verify original2UIDs + Cilium/fixture baselines before/after",
+    "Cleanup must use exact new hostID/NodeUID association and verified private CLI node-delete syntax, remove only third worker, prove profile/API/docker restored exact originals; no Node API create fallback"
+  ],
+  "unresolvedBeforeMutation": [
+    "Cleanup node-delete positional target semantics not established by sparse local help; inspect exact patched4 source before authorizing deletion",
+    "No provider delete API; cleanup is separately scoped operator CLI, not automatic manager rollback",
+    "Production Verify checks systemUID/profile/context but not lab marker/Docker creation ownership; harness must add those guards",
+    "cliEnv preserves other inherited MINIKUBE_* and KUBECONFIG; test environment must sanitize and pin private config/home",
+    "Same-key cached Begin returns before Verify; no new worker launched, but changed-UID duplicate response requires separate negative assessment",
+    "Cilium on newworker and minikube4 add actual behavior remain untested; do not bypass readiness via API Node creation"
+  ],
+  "proposedBudgets": {
+    "singleCLIAddTimeoutSeconds": 360,
+    "additionalManagerObservationSeconds": 120,
+    "cleanupReserveSeconds": 120,
+    "totalSuggestedMutatingPhaseSeconds": 720,
+    "maxNodes": 3,
+    "stopOnACRemovedOrBatteryAtMost15": true,
+    "diskMinimumGiB": 10
+  },
+  "mutationPerformed": false,
+  "providerManagerOpened": false,
+  "helperOrProductEdited": false,
+  "original2KeptWarm": true,
+  "finalizedAt": "2026-11-11T17:40:50.545558+00:00",
+  "phaseFinalizationOverrunSeconds": 25.249037,
+  "actualSystemMarkerUIDRecheck": "NOT_RUN here; future mutation harness must recheck actual system/marker/namespace UID before POST"
+}

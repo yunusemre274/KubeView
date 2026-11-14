@@ -1,0 +1,53 @@
+[
+  {
+    "field": "keyHash",
+    "commit": "2b76e215fdbe201be1611ccea4c40dcd547b2ba7",
+    "producer_file": "backend/pkg/provision/minikube.go",
+    "source_sha256": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+    "required_code_relations_present": true,
+    "relations": [
+      "sha256.Sum256([]byte(selectedContext + \"\\x00\" + key))",
+      "op.KeyHash == kh"
+    ]
+  },
+  {
+    "field": "credentialGeneration",
+    "commit": "2d63c67886d0d81ed1cbedf9915a200f29b80b84",
+    "producer_file": "backend/pkg/server/server.go",
+    "source_sha256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "required_code_relations_present": true,
+    "relations": [
+      "ID: uuid.NewString()"
+    ]
+  },
+  {
+    "field": "credentialGeneration",
+    "commit": "881b55386e1b6a3f49ddecb64d0195441abd71c2",
+    "producer_file": "backend/pkg/server/server.go",
+    "source_sha256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "required_code_relations_present": true,
+    "relations": [
+      "ID: uuid.NewString()"
+    ]
+  },
+  {
+    "field": "credentialGeneration",
+    "commit": "2d63c67886d0d81ed1cbedf9915a200f29b80b84",
+    "producer_file": "backend/pkg/server/workspace.go",
+    "source_sha256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "required_code_relations_present": true,
+    "relations": [
+      "CredentialGeneration: base.ID"
+    ]
+  },
+  {
+    "field": "credentialGeneration",
+    "commit": "881b55386e1b6a3f49ddecb64d0195441abd71c2",
+    "producer_file": "backend/pkg/server/workspace.go",
+    "source_sha256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "required_code_relations_present": true,
+    "relations": [
+      "CredentialGeneration: base.ID"
+    ]
+  }
+]

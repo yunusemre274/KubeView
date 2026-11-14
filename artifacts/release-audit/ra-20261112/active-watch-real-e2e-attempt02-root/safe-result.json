@@ -1,0 +1,78 @@
+{
+  "SSARCalls": 18,
+  "allSixFixturesAbsent": true,
+  "brokerEmpty": true,
+  "cleanup": [
+    {
+      "UID": "b23c6963-d656-4e03-8d5b-d6b7f59a4231",
+      "absent": true
+    },
+    {
+      "UID": "eb37914e-7276-455b-a606-0e10eb4f1da6",
+      "absent": true
+    },
+    {
+      "UID": "03b7a937-99bc-41d1-b424-379532fa4834",
+      "absent": true
+    },
+    {
+      "UID": "42e9a83a-fe5c-4ca4-9e4f-d9ab533821ba",
+      "absent": true
+    },
+    {
+      "UID": "60180f55-7535-476b-83fb-2e550e9fc2fe",
+      "absent": true
+    },
+    {
+      "UID": "82089431-e011-4472-b3e1-7f4c753368d8",
+      "absent": true
+    }
+  ],
+  "controlledUpdates": 2,
+  "elapsedSeconds": 15.332369375,
+  "events": [
+    {
+      "at": "2026-11-12T21:25:27.0604Z",
+      "event": "two_real_identities_snapshot_and_update",
+      "proof": {
+        "differentCredentialIDs": true,
+        "readOnly": true,
+        "samePodUID": true
+      }
+    },
+    {
+      "at": "2026-11-12T21:25:27.081Z",
+      "event": "real_rbac_denied_same_credential",
+      "proof": {
+        "SSARAllowed": false,
+        "actualAPIGet403": true,
+        "gatewayGet403": true,
+        "reviewHTTP403Assumed": false,
+        "sameClientID": true,
+        "siblingGet200": true
+      }
+    },
+    {
+      "at": "2026-11-12T21:25:42.108775Z",
+      "event": "explicit_failed_scope_true_close_and_sibling_positive",
+      "proof": {
+        "nonAuthoritative": true,
+        "postFailureCanaryNotPublished": true,
+        "siblingUpdateObserved": true,
+        "synced": false,
+        "timeoutAccepted": false,
+        "trueClose": true
+      }
+    }
+  ],
+  "failed": false,
+  "listenerClosed": true,
+  "mainPassed": true,
+  "mode": "PRODUCTION_WS_REAL_ROLEBINDING_REVOCATION_NOT_BROWSER_UI",
+  "namespaceNotDeleted": true,
+  "privateValuesRecorded": false,
+  "startedAt": "2026-11-12T21:25:26.825087Z",
+  "upstreamLifetimePath": "not independently instrumented; real upstream may close first; no heartbeat-only causality claim",
+  "valuesRecorded": false,
+  "within180Seconds": true
+}

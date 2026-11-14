@@ -1,0 +1,34 @@
+{
+  "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+  "started": "2026-11-11T12:03:44.881265+00:00",
+  "checks": [
+    {
+      "case": "default-ipv4",
+      "actualListener": [
+        "127.0.0.1:19849",
+        "(LISTEN)"
+      ],
+      "positiveHTTP": 200,
+      "foreignHostHTTP": 403,
+      "pid": 74974
+    },
+    {
+      "case": "ipv6-loopback",
+      "actualListener": [
+        "[::1]:19849",
+        "(LISTEN)"
+      ],
+      "positiveHTTP": 200,
+      "foreignHostHTTP": 403,
+      "pid": 74979
+    },
+    {
+      "case": "lan-no-token",
+      "exitCode": 2,
+      "result": "rejected before serving; CLI replay loopback guard"
+    }
+  ],
+  "type": "real owned HTTP listener; deterministic explicit replay, no Kubernetes access",
+  "finished": "2026-11-11T12:03:45.288863+00:00",
+  "result": "PASS"
+}

@@ -1,0 +1,17 @@
+✔ selected resource labels fit all canvas edges without changing their world anchor or reading layout per frame (0.799875ms)
+✔ selected labels avoid cached harbor nameplates while staying within phone and desktop bounds (0.4785ms)
+✔ bounded collision placement is deterministic and preserves visible labels when no free space exists (0.083167ms)
+✔ every regular, init, restartable init and ephemeral container maps to its exact Pod UID and raw name (0.169292ms)
+✔ drag greater than 5 CSS pixels suppresses selection including a drag returned to its starting point (0.102459ms)
+✔ moving vessel or container identity changing between pointer down/up cancels picking (0.057167ms)
+✔ queued fallback shrinks to invisible before the same UID grows on its actual vessel (0.524209ms)
+✔ wall-time bound also shrinks fallback while full crane transfers stay opaque (0.086125ms)
+✔ a crane handover preserves the existing box visibility instead of replaying its arrival scale (0.102667ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46.076667

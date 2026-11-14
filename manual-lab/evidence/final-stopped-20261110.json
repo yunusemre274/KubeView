@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "attempt": "final-stopped-20261110",
+  "startedAt": "2026-11-10T12:31:41.468019+00:00",
+  "maxWallSeconds": 90,
+  "bundleName": "20261110-workspace-ca3b9ec",
+  "binarySha256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+  "sourceMainSha256": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "labId": "kvml-ccdfe731dabd",
+  "status": "PASS_ALL_OWNED_MANUAL_RUNTIME_STOPPED",
+  "stages": [
+    {
+      "name": "official-default-down",
+      "exitCode": 0,
+      "elapsedSeconds": 21.84,
+      "pass": true
+    },
+    {
+      "name": "official-default-status-stopped",
+      "exitCode": 0,
+      "elapsedSeconds": 0.18,
+      "pass": true
+    }
+  ],
+  "upResetDestroyCalled": false,
+  "telemetryIntegrationStarted": false,
+  "defaultContainers": [
+    {
+      "cluster": "a",
+      "id": "ad4df28f50725a6cfc3b66455a217e44e598dd059af39c8ef873499877a8a77b",
+      "name": "kvml-ccdfe731dabd-a",
+      "running": false
+    },
+    {
+      "cluster": "a",
+      "id": "3a2953aea628ceecd4bde2fa52c2306a1f5dcb8610ac785e9f3a20d32cd66b6f",
+      "name": "kvml-ccdfe731dabd-a-m02",
+      "running": false
+    },
+    {
+      "cluster": "b",
+      "id": "483a18e0026c94c7297fbb8b3509ce6aeff6b31bcdc528522268ccf1a276104b",
+      "name": "kvml-ccdfe731dabd-b",
+      "running": false
+    }
+  ],
+  "separateTelemetryContainers": [
+    {
+      "cluster": "a",
+      "name": "kvml-f99e938d3301-a",
+      "id": "39252f220ab78bec54f75b42ca16cad98b6ee00d9fc89a3d53431830e3376f3f",
+      "running": false
+    },
+    {
+      "cluster": "a",
+      "name": "kvml-f99e938d3301-a-m02",
+      "id": "6ba2921a596bd441d08d706af59d7828625d30c309603b3300ac1ec89682ed32",
+      "running": false
+    }
+  ],
+  "defaultProcessLedgerEmpty": true,
+  "separateTelemetryProcessLedgerEmpty": true,
+  "listeners": {
+    "19701": {
+      "listening": false
+    },
+    "19702": {
+      "listening": false
+    },
+    "19703": {
+      "listening": false
+    },
+    "19704": {
+      "listening": false
+    },
+    "19705": {
+      "listening": false
+    },
+    "19706": {
+      "listening": false
+    },
+    "19707": {
+      "listening": false
+    },
+    "19906": {
+      "listening": false
+    },
+    "19908": {
+      "listening": false
+    }
+  },
+  "allSevenProfileDirectories": {
+    "01-bos-baslangic": true,
+    "02-ortak-kume": true,
+    "03-bagimsiz-kumeler": true,
+    "04-kisitli-yetki": true,
+    "05-ariza-toparlanma": true,
+    "06-limanlar-arasi-ag": true,
+    "07-yuk-ve-gecis": true
+  },
+  "nativeWorkspaces": {
+    "01-bos-baslangic": {
+      "harborCount": 0,
+      "connectionCount": 0,
+      "schemaVersion": 1
+    },
+    "05-ariza-toparlanma": {
+      "harborCount": 1,
+      "connectionCount": 1,
+      "schemaVersion": 1
+    },
+    "06-limanlar-arasi-ag": {
+      "harborCount": 2,
+      "connectionCount": 1,
+      "schemaVersion": 1
+    }
+  },
+  "allEightReplayVariants": {
+    "M-h01": {
+      "workspaceFilePresent": true,
+      "harborCount": 1,
+      "schemaVersion": 1
+    },
+    "M-h05": {
+      "workspaceFilePresent": true,
+      "harborCount": 5,
+      "schemaVersion": 1
+    },
+    "M-h10": {
+      "workspaceFilePresent": true,
+      "harborCount": 10,
+      "schemaVersion": 1
+    },
+    "M-h20": {
+      "workspaceFilePresent": true,
+      "harborCount": 20,
+      "schemaVersion": 1
+    },
+    "L-h01": {
+      "workspaceFilePresent": true,
+      "harborCount": 1,
+      "schemaVersion": 1
+    },
+    "L-h05": {
+      "workspaceFilePresent": true,
+      "harborCount": 5,
+      "schemaVersion": 1
+    },
+    "L-h10": {
+      "workspaceFilePresent": true,
+      "harborCount": 10,
+      "schemaVersion": 1
+    },
+    "L-h20": {
+      "workspaceFilePresent": true,
+      "harborCount": 20,
+      "schemaVersion": 1
+    }
+  },
+  "globalKubeconfigBytesUnchanged": true,
+  "globalKubeconfigFilesChecked": 1,
+  "privateStoppedStatusReceiptWritten": true,
+  "lastVerifiedLiveReceiptPreserved": true,
+  "lastVerifiedLiveProfiles": {
+    "05-ariza-toparlanma": [
+      {
+        "uid": "4f89afc8-7893-4235-be53-1f054b44e8cc",
+        "phase": "Running",
+        "readyContainers": 2,
+        "containerCount": 2
+      }
+    ],
+    "06-limanlar-arasi-ag": [
+      {
+        "uid": "88cf283f-8275-4da3-922b-56067150e8ad",
+        "phase": "Running",
+        "readyContainers": 1,
+        "containerCount": 1
+      }
+    ]
+  },
+  "offlineCurrentHealth": "N/A; stopped APIs are not a new health test",
+  "lastVerified06ProducerReplicas": 0,
+  "lastVerified05BadImageAndUnschedReplicas": 0,
+  "manualPrivateDataAndFixturesPreserved": true,
+  "elapsedSeconds": 22.5,
+  "finishedAt": "2026-11-10T12:32:03.969059+00:00"
+}

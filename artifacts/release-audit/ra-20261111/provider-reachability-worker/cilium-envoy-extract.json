@@ -1,0 +1,189 @@
+{
+  "image": "cilium-envoy",
+  "digest": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+  "started_at_utc": "2026-11-11T13:31:30.169762+00:00",
+  "never_started": true,
+  "files": [
+    {
+      "path_in_image": "/usr/bin/cilium-envoy-starter",
+      "local_path": ".git/release-audit/provider-reachability-worker/cilium-envoy/cilium-envoy-starter",
+      "sha256": "1e0baa446c1cdfba5e2c69fdd7e2efad67bb6b8258509f16c76045efc22ea3c6",
+      "bytes": 715608,
+      "execution": false
+    }
+  ],
+  "already_cached_before_pull": false,
+  "image_identity": {
+    "Id": "sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+    "RepoDigests": [
+      "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+    ],
+    "Size": 75160521,
+    "Architecture": "arm64",
+    "Os": "linux"
+  },
+  "original_entrypoint": null,
+  "original_cmd": [
+    "/bin/bash"
+  ],
+  "image_config_user": null,
+  "image_history_not_runtime": "See prior exact-image Trivy config; no image command executed",
+  "container_id": "7032eca842529e01b96176a3d8a5fbd2490c7a7dfac97f2e3494f38f4dd629a4",
+  "owner_label": "3790305ecc534ff285f3630588e8cb0a",
+  "status": "EXTRACTED_NEVER_RUN",
+  "owned_stopped_container_removed": true,
+  "finished_at_utc": "2026-11-11T13:31:37.561243+00:00",
+  "commands": [
+    {
+      "stage": "pre-inspect",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "image",
+        "inspect",
+        "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+        "--format",
+        "{{json .}}"
+      ],
+      "exit_code": 1,
+      "stop_reason": null,
+      "duration_seconds": 0.109,
+      "peak_cli_rss_bytes": 4259840
+    },
+    {
+      "stage": "pull",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "pull",
+        "--platform",
+        "linux/arm64",
+        "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 6.401,
+      "peak_cli_rss_bytes": 24477696
+    },
+    {
+      "stage": "image-inspect",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "image",
+        "inspect",
+        "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+        "--format",
+        "{{json .}}"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.112,
+      "peak_cli_rss_bytes": 4030464
+    },
+    {
+      "stage": "create",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "create",
+        "--network",
+        "none",
+        "--read-only",
+        "--label",
+        "kubeview.release-audit.owner=3790305ecc534ff285f3630588e8cb0a",
+        "--entrypoint",
+        "/__kubeview_audit_never_execute__",
+        "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.218,
+      "peak_cli_rss_bytes": 24313856
+    },
+    {
+      "stage": "state-before",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "7032eca842529e01b96176a3d8a5fbd2490c7a7dfac97f2e3494f38f4dd629a4",
+        "--format",
+        "{{.State.Status}} {{.State.Running}} {{index .Config.Labels \"kubeview.release-audit.owner\"}}"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.11,
+      "peak_cli_rss_bytes": 3751936
+    },
+    {
+      "stage": "cp-0",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "cp",
+        "-L",
+        "7032eca842529e01b96176a3d8a5fbd2490c7a7dfac97f2e3494f38f4dd629a4:/usr/bin/cilium-envoy-starter",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/cilium-envoy/cilium-envoy-starter"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.111,
+      "peak_cli_rss_bytes": 4243456
+    },
+    {
+      "stage": "state-final",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "7032eca842529e01b96176a3d8a5fbd2490c7a7dfac97f2e3494f38f4dd629a4",
+        "--format",
+        "{{.State.Status}} {{.State.Running}} {{index .Config.Labels \"kubeview.release-audit.owner\"}}"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.111,
+      "peak_cli_rss_bytes": 3473408
+    },
+    {
+      "stage": "remove-owned",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "rm",
+        "7032eca842529e01b96176a3d8a5fbd2490c7a7dfac97f2e3494f38f4dd629a4"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.215,
+      "peak_cli_rss_bytes": 24297472
+    }
+  ]
+}

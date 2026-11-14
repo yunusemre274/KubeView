@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-11-11T19:33:37.738776+00:00",
+  "workLimitSeconds": 45,
+  "phaseLimitSeconds": 120,
+  "mode": "single-read-only-observation",
+  "helperSHA256": "1a0db67621ed41059632bc246c23891d497cb02c8e23ab84c9f5bc415953d2e8",
+  "sourceRUN_CLEAREDFalse": true
+}

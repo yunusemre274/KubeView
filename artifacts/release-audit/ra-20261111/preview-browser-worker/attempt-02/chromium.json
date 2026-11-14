@@ -1,0 +1,225 @@
+{
+  "engine": "chromium",
+  "startedAt": "2026-11-11T12:36:34.656Z",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "cookie-only-normal-preview-opaque-isolation",
+      "pass": true,
+      "evidence": {
+        "jsRan": true,
+        "opaqueOrigin": true,
+        "openerAbsent": true,
+        "cookieDenied": true,
+        "storageDenied": true,
+        "attempts": [
+          {
+            "kind": "read",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          },
+          {
+            "kind": "managementSimple",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          },
+          {
+            "kind": "managementJSON",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          }
+        ]
+      },
+      "deniedRequestCount": 3,
+      "deniedRequests": [
+        {
+          "knownNonce": true,
+          "method": "GET",
+          "origin": "null",
+          "path": "/api/connection",
+          "status": 403
+        },
+        {
+          "knownNonce": true,
+          "method": "POST",
+          "origin": "null",
+          "path": "/api/management",
+          "status": 403
+        },
+        {
+          "knownNonce": true,
+          "method": "POST",
+          "origin": "null",
+          "path": "/api/management",
+          "status": 403
+        }
+      ],
+      "finalPath": "/api/portforward/synthetic/",
+      "upstreamCredentialsStripped": true,
+      "takeoverCookieAbsent": true
+    },
+    {
+      "name": "known-positive-relative-redirect",
+      "pass": true,
+      "evidence": {
+        "jsRan": true,
+        "opaqueOrigin": true,
+        "openerAbsent": true,
+        "cookieDenied": true,
+        "storageDenied": true,
+        "attempts": [
+          {
+            "kind": "read",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          },
+          {
+            "kind": "managementSimple",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          },
+          {
+            "kind": "managementJSON",
+            "fetchResolved": false,
+            "errorName": "TypeError"
+          }
+        ]
+      },
+      "deniedRequestCount": 3,
+      "deniedRequests": [
+        {
+          "knownNonce": true,
+          "method": "GET",
+          "origin": "null",
+          "path": "/api/connection",
+          "status": 403
+        },
+        {
+          "knownNonce": true,
+          "method": "POST",
+          "origin": "null",
+          "path": "/api/management",
+          "status": 403
+        },
+        {
+          "knownNonce": true,
+          "method": "POST",
+          "origin": "null",
+          "path": "/api/management",
+          "status": 403
+        }
+      ],
+      "finalPath": "/api/portforward/synthetic/canary",
+      "upstreamCredentialsStripped": true,
+      "takeoverCookieAbsent": true
+    },
+    {
+      "name": "root-relative-api-redirect-stays-in-preview-prefix",
+      "pass": true,
+      "finalPath": "/api/portforward/synthetic/api/management",
+      "finalStatus": 404,
+      "extraManagementRequests": 0
+    }
+  ],
+  "statuses": [
+    {
+      "path": "/__test/control",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    },
+    {
+      "path": "/__test/stats",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    },
+    {
+      "path": "/api/portforward/synthetic/",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false,
+      "csp": "sandbox allow-scripts allow-forms",
+      "setCookiePresent": false,
+      "corsOriginPresent": false,
+      "corsCredentialPresent": false,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/__test/stats",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    },
+    {
+      "path": "/api/portforward/synthetic/redirect",
+      "method": "GET",
+      "status": 302,
+      "origin": null,
+      "authorizationHeaderPresent": false,
+      "csp": "sandbox allow-scripts allow-forms",
+      "setCookiePresent": false,
+      "corsOriginPresent": false,
+      "corsCredentialPresent": false,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/api/portforward/synthetic/canary",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false,
+      "csp": "sandbox allow-scripts allow-forms",
+      "setCookiePresent": false,
+      "corsOriginPresent": false,
+      "corsCredentialPresent": false,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/__test/stats",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    },
+    {
+      "path": "/api/portforward/synthetic/redirect-negative",
+      "method": "GET",
+      "status": 302,
+      "origin": null,
+      "authorizationHeaderPresent": false,
+      "csp": "sandbox allow-scripts allow-forms",
+      "setCookiePresent": false,
+      "corsOriginPresent": false,
+      "corsCredentialPresent": false,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/api/portforward/synthetic/api/management",
+      "method": "GET",
+      "status": 404,
+      "origin": null,
+      "authorizationHeaderPresent": false,
+      "csp": "sandbox allow-scripts allow-forms",
+      "setCookiePresent": false,
+      "corsOriginPresent": false,
+      "corsCredentialPresent": false,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/__test/stats",
+      "method": "GET",
+      "status": 200,
+      "origin": null,
+      "authorizationHeaderPresent": false
+    }
+  ],
+  "requestCount": 14,
+  "externalRequestsBlocked": 0,
+  "version": "156.0.8078.4",
+  "finishedAt": "2026-11-11T12:36:34.956Z"
+}

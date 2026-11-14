@@ -1,0 +1,93 @@
+{
+  "at": "2026-11-12T10:25:14.899500+00:00",
+  "initialStagedFindings": 9,
+  "disposition": "FALSE_POSITIVE_PUBLIC_GO_MODULE_CHECKSUMS",
+  "scope": "Only exact current file/rule/line fingerprints after independent official sumdb byte match; no global rule suppression",
+  "proof": [
+    {
+      "module": "github.com/spiffe/spire-api-sdk",
+      "version": "v1.15.1",
+      "lookupURL": "https://sum.golang.org/lookup/github.com/spiffe/spire-api-sdk@v1.15.1",
+      "evidence": "root-public-sumdb/github.com_spiffe_spire-api-sdk@v1.15.1.txt",
+      "sha256": "8cfcf1c861dfc626e6916dd2be7d92f5f2de498e36baebdd6822d661985bd48d",
+      "matchesDependencyChecksum": true
+    },
+    {
+      "module": "golang.org/x/oauth2",
+      "version": "v0.36.0",
+      "lookupURL": "https://sum.golang.org/lookup/golang.org/x/oauth2@v0.36.0",
+      "evidence": "root-public-sumdb/golang.org_x_oauth2@v0.36.0.txt",
+      "sha256": "83abbc5d284d63483fd4079ed4be5ae10c62602e3fb55edc69d97dcbb829ebfd",
+      "matchesDependencyChecksum": true
+    },
+    {
+      "module": "k8s.io/api",
+      "version": "v0.36.5",
+      "lookupURL": "https://sum.golang.org/lookup/k8s.io/api@v0.36.5",
+      "evidence": "root-public-sumdb/k8s.io_api@v0.36.5.txt",
+      "sha256": "8343a31890bcbb8a7954d4abcc58574de4ff806374d8d26db2dad3631f02d016",
+      "matchesDependencyChecksum": true
+    },
+    {
+      "module": "k8s.io/apiextensions-apiserver",
+      "version": "v0.36.5",
+      "lookupURL": "https://sum.golang.org/lookup/k8s.io/apiextensions-apiserver@v0.36.5",
+      "evidence": "root-public-sumdb/k8s.io_apiextensions-apiserver@v0.36.5.txt",
+      "sha256": "b24251d9b979113676b242cca52ee2bc36ab2fea0815d45d83d7826c9e1fdf3c",
+      "matchesDependencyChecksum": true
+    },
+    {
+      "module": "k8s.io/apimachinery",
+      "version": "v0.36.5",
+      "lookupURL": "https://sum.golang.org/lookup/k8s.io/apimachinery@v0.36.5",
+      "evidence": "root-public-sumdb/k8s.io_apimachinery@v0.36.5.txt",
+      "sha256": "30879584a81d5e04c2eb877e1808b4e91e3e950d6315317616a360f03f057270",
+      "matchesDependencyChecksum": true
+    },
+    {
+      "module": "sigs.k8s.io/gateway-api",
+      "version": "v1.6.3",
+      "lookupURL": "https://sum.golang.org/lookup/sigs.k8s.io/gateway-api@v1.6.3",
+      "evidence": "root-public-sumdb/sigs.k8s.io_gateway-api@v1.6.3.txt",
+      "sha256": "77c70e342b40898287f064012500623efdc972c675f04133d48a8060b3697012",
+      "matchesDependencyChecksum": true
+    },
+    {
+      "module": "sigs.k8s.io/mcs-api",
+      "version": "v0.5.2",
+      "lookupURL": "https://sum.golang.org/lookup/sigs.k8s.io/mcs-api@v0.5.2",
+      "evidence": "root-public-sumdb/sigs.k8s.io_mcs-api@v0.5.2.txt",
+      "sha256": "be910f82987d442bfad9301a0d3b9d3d11644ce825642551228632731c283d65",
+      "matchesDependencyChecksum": true
+    },
+    {
+      "module": "sigs.k8s.io/network-policy-api",
+      "version": "v0.2.0",
+      "lookupURL": "https://sum.golang.org/lookup/sigs.k8s.io/network-policy-api@v0.2.0",
+      "evidence": "root-public-sumdb/sigs.k8s.io_network-policy-api@v0.2.0.txt",
+      "sha256": "1966e99d7710e7b93e96f700d63d5780f6c93df99873e959a9effd8b11ba1ed5",
+      "matchesDependencyChecksum": true
+    }
+  ],
+  "fingerprints": [
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/go.sum.patch:generic-api-key:28",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/buildinfo.txt:generic-api-key:108",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/buildinfo.txt:generic-api-key:134",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/buildinfo.txt:generic-api-key:149",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/buildinfo.txt:generic-api-key:150",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/buildinfo.txt:generic-api-key:151",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/buildinfo.txt:generic-api-key:159",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/buildinfo.txt:generic-api-key:161",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/buildinfo.txt:generic-api-key:163",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/root-public-sumdb/k8s.io_api@v0.36.5.txt:generic-api-key:2",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/root-public-sumdb/github.com_spiffe_spire-api-sdk@v1.15.1.txt:generic-api-key:2",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/root-public-sumdb/golang.org_x_oauth2@v0.36.0.txt:generic-api-key:2",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/root-public-sumdb/k8s.io_apimachinery@v0.36.5.txt:generic-api-key:2",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/root-public-sumdb/k8s.io_apiextensions-apiserver@v0.36.5.txt:generic-api-key:2",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/root-public-sumdb/sigs.k8s.io_gateway-api@v1.6.3.txt:generic-api-key:2",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/root-public-sumdb/sigs.k8s.io_mcs-api@v0.5.2.txt:generic-api-key:2",
+    "artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/root-public-sumdb/sigs.k8s.io_network-policy-api@v0.2.0.txt:generic-api-key:2"
+  ],
+  "credentialDetected": false,
+  "additionalMatchesInPublicLookupReceipts": 8
+}

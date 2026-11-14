@@ -3,15 +3,16 @@ kind: Service
 metadata:
   name: {{ include "tersane.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "tersane.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "tersane.labels" . | nindent 4 }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.service.type }}
   ports:
-    - port: 8000
-      targetPort: 8000
+    - port: {{ .Values.service.port }}
+      targetPort: http
       protocol: TCP
       name: http
+      {{- if and (eq .Values.service.type "NodePort") .Values.service.nodePort }}
+      nodePort: {{ .Values.service.nodePort }}
+      {{- end }}
   selector:
-    app.kubernetes.io/name: {{ include "tersane.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "tersane.selectorLabels" . | nindent 4 }}

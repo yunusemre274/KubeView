@@ -1,0 +1,9 @@
+{
+  "attempt": "runner-auth-regression-03",
+  "pass": true,
+  "testsRun": 2,
+  "elapsedSeconds": 0.003,
+  "sourceSHA256": "87e59639ad8a14684c50048f4c49a00e66df91433c36aeed642936317b354ed4",
+  "previous16Repeated": false,
+  "clusterOrAppMutation": false
+}

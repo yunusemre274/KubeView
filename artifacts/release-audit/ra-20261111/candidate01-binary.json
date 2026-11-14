@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-11T13:51:31.149374+03:00",
+  "commit": "49999815cf27ca47888fdc5d62cb1f7caf3bbd11",
+  "dirtyRuntime": [
+    "frontend/src/harbor/HarborScene.jsx",
+    "frontend/src/harbor/cameraViews.js"
+  ],
+  "binarySHA256": "4a782bc8d40fca4ecef2ce99b134801dfd430c056429e7918f44ccd00356c557",
+  "version": "KubeView 1.1.0-candidate (4999981-dirty) darwin/arm64",
+  "frontendIndexSHA256": "ebebffb79fab7536a972e2a31c6b2f484f7cd16b263f6432f8b0d734e4353cee",
+  "toolchain": "go1.26.11",
+  "notFinalPackage": true
+}

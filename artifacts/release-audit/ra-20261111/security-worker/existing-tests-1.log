@@ -1,0 +1,103 @@
+source_sha: 36d5b8f90c8afdec437bdb6e5516541b5bb859bd
+start_utc: 2026-11-11T10:21:18.084036+00:00
+command_argv: ["go", "test", "-p", "1", "-parallel", "2", "-timeout", "90s", "-count=1", "-v", "./pkg/server", "-run", "^Test(ManagementStartsReadOnlyAndCannotBypassSession|DelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|ConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|OriginHostJSONAndSessionNegatives|ConnectionErrorsDoNotExposeCredentials|MergedKubeconfigSelectionReloadAndNoGlobalMutation|ScopeSwitchCancelsInFlightStreams|PortForwardSandboxStripsGatewayCredentialsAndBindsOperator|ReadOnlyAndNamespaceEnforced|DeletePreconditionsAndUIDRecreation|SecretSanitizationDoesNotMutateSource|OriginAndAuthentication|NamespaceScopeBlocksClusterCRUD|PortforwardScopeUIDAndPortValidation|LocalServerRejectsDNSRebindingHost|ClusterScopedReviewsIgnoreWatchNamespace|PurposefulSecretRevealIncludesGVKAndIdentity|WorkspaceHTTPPersistenceCSRFAndScope|WorkspaceMultiNamespaceAndDistinctConnectionIdentity|WorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|WorkspaceNodeImpactRequiresAcknowledgement|WorkspaceScopeEnvelopeRejectsWrongWorkspace|WorkspaceClusterCatalogReadsAndPVNamespaceRelation|WorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache|WorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|WorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts|WorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant|WorkspaceCookieNamesKeepLegacyGatewayContract|TrafficIdentityScopeAndCredentialRotation|SecretPurposeEditorPreservesMetadataWithoutBulkLeak|TemplateCapabilityDoesNotReadSecretBodies|LogGuardRequiresUIDAndEchoesSessionIdentity|OwnedV11RealMinikubeManagementGate|DedicatedClusterRestrictedRBAC|OwnedWorkspaceRealAPIIsolation)$"]
+environment: synthetic missing KUBECONFIG; providers disabled; GOMAXPROCS=2; -p 1; -parallel 2
+=== RUN   TestManagementStartsReadOnlyAndCannotBypassSession
+--- PASS: TestManagementStartsReadOnlyAndCannotBypassSession (0.00s)
+=== RUN   TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip
+--- PASS: TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip (0.00s)
+=== RUN   TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList
+--- PASS: TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList (0.00s)
+=== RUN   TestOriginHostJSONAndSessionNegatives
+=== RUN   TestOriginHostJSONAndSessionNegatives/foreign-origin
+=== RUN   TestOriginHostJSONAndSessionNegatives/wrong-scheme
+=== RUN   TestOriginHostJSONAndSessionNegatives/opaque-origin
+=== RUN   TestOriginHostJSONAndSessionNegatives/origin-userinfo
+=== RUN   TestOriginHostJSONAndSessionNegatives/dns-rebind
+=== RUN   TestOriginHostJSONAndSessionNegatives/fetch-site
+=== RUN   TestOriginHostJSONAndSessionNegatives/form-json-substring
+=== RUN   TestOriginHostJSONAndSessionNegatives/multiple-json
+=== RUN   TestOriginHostJSONAndSessionNegatives/tls-downgrade
+--- PASS: TestOriginHostJSONAndSessionNegatives (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/foreign-origin (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/wrong-scheme (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/opaque-origin (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/origin-userinfo (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/dns-rebind (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/fetch-site (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/form-json-substring (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/multiple-json (0.00s)
+    --- PASS: TestOriginHostJSONAndSessionNegatives/tls-downgrade (0.00s)
+=== RUN   TestConnectionErrorsDoNotExposeCredentials
+--- PASS: TestConnectionErrorsDoNotExposeCredentials (0.00s)
+=== RUN   TestMergedKubeconfigSelectionReloadAndNoGlobalMutation
+--- PASS: TestMergedKubeconfigSelectionReloadAndNoGlobalMutation (0.00s)
+=== RUN   TestScopeSwitchCancelsInFlightStreams
+--- PASS: TestScopeSwitchCancelsInFlightStreams (0.00s)
+=== RUN   TestPortForwardSandboxStripsGatewayCredentialsAndBindsOperator
+--- PASS: TestPortForwardSandboxStripsGatewayCredentialsAndBindsOperator (0.00s)
+=== RUN   TestLogGuardRequiresUIDAndEchoesSessionIdentity
+--- PASS: TestLogGuardRequiresUIDAndEchoesSessionIdentity (0.00s)
+=== RUN   TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak
+--- PASS: TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak (0.00s)
+=== RUN   TestTemplateCapabilityDoesNotReadSecretBodies
+--- PASS: TestTemplateCapabilityDoesNotReadSecretBodies (0.00s)
+=== RUN   TestDedicatedClusterRestrictedRBAC
+    rbac_integration_test.go:30: requires explicitly isolated kubeview-test / kubeview-qa
+--- SKIP: TestDedicatedClusterRestrictedRBAC (0.00s)
+=== RUN   TestReadOnlyAndNamespaceEnforced
+--- PASS: TestReadOnlyAndNamespaceEnforced (0.00s)
+=== RUN   TestDeletePreconditionsAndUIDRecreation
+--- PASS: TestDeletePreconditionsAndUIDRecreation (0.00s)
+=== RUN   TestSecretSanitizationDoesNotMutateSource
+--- PASS: TestSecretSanitizationDoesNotMutateSource (0.00s)
+=== RUN   TestOriginAndAuthentication
+--- PASS: TestOriginAndAuthentication (0.00s)
+=== RUN   TestNamespaceScopeBlocksClusterCRUD
+--- PASS: TestNamespaceScopeBlocksClusterCRUD (0.00s)
+=== RUN   TestPortforwardScopeUIDAndPortValidation
+--- PASS: TestPortforwardScopeUIDAndPortValidation (0.00s)
+=== RUN   TestLocalServerRejectsDNSRebindingHost
+--- PASS: TestLocalServerRejectsDNSRebindingHost (0.00s)
+=== RUN   TestClusterScopedReviewsIgnoreWatchNamespace
+--- PASS: TestClusterScopedReviewsIgnoreWatchNamespace (0.00s)
+=== RUN   TestPurposefulSecretRevealIncludesGVKAndIdentity
+--- PASS: TestPurposefulSecretRevealIncludesGVKAndIdentity (0.00s)
+=== RUN   TestTrafficIdentityScopeAndCredentialRotation
+--- PASS: TestTrafficIdentityScopeAndCredentialRotation (0.00s)
+=== RUN   TestOwnedV11RealMinikubeManagementGate
+    v11_provider_gate_integration_test.go:30: requires explicit owned provider gate opt-in
+--- SKIP: TestOwnedV11RealMinikubeManagementGate (0.00s)
+=== RUN   TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts
+=== RUN   TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/operator_nonce_and_grant
+=== RUN   TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/independent_access_tokens
+--- PASS: TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts (0.06s)
+    --- PASS: TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/operator_nonce_and_grant (0.04s)
+    --- PASS: TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/independent_access_tokens (0.02s)
+=== RUN   TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant
+--- PASS: TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant (0.01s)
+=== RUN   TestWorkspaceCookieNamesKeepLegacyGatewayContract
+--- PASS: TestWorkspaceCookieNamesKeepLegacyGatewayContract (0.03s)
+=== RUN   TestOwnedWorkspaceRealAPIIsolation
+    workspace_real_isolation_test.go:73: requires explicit owned workspace API phase
+--- SKIP: TestOwnedWorkspaceRealAPIIsolation (0.00s)
+=== RUN   TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache
+--- PASS: TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache (0.17s)
+=== RUN   TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity
+--- PASS: TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity (0.01s)
+=== RUN   TestWorkspaceHTTPPersistenceCSRFAndScope
+--- PASS: TestWorkspaceHTTPPersistenceCSRFAndScope (0.04s)
+=== RUN   TestWorkspaceMultiNamespaceAndDistinctConnectionIdentity
+--- PASS: TestWorkspaceMultiNamespaceAndDistinctConnectionIdentity (0.06s)
+=== RUN   TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes
+--- PASS: TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes (0.06s)
+=== RUN   TestWorkspaceNodeImpactRequiresAcknowledgement
+--- PASS: TestWorkspaceNodeImpactRequiresAcknowledgement (0.03s)
+=== RUN   TestWorkspaceScopeEnvelopeRejectsWrongWorkspace
+--- PASS: TestWorkspaceScopeEnvelopeRejectsWrongWorkspace (0.03s)
+=== RUN   TestWorkspaceClusterCatalogReadsAndPVNamespaceRelation
+--- PASS: TestWorkspaceClusterCatalogReadsAndPVNamespaceRelation (0.03s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	1.045s
+end_utc: 2026-11-11T10:21:21.546741+00:00
+exit_code: 0

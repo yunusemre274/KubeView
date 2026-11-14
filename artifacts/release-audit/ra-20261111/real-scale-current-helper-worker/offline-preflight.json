@@ -1,0 +1,67 @@
+{
+  "startedAt": "2026-11-11T17:28:01.164193+00:00",
+  "hardDeadlineAt": "2026-11-11T17:37:01.164193+00:00",
+  "phaseBudgetSeconds": 540,
+  "warmupLimitSeconds": 240,
+  "testTimeoutSeconds": 180,
+  "testOuterLimitSeconds": 240,
+  "batteryPercent": 21,
+  "AC": true,
+  "freeDiskBytes": 453510545408,
+  "stateDirectory": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01",
+  "stateFileSHA256": "42eb8a858b3b0715394191c097c4b30c4742b25b32fd39e54c9b29e2149a2bc6",
+  "storedContainers": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "name": "kvml-d32afbf634e8-a",
+      "created": "2026-11-11T12:25:42.786922134Z"
+    },
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "name": "kvml-d32afbf634e8-a-m02",
+      "created": "2026-11-11T12:25:55.149367334Z"
+    }
+  ],
+  "nodeUIDs": {
+    "kvml-d32afbf634e8-a": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+    "kvml-d32afbf634e8-a-m02": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+  },
+  "namespace": [
+    {
+      "cluster": "a",
+      "name": "kvml-fbf634e8-06-client",
+      "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+    }
+  ],
+  "hashes": {
+    "helper": {
+      "path": "backend/pkg/server/release_operations_real_test.go",
+      "sha256": "92637b06e8bcec63e8be979123d14f075ce0f17c68c75441f989765b4266d0cc"
+    },
+    "minikube": {
+      "path": ".git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+      "sha256": "98e42bafefb50d652b8c4760412703d936b6201d1d6d6c27163c5f69f130ddae"
+    },
+    "hubble": {
+      "path": ".git/release-audit/patched-hubble-v1.20.2/hubble-v1.20.2-kubeview-patched.1",
+      "sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2"
+    }
+  },
+  "guards": {
+    "labId": true,
+    "cluster": true,
+    "systemUID": true,
+    "markerUID": true,
+    "namespaceUID": true,
+    "workerUID": true,
+    "twoStoredNodeContainers": true,
+    "helperSHA": true,
+    "minikubeSHA": true,
+    "hubbleSHA": true,
+    "AC": true,
+    "batteryAbove15": true,
+    "diskAtLeast10GiB": true
+  },
+  "offlinePreflightPass": true,
+  "scope": "Offline state identity only; actual Docker/API identity not yet verified"
+}

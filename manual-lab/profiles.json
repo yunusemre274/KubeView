@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "pins": {"minikube": "v1.38.1", "kubernetes": "v1.35.1", "baseImage": "gcr.io/k8s-minikube/kicbase:v0.0.50", "nginx": "nginx:1.27.5-alpine", "busybox": "busybox:1.37.0", "alpine": "alpine:3.21.3"},
+  "profiles": [
+    {"id": "01-bos-baslangic", "title": "Boş başlangıç", "clusterKeys": ["a"], "harbors": 0, "fixturePods": 0},
+    {"id": "02-ortak-kume", "title": "Ortak küme, iki proje", "clusterKeys": ["a"], "harbors": 2, "fixturePods": 2},
+    {"id": "03-bagimsiz-kumeler", "title": "Bağımsız kümeler", "clusterKeys": ["a", "b"], "harbors": 2, "fixturePods": 4},
+    {"id": "04-kisitli-yetki", "title": "Ayrı admin ve kısıtlı okuyucu", "clusterKeys": ["a"], "harbors": 2, "fixturePods": 1},
+    {"id": "05-ariza-toparlanma", "title": "Arıza ve toparlanma", "clusterKeys": ["a"], "harbors": 1, "fixturePods": 1},
+    {"id": "06-limanlar-arasi-ag", "title": "Gerçek namespace HTTP/DNS", "clusterKeys": ["a"], "harbors": 2, "fixturePods": 1},
+    {"id": "07-yuk-ve-gecis", "title": "TEST / REPLAY", "clusterKeys": [], "harbors": "1/5/10/20", "fixturePods": "M:300 / L:1500"}
+  ]
+}

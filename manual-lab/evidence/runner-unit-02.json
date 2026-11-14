@@ -1,0 +1,13 @@
+{
+  "attempt": "runner-unit-02",
+  "exitCode": 0,
+  "sourceSHA256": {
+    "scripts/manual_lab.py": "efa80d5ceb050ae54f552151fe12485eac36a35178b9c2bfdd0da1721f88fe8e",
+    "manual-lab/telemetry.py": "50c09c79e8cb75f514731516af6382330b1b405eaaee0bcdd072bb6e34a157f9"
+  },
+  "testsExpected": 16,
+  "elapsedSeconds": 0.137,
+  "clusterMutation": false,
+  "appStarted": false,
+  "browserStarted": false
+}

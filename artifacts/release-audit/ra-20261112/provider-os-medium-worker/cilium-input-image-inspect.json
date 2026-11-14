@@ -1,0 +1,48 @@
+{
+  "Architecture": "arm64",
+  "Config": {
+    "ArgsEscaped": true,
+    "Cmd": [
+      "/usr/bin/cilium-dbg"
+    ],
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+      "INITSYSTEM=SYSTEMD"
+    ],
+    "Labels": {
+      "maintainer": "maintainer@cilium.io"
+    },
+    "WorkingDir": "/home/cilium"
+  },
+  "Created": "2026-11-12T10:41:33.816681583Z",
+  "Descriptor": {
+    "digest": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "size": 1619
+  },
+  "Id": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+  "Metadata": {
+    "LastTagTime": "2026-11-12T10:41:33.974823291Z"
+  },
+  "Os": "linux",
+  "Parent": "sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+  "RepoDigests": [
+    "kubeview-private/cilium@sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a"
+  ],
+  "RepoTags": [
+    "kubeview-private/cilium:1.20.4-apt-security.1"
+  ],
+  "RootFS": {
+    "Layers": [
+      "sha256:d992b67eeb949fa2c852abc0aa7bd15b8597c796dd959d7f0db58a04f7a5ab94",
+      "sha256:83e50c8b0ef358fc3d32395525d56e3270e8ef484deb3de8064cb213c88ff4c4",
+      "sha256:53bca5db01ebd9bff0a62d14cef846c71e8b8344d1fb2106d38b545978baeb0a",
+      "sha256:bdd8620562c14243e44a9046a174019ad4d8d24d7aba31efbbe294e5c24558dd",
+      "sha256:e53ed60dd113bc5a76584b4e03aa17621a3b2248fdeea07ebb05a446bb48b669",
+      "sha256:5cdc279702a7c8de192be5e94a3377314fe73b6affe88d70f8f39eacac3ba452"
+    ],
+    "Type": "layers"
+  },
+  "Size": 242813795
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "kubeview-test / kubeview-qa",
+  "container": "kubeview-test-m02",
+  "action": "pause dedicated worker; observe actual Node Ready Unknown; unpause",
+  "observedAfterMs": 50906,
+  "connectionText": "KubeView\nkubeview-test\nCanlı",
+  "panel": "kubeview-test-m02"
+}

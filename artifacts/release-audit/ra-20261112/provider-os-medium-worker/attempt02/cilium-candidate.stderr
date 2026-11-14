@@ -1,0 +1,8 @@
+2026-11-12T14:08:48+03:00	INFO	Loaded	file_path="/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/trivy.yaml"
+2026-11-12T14:08:48+03:00	INFO	[vex] Skipping VEX repository update
+2026-11-12T14:08:48+03:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-11-12T14:08:50+03:00	INFO	Detected OS	family="ubuntu" version="26.04"
+2026-11-12T14:08:50+03:00	INFO	[ubuntu] Detecting vulnerabilities...	os_version="26.04" pkg_num=124
+2026-11-12T14:08:50+03:00	INFO	Number of language-specific files	num=13
+2026-11-12T14:08:50+03:00	INFO	[gobinary] Detecting vulnerabilities...
+2026-11-12T14:08:50+03:00	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.74/guide/scanner/vulnerability#severity-selection for details.

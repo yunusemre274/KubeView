@@ -1,0 +1,38 @@
+{
+  "version": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  },
+  "top_help": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  },
+  "status_help": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  },
+  "observe_help": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  },
+  "profile_flag_compatibility": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  },
+  "binary_buildinfo": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  },
+  "GoDB_binary_scan": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  },
+  "same_DB_Trivy_buildinfo_SBOM": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  },
+  "linked_module_license_inventory": {
+    "status": "SKIP",
+    "reason": "The single warm build was terminated without producing a binary; no target CLI or binary scanner was run."
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "startedAt": "2026-11-11T20:09:44.154634+00:00",
+  "status": "PASS_DOCKER_LINUX_ARM64_VERSION_ONLY",
+  "scope": "ONE --version call in Docker LinuxARM64 VM, no controller/Kubernetes/TLS functionality",
+  "ownerLabel": "kv-operator-security-02-11dce1301d9945ab8753f07a024a248a",
+  "baseDigest": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+  "imagePullPerformed": false,
+  "binarySHA256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "runtimeLimitSeconds": 10,
+  "commands": [
+    [
+      "/usr/local/bin/docker",
+      "--host",
+      "unix:///var/run/docker.sock",
+      "create",
+      "--pull=never",
+      "--platform=linux/arm64",
+      "--name",
+      "kv-operator-security-02-11dce1301d9945ab8753f07a024a248a",
+      "--label",
+      "com.kubeview.release-audit.owner=kv-operator-security-02-11dce1301d9945ab8753f07a024a248a",
+      "--network",
+      "none",
+      "--read-only",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--user",
+      "65532:65532",
+      "--memory",
+      "256m",
+      "--cpus",
+      "1",
+      "--pids-limit",
+      "32",
+      "--mount",
+      "type=bind,src=/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate-02/cilium-operator-generic-v1.20.4-kubeview-security.2-linux-arm64,dst=/kubeview-operator,readonly",
+      "--entrypoint",
+      "/kubeview-operator",
+      "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+      "--version"
+    ],
+    [
+      "/usr/local/bin/docker",
+      "--host",
+      "unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03"
+    ],
+    [
+      "/usr/local/bin/docker",
+      "--host",
+      "unix:///var/run/docker.sock",
+      "start",
+      "--attach",
+      "d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03"
+    ],
+    [
+      "/usr/local/bin/docker",
+      "--host",
+      "unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03"
+    ],
+    [
+      "/usr/local/bin/docker",
+      "--host",
+      "unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03"
+    ],
+    [
+      "/usr/local/bin/docker",
+      "--host",
+      "unix:///var/run/docker.sock",
+      "rm",
+      "--force",
+      "d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03"
+    ],
+    [
+      "/usr/local/bin/docker",
+      "--host",
+      "unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03"
+    ]
+  ],
+  "createExitCode": 0,
+  "ownedContainerID": "d2f2321d935bb151cabb98feed0e1143fb27fea2ecc7788c13361f91a8f94d03",
+  "preStart": {
+    "running": false,
+    "image": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+    "user": "65532:65532",
+    "entrypoint": [
+      "/kubeview-operator"
+    ],
+    "cmd": [
+      "--version"
+    ],
+    "network": "none",
+    "readOnly": true,
+    "capDrop": [
+      "ALL"
+    ],
+    "securityOpt": [
+      "no-new-privileges"
+    ],
+    "memory": 268435456,
+    "nanoCpus": 1000000000,
+    "pidsLimit": 32,
+    "mounts": [
+      {
+        "source": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate-02/cilium-operator-generic-v1.20.4-kubeview-security.2-linux-arm64",
+        "destination": "/kubeview-operator",
+        "rw": false
+      }
+    ]
+  },
+  "versionCallSeconds": 0.16862599999876693,
+  "startAttachExitCode": 0,
+  "stdoutBytes": 118,
+  "stderrBytes": 0,
+  "stdout": "Cilium-Operator 1.20.4-kubeview-security.2 beb276d2 2026-11-11T20:07:44.312322+00:00 go version go1.26.11 linux/arm64\n",
+  "stderr": "",
+  "postRunState": {
+    "Status": "exited",
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "Error": ""
+  },
+  "ownedContainerRemoveExitCode": 0,
+  "ownedContainerAbsentAfter": true,
+  "binarySHA256After": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "elapsedSeconds": 0.5519674169991049,
+  "finishedAt": "2026-11-11T20:09:44.706608+00:00",
+  "helperSHA256": "4c5ee6f3833ee6247fdcbe6a73e7a74eadd733ac3eca2cd68f6463d5ce9cccbb"
+}

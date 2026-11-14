@@ -1,0 +1,94 @@
+image,target,class,type,id,pkg,installed,fixed,severity,status,severity_source,primary_url
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-78408,bsdutils,1:2.41.3-3ubuntu2.2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-78408
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-102473,dash,0.5.12-12ubuntu3,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-102473
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-102474,dash,0.5.12-12ubuntu3,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-102474
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-41256,jq,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-41256
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-41257,jq,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-41257
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-43895,jq,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-43895
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-43896,jq,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-43896
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-44777,jq,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-44777
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2025-9403,jq,1.8.1-4ubuntu2,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2025-9403
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-78408,libblkid1,2.41.3-3ubuntu2.2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-78408
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-41256,libjq1,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-41256
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-41257,libjq1,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-41257
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-43895,libjq1,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-43895
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-43896,libjq1,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-43896
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-44777,libjq1,1.8.1-4ubuntu2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-44777
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2025-9403,libjq1,1.8.1-4ubuntu2,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2025-9403
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-78408,libmount1,2.41.3-3ubuntu2.2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-78408
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-78408,libsmartcols1,2.41.3-3ubuntu2.2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-78408
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-40228,libsystemd0,259.9-0ubuntu0.1,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-40228
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-40228,libudev1,259.9-0ubuntu0.1,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-40228
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-78408,libuuid1,2.41.3-3ubuntu2.2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-78408
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-78408,login,1:4.16.0-2+really2.41.3-3ubuntu2.2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-78408
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2024-56433,login.defs,1:4.17.4-2ubuntu3,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2024-56433
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-78408,mount,2.41.3-3ubuntu2.2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-78408
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2024-56433,passwd,1:4.17.4-2ubuntu3,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2024-56433
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-82560,perl-base,5.40.1-7ubuntu0.3,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-82560
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-9538,perl-base,5.40.1-7ubuntu0.3,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-9538
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35341,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35341
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35344,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35344
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35345,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35345
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35348,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35348
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35350,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35350
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35351,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35351
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35352,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35352
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35354,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35354
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35357,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35357
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35359,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35359
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35360,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35360
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35363,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35363
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35364,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35364
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35367,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35367
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35368,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35368
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35370,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35370
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35371,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35371
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35373,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35373
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35374,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35374
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-35377,rust-coreutils,0.10.0-1ubuntu2~26.04.1,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-35377
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-18477,tar,1.35+dfsg-4ubuntu0.4,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-18477
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-18508,tar,1.35+dfsg-4ubuntu0.4,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-18508
+cilium,kubeview-private/cilium:1.20.4-os-security.2 (ubuntu 26.04),os-pkgs,ubuntu,CVE-2026-78408,util-linux,2.41.3-3ubuntu2.2,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-78408
+cilium,cni/loopback,lang-pkgs,gobinary,CVE-2026-39824,golang.org/x/sys,v0.35.0,0.44.0,UNKNOWN,fixed,,https://avd.aquasec.com/nvd/cve-2026-39824
+cilium,opt/cni/bin/cilium-cni,lang-pkgs,gobinary,CVE-2026-119299,github.com/gopacket/gopacket,v1.6.1,1.7.2,MEDIUM,fixed,ghsa,https://avd.aquasec.com/nvd/cve-2026-119299
+cilium,opt/cni/bin/cilium-cni,lang-pkgs,gobinary,CVE-2026-78661,golang.org/x/net,v0.60.0,0.62.0,HIGH,fixed,,https://avd.aquasec.com/nvd/cve-2026-78661
+cilium,opt/cni/bin/cilium-cni,lang-pkgs,gobinary,CVE-2026-97045,golang.org/x/net,v0.60.0,0.62.0,MEDIUM,fixed,,https://avd.aquasec.com/nvd/cve-2026-97045
+cilium,usr/bin/cilium-agent,lang-pkgs,gobinary,CVE-2026-119299,github.com/gopacket/gopacket,v1.6.1,1.7.2,MEDIUM,fixed,ghsa,https://avd.aquasec.com/nvd/cve-2026-119299
+cilium,usr/bin/cilium-agent,lang-pkgs,gobinary,GO-2026-5932,golang.org/x/crypto,v0.57.0,0.58.1-0.20261009181718-2f1f834330b2,UNKNOWN,fixed,,
+cilium,usr/bin/cilium-agent,lang-pkgs,gobinary,CVE-2026-78661,golang.org/x/net,v0.60.0,0.62.0,HIGH,fixed,,https://avd.aquasec.com/nvd/cve-2026-78661
+cilium,usr/bin/cilium-agent,lang-pkgs,gobinary,CVE-2026-97045,golang.org/x/net,v0.60.0,0.62.0,MEDIUM,fixed,,https://avd.aquasec.com/nvd/cve-2026-97045
+cilium,usr/bin/cilium-bugtool,lang-pkgs,gobinary,CVE-2026-78661,golang.org/x/net,v0.60.0,0.62.0,HIGH,fixed,,https://avd.aquasec.com/nvd/cve-2026-78661
+cilium,usr/bin/cilium-bugtool,lang-pkgs,gobinary,CVE-2026-97045,golang.org/x/net,v0.60.0,0.62.0,MEDIUM,fixed,,https://avd.aquasec.com/nvd/cve-2026-97045
+cilium,usr/bin/cilium-dbg,lang-pkgs,gobinary,CVE-2026-119299,github.com/gopacket/gopacket,v1.6.1,1.7.2,MEDIUM,fixed,ghsa,https://avd.aquasec.com/nvd/cve-2026-119299
+cilium,usr/bin/cilium-dbg,lang-pkgs,gobinary,GO-2026-5932,golang.org/x/crypto,v0.57.0,0.58.1-0.20261009181718-2f1f834330b2,UNKNOWN,fixed,,
+cilium,usr/bin/cilium-dbg,lang-pkgs,gobinary,CVE-2026-78661,golang.org/x/net,v0.60.0,0.62.0,HIGH,fixed,,https://avd.aquasec.com/nvd/cve-2026-78661
+cilium,usr/bin/cilium-dbg,lang-pkgs,gobinary,CVE-2026-97045,golang.org/x/net,v0.60.0,0.62.0,MEDIUM,fixed,,https://avd.aquasec.com/nvd/cve-2026-97045
+cilium,usr/bin/cilium-envoy-bootstrap-locality,lang-pkgs,gobinary,CVE-2026-78661,golang.org/x/net,v0.60.0,0.62.0,HIGH,fixed,,https://avd.aquasec.com/nvd/cve-2026-78661
+cilium,usr/bin/cilium-envoy-bootstrap-locality,lang-pkgs,gobinary,CVE-2026-97045,golang.org/x/net,v0.60.0,0.62.0,MEDIUM,fixed,,https://avd.aquasec.com/nvd/cve-2026-97045
+cilium,usr/bin/cilium-health,lang-pkgs,gobinary,CVE-2026-78661,golang.org/x/net,v0.60.0,0.62.0,HIGH,fixed,,https://avd.aquasec.com/nvd/cve-2026-78661
+cilium,usr/bin/cilium-health,lang-pkgs,gobinary,CVE-2026-97045,golang.org/x/net,v0.60.0,0.62.0,MEDIUM,fixed,,https://avd.aquasec.com/nvd/cve-2026-97045
+cilium,usr/bin/cilium-mount,lang-pkgs,gobinary,CVE-2026-78661,golang.org/x/net,v0.60.0,0.62.0,HIGH,fixed,,https://avd.aquasec.com/nvd/cve-2026-78661
+cilium,usr/bin/cilium-mount,lang-pkgs,gobinary,CVE-2026-97045,golang.org/x/net,v0.60.0,0.62.0,MEDIUM,fixed,,https://avd.aquasec.com/nvd/cve-2026-97045
+cilium,usr/bin/gops,lang-pkgs,gobinary,CVE-2026-39824,golang.org/x/sys,v0.30.0,0.44.0,UNKNOWN,fixed,,https://avd.aquasec.com/nvd/cve-2026-39824
+cilium,usr/bin/hubble,lang-pkgs,gobinary,CVE-2026-78661,golang.org/x/net,v0.60.0,0.62.0,HIGH,fixed,,https://avd.aquasec.com/nvd/cve-2026-78661
+cilium,usr/bin/hubble,lang-pkgs,gobinary,CVE-2026-97045,golang.org/x/net,v0.60.0,0.62.0,MEDIUM,fixed,,https://avd.aquasec.com/nvd/cve-2026-97045
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-76642,bsdutils,1:2.39.3-9ubuntu6.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-76642
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-102473,dash,0.5.12-6ubuntu5,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-102473
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-102474,dash,0.5.12-6ubuntu5,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-102474
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-76642,libblkid1,2.39.3-9ubuntu6.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-76642
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-67693,libgnutls30t64,3.8.3-1.1ubuntu3.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-67693
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-88647,libgnutls30t64,3.8.3-1.1ubuntu3.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-88647
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-88648,libgnutls30t64,3.8.3-1.1ubuntu3.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-88648
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-95184,libgnutls30t64,3.8.3-1.1ubuntu3.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-95184
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-95210,libgnutls30t64,3.8.3-1.1ubuntu3.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-95210
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-76642,libmount1,2.39.3-9ubuntu6.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-76642
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-76642,libsmartcols1,2.39.3-9ubuntu6.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-76642
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-40228,libsystemd0,255.4-1ubuntu8.18,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-40228
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-40228,libudev1,255.4-1ubuntu8.18,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-40228
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-76642,libuuid1,2.39.3-9ubuntu6.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-76642
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2024-56433,login,1:4.13+dfsg1-4ubuntu3.2,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2024-56433
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-76642,mount,2.39.3-9ubuntu6.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-76642
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2024-56433,passwd,1:4.13+dfsg1-4ubuntu3.2,,LOW,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2024-56433
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-18477,tar,1.35+dfsg-3ubuntu0.4,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-18477
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-18508,tar,1.35+dfsg-3ubuntu0.4,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-18508
+envoy,kubeview-private/cilium-envoy:1.20.4-os-security.2 (ubuntu 24.04),os-pkgs,ubuntu,CVE-2026-76642,util-linux,2.39.3-9ubuntu6.6,,MEDIUM,affected,ubuntu,https://avd.aquasec.com/nvd/cve-2026-76642

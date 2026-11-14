@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-10-36-868Z-7bbd1f60",
+  "startedAt": "2026-11-09T08:10:36.868Z",
+  "tests": [
+    {
+      "title": "V11-13 filled real Node and Pod CPU/memory graphs expose source timestamp and units",
+      "project": "webkit",
+      "status": "PASS",
+      "durationMs": 51665,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-10-37-023Z-4d25bd70/v11-real-cluster-V11-13-fi-ef477--source-timestamp-and-units-webkit/attachments/v11-evidence-6acfe7b8f5f1085a79d94732d38ed76f23ed19c7.json",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "title": "V11-16 normal finder/form keyboard, viewport and reduced-motion preserve the single full canvas",
+      "project": "webkit",
+      "status": "FAIL",
+      "durationMs": 21561,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: 'Bul', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  15000ms\n"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-10-37-023Z-4d25bd70/v11-real-cluster-V11-16-no-4c731-erve-the-single-full-canvas-webkit/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-10-37-023Z-4d25bd70/v11-real-cluster-V11-16-no-4c731-erve-the-single-full-canvas-webkit/attachments/v11-evidence-86fa2225bc56b2030715130b7f479a16156087ee.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-10-37-023Z-4d25bd70/v11-real-cluster-V11-16-no-4c731-erve-the-single-full-canvas-webkit/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "Error",
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "expectedTests": 3,
+  "finishedAt": "2026-11-09T08:11:50.569Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-10-36-868Z-7bbd1f60.json"
+}

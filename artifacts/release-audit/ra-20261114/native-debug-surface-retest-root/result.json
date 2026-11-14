@@ -1,0 +1,456 @@
+{
+  "status": "PASS",
+  "startedAt": "2026-11-14T13:03:27.580045+00:00",
+  "modes": [
+    {
+      "name": "default",
+      "status": "PASS",
+      "testEnvKeysSet": [],
+      "argv": [
+        "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261114-01/kubeview_1.1.0_darwin-arm64/kubeview",
+        "--kubeconfig",
+        "/Users/yunusemre/Library/Application Support/KubeView/release-audit-debug-surface-retest-20261114/default/absent-kubeconfig",
+        "--data-dir",
+        "/Users/yunusemre/Library/Application Support/KubeView/release-audit-debug-surface-retest-20261114/default/app-data",
+        "--bind",
+        "127.0.0.1",
+        "--port",
+        "19849"
+      ],
+      "pid": 5927,
+      "ownedTCPListenEndpoints": [
+        "127.0.0.1:19849"
+      ],
+      "spaFallbackIsNotDebugAPI": true,
+      "noTestResultWrites": true,
+      "noKubeconfigCreated": true,
+      "cleanup": {
+        "exitCode": 0,
+        "ownedIdentityAbsent": true,
+        "portNoListener": true
+      }
+    },
+    {
+      "name": "benchmark-test-environment-set",
+      "status": "PASS",
+      "testEnvKeysSet": [
+        "KUBEVIEW_BENCH_FIXTURE",
+        "KUBEVIEW_BENCH_PORT",
+        "KUBEVIEW_BENCH_STATIC",
+        "KUBEVIEW_BENCH_RESULT_DIR",
+        "KUBEVIEW_BENCH_BOOTSTRAP",
+        "KUBEVIEW_BENCH_LOG_GATED"
+      ],
+      "argv": [
+        "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261114-01/kubeview_1.1.0_darwin-arm64/kubeview",
+        "--kubeconfig",
+        "/Users/yunusemre/Library/Application Support/KubeView/release-audit-debug-surface-retest-20261114/benchmark-test-environment-set/absent-kubeconfig",
+        "--data-dir",
+        "/Users/yunusemre/Library/Application Support/KubeView/release-audit-debug-surface-retest-20261114/benchmark-test-environment-set/app-data",
+        "--bind",
+        "127.0.0.1",
+        "--port",
+        "19849"
+      ],
+      "pid": 6068,
+      "ownedTCPListenEndpoints": [
+        "127.0.0.1:19849"
+      ],
+      "spaFallbackIsNotDebugAPI": true,
+      "noTestResultWrites": true,
+      "noKubeconfigCreated": true,
+      "cleanup": {
+        "exitCode": 0,
+        "ownedIdentityAbsent": true,
+        "portNoListener": true
+      }
+    }
+  ],
+  "requests": [
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/healthz",
+      "status": 200,
+      "contentType": "text/plain",
+      "bytes": 2,
+      "sha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/api/version",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 101,
+      "sha256": "9a17838aa1ae4fdb201e7f96655d5daca08f7992ff33596736419149f5e50533"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 223,
+      "sha256": "8abc75951bb2a33864144f803f710318c7df21e507f6fc3d963e9954a397364b"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/api/contexts",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 177,
+      "sha256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/__benchmark/manual",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/__benchmark/state",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/__benchmark/replay",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/__benchmark/log-flow",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/__benchmark/result",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/debug/pprof/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/debug/vars",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/metrics",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "default",
+      "method": "POST",
+      "path": "/__benchmark/result",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "default",
+      "method": "POST",
+      "path": "/__benchmark/replay",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "default",
+      "method": "POST",
+      "path": "/__benchmark/log-flow",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "default",
+      "method": "POST",
+      "path": "/debug/pprof/",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/api/replay/status",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793"
+    },
+    {
+      "mode": "default",
+      "method": "POST",
+      "path": "/api/replay/scenario",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/api/benchmark",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793"
+    },
+    {
+      "mode": "default",
+      "method": "GET",
+      "path": "/api/debug",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/healthz",
+      "status": 200,
+      "contentType": "text/plain",
+      "bytes": 2,
+      "sha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/api/version",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 101,
+      "sha256": "9a17838aa1ae4fdb201e7f96655d5daca08f7992ff33596736419149f5e50533"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 223,
+      "sha256": "0cdb13dbd15cc8d4eea61635399680d407250d0caf4a5e3bfc9141c59c46d310"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/api/contexts",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 177,
+      "sha256": "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/__benchmark/manual",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/__benchmark/state",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/__benchmark/replay",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/__benchmark/log-flow",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/__benchmark/result",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/debug/pprof/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/debug/vars",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/metrics",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 587,
+      "sha256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "POST",
+      "path": "/__benchmark/result",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "POST",
+      "path": "/__benchmark/replay",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "POST",
+      "path": "/__benchmark/log-flow",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "POST",
+      "path": "/debug/pprof/",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/api/replay/status",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "POST",
+      "path": "/api/replay/scenario",
+      "status": 405,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "1ee3908ebd1ce322c09a22fb1babb70bdb4321f0f866fc25e6eb2e8d66c42896"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/api/benchmark",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793"
+    },
+    {
+      "mode": "benchmark-test-environment-set",
+      "method": "GET",
+      "path": "/api/debug",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793"
+    }
+  ],
+  "binarySHA256": "24ef0ce34d3381644fc14dc16a768bbeb7b8c580d19813ff580780e536378e68",
+  "sourceAfterMatches": true,
+  "privateStatePreserved": true,
+  "totalHTTPAttempts": 42,
+  "elapsedSeconds": 5.512804292000055,
+  "completedAt": "2026-11-14T13:03:33.092838+00:00",
+  "privateRoot": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-debug-surface-retest-20261114"
+}

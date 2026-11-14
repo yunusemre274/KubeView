@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-11-10T08:48:19.575133+00:00",
+  "purpose": "Immutable source manual runner plus provided v06 binary, FS preparation only",
+  "binarySha256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "sourceFrontendSha256": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "sourceIndexSha256": "f631b695c418aa865f18d7ec75611a8e097bc52e874b349f0ec52ec683e34585",
+  "testsStarted": false,
+  "clusterAppTrafficStarted": false,
+  "runtimeRepoDependency": false,
+  "attempt": "telemetry-full-tls-resume-fs-v06-01",
+  "standaloneBundleName": "20261110-tls-v06-01",
+  "standaloneBundlePrepared": true,
+  "oldV05BundlePreserved": true,
+  "sourceSha256": {
+    "scripts/manual-lab.sh": "c6ad10b2a4497774f35a45f174a3e028c44c7f3b4fe36634a5e9d3c96f613d7a",
+    "scripts/manual_lab.py": "87e59639ad8a14684c50048f4c49a00e66df91433c36aeed642936317b354ed4",
+    "manual-lab/telemetry.py": "14de490e7aece7b29e148a529f0dca621c885a5d86f6e8c32e55e5dc2c4bf2ff",
+    "manual-lab/templates/telemetry-values.json": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796",
+    "manual-lab/tests/test_telemetry_tls.py": "c805154766b1d96d03af4b22ee6e33bc48f9f5ecedb8dbcda3693e718d33aceb",
+    "MANUAL_TEST_GUIDE.md": "a99da887f8678236446845bc78f81a2aec11ccf59e9728b254b841807dc1f9a2"
+  },
+  "telemetryStateExists": false,
+  "secretRead": false,
+  "privatePathsOrSecretValuesRecorded": false,
+  "mutationLease": "PENDING_ROOT_EXCLUSIVE_LEASE"
+}

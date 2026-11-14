@@ -1,0 +1,26 @@
+{
+  "id": "ws-20261110-v07-closed-panel-ui",
+  "at": "2026-11-10T09:33:14.219753+00:00",
+  "status": "passed",
+  "servedIndexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+  "frontendSourceSHA256": "ff682d9b633c86062fa3e1379aef7c92747f2bee0b31a9cbaec0995cda9219b9",
+  "rootLeaseBinarySHA256": "4df0498a39252ca0c717c20ce67df4b7581aead3a6a056a135a39068977e94f8",
+  "helperSHA256": "c1396c3a7b4ee95a48532fa9ec4241c4838752cea0103557e05f2c82afecceba",
+  "serverStatusAfterProbe": {
+    "dataSource": "test-replay",
+    "profile": "M",
+    "logOpened": 3,
+    "logClosed": 3
+  },
+  "remainingHelperOrBrowserPIDs": [],
+  "files": {
+    "01-returned-A-panel-still-closed.png": "eb9377852a1de2d72a1f7a344228b8b808e117b58edd6d46075a7862295d3d33",
+    "02-explicit-reopen-only-one-log.png": "9c8495f6465b6e7b710348d0f242466d94d8d0cacede9d69db7f609d9a2d61c0",
+    "REVIEW.md": "c914fb25b0a9441a5e39f909765d3d72457b6c94e890dbddc157940f0634b408",
+    "result.json": "3f02d87841ee42759753f708f7e7591cd61a417786ac39e286621d738c5df9e3"
+  },
+  "limits": [
+    "Binary SHA is Root lease provenance; served index SHA was directly asserted by this probe.",
+    "Root owns the19807 server; helper did not stop it."
+  ]
+}

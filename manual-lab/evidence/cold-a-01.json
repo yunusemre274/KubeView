@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "startedAt": 1794227183.3467178,
+  "command": "up --profile 02-ortak-kume",
+  "cwd": "outside bundle /tmp",
+  "attempt": "cold-a-01",
+  "exitCode": 2,
+  "elapsedSeconds": 343.956,
+  "output": "manual-lab: minikube çıkış 80: ! Starting v1.39.0, minikube will default to \"containerd\" container runtime. See #21973 for more info.\n! Unable to create dedicated network, this might result in cluster IP change after restart: failed to create docker network kvml-6cfe8d4d9509-a: subnet is taken\n! Unable to create dedicated network, this might result in cluster IP change after restart: failed to create docker network kvml-6cfe8d4d9509-a: subnet is taken\nX Exiting due to GUEST_START: failed to start node: adding node: wait 5m0s for node: waiting for node to be ready: WaitNodeCondition: context deadline exceeded\n* \n╭─────────────────────────────────────────────────────────────────────────────────────────────╮\n│                                                                                             │\n│    * If the above advice does not help, please let us know:                                 │\n│      https://github.com/kubernetes/minikube/issues/new/choose                               │\n│                                                                                             │\n│    * Please run `minikube logs --file=logs.txt` and attach logs.txt to the GitHub issue.    │\n│                                                                                             │\n╰─────────────────────────────────────────────────────────────────────────────────────────────╯\n\nKüme A: kvml-6cfe8d4d9509-a (2 Node), private state; bounded start\n"
+}

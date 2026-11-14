@@ -1,0 +1,54 @@
+=== RUN   TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence
+--- PASS: TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence (0.21s)
+=== RUN   TestLogUIDGuardInterposesReplacementAtOpeningBoundaries
+=== RUN   TestLogUIDGuardInterposesReplacementAtOpeningBoundaries/before-open
+=== RUN   TestLogUIDGuardInterposesReplacementAtOpeningBoundaries/after-open
+=== RUN   TestLogUIDGuardInterposesReplacementAtOpeningBoundaries/before-first-publish
+--- PASS: TestLogUIDGuardInterposesReplacementAtOpeningBoundaries (0.00s)
+    --- PASS: TestLogUIDGuardInterposesReplacementAtOpeningBoundaries/before-open (0.00s)
+    --- PASS: TestLogUIDGuardInterposesReplacementAtOpeningBoundaries/after-open (0.00s)
+    --- PASS: TestLogUIDGuardInterposesReplacementAtOpeningBoundaries/before-first-publish (0.00s)
+=== RUN   TestLogGuardRequiresUIDAndEchoesSessionIdentity
+--- PASS: TestLogGuardRequiresUIDAndEchoesSessionIdentity (0.00s)
+=== RUN   TestLogWatchCancelsStreamOnSameNameNewUID
+--- PASS: TestLogWatchCancelsStreamOnSameNameNewUID (0.00s)
+=== RUN   TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak
+--- PASS: TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak (0.00s)
+=== RUN   TestTemplateCapabilityResolvesVerifiedOwnerAndRejectsUnsupportedKinds
+--- PASS: TestTemplateCapabilityResolvesVerifiedOwnerAndRejectsUnsupportedKinds (0.00s)
+=== RUN   TestTemplateCapabilityPreservesControllerStrategyAndReadOnly
+=== RUN   TestTemplateCapabilityPreservesControllerStrategyAndReadOnly/Deployment-paused-deployment
+=== RUN   TestTemplateCapabilityPreservesControllerStrategyAndReadOnly/StatefulSet-manual-pod-recreation
+=== RUN   TestTemplateCapabilityPreservesControllerStrategyAndReadOnly/StatefulSet-partitioned-rollout
+=== RUN   TestTemplateCapabilityPreservesControllerStrategyAndReadOnly/DaemonSet-manual-pod-recreation
+--- PASS: TestTemplateCapabilityPreservesControllerStrategyAndReadOnly (0.00s)
+    --- PASS: TestTemplateCapabilityPreservesControllerStrategyAndReadOnly/Deployment-paused-deployment (0.00s)
+    --- PASS: TestTemplateCapabilityPreservesControllerStrategyAndReadOnly/StatefulSet-manual-pod-recreation (0.00s)
+    --- PASS: TestTemplateCapabilityPreservesControllerStrategyAndReadOnly/StatefulSet-partitioned-rollout (0.00s)
+    --- PASS: TestTemplateCapabilityPreservesControllerStrategyAndReadOnly/DaemonSet-manual-pod-recreation (0.00s)
+=== RUN   TestTemplateCapabilityDoesNotReadSecretBodies
+--- PASS: TestTemplateCapabilityDoesNotReadSecretBodies (0.00s)
+=== RUN   TestReadOnlyAndNamespaceEnforced
+--- PASS: TestReadOnlyAndNamespaceEnforced (0.00s)
+=== RUN   TestDeletePreconditionsAndUIDRecreation
+--- PASS: TestDeletePreconditionsAndUIDRecreation (0.00s)
+=== RUN   TestSecretSanitizationDoesNotMutateSource
+--- PASS: TestSecretSanitizationDoesNotMutateSource (0.00s)
+=== RUN   TestInformerWebSocketSnapshotAddUpdateDelete
+--- PASS: TestInformerWebSocketSnapshotAddUpdateDelete (0.05s)
+=== RUN   TestReadOnlyDrainRejectedBeforeEviction
+--- PASS: TestReadOnlyDrainRejectedBeforeEviction (0.00s)
+=== RUN   TestLogPermissionErrorNeverBecomesSampleOutput
+--- PASS: TestLogPermissionErrorNeverBecomesSampleOutput (0.00s)
+=== RUN   TestClusterScopedReviewsIgnoreWatchNamespace
+--- PASS: TestClusterScopedReviewsIgnoreWatchNamespace (0.00s)
+=== RUN   TestScaleDoesNotAdoptRecreatedSubresourceIdentity
+=== RUN   TestScaleDoesNotAdoptRecreatedSubresourceIdentity/new_UID
+=== RUN   TestScaleDoesNotAdoptRecreatedSubresourceIdentity/concurrent_version
+--- PASS: TestScaleDoesNotAdoptRecreatedSubresourceIdentity (0.00s)
+    --- PASS: TestScaleDoesNotAdoptRecreatedSubresourceIdentity/new_UID (0.00s)
+    --- PASS: TestScaleDoesNotAdoptRecreatedSubresourceIdentity/concurrent_version (0.00s)
+=== RUN   TestInformerEventsCannotRegressSnapshotIdentityOrVersion
+--- PASS: TestInformerEventsCannotRegressSnapshotIdentityOrVersion (0.00s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	0.760s

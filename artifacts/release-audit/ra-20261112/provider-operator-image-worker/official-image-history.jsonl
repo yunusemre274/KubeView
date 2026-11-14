@@ -1,0 +1,11 @@
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:21:15+03:00","CreatedBy":"ENV GOPS_CONFIG_DIR=/home/gops","CreatedSince":"2 weeks ago","ID":"sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:21:15+03:00","CreatedBy":"COPY --chmod=777 / /home/gops # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"12.3kB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:21:15+03:00","CreatedBy":"WORKDIR /","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:21:15+03:00","CreatedBy":"COPY /out/linux/arm64/LICENSE.all /LICENSE.all # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"1.89MB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:21:15+03:00","CreatedBy":"COPY /out/linux/arm64/usr/bin/cilium-operator-generic /usr/bin/cilium-operator-generic # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"168MB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:16:32+03:00","CreatedBy":"COPY /out / # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"3.75MB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:01+03:00","CreatedBy":"COPY /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"197kB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:01+03:00","CreatedBy":"LABEL maintainer=maintainer@cilium.io","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:01+03:00","CreatedBy":"ARG OPERATOR_VARIANT=operator-generic","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:01+03:00","CreatedBy":"ARG TARGETARCH=arm64","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:01+03:00","CreatedBy":"ARG TARGETOS=linux","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}

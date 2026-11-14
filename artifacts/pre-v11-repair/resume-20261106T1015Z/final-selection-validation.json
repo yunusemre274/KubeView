@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-06T12:45:02.435384+00:00",
+  "files": 293,
+  "bytes": 106820807,
+  "credentialPatternHits": [],
+  "valuesPrinted": false,
+  "historicalCSVFirst18Exact": true,
+  "frontendBackendProductSourceUnchangedSinceFrozenHead": true,
+  "scope": "Explicit delivery selection only; raw binaries/cache/private runtime and unrelated user files excluded."
+}

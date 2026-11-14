@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-12T20:17:36.814205+00:00",
+  "SHA256": {
+    "benchmarks/panel-compare.mjs": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+    "benchmarks/panel-compare.test.mjs": "37c10038cca843c966effbdedc02404769d783ea8d4ab633271f101a6f95bbcb"
+  },
+  "testsRun": 0,
+  "oldFortyCellProcessingRun": 0
+}

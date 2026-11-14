@@ -1,0 +1,26 @@
+[
+  {
+    "at": "2026-11-11T19:36:00.111546+00:00",
+    "pmset": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t90%; discharging; 9:53 remaining present: true\n",
+    "AC": false,
+    "batteryPercent": 90,
+    "freeDiskBytes": 451958419456,
+    "pass": true
+  },
+  {
+    "at": "2026-11-11T19:36:00.117819+00:00",
+    "pmset": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t90%; discharging; 9:53 remaining present: true\n",
+    "AC": false,
+    "batteryPercent": 90,
+    "freeDiskBytes": 451958419456,
+    "pass": true
+  },
+  {
+    "at": "2026-11-11T19:36:00.541454+00:00",
+    "pmset": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t90%; discharging; 9:53 remaining present: true\n",
+    "AC": false,
+    "batteryPercent": 90,
+    "freeDiskBytes": 451958403072,
+    "pass": true
+  }
+]

@@ -1,0 +1,6 @@
+=== RUN   TestOwnedWorkspaceRealWorkspaceRecordAcceptance
+    workspace_real_acceptance_test.go:516: explicit private fresh QA session receipt required
+--- FAIL: TestOwnedWorkspaceRealWorkspaceRecordAcceptance (0.02s)
+FAIL
+FAIL	github.com/k8s-tersane/tersane/backend/pkg/server	0.385s
+FAIL

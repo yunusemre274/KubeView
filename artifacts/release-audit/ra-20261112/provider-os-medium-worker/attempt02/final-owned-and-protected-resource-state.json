@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-12T11:11:37.679079+00:00",
+  "containerChecks": [
+    {
+      "reference": "77de54086053799c29bb2f3ff2445cc35487a48472a937b5affcfc0deb5a0676",
+      "absent": true,
+      "completeCIDKnown": true
+    },
+    {
+      "reference": "865ccf09d284",
+      "absent": true,
+      "completeCIDKnown": false
+    },
+    {
+      "reference": "28f78c7a4aaa22fa4f0d60e0a27d9ce39b9f6891b0283b97708a9e922a45f487",
+      "absent": true,
+      "completeCIDKnown": true
+    },
+    {
+      "reference": "642e0bd80aa68a1118f60820d422e6102c260e23e405b6eb6e5e8ab9482169ce",
+      "absent": true,
+      "completeCIDKnown": true
+    },
+    {
+      "reference": "ff478a6484a71f6fd5437f5cafc23cf67a77c015709e47f304df5c2425cfaa93",
+      "absent": true,
+      "completeCIDKnown": true
+    },
+    {
+      "reference": "b0acbe74e48781cb0d090bdb9b23440218037ab23dc2b659d441a849013b50d6",
+      "absent": true,
+      "completeCIDKnown": true
+    }
+  ],
+  "protectedAPTParentsUnchanged": {
+    "cilium": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+    "envoy": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740"
+  },
+  "protectedOperatorBinarySHA256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "protectedOperatorImageDescriptor": "sha256:0f5f919c630deb02c84c3301f61efe4b6b4aece5bde2dbbcc771e48e8aac7352",
+  "candidateImagesIntentionallyRetained": [
+    "kubeview-private/cilium:1.20.4-os-security.2",
+    "kubeview-private/cilium-envoy:1.20.4-os-security.2"
+  ],
+  "allOwnedContainersAbsent": true,
+  "attempt01SealUnchanged": true
+}

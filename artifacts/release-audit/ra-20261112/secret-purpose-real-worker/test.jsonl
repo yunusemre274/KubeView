@@ -1,0 +1,9 @@
+{"Time":"2026-11-12T13:52:54.090802+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/server"}
+{"Time":"2026-11-12T13:52:54.779727+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedSecretPurposeReal"}
+{"Time":"2026-11-12T13:52:54.779828+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedSecretPurposeReal","Output":"=== RUN   TestReleaseOwnedSecretPurposeReal\n"}
+{"Time":"2026-11-12T13:52:55.560452+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedSecretPurposeReal","Output":"    release_secret_real_test.go:498: restricted update did not fail403\n"}
+{"Time":"2026-11-12T13:52:56.288778+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedSecretPurposeReal","Output":"--- FAIL: TestReleaseOwnedSecretPurposeReal (1.51s)\n"}
+{"Time":"2026-11-12T13:52:56.288842+03:00","Action":"fail","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedSecretPurposeReal","Elapsed":1.51}
+{"Time":"2026-11-12T13:52:56.288917+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"FAIL\n"}
+{"Time":"2026-11-12T13:52:56.291037+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"FAIL\tgithub.com/k8s-tersane/tersane/backend/pkg/server\t2.200s\n"}
+{"Time":"2026-11-12T13:52:56.291095+03:00","Action":"fail","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Elapsed":2.2}

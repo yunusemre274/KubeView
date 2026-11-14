@@ -1,0 +1,20 @@
+{
+  "command": [
+    "env",
+    "GOBIN=/Users/yunusemre/Desktop/KubeView/.git/release-audit/tools",
+    "go",
+    "install",
+    "-p=1",
+    "golang.org/x/vuln/cmd/govulncheck@v1.9.0"
+  ],
+  "cwd_relative_to_repository": "backend",
+  "started_at_utc": "2026-11-11T10:20:45.974306+00:00",
+  "finished_at_utc": "2026-11-11T10:20:51.951706+00:00",
+  "duration_seconds": 5.977,
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+  "stdout_file": "govulncheck-install.stdout",
+  "stderr_file": "govulncheck-install.stderr"
+}

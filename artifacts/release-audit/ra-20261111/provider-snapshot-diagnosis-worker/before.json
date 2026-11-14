@@ -1,0 +1,115 @@
+{
+  "takenAt": "2026-11-11T18:43:02.509584+00:00",
+  "snapshot": {
+    "hosts": {
+      "kvml-d32afbf634e8-a": {
+        "name": "kvml-d32afbf634e8-a",
+        "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+        "created": "2026-11-11T12:25:42.786922134Z",
+        "labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+          "role.minikube.sigs.k8s.io": ""
+        },
+        "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+        "IP": "172.29.232.2",
+        "mounts": [
+          {
+            "type": "bind",
+            "name": null
+          },
+          {
+            "type": "volume",
+            "name": "kvml-d32afbf634e8-a"
+          }
+        ]
+      },
+      "kvml-d32afbf634e8-a-m02": {
+        "name": "kvml-d32afbf634e8-a-m02",
+        "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+        "created": "2026-11-11T12:25:55.149367334Z",
+        "labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+          "role.minikube.sigs.k8s.io": ""
+        },
+        "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+        "IP": "172.29.232.3",
+        "mounts": [
+          {
+            "type": "bind",
+            "name": null
+          },
+          {
+            "type": "volume",
+            "name": "kvml-d32afbf634e8-a-m02"
+          }
+        ]
+      }
+    },
+    "network": {
+      "id": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+      "created": "2026-11-11T12:25:18.078000053Z",
+      "labels": {
+        "manual.kubeview.local/lab-id": "kvml-d32afbf634e8"
+      }
+    },
+    "volumes": {
+      "kvml-d32afbf634e8-a": {
+        "Name": "kvml-d32afbf634e8-a",
+        "CreatedAt": "2026-11-11T12:25:41Z",
+        "Driver": "local",
+        "Labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a"
+        }
+      },
+      "kvml-d32afbf634e8-a-m02": {
+        "Name": "kvml-d32afbf634e8-a-m02",
+        "CreatedAt": "2026-11-11T12:25:53Z",
+        "Driver": "local",
+        "Labels": {
+          "created_by.minikube.sigs.k8s.io": "true",
+          "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02"
+        }
+      }
+    },
+    "knownDaemonSets": {
+      "kube-system/cilium": "144ba330-5232-4969-b850-7a23bacfddbb",
+      "kube-system/cilium-envoy": "2ee3ea8b-2d77-4df7-9aeb-4548241ce4d3",
+      "kube-system/kube-proxy": "3a85e654-153d-4a0b-a454-d4731eabf3bb"
+    },
+    "Cilium": {
+      "kube-system/cilium": {
+        "uid": "144ba330-5232-4969-b850-7a23bacfddbb",
+        "specSHA256": "44e4747e32f9a6c66f89de089d868c90b8b2c6ba16563e5077ac9ba25d13c310"
+      },
+      "kube-system/cilium-envoy": {
+        "uid": "2ee3ea8b-2d77-4df7-9aeb-4548241ce4d3",
+        "specSHA256": "b55162fc4f782c48d04b43e6b0fddc5be06385c0328c3e83ad1ec8e28e57909d"
+      },
+      "kube-system/kube-proxy": {
+        "uid": "3a85e654-153d-4a0b-a454-d4731eabf3bb",
+        "specSHA256": "04156285886789b3d0c00a0d5155b2716f703957c2a4359c837f07b7ac56ef4d"
+      }
+    },
+    "fixtures": {
+      "kvml-fbf634e8-06-client/traffic": {
+        "uid": "4a3780de-63c1-4df7-89f1-1021f26c44d7",
+        "specSHA256": "c5913cdf8e898b89ec3e884608e1af5da2d399523a7b02aaaaf964386d23b10a",
+        "podUIDs": []
+      },
+      "kvml-fbf634e8-06-server/http-server": {
+        "uid": "fff4de0c-4ef4-46d1-8255-4c98dc9fe921",
+        "specSHA256": "8223893c731657b2776018955d8b19b280436a4f64a7ff8778d7d536f7828f0d",
+        "podUIDs": [
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ]
+      }
+    },
+    "labFileSHA256": "f3e824f2a51a8205f40808c62a16f4f2a206d7c518bdaddb5086a528b4498b27"
+  },
+  "profileSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5"
+}

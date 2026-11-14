@@ -1,0 +1,175 @@
+{
+  "at": "2026-11-08T14:10:52.596578+00:00",
+  "head": "2b76e215fdbe201be1611ccea4c40dcd547b2ba7",
+  "packageVersion": "0.4.0",
+  "baselineFrontendSourceSHA256": "c9f5c8cc1b093fc8ac9f0a4d81f83a12e75fa17a8c3ef4e115a9bf3c6e8c0eba",
+  "baselineStatus": "FROZEN_NOT_YET_MEASURED",
+  "moduleSHA256": {
+    "frontend/src/context/ShipyardClusterContext.jsx": "a51d3d26caa2ce085b19c2eb7fa4326dc40614aaede1a33caa883389353d0f7f",
+    "frontend/src/data/resourceStore.js": "6b80148ee652eb8d972872520dedc9bd02add062e72851f60c183f90134ef683",
+    "frontend/src/data/resourceScopes.js": "eab535d56d19a68f3035d9a5f7a3b6d7f8d00754c99092cdac48fab795927015",
+    "frontend/src/world/UtilityWindows.jsx": "88d53c47f1946d3b3bb8e20ebfdd84378b3a0a7488ad8c0d37ac0250ebbbf7d7",
+    "frontend/src/world/useWorldProviders.js": "cd43c1af8f8663ce7cf1a82d794e0d85e2d9f783ee6ddeb1ae75a81fd4a4eb46",
+    "frontend/src/workbench/PodLogs.jsx": "437ad950a11ef92c1ca3308dfecd10761f9d9b6f3543d957f0e8c2ce3e539b56",
+    "frontend/src/workbench/MetricsPanel.jsx": "516a0337170379258096f702ac290578ec8fd4928485e6c849e450aa94f44537",
+    "frontend/src/workbench/ResourceDetails.jsx": "991f8d6efcca4ab23c7c8aa1dc4da481fb29e17a4bb1bd7bebebc3ac749e29b2",
+    "frontend/src/workbench/ResourceForms.jsx": "053d41efaed816989517eb8e74635beacd3a429141bd9c575a56f184aa36e36b",
+    "frontend/src/harbor/HarborScene.jsx": "64cc7fcc945c8d58cf9dcd8c0b3f4efd0ab7d822f6fb59fc1f76d08d39235e6c",
+    "frontend/src/harbor/visualLifecycle.js": "6936afdb11c5b60e24a1c27392e790de9c5532beace54f60dbb6040ec0025a26",
+    "frontend/src/harbor/MeasuredTraffic.jsx": "82600a5e3ae8f6309a77368490d9193abba7c30e6829109c1cb06b0ef70e00d8",
+    "backend/pkg/server/server.go": "e148dca7e39448b249485856a29b82dc4e41fe6fbf9444d787bbedc1bb62b51a",
+    "backend/pkg/server/stream.go": "d70855ac20070e939a8b76f66369bb751bd47f77f9a7776b94d8c187b0b183f5",
+    "backend/pkg/server/resources.go": "3a8047f303ed9a30f90a16f8dfb81b0cdf11b87da224a39bbe3e107dfd03ebe5",
+    "backend/pkg/server/log_session.go": "34b902138ef243b273763d8ecd54abdaa44499aa5403913077d24d0034242aba"
+  },
+  "frontendBaselineComparison": [
+    {
+      "file": "frontend/src/context/ShipyardClusterContext.jsx",
+      "equalsFrozenPreV11": false,
+      "sha256": "a51d3d26caa2ce085b19c2eb7fa4326dc40614aaede1a33caa883389353d0f7f",
+      "baselineSHA256": "4db3b69b37e9da51c942428b53e4ff9c08e22a9f4438dc48032eb4bb5fadfb0e"
+    },
+    {
+      "file": "frontend/src/data/resourceStore.js",
+      "equalsFrozenPreV11": true,
+      "sha256": "6b80148ee652eb8d972872520dedc9bd02add062e72851f60c183f90134ef683",
+      "baselineSHA256": "6b80148ee652eb8d972872520dedc9bd02add062e72851f60c183f90134ef683"
+    },
+    {
+      "file": "frontend/src/data/resourceScopes.js",
+      "equalsFrozenPreV11": true,
+      "sha256": "eab535d56d19a68f3035d9a5f7a3b6d7f8d00754c99092cdac48fab795927015",
+      "baselineSHA256": "eab535d56d19a68f3035d9a5f7a3b6d7f8d00754c99092cdac48fab795927015"
+    },
+    {
+      "file": "frontend/src/world/UtilityWindows.jsx",
+      "equalsFrozenPreV11": true,
+      "sha256": "88d53c47f1946d3b3bb8e20ebfdd84378b3a0a7488ad8c0d37ac0250ebbbf7d7",
+      "baselineSHA256": "88d53c47f1946d3b3bb8e20ebfdd84378b3a0a7488ad8c0d37ac0250ebbbf7d7"
+    },
+    {
+      "file": "frontend/src/world/useWorldProviders.js",
+      "equalsFrozenPreV11": true,
+      "sha256": "cd43c1af8f8663ce7cf1a82d794e0d85e2d9f783ee6ddeb1ae75a81fd4a4eb46",
+      "baselineSHA256": "cd43c1af8f8663ce7cf1a82d794e0d85e2d9f783ee6ddeb1ae75a81fd4a4eb46"
+    },
+    {
+      "file": "frontend/src/workbench/PodLogs.jsx",
+      "equalsFrozenPreV11": true,
+      "sha256": "437ad950a11ef92c1ca3308dfecd10761f9d9b6f3543d957f0e8c2ce3e539b56",
+      "baselineSHA256": "437ad950a11ef92c1ca3308dfecd10761f9d9b6f3543d957f0e8c2ce3e539b56"
+    },
+    {
+      "file": "frontend/src/workbench/MetricsPanel.jsx",
+      "equalsFrozenPreV11": true,
+      "sha256": "516a0337170379258096f702ac290578ec8fd4928485e6c849e450aa94f44537",
+      "baselineSHA256": "516a0337170379258096f702ac290578ec8fd4928485e6c849e450aa94f44537"
+    },
+    {
+      "file": "frontend/src/workbench/ResourceDetails.jsx",
+      "equalsFrozenPreV11": true,
+      "sha256": "991f8d6efcca4ab23c7c8aa1dc4da481fb29e17a4bb1bd7bebebc3ac749e29b2",
+      "baselineSHA256": "991f8d6efcca4ab23c7c8aa1dc4da481fb29e17a4bb1bd7bebebc3ac749e29b2"
+    },
+    {
+      "file": "frontend/src/workbench/ResourceForms.jsx",
+      "equalsFrozenPreV11": true,
+      "sha256": "053d41efaed816989517eb8e74635beacd3a429141bd9c575a56f184aa36e36b",
+      "baselineSHA256": "053d41efaed816989517eb8e74635beacd3a429141bd9c575a56f184aa36e36b"
+    },
+    {
+      "file": "frontend/src/harbor/HarborScene.jsx",
+      "equalsFrozenPreV11": true,
+      "sha256": "64cc7fcc945c8d58cf9dcd8c0b3f4efd0ab7d822f6fb59fc1f76d08d39235e6c",
+      "baselineSHA256": "64cc7fcc945c8d58cf9dcd8c0b3f4efd0ab7d822f6fb59fc1f76d08d39235e6c"
+    },
+    {
+      "file": "frontend/src/harbor/visualLifecycle.js",
+      "equalsFrozenPreV11": true,
+      "sha256": "6936afdb11c5b60e24a1c27392e790de9c5532beace54f60dbb6040ec0025a26",
+      "baselineSHA256": "6936afdb11c5b60e24a1c27392e790de9c5532beace54f60dbb6040ec0025a26"
+    },
+    {
+      "file": "frontend/src/harbor/MeasuredTraffic.jsx",
+      "equalsFrozenPreV11": true,
+      "sha256": "82600a5e3ae8f6309a77368490d9193abba7c30e6829109c1cb06b0ef70e00d8",
+      "baselineSHA256": "82600a5e3ae8f6309a77368490d9193abba7c30e6829109c1cb06b0ef70e00d8"
+    }
+  ],
+  "actualRepairTests": [
+    {
+      "file": "backend/pkg/server/repair_integration_test.go",
+      "sha256": "9b201cbe8b6885963f5df391734d834d1e8d853a1b0a6d73cacdd1f4fad04512",
+      "tests": [
+        "TestOwnedRepairRealLogUIDReplacement"
+      ]
+    },
+    {
+      "file": "backend/pkg/server/repair_lifecycle_integration_test.go",
+      "sha256": "9d33b0f2be94b9112ba7db22b0fd6f33b7572c6ec7204e3dc748ad0ba1020ac7",
+      "tests": [
+        "TestOwnedRepairRealCronJobActionsAndCompletion",
+        "TestOwnedRepairRealNativeSidecarAndResize",
+        "TestOwnedRepairRealMetricsAvailability",
+        "TestOwnedRepairRealDeploymentRollbackRevision"
+      ]
+    },
+    {
+      "file": "backend/pkg/server/repair_maintenance_integration_test.go",
+      "sha256": "118b0d09e92800fb29b146ae59664dfcfdb7703635b97901779ccdcaf39632db",
+      "tests": [
+        "TestOwnedRepairRealDrainRespectsPDB"
+      ]
+    },
+    {
+      "file": "backend/pkg/server/repair_protocol_integration_test.go",
+      "sha256": "ae00a918ef815cab91a3316c655225f73d5cc157eea1ce3c1724d24a31022778",
+      "tests": [
+        "TestOwnedRepairRealHubbleMeasuredProtocols"
+      ]
+    },
+    {
+      "file": "backend/pkg/server/repair_resources_integration_test.go",
+      "sha256": "ef8c6516ff89dd042168c29a7b7bd7e05d24ae189ca2ffce074b4ada349ac743",
+      "tests": [
+        "TestOwnedRepairRealSyntheticSecretMetadataRoundTrip",
+        "TestOwnedRepairRealTemplateCapabilityTargets"
+      ]
+    },
+    {
+      "file": "backend/pkg/server/repair_traffic_integration_test.go",
+      "sha256": "5b22c77561ab29eb1923ceee9bfc63838d278c1dfa58a8490bc72498ba37130a",
+      "tests": [
+        "TestOwnedRepairRealHubbleRestrictedNamespace"
+      ]
+    }
+  ],
+  "frontendE2EFiles": [
+    "frontend/e2e/acceptance.spec.js",
+    "frontend/e2e/benchmark.spec.js",
+    "frontend/e2e/benchmark.vite.config.js",
+    "frontend/e2e/camera.spec.js",
+    "frontend/e2e/capacity.spec.js",
+    "frontend/e2e/fleet-benchmark.mjs",
+    "frontend/e2e/gpu-profile.mjs",
+    "frontend/e2e/live.spec.js",
+    "frontend/e2e/motion.spec.js",
+    "frontend/e2e/performance.mjs",
+    "frontend/e2e/record-fleet.mjs",
+    "frontend/e2e/record-world.mjs",
+    "frontend/e2e/v11-lab.mjs",
+    "frontend/e2e/visibility-check.mjs",
+    "frontend/e2e/workbench.spec.js",
+    "frontend/e2e/world.helpers.js"
+  ],
+  "executedCommands": [
+    "read-only file inspection",
+    "read-only git rev-parse/status",
+    "SHA-256 inventory; no tests/build/browser/cluster command"
+  ],
+  "limitations": [
+    "Inventory is captured while backend/frontend own product edits; final candidate needs a fresh identity.",
+    "Same module hash alone does not prove full connection-path equality or qualify an old suite as a new pass.",
+    "Historical 49-cell performance and 129 frontend count are references, not current v1.1 results."
+  ]
+}

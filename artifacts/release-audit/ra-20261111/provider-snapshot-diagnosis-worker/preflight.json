@@ -1,0 +1,9 @@
+{
+  "startedAt": "2026-11-11T18:43:01.931750+00:00",
+  "workBudgetSeconds": 120,
+  "totalBudgetSeconds": 240,
+  "helperSHA256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b",
+  "expectedHelperSHA256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b",
+  "readOnly": true,
+  "noAppHTTPManagerMutation": true
+}

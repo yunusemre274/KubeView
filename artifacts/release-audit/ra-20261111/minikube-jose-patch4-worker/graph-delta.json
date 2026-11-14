@@ -1,0 +1,12 @@
+{
+  "require_version_changes": {
+    "github.com/go-jose/go-jose/v4": {
+      "before": "v4.1.4",
+      "after": "v4.1.6"
+    }
+  },
+  "other_require_versions_unchanged": true,
+  "language_toolchain_unchanged": true,
+  "go_mod_sha256": "7f659bc6090878152f28a11f0c2a72d774550343e9a35b361f77c2bb6fc09486",
+  "go_sum_sha256": "b0d1399cb09be023c9467038a4ecd92f39dd998adf5566407f2793fdadf9418d"
+}

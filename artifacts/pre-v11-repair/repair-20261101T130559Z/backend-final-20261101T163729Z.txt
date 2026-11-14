@@ -1,0 +1,68 @@
+=== RUN   TestOwnedRepairRealLogUIDReplacement
+=== RUN   TestOwnedRepairRealLogUIDReplacement/before-open
+    repair_integration_test.go:187: REAL API/watch/log race boundary=before-open context=kv-repair-1101 namespace=kv-repair-log oldUID=341fba2e-2d1d-40bd-84d8-9ef3480f2f97 newUID=700ad687-696c-4845-a2ab-9052bfe98f6d HTTP=409; new-incarnation bytes withheld; Kubernetes log endpoint remains non-atomic
+=== RUN   TestOwnedRepairRealLogUIDReplacement/before-first-publish
+E1101 19:37:36.107251    3815 retrywatcher.go:129] "Watch failed" err="context canceled"
+    repair_integration_test.go:187: REAL API/watch/log race boundary=before-first-publish context=kv-repair-1101 namespace=kv-repair-log oldUID=08454835-ad84-4aae-a389-eac546f6026b newUID=22207a4a-8206-4343-a7c7-bb30b17e2774 HTTP=200; new-incarnation bytes withheld; Kubernetes log endpoint remains non-atomic
+--- PASS: TestOwnedRepairRealLogUIDReplacement (4.40s)
+    --- PASS: TestOwnedRepairRealLogUIDReplacement/before-open (2.30s)
+    --- PASS: TestOwnedRepairRealLogUIDReplacement/before-first-publish (2.08s)
+=== RUN   TestOwnedRepairRealCronJobActionsAndCompletion
+    repair_lifecycle_integration_test.go:111: REAL CronJob suspend/resume/run-now→Job Completed: context=kv-repair-1101 namespace=kv-repair-log CronJobUID=93c0dcc3-0404-4383-b222-433f16941bf0 JobUID=aa677cc1-e7ca-48c2-954c-1aabed21866e; no schedule progress invented
+--- PASS: TestOwnedRepairRealCronJobActionsAndCompletion (3.10s)
+=== RUN   TestOwnedRepairRealNativeSidecarAndResize
+=== RUN   TestOwnedRepairRealNativeSidecarAndResize/native-sidecar-logs
+    repair_lifecycle_integration_test.go:162: REAL native-sidecar spec.initContainers.restartPolicy=Always + running initContainerStatuses and raw-name logs verified; PodUID=46256984-a71d-41e3-9954-df0232773e1e context=kv-repair-1101 namespace=kv-repair-log; 3D role/UI is separate validation
+=== RUN   TestOwnedRepairRealNativeSidecarAndResize/in-place-resize
+    repair_lifecycle_integration_test.go:198: REAL pods/resize accepted then kubelet status.containerStatuses.resources.requests.cpu=40m applied with same PodUID=46256984-a71d-41e3-9954-df0232773e1e; owner template unchanged (standalone Pod)
+--- PASS: TestOwnedRepairRealNativeSidecarAndResize (3.99s)
+    --- PASS: TestOwnedRepairRealNativeSidecarAndResize/native-sidecar-logs (0.04s)
+    --- PASS: TestOwnedRepairRealNativeSidecarAndResize/in-place-resize (2.08s)
+=== RUN   TestOwnedRepairRealMetricsAvailability
+    repair_lifecycle_integration_test.go:228: REAL metrics API availability context=kv-repair-1101 namespace=kv-repair-log available=true source=metrics.k8s.io timestamp=2026-11-01T16:37:43Z nodeSamples=3 podSamples=0 errorScopes=0 expected=present; usage values not replaced by zeros
+--- PASS: TestOwnedRepairRealMetricsAvailability (0.01s)
+=== RUN   TestOwnedRepairRealDeploymentRollbackRevision
+    repair_lifecycle_integration_test.go:296: REAL Deployment→ReplicaSet UID revision1→revision2→HTTP rollback revision1 template restored; context=kv-repair-1101 namespace=kv-repair-log DeploymentUID=2861c393-b09d-427b-a41d-b39d33557a00; replicas=0, completed Ready rollout intentionally not asserted
+--- PASS: TestOwnedRepairRealDeploymentRollbackRevision (0.13s)
+=== RUN   TestOwnedRepairRealDrainRespectsPDB
+    repair_maintenance_integration_test.go:194: REAL reserved-worker cordon→drain-preview PDB blocked→API eviction rejected without Pod deletion→minAvailable0→eviction accepted and old UID absent; context=kv-repair-1101 Node=kv-repair-1101-m02 NodeUID=dd717f7d-1a66-403e-ae96-3799db437fb4 PodUID=1d03cc9c-a434-4368-9f7d-735c15720b32; Node original scheduling restored in cleanup; DaemonSets preserved
+--- PASS: TestOwnedRepairRealDrainRespectsPDB (4.92s)
+=== RUN   TestOwnedRepairRealSyntheticSecretMetadataRoundTrip
+    repair_resources_integration_test.go:147: REAL API + gateway Secret purpose edit: context=kv-repair-1101 namespace=kv-repair-log UID=669ce2aa-1854-40e7-a824-a1ea491e14df; unknown labels/annotations and synthetic data preserved; bulk data/annotation redaction and masked-write rejection verified; no values recorded
+--- PASS: TestOwnedRepairRealSyntheticSecretMetadataRoundTrip (0.03s)
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/Deployment
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=deployments/kv-cap-a54ae94a-deployment UID=2fb2d45b-502f-4e4d-9898-7487f1ea6051 target=deployments UID=2fb2d45b-502f-4e4d-9898-7487f1ea6051 supported=true effect=rollout
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=pods/kv-cap-a54ae94a-deployment-5dc94f6779-g499p UID=716ee0e2-b448-4b9f-bde5-e63eed22dbaf target=deployments UID=2fb2d45b-502f-4e4d-9898-7487f1ea6051 supported=true effect=rollout
+    repair_resources_integration_test.go:283: REAL resource mutation kind=Deployment UID=2fb2d45b-502f-4e4d-9898-7487f1ea6051 HTTP=202; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/StatefulSet
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=statefulsets/kv-cap-a54ae94a-statefulset UID=a852a38b-b048-4f07-986f-661edc30157d target=statefulsets UID=a852a38b-b048-4f07-986f-661edc30157d supported=true effect=rollout
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=pods/kv-cap-a54ae94a-statefulset-0 UID=ba7bffe1-517d-4a91-835f-c753e8a04b7b target=statefulsets UID=a852a38b-b048-4f07-986f-661edc30157d supported=true effect=rollout
+    repair_resources_integration_test.go:283: REAL resource mutation kind=StatefulSet UID=a852a38b-b048-4f07-986f-661edc30157d HTTP=202; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/DaemonSet
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=daemonsets/kv-cap-a54ae94a-daemonset UID=9c741971-b75b-498b-b6ea-f3fe46514efc target=daemonsets UID=9c741971-b75b-498b-b6ea-f3fe46514efc supported=true effect=rollout
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=pods/kv-cap-a54ae94a-daemonset-ssh7j UID=7944cc4a-c5fd-425f-9327-e37b8a9fa7ea target=daemonsets UID=9c741971-b75b-498b-b6ea-f3fe46514efc supported=true effect=rollout
+    repair_resources_integration_test.go:283: REAL resource mutation kind=DaemonSet UID=9c741971-b75b-498b-b6ea-f3fe46514efc HTTP=202; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/ReplicaSet
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=replicasets/kv-cap-a54ae94a-replicaset UID=eabc71d3-b512-4678-b719-73fd7aad09d7 target=replicasets UID=eabc71d3-b512-4678-b719-73fd7aad09d7 supported=false effect=unsupported
+    repair_resources_integration_test.go:283: REAL resource mutation kind=ReplicaSet UID=eabc71d3-b512-4678-b719-73fd7aad09d7 HTTP=422; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/Job
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=jobs/kv-cap-a54ae94a-job UID=715b6834-da76-4a1e-9ae1-edfe6352c8f3 target=jobs UID=715b6834-da76-4a1e-9ae1-edfe6352c8f3 supported=false effect=unsupported
+    repair_resources_integration_test.go:283: REAL resource mutation kind=Job UID=715b6834-da76-4a1e-9ae1-edfe6352c8f3 HTTP=422; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/CronJob
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=cronjobs/kv-cap-a54ae94a-cronjob UID=4395a8a3-ede5-4a2b-9e24-1ab388e1c12a target=cronjobs UID=4395a8a3-ede5-4a2b-9e24-1ab388e1c12a supported=false effect=unsupported
+    repair_resources_integration_test.go:283: REAL resource mutation kind=CronJob UID=4395a8a3-ede5-4a2b-9e24-1ab388e1c12a HTTP=422; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+--- PASS: TestOwnedRepairRealTemplateCapabilityTargets (0.34s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/Deployment (0.05s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/StatefulSet (0.10s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/DaemonSet (0.15s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/ReplicaSet (0.02s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/Job (0.01s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/CronJob (0.01s)
+=== RUN   TestOwnedRepairRealHubbleRestrictedNamespace
+    repair_traffic_integration_test.go:99: authorized namespace Hubble HTTP403
+    repair_traffic_integration_test.go:90: reader flow lease failed to release
+--- FAIL: TestOwnedRepairRealHubbleRestrictedNamespace (0.10s)
+FAIL
+FAIL	github.com/k8s-tersane/tersane/backend/pkg/server	17.409s
+FAIL

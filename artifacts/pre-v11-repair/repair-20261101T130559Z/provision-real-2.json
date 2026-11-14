@@ -1,0 +1,373 @@
+{
+  "name": "provision-real-2",
+  "startedAt": "2026-11-01T14:07:02.181Z",
+  "source": "Actual owned Kubernetes API through documented ./start.sh; normal pointer/finder/form flow; read-only canvas diagnostics",
+  "engine": "chromium",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "context": "kv-repair-1101",
+  "errors": [
+    "Error: Bounded wait failed: undefined\n    at poll (file:///Users/yunusemre/Desktop/KubeView/artifacts/pre-v11-repair/repair-20261101T130559Z/repair-ui.mjs:5:242)\n    at async file:///Users/yunusemre/Desktop/KubeView/artifacts/pre-v11-repair/repair-20261101T130559Z/provision-real-2.mjs:6:72"
+  ],
+  "captures": [
+    {
+      "at": "2026-11-01T14:07:04.216Z",
+      "label": "initial-world",
+      "path": "provision-real-2-01-initial-world.png",
+      "view": {
+        "stats": {
+          "frame": 61,
+          "calls": 178,
+          "triangles": 39837,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 28,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 1,
+            "visibleNodes": 1,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 1,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 885.4240694115376,
+            "position": [
+              -61.052399999996965,
+              -0.011689691390697676,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0020462749590628303,
+            "roll": -0.0023210112873956715,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": true
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 0.9000999999996276,
+          "nodes": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 0,
+                "progress": 885.4240694115376,
+                "position": [
+                  -61.052399999996965,
+                  -0.011689691390697676,
+                  238
+                ],
+                "yaw": -1.5707963267948966,
+                "pitch": -0.0020462749590628303,
+                "roll": -0.0023210112873956715,
+                "state": "patrolling",
+                "speed": 9.000000000014552,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": true
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "selectedLabels": []
+      }
+    },
+    {
+      "at": "2026-11-01T14:07:04.818Z",
+      "label": "provider-ready",
+      "path": "provision-real-2-02-provider-ready.png",
+      "view": {
+        "stats": {
+          "frame": 97,
+          "calls": 179,
+          "triangles": 39837,
+          "points": 0,
+          "lines": 12,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 29,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 1,
+            "visibleNodes": 1,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 1,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 891.419869411531,
+            "position": [
+              -67.04819999999029,
+              0.004664223403705566,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0013430575685131198,
+            "roll": -0.0016491453973606616,
+            "state": "patrolling",
+            "speed": 8.999999999986992,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": true
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 1.566299999998883,
+          "nodes": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 0,
+                "progress": 891.419869411531,
+                "position": [
+                  -67.04819999999029,
+                  0.004664223403705566,
+                  238
+                ],
+                "yaw": -1.5707963267948966,
+                "pitch": -0.0013430575685131198,
+                "roll": -0.0016491453973606616,
+                "state": "patrolling",
+                "speed": 8.999999999986992,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": true
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "Liman Yönetim Merkezi\n\nkv-repair-1101 · kv-repair-qa\n\nİş yükleri\nKaynak kataloğu\nOlaylar\nMetrikler\nBağlantı ve yetki\nNamespace\nTümü\ncilium-secrets\ndefault\nkube-node-lease\nkube-public\nkube-system\nkv-repair-log\nkv-repair-qa\nRBAC denetimli\nSağlayıcılar / Worker ekle\nUygulama oluştur\nYAML\nDeployment\n0\nPod\n0\nStatefulSet\n0\nDaemonSet\n0\nReplicaSet\n0\nHPA\n0\nPDB\n0\nSorunlular\n0 kaynak\n\t\nAd\n\t\nNamespace\n\t\nİstenen / mevcut / hazır\n\t\nGüncel replica\n\t\nImage\n\t\nStrateji\n\t\nHPA\n\t\nDurum\n\tİşlemler\nBu kapsamda kaynak yok\n\nNamespace kapsamını değiştirin veya yeni bir kaynak oluşturun.\n\n0–0 / 0 kaynak\n1 / 1\n\nİş yükleri, kaynak kataloğu, küme olayları ve bağlantı yetkileri.\n\nYaklaş",
+        "selectedLabels": [
+          "Gerçek minikube worker ekleme · profil kilidi ve API kimliği işlem öncesinde doğrulanır"
+        ]
+      }
+    },
+    {
+      "at": "2026-11-01T14:07:35.018Z",
+      "label": "error",
+      "path": "provision-real-2-03-error.png",
+      "view": {
+        "stats": {
+          "frame": 1908,
+          "calls": 179,
+          "triangles": 39837,
+          "points": 0,
+          "lines": 12,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 29,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 1,
+            "visibleNodes": 1,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 1,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 1163.0614694114936,
+            "position": [
+              -175,
+              0.05047665883851664,
+              54.996034705817465
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0010294659828855059,
+            "roll": 0.004021229678892739,
+            "state": "patrolling",
+            "speed": 8.999999999989178,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 31.748699999999204,
+          "nodes": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 0,
+                "progress": 1163.0614694114936,
+                "position": [
+                  -175,
+                  0.05047665883851664,
+                  54.996034705817465
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": -0.0010294659828855059,
+                "roll": 0.004021229678892739,
+                "state": "patrolling",
+                "speed": 8.999999999989178,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "Liman Yönetim Merkezi\n\nkv-repair-1101 · kv-repair-qa\n\nİş yükleri\nKaynak kataloğu\nOlaylar\nMetrikler\nBağlantı ve yetki\nNamespace\nTümü\ncilium-secrets\ndefault\nkube-node-lease\nkube-public\nkube-system\nkv-repair-log\nkv-repair-qa\nRBAC denetimli\nSağlayıcılar / Worker ekle\nUygulama oluştur\nYAML\nDeployment\n0\nPod\n0\nStatefulSet\n0\nDaemonSet\n0\nReplicaSet\n0\nHPA\n0\nPDB\n0\nSorunlular\n0 kaynak\n\t\nAd\n\t\nNamespace\n\t\nİstenen / mevcut / hazır\n\t\nGüncel replica\n\t\nImage\n\t\nStrateji\n\t\nHPA\n\t\nDurum\n\tİşlemler\nBu kapsamda kaynak yok\n\nNamespace kapsamını değiştirin veya yeni bir kaynak oluşturun.\n\n0–0 / 0 kaynak\n1 / 1\n\nİş yükleri, kaynak kataloğu, küme olayları ve bağlantı yetkileri.\n\nYaklaş",
+        "selectedLabels": [
+          "Gerçek minikube worker ekleme · profil kilidi ve API kimliği işlem öncesinde doğrulanır",
+          "Önceki isteğin sonucu belirsiz. Aynı istek anahtarı korunur; yeni worker isteği otomatik gönderilmez. Aşağıdaki eylem mevcut isteği uzlaştırır."
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "at": "2026-11-01T14:07:05.318Z",
+      "action": "actual UI provider POST",
+      "status": 409,
+      "error": "Docker worker envanteri okunamadı"
+    }
+  ],
+  "beforeNodes": [
+    {
+      "name": "kv-repair-1101",
+      "uid": "f8b02052-1800-4d5a-9620-2d041485e891"
+    }
+  ]
+}

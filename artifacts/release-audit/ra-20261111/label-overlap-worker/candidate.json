@@ -1,0 +1,21 @@
+{
+  "sourceHead": "496729e2e1df38081496bad3313fd7e594fbe10f",
+  "customVersion": "1.1.0-ui-label-worker-496729e2",
+  "binary": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/ui-label-worker/kubeview",
+  "binarySHA256": "efef195b7d2010e9b192edbd0d15b1ec613b042acf22938e5fc0bb04d736bbef",
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "indexSHA256": "88bb5cb5b2850eb75ce0bbd85a4538e6b4bbaea6884a4c14c408463b2d8b2334",
+  "sourceSHA256": {
+    "frontend/src/harbor/HarborScene.jsx": "e0a75091a5b36be72948c5cb6f8e43f621519a72d8399f931f87324c4fd1a196",
+    "frontend/src/harbor/interactions.js": "17248f4460e90af56907cd7529bd1428bbd830cc258e799502af46ca0d77759f",
+    "frontend/src/harbor/interactions.test.js": "acae759c5acf2f27b53b23a554e3b4201386d45b7b6a9c449b753916ccafb8a4"
+  },
+  "non07ProcessesBeforeSHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "startedAt": "2026-11-11T12:55:24.855892+00:00",
+  "appPID": 84271,
+  "port": 19847,
+  "variant": "M-h05",
+  "non07ProcessesAfterSHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "non07ProcessesUnchanged": true,
+  "finishedAt": "2026-11-11T12:55:30.599333+00:00"
+}

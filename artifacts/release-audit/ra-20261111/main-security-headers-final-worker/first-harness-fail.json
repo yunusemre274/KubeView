@@ -1,0 +1,33 @@
+{
+  "startedAt": "2026-11-11T16:48:00.835161+00:00",
+  "batteryPercent": 12,
+  "sourceHEAD": "96adbf6092cba098cef351072b045e0946a4525a",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "30s",
+    "-count",
+    "1",
+    "-v",
+    "."
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local"
+  },
+  "sourceSHA256": {
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "backend/security_headers_test.go": "3073516b1f1eaecc4cee1d2b19b9236dc0acd226116444394b919d6880116740"
+  },
+  "externalScriptBrowserCanary": "NOT RUN",
+  "productChange": false,
+  "finishedAt": "2026-11-11T16:48:06.095649+00:00",
+  "exitCode": 1
+}

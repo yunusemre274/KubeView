@@ -1,0 +1,22 @@
+CSP diagnostic/complementary gate: INCOMPLETE. A/B kontrolü CSP'nin locator await timeout'una özgü neden olduğunu göstermedi; OFF kontrolü hazır veri önkoşuluna ulaşmadığından karşılaştırma nedensellik bakımından INCONCLUSIVE. CSP geri çekilmedi, ürün kodu değişmedi; bu bir exploit/regresyon bulgusu değildir.
+
+Aynı csp07 binary SHA322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2, PID13278, port19847, owned07 M-h05 kullanıldı. İki kısa Chromium pointer context'i aynı browser launch/headless/video ayarıyla seri çalıştı; OFF yalnız mainDocument response CSP header'ını test-only route.fetch/fulfill ile kaldırdı. Body index SHA aynı kaldı. API/resource/state/camera mock/enjeksiyonu veya backend header değişikliği yok. Sonra birer Chromium ve WebKit gerçek CSP ON keyboard context'i çalıştı; ek retry/context yok.
+
+| Case | Sonuç | Wall ms | Monotonic ms | Sınır geçerli |
+|---|---|---:|---:|---|
+| chromium-pointer-ON | OBSERVED | 45543 | 45543.000666 | True |
+| chromium-pointer-OFF | FAIL | 35099 | 35098.871167000005 | True |
+| chromium-keyboard | FAIL | 69507 | 69506.83841699999 | True |
+| webkit-keyboard | FAIL | 11130 | 11130.259541999985 | True |
+
+ON pointer: Bul tıklaması UI'da gerçekten Dünyada bul dialogunu açtı; semantic visible gözlemi ve PNG bunu doğrular. Playwright click await7007ms timeout: tam log 'click action done' → 'waiting for scheduled navigations to finish' gösterir. Bu tool completion timeout'u kullanıcıya geri bildirim yokluğu sayılmadı ve ON pointer'ın normal dialog açması beklenmeyen ürün regresyonu diye etiketlenmedi. OFF: main document CSP gerçekten yok ve aynı index; world20Node/300Pod hazır önkoşulu16sn timeout, görüntü Bağlanıyor/boş dünya. Pointer'a ulaşmadı; OFF'da aynı click hatası var veya yok denemez. İlk FAIL ve ham action log result.json içinde korundu.
+
+Chromium keyboard: Cmd+K, exact named Node satırı ve header üzerinden exact UID code count önkoşuluna ulaştı; normal scrollIntoViewIfNeeded stable bekleyişi timeout oldu. Görünür UID doğrulaması PASS sayılmadı. WebKit keyboard: Node worker-001 / exact UID node-0 text+görünürlük PASS ve gerçek PNG var. Sonraki Pod app-0 finder iki sonuç döndürdü (Deployment ve Pod). Yerel helper kind argümanını filtreye uygulamamıştı; bu somut harness bug'ıdır. Belirsiz ilk satır seçilmedi, UID assertion atılmadı, product failure veya PASS üretilmedi. Kaynak UID'leri gerçek REPLAY kimlikleridir; gerçek Kubernetes kanıtı değildir.
+
+Dört case'in final CSP event ve pageerror listeleri boş; bu yalnız ulaşılan normal akışlar için geçerlidir. Pod/container log, settings/ESC, aynı canvas'ın tüm akış boyunca korunması, inert inline script reddi ve blobWorker postMessage/terminate/revoke canary'lerine ulaşılmadı; bu gate'ler açık kalır. Keyboard pozitif Node erişimi pointer kabulünün yerine geçmez; pointer tool completion sorusu TEST19 kapsamında açık kalır.
+
+Root'un load-state steering'i aktif modül yüklendikten sonra geldi. Bu yürütmede goto(domcontentloaded) kullanıldı; document.readyState, frameNavigated/frameRequestedNavigation/lifecycle ve açık waitForLoadState(load) kaydı yok. Initial navigation/load tamamlanmamışlığı dışlanmadı; action log sebep kanıtı değildir. Aynı bütçe dışında yeni kör mouse veya düzeltilmiş keyboard koşusu başlatılmadı. Sonraki izinli harness işinde main load durumu açıkça doğrulanmalı ve finder türü normal klavye seçicisiyle filtrelenmelidir. noWaitAfter, forceclick veya dispatchEvent kullanılmadı.
+
+DPR1, framebuffer1440x940, qualityauto, motionsystem/no-preference ve renderer tanılamaları ulaşılan case'lerde result.json içindedir. Chromium renderer string'i SwiftShader'dır; bu CPU/FPS/hardware-presented latency veya performans kabulü değildir. Heartbeat >4sn sleep/stall gap0; her gerçek context90sn altında ve tüm context/browserlar kapalı. Screenshot capture başarısızlıkları ayrıca kaydedildi; tüm mevcut önemli PNG'ler araçla gerçekten açıldı. OFF başarısız kontrolü geçerli eşdeğer başlangıç durumu sayılmadı.
+
+identity-before/after process record hash guard'ı diğer normalstate kayıtları ve 06Hubble kayıtlarının değişmediğini doğrular; 06 app/relay identity/listener da doğrulandı. App13278 aynı binary ile aktif; lab/cluster/node lifecycle değişmedi. Önceki committed helper/raporlar değişmedi. Yeni tek kaynak frontend/e2e/release-main-csp-diagnostic.mjs; SHA/komut identity-after.json içinde. Git/index/roadmap root'a bırakıldı. raw.log, dört case result/video/PNG ve SHA256SUMS kanıtları bu dizindedir.

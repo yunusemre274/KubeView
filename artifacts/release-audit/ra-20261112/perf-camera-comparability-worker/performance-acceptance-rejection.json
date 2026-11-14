@@ -1,0 +1,9 @@
+{
+  "comparable": false,
+  "reasons": [
+    "short/incomplete smoke settings: cannot claim acceptance",
+    "comparability-only inventory has no performance window M/panel-open"
+  ],
+  "rows": [],
+  "interpretation": "Median across repetitions, full min/max range and n. Small differences within run variability are not proof of improvement. CPU/RSS remain in per-PID process samples; RSS must not be summed as unique RAM."
+}

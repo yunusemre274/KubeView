@@ -1,0 +1,32 @@
+[
+  {
+    "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+    "name": "kvml-d32afbf634e8-a",
+    "created": "2026-11-11T12:25:42.786922134Z",
+    "state": "exited",
+    "running": false,
+    "image": "gcr.io/k8s-minikube/kicbase:v0.0.50",
+    "labels": {
+      "created_by.minikube.sigs.k8s.io": "true",
+      "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+      "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+      "role.minikube.sigs.k8s.io": ""
+    },
+    "storedMatch": true
+  },
+  {
+    "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+    "name": "kvml-d32afbf634e8-a-m02",
+    "created": "2026-11-11T12:25:55.149367334Z",
+    "state": "exited",
+    "running": false,
+    "image": "gcr.io/k8s-minikube/kicbase:v0.0.50",
+    "labels": {
+      "created_by.minikube.sigs.k8s.io": "true",
+      "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+      "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+      "role.minikube.sigs.k8s.io": ""
+    },
+    "storedMatch": true
+  }
+]

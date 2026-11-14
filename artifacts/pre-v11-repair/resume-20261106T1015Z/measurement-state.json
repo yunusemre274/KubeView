@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-06T10:37:27.342258+00:00",
+  "status": "exclusive-battery-measurement",
+  "session": "repair-final-battery-20261106",
+  "previousACSession": "repair-final-ac-20261101-resume1",
+  "oldACCellsKeptSeparate": 21,
+  "sourceHead": "fb50993b9af5dd2286f393c4b39d8b3563b54ef3",
+  "productFrozenFrontend": "c9f5c8cc1b093fc8ac9f0a4d81f83a12e75fa17a8c3ef4e115a9bf3c6e8c0eba",
+  "lab": "owned3NodesStopped",
+  "agents": "idle; no build/browser/encoding/test/traffic in parallel",
+  "plannedCells": 49,
+  "warmupSeconds": 30,
+  "steadySeconds": 60,
+  "repeats": 3,
+  "longSeconds": 1200,
+  "automaticRetry": false
+}

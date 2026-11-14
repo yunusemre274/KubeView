@@ -1,0 +1,505 @@
+{
+  "status": "COMPARABILITY_SMOKE_PASS",
+  "comparisonScope": "frontend-browser-common-backend",
+  "performanceAcceptance": false,
+  "fullAppAB": false,
+  "V11_18Closed": false,
+  "reasons": [],
+  "actual": [
+    {
+      "camera": {
+        "position": [
+          155.320703329,
+          297.314997165,
+          468.724888604
+        ],
+        "quaternion": [
+          -0.325460784,
+          0.194059424,
+          0.068435543,
+          0.922893707
+        ],
+        "zoom": 1,
+        "fov": 24,
+        "near": 9.479309146,
+        "far": 2000,
+        "target": [
+          6.663204747,
+          0,
+          130.86693728
+        ],
+        "forward": [
+          -0.313646272,
+          -0.627292543,
+          -0.712832436
+        ]
+      },
+      "prefs": {
+        "version": 1,
+        "patrol": true,
+        "speed": "normal",
+        "bob": true,
+        "sea": true,
+        "seaStrength": "light",
+        "sunGlint": true,
+        "wake": true,
+        "operations": "full",
+        "motionPreference": "full",
+        "paused": false,
+        "quality": "medium",
+        "theme": "light",
+        "contrast": "normal"
+      },
+      "dpr": 1,
+      "rendererDPR": 1,
+      "buffer": {
+        "width": 1440,
+        "height": 900
+      },
+      "fleet": [
+        {
+          "uid": "node-0",
+          "name": "worker-001",
+          "slot": 0,
+          "progress": 878.371669412,
+          "position": [
+            -54,
+            0,
+            238
+          ],
+          "yaw": -1.570796327,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": true
+        },
+        {
+          "uid": "node-1",
+          "name": "worker-002",
+          "slot": 1,
+          "progress": 1051.964586764,
+          "position": [
+            -175,
+            0,
+            166.092917353
+          ],
+          "yaw": 3.141592654,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-2",
+          "name": "worker-003",
+          "slot": 2,
+          "progress": 1225.557504117,
+          "position": [
+            -175,
+            0,
+            -7.5
+          ],
+          "yaw": 3.141592654,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-3",
+          "name": "worker-004",
+          "slot": 3,
+          "progress": 10.407082647,
+          "position": [
+            -119.592917353,
+            0,
+            -145
+          ],
+          "yaw": 1.570796327,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-4",
+          "name": "worker-005",
+          "slot": 4,
+          "progress": 184,
+          "position": [
+            54,
+            0,
+            -145
+          ],
+          "yaw": 1.570796327,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-5",
+          "name": "worker-006",
+          "slot": 5,
+          "progress": 357.592917353,
+          "position": [
+            175,
+            0,
+            -73.092917353
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-6",
+          "name": "worker-007",
+          "slot": 6,
+          "progress": 531.185834706,
+          "position": [
+            175,
+            0,
+            100.5
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-7",
+          "name": "worker-008",
+          "slot": 7,
+          "progress": 704.778752059,
+          "position": [
+            119.592917353,
+            0,
+            238
+          ],
+          "yaw": -1.570796327,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        }
+      ],
+      "projectedVisibleNodeUIDs": [
+        "node-0",
+        "node-2"
+      ],
+      "canonicalNodes": 20,
+      "canonicalPods": 300,
+      "visibleNodes": 8,
+      "visiblePods": 120,
+      "panel": {
+        "open": true,
+        "title": "worker-001",
+        "tab": "Özet",
+        "uid": "node-0",
+        "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+        "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+      },
+      "draw": {
+        "calls": 364,
+        "triangles": 66078,
+        "points": 0,
+        "lines": 60
+      }
+    },
+    {
+      "camera": {
+        "position": [
+          155.320703329,
+          297.314997165,
+          468.724888604
+        ],
+        "quaternion": [
+          -0.325460784,
+          0.194059424,
+          0.068435543,
+          0.922893707
+        ],
+        "zoom": 1,
+        "fov": 24,
+        "near": 9.479309146,
+        "far": 2000,
+        "target": [
+          6.663204747,
+          0,
+          130.86693728
+        ],
+        "forward": [
+          -0.313646272,
+          -0.627292543,
+          -0.712832436
+        ]
+      },
+      "prefs": {
+        "version": 1,
+        "patrol": true,
+        "speed": "normal",
+        "bob": true,
+        "sea": true,
+        "seaStrength": "light",
+        "sunGlint": true,
+        "wake": true,
+        "operations": "full",
+        "motionPreference": "full",
+        "paused": false,
+        "quality": "medium",
+        "theme": "light",
+        "contrast": "normal"
+      },
+      "dpr": 1,
+      "rendererDPR": 1,
+      "buffer": {
+        "width": 1440,
+        "height": 900
+      },
+      "fleet": [
+        {
+          "uid": "node-0",
+          "name": "worker-001",
+          "slot": 0,
+          "progress": 878.371669412,
+          "position": [
+            -54,
+            0,
+            238
+          ],
+          "yaw": -1.570796327,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": true
+        },
+        {
+          "uid": "node-1",
+          "name": "worker-002",
+          "slot": 1,
+          "progress": 1051.964586764,
+          "position": [
+            -175,
+            0,
+            166.092917353
+          ],
+          "yaw": 3.141592654,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-2",
+          "name": "worker-003",
+          "slot": 2,
+          "progress": 1225.557504117,
+          "position": [
+            -175,
+            0,
+            -7.5
+          ],
+          "yaw": 3.141592654,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-3",
+          "name": "worker-004",
+          "slot": 3,
+          "progress": 10.407082647,
+          "position": [
+            -119.592917353,
+            0,
+            -145
+          ],
+          "yaw": 1.570796327,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-4",
+          "name": "worker-005",
+          "slot": 4,
+          "progress": 184,
+          "position": [
+            54,
+            0,
+            -145
+          ],
+          "yaw": 1.570796327,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-5",
+          "name": "worker-006",
+          "slot": 5,
+          "progress": 357.592917353,
+          "position": [
+            175,
+            0,
+            -73.092917353
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-6",
+          "name": "worker-007",
+          "slot": 6,
+          "progress": 531.185834706,
+          "position": [
+            175,
+            0,
+            100.5
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-7",
+          "name": "worker-008",
+          "slot": 7,
+          "progress": 704.778752059,
+          "position": [
+            119.592917353,
+            0,
+            238
+          ],
+          "yaw": -1.570796327,
+          "pitch": 0,
+          "roll": 0,
+          "state": "patrolling",
+          "speed": 0,
+          "paused": false,
+          "healthy": true,
+          "reason": null,
+          "reservation": null,
+          "eligibleForDock": false
+        }
+      ],
+      "projectedVisibleNodeUIDs": [
+        "node-0",
+        "node-2"
+      ],
+      "canonicalNodes": 20,
+      "canonicalPods": 300,
+      "visibleNodes": 8,
+      "visiblePods": 120,
+      "panel": {
+        "open": true,
+        "title": "worker-001",
+        "tab": "Özet",
+        "uid": "node-0",
+        "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+        "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+      },
+      "draw": {
+        "calls": 364,
+        "triangles": 66078,
+        "points": 0,
+        "lines": 60
+      }
+    }
+  ],
+  "actualRenderers": [
+    "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+  ],
+  "nominalHarbors": [
+    1,
+    1
+  ],
+  "note": "Fixed historical position with explicit24 is narrower than legacy38; only2/8 logical rendered NodeUIDs project/raycast-visible in this pose. This is recorded, not repaired by hiding objects or lowering quality."
+}

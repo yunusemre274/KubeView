@@ -1,0 +1,22 @@
+{
+  "startedAt": "2026-11-11T19:44:09.610056+00:00",
+  "toolchainVersion": "go version go1.26.11 darwin/arm64",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count",
+    "1",
+    "-run",
+    "^TestReleaseProfileLockSpansStateDirs$",
+    "-timeout",
+    "45s",
+    "-v",
+    "./pkg/provision"
+  ],
+  "outerTimeoutSeconds": 90,
+  "note": "Initial pre-compilation base-toolchain failure preserved; this uses already installed exact toolchain with downloads disabled."
+}

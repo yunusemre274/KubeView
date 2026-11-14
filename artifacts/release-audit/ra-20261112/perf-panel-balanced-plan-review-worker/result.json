@@ -1,0 +1,152 @@
+{
+  "status": "PASS_CORRECTED_CONTROLLER_SOURCE_ONLY_PREFLIGHT_PENDING",
+  "reviewedAt": "2026-11-12T18:36:23.290570+00:00",
+  "reviewedSourceCommit": "0ef83898d592cb85e442d7f4111f03d804213643",
+  "reviewedControllerSHA256": "fd69e85d3a5032904004249614bf041a078f5c19504c9c826d2a4339e89371c4",
+  "findings": [
+    {
+      "id": "BALANCED-PLAN-01",
+      "severity": "MATERIAL_PRE_RUN",
+      "source": "run.py:8-11,39-40; validate-job.mjs:19-20",
+      "observed": "Controller accepts either AC or battery at start, then only preserves that source. It never reads/checks low-power mode or current power settings. Comparing manifest powerSettings to first job accepts initial lowpower1 and cannot detect a job-internal setting change.",
+      "required": "Enforce the declared Battery-only/lowpower0 start; capture fixed settings and validate them during polling and at job end, failing the affected job/block on change.",
+      "status": "OPEN_NOT_RUN_REVIEW_ONLY"
+    },
+    {
+      "id": "BALANCED-PLAN-02",
+      "severity": "MATERIAL_PRE_RUN",
+      "source": "run.py:41-54,75-76,79-81",
+      "observed": "Per-job cleanup records identity absence but does not require all captured identities absent before the next job. A browser process can outlive cleanup while port is free; later cleanup overwrites the earlier receipt and final-only check can then pass.",
+      "required": "Fail closed after each job if any captured owned identity remains or the owned port is not free; preserve each job cleanup receipt before launching the next job.",
+      "status": "OPEN_NOT_RUN_REVIEW_ONLY"
+    },
+    {
+      "id": "BALANCED-PLAN-03",
+      "severity": "PLAN_CODE_MISMATCH",
+      "source": "plan.json limits.perJobCleanupReserveSeconds; run.py:72",
+      "observed": "Plan specifies15 seconds cleanup reserve, while controller live global check uses deadline-8 and has no equivalent named15-second reserve.",
+      "required": "Align declared/enforced reserve, including launch/parse/validation/cleanup paths; retain finite4500-second overall failure rule. No absolute guarantee against OS stalls is inferred.",
+      "status": "OPEN_NOT_RUN_REVIEW_ONLY"
+    }
+  ],
+  "grid": {
+    "jobs": 10,
+    "blocks": 5,
+    "builds": 2,
+    "conditionsPerJob": 4,
+    "windows": 40,
+    "repeatsPerBuildCondition": 5,
+    "buildOrder": "ABBAABBAAB",
+    "conditionOrderEven": [
+      "panel-closed",
+      "panel-open",
+      "panel-closed-events",
+      "panel-open-events"
+    ],
+    "conditionOrderOdd": [
+      "panel-open-events",
+      "panel-closed-events",
+      "panel-open",
+      "panel-closed"
+    ],
+    "reversal": "Controller always passes forward scenario list and repeat-offset block; run.mjs:1541-1544 reverses odd blocks exactly once; validator expects the same order.",
+    "warmupSeconds": 30,
+    "measureSeconds": 60,
+    "pureWarmMeasureSeconds": 3600,
+    "pureWarmMeasureMinutes": 60,
+    "maximumWallSeconds": 4500,
+    "maximumWallMinutes": 75,
+    "perRunnerMaximumMinutes": 8,
+    "automaticRetries": 0
+  },
+  "checksSupported": {
+    "argvReuseFlagsAndCommonBackend": true,
+    "bothSidesAllSixFrozenAssetHashesCurrentlyMatch": true,
+    "backendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+    "harnessFixtureLockNamesGuarded": 11,
+    "summaryParseAndFourRunsAndErrorsGuard": true,
+    "perJobValidatorPathAndPairSideArguments": true,
+    "firstReferenceP0AExistsBeforeValidation": true,
+    "protocol5AndExactScenarioOrderGuard": true,
+    "zeroPlannedAppliedReceived0AndNoFabricatedDelayP95": true,
+    "positivePlannedAppliedReceived300AndFiniteDelaySamples": true,
+    "fullNestedCanonicalClientUpstreamPlannedForZeroAndPositive": true,
+    "actualProcessClockQualityCadenceDataGuards": true,
+    "normalPickThenClosePreservesSelectedCounterfactualByReusedProof": true,
+    "signalCleanup": "SIGTERM handler raises into BaseException/finally; SIGINT default KeyboardInterrupt also enters that path. Signals address only captured matching birth+command identities. Per-job cleanup admission remains finding02."
+  },
+  "existingPrerequisitesReviewed": {
+    "zeroEvidenceManifestEntriesVerified": 19,
+    "initialTargetNeighborUnitPass": 42,
+    "tightenedZeroNullChangedPathUnitPass": 9,
+    "unitRunsStartedByReviewer": 0,
+    "finalMetricsAndRunSourceEqualsCommit0ef83898": true,
+    "zeroDataSmoke": "Existing warm0/seconds1 frozenB/common-backend sample: planned=completed=received0, valid=true, delay distribution n0/allnull, both canonical equality verdicts true, errors[]. Diagnostic data validation only; no new CPU window acceptance."
+  },
+  "powerPolicyAssessment": {
+    "planStartPercent": 50,
+    "planNoNextJobBelowPercent": 40,
+    "planLiveAbortBelowPercent": 35,
+    "globalEmergencyPercent": 30,
+    "startAndPercentThresholdsPresentInCode": true,
+    "sourceAndLowPowerEnforcement": "Incomplete: finding01",
+    "freshPowerIsolationPrerequisite": "Not observed anew by reviewer; root must perform its authorized fresh preflight after correction."
+  },
+  "exclusions": [
+    "No actual benchmark/app/browser/server/build/test/scan/lab was started",
+    "No performance acceptance from pre-run review",
+    "Historical protocol4 open-only dataset is not pooled for protocol5 delta-panel",
+    "No continuous CAT18 soak, full-runtime A/B, V11-18, native Safari, energy or physical FPS closure",
+    "No product/harness/Git/index/roadmap edits by reviewer"
+  ],
+  "notStartedAtRead": {
+    "executionJSONAbsent": true,
+    "supervisorJSONAbsent": true
+  },
+  "inputSHA256": {
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/plan.json": "bfba6a51dfb92eed034092f25038347e578eaa597d338c9eb060e88b0bf510de",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/run.py": "054fc7a951039e551e57f0d93889d3c79264f3bc2ccc822f97a2aa9614f9f036",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/validate-job.mjs": "6209c06005d7ee054db2713a2c3e8bd6317bc7b95f5c7d4d2b4f218eefb3c12f",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/preparation-check.json": "3e7af9f2752eb351bb8baf5e26ac7c3d394ccd9fd0aed45527b18e2788841ece",
+    "benchmarks/run.mjs": "80cc55ad70f65857c5df2fa5eb79155aae5b8a5daec2d21916b8c588e39bb850",
+    "benchmarks/metrics.mjs": "6aab91b45ec8e3ef50300f1f90095c39070af2190a76a71662c6a2c84451c9e7",
+    "benchmarks/panel-compare.mjs": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+    "benchmarks/process-identity.mjs": "b2790f88e7d5111ec43babf8362605ca5f0718ad5fd3fac122ba9ad361956a32",
+    "benchmarks/fixtures.mjs": "c53ffc7cab18c06991437fe0f17ebdade10c28bbb56146ee19ba2ee63a45becc",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/REPORT.md": "56974a5893dbcef114da24f71c5dc37eb6f12d0007898740ad58086bddd6235f",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/SHA256SUMS": "e6e3040459f372253bd38600a394ef0c70a54890694e3417bc02c844660d7a8f",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/unit-result.json": "78672b1fffb31fd9eeae640a84ca3571362c87f7d895579db18c8b876e7483cb",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/unit-zero-null-result.json": "3c75f90a17b846243f7cbea9f449256ddf0b3882e28da8f2201ea2f7519636e2",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/unit.stdout": "7f404128d76892954372cb31a54f7e79e9c893a6460b75330bd80e6461ec2d8f",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/unit-zero-null.stdout": "99d688a0d9d7dc2093a7642180726cde6d6984b0a5f1146bb1bf53dc431a116e",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/source-after.json": "ce3c453e3f96da3b6e851cbb8a73c2ea79dad26ab1b4ae33df063d2b52601119",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/runtime-and-reuse-check.json": "66aa5b09b6124d16ab5928a158a4402b01c1b0f6454e63a44f9190b652bfa357",
+    "artifacts/release-audit/ra-20261112/perf-zero-event-contract-root/B-runner-summary.json": "0974d4cf941936df873f50eaca3293045c00e9270a4d64009892d0856335e714"
+  },
+  "initialStatus": "NOT_READY_CONTROLLER_FIX_REQUIRED",
+  "correctedSourceDeltaReview": {
+    "reviewedAt": "2026-11-12T18:36:59.028604+00:00",
+    "archivedInitialController": {
+      "path": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/run-initial-review.py.txt",
+      "SHA256": "fd69e85d3a5032904004249614bf041a078f5c19504c9c826d2a4339e89371c4"
+    },
+    "correctedController": {
+      "path": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/run.py",
+      "SHA256": "054fc7a951039e551e57f0d93889d3c79264f3bc2ccc822f97a2aa9614f9f036"
+    },
+    "resolvesSourceFindings": [
+      "BALANCED-PLAN-01",
+      "BALANCED-PLAN-02",
+      "BALANCED-PLAN-03"
+    ],
+    "verifiedDiff": [
+      "Battery-only start now required inside try; checked_power enforces same source, unchanged settings and two lowpowermode0 entries, known battery35..100; power() runs at polling and job end.",
+      "Each completed job saves cleanup JSON, checks all captured identities absent and port free, and fails before next job on residual resources.",
+      "Live global deadline reserve changed8 to15 seconds;4500-second post-run failure remains."
+    ],
+    "unchangedGridAndQualityProtocol": true,
+    "rootNewGuardUnitExecution": "Pending/not reviewed; reviewer started no tests.",
+    "remainingPrerequisites": "Fresh power/settings/isolation preflight and root review/clearance. Source review is not actual execution, absolute OS-stall deadline proof or measured-family PASS.",
+    "noExecutionOrSupervisorAtReview": true
+  }
+}

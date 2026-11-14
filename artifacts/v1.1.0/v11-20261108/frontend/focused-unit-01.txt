@@ -1,0 +1,20 @@
+✔ graph time comes from the provider measurement, not gateway retrieval (0.294792ms)
+✔ same-name replacement excludes measurements predating the new Pod incarnation (0.051584ms)
+✔ connection labels distinguish browser, API, first synchronization and demo (0.279375ms)
+✔ copy diagnostics excludes raw errors, Secret metadata, endpoint and session credentials (0.114125ms)
+✔ context cleanup aborts pending HTTP and rejects a late accepted mutation (6.837958ms)
+✔ namespace switch cancels metrics and never appends an alpha response into beta (1.215417ms)
+✔ every resource group has a world entry without adding synthetic resource identities (0.312459ms)
+✔ Node context is resolved from true spec.nodeName, not namespace or owner replicas (0.075125ms)
+✔ scale acceptance retains workload identity and waits for actual desired+Ready replicas (0.213792ms)
+✔ API delete acceptance does not remove a finalizing UID; partial failures remain partial (0.062583ms)
+✔ post-acceptance Node recreation is disclosed without altering real Pod placement (0.102125ms)
+✔ operation history never retains purposeful Secret values or annotations (0.728417ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.407792

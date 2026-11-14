@@ -1,0 +1,84 @@
+{
+  "at": "2026-11-09T10:53:14.868920+00:00",
+  "purpose": "Two15sCDPJSsamplingdiagnostics after30swarmup; NOTproductionCPUacceptancerepeats. Heavy profiler + source PNG readback. No pooling with31ACor4battery cells.",
+  "archive": "js-diagnostics.tar.gz",
+  "sha256": "73870879abae60627fa1f0a7fc05ed7da7396ed8e0ec7f77c5d723482cb63e13",
+  "bytes": 1657066,
+  "files": [
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109/baseline.stdout.log",
+      "bytes": 291,
+      "sha256": "12e4bbc8b754ece7caeb469dca1f7a251456e9ba69a4ec867eb5ca9a45b9550c"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109/optimized.stdout.log",
+      "bytes": 279,
+      "sha256": "68e3e9e09fa56d2c5a96c7949c26a47c0913cff40743d11be1ef3f9c20fa5c38"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109/queue.json",
+      "bytes": 13626,
+      "sha256": "a6d8be3b49470bf2325891a4a5000a496c7d49a507b7169ce19ac7ee1fab429f"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/L-living-0-raw.json",
+      "bytes": 101714,
+      "sha256": "d47bdeda7e20205fb3c67684c9ae604f55b358284c88a119a67281eef6da3207"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/L-living-0-start.png",
+      "bytes": 779022,
+      "sha256": "bcb2854feac1a2504f64f4aef75ae952733e8fe84bb327814fb2265185901d87"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/manifest.json",
+      "bytes": 23500,
+      "sha256": "258e7212da7d137dfd27b332348009f0399e4ad3cb5e5322bdd183b41cb584ac"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/process-samples.json",
+      "bytes": 14929,
+      "sha256": "b78a811de0a3acd8a4a3b04f476dd79056bd93d5761c0d7b1d6c1a9dd04df466"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/summary.json",
+      "bytes": 53980,
+      "sha256": "7f1389fe54a907b177cf9d0dfcde93c22800de1ffccbeb48873406c92fb80d53"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/traces/L-living-0.cpuprofile",
+      "bytes": 166628,
+      "sha256": "029b5ea9f7dacbd0c95487c426e5d2601640a566cbabfbc818d2ee1277d09d00"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/L-living-0-raw.json",
+      "bytes": 102458,
+      "sha256": "94163c198bf75fa922694496328e90400aacd86f832d0c5a5468e9a709b98799"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/L-living-0-start.png",
+      "bytes": 767474,
+      "sha256": "9696efea1a1ebef0c363727a7bd7ed1bb81ee5a5bd33f7e8f6cff6075d957e06"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/manifest.json",
+      "bytes": 24354,
+      "sha256": "86a80dc5c191eb73b9e7d44256a55dfcb2ba5343be5527702de0aefa0e9ec911"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/process-samples.json",
+      "bytes": 14927,
+      "sha256": "ffd87e939ab279081c95c5e2fc925e78d17a25acf798e6febf2b3f2ae5cacf5f"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/summary.json",
+      "bytes": 54887,
+      "sha256": "ffded2d74841f0d6280a24ed31a13c2c4b19cb155e1896cfa475cb0f696f0fb1"
+    },
+    {
+      "path": "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/traces/L-living-0.cpuprofile",
+      "bytes": 169822,
+      "sha256": "f1463534c4112583146271de79aab85fd1008a577fbda0b1588042b5e77b5fe6"
+    }
+  ]
+}

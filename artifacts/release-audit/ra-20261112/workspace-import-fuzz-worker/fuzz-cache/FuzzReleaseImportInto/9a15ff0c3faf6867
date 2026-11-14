@@ -1,0 +1,2 @@
+go test fuzz v1
+[]byte("{\"0a\":0,\"revision\":1,\"aaaaaaa0aaaaaaaa\":{}}")

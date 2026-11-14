@@ -1,0 +1,16 @@
+vite v6.4.5 building for production...
+transforming...
+✓ 2215 modules transformed.
+rendering chunks...
+computing gzip size...
+../cat16-f32-20261112T113255Z/index.html                        0.59 kB │ gzip:   0.36 kB
+../cat16-f32-20261112T113255Z/assets/index-CCZQtIvj.css        64.43 kB │ gzip:  12.38 kB
+../cat16-f32-20261112T113255Z/assets/HarborScene-COc_bafo.js  234.58 kB │ gzip:  81.53 kB
+../cat16-f32-20261112T113255Z/assets/index-DDfzt6ML.js        438.03 kB │ gzip: 132.56 kB
+../cat16-f32-20261112T113255Z/assets/three-BKmXRbXN.js        973.67 kB │ gzip: 270.82 kB
+✓ built in 1.66s
+{
+  tag: 'cat16-f32-20261112T113255Z',
+  sourceSHA256: '2ebbbd715eb1e449736cf2e4b88489782136a19bbc25a99cf58701c9a234fe4a',
+  profiling: false
+}

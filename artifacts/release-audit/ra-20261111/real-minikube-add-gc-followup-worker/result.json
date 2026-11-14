@@ -1,0 +1,8 @@
+{
+  "status": "FAIL",
+  "errorClass": "Guard",
+  "safeCategory": "power_stop",
+  "originalCase03RemainsFAIL": true,
+  "workElapsedSeconds": 0.028792142868041992,
+  "workWithin45s": true
+}

@@ -1,0 +1,310 @@
+{
+  "checksumsVerified": [
+    {
+      "name": "kubeview_1.1.0_darwin-arm64.tar.gz",
+      "sha256": "a0f7f82dd16da860a3fe448a5ade848e350bea5ed8cba4ff7af35921ca784774"
+    },
+    {
+      "name": "kubeview_1.1.0_linux-amd64.tar.gz",
+      "sha256": "dfba4276de9a8bb0fed755cc09f0302b6efcdcb7e84e0bf1dbcb88cadc28061b"
+    }
+  ],
+  "safeTypePathModeGuards": true,
+  "archives": [
+    {
+      "name": "kubeview_1.1.0_darwin-arm64.tar.gz",
+      "memberCount": 28,
+      "unpackedBytes": 45410434,
+      "members": [
+        {
+          "name": "kubeview_1.1.0_darwin-arm64",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/kubeview",
+          "bytes": 45128290,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/scripts",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/scripts/manual_lab.py",
+          "bytes": 87319,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/scripts/manual-lab.sh",
+          "bytes": 214,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/MANUAL_TEST_GUIDE.md",
+          "bytes": 26007,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/docs",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/docs/RELEASE_NOTES_v1.1.0.md",
+          "bytes": 10194,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/docs/WORKSPACE_ACCEPTANCE.md",
+          "bytes": 28532,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/docs/V11_ACCEPTANCE_REPORT.md",
+          "bytes": 23335,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/docs/SECURITY.md",
+          "bytes": 19014,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/deploy",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/deploy/rbac-node-observability.yaml",
+          "bytes": 725,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-observability.yaml",
+          "bytes": 669,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-write.yaml",
+          "bytes": 898,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-readonly.yaml",
+          "bytes": 1478,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/templates",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/templates/README.md",
+          "bytes": 818,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/templates/telemetry-values.json",
+          "bytes": 488,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/DEPENDENCIES.md",
+          "bytes": 2169,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/evidence",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/tests",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/tests/real_scenarios.py",
+          "bytes": 12272,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/profiles.json",
+          "bytes": 1122,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/manual-lab/telemetry.py",
+          "bytes": 27561,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/README.md",
+          "bytes": 36127,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_darwin-arm64/build-provenance.json",
+          "bytes": 3202,
+          "mode": "0o644"
+        }
+      ]
+    },
+    {
+      "name": "kubeview_1.1.0_linux-amd64.tar.gz",
+      "memberCount": 28,
+      "unpackedBytes": 46993089,
+      "members": [
+        {
+          "name": "kubeview_1.1.0_linux-amd64",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/kubeview",
+          "bytes": 46710946,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/scripts",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/scripts/manual_lab.py",
+          "bytes": 87319,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/scripts/manual-lab.sh",
+          "bytes": 214,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/MANUAL_TEST_GUIDE.md",
+          "bytes": 26007,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/docs",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/docs/RELEASE_NOTES_v1.1.0.md",
+          "bytes": 10194,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/docs/WORKSPACE_ACCEPTANCE.md",
+          "bytes": 28532,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/docs/V11_ACCEPTANCE_REPORT.md",
+          "bytes": 23335,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/docs/SECURITY.md",
+          "bytes": 19014,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/deploy",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/deploy/rbac-node-observability.yaml",
+          "bytes": 725,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/deploy/rbac-namespace-observability.yaml",
+          "bytes": 669,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/deploy/rbac-namespace-write.yaml",
+          "bytes": 898,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/deploy/rbac-namespace-readonly.yaml",
+          "bytes": 1478,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/templates",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/templates/README.md",
+          "bytes": 818,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/templates/telemetry-values.json",
+          "bytes": 488,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/DEPENDENCIES.md",
+          "bytes": 2169,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/evidence",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/tests",
+          "bytes": 0,
+          "mode": "0o755"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/tests/real_scenarios.py",
+          "bytes": 12272,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/profiles.json",
+          "bytes": 1122,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/manual-lab/telemetry.py",
+          "bytes": 27561,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/README.md",
+          "bytes": 36127,
+          "mode": "0o644"
+        },
+        {
+          "name": "kubeview_1.1.0_linux-amd64/build-provenance.json",
+          "bytes": 3201,
+          "mode": "0o644"
+        }
+      ]
+    }
+  ],
+  "executed": false
+}

@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-11-12T11:38:54.995025+00:00",
+  "allRecordedOwnedBuildProcessReferencesAbsent": true,
+  "recordedPIDs": [
+    14284,
+    14285,
+    14287,
+    14289,
+    14291,
+    14292,
+    14295,
+    14297,
+    14299,
+    14301,
+    14303,
+    14305,
+    14306,
+    14310,
+    14312,
+    14314,
+    14316,
+    14318,
+    14322,
+    14325,
+    14326,
+    14329,
+    14330,
+    14332,
+    14336,
+    14337,
+    14339,
+    14343,
+    14346,
+    14347
+  ],
+  "noApplicationBrowserOrTestProcessWasStarted": true,
+  "protectedHistoricalTagsWereNotBuildTargets": true,
+  "newArtifactsIntentionallyRetained": {
+    "A": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-36d-20261112T113255Z",
+    "B": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-f32-20261112T113255Z"
+  },
+  "oneCommonBackend": {
+    "tag": "cat16-common-f32-20261112T113255Z",
+    "path": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common-f32-20261112T113255Z/backend.test",
+    "sha256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+    "bytes": 65238562
+  },
+  "symlinks": {
+    "A": {
+      "path": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-36d-20261112T113255Z/backend.test",
+      "target": "../cat16-common-f32-20261112T113255Z/backend.test",
+      "targetSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8"
+    },
+    "B": {
+      "path": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-f32-20261112T113255Z/backend.test",
+      "target": "../cat16-common-f32-20261112T113255Z/backend.test",
+      "targetSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8"
+    }
+  }
+}

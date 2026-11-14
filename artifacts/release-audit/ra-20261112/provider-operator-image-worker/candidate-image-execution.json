@@ -1,0 +1,67 @@
+{
+  "name": "candidate-image",
+  "argv": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/trivy.yaml",
+    "image",
+    "--image-src",
+    "docker",
+    "--docker-host",
+    "unix:///var/run/docker.sock",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/candidate-image.json",
+    "--timeout",
+    "150s",
+    "kubeview-private/cilium-operator-generic:1.20.4-security.2-image02"
+  ],
+  "startedAt": "2026-11-12T10:25:57.636492+00:00",
+  "maxSeconds": 155,
+  "samples": [
+    {
+      "elapsedSeconds": 3.998,
+      "ownedRSSBytes": 5505024,
+      "ownedPIDs": [
+        10822
+      ],
+      "freeDiskBytes": 454440239104,
+      "batteryPercent": 52
+    },
+    {
+      "elapsedSeconds": 4.52,
+      "ownedRSSBytes": 93470720,
+      "ownedPIDs": [
+        10822
+      ],
+      "freeDiskBytes": 454358523904,
+      "batteryPercent": 52
+    }
+  ],
+  "pid": 10822,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:25:58.697910+00:00"
+}

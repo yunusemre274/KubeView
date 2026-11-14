@@ -1,0 +1,111 @@
+{
+  "reportedAt": "2026-11-11T13:36:30.704910+00:00",
+  "sourceHEAD": "550400a3029bd33af48e8b2e126ffd05b54f8a9b",
+  "helperSHA256": "a6a110f63fd0b6ec2fd4c9a6aa5c19add78e8d41d2ca94adc06b8db259c13324",
+  "commands": [
+    "GOMAXPROCS=1 node frontend/e2e/release-untrusted-content.mjs attempt-01",
+    "GOMAXPROCS=1 node frontend/e2e/release-untrusted-content.mjs attempt-02",
+    "GOMAXPROCS=1 node frontend/e2e/release-untrusted-content.mjs attempt-03 remaining"
+  ],
+  "runs": [
+    {
+      "startedAt": "2026-11-11T13:32:41.481Z",
+      "finishedAt": "2026-11-11T13:33:40.539Z",
+      "status": "FAIL",
+      "httpRequests": 21,
+      "canaryRequests": 0,
+      "maxPayloadBytes": 0,
+      "browserClosed": true,
+      "failure": {
+        "type": "TimeoutError",
+        "message": "locator.click: Timeout 5000ms exceeded."
+      },
+      "checks": [
+        {
+          "name": "Node normal finder/name and untrusted condition message are text",
+          "status": "PASS"
+        },
+        {
+          "name": "legitimate plain Pod finder and UID positive",
+          "status": "PASS"
+        },
+        {
+          "name": "HTML-like fixture name remains literal; fixture identity only",
+          "status": "PASS"
+        },
+        {
+          "name": "annotation HTML/SVG/script/javascript/data text + plain annotation; copy affordance only",
+          "status": "PASS"
+        }
+      ],
+      "mainDocumentCSPPresent": true
+    },
+    {
+      "startedAt": "2026-11-11T13:34:04.371Z",
+      "finishedAt": "2026-11-11T13:34:49.813Z",
+      "status": "FAIL",
+      "httpRequests": 20,
+      "canaryRequests": 0,
+      "maxPayloadBytes": 0,
+      "browserClosed": true,
+      "failure": {
+        "type": "TimeoutError",
+        "message": "locator.click: Timeout 5000ms exceeded."
+      },
+      "checks": [
+        {
+          "name": "Node normal finder/name and untrusted condition message are text",
+          "status": "PASS"
+        },
+        {
+          "name": "legitimate plain Pod finder and UID positive",
+          "status": "PASS"
+        },
+        {
+          "name": "HTML-like fixture name remains literal; fixture identity only",
+          "status": "PASS"
+        },
+        {
+          "name": "annotation HTML/SVG/script/javascript/data text + plain annotation; copy affordance only",
+          "status": "PASS"
+        }
+      ],
+      "mainDocumentCSPPresent": true
+    },
+    {
+      "startedAt": "2026-11-11T13:35:18.929Z",
+      "finishedAt": "2026-11-11T13:35:52.123Z",
+      "status": "PASS",
+      "httpRequests": 19,
+      "canaryRequests": 0,
+      "maxPayloadBytes": 61943,
+      "browserClosed": true,
+      "failure": null,
+      "checks": [
+        {
+          "name": "event reason/message literal + plain event positive",
+          "status": "PASS"
+        },
+        {
+          "name": "HTML/SVG/script/javascript/data log content remains text; normal log/download affordance positive",
+          "status": "PASS"
+        },
+        {
+          "name": "ANSI/OSC/control retained as literal text, no terminal/link interpretation; 60KiB line bounded to16KiB",
+          "status": "PASS",
+          "renderedCharacters": 16876,
+          "rawEscRetained": true
+        },
+        {
+          "name": "plain positive and malicious literal search both function safely",
+          "status": "PASS"
+        },
+        {
+          "name": "HTTP error HTML/javascript literal + plain error positive; previous logs cleared",
+          "status": "PASS"
+        }
+      ],
+      "mainDocumentCSPPresent": true
+    }
+  ]
+}

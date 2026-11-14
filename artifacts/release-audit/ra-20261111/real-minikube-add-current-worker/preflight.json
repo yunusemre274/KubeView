@@ -1,0 +1,11 @@
+{
+  "startedAt": "2026-11-11T18:51:52.308252+00:00",
+  "deadlineAt": "2026-11-11T19:03:52.308252+00:00",
+  "totalBudgetSeconds": 720,
+  "clearanceSHA256": "62ad14aa3fde6908db73b7cc2692402c29205d07f47e391fa756b0cf59410c80",
+  "clearanceFileMode": "0o644",
+  "AC": true,
+  "batteryPercent": 64,
+  "freeDiskBytes": 452163149824,
+  "oneTransactionOnly": true
+}

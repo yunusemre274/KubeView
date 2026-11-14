@@ -1,0 +1,13 @@
+diff --git a/scripts/release-provider-lab.py b/scripts/release-provider-lab.py
+index 5378a41e..e4e8d4ec 100644
+--- a/scripts/release-provider-lab.py
++++ b/scripts/release-provider-lab.py
+@@ -325,7 +325,7 @@ class Transaction:
+             code=e.code;e.close();return code,{} # no raw error/payload
+     def start_app(self):
+         require(APP_SHA is not None and re.fullmatch(r'[a-f0-9]{64}',APP_SHA) is not None,'root_new_runtime_required_PROV_CACHE_001');require(filehash(APP)==APP_SHA,'approved_app_binary_hash_guard')
+-        require(not self.app,'one_gateway_only');sock=socket.socket();sock.bind(('127.0.0.1',PORT));sock.close()
++        require(not self.app,'one_gateway_only');sock=socket.socket();sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);sock.bind(('127.0.0.1',PORT));sock.close()
+         home=STATE/'minikube/.minikube';env={'HOME':str(Path.home()),'PATH':'/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin','KUBECONFIG':str(STATE/'private/admin.json'),'READ_ONLY':'false','KV_HUBBLE_ENABLED':'false','KV_MINIKUBE_ENABLED':'true','KV_MINIKUBE_BINARY':str(MINIKUBE),'KV_MINIKUBE_PROFILE':PROFILE,'KV_MINIKUBE_CONTEXT':PROFILE,'KV_MINIKUBE_CLUSTER_UID':SYSTEM,'KV_MINIKUBE_HOME':str(home),'KV_MINIKUBE_MAX_NODES':'3','KV_PROVIDER_STATE_DIR':str(CONTROL/'provider-journal')}
+         args=[str(APP),'--write','--context',PROFILE,'--kubeconfig',str(STATE/'private/admin.json'),'--data-dir',str(CONTROL/'app-data'),'--bind','127.0.0.1','--port',str(PORT)]
+         self.app=subprocess.Popen(args,cwd=CONTROL,env=env,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)

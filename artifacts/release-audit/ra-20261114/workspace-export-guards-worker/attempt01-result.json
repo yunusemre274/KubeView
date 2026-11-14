@@ -1,0 +1,26 @@
+{
+  "startedAt": "2026-11-14T13:15:49.932315+00:00",
+  "command": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "60s",
+    "./pkg/server",
+    "-run",
+    "^TestReleaseWorkspaceExportAuthorityBoundary$",
+    "-count=1"
+  ],
+  "cwd": "backend",
+  "status": "PASS",
+  "GOMAXPROCS": 2,
+  "rssPeakMiB": 658.953125,
+  "safetyStop": null,
+  "exitCode": 0,
+  "elapsedSeconds": 5.62856766699997,
+  "finishedAt": "2026-11-14T13:15:55.560886+00:00"
+}

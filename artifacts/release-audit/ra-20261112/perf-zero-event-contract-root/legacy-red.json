@@ -1,0 +1,16 @@
+{
+  "source": "Exact old post-window predicate with explicit planned300/completed300 but missing delay samples",
+  "input": {
+    "planned": 300,
+    "completed": 300,
+    "errors": [],
+    "delayMs": {
+      "n": 0,
+      "p95": null
+    }
+  },
+  "expected": false,
+  "observed": true,
+  "classification": "RED_REPRODUCED",
+  "newAppOrPerformanceRun": false
+}

@@ -1,0 +1,106 @@
+{
+  "status": "FAIL",
+  "runtimeStartedAt": "2026-11-11T20:08:22.999601+00:00",
+  "noWorkerPOST": true,
+  "events": [
+    {
+      "at": "2026-11-11T20:08:24.990204+00:00",
+      "event": "A_owns_profile",
+      "providerHTTP": 200,
+      "available": true,
+      "canAdd": true,
+      "operationCount": 0,
+      "workersHTTP": 200,
+      "context": "kvml-d32afbf634e8-a",
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "appPID": 5130,
+      "appBirth": "Wed Nov 11 23:08:24 2026",
+      "appPGID": 5130,
+      "port": 19846,
+      "childProcesses": []
+    },
+    {
+      "at": "2026-11-11T20:08:25.212545+00:00",
+      "event": "B_rejected_same_Home_Profile",
+      "providerHTTP": 200,
+      "available": false,
+      "canAdd": false,
+      "operationCount": 0,
+      "workersHTTP": 503,
+      "context": "kvml-d32afbf634e8-a",
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "appPID": 5138,
+      "appBirth": "Wed Nov 11 23:08:25 2026",
+      "appPGID": 5138,
+      "port": 19847,
+      "childProcesses": []
+    },
+    {
+      "at": "2026-11-11T20:08:25.220098+00:00",
+      "event": "both_initial_apps_stopped",
+      "AExit": 0,
+      "BExit": 0
+    }
+  ],
+  "failure": {
+    "errorClass": "OSError",
+    "safeCategory": "details_omitted"
+  },
+  "cleanup": [
+    {
+      "name": "appBRestart",
+      "pid": null,
+      "birth": null,
+      "exitCode": null,
+      "stopped": true
+    },
+    {
+      "name": "appB",
+      "pid": 5138,
+      "birth": "Wed Nov 11 23:08:25 2026",
+      "exitCode": 0,
+      "stopped": true
+    },
+    {
+      "name": "appA",
+      "pid": 5130,
+      "birth": "Wed Nov 11 23:08:24 2026",
+      "exitCode": 0,
+      "stopped": true
+    }
+  ],
+  "ports": [
+    {
+      "port": 19846,
+      "noListener": true
+    },
+    {
+      "port": 19847,
+      "noListener": true
+    }
+  ],
+  "powerPolicy": [
+    {
+      "at": "2026-11-11T20:08:23.006676+00:00",
+      "AC": false,
+      "batteryPercent": 83,
+      "freeDiskBytes": 453673025536
+    },
+    {
+      "at": "2026-11-11T20:08:23.124511+00:00",
+      "AC": false,
+      "batteryPercent": 83,
+      "freeDiskBytes": 453673009152
+    },
+    {
+      "at": "2026-11-11T20:08:23.890937+00:00",
+      "AC": false,
+      "batteryPercent": 83,
+      "freeDiskBytes": 453672996864
+    }
+  ],
+  "helperSHA256After": "1a0db67621ed41059632bc246c23891d497cb02c8e23ab84c9f5bc415953d2e8",
+  "helperUnchanged": true,
+  "runtimeElapsedSeconds": 2.3052690029144287,
+  "completedAt": "2026-11-11T20:08:25.304870+00:00"
+}

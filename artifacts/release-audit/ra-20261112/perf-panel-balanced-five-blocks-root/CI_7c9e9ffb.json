@@ -1,0 +1,142 @@
+{
+  "observedAt": "2026-11-12T21:58:29+03:00",
+  "repository": "yunusemre274/KubeView",
+  "commit": "7c9e9ffb3dd132775be7cc4953266eaef08d651e",
+  "workflow": {
+    "workflow_runs": [
+      {
+        "id": 43282744627,
+        "name": "CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 106,
+        "jobs_url": "https://api.github.com/repos/yunusemre274/KubeView/actions/runs/43282744627/jobs",
+        "logs_url": "https://api.github.com/repos/yunusemre274/KubeView/actions/runs/43282744627/logs",
+        "workflow_id": 411403503
+      }
+    ]
+  },
+  "jobs": {
+    "jobs": [
+      {
+        "id": 131408049629,
+        "name": "test-build",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 43282744627,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run node --test --test-concurrency=1 tests/*.test.js src/harbor/*.test.js src/workbench/*.test.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Run go test -p 2 -timeout 180s ./...",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run node --test benchmarks/*.test.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Run node --test scripts/build-release.test.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Run npm run build",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Run node scripts/build-release.mjs --prepared --require-clean darwin-arm64 linux-amd64",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Run npx playwright install --with-deps chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Clean Linux binary startup (no source tree)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Post Run actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26
+          },
+          {
+            "name": "Post Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27
+          },
+          {
+            "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29
+          }
+        ]
+      }
+    ]
+  },
+  "scope": "Remote CI only; does not replace local panel CPU, provider TLS, final package or manual acceptance."
+}

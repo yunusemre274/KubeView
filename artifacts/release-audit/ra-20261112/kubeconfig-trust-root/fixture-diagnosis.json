@@ -1,0 +1,29 @@
+{
+  "classification": "TEST_FIXTURE_ERRORS_NOT_CONFIRMED_PRODUCT_VULNERABILITIES",
+  "clientGoVersion": "v0.30.0",
+  "clientGoSourceSHA256": "fc6032ed01e4314d8e6e59b5b54b12caaab7029e22837398028efa1cbf716379",
+  "clientGoSourceLines230to248": [
+    "\t}",
+    "",
+    "\t// only try to read the auth information if we are secure",
+    "\tif restclient.IsConfigTransportTLS(*clientConfig) {",
+    "\t\tvar err error",
+    "\t\tvar persister restclient.AuthProviderConfigPersister",
+    "\t\tif config.configAccess != nil {",
+    "\t\t\tauthInfoName, _ := config.getAuthInfoName()",
+    "\t\t\tpersister = PersisterForUser(config.configAccess, authInfoName)",
+    "\t\t}",
+    "\t\tuserAuthPartialConfig, err := config.getUserIdentificationPartialConfig(configAuthInfo, config.fallbackReader, persister, configClusterInfo)",
+    "\t\tif err != nil {",
+    "\t\t\treturn nil, err",
+    "\t\t}",
+    "\t\tmergo.Merge(clientConfig, userAuthPartialConfig, mergo.WithOverride)",
+    "",
+    "\t\tserverAuthPartialConfig, err := getServerIdentificationPartialConfig(configAuthInfo, configClusterInfo)",
+    "\t\tif err != nil {",
+    "\t\t\treturn nil, err"
+  ],
+  "issue1": "HTTP fixture cannot exercise exec auth: installed client-go loads authentication only with TLS. Retest will pin synthetic TLS server CA, without insecure skip verification.",
+  "issue2": "workspace handler uses422 for rejected trusted-context validation, initial test incorrectly expected400. Retest will assert422 plus unchanged state, not merely non2xx.",
+  "productCodeChanged": false
+}

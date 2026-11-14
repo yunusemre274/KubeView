@@ -1,0 +1,152 @@
+[
+  {
+    "image": "hubble-relay",
+    "target": "usr/bin/hubble-relay",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium",
+    "target": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e (ubuntu 26.04)",
+    "id": "CVE-2026-109518",
+    "pkg": "apt",
+    "installed": "3.2.0",
+    "fixed": "3.2.1ubuntu0.1",
+    "severity": "HIGH",
+    "severity_source": "ubuntu"
+  },
+  {
+    "image": "cilium",
+    "target": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e (ubuntu 26.04)",
+    "id": "CVE-2026-109518",
+    "pkg": "libapt-pkg7.0",
+    "installed": "3.2.0",
+    "fixed": "3.2.1ubuntu0.1",
+    "severity": "HIGH",
+    "severity_source": "ubuntu"
+  },
+  {
+    "image": "cilium",
+    "target": "opt/cni/bin/cilium-cni",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/cilium-agent",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/cilium-bugtool",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/cilium-dbg",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/cilium-envoy-bootstrap-locality",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/cilium-health",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/cilium-mount",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/hubble",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "operator-generic",
+    "target": "usr/bin/cilium-operator-generic",
+    "id": "CVE-2026-116587",
+    "pkg": "github.com/go-jose/go-jose/v4",
+    "installed": "v4.1.4",
+    "fixed": "4.1.6",
+    "severity": "HIGH",
+    "severity_source": "ghsa"
+  },
+  {
+    "image": "operator-generic",
+    "target": "usr/bin/cilium-operator-generic",
+    "id": "CVE-2026-78661",
+    "pkg": "golang.org/x/net",
+    "installed": "v0.60.0",
+    "fixed": "0.62.0",
+    "severity": "HIGH",
+    "severity_source": null
+  },
+  {
+    "image": "cilium-envoy",
+    "target": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629 (ubuntu 24.04)",
+    "id": "CVE-2026-109518",
+    "pkg": "apt",
+    "installed": "2.8.3",
+    "fixed": "2.8.4ubuntu0.1",
+    "severity": "HIGH",
+    "severity_source": "ubuntu"
+  },
+  {
+    "image": "cilium-envoy",
+    "target": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629 (ubuntu 24.04)",
+    "id": "CVE-2026-109518",
+    "pkg": "libapt-pkg6.0t64",
+    "installed": "2.8.3",
+    "fixed": "2.8.4ubuntu0.1",
+    "severity": "HIGH",
+    "severity_source": "ubuntu"
+  }
+]

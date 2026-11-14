@@ -1,0 +1,1333 @@
+{
+  "id": "ws-vertical03-replayM5-settled-camera",
+  "startedAt": "2026-11-09T17:12:47.497Z",
+  "url": "http://127.0.0.1:19807",
+  "browser": "chromium",
+  "browserVersion": "156.0.8078.4",
+  "dataSource": "Normal product UI; source kind verified from actual profile",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:47.778Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:47.779Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:12:47.942Z",
+      "detail": {
+        "file": "01-initial-world.png"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:48.030Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:48.031Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:48.098Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:48.103Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:48.164Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:48.530Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:48.619Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:48.620Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:48.680Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:49.047Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:49.132Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:49.133Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:49.198Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:49.546Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:49.638Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:49.912Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:50.000Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:50.001Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:50.064Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:50.430Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:50.515Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:50.516Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:50.580Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:50.929Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:51.006Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:51.297Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:51.381Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:51.382Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:51.447Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:51.814Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:51.898Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:51.899Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:51.964Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:52.313Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:52.398Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:52.398Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:52.463Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:52.832Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:52.916Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:52.916Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:52.980Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:53.329Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:53.415Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:53.416Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:53.480Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:53.847Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:53.931Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:53.932Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:53.996Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:54.363Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:54.448Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:54.448Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:54.513Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:54.864Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:54.948Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:54.949Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:55.013Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:55.379Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:55.464Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:55.465Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:55.530Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:55.880Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:55.965Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:55.965Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:56.030Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:56.397Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:56.481Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:56.482Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:56.547Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:56.914Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:56.998Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:56.998Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:57.071Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:57.412Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:57.498Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:57.499Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:57.563Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:57.930Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:58.015Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:58.015Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:58.080Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:58.429Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:58.515Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:58.516Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:58.580Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:58.947Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:59.032Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:59.032Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:59.097Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:59.464Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:59.548Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:59.549Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:12:59.613Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:12:59.964Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:13:00.048Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:13:00.049Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:13:00.114Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:13:00.479Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T17:13:00.565Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-09T17:13:00.565Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-09T17:13:01.228Z",
+      "detail": {
+        "harborId": "0737788c-6d8a-4c91-986b-f7282bf66d2a",
+        "coordinates": [
+          5600,
+          0
+        ]
+      }
+    },
+    {
+      "name": "normal-ui-harbor-switches",
+      "at": "2026-11-09T17:13:01.231Z",
+      "detail": {
+        "completed": 50,
+        "canvasPreserved": true,
+        "before": {
+          "frame": 12,
+          "calls": 258,
+          "triangles": 48630,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 37,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "after": {
+          "frame": 809,
+          "calls": 259,
+          "triangles": 48774,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 40,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:13:01.405Z",
+      "detail": {
+        "file": "03-after-switches.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:13:01.624Z",
+      "detail": {
+        "file": "world-1440-light.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:13:01.771Z",
+      "detail": {
+        "file": "harbors-1440-light.png"
+      }
+    },
+    {
+      "name": "harbor-card-text-contrast",
+      "at": "2026-11-09T17:13:01.772Z",
+      "detail": {
+        "ratios": [
+          12.278529523830622,
+          12.278529523830622,
+          12.278529523830622,
+          12.278529523830622,
+          12.278529523830622
+        ],
+        "scope": "Computed opaque text/surface colors; no physical display contrast claim"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:13:01.970Z",
+      "detail": {
+        "file": "world-1280-dark.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:13:02.089Z",
+      "detail": {
+        "file": "harbors-1280-dark.png"
+      }
+    },
+    {
+      "name": "harbor-card-text-contrast",
+      "at": "2026-11-09T17:13:02.091Z",
+      "detail": {
+        "ratios": [
+          12.85014402791586,
+          12.85014402791586,
+          12.85014402791586,
+          12.85014402791586,
+          12.85014402791586
+        ],
+        "scope": "Computed opaque text/surface colors; no physical display contrast claim"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:13:02.244Z",
+      "detail": {
+        "file": "world-768-light.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:13:02.342Z",
+      "detail": {
+        "file": "harbors-768-light.png"
+      }
+    },
+    {
+      "name": "harbor-card-text-contrast",
+      "at": "2026-11-09T17:13:02.343Z",
+      "detail": {
+        "ratios": [
+          12.278529523830622,
+          12.278529523830622,
+          12.278529523830622,
+          12.278529523830622,
+          12.278529523830622
+        ],
+        "scope": "Computed opaque text/surface colors; no physical display contrast claim"
+      }
+    }
+  ],
+  "errors": [],
+  "workspaceBefore": {
+    "id": "deaa4794-de36-4667-aa02-b7e2d4806c9d",
+    "revision": 56,
+    "schemaVersion": 1,
+    "connections": [
+      {
+        "id": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "name": "Lab test-replay-M",
+        "context": "test-replay-M",
+        "bound": true,
+        "identity": {
+          "clusterUID": "test/replay/test-replay-M",
+          "confidence": "test-replay",
+          "authorizationKey": "e22a22b3de90346f8900cfeb6b8277c8",
+          "credentialGeneration": "b4b174b3-5c8e-4bc2-9130-e9580242fe43"
+        }
+      }
+    ],
+    "harbors": [
+      {
+        "id": "986c33c6-9a8c-4823-9c64-a545769b18df",
+        "name": "TEST / REPLAY M 01",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "c630331f-3acb-4a4a-a29a-75d6e10a50f2",
+        "name": "TEST / REPLAY M 02",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          0
+        ]
+      },
+      {
+        "id": "6a25c1f0-d325-4547-8ee8-da7c34cbd7c6",
+        "name": "TEST / REPLAY M 03",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          0
+        ]
+      },
+      {
+        "id": "7677affc-f7ac-45a9-b2b5-6185c8371535",
+        "name": "TEST / REPLAY M 04",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          0
+        ]
+      },
+      {
+        "id": "0737788c-6d8a-4c91-986b-f7282bf66d2a",
+        "name": "TEST / REPLAY M 05",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          0
+        ]
+      }
+    ]
+  },
+  "workspaceAfter": {
+    "id": "deaa4794-de36-4667-aa02-b7e2d4806c9d",
+    "revision": 105,
+    "schemaVersion": 1,
+    "connections": [
+      {
+        "id": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "name": "Lab test-replay-M",
+        "context": "test-replay-M",
+        "bound": true,
+        "identity": {
+          "clusterUID": "test/replay/test-replay-M",
+          "confidence": "test-replay",
+          "authorizationKey": "e22a22b3de90346f8900cfeb6b8277c8",
+          "credentialGeneration": "b4b174b3-5c8e-4bc2-9130-e9580242fe43"
+        }
+      }
+    ],
+    "harbors": [
+      {
+        "id": "986c33c6-9a8c-4823-9c64-a545769b18df",
+        "name": "TEST / REPLAY M 01",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "c630331f-3acb-4a4a-a29a-75d6e10a50f2",
+        "name": "TEST / REPLAY M 02",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          0
+        ]
+      },
+      {
+        "id": "6a25c1f0-d325-4547-8ee8-da7c34cbd7c6",
+        "name": "TEST / REPLAY M 03",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          0
+        ]
+      },
+      {
+        "id": "7677affc-f7ac-45a9-b2b5-6185c8371535",
+        "name": "TEST / REPLAY M 04",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          0
+        ]
+      },
+      {
+        "id": "0737788c-6d8a-4c91-986b-f7282bf66d2a",
+        "name": "TEST / REPLAY M 05",
+        "connectionRef": "e2c89d14-705e-48fb-adfc-b01bd59e1d68",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          0
+        ]
+      }
+    ]
+  },
+  "final": {
+    "canvasCount": 1,
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 768,
+      "height": 900
+    },
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "bodyScroll": 900,
+    "stats": {
+      "frame": 866,
+      "calls": 218,
+      "triangles": 47075,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 32,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 20,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 3,
+        "canonicalPods": 300,
+        "visiblePods": 120,
+        "nodeSlots": 20,
+        "podSlots": 120,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 10,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "camera": {
+      "position": [
+        5755.32070332935,
+        297.3149971650072,
+        468.72488860383385
+      ],
+      "quaternion": [
+        -0.3254607841260081,
+        0.19405942434202575,
+        0.06843554348917555,
+        0.9228937068847457
+      ],
+      "zoom": 1
+    },
+    "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+  },
+  "finishedAt": "2026-11-09T17:13:02.348Z"
+}

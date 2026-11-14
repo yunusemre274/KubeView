@@ -1,0 +1,7 @@
+{
+  "at": "2026-11-09T08:30:24.175314+00:00",
+  "pid": 13470,
+  "port": 18414,
+  "result": "Only root-owned readonly UI gateway stopped after completed actual UI test; port no longer listening",
+  "main18410Untouched": true
+}

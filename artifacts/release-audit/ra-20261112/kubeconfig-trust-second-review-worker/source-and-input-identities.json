@@ -1,0 +1,54 @@
+{
+  "reviewedAt": "2026-11-12T10:39:50.563868+00:00",
+  "HEAD": "ecd112585cff5d6544252c2b2d4a06aee0ffe553",
+  "runtimeSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "localSourceSHA256": {
+    "backend/pkg/server/release_kubeconfig_trust_test.go": "7b39ad28075a041ae0b63e57e4e8f3e38154b65e1c6bdb85e27de8373bb6c612",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/pkg/server/traffic_handlers.go": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+    "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+    "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+    "backend/pkg/server/connection_test.go": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+  },
+  "upstreamPrimarySourceSHA256": {
+    "client-go/tools/clientcmd/client_config.go": "fc6032ed01e4314d8e6e59b5b54b12caaab7029e22837398028efa1cbf716379",
+    "client-go/rest/transport.go": "bb7876d72f41c39e3bfe0657d355009c9b3ee8400e5284dec559f1dd5102f591",
+    "client-go/transport/transport.go": "ee3adbc204631c2ae4c8698c78ed641e2111704b7775f5a92f116115f53d9cc8",
+    "client-go/plugin/pkg/client/auth/exec/exec.go": "bfea9be50246b1ba2baa9407d5e816a52252bb6590b86b28dbdf5dccf638324c",
+    "go1.26.11/src/os/exec/exec.go": "0bbfd988045f66e78e7416a1a0d47016ea966c65323d2c6ca7a18cdf4b7b5df0",
+    "go1.26.11/src/testing/testing.go": "bb48f8fd36ad46a7d67dfe720dd367a25cdac91739f568830d1b0863ae0255ce"
+  },
+  "upstreamPrimarySourcePaths": {
+    "client-go/tools/clientcmd/client_config.go": "/Users/yunusemre/go/pkg/mod/k8s.io/client-go@v0.30.0/tools/clientcmd/client_config.go",
+    "client-go/rest/transport.go": "/Users/yunusemre/go/pkg/mod/k8s.io/client-go@v0.30.0/rest/transport.go",
+    "client-go/transport/transport.go": "/Users/yunusemre/go/pkg/mod/k8s.io/client-go@v0.30.0/transport/transport.go",
+    "client-go/plugin/pkg/client/auth/exec/exec.go": "/Users/yunusemre/go/pkg/mod/k8s.io/client-go@v0.30.0/plugin/pkg/client/auth/exec/exec.go",
+    "go1.26.11/src/os/exec/exec.go": "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/src/os/exec/exec.go",
+    "go1.26.11/src/testing/testing.go": "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/src/testing/testing.go"
+  },
+  "inputArtifactSHA256": {
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/REPORT.md": "bb6a09c1bbddaaa318c5548d0f2ebe1836f0af10f4ca583fe4a5647e4174c5bf",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/SHA256SUMS": "ab8c391410f4bafd2f609150e66405ed1523ec3f3342266c24619303207d030e",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/fixture-diagnosis.json": "f08c28f19532aa63669237f6a095646e628a18a7b4ae56420a97cd716ce729cb",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/initial-test-source.go.txt": "ded33276ae8a54aabaee6fff66074767950130bcd2dc4f74af357e126488c526",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/manifest.json": "a3df7aa50426e21426b3cee25965831816e433b1bedb049b23b126e2d99da099",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/result.json": "696043e96ad86fdb034c19caae373f66d391a46c45502a462e53d5d21a6db3dd",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/test.jsonl": "3a85723eed1e7b775366dd5aa4152b93fe35e7ee4fcc23d11a3939cf9990e281",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/REPORT.md": "ede19e80e38fbc9792657baa0fb44aa0eeece3764a7c9316cbecac1997224a67",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/SHA256SUMS": "304ecdca828676502868acea80a93b654b0f817e1a8da19b7fa8be517c4e2e04",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/manifest.json": "850ecd83ce0636d7c7dddc47382cbad3be29ea2267055f687b8fa743717ced8d",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/result.json": "7c0d3492b5998295b6b8e0675adb446e27e0c38e84185e4e8151607bd8374255",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/test.jsonl": "d450610d284bafbffd73ac285caaf611078fa392c51f9e7f7fc45659c20e8f3d",
+    "artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "initialFixtureCopyMatchesManifest": true,
+  "currentTestMatchesRetestManifest": true,
+  "allRetestManifestSourcesMatchCurrent": true,
+  "runtimeSourceFilesManifestEqualAcrossAttempts": true,
+  "reviewedRuntimeProductGitDiffPaths": []
+}

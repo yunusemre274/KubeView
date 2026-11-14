@@ -1,0 +1,13 @@
+{
+  "oldHTTPResult": "FAIL preserved at ra-20261111/provider-profile-lock-http-worker; B restart failure remains historical",
+  "oldRebindFixture": "MATCHED_REBIND_PASS; original errno cause unproved",
+  "helperSHA256": "4613d23a1efc216c4de4c2027cf164de77593e902fdb6ddc66da560b8aedbab5",
+  "batteryPercentAtReadOnlyPrep": 52,
+  "freeDiskBytesAtReadOnlyPrep": 454800543744,
+  "portsInitiallyFree": [
+    19846,
+    19847
+  ],
+  "preRuntimeHarnessSyntaxCorrection": "resume.py initial ROOT/OUT assignment concatenation caught by compile(); corrected before execution, no runtime action occurred",
+  "noTrackedSourceGitIndexRoadmapWrites": true
+}

@@ -1,0 +1,30 @@
+{
+  "status": "FAIL",
+  "testCommandSeconds": 5.927884817123413,
+  "actualGoTestSeconds": 1.508352417,
+  "firstFailure": "restricted update expected403 got400",
+  "completedBeforeFailure": [
+    "admin purpose reveal200/data+metadata equality",
+    "admin pre-management PUT403 and unchanged readback",
+    "admin management enable200 then metadata edit200 preserving data/unknown metadata/type/UID",
+    "admin bulk and named metadata GET200 sanitized/no canary",
+    "first real TokenRequest SA identity plus list true/get false/update false SSAR",
+    "first SA reveal403 and sanitized list200"
+  ],
+  "notReached": [
+    "second get-only SA handler matrix",
+    "admin current-UID/RV masked PUT422"
+  ],
+  "cleanupExactFixturesAbsent": true,
+  "cleanupUIDCount": 7,
+  "namespaceNotDeleted": true,
+  "profileLabOriginalNodeMetadataEqual": true,
+  "sourceUnchangedDuringTest": true,
+  "firstTestSourceSHA256": "41ffd9af45297e70ef79879fd9e4fb608deb889dea050be5b1769453b148358d",
+  "phaseElapsedSeconds": 365.218399,
+  "phaseLimitSeconds": 360,
+  "phaseWithinLimit": false,
+  "noAutomaticRetry": true,
+  "noRuntimeGitOrRoadmapEdits": true,
+  "notBrowserHideOrFull0507Acceptance": true
+}

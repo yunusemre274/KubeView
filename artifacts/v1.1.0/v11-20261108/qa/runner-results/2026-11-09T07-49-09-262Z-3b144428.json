@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T07-49-09-262Z-3b144428",
+  "startedAt": "2026-11-09T07:49:09.262Z",
+  "tests": [
+    {
+      "title": "V11-09 V11-10 owned workload recovery continues resources/restart/replacement/delete after passed create+scale",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 13320,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T07-49-09-433Z-f2b1c251/v11-workload-recovery-V11--1bf33-e-after-passed-create-scale-chromium/attachments/v11-evidence-ca8bbc90daef921be4c46f3c4700d542be3872aa.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T07:49:22.840Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T07-49-09-262Z-3b144428.json"
+}

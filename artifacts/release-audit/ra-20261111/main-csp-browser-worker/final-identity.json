@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-11T16:01:24.318914+00:00",
+  "appPID": 13278,
+  "binarySHA256": "322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2",
+  "appIdentityAndListenerVerified": true,
+  "hubbleAppPID": 80336,
+  "hubbleRelayPID": 80393,
+  "hubbleIdentityAndListenersVerified": true,
+  "sourceHEAD": "4a05095ab94fa40ace4785f9da2d7cfe4688f398",
+  "helperSHA256": "d6f6edace2980a739e501af8e8dcc0440f3c8dce2bc44d0897b2edb285c5d984"
+}

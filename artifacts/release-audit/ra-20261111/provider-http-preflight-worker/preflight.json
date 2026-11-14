@@ -1,0 +1,11 @@
+{
+  "startedAt": "2026-11-11T18:37:30.732966+00:00",
+  "deadlineAt": "2026-11-11T18:40:30.732966+00:00",
+  "workCutoffAt": "2026-11-11T18:39:30.732966+00:00",
+  "helperSHA256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b",
+  "appSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "expectedAppSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "rootReportedSource": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "port": 19849,
+  "workerAddCancelDeleteForbidden": true
+}

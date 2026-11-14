@@ -1,0 +1,28 @@
+[
+  {
+    "argv": [
+      "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+      "--profile",
+      "kvml-d32afbf634e8-a",
+      "node",
+      "add",
+      "--help"
+    ],
+    "exitCode": 0,
+    "stderrEmpty": true,
+    "staticHelpOnly": true
+  },
+  {
+    "argv": [
+      "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+      "--profile",
+      "kvml-d32afbf634e8-a",
+      "node",
+      "delete",
+      "--help"
+    ],
+    "exitCode": 0,
+    "stderrEmpty": true,
+    "staticHelpOnly": true
+  }
+]

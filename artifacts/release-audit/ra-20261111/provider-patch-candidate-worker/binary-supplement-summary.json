@@ -1,0 +1,56 @@
+[
+  {
+    "label": "custom-minikube3",
+    "binary_sha256": "0ea47b1aa27343751614b25f427771974bca6534365ab8ddee4bf7aee8ce0371",
+    "fs_status": "BLOCKED_GOBINARY_COVERAGE",
+    "fs_coverage": "No Go analyzer results; exit0 is not evidence of clean binary",
+    "sbom_status": "PASS_SCAN_WITH_OR_WITHOUT_FINDINGS",
+    "sbom_component_count": 214,
+    "sbom_rows": 8,
+    "sbom_high_rows": 3,
+    "sbom_high_ids": [
+      "CVE-2026-116587",
+      "CVE-2026-41567",
+      "CVE-2026-42306"
+    ],
+    "go_jose_rows": [
+      {
+        "id": "CVE-2026-116587",
+        "pkg": "github.com/go-jose/go-jose/v4",
+        "installed": "v4.1.4",
+        "fixed": "4.1.6",
+        "severity": "HIGH"
+      },
+      {
+        "id": "CVE-2026-116585",
+        "pkg": "github.com/go-jose/go-jose/v4",
+        "installed": "v4.1.4",
+        "fixed": "4.1.5",
+        "severity": "MEDIUM"
+      },
+      {
+        "id": "CVE-2026-116586",
+        "pkg": "github.com/go-jose/go-jose/v4",
+        "installed": "v4.1.4",
+        "fixed": "4.1.5",
+        "severity": "MEDIUM"
+      }
+    ],
+    "binary_hash_unchanged": true,
+    "binary_executed": false
+  },
+  {
+    "label": "custom-hubble1",
+    "binary_sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2",
+    "fs_status": "BLOCKED_GOBINARY_COVERAGE",
+    "fs_coverage": "No Go analyzer results; exit0 is not evidence of clean binary",
+    "sbom_status": "PASS_SCAN_WITH_OR_WITHOUT_FINDINGS",
+    "sbom_component_count": 104,
+    "sbom_rows": 0,
+    "sbom_high_rows": 0,
+    "sbom_high_ids": [],
+    "go_jose_rows": [],
+    "binary_hash_unchanged": true,
+    "binary_executed": false
+  }
+]

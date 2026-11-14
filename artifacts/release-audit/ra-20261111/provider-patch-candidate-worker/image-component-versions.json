@@ -1,0 +1,188 @@
+[
+  {
+    "image": "hubble-relay",
+    "components": [
+      {
+        "target": "usr/bin/gops",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {}
+      },
+      {
+        "target": "usr/bin/hubble-relay",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0",
+          "google.golang.org/grpc": "v1.83.2"
+        }
+      }
+    ],
+    "pebble_result_present": false
+  },
+  {
+    "image": "cilium",
+    "components": [
+      {
+        "target": "cni/loopback",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {}
+      },
+      {
+        "target": "opt/cni/bin/cilium-cni",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0"
+        }
+      },
+      {
+        "target": "usr/bin/cilium-agent",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0",
+          "google.golang.org/grpc": "v1.83.2"
+        }
+      },
+      {
+        "target": "usr/bin/cilium-bugtool",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0"
+        }
+      },
+      {
+        "target": "usr/bin/cilium-dbg",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0",
+          "google.golang.org/grpc": "v1.83.2"
+        }
+      },
+      {
+        "target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0"
+        }
+      },
+      {
+        "target": "usr/bin/cilium-health",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0"
+        }
+      },
+      {
+        "target": "usr/bin/cilium-health-responder",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {}
+      },
+      {
+        "target": "usr/bin/cilium-mount",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0"
+        }
+      },
+      {
+        "target": "usr/bin/cilium-sysctlfix",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {}
+      },
+      {
+        "target": "usr/bin/gops",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {}
+      },
+      {
+        "target": "usr/bin/hubble",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0",
+          "google.golang.org/grpc": "v1.83.2"
+        }
+      },
+      {
+        "target": "usr/sbin/iptables-wrapper",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {}
+      }
+    ],
+    "pebble_result_present": false
+  },
+  {
+    "image": "operator-generic",
+    "components": [
+      {
+        "target": "usr/bin/cilium-operator-generic",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {
+          "github.com/go-jose/go-jose/v4": "v4.1.4",
+          "golang.org/x/net": "v0.60.0",
+          "golang.org/x/text": "v0.42.0",
+          "google.golang.org/grpc": "v1.83.2"
+        }
+      },
+      {
+        "target": "usr/bin/gops",
+        "stdlib_versions": [
+          "v1.26.10"
+        ],
+        "module_versions": {}
+      }
+    ],
+    "pebble_result_present": false
+  },
+  {
+    "image": "cilium-envoy",
+    "components": [
+      {
+        "target": "usr/bin/cilium-envoy-healthcheck",
+        "stdlib_versions": [
+          "v1.27.3"
+        ],
+        "module_versions": {}
+      }
+    ],
+    "pebble_result_present": false
+  }
+]

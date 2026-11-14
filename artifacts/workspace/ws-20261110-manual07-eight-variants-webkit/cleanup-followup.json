@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-10T09:01:46.232059+00:00",
+  "official07DownFollowupExit": 0,
+  "official07DownFollowupSeconds": 0.172519709,
+  "previousAppPID7020Present": false,
+  "listenerPIDs": [],
+  "bindFree": true,
+  "manual07AppRecordPresent": false,
+  "preservedVariants": [
+    "M-h01"
+  ],
+  "limit": "First down remained FAIL; no assertion of exact first-15-second bind cause."
+}

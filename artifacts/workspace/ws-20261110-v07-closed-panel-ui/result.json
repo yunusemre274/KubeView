@@ -1,0 +1,89 @@
+{
+  "id": "ws-20261110-v07-closed-panel-ui",
+  "startedAt": "2026-11-10T09:31:47.243Z",
+  "status": "passed",
+  "expectedIndex": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+  "checks": [
+    {
+      "name": "normal-log-open-then-explicit-close",
+      "detail": {
+        "pod": {
+          "uid": "pod-0",
+          "name": "app-0",
+          "namespace": "bench-0"
+        },
+        "before": {
+          "opened": 1,
+          "closed": 1,
+          "active": 0
+        },
+        "opened": {
+          "opened": 2,
+          "closed": 1,
+          "active": 1
+        },
+        "closed": {
+          "opened": 2,
+          "closed": 2,
+          "active": 0
+        }
+      }
+    },
+    {
+      "name": "closed-panel-A-B-A-keeps-selection-without-new-log-stream",
+      "detail": {
+        "uid": "pod-0",
+        "tab": "logs",
+        "returned": {
+          "opened": 2,
+          "closed": 2,
+          "active": 0
+        },
+        "canvasPreserved": true
+      }
+    },
+    {
+      "name": "new-explicit-inspect-opens-exactly-one-stream-and-closes",
+      "detail": {
+        "uid": "pod-0",
+        "reopened": {
+          "opened": 3,
+          "closed": 2,
+          "active": 1
+        },
+        "final": {
+          "opened": 3,
+          "closed": 3,
+          "active": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "logRequests": [
+    {
+      "uid": "pod-0",
+      "container": "app",
+      "harborId": "986c33c6-9a8c-4823-9c64-a545769b18df",
+      "ended": true
+    },
+    {
+      "uid": "pod-0",
+      "container": "app",
+      "harborId": "986c33c6-9a8c-4823-9c64-a545769b18df",
+      "ended": true
+    },
+    {
+      "uid": "pod-0",
+      "container": "app",
+      "harborId": "986c33c6-9a8c-4823-9c64-a545769b18df",
+      "ended": true
+    }
+  ],
+  "prohibitedWrites": [],
+  "limits": [
+    "Synthetic TEST/REPLAY functional check; not real Kubernetes or performance.",
+    "No mock/state injection, raw log, Secret, nonce or HTTP header is recorded."
+  ],
+  "finishedAt": "2026-11-10T09:31:49.467Z"
+}

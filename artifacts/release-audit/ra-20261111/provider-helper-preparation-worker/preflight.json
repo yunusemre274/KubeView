@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-11-11T17:59:17.366304+00:00",
+  "deadlineAt": "2026-11-11T18:05:17.366304+00:00",
+  "budgetSeconds": 360,
+  "mode": "IMPLEMENTATION_ONLY",
+  "runtimeActionsForbidden": true,
+  "sourceReference": "42a5abde"
+}

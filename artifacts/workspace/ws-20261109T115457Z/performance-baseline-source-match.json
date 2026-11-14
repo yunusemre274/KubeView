@@ -1,0 +1,7 @@
+{
+  "baselineTag": "v11-final-32a0468",
+  "frozenFrontendMatchesTaskStart0029672": true,
+  "differences": [],
+  "fileCount": 86,
+  "note": "Reuses verified immutable source/build, not historical CPU numbers; new battery matched measurements still required."
+}

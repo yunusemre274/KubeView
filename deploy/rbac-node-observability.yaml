@@ -1,0 +1,26 @@
+# Optional cluster-wide Node metadata + metrics. Omit on restricted installations.
+# Grants no Node mutation, namespace listing, Secret access or workload writes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubeview-node-observer
+rules:
+  - apiGroups: [""]
+    resources: [nodes]
+    verbs: [get, list, watch]
+  - apiGroups: [metrics.k8s.io]
+    resources: [nodes]
+    verbs: [get, list]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubeview-node-observer
+subjects:
+  - kind: ServiceAccount
+    name: kubeview-observer
+    namespace: kubeview-example
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubeview-node-observer

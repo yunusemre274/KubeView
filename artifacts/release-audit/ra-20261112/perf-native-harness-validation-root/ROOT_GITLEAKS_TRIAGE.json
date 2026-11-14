@@ -1,0 +1,26 @@
+[
+  {
+    "fingerprint": "artifacts/release-audit/ra-20261112/perf-native-harness-validation-root/A-runner-summary.json:generic-api-key:195",
+    "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+    "verifiedSource": "frontend/src/workbench/secretPayload.js",
+    "bothFrozenRefsVerified": true
+  },
+  {
+    "fingerprint": "artifacts/release-audit/ra-20261112/perf-native-harness-validation-root/A-runner-summary.json:generic-api-key:196",
+    "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+    "verifiedSource": "frontend/src/workbench/secretPayload.test.js",
+    "bothFrozenRefsVerified": true
+  },
+  {
+    "fingerprint": "artifacts/release-audit/ra-20261112/perf-native-harness-validation-root/B-runner-summary.json:generic-api-key:195",
+    "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+    "verifiedSource": "frontend/src/workbench/secretPayload.js",
+    "bothFrozenRefsVerified": true
+  },
+  {
+    "fingerprint": "artifacts/release-audit/ra-20261112/perf-native-harness-validation-root/B-runner-summary.json:generic-api-key:196",
+    "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+    "verifiedSource": "frontend/src/workbench/secretPayload.test.js",
+    "bothFrozenRefsVerified": true
+  }
+]

@@ -1,37 +1,24 @@
-# ==============================================================================
-# 🚢 TERSANE (K8s Shipyard 3D) — MAKEFILE
-# ==============================================================================
-
-.PHONY: dev build test run-backend run-frontend docker-build clean help
-
-help:
-	@echo "Tersane Kullanılabilir Komutlar:"
-	@echo "  make dev          - Backend ve Frontend'i paralel başlatır (Lokal Dev)"
-	@echo "  make build        - Frontend (Vite build) ve Backend (Go build) üretir"
-	@echo "  make docker-build - Production Docker imajını (tersane:latest) derler"
-	@echo "  make run-backend  - Sadece Go Backend'i başlatır"
-	@echo "  make run-frontend - Sadece React Frontend'i başlatır"
-	@echo "  make clean        - Build çıktılarını temizler"
+.PHONY: dev build test run-backend run-frontend docker-build helm-check clean
 
 dev:
 	./start.sh
-
 run-backend:
-	cd backend && go run main.go
-
+	cd backend && go run .
 run-frontend:
 	cd frontend && npm run dev
-
 build:
-	@echo "📦 Derleniyor..."
-	cd frontend && npm install && npm run build
-	cd backend && go build -o ../bin/tersane-backend main.go
-	@echo "✅ Build tamamlandı: bin/tersane-backend"
-
+	cd frontend && npm ci && npm run build
+	node scripts/prepare-webui.mjs
+	mkdir -p bin
+	cd backend && CGO_ENABLED=0 go build -trimpath -o ../bin/kubeview .
+	cp bin/kubeview bin/tersane-backend
+test:
+	cd backend && go test ./...
+	cd frontend && npm test
+helm-check:
+	helm lint charts/tersane
+	helm template kubeview charts/tersane > /dev/null
 docker-build:
-	@echo "🐳 Docker Img Derleniyor..."
-	docker build -t tersane:latest .
-	@echo "✅ Docker imajı hazır: tersane:latest"
-
+	docker build -t kubeview:local .
 clean:
-	rm -rf bin/ frontend/dist backend/backend_binary
+	python3 -c "import shutil; [shutil.rmtree(p,ignore_errors=True) for p in ['bin','frontend/dist']]"

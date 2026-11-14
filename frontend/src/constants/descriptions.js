@@ -4,6 +4,7 @@
 // -----------------------------------------------------------------------------
 
 export const OBJECT_DESCRIPTIONS = {
+  WORKSPACE_HARBOR: { title: 'Proje limanı', description: 'Kayıtlı Kubernetes bağlantısı ve izinli namespace/label kapsamı. Seçerek bu limanın gerçek bağlantı ve kaynak görünümünü açın; yeni cluster veya Node yaratılmaz.' },
   CRANE: {
     title: '🤖 Kube-scheduler (Liman Vinci)',
     description: 'Kube-scheduler — Yeni Pod\'ları hangi Node gemisine yükleyeceğine kaynak skorlarına göre karar verir.'
@@ -53,3 +54,20 @@ export const OBJECT_DESCRIPTIONS = {
     description: 'DaemonSet — Tüm Worker Node gemilerinin direğinde otomatik çalışan arka plan izleme ekipmanı.'
   }
 }
+
+// The harbor's fixtures describe the visual metaphor, never invented Kubernetes resources.
+Object.assign(OBJECT_DESCRIPTIONS, {
+  HARBOR_CONTAINER_FAULT: { title: 'Container arıza izi', description: 'Gerçek container arızasının görsel izi. Pod UID ve container kimliği korunur; incelemek için seçin.' },
+  HARBOR_SLIPWAY: { title: 'Node kızağı', description: 'Node kızağı — Gerçek worker isteğini yönetim merkezinde açar; istek taslağı Node sayısına dahil değildir.' },
+  HARBOR_MEASURED_TRAFFIC: { title: 'Ölçülmüş Hubble akışı', description: 'Sağlayıcının zaman penceresindeki yönlü flow olayları; parçacıklar paket sayısı veya bant genişliği değildir.' },
+  HARBOR_PIER: { title: 'Beton iskele', description: 'Node gemilerine erişen, vinç raylarını taşıyan tersane iskelesi. Dekoratif tesis öğesidir.' },
+  HARBOR_HANGAR: { title: 'Endüstriyel hangar', description: 'Tersanenin kara tarafındaki oluklu metal çalışma hangarı. Tek başına Kubernetes kaynağı sayılmaz.' },
+  HARBOR_PENDING: { title: 'Pod bekleme alanı', description: 'Henüz bir Node ataması gözlenmeyen Pod kaynaklarının rıhtımdaki geçici yeri.' },
+})
+
+Object.assign(OBJECT_DESCRIPTIONS, {
+  HARBOR_CENTER: {title:'Liman yönetimi',description:'Kontrol kulesi; gerçek cluster, iş yükü ve operasyon pencerelerini açar.'},
+  HARBOR_WORKLOADS: {title:'İş yükleri hangarı',description:'Deployment, StatefulSet, DaemonSet ve Pod siparişlerinin gerçek kaynak penceresi.'},
+  HARBOR_CALENDAR: {title:'Sefer takvimi',description:'Gerçek Job ve CronJob görevlerini ve zamanlamalarını açar.'},
+  HARBOR_IDENTITY: {title:'Personel ve kimlik',description:'ServiceAccount ve RBAC kaynaklarını, gerçek yetki ve bağlarını inceleme ofisi.'},
+})

@@ -1,0 +1,54 @@
+{
+  "id": "ws-vertical04-cold-view-regression",
+  "startedAt": "2026-11-09T17:46:44.969Z",
+  "status": "failed",
+  "checks": [
+    {
+      "name": "empty-onboarding-has-no-last-known-stale-claim",
+      "at": "2026-11-09T17:46:45.675Z",
+      "detail": {
+        "canvasCount": 1,
+        "sockets": 0
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Normal UI and real embedded replay HTTP/WS only; no response mock or product state injection.",
+    "TEST/REPLAY fixtures are synthetic, not actual Kubernetes or Hubble evidence.",
+    "No raw logs, headers, nonce, Secret values or traces saved.",
+    "Caret/camera observations are not physical presented latency."
+  ],
+  "sourceBefore": "8ee8bf29e8b08feacfbd35b7343dc43a0d21c9e9ef8a042eaf566977402c899f",
+  "distBefore": "cb5a42927f9baed4fadd01ef6088faab42c521686fbaeddf44454b38da89e8ab",
+  "replayBefore": {
+    "dataSource": "test-replay",
+    "profile": "M",
+    "logOpened": 0,
+    "logClosed": 0
+  },
+  "failure": "Expected values to be strictly equal:\n\n23 !== 2\n",
+  "timedOut": false,
+  "logRequests": [
+    {
+      "uid": "pod-0",
+      "container": "app",
+      "namespace": "bench-0",
+      "scopePresent": true,
+      "noncePresent": true,
+      "status": 200,
+      "phase": "pending"
+    }
+  ],
+  "socketCount": 3,
+  "socketClosed": 2,
+  "replayAfter": {
+    "dataSource": "test-replay",
+    "profile": "M",
+    "logOpened": 1,
+    "logClosed": 1
+  },
+  "sourceAfter": "8ee8bf29e8b08feacfbd35b7343dc43a0d21c9e9ef8a042eaf566977402c899f",
+  "distAfter": "cb5a42927f9baed4fadd01ef6088faab42c521686fbaeddf44454b38da89e8ab",
+  "finishedAt": "2026-11-09T17:46:47.479Z"
+}

@@ -1,0 +1,66 @@
+{
+  "recorded_at": "2026-11-09T08:49:59.588226+00:00",
+  "status": "PASS_QUALIFIED_EMULATED_LINUX_RUNTIME",
+  "current_result": "artifacts/v1.1.0/v11-20261108/platform-final/linux-final-2026-11-09T08-48-52-125Z-62583c52.json",
+  "current_result_sha256": "d5bad4e46cc13911367d1295c4e6f18236864dbc5f1b64e4e62718a46055ed8f",
+  "current_counts": {
+    "PASS": 4,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "final_commit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "binary_sha256": "25576de72112b7ac97882fb36d839452d6c5496abaef0295072524ef31697b24",
+  "source_proof": "artifacts/v1.1.0/v11-20261108/candidate-frozen-32a0468.json",
+  "source_proof_sha256": "c588980f8df41771f8b52cf3f1c3ae37b31f0b7f14c8b253fbf6fc978d212e29",
+  "helper_sha256": "ba9bddef34b575b77592a23cf523bee46dae8698f75a7549f5f50626a38c3871",
+  "source_build_before_after_equal": true,
+  "owned_API_node_network_before_after_equal": true,
+  "runtime_architecture_evidence": {
+    "version": "KubeView 1.1.0 (32a0468ad51516a1bb38aab68760e73984c45ddf) linux/amd64",
+    "containerImageDescriptorID": "sha256:87a4361f6c819618a6bafa2ed5228714cb0bb22195d2b49c95eb26799990128a",
+    "selectedPlatformImageID": "sha256:2d8a11041a92082ba21e364dec73559ce44f1de69b60fa68315f6d3774e59117",
+    "imageSelection": "docker image inspect --platform linux/amd64; container.Image may identify an OCI index",
+    "actualImageOS": "linux",
+    "actualImageArchitecture": "amd64",
+    "unameMachine": "x86_64",
+    "alpineRelease": "3.21.10",
+    "ELFMachine": 62,
+    "host": {
+      "os": "darwin",
+      "arch": "arm64"
+    },
+    "emulatedOnMacOSARM64": true,
+    "nativeIntelProof": false,
+    "noGoNodeVite": true,
+    "cwd": "/tmp"
+  },
+  "actual_Node_count": 3,
+  "actual_cluster_UID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "current_check_scope": [
+    "Linux binary version/isolated readonly runtime",
+    "Embedded finalHTML/JS/CSS exactSHA and MIME",
+    "Missingauth401 and authenticatedcontexts/readonlyconnection actualAPI",
+    "Real3NodeUID set and kube-systemUID via Linux gateway"
+  ],
+  "cleanup": {
+    "exactOwnedID": "cdd26c0c9fc0ecebb1ce262289dc9551f00dbefcf3448f191ae3f2bc070cde38",
+    "ownerLabelsVerifiedBeforeStopAndRemove": true,
+    "removed": true,
+    "port18511Free": true
+  },
+  "earlier_failed_helper_run": {
+    "path": "artifacts/v1.1.0/v11-20261108/platform-final/linux-final-2026-11-09T08-46-12-874Z-b9b4e833.json",
+    "status": "FAIL",
+    "meaning": "Generic Docker image inspect on OCI index returned blank OS/Arch. Guard metadata assumption failed; not proof of wrong actual runtime platform. Original FAIL retained; corrected platform-specific inspect passed in new run."
+  },
+  "not_proven": [
+    "Native physical Intel/Linux execution",
+    "Linux browser/UI acceptance",
+    "Linux performance",
+    "Helm apply or cloud deployment",
+    "Full19-row release acceptance"
+  ],
+  "Docker_changes": "Only uniquely owned labeled smoke containers were created/stopped/removed; no image pull/tag mutation/prune and no other containers changed",
+  "active_smoke_containers": 0,
+  "active_test_jobs": 0
+}

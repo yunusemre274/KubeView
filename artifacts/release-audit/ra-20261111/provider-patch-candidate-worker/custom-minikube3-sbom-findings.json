@@ -1,0 +1,353 @@
+[
+  {
+    "image": "custom-minikube3-sbom",
+    "digest_ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+    "target": "",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-85747",
+    "pkg": "github.com/docker/distribution",
+    "pkg_path": null,
+    "installed": "v2.8.3+incompatible",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ghsa",
+    "title": "github.com/distribution/distribution: distribution: Arbitrary container manifest substitution via missing digest verification",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-85747",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-85747",
+      "https://github.com/distribution/distribution",
+      "https://github.com/distribution/distribution/commit/8f91c26c8888a95a36c2357a6e30bc15d4dd76d3",
+      "https://github.com/distribution/distribution/commit/960439b09f342cdeb8f1c0e18e8c7349bdcfbf80",
+      "https://github.com/distribution/distribution/releases/tag/v3.1.2",
+      "https://github.com/distribution/distribution/security/advisories/GHSA-685w-q87j-wqw3",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-85747",
+      "https://www.cve.org/CVERecord?id=CVE-2026-85747"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "bitnami": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+        "V3Score": 6.8
+      },
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+        "V3Score": 6.8
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+        "V3Score": 6.8
+      }
+    }
+  },
+  {
+    "image": "custom-minikube3-sbom",
+    "digest_ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+    "target": "",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-41567",
+    "pkg": "github.com/docker/docker",
+    "pkg_path": null,
+    "installed": "v28.5.2+incompatible",
+    "fixed": null,
+    "status": "affected",
+    "severity": "HIGH",
+    "severity_source": "ghsa",
+    "title": "docker: Moby/Docker Engine: Arbitrary Code Execution via malicious container image and compressed archive upload",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-41567",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:37387",
+      "https://access.redhat.com/errata/RHSA-2026:41030",
+      "https://access.redhat.com/errata/RHSA-2026:42852",
+      "https://access.redhat.com/errata/RHSA-2026:44622",
+      "https://access.redhat.com/errata/RHSA-2026:51057",
+      "https://access.redhat.com/security/cve/CVE-2026-41567",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2485356",
+      "https://github.com/moby/moby",
+      "https://github.com/moby/moby/security/advisories/GHSA-x86f-5xw2-fm2r",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-41567",
+      "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-41567.json",
+      "https://www.cve.org/CVERecord?id=CVE-2026-41567"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N",
+        "V3Score": 7.2
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:H",
+        "V3Score": 7.5
+      }
+    }
+  },
+  {
+    "image": "custom-minikube3-sbom",
+    "digest_ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+    "target": "",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-42306",
+    "pkg": "github.com/docker/docker",
+    "pkg_path": null,
+    "installed": "v28.5.2+incompatible",
+    "fixed": null,
+    "status": "affected",
+    "severity": "HIGH",
+    "severity_source": "ghsa",
+    "title": "github.com/docker/docker: github.com/moby/moby: Moby container framework: Host file overwrite via race condition in docker cp mount setup",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-42306",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-42306",
+      "https://github.com/moby/moby",
+      "https://github.com/moby/moby/security/advisories/GHSA-rg2x-37c3-w2rh",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-42306",
+      "https://www.cve.org/CVERecord?id=CVE-2026-42306"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H",
+        "V3Score": 7.2
+      },
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H",
+        "V3Score": 7.2
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H",
+        "V3Score": 7.2
+      }
+    }
+  },
+  {
+    "image": "custom-minikube3-sbom",
+    "digest_ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+    "target": "",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-33997",
+    "pkg": "github.com/docker/docker",
+    "pkg_path": null,
+    "installed": "v28.5.2+incompatible",
+    "fixed": "29.3.1",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ghsa",
+    "title": "moby: docker: github.com/moby/moby: Moby: Privilege validation bypass during plugin installation",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-33997",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:21769",
+      "https://access.redhat.com/errata/RHSA-2026:22347",
+      "https://access.redhat.com/errata/RHSA-2026:23345",
+      "https://access.redhat.com/security/cve/CVE-2026-33997",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2453277",
+      "https://docs.docker.com/engine/extend/legacy_plugins",
+      "https://github.com/moby/moby",
+      "https://github.com/moby/moby/commit/f4d6f25bf0c3fa12d4968320a45685947756a22a",
+      "https://github.com/moby/moby/releases/tag/docker-v29.3.1",
+      "https://github.com/moby/moby/security/advisories/GHSA-pxq6-2prw-chj9",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-33997",
+      "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-33997.json",
+      "https://www.cve.org/CVERecord?id=CVE-2026-33997"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+        "V3Score": 6.8
+      },
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+        "V3Score": 8.1
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:H",
+        "V3Score": 8.4
+      }
+    }
+  },
+  {
+    "image": "custom-minikube3-sbom",
+    "digest_ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+    "target": "",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-41568",
+    "pkg": "github.com/docker/docker",
+    "pkg_path": null,
+    "installed": "v28.5.2+incompatible",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ghsa",
+    "title": "github.com/docker/docker: github.com/moby/moby: Moby: Denial of Service via race condition in docker cp mount setup",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-41568",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-41568",
+      "https://github.com/moby/moby",
+      "https://github.com/moby/moby/security/advisories/GHSA-vp62-88p7-qqf5",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-41568",
+      "https://www.cve.org/CVERecord?id=CVE-2026-41568"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H",
+        "V3Score": 6
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:L",
+        "V3Score": 3.9
+      }
+    }
+  },
+  {
+    "image": "custom-minikube3-sbom",
+    "digest_ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+    "target": "",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-116587",
+    "pkg": "github.com/go-jose/go-jose/v4",
+    "pkg_path": null,
+    "installed": "v4.1.4",
+    "fixed": "4.1.6",
+    "status": "fixed",
+    "severity": "HIGH",
+    "severity_source": "ghsa",
+    "title": "github.com/go-jose/go-jose: go-jose: Denial of Service via crafted RSA parameters in JWKs",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-116587",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-116587",
+      "https://github.com/go-jose/go-jose",
+      "https://github.com/go-jose/go-jose/commit/a0111f82742fa92bceec9ede40845e73319e6230",
+      "https://github.com/go-jose/go-jose/releases/tag/v4.1.6",
+      "https://github.com/go-jose/go-jose/security/advisories/GHSA-mgcc-cww5-fp2q",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-116587",
+      "https://www.cve.org/CVERecord?id=CVE-2026-116587"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      }
+    }
+  },
+  {
+    "image": "custom-minikube3-sbom",
+    "digest_ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+    "target": "",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-116585",
+    "pkg": "github.com/go-jose/go-jose/v4",
+    "pkg_path": null,
+    "installed": "v4.1.4",
+    "fixed": "4.1.5",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ghsa",
+    "title": "github.com/go-jose/go-jose: go-jose: Denial of Service via empty ciphertext buffer during JWE decryption",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-116585",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-116585",
+      "https://github.com/go-jose/go-jose",
+      "https://github.com/go-jose/go-jose/commit/35883f7999e87cbd1b1f4cda07fdad8cd71c3dd6",
+      "https://github.com/go-jose/go-jose/commit/74114c2fa22669a2b2a296746eaa82e15566fd54",
+      "https://github.com/go-jose/go-jose/pull/292",
+      "https://github.com/go-jose/go-jose/releases/tag/v4.1.5",
+      "https://github.com/go-jose/go-jose/security/advisories/GHSA-4w3g-jfj2-cw2q",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-116585",
+      "https://www.cve.org/CVERecord?id=CVE-2026-116585"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+        "V40Score": 6.9
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      }
+    }
+  },
+  {
+    "image": "custom-minikube3-sbom",
+    "digest_ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+    "target": "",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-116586",
+    "pkg": "github.com/go-jose/go-jose/v4",
+    "pkg_path": null,
+    "installed": "v4.1.4",
+    "fixed": "4.1.5",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ghsa",
+    "title": "github.com/go-jose/go-jose: go-jose: Denial of Service via deeply nested JSON parsing",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-116586",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-116586",
+      "https://github.com/go-jose/go-jose",
+      "https://github.com/go-jose/go-jose/commit/a31af25836222f4c45d366d6e8f9b1049dd9935a",
+      "https://github.com/go-jose/go-jose/pull/290",
+      "https://github.com/go-jose/go-jose/releases/tag/v4.1.5",
+      "https://github.com/go-jose/go-jose/security/advisories/GHSA-vvm8-gf78-28g4",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-116586",
+      "https://www.cve.org/CVERecord?id=CVE-2026-116586"
+    ],
+    "data_source": {
+      "ID": "ghsa",
+      "Name": "GitHub Security Advisory Go",
+      "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
+    },
+    "cvss": {
+      "ghsa": {
+        "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+        "V40Score": 6.9
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 7.5
+      }
+    }
+  }
+]

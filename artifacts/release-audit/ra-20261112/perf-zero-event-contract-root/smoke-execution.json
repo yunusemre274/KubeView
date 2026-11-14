@@ -1,0 +1,235 @@
+{
+  "sourceSHA256": {
+    "benchmarks/run.mjs": "80cc55ad70f65857c5df2fa5eb79155aae5b8a5daec2d21916b8c588e39bb850",
+    "benchmarks/metrics.mjs": "6aab91b45ec8e3ef50300f1f90095c39070af2190a76a71662c6a2c84451c9e7",
+    "benchmarks/process-identity.mjs": "b2790f88e7d5111ec43babf8362605ca5f0718ad5fd3fac122ba9ad361956a32",
+    "benchmarks/panel-compare.mjs": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+    "benchmarks/camera-contract.mjs": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7"
+  },
+  "powerSource": "battery",
+  "status": "PASS_DATA_CONTRACT_EXECUTED_REVIEW_PENDING",
+  "startedAt": "2026-11-12T18:16:59.775607+00:00",
+  "limitSeconds": 30,
+  "mode": "ZERO_EVENT_CANONICAL_CONTRACT_ONLY",
+  "realKubernetesOrUserCLI": false,
+  "jobs": [
+    {
+      "side": "B",
+      "id": "cat16-zero-contract-B-20261112T181659Z",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "benchmarks/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "cat16-f32-20261112T113255Z",
+        "--backend-tag",
+        "cat16-common-f32-20261112T113255Z",
+        "--reuse-build",
+        "--reuse-binary",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "panel-open",
+        "--panel-matrix",
+        "--repeats",
+        "1",
+        "--warmup",
+        "0",
+        "--seconds",
+        "1",
+        "--camera-fov",
+        "38",
+        "--dpr",
+        "1",
+        "--harbors",
+        "1",
+        "--lock-input",
+        "--lock-visual-start",
+        "--disable-browser-energy-saver",
+        "--max-minutes",
+        "0.4",
+        "--port",
+        "5192",
+        "--experiment-family",
+        "ZERO_EVENT_CANONICAL_DATA_ONLY",
+        "--id",
+        "cat16-zero-contract-B-20261112T181659Z"
+      ],
+      "startedAt": "2026-11-12T18:16:59.882984+00:00",
+      "PID": 32768,
+      "exitCode": 0,
+      "finishedAt": "2026-11-12T18:17:03.354091+00:00"
+    }
+  ],
+  "power": [
+    {
+      "at": "2026-11-12T18:16:59.805821+00:00",
+      "source": "battery",
+      "batteryPercent": 56,
+      "diskBytes": 453294092288
+    },
+    {
+      "at": "2026-11-12T18:16:59.913569+00:00",
+      "source": "battery",
+      "batteryPercent": 56,
+      "diskBytes": 453294092288
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.13795924186706543,
+      "ownedProcesses": 1,
+      "browserSummedRSSKiB": 0,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 0.42244935035705566,
+      "ownedProcesses": 3,
+      "browserSummedRSSKiB": 0,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 0.7045221328735352,
+      "ownedProcesses": 4,
+      "browserSummedRSSKiB": 86880,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 1.0175492763519287,
+      "ownedProcesses": 9,
+      "browserSummedRSSKiB": 986320,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 1.3085660934448242,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1030480,
+      "appRSSKiB": 40352
+    },
+    {
+      "elapsedSeconds": 1.586707353591919,
+      "ownedProcesses": 7,
+      "browserSummedRSSKiB": 607456,
+      "appRSSKiB": 34032
+    },
+    {
+      "elapsedSeconds": 1.8739221096038818,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1108752,
+      "appRSSKiB": 42448
+    },
+    {
+      "elapsedSeconds": 2.150397300720215,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1216304,
+      "appRSSKiB": 45600
+    },
+    {
+      "elapsedSeconds": 2.4301462173461914,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1246320,
+      "appRSSKiB": 46656
+    },
+    {
+      "elapsedSeconds": 2.732898235321045,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1248096,
+      "appRSSKiB": 46656
+    },
+    {
+      "elapsedSeconds": 3.031297206878662,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1254704,
+      "appRSSKiB": 46656
+    },
+    {
+      "elapsedSeconds": 3.32946515083313,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1255584,
+      "appRSSKiB": 46656
+    }
+  ],
+  "cleanup": [
+    {
+      "pid": 32768,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32852,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32889,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32888,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32894,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32904,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32905,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32906,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32908,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32910,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32912,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32937,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32938,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32939,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32940,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32948,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32953,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32951,
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 32952,
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "port5192Free": true,
+  "finishedAt": "2026-11-12T18:17:04.052635+00:00",
+  "elapsedSeconds": 4.283194303512573,
+  "backendUnchanged": true
+}

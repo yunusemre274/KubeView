@@ -1,0 +1,6 @@
+b640ee56c92bc77ba499acb464181d524fc4023b8add38ca785e3b618dc897a4  /usr/bin/cilium-envoy-healthcheck
+2b9363871451c54d4c976d6717c232f3e27dc02347de659e7f90daad48a73997  /usr/bin/cilium-envoy
+1e0baa446c1cdfba5e2c69fdd7e2efad67bb6b8258509f16c76045efc22ea3c6  /usr/bin/cilium-envoy-starter
+64e7c24b0536b525fb19b145768bd5e6e12ced0df3db837c34553ea789acd143  /etc/ssl/certs/ca-certificates.crt
+9fcfc0471807af385108d77aa63d0bdc3cc4f8e276a89f2bd9681f4bf8467a3f  /etc/apt/sources.list.d/ubuntu.sources
+80a36b0a6de2f69f49d2df75ef473ccde121e9e190b9ea01d20a4f63778d5c31  /usr/share/keyrings/ubuntu-archive-keyring.gpg

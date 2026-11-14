@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/ci-package-inspection-worker/kubeview",
+    "--data-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/ci-package-inspection-worker/fresh-never-created-app-data",
+    "--version"
+  ],
+  "cwd": ".git/release-audit/ci-package-inspection-worker/fresh-cwd",
+  "PATH": "/usr/bin:/bin",
+  "HOME_preserved": true,
+  "exitCode": 0,
+  "timeoutSeconds": 10,
+  "elapsedSeconds": 0.578202,
+  "binarySHA256": "191fb0ca99a4f1b4327a92f04681edd93b74d1cd22236dcdedbb20be1d32c406",
+  "dataDirAbsentBefore": true,
+  "dataDirAbsentAfter": true,
+  "freshCwdFilesAfter": [],
+  "stdout": "KubeView 1.1.0 (5373657169e8bf332940fd2366022925f48eb85c) darwin/arm64",
+  "stderr": "",
+  "completedAt": "2026-11-11T17:02:41.703272+00:00"
+}

@@ -1,0 +1,65 @@
+{
+  "status": "DRAFT_NOT_INTEGRATION_READY_KNOWN_FIXTURE_AND_CLEANUP_CORRECTIONS",
+  "finalizedAt": "2026-11-12T21:11:09.930424+00:00",
+  "referenceRuntimeFixCommit": "15770296056ca2629601dba540c04741e1822e0d",
+  "draftFile": "release_active_watch_real_test.go.txt",
+  "draftSHA256": "0d53d82f4e2ee1783b349166154f5817aaa3481ff3814c21e8870a77f626a2c4",
+  "draftLines": 750,
+  "formatting": "gofmt only; no build/type-check/test",
+  "NOT_RUN": true,
+  "noBackendPackageWrites": true,
+  "noCredentialFileValuesRead": true,
+  "noAppLabClusterProviderOrNewAgents": true,
+  "implemented": [
+    "Sealed lab/marker/namespace receipt and verified static TLS loopback checks reused from existing real Secret test",
+    "Real SA TokenRequest/SSR and normal credential-backed server.client identities; no fake/reactor/Config=nil/operator seed",
+    "Two ordinary HTTP session/workspace/connection/harbor paths and real19846 WebSocket upgrades",
+    "Two exact-UID snapshot/UPDATE positives; guarded UID+RV RoleBindingA deletion",
+    "Real SSAR Allowed=false distinguished from actual API/gatewayGET403; stable client IDs/config",
+    "Sibling fresh200/UPDATE, explicit forbidden non-authoritative STATUS and true CloseError/EOF; timeout fails",
+    "Six captured owner/UID/RV fixtures, reverse exact cleanup and GET404; original2Node/profile/state invariants",
+    "Main105s/cleanup45s/outer180 intent and max10updates/bounded2Hz review polling"
+  ],
+  "knownLimitations": [
+    {
+      "priority": "MUST_CORRECT_BEFORE_INTEGRATION",
+      "finding": "Current inert Pod uses absent nodeName, which root identifies as orphan-Pod GC risk. Freeze handed off unchanged.",
+      "required": "Replace with unique unregistered schedulerName kv-audit-no-scheduler-RUNID and empty nodeName; remove absent-Node GET; enforce same scheduler and still-empty nodeName on updates/positive observations. No new Node, scheduling bypass, workload/image pull."
+    },
+    {
+      "priority": "MUST_CORRECT_BEFORE_INTEGRATION",
+      "finding": "Custom cleanup is registered before t.TempDir; later TempDir cleanup may remove restricted config/workspace before gateway close.",
+      "required": "Allocate TempDir before registering custom cleanup or arrange explicit gateway/socket close before TempDir cleanup; preserve separate45s exact resource cleanup."
+    },
+    {
+      "priority": "REVIEW_BEFORE_RUN",
+      "finding": "Inherited private path/mode/size checks currently occur after prefix config/state loading and initial reads.",
+      "required": "Move these checks before loading credentials/state and enforce fresh empty output directory/exclusive evidence creation. No private credential values were read in this implementation job."
+    },
+    {
+      "priority": "OBSERVATION_LIMIT",
+      "finding": "Actual upstream watch lifetime is not independently instrumented.",
+      "required": "Report only explicit gateway scope/close plus real SSAR/API results; no heartbeat-only causality or assumed established-watch behavior."
+    },
+    {
+      "priority": "UNCOMPILED",
+      "finding": "Only gofmt formatting/syntax parsing was performed; package type checking, runtime and cleanup were not exercised.",
+      "required": "Root corrects/reviews draft, copies into backend package after freeze, then separately compiles and opts in with exact fixture guard."
+    }
+  ],
+  "sourceInputsSHA256": {
+    "backend/pkg/server/release_secret_real_test.go": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+    "backend/pkg/server/workspace_real_test.go": "1fc2eba98b9c316b1eee45e3c5e9dffaad83aef35a17bbb6bf2fd294492142f0",
+    "backend/pkg/server/workspace_real_acceptance_test.go": "bd26dc88c17163ad371206ed407e0349c3f1262da392faf6a4ebc38113615bfe",
+    "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+    "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72",
+    "backend/pkg/server/stream.go": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78"
+  },
+  "implementationTiming": {
+    "hardLimitSeconds": 600,
+    "featureStopSeconds": 450,
+    "elapsedBeforeReportFinalizationSeconds": 606.09,
+    "featureFreeze": "Draft first written at456.933s; then only unused-import/handshake correctness cleanup, formatting and handoff metadata. No further fixture features added."
+  }
+}

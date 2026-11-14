@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-12T17:15:26.151071+00:00",
+  "sourceSHA256": {
+    "benchmarks/run.mjs": "1bbe0778389f4b80a88fd9fbc42dab0e4920c201c30a639757974abd2b9f70ec",
+    "benchmarks/metrics.mjs": "9181e3d5a486d4cbddd18debfccf0a55cd26f064354cce6a6c379ec063b0fe81",
+    "benchmarks/metrics.test.mjs": "af97639e8e4875b05be3e39d796ab5ac18a420dcdf08c61b74f796a3bc96475f",
+    "benchmarks/panel-compare.mjs": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+    "benchmarks/panel-compare.test.mjs": "37c10038cca843c966effbdedc02404769d783ea8d4ab633271f101a6f95bbcb",
+    "benchmarks/process-identity.mjs": "b2790f88e7d5111ec43babf8362605ca5f0718ad5fd3fac122ba9ad361956a32",
+    "benchmarks/process-identity.test.mjs": "60d3a7f80852cba609897416a258ed994de875c04d4226e2b884e708e2b82cec",
+    "benchmarks/repair-session.test.mjs": "420d75080be6e5327fd882dbaa749990bb0d72834e8340a3681c02ee0aacea97"
+  },
+  "scope": "harness-only; no product/camera/FOV/quality change",
+  "rootApprovedExtraPath": "benchmarks/repair-session.test.mjs synthetic fixture only",
+  "originalSourceManifest": "source-before.json",
+  "nativeProbeSourceSHA256": "725c166d1526d7054427dbbf1ce52e90a7d69afff0185aad14acb5e2fbe7b150",
+  "nativeProbeHelperTiming": "native parser/identity probe preceded only final pure scope-cache/case changes; parser/observer identity paths unchanged",
+  "historicalReportsEdited": false
+}

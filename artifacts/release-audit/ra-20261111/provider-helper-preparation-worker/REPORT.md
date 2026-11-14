@@ -1,0 +1,20 @@
+# Provider helper preparation — concrete draft, not runtime cleared
+
+Created scripts/release-provider-lab.py with explicit check/run/cleanup/self-test phases and fixed owned lab/profile/UID/container/network/binary bindings. In-memory syntax compilation passed;8meaningful pure guard cases passed. No Transaction was instantiated, app/manager started, HTTP request, Node add/delete, cluster/provider command, private config read or runtime mutation occurred in this implementation job. Existing2warm nodes were untouched. Product/provider handlers, Git/index and roadmap were not edited.
+
+**Status remains INCOMPLETE.** The6minute phase budget was exceeded during implementation/finalization; exact elapsed is in manifest.json. The code is reviewable, not cleared for a live run. Root confirmed PROV-CACHE-001 while preparation was active: the old native/CSP runtime can return an old cached operation under changed selected actual clusterUID. APP_SHA is now intentionallyNone and run refuses before Transaction/app creation. Root must supply the newly fixed runtime path and exact SHA; old binary execution cannot proceed through this helper's run phase.
+
+The helper imports existing manual_lab guards only when a real phase is explicitly selected, holds Lab.lock, pins original2Node/Docker IDs, system/marker/client namespace UID, patched4 hash and expectedm03. It snapshots original volume births/labels, shared network and Cilium/knownDaemonSet/fixture identities. Run creates a private0700control/data/provider-journal directory, uses an allowlisted app environment with explicit privateMINIKUBE_HOME/KUBECONFIG, disables Hubble and excludes inherited static/token/provider overrides. Its separate loopback app starts with cluster-write capability solely for this opt-in; the browser session initially has management disabled, then normal same-origin HTTP enables the scoped grant. No shell=True, arbitrary command/profile/binary/URL argument, general runner up/down, delete-on-failure, profile overwrite or NodeAPI creation fallback exists.
+
+A durable plan and issuedintent precede the two same-key POSTs. Existing control state refuses any rePOST; interruption requires cleanup-only review. New DockerID/birth/name/labels/network, profileIP and actual new non-control-plane NodeUID are checked before adoption. Ready additionally needs the production operation's CLI name claim/process exit and actual kubelet Ready. Cleanup is limited to the exact recordedm03 association, known baseline DaemonSet-only Pods and exclusive new-label container/volume/network targets; any unknown Pod or changed identity blocks destructive drain. Original worker IDs are rejected. Cleanup-only acquires the existing providerflock as well as Lab.lock; successful run cleanup holds the live manager lock until app shutdown. Evidence avoids raw payloads/nonce/credentials.
+
+The8pure cases cover valid new host identity, original worker refusal, wrong network refusal, original NodeUID refusal, unknown Pod refusal, wrongDaemonSetUID refusal, misbound context and misbound systemUID refusal. They are source-level safety checks, not real provisioning/idempotency acceptance.
+
+Required follow-up before actual execution:
+
+- Supply root-approved fixed runtime path+SHA for PROV-CACHE-001.
+- Add or review an independent hard CLI/global/cleanup deadline controller. Current275s cancel intent and individual call timeouts do not prove a300s hard CLI cap while API/adoption calls may block.
+- Finish the failure/partial-inventory cleanup contract. The draft preserves journal and stops its owned app after an issued failure, but cleanup requires an exact adopted record and intentionally refuses noNodeUID or absentNode/presenthost states. No blind retry/deletion is supplied.
+- Validate real workspace/session/cluster-impact/provider HTTP behavior only in a separately authorized bounded job; none ran here.
+
+The root can checkpoint/review this concrete helper and its remaining limitations before a new execution authorization. No automatic live continuation is started. See helper snapshot/hash, syntax and pure-test receipts, manifest, RECIPE and SHA256SUMS.

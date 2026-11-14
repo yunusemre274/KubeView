@@ -1,0 +1,39 @@
+{
+  "phase": "vertical04 frontend correctness candidate",
+  "baseCommit": "2d63c67886d0d81ed1cbedf9915a200f29b80b84",
+  "frontendManifest": {
+    "phase": "production-build-after-correctness-fix",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 1.9561280000016268,
+    "log": "/tmp/kubeview-workspace-correctness-build.log",
+    "manifest": {
+      "frontend/src": {
+        "files": 90,
+        "sha256": "8ee8bf29e8b08feacfbd35b7343dc43a0d21c9e9ef8a042eaf566977402c899f"
+      },
+      "frontend/tests": {
+        "files": 11,
+        "sha256": "9a0d449f3558da859c9d41206d8c925fee98c248b59cb728dc13827cf53642b4"
+      },
+      "frontend/dist": {
+        "files": 6,
+        "sha256": "cb5a42927f9baed4fadd01ef6088faab42c521686fbaeddf44454b38da89e8ab"
+      }
+    },
+    "indexSHA256": "e7bbc4f0a89d959960e3d1a4fd5bcc6b960cca9050dd0ecb32076bc278da5aad",
+    "priorEvidence": [
+      "/tmp/kubeview-workspace-correctness-red.json",
+      "/tmp/kubeview-workspace-correctness-red-helper-corrected.json",
+      "/tmp/kubeview-workspace-correctness-targeted.json",
+      "/tmp/kubeview-workspace-correctness-full.json"
+    ]
+  },
+  "binarySHA256": "a3a5e563852d45ef0d11cf6dbee0e0528a930d249efb98598f9b4f34dbe537f8",
+  "elapsedSeconds": 2.07,
+  "note": "Dirty runtime candidate; core2d63 plus four frontend corrections. Not stable packaging or final acceptance."
+}

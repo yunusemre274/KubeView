@@ -1,0 +1,57 @@
+{
+  "status": "IMPLEMENTATION_COMPLETE_LIVE_RUN_LOCKED",
+  "phaseElapsedSecondsAtFinalization": 446.822105,
+  "budgetSeconds": 480,
+  "withinBudget": true,
+  "helperSHA256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b",
+  "originalDraftSHA256": "5406f4807281b53f406178010e5ad7f5d1e6b15c2be0d76c674339704304312d",
+  "originalDraftSnapshotPreserved": true,
+  "approvedRuntimePath": ".git/release-audit/candidate-runtime-provider09/kubeview",
+  "approvedRuntimeSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "rootReportedFixCommit": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "port": 19849,
+  "RUN_CLEARED": false,
+  "syntax": "PASS in-memory compile",
+  "pureGuardCount": 17,
+  "pureGuards": [
+    "exact_new_identity_allowed",
+    "original_worker_rejected",
+    "wrong_network_rejected",
+    "original_Node_UID_rejected",
+    "unknown_Pod_rejected",
+    "wrong_DaemonSet_UID_rejected",
+    "misbound_context_rejected",
+    "misbound_system_UID_rejected",
+    "independent_CLI_deadline_stops_owned_group",
+    "failure_transitions_to_bounded_cleanup_reserve",
+    "cleanup_deadline_stops_owned_group",
+    "PID_birth_reuse_never_signalled",
+    "partial_without_durable_new_record_refused",
+    "partial_original_NodeUID_refused",
+    "cleanup_watchdog_stops_registered_bounded_IO_group",
+    "live_run_remains_locked",
+    "cleanup_reentry_does_not_extend_budget"
+  ],
+  "realTransactionConstructed": false,
+  "appOrManagerStarted": false,
+  "APIOrDockerKubectlRuntimeCalled": false,
+  "NodeMutation": false,
+  "watchdogs": [
+    "Independent thread polls wall clock and CLI deadline; signals only live captured PID/birth+PGID anchors",
+    "CLI cutoff295s with identity/kill grace inside300s envelope; work475/cleanup175s with5s termination margin",
+    "Local bounded I/O process groups registered with same cleanup/global controller;2MiB output ceiling",
+    "One cleanup budget cannot extend on reentry; global hard cutoff reserves report time"
+  ],
+  "failureContract": [
+    "Issued failures stop only verified owned app/CLI group; attempt safe exact adopted cleanup once under providerflock",
+    "No adopted record or unknownPod/changedUID produces pendingCleanup=true/resultFAIL; no rePOST or deletion",
+    "Conservative partial stop only exact adopted new DockerID+NodeUID after system/marker and DaemonSet-onlyPod proof; does not claimfullcleanup"
+  ],
+  "unexecutedCoverage": [
+    "Real HTTP/session/cluster-impact/provider behavior requires next explicit root preflight",
+    "OS process group/signal and minikube child lifecycle are code paths tested with fake identity/signal models only; no live process spawned",
+    "Host suspension/scheduling can delay userspace watchdog; any actual overrun/event must invalidate a live PASS",
+    "AbsentNode/presenthost or noNodeUID partial states deliberately refuse cleanup and retain pending journal for root"
+  ],
+  "finalizedAt": "2026-11-11T18:35:07.266348+00:00"
+}

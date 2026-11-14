@@ -1,0 +1,56 @@
+// UNIT JSON only. Values model a protocol; they are not performance evidence.
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp,writeFile,mkdir,rm} from 'node:fs/promises';
+import {appendFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+const cli=new URL('./compare.mjs',import.meta.url);
+const processRows=cpu=>[
+ {pid:1,ppid:50,birth:'2026-11-12T00:00:00.000Z',birthSource:'darwin-ps-lstart',cohort:'browser',role:'browser-main',command:'/unit/Chrome',cpuSeconds:cpu,rssKiB:100},
+ {pid:2,ppid:50,birth:'2026-11-12T00:00:00.000Z',birthSource:'darwin-ps-lstart',cohort:'backend',role:'backend',command:'/unit/backend.test',cpuSeconds:cpu/10,rssKiB:20},
+];
+function fixture(){
+ const view={preferences:{quality:'medium',sea:true,patrol:true},dpr:1,rendererPixelRatio:1,buffer:{width:1440,height:900},renderer:'UNIT Metal NOT AN ACTUAL GPU',camera:{position:[1,2,3],quaternion:[0,0,0,1],zoom:1,fov:24},fleet:[{uid:'node-0'}],stats:{lifecycle:{canonicalNodes:20,canonicalPods:300,visibleNodes:8,visiblePods:120}},connectionStale:false,contextLost:false};
+ const runs=Array.from({length:3},(_,repeat)=>({profile:'M',scenario:'living',repeat,before:structuredClone(view),after:structuredClone(view),summary:{durationMs:60000,renderedFPS:60,renderIntervalMs:{p95:17,p99:18},jsSubmitMs:{p50:1,p95:2},callbackToStoreMs:{p95:null},drawProxyMs:{p95:null},panelDomProxyMs:{p95:null}},osBefore:{time:1000+repeat*70000,processes:processRows(10)},osAfter:{time:61000+repeat*70000,processes:processRows(11)}}));
+ return {report:{fixtureProtocol:'UNIT_JSON_NOT_PERFORMANCE_REPORT',manifest:{fixtureVersion:'UNIT',fixtureSHA256:{M:'c'.repeat(64)},backendBinarySHA256:'b'.repeat(64),params:{profiles:['M'],scenarios:['living'],repeats:3,warmup:30,seconds:60},repeatOffset:0,cameraFovProtocol:'explicit-camera-fov-v1',cameraFovOverride:24,smoke:false,profiler:false,production:true,quality:'medium'},runs,errors:[]},samples:runs.map(r=>({time:r.osBefore.time+30000,processes:processRows(10.5)}))};
+}
+async function invoke(t,name,mutate){
+ const directory=await mkdtemp(path.join(tmpdir(),'kv-compare-unit-'));t.after(()=>rm(directory,{recursive:true,force:true}));const a=fixture(),b=fixture();mutate?.(a,b);const dirs=[];
+ for(const [side,value]of [['before',a],['after',b]]){const dir=path.join(directory,side);await mkdir(dir);dirs.push(dir);if(value.report!==undefined)await writeFile(path.join(dir,'summary.json'),value.rawSummary??JSON.stringify(value.report));if(value.samples!==undefined)await writeFile(path.join(dir,'process-samples.json'),value.rawSamples??JSON.stringify(value.samples));}
+ const child=spawnSync(process.execPath,[cli.pathname,...dirs],{encoding:'utf8',timeout:5000,maxBuffer:2*1024*1024});let result;try{result=JSON.parse(child.stdout);}catch{result=null;}
+ if(process.env.KV_COMPARE_TEST_EVIDENCE)appendFileSync(process.env.KV_COMPARE_TEST_EVIDENCE,JSON.stringify({fixtureProtocol:'UNIT_JSON_NOT_PERFORMANCE_REPORT',case:name,exitCode:child.status,stdout:child.stdout,stderr:child.stderr})+'\n');return{child,result};
+}
+test('generic CLI preserves valid synthetic positive',async t=>{const {child,result}=await invoke(t,'valid');assert.equal(child.status,0);assert.equal(result.comparable,true);assert.ok(result.rows.some(x=>x.metric==='process.browserCores'&&x.before.n===3));});
+const cases=[
+ ['PID reuse',(a,b)=>{b.report.runs[0].osAfter.processes[0].birth='2026-11-12T00:00:01.000Z';}],
+ ['negative CPU',(a,b)=>{b.report.runs[0].osAfter.processes[0].cpuSeconds=-1;}],
+ ['unknown CPU',(a,b)=>{b.report.runs[0].osAfter.processes[0].cpuSeconds=null;}],
+ ['changed PPID',(a,b)=>{b.samples[0].processes[0].ppid=99;}],
+ ['command role mismatch',(a,b)=>{b.samples[0].processes[0].command='/unit/not-browser';}],
+ ['legacy missing birth',(a,b)=>{delete b.report.runs[0].osBefore.processes[0].birth;}],
+ ['interior cohort disappearance',(a,b)=>{b.samples[0].processes.pop();}],
+ ['interior counter regression',(a,b)=>{b.samples[0].processes[0].cpuSeconds=50;}],
+ ['invalid clock',(a,b)=>{b.report.runs[0].osAfter.time+=5000;}],
+ ['missing process samples',(a,b)=>{b.samples=undefined;}],
+ ['malformed process JSON',(a,b)=>{b.rawSamples='{bad';}],
+ ['missing interior sample for one run',(a,b)=>{b.samples.shift();}],
+ ['invalid sample clock',(a,b)=>{b.samples[0].time=null;}],
+ ['empty process samples',(a,b)=>{b.samples=[];}],
+ ['malformed sample body',(a,b)=>{b.samples={};}],
+ ['both empty runs',(a,b)=>{a.report.runs=[];b.report.runs=[];}],
+ ['missing declared group on both sides',(a,b)=>{a.report.manifest.params.scenarios.push('panel');b.report.manifest.params.scenarios.push('panel');}],
+ ['extra before group',(a,b)=>{a.report.runs.push({...structuredClone(a.report.runs[0]),profile:'L'});}],
+ ['duplicate declared group',(a,b)=>{a.report.manifest.params.profiles.push('M');b.report.manifest.params.profiles.push('M');}],
+ ['extra after group',(a,b)=>{b.report.runs.push({...structuredClone(b.report.runs[0]),profile:'L'});}],
+ ['missing after group',(a,b)=>{b.report.runs=[];}],
+ ['duplicate repeat',(a,b)=>{b.report.runs[2].repeat=0;}],
+ ['missing summary',(a,b)=>{b.report=undefined;}],
+ ['malformed summary JSON',(a,b)=>{b.rawSummary='{bad';}],
+ ['missing run body',(a,b)=>{delete b.report.runs[0].before;}],
+ ['missing errors body',(a,b)=>{delete b.report.errors;}],
+];
+for(const[name,mutate]of cases)test('generic CLI rejects '+name,async t=>{const{child,result}=await invoke(t,name,mutate);assert.equal(child.status,2);assert.ok(result,'clean JSON rejection required');assert.equal(result.comparable,false);assert.ok(result.reasons.length);assert.equal(child.stderr,'');});
+
+test('generic CLI preserves observed zero CPU, distinct from unknown',async t=>{const{child,result}=await invoke(t,'observed zero CPU',(a,b)=>{for(const value of [a,b])for(const snapshot of [...value.samples,...value.report.runs.flatMap(r=>[r.osBefore,r.osAfter])])snapshot.processes=processRows(10);});assert.equal(child.status,0);const row=result.rows.find(r=>r.metric==='process.browserCores');assert.equal(row.before.n,3);assert.equal(row.before.p50,0);});

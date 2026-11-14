@@ -1,0 +1,30 @@
+[
+  {
+    "binary_label": "custom-minikube3",
+    "binary_sha256": "0ea47b1aa27343751614b25f427771974bca6534365ab8ddee4bf7aee8ce0371",
+    "buildinfo_path": "artifacts/release-audit/ra-20261111/runtime-binary-worker/patched-minikube/vendor-attempt/buildinfo.stdout",
+    "buildinfo_sha256": "2b5f37d76f52b23fe9f9a07724480510d5063026765983ba156d282027949fd6",
+    "component_count": 214,
+    "go_jose_components": [
+      {
+        "type": "library",
+        "name": "github.com/go-jose/go-jose/v4",
+        "version": "v4.1.4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
+        "bom-ref": "github.com/go-jose/go-jose/v4@v4.1.4"
+      }
+    ],
+    "main_module_purl": "OMITTED; custom/devel main coverage remains a gap",
+    "no_binary_execution": true
+  },
+  {
+    "binary_label": "custom-hubble1",
+    "binary_sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2",
+    "buildinfo_path": "artifacts/release-audit/ra-20261111/runtime-binary-worker/patched-hubble/candidate-buildinfo.stdout",
+    "buildinfo_sha256": "187d82aad331190370723d0a4993d3489b94a419e6d96594f1ed26ccf53315db",
+    "component_count": 104,
+    "go_jose_components": [],
+    "main_module_purl": "OMITTED; custom/devel main coverage remains a gap",
+    "no_binary_execution": true
+  }
+]

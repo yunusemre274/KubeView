@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+  "tag": "v1.20.4",
+  "archiveURL": "https://codeload.github.com/cilium/cilium/tar.gz/beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+  "archiveSHA256": "3e5b0bc29192d7b5ffca168ca378d115c91bc2a546a674b29daf7d1aab8b55f1",
+  "archiveBytes": 54909189,
+  "baselineGoModSHA256": "ce3e78849b7866c5f9bd2534343f4cde778542b2f51dd4c928cbdff897d18ca0",
+  "baselineGoSumSHA256": "66c629d48c382fd8c9e991d709acb789f40260b98659406809ebd4c0b0f08200",
+  "officialRecipeHashes": {
+    "operator/Makefile": "6463539714c0cc0d2b684a25d7772e9b4bff693a909de99ed2db526af43b67b7",
+    "Makefile.defs": "dc82054e06f2e6506ad058c7a5b193751515904f67bb4e0b29ab09cbef3438b9",
+    "images/operator/Dockerfile": "02099189b727438e5314f571d5b2c7f813ef2a39da4062d10addf4d2a7021e77",
+    "images/cilium/Dockerfile": "286d81cde702902c112d2ee9815332ad716e1bad07a60a8fbb93319edcc11201"
+  },
+  "derivedFromCandidate1SHA256": "7bba6629021f9f1437ba09626c904ff92cba0493cb2655db76eeccb2c75a061a",
+  "copyMethod": "shutil.copytree, fresh files, no hardlinks",
+  "candidate1GoModSHA256": "b34fe204a2d0f8d817798d01af6e5fe8453e6ee7cdf9717e162f465630964ff4",
+  "candidate1GoSumSHA256": "f67b0322352cd93fcbb3b79230853b544957d8bc604fa618f7c1c8062cac9c44",
+  "preparedAt": "2026-11-11T20:07:44.285371+00:00"
+}

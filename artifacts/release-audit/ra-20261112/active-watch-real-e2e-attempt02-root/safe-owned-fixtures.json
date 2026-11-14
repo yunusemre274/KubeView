@@ -1,0 +1,56 @@
+[
+  {
+    "GVR": {
+      "Group": "",
+      "Version": "v1",
+      "Resource": "serviceaccounts"
+    },
+    "Name": "kv-watch-a-b0e354318e9dbedd",
+    "UID": "82089431-e011-4472-b3e1-7f4c753368d8"
+  },
+  {
+    "GVR": {
+      "Group": "",
+      "Version": "v1",
+      "Resource": "serviceaccounts"
+    },
+    "Name": "kv-watch-b-b0e354318e9dbedd",
+    "UID": "60180f55-7535-476b-83fb-2e550e9fc2fe"
+  },
+  {
+    "GVR": {
+      "Group": "rbac.authorization.k8s.io",
+      "Version": "v1",
+      "Resource": "roles"
+    },
+    "Name": "kv-watch-b0e354318e9dbedd",
+    "UID": "42e9a83a-fe5c-4ca4-9e4f-d9ab533821ba"
+  },
+  {
+    "GVR": {
+      "Group": "rbac.authorization.k8s.io",
+      "Version": "v1",
+      "Resource": "rolebindings"
+    },
+    "Name": "kv-watch-a-b0e354318e9dbedd",
+    "UID": "03b7a937-99bc-41d1-b424-379532fa4834"
+  },
+  {
+    "GVR": {
+      "Group": "rbac.authorization.k8s.io",
+      "Version": "v1",
+      "Resource": "rolebindings"
+    },
+    "Name": "kv-watch-b-b0e354318e9dbedd",
+    "UID": "eb37914e-7276-455b-a606-0e10eb4f1da6"
+  },
+  {
+    "GVR": {
+      "Group": "",
+      "Version": "v1",
+      "Resource": "pods"
+    },
+    "Name": "kv-watch-b0e354318e9dbedd",
+    "UID": "b23c6963-d656-4e03-8d5b-d6b7f59a4231"
+  }
+]

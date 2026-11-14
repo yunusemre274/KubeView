@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "namespace": "kv-repair-v11-backend",
+  "cluster_uid": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace_uid": "42337a2d-ae0b-49ba-bdc5-4badd8a5f92f",
+  "checks": [
+    {
+      "at": "2026-11-08T21:06:17.476007+00:00",
+      "count": 0,
+      "metadata": []
+    }
+  ],
+  "mutations_by_verifier": false,
+  "cleanup_performed": "tests used exactUID preconditions; new log-role test used UID+RV+owner and GET404"
+}

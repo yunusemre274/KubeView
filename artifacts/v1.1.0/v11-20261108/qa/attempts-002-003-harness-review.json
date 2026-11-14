@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-08T20:54:01.343125+00:00",
+  "attemptsPreserved": [
+    "runs/2026-11-08T20-44-22-425Z-chromium-5fecf73f/result.json",
+    "runs/2026-11-08T20-48-44-924Z-chromium-e75eb82d/result.json"
+  ],
+  "productEditsByQA": false,
+  "diagnosis": [
+    {
+      "kind": "harness",
+      "observation": "Case-sensitive Al\u0131nd\u0131 expectation did not match actual Snapshot al\u0131nd\u0131. Corrected to exact current visible string."
+    },
+    {
+      "kind": "harness",
+      "observation": "Cleanup used relative API paths without Playwright baseURL. Corrected cleanup/finalizer requests to explicit loopback production URL."
+    },
+    {
+      "kind": "unresolved-fast-scope",
+      "observation": "Logs-open A\u2192B transition reached B finder0; separate slower scope probe correctly reached B/QA and its actual Pod UID. No product-race conclusion yet."
+    }
+  ],
+  "scopeProof": "scope-probe-2026-11-08T20-51-27-279Z.json",
+  "conditionsAdded": [
+    "Context diagnostic and actual WebSocket snapshot must agree with displayed scope before namespace entry.",
+    "After manual apply, displayed requested namespace, backend namespace and actual WebSocket scope/snapshot must all agree.",
+    "Rapid A\u2192B\u2192A remains separately exercised with context-only intent before manual namespace selection.",
+    "No arbitrary sleep or changed product-state hook added."
+  ],
+  "newPassClaims": [
+    "Actual A UID/current log/pause/resume subcheck only; complete isolation scenario remains unpassed."
+  ]
+}
