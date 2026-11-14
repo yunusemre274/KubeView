@@ -574,3 +574,13 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 
 - [x] TEST20.01 güncel ürünle eşleşen22shippedinput/118runtime/nativepaket; yeni0700repo-dışı bundle ve boşappPATH ile gerçekMac/ChromiumMetalstartup, normalform/wheel/sameCanvas ve cleanup. AyrıLinuxCIstartupsuccess/ikinciinceleme kanıtlı.
 - [ ] Finalpaket/SBOM/provenance/gerçekilkbağlantı/manuel01–07/Safari/Retina/CPU/60dk/V11-16/18/19 açık; genel40/200faz, NOT_RELEASE_READY.
+
+## 14 Kasım — YAML/generic JSON altkapsamları
+
+- [x] GerçekformYAML1+11 ve registeredresource/client-goHTTPfixture1+12 boundedparserguardPASS; ilkbackendfixtureFAIL ve immutablekaynaklar korundu, root30hash/iki testsourceinceledi.
+- [ ] TEST12.03 explicitfrontendbudget/gerçekbrowserpaste/diğerYAMLparserlar; actualadmission ve tümprototype/merge fazları ayrı açık. Ürünfix/güvenlikgarantisi iddiası yok.
+
+## 14 Kasım — native debug yüzeyi
+
+- [x] TEST12.10 nativeCI114default/actualfixtureenv: inactivebenchmark/pprof/expvar, exactSPA/POST405/API404; normalhealth/workspace, tümownedLISTENveSIGTERMcleanup, ikinciinceleme. İlkfixtureFAIL/eskiPORTkeynotu korundu.
+- [ ] TEST20.10privatearchive/SecretveenabledReplay/diğerplatform/provider/CPU/60dk kapıları açık. Mainkoşullumerge read-onlyincelendi; açıkkapılar nedeniyle main dalına dokunulmadı.41/200faz, NOT_RELEASE_READY.

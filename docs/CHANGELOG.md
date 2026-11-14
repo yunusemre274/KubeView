@@ -630,3 +630,11 @@ Yeni açık opt-in test, gerçek kısıtlı iki ServiceAccount ve RoleBinding si
 ## 14 Kasım — güncel standalone paket kanıtı
 
 CI114exactnativebinary Go/Node/Vite olmadan boşappPATH+repo-dışı freshbundle ile başladı; embeddedasset/health/version/emptyworkspace/ilkform ve normalpointerwheel altbutonerişimi doğrulandı. İlk300×150 karşılaştırmaFAIL testyerleşimvarsayımıydı, ilkkanıt korundu ve tekhedefliretestPASS oldu. Ürün/runtime değişmedi.22input/118runtimesourcehash+ikinciinceleme, SIGTERM/port/browserkimlikcleanup kanıtı eklendi; TEST20.01 darretetkabulü, genelrelease/performancekabulü değil.
+
+## 14 Kasım — aktif parser guard testleri
+
+ResourceForms YAMLhatasi/duplicate/multidoc/alias/cyclicJSON, unknownfieldkorunumu ve genericresourceJSONbody/depth/MIME/namespace/duplicate/numericpolitikaları için iki boundedtestgrubu eklendi. Gerçekclient-goHTTPfixture strictdryrunqueryyi doğrular; typedSSAR/schema/admissionE2E değildir. Runtime değişmedi; TEST12.03 kısmi açık.
+
+## 14 Kasım — native release test/debug yüzeyi
+
+Defaultveactualbenchmarkfixtureenv, releasebinaryde test-onlyroutes/pprof/expvar açmıyor. İlkabsentPOSTfixture404beklentisi405olarakdüzeltildi; tümownedTCP LISTENveactualADDRkontrolleri ikinciincelemeönerisiyle eklendi. İlkFAILve42+21PASSayrıkanıt. Ürünfixyok; explicitread-onlyTEST/REPLAY üretimözelliği korunur. TEST12.10darPASS, genelrelease/Secretarchivekabulü değil.

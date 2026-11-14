@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-14T13:10:27.032Z",
+  "head": "57ad606e059d31f50d316a12f6a218f6a2edb11a",
+  "remoteMain": "bed7ad9b463129bb6c120365a67fede7091bed46",
+  "behind": 0,
+  "ahead": 133,
+  "remoteMainChanged": false,
+  "ci": {
+    "workflow_runs": [
+      {
+        "id": 43597337382,
+        "name": "CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 116,
+        "jobs_url": "https://api.github.com/repos/yunusemre274/KubeView/actions/runs/43597337382/jobs",
+        "logs_url": "https://api.github.com/repos/yunusemre274/KubeView/actions/runs/43597337382/logs",
+        "workflow_id": 411403503
+      }
+    ]
+  },
+  "decision": "No main mutation: conditional merge held while provider/TLS, render and long-stability gates remain unresolved; development branch pushes authorized and continue; no stable release"
+}

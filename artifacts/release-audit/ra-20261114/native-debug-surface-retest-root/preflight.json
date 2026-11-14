@@ -1,0 +1,40 @@
+{
+  "preparedAt": "2026-11-14T13:03:27.465706+00:00",
+  "auditHEAD": "57ad606e059d31f50d316a12f6a218f6a2edb11a",
+  "sourceBuild": "71b4098314c71d7c9473d88356edf7200fe62f1f",
+  "binarySHA256": "24ef0ce34d3381644fc14dc16a768bbeb7b8c580d19813ff580780e536378e68",
+  "target": "owned127.0.0.1:19849; no Kubernetes credentials/optionalprovidersoff",
+  "sourceSHA256": {
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/replay_source.go": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+    "backend/pkg/server/benchmark_test.go": "0ed76eaddeeeeeab94dad2b1d388f7bc6867dba1c0265ef468eddfd3c2b6a76e"
+  },
+  "modes": [
+    "default",
+    "benchmark-test-environment-set"
+  ],
+  "safety": {
+    "maxHTTPRequests": 50,
+    "maxRequestsPerSecond": 10,
+    "maxResponseBytes": 2097152,
+    "maxWorkSeconds": 45,
+    "maxPhaseSeconds": 60,
+    "maxAppRSSMiB": 1024,
+    "minDiskGiB": 10
+  },
+  "questions": [
+    "debug/pprof/expvar and benchmark fixture routes unavailable in native release",
+    "setting test fixture environment does not enable test-only routes/listeners/result writes",
+    "explicit production TEST/REPLAY endpoints are distinguished and disabled when profile not enabled"
+  ],
+  "notCovered": [
+    "all-release-archive secret scan",
+    "allsupportedplatforms",
+    "realKubernetes",
+    "productionreplayenablednormalworkflow",
+    "CPU/performance"
+  ],
+  "priorFailure": "Firstdefault mode19attempt/2.506sFAIL: absentPOST405 actualnormalfrontend methodguard, erroneous404fixture. Firstsource/result preserved; exactPOST405/GET404 expected, not broadened any4xx.",
+  "extraReviewGuard": "Same-agent-system reviewer requested all owned PID TCP LISTEN endpoints asserted, not just expected19849port; never probe/signal unrelated19848process"
+}

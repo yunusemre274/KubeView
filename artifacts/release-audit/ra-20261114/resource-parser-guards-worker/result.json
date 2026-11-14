@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-14T13:02:57.991181+00:00",
+  "status": "PASS_TARGETED_SYNTHETIC_RESOURCE_PARSER",
+  "scope": "production generic resource handler in-process; real client-go HTTP transport to owned loopback minimal fixture; typed SSAR synthetic",
+  "sourceSHA256": "22487b824d0b32702ea59b4333f049f11463979a15c4c3ab67575d2f64166cba",
+  "topLevelPassed": 1,
+  "subtestsPassed": 12,
+  "failures": 0,
+  "skips": 0,
+  "elapsedSeconds": 6.565315957999928,
+  "maximumSampledOwnedProcessRSSKiB": 694432,
+  "sourceBeforeAfterMatch": true,
+  "capturedProcessCount": 5,
+  "allCapturedIdentitiesAbsent": true,
+  "payloads": [
+    {
+      "name": "normal_namespace_injected",
+      "status": 201,
+      "bytes": 191,
+      "sha256": "307eb060d63e2f646d634374314e7117e471fcc9ff50a6a7723768087d7b997b",
+      "upstreamCreateDelta": 1
+    },
+    {
+      "name": "malformed",
+      "status": 400,
+      "bytes": 10,
+      "sha256": "37035f6ef91b19cb603da04d27c1acb5de25227fa3c1b84860f303a48ab92e5c",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "second_value",
+      "status": 400,
+      "bytes": 194,
+      "sha256": "50df66fce1e4ea594615e40542bb45933a68314493d53e0262a8434545d11462",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "non_json_mime",
+      "status": 415,
+      "bytes": 191,
+      "sha256": "307eb060d63e2f646d634374314e7117e471fcc9ff50a6a7723768087d7b997b",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "object_array",
+      "status": 400,
+      "bytes": 27,
+      "sha256": "94fe36d88995fa83bcef201fe8dd9844ff2ea7af5d048b98944f45577cad190f",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "nonobject_metadata",
+      "status": 422,
+      "bytes": 78,
+      "sha256": "cef02a77086fea25de7732b05e2a0f26b0b532bf98d058d1435c091ff4c052f7",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "missing_name",
+      "status": 422,
+      "bytes": 71,
+      "sha256": "676465d6ac2e66167625d30b17afb211d15bdf304d3d5d3f763b6ad06df5b0dd",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "null_object",
+      "status": 422,
+      "bytes": 29,
+      "sha256": "5be53cdb096944e9975c0943f924aae244ea4e7930223fc058e930b2ad95001f",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "over_2MiB",
+      "status": 400,
+      "bytes": 2097509,
+      "sha256": "7d90e3369c7dd8816a841af4f01610e99b893f47343cd660eba47600a416224e",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "depth_10001",
+      "status": 400,
+      "bytes": 20095,
+      "sha256": "951b459245b4511df3d5da6a4260006dcde5c1c97a413080d52c0f05fb7288c1",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "namespace_mismatch",
+      "status": 422,
+      "bytes": 108,
+      "sha256": "5842d67ca60258ea9b44b99bdda66be154da50ee127b1627147aa4452046e870",
+      "upstreamCreateDelta": 0
+    },
+    {
+      "name": "after_negatives_duplicate_numeric_unknown",
+      "status": 201,
+      "bytes": 358,
+      "sha256": "c2630926086b3bbcc5c2a77fe982e011bb91f649fca15e9fce97336afff41361",
+      "upstreamCreateDelta": 1
+    }
+  ],
+  "totalPayloadBytesPerAttempt": 2118861,
+  "attemptCount": 2,
+  "aggregateHTTPInputBytesAcrossBothAttempts": 4237722,
+  "initialFailure": "attempt01 fixture exact-query assertion omitted client-go timeout=3s from explicit rest.Config.Timeout, shared error carried to subtests. Product unchanged; prior source/raw preserved.",
+  "upstreamContract": {
+    "method": "POST",
+    "path": "/api/v1/namespaces/qa/pods",
+    "query": {
+      "dryRun": "All",
+      "fieldValidation": "Strict",
+      "timeout": "3s"
+    },
+    "contentType": "application/json"
+  },
+  "policy": {
+    "namespaceOmitted": "injected as qa before upstream",
+    "namespaceMismatch": "422 no upstream",
+    "duplicateScalarDryRun": "last true",
+    "duplicateUnstructuredMetadataMap": "last object replaces prior metadata; only kept=second annotation survives",
+    "unknownObjectFields": "preserved to strict upstream API request; real admission not simulated",
+    "unknownEnvelopeFields": "ignored, not copied into object",
+    "integer": "9007199254740993 retained exactly",
+    "fraction": "1.25 retained exactly",
+    "maxOuterJSONBytes": "2MiB MaxBytesReader",
+    "jsonDepth10001": "400 before upstream"
+  },
+  "limits": [
+    "No real Kubernetes/RBAC/admission/schema/create persistence",
+    "Unknown-field echo acceptance is not actual API acceptance",
+    "No frontend YAML/browser, finalbinary, all resource kinds or all parsers",
+    "No boundary-complete fuzz/stress/CPU/performance/latency claim",
+    "Process RSS is summed sampled per-process RSS, not exact physical RAM; short-lived unsampled processes not censused",
+    "No product code was changed"
+  ]
+}

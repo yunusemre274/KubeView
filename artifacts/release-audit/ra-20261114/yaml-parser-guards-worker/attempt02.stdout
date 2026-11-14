@@ -1,0 +1,83 @@
+TAP version 13
+# Subtest: bounded active ResourceForms YAML parser policy
+    # Subtest: normal preserves unknown map and own prototype key without global pollution
+    ok 1 - normal preserves unknown map and own prototype key without global pollution
+      ---
+      duration_ms: 6.426292
+      type: 'test'
+      ...
+    # Subtest: malformed sequence blocked before dry-run HTTP
+    ok 2 - malformed sequence blocked before dry-run HTTP
+      ---
+      duration_ms: 2.248834
+      type: 'test'
+      ...
+    # Subtest: duplicate map key rejected before dry-run HTTP
+    ok 3 - duplicate map key rejected before dry-run HTTP
+      ---
+      duration_ms: 2.626959
+      type: 'test'
+      ...
+    # Subtest: multiple documents rejected before dry-run HTTP
+    ok 4 - multiple documents rejected before dry-run HTTP
+      ---
+      duration_ms: 0.956417
+      type: 'test'
+      ...
+    # Subtest: sequence root rejected before dry-run HTTP
+    ok 5 - sequence root rejected before dry-run HTTP
+      ---
+      duration_ms: 0.447292
+      type: 'test'
+      ...
+    # Subtest: scalar root rejected before dry-run HTTP
+    ok 6 - scalar root rejected before dry-run HTTP
+      ---
+      duration_ms: 0.391791
+      type: 'test'
+      ...
+    # Subtest: small bounded aliases preserve equivalent values
+    ok 7 - small bounded aliases preserve equivalent values
+      ---
+      duration_ms: 1.199292
+      type: 'test'
+      ...
+    # Subtest: alias amplification rejected by installed default limit
+    ok 8 - alias amplification rejected by installed default limit
+      ---
+      duration_ms: 1.090333
+      type: 'test'
+      ...
+    # Subtest: depth128 unknown field preserved within finite test limit
+    ok 9 - depth128 unknown field preserved within finite test limit
+      ---
+      duration_ms: 1.352792
+      type: 'test'
+      ...
+    # Subtest: 240KiB unknown field retained before API validation
+    ok 10 - 240KiB unknown field retained before API validation
+      ---
+      duration_ms: 4.992209
+      type: 'test'
+      ...
+    # Subtest: cyclic alias reports JSON boundary error without delivering API request
+    ok 11 - cyclic alias reports JSON boundary error without delivering API request
+      ---
+      duration_ms: 0.64275
+      type: 'test'
+      ...
+    1..11
+ok 1 - bounded active ResourceForms YAML parser policy
+  ---
+  duration_ms: 23.288333
+  type: 'test'
+  ...
+1..1
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 139.957583

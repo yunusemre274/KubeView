@@ -352,3 +352,11 @@ GoJSON scalar tekrarda sondeğeri kullanabilir; object/map tekrarları birleşti
 ## 14 Kasım — Canvas yerleşiminden önce boyut dondurma
 
 Canvas DOMnode varlığı, R3F/ResizeObserver/CSS yerleşiminin bittiği anlamına gelmez. Test300×150 defaultölçüyü önce dondurursa normal1440×900 ilkyerleşimini panelresize hatası sanabilir. İlanedilenviewport ölçüsünü boundedpoll ile doğruladıktan sonra aynınode/boundsassertionını koru; ürüne gereksizfix veya assertiongevşetme yapma. İlkfollow-upFAIL ve exactsource ayrı tutuldu.
+
+## 14 Kasım — client-go wire query ve parser kanıt sınırı
+
+Explicit rest.Config.Timeout client-goisteğine timeoutquery ekleyebilir; fixture meşru exactdeğeri hesaba katmalı, dryRun/fieldValidationguardlarını gevşetmemeli. YAMLcirculargraph JSONtransportta gönderilebilirlik değildir: actualcomponentcatch/requestteslimi ayrıassertedilir. DuplicateJSON farklıtargetdecoderlarda structmapmerge veyaUnstructuredsonobjectreplace olabilir.
+
+## 14 Kasım — SPA ve test ortam anahtarları
+
+UnknownextensionlessGET200 SPAfallback debugendpoint varlığı değildir; exactindexbytehash ve yöntemyanıtını doğrula. frontendmethodguard APIpathguardındanönceyse absentPOST405/GET404 normaldir. Fixtureenv anahtarını gerçek kaynaktanbul: KUBEVIEW_BENCH_ADDR yerine varsayılanPORTadı uydurmak ilgili koşulu testetmez. Beklenenportukontroletmek yerine yalnızownedPIDnin bütünTCPLISTENadreslerini assertet; başkaprojeportlarına dokunma.
