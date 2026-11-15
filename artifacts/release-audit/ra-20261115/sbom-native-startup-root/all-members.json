@@ -1,0 +1,204 @@
+[
+  {
+    "path": "kubeview_1.1.0_darwin-arm64",
+    "type": "directory",
+    "mode": 493,
+    "bytes": 0
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/deploy",
+    "type": "directory",
+    "mode": 493,
+    "bytes": 0
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab",
+    "type": "directory",
+    "mode": 493,
+    "bytes": 0
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/docs",
+    "type": "directory",
+    "mode": 493,
+    "bytes": 0
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/sbom.binary.cdx.json",
+    "type": "file",
+    "mode": 420,
+    "bytes": 35856,
+    "sha256": "899a2e416f5cfc359637957e089b2fb410fa5886b8b902a61fe200783291af88"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/build-provenance.json",
+    "type": "file",
+    "mode": 420,
+    "bytes": 4314,
+    "sha256": "88da53c4759ac6fe9af865ec5a3d07f5bdcb37cf20ed17d7040c85d15bd02af5"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/MANUAL_TEST_GUIDE.md",
+    "type": "file",
+    "mode": 420,
+    "bytes": 26007,
+    "sha256": "abe875ad05bc333a3754c07bb844f9796eb0eb14c068d1a1b8b7c1ab4ca4f46c"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/README.md",
+    "type": "file",
+    "mode": 420,
+    "bytes": 36127,
+    "sha256": "d09533fc3e1d32ea96f24873056f7b8ecd81f2acacf0baacf8417d55738e4a1e"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/sbom.frontend-source.cdx.json",
+    "type": "file",
+    "mode": 420,
+    "bytes": 149972,
+    "sha256": "f405243cd711d01afc85c82af7baa822db3f30c1556c331ed86fa5bb8622edb8"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/kubeview",
+    "type": "file",
+    "mode": 493,
+    "bytes": 45144818,
+    "sha256": "819658d5b7044a5ad69eb534e698d3e8d7b0d588f43b4ead87c59a7e699f57af"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/scripts",
+    "type": "directory",
+    "mode": 493,
+    "bytes": 0
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/scripts/manual_lab.py",
+    "type": "file",
+    "mode": 493,
+    "bytes": 87319,
+    "sha256": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/scripts/manual-lab.sh",
+    "type": "file",
+    "mode": 493,
+    "bytes": 214,
+    "sha256": "c6ad10b2a4497774f35a45f174a3e028c44c7f3b4fe36634a5e9d3c96f613d7a"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/docs/WORKSPACE_ACCEPTANCE.md",
+    "type": "file",
+    "mode": 420,
+    "bytes": 28532,
+    "sha256": "97d9216d94bcd59b3757cc58d8e144162460f428c7266f5686b1ef8b51ccbe46"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/docs/V11_ACCEPTANCE_REPORT.md",
+    "type": "file",
+    "mode": 420,
+    "bytes": 23335,
+    "sha256": "07a36f2b73af23886b7a96a2aae784a6f8047462547f019b546d625d658aadba"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/docs/RELEASE_NOTES_v1.1.0.md",
+    "type": "file",
+    "mode": 420,
+    "bytes": 10194,
+    "sha256": "b0b95b3dcd9cd09fe17484f64dde078a30d5c9c4acf130b873a5ff2d3ccafaca"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/docs/SECURITY.md",
+    "type": "file",
+    "mode": 420,
+    "bytes": 19014,
+    "sha256": "adc50b92392c5aee557252a635da12685c33e96f3627198dcb70711488d55e5f"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/evidence",
+    "type": "directory",
+    "mode": 493,
+    "bytes": 0
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/DEPENDENCIES.md",
+    "type": "file",
+    "mode": 420,
+    "bytes": 2169,
+    "sha256": "00b4f5e40c88993c65e09362582294d0243dd88044b782351d12aa7f502ce6e7"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/tests",
+    "type": "directory",
+    "mode": 493,
+    "bytes": 0
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/profiles.json",
+    "type": "file",
+    "mode": 420,
+    "bytes": 1122,
+    "sha256": "2a93d43b62551511e023d9636bb557dbc4f2047f0436e067f31a85bdfdeb3699"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/telemetry.py",
+    "type": "file",
+    "mode": 420,
+    "bytes": 27561,
+    "sha256": "71fb19ae92aa9f4adaed79c8469ce2e30e779a8b7342ba7f7cf481a126ddfebf"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/templates",
+    "type": "directory",
+    "mode": 493,
+    "bytes": 0
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/templates/telemetry-values.json",
+    "type": "file",
+    "mode": 420,
+    "bytes": 488,
+    "sha256": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/templates/README.md",
+    "type": "file",
+    "mode": 420,
+    "bytes": 818,
+    "sha256": "51dcb40c1667d6a150619b3cf511a9822889d42b2a0486f51d7ab3a7aa61ff0d"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/tests/real_scenarios.py",
+    "type": "file",
+    "mode": 420,
+    "bytes": 12272,
+    "sha256": "3d37ce98ef4b092ea109cc4d7b5c695a2f53ee78b6e0894ac8dfd1cad83e64cb"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-readonly.yaml",
+    "type": "file",
+    "mode": 420,
+    "bytes": 1478,
+    "sha256": "600ed9252890a7a4d76c6194611d7033786c2872ce43ad825a800e5b13ed2fed"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/deploy/rbac-node-observability.yaml",
+    "type": "file",
+    "mode": 420,
+    "bytes": 725,
+    "sha256": "541d5a50ebd4a600a16da3c436882add3c0986d188cad15add5ada703a2a74d0"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-write.yaml",
+    "type": "file",
+    "mode": 420,
+    "bytes": 898,
+    "sha256": "e61cdfffcbc5c0300fdd4c1426fe321b416e5dea76aa3dc1ba60bd97f85f4ec2"
+  },
+  {
+    "path": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-observability.yaml",
+    "type": "file",
+    "mode": 420,
+    "bytes": 669,
+    "sha256": "21c38465624cb0372b68f4a51519543f1a364252cdccb6baf15877f69218647a"
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-15T10:46:37.036432+00:00",
+  "sourceCommit": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+  "status": "PASS",
+  "results": [
+    {
+      "target": "darwin-arm64",
+      "status": "PASS",
+      "archiveMembers": 30,
+      "expandedBytes": 45613902,
+      "goVersion": "go1.26.11",
+      "linkedGoModules": 45,
+      "bundledNpmIdentities": 15,
+      "allGoModulesExactlyMatchActualBuildInfo": true,
+      "allNpmIdentitiesExactlyMatchRenderedInventory": true,
+      "archiveStageFileSetAndBytesEqual": true,
+      "allInputHashesMatchCurrentCommittedFiles": true,
+      "allConsumedFrontendSourceHashesMatch": true,
+      "signed": false
+    },
+    {
+      "target": "linux-amd64",
+      "status": "PASS",
+      "archiveMembers": 30,
+      "expandedBytes": 47192314,
+      "goVersion": "go1.26.11",
+      "linkedGoModules": 45,
+      "bundledNpmIdentities": 15,
+      "allGoModulesExactlyMatchActualBuildInfo": true,
+      "allNpmIdentitiesExactlyMatchRenderedInventory": true,
+      "archiveStageFileSetAndBytesEqual": true,
+      "allInputHashesMatchCurrentCommittedFiles": true,
+      "allConsumedFrontendSourceHashesMatch": true,
+      "signed": false
+    }
+  ],
+  "scope": "actual archive, binary, module and consumed-source hashes; no function reachability, publisher signing, vulnerability-clean or all-platform runtime claim"
+}

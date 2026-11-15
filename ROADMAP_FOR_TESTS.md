@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-15T13:35:56.879865+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif ürün kaynağı: 15770296056ca2629601dba540c04741e1822e0d; kayda giriş denetim HEAD e6ee6678. Bu kontrol noktası test/CI/doküman değişikliğidir; native CI114 binary kimliği71b40983 olarak kalır. Final paket/manuel kabul açık.
-- Build/paket: CI114candidate: ZIP15b43aef…/nativea0f7f82d…/binary24ef0ce3…; darstartup14Kasım doğrulandı. Finalbütünpaket/SBOM/manuelgate açık; eskiprofilelock10binary tarihsel.
+- Son güncelleme: 2026-11-15T13:53:13.079913+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif ürün kaynağı: Runtime15770296; SBOM/buildcheckpoint4a3e3a17552e9ef35091c37070a8bc19c00f3b43. Sonraki rapor/roadmap değişimi ilgili runtime/paketbytegirdilerini değiştirmez.
+- Build/paket: 4a3 gerçekMacbinary819658d5/archive8eb2d9b9;Linux3dcbe1b1/archive5e4231e9;4CDX fullschema/hash/nativeMac doğrulandı. signed:false;CI121success. Finalrelease/manual/provider/SCA/perfkapılarıaçık.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:128; IN_PROGRESS:22; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:44; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:128; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:45; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST-01.03/01.04 dar mimari güven sınırı envanterleri;44/200 VERIFIED_DONE,156 faz açık. Worker zaman sapmaları PASS değildir; genel NOT_RELEASE_READY.
-- Süreç/lab: İki sonlu worker: SBOM kodunun read-only incelemesi ve offline schema QA yardımcısı; normalCPU/browser ölçümü kapalı. Docker/lab başlatılmadı,manuelprofiller korunur.15KasımAC/58%charging/lowpower0 son canlı kontrol.
-- Devam: TEST20.13 SBOM gerçekbuild/schema/asset/native QA; hedefli fixtureCI ve meaningfulcommit/push. Sonra yeniAC eşleşmişperf ailesi için ayrıcomparability kontrolü; main/provider/TLS/render/RSS/60dk/V11-16/18/19/manual kapıları açık.
+- Son tamamlanan faz: TEST20.13 gerçekSBOM/checksum/unsignedprovenance;45/200VERIFIED_DONE,155açık. TEST20.01darstartup4a3ile yenilendi. GenelNOT_RELEASE_READY.
+- Süreç/lab: Paket/şema/native/ikinciincelemebitti;owned19849kapalı/capturedbrowserPIDyok. İkiworkeridle;Docker/labbaşlatılmadı. Manualprofiller/dışbundlekorunur;başkaPythonCPUişigörüldü/müdahaleedilmedi;normalCPUmatrisibaşlatılmadı.
+- Devam: YeniSBOMQAkanıt/doccheckpointcommit/push;sonrabağımsızuygulanabilirgüvenlikfazları. Provider/TLS/render/RSS/60dk/V11-16/18/19/manualkapılarıaçık;maintutuluyor.
 - **Çalışma: AKTİF — kullanıcı devam talimatı; tamamlanmış testler tekrar edilmeden sonuçlar birleştiriliyor.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -44,7 +44,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:3 | Henüz yok |
-| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:9, IN_PROGRESS:4, VERIFIED_DONE:1 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:9, IN_PROGRESS:3, VERIFIED_DONE:2 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
@@ -11263,10 +11263,10 @@ Bu scope temel nativeSafari boşbaşlangıç ve programmaticDOM akışıdır. Re
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR; package_evidence_review worker ayrı read-only ikinci inceleme.
-- Kaynak / build / paket kimliği: CI114/run43311457621/build71b4098314c71d7c9473d88356edf7200fe62f1f; PRhead362e91c3 fulltree26f2bd21 eşit. Native tara0f7f82d/binary24ef0ce3.22shippedinput+118runtime current6ffd1b22 ile aynı; binarykimliği eskiyeniHEADe çevrilmedi.
+- Kaynak / build / paket kimliği: Yeni darretet4a3e3a17;Macbinary819658d5/archive8eb2d9b9/explicitnativeversion4a3/darwin/arm64. ÖncekiCI114/71b40983 tarihseldir;CI121ayrıLinuxstartupsuccess,yerelLinuxhashayrı.
 - Ortam / kullanılan kimlik ve yetki: MacM5/macOS27.0.1/darwin-arm64; headedChromium156/ANGLEMetal/1440×900/DPR1; fresh0700repo-dışı bundle/emptyappPATH/HOMEkorunmuş/explicitnonexistentkubeconfig/readonly/providersoff. Kısa işlevtesti, performans veya60dk değil.
 - Başlangıç zamanı: 2026-11-11T13:20:17.412070+00:00
-- Bitiş zamanı: 14 Kasım retest 2026-11-14T12:53:38.857448+00:00; rootreview 2026-11-14T12:56:59.674486+00:00. Önceki11Kasım koşuları tarihsel.
+- Bitiş zamanı: 2026-11-15T10:53:13.072558+00:00
 - Durum: VERIFIED_DONE
 - Kabul ölçütü: Exactcandidate standalone binary repo dışında/minimalappPATH ile health/version/embeddedUI/emptyworkspace/ilkform/normalwheel/sameCanvas/ownedcleanup; ayrıLinuxcopyoutCI. Gerçekbağlantı/manuelprofiller/finalrelease bu darfazda değil.
 
@@ -11297,6 +11297,8 @@ Bu scope temel nativeSafari boşbaşlangıç ve programmaticDOM akışıdır. Re
 - Otomasyon Node/Chromium ayrı test aracıdır; app process/runtime gereksinimi değildir. Host'tan Go/Node kaldırılmış olduğu iddia edilmedi.
 
 14 Kasım güncel CI114: native startupPASS3,156548sn; emptyworkspace0harbor/0connection/context0, embeddedHTML/JS/Three/CSS aynıhash, MetalCanvas ve normalilkform open/type/close. Harici Node/Playwright sadece testaracı. NormalwheelretetPASS2,974692sn: preview/saveviewport, contextyok save-disabled, Canvas1440×900/bodyScroll0/sameDOMnode. Mutasyon0/pageerror0/externalrequest0. Bu süreler toplamhelper süresi, latency/CPU sonucu değil.
+
+-15Kasım4a3native retestPASS3.064sn: fresh0700/emptyappPATH/explicitabsentkubeconfig/0workspace/context/embeddedUI/ilkformaç-yaz-kapat/sameCanvas/Metal1440×900/DPR1/0mutation/pageerror. Root2PNG açtı. sbom-native-startup-root/REPORT.md; süre p95latency/gerçekbağlantı/manualkabulüdeğil.
 
 #### TEST-20.01-S3 — Negatif / sınır / arıza kontrolü
 - [x] Output çakışması/symlink, yarışta çıkan arşivin ezilmemesi, eksik/symlink frontend, kirli manual/doc/RBAC girdisi kontrollü test edildi.
@@ -11356,6 +11358,8 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 - Yeni runtime providerWorker guard düzeltmesi sonrasında final paketin kimliği değişecek: eski5373657 startupPASS tarihsel kalır. Yeni derlenmiş/ambalajlı adayda gerekli temel startup kontrolü tekrar doğrulanacak; yalnız bu değişmiş runtime/paket yolu hedeflenir, eski uzun testler körlemesine tekrarlanmaz.
 
 14 Kasım kapanış: [x] Üçfreshroot/bundle/data korunur; appSIGTERMexit0/19849LISTENyok, herkoşuda8capturedbrowseridentity yok, sampledappchildren boş. [x] TümbeşdizinSHA doğrulandı;22input/118runtime/tree/member/provenance eşitliği ikinciworker ile kontrol edildi. [x] RootilkikiPNG+retest03ü açtı; reviewer03ü ayrıca açtı, altbutonlar okunur. İkinciinceleme native-ci114-package-review-worker/REPORT.md+result.json; aynıajansistemi, profesyonelüçüncütaraf değil. Gözlenmeyenkısaömürlüprocess/tümkernel/lifetimeresource garantisi verilmez.
+
+-15KasımappSIGTERMexit0/19849boş/capturedPIDbirth/commandyok;30archiveüyetümbyte/SHAkontrollüextract. EskiCI114raw/ilkFAILkorundu. YeniVite/packagingrecipeyeuygun doğrudandarretest;kapsamgenişletilmedi.
 
 #### TEST-20.01-K — Faz kararı
 - [x] BİTTİ / DOĞRULANDI — **14 Kasım CI114 dar standalone başlangıç retesti**. Nativeharicibundle/boşappPATH/embeddedUI/normalilkform/wheel/sameCanvas ve ownedcleanup; ayrıLinuxcopyoutCIsuccess.
@@ -12111,83 +12115,48 @@ IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. 
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
 - Sorumlu: ANA MÜDÜR + SBOM uygulama, şema ve bağımsız paket inceleme worker’ları; Git/roadmap root
-- Kaynak / build / paket kimliği: HEAD e48604e2; runtime15770296;6 SBOM/build dosyası çalışma farkı. Gerçek yeni paket henüz üretilmedi.
-- Ortam / kullanılan kimlik ve yetki: MacM5/32GiB/macOS27; Node24.16/npm mevcut; Pythonjsonschema4.26.0; sentetik fixture. Gerçek credential/Kubernetes/provider kullanılmadı.
+- Kaynak / build / paket kimliği: 4a3e3a17552e9ef35091c37070a8bc19c00f3b43; Macbinary819658d5/archive8eb2d9b9; Linuxbinary3dcbe1b1/archive5e4231e9. ExactSBOM/provenancehash raw kayıtta; runtime157/buildrecipe4a3 ayrıdır.
+- Ortam / kullanılan kimlik ve yetki: MacM5/macOS27/Node24.16/npm11.13/Vite6.4.5/Rollup4.62.3/Go1.26.11/CGO0;privateclone/actual2target;schemajsonschema4.26+formatQAvenv;nativefresh0700/emptyappPATH/explicitabsentkubeconfig/readonly/providersoff;K8s/provider yok.
 - Başlangıç zamanı: 2026-11-15; ilk uygulama ve20fixture kanıt zamanı raw kayıtta
-- Bitiş zamanı: —
-- Durum: IN_PROGRESS
-- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+- Bitiş zamanı: 2026-11-15T10:53:13.072558+00:00
+- Durum: VERIFIED_DONE
+- Kabul ölçütü: Gerçek2targetbinary/archive veayrı runtime/SOURCE CDX1.5:fullschema+format/Go+renderednpm/source+asset/binary/provenance/checksum;malformed/stale/tamperfailclosed;cleanup/farklıworkerreview. İmza/tümplatform/SCA/provider/finalrelease ayrı.
 
 #### TEST-20.13-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
-
--15Kasım mevcut paketleme yolu ve GoBuildInfo/npm lock/Rollup sahiplik sınırı incelendi. Resmî CDX1.5 şemaları c320fc0f commitinden exactGitblob+Apache2 lisansla sabitlendi; yerel schema doğrulaması henüz yapılmadı. İki worker: read-only inceleme ve ayrı QA yardımcısı; benchmark kapalı.
+- [x] Source4a3/explicit araçlar/lock kimlikli owned privatecopy;180snfrontend/240snpaket/4GiBRSS/10GiBdisk/0autoretry bütçesi.
+- Gerçek credential/Kubernetes/provider yok. İlk plan/FAIL/source korunur. sbom-real-package-root/plan.json ve package-once.py.txt.
 
 #### TEST-20.13-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
-
--Dar fixture ikinci deneme20PASS/0FAIL/0SKIP (13paketleme+7SBOM); gerçek compiler/npm/tar yerine executor fixture. Yeni özellik SBOM/provenance kodu mevcut fakat gerçek paket kabulü değildir. Kanıt: artifacts/release-audit/ra-20261115/sbom-implementation-worker/REPORT.md.
-
--Gerçek Vite6.4.5/Rollup4.62.3 privatecopy retestiPASS:242renderedmodül/15npmidentity/0unresolved, metadatahariç6HTML/CSS/JS/faviconSHA frozenCurrentB ile birebir eşit.4.151sn toplamhelper; performansölçümü değil.
+- [x] Gerçek Viteretestte metadatahariç6runtimeasset aynıSHA. İki gerçekGo1.26.11/CGO0 binary+tar:61binarycomponent(45Go+stdlib+15renderednpm), ayrı SOURCE203/118dev.
+- [x]4actualBOM pinnedresmîCDX1.5+4formatPASS;2archive30üye/stagebyte, binary/GoBuildInfo/npm/rendered/source/provenance/outerchecksum eşleşti.
+- Kanıt: sbom-real-package-root/actual-schema-result.json,actual-binding-result.json,package-build.json,REPORT.md. signed:false korunur.
 
 #### TEST-20.13-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
-
--Prepared stale/missing/unknown/profile; consumed/public hash/set; duplicate/dangling/localreplacement/oversize metadata fail-closed fixture kontrolleri. Resmî schema/gerçeknpm/Go/extract/native/byte-eşitlik bekliyor.
-
--Offline QA15/15PASS, missingformat normalPythonexit2; şema/Apachelicense hardcodedpins, invalidenum/hash/timestamp/SPDX/extra/duplicate/NaN/size/symlink/tamper/unregisteredrefno-network sınandı. GerçekBOMhenüzüretilmedi. artifacts/release-audit/ra-20261115/sbom-schema-worker/REPORT.md.
+- [x] HTML/CSS/additionalfile, missing/stale/profile/unknownowner, consumed/publicset, malformed/duplicate/dangling/localreplacement/oversizemetadata fixturelerde embed/compiler/archive öncesi reddedildi.
+- [x] Offlineşema invalidtimestamp/hash/enum/SPDX/extra/duplicate/NaN/symlink/tamper/refno-network;missingformat negatifi exit2. Nativeboşgerçekmod0context/harbor;mockfallbackyok.
+- Bu kontroller gerçekcluster/RBAC/TLS/providerpenetrasyonu değildir.
 
 #### TEST-20.13-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
-
--İlk fixture19PASS/1FAIL korunur: prepared için eski tümnpm yasağı metadata-onlySBOM ile uyumsuzdu. ci/install/run yasağı korunup exactlyoneSBOM beklentisi ayrıldı; ikinci20PASS. Ürün runtime/UI değişmedi; ilgili alt kaynaklar çalışma farkında.
-
--SBOM-REVIEW-001: HTML/CSS/output binding boşluğu changedHTML fixtureRED1FAIL→tamoutputset/hash fix sonrası37PASS. Ardından gerçekVite ilkderleme exit0 ama manifestindexJS hashmismatch ile kabulFAIL; Vitepreload rewrite rootcause. installedRollup generateBundle order:post + late-generator gerçekRollup regresyonu sonrası38PASS, gerçekViteretestPASS. İlkFAIL/raw/source ayrı korunur.
+- SBOM-REVIEW-001P1 yeni build-time çıktı sözleşmesi: changedHTMLfixtureRED1FAIL; tamoutputset/hashfix37PASS. İlkgerçekVite exit0 fakatpreloadsonrasıJSdigestmismatch kabulFAIL; hookorder:post/gerçekRollupregresyonu38PASS+ViteretestPASS. Fixcommit4a3e3a17.
+- İlkfixture19PASS/1FAILpreparednpmvarsayımı; arşivhelperLICENSE128beforepackage; schema launchervenv→global0testFAIL; reviewerbinarysentinelparseFAIL ayrıkorunur,ürünbaşarısınadönüştürülmez.
+- RuntimeUI/API/kalite/DPR/güncellik değişmedi;6assetbyteeşit. CPU/GPU/RAM/enerji tasarrufu ölçülmedi.
 
 #### TEST-20.13-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
-
--Düzeltilen çıktı path’i için Node38PASS; ilk37PASS tarihsel. Şema ilklauncher0testFAIL Path.resolve venvsymlink→globalPython nedeniyleydi; direktvenv ile aynı2kaynak15PASS. Guardgevşetilmedi. Tamnpm/Go/paket/native henüz açık.
+- [x] İlkHTMLtamper aynıfixtureyolundareddedildi;38Node/15schemaGREEN;ilkFAILkorundu.
+- [x] Gerçeknpm/Go/archiver/fullschema/binding normalbaşarısı;nativeMacemptyPATH/normalonboardingform/sameCanvas/0mutation/0pageerrorPASS.
+- [x] CI121/run43705093663/job132784357952 tümstepssuccess. CIarşivindirilmedi;ayrıCIbinary yerelLinuxbinarysayılmaz.
 
 #### TEST-20.13-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
-
--Workerfixture childcleanup tamam; roottam kaynak ve ikinciinceleme/gerçekbuild bekler. Finalpaket, imza/attestation,providerSCA ve genelrelease açığı kapanmadı.
-
--SBOM reviewer ilkfinding+fixedsource kabulünü ayrıhashlerle kaydetti; sonrakiVitelifecyclefix ayrıca rootactualbuild ile kontrol edildi. Şemaworker468.711sn/480sn bütçedetamam; süreçyok. Root ikihoverPNGyi açtı: hoverlabelsonradankalkıyor, Nodepanel/SoftUI/fullworld korunuyor; bu staticgörseller fizikselFPS/hareket/perfkanıtı değil.
+- [x] Paket/Vite/QAchildbitti;nativeSIGTERMexit0/19849boş/capturedidentityyok;dışbundle/statekorunur. YerelLinuxsadececrosscompile.
+- [x]27declared+70producerinput/65consumedsource veartifacthash bağlandı. GoVCSmodifiedtrue ≠ runtimeInputsDirtyfalse açıkdoğruyazılır.
+- [x] Farklıworker20physicalfile/43boundedbytekontrol ile2binary/2tar/4BOM/provenance/actualembeddedGoBlock/sourcearchivehashreviewPASS;249.036sn/300sn. Rootnative2PNG/cleanup veCIstepsayrıinceledi.
+- İnceleyen: package_evidence_review, aynıajansistemi/profesyonelüçüncütarafdeğil. İlkPNGsolukzemin fizikselilkGPUframekanıtısayılmaz;sonrakiPNGsu+SoftUIform. İmza/SCA/provider/Safari/Retina/perf/physicalUI/60dk/finalmanual açık.
 
 #### TEST-20.13-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI — **4a3 kaynaklı gerçek iki hedef SBOM/checksum/unsigned provenance**.
+- Kanıt: artifacts/release-audit/ra-20261115/sbom-real-package-root/REPORT.md; sbom-actual-package-review-worker/REPORT.md; sbom-native-startup-root/REPORT.md.
+- GenelNOT_RELEASE_READY. İmza/OSproviderSBOM/SCA/platformlarınbütünü/manual/CPU/60dk ayrıfazlar; bu paketSHA başka/finalpaketeotomatiktaşınamaz.
+- Yenidençalıştırma: ilgili buildrecipe/Go/npmdependency/runtime/consumedfrontend veya27shippedinputdeğişirse. Yalnızbu rapor/TODO/roadmap değişimi paketbytegirdilerinideğiştirmez.
 
 ### TEST-20.14 — İmza/attestation yetenek ve doğrulama
 

@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-15T10:40:47.673Z",
+  "runs": [
+    {
+      "id": 43705093663,
+      "name": "CI",
+      "run_number": 121,
+      "head_sha": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+      "head_branch": "redesign/harbor-workbench",
+      "event": "pull_request",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/yunusemre274/KubeView/actions/runs/43705093663",
+      "created_at": "2026-11-15T10:38:55Z",
+      "updated_at": "2026-11-15T10:38:58Z"
+    }
+  ]
+}

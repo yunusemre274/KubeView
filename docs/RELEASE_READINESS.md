@@ -1,8 +1,12 @@
-# Yayın hazırlığı — 14 Kasım 2026 kontrol noktası
+# Yayın hazırlığı — 15 Kasım 2026 kontrol noktası
 
 **NOT_RELEASE_READY**
 
 Bu belge devam eden denetimin özetidir; final paket veya manuel kabul kararı değildir. Ayrıntılı ve canlı faz kaydı [ROADMAP_FOR_TESTS.md](../ROADMAP_FOR_TESTS.md) içindedir. Eski başarısızlıklar ve önceki kaynak kimlikleri korunur.
+
+15Kasım son ek: **45/200 faz doğrulandı**,155açık. TEST20.13, source `4a3e3a17` gerçek iki hedef binary/arşiv ve dört resmî CDX doğrulaması, tam çıktı/source/hash bağları ve farklıworker incelemesiyle tamamlandı. [Rapor](../artifacts/release-audit/ra-20261115/sbom-real-package-root/REPORT.md). NativeMac emptyPATH/normalilkform başlangıcı aynı yeni arşivde tekrarlandı; CI121tümstepssuccessful. ÖncekiCI114kanıtı kendi hash'inde tarihsel kalır. Bu güncelleme finalpaketlerin tamamı, imza/attestation, SCA/provider, bütünplatform, gerçekKubernetes, manuel veya performans kabulü değildir.
+
+Paketleme `signed:false` bildirir; publisher imzası yoktur. Yerel Linux binary çapraz derlendi/byte kontrol edildi; bu dosya nativeMac'te çalıştırılmış veya CI'nın ayrı binary'siyle aynıymış gibi gösterilmez. Go `vcs.modified=true` ve ilgili `runtimeInputsDirty=false` ayrı raporlanır. 4a3 sonrası bu rapor/TODO/roadmap değişimi test edilen27shippedinput/65consumedfrontend girdisini değiştirmez; yalnız belge için uzun testler tekrar edilmez.
 
 ## Kaynak ve dağıtım sınırı
 

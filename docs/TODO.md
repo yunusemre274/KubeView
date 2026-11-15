@@ -1,7 +1,8 @@
 ## 15 Kasım 2026 — paket SBOM ve çıktı bütünlüğü
 
 - [x] Build-time paket sahipliği ve ayrı binary/SOURCE SBOM fixture yolu; prepared HTML/CSS/output değişikliğinin kabul edilmesi RED ile yeniden üretildi, tüm çıktı kümesi/hash kontrolünden sonra hedefli CI/paket/SBOM grubu 37 PASS.
-- [ ] TEST20.13: resmî schema, gerçek npm/Go/Vite/arşiv/native başlangıç, byte eşitliği ve ikinci inceleme tamamlanacak. Fixture sonucu final paket kabulü değildir.
+- [x] TEST20.13: gerçek4a3 iki hedef binary/arşiv,4CDX resmî schema/format,27declared+70producerinput/bütünhash bağları ve farklıworker incelemesi tamamlandı. Vite lifecycle fixinden sonra38Node/15QA; nativeMac freshbundle başlangıç veCI121success. [Gerçek paket raporu](../artifacts/release-audit/ra-20261115/sbom-real-package-root/REPORT.md).
+- [ ] Final paket/SCA/provider/OS envanteri, imza/attestation, tümplatform/manual, CPU ve60dk kapıları açık. SBOM doğrulaması genelrelease kabulü değildir.
 - [x] CurrentB/common backend donduruldu; iki kısa gerçekpointer tanısı cargo hover'ın tarihsel +12 çizgiyi açıklamadığını gösterdi. Eski bulgu ve CPU kabul kapısı açık; üçüncü aynı tanı tekrarlanmadı.
 
 ## 12 Kasım 2026 — aktifwatchrevoke RED

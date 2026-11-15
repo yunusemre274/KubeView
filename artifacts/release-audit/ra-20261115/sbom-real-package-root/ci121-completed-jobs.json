@@ -1,0 +1,165 @@
+{
+  "checkedAt": "2026-11-15T10:44:28.024Z",
+  "runId": 43705093663,
+  "runNumber": 121,
+  "sourcePRHead": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+  "scope": "Remote GitHub Actions job/step receipts; local binary hashes remain separately bound. CI archive not downloaded in this check.",
+  "jobs": [
+    {
+      "id": 132784357952,
+      "name": "test-build",
+      "head_sha": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/yunusemre274/KubeView/actions/runs/43705093663/job/132784357952",
+      "started_at": "2026-11-15T10:38:57Z",
+      "completed_at": "2026-11-15T10:41:20Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-15T10:38:58Z",
+          "completed_at": "2026-11-15T10:38:59Z"
+        },
+        {
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-15T10:38:59Z",
+          "completed_at": "2026-11-15T10:39:11Z"
+        },
+        {
+          "name": "Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-15T10:39:11Z",
+          "completed_at": "2026-11-15T10:39:27Z"
+        },
+        {
+          "name": "Run actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-15T10:39:27Z",
+          "completed_at": "2026-11-15T10:39:29Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-15T10:39:29Z",
+          "completed_at": "2026-11-15T10:39:33Z"
+        },
+        {
+          "name": "Run node --test --test-concurrency=1 tests/*.test.js src/harbor/*.test.js src/workbench/*.test.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-15T10:39:33Z",
+          "completed_at": "2026-11-15T10:39:41Z"
+        },
+        {
+          "name": "Run go test -p 2 -timeout 180s ./...",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-15T10:39:41Z",
+          "completed_at": "2026-11-15T10:40:29Z"
+        },
+        {
+          "name": "Run node --test benchmarks/*.test.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-15T10:40:29Z",
+          "completed_at": "2026-11-15T10:40:30Z"
+        },
+        {
+          "name": "Run node --test scripts/build-release.test.mjs scripts/release-ci-policy.test.mjs scripts/release-sbom.test.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-15T10:40:30Z",
+          "completed_at": "2026-11-15T10:40:30Z"
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-15T10:40:30Z",
+          "completed_at": "2026-11-15T10:40:36Z"
+        },
+        {
+          "name": "Run node scripts/build-release.mjs --prepared --require-clean darwin-arm64 linux-amd64",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-15T10:40:36Z",
+          "completed_at": "2026-11-15T10:40:44Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-15T10:40:44Z",
+          "completed_at": "2026-11-15T10:41:01Z"
+        },
+        {
+          "name": "Clean Linux binary startup (no source tree)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-15T10:41:01Z",
+          "completed_at": "2026-11-15T10:41:15Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-15T10:41:15Z",
+          "completed_at": "2026-11-15T10:41:17Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-15T10:41:17Z",
+          "completed_at": "2026-11-15T10:41:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-15T10:41:18Z",
+          "completed_at": "2026-11-15T10:41:18Z"
+        },
+        {
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-15T10:41:18Z",
+          "completed_at": "2026-11-15T10:41:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-15T10:41:18Z",
+          "completed_at": "2026-11-15T10:41:18Z"
+        }
+      ]
+    }
+  ]
+}

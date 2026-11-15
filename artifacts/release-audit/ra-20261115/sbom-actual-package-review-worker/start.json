@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-11-15T10:43:25.551290+00:00",
+  "startedEpoch": 1794739405.551446,
+  "budgetSeconds": 300,
+  "readBudget": 20,
+  "mode": "READ_ONLY_ACTUAL_PACKAGE_SOURCE_BINDING_REVIEW_NO_EXECUTION",
+  "head": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43"
+}

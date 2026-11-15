@@ -1,0 +1,159 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Current4a3 SBOM verified bundle extracted outside repo into new0700 root; port initially free"
+  ],
+  "cleanup": {
+    "ownedPIDExited": true,
+    "exitCode": 0,
+    "portNoListener": true
+  },
+  "externalRoot": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-sbom-package-20261115-01",
+  "appProcessSnapshots": [
+    {
+      "at": "2026-11-15T10:43:37.171264+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-15T10:43:37.199730+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-15T10:43:37.738864+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-15T10:43:38.281565+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-15T10:43:38.857325+00:00",
+      "children": []
+    }
+  ],
+  "appInvocation": {
+    "argv": [
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-sbom-package-20261115-01/kubeview_1.1.0_darwin-arm64/kubeview",
+      "--kubeconfig",
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-sbom-package-20261115-01/nonexistent-kubeconfig",
+      "--data-dir",
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-sbom-package-20261115-01/app-data",
+      "--bind",
+      "127.0.0.1",
+      "--port",
+      "19849"
+    ],
+    "cwd": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-sbom-package-20261115-01/kubeview_1.1.0_darwin-arm64",
+    "env": {
+      "HOME": "/Users/yunusemre",
+      "PATH": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-sbom-package-20261115-01/empty-tools",
+      "READ_ONLY": "true",
+      "KV_MINIKUBE_ENABLED": "false",
+      "KV_HUBBLE_ENABLED": "false"
+    },
+    "HOME_preserved": true,
+    "inheritedOverridesExcluded": true,
+    "runtimeToolsDirectoryEmpty": true,
+    "binarySHA256": "819658d5b7044a5ad69eb534e698d3e8d7b0d588f43b4ead87c59a7e699f57af"
+  },
+  "pid": 20536,
+  "birth": "Sun Nov 15 13:43:36 2026",
+  "http": {
+    "healthOK": true,
+    "version": {
+      "arch": "arm64",
+      "commit": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+      "os": "darwin",
+      "version": "1.1.0"
+    },
+    "workspaceHarborCount": 0,
+    "workspaceConnectionCount": 0,
+    "contextCount": 0,
+    "htmlSHA256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb",
+    "assets": [
+      {
+        "path": "/assets/index-DxIumOcP.js",
+        "bytes": 438286,
+        "sha256": "6dbe0611b28befc777524ab53f6fe2a07258fcd5edcb3b721a5a46964b39d91d",
+        "contentType": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/assets/three-BKmXRbXN.js",
+        "bytes": 973665,
+        "sha256": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+        "contentType": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/assets/index-CCZQtIvj.css",
+        "bytes": 64427,
+        "sha256": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+        "contentType": "text/css; charset=utf-8"
+      }
+    ],
+    "missingKubeconfigStillAbsent": true,
+    "auth": "empty configured token; loopback only; no token cookie recorded"
+  },
+  "browser": {
+    "startedAt": "2026-11-15T10:43:37.325Z",
+    "tooling": "Absolute Node + headed Playwright Chromium are automation tools, not app runtime dependencies",
+    "status": "PASS",
+    "checks": [
+      "embedded normal empty-workspace onboarding and one Metal canvas",
+      "normal onboarding form open/type/close preserves identical canvas"
+    ],
+    "externalRequestsBlocked": [],
+    "mutationRequests": [],
+    "pageErrors": [],
+    "renderer": {
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "vendor": "Google Inc. (Apple)"
+    },
+    "browserVersion": "156.0.8078.4",
+    "finishedAt": "2026-11-15T10:43:38.690Z"
+  },
+  "browserCapturedCleanup": [
+    {
+      "pid": 20545,
+      "identitySHA256": "8505a74dc8caef82684c71a4990a900d76d4d8974b63b0ef3772fbdff2c7498d",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 20549,
+      "identitySHA256": "fd0c3c6587c9022a45438f11bdda7c572d3eac1ea9ce7ca88cb3248b77ae1d37",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 20560,
+      "identitySHA256": "27c7ebe4f3768273159a7092552f2f47daed09401094f56448ea9f7ecec105b0",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 20561,
+      "identitySHA256": "60557ae5c577594b73956ec9a88189e9bd558cf924735fe571949d38b5c40bcd",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 20562,
+      "identitySHA256": "3d39652f4746a9ee76ac0cafb006e07964f5c886c78099cd5ffcd4c377d1934c",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 20564,
+      "identitySHA256": "055c4dd5853a1f4de3dc5e76456e8323377f966f70d379251e4e4d874e096841",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 20566,
+      "identitySHA256": "aef967f68bc21b30963b3dde987414c43261c53c96edb3d403af5406c540799b",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 20567,
+      "identitySHA256": "cae3cf163c3145d45a6f482c7edf3edf78afcd9ef01c8d16e79057531dc51eec",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "externalBundleAndStatePreserved": true,
+  "elapsedSeconds": 3.064182996749878,
+  "completedAt": "2026-11-15T10:43:39.394917+00:00"
+}

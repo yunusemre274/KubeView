@@ -1,0 +1,7 @@
+{
+  "at": "2026-11-15T10:45:03.434741+00:00",
+  "kind": "READ_ONLY_REVIEW_HELPER_PARSE_FAILURE_NOT_PRODUCT_FAILURE",
+  "error": "UnicodeDecodeError utf8 invalid byte0xaf at position2 while parsing first Go buildinfo magic occurrence",
+  "causeHypothesis": "naive bytes.find may select Go library literal rather than aligned buildinfo section",
+  "action": "Preserve failure; inspect bounded magic candidate headers and require valid inline header before parsing; no executable/toolchain/test run"
+}

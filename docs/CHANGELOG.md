@@ -3,6 +3,7 @@
 - Vite build-time paket/kaynak/çıktı envanteri; Go BuildInfo ve ayrı npm SOURCE/dev grafiğinden CycloneDX1.5; SBOM hash'leri mevcut provenance/arşiv alanlarını koruyarak eklendi. Runtime dünya, API ve görsel ayarlar değişmedi.
 - Prepared HTML/CSS veya ek dosyanın yeni hash'le onaylanması dar fixture RED ile doğrulandı; tüm output set/content bağlaması sonrası 37 hedefli test geçti. Gerçek build/schema/native kabulü henüz açık, imzalama yapılmadı.
 - CurrentB/common backend ve iki sınırlı hover tanısı kaydedildi; tarihsel çizim farkı kapanmadı. [Envanter sözleşmesi](RELEASE_SBOM.md).
+- Sonraki gerçek derlemede Vite preload rewrite sırası ilk kabulü durdurdu; `generateBundle` hook'u `order:post` olarak düzeltildi.38Node/15QA, gerçek iki paket/4resmîCDX/bütünhash/sourcebyte eşitliği ve farklıworker incelemesiyle TEST20.13 tamamlandı. İlk37PASS ve ViteFAIL korunur; nativeMac başlangıç ve ayrıCI121success. signed:false, finalrelease/perf/provider kapıları hâlâ açık. [Kaynak4a3 ve kanıt](../artifacts/release-audit/ra-20261115/sbom-real-package-root/REPORT.md).
 
 ## 12 Kasım 2026 — watchpermissionyenileme güvenlikbulgusu
 
