@@ -646,3 +646,7 @@ Yeni1ana/8alt test, production HTTP login/grant/export/import yolunda credential
 ## 15 Kasım — CI policy testi
 
 CI mevcutpakettestlerine güvenlikpolicytestini ekler. Son guard event/token/checkout/expression/artifact/cachekey ve kendi çağrısının kaldırılmasını sınırlıfixturelerle denetler. Quotedtrue input bypassı yalnızguardda yenidenüretildi ve açıkfalseallowlistiyle kapandı.27yerelkontrol/ikinciinceleme; gerçekGitHubyetki ve supplychain kabulü değildir.
+
+## 15 Kasım — kaynak güven haritaları
+
+Workspace/credential/broker/frontendscope ile browser/host/Kubernetes/Hubble/minikube sınırları kaynak/kanıt kimlikleriyle belgelendi. Rootbrokerkeyde selectorbulunmadığını ve tüketicifiltresini netleştirdi; 128client sayısının reset eşiği olduğu ayrıldı. Ürün/runtime değişmedi. İkiworker raporhedefaşımı, tarihselFAIL ve kısmiuygulanabilirlik korunur; bütünruntime kabulü değildir.

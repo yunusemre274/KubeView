@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-15T12:18:37.449570+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-15T12:33:54.429400+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif ürün kaynağı: 15770296056ca2629601dba540c04741e1822e0d; kayda giriş denetim HEAD e6ee6678. Bu kontrol noktası test/CI/doküman değişikliğidir; native CI114 binary kimliği71b40983 olarak kalır. Final paket/manuel kabul açık.
 - Build/paket: CI114candidate: ZIP15b43aef…/nativea0f7f82d…/binary24ef0ce3…; darstartup14Kasım doğrulandı. Finalbütünpaket/SBOM/manuelgate açık; eskiprofilelock10binary tarihsel.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:131; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:42; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:129; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:44; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST-12.06 — HTTP export güven sınırı; 42/200 VERIFIED_DONE,158 faz açık. CI20.11/20.12 yerel27kontrolle ilerledi, bütün fazlar kapanmadı. Genel NOT_RELEASE_READY.
+- Son tamamlanan faz: TEST-01.03/01.04 dar mimari güven sınırı envanterleri;44/200 VERIFIED_DONE,156 faz açık. Worker zaman sapmaları PASS değildir; genel NOT_RELEASE_READY.
 - Süreç/lab: Kısa27Nodekontrol tamam/child exit0; nativeownedappkapalı,19849sonkontroldeLISTENyok. İkiworkerincelemesitamam; yeni lab başlatılmadı. Docker daemon sonkontrolde erişilemiyor, manuelprofiller/dışbundle korunur.15KasımAC/5%charging; uzunkoşu düşükpilde başlatılmadı.
-- Devam: CIguard/invocation+kanıt/docs secret-scan→commit/push ve exactremoteCI doğrulama. Sonra source/ortam önkoşulu uygun bağımsızfazlar; provider/TLS/render/RSS/60dk/V11-16/18/19/manualkapıları açık. Conditionalmainmerge engeller nedeniyle yapılmadı.
+- Devam: Harita/CI119 success kanıtı→secret-scan/commit/push. Değişmeyen runtime testleri tekrar edilmeyecek. Source/ortamı uygun bağımsızfazlar; provider/TLS/render/RSS/60dk/V11-16/18/19/manualkapıları açık. Main koşullu merge engeller nedeniyle yapılmadı.
 - **Çalışma: AKTİF — kullanıcı devam talimatı; tamamlanmış testler tekrar edilmeden sonuçlar birleştiriliyor.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -25,7 +25,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 
 | Kategori | Faz | Durum | Geçerli kanıt |
 |---|---:|---|---|
-| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:4, VERIFIED_DONE:2 | runtime-surface-retest/REPORT.md + second-review |
+| CAT-01 — Mimari, tehdit modeli ve saldırı yüzeyi | 6 | NOT_STARTED:2, VERIFIED_DONE:4 | runtime-surface-retest/REPORT.md + second-review |
 | CAT-02 — İki liman ve temel UX | 5 | NOT_STARTED:3, IN_PROGRESS:1, VERIFIED_DONE:1 | Henüz yok |
 | CAT-03 — Workspace ve izolasyon | 11 | NOT_STARTED:5, IN_PROGRESS:1, VERIFIED_DONE:5 | Henüz yok |
 | CAT-04 — Gerçek Kubernetes işlemleri | 18 | NOT_STARTED:14, IN_PROGRESS:2, VERIFIED_DONE:2 | Henüz yok |
@@ -178,64 +178,39 @@ Güncel dar source+sentetikguard kabulü yeniden VERIFIED_DONE. GerçekRoleBindi
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
-- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+- Sorumlu: ANA MÜDÜR + package_evidence_review / workspace-trust-map worker.
+- Kaynak / build / paket kimliği: Current2d5aced373b609aa012a7a4f80ed9dfe0410e29f; ürünruntime15770296. Bu fazda kaynakhashleri ve mevcutkanıt uygulanabilirliği bağlanacak.
+- Ortam / kullanılan kimlik ve yetki: Saltokunur kaynak/kanıtenvanteri; gerçekcredential/kubeconfig/log okunmaz. Test/build/browser/cluster/ağscan/CIrerun yok; max60source/1MiBoutput/5dkhedef.
+- Başlangıç zamanı: 2026-11-15T09:21:17.064084+00:00
+- Bitiş zamanı: 2026-11-15T09:33:54.423143+00:00 root kaynak/kanıt kabulü; worker zaman sapmaları ayrıca kayıtta.
+- Durum: VERIFIED_DONE
+- Kabul ölçütü: Dar mimari/source güvensınırı envanteri: aktif giriş/authority/state/cache/host ayrımı, exactkaynak/uygulanabilir eski pozitif-negatifkanıtlar ve bağımsızrootinceleme. Genelruntime/penetrasyon/provider/performans kabulü değildir.
 
 #### TEST-01.03-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Saltokunursource/kanıtlistesi baştan belirlendi; workspace30/host44dosya ve çıktı1MiBaltında. Yeni test/CLI/lab/ağ/credential işlemi yok.
+- [ ] Worker300snzamanhedefi GEÇMEDİ:343,823/340,094sn. İlkfalsekontroller/finalizerhatası korunur; sourcefazkabulü bu workflowmissiPASSyapmaz.
 
 #### TEST-01.03-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Store-ownedworkspace/harbor/tab/context/ns/selector, clientgeneration/grant/SSAR/API, brokerpercredential+GVRns ve frontendcanonicalphysicaldedup farklılıkları haritalandı. HostHTTP/WS/containerexec/providerCLI/HubbleTLS/minikubeprofilelock ayrıldı. Exactfonksiyon/satır/SHAworkerinventoryde.
 
 #### TEST-01.03-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] MevcutSEC001RED/fix, current12SHA gerçekRoleBindingAPI/WS ve reducerunit3+6hash doğru sınıfla bağlandı; kubeconfig6hash ve physicalfix kısmiapplicability ayrı. Yeniçalıştı veya tümcurrentUIE2E sayılmadı.
+- [ ] FullTLS/cold/providerSCA/CLI/PATH/symlink/diğerstreamrevoke/pentest ve performans kendi fazlarında açıktır.
 
 #### TEST-01.03-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+Yeni doğrulanmışruntimekusuru/fix yok. Rootaçıklaması: brokerkeyselector içermez, aynıcredential/connection/GVR/nsunfilteredcache tüketicibaşınamembershiple filtrelenir; clientmap128reseteşiğidir. Bunlar kaynakrapor ifadesini netleştirir, üründavranışı değişmez. Workerfinalizationzamanmiss açık ve kapanmışperformanskanıtıdeğil.
 
 #### TEST-01.03-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Rootiki tamraporu ve aktifworkspace/broker/client/scopekey/Hubble/provisioncode noktalarını okudu; current30+44source/manifest/eskiresult/linkhash kontrolü yaptı. Yeni runtimePoCfix olmadığı için freshdynamicPoCretest NOT_APPLICABLE; tamamlanmıştestler tekrar edilmedi.
+- Sonlukod/hashkontrolü ROOT_CHECKS.jsonda; o kısasüre içerikokuma/raporyazma veya uygulamaCPUölçümü değildir.
 
 #### TEST-01.03-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Rootyazarworkerlarından ayrısource/kanıtincelemesi; source/metadatahash eşitliği ve tarihişlerin türü doğrulandı. Hiç app/CLI/lab/testkaynağı başlamadığından dinamikcleanup NOT_APPLICABLE.
+- Kanıt: artifacts/release-audit/ra-20261115/workspace-trust-map-worker/REPORT.md ve trust-map-root-review/REPORT.md. Aynıajansistemi; profesyonelüçüncütarafpentest değil.
 
 #### TEST-01.03-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI — yalnız mimari/source güvensınırı envanteri.
+- Workerların zamanhedefi başarısız kaydı korunur; genelruntime/allplatform/provider/penetrasyon/performans kapılarını kapatmaz. Source/control/credential/scope/hostprocess sınırı değişirse ilgiliharita ve gerçektestkapıları tekrar değerlendirilir. Genel NOT_RELEASE_READY.
 
 ### TEST-01.04 — Browser/backend/Kubernetes/Hubble/minikube/host sınırları
 
@@ -244,64 +219,39 @@ Güncel dar source+sentetikguard kabulü yeniden VERIFIED_DONE. GerçekRoleBindi
 - İlgili gereksinim / güvenlik standardı kontrolü: ASVS5.0.0 V8.1.1/V8.1.2; API9:2023; CAT01. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
-- Bitiş zamanı: —
-- Durum: NOT_STARTED
-- Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
+- Sorumlu: ANA MÜDÜR + yaml_parser_guards / host-provider-trust-map worker.
+- Kaynak / build / paket kimliği: Current2d5aced373b609aa012a7a4f80ed9dfe0410e29f; ürünruntime15770296. Bu fazda kaynakhashleri ve mevcutkanıt uygulanabilirliği bağlanacak.
+- Ortam / kullanılan kimlik ve yetki: Saltokunur kaynak/kanıtenvanteri; gerçekcredential/kubeconfig/log okunmaz. Test/build/browser/cluster/ağscan/CIrerun yok; max60source/1MiBoutput/5dkhedef.
+- Başlangıç zamanı: 2026-11-15T09:21:17.064202+00:00
+- Bitiş zamanı: 2026-11-15T09:33:54.423143+00:00 root kaynak/kanıt kabulü; worker zaman sapmaları ayrıca kayıtta.
+- Durum: VERIFIED_DONE
+- Kabul ölçütü: Dar mimari/source güvensınırı envanteri: aktif giriş/authority/state/cache/host ayrımı, exactkaynak/uygulanabilir eski pozitif-negatifkanıtlar ve bağımsızrootinceleme. Genelruntime/penetrasyon/provider/performans kabulü değildir.
 
 #### TEST-01.04-S1 — Hazırlık
-- [ ] Sahip olunan ortam ve fixture hazırlandı.
-- Yapılan: henüz çalışılmadı.
-- Kullanılan komut / çalışma dizini: —
-- Beklenen: güvenli hedef/kimlik/sürüm/bütçe doğrulaması.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Saltokunursource/kanıtlistesi baştan belirlendi; workspace30/host44dosya ve çıktı1MiBaltında. Yeni test/CLI/lab/ağ/credential işlemi yok.
+- [ ] Worker300snzamanhedefi GEÇMEDİ:343,823/340,094sn. İlkfalsekontroller/finalizerhatası korunur; sourcefazkabulü bu workflowmissiPASSyapmaz.
 
 #### TEST-01.04-S2 — Normal kullanım / pozitif kontrol
-- [ ] Yetkili normal davranış doğrulandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: ilan edilen yetkili kullanıcı yolu çalışır.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] Store-ownedworkspace/harbor/tab/context/ns/selector, clientgeneration/grant/SSAR/API, brokerpercredential+GVRns ve frontendcanonicalphysicaldedup farklılıkları haritalandı. HostHTTP/WS/containerexec/providerCLI/HubbleTLS/minikubeprofilelock ayrıldı. Exactfonksiyon/satır/SHAworkerinventoryde.
 
 #### TEST-01.04-S3 — Negatif / sınır / arıza kontrolü
-- [ ] Riskli veya hatalı durum kontrollü sınandı.
-- Yapılan: henüz çalışılmadı.
-- Beklenen: kontrollü red/izolasyon/sınırlı kaynak ve doğru hata.
-- Gözlenen: —
-- Kanıt: —
-- Sonuç: NOT_STARTED
+- [x] MevcutSEC001RED/fix, current12SHA gerçekRoleBindingAPI/WS ve reducerunit3+6hash doğru sınıfla bağlandı; kubeconfig6hash ve physicalfix kısmiapplicability ayrı. Yeniçalıştı veya tümcurrentUIE2E sayılmadı.
+- [ ] FullTLS/cold/providerSCA/CLI/PATH/symlink/diğerstreamrevoke/pentest ve performans kendi fazlarında açıktır.
 
 #### TEST-01.04-S4 — Bulgular ve düzeltme
-- Bulgu kimliği: henüz değerlendirilmedi.
-- Önem derecesi ve gerekçesi: —
-- Kök neden: —
-- Değiştirilen dosya / fonksiyon: —
-- Düzeltme commit'i veya çalışma farkı: —
-- Kapsam notu: bulgu yok kararı henüz verilmedi.
+Yeni doğrulanmışruntimekusuru/fix yok. Rootaçıklaması: brokerkeyselector içermez, aynıcredential/connection/GVR/nsunfilteredcache tüketicibaşınamembershiple filtrelenir; clientmap128reseteşiğidir. Bunlar kaynakrapor ifadesini netleştirir, üründavranışı değişmez. Workerfinalizationzamanmiss açık ve kapanmışperformanskanıtıdeğil.
 
 #### TEST-01.04-S5 — Tekrar test ve regresyon
-- [ ] İlk sorunu üreten test yeniden çalıştırıldı.
-- [ ] İlgili normal kullanım hâlâ çalışıyor.
-- [ ] Komşu davranışlar gerektiği ölçüde sınandı.
-- Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+- [x] Rootiki tamraporu ve aktifworkspace/broker/client/scopekey/Hubble/provisioncode noktalarını okudu; current30+44source/manifest/eskiresult/linkhash kontrolü yaptı. Yeni runtimePoCfix olmadığı için freshdynamicPoCretest NOT_APPLICABLE; tamamlanmıştestler tekrar edilmedi.
+- Sonlukod/hashkontrolü ROOT_CHECKS.jsonda; o kısasüre içerikokuma/raporyazma veya uygulamaCPUölçümü değildir.
 
 #### TEST-01.04-S6 — Temizlik ve inceleme
-- [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
-- [ ] Sonuçlar kaynak/build kimliğiyle eşleştirildi.
-- [ ] Gereken bağımsız ikinci inceleme tamamlandı.
-- İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
-- Kalan sınırlar: henüz test edilmedi.
+- [x] Rootyazarworkerlarından ayrısource/kanıtincelemesi; source/metadatahash eşitliği ve tarihişlerin türü doğrulandı. Hiç app/CLI/lab/testkaynağı başlamadığından dinamikcleanup NOT_APPLICABLE.
+- Kanıt: artifacts/release-audit/ra-20261115/host-provider-trust-map-worker/REPORT.md ve trust-map-root-review/REPORT.md. Aynıajansistemi; profesyonelüçüncütarafpentest değil.
 
 #### TEST-01.04-K — Faz kararı
-- [ ] BİTTİ / DOĞRULANDI
-- Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
-- Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+- [x] BİTTİ / DOĞRULANDI — yalnız mimari/source güvensınırı envanteri.
+- Workerların zamanhedefi başarısız kaydı korunur; genelruntime/allplatform/provider/penetrasyon/performans kapılarını kapatmaz. Source/control/credential/scope/hostprocess sınırı değişirse ilgiliharita ve gerçektestkapıları tekrar değerlendirilir. Genel NOT_RELEASE_READY.
 
 ### TEST-01.05 — Zararlı web sayfası, reader ve workload tehditleri
 

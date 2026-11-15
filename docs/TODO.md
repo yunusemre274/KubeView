@@ -594,3 +594,9 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 
 - [x] Read-only CI lane policy testi mevcut paket test komutuna bağlandı; 14 negatif fixture ve değişmeyen11pakettestiyle27PASS. Quotedboolean guard eksikliği EXPECTED_RED→fix→PASS; ilkkanıt korunur.
 - [ ] ExactyeniCI sonucu, gerçekfork/admin/cache/token ve actionbundleSCA; TEST20.11/20.12 hâlâIN_PROGRESS. Ürünruntime/kalite/işlemkapsamı değişmedi.
+
+## 15 Kasım — mimari güven sınırları
+
+- [x] TEST01.03/01.04 yalnızsource envanteri:30/44kaynak, exactkanıtuygulanabilirliği ve ayrırootinceleme. Worker300snhedef aşımları korunur; yeni runtime testi sayılmadı.44/200faz.
+- [x] CI119 exact2d5aced3: yeni guard adımı ve temizLinuxstartup/upload dahil bütünjob success.
+- [ ] Gerçekprovider/TLS/PATH/SCA/pentest/performans/uzunkoşu/manualkapıları açık; main değişmedi.

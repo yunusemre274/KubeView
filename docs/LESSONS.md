@@ -364,3 +364,7 @@ UnknownextensionlessGET200 SPAfallback debugendpoint varlığı değildir; exact
 ## 15 Kasım — action input tipleri ve reporter
 
 YAML action girdileri quotedstring olabilir; yalnız ===true kontrolü yeterli değildir. Bu read-onlylane açıkfalse dışında girdi kabul etmez; actualworkflow değişmese de gelecekteki güvensizkonfigürasyonguardını testet. Node24defaultreporter spec olabilir; TAPbekleyenhelper açık --test-reporter=tap seçmeli. Başarılıhamçıktıyı formatyanlışlığı yüzünden tekrarçalıştırmak yerine ilkreceipt/çıktıyı koruyup offlinekanıtı ayrı kaydet.
+
+## 15 Kasım — kanıt şeması ve kaynak özeti triage
+
+Bir manifestin `actualSHA256`, diğerinin `currentSHA256` kullanması hata değildir; doğrulayıcı önce satır şemasını okumalı ve gerçek güncel dosyayı hashlemelidir. Scanner'ın kaynak/test dosyası adı yanındaki public SHA değerini aday secret sayması da teknik olarak incelenmelidir. Dar yol varsayımı yüzünden triage durursa ignore oluşturulmaz. Ancak exact JSON girdisi, tracked index ve çalışma dosyasının hashleri eşleşince yalnız o dosya/rule/satır fingerprint'i için istisna verilir; genel kural veya dosya hariç tutulmaz. İlk hatalar ve taramalar korunur.

@@ -1,0 +1,878 @@
+{
+  "checkedAt": "2026-11-15T09:26:15.084852+00:00",
+  "initialSourceCount": 42,
+  "additionalSourceCount": 2,
+  "sourceAfter": [
+    {
+      "path": "backend/main.go",
+      "beforeSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "afterSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "beforeSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "afterSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "beforeSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "afterSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "beforeSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "afterSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "beforeSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "afterSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "beforeSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "afterSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/resource_scopes.go",
+      "beforeSHA256": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "afterSHA256": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/provider_handlers.go",
+      "beforeSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "afterSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/traffic_handlers.go",
+      "beforeSHA256": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "afterSHA256": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "beforeSHA256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "afterSHA256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/portforward.go",
+      "beforeSHA256": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "afterSHA256": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/log_session.go",
+      "beforeSHA256": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "afterSHA256": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/watch_authorization.go",
+      "beforeSHA256": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+      "afterSHA256": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/stream.go",
+      "beforeSHA256": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+      "afterSHA256": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "beforeSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "afterSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/traffic/config.go",
+      "beforeSHA256": "752b3caca8081b3ea8e42107165d7b237dbe2f64baaa9e74061fafa175884f06",
+      "afterSHA256": "752b3caca8081b3ea8e42107165d7b237dbe2f64baaa9e74061fafa175884f06",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/traffic/hub.go",
+      "beforeSHA256": "12f33d33e53ae3972cfb7939c373e9e4378cb2f5b7e2dc00176980a6f77884a9",
+      "afterSHA256": "12f33d33e53ae3972cfb7939c373e9e4378cb2f5b7e2dc00176980a6f77884a9",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/traffic/history.go",
+      "beforeSHA256": "92510d00d3044e1a4a9022bd0b374fbf2f92caedb4ceb94c8589ba463f28b09b",
+      "afterSHA256": "92510d00d3044e1a4a9022bd0b374fbf2f92caedb4ceb94c8589ba463f28b09b",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/traffic/flow.go",
+      "beforeSHA256": "7b251ae645bc7cc509df10d2a8ba0f287533779092180148c833ceaaa8a419b7",
+      "afterSHA256": "7b251ae645bc7cc509df10d2a8ba0f287533779092180148c833ceaaa8a419b7",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/traffic/process_unix.go",
+      "beforeSHA256": "3924ed3c81482a69a67ea2e479fb1289840a31d4eb7cb99968be7cb5ac9d26b4",
+      "afterSHA256": "3924ed3c81482a69a67ea2e479fb1289840a31d4eb7cb99968be7cb5ac9d26b4",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/provision/minikube.go",
+      "beforeSHA256": "8e57040b6535a530e9bc7f39a80618960984ec0a39ad919eb394279b88a2dfff",
+      "afterSHA256": "8e57040b6535a530e9bc7f39a80618960984ec0a39ad919eb394279b88a2dfff",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/provision/cli.go",
+      "beforeSHA256": "a98674ee47c27ce4e919ceeac8f5fe113dcce6caa4d715a9696e243da905814f",
+      "afterSHA256": "a98674ee47c27ce4e919ceeac8f5fe113dcce6caa4d715a9696e243da905814f",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/provision/lock_unix.go",
+      "beforeSHA256": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+      "afterSHA256": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/provision/lock_windows.go",
+      "beforeSHA256": "fb3fd946a2aa60fbfc20005dc4766f1e62867841f538b149815a8c6d97b57a9b",
+      "afterSHA256": "fb3fd946a2aa60fbfc20005dc4766f1e62867841f538b149815a8c6d97b57a9b",
+      "equal": true
+    },
+    {
+      "path": "frontend/src/context/ShipyardClusterContext.jsx",
+      "beforeSHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "afterSHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "equal": true
+    },
+    {
+      "path": "frontend/src/context/WorkspaceProvider.jsx",
+      "beforeSHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "afterSHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "equal": true
+    },
+    {
+      "path": "frontend/src/context/WorkspaceRegistry.js",
+      "beforeSHA256": "010ae39dec13d12f58547333c9eaa6292e146ddfba41a85fdb2962613de1e59b",
+      "afterSHA256": "010ae39dec13d12f58547333c9eaa6292e146ddfba41a85fdb2962613de1e59b",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/workspace/store.go",
+      "beforeSHA256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+      "afterSHA256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+      "equal": true
+    },
+    {
+      "path": "backend/go.mod",
+      "beforeSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+      "afterSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+      "equal": true
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "beforeSHA256": "8b3284afe93a860306960b741b96e6b23a5b456538b66abf6fc02a53c3c8b595",
+      "afterSHA256": "8b3284afe93a860306960b741b96e6b23a5b456538b66abf6fc02a53c3c8b595",
+      "equal": true
+    },
+    {
+      "path": "docs/RELEASE_THREAT_MODEL.md",
+      "beforeSHA256": "86e33bfc6805a712b62095158454205ff2358f73910d3d0aa04853b2b77c4026",
+      "afterSHA256": "86e33bfc6805a712b62095158454205ff2358f73910d3d0aa04853b2b77c4026",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/release_kubeconfig_trust_test.go",
+      "beforeSHA256": "7b39ad28075a041ae0b63e57e4e8f3e38154b65e1c6bdb85e27de8373bb6c612",
+      "afterSHA256": "7b39ad28075a041ae0b63e57e4e8f3e38154b65e1c6bdb85e27de8373bb6c612",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/provision/release_profile_lock_scope_test.go",
+      "beforeSHA256": "e1576b460be3e4487e8c5b2b984c21ea31a5936d2daa0ac361ccb1e375f4c6af",
+      "afterSHA256": "e1576b460be3e4487e8c5b2b984c21ea31a5936d2daa0ac361ccb1e375f4c6af",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/release_provider_cache_scope_test.go",
+      "beforeSHA256": "b9e19ca53f28b39808733efa496e6ba74e6fb7bd0d8c62ff067b0cbf8482b223",
+      "afterSHA256": "b9e19ca53f28b39808733efa496e6ba74e6fb7bd0d8c62ff067b0cbf8482b223",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/traffic/namespace_scopes_test.go",
+      "beforeSHA256": "70707c6401cbf08a645ca3531eb2b480d1ce54dbdd4a8a61b88f3791dc44bb5d",
+      "afterSHA256": "70707c6401cbf08a645ca3531eb2b480d1ce54dbdd4a8a61b88f3791dc44bb5d",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/traffic/traffic_test.go",
+      "beforeSHA256": "13f082a51a3fa67bc035c54268940efcffea08503d5cd80c9e17d68c9ea5175c",
+      "afterSHA256": "13f082a51a3fa67bc035c54268940efcffea08503d5cd80c9e17d68c9ea5175c",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/provision/cli_test.go",
+      "beforeSHA256": "d0da83268f33a3b50352aa1586534f6a47891f82b594382f13f7b9911b477bf7",
+      "afterSHA256": "d0da83268f33a3b50352aa1586534f6a47891f82b594382f13f7b9911b477bf7",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/provision/minikube_test.go",
+      "beforeSHA256": "36c803e6ab0766b968fd274043ed66f1090d16b29d5349837ad8affbe15c0287",
+      "afterSHA256": "36c803e6ab0766b968fd274043ed66f1090d16b29d5349837ad8affbe15c0287",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/release_origin_preview_test.go",
+      "beforeSHA256": "8714457eefdb67c710b14a4ed29adb261ba433ef0c96bc01d93d1367a9a65a34",
+      "afterSHA256": "8714457eefdb67c710b14a4ed29adb261ba433ef0c96bc01d93d1367a9a65a34",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_expiry_test.go",
+      "beforeSHA256": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "afterSHA256": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/release_active_watch_authz_test.go",
+      "beforeSHA256": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72",
+      "afterSHA256": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72",
+      "equal": true
+    },
+    {
+      "path": "backend/pkg/server/release_active_watch_real_test.go",
+      "beforeSHA256": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb",
+      "afterSHA256": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb",
+      "equal": true
+    }
+  ],
+  "additionalSources": [
+    {
+      "path": "backend/go.sum",
+      "bytes": 14603,
+      "sha256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+      "reason": "Historical receipt applicability and active broker ownership read"
+    },
+    {
+      "path": "backend/pkg/server/workspace_broker.go",
+      "bytes": 4990,
+      "sha256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "reason": "Historical receipt applicability and active broker ownership read"
+    }
+  ],
+  "functionIndex": {
+    "backend/main.go": [
+      {
+        "line": 29,
+        "function": "func configure(args []string) (bool, error) {"
+      },
+      {
+        "line": 118,
+        "function": "func frontendHandler(root fs.FS) http.Handler {"
+      },
+      {
+        "line": 166,
+        "function": "func resolveStaticDir() string {"
+      },
+      {
+        "line": 179,
+        "function": "func main() {"
+      }
+    ],
+    "backend/pkg/server/server.go": [
+      {
+        "line": 76,
+        "function": "func New() *Server {"
+      },
+      {
+        "line": 79,
+        "function": "func (s *Server) Register(mux *http.ServeMux) {"
+      },
+      {
+        "line": 93,
+        "function": "func (s *Server) Close() {"
+      },
+      {
+        "line": 114,
+        "function": "func SameOrigin(r *http.Request) bool {"
+      },
+      {
+        "line": 126,
+        "function": "func (s *Server) guard(w http.ResponseWriter, r *http.Request, authenticate bool) bool {"
+      },
+      {
+        "line": 156,
+        "function": "func (s *Server) protect(next http.HandlerFunc) http.HandlerFunc {"
+      },
+      {
+        "line": 197,
+        "function": "func (s *Server) session(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 218,
+        "function": "func jsonResponse(w http.ResponseWriter, status int, v interface{}) {"
+      },
+      {
+        "line": 223,
+        "function": "func problem(w http.ResponseWriter, status int, message string) {"
+      },
+      {
+        "line": 226,
+        "function": "func decode(w http.ResponseWriter, r *http.Request, v interface{}) bool {"
+      },
+      {
+        "line": 244,
+        "function": "func loadingRules() *clientcmd.ClientConfigLoadingRules {"
+      },
+      {
+        "line": 247,
+        "function": "func inClusterNamespace() string {"
+      },
+      {
+        "line": 256,
+        "function": "func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 307,
+        "function": "func (s *Server) client(name string) (*Clients, error) {"
+      },
+      {
+        "line": 395,
+        "function": "func (s *Server) requestClient(w http.ResponseWriter, r *http.Request) *Clients {"
+      },
+      {
+        "line": 415,
+        "function": "func (s *Server) namespace(r *http.Request) (string, error) {"
+      },
+      {
+        "line": 433,
+        "function": "func discover(c *Clients) ([]Resource, []string) {"
+      },
+      {
+        "line": 457,
+        "function": "func (s *Server) discovery(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 465,
+        "function": "func queryGVR(r *http.Request) schema.GroupVersionResource {"
+      },
+      {
+        "line": 476,
+        "function": "func resourceNamespace(c *Clients, gvr schema.GroupVersionResource, ns string) string {"
+      },
+      {
+        "line": 486,
+        "function": "func (s *Server) resourceClient(c *Clients, gvr schema.GroupVersionResource, ns string) dynamic.ResourceInterface {"
+      },
+      {
+        "line": 494,
+        "function": "func sanitize(obj *unstructured.Unstructured) *unstructured.Unstructured {"
+      },
+      {
+        "line": 512,
+        "function": "func (s *Server) openapi(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 527,
+        "function": "func (s *Server) revealSecret(w http.ResponseWriter, r *http.Request) {"
+      }
+    ],
+    "backend/pkg/server/connection.go": [
+      {
+        "line": 18,
+        "function": "func (s *Server) operatorCookieName() string {"
+      },
+      {
+        "line": 24,
+        "function": "func (s *Server) accessCookieName() string {"
+      },
+      {
+        "line": 43,
+        "function": "func (s *Server) operator(r *http.Request, w http.ResponseWriter) (string, *operatorSession) {"
+      },
+      {
+        "line": 83,
+        "function": "func resetOperator(session *operatorSession) {"
+      },
+      {
+        "line": 93,
+        "function": "func (s *Server) managementAllowed(ctx context.Context, c *Clients, ns string) error {"
+      },
+      {
+        "line": 120,
+        "function": "func (s *Server) managementState(r *http.Request, c *Clients, ns string) bool {"
+      },
+      {
+        "line": 137,
+        "function": "func checkResult(err error, message string) connectionCheck {"
+      },
+      {
+        "line": 149,
+        "function": "func (s *Server) connection(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 220,
+        "function": "func (s *Server) management(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 319,
+        "function": "func (s *Server) closeOperatorForwards(id string) {"
+      }
+    ],
+    "backend/pkg/server/workspace.go": [
+      {
+        "line": 56,
+        "function": "func workspaceScopeFrom(ctx context.Context) *workspaceScope {"
+      },
+      {
+        "line": 60,
+        "function": "func (v *workspaceScope) allowsNamespace(ns string) bool {"
+      },
+      {
+        "line": 68,
+        "function": "func scopeValue(r *http.Request, header, query string) string {"
+      },
+      {
+        "line": 74,
+        "function": "func operatorKey(r *http.Request, cookie string) string {"
+      },
+      {
+        "line": 83,
+        "function": "func (s *Server) ConfigureWorkspace(dataDir, legacyContext, legacyNamespace string) error {"
+      },
+      {
+        "line": 102,
+        "function": "func (s *Server) trustedWorkspaceContext(name string) bool {"
+      },
+      {
+        "line": 123,
+        "function": "func (s *Server) bindWorkspaceRequest(w http.ResponseWriter, r *http.Request) (*http.Request, bool) {"
+      },
+      {
+        "line": 166,
+        "function": "func (s *Server) scopedClient(c *Clients, scope *workspaceScope) *Clients {"
+      },
+      {
+        "line": 172,
+        "function": "func safeAuthorizationKey(c *Clients, connectionID string) string {"
+      },
+      {
+        "line": 176,
+        "function": "func (s *Server) workspaceIdentity(ctx context.Context, c *Clients, connectionID string) connectionIdentity {"
+      },
+      {
+        "line": 192,
+        "function": "func (s *Server) workspaceDTO(w http.ResponseWriter, r *http.Request, doc ws.Document) {"
+      },
+      {
+        "line": 230,
+        "function": "func (s *Server) workspaceCSRF(w http.ResponseWriter, r *http.Request) bool {"
+      },
+      {
+        "line": 246,
+        "function": "func (s *Server) workspaceHandler(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 470,
+        "function": "func (s *Server) invalidateWorkspaceChanges(before, after ws.Document) {"
+      },
+      {
+        "line": 514,
+        "function": "func (s *Server) workspacePreview(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 593,
+        "function": "func workspaceError(message string) error { return fmt.Errorf(\"Liman kapsam\u0131: %s\", message) }"
+      },
+      {
+        "line": 594,
+        "function": "func scopedOperation(r *http.Request, c *Clients, obj interface{}, dry bool) map[string]interface{} {"
+      },
+      {
+        "line": 617,
+        "function": "func availableHarborPosition(harbors []ws.Harbor, preferred [2]float64) [2]float64 {"
+      },
+      {
+        "line": 632,
+        "function": "func (s *Server) retireWorkspaceClient(id string) {"
+      }
+    ],
+    "backend/pkg/server/provider_handlers.go": [
+      {
+        "line": 22,
+        "function": "func (s *Server) providerServices() *providerServices {"
+      },
+      {
+        "line": 48,
+        "function": "func (s *Server) closeProviders() {"
+      },
+      {
+        "line": 62,
+        "function": "func (s *Server) registerProviders(mux *http.ServeMux) {"
+      },
+      {
+        "line": 67,
+        "function": "func localOperator(r *http.Request) bool {"
+      },
+      {
+        "line": 75,
+        "function": "func (s *Server) providersStatus(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 122,
+        "function": "func (s *Server) providerWorker(w http.ResponseWriter, r *http.Request) {"
+      }
+    ],
+    "backend/pkg/server/traffic_handlers.go": [
+      {
+        "line": 23,
+        "function": "func providerTransport(config *rest.Config) (string, error) {"
+      },
+      {
+        "line": 46,
+        "function": "func trafficIdentity(config *rest.Config) (string, error) {"
+      },
+      {
+        "line": 80,
+        "function": "func (s *Server) verifyTrafficCluster(ctx context.Context, c *Clients, cfg traffic.Config) error {"
+      },
+      {
+        "line": 99,
+        "function": "func (s *Server) flows(w http.ResponseWriter, r *http.Request) {"
+      }
+    ],
+    "backend/pkg/server/sessions.go": [
+      {
+        "line": 21,
+        "function": "func (s *Server) exec(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 119,
+        "function": "func (s *socketWriter) Write(p []byte) (int, error) {"
+      }
+    ],
+    "backend/pkg/server/portforward.go": [
+      {
+        "line": 45,
+        "function": "func (s *Server) validateForward(w http.ResponseWriter, r *http.Request, target forwardRequest) (*Clients, bool) {"
+      },
+      {
+        "line": 82,
+        "function": "func (s *Server) closeForward(id string) {"
+      },
+      {
+        "line": 105,
+        "function": "func (session *forwardSession) description() map[string]interface{} {"
+      },
+      {
+        "line": 108,
+        "function": "func (s *Server) portforwards(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 180,
+        "function": "func (s *Server) proxyForward(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 250,
+        "function": "func (s *Server) rawPortforward(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 293,
+        "function": "func dialPodPort(ctx context.Context, c *Clients, namespace, pod string, port int) (*forwardConn, error) {"
+      },
+      {
+        "line": 360,
+        "function": "func (c *forwardConn) Read(p []byte) (int, error) {"
+      },
+      {
+        "line": 371,
+        "function": "func (c *forwardConn) Write(p []byte) (int, error) { return c.data.Write(p) }"
+      },
+      {
+        "line": 372,
+        "function": "func (c *forwardConn) Close() error {"
+      },
+      {
+        "line": 386,
+        "function": "func (c *forwardConn) setOnClose(fn func()) {"
+      },
+      {
+        "line": 400,
+        "function": "func (c *forwardConn) LocalAddr() net.Addr                { return forwardAddr(\"kubeview\") }"
+      },
+      {
+        "line": 401,
+        "function": "func (c *forwardConn) RemoteAddr() net.Addr               { return forwardAddr(\"kubernetes-pod\") }"
+      },
+      {
+        "line": 402,
+        "function": "func (c *forwardConn) SetDeadline(t time.Time) error      { return nil }"
+      },
+      {
+        "line": 403,
+        "function": "func (c *forwardConn) SetReadDeadline(t time.Time) error  { return nil }"
+      },
+      {
+        "line": 404,
+        "function": "func (c *forwardConn) SetWriteDeadline(t time.Time) error { return nil }"
+      },
+      {
+        "line": 408,
+        "function": "func (a forwardAddr) Network() string { return \"kubernetes-portforward\" }"
+      },
+      {
+        "line": 409,
+        "function": "func (a forwardAddr) String() string  { return string(a) }"
+      }
+    ],
+    "backend/pkg/provision/minikube.go": [
+      {
+        "line": 85,
+        "function": "func FromEnv() Config {"
+      },
+      {
+        "line": 116,
+        "function": "func (c Config) Validate() error {"
+      },
+      {
+        "line": 128,
+        "function": "func New(cfg Config, runner Runner) (*Manager, error) {"
+      },
+      {
+        "line": 200,
+        "function": "func (m *Manager) journal() string {"
+      },
+      {
+        "line": 203,
+        "function": "func terminal(s string) bool { return s == \"ready\" || s == \"failed\" }"
+      },
+      {
+        "line": 204,
+        "function": "func (m *Manager) persist() error {"
+      },
+      {
+        "line": 215,
+        "function": "func (m *Manager) Snapshot() []Operation {"
+      },
+      {
+        "line": 225,
+        "function": "func (m *Manager) update(id string, fn func(*Operation)) {"
+      },
+      {
+        "line": 240,
+        "function": "func (m *Manager) Verify(ctx context.Context, client kubernetes.Interface, selectedContext string) ([]corev1.Node, Inventory, error) {"
+      },
+      {
+        "line": 277,
+        "function": "func (m *Manager) Begin(ctx context.Context, client kubernetes.Interface, selectedContext, key string) (Operation, error) {"
+      },
+      {
+        "line": 360,
+        "function": "func NextName(profile, last string) (string, error) {"
+      },
+      {
+        "line": 374,
+        "function": "func (m *Manager) run(ctx context.Context, cancel context.CancelFunc, client kubernetes.Interface, op Operation) {"
+      },
+      {
+        "line": 429,
+        "function": "func (m *Manager) Reconcile(ctx context.Context, client kubernetes.Interface) bool {"
+      },
+      {
+        "line": 490,
+        "function": "func (m *Manager) Cancel(id string) error {"
+      },
+      {
+        "line": 510,
+        "function": "func (m *Manager) Close() {"
+      },
+      {
+        "line": 535,
+        "function": "func (m *Manager) Configuration() map[string]interface{} {"
+      },
+      {
+        "line": 538,
+        "function": "func SortedNames(inv Inventory) []string {"
+      }
+    ],
+    "backend/pkg/provision/cli.go": [
+      {
+        "line": 20,
+        "function": "func (CLIRunner) ProfileUID(ctx context.Context, c Config) (string, error) {"
+      },
+      {
+        "line": 32,
+        "function": "func (CLIRunner) Inventory(_ context.Context, c Config) (Inventory, error) {"
+      },
+      {
+        "line": 66,
+        "function": "func cliEnv(c Config) []string {"
+      },
+      {
+        "line": 75,
+        "function": "func (CLIRunner) Add(ctx context.Context, c Config, line func(string), started func(int)) error {"
+      },
+      {
+        "line": 103,
+        "function": "func (CLIRunner) HostExists(ctx context.Context, c Config, name string) (bool, error) {"
+      }
+    ],
+    "backend/pkg/traffic/config.go": [
+      {
+        "line": 34,
+        "function": "func FromEnv() Config {"
+      },
+      {
+        "line": 42,
+        "function": "func (c Config) validate() (Config, bool, error) {"
+      },
+      {
+        "line": 92,
+        "function": "func WithIdentity(ctx context.Context, fingerprint string) context.Context {"
+      },
+      {
+        "line": 95,
+        "function": "func requestIdentity(ctx context.Context) string {"
+      },
+      {
+        "line": 102,
+        "function": "func WithSelectedUID(ctx context.Context, uid string) context.Context {"
+      },
+      {
+        "line": 108,
+        "function": "func selectedUID(ctx context.Context) string {"
+      },
+      {
+        "line": 115,
+        "function": "func safeEnvironment(privateHome string) []string {"
+      }
+    ],
+    "backend/pkg/traffic/hub.go": [
+      {
+        "line": 78,
+        "function": "func NewHub(cfg Config) (*Hub, error) {"
+      },
+      {
+        "line": 109,
+        "function": "func (h *Hub) base(contextName, namespace, status string) Snapshot {"
+      },
+      {
+        "line": 116,
+        "function": "func normalizeLease(ids []string) (string, error) {"
+      },
+      {
+        "line": 126,
+        "function": "func (h *Hub) Snapshot(ctx context.Context, client kubernetes.Interface, contextName, namespace string, allowNodes bool, leaseIDs ...string) (Snapshot, error) {"
+      },
+      {
+        "line": 141,
+        "function": "func normalizeNamespaceScopes(scopes []NamespaceScope) ([]NamespaceScope, string, error) {"
+      },
+      {
+        "line": 175,
+        "function": "func (h *Hub) SnapshotScopes(ctx context.Context, client kubernetes.Interface, contextName string, scopes []NamespaceScope, allowNodes bool, leaseIDs ...string) (Snapshot, error) {"
+      },
+      {
+        "line": 182,
+        "function": "func (h *Hub) snapshotScopes(ctx context.Context, client kubernetes.Interface, contextName, namespace string, scopes []NamespaceScope, allowNodes bool, leaseIDs ...string) (Snapshot, error) {"
+      },
+      {
+        "line": 253,
+        "function": "func (s *collection) refreshPods(ctx context.Context, client kubernetes.Interface) error {"
+      },
+      {
+        "line": 303,
+        "function": "func (s *collection) namespaces() []string {"
+      },
+      {
+        "line": 320,
+        "function": "func (s *collection) podAllowed(pod *corev1.Pod) bool {"
+      },
+      {
+        "line": 335,
+        "function": "func (s *collection) endpointAllowed(endpoint observedEndpoint) bool {"
+      },
+      {
+        "line": 341,
+        "function": "func (s *collection) flowAllowed(row observedFlow) bool {"
+      },
+      {
+        "line": 356,
+        "function": "func (h *Hub) removeScope(key string, scope *collection) {"
+      },
+      {
+        "line": 367,
+        "function": "func (h *Hub) ReleaseIdentity(ctx context.Context, contextName, namespace string, leaseIDs ...string) {"
+      },
+      {
+        "line": 374,
+        "function": "func (h *Hub) ReleaseScopesIdentity(ctx context.Context, contextName string, scopes []NamespaceScope, leaseIDs ...string) {"
+      },
+      {
+        "line": 383,
+        "function": "func (h *Hub) Release(contextName, namespace string, leaseIDs ...string) {"
+      },
+      {
+        "line": 386,
+        "function": "func (h *Hub) release(contextName, namespace, identity string, leaseIDs ...string) {"
+      },
+      {
+        "line": 410,
+        "function": "func (h *Hub) expireLeases() {"
+      },
+      {
+        "line": 439,
+        "function": "func (h *Hub) Close() {"
+      },
+      {
+        "line": 464,
+        "function": "func (w *boundedCapture) Write(data []byte) (int, error) {"
+      },
+      {
+        "line": 475,
+        "function": "func (w *boundedDiscard) Write(data []byte) (int, error) {"
+      },
+      {
+        "line": 487,
+        "function": "func (h *Hub) command(ctx context.Context, args []string) *exec.Cmd {"
+      },
+      {
+        "line": 494,
+        "function": "func (h *Hub) serverArguments() []string {"
+      },
+      {
+        "line": 511,
+        "function": "func (s *collection) run() {"
+      },
+      {
+        "line": 541,
+        "function": "func (s *collection) runStream() {"
+      },
+      {
+        "line": 656,
+        "function": "func (s *collection) setFailure(message string) {"
+      },
+      {
+        "line": 666,
+        "function": "func (s *collection) ingest(row observedFlow, now time.Time) {"
+      },
+      {
+        "line": 695,
+        "function": "func (s *collection) snapshot(now time.Time, preferredUIDs ...string) Snapshot {"
+      }
+    ]
+  },
+  "noProductOrTestsEdited": true,
+  "newTestsRun": false,
+  "networkOrProviderStarted": false
+}

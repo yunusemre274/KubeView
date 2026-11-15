@@ -1,0 +1,27 @@
+[
+  {
+    "path": "REPORT.md",
+    "bytes": 19910,
+    "sha256": "4a1c92c5f38f565548446ce334778d4e140a43581b70ed838c122b97a4856d12"
+  },
+  {
+    "path": "evidence-reuse.json",
+    "bytes": 11308,
+    "sha256": "431aa102c93f650b02c8a6a947a28450dcecba233145172363622b57c959b10c"
+  },
+  {
+    "path": "preflight.json",
+    "bytes": 7773,
+    "sha256": "b09c97be2f432dd10029ea13a9d5f97815342a369e51c66e23e0bee83956ccfa"
+  },
+  {
+    "path": "receipt.json",
+    "bytes": 617,
+    "sha256": "57ad4217c9816ca9c404bb7d6db30e4577931437052dc09e6b3d0f53eb1bdadf"
+  },
+  {
+    "path": "source-review.json",
+    "bytes": 30871,
+    "sha256": "0f0199e7421f3c4c2726eecdc160c479c61ec24beec9d44f6d1d61136dc92e3c"
+  }
+]

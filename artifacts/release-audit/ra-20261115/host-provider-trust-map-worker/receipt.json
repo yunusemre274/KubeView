@@ -1,0 +1,15 @@
+{
+  "completedAt": "2026-11-15T09:26:30.864588+00:00",
+  "elapsedSeconds": 340.0943,
+  "within300SecondReadOnlyTarget": false,
+  "initialSources": 42,
+  "additionalSources": 2,
+  "totalSources": 44,
+  "allInitialSourceHashesUnchanged": true,
+  "newDynamicTests": 0,
+  "newNetworkOrProviderOperations": 0,
+  "productEdits": false,
+  "recommendation": "Root may close TEST01.04 limited source map after second review; provider/dynamic/remaining security gates stay open",
+  "overrunSeconds": 40.094299999999976,
+  "reason": "Read-only source/report finalization exceeded target; no dynamic tests or provider actions"
+}
