@@ -1,0 +1,20 @@
+{
+  "capturedAt": "2026-11-15T10:27:27.880592+00:00",
+  "files": {
+    "AGENTS/AGENTS.md": "bfc5be3dd42357bd0b3128f48785bee028bf03e4e0f27cf1447a51d702fb0b3d",
+    "docs/PROJECT.md": "cf1d010f7ac466d53927ded9bda455edf28dde864786d130b27877a25893f64a",
+    "docs/ARCHITECTURE.md": "ea9dc2ed26f45712b79065ec2b1bfb9c296513a72d6148d2f76e47f67a275a67",
+    "docs/TODO.md": "58365acc35cfbedc562d3cc00340b65a05451c53a1715b5f5a895bc75b5018bc",
+    "docs/DECISIONS.md": "5ec0de60fc7e4b6f0ddf82a3cd14c67b1f435935ef34a4fc33a0156506779f2a",
+    "METAPHOR.md": "64555d6e4ed905f8694742c312b7811d9ec535608dda14a0dc7619a6d621d611",
+    "ROADMAP_FOR_TESTS.md": "401f7174c0e1248bd4c8ffd6f59eb2efb080aba71ad7dc0c82b451edbc6ac118",
+    "scripts/release-sbom.mjs": "67633f23985bdd6d79ebdc8a6ff225339301a63c0d4b2811703c52cfae0e3340",
+    "scripts/build-release.mjs": "3dc598b31bcf402d4e9c3bcd5ed897733afe76a43024dfb2d3634771b763e57e",
+    "frontend/build/package-inventory.mjs": "fbeb25148c7c0edc204f15fd889ebcb4e436a87c3368810f22d38340e9a74dbe",
+    "frontend/vite.config.js": "24a1a0f38919c46e3f7af01a4c72693c1bae5d11933c34d8cd8b9f4853c223cd",
+    "scripts/release-sbom.test.mjs": "bd0f268f8a1d8dc5105fd99afa184d8d448e2c5463ab30e90e7a149889b98f78",
+    "scripts/build-release.test.mjs": "2b1e113527e1875c0d4abf557451c37ba5874ce458367f5064e58a8398b7479f",
+    "frontend/package.json": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+    "scripts/prepare-webui.mjs": "35a2ffee2055876f6cf4089777f63f48fe356c59803e9b5e987146d22f7663d0"
+  }
+}

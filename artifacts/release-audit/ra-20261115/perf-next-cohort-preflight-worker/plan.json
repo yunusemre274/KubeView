@@ -1,0 +1,15 @@
+{
+  "startedAt": "2026-11-15T09:40:53.791264+00:00",
+  "startedUnix": 1794735653.791363,
+  "auditHEAD": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+  "requestedRootHEAD": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+  "runtimeSource": "15770296056ca2629601dba540c04741e1822e0d",
+  "scope": "read-only next performance cohort preflight, not a measurement or permission",
+  "limits": {
+    "targetSeconds": 420,
+    "stopNewReadsAfterSeconds": 360,
+    "sourceFiles": 25,
+    "outputBytes": 262144
+  },
+  "noExecution": "No build/test/browser/cluster/benchmark/agents or product/bench/Git/ROADMAP edits"
+}

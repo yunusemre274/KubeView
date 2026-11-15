@@ -1,0 +1,88 @@
+{
+  "observedAt": "2026-11-15T09:45:37.447378+00:00",
+  "oldFrozenFrontends": [
+    {
+      "tag": "cat16-36d-20261112T113255Z",
+      "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "sourceSHA256": "25c0877480526832445bc61d4b6355cdb89024c0f45556772c2a8109e3ede293",
+      "provenanceSHA256": "ee5e15a1831233005624e05c29198a16c2995bd289d241a88ab15ad162380a52",
+      "indexSHA256": "f682f5740ba518542ed6d84e3008b57a4a592e162b093276b4b3354e12e634a5",
+      "assets": {
+        "assets/HarborScene--Y1Udrx9.js": "172e1d27d49f082f8f0faf886a1395978f25b1414a5d7097447a3029f041c054",
+        "assets/index-CCZQtIvj.css": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+        "assets/index-rjSJGT5b.js": "f62ca5e7cef4c3c3d01f247a2f4b6ebfafc11b8dc1b8e93fd717b4dc04f19621",
+        "assets/three-BKmXRbXN.js": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+        "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+        "index.html": "f682f5740ba518542ed6d84e3008b57a4a592e162b093276b4b3354e12e634a5"
+      },
+      "backendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+      "backendTag": "cat16-common-f32-20261112T113255Z",
+      "profiling": false,
+      "sourceManifestSHA256VerifiedNow": true,
+      "sourceFileMapAggregateVerifiedNow": true,
+      "assetAndBackendContentNotRehashedNow": "Historical receipts reused; runner/root must reverify before actual jobs. Avoid unnecessary45\u201365MB binary I/O in read-only plan."
+    },
+    {
+      "tag": "cat16-f32-20261112T113255Z",
+      "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "sourceSHA256": "2ebbbd715eb1e449736cf2e4b88489782136a19bbc25a99cf58701c9a234fe4a",
+      "provenanceSHA256": "fb96c40c0719f5242309a1a7971f244bcf48193628848419904fd60c1b3d0312",
+      "indexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "assets": {
+        "assets/HarborScene-COc_bafo.js": "19fbdfb18c72962a265056080c5ecb6e5679e5fb4f76a3facdb7e5a436005046",
+        "assets/index-CCZQtIvj.css": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+        "assets/index-DDfzt6ML.js": "b48977d352b3f17f8e2e2987f5ac04d98c89f593c2fcce6479b01aa110562313",
+        "assets/three-BKmXRbXN.js": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+        "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+        "index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3"
+      },
+      "backendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+      "backendTag": "cat16-common-f32-20261112T113255Z",
+      "profiling": false,
+      "sourceManifestSHA256VerifiedNow": true,
+      "sourceFileMapAggregateVerifiedNow": true,
+      "assetAndBackendContentNotRehashedNow": "Historical receipts reused; runner/root must reverify before actual jobs. Avoid unnecessary45\u201365MB binary I/O in read-only plan."
+    }
+  ],
+  "oldCommonBackend": {
+    "tag": "cat16-common-f32-20261112T113255Z",
+    "sha256Recorded": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+    "fileBytesNow": 65238562,
+    "rehashPerformed": false,
+    "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12"
+  },
+  "currentSelectedSHA256": {
+    "frontend/src/data/resourceStore.js": "a88fd60b1519c23e622ac986fe6d96caf8a1a8e780bb2f36d603b4eedbdeb525",
+    "frontend/src/harbor/HarborScene.jsx": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1",
+    "frontend/src/harbor/assets.jsx": "dfc512a3baa639c4f0fdd420b69e64014c537c20dd42a5b1b3da58dd1df35a3b",
+    "frontend/package-lock.json": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "backend/pkg/server/benchmark_test.go": "0ed76eaddeeeeeab94dad2b1d388f7bc6867dba1c0265ef468eddfd3c2b6a76e"
+  },
+  "currentRuntimeVsOldBChangedPaths": [
+    "backend/pkg/server/stream.go",
+    "backend/pkg/server/watch_authorization.go",
+    "frontend/src/data/resourceStore.js"
+  ],
+  "historicalManifest": {
+    "fixtureVersion": "kubeview-benchmark-v2",
+    "fixtureSHA256": {
+      "M": "b5cf1d2934a9a1926c5ccad1a7181ce73057c4066e13b35895cef96f43af751b"
+    },
+    "replaySHA256": "a9fde6d8b62ee228d61a52ea7ee3b46781f34b707228748bdb4c2c8824e6353b",
+    "lockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "dependencyGraphSHA256": "6f1b0d74ebb5aef567167a508aaca30467d2bc90965ea234cc1f4783e76a0a71",
+    "instrumentationSHA256": "e707bd87346010856befb5b783268939759e391cf161998b7833f05ad410c6a9",
+    "backendBinarySHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+    "cameraFovOverride": 38,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "quality": "medium",
+    "scenarioVersion": 5
+  },
+  "currentBFrontendMustBeRebuilt": true,
+  "currentCommonBackendMustBeRebuiltForCurrentGatewayCost": true,
+  "currentFixtureServerSourceMatchesRecordedOldF32": true,
+  "oldUnsafeLongLogBaselineForbidden": true
+}

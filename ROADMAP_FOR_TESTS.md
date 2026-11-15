@@ -1,17 +1,17 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-15T12:33:54.429400+03:00 — Europe/Istanbul (UTC+03:00).
+- Son güncelleme: 2026-11-15T13:35:56.879865+03:00 — Europe/Istanbul (UTC+03:00).
 - Aktif ürün kaynağı: 15770296056ca2629601dba540c04741e1822e0d; kayda giriş denetim HEAD e6ee6678. Bu kontrol noktası test/CI/doküman değişikliğidir; native CI114 binary kimliği71b40983 olarak kalır. Final paket/manuel kabul açık.
 - Build/paket: CI114candidate: ZIP15b43aef…/nativea0f7f82d…/binary24ef0ce3…; darstartup14Kasım doğrulandı. Finalbütünpaket/SBOM/manuelgate açık; eskiprofilelock10binary tarihsel.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
-- Toplam test fazı: **200**. NOT_STARTED:129; IN_PROGRESS:21; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:44; NOT_APPLICABLE:0.
+- Toplam test fazı: **200**. NOT_STARTED:128; IN_PROGRESS:22; FAILED:3; BLOCKED:1; RETEST_REQUIRED:2; VERIFIED_DONE:44; NOT_APPLICABLE:0.
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
 - Son tamamlanan faz: TEST-01.03/01.04 dar mimari güven sınırı envanterleri;44/200 VERIFIED_DONE,156 faz açık. Worker zaman sapmaları PASS değildir; genel NOT_RELEASE_READY.
-- Süreç/lab: Kısa27Nodekontrol tamam/child exit0; nativeownedappkapalı,19849sonkontroldeLISTENyok. İkiworkerincelemesitamam; yeni lab başlatılmadı. Docker daemon sonkontrolde erişilemiyor, manuelprofiller/dışbundle korunur.15KasımAC/5%charging; uzunkoşu düşükpilde başlatılmadı.
-- Devam: Harita/CI119 success kanıtı→secret-scan/commit/push. Değişmeyen runtime testleri tekrar edilmeyecek. Source/ortamı uygun bağımsızfazlar; provider/TLS/render/RSS/60dk/V11-16/18/19/manualkapıları açık. Main koşullu merge engeller nedeniyle yapılmadı.
+- Süreç/lab: İki sonlu worker: SBOM kodunun read-only incelemesi ve offline schema QA yardımcısı; normalCPU/browser ölçümü kapalı. Docker/lab başlatılmadı,manuelprofiller korunur.15KasımAC/58%charging/lowpower0 son canlı kontrol.
+- Devam: TEST20.13 SBOM gerçekbuild/schema/asset/native QA; hedefli fixtureCI ve meaningfulcommit/push. Sonra yeniAC eşleşmişperf ailesi için ayrıcomparability kontrolü; main/provider/TLS/render/RSS/60dk/V11-16/18/19/manual kapıları açık.
 - **Çalışma: AKTİF — kullanıcı devam talimatı; tamamlanmış testler tekrar edilmeden sonuçlar birleştiriliyor.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -44,7 +44,7 @@ A/B önemli aileler: en az5 geçerli eşleşmiş AB/BA tekrar;30sn warm+60sn ste
 | CAT-17 — Kaynak optimizasyonu | 6 | NOT_STARTED:5, IN_PROGRESS:1 | Henüz yok |
 | CAT-18 — Uzun kararlılık ve kurtarma | 5 | NOT_STARTED:4, BLOCKED:1 | Henüz yok |
 | CAT-19 — Gecikme/erişilebilirlik/tarayıcı | 9 | NOT_STARTED:6, IN_PROGRESS:3 | Henüz yok |
-| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:10, IN_PROGRESS:3, VERIFIED_DONE:1 | Henüz yok |
+| CAT-20 — Paket/güncelleme/CI | 14 | NOT_STARTED:9, IN_PROGRESS:4, VERIFIED_DONE:1 | Henüz yok |
 | CAT-21 — Manuel teslim/son inceleme | 12 | NOT_STARTED:12 | Henüz yok |
 
 ## Standart ve kanıt politikası
@@ -9322,6 +9322,8 @@ Yeni dengelimatrixplanı: perf-panel-balanced-five-blocks-root/plan.json;5block�
 
 Balancedv5actualbaşladı: preflight2026-11-12T18:43:44.929017+00:00; source7c9e9ffb/remoteaynı/cleantracked, Battery53/low0/owned2labstopped/5192free/tümtestworkeridle.10job40window/max4500s,0retry. Source/plan/validator14SHA+selfsealruntimekontrolü aktif; sadeceROADMAP/non-runtimeprogress güncellenir. Bu ayrıdengelimatris1saatliksüresiboyunca appyenidenbaşlattığından60dkcontinuoussoakolaraksayılmaz.
 
+-15Kasım preflight ve e486 kaynaklı currentB/commonbackend derlemesi ayrı sonlu işlerle tamamlandı; eskiA/oldB/linkler korunur. YeniB cat16-current157-20261115T095801Z, commonbackend74cf606a…; öncekiBattery sonuçları yeniACile havuzlanmaz. Kanıt: artifacts/release-audit/ra-20261115/perf-current-build-worker/actual-build-identities.json.
+
 #### TEST-16.06-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -9370,6 +9372,8 @@ Balancedv5 36of40window/9job accepted; son A da geçti. Planın yalnız son B4ko
 
 BENCH-RENDER-001: Root ve ikinci reviewer tüm40envanter/rawframe dağılımlarını okudu. p3-B açık5/s fazladan çizim ölçüm boyunca sürüyor: ilk2frame435vs434, sonraki12frame445vs444. BazıB hücrelerinde +1allocatedgeometry var. Kamera/fleet/UID/panel/triangle eşitliği tekbaşına actualrender-work eşdeğerliğini kanıtlamıyor; rawframe line/objectUUID yok. Mevcut automatedcomparator comparable=true yalnız eksikguard evrenini gösterir. Aile kabulü AÇIK; ek60dk koşu otomatik başlatılmadı.
 
+-Kontrollü gerçekpointer hover sırası iki instrumentedB-only tanısında test edildi:0→1→0hover,60→96→60line; cargo wireframe+36dır, tarihsel+12 açıklanmadı. HipotezREJECTED; üçüncütekrar yok. BENCH-RENDER-001 açık; normalCPUmatrisi/kalite kabulü sayılmaz. Kanıt: artifacts/release-audit/ra-20261115/perf-hover-order-worker/REPORT.md.
+
 #### TEST-16.06-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
 - Önem derecesi ve gerekçesi: —
@@ -9412,6 +9416,8 @@ REDoldcomparator5pass/7expectedfail; correctedtargeted+metrics/generic49/49pass,
 Tanılamada75+75plan/apply/receive ve fullcanonicalverdikttrue.39capturedidentityabsent/5192free; kaynak/frozenbackendaynı. Worker8PNGyi,Root4before/afterPNGyi gerçektenaçtı;Root41SHAyı doğruladı. AsyncHashsonrasıtransformörnekleri atomicframepozu değildir; maincamera238/246callback shadowpasslarındışıdır. Tanılama518.3/600s; sorunyenidenoluşmadı diye geçmiş40windowkabulü kapatılmadı. Kanıt: perf-render-identity-diag-worker/REPORT.md +ROOT_VISUAL_REVIEW.json.
 
 Guardfix kod/kanıtı render-work-guard-worker/{REPORT.md,result.json,ROOT_REVIEW.json}. Mevcutactualworld/kamera/UID/GC/gölge/su/seyir kaliteveveri yoludeğişmedi. Eski source/baseline kayıtları yeni guardla eskidengerçekleşmiş gibi düzeltilmedi. Mevcutcounterguard tümsemantic/instance/materialeşitliğinin kanıtıdeğil.
+
+-İki browser işi/cleanup41.598sn; finaloffline rapor301.830sn ile270snhedefini31.830sn aştı, rawkorundu/PASSsayılmadı. Worker8PNGinceledi; rootgörselinceleme ayrıca bekler. Port5192 sonkontrolde boş/capturedPIDyok; yeni fullcohort başlamadı.
 
 #### TEST-16.06-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
@@ -12004,6 +12010,8 @@ CI-POLICY-BOOL-001: yeni policy testinin ===true kontrolü quotedtrue girdileri 
 
 - [x] Source/manifest/checksum/hamsonuç/root+ayrıworkerincelemeleri tamam; Node child exit0 ve ownedtempfixturecleanup. Browser/lab/kubeconfig/secret/networkscan yok. Profesyonelüçüncütarafpentest veya exhaustiveprocesscensus değildir.
 
+-15Kasım read-only GitHub mainprotection GET403 Resource notaccessiblebyintegration; izin/ayar değiştirilmedi. Görünür ruleset listesi[] protectionyokluğunun kanıtı değildir. artifacts/release-audit/ra-20261115/github-readonly-policy-root/result.json. Gerçekadmin/fork/token kapıları açık.
+
 #### TEST-20.11-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
 - IN_PROGRESS: bounded statik trust incelemesi tamamlandı; admin/fork/token/cache dinamik kapıları ve action/transitive provenance açık. Exact kaynak CI smoke sonucu ayrı kaydedildi. İlgili workflow/runner/permissions/consumer değişince retest gerekir.
@@ -12086,6 +12094,8 @@ CI-POLICY-BOOL-001: yeni policy testinin ===true kontrolü quotedtrue girdileri 
 
 - [x] Source/manifest/checksum/hamsonuç/root+ayrıworkerincelemeleri tamam; Node child exit0 ve ownedtempfixturecleanup. Browser/lab/kubeconfig/secret/networkscan yok. Profesyonelüçüncütarafpentest veya exhaustiveprocesscensus değildir.
 
+-CI119/run43698651786 (2d5aced3) tümsteps success; exactreceipt ci119-verification-root/result.json. Son e486 docs-only CIhenüzdoğrulanmadı. Adminprotection403/visible rulesets[]: ayaryok veya bypassiddiasıyok.
+
 #### TEST-20.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
 - Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
@@ -12100,12 +12110,12 @@ IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. 
 - İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR (worker ataması başlamadan kaydedilecek).
-- Kaynak / build / paket kimliği: başlangıç `36d5b8f90c8afdec437bdb6e5516541b5bb859bd`; fazda gerçekten kullanılan kimlik henüz yok.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
-- Başlangıç zamanı: —
+- Sorumlu: ANA MÜDÜR + SBOM uygulama, şema ve bağımsız paket inceleme worker’ları; Git/roadmap root
+- Kaynak / build / paket kimliği: HEAD e48604e2; runtime15770296;6 SBOM/build dosyası çalışma farkı. Gerçek yeni paket henüz üretilmedi.
+- Ortam / kullanılan kimlik ve yetki: MacM5/32GiB/macOS27; Node24.16/npm mevcut; Pythonjsonschema4.26.0; sentetik fixture. Gerçek credential/Kubernetes/provider kullanılmadı.
+- Başlangıç zamanı: 2026-11-15; ilk uygulama ve20fixture kanıt zamanı raw kayıtta
 - Bitiş zamanı: —
-- Durum: NOT_STARTED
+- Durum: IN_PROGRESS
 - Kabul ölçütü: bu senaryonun pozitif ve negatif kontrolleri, doğru final veri/kaynak/cleanup ve izlenebilir kanıtla doğrulanmalı; ilgili CAT sözleşmesi korunmalı.
 
 #### TEST-20.13-S1 — Hazırlık
@@ -12117,6 +12127,8 @@ IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. 
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+-15Kasım mevcut paketleme yolu ve GoBuildInfo/npm lock/Rollup sahiplik sınırı incelendi. Resmî CDX1.5 şemaları c320fc0f commitinden exactGitblob+Apache2 lisansla sabitlendi; yerel schema doğrulaması henüz yapılmadı. İki worker: read-only inceleme ve ayrı QA yardımcısı; benchmark kapalı.
+
 #### TEST-20.13-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -12124,6 +12136,10 @@ IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. 
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+-Dar fixture ikinci deneme20PASS/0FAIL/0SKIP (13paketleme+7SBOM); gerçek compiler/npm/tar yerine executor fixture. Yeni özellik SBOM/provenance kodu mevcut fakat gerçek paket kabulü değildir. Kanıt: artifacts/release-audit/ra-20261115/sbom-implementation-worker/REPORT.md.
+
+-Gerçek Vite6.4.5/Rollup4.62.3 privatecopy retestiPASS:242renderedmodül/15npmidentity/0unresolved, metadatahariç6HTML/CSS/JS/faviconSHA frozenCurrentB ile birebir eşit.4.151sn toplamhelper; performansölçümü değil.
 
 #### TEST-20.13-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -12133,6 +12149,10 @@ IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. 
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+-Prepared stale/missing/unknown/profile; consumed/public hash/set; duplicate/dangling/localreplacement/oversize metadata fail-closed fixture kontrolleri. Resmî schema/gerçeknpm/Go/extract/native/byte-eşitlik bekliyor.
+
+-Offline QA15/15PASS, missingformat normalPythonexit2; şema/Apachelicense hardcodedpins, invalidenum/hash/timestamp/SPDX/extra/duplicate/NaN/size/symlink/tamper/unregisteredrefno-network sınandı. GerçekBOMhenüzüretilmedi. artifacts/release-audit/ra-20261115/sbom-schema-worker/REPORT.md.
+
 #### TEST-20.13-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
 - Önem derecesi ve gerekçesi: —
@@ -12141,11 +12161,17 @@ IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. 
 - Düzeltme commit'i veya çalışma farkı: —
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
 
+-İlk fixture19PASS/1FAIL korunur: prepared için eski tümnpm yasağı metadata-onlySBOM ile uyumsuzdu. ci/install/run yasağı korunup exactlyoneSBOM beklentisi ayrıldı; ikinci20PASS. Ürün runtime/UI değişmedi; ilgili alt kaynaklar çalışma farkında.
+
+-SBOM-REVIEW-001: HTML/CSS/output binding boşluğu changedHTML fixtureRED1FAIL→tamoutputset/hash fix sonrası37PASS. Ardından gerçekVite ilkderleme exit0 ama manifestindexJS hashmismatch ile kabulFAIL; Vitepreload rewrite rootcause. installedRollup generateBundle order:post + late-generator gerçekRollup regresyonu sonrası38PASS, gerçekViteretestPASS. İlkFAIL/raw/source ayrı korunur.
+
 #### TEST-20.13-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
 - [ ] Komşu davranışlar gerektiği ölçüde sınandı.
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+-Düzeltilen çıktı path’i için Node38PASS; ilk37PASS tarihsel. Şema ilklauncher0testFAIL Path.resolve venvsymlink→globalPython nedeniyleydi; direktvenv ile aynı2kaynak15PASS. Guardgevşetilmedi. Tamnpm/Go/paket/native henüz açık.
 
 #### TEST-20.13-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -12153,6 +12179,10 @@ IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. 
 - [ ] Gereken bağımsız ikinci inceleme tamamlandı.
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
+
+-Workerfixture childcleanup tamam; roottam kaynak ve ikinciinceleme/gerçekbuild bekler. Finalpaket, imza/attestation,providerSCA ve genelrelease açığı kapanmadı.
+
+-SBOM reviewer ilkfinding+fixedsource kabulünü ayrıhashlerle kaydetti; sonrakiVitelifecyclefix ayrıca rootactualbuild ile kontrol edildi. Şemaworker468.711sn/480sn bütçedetamam; süreçyok. Root ikihoverPNGyi açtı: hoverlabelsonradankalkıyor, Nodepanel/SoftUI/fullworld korunuyor; bu staticgörseller fizikselFPS/hareket/perfkanıtı değil.
 
 #### TEST-20.13-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI

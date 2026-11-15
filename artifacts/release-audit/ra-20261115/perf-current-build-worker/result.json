@@ -1,0 +1,517 @@
+{
+  "startedAt": "2026-11-15T09:59:22.091120+00:00",
+  "scope": "CURRENT_B_FRONTEND_AND_CURRENT_COMMON_GATEWAY_COMPILE_ONLY",
+  "auditHEAD": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+  "job": {
+    "startedAt": "2026-11-15T09:58:01.407771+00:00",
+    "startedEpoch": 1794736681.4077702,
+    "workDeadlineEpoch": 1794737041.4077702,
+    "deadlineEpoch": 1794737101.4077702,
+    "head": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+    "runtimeSource": "15770296056ca2629601dba540c04741e1822e0d",
+    "tags": {
+      "B": "cat16-current157-20261115T095801Z",
+      "common": "cat16-common157-20261115T095801Z",
+      "A": "cat16-36d-20261112T113255Z"
+    },
+    "limits": {
+      "ViteSeconds": 120,
+      "GoCompileSeconds": 180,
+      "workSeconds": 360,
+      "reportReserveSeconds": 60,
+      "ownedRSSBytes": 4294967296,
+      "diskMinimumBytes": 10737418240,
+      "batteryFloorPercent": 30,
+      "ACRequired": true,
+      "lowPowerRequired": 0,
+      "autoRetries": 0
+    },
+    "actions": "one Vite build from exact private tracked frontend snapshot, one Go test -c from same tracked backend; no test/server/browser/measurement/cluster",
+    "privateRoot": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-current-build-20261115"
+  },
+  "stages": [
+    {
+      "name": "vite-B",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "/Users/yunusemre/Desktop/KubeView/benchmarks/panel-build.mjs",
+        "cat16-current157-20261115T095801Z",
+        "--source",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-current-build-20261115/source/frontend"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView",
+      "startedAt": "2026-11-15T09:59:22.190878+00:00",
+      "maxSeconds": 120,
+      "env": {
+        "GOTOOLCHAIN": "local",
+        "GOMAXPROCS": "2",
+        "GOMEMLIMIT": "2GiB",
+        "CGO_ENABLED": "0",
+        "GOPROXY": "off",
+        "UV_THREADPOOL_SIZE": "2",
+        "NODE_OPTIONS": "--max-old-space-size=2048"
+      },
+      "pid": 10204,
+      "birthCommandIdentity": "Sun Nov 15 12:59:22 2026     /Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node /Users/yunusemre/Desktop/KubeView/benchmarks/panel-build.mjs cat16-current157-20261115T095801Z --source /Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-current-build-20261115/source/frontend",
+      "exitCode": 0,
+      "finishedAt": "2026-11-15T09:59:24.577217+00:00"
+    },
+    {
+      "name": "go-test-compile",
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-c",
+        "-p",
+        "1",
+        "-o",
+        "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common157-20261115T095801Z/backend.test",
+        "./pkg/server"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-current-build-20261115/source/backend",
+      "startedAt": "2026-11-15T09:59:24.577768+00:00",
+      "maxSeconds": 180,
+      "env": {
+        "GOTOOLCHAIN": "local",
+        "GOMAXPROCS": "2",
+        "GOMEMLIMIT": "2GiB",
+        "CGO_ENABLED": "0",
+        "GOPROXY": "off",
+        "UV_THREADPOOL_SIZE": "2",
+        "NODE_OPTIONS": "--max-old-space-size=2048"
+      },
+      "pid": 10244,
+      "birthCommandIdentity": "Sun Nov 15 12:59:24 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -c -p 1 -o /Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common157-20261115T095801Z/backend.test ./pkg/server",
+      "exitCode": 0,
+      "finishedAt": "2026-11-15T09:59:30.243425+00:00"
+    }
+  ],
+  "testsExecuted": false,
+  "appsOrBrowsersStarted": false,
+  "measurementsStarted": false,
+  "samples": [
+    {
+      "at": "2026-11-15T09:59:22.115844+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 24379392,
+      "freeDiskBytes": 452988669952,
+      "ownedPIDCount": 2
+    },
+    {
+      "at": "2026-11-15T09:59:22.217159+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 45760512,
+      "freeDiskBytes": 452988665856,
+      "ownedPIDCount": 3
+    },
+    {
+      "at": "2026-11-15T09:59:22.556314+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 336248832,
+      "freeDiskBytes": 452987015168,
+      "ownedPIDCount": 5
+    },
+    {
+      "at": "2026-11-15T09:59:22.887940+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 623149056,
+      "freeDiskBytes": 452986945536,
+      "ownedPIDCount": 5
+    },
+    {
+      "at": "2026-11-15T09:59:23.219413+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 810319872,
+      "freeDiskBytes": 452986945536,
+      "ownedPIDCount": 5
+    },
+    {
+      "at": "2026-11-15T09:59:23.549569+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 1114488832,
+      "freeDiskBytes": 452986937344,
+      "ownedPIDCount": 5
+    },
+    {
+      "at": "2026-11-15T09:59:23.880097+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 1192001536,
+      "freeDiskBytes": 452986933248,
+      "ownedPIDCount": 5
+    },
+    {
+      "at": "2026-11-15T09:59:24.210577+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 1226326016,
+      "freeDiskBytes": 452983975936,
+      "ownedPIDCount": 5
+    },
+    {
+      "at": "2026-11-15T09:59:24.577134+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 25067520,
+      "freeDiskBytes": 452982747136,
+      "ownedPIDCount": 2
+    },
+    {
+      "at": "2026-11-15T09:59:24.615422+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 45252608,
+      "freeDiskBytes": 452982394880,
+      "ownedPIDCount": 3
+    },
+    {
+      "at": "2026-11-15T09:59:24.939537+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 76824576,
+      "freeDiskBytes": 452981186560,
+      "ownedPIDCount": 3
+    },
+    {
+      "at": "2026-11-15T09:59:25.268701+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 79265792,
+      "freeDiskBytes": 452981137408,
+      "ownedPIDCount": 3
+    },
+    {
+      "at": "2026-11-15T09:59:25.596011+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 169607168,
+      "freeDiskBytes": 452980416512,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:25.923521+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 81248256,
+      "freeDiskBytes": 452963696640,
+      "ownedPIDCount": 3
+    },
+    {
+      "at": "2026-11-15T09:59:26.256455+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 221429760,
+      "freeDiskBytes": 452962889728,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:26.585216+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 353353728,
+      "freeDiskBytes": 452967899136,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:26.914057+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 462897152,
+      "freeDiskBytes": 452967657472,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:27.246429+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 537509888,
+      "freeDiskBytes": 452950052864,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:27.573756+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 200884224,
+      "freeDiskBytes": 452930252800,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:27.903677+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 313049088,
+      "freeDiskBytes": 452930252800,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:28.231984+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 444547072,
+      "freeDiskBytes": 452928618496,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:28.561126+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 575782912,
+      "freeDiskBytes": 452928557056,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:28.889797+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 723189760,
+      "freeDiskBytes": 452928548864,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:29.219273+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 845201408,
+      "freeDiskBytes": 452928548864,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:29.547345+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 99794944,
+      "freeDiskBytes": 452861571072,
+      "ownedPIDCount": 3
+    },
+    {
+      "at": "2026-11-15T09:59:29.877142+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 218202112,
+      "freeDiskBytes": 452857958400,
+      "ownedPIDCount": 4
+    },
+    {
+      "at": "2026-11-15T09:59:30.243358+00:00",
+      "AC": true,
+      "batteryPercent": 39,
+      "lowPowerModes": [
+        "0",
+        "0"
+      ],
+      "ownedRSSBytes": 25083904,
+      "freeDiskBytes": 452884058112,
+      "ownedPIDCount": 2
+    }
+  ],
+  "preflight": {
+    "at": "2026-11-15T09:59:22.115844+00:00",
+    "AC": true,
+    "batteryPercent": 39,
+    "lowPowerModes": [
+      "0",
+      "0"
+    ],
+    "ownedRSSBytes": 24379392,
+    "freeDiskBytes": 452988669952,
+    "ownedPIDCount": 2
+  },
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "toolSHA256": {
+    "go": "20e07ffb4f08faaf125e413db024b6e988d3ec2799dcb3568a720d14be0ad133",
+    "node": "1ee75375e33b94fc34b3b19aede049e11dae90efb63b374dc96d6bdace70c4b8",
+    "panel-build": "2a11578dda8e7b0eb6463154fb6b162a4c9fb22325a5adb86ea9463637b76505"
+  },
+  "commonBackend": {
+    "tag": "cat16-common157-20261115T095801Z",
+    "path": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common157-20261115T095801Z/backend.test",
+    "bytes": 65799938,
+    "sha256": "74cf606a29e072e620fc08b9ac40f277bc72ff5e28ec28b04fdd46eb0a94b1e1",
+    "source": "private exacte486 backend snapshot; runtime15770296; testscompiled notexecuted"
+  },
+  "frontend": {
+    "tag": "cat16-current157-20261115T095801Z",
+    "sourceSHA256": "41b8240d6f4546ef4fd0df415cc8cb84239e3cac7251fff518ea232c10d45ddf",
+    "provenanceSHA256": "909624bb091332e4d2d6b3178dc900f4b67a0571426d2275c209e7357bdcdb4e",
+    "sourceFilesCount": 99,
+    "assets": {
+      "assets/HarborScene-DKt6unGp.js": "5b6386779e5ed1f0fdebb3eb53be34c026451d12be33bab15e0c97147178e5ee",
+      "assets/index-CCZQtIvj.css": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+      "assets/index-DxIumOcP.js": "6dbe0611b28befc777524ab53f6fe2a07258fcd5edcb3b721a5a46964b39d91d",
+      "assets/three-BKmXRbXN.js": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+      "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+      "index.html": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    "indexSHA256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb",
+    "sourceMatchesSnapshot": true,
+    "profiling": false,
+    "backendLinkCreated": false,
+    "commonBackendOverride": "Use explicit --backend-tag; do notmutateoldA links"
+  },
+  "sourceAfterMatches": true,
+  "installedGraphAfterMatches": true,
+  "requiredPackagesAfterMatch": true,
+  "panelBuildAfterMatches": true,
+  "oldALinkAfterMatches": true,
+  "oldAProvenanceAfterMatches": true,
+  "status": "CURRENT_B_FRONTEND_AND_COMMON_GATEWAY_COMPILED_PASS",
+  "capturedCleanup": [
+    {
+      "pid": 10204,
+      "identitySHA256": "041d63658c33712cc059e5aa30eb377676c4260441d816145d37578684f8e37f",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10211,
+      "identitySHA256": "9230316826dc7d1817f85a3b6ba201233306c37b8775bd81dec2ea26ced4531f",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10212,
+      "identitySHA256": "86c6bf634c9001cb84f9e8c3ca02456b840f57cb0a71d8c8c0331cd6da17abac",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10244,
+      "identitySHA256": "75a2621b08a41dbfa3a347b954a160d44efe3d242a8e35856992c25925471ffc",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10263,
+      "identitySHA256": "764a93e2e33fe741d6280f700cc8ee6f9d105a4c98af352b6b6e5483a5081a24",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10275,
+      "identitySHA256": "fc41012584c9a9785fea979dc454c97a5698149d963dc98e4b8eb9ebfbf50eed",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10295,
+      "identitySHA256": "bd15790d048a948dc566296ddcd75d18fb19b129ac1eb8a2fd85c8a7677cadbc",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10329,
+      "identitySHA256": "e0d6edfd7fa79dfe051232cefee80ad6a0f88c3c62ec4f7abb7f3761d47e6b11",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "finishedAt": "2026-11-15T09:59:30.785180+00:00",
+  "elapsedSecondsIncludingPreparationAndCleanup": 89.37744998931885,
+  "remainingReportSeconds": 330.62254214286804,
+  "reportFinalizedAt": "2026-11-15T10:01:33.451752+00:00",
+  "totalElapsedThroughReportSeconds": 212.044118642807,
+  "within420SecondOverallLimit": true
+}

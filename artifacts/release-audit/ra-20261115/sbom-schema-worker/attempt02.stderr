@@ -1,0 +1,20 @@
+test_01_minimal_valid (__main__.SchemaGuardTests.test_01_minimal_valid) ... ok
+test_02_invalid_enum (__main__.SchemaGuardTests.test_02_invalid_enum) ... ok
+test_03_invalid_hash (__main__.SchemaGuardTests.test_03_invalid_hash) ... ok
+test_04_invalid_timestamp (__main__.SchemaGuardTests.test_04_invalid_timestamp) ... ok
+test_05_additional_property_redacted (__main__.SchemaGuardTests.test_05_additional_property_redacted) ... ok
+test_06_spdx_external_ref (__main__.SchemaGuardTests.test_06_spdx_external_ref) ... ok
+test_07_unknown_ref_no_network (__main__.SchemaGuardTests.test_07_unknown_ref_no_network) ... ok
+test_08_duplicate_json_key (__main__.SchemaGuardTests.test_08_duplicate_json_key) ... ok
+test_09_oversize_file (__main__.SchemaGuardTests.test_09_oversize_file) ... ok
+test_10_nonfinite_json (__main__.SchemaGuardTests.test_10_nonfinite_json) ... ok
+test_11_symlink_not_regular (__main__.SchemaGuardTests.test_11_symlink_not_regular) ... ok
+test_12_schema_tamper (__main__.SchemaGuardTests.test_12_schema_tamper) ... ok
+test_13_license_tamper (__main__.SchemaGuardTests.test_13_license_tamper) ... ok
+test_14_missing_format_fail_closed (__main__.SchemaGuardTests.test_14_missing_format_fail_closed) ... ok
+test_15_cli_multiple_inputs_safe_result (__main__.SchemaGuardTests.test_15_cli_multiple_inputs_safe_result) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.035s
+
+OK

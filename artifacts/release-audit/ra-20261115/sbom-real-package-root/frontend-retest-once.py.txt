@@ -1,0 +1,50 @@
+import datetime, hashlib, json, os, pathlib, shutil, signal, subprocess, time
+root=pathlib.Path.cwd()
+private=root/'.git/release-audit/sbom-real-build-20261115'
+out=root/'artifacts/release-audit/ra-20261115/sbom-real-package-root'
+source=private/'source'
+archive=private/'source-start.tar'
+env = {**os.environ, 'UV_THREADPOOL_SIZE': '2', 'NODE_OPTIONS': '--max-old-space-size=2048',
+       'VITE_REACT_PROFILE': '0', 'NODE_ENV': 'production'}
+start = time.monotonic()
+result = {'stage': 'actual Vite frontend build', 'startedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+          'preFixSnapshotSHA256': hashlib.sha256(archive.read_bytes()).hexdigest(), 'fixedPluginSHA256': hashlib.sha256((source / 'frontend/build/package-inventory.mjs').read_bytes()).hexdigest(), 'status': 'FAIL', 'automaticRetries': 0}
+with (out / 'frontend-retest.stdout').open('xb') as stdout, (out / 'frontend-retest.stderr').open('xb') as stderr:
+    proc = subprocess.Popen(['/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/npm', 'run', 'build'],
+                            cwd=source / 'frontend', env=env, stdout=stdout, stderr=stderr, start_new_session=True)
+    result['ownedPID'] = proc.pid
+    peak = 0
+    try:
+        while proc.poll() is None:
+            rows = subprocess.check_output(['/bin/ps', '-axo', 'pgid=,rss='], text=True).splitlines()
+            rss = sum(int(fields[1]) for row in rows if len(fields := row.split()) == 2 and fields[0] == str(proc.pid)) * 1024
+            peak = max(peak, rss)
+            if time.monotonic() - start > 180 or rss > 4 * (1 << 30) or shutil.disk_usage(private).free < 10 * (1 << 30):
+                result['stop'] = 'bounded time/RSS/disk safeguard'
+                raise RuntimeError(result['stop'])
+            time.sleep(.25)
+        result['exitCode'] = proc.returncode
+        if proc.returncode != 0:
+            raise RuntimeError('actual frontend build nonzero; first failure retained')
+        assets = {p.relative_to(source / 'frontend/dist').as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                  for p in sorted((source / 'frontend/dist').rglob('*')) if p.is_file()}
+        inventory = json.loads((source / 'frontend/dist/package-inventory.json').read_text())
+        reference = json.loads((root / 'artifacts/release-audit/ra-20261115/perf-current-build-worker/actual-build-identities.json').read_text())['frontend']['assets']
+        assert {name: digest for name, digest in assets.items() if name != 'package-inventory.json'} == reference, 'runtime asset bytes differ'
+        assert inventory['outputs'] == {name: digest for name, digest in assets.items() if name != 'package-inventory.json'}
+        assert inventory['totals']['unresolvedModules'] == 0
+        result.update(status='PASS', assets=assets, runtimeAssetBytesEqual=True, reference='cat16-current157-20261115T095801Z',
+                      frontendInventoryTotals=inventory['totals'], bundledPackageIdentities=len(inventory['packages']))
+    except Exception as error:
+        result['failure'] = str(error)[:250]
+        raise
+    finally:
+        if proc.poll() is None and os.getpgid(proc.pid) == proc.pid:
+            os.killpg(proc.pid, signal.SIGTERM)
+            try: proc.wait(timeout=3)
+            except subprocess.TimeoutExpired:
+                os.killpg(proc.pid, signal.SIGKILL)
+                proc.wait(timeout=3)
+        result.update(finishedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(), seconds=time.monotonic()-start,
+                      sampledOwnedGroupPeakRSSBytes=peak, childExitCode=proc.returncode)
+        (out / 'frontend-retest-result.json').write_text(json.dumps(result, indent=2)+'\n')

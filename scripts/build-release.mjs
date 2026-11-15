@@ -4,6 +4,7 @@ import { readFileSync, readdirSync, mkdirSync, copyFileSync, writeFileSync, exis
 import { createHash, randomUUID } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { validateFrontendInventory, collectFrontendSource, binaryBom, MAX_JSON_BYTES } from './release-sbom.mjs';
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const supportedTargets = ['darwin-arm64','linux-amd64','linux-arm64','darwin-amd64','windows-amd64'];
 
@@ -55,7 +56,7 @@ const packageFiles = ['LICENSE','README.md','MANUAL_TEST_GUIDE.md','docs/SECURIT
 const sha256 = file => createHash('sha256').update(readFileSync(file)).digest('hex');
 
 function frontendHashes(folder, relative = '') {
-  const hashes = {};
+  const hashes = Object.create(null);
   if (!existsSync(folder)) throw Error('Prepared frontend build is missing');
   for (const entry of readdirSync(folder, { withFileTypes: true }).sort((a,b) => a.name.localeCompare(b.name))) {
     const name = path.posix.join(relative, entry.name), absolute = path.join(folder, entry.name);
@@ -84,7 +85,7 @@ export function buildRelease(args = process.argv.slice(2), { root = sourceRoot, 
   const out = outputDirectory === undefined ? path.join(root,'dist') : path.resolve(outputDirectory);
   validateDestination(out, outputDirectory !== undefined, version, targets);
   const commit = execute('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
-  const dirty = execute('git',['status','--porcelain','--untracked-files=all','--','backend','frontend/src','frontend/public','frontend/index.html','frontend/package.json','frontend/package-lock.json','frontend/vite.config.js','frontend/postcss.config.js','frontend/tailwind.config.js','scripts',...manualRuntime,...packageFiles],{cwd:root,encoding:'utf8'}).trim();
+  const dirty = execute('git',['status','--porcelain','--untracked-files=all','--','backend','frontend/src','frontend/build','frontend/public','frontend/index.html','frontend/package.json','frontend/package-lock.json','frontend/vite.config.js','frontend/postcss.config.js','frontend/tailwind.config.js','scripts',...manualRuntime,...packageFiles],{cwd:root,encoding:'utf8'}).trim();
   if (dirty && requireClean) throw Error('Release runtime sources must be committed before packaging');
   mkdirSync(path.dirname(out), { recursive: true });
   if (outputDirectory !== undefined || !entryExists(out)) mkdirSync(out);
@@ -95,11 +96,15 @@ export function buildRelease(args = process.argv.slice(2), { root = sourceRoot, 
   }
   const frontendAssets = frontendHashes(path.join(root, 'frontend/dist'));
   if (!frontendAssets['index.html']) throw Error('Prepared frontend index.html is missing');
+  const inventory = validateFrontendInventory({ root, frontendAssets });
   run(process.execPath,['scripts/prepare-webui.mjs']);
   const inputs = Object.fromEntries([...new Set([...packageFiles, ...manualRuntime,
-    'backend/go.mod', 'backend/go.sum', 'frontend/package.json', 'frontend/package-lock.json'])]
+    'backend/go.mod', 'backend/go.sum', 'frontend/package.json', 'frontend/package-lock.json',
+    'frontend/vite.config.js', 'frontend/build/package-inventory.mjs', 'scripts/release-sbom.mjs', 'scripts/build-release.mjs', 'scripts/prepare-webui.mjs'])]
     .filter(file => existsSync(path.join(root, file))).map(file => [file, sha256(path.join(root, file))]));
-  const sums=[];
+  const frontendSource = collectFrontendSource({ root, execute, binding: { version, commit, packageJSONSHA256: inventory.packageJSONSHA256, lockSHA256: inventory.lockSHA256, frontendAssets } });
+  const frontendSourceText = JSON.stringify(frontendSource, null, 2) + '\n';
+  const sums=[], packages={};
   for(const target of targets) {
     const [GOOS,GOARCH]=target.split('-');
     const name=`kubeview_${version}_${target}`, folder=path.join(out,name);
@@ -126,8 +131,20 @@ export function buildRelease(args = process.argv.slice(2), { root = sourceRoot, 
     // repository, a Go/Node toolchain, .git or historical developer artifacts.
     // Private lab state is created at runtime outside this public bundle.
     copyManualRuntime(root, folder);
+    const binarySHA256 = sha256(binary);
+    const buildInfo = execute('go', ['version', '-m', '-json', binary], { cwd: path.join(root, 'backend'), encoding: 'utf8', timeout: 15000, maxBuffer: MAX_JSON_BYTES,
+      env: { ...process.env, GOTOOLCHAIN: 'local' } });
+    const binaryInventory = binaryBom(buildInfo, { version, commit, dirty: !!dirty, target, binarySHA256, inventory, frontendAssets });
+    const binaryText = JSON.stringify(binaryInventory, null, 2) + '\n';
+    for (const [file, body] of [['sbom.binary.cdx.json', binaryText], ['sbom.frontend-source.cdx.json', frontendSourceText]]) {
+      if (Buffer.byteLength(body) > MAX_JSON_BYTES) throw Error('Release SBOM exceeds output size limit');
+      writeFileSync(path.join(folder, file), body, { flag: 'wx' });
+    }
+    const sboms = Object.fromEntries(['sbom.binary.cdx.json', 'sbom.frontend-source.cdx.json'].map(file => [file, sha256(path.join(folder, file))]));
+    packages[target] = { binarySHA256, sboms, frontendInventorySHA256: inventory.manifestSHA256,
+      coverage: { binary: 'linked Go modules and positive-rendered JavaScript module packages', source: 'resolved frontend lock inputs including development dependencies' } };
     writeFileSync(path.join(folder, 'build-provenance.json'), JSON.stringify({version, commit, dirty: !!dirty,
-      target, inputs, frontendAssets, binarySHA256: sha256(binary), signed: false,
+      target, inputs, frontendAssets, binarySHA256, sboms, frontendInventorySHA256: inventory.manifestSHA256, coverage: packages[target].coverage, signed: false,
       note: 'Byte identities, not a publisher signature or proof that a prepared frontend matches source.'}, null, 2)+'\n', {flag:'wx'});
     const archive=`${name}.tar.gz`;
     const temporary = path.join(out, `.${archive}.${randomUUID()}.tmp`);
@@ -135,10 +152,12 @@ export function buildRelease(args = process.argv.slice(2), { root = sourceRoot, 
       run('tar',['-czf',temporary,'-C',out,name]);
       copyFileSync(temporary, path.join(out, archive), constants.COPYFILE_EXCL);
     } finally { rmSync(temporary, { force: true }); }
-    sums.push(`${createHash('sha256').update(readFileSync(path.join(out,archive))).digest('hex')}  ${archive}`);
+    const archiveSHA256 = createHash('sha256').update(readFileSync(path.join(out,archive))).digest('hex');
+    packages[target].archiveSHA256 = archiveSHA256;
+    sums.push(`${archiveSHA256}  ${archive}`);
   }
   writeFileSync(path.join(out,'SHA256SUMS'),sums.join('\n')+'\n', { flag: 'wx' });
-  writeFileSync(path.join(out,'build.json'),JSON.stringify({version,commit,dirty:!!dirty,targets,inputs,frontendAssets,builtAt:new Date().toISOString(),
+  writeFileSync(path.join(out,'build.json'),JSON.stringify({version,commit,dirty:!!dirty,targets,inputs,frontendAssets,packages,builtAt:new Date().toISOString(),
     note:'Cross-compilation is not a runtime platform test. See V11_ACCEPTANCE_REPORT.'},null,2)+'\n', { flag: 'wx' });
 }
 

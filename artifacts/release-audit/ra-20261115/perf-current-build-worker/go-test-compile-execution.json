@@ -1,0 +1,29 @@
+{
+  "name": "go-test-compile",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-c",
+    "-p",
+    "1",
+    "-o",
+    "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common157-20261115T095801Z/backend.test",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-current-build-20261115/source/backend",
+  "startedAt": "2026-11-15T09:59:24.577768+00:00",
+  "maxSeconds": 180,
+  "env": {
+    "GOTOOLCHAIN": "local",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "2GiB",
+    "CGO_ENABLED": "0",
+    "GOPROXY": "off",
+    "UV_THREADPOOL_SIZE": "2",
+    "NODE_OPTIONS": "--max-old-space-size=2048"
+  },
+  "pid": 10244,
+  "birthCommandIdentity": "Sun Nov 15 12:59:24 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -c -p 1 -o /Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common157-20261115T095801Z/backend.test ./pkg/server",
+  "exitCode": 0,
+  "finishedAt": "2026-11-15T09:59:30.243425+00:00"
+}

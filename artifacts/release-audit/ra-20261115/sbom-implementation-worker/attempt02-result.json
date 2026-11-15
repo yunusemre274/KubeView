@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "startedAt": "2026-11-15T10:14:41.325199+00:00",
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "scripts/build-release.test.mjs",
+    "scripts/release-sbom.test.mjs"
+  ],
+  "peakOwnedGroupRSSMiB": 114.234375,
+  "stop": null,
+  "exitCode": 0,
+  "elapsedSeconds": 0.3148180840007626,
+  "completedAt": "2026-11-15T10:14:41.640020+00:00",
+  "sourceAfterMatches": true
+}

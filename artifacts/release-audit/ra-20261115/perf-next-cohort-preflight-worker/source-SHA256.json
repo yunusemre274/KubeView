@@ -1,0 +1,91 @@
+{
+  "at": "2026-11-15T09:46:22.231218+00:00",
+  "sourceFiles": {
+    "benchmarks/run.mjs": {
+      "sha256": "80cc55ad70f65857c5df2fa5eb79155aae5b8a5daec2d21916b8c588e39bb850",
+      "bytes": 63672
+    },
+    "benchmarks/panel-build.mjs": {
+      "sha256": "2a11578dda8e7b0eb6463154fb6b162a4c9fb22325a5adb86ea9463637b76505",
+      "bytes": 3573
+    },
+    "benchmarks/panel-compare.mjs": {
+      "sha256": "66662ee807299a3db414160be75bfbf912e10fc94ff34ba60c0661361fa4a001",
+      "bytes": 13457
+    },
+    "benchmarks/panel-accept.mjs": {
+      "sha256": "6ba13310ac83e9f8b74d6afae071bc1523fc6b617dd0b21934289b9482ee0aa3",
+      "bytes": 7484
+    },
+    "benchmarks/repair-session.mjs": {
+      "sha256": "fe41d018cbc25f660e1c0e16f885c723a237e0faa4a07bafcf0ae8c4afc2ddcb",
+      "bytes": 15674
+    },
+    "benchmarks/repair-panel-counterbalance.mjs": {
+      "sha256": "6b4f4c5af6990232a72cf7fc7640aba829c68d5ab0fb5533011a696b5c1dc5c1",
+      "bytes": 4806
+    },
+    "benchmarks/process-identity.mjs": {
+      "sha256": "b2790f88e7d5111ec43babf8362605ca5f0718ad5fd3fac122ba9ad361956a32",
+      "bytes": 6958
+    },
+    "benchmarks/metrics.mjs": {
+      "sha256": "6aab91b45ec8e3ef50300f1f90095c39070af2190a76a71662c6a2c84451c9e7",
+      "bytes": 6114
+    },
+    "benchmarks/fixtures.mjs": {
+      "sha256": "c53ffc7cab18c06991437fe0f17ebdade10c28bbb56146ee19ba2ee63a45becc",
+      "bytes": 7148
+    },
+    "benchmarks/probe.mjs": {
+      "sha256": "bec5e6362c57c0ce2c2ed2865d6fa7e05fd8446daa153ea7054fdcdb0089d367",
+      "bytes": 8608
+    },
+    "benchmarks/scene-inventory.mjs": {
+      "sha256": "30bacc95832df464502cb9ffa4796fa0b7b3cf14fa00f47d3b32114ce251dbe5",
+      "bytes": 1775
+    },
+    "benchmarks/build-lock.mjs": {
+      "sha256": "3452669b2237796240ea934ba7727abc4e6401d1917d6ccd2ce215443ebc97cf",
+      "bytes": 578
+    },
+    "benchmarks/camera-contract.mjs": {
+      "sha256": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7",
+      "bytes": 1378
+    },
+    "frontend/src/harbor/HarborScene.jsx": {
+      "sha256": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1",
+      "bytes": 110744
+    },
+    "frontend/src/harbor/assets.jsx": {
+      "sha256": "dfc512a3baa639c4f0fdd420b69e64014c537c20dd42a5b1b3da58dd1df35a3b",
+      "bytes": 18960
+    },
+    "frontend/src/data/resourceStore.js": {
+      "sha256": "a88fd60b1519c23e622ac986fe6d96caf8a1a8e780bb2f36d603b4eedbdeb525",
+      "bytes": 11425
+    },
+    "frontend/package-lock.json": {
+      "sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+      "bytes": 98953
+    },
+    "backend/pkg/server/benchmark_test.go": {
+      "sha256": "0ed76eaddeeeeeab94dad2b1d388f7bc6867dba1c0265ef468eddfd3c2b6a76e",
+      "bytes": 15866
+    },
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/run.py": {
+      "sha256": "6355096b8bafcd40fc58109b9c3b51f316e6ee87442581b204b4736de3b01cd7",
+      "bytes": 11043
+    },
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/validate-job.mjs": {
+      "sha256": "03338df0de79b4c4a6af11e26582b525eda79646b4878853a372f44edd029d2d",
+      "bytes": 4905
+    },
+    ".git/release-audit/perf-render-identity-diag-worker/run.mjs": {
+      "sha256": "04dd9113a9e097cefe48a8ca7f94cdd6bb9ce136c31ec51432cc71412e9f84b1",
+      "bytes": 71962
+    }
+  },
+  "count": 21,
+  "bytesReadForThisHashPass": 485083
+}

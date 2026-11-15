@@ -1,3 +1,11 @@
+## 15 Kasım 2026 — prepared çıktı ve SBOM kapsamı
+
+- Paketleme anında dosyaların hash'ini hesaplamak, bunların derleme çıktısıyla eşleştiğini kanıtlamaz. Manifestin kendisi dışındaki tam çıktı setini (HTML/CSS dahil) build-time hash'leriyle karşılaştır; kaynak ve JS eşitken değiştirilmiş HTML testi bu eksikliği yakaladı. İlk RED ve fix sonrası GREEN ayrı korunur.
+- SBOM semantik kontrolü resmî schema/format doğrulaması değildir. `jsonschema` mevcut olsa bile optional format sağlayıcıları eksik olabilir; tarih/URI kontrolünü sessizce atlayarak tam doğrulama iddiası kurma.
+- Bağımsız reviewer okuduğu kaynak hash'ini kaydetmeli. Root eşzamanlı düzeltmişse eski review yeni düzeltmeyi otomatik onaylamaz; yalnız değişen yol tekrar incelenir.
+- Vite `enforce:post`, Rollup `generateBundle` hook sırasıyla aynı ayar değildir. Vite'ın preload adresi düzeltmesi normal hook'lardan sonra gelebilir. Kurulu Rollup API'sindeki `order:post` ve gerçek derleme/hash retesti gerekir; yalnız yapay bundle fixtures lifecycle hatasını yakalamaz.
+- Venv interpreter yoluna `resolve()` uygulamak symlink'i global Python'a dönüştürebilir. QA dependency kaydında gerçek `sys.executable` ve import edilen paket yolu doğrulanmalı; ilk launcher hatası testlerin başarısızlığıyla karıştırılmamalı.
+
 ## 12 Kasım 2026 — çizim sayaç guardı ve semantik eşdeğerlik
 
 - Aynı block/senaryopencereçiftinin actualbefore/after ve framepercentilesayaçları kontrol edilmeden otomatikkarşılaştırma uygunluğu verilmemeli. Eksik/NaNveriUNKNOWN; N/Ayasıfıryazılmaz. Frameörnekadetleri pozitifolmalı amaFPSnenedeniyle eşitbeklenmez.

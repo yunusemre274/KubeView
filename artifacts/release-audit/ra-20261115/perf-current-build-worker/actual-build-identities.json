@@ -1,0 +1,39 @@
+{
+  "auditHEAD": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+  "runtimeSource": "15770296056ca2629601dba540c04741e1822e0d",
+  "snapshotArchiveSHA256": "a68a8932721b59d4ab5c7bb94845d17e086f87b3bd3bd8631bc917b69c794f86",
+  "helperSHA256": "8e9b7214e2f6183a987ac973a0fc34ef94a234fd97e1e2c3958e3bea3c293a17",
+  "tools": {
+    "go": "20e07ffb4f08faaf125e413db024b6e988d3ec2799dcb3568a720d14be0ad133",
+    "node": "1ee75375e33b94fc34b3b19aede049e11dae90efb63b374dc96d6bdace70c4b8",
+    "panel-build": "2a11578dda8e7b0eb6463154fb6b162a4c9fb22325a5adb86ea9463637b76505"
+  },
+  "frontend": {
+    "tag": "cat16-current157-20261115T095801Z",
+    "sourceSHA256": "41b8240d6f4546ef4fd0df415cc8cb84239e3cac7251fff518ea232c10d45ddf",
+    "provenanceSHA256": "909624bb091332e4d2d6b3178dc900f4b67a0571426d2275c209e7357bdcdb4e",
+    "sourceFilesCount": 99,
+    "assets": {
+      "assets/HarborScene-DKt6unGp.js": "5b6386779e5ed1f0fdebb3eb53be34c026451d12be33bab15e0c97147178e5ee",
+      "assets/index-CCZQtIvj.css": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+      "assets/index-DxIumOcP.js": "6dbe0611b28befc777524ab53f6fe2a07258fcd5edcb3b721a5a46964b39d91d",
+      "assets/three-BKmXRbXN.js": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+      "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+      "index.html": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb"
+    },
+    "indexSHA256": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb",
+    "sourceMatchesSnapshot": true,
+    "profiling": false,
+    "backendLinkCreated": false,
+    "commonBackendOverride": "Use explicit --backend-tag; do notmutateoldA links"
+  },
+  "backend": {
+    "tag": "cat16-common157-20261115T095801Z",
+    "path": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common157-20261115T095801Z/backend.test",
+    "bytes": 65799938,
+    "sha256": "74cf606a29e072e620fc08b9ac40f277bc72ff5e28ec28b04fdd46eb0a94b1e1",
+    "source": "private exacte486 backend snapshot; runtime15770296; testscompiled notexecuted"
+  },
+  "oldAUnchanged": true,
+  "noFinalReleaseOrPerfClaim": true
+}

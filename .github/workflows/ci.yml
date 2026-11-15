@@ -30,7 +30,7 @@ jobs:
       - run: go test -p 2 -timeout 180s ./...
         working-directory: backend
       - run: node --test benchmarks/*.test.mjs
-      - run: node --test scripts/build-release.test.mjs scripts/release-ci-policy.test.mjs
+      - run: node --test scripts/build-release.test.mjs scripts/release-ci-policy.test.mjs scripts/release-sbom.test.mjs
       - run: npm run build
         working-directory: frontend
       - run: node scripts/build-release.mjs --prepared --require-clean darwin-arm64 linux-amd64

@@ -1,0 +1,210 @@
+{
+  "at": "2026-11-15T10:12:23.538950+00:00",
+  "completedJobs": 2,
+  "lastJob": {
+    "order": "guard-before-leave",
+    "id": "hover-order-1-20261115T101203Z",
+    "argv": [
+      "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-hover-order-20261115/run.mjs",
+      "--phase",
+      "optimized",
+      "--build-tag",
+      "cat16-current157-20261115T095801Z",
+      "--backend-tag",
+      "cat16-common157-20261115T095801Z",
+      "--reuse-build",
+      "--reuse-binary",
+      "--profiles",
+      "M",
+      "--scenarios",
+      "panel-open",
+      "--panel-matrix",
+      "--panel-target",
+      "node",
+      "--repeats",
+      "1",
+      "--repeat-offset",
+      "0",
+      "--warmup",
+      "5",
+      "--seconds",
+      "10",
+      "--camera-fov",
+      "38",
+      "--dpr",
+      "1",
+      "--harbors",
+      "1",
+      "--lock-input",
+      "--lock-visual-start",
+      "--scene-inventory",
+      "--disable-browser-energy-saver",
+      "--max-minutes",
+      "1.4",
+      "--port",
+      "5192",
+      "--experiment-family",
+      "INSTRUMENTED_HOVER_ORDER_NOT_CPU_ACCEPTANCE",
+      "--id",
+      "hover-order-1-20261115T101203Z"
+    ],
+    "startedAt": "2026-11-15T10:12:03.794828+00:00",
+    "powerBefore": {
+      "at": "2026-11-15T10:12:03.807348+00:00",
+      "source": "AC",
+      "batteryPercent": 48,
+      "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+    },
+    "pid": 10996,
+    "lastPower": {
+      "at": "2026-11-15T10:12:19.483624+00:00",
+      "source": "AC",
+      "batteryPercent": 48,
+      "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+    },
+    "exitCode": 0,
+    "cleanup": [
+      {
+        "pid": 10673,
+        "identitySHA256": "5b4e46becac9c04afb458612d4d92b5c5e2654cffd6ed33f2500c80c01c27dd6",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10725,
+        "identitySHA256": "dcb7bbe4a5004d2df47b2b32e6440a7775b04659c6d3646e070f8de8ee894c9a",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10794,
+        "identitySHA256": "89a2ca902be4ef460a0d20d93c9c40264530ad2e0e208778860320106f4a4534",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10793,
+        "identitySHA256": "7602c5117a2d0b9c675e94964d14bf54074d48b527538a3f5860ec3ba14b37a7",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10806,
+        "identitySHA256": "b95e4ca60a680eff20f13b18a716a5c00ea183c4b752630f7c3e158d4a7ad286",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10807,
+        "identitySHA256": "9fc2f3d3657b1cec507d4e8bfd0bf193d61481dcfeb751c216b18995b0220f7b",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10808,
+        "identitySHA256": "6c320a420f83a409304103cc518c406f77284ccd95862d545ecbc07581efbbeb",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10810,
+        "identitySHA256": "c990874b9ff6a54453e715af96feb99fdef829f8ab396cd04e8be1ade57e9333",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10812,
+        "identitySHA256": "a698da7f6924aa0f8a1839389915f3a325c3c7fcefb317a2fe1a4cb3da1751e2",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10813,
+        "identitySHA256": "9115e98a932444a23fa6ba6b2d477e0ce05dda08e2b01d635b21170ad5d87fc3",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10823,
+        "identitySHA256": "b79aaeb82f4efa75eead4b8ed04197339e1b5dc64f084172cb49658397dd15f6",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10840,
+        "identitySHA256": "2c3b2c40e34beffa61b0313d051cdd6779ef1f3e70958dd85ff8269206581e93",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10848,
+        "identitySHA256": "39994c681c5215572c9a33b666497fc34bb2d1c29b2ae9c4ce9a19c8b048207b",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10849,
+        "identitySHA256": "eda17cd93ab3c16989ac084287055a6842fb5de976809b81a3b4f83535a9bfd0",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10847,
+        "identitySHA256": "f6c3a77311f90cde1edec16d835d256d282a1bdb09310ec53b33350dce2b40c7",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 10996,
+        "identitySHA256": "b157afadde737756c74499f0434a0758b2bec4efb2ac2ce8a3a5f3fb3abbb928",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11081,
+        "identitySHA256": "3e85a7492df12a2a72558db3f2abd292790875b4b13b0c78e49e6ef8e63cdaf0",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11116,
+        "identitySHA256": "b237aa1f05ad52269361def009e0f132ede8b4e2022bc8f213c0bbbb7b61e349",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11117,
+        "identitySHA256": "026d793d42676c03b26b2c53baabfac2a37de0ddd333c721d103fe8788314681",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11124,
+        "identitySHA256": "096673a1add697e77ba402c879e68157d05e2c328429eeb93793500e23aecdbc",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11125,
+        "identitySHA256": "b583ef0ae04472f7db1ad4dd0cbd6f19e08855be3eedd3a75b90fdeb55406cf7",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11137,
+        "identitySHA256": "f5b30aa53fb267be3e8d3191352feaeb14901607f9547c6ca3c7801a5fe76da9",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11127,
+        "identitySHA256": "9cf5fd12765f77b73f73398d0246f422face38aa60504d60229a480499e08a15",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11156,
+        "identitySHA256": "bc50c9a5c5eb3fc366e161ebec5baae7b3fda5c63bd7069bd0d97e91f2e4a280",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11161,
+        "identitySHA256": "f139b5305b05a113a567b5cbf0e9cfcdfef658d23bf8a28effffbf983f6b50f3",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11162,
+        "identitySHA256": "8f69adeaa11a06e9c1394c3b2fef064bbeb962789f4cc2552977f3abc47b563d",
+        "capturedIdentityAbsent": true
+      },
+      {
+        "pid": 11163,
+        "identitySHA256": "50342fb30d75efb0018e273154649e1fd922ae50e8bb989af8d3c67a361580ff",
+        "capturedIdentityAbsent": true
+      }
+    ],
+    "portFree": true,
+    "elapsedSecondsIncludingCleanup": 19.74333691596985,
+    "finishedAt": "2026-11-15T10:12:23.538083+00:00",
+    "scope": "INSTRUMENTED_SYNTHETIC_NOT_CPU_ACCEPTANCE",
+    "flowStatus": "PASS_INSTRUMENTED_HOVER_FLOW"
+  }
+}

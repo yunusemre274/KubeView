@@ -1,0 +1,19 @@
+{
+  "finishedAt": "2026-11-15T09:48:04.593521+00:00",
+  "elapsedSeconds": 430.8020911216736,
+  "status": "PREFLIGHT_COMPLETE_NOT_READY_TO_MEASURE",
+  "within420Seconds": false,
+  "newSourceReadsStoppedAtSeconds": 328.440190076828,
+  "sourceFiles": 21,
+  "outputBytesBeforeFinalReceipts": 28565,
+  "newBuildTestBrowserClusterBenchmarkCount": 0,
+  "productBenchGitRoadmapChanged": false,
+  "measurementOrReleaseGateClosed": false,
+  "nextOwner": "Root decides isolated build/diagnostic/measurement order after reviewing this preflight",
+  "blockers": [
+    "New currentB frontend freeze/build",
+    "New currentcommonbackend.test for currentgateway scope",
+    "Controlledhover mechanism/equivalence review, not repeatneutralmouse",
+    "LiveAC/power/isolation/controller validation"
+  ]
+}

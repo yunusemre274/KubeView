@@ -1,0 +1,27 @@
+✖ prepared output tampering or added files cannot be blessed by newly computed package hashes (31.641083ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80.0385
+
+✖ failing tests:
+
+test at scripts/build-release.test.mjs:93:1
+✖ prepared output tampering or added files cannot be blessed by newly computed package hashes (31.641083ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/scripts/build-release.test.mjs:98:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /output.*(?:set|digest|content)/,
+    operator: 'throws',
+    diff: 'simple'
+  }

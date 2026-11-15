@@ -1,0 +1,88 @@
+{
+  "capturedAt": "2026-11-15T10:16:44.417927+00:00",
+  "runtimeBuildSource": "15770296056ca2629601dba540c04741e1822e0d",
+  "note": "Read-only installed/source explanation; running exact asset identities remain plan/build evidence. No source edits.",
+  "files": [
+    {
+      "path": "frontend/src/harbor/HarborScene.jsx",
+      "sha256": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1",
+      "snippets": [
+        {
+          "startLine": 1100,
+          "endLine": 1133,
+          "text": "1100:     onHover(null);\n1101:     document.body.style.cursor = \"auto\";\n1102:   };\n1103:   const selected = pods.find((p) => uidOf(p) === selectedUID),\n1104:     hovered = pods.find((p) => uidOf(p) === hovering);\n1105:   return (\n1106:     <group>\n1107:       {bodyCount > 0 && (\n1108:         <instancedMesh\n1109:           key={`body${bodyCount}`}\n1110:           ref={body}\n1111:           args={[UNIT_BOX, m.cargo, bodyCount]}\n1112:           userData={{\n1113:             harborTargets: () =>\n1114:               instances.map((t, index) => ({\n1115:                 type: \"container\",\n1116:                 uid: uidOf(t.resource),\n1117:                 name: t.resource.metadata.name,\n1118:                 namespace: t.resource.metadata.namespace,\n1119:                 containerName: t.containerName,\n1120:                 containerRole: t.role,\n1121:                 instance: index,\n1122:               })),\n1123:           }}\n1124:           onPointerDown={pointerDown}\n1125:           onClick={click}\n1126:           onPointerOver={over}\n1127:           onPointerMove={over}\n1128:           onPointerOut={out}\n1129:           castShadow\n1130:           receiveShadow\n1131:           dispose={null}\n1132:         />\n1133:       )}"
+        },
+        {
+          "startLine": 1190,
+          "endLine": 1231,
+          "text": "1190:           />\n1191:         </MovingAnchor>\n1192:       ))}\n1193:       {(selected || hovered) && (\n1194:         <mesh ref={selection} raycast={() => null}>\n1195:           <boxGeometry\n1196:             args={[\n1197:               D.CONTAINER_WIDTH + 0.35,\n1198:               D.CONTAINER_HEIGHT + 0.35,\n1199:               D.CONTAINER_LENGTH + 0.35,\n1200:             ]}\n1201:           />\n1202:           <meshBasicMaterial\n1203:             color={selected ? \"#4b8ddc\" : \"#e5be62\"}\n1204:             wireframe\n1205:             depthTest={false}\n1206:             transparent\n1207:             opacity={0.95}\n1208:           />\n1209:         </mesh>\n1210:       )}\n1211:     </group>\n1212:   );\n1213: }\n1214: \n1215: function WorkingCrane({\n1216:   index,\n1217:   materials,\n1218:   coordinator,\n1219:   lowDetail,\n1220:   reducedMotion,\n1221:   onOpenFacility,\n1222:   selectedFacility,\n1223:   canSelect,\n1224:   focusFacilityRequest,\n1225:   clock,\n1226: }) {\n1227:   const group = useRef(),\n1228:     trolley = useRef(),\n1229:     cable = useRef(),\n1230:     spreader = useRef(),\n1231:     hadTransfer = useRef(false),"
+        }
+      ]
+    },
+    {
+      "path": "frontend/src/harbor/assets.jsx",
+      "sha256": "dfc512a3baa639c4f0fdd420b69e64014c537c20dd42a5b1b3da58dd1df35a3b",
+      "snippets": [
+        {
+          "startLine": 94,
+          "endLine": 100,
+          "text": "94: export const HULL = hullGeometry(0.45,3.5+D.SHIP_FREEBOARD_LIFT,0.90,1,true)\n95: const KEEL = hullGeometry(-2.3,0.45,0.64,0.90,true)\n96: const DECK = hullGeometry(3.49+D.SHIP_FREEBOARD_LIFT,3.8+D.SHIP_FREEBOARD_LIFT,0.985,0.985)\n97: const WATERLINE = hullGeometry(0.44,0.68,0.90,0.918)\n98: const HULL_EDGES=new THREE.EdgesGeometry(HULL,18)\n99: \n100: function beamItem(a, b, thickness, depth = thickness) {"
+        },
+        {
+          "startLine": 170,
+          "endLine": 176,
+          "text": "170:       <Cylinder position={[0,0.3,0]} scale={[0.3,1,0.3]} material={m.rail}/><Box position={[0,1.1,0]} scale={[4.2,0.9,0.7]} rotation={[0,0.35,0]} material={m.white}/>\n171:       <Box position={[0,1.1,0.4]} scale={[3.7,0.55,0.15]} rotation={[0,0.35,0]} material={m.window}/>\n172:     </group>\n173:     <Cylinder position={[-4.5,13.4+D.SHIP_FREEBOARD_LIFT,-24]} scale={[0.38,0.5,0.38]} material={state === 'ready' ? m.yellow : state === 'failed' ? m.rust : m.rail}/>\n174:     {(selected||hovered)&&<lineSegments geometry={HULL_EDGES} raycast={()=>null} scale={[1.015,1.015,1.005]} position={[0,0.05,0]} dispose={null}><lineBasicMaterial color={selected?'#4a8bd8':'#e5be62'} transparent opacity={0.95} depthTest={false}/></lineSegments>}\n175:   </group>\n176: }"
+        }
+      ]
+    },
+    {
+      "path": "benchmarks/run.mjs",
+      "sha256": "80cc55ad70f65857c5df2fa5eb79155aae5b8a5daec2d21916b8c588e39bb850",
+      "snippets": [
+        {
+          "startLine": 650,
+          "endLine": 711,
+          "text": "650:       increment(\"websocketCallbacks\"),\n651:     );\n652:   }\n653:   manifest.actual = await inventory();\n654:   await save();\n655: }\n656: async function setInputGuard(enabled) {\n657:   await page.evaluate((enabled) => {\n658:     globalThis.__KUBEVIEW_INPUT_GUARD__?.cleanup();\n659:     if (!enabled) return;\n660:     const counts = {};\n661:     const handler = (event) => {\n662:       if (!event.isTrusted) return;\n663:       counts[event.type] = (counts[event.type] || 0) + 1;\n664:       event.stopImmediatePropagation();\n665:       if (event.cancelable) event.preventDefault();\n666:     };\n667:     const names = ['keydown', 'keyup', 'pointerdown', 'pointerup', 'click', 'dblclick', 'wheel', 'contextmenu', 'touchstart', 'touchmove'];\n668:     for (const name of names) window.addEventListener(name, handler, { capture: true, passive: false });\n669:     globalThis.__KUBEVIEW_INPUT_GUARD__ = { counts, cleanup() {\n670:       for (const name of names) window.removeEventListener(name, handler, true);\n671:       delete globalThis.__KUBEVIEW_INPUT_GUARD__;\n672:     } };\n673:   }, enabled);\n674: }\n675: async function prepareCamera(interactive = true) {\n676:   await page.waitForFunction(\n677:     () =>\n678:       document.querySelector(\"canvas\")?.__harbor?.scene.__r3f?.root?.getState()\n679:         .controls,\n680:   );\n681:   await setInputGuard(!interactive && lockInput);\n682:   await page.evaluate(({interactive, cameraFovOverride}) => {\n683:     const canvas = document.querySelector(\"canvas\"),\n684:       harbor = canvas.__harbor;\n685:     const controls = harbor.scene.__r3f.root.getState().controls;\n686:     controls.enableRotate = interactive;\n687:     controls.enablePan = interactive;\n688:     controls.enableZoom = interactive;\n689:     canvas.style.pointerEvents = interactive ? \"auto\" : \"none\";\n690:     if (!interactive && document.activeElement === canvas) canvas.blur();\n691:     const damping = controls.enableDamping;\n692:     controls.enableDamping = false;\n693:     controls.update();\n694:     const position = [\n695:       155.32070332934845, 297.3149971650057, 468.72488860383254,\n696:     ];\n697:     const q = [\n698:       -0.32546078412600804, 0.19405942434202558, 0.06843554348917548,\n699:       0.9228937068847457,\n700:     ];\n701:     const forward = [\n702:       -2 * (q[0] * q[2] + q[3] * q[1]),\n703:       -2 * (q[1] * q[2] - q[3] * q[0]),\n704:       -(1 - 2 * (q[0] ** 2 + q[1] ** 2)),\n705:     ];\n706:     const distance = -position[1] / forward[1];\n707:     controls.target.set(\n708:       position[0] + forward[0] * distance,\n709:       0,\n710:       position[2] + forward[2] * distance,\n711:     );"
+        }
+      ]
+    },
+    {
+      "path": "frontend/node_modules/three/src/renderers/webgl/WebGLInfo.js",
+      "sha256": "e6c56a02eaed28924ce31b76a67d7cebc717818f1ab5b87bc07320f975debddd",
+      "snippets": [
+        {
+          "startLine": 16,
+          "endLine": 34,
+          "text": "16: \tfunction update( count, mode, instanceCount ) {\n17: \n18: \t\trender.calls ++;\n19: \n20: \t\tswitch ( mode ) {\n21: \n22: \t\t\tcase gl.TRIANGLES:\n23: \t\t\t\trender.triangles += instanceCount * ( count / 3 );\n24: \t\t\t\tbreak;\n25: \n26: \t\t\tcase gl.LINES:\n27: \t\t\t\trender.lines += instanceCount * ( count / 2 );\n28: \t\t\t\tbreak;\n29: \n30: \t\t\tcase gl.LINE_STRIP:\n31: \t\t\t\trender.lines += instanceCount * ( count - 1 );\n32: \t\t\t\tbreak;\n33: \n34: \t\t\tcase gl.LINE_LOOP:"
+        }
+      ]
+    },
+    {
+      "path": "frontend/node_modules/three/src/renderers/webgl/WebGLGeometries.js",
+      "sha256": "acbb785459e5a6a81d2c0d1e4b5cf7c984790f1fd3ab499fea8bd5d2b5006065",
+      "snippets": [
+        {
+          "startLine": 108,
+          "endLine": 150,
+          "text": "108: \tfunction updateWireframeAttribute( geometry ) {\n109: \n110: \t\tconst indices = [];\n111: \n112: \t\tconst geometryIndex = geometry.index;\n113: \t\tconst geometryPosition = geometry.attributes.position;\n114: \t\tlet version = 0;\n115: \n116: \t\tif ( geometryIndex !== null ) {\n117: \n118: \t\t\tconst array = geometryIndex.array;\n119: \t\t\tversion = geometryIndex.version;\n120: \n121: \t\t\tfor ( let i = 0, l = array.length; i < l; i += 3 ) {\n122: \n123: \t\t\t\tconst a = array[ i + 0 ];\n124: \t\t\t\tconst b = array[ i + 1 ];\n125: \t\t\t\tconst c = array[ i + 2 ];\n126: \n127: \t\t\t\tindices.push( a, b, b, c, c, a );\n128: \n129: \t\t\t}\n130: \n131: \t\t} else if ( geometryPosition !== undefined ) {\n132: \n133: \t\t\tconst array = geometryPosition.array;\n134: \t\t\tversion = geometryPosition.version;\n135: \n136: \t\t\tfor ( let i = 0, l = ( array.length / 3 ) - 1; i < l; i += 3 ) {\n137: \n138: \t\t\t\tconst a = i + 0;\n139: \t\t\t\tconst b = i + 1;\n140: \t\t\t\tconst c = i + 2;\n141: \n142: \t\t\t\tindices.push( a, b, b, c, c, a );\n143: \n144: \t\t\t}\n145: \n146: \t\t} else {\n147: \n148: \t\t\treturn;\n149: \n150: \t\t}"
+        }
+      ]
+    },
+    {
+      "path": "frontend/node_modules/three/src/renderers/WebGLRenderer.js",
+      "sha256": "8237c77a19ca3bbea3ca0bbe11ea00a1f381ae9a36d44080d20c4de16416b788",
+      "snippets": [
+        {
+          "startLine": 743,
+          "endLine": 763,
+          "text": "743: \t\t\tstate.setMaterial( material, frontFaceCW );\n744: \n745: \t\t\t//\n746: \n747: \t\t\tlet index = geometry.index;\n748: \t\t\tlet rangeFactor = 1;\n749: \n750: \t\t\tif ( material.wireframe === true ) {\n751: \n752: \t\t\t\tindex = geometries.getWireframeAttribute( geometry );\n753: \n754: \t\t\t\tif ( index === undefined ) return;\n755: \n756: \t\t\t\trangeFactor = 2;\n757: \n758: \t\t\t}\n759: \n760: \t\t\t//\n761: \n762: \t\t\tconst drawRange = geometry.drawRange;\n763: \t\t\tconst position = geometry.attributes.position;"
+        },
+        {
+          "startLine": 803,
+          "endLine": 819,
+          "text": "803: \t\t\t\trenderer.setIndex( attribute );\n804: \n805: \t\t\t}\n806: \n807: \t\t\t//\n808: \n809: \t\t\tif ( object.isMesh ) {\n810: \n811: \t\t\t\tif ( material.wireframe === true ) {\n812: \n813: \t\t\t\t\tstate.setLineWidth( material.wireframeLinewidth * getTargetPixelRatio() );\n814: \t\t\t\t\trenderer.setMode( _gl.LINES );\n815: \n816: \t\t\t\t} else {\n817: \n818: \t\t\t\t\trenderer.setMode( _gl.TRIANGLES );\n819: "
+        }
+      ]
+    }
+  ]
+}

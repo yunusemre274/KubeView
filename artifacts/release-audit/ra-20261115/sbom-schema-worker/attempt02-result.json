@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "timeout": false,
+  "exitCode": 0,
+  "startedAt": "2026-11-15T10:33:47.679876+00:00",
+  "completedAt": "2026-11-15T10:33:47.794637+00:00",
+  "elapsedSeconds": 0.11478133399941726,
+  "sourceAfterMatches": true
+}

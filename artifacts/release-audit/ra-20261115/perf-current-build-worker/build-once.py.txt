@@ -1,0 +1,81 @@
+from pathlib import Path
+import datetime,hashlib,json,os,re,shutil,signal,subprocess,time
+R=Path('/Users/yunusemre/Desktop/KubeView');P=R/'.git/release-audit/perf-current-build-20261115';A=R/'artifacts/release-audit/ra-20261115/perf-current-build-worker';JOB=json.loads((P/'job.json').read_text());BARRIER=json.loads((P/'barrier.json').read_text());SOURCE=P/'source';NODE=Path.home()/'.nvm/versions/node/v24.16.0/bin/node';GO=Path.home()/'go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go'
+ENV=dict(os.environ,GOTOOLCHAIN='local',GOMAXPROCS='2',GOMEMLIMIT='2GiB',CGO_ENABLED='0',GOPROXY='off',UV_THREADPOOL_SIZE='2',NODE_OPTIONS='--max-old-space-size=2048');REC={'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scope':'CURRENT_B_FRONTEND_AND_CURRENT_COMMON_GATEWAY_COMPILE_ONLY','auditHEAD':JOB['head'],'job':JOB,'stages':[],'testsExecuted':False,'appsOrBrowsersStarted':False,'measurementsStarted':False,'samples':[]};captured={};proc=None
+stamp=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
+def sha(p):
+ with p.open('rb')as f:return hashlib.file_digest(f,'sha256').hexdigest()
+def identity(pid):
+ result=subprocess.run(['/bin/ps','-p',str(pid),'-o','lstart=','-o','command='],capture_output=True,text=True,timeout=2);return result.stdout.strip()if result.returncode==0 else None
+def sample():
+ raw=subprocess.check_output(['/usr/bin/pmset','-g','batt'],text=True,timeout=2);match=re.search(r'(\d+)%;',raw);settings=subprocess.check_output(['/usr/bin/pmset','-g','custom'],text=True,timeout=2);modes=re.findall(r'lowpowermode\s+(\d+)',settings)
+ if 'AC Power'not in raw or not match or int(match[1])<30:raise RuntimeError('AC required and battery30percent floor')
+ if modes!=['0','0']:raise RuntimeError('unchanged lowpower0 required')
+ rows={}
+ for line in subprocess.check_output(['/bin/ps','-axo','pid=,ppid=,rss='],text=True,timeout=2).splitlines():
+  x=line.split()
+  if len(x)==3:rows[int(x[0])]=(int(x[1]),int(x[2]))
+ owned={os.getpid()}
+ while True:
+  previous=len(owned);owned.update(pid for pid,row in rows.items()if row[0]in owned)
+  if len(owned)==previous:break
+ for pid in owned:
+  if pid!=os.getpid()and pid not in captured:
+   value=identity(pid)
+   if value:captured[pid]=value
+ rss=sum(rows[pid][1]*1024 for pid in owned if pid in rows);free=shutil.disk_usage(R).free
+ if rss>4<<30 or free<10<<30:raise RuntimeError('ownedRSS4GiB/disk10GiB guard')
+ if time.time()>JOB['workDeadlineEpoch']:raise RuntimeError('360s work deadline;60s report reserve')
+ result={'at':stamp(),'AC':True,'batteryPercent':int(match[1]),'lowPowerModes':modes,'ownedRSSBytes':rss,'freeDiskBytes':free,'ownedPIDCount':len(owned)};REC['samples'].append(result);return result
+def cleanup():
+ for sig in [signal.SIGTERM,signal.SIGKILL]:
+  for pid,ident in reversed(list(captured.items())):
+   if identity(pid)==ident:
+    try:os.kill(pid,sig)
+    except ProcessLookupError:pass
+  time.sleep(.2)
+ REC['capturedCleanup']=[{'pid':pid,'identitySHA256':hashlib.sha256(ident.encode()).hexdigest(),'capturedIdentityAbsent':identity(pid)!=ident}for pid,ident in captured.items()]
+def run(name,argv,cwd,limit):
+ global proc
+ row={'name':name,'argv':[str(x)for x in argv],'cwd':str(cwd),'startedAt':stamp(),'maxSeconds':limit,'env':{k:ENV[k]for k in ['GOTOOLCHAIN','GOMAXPROCS','GOMEMLIMIT','CGO_ENABLED','GOPROXY','UV_THREADPOOL_SIZE','NODE_OPTIONS']}};REC['stages'].append(row);end=min(JOB['workDeadlineEpoch'],time.time()+limit)
+ with(A/(name+'.stdout')).open('xb')as stdout,(A/(name+'.stderr')).open('xb')as stderr:
+  proc=subprocess.Popen(argv,cwd=cwd,env=ENV,stdout=stdout,stderr=stderr,start_new_session=True);row['pid']=proc.pid;row['birthCommandIdentity']=identity(proc.pid);captured[proc.pid]=row['birthCommandIdentity']
+  try:
+   while proc.poll()is None:
+    sample()
+    if time.time()>end:raise RuntimeError(name+' stage timeout')
+    time.sleep(.3)
+   row['exitCode']=proc.wait()
+   sample()
+  finally:
+   row['finishedAt']=stamp();row['exitCode']=proc.poll();(A/(name+'-execution.json')).write_text(json.dumps(row,indent=2)+'\n')
+ if row['exitCode']!=0:raise RuntimeError(name+' exit'+str(row['exitCode']))
+try:
+ if(A/'result.json').exists():raise RuntimeError('one-shot result exists; no overwrite/retry')
+ REC['preflight']=sample();REC['goVersion']=subprocess.check_output([str(GO),'version'],env=ENV,text=True,timeout=3).strip()
+ if'go1.26.11 'not in REC['goVersion']:raise RuntimeError('exactGoSDK1.26.11 required')
+ REC['toolSHA256']={'go':sha(GO),'node':sha(NODE),'panel-build':sha(R/'benchmarks/panel-build.mjs')}
+ if REC['toolSHA256']['panel-build']!=BARRIER['panelBuildSHA256']:raise RuntimeError('panel-build source changed')
+ if not all(sha(SOURCE/p)==expected for p,expected in BARRIER['sourceFiles'].items()):raise RuntimeError('snapshot source changed beforebuild')
+ if sha(R/'frontend/node_modules/.package-lock.json')!=BARRIER['installedHiddenLockSHA256']:raise RuntimeError('installedgraph changed beforebuild')
+ tag=JOB['tags']['B'];common=R/'benchmarks/.build'/JOB['tags']['common']
+ for path in [R/'benchmarks/.build'/tag,R/'benchmarks/.build'/(tag+'-source'),R/'benchmarks/.build'/(tag+'.json'),common]:
+  if path.exists()or path.is_symlink():raise RuntimeError('unusedtag/outputguard')
+ run('vite-B',[str(NODE),str(R/'benchmarks/panel-build.mjs'),tag,'--source',str(SOURCE/'frontend')],R,120)
+ common.mkdir(mode=0o700)
+ run('go-test-compile',[str(GO),'test','-c','-p','1','-o',str(common/'backend.test'),'./pkg/server'],SOURCE/'backend',180)
+ REC['commonBackend']={'tag':JOB['tags']['common'],'path':str(common/'backend.test'),'bytes':(common/'backend.test').stat().st_size,'sha256':sha(common/'backend.test'),'source':'private exacte486 backend snapshot; runtime15770296; testscompiled notexecuted'}
+ build=R/'benchmarks/.build'/tag;provenance=R/'benchmarks/.build'/(tag+'.json');prov=json.loads(provenance.read_text());assets={str(x.relative_to(build)):sha(x)for x in sorted(build.rglob('*'))if x.is_file()}
+ if len(assets)!=6 or prov['profiling']:raise RuntimeError('sixproductionassets/nonprofiling required')
+ copied=R/'benchmarks/.build'/(tag+'-source');snapshotFE={str(Path(name).relative_to('frontend')):value for name,value in BARRIER['sourceFiles'].items()if name.startswith('frontend/')and(str(Path(name).relative_to('frontend')).startswith(('src/','public/'))or str(Path(name).relative_to('frontend'))in ['package.json','package-lock.json','vite.config.js','index.html'])}
+ if prov['files']!=snapshotFE:raise RuntimeError('frozenfrontend differs exacttracked source copy')
+ REC['frontend']={'tag':tag,'sourceSHA256':prov['sourceSHA256'],'provenanceSHA256':sha(provenance),'sourceFilesCount':len(prov['files']),'assets':assets,'indexSHA256':assets['index.html'],'sourceMatchesSnapshot':True,'profiling':False,'backendLinkCreated':False,'commonBackendOverride':'Use explicit --backend-tag; do notmutateoldA links'}
+ REC['sourceAfterMatches']=all(sha(SOURCE/p)==expected for p,expected in BARRIER['sourceFiles'].items());REC['installedGraphAfterMatches']=sha(R/'frontend/node_modules/.package-lock.json')==BARRIER['installedHiddenLockSHA256'];REC['requiredPackagesAfterMatch']=all(sha(R/'frontend/node_modules'/name/'package.json')==row['packageManifestSHA256']for name,row in BARRIER['requiredInstalledPackages'].items());REC['panelBuildAfterMatches']=sha(R/'benchmarks/panel-build.mjs')==BARRIER['panelBuildSHA256'];old=R/'benchmarks/.build/cat16-36d-20261112T113255Z/backend.test';REC['oldALinkAfterMatches']=old.is_symlink()and os.readlink(old)==BARRIER['oldABackendSymlink'];REC['oldAProvenanceAfterMatches']=sha(R/'benchmarks/.build/cat16-36d-20261112T113255Z.json')==BARRIER['oldAFrozenProvenanceSHA256']
+ if not all(REC[k]for k in ['sourceAfterMatches','installedGraphAfterMatches','requiredPackagesAfterMatch','panelBuildAfterMatches','oldALinkAfterMatches','oldAProvenanceAfterMatches']):raise RuntimeError('source/graph/legacy beforeafter barrier failed')
+ REC['status']='CURRENT_B_FRONTEND_AND_COMMON_GATEWAY_COMPILED_PASS'
+except BaseException as e:REC['status']='FAILED_PRESERVED_NO_RETRY';REC['failure']=str(e)
+finally:
+ cleanup();REC['finishedAt']=stamp();REC['elapsedSecondsIncludingPreparationAndCleanup']=time.time()-JOB['startedEpoch'];REC['remainingReportSeconds']=JOB['deadlineEpoch']-time.time()
+ if not all(x['capturedIdentityAbsent']for x in REC['capturedCleanup'])or time.time()>JOB['deadlineEpoch']:REC['status']='FAILED_PRESERVED_NO_RETRY'
+ (A/'result.json').write_text(json.dumps(REC,indent=2)+'\n');print(json.dumps({'status':REC['status'],'failure':REC.get('failure'),'elapsedSeconds':REC['elapsedSecondsIncludingPreparationAndCleanup'],'remainingReportSeconds':REC['remainingReportSeconds'],'stages':[{'name':x['name'],'exitCode':x.get('exitCode')}for x in REC['stages']]}))
+raise SystemExit(0 if REC['status'].endswith('_PASS')else 1)

@@ -4,6 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, exist
 import os from 'node:os';
 import path from 'node:path';
 import { buildRelease, parseReleaseArgs } from './build-release.mjs';
+import { collectPackageInventory } from '../frontend/build/package-inventory.mjs';
 
 function fixture(t) {
   const root = mkdtempSync(path.join(os.tmpdir(), 'kubeview-packaging-'));
@@ -13,8 +14,25 @@ function fixture(t) {
     mkdirSync(path.dirname(target), { recursive: true });
     writeFileSync(target, text);
   };
-  put('frontend/package.json', JSON.stringify({ version: '1.1.0' }));
+  put('frontend/package.json', JSON.stringify({ name: 'frontend-fixture', version: '1.1.0', dependencies: { foo: '1.0.0' }, devDependencies: { 'build-tool': '2.0.0' } }));
+  put('frontend/package-lock.json', JSON.stringify({ lockfileVersion: 3, packages: { '': { name: 'frontend-fixture', version: '1.1.0' }, 'node_modules/foo': { version: '1.0.0' }, 'node_modules/build-tool': { version: '2.0.0', dev: true } } }));
+  put('frontend/node_modules/foo/package.json', JSON.stringify({ name: 'foo', version: '1.0.0' }));
+  put('frontend/node_modules/foo/index.js', 'export const value = 1;\n');
+  put('frontend/src/app.jsx', 'import foo from \"foo\";\n');
+  put('frontend/index.html', '<html>source frontend</html>\n');
+  put('frontend/vite.config.js', '// fixture build config\n');
+  put('frontend/build/package-inventory.mjs', '// fixture build metadata plugin\n');
+  put('frontend/public/logo.svg', '<svg/>');
+  put('frontend/dist/logo.svg', '<svg/>');
+  put('frontend/dist/assets/app.js', 'synthetic prepared module\n');
   put('frontend/dist/index.html', '<html>synthetic prepared build</html>\n');
+  put('frontend/dist/assets/app.css', 'body { color: teal; }\n');
+  const refreshInventory = () => put('frontend/dist/package-inventory.json', JSON.stringify(collectPackageInventory(path.join(root, 'frontend'), {
+    'index.html': { type: 'asset', source: readFileSync(path.join(root, 'frontend/dist/index.html'), 'utf8') },
+    'assets/app.css': { type: 'asset', source: readFileSync(path.join(root, 'frontend/dist/assets/app.css')) },
+    'assets/app.js': { type: 'chunk', code: readFileSync(path.join(root, 'frontend/dist/assets/app.js'), 'utf8'), modules: { [path.join(root, 'frontend/src/app.jsx')]: { renderedLength: 5 }, [path.join(root, 'frontend/node_modules/foo/index.js')]: { renderedLength: 10 } } },
+  })));
+  refreshInventory();
   put('README.md', '[guide](MANUAL_TEST_GUIDE.md)\n');
   for (const file of ['scripts/manual-lab.sh', 'scripts/manual_lab.py', 'manual-lab/profiles.json',
     'manual-lab/telemetry.py', 'manual-lab/DEPENDENCIES.md', 'manual-lab/templates/README.md',
@@ -22,12 +40,20 @@ function fixture(t) {
   for (const file of ['manual-lab/evidence/historical.json', 'manual-lab/tests/test_runner.py',
     'manual-lab/__pycache__/telemetry.pyc', 'manual-lab/.pytest_cache/cache', 'manual-lab/developer-notes.txt']) put(file, 'DO NOT SHIP\n');
   const calls = [];
-  let dirty = '';
+  let dirty = '', builtTarget;
   const execute = (command, args, options) => {
     calls.push({ command, args, options });
     if (command === 'git') return args[0] === 'rev-parse' ? 'fixture-source-commit\n' : dirty;
+    if (command === 'npm' && args[0] === 'sbom') return JSON.stringify({ bomFormat: 'CycloneDX', specVersion: '1.5', metadata: { component: { 'bom-ref': 'frontend-fixture@1.1.0' }, tools: [{ vendor: 'npm', name: 'cli', version: '11.13.0' }] }, components: [
+      { type: 'library', name: 'foo', version: '1.0.0', 'bom-ref': 'foo@1.0.0' },
+      { type: 'library', name: 'build-tool', version: '2.0.0', 'bom-ref': 'build-tool@2.0.0', properties: [{ name: 'cdx:npm:package:development', value: 'true' }] },
+    ], dependencies: [{ ref: 'frontend-fixture@1.1.0', dependsOn: ['foo@1.0.0', 'build-tool@2.0.0'] }, { ref: 'foo@1.0.0', dependsOn: [] }, { ref: 'build-tool@2.0.0', dependsOn: [] }] });
     if (command === 'npm' || command === process.execPath) return Buffer.alloc(0);
+    if (command === 'go' && args[0] === 'version') return JSON.stringify({ GoVersion: 'go1.26.11', Main: { Path: 'github.com/k8s-tersane/tersane/backend', Version: '(devel)' },
+      Deps: [{ Path: 'example.invalid/module', Version: 'v1.2.3', Sum: 'h1:YXVkaXQ=' }],
+      Settings: [{ Key: 'GOOS', Value: builtTarget.GOOS }, { Key: 'GOARCH', Value: builtTarget.GOARCH }, { Key: 'CGO_ENABLED', Value: '0' }, { Key: 'vcs.revision', Value: 'fixture-source-commit' }, { Key: 'vcs.modified', Value: 'false' }] });
     if (command === 'go') {
+      assert.equal(args[0], 'build'); builtTarget = { GOOS: options.env.GOOS, GOARCH: options.env.GOARCH };
       assert.equal(options.env.CGO_ENABLED, '0');
       writeFileSync(args[args.indexOf('-o') + 1], 'synthetic binary; no compilation\n');
       return Buffer.alloc(0);
@@ -38,7 +64,7 @@ function fixture(t) {
     }
     throw Error(`Unexpected real command ${command}`);
   };
-  return { root, put, calls, execute, setDirty: value => { dirty = value; } };
+  return { root, put, calls, execute, refreshInventory, setDirty: value => { dirty = value; } };
 }
 
 test('strict argument parsing preserves prepared/clean/target and default targets', () => {
@@ -64,6 +90,17 @@ test('existing explicit output directories and symlinks fail before any command'
   assert.equal(readFileSync(path.join(f.root, 'populated/historical.txt'), 'utf8'), 'immutable evidence\n');
 });
 
+test('prepared output tampering or added files cannot be blessed by newly computed package hashes', t => {
+  for (const file of ['index.html', 'assets/app.css', 'assets/injected.js', 'unexpected.txt']) {
+    const f = fixture(t);
+    f.put(`frontend/dist/${file}`, file.endsWith('.html') ? '<script src="https://canary.invalid/never-fetched.js"></script>' : 'changed output');
+    const out = path.join(f.root, 'output-tamper');
+    assert.throws(() => buildRelease(['--prepared', `--output-dir=${out}`, 'linux-amd64'], f), /output.*(?:set|digest|content)/);
+    assert.equal(f.calls.some(call => call.command === process.execPath || call.command === 'go' || call.command === 'tar'), false);
+    assert.equal(existsSync(path.join(out, 'kubeview_1.1.0_linux-amd64.tar.gz')), false);
+  }
+});
+
 test('default dist rejects every conflicting archive, binary folder or manifest before build', t => {
   for (const collision of ['kubeview_1.1.0_linux-amd64.tar.gz', 'kubeview_1.1.0_linux-amd64/kubeview', 'SHA256SUMS', 'build.json']) {
     const f = fixture(t);
@@ -79,7 +116,10 @@ test('fresh relative output dry-run preserves prepared flow and packages only ma
   const f = fixture(t);
   const out = path.join(f.root, 'fresh bundle');
   buildRelease(['--prepared', '--require-clean', `--output-dir=${path.relative(process.cwd(), out)}`, 'linux-amd64'], f);
-  assert.equal(f.calls.some(call => call.command === 'npm'), false);
+  // --prepared skips dependency installation/frontend compilation; the new
+  // offline lock-only metadata command is not a frontend build.
+  assert.equal(f.calls.some(call => call.command === 'npm' && ['ci', 'install', 'run'].includes(call.args[0])), false);
+  assert.equal(f.calls.filter(call => call.command === 'npm' && call.args[0] === 'sbom').length, 1);
   assert.equal(f.calls.filter(call => call.command === process.execPath).length, 1);
   const go = f.calls.find(call => call.command === 'go');
   assert.equal(go.options.env.GOOS, 'linux');
@@ -111,7 +151,8 @@ test('default output preserves unrelated historical files and keeps normal front
   const f = fixture(t);
   f.put('dist/older-evidence.tar.gz', 'immutable older evidence\n');
   buildRelease(['windows-amd64'], f);
-  assert.deepEqual(f.calls.filter(call => call.command === 'npm').map(call => call.args), [['ci'], ['run', 'build']]);
+  assert.deepEqual(f.calls.filter(call => call.command === 'npm' && call.args[0] !== 'sbom').map(call => call.args), [['ci'], ['run', 'build']]);
+  assert.equal(f.calls.filter(call => call.command === 'npm' && call.args[0] === 'sbom').length, 1);
   assert.equal(existsSync(path.join(f.root, 'dist/kubeview_1.1.0_windows-amd64/kubeview.exe')), true);
   assert.equal(readFileSync(path.join(f.root, 'dist/older-evidence.tar.gz'), 'utf8'), 'immutable older evidence\n');
 });
@@ -128,11 +169,11 @@ test('require-clean rejection never reserves output or invokes frontend/build to
 test('require-clean includes the manual runtime, shipped docs and RBAC inputs', t => {
   for (const changed of ['manual-lab/telemetry.py', 'manual-lab/profiles.json',
     'manual-lab/templates/telemetry-values.json', 'manual-lab/tests/real_scenarios.py',
-    'MANUAL_TEST_GUIDE.md', 'docs/SECURITY.md', 'deploy/rbac-namespace-readonly.yaml']) {
+    'MANUAL_TEST_GUIDE.md', 'docs/SECURITY.md', 'deploy/rbac-namespace-readonly.yaml', 'frontend/build/package-inventory.mjs']) {
     const f = fixture(t);
     const out = path.join(f.root, 'new-output');
     const execute = (command, args, options) => {
-      if (command === 'git' && args[0] === 'status') return args.includes(changed) ? ` M ${changed}\n` : '';
+      if (command === 'git' && args[0] === 'status') return (args.includes(changed) || changed === 'frontend/build/package-inventory.mjs' && args.includes('frontend/build')) ? ` M ${changed}\n` : '';
       return f.execute(command, args, options);
     };
     assert.throws(() => buildRelease(['--require-clean', `--output-dir=${out}`, 'linux-amd64'],
@@ -146,6 +187,7 @@ test('bundle provenance binds shipped inputs and prepared frontend bytes', t => 
   const f = fixture(t);
   f.put('frontend/dist/index.html', '<html>synthetic prepared build</html>\n');
   f.put('frontend/dist/assets/app.js', 'synthetic prepared module\n');
+  f.refreshInventory();
   const out = path.join(f.root, 'fresh-provenance');
   buildRelease(['--prepared', `--output-dir=${out}`, 'linux-amd64'], f);
   const manifest = JSON.parse(readFileSync(path.join(out, 'build.json'), 'utf8'));
@@ -157,6 +199,17 @@ test('bundle provenance binds shipped inputs and prepared frontend bytes', t => 
   assert.match(inner.binarySHA256, /^[a-f0-9]{64}$/);
   assert.equal(inner.commit, 'fixture-source-commit');
   assert.equal(inner.signed, false);
+  assert.deepEqual(inner.sboms, manifest.packages['linux-amd64'].sboms);
+  for (const file of ['sbom.binary.cdx.json', 'sbom.frontend-source.cdx.json']) {
+    assert.equal(JSON.parse(readFileSync(path.join(out, 'kubeview_1.1.0_linux-amd64', file), 'utf8')).bomFormat, 'CycloneDX');
+    assert.match(inner.sboms[file], /^[a-f0-9]{64}$/);
+  }
+  const runtime = JSON.parse(readFileSync(path.join(out, 'kubeview_1.1.0_linux-amd64/sbom.binary.cdx.json'), 'utf8'));
+  const source = JSON.parse(readFileSync(path.join(out, 'kubeview_1.1.0_linux-amd64/sbom.frontend-source.cdx.json'), 'utf8'));
+  assert.ok(runtime.components.some(c => c.name === 'foo'));
+  assert.equal(runtime.components.some(c => c.name === 'build-tool'), false);
+  assert.ok(source.components.some(c => c.name === 'build-tool'));
+  assert.match(inner.frontendInventorySHA256, /^[a-f0-9]{64}$/);
 });
 
 test('missing or symlinked prepared frontend cannot reach embed or compilation', t => {
@@ -184,4 +237,41 @@ test('archive published during build cannot be overwritten and temporary output 
   assert.throws(() => buildRelease(['--prepared', `--output-dir=${out}`, 'linux-amd64'], { root: f.root, execute }), /EEXIST/);
   assert.equal(readFileSync(path.join(out, 'kubeview_1.1.0_linux-amd64.tar.gz'), 'utf8'), 'concurrent immutable archive\n');
   assert.equal(readdirSync(out).some(name => name.endsWith('.tmp')), false);
+});
+
+
+test('prepared frontend inventory missing/stale/unknown fails before embed/build', t => {
+  for (const variant of ['missing', 'chunk', 'lock', 'unknown', 'source', 'public-added', 'public-deleted', 'public-stale', 'profile']) {
+    const f = fixture(t);
+    if (variant === 'missing') rmSync(path.join(f.root, 'frontend/dist/package-inventory.json'));
+    if (variant === 'chunk') f.put('frontend/dist/assets/app.js', 'different actual output\n');
+    if (variant === 'lock') f.put('frontend/package-lock.json', JSON.stringify({ lockfileVersion: 3, packages: {} }));
+    if (variant === 'source') f.put('frontend/src/app.jsx', 'changed consumed source with same lock/assets\n');
+    if (variant === 'public-added') f.put('frontend/public/added.svg', '<svg>new</svg>');
+    if (variant === 'public-deleted') rmSync(path.join(f.root, 'frontend/public/logo.svg'));
+    if (variant === 'public-stale') f.put('frontend/public/logo.svg', '<svg>changed</svg>');
+    if (variant === 'profile') {
+      const file = path.join(f.root, 'frontend/dist/package-inventory.json'); const value = JSON.parse(readFileSync(file, 'utf8')); value.build.reactProfile = true; writeFileSync(file, JSON.stringify(value));
+    }
+    if (variant === 'unknown') {
+      const file = path.join(f.root, 'frontend/dist/package-inventory.json');
+      const value = JSON.parse(readFileSync(file, 'utf8')); value.totals.unresolvedModules = 1; writeFileSync(file, JSON.stringify(value));
+    }
+    assert.throws(() => buildRelease(['--prepared', `--output-dir=${path.join(f.root, 'new')}`, 'linux-amd64'], f));
+    assert.equal(f.calls.every(call => call.command === 'git'), true);
+  }
+});
+
+test('invalid Go/npm inventory never publishes an archive', t => {
+  for (const bad of ['go', 'npm']) {
+    const f = fixture(t), out = path.join(f.root, 'new');
+    const execute = (command, args, options) => {
+      if (bad === 'go' && command === 'go' && args[0] === 'version') return '{}';
+      if (bad === 'npm' && command === 'npm' && args[0] === 'sbom') return '{}';
+      return f.execute(command, args, options);
+    };
+    assert.throws(() => buildRelease(['--prepared', `--output-dir=${out}`, 'linux-amd64'], { root: f.root, execute }));
+    assert.equal(existsSync(path.join(out, 'kubeview_1.1.0_linux-amd64.tar.gz')), false);
+    assert.equal(existsSync(path.join(out, 'SHA256SUMS')), false);
+  }
 });

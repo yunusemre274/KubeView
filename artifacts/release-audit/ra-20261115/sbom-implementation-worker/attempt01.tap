@@ -1,0 +1,150 @@
+TAP version 13
+# Subtest: strict argument parsing preserves prepared/clean/target and default targets
+ok 1 - strict argument parsing preserves prepared/clean/target and default targets
+  ---
+  duration_ms: 0.676958
+  type: 'test'
+  ...
+# Subtest: existing explicit output directories and symlinks fail before any command
+ok 2 - existing explicit output directories and symlinks fail before any command
+  ---
+  duration_ms: 7.695375
+  type: 'test'
+  ...
+# Subtest: default dist rejects every conflicting archive, binary folder or manifest before build
+ok 3 - default dist rejects every conflicting archive, binary folder or manifest before build
+  ---
+  duration_ms: 21.878
+  type: 'test'
+  ...
+# Subtest: fresh relative output dry-run preserves prepared flow and packages only manual runtime
+not ok 4 - fresh relative output dry-run preserves prepared flow and packages only manual runtime
+  ---
+  duration_ms: 20.992208
+  type: 'test'
+  location: '/Users/yunusemre/Desktop/KubeView/scripts/build-release.test.mjs:101:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/scripts/build-release.test.mjs:105:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1306:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+    Test.postRun (node:internal/test_runner/test:1447:19)
+    Test.run (node:internal/test_runner/test:1372:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+  ...
+# Subtest: fresh absolute output keeps both default targets isolated from historical dist
+ok 5 - fresh absolute output keeps both default targets isolated from historical dist
+  ---
+  duration_ms: 12.683375
+  type: 'test'
+  ...
+# Subtest: default output preserves unrelated historical files and keeps normal frontend flow
+ok 6 - default output preserves unrelated historical files and keeps normal frontend flow
+  ---
+  duration_ms: 9.065708
+  type: 'test'
+  ...
+# Subtest: require-clean rejection never reserves output or invokes frontend/build tools
+ok 7 - require-clean rejection never reserves output or invokes frontend/build tools
+  ---
+  duration_ms: 4.955
+  type: 'test'
+  ...
+# Subtest: require-clean includes the manual runtime, shipped docs and RBAC inputs
+ok 8 - require-clean includes the manual runtime, shipped docs and RBAC inputs
+  ---
+  duration_ms: 36.664125
+  type: 'test'
+  ...
+# Subtest: bundle provenance binds shipped inputs and prepared frontend bytes
+ok 9 - bundle provenance binds shipped inputs and prepared frontend bytes
+  ---
+  duration_ms: 9.930709
+  type: 'test'
+  ...
+# Subtest: missing or symlinked prepared frontend cannot reach embed or compilation
+ok 10 - missing or symlinked prepared frontend cannot reach embed or compilation
+  ---
+  duration_ms: 9.490292
+  type: 'test'
+  ...
+# Subtest: archive published during build cannot be overwritten and temporary output is removed
+ok 11 - archive published during build cannot be overwritten and temporary output is removed
+  ---
+  duration_ms: 9.033166
+  type: 'test'
+  ...
+# Subtest: prepared frontend inventory missing/stale/unknown fails before embed/build
+ok 12 - prepared frontend inventory missing/stale/unknown fails before embed/build
+  ---
+  duration_ms: 42.513459
+  type: 'test'
+  ...
+# Subtest: invalid Go/npm inventory never publishes an archive
+ok 13 - invalid Go/npm inventory never publishes an archive
+  ---
+  duration_ms: 12.523208
+  type: 'test'
+  ...
+# Subtest: emitted module inventory separates real package versions, local/virtual and treeshaken modules
+ok 14 - emitted module inventory separates real package versions, local/virtual and treeshaken modules
+  ---
+  duration_ms: 9.38
+  type: 'test'
+  ...
+# Subtest: unknown owner is counted and cannot satisfy exact bundled release coverage
+ok 15 - unknown owner is counted and cannot satisfy exact bundled release coverage
+  ---
+  duration_ms: 4.700666
+  type: 'test'
+  ...
+# Subtest: binary BOM binds actual module/stdLib/target and keeps source dev graph separate
+ok 16 - binary BOM binds actual module/stdLib/target and keeps source dev graph separate
+  ---
+  duration_ms: 4.771
+  type: 'test'
+  ...
+# Subtest: versioned Go replacements use actual identity; local replacements and target/revision mismatch fail
+ok 17 - versioned Go replacements use actual identity; local replacements and target/revision mismatch fail
+  ---
+  duration_ms: 3.713042
+  type: 'test'
+  ...
+# Subtest: bounded malformed/missing/duplicate/dangling metadata is rejected, not empty clean fallback
+ok 18 - bounded malformed/missing/duplicate/dangling metadata is rejected, not empty clean fallback
+  ---
+  duration_ms: 3.638584
+  type: 'test'
+  ...
+# Subtest: npm collection uses explicit offline/no-script config, bounded executor, cleans temporary config on failure
+ok 19 - npm collection uses explicit offline/no-script config, bounded executor, cleans temporary config on failure
+  ---
+  duration_ms: 3.667334
+  type: 'test'
+  ...
+# Subtest: prepared source/build/public and profiling metadata are current while unconsumed tests do not stale it
+ok 20 - prepared source/build/public and profiling metadata are current while unconsumed tests do not stale it
+  ---
+  duration_ms: 3.816292
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 19
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 298.946875

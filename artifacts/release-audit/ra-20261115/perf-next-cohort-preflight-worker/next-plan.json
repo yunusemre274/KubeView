@@ -1,0 +1,87 @@
+{
+  "status": "NOT_READY_TO_MEASURE_OWN_BUILD_AND_HOVER_DIAGNOSTIC_PREREQUISITES",
+  "measurementStarted": false,
+  "newQuestion": "On current B only, does intentionally acquired real Pod hover persist across guard/canvas pointer-events/reset ordering after normal Node0 selection, unlike the already-completed neutral-pointer non-reproduction? Identify actual rendered object; never infer12line cause from shape name.",
+  "notARerun": "Old40windows/98sneutralA-Bdiagnostic preserved. No unchanged fullmatrix retry or historical battery/AC pooling.",
+  "prerequisites": [
+    "Root live AC/source/lowpower/thermal/sleep/foreground/isolation evidence; AC22percent is not itself a completed safe60min preflight",
+    "Freeze new currentB frontend under unusedtag; frozenA36d remains historical unchanged; verifylock/installedgraph",
+    "Compile newcommon current157 backend.test into unuseddirectory; use same backendtag both sides without modifying oldA/B symlinks",
+    "Root creates one new bounded diagnostic helper/controller from existing harness; no supported CLI hover-arm flag exists",
+    "Current submitted-work comparator plus strict scenario/canonical/coverage validator; do not rely only on old panel-accept aggregate"
+  ],
+  "finiteDiagnostic": {
+    "jobs": 2,
+    "build": "new currentB only; one neutral-control vs one intentionally-hover-then-guard treatment",
+    "normalFlow": "Normal node0click leaves Nodepanel selected; projectTargets finds actual visible Pod/container target; real mouse.move arms hover; retain exactUID. Control normalpointerleave before prepareCamera(false); treatment prepareCamera(false) then neutralmove. Capture real onBeforeRender object/geometry/index/material/nearestUID and hovered Reactprop/R3Fmap before hover/after hover/afterguard-reset/cleanup.",
+    "warmupSeconds": 5,
+    "observationSeconds": 10,
+    "perJobCapSeconds": 90,
+    "globalCapSeconds": 210,
+    "noCPUPresentationClaim": true,
+    "outcomes": {
+      "positive": "If retainedextraobject occurs, map exactobject identity/count and cleanup source, propose narrow fix plus relevant functional/unit proof before newCPUfamily",
+      "negative": "If both clear/noextraobject, record hypothesis rejected/inconclusive; no blind repeats. Submittedwork issue remains historicalopen, rootneeds new explicitequivalence/riskadjudication before broader family",
+      "blocked": "No visible correctPod target or unknown hover/objectidentity means stop; no syntheticprop reset or geometry deletion to manufacturecleanresult"
+    }
+  },
+  "conditionalFinalFamily": {
+    "validPairedBlocksRequired": 5,
+    "sides": [
+      "frozenA36d",
+      "newCurrentB157frontend"
+    ],
+    "commonBackend": "newcurrent157backend.test shared by both",
+    "buildOrders": [
+      "AB",
+      "BA",
+      "AB",
+      "BA",
+      "AB"
+    ],
+    "scenarioForwardOrder": [
+      "panel-closed",
+      "panel-open",
+      "panel-closed-events",
+      "panel-open-events"
+    ],
+    "scenarioReversal": "run.mjs owns exactlyone oddrepeat-offset reversal",
+    "fixedSelection": {
+      "kind": "Node",
+      "UID": "node-0",
+      "name": "worker-001",
+      "openTab": "\u00d6zet",
+      "closedSelectionStillRetained": true
+    },
+    "eventsPerSecond": [
+      0,
+      5
+    ],
+    "plannedAppliedReceivedPerWindow": [
+      0,
+      300
+    ],
+    "jobs": 10,
+    "windows": 40,
+    "warmupSeconds": 30,
+    "measureSeconds": 60,
+    "pureWarmMeasureSeconds": 3600,
+    "proposedMaxWallSeconds": 4800,
+    "perJobMaxMinutes": 8,
+    "autoRetries": 0,
+    "firstInvalidStops": true,
+    "power": "FixedAC/unchangedlowpowermode0 and sameownedChromiumenergySaverprotocol; sourcechange invalidates pair",
+    "scope": "frontend-browser against one common current gateway; not complete differentbackendA/B or realKubernetes/provider performance acceptance",
+    "quality": "1440x900/framebuffer1440x900/DPR1/medium/shadows+sea+patrol/FOV38/canonical20Node300Pod/detailed8ship120Pod; noadaptive/FPS cap/video/profiling",
+    "regressionBudget": "M>=55JSdraw/s,p95<=20ms,p99<=33.3ms; all delay/data/coverage budgets retained",
+    "analysis": "Signed withinbuild open-closed at eachrate, pair\u0394B-\u0394A; median/minmax/n/paired distribution; not historical0.413target",
+    "additionalRepeats": "None automatic. Invalidjob preserves fullblock. Any replacement requires a namednewquestion+finiteplan; no cherry-pick."
+  },
+  "notClosed": [
+    "BENCH-RENDER-001 cause unresolved",
+    "RSSmechanism not measured",
+    "CAT18 continuous60min not same as restartedmatrix",
+    "V11-16 physicalscreen/nativeSafari/Retina remain separate",
+    "Fullruntime/backend/provider/network/energy acceptance not inferred"
+  ]
+}

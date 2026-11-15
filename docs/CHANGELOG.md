@@ -1,3 +1,9 @@
+## 15 Kasım 2026 — build-time SBOM ve prepared çıktı koruması
+
+- Vite build-time paket/kaynak/çıktı envanteri; Go BuildInfo ve ayrı npm SOURCE/dev grafiğinden CycloneDX1.5; SBOM hash'leri mevcut provenance/arşiv alanlarını koruyarak eklendi. Runtime dünya, API ve görsel ayarlar değişmedi.
+- Prepared HTML/CSS veya ek dosyanın yeni hash'le onaylanması dar fixture RED ile doğrulandı; tüm output set/content bağlaması sonrası 37 hedefli test geçti. Gerçek build/schema/native kabulü henüz açık, imzalama yapılmadı.
+- CurrentB/common backend ve iki sınırlı hover tanısı kaydedildi; tarihsel çizim farkı kapanmadı. [Envanter sözleşmesi](RELEASE_SBOM.md).
+
 ## 12 Kasım 2026 — watchpermissionyenileme güvenlikbulgusu
 
 - ÖnceizinlivereadablePodUPDATEsonrası aynıkimliktePodSSARdeny/newHTTP403 uygulanırken eskiWS15sheartbeatsonrasıyenicanaryUPDATEyayımladı. TeksyntheticAPI/watchE2EREDkaydı+cleanupkorundu; ürünfixihenüzyok.

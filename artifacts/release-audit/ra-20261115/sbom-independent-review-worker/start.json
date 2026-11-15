@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-15T10:24:29.121441+00:00",
+  "startedEpoch": 1794738269.121568,
+  "budgetSeconds": 300,
+  "maxSourceFiles": 35,
+  "mode": "READ_ONLY_SOURCE_REVIEW_NO_TEST_BUILD_SCANNER_BROWSER",
+  "head": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+  "files": {
+    "scripts/release-sbom.mjs": "84be619743806526c8c85106bf1ee15eb31948cfeeb1d642a69d0223eb0c6187",
+    "scripts/build-release.mjs": "3dc598b31bcf402d4e9c3bcd5ed897733afe76a43024dfb2d3634771b763e57e",
+    "frontend/build/package-inventory.mjs": "99a8482d81574800bc57073bbc31a535bc8ba016fb1ced4ce0eb27dcc46391ae",
+    "frontend/vite.config.js": "24a1a0f38919c46e3f7af01a4c72693c1bae5d11933c34d8cd8b9f4853c223cd"
+  }
+}

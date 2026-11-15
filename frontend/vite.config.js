@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { packageInventory } from "./build/package-inventory.mjs";
 export default defineConfig({
   resolve: {
     alias:
@@ -7,7 +8,7 @@ export default defineConfig({
         ? [{ find: /^react-dom\/client$/, replacement: "react-dom/profiling" }]
         : [],
   },
-  plugins: [react()],
+  plugins: [react(), packageInventory()],
   server: {
     port: 5173,
     strictPort: true,

@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-15T10:10:32.465637+00:00",
+  "TEST_SLOT": "root granted; perf HOLD, fake-only tests",
+  "command": "node --test --test-reporter=tap --test-concurrency=1 scripts/build-release.test.mjs scripts/release-sbom.test.mjs",
+  "limits": {
+    "childSeconds": 15,
+    "RSSMiB": 1024
+  },
+  "sources": [
+    {
+      "path": "scripts/release-sbom.mjs",
+      "bytes": 16296,
+      "sha256": "fdb33ea734b27a0658e0dd945a00956609c6a8dc78c05c908826713a44e73b25"
+    },
+    {
+      "path": "scripts/release-sbom.test.mjs",
+      "bytes": 10501,
+      "sha256": "bd0f268f8a1d8dc5105fd99afa184d8d448e2c5463ab30e90e7a149889b98f78"
+    },
+    {
+      "path": "scripts/build-release.mjs",
+      "bytes": 11183,
+      "sha256": "2aa2996723911e5ba946d87ac372618e48097f4f25f7bb3d0d9687b3d55be902"
+    },
+    {
+      "path": "scripts/build-release.test.mjs",
+      "bytes": 17099,
+      "sha256": "5a866490285c1e43f74dbc17996d85288aa745a4a0147734a895a3b73a3fae81"
+    },
+    {
+      "path": "frontend/build/package-inventory.mjs",
+      "bytes": 8958,
+      "sha256": "1f2a053be64ab38aa2de5927130a477849926372c3da560c967c229d178652a4"
+    },
+    {
+      "path": "frontend/vite.config.js",
+      "bytes": 1053,
+      "sha256": "24a1a0f38919c46e3f7af01a4c72693c1bae5d11933c34d8cd8b9f4853c223cd"
+    }
+  ]
+}

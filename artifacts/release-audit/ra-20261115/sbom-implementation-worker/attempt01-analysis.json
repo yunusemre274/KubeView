@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-15T10:11:03.262829+00:00",
+  "firstResult": "19PASS1FAIL,0SKIP,firstraw/sourcepreserved",
+  "finding": "existing --prepared test incorrectly equated any npm command with install/build; new offline npm sbom is metadata-only",
+  "sourceChange": "scripts/build-release.test.mjs one assertion narrowed to ci/install/run absent, plus exactlyone sbom; product checks unchanged",
+  "retestStatus": "NOT_RUN_WAITING_TEST_SLOT",
+  "scope": "No automatic retry, no real build/npmSBOM/Go/scanner/browser"
+}

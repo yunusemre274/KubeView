@@ -1,0 +1,12 @@
+{
+  "startedAt": "2026-11-15T10:28:15.727144+00:00",
+  "startedEpoch": 1794738495.7273579,
+  "budgetSeconds": 120,
+  "maxSourceReads": 5,
+  "mode": "READ_ONLY_FIXED_SOURCE_REVIEW_NO_TEST_BUILD",
+  "sourceSHA256": {
+    "scripts/release-sbom.mjs": "67633f23985bdd6d79ebdc8a6ff225339301a63c0d4b2811703c52cfae0e3340",
+    "frontend/build/package-inventory.mjs": "fbeb25148c7c0edc204f15fd889ebcb4e436a87c3368810f22d38340e9a74dbe",
+    "scripts/build-release.test.mjs": "2b1e113527e1875c0d4abf557451c37ba5874ce458367f5064e58a8398b7479f"
+  }
+}

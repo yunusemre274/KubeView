@@ -1,3 +1,9 @@
+## 15 Kasım 2026 — paket SBOM ve çıktı bütünlüğü
+
+- [x] Build-time paket sahipliği ve ayrı binary/SOURCE SBOM fixture yolu; prepared HTML/CSS/output değişikliğinin kabul edilmesi RED ile yeniden üretildi, tüm çıktı kümesi/hash kontrolünden sonra hedefli CI/paket/SBOM grubu 37 PASS.
+- [ ] TEST20.13: resmî schema, gerçek npm/Go/Vite/arşiv/native başlangıç, byte eşitliği ve ikinci inceleme tamamlanacak. Fixture sonucu final paket kabulü değildir.
+- [x] CurrentB/common backend donduruldu; iki kısa gerçekpointer tanısı cargo hover'ın tarihsel +12 çizgiyi açıklamadığını gösterdi. Eski bulgu ve CPU kabul kapısı açık; üçüncü aynı tanı tekrarlanmadı.
+
 ## 12 Kasım 2026 — aktifwatchrevoke RED
 
 - [x] SSARdeny+freshHTTP403 sonrasında establishedWS exactPodUID/RV/canary yayını controlledfakeAPI/watchE2Eile yenidenüretildi; ilkFAILkorundu.

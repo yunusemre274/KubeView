@@ -1,0 +1,42 @@
+{
+  "startedAt": "2026-11-15T09:58:45.568283+00:00",
+  "HEAD": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+  "ownedFiles": [
+    "scripts/release-sbom.mjs",
+    "scripts/release-sbom.test.mjs",
+    "scripts/build-release.mjs",
+    "scripts/build-release.test.mjs",
+    "frontend/build/package-inventory.mjs",
+    "frontend/vite.config.js"
+  ],
+  "scope": "Implement SBOM metadata + fixtures; no real build/npmSBOM/Go/scanner execution; wait TEST_SLOT before unit tests",
+  "initialFiles": [
+    {
+      "path": "scripts/build-release.mjs",
+      "sha256": "af573e3eaa34fc420f9310b0718a78b4e2eee99305e2852c0d623ac4e39e7452"
+    },
+    {
+      "path": "scripts/build-release.test.mjs",
+      "sha256": "020deb3bd364036693df7d8049250cc06421de8181ef59304602b1b413fd1cf7"
+    },
+    {
+      "path": "frontend/vite.config.js",
+      "sha256": "bf549fa06ec7f2e2fba3cb77600ab63fa54ff0566b3008e2b5e4f62cd3cf4b21"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+    }
+  ],
+  "limits": {
+    "metadataJSONBytes": 2097152,
+    "components": 5000,
+    "bundlerManifestBytes": 4194304,
+    "childTimeoutMS": 15000,
+    "newDependency": false
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "stage": "actual Vite frontend build",
+  "startedAt": "2026-11-15T10:32:57.409590+00:00",
+  "preFixSnapshotSHA256": "6db0418704dfce486d8156a58476adf3d4ce71022169bd468ceaacc1581ee3ad",
+  "fixedPluginSHA256": "1b4f4d7c50b153dffe00a5547695c701eb83a645514a876062b61817ec3933d3",
+  "status": "PASS",
+  "automaticRetries": 0,
+  "ownedPID": 16088,
+  "exitCode": 0,
+  "assets": {
+    "assets/HarborScene-DKt6unGp.js": "5b6386779e5ed1f0fdebb3eb53be34c026451d12be33bab15e0c97147178e5ee",
+    "assets/index-CCZQtIvj.css": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+    "assets/index-DxIumOcP.js": "6dbe0611b28befc777524ab53f6fe2a07258fcd5edcb3b721a5a46964b39d91d",
+    "assets/three-BKmXRbXN.js": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+    "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+    "index.html": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb",
+    "package-inventory.json": "a05fde1291b34410a189cfeb5c46d73c9f07b18a0adae1afbba210fc38040408"
+  },
+  "runtimeAssetBytesEqual": true,
+  "reference": "cat16-current157-20261115T095801Z",
+  "frontendInventoryTotals": {
+    "renderedModules": 242,
+    "localModules": 61,
+    "virtualModules": 23,
+    "unresolvedModules": 0
+  },
+  "bundledPackageIdentities": 15,
+  "finishedAt": "2026-11-15T10:33:01.560232+00:00",
+  "seconds": 4.150658708000265,
+  "sampledOwnedGroupPeakRSSBytes": 1296629760,
+  "childExitCode": 0
+}

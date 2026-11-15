@@ -1,0 +1,1826 @@
+{
+  "status": "PASS_INSTRUMENTED_HOVER_FLOW",
+  "hoverOrder": "leave-before-guard",
+  "hit": {
+    "target": {
+      "type": "container",
+      "uid": "pod-0",
+      "name": "app-0",
+      "namespace": "bench-0",
+      "containerName": "app",
+      "containerRole": "container",
+      "harborId": "3c4730fe-9393-41f1-a732-c423e89873d7",
+      "x": 307.00058608329584,
+      "y": 534.7299607198095,
+      "visible": true
+    },
+    "canvasHit": true,
+    "pointerEvents": "",
+    "rootPointer": [
+      -0.5736103057861328,
+      -0.18828884548611113
+    ],
+    "hits": [
+      {
+        "objectUUID": "78f59476-cee9-42f6-987b-56bccf611ddf",
+        "eventObjectUUID": "78f59476-cee9-42f6-987b-56bccf611ddf",
+        "instanceId": 0,
+        "instanced": true,
+        "descriptor": {
+          "type": "container",
+          "uid": "pod-0",
+          "name": "app-0",
+          "namespace": "bench-0",
+          "containerName": "app",
+          "containerRole": "container",
+          "instance": 0
+        }
+      }
+    ],
+    "matched": true
+  },
+  "observationMs": 10560,
+  "before": {
+    "visibility": "visible",
+    "dpr": 1,
+    "rendererPixelRatio": 1,
+    "buffer": {
+      "width": 1440,
+      "height": 900
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "gpuTimerSupported": true,
+    "camera": {
+      "position": [
+        155.32070332934842,
+        297.3149971650057,
+        468.72488860383254
+      ],
+      "quaternion": [
+        -0.32546078412600804,
+        0.1940594243420255,
+        0.06843554348917547,
+        0.9228937068847457
+      ],
+      "zoom": 1,
+      "fov": 38,
+      "near": 9.479309145645514,
+      "far": 2000,
+      "target": [
+        6.663204746845622,
+        0,
+        130.86693727996243
+      ],
+      "forward": [
+        -0.3136462716817104,
+        -0.6272925433634212,
+        -0.7128324356402513
+      ]
+    },
+    "projectedVisibleNodeUIDs": [
+      "node-0",
+      "node-1",
+      "node-2",
+      "node-3",
+      "node-4",
+      "node-5",
+      "node-6",
+      "node-7"
+    ],
+    "stats": {
+      "frame": 308,
+      "calls": 442,
+      "triangles": 72578,
+      "points": 0,
+      "lines": 60,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 40,
+        "textures": 4
+      },
+      "lifecycle": {
+        "canonicalNodes": 20,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 3,
+        "canonicalPods": 300,
+        "visiblePods": 120,
+        "nodeSlots": 20,
+        "podSlots": 120,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 10,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "sceneResources": {
+      "version": "scene-inventory-v1",
+      "sampledAtMs": 5288.5,
+      "sceneReachable": {
+        "objects": 381,
+        "geometries": 45,
+        "materials": 45
+      },
+      "gpuRendererInfo": {
+        "geometries": 40,
+        "textures": 4,
+        "programs": 21
+      },
+      "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+    },
+    "preferences": {
+      "version": 1,
+      "patrol": true,
+      "speed": "normal",
+      "bob": true,
+      "sea": true,
+      "seaStrength": "light",
+      "sunGlint": true,
+      "wake": true,
+      "operations": "full",
+      "motionPreference": "full",
+      "paused": false,
+      "quality": "medium",
+      "theme": "light",
+      "contrast": "normal"
+    },
+    "connectionStale": false,
+    "contextLost": false,
+    "fleet": [
+      {
+        "uid": "node-0",
+        "name": "worker-001",
+        "slot": 0,
+        "progress": 925.1014694115263,
+        "position": [
+          -100.72979999998563,
+          -0.07894098069052713,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": 0.0017880869009470341,
+        "roll": -0.0005771221078037301,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-1",
+        "name": "worker-002",
+        "slot": 1,
+        "progress": 1098.6943867644065,
+        "position": [
+          -175,
+          0.035031640461863696,
+          119.36311735290451
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0007442149190565282,
+        "roll": 0.002938314508072438,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-2",
+        "name": "worker-003",
+        "slot": 2,
+        "progress": 1272.2873041172923,
+        "position": [
+          -175,
+          -0.023094956743472866,
+          -54.229799999981196
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0023275480572711323,
+        "roll": 0.0028534095696695566,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-3",
+        "name": "worker-004",
+        "slot": 3,
+        "progress": 57.1368826470989,
+        "position": [
+          -72.8631173529011,
+          0.06402416702208975,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": 0.0022282575841864683,
+        "roll": -0.002130736955772799,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-4",
+        "name": "worker-005",
+        "slot": 4,
+        "progress": 230.72979999998165,
+        "position": [
+          100.72979999998165,
+          0.06735954493842061,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": -0.0036046151783148115,
+        "roll": -0.0017465281057458533,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-5",
+        "name": "worker-006",
+        "slot": 5,
+        "progress": 404.32271735286713,
+        "position": [
+          175,
+          0.002400949247239967,
+          -26.363117352903203
+        ],
+        "yaw": 0,
+        "pitch": 0.001161153905294397,
+        "roll": -0.004015499117867483,
+        "state": "patrolling",
+        "speed": 8.999999999998225,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-6",
+        "name": "worker-007",
+        "slot": 6,
+        "progress": 577.9156347057615,
+        "position": [
+          175,
+          0.06075528393129318,
+          147.22979999999114
+        ],
+        "yaw": 0,
+        "pitch": 0.0017593823847033927,
+        "roll": 0.001027989708615684,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-7",
+        "name": "worker-008",
+        "slot": 7,
+        "progress": 751.5085520586415,
+        "position": [
+          72.86311735289917,
+          -0.07492897899241471,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.00421192380758253,
+        "roll": 0.0000196811648692791,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      }
+    ],
+    "panel": {
+      "open": true,
+      "title": "worker-001",
+      "tab": "Özet",
+      "uid": "node-0",
+      "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+      "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+    },
+    "inputGuard": null,
+    "logView": null,
+    "lifecycle": null,
+    "heap": {
+      "used": 51100833,
+      "total": 79976233
+    },
+    "dom": {
+      "documents": 3,
+      "nodes": 908,
+      "jsEventListeners": 1177
+    }
+  },
+  "observationEnd": {
+    "visibility": "visible",
+    "dpr": 1,
+    "rendererPixelRatio": 1,
+    "buffer": {
+      "width": 1440,
+      "height": 900
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "gpuTimerSupported": true,
+    "camera": {
+      "position": [
+        155.32070332934842,
+        297.3149971650057,
+        468.72488860383254
+      ],
+      "quaternion": [
+        -0.32546078412600804,
+        0.1940594243420255,
+        0.06843554348917547,
+        0.9228937068847457
+      ],
+      "zoom": 1,
+      "fov": 38,
+      "near": 9.479309145645514,
+      "far": 2000,
+      "target": [
+        6.663204746845622,
+        0,
+        130.86693727996243
+      ],
+      "forward": [
+        -0.3136462716817104,
+        -0.6272925433634212,
+        -0.7128324356402513
+      ]
+    },
+    "projectedVisibleNodeUIDs": [
+      "node-0",
+      "node-1",
+      "node-2",
+      "node-3",
+      "node-4",
+      "node-5",
+      "node-6",
+      "node-7"
+    ],
+    "stats": {
+      "frame": 961,
+      "calls": 434,
+      "triangles": 72322,
+      "points": 0,
+      "lines": 60,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 32,
+        "textures": 4
+      },
+      "lifecycle": {
+        "canonicalNodes": 20,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 3,
+        "canonicalPods": 300,
+        "visiblePods": 120,
+        "nodeSlots": 20,
+        "podSlots": 120,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 10,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "sceneResources": {
+      "version": "scene-inventory-v1",
+      "sampledAtMs": 16867.699999999255,
+      "sceneReachable": {
+        "objects": 365,
+        "geometries": 37,
+        "materials": 41
+      },
+      "gpuRendererInfo": {
+        "geometries": 32,
+        "textures": 4,
+        "programs": 20
+      },
+      "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+    },
+    "preferences": {
+      "version": 1,
+      "patrol": true,
+      "speed": "normal",
+      "bob": true,
+      "sea": true,
+      "seaStrength": "light",
+      "sunGlint": true,
+      "wake": true,
+      "operations": "full",
+      "motionPreference": "full",
+      "paused": false,
+      "quality": "medium",
+      "theme": "light",
+      "contrast": "normal"
+    },
+    "connectionStale": false,
+    "contextLost": false,
+    "fleet": [
+      {
+        "uid": "node-0",
+        "name": "worker-001",
+        "slot": 0,
+        "progress": 970.0222694115303,
+        "position": [
+          -145.3369901198442,
+          -0.03260134243070036,
+          235.30575296651512
+        ],
+        "yaw": -1.9185874379057763,
+        "pitch": 0.005205755704913975,
+        "roll": -0.0010336417810891817,
+        "state": "patrolling",
+        "speed": 8.999995816645951,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-1",
+        "name": "worker-002",
+        "slot": 1,
+        "progress": 1143.6151867643914,
+        "position": [
+          -175,
+          -0.028176546558938725,
+          74.44231735291964
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0006959130881557782,
+        "roll": -0.005208091299314536,
+        "state": "patrolling",
+        "speed": 8.999999999995861,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-2",
+        "name": "worker-003",
+        "slot": 2,
+        "progress": 1317.2081041172771,
+        "position": [
+          -175,
+          0.024060863451173,
+          -99.15059999996606
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.0023992834215485325,
+        "roll": -0.0019468661952742304,
+        "state": "patrolling",
+        "speed": 8.999999999995861,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-3",
+        "name": "worker-004",
+        "slot": 3,
+        "progress": 102.05768264708968,
+        "position": [
+          -27.942317352910322,
+          -0.005433403822127652,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": 0.0021016328462722398,
+        "roll": 0.003290049371259751,
+        "state": "patrolling",
+        "speed": 8.999999999995861,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-4",
+        "name": "worker-005",
+        "slot": 4,
+        "progress": 275.65059999996924,
+        "position": [
+          145.33699011982506,
+          0.04522649967344389,
+          -142.30575296652205
+        ],
+        "yaw": 1.2230052156844688,
+        "pitch": 0.0012840863503281936,
+        "roll": 0.00048289466126706903,
+        "state": "patrolling",
+        "speed": 8.999995816646399,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-5",
+        "name": "worker-006",
+        "slot": 5,
+        "progress": 449.2435173528545,
+        "position": [
+          175,
+          0.043668721256799096,
+          18.557682647084164
+        ],
+        "yaw": 0,
+        "pitch": -0.0013332078217815407,
+        "roll": -0.0048655285446186705,
+        "state": "patrolling",
+        "speed": 8.999999999995861,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-6",
+        "name": "worker-007",
+        "slot": 6,
+        "progress": 622.8364347057502,
+        "position": [
+          175,
+          0.03863772600002355,
+          192.15059999997987
+        ],
+        "yaw": 0,
+        "pitch": 0.0014207025725471668,
+        "roll": 0.004280357203920467,
+        "state": "patrolling",
+        "speed": 8.999999999995861,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-7",
+        "name": "worker-008",
+        "slot": 7,
+        "progress": 796.4293520586455,
+        "position": [
+          27.942317352895202,
+          -0.07776258050822724,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": 0.0003652379809812253,
+        "roll": 0.002204016301245302,
+        "state": "patrolling",
+        "speed": 8.999999999995861,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      }
+    ],
+    "panel": {
+      "open": true,
+      "title": "worker-001",
+      "tab": "Özet",
+      "uid": "node-0",
+      "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+      "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+    },
+    "inputGuard": {},
+    "logView": null,
+    "lifecycle": null,
+    "heap": {
+      "used": 82897048,
+      "total": 135867340
+    },
+    "dom": {
+      "documents": 3,
+      "nodes": 921,
+      "jsEventListeners": 1320
+    }
+  },
+  "after": {
+    "visibility": "visible",
+    "dpr": 1,
+    "rendererPixelRatio": 1,
+    "buffer": {
+      "width": 1440,
+      "height": 900
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "gpuTimerSupported": true,
+    "camera": {
+      "position": [
+        155.32070332934842,
+        297.3149971650057,
+        468.72488860383254
+      ],
+      "quaternion": [
+        -0.32546078412600804,
+        0.1940594243420255,
+        0.06843554348917547,
+        0.9228937068847457
+      ],
+      "zoom": 1,
+      "fov": 38,
+      "near": 9.479309145645514,
+      "far": 2000,
+      "target": [
+        6.663204746845622,
+        0,
+        130.86693727996243
+      ],
+      "forward": [
+        -0.3136462716817104,
+        -0.6272925433634212,
+        -0.7128324356402513
+      ]
+    },
+    "projectedVisibleNodeUIDs": [
+      "node-0",
+      "node-1",
+      "node-2",
+      "node-3",
+      "node-4",
+      "node-5",
+      "node-6",
+      "node-7"
+    ],
+    "stats": {
+      "frame": 987,
+      "calls": 434,
+      "triangles": 72322,
+      "points": 0,
+      "lines": 60,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 32,
+        "textures": 4
+      },
+      "lifecycle": {
+        "canonicalNodes": 20,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 3,
+        "canonicalPods": 300,
+        "visiblePods": 120,
+        "nodeSlots": 20,
+        "podSlots": 120,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 10,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "sceneResources": {
+      "version": "scene-inventory-v1",
+      "sampledAtMs": 17418.299999999814,
+      "sceneReachable": {
+        "objects": 365,
+        "geometries": 37,
+        "materials": 41
+      },
+      "gpuRendererInfo": {
+        "geometries": 32,
+        "textures": 4,
+        "programs": 20
+      },
+      "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+    },
+    "preferences": {
+      "version": 1,
+      "patrol": true,
+      "speed": "normal",
+      "bob": true,
+      "sea": true,
+      "seaStrength": "light",
+      "sunGlint": true,
+      "wake": true,
+      "operations": "full",
+      "motionPreference": "full",
+      "paused": false,
+      "quality": "medium",
+      "theme": "light",
+      "contrast": "normal"
+    },
+    "connectionStale": false,
+    "contextLost": false,
+    "fleet": [
+      {
+        "uid": "node-0",
+        "name": "worker-001",
+        "slot": 0,
+        "progress": 974.3710694115314,
+        "position": [
+          -149.34749464724618,
+          -0.0666455326499914,
+          233.62849309136115
+        ],
+        "yaw": -2.0152274379058013,
+        "pitch": 0.004318730538888419,
+        "roll": -0.0016370279761002496,
+        "state": "patrolling",
+        "speed": 8.999995866597354,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-1",
+        "name": "worker-002",
+        "slot": 1,
+        "progress": 1147.9639867643925,
+        "position": [
+          -175,
+          -0.03313942986855617,
+          70.09351735291852
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": -0.0006106739073497951,
+        "roll": -0.004117199095282417,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-2",
+        "name": "worker-003",
+        "slot": 2,
+        "progress": 1321.5569041172782,
+        "position": [
+          -174.86400410638265,
+          0.005898903398966814,
+          -103.49587407417363
+        ],
+        "yaw": 3.0638282091460782,
+        "pitch": 0.0018573509328345473,
+        "roll": -0.0030261996633442283,
+        "state": "patrolling",
+        "speed": 8.999995866598196,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-3",
+        "name": "worker-004",
+        "slot": 3,
+        "progress": 106.4064826470908,
+        "position": [
+          -23.593517352909203,
+          -0.0021264772704896275,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": 0.001955962217239657,
+        "roll": 0.0036663653225755184,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-4",
+        "name": "worker-005",
+        "slot": 4,
+        "progress": 279.9993999999706,
+        "position": [
+          149.34749464722802,
+          0.04588108263804478,
+          -140.6284930913698
+        ],
+        "yaw": 1.126365215684439,
+        "pitch": 0.0018351245286888287,
+        "roll": 0.0006478054493073466,
+        "state": "patrolling",
+        "speed": 8.999995866597434,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-5",
+        "name": "worker-006",
+        "slot": 5,
+        "progress": 453.59231735285584,
+        "position": [
+          175,
+          0.055324396956724545,
+          22.90648264708551
+        ],
+        "yaw": 0,
+        "pitch": -0.0012485535297465367,
+        "roll": -0.004357906133718557,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-6",
+        "name": "worker-007",
+        "slot": 6,
+        "progress": 627.1852347057522,
+        "position": [
+          174.86400410638151,
+          0.026550273026436,
+          196.49587407418835
+        ],
+        "yaw": -0.07776444444404357,
+        "pitch": 0.0013642816895686623,
+        "roll": 0.004315054642967572,
+        "state": "patrolling",
+        "speed": 8.999995866598326,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      },
+      {
+        "uid": "node-7",
+        "name": "worker-008",
+        "slot": 7,
+        "progress": 800.7781520586466,
+        "position": [
+          23.593517352894082,
+          -0.0769607391488699,
+          238
+        ],
+        "yaw": -1.5707963267948966,
+        "pitch": -0.00119600561020379,
+        "roll": 0.0013653323165951905,
+        "state": "patrolling",
+        "speed": 8.99999999999737,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": true
+      }
+    ],
+    "panel": {
+      "open": true,
+      "title": "worker-001",
+      "tab": "Özet",
+      "uid": "node-0",
+      "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+      "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+    },
+    "inputGuard": null,
+    "logView": null,
+    "lifecycle": null,
+    "heap": {
+      "used": 83034031,
+      "total": 147401323
+    },
+    "dom": {
+      "documents": 3,
+      "nodes": 921,
+      "jsEventListeners": 1330
+    }
+  },
+  "stages": [
+    {
+      "stage": "00-before",
+      "callbackCount": 254,
+      "statsBefore": {
+        "frame": 308,
+        "calls": 442,
+        "triangles": 72578,
+        "points": 0,
+        "lines": 60,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 40,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "statsAfter": {
+        "frame": 310,
+        "calls": 442,
+        "triangles": 72578,
+        "points": 0,
+        "lines": 60,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 40,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "hoveredObjects": [],
+      "outlines": [
+        {
+          "objectUUID": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+          "geometryUUID": "9d29deff-c6aa-4dfc-ae58-1036889d8555",
+          "materialUUID": "25b062fe-e986-4a6b-b489-3480586f6d9f",
+          "color": "4a8bd8",
+          "wireframe": false,
+          "harborTarget": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "parentChain": [
+            {
+              "uuid": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "14302e2a-5117-4413-93ad-04efe28ae590",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "27dd75cd-34c9-4766-be50-74347499d754",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "c5bceb6a-1444-40cf-90f8-f301303b6423",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "54a45e76-480a-40c7-85d2-f1b7b585904b",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "1841d442-b14d-4cd0-b7ac-120263255654",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ],
+      "panel": {
+        "hoverChain": [],
+        "labels": [
+          {
+            "title": "worker-001",
+            "text": "worker-001Node · Hazır"
+          }
+        ],
+        "panelUID": "node-0",
+        "panelTitle": "worker-001",
+        "panelTab": "Özet"
+      },
+      "callbacksRestored": true
+    },
+    {
+      "stage": "01-hover",
+      "callbackCount": 247,
+      "statsBefore": {
+        "frame": 334,
+        "calls": 442,
+        "triangles": 72578,
+        "points": 0,
+        "lines": 60,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 32,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "statsAfter": {
+        "frame": 336,
+        "calls": 435,
+        "triangles": 72322,
+        "points": 0,
+        "lines": 96,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "hoveredObjects": [
+        {
+          "key": "78f59476-cee9-42f6-987b-56bccf611ddf/undefined0",
+          "eventObjectUUID": "78f59476-cee9-42f6-987b-56bccf611ddf",
+          "objectUUID": "78f59476-cee9-42f6-987b-56bccf611ddf",
+          "instanceId": 0,
+          "eventObjectChain": [
+            {
+              "uuid": "78f59476-cee9-42f6-987b-56bccf611ddf",
+              "type": "Mesh",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "d60b1531-c0f8-439b-88e7-5f44327d9849",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 22,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "54a45e76-480a-40c7-85d2-f1b7b585904b",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "1841d442-b14d-4cd0-b7ac-120263255654",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ],
+          "objectChain": [
+            {
+              "uuid": "78f59476-cee9-42f6-987b-56bccf611ddf",
+              "type": "Mesh",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "d60b1531-c0f8-439b-88e7-5f44327d9849",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 22,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "54a45e76-480a-40c7-85d2-f1b7b585904b",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "1841d442-b14d-4cd0-b7ac-120263255654",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ],
+          "resolvedTarget": {
+            "type": "container",
+            "uid": "pod-0",
+            "name": "app-0",
+            "namespace": "bench-0",
+            "containerName": "app",
+            "containerRole": "container",
+            "instance": 0
+          }
+        }
+      ],
+      "outlines": [
+        {
+          "objectUUID": "9b72da23-89fc-4fb0-9153-25dedd6479eb",
+          "geometryUUID": "3cb96af8-3630-4012-996d-557b4cf15d4d",
+          "materialUUID": "2d0c5a1f-cc98-4d70-828c-96dac1d0e4d2",
+          "color": "e5be62",
+          "wireframe": true,
+          "harborTarget": null,
+          "parentChain": [
+            {
+              "uuid": "9b72da23-89fc-4fb0-9153-25dedd6479eb",
+              "type": "Mesh",
+              "name": null,
+              "siblingIndex": 4,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "d60b1531-c0f8-439b-88e7-5f44327d9849",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 22,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "54a45e76-480a-40c7-85d2-f1b7b585904b",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "1841d442-b14d-4cd0-b7ac-120263255654",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        },
+        {
+          "objectUUID": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+          "geometryUUID": "9d29deff-c6aa-4dfc-ae58-1036889d8555",
+          "materialUUID": "25b062fe-e986-4a6b-b489-3480586f6d9f",
+          "color": "4a8bd8",
+          "wireframe": false,
+          "harborTarget": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "parentChain": [
+            {
+              "uuid": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "14302e2a-5117-4413-93ad-04efe28ae590",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "27dd75cd-34c9-4766-be50-74347499d754",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "c5bceb6a-1444-40cf-90f8-f301303b6423",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "54a45e76-480a-40c7-85d2-f1b7b585904b",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "1841d442-b14d-4cd0-b7ac-120263255654",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ],
+      "panel": {
+        "hoverChain": [
+          {
+            "tag": "HTML",
+            "className": ""
+          },
+          {
+            "tag": "BODY",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "MAIN",
+            "className": "world-root"
+          },
+          {
+            "tag": "DIV",
+            "className": "world-canvas"
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "CANVAS",
+            "className": ""
+          }
+        ],
+        "labels": [
+          {
+            "title": "worker-001",
+            "text": "worker-001Node · Hazır"
+          },
+          {
+            "title": "app-0",
+            "text": "app-0Pod · Hazır · bench-0"
+          }
+        ],
+        "panelUID": "node-0",
+        "panelTitle": "worker-001",
+        "panelTab": "Özet"
+      },
+      "callbacksRestored": true
+    },
+    {
+      "stage": "02-guard-reset",
+      "callbackCount": 238,
+      "statsBefore": {
+        "frame": 360,
+        "calls": 426,
+        "triangles": 71170,
+        "points": 0,
+        "lines": 60,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 32,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 10,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "statsAfter": {
+        "frame": 361,
+        "calls": 426,
+        "triangles": 71170,
+        "points": 0,
+        "lines": 60,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 32,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 10,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "hoveredObjects": [],
+      "outlines": [
+        {
+          "objectUUID": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+          "geometryUUID": "9d29deff-c6aa-4dfc-ae58-1036889d8555",
+          "materialUUID": "25b062fe-e986-4a6b-b489-3480586f6d9f",
+          "color": "4a8bd8",
+          "wireframe": false,
+          "harborTarget": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "parentChain": [
+            {
+              "uuid": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "14302e2a-5117-4413-93ad-04efe28ae590",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "27dd75cd-34c9-4766-be50-74347499d754",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "c5bceb6a-1444-40cf-90f8-f301303b6423",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "54a45e76-480a-40c7-85d2-f1b7b585904b",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "1841d442-b14d-4cd0-b7ac-120263255654",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ],
+      "panel": {
+        "hoverChain": [
+          {
+            "tag": "HTML",
+            "className": ""
+          },
+          {
+            "tag": "BODY",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "MAIN",
+            "className": "world-root"
+          },
+          {
+            "tag": "DIV",
+            "className": "world-canvas"
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          }
+        ],
+        "labels": [
+          {
+            "title": "worker-001",
+            "text": "worker-001Node · Hazır"
+          }
+        ],
+        "panelUID": "node-0",
+        "panelTitle": "worker-001",
+        "panelTab": "Özet"
+      },
+      "callbacksRestored": true
+    },
+    {
+      "stage": "03-cleanup",
+      "callbackCount": 246,
+      "statsBefore": {
+        "frame": 966,
+        "calls": 434,
+        "triangles": 72322,
+        "points": 0,
+        "lines": 60,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 32,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "statsAfter": {
+        "frame": 968,
+        "calls": 434,
+        "triangles": 72322,
+        "points": 0,
+        "lines": 60,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 32,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "hoveredObjects": [],
+      "outlines": [
+        {
+          "objectUUID": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+          "geometryUUID": "9d29deff-c6aa-4dfc-ae58-1036889d8555",
+          "materialUUID": "25b062fe-e986-4a6b-b489-3480586f6d9f",
+          "color": "4a8bd8",
+          "wireframe": false,
+          "harborTarget": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "parentChain": [
+            {
+              "uuid": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "14302e2a-5117-4413-93ad-04efe28ae590",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "27dd75cd-34c9-4766-be50-74347499d754",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "c5bceb6a-1444-40cf-90f8-f301303b6423",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "54a45e76-480a-40c7-85d2-f1b7b585904b",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "1841d442-b14d-4cd0-b7ac-120263255654",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ],
+      "panel": {
+        "hoverChain": [
+          {
+            "tag": "HTML",
+            "className": ""
+          },
+          {
+            "tag": "BODY",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "MAIN",
+            "className": "world-root"
+          },
+          {
+            "tag": "DIV",
+            "className": "world-canvas"
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          },
+          {
+            "tag": "CANVAS",
+            "className": ""
+          }
+        ],
+        "labels": [
+          {
+            "title": "worker-001",
+            "text": "worker-001Node · Hazır"
+          }
+        ],
+        "panelUID": "node-0",
+        "panelTitle": "worker-001",
+        "panelTab": "Özet"
+      },
+      "callbacksRestored": true
+    }
+  ],
+  "canonicalEqual": true,
+  "note": "No events produced; true canonical state plus four snapshots; diagnostic instrumentation is not normal CPU/FPS/latency acceptance"
+}
