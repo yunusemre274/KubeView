@@ -1,0 +1,145 @@
+{
+  "checkedAt": "2026-11-14T12:54:50.131Z",
+  "ci114": {
+    "runId": 43311457621,
+    "buildCommit": "71b4098314c71d7c9473d88356edf7200fe62f1f",
+    "jobs": [
+      {
+        "id": 131508315728,
+        "name": "test-build",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 43311457621,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run node --test --test-concurrency=1 tests/*.test.js src/harbor/*.test.js src/workbench/*.test.js",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Run go test -p 2 -timeout 180s ./...",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run node --test benchmarks/*.test.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Run node --test scripts/build-release.test.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Run npm run build",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Run node scripts/build-release.mjs --prepared --require-clean darwin-arm64 linux-amd64",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Run npx playwright install --with-deps chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Clean Linux binary startup (no source tree)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Post Run actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26
+          },
+          {
+            "name": "Post Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27
+          },
+          {
+            "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29
+          }
+        ]
+      }
+    ]
+  },
+  "ci115": {
+    "prHead": "6ffd1b22a164c6be83ca2783f4daf7e8346aa0d3",
+    "result": {
+      "workflow_runs": [
+        {
+          "id": 43596069076,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 115,
+          "jobs_url": "https://api.github.com/repos/yunusemre274/KubeView/actions/runs/43596069076/jobs",
+          "logs_url": "https://api.github.com/repos/yunusemre274/KubeView/actions/runs/43596069076/logs",
+          "workflow_id": 411403503
+        }
+      ]
+    }
+  },
+  "limits": "CI steps are distinct from opt-in real Kubernetes, native Safari/Retina, physical screen latency or final release acceptance; CI115 artifact not downloaded or tested here."
+}

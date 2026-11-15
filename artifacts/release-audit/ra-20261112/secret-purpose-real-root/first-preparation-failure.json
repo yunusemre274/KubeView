@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-12T10:48:10.446870+00:00",
+  "status": "FAIL_BEFORE_KUBERNETES_READ_OR_MUTATION",
+  "errorClass": "AttributeError",
+  "field": "base_port",
+  "cause": "private wrapper supplied incomplete SimpleNamespace to existing Lab.lock",
+  "fix": "use existing manual_lab.parser status args defaults; same unused intended namespace/seal",
+  "namespaceCreated": false
+}

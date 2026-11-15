@@ -1,0 +1,41 @@
+{
+  "version": "1.1.0",
+  "commit": "5373657169e8bf332940fd2366022925f48eb85c",
+  "dirty": false,
+  "target": "linux-amd64",
+  "inputs": {
+    "README.md": "2d1cbdb7ec1da79d87c36f4becccfb3d496b2a9ce61507c4eaa5b7d32783ae6f",
+    "MANUAL_TEST_GUIDE.md": "194483d7ed8f43d112c00b409efec45801be773ba3bbf9c76d652eafc671af5a",
+    "docs/SECURITY.md": "2fc94e85b077a295e38fb704ca845f5e6bd05f68d44282b28aa1b86dd97504d2",
+    "docs/RELEASE_NOTES_v1.1.0.md": "eb8561352d77fe4eafd9e446a9a50300f0619ce64462ac79551a72ec5f0985c3",
+    "docs/V11_ACCEPTANCE_REPORT.md": "9e30dc470232a42b11ccb366f16676bd81852d6da648dc79b22b05d766053d03",
+    "docs/WORKSPACE_ACCEPTANCE.md": "6ac91d1a9144764275e6280daa6c623dca088a35484bbd8f3a234f89b11dcbe2",
+    "deploy/rbac-namespace-readonly.yaml": "600ed9252890a7a4d76c6194611d7033786c2872ce43ad825a800e5b13ed2fed",
+    "deploy/rbac-namespace-write.yaml": "e61cdfffcbc5c0300fdd4c1426fe321b416e5dea76aa3dc1ba60bd97f85f4ec2",
+    "deploy/rbac-namespace-observability.yaml": "21c38465624cb0372b68f4a51519543f1a364252cdccb6baf15877f69218647a",
+    "deploy/rbac-node-observability.yaml": "541d5a50ebd4a600a16da3c436882add3c0986d188cad15add5ada703a2a74d0",
+    "scripts/manual-lab.sh": "c6ad10b2a4497774f35a45f174a3e028c44c7f3b4fe36634a5e9d3c96f613d7a",
+    "scripts/manual_lab.py": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5",
+    "manual-lab/profiles.json": "2a93d43b62551511e023d9636bb557dbc4f2047f0436e067f31a85bdfdeb3699",
+    "manual-lab/telemetry.py": "71fb19ae92aa9f4adaed79c8469ce2e30e779a8b7342ba7f7cf481a126ddfebf",
+    "manual-lab/DEPENDENCIES.md": "00b4f5e40c88993c65e09362582294d0243dd88044b782351d12aa7f502ce6e7",
+    "manual-lab/templates/README.md": "51dcb40c1667d6a150619b3cf511a9822889d42b2a0486f51d7ab3a7aa61ff0d",
+    "manual-lab/templates/telemetry-values.json": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796",
+    "manual-lab/tests/real_scenarios.py": "3d37ce98ef4b092ea109cc4d7b5c695a2f53ee78b6e0894ac8dfd1cad83e64cb",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+    "frontend/package.json": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+    "frontend/package-lock.json": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+  },
+  "frontendAssets": {
+    "assets/HarborScene-COc_bafo.js": "19fbdfb18c72962a265056080c5ecb6e5679e5fb4f76a3facdb7e5a436005046",
+    "assets/index-CCZQtIvj.css": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+    "assets/index-DDfzt6ML.js": "b48977d352b3f17f8e2e2987f5ac04d98c89f593c2fcce6479b01aa110562313",
+    "assets/three-BKmXRbXN.js": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+    "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+    "index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3"
+  },
+  "binarySHA256": "7d9f8d4509f288f3c0ee2a62177309ab52872189677c78270ef6adf9d9422ad9",
+  "signed": false,
+  "note": "Byte identities, not a publisher signature or proof that a prepared frontend matches source."
+}

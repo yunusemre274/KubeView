@@ -1,0 +1,75 @@
+{
+  "at": "2026-11-09T10:26:43.076746+00:00",
+  "scope": "Read-only final check of exact owned ports and four preserved lab containers; no kill/start/delete",
+  "ports": {
+    "18410": {
+      "exitCode": 1,
+      "open": false,
+      "rows": []
+    },
+    "18412": {
+      "exitCode": 1,
+      "open": false,
+      "rows": []
+    },
+    "18413": {
+      "exitCode": 1,
+      "open": false,
+      "rows": []
+    },
+    "18414": {
+      "exitCode": 1,
+      "open": false,
+      "rows": []
+    },
+    "19445": {
+      "exitCode": 1,
+      "open": false,
+      "rows": []
+    },
+    "5195": {
+      "exitCode": 1,
+      "open": false,
+      "rows": []
+    },
+    "18511": {
+      "exitCode": 1,
+      "open": false,
+      "rows": []
+    },
+    "18512": {
+      "exitCode": 1,
+      "open": false,
+      "rows": []
+    }
+  },
+  "ownedLabContainers": [
+    {
+      "id": "4d805a40fcfb9f6ac32fb551642d73685f65bd7210e7ad785cb0d9e5dc5ec851",
+      "inspectCode": 0,
+      "status": "exited",
+      "running": false
+    },
+    {
+      "id": "48896e53ac0b9dd2ff5446886e5b903ee54c698e6cbc7ceabccb25bfd87d1f92",
+      "inspectCode": 0,
+      "status": "exited",
+      "running": false
+    },
+    {
+      "id": "018543c908a7d4ec6066ccc476434bc9ef2561619862ab6144f8b4c7324b2ffc",
+      "inspectCode": 0,
+      "status": "exited",
+      "running": false
+    },
+    {
+      "id": "8d282993012be6958ae42309fc4d2f904fb218d27b2303abfc6d82d8bc11463f",
+      "inspectCode": 0,
+      "status": "exited",
+      "running": false
+    }
+  ],
+  "benchmarkRows": [],
+  "runtimeTrackedDiff": [],
+  "otherProjectsUntouched": true
+}

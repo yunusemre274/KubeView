@@ -1,0 +1,297 @@
+{
+  "startedAt": "2026-11-11T13:19:51.198Z",
+  "scope": "REAL owned Kubernetes + real Hubble + Chromium/Playwright WebKit UI; not performance/native Safari/other-namespace authorization",
+  "browsers": [
+    {
+      "engine": "chromium",
+      "startedAt": "2026-11-11T13:19:52.316Z",
+      "status": "FAIL",
+      "stages": [
+        {
+          "name": "FAIL",
+          "at": "2026-11-11T13:20:12.661Z",
+          "png": "FAIL.png",
+          "diagnostic": {
+            "at": "2026-11-11T13:20:13.041Z",
+            "stats": null,
+            "arrows": null,
+            "anchors": []
+          },
+          "sample": null
+        }
+      ],
+      "flowSamples": [],
+      "normalUIFailures": [],
+      "flowHTTPStatuses": [],
+      "subscriptionDeletes": [],
+      "externalBlocked": 0,
+      "version": "156.0.8078.4",
+      "failure": {
+        "type": "Error",
+        "message": "expect(locator).toHaveCount(expected) failed"
+      },
+      "cleanup": {
+        "guardedStop": true,
+        "clientPodLISTZero": true,
+        "appPID": 80336,
+        "relayPID": 80393,
+        "subscriptionReleased": false
+      },
+      "browserClosed": true,
+      "finishedAt": "2026-11-11T13:20:30.313Z"
+    },
+    {
+      "engine": "webkit",
+      "startedAt": "2026-11-11T13:20:30.314Z",
+      "status": "FAIL",
+      "stages": [
+        {
+          "name": "FAIL",
+          "at": "2026-11-11T13:20:37.333Z",
+          "png": "FAIL.png",
+          "diagnostic": {
+            "at": "2026-11-11T13:20:37.334Z",
+            "stats": null,
+            "arrows": null,
+            "anchors": []
+          },
+          "sample": null
+        }
+      ],
+      "flowSamples": [],
+      "normalUIFailures": [],
+      "flowHTTPStatuses": [],
+      "subscriptionDeletes": [],
+      "externalBlocked": 0,
+      "version": "27.2",
+      "failure": {
+        "type": "Error",
+        "message": "expect(locator).toHaveCount(expected) failed"
+      },
+      "cleanup": {
+        "guardedStop": true,
+        "clientPodLISTZero": true,
+        "appPID": 80336,
+        "relayPID": 80393,
+        "subscriptionReleased": false
+      },
+      "browserClosed": true,
+      "finishedAt": "2026-11-11T13:20:40.891Z"
+    }
+  ],
+  "guardedScenarios": [
+    {
+      "at": "2026-11-11T13:19:52.304442+00:00",
+      "action": "inspect",
+      "guarded": true,
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "labId": "kvml-d32afbf634e8",
+      "appPID": 80336,
+      "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+      "relayPID": 80393,
+      "namespaces": [
+        {
+          "name": "kvml-fbf634e8-06-client",
+          "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+        },
+        {
+          "name": "kvml-fbf634e8-06-server",
+          "uid": "f383d95d-46b9-4332-b2e7-ad13d180dfc0"
+        }
+      ],
+      "pods": [
+        {
+          "uid": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "name": "http-server-5985dcddc-mglc4",
+          "namespace": "kvml-fbf634e8-06-server",
+          "nodeName": "kvml-d32afbf634e8-a-m02",
+          "terminating": false,
+          "ready": true
+        }
+      ]
+    },
+    {
+      "at": "2026-11-11T13:20:15.962862+00:00",
+      "action": "traffic-stop",
+      "guarded": true,
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "labId": "kvml-d32afbf634e8",
+      "appPID": 80336,
+      "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+      "relayPID": 80393,
+      "namespaces": [
+        {
+          "name": "kvml-fbf634e8-06-client",
+          "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+        },
+        {
+          "name": "kvml-fbf634e8-06-server",
+          "uid": "f383d95d-46b9-4332-b2e7-ad13d180dfc0"
+        }
+      ],
+      "pods": [
+        {
+          "uid": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "name": "http-server-5985dcddc-mglc4",
+          "namespace": "kvml-fbf634e8-06-server",
+          "nodeName": "kvml-d32afbf634e8-a-m02",
+          "terminating": false,
+          "ready": true
+        }
+      ]
+    },
+    {
+      "at": "2026-11-11T13:20:17.367636+00:00",
+      "action": "inspect",
+      "guarded": true,
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "labId": "kvml-d32afbf634e8",
+      "appPID": 80336,
+      "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+      "relayPID": 80393,
+      "namespaces": [
+        {
+          "name": "kvml-fbf634e8-06-client",
+          "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+        },
+        {
+          "name": "kvml-fbf634e8-06-server",
+          "uid": "f383d95d-46b9-4332-b2e7-ad13d180dfc0"
+        }
+      ],
+      "pods": [
+        {
+          "uid": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "name": "http-server-5985dcddc-mglc4",
+          "namespace": "kvml-fbf634e8-06-server",
+          "nodeName": "kvml-d32afbf634e8-a-m02",
+          "terminating": false,
+          "ready": true
+        }
+      ]
+    },
+    {
+      "at": "2026-11-11T13:20:38.784711+00:00",
+      "action": "traffic-stop",
+      "guarded": true,
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "labId": "kvml-d32afbf634e8",
+      "appPID": 80336,
+      "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+      "relayPID": 80393,
+      "namespaces": [
+        {
+          "name": "kvml-fbf634e8-06-client",
+          "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+        },
+        {
+          "name": "kvml-fbf634e8-06-server",
+          "uid": "f383d95d-46b9-4332-b2e7-ad13d180dfc0"
+        }
+      ],
+      "pods": [
+        {
+          "uid": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "name": "http-server-5985dcddc-mglc4",
+          "namespace": "kvml-fbf634e8-06-server",
+          "nodeName": "kvml-d32afbf634e8-a-m02",
+          "terminating": false,
+          "ready": true
+        }
+      ]
+    },
+    {
+      "at": "2026-11-11T13:20:39.556197+00:00",
+      "action": "inspect",
+      "guarded": true,
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "labId": "kvml-d32afbf634e8",
+      "appPID": 80336,
+      "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+      "relayPID": 80393,
+      "namespaces": [
+        {
+          "name": "kvml-fbf634e8-06-client",
+          "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+        },
+        {
+          "name": "kvml-fbf634e8-06-server",
+          "uid": "f383d95d-46b9-4332-b2e7-ad13d180dfc0"
+        }
+      ],
+      "pods": [
+        {
+          "uid": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "name": "http-server-5985dcddc-mglc4",
+          "namespace": "kvml-fbf634e8-06-server",
+          "nodeName": "kvml-d32afbf634e8-a-m02",
+          "terminating": false,
+          "ready": true
+        }
+      ]
+    },
+    {
+      "at": "2026-11-11T13:20:42.064151+00:00",
+      "action": "traffic-stop",
+      "guarded": true,
+      "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+      "labId": "kvml-d32afbf634e8",
+      "appPID": 80336,
+      "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+      "relayPID": 80393,
+      "namespaces": [
+        {
+          "name": "kvml-fbf634e8-06-client",
+          "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+        },
+        {
+          "name": "kvml-fbf634e8-06-server",
+          "uid": "f383d95d-46b9-4332-b2e7-ad13d180dfc0"
+        }
+      ],
+      "pods": [
+        {
+          "uid": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "name": "http-server-5985dcddc-mglc4",
+          "namespace": "kvml-fbf634e8-06-server",
+          "nodeName": "kvml-d32afbf634e8-a-m02",
+          "terminating": false,
+          "ready": true
+        }
+      ]
+    }
+  ],
+  "finalGuard": {
+    "at": "2026-11-11T13:20:42.064151+00:00",
+    "action": "traffic-stop",
+    "guarded": true,
+    "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+    "labId": "kvml-d32afbf634e8",
+    "appPID": 80336,
+    "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+    "relayPID": 80393,
+    "namespaces": [
+      {
+        "name": "kvml-fbf634e8-06-client",
+        "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+      },
+      {
+        "name": "kvml-fbf634e8-06-server",
+        "uid": "f383d95d-46b9-4332-b2e7-ad13d180dfc0"
+      }
+    ],
+    "pods": [
+      {
+        "uid": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+        "name": "http-server-5985dcddc-mglc4",
+        "namespace": "kvml-fbf634e8-06-server",
+        "nodeName": "kvml-d32afbf634e8-a-m02",
+        "terminating": false,
+        "ready": true
+      }
+    ]
+  },
+  "finishedAt": "2026-11-11T13:20:42.071Z",
+  "trafficProductionWallUpperBoundSeconds": 0,
+  "status": "FAIL"
+}

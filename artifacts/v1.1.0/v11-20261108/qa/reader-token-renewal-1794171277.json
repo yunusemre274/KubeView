@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-08T20:54:37.635035+00:00",
+  "issuedAt": "2026-11-08T20:54:37+00:00",
+  "expiresAt": "2026-11-08T21:54:37+00:00",
+  "serviceAccountUID": "40ee58f8-ed2d-4eff-a2ad-f9fa067c79d5",
+  "credentialRecorded": false,
+  "reason": "Prior token expired during observed host sleep; refreshed between browser invocations."
+}

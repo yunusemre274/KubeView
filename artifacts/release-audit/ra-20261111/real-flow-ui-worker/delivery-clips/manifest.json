@@ -1,0 +1,30 @@
+{
+  "clips": [
+    {
+      "engine": "chromium",
+      "source": "attempt-02/chromium/page@7762309577a3d29bc3f11319fc638c57.webm",
+      "sourceSHA256": "f460812ec9d6256f6faeaf398a7f3078f7c948b2e92661d398a213d9660c4215",
+      "clip": "delivery-clips/chromium-measured-traffic.mp4",
+      "clipSHA256": "b0550a4c036521b655d23bb4b9f2275d001c9f911f7c09c79ede7ec3b0234d2a",
+      "startSecondsApproximate": 109,
+      "seconds": 5,
+      "dimensions": "960px wide,12fps derived delivery clip; NOT performance measurement",
+      "encodeSeconds": 0.3466474159977224,
+      "bytes": 110730
+    },
+    {
+      "engine": "webkit",
+      "source": "attempt-02/webkit/page@11e6a81cb2942b503be253d555c1dab7.webm",
+      "sourceSHA256": "5134c6611c1b0a1889b805a2adc54dd4f4b02acea91f8e67d0e7db341abf5de7",
+      "clip": "delivery-clips/webkit-measured-traffic.mp4",
+      "clipSHA256": "0fa7bc3b2b45344cfb52e31e323f460dd9a3632f0d9624e919dae1f66aaa3442",
+      "startSecondsApproximate": 24,
+      "seconds": 5,
+      "dimensions": "960px wide,12fps derived delivery clip; NOT performance measurement",
+      "encodeSeconds": 0.6996468329998606,
+      "bytes": 197929
+    }
+  ],
+  "sourceVideosPreservedLocally": true,
+  "note": "Original unedited full WebM files are retained locally and hashed, not staged to avoid 147MiB evidence upload. UI/API/cleanup acceptance remains exact original result.json; derived clips illustrate movement only."
+}

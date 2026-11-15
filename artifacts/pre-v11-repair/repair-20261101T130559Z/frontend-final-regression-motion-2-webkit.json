@@ -1,0 +1,1224 @@
+{
+  "name": "frontend-final-regression-motion-2-webkit",
+  "startedAt": "2026-11-01T16:42:08.865Z",
+  "source": "Actual owned Kubernetes API through documented ./start.sh; normal pointer/finder/form flow; read-only canvas diagnostics",
+  "engine": "webkit",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "context": "kv-repair-1101",
+  "errors": [],
+  "captures": [
+    {
+      "at": "2026-11-01T16:42:15.281Z",
+      "label": "reduced-motion-settings-real-world",
+      "path": "frontend-final-regression-motion-2-webkit-01-reduced-motion-settings-real-world.png",
+      "view": {
+        "stats": {
+          "frame": 312,
+          "calls": 212,
+          "triangles": 45671,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 38,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 3,
+            "visibleNodes": 3,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 3,
+            "visiblePods": 3,
+            "nodeSlots": 3,
+            "podSlots": 3,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 879.6946694115429,
+            "position": [
+              -54,
+              0,
+              184.205
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "docking",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "Devriye kapalı",
+            "reservation": "basin:left",
+            "eligibleForDock": false
+          },
+          {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1078.5261907644683,
+            "position": [
+              -175,
+              0,
+              139.53131335284274
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1252.119108117354,
+            "position": [
+              -175,
+              0,
+              -34.06160400004296
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": true,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 4.853999999999997,
+          "nodes": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 0,
+                "progress": 879.6946694115429,
+                "position": [
+                  -54,
+                  0,
+                  184.205
+                ],
+                "yaw": 0,
+                "pitch": 0,
+                "roll": 0,
+                "state": "docking",
+                "speed": 0,
+                "paused": true,
+                "healthy": true,
+                "reason": "Devriye kapalı",
+                "reservation": "basin:left",
+                "eligibleForDock": false
+              }
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+                "name": "kv-repair-1101-m02",
+                "slot": 1,
+                "progress": 1078.5261907644683,
+                "position": [
+                  -175,
+                  0,
+                  139.53131335284274
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": 0,
+                "roll": 0,
+                "state": "patrolling",
+                "speed": 0,
+                "paused": true,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            },
+            {
+              "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+                "name": "kv-repair-1101-m03",
+                "slot": 2,
+                "progress": 1252.119108117354,
+                "position": [
+                  -175,
+                  0,
+                  -34.06160400004296
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": 0,
+                "roll": 0,
+                "state": "patrolling",
+                "speed": 0,
+                "paused": true,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "Görünüm ve ayarlar\nPanel görünümü\n\nMat yüzeyler, belirgin sınırlar ve okunabilir teknik alanlar.\n\nPanel teması\nKontrast\nLiman hareketi\n\nYalnız görsel hareket değişir; Kubernetes kaynakları ve işlem sonuçları gerçek veriden izlenir.\n\nGörsel hareketi duraklat\nHareket tercihi\n\nHareket azaltma etkin. Aşağıdaki tercihleriniz saklanır; dekoratif yolculuk, salınım ve su hareketi durur.\n\nGemi devriyesi\nNode gemileri güvenli liman rotalarında ilerler.\nDevriye hızı\nHafif gemi salınımı\nDemirli veya ilerleyen gemilerde sınırlı su salınımı.\nDeniz yüzeyi hareketi\nHafif yüzey hareketi ve güneş yansımaları.\nDeniz hareketi şiddeti\nGemi izi\nHareket eden gemilerin arkasında ölçülü su izi.\nOperasyon animasyonları\n3D kalite\n3D kalite\n\nOtomatik seçim düşük veya orta kaliteyi kullanır. Kaynak verisinin kapsamını değiştirmez.\n\nDünya katmanları\nNode gemileri\nPod yükleri\nDepolama kaynakları\nGerçek selector ilişkileri\nÖlçülmüş trafik — Hubble\nTemsili kontrol düzlemi\nDurum etiketleri\n\nAğ çizgileri kaynak ilişkileridir; ölçülmüş trafik değildir.\n\nHubble akışları gerçek sağlayıcı ölçümüdür. Kontrol düzlemi işaretleri Kubernetes durumundan türetilmiş temsili süreçtir; gerçek RPC paketi ölçümü değildir.\n\nSağlayıcı bağlantılarını incele",
+        "selectedLabels": [
+          "Hareket azaltma etkin. Aşağıdaki tercihleriniz saklanır; dekoratif yolculuk, salınım ve su hareketi durur."
+        ]
+      }
+    },
+    {
+      "at": "2026-11-01T16:42:15.480Z",
+      "label": "soft-ui-dark-high-contrast",
+      "path": "frontend-final-regression-motion-2-webkit-02-soft-ui-dark-high-contrast.png",
+      "view": {
+        "stats": {
+          "frame": 327,
+          "calls": 215,
+          "triangles": 45791,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 38,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 3,
+            "visibleNodes": 3,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 3,
+            "visiblePods": 3,
+            "nodeSlots": 3,
+            "podSlots": 3,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 879.6946694115429,
+            "position": [
+              -54,
+              0,
+              171.78
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "docking",
+            "speed": 34.999999999999176,
+            "paused": false,
+            "healthy": true,
+            "reason": "Devriye kapalı",
+            "reservation": "basin:left",
+            "eligibleForDock": false
+          },
+          {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1078.7668987644681,
+            "position": [
+              -175,
+              -0.009448702252615121,
+              139.29060535284293
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0012365637026024437,
+            "roll": 0.00033902299887508537,
+            "state": "patrolling",
+            "speed": 1.1670000000198013,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1252.3598161173538,
+            "position": [
+              -175,
+              -0.030223252575560723,
+              -34.302312000042775
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0005640217628161371,
+            "roll": -0.000320725947928476,
+            "state": "patrolling",
+            "speed": 1.1670000000198013,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 5.208999999999999,
+          "nodes": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 0,
+                "progress": 879.6946694115429,
+                "position": [
+                  -54,
+                  0,
+                  171.78
+                ],
+                "yaw": 0,
+                "pitch": 0,
+                "roll": 0,
+                "state": "docking",
+                "speed": 34.999999999999176,
+                "paused": false,
+                "healthy": true,
+                "reason": "Devriye kapalı",
+                "reservation": "basin:left",
+                "eligibleForDock": false
+              }
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+                "name": "kv-repair-1101-m02",
+                "slot": 1,
+                "progress": 1078.7668987644681,
+                "position": [
+                  -175,
+                  -0.009448702252615121,
+                  139.29060535284293
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": -0.0012365637026024437,
+                "roll": 0.00033902299887508537,
+                "state": "patrolling",
+                "speed": 1.1670000000198013,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            },
+            {
+              "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+                "name": "kv-repair-1101-m03",
+                "slot": 2,
+                "progress": 1252.3598161173538,
+                "position": [
+                  -175,
+                  -0.030223252575560723,
+                  -34.302312000042775
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": 0.0005640217628161371,
+                "roll": -0.000320725947928476,
+                "state": "patrolling",
+                "speed": 1.1670000000198013,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "Görünüm ve ayarlar\nPanel görünümü\n\nMat yüzeyler, belirgin sınırlar ve okunabilir teknik alanlar.\n\nPanel teması\nKontrast\nLiman hareketi\n\nYalnız görsel hareket değişir; Kubernetes kaynakları ve işlem sonuçları gerçek veriden izlenir.\n\nGörsel hareketi duraklat\nHareket tercihi\nGemi devriyesi\nNode gemileri güvenli liman rotalarında ilerler.\nDevriye hızı\nHafif gemi salınımı\nDemirli veya ilerleyen gemilerde sınırlı su salınımı.\nDeniz yüzeyi hareketi\nHafif yüzey hareketi ve güneş yansımaları.\nDeniz hareketi şiddeti\nGemi izi\nHareket eden gemilerin arkasında ölçülü su izi.\nOperasyon animasyonları\n3D kalite\n3D kalite\n\nOtomatik seçim düşük veya orta kaliteyi kullanır. Kaynak verisinin kapsamını değiştirmez.\n\nDünya katmanları\nNode gemileri\nPod yükleri\nDepolama kaynakları\nGerçek selector ilişkileri\nÖlçülmüş trafik — Hubble\nTemsili kontrol düzlemi\nDurum etiketleri\n\nAğ çizgileri kaynak ilişkileridir; ölçülmüş trafik değildir.\n\nHubble akışları gerçek sağlayıcı ölçümüdür. Kontrol düzlemi işaretleri Kubernetes durumundan türetilmiş temsili süreçtir; gerçek RPC paketi ölçümü değildir.\n\nSağlayıcı bağlantılarını incele",
+        "selectedLabels": []
+      }
+    }
+  ],
+  "checks": [],
+  "cases": [
+    {
+      "name": "sea and patrol switches are independent; system reduced motion pauses visuals without removing real resources",
+      "startedAt": "2026-11-01T16:42:10.229Z",
+      "result": {
+        "before": {
+          "camera": {
+            "position": [
+              155.32070332934842,
+              297.3149971650057,
+              468.7248886038324
+            ],
+            "rotation": [
+              -0.3254607841260081,
+              0.19405942434202564,
+              0.06843554348917551,
+              0.9228937068847457
+            ],
+            "zoom": 1,
+            "forward": [
+              -0.3136462716817106,
+              0,
+              -0.7128324356402511
+            ]
+          },
+          "fleet": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "name": "kv-repair-1101",
+              "slot": 0,
+              "progress": 879.6946694115429,
+              "position": [
+                -54,
+                0,
+                212.345
+              ],
+              "yaw": 0,
+              "pitch": 0,
+              "roll": 0,
+              "state": "docking",
+              "speed": 34.99999999999993,
+              "paused": false,
+              "healthy": true,
+              "reason": null,
+              "reservation": "basin:left",
+              "eligibleForDock": false
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "name": "kv-repair-1101-m02",
+              "slot": 1,
+              "progress": 1071.5935867644573,
+              "position": [
+                -175,
+                0,
+                146.46391735285374
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0,
+              "roll": 0,
+              "state": "patrolling",
+              "speed": 9.000000000014552,
+              "paused": false,
+              "healthy": true,
+              "reason": "",
+              "reservation": null,
+              "eligibleForDock": false
+            },
+            {
+              "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+              "name": "kv-repair-1101-m03",
+              "slot": 2,
+              "progress": 1245.186504117343,
+              "position": [
+                -175,
+                0,
+                -27.129000000031965
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0,
+              "roll": 0,
+              "state": "patrolling",
+              "speed": 9.000000000014552,
+              "paused": false,
+              "healthy": true,
+              "reason": "",
+              "reservation": null,
+              "eligibleForDock": false
+            }
+          ],
+          "water": {
+            "time": 1.0010000000000006,
+            "strength": 0
+          },
+          "stats": {
+            "frame": 152,
+            "calls": 212,
+            "triangles": 45671,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 38,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 3,
+              "visibleNodes": 3,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 3,
+              "visiblePods": 3,
+              "nodeSlots": 3,
+              "podSlots": 3,
+              "activeTransfers": 0,
+              "queuedTransfers": 3,
+              "visualLoadingUIDs": [
+                "c7cb1866-f2c3-4ace-9f91-796969ba7e87",
+                "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+                "c3787c43-ad96-4bba-b67a-71f150959e20"
+              ],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "hidden": false
+        },
+        "seaOff": {
+          "camera": {
+            "position": [
+              155.32070332934842,
+              297.3149971650057,
+              468.7248886038324
+            ],
+            "rotation": [
+              -0.3254607841260081,
+              0.19405942434202564,
+              0.06843554348917551,
+              0.9228937068847457
+            ],
+            "zoom": 1,
+            "forward": [
+              -0.3136462716817106,
+              0,
+              -0.7128324356402511
+            ]
+          },
+          "fleet": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "name": "kv-repair-1101",
+              "slot": 0,
+              "progress": 879.6946694115429,
+              "position": [
+                -54,
+                0,
+                187.845
+              ],
+              "yaw": 0,
+              "pitch": 0,
+              "roll": 0,
+              "state": "docking",
+              "speed": 34.99999999999993,
+              "paused": false,
+              "healthy": true,
+              "reason": null,
+              "reservation": "basin:left",
+              "eligibleForDock": false
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "name": "kv-repair-1101-m02",
+              "slot": 1,
+              "progress": 1077.8935867644675,
+              "position": [
+                -175,
+                0,
+                140.16391735284355
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0,
+              "roll": 0,
+              "state": "patrolling",
+              "speed": 9.000000000014552,
+              "paused": false,
+              "healthy": true,
+              "reason": "",
+              "reservation": null,
+              "eligibleForDock": false
+            },
+            {
+              "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+              "name": "kv-repair-1101-m03",
+              "slot": 2,
+              "progress": 1251.4865041173532,
+              "position": [
+                -175,
+                0,
+                -33.42900000004215
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0,
+              "roll": 0,
+              "state": "patrolling",
+              "speed": 9.000000000012879,
+              "paused": false,
+              "healthy": true,
+              "reason": "",
+              "reservation": null,
+              "eligibleForDock": false
+            }
+          ],
+          "water": {
+            "time": 1.0010000000000006,
+            "strength": 0
+          },
+          "stats": {
+            "frame": 194,
+            "calls": 212,
+            "triangles": 45671,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 38,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 3,
+              "visibleNodes": 3,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 3,
+              "visiblePods": 3,
+              "nodeSlots": 3,
+              "podSlots": 3,
+              "activeTransfers": 0,
+              "queuedTransfers": 3,
+              "visualLoadingUIDs": [
+                "c7cb1866-f2c3-4ace-9f91-796969ba7e87",
+                "3bf472e6-0adb-49d7-bf58-39a8c97671b4",
+                "c3787c43-ad96-4bba-b67a-71f150959e20"
+              ],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "hidden": false
+        },
+        "patrolOff": {
+          "camera": {
+            "position": [
+              155.32070332934842,
+              297.3149971650057,
+              468.7248886038324
+            ],
+            "rotation": [
+              -0.3254607841260081,
+              0.19405942434202564,
+              0.06843554348917551,
+              0.9228937068847457
+            ],
+            "zoom": 1,
+            "forward": [
+              -0.3136462716817106,
+              0,
+              -0.7128324356402511
+            ]
+          },
+          "fleet": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "name": "kv-repair-1101",
+              "slot": 0,
+              "progress": 879.6946694115429,
+              "position": [
+                -54,
+                0,
+                185.395
+              ],
+              "yaw": 0,
+              "pitch": 0,
+              "roll": 0,
+              "state": "docking",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "Devriye kapalı",
+              "reservation": "basin:left",
+              "eligibleForDock": false
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "name": "kv-repair-1101-m02",
+              "slot": 1,
+              "progress": 1078.5235867644685,
+              "position": [
+                -175,
+                -0.03186418358797409,
+                139.53391735284254
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": -0.0025579650845176387,
+              "roll": -0.0008655102822727587,
+              "state": "patrolling",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "Devriye kapalı",
+              "reservation": null,
+              "eligibleForDock": false
+            },
+            {
+              "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+              "name": "kv-repair-1101-m03",
+              "slot": 2,
+              "progress": 1252.1165041173542,
+              "position": [
+                -175,
+                -0.058354395287309166,
+                -34.05900000004317
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0.0025264634452999576,
+              "roll": -0.0013257676428160778,
+              "state": "patrolling",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "Devriye kapalı",
+              "reservation": null,
+              "eligibleForDock": false
+            }
+          ],
+          "water": {
+            "time": 2.010999999999997,
+            "strength": 0.4483543483071128
+          },
+          "stats": {
+            "frame": 265,
+            "calls": 212,
+            "triangles": 45671,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 38,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 3,
+              "visibleNodes": 3,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 3,
+              "visiblePods": 3,
+              "nodeSlots": 3,
+              "podSlots": 3,
+              "activeTransfers": 1,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [
+                "c3787c43-ad96-4bba-b67a-71f150959e20"
+              ],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "hidden": false
+        },
+        "stillSeaOn": {
+          "camera": {
+            "position": [
+              155.32070332934842,
+              297.3149971650057,
+              468.7248886038324
+            ],
+            "rotation": [
+              -0.3254607841260081,
+              0.19405942434202564,
+              0.06843554348917551,
+              0.9228937068847457
+            ],
+            "zoom": 1,
+            "forward": [
+              -0.3136462716817106,
+              0,
+              -0.7128324356402511
+            ]
+          },
+          "fleet": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "name": "kv-repair-1101",
+              "slot": 0,
+              "progress": 879.6946694115429,
+              "position": [
+                -54,
+                0,
+                185.395
+              ],
+              "yaw": 0,
+              "pitch": 0,
+              "roll": 0,
+              "state": "docking",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "Devriye kapalı",
+              "reservation": "basin:left",
+              "eligibleForDock": false
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "name": "kv-repair-1101-m02",
+              "slot": 1,
+              "progress": 1078.5235867644685,
+              "position": [
+                -175,
+                -0.0280200650048061,
+                139.53391735284254
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": -0.002874127095825707,
+              "roll": 0.00003180180314256351,
+              "state": "patrolling",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "Devriye kapalı",
+              "reservation": null,
+              "eligibleForDock": false
+            },
+            {
+              "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+              "name": "kv-repair-1101-m03",
+              "slot": 2,
+              "progress": 1252.1165041173542,
+              "position": [
+                -175,
+                -0.0676696636788369,
+                -34.05900000004317
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0.0019577813597816854,
+              "roll": -0.0010358786596200958,
+              "state": "patrolling",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "Devriye kapalı",
+              "reservation": null,
+              "eligibleForDock": false
+            }
+          ],
+          "water": {
+            "time": 2.6779999999999946,
+            "strength": 0.45
+          },
+          "stats": {
+            "frame": 305,
+            "calls": 212,
+            "triangles": 45671,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 38,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 3,
+              "visibleNodes": 3,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 3,
+              "visiblePods": 3,
+              "nodeSlots": 3,
+              "podSlots": 3,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "hidden": false
+        },
+        "reduced": {
+          "camera": {
+            "position": [
+              155.32070332934842,
+              297.3149971650057,
+              468.7248886038324
+            ],
+            "rotation": [
+              -0.3254607841260081,
+              0.19405942434202564,
+              0.06843554348917551,
+              0.9228937068847457
+            ],
+            "zoom": 1,
+            "forward": [
+              -0.3136462716817106,
+              0,
+              -0.7128324356402511
+            ]
+          },
+          "fleet": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "name": "kv-repair-1101",
+              "slot": 0,
+              "progress": 879.6946694115429,
+              "position": [
+                -54,
+                0,
+                184.205
+              ],
+              "yaw": 0,
+              "pitch": 0,
+              "roll": 0,
+              "state": "docking",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "Devriye kapalı",
+              "reservation": "basin:left",
+              "eligibleForDock": false
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "name": "kv-repair-1101-m02",
+              "slot": 1,
+              "progress": 1078.5261907644683,
+              "position": [
+                -175,
+                0,
+                139.53131335284274
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0,
+              "roll": 0,
+              "state": "patrolling",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "",
+              "reservation": null,
+              "eligibleForDock": false
+            },
+            {
+              "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+              "name": "kv-repair-1101-m03",
+              "slot": 2,
+              "progress": 1252.119108117354,
+              "position": [
+                -175,
+                0,
+                -34.06160400004296
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0,
+              "roll": 0,
+              "state": "patrolling",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "",
+              "reservation": null,
+              "eligibleForDock": false
+            }
+          ],
+          "water": {
+            "time": 2.7529999999999943,
+            "strength": 0
+          },
+          "stats": {
+            "frame": 312,
+            "calls": 212,
+            "triangles": 45671,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 38,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 3,
+              "visibleNodes": 3,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 3,
+              "visiblePods": 3,
+              "nodeSlots": 3,
+              "podSlots": 3,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "hidden": false
+        },
+        "reducedAfter": {
+          "camera": {
+            "position": [
+              155.32070332934842,
+              297.3149971650057,
+              468.7248886038324
+            ],
+            "rotation": [
+              -0.3254607841260081,
+              0.19405942434202564,
+              0.06843554348917551,
+              0.9228937068847457
+            ],
+            "zoom": 1,
+            "forward": [
+              -0.3136462716817106,
+              0,
+              -0.7128324356402511
+            ]
+          },
+          "fleet": [
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "name": "kv-repair-1101",
+              "slot": 0,
+              "progress": 879.6946694115429,
+              "position": [
+                -54,
+                0,
+                184.205
+              ],
+              "yaw": 0,
+              "pitch": 0,
+              "roll": 0,
+              "state": "docking",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "Devriye kapalı",
+              "reservation": "basin:left",
+              "eligibleForDock": false
+            },
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "name": "kv-repair-1101-m02",
+              "slot": 1,
+              "progress": 1078.5261907644683,
+              "position": [
+                -175,
+                0,
+                139.53131335284274
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0,
+              "roll": 0,
+              "state": "patrolling",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "",
+              "reservation": null,
+              "eligibleForDock": false
+            },
+            {
+              "uid": "1b1e427c-40c3-4af4-8d22-5953bb18673c",
+              "name": "kv-repair-1101-m03",
+              "slot": 2,
+              "progress": 1252.119108117354,
+              "position": [
+                -175,
+                0,
+                -34.06160400004296
+              ],
+              "yaw": 3.141592653589793,
+              "pitch": 0,
+              "roll": 0,
+              "state": "patrolling",
+              "speed": 0,
+              "paused": true,
+              "healthy": true,
+              "reason": "",
+              "reservation": null,
+              "eligibleForDock": false
+            }
+          ],
+          "water": {
+            "time": 2.7529999999999943,
+            "strength": 0
+          },
+          "stats": {
+            "frame": 312,
+            "calls": 212,
+            "triangles": 45671,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 38,
+              "textures": 3
+            },
+            "lifecycle": {
+              "canonicalNodes": 3,
+              "visibleNodes": 3,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 3,
+              "visiblePods": 3,
+              "nodeSlots": 3,
+              "podSlots": 3,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "hidden": false
+        },
+        "upstreamPodUIDUnchanged": "c3787c43-ad96-4bba-b67a-71f150959e20"
+      },
+      "status": "PASSED",
+      "endedAt": "2026-11-01T16:42:15.387Z"
+    },
+    {
+      "name": "opaque dark high-contrast Soft UI settings remain bounded and readable",
+      "startedAt": "2026-11-01T16:42:15.388Z",
+      "result": {
+        "background": "rgb(20, 29, 38)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "borderColor": "rgb(171, 188, 203)"
+      },
+      "status": "PASSED",
+      "endedAt": "2026-11-01T16:42:15.522Z"
+    }
+  ],
+  "browser": "27.2"
+}

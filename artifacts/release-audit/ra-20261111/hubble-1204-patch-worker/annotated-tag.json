@@ -1,0 +1,24 @@
+{
+  "node_id": "TA_kwDODUTKXtoAKGU1ZTcyNDc5MWZiNTBjMjMxOTRmMjFkZDYyMTRhYzlhNWZjOTNlMDI",
+  "sha": "e5e724791fb50c23194f21dd6214ac9a5fc93e02",
+  "url": "https://api.github.com/repos/cilium/hubble/git/tags/e5e724791fb50c23194f21dd6214ac9a5fc93e02",
+  "tagger": {
+    "name": "Glib Smaga",
+    "email": "code@gsmaga.com",
+    "date": "2026-11-06T21:07:58Z"
+  },
+  "object": {
+    "sha": "3e268bbcc7243b90300debb6e5de3062656669ce",
+    "type": "commit",
+    "url": "https://api.github.com/repos/cilium/hubble/git/commits/3e268bbcc7243b90300debb6e5de3062656669ce"
+  },
+  "tag": "v1.20.4",
+  "message": "v1.20.4\n",
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

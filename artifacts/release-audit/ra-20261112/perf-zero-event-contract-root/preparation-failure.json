@@ -1,0 +1,5 @@
+{
+  "classification": "PREPARATION_SYNTAX_ERROR_NO_APP_OR_TEST_STARTED",
+  "cause": "Unescaped apostrophe in roadmap update text; initial Python command did not execute and data-smoke script was not created.",
+  "productChanges": false
+}

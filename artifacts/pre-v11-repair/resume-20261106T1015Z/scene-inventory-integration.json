@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-06T12:11:59.717747+00:00",
+  "primarySessionAlreadyAccepted": "repair-final-battery-20261106",
+  "primaryComparisonValid": true,
+  "beforeRunnerSHA256": "e4f28fe8ed4232e7ff62ec3a453e75ff6f5ddfb9ce4ab2e52dcb98517bf49826",
+  "afterRunnerSHA256": "01307dd9f14fb9b3f7a4598303cdc75243a36c37fcb2f6c1bcc3268cfc58ef88",
+  "productSourceUnchanged": true,
+  "method": "Opt-in existing inventory checkpoints use existing canvas.__harbor.scene; no new frame/timer/listener/history",
+  "discardedDraft": "WeakRef/render wrapper prototype unnecessary; not installed or tested",
+  "scope": "Separate diagnostics only; no rerun/replacement of paired CPU matrix"
+}

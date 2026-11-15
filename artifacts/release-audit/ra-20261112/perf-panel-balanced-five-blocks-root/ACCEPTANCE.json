@@ -1,0 +1,18 @@
+{
+  "status": "NOT_ACCEPTED_FOR_CAUSAL_CPU_COMPARISON",
+  "completedJobs": 10,
+  "completedWindows": 40,
+  "pairedBlocks": 5,
+  "numericVerification": "PASS",
+  "guardDataAndCleanup": "PASS",
+  "renderWorkEquivalence": "UNRESOLVED",
+  "finding": "BENCH-RENDER-001",
+  "reason": "One extra draw persists through p3-B panel-open-events; p0/p3B allocated geometry difference. No actual rendered object identity was saved. Cannot attribute or waive as noise. Automated comparator guard scope is incomplete.",
+  "rawPreserved": true,
+  "automaticReruns": 0,
+  "phaseStatus": "IN_PROGRESS",
+  "CPUOrMemoryOptimizationClaim": false,
+  "fullReleaseStatus": "NOT_RELEASE_READY",
+  "numericReview": "../perf-balanced-numeric-review-worker/REPORT.md",
+  "evidenceReview": "../perf-balanced-evidence-review-worker/REPORT.md"
+}

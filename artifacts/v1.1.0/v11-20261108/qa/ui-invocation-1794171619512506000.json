@@ -1,0 +1,37 @@
+{
+  "startedAt": "2026-11-08T20:59:30.755998+00:00",
+  "runnerPID": 67631,
+  "caffeinatePID": 67632,
+  "command": [
+    "node",
+    "/Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js",
+    "test",
+    "-c",
+    "e2e/v11-playwright.config.js",
+    "--project=chromium",
+    "--grep-invert",
+    "same-name different-UID|initial read-only",
+    "--max-failures=1"
+  ],
+  "configurationBeforeSHA256": {
+    ".git/kv-v11-runtime/kubeconfig-a": "4247564c4d5ceb2d56b8709469f2f40c498ff475f51218878897499fa32381f6",
+    ".git/kv-v11-runtime/kubeconfig-b": "118a38079a798eba4c74792b1c5e4b569314194a266716726d5aee15740dd3d5",
+    ".git/kv-v11-runtime/kubeconfig-restricted": "a2377d49d941359037c58b1901dc54ff39597ca75d8aa3b8e805da115848a86e",
+    ".git/kv-v11-runtime/qa-merged.json": "34655044a41b18b255251763b5b16f7dd648e4a2dc7e05ddd8d9f3a63ff98387",
+    "global-user-kubeconfig": "290dbb3ee808e86875580e62e3faedc92d5d7392fa32ac41a74222010e170ec7"
+  },
+  "scope": "Only this runner lifetime; no global OS setting change",
+  "finishedAt": "2026-11-08T21:00:19.511589+00:00",
+  "runnerExit": 1,
+  "elapsedWallSeconds": 48.75865411758423,
+  "elapsedMonotonicSeconds": 48.75872904200514,
+  "caffeinateExited": true,
+  "configurationAfterSHA256": {
+    ".git/kv-v11-runtime/kubeconfig-a": "4247564c4d5ceb2d56b8709469f2f40c498ff475f51218878897499fa32381f6",
+    ".git/kv-v11-runtime/kubeconfig-b": "118a38079a798eba4c74792b1c5e4b569314194a266716726d5aee15740dd3d5",
+    ".git/kv-v11-runtime/kubeconfig-restricted": "a2377d49d941359037c58b1901dc54ff39597ca75d8aa3b8e805da115848a86e",
+    ".git/kv-v11-runtime/qa-merged.json": "34655044a41b18b255251763b5b16f7dd648e4a2dc7e05ddd8d9f3a63ff98387",
+    "global-user-kubeconfig": "290dbb3ee808e86875580e62e3faedc92d5d7392fa32ac41a74222010e170ec7"
+  },
+  "configurationUnchanged": true
+}

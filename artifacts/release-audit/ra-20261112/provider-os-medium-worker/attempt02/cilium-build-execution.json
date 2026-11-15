@@ -1,0 +1,78 @@
+{
+  "name": "cilium-build",
+  "argv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "build",
+    "--cpu-period=100000",
+    "--cpu-quota=200000",
+    "--memory=4g",
+    "--memory-swap=4g",
+    "--network=none",
+    "--force-rm",
+    "--platform=linux/arm64",
+    "--pull=false",
+    "--iidfile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/cilium-image-id.txt",
+    "--tag",
+    "kubeview-private/cilium:1.20.4-os-security.2",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/cilium"
+  ],
+  "startedAt": "2026-11-12T11:08:47.505189+00:00",
+  "maxSeconds": 150,
+  "samples": [
+    {
+      "elapsedSeconds": 0.734,
+      "ownedRSSBytes": 37814272,
+      "ownedPIDs": [
+        13408,
+        13414,
+        13415
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454355161088
+    },
+    {
+      "elapsedSeconds": 1.277,
+      "ownedRSSBytes": 60391424,
+      "ownedPIDs": [
+        13408,
+        13414,
+        13423
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454351900672
+    }
+  ],
+  "expectedRUNNormalized": "set -eu && export DEBIAN_FRONTEND=noninteractive && cd /tmp/kubeview-os-medium && sha256sum -c SHA256SUMS && plan=\"$(apt-get --simulate --no-download --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb /tmp/kubeview-os-medium/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb)\" && printf '%s\\n' \"$plan\" && printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"${package%%:*}\" in libpcre2-8-0|zlib1g) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done && apt-get -y --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb /tmp/kubeview-os-medium/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb && test \"$(dpkg-query -W -f='${Version}' libpcre2-8-0)\" = '10.46-1ubuntu0.1' && test \"$(dpkg-query -W -f='${Version}' zlib1g)\" = '1:1.3.dfsg+really1.3.1-1ubuntu3.2' && cd / && rm -rf /tmp/kubeview-os-medium /var/lib/apt/lists/* /var/cache/apt/archives/*.deb",
+  "baseReference": "kubeview-private/cilium@sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+  "baseManifestID": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+  "baseConfigID": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+  "baseLayers": [
+    "sha256:d992b67eeb949fa2c852abc0aa7bd15b8597c796dd959d7f0db58a04f7a5ab94",
+    "sha256:83e50c8b0ef358fc3d32395525d56e3270e8ef484deb3de8064cb213c88ff4c4",
+    "sha256:53bca5db01ebd9bff0a62d14cef846c71e8b8344d1fb2106d38b545978baeb0a",
+    "sha256:bdd8620562c14243e44a9046a174019ad4d8d24d7aba31efbbe294e5c24558dd",
+    "sha256:e53ed60dd113bc5a76584b4e03aa17621a3b2248fdeea07ebb05a446bb48b669",
+    "sha256:5cdc279702a7c8de192be5e94a3377314fe73b6affe88d70f8f39eacac3ba452"
+  ],
+  "baseRuntimeConfig": {
+    "ArgsEscaped": true,
+    "Cmd": [
+      "/usr/bin/cilium-dbg"
+    ],
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+      "INITSYSTEM=SYSTEMD"
+    ],
+    "Labels": {
+      "maintainer": "maintainer@cilium.io"
+    },
+    "WorkingDir": "/home/cilium"
+  },
+  "pid": 13414,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T11:08:48.680921+00:00"
+}

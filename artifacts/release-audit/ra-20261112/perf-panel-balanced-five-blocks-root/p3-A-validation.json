@@ -1,0 +1,228 @@
+{
+  "status": "PASS_JOB_REQUIRES_FULL_FIVE_BLOCK_SET",
+  "pair": 3,
+  "side": "A",
+  "reasons": [],
+  "cells": [
+    {
+      "scenario": "panel-open-events",
+      "coverage": {
+        "valid": true,
+        "reasons": [],
+        "browserCores": 0.6966273467353381,
+        "gpuProcessCores": 0.25236750290745974,
+        "rendererProcessCores": 0.43960790829041385,
+        "backendCores": 0.003322811098189068,
+        "maxBrowserProcessRSSKiB": 369088,
+        "backendRSSKiB": 49680,
+        "browserMainCores": 0.003322811098189069,
+        "churn": [],
+        "clockWindow": {
+          "wallMs": 60190,
+          "activeMs": 60062.5,
+          "differenceMs": 127.5,
+          "toleranceMs": 1000,
+          "valid": true
+        },
+        "complete": true
+      },
+      "summary": {
+        "renderedFPS": 60.02081165452653,
+        "interval": {
+          "n": 3604,
+          "p50": 16.699999999254942,
+          "p95": 18.600000001490116,
+          "p99": 19.199999999254942,
+          "min": 1.4000000022351742,
+          "max": 21
+        },
+        "callbackStore": {
+          "n": 300,
+          "p50": 0.6000000014901161,
+          "p95": 0.8999999985098839,
+          "p99": 1,
+          "min": 0.09999999776482582,
+          "max": 1.300000000745058
+        },
+        "drawProxy": {
+          "n": 121,
+          "p50": 13.600000001490116,
+          "p95": 17.399999998509884,
+          "p99": 26.5,
+          "min": 9.5,
+          "max": 27.5
+        }
+      },
+      "canonicalEqual": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "plannedEvents": 300
+    },
+    {
+      "scenario": "panel-closed-events",
+      "coverage": {
+        "valid": true,
+        "reasons": [],
+        "browserCores": 0.6865448504983388,
+        "gpuProcessCores": 0.2511627906976745,
+        "rendererProcessCores": 0.4317275747508305,
+        "backendCores": 0.0034883720930232558,
+        "maxBrowserProcessRSSKiB": 368992,
+        "backendRSSKiB": 51520,
+        "browserMainCores": 0.002657807308970098,
+        "churn": [],
+        "clockWindow": {
+          "wallMs": 60200,
+          "activeMs": 60071.39999999851,
+          "differenceMs": 128.60000000149012,
+          "toleranceMs": 1000,
+          "valid": true
+        },
+        "complete": true
+      },
+      "summary": {
+        "renderedFPS": 60.01191914954686,
+        "interval": {
+          "n": 3604,
+          "p50": 16.699999999254942,
+          "p95": 18.899999998509884,
+          "p99": 21.900000002235174,
+          "min": 8.400000002235174,
+          "max": 25
+        },
+        "callbackStore": {
+          "n": 300,
+          "p50": 0.5,
+          "p95": 0.8999999985098839,
+          "p99": 1,
+          "min": 0.09999999776482582,
+          "max": 1.3999999985098839
+        },
+        "drawProxy": {
+          "n": 118,
+          "p50": 9,
+          "p95": 23.199999999254942,
+          "p99": 26.800000000745058,
+          "min": 2.699999999254942,
+          "max": 29.800000000745058
+        }
+      },
+      "canonicalEqual": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "plannedEvents": 300
+    },
+    {
+      "scenario": "panel-open",
+      "coverage": {
+        "valid": true,
+        "reasons": [],
+        "browserCores": 0.6337150359819842,
+        "gpuProcessCores": 0.25677674550017454,
+        "rendererProcessCores": 0.3752763050740416,
+        "backendCores": 0,
+        "maxBrowserProcessRSSKiB": 352480,
+        "backendRSSKiB": 46768,
+        "browserMainCores": 0.001329588326214497,
+        "churn": [],
+        "clockWindow": {
+          "wallMs": 60169,
+          "activeMs": 60059.199999999255,
+          "differenceMs": 109.80000000074506,
+          "toleranceMs": 1000,
+          "valid": true
+        },
+        "complete": true
+      },
+      "summary": {
+        "renderedFPS": 60.00745930681801,
+        "interval": {
+          "n": 3603,
+          "p50": 16.699999999254942,
+          "p95": 18.600000001490116,
+          "p99": 18.899999998509884,
+          "min": 14,
+          "max": 19.599999997764826
+        },
+        "callbackStore": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "drawProxy": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        }
+      },
+      "canonicalEqual": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "plannedEvents": 0
+    },
+    {
+      "scenario": "panel-closed",
+      "coverage": {
+        "valid": true,
+        "reasons": [],
+        "browserCores": 0.6289684518466806,
+        "gpuProcessCores": 0.2576377115122503,
+        "rendererProcessCores": 0.36950234367208545,
+        "backendCores": 0,
+        "maxBrowserProcessRSSKiB": 327344,
+        "backendRSSKiB": 47744,
+        "browserMainCores": 0.0016621787839500033,
+        "churn": [],
+        "clockWindow": {
+          "wallMs": 60162,
+          "activeMs": 60050.5,
+          "differenceMs": 111.5,
+          "toleranceMs": 1000,
+          "valid": true
+        },
+        "complete": true
+      },
+      "summary": {
+        "renderedFPS": 60.0161530711651,
+        "interval": {
+          "n": 3603,
+          "p50": 16.699999999254942,
+          "p95": 18.100000001490116,
+          "p99": 18.699999999254942,
+          "min": 11.300000000745058,
+          "max": 19.199999999254942
+        },
+        "callbackStore": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "drawProxy": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        }
+      },
+      "canonicalEqual": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "plannedEvents": 0
+    }
+  ]
+}

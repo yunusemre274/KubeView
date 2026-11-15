@@ -1,0 +1,443 @@
+{
+  "verdict": "PASS_BOUNDED_PARSER_GROUP_WITH_SCOPE_NOTE",
+  "checks": [
+    {
+      "label": "all source/attempt SHA manifests match",
+      "pass": true
+    },
+    {
+      "label": "current final f759 source exact attempt02 snapshot",
+      "pass": true
+    },
+    {
+      "label": "original RED source distinct preserved",
+      "pass": true
+    },
+    {
+      "label": "final exact3top9sub packagePASS noFAIL/SKIP",
+      "pass": true
+    },
+    {
+      "label": "preserved RED fixture-only expected failure",
+      "pass": true
+    },
+    {
+      "label": "both attempts runtime/test sources stable during invocation",
+      "pass": true
+    },
+    {
+      "label": "five product/support source hashes current unchanged",
+      "pass": true
+    },
+    {
+      "label": "all nine exact negative statuses from raw logs",
+      "pass": true
+    },
+    {
+      "label": "nine negatives plus duplicate-map verify immutable full snapshot/revision/files",
+      "pass": true
+    },
+    {
+      "label": "duplicate map422 and scalar-last/unknown200 policies retained",
+      "pass": true
+    },
+    {
+      "label": "single bounded2097435 body >2MiB and<4MiB",
+      "pass": true
+    },
+    {
+      "label": "top-level raw aliases are originalRED; finalPASS is attempt02",
+      "pass": true
+    }
+  ],
+  "attempts": {
+    "attempt01": {
+      "exitCode": 1,
+      "elapsedSeconds": 2.9638517080020392,
+      "topPass": [
+        "TestReleaseWorkspaceParserAllowedJSONAndScope",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation"
+      ],
+      "subPass": [
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/malformed",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/second_value",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/future_schema",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/nested_credential",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/bogus_reference",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/over_depth",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/over_2MiB",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/non_json_mime",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/wrong_nonce"
+      ],
+      "topFail": [
+        "TestReleaseWorkspaceParserDuplicateUnknownAndImport"
+      ],
+      "packagePass": false,
+      "skipCount": 0,
+      "caseLogs": [
+        "release_workspace_parser_test.go:98: PARSER_CASE allowed_json status=200; exact_scope status=200 exactUID=true noncePresent=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE malformed status=400 bytes=12 bodySHA256=7cb12f48d131fe654678209fa033e5d179dfd8d38d5fc935a2e978e7cf77e250 snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE second_value status=400 bytes=34 bodySHA256=4f41036aded2f5f2cc0ae346d3d0a7c11b7aa3ba31408bc5a7f788b26b2ef24d snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE future_schema status=422 bytes=535 bodySHA256=5a17faf54f4fedd92c8308b02608b530573ae373bebb0069f27d97118e5d8e82 snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE nested_credential status=422 bytes=81 bodySHA256=4d69f9bd275171d9ccc19eaa15d41add7b6b16aa4e4718b07f800b5d6e3a520b snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE bogus_reference status=422 bytes=517 bodySHA256=09d2861b45344b643985d92ec251f1af9442f010ff1068b8082e7439aa4d8bc3 snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE over_depth status=422 bytes=155 bodySHA256=8f91f3191e0f7f0266bf5989dc2460c5d57f17eadc705dc1455f7cb18e44ab83 snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE over_2MiB status=400 bytes=2097435 bodySHA256=fc80a5de5255d018dececa1ace1d9489331d91d63c56a3b4229610e9797bb29f snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE non_json_mime status=415 bytes=31 bodySHA256=487cf5b8809abb90b15087ca63ff35fb7470083fed049a9166c36e30d92cd45d snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE wrong_nonce status=403 bytes=31 bodySHA256=487cf5b8809abb90b15087ca63ff35fb7470083fed049a9166c36e30d92cd45d snapshotRevisionFilesUnchanged=true"
+      ],
+      "sourceUnchanged": true,
+      "cleanup": {
+        "ownedProcessGroup": 65011,
+        "remainingOwnedPIDs": [],
+        "httptestInProcess": true,
+        "networkListenerStarted": false,
+        "privateWorkspaceTempDirs": "testing.TempDir; removed by Go testing cleanup",
+        "serverClose": "existing testServer registers t.Cleanup(s.Close)"
+      },
+      "command": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=60s",
+        "-run",
+        "^TestReleaseWorkspaceParser",
+        "./pkg/server"
+      ],
+      "sourceHashes": {
+        "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+        "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+        "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+        "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+        "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8"
+      }
+    },
+    "attempt02": {
+      "exitCode": 0,
+      "elapsedSeconds": 2.7814832080002816,
+      "topPass": [
+        "TestReleaseWorkspaceParserAllowedJSONAndScope",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation",
+        "TestReleaseWorkspaceParserDuplicateUnknownAndImport"
+      ],
+      "subPass": [
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/malformed",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/second_value",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/future_schema",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/nested_credential",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/bogus_reference",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/over_depth",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/over_2MiB",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/non_json_mime",
+        "TestReleaseWorkspaceParserRejectsWithoutMutation/wrong_nonce"
+      ],
+      "topFail": [],
+      "packagePass": true,
+      "skipCount": 0,
+      "caseLogs": [
+        "release_workspace_parser_test.go:98: PARSER_CASE allowed_json status=200; exact_scope status=200 exactUID=true noncePresent=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE malformed status=400 bytes=12 bodySHA256=7cb12f48d131fe654678209fa033e5d179dfd8d38d5fc935a2e978e7cf77e250 snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE second_value status=400 bytes=34 bodySHA256=4f41036aded2f5f2cc0ae346d3d0a7c11b7aa3ba31408bc5a7f788b26b2ef24d snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE future_schema status=422 bytes=535 bodySHA256=21a629a42c0a5edac57e6e4499c9f2e964d898af7d4aaf7f515f9ab0764d65cd snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE nested_credential status=422 bytes=81 bodySHA256=4d69f9bd275171d9ccc19eaa15d41add7b6b16aa4e4718b07f800b5d6e3a520b snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE bogus_reference status=422 bytes=517 bodySHA256=399f72bf23a93c11e0729da4c23dd2f3c8dcebb1f4448656e1abc77efd30e824 snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE over_depth status=422 bytes=155 bodySHA256=8f91f3191e0f7f0266bf5989dc2460c5d57f17eadc705dc1455f7cb18e44ab83 snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE over_2MiB status=400 bytes=2097435 bodySHA256=fc80a5de5255d018dececa1ace1d9489331d91d63c56a3b4229610e9797bb29f snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE non_json_mime status=415 bytes=31 bodySHA256=487cf5b8809abb90b15087ca63ff35fb7470083fed049a9166c36e30d92cd45d snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:155: PARSER_CASE wrong_nonce status=403 bytes=31 bodySHA256=487cf5b8809abb90b15087ca63ff35fb7470083fed049a9166c36e30d92cd45d snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:174: PARSER_CASE duplicate_object_merge status=422 snapshotRevisionFilesUnchanged=true",
+        "release_workspace_parser_test.go:209: PARSER_CASE duplicate_last_and_unknown status=200 discardedCredentialAbsent=true; valid_import status=200 importedContextEmpty=true importedBoundFalse=true IDsRemapped=true"
+      ],
+      "sourceUnchanged": true,
+      "cleanup": {
+        "ownedProcessGroup": 65153,
+        "remainingOwnedPIDs": [],
+        "httptestInProcess": true,
+        "networkListenerStarted": false,
+        "privateWorkspaceTempDirs": "testing.TempDir; removed by Go testing cleanup",
+        "serverClose": "existing testServer registers t.Cleanup(s.Close)"
+      },
+      "command": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=60s",
+        "-run",
+        "^TestReleaseWorkspaceParser",
+        "./pkg/server"
+      ],
+      "sourceHashes": {
+        "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+        "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+        "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+        "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+        "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8"
+      }
+    }
+  },
+  "allSHAEntriesChecked": 29,
+  "manifestChecks": [
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/REPORT.md",
+      "actual": "14eae33b0554edd49f885dec9d5734aa3f038f3b831953d54969c9304e1c080e",
+      "expected": "14eae33b0554edd49f885dec9d5734aa3f038f3b831953d54969c9304e1c080e",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/REPORT.md",
+      "actual": "df667fa82302aaca49d680ce42c8de1a7823329c754d289f82df09513ca4e242",
+      "expected": "df667fa82302aaca49d680ce42c8de1a7823329c754d289f82df09513ca4e242",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/SHA256SUMS",
+      "actual": "e223761017965b2492f9046bd18fc9e4ae79eb7ba2f2e8fe143b1d15dba2450b",
+      "expected": "e223761017965b2492f9046bd18fc9e4ae79eb7ba2f2e8fe143b1d15dba2450b",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/execution.json",
+      "actual": "8f1886be14e5a8d47896fcc11a6221de4aad17571a572f7b24e1c1560b16da32",
+      "expected": "8f1886be14e5a8d47896fcc11a6221de4aad17571a572f7b24e1c1560b16da32",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/go-test.jsonl",
+      "actual": "5e0846d0b4a137eb6f59d6e86a2d5dd06569b319fb9cf53557884f5c6d1b3e2e",
+      "expected": "5e0846d0b4a137eb6f59d6e86a2d5dd06569b319fb9cf53557884f5c6d1b3e2e",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/plan.json",
+      "actual": "2634a197a7d23777ef23809a47e61ca69fff284406cdff36477eadc452227a37",
+      "expected": "2634a197a7d23777ef23809a47e61ca69fff284406cdff36477eadc452227a37",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/release_workspace_parser_test.go.txt",
+      "actual": "d7fe179757087e9b5f93864569d593645bf19b7221a70de315f93948ef4bf377",
+      "expected": "d7fe179757087e9b5f93864569d593645bf19b7221a70de315f93948ef4bf377",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/SHA256SUMS",
+      "actual": "448125c9e4ca9b85cbf520842d1df5087a75e734e4956c222177819dac4833ff",
+      "expected": "448125c9e4ca9b85cbf520842d1df5087a75e734e4956c222177819dac4833ff",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/execution.json",
+      "actual": "06fa72c8043d5ddc92e579d643cd3fd0b3e65f131078d5f864fb82e76ac9b3e3",
+      "expected": "06fa72c8043d5ddc92e579d643cd3fd0b3e65f131078d5f864fb82e76ac9b3e3",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/go-test.jsonl",
+      "actual": "b1f2b8890df7a636705d53676c55371ceadaa48c5c47f47d582dc80662354d85",
+      "expected": "b1f2b8890df7a636705d53676c55371ceadaa48c5c47f47d582dc80662354d85",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/plan.json",
+      "actual": "f01b28ff2249516f1fe78b6ae84929c22bb047eca44f1e4c1506618b385c7666",
+      "expected": "f01b28ff2249516f1fe78b6ae84929c22bb047eca44f1e4c1506618b385c7666",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/release_workspace_parser_test.go.txt",
+      "actual": "f759b7b9fe1186685bd7e5803ede75716c609525e51bb39d7030f8856c9807b7",
+      "expected": "f759b7b9fe1186685bd7e5803ede75716c609525e51bb39d7030f8856c9807b7",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/run-focused.py",
+      "actual": "f84a1cc740002695cc6e7329644bd1d45485226b8c20524c51e7a149bbf27b32",
+      "expected": "f84a1cc740002695cc6e7329644bd1d45485226b8c20524c51e7a149bbf27b32",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/execution.json",
+      "actual": "8f1886be14e5a8d47896fcc11a6221de4aad17571a572f7b24e1c1560b16da32",
+      "expected": "8f1886be14e5a8d47896fcc11a6221de4aad17571a572f7b24e1c1560b16da32",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/go-test.jsonl",
+      "actual": "5e0846d0b4a137eb6f59d6e86a2d5dd06569b319fb9cf53557884f5c6d1b3e2e",
+      "expected": "5e0846d0b4a137eb6f59d6e86a2d5dd06569b319fb9cf53557884f5c6d1b3e2e",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/plan.json",
+      "actual": "2634a197a7d23777ef23809a47e61ca69fff284406cdff36477eadc452227a37",
+      "expected": "2634a197a7d23777ef23809a47e61ca69fff284406cdff36477eadc452227a37",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/result.json",
+      "actual": "fcc4329a65dbc9a9b1420ff5f3fff07877d112cf0db5ebc467a26fa468fafebe",
+      "expected": "fcc4329a65dbc9a9b1420ff5f3fff07877d112cf0db5ebc467a26fa468fafebe",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/run-focused.py",
+      "actual": "aceb96a39ddc29b7286f5e5a30a54b04d4cb591b7f381f5744538f3bd4b5a6f2",
+      "expected": "aceb96a39ddc29b7286f5e5a30a54b04d4cb591b7f381f5744538f3bd4b5a6f2",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/SHA256SUMS",
+      "name": "backend/pkg/server/release_workspace_parser_test.go",
+      "actual": "f759b7b9fe1186685bd7e5803ede75716c609525e51bb39d7030f8856c9807b7",
+      "expected": "f759b7b9fe1186685bd7e5803ede75716c609525e51bb39d7030f8856c9807b7",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/SHA256SUMS",
+      "name": "REPORT.md",
+      "actual": "df667fa82302aaca49d680ce42c8de1a7823329c754d289f82df09513ca4e242",
+      "expected": "df667fa82302aaca49d680ce42c8de1a7823329c754d289f82df09513ca4e242",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/SHA256SUMS",
+      "name": "execution.json",
+      "actual": "8f1886be14e5a8d47896fcc11a6221de4aad17571a572f7b24e1c1560b16da32",
+      "expected": "8f1886be14e5a8d47896fcc11a6221de4aad17571a572f7b24e1c1560b16da32",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/SHA256SUMS",
+      "name": "go-test.jsonl",
+      "actual": "5e0846d0b4a137eb6f59d6e86a2d5dd06569b319fb9cf53557884f5c6d1b3e2e",
+      "expected": "5e0846d0b4a137eb6f59d6e86a2d5dd06569b319fb9cf53557884f5c6d1b3e2e",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/SHA256SUMS",
+      "name": "plan.json",
+      "actual": "2634a197a7d23777ef23809a47e61ca69fff284406cdff36477eadc452227a37",
+      "expected": "2634a197a7d23777ef23809a47e61ca69fff284406cdff36477eadc452227a37",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt01/SHA256SUMS",
+      "name": "release_workspace_parser_test.go.txt",
+      "actual": "d7fe179757087e9b5f93864569d593645bf19b7221a70de315f93948ef4bf377",
+      "expected": "d7fe179757087e9b5f93864569d593645bf19b7221a70de315f93948ef4bf377",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/SHA256SUMS",
+      "name": "execution.json",
+      "actual": "06fa72c8043d5ddc92e579d643cd3fd0b3e65f131078d5f864fb82e76ac9b3e3",
+      "expected": "06fa72c8043d5ddc92e579d643cd3fd0b3e65f131078d5f864fb82e76ac9b3e3",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/SHA256SUMS",
+      "name": "go-test.jsonl",
+      "actual": "b1f2b8890df7a636705d53676c55371ceadaa48c5c47f47d582dc80662354d85",
+      "expected": "b1f2b8890df7a636705d53676c55371ceadaa48c5c47f47d582dc80662354d85",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/SHA256SUMS",
+      "name": "plan.json",
+      "actual": "f01b28ff2249516f1fe78b6ae84929c22bb047eca44f1e4c1506618b385c7666",
+      "expected": "f01b28ff2249516f1fe78b6ae84929c22bb047eca44f1e4c1506618b385c7666",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/SHA256SUMS",
+      "name": "release_workspace_parser_test.go.txt",
+      "actual": "f759b7b9fe1186685bd7e5803ede75716c609525e51bb39d7030f8856c9807b7",
+      "expected": "f759b7b9fe1186685bd7e5803ede75716c609525e51bb39d7030f8856c9807b7",
+      "matches": true
+    },
+    {
+      "manifest": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/SHA256SUMS",
+      "name": "run-focused.py",
+      "actual": "f84a1cc740002695cc6e7329644bd1d45485226b8c20524c51e7a149bbf27b32",
+      "expected": "f84a1cc740002695cc6e7329644bd1d45485226b8c20524c51e7a149bbf27b32",
+      "matches": true
+    }
+  ],
+  "currentTestSHA256": "f759b7b9fe1186685bd7e5803ede75716c609525e51bb39d7030f8856c9807b7",
+  "negativeStatuses": {
+    "malformed": 400,
+    "second_value": 400,
+    "future_schema": 422,
+    "nested_credential": 422,
+    "bogus_reference": 422,
+    "over_depth": 422,
+    "over_2MiB": 400,
+    "non_json_mime": 415,
+    "wrong_nonce": 403
+  },
+  "observedCaseStatuses": {
+    "allowed_json": 200,
+    "malformed": 400,
+    "second_value": 400,
+    "future_schema": 422,
+    "nested_credential": 422,
+    "bogus_reference": 422,
+    "over_depth": 422,
+    "over_2MiB": 400,
+    "non_json_mime": 415,
+    "wrong_nonce": 403,
+    "duplicate_object_merge": 422,
+    "duplicate_last_and_unknown": 200
+  },
+  "largeBodyBytes": 2097435,
+  "scopeFinding": {
+    "id": "PARSER-REVIEW-01",
+    "type": "evidence-scope gap, not product failure",
+    "source": "release_workspace_parser_test.go:final import postconditions",
+    "detail": "Existing connection is asserted Bound/context=test BEFORE import. AFTER import, assertions cover newly imported connection/harbor and IDs, not d.Connections[0] retained Bound/Context. Current append-only ImportInto source supports preservation, but this parser group does not directly assert that postcondition.",
+    "recommendation": "Qualify the parser-report claim or let root add an explicit existing-prefix postcondition in a separately authorized fixture revision; no edits/retest here. Separate pure ImportInto worker evidence already checks complete preexisting prefix."
+  },
+  "interpretation": [
+    "OriginalRED was fixture expectation error, not product bug; Go duplicate object values merge earlier credential key so422 is correct.",
+    "Repeated scalar revision0\u2192current is last-wins200; unknown outer/connection fields ignored and synthetic credential/authority markers absent from current/backup bytes.",
+    "All negative rejections compare complete Store.Snapshot, including Revision, plus map of every persisted directory entry and bytes; backups included.",
+    "Positive registered handler routing isolates namespace/selector exactPod UID; imported new IDs/WorkspaceID/connectionRef and Context/Bound strip are directly asserted.",
+    "In-process httptest recorders and fake Kubernetes clients; no actual listener/realAPI, YAML/anchor, broad parser, fuzz/security completeness or product fix claim.",
+    "Root-level execution/raw remain attempt01RED aliases; attempt02 is the only finalPASS source of truth."
+  ],
+  "sourceOrInputEdits": false,
+  "newRuntimeOrTest": false,
+  "startedAt": "2026-11-12T21:45:10+00:00",
+  "finishedAt": "2026-11-12T21:47:14.526102+00:00",
+  "elapsedSeconds": 124.526102,
+  "minimalReportTarget90Seconds": false,
+  "hardLimit120Seconds": false
+}

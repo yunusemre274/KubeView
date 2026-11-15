@@ -1,0 +1,15 @@
+{
+  "privateRuntimeSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "initialSourceSHA256": "41ffd9af45297e70ef79879fd9e4fb608deb889dea050be5b1769453b148358d",
+  "correctedSourceSHA256": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+  "initialResultSHA256": "e4d90fab6934640ed022c470d98cd04949a0db0d557a46aecfde67ddafcbc984",
+  "initialCommandResultSHA256": "734a95918b759000e0e12ec4152372af62dd7c9a98d1be7fce409de727e3a8ee",
+  "initialSourceBeforeSHA256": "305fe137ba98a47cbc031162c0e367afb408e9cc4b85751ed20fdc4bccf1eea0",
+  "namespaceReceiptSHA256": "35a72b752d6837cd1f3bf8e17e7d8798f09cb584b8d93aa479cac30558ff3871",
+  "sourceBeforeEqualAfter": true,
+  "runtimeBytesEqualFirstAttempt": true,
+  "newSevenUIDsDisjointFromFirstAttempt": true,
+  "sameSealedNamespace": true,
+  "firstFailureUnchanged": true,
+  "noExactRetroactiveCauseClaimForInitial400": true
+}

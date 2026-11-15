@@ -1,0 +1,6 @@
+{
+  "time": "2026-11-10T11:49:57.862118+00:00",
+  "session": "ws-20261110-battery-01",
+  "pid": 12273,
+  "reason": "Living before snapshots differ in patrol phase; missing resetVisual setup. Entire session excluded from accepted CPU comparisons. Graceful SIGINT to exact owned coordinator. No automatic rerun."
+}

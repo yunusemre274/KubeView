@@ -1,0 +1,117 @@
+{
+  "verdict": "NARROW_TEST_EVIDENCE_ACCEPTED",
+  "criticalFindings": [],
+  "productVulnerabilityEstablishedByInitialFailure": false,
+  "initialOutcome": {
+    "testEvents": [
+      {
+        "name": "TestReleaseExecAuthCanaryHelper",
+        "action": "pass",
+        "elapsed": 0
+      },
+      {
+        "name": "TestReleaseKubeconfigTrustExecIsOperatorConfigured",
+        "action": "fail",
+        "elapsed": 0.01
+      },
+      {
+        "name": "TestReleaseWorkspaceCannotSupplyExecConfiguration",
+        "action": "fail",
+        "elapsed": 0.01
+      }
+    ],
+    "packageFinalAction": "fail",
+    "skipCount": 0
+  },
+  "retestOutcome": {
+    "testEvents": [
+      {
+        "name": "TestReleaseExecAuthCanaryHelper",
+        "action": "pass",
+        "elapsed": 0
+      },
+      {
+        "name": "TestReleaseKubeconfigTrustExecIsOperatorConfigured",
+        "action": "pass",
+        "elapsed": 0.03
+      },
+      {
+        "name": "TestReleaseWorkspaceCannotSupplyExecConfiguration",
+        "action": "pass",
+        "elapsed": 0.04
+      }
+    ],
+    "packageFinalAction": "pass",
+    "skipCount": 0
+  },
+  "firstResult": {
+    "exitCode": 1,
+    "wallSeconds": 6.766386750000493,
+    "finishedAt": "2026-11-12T10:32:07.411771+00:00"
+  },
+  "retestResult": {
+    "exitCode": 0,
+    "wallSeconds": 2.7041024999998626,
+    "finishedAt": "2026-11-12T10:35:18.198976+00:00"
+  },
+  "claims": [
+    {
+      "id": "trusted-real-exec",
+      "verdict": "SUPPORTED",
+      "evidence": "os.Executable in ExecConfig; only helper child writes marker/prints ExecCredential; production s.client uses client-go real exec transport; exact marker and one authenticated Namespace GET required",
+      "source": [
+        "release_kubeconfig_trust_test.go:25",
+        "release_kubeconfig_trust_test.go:77",
+        "server.go:307",
+        "client-go/exec.go:436"
+      ]
+    },
+    {
+      "id": "TLS-verification",
+      "verdict": "SUPPORTED_BY_SOURCE_AND_SUCCESSFUL_TLS_REQUEST",
+      "evidence": "StartTLS plus PEM of exact fixture certificate in CertificateAuthorityData; no insecure flag/custom transport; client-go maps CA data and defaults InsecureSkipVerify false; CA plus insecure is itself rejected",
+      "source": [
+        "release_kubeconfig_trust_test.go:62",
+        "release_kubeconfig_trust_test.go:66",
+        "client-go/rest/transport.go:91",
+        "client-go/transport/transport.go:82"
+      ]
+    },
+    {
+      "id": "unknown-context-list-no-exec",
+      "verdict": "SUPPORTED",
+      "evidence": "listing/unknown context precede marker existence/accepted==0 check; production trustedWorkspaceContext loads only operator config context names; s.client unknown context returns error"
+    },
+    {
+      "id": "browser-path-exec-injection",
+      "verdict": "SUPPORTED_NARROW_SYNTHETIC_HANDLER",
+      "evidence": "three context variants include unknown string, filesystem marker path and URL; each requires422 and zero persisted connections; known fake test context accepts connection but typed Connection has no kubeconfig/exec fields; final marker absent"
+    },
+    {
+      "id": "import-authority-strip",
+      "verdict": "SUPPORTED",
+      "evidence": "typed Document removes injected executable/path fields; production ImportInto calls Export which clears every imported Context and Bound; imported last connection required empty/unbound; workspace and export outputs exclude marker/exec"
+    },
+    {
+      "id": "cleanup",
+      "verdict": "SOURCE_SUPPORTED_AND_TEST_COMPLETION",
+      "evidence": "TempDir removal via testing.Cleanup; Setenv restoration; api.Close and s.Close cleanups; child os.Exit and client-go exec.Cmd.Run waits/reaps; no explicit post-run PID/port/tempdir snapshot was supplied"
+    }
+  ],
+  "limitations": [
+    "Three PASS test events comprise a no-op default helper plus two substantive tests; the helper is separately executed as the real auth child.",
+    "Positive case calls production s.client directly after real contexts handler; browser connection/import negatives use existing fake Kubernetes fixture. This is not one complete browser-to-real-cluster E2E.",
+    "TLS source/transport verification is established; no dedicated wrong-CA or hostname-rejection case was run.",
+    "No independent post-test process/listener/temp-directory cleanup probe is present; cleanup is supported by source and successful Go test completion.",
+    "Before/after operator-file reads ignore read errors; successful config loading/auth limits the practical ambiguity, but this is not a separate robust filesystem invariance audit.",
+    "No real Kubernetes, user credential, external IdP, third-party penetration test, final release or whole-product behavior acceptance is established."
+  ],
+  "reviewStartedAt": "2026-11-12T10:36:54+00:00",
+  "reviewReceiptAt": "2026-11-12T10:39:50.563868+00:00",
+  "elapsedSeconds": 176.563868,
+  "planSeconds": 180,
+  "withinPlan": true,
+  "testsRerun": 0,
+  "newAppVMProviderCredentialCLIOrBuildStarted": false,
+  "onlyOwnReviewArtifactsWritten": true
+}

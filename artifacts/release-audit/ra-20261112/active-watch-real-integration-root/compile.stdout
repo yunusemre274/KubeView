@@ -1,0 +1,5 @@
+{"Time":"2026-11-13T00:13:16.254855+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/server"}
+{"Time":"2026-11-13T00:13:16.829541+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"testing: warning: no tests to run\n"}
+{"Time":"2026-11-13T00:13:16.82962+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"PASS\n"}
+{"Time":"2026-11-13T00:13:16.830588+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"ok  \tgithub.com/k8s-tersane/tersane/backend/pkg/server\t0.575s [no tests to run]\n"}
+{"Time":"2026-11-13T00:13:16.833878+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Elapsed":0.579}

@@ -1,0 +1,36 @@
+{
+  "ghsa_id": "GHSA-358w-w75h-x6rx",
+  "cve_id": "CVE-2026-119299",
+  "summary": "SCTP chunk sub-decoder out-of-bounds panics on crafted segments",
+  "severity": "medium",
+  "cvss": {
+    "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "score": 5.9
+  },
+  "cvss_severities": {
+    "cvss_v3": {
+      "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "score": 5.9
+    },
+    "cvss_v4": {
+      "vector_string": null,
+      "score": null
+    }
+  },
+  "vulnerabilities": [
+    {
+      "package": {
+        "ecosystem": "go",
+        "name": "github.com/gopacket/gopacket"
+      },
+      "vulnerable_version_range": "<= 1.7.1",
+      "patched_versions": "1.7.2",
+      "vulnerable_functions": []
+    }
+  ],
+  "published_at": "2026-09-15T01:09:22Z",
+  "updated_at": "2026-10-30T16:23:04Z",
+  "html_url": "https://github.com/gopacket/gopacket/security/advisories/GHSA-358w-w75h-x6rx",
+  "references": null,
+  "bodySHA256": "30d5fe183331a2b2aa9f096a336e076ea8df5c29b343de77ef937d4d7a016d28"
+}

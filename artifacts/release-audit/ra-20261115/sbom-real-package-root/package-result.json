@@ -1,0 +1,63 @@
+{
+  "stage": "actual npm lock SBOM + Go BuildInfo + archive packaging",
+  "sourceCommit": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+  "sourceSnapshotSHA256": "562963733cd08f9351202a2e7bce7d420d35fb0f24ad242f7e1511c9c78ed8d0",
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "scripts/build-release.mjs",
+    "--prepared",
+    "--require-clean",
+    "--output-dir=/Users/yunusemre/Desktop/KubeView/.git/release-audit/sbom-real-build-20261115/packages",
+    "darwin-arm64",
+    "linux-amd64"
+  ],
+  "startedAt": "2026-11-15T10:40:18.251080+00:00",
+  "status": "PASS",
+  "scope": "isolated source and dependency clone, no cluster/credential/provider; native runtime pending",
+  "automaticRetries": 0,
+  "ownedPID": 18445,
+  "exitCode": 0,
+  "packages": {
+    "darwin-arm64": {
+      "binarySHA256": "819658d5b7044a5ad69eb534e698d3e8d7b0d588f43b4ead87c59a7e699f57af",
+      "sboms": {
+        "sbom.binary.cdx.json": "899a2e416f5cfc359637957e089b2fb410fa5886b8b902a61fe200783291af88",
+        "sbom.frontend-source.cdx.json": "f405243cd711d01afc85c82af7baa822db3f30c1556c331ed86fa5bb8622edb8"
+      },
+      "frontendInventorySHA256": "a05fde1291b34410a189cfeb5c46d73c9f07b18a0adae1afbba210fc38040408",
+      "coverage": {
+        "binary": "linked Go modules and positive-rendered JavaScript module packages",
+        "source": "resolved frontend lock inputs including development dependencies"
+      },
+      "archiveSHA256": "8eb2d9b954b916ce043241437fbf8c3950fd198191ad00226449627b5a1b148c"
+    },
+    "linux-amd64": {
+      "binarySHA256": "3dcbe1b1247ceed0e6960996ca68f796694026523f28d4d3cbc434f1e55ec543",
+      "sboms": {
+        "sbom.binary.cdx.json": "32c21efa9939d695acc1c476696eee3e36bb6eb9277bde69e66a4ecf06d9c61e",
+        "sbom.frontend-source.cdx.json": "f405243cd711d01afc85c82af7baa822db3f30c1556c331ed86fa5bb8622edb8"
+      },
+      "frontendInventorySHA256": "a05fde1291b34410a189cfeb5c46d73c9f07b18a0adae1afbba210fc38040408",
+      "coverage": {
+        "binary": "linked Go modules and positive-rendered JavaScript module packages",
+        "source": "resolved frontend lock inputs including development dependencies"
+      },
+      "archiveSHA256": "5e4231e928b31f663d1656d21b9ed564aa62adb4318162a2ce4187c751ea3549"
+    }
+  },
+  "frontendAssets": {
+    "assets/HarborScene-DKt6unGp.js": "5b6386779e5ed1f0fdebb3eb53be34c026451d12be33bab15e0c97147178e5ee",
+    "assets/index-CCZQtIvj.css": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+    "assets/index-DxIumOcP.js": "6dbe0611b28befc777524ab53f6fe2a07258fcd5edcb3b721a5a46964b39d91d",
+    "assets/three-BKmXRbXN.js": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+    "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+    "index.html": "d0b09c58e230d899fe974a215412826df7a8507c052b63d6a4de174fe3b7a5bb",
+    "package-inventory.json": "a05fde1291b34410a189cfeb5c46d73c9f07b18a0adae1afbba210fc38040408"
+  },
+  "runtimeInputsDirty": false,
+  "note": "Partial private checkout may report actual Go vcs.modified=true; runtime input hashes are independently bound. Not final release/platform acceptance.",
+  "finishedAt": "2026-11-15T10:40:54.821924+00:00",
+  "seconds": 36.57069475000026,
+  "sampledOwnedGroupPeakRSSBytes": 729382912,
+  "childExitCode": 0
+}

@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "artifacts/release-audit/ra-20261112/render-work-guard-worker/offline-family-review.mjs"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 0.07797483399917837,
+  "newMeasurements": 0
+}

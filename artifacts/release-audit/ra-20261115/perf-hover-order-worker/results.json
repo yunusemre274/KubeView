@@ -1,0 +1,415 @@
+{
+  "status": "DIAGNOSTIC_COMPLETE_HYPOTHESIS_REJECTED_FOR_TWO_CURRENT_B_CASES",
+  "hypothesis": "Guarding canvas before neutral pointer movement retains actual CargoLayer hover/outline after reset",
+  "historicalBENCH_RENDER_001": "OPEN_NOT_REPRODUCED_NOT_FIXED",
+  "scope": "INSTRUMENTED_SYNTHETIC_FIXTURE_HOVER_ORDER_NOT_NORMAL_CPU_ACCEPTANCE",
+  "newProductChanges": false,
+  "actualJobs": 2,
+  "automaticRetries": 0,
+  "extraJobs": 0,
+  "executionElapsedSeconds": 41.59819531440735,
+  "executionWithin270Seconds": true,
+  "reportFinalizedAt": "2026-11-15T10:16:44.417927+00:00",
+  "reportFinalizationElapsedSinceActualStartSeconds": 301.8297641277313,
+  "finalizationTargetExceeded": true,
+  "allEightPNGsActuallyOpened": true,
+  "visualReview": "Normal full-screen world + stable worker-001 Soft UI panel preserved in all eight frames. Pod label visible only at actual hover, gone at reset and cleanup. Sea/fleet positions evolve, so images are not bitwise-equal snapshots. No third job or product fix.",
+  "port5192FreeAtCleanup": true,
+  "helperUnchanged": true,
+  "repositoryRunUnchanged": true,
+  "cases": [
+    {
+      "id": "hover-order-0-20261115T101142Z",
+      "order": "leave-before-guard",
+      "exitCode": 0,
+      "durationSeconds": 21.0667781829834,
+      "canonicalEqual": true,
+      "capturedIdentityChecks": 15,
+      "allCapturedIdentityAbsent": true,
+      "stages": [
+        {
+          "stage": "00-before",
+          "callbacks": 254,
+          "calls": 442,
+          "lines": 60,
+          "geometries": 40,
+          "textures": 4,
+          "hoverCount": 0,
+          "hoverTargets": [],
+          "outlines": [
+            {
+              "objectUUID": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+              "objectType": "LineSegments",
+              "geometryUUID": "9d29deff-c6aa-4dfc-ae58-1036889d8555",
+              "geometryType": "EdgesGeometry",
+              "geometryContentSHA256": "116774ca27553098f809932c87567257ddb89e1084231c5908e1049afc4b925e",
+              "materialUUID": "25b062fe-e986-4a6b-b489-3480586f6d9f",
+              "color": "4a8bd8",
+              "wireframe": false,
+              "positionAttributeCount": 120,
+              "indexCount": null,
+              "harborTarget": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              }
+            }
+          ],
+          "panelUID": "node-0",
+          "panelTitle": "worker-001",
+          "panelTab": "Özet",
+          "callbacksRestored": true,
+          "canvasPointerEvents": "",
+          "eventsConnectedTag": "DIV",
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+        },
+        {
+          "stage": "01-hover",
+          "callbacks": 247,
+          "calls": 435,
+          "lines": 96,
+          "geometries": 33,
+          "textures": 4,
+          "hoverCount": 1,
+          "hoverTargets": [
+            {
+              "type": "container",
+              "uid": "pod-0",
+              "name": "app-0",
+              "namespace": "bench-0",
+              "containerName": "app",
+              "containerRole": "container",
+              "instance": 0
+            }
+          ],
+          "outlines": [
+            {
+              "objectUUID": "9b72da23-89fc-4fb0-9153-25dedd6479eb",
+              "objectType": "Mesh",
+              "geometryUUID": "3cb96af8-3630-4012-996d-557b4cf15d4d",
+              "geometryType": "BoxGeometry",
+              "geometryContentSHA256": "675cb20580910db1c4d9650cc5640483e90c63cdbddb9537895e3f5ba54681de",
+              "materialUUID": "2d0c5a1f-cc98-4d70-828c-96dac1d0e4d2",
+              "color": "e5be62",
+              "wireframe": true,
+              "positionAttributeCount": 24,
+              "indexCount": 36,
+              "harborTarget": null
+            },
+            {
+              "objectUUID": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+              "objectType": "LineSegments",
+              "geometryUUID": "9d29deff-c6aa-4dfc-ae58-1036889d8555",
+              "geometryType": "EdgesGeometry",
+              "geometryContentSHA256": "116774ca27553098f809932c87567257ddb89e1084231c5908e1049afc4b925e",
+              "materialUUID": "25b062fe-e986-4a6b-b489-3480586f6d9f",
+              "color": "4a8bd8",
+              "wireframe": false,
+              "positionAttributeCount": 120,
+              "indexCount": null,
+              "harborTarget": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              }
+            }
+          ],
+          "panelUID": "node-0",
+          "panelTitle": "worker-001",
+          "panelTab": "Özet",
+          "callbacksRestored": true,
+          "canvasPointerEvents": "",
+          "eventsConnectedTag": "DIV",
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+        },
+        {
+          "stage": "02-guard-reset",
+          "callbacks": 238,
+          "calls": 426,
+          "lines": 60,
+          "geometries": 32,
+          "textures": 4,
+          "hoverCount": 0,
+          "hoverTargets": [],
+          "outlines": [
+            {
+              "objectUUID": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+              "objectType": "LineSegments",
+              "geometryUUID": "9d29deff-c6aa-4dfc-ae58-1036889d8555",
+              "geometryType": "EdgesGeometry",
+              "geometryContentSHA256": "116774ca27553098f809932c87567257ddb89e1084231c5908e1049afc4b925e",
+              "materialUUID": "25b062fe-e986-4a6b-b489-3480586f6d9f",
+              "color": "4a8bd8",
+              "wireframe": false,
+              "positionAttributeCount": 120,
+              "indexCount": null,
+              "harborTarget": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              }
+            }
+          ],
+          "panelUID": "node-0",
+          "panelTitle": "worker-001",
+          "panelTab": "Özet",
+          "callbacksRestored": true,
+          "canvasPointerEvents": "none",
+          "eventsConnectedTag": "DIV",
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+        },
+        {
+          "stage": "03-cleanup",
+          "callbacks": 246,
+          "calls": 434,
+          "lines": 60,
+          "geometries": 32,
+          "textures": 4,
+          "hoverCount": 0,
+          "hoverTargets": [],
+          "outlines": [
+            {
+              "objectUUID": "b6b24caa-2de9-4eb7-9376-42b2d060a7ff",
+              "objectType": "LineSegments",
+              "geometryUUID": "9d29deff-c6aa-4dfc-ae58-1036889d8555",
+              "geometryType": "EdgesGeometry",
+              "geometryContentSHA256": "116774ca27553098f809932c87567257ddb89e1084231c5908e1049afc4b925e",
+              "materialUUID": "25b062fe-e986-4a6b-b489-3480586f6d9f",
+              "color": "4a8bd8",
+              "wireframe": false,
+              "positionAttributeCount": 120,
+              "indexCount": null,
+              "harborTarget": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              }
+            }
+          ],
+          "panelUID": "node-0",
+          "panelTitle": "worker-001",
+          "panelTab": "Özet",
+          "callbacksRestored": true,
+          "canvasPointerEvents": "auto",
+          "eventsConnectedTag": "DIV",
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "hardware": "Hardware:\n\n    Hardware Overview:\n\n      Model Name: MacBook Air\n      Model Identifier: Mac17,3\n      Model Number: Z1L8000H1TU/A\n      Chip: Apple M5\n      Total Number of Cores: 10 (4 Super and 6 Efficiency)\n      Memory: 32 GB\n      System Firmware Version: 20457.1.29\n      OS Loader Version: 20457.1.29",
+      "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+      "fixtureSHA256": {
+        "M": "b5cf1d2934a9a1926c5ccad1a7181ce73057c4066e13b35895cef96f43af751b"
+      },
+      "lockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+      "powerBefore": {
+        "at": "2026-11-15T10:11:42.706456+00:00",
+        "source": "AC",
+        "batteryPercent": 48,
+        "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+      },
+      "manifestScope": "Explicit synthetic read-only upstream using production Go dynamic informers, websocket, frontend store and App; never uses kubeconfig"
+    },
+    {
+      "id": "hover-order-1-20261115T101203Z",
+      "order": "guard-before-leave",
+      "exitCode": 0,
+      "durationSeconds": 19.74333691596985,
+      "canonicalEqual": true,
+      "capturedIdentityChecks": 27,
+      "allCapturedIdentityAbsent": true,
+      "stages": [
+        {
+          "stage": "00-before",
+          "callbacks": 254,
+          "calls": 442,
+          "lines": 60,
+          "geometries": 40,
+          "textures": 4,
+          "hoverCount": 0,
+          "hoverTargets": [],
+          "outlines": [
+            {
+              "objectUUID": "c2b66f32-5505-46e7-99fe-2b94e60ada17",
+              "objectType": "LineSegments",
+              "geometryUUID": "85ad8679-2846-4022-8c40-95e94f6c5bb4",
+              "geometryType": "EdgesGeometry",
+              "geometryContentSHA256": "b40b626665cdb0bd2936b9ed0848b12c2f4d3732bcf15f5776c8acdeaab0bccb",
+              "materialUUID": "192f2422-3729-4fd1-a973-4d80261c9b12",
+              "color": "4a8bd8",
+              "wireframe": false,
+              "positionAttributeCount": 120,
+              "indexCount": null,
+              "harborTarget": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              }
+            }
+          ],
+          "panelUID": "node-0",
+          "panelTitle": "worker-001",
+          "panelTab": "Özet",
+          "callbacksRestored": true,
+          "canvasPointerEvents": "",
+          "eventsConnectedTag": "DIV",
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+        },
+        {
+          "stage": "01-hover",
+          "callbacks": 247,
+          "calls": 435,
+          "lines": 96,
+          "geometries": 33,
+          "textures": 4,
+          "hoverCount": 1,
+          "hoverTargets": [
+            {
+              "type": "container",
+              "uid": "pod-0",
+              "name": "app-0",
+              "namespace": "bench-0",
+              "containerName": "app",
+              "containerRole": "container",
+              "instance": 0
+            }
+          ],
+          "outlines": [
+            {
+              "objectUUID": "b314e22b-edaf-41d9-9b87-a213ab48d740",
+              "objectType": "Mesh",
+              "geometryUUID": "eafafd46-3426-45bb-9abf-c9fe37371c1c",
+              "geometryType": "BoxGeometry",
+              "geometryContentSHA256": "675cb20580910db1c4d9650cc5640483e90c63cdbddb9537895e3f5ba54681de",
+              "materialUUID": "da944aef-030e-4337-98c4-a1a93e6a3b73",
+              "color": "e5be62",
+              "wireframe": true,
+              "positionAttributeCount": 24,
+              "indexCount": 36,
+              "harborTarget": null
+            },
+            {
+              "objectUUID": "c2b66f32-5505-46e7-99fe-2b94e60ada17",
+              "objectType": "LineSegments",
+              "geometryUUID": "85ad8679-2846-4022-8c40-95e94f6c5bb4",
+              "geometryType": "EdgesGeometry",
+              "geometryContentSHA256": "b40b626665cdb0bd2936b9ed0848b12c2f4d3732bcf15f5776c8acdeaab0bccb",
+              "materialUUID": "192f2422-3729-4fd1-a973-4d80261c9b12",
+              "color": "4a8bd8",
+              "wireframe": false,
+              "positionAttributeCount": 120,
+              "indexCount": null,
+              "harborTarget": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              }
+            }
+          ],
+          "panelUID": "node-0",
+          "panelTitle": "worker-001",
+          "panelTab": "Özet",
+          "callbacksRestored": true,
+          "canvasPointerEvents": "",
+          "eventsConnectedTag": "DIV",
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+        },
+        {
+          "stage": "02-guard-reset",
+          "callbacks": 238,
+          "calls": 426,
+          "lines": 60,
+          "geometries": 32,
+          "textures": 4,
+          "hoverCount": 0,
+          "hoverTargets": [],
+          "outlines": [
+            {
+              "objectUUID": "c2b66f32-5505-46e7-99fe-2b94e60ada17",
+              "objectType": "LineSegments",
+              "geometryUUID": "85ad8679-2846-4022-8c40-95e94f6c5bb4",
+              "geometryType": "EdgesGeometry",
+              "geometryContentSHA256": "b40b626665cdb0bd2936b9ed0848b12c2f4d3732bcf15f5776c8acdeaab0bccb",
+              "materialUUID": "192f2422-3729-4fd1-a973-4d80261c9b12",
+              "color": "4a8bd8",
+              "wireframe": false,
+              "positionAttributeCount": 120,
+              "indexCount": null,
+              "harborTarget": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              }
+            }
+          ],
+          "panelUID": "node-0",
+          "panelTitle": "worker-001",
+          "panelTab": "Özet",
+          "callbacksRestored": true,
+          "canvasPointerEvents": "none",
+          "eventsConnectedTag": "DIV",
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+        },
+        {
+          "stage": "03-cleanup",
+          "callbacks": 246,
+          "calls": 434,
+          "lines": 60,
+          "geometries": 32,
+          "textures": 4,
+          "hoverCount": 0,
+          "hoverTargets": [],
+          "outlines": [
+            {
+              "objectUUID": "c2b66f32-5505-46e7-99fe-2b94e60ada17",
+              "objectType": "LineSegments",
+              "geometryUUID": "85ad8679-2846-4022-8c40-95e94f6c5bb4",
+              "geometryType": "EdgesGeometry",
+              "geometryContentSHA256": "b40b626665cdb0bd2936b9ed0848b12c2f4d3732bcf15f5776c8acdeaab0bccb",
+              "materialUUID": "192f2422-3729-4fd1-a973-4d80261c9b12",
+              "color": "4a8bd8",
+              "wireframe": false,
+              "positionAttributeCount": 120,
+              "indexCount": null,
+              "harborTarget": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              }
+            }
+          ],
+          "panelUID": "node-0",
+          "panelTitle": "worker-001",
+          "panelTab": "Özet",
+          "callbacksRestored": true,
+          "canvasPointerEvents": "auto",
+          "eventsConnectedTag": "DIV",
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "hardware": "Hardware:\n\n    Hardware Overview:\n\n      Model Name: MacBook Air\n      Model Identifier: Mac17,3\n      Model Number: Z1L8000H1TU/A\n      Chip: Apple M5\n      Total Number of Cores: 10 (4 Super and 6 Efficiency)\n      Memory: 32 GB\n      System Firmware Version: 20457.1.29\n      OS Loader Version: 20457.1.29",
+      "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+      "fixtureSHA256": {
+        "M": "b5cf1d2934a9a1926c5ccad1a7181ce73057c4066e13b35895cef96f43af751b"
+      },
+      "lockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+      "powerBefore": {
+        "at": "2026-11-15T10:12:03.807348+00:00",
+        "source": "AC",
+        "batteryPercent": 48,
+        "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+      },
+      "manifestScope": "Explicit synthetic read-only upstream using production Go dynamic informers, websocket, frontend store and App; never uses kubeconfig"
+    }
+  ],
+  "noClaim": [
+    "normal CPU/FPS acceptance",
+    "physical presented FPS",
+    "real Kubernetes/provider E2E",
+    "12 historical lines attributed to cargo",
+    "BENCH-RENDER-001 closed",
+    "native Safari or physical latency",
+    "global release ready"
+  ]
+}

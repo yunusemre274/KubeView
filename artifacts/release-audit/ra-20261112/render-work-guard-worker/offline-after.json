@@ -1,0 +1,2974 @@
+{
+  "comparable": false,
+  "reasons": [
+    "REQUIRES_RENDER_EQUIVALENCE_REVIEW: REQUIRES_RENDER_EQUIVALENCE_REVIEW"
+  ],
+  "renderWorkReview": {
+    "protocol": "paired-submitted-work-v1",
+    "status": "REQUIRES_RENDER_EQUIVALENCE_REVIEW",
+    "automaticEligibility": false,
+    "pairs": [
+      {
+        "block": 0,
+        "scenario": "panel-closed",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 0,
+        "scenario": "panel-closed-events",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open-events",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed-events",
+        "status": "REQUIRES_RENDER_EQUIVALENCE_REVIEW",
+        "differences": [
+          {
+            "path": "summary.triangles.p95",
+            "before": 72574,
+            "after": 72566,
+            "status": "DIFFERENT"
+          }
+        ],
+        "unknowns": []
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open-events",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed-events",
+        "status": "REQUIRES_RENDER_EQUIVALENCE_REVIEW",
+        "differences": [
+          {
+            "path": "summary.triangles.p50",
+            "before": 72334,
+            "after": 72346,
+            "status": "DIFFERENT"
+          }
+        ],
+        "unknowns": []
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open-events",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed-events",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open-events",
+        "status": "REQUIRES_RENDER_EQUIVALENCE_REVIEW",
+        "differences": [
+          {
+            "path": "before.stats.calls",
+            "before": 426,
+            "after": 427,
+            "status": "DIFFERENT"
+          },
+          {
+            "path": "before.stats.lines",
+            "before": 60,
+            "after": 72,
+            "status": "DIFFERENT"
+          },
+          {
+            "path": "summary.calls.p50",
+            "before": 434,
+            "after": 435,
+            "status": "DIFFERENT"
+          },
+          {
+            "path": "summary.calls.p95",
+            "before": 440,
+            "after": 441,
+            "status": "DIFFERENT"
+          },
+          {
+            "path": "summary.calls.p99",
+            "before": 443,
+            "after": 444,
+            "status": "DIFFERENT"
+          },
+          {
+            "path": "summary.calls.max",
+            "before": 444,
+            "after": 445,
+            "status": "DIFFERENT"
+          }
+        ],
+        "unknowns": []
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed-events",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open-events",
+        "status": "MATCHED_COUNTERS_ONLY",
+        "differences": [],
+        "unknowns": []
+      }
+    ],
+    "allocationObservations": [
+      {
+        "block": 0,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 33,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 33,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 33,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.geometries",
+        "before": 35,
+        "after": 36,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.geometries",
+        "before": 35,
+        "after": 36,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 0,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.geometries",
+        "before": 35,
+        "after": 35,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.geometries",
+        "before": 35,
+        "after": 35,
+        "status": "MATCHED"
+      },
+      {
+        "block": 1,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.geometries",
+        "before": 35,
+        "after": 35,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.geometries",
+        "before": 35,
+        "after": 35,
+        "status": "MATCHED"
+      },
+      {
+        "block": 2,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 33,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.geometries",
+        "before": 37,
+        "after": 38,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 33,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.geometries",
+        "before": 37,
+        "after": 38,
+        "status": "DIFFERENT"
+      },
+      {
+        "block": 3,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.geometries",
+        "before": 37,
+        "after": 37,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-closed-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.geometries",
+        "before": 32,
+        "after": 32,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open-events",
+        "path": "before.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.geometries",
+        "before": 37,
+        "after": 37,
+        "status": "MATCHED"
+      },
+      {
+        "block": 4,
+        "scenario": "panel-open-events",
+        "path": "after.stats.memory.textures",
+        "before": 4,
+        "after": 4,
+        "status": "MATCHED"
+      }
+    ],
+    "interpretation": "Counter differences or unknown data require external semantic and visual equivalence review; counters alone assign no performance or quality verdict. Matching counters establish only this guard's scope. Allocation observations describe renderer memory inventory separately, without establishing active draws, retained JS or leaks."
+  },
+  "inputs": {
+    "before": [
+      "cat16-balanced-p0-A-20261112T184345Z",
+      "cat16-balanced-p1-A-20261112T190207Z",
+      "cat16-balanced-p2-A-20261112T190815Z",
+      "cat16-balanced-p3-A-20261112T192636Z",
+      "cat16-balanced-p4-A-20261112T193244Z"
+    ],
+    "after": [
+      "cat16-balanced-p0-B-20261112T184952Z",
+      "cat16-balanced-p1-B-20261112T185600Z",
+      "cat16-balanced-p2-B-20261112T191422Z",
+      "cat16-balanced-p3-B-20261112T192029Z",
+      "cat16-balanced-p4-B-20261112T193853Z"
+    ]
+  },
+  "table": [
+    {
+      "scenario": "panel-closed",
+      "before": {
+        "browserCPU": {
+          "n": 5,
+          "p50": 0.6212088478221128,
+          "p95": 0.6290499451699729,
+          "p99": 0.6290499451699729,
+          "min": 0.6078890939011619,
+          "max": 0.6290499451699729
+        },
+        "rendererCPU": {
+          "n": 5,
+          "p50": 0.36521710220094433,
+          "p95": 0.36950234367208545,
+          "p99": 0.36950234367208545,
+          "min": 0.35605645040642303,
+          "max": 0.36950234367208545
+        },
+        "gpuProcessCPU": {
+          "n": 5,
+          "p50": 0.2576377115122503,
+          "p95": 0.2594186761504329,
+          "p99": 0.2594186761504329,
+          "min": 0.25000415565418305,
+          "max": 0.2594186761504329
+        },
+        "browserMainCPU": {
+          "n": 5,
+          "p50": 0.0014953643704515996,
+          "p95": 0.0016621787839500033,
+          "p99": 0.0016621787839500033,
+          "min": 0.0013298093385860797,
+          "max": 0.0016621787839500033
+        },
+        "goCPU": {
+          "n": 5,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "min": 0,
+          "max": 0
+        },
+        "cpuMsPerJSFrame": {
+          "n": 5,
+          "p50": 10.352262740471113,
+          "p95": 10.479986131414842,
+          "p99": 10.479986131414842,
+          "min": 10.13067505443064,
+          "max": 10.479986131414842
+        },
+        "jsFPS": {
+          "n": 5,
+          "p50": 60.01235548495204,
+          "p95": 60.02410954524943,
+          "p99": 60.02410954524943,
+          "min": 60.004796386722745,
+          "max": 60.02410954524943
+        },
+        "intervalP95ms": {
+          "n": 5,
+          "p50": 18.100000001490116,
+          "p95": 18.600000001490116,
+          "p99": 18.600000001490116,
+          "min": 17.5,
+          "max": 18.600000001490116
+        },
+        "intervalP99ms": {
+          "n": 5,
+          "p50": 18.699999999254942,
+          "p95": 19,
+          "p99": 19,
+          "min": 17.800000000745058,
+          "max": 19
+        },
+        "submitP95ms": {
+          "n": 5,
+          "p50": 4.899999998509884,
+          "p95": 4.899999998509884,
+          "p99": 4.899999998509884,
+          "min": 4.700000002980232,
+          "max": 4.899999998509884
+        },
+        "callbackStoreP95ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "callbackDrawProxyP95ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "maxProcessRSSMiB": {
+          "n": 5,
+          "p50": 324.390625,
+          "p95": 400.25,
+          "p99": 400.25,
+          "min": 319.671875,
+          "max": 400.25
+        },
+        "jsHeapEndMiB": {
+          "n": 5,
+          "p50": 25.986302375793457,
+          "p95": 98.60464286804199,
+          "p99": 98.60464286804199,
+          "min": 24.735065460205078,
+          "max": 98.60464286804199
+        }
+      },
+      "after": {
+        "browserCPU": {
+          "n": 5,
+          "p50": 0.6221535188324855,
+          "p95": 0.6984279969424042,
+          "p99": 0.6984279969424042,
+          "min": 0.6061361521074325,
+          "max": 0.6984279969424042
+        },
+        "rendererCPU": {
+          "n": 5,
+          "p50": 0.36401715368505033,
+          "p95": 0.4046329223304198,
+          "p99": 0.4046329223304198,
+          "min": 0.3471945220050524,
+          "max": 0.4046329223304198
+        },
+        "gpuProcessCPU": {
+          "n": 5,
+          "p50": 0.2554089534381336,
+          "p95": 0.29163481671042574,
+          "p99": 0.29163481671042574,
+          "min": 0.2502991623454328,
+          "max": 0.29163481671042574
+        },
+        "browserMainCPU": {
+          "n": 5,
+          "p50": 0.0013298093385860814,
+          "p95": 0.00831006515091078,
+          "p99": 0.00831006515091078,
+          "min": 0.001329389477882282,
+          "max": 0.00831006515091078
+        },
+        "goCPU": {
+          "n": 5,
+          "p50": 0,
+          "p95": 0.00016621787839500032,
+          "p99": 0.00016621787839500032,
+          "min": 0,
+          "max": 0.00016621787839500032
+        },
+        "cpuMsPerJSFrame": {
+          "n": 5,
+          "p50": 10.367919090708394,
+          "p95": 11.639465354704832,
+          "p99": 11.639465354704832,
+          "min": 10.09870930115617,
+          "max": 11.639465354704832
+        },
+        "jsFPS": {
+          "n": 5,
+          "p50": 60.007559220832654,
+          "p95": 60.02750775112404,
+          "p99": 60.02750775112404,
+          "min": 60.005161376256005,
+          "max": 60.02750775112404
+        },
+        "intervalP95ms": {
+          "n": 5,
+          "p50": 18.300000000745058,
+          "p95": 18.599999997764826,
+          "p99": 18.599999997764826,
+          "min": 17.600000001490116,
+          "max": 18.599999997764826
+        },
+        "intervalP99ms": {
+          "n": 5,
+          "p50": 18.699999999254942,
+          "p95": 18.899999998509884,
+          "p99": 18.899999998509884,
+          "min": 17.800000000745058,
+          "max": 18.899999998509884
+        },
+        "submitP95ms": {
+          "n": 5,
+          "p50": 4.899999998509884,
+          "p95": 5.300000000745058,
+          "p99": 5.300000000745058,
+          "min": 4.699999999254942,
+          "max": 5.300000000745058
+        },
+        "callbackStoreP95ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "callbackDrawProxyP95ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "maxProcessRSSMiB": {
+          "n": 5,
+          "p50": 323.453125,
+          "p95": 404.40625,
+          "p99": 404.40625,
+          "min": 317.84375,
+          "max": 404.40625
+        },
+        "jsHeapEndMiB": {
+          "n": 5,
+          "p50": 33.74558162689209,
+          "p95": 101.49862957000732,
+          "p99": 101.49862957000732,
+          "min": 22.583308219909668,
+          "max": 101.49862957000732
+        }
+      }
+    },
+    {
+      "scenario": "panel-open",
+      "before": {
+        "browserCPU": {
+          "n": 5,
+          "p50": 0.6337150359819842,
+          "p95": 0.6373502185438167,
+          "p99": 0.6373502185438167,
+          "min": 0.6192778691657114,
+          "max": 0.6373502185438167
+        },
+        "rendererCPU": {
+          "n": 5,
+          "p50": 0.3752763050740416,
+          "p95": 0.3759286034800818,
+          "p99": 0.3759286034800818,
+          "min": 0.36621637339448027,
+          "max": 0.3759286034800818
+        },
+        "gpuProcessCPU": {
+          "n": 5,
+          "p50": 0.25677674550017454,
+          "p95": 0.25992587791461,
+          "p99": 0.25992587791461,
+          "min": 0.2517322167389463,
+          "max": 0.25992587791461
+        },
+        "browserMainCPU": {
+          "n": 5,
+          "p50": 0.001329477847575366,
+          "p95": 0.001329588326214497,
+          "p99": 0.001329588326214497,
+          "min": 0.0011629452418926113,
+          "max": 0.001329588326214497
+        },
+        "goCPU": {
+          "n": 5,
+          "p50": 0,
+          "p95": 0.00016613503455608733,
+          "p99": 0.00016613503455608733,
+          "min": 0,
+          "max": 0.00016613503455608733
+        },
+        "cpuMsPerJSFrame": {
+          "n": 5,
+          "p50": 10.560604353232161,
+          "p95": 10.619697698038708,
+          "p99": 10.619697698038708,
+          "min": 10.318348058952939,
+          "max": 10.619697698038708
+        },
+        "jsFPS": {
+          "n": 5,
+          "p50": 60.00745930681801,
+          "p95": 60.0171525158411,
+          "p99": 60.0171525158411,
+          "min": 60.00406242820215,
+          "max": 60.0171525158411
+        },
+        "intervalP95ms": {
+          "n": 5,
+          "p50": 18.600000001490116,
+          "p95": 18.600000001490116,
+          "p99": 18.600000001490116,
+          "min": 17.699999999254942,
+          "max": 18.600000001490116
+        },
+        "intervalP99ms": {
+          "n": 5,
+          "p50": 18.899999998509884,
+          "p95": 19,
+          "p99": 19,
+          "min": 17.900000002235174,
+          "max": 19
+        },
+        "submitP95ms": {
+          "n": 5,
+          "p50": 4.699999999254942,
+          "p95": 4.700000002980232,
+          "p99": 4.700000002980232,
+          "min": 4.599999997764826,
+          "max": 4.700000002980232
+        },
+        "callbackStoreP95ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "callbackDrawProxyP95ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "maxProcessRSSMiB": {
+          "n": 5,
+          "p50": 340.96875,
+          "p95": 344.21875,
+          "p99": 344.21875,
+          "min": 315.78125,
+          "max": 344.21875
+        },
+        "jsHeapEndMiB": {
+          "n": 5,
+          "p50": 26.209060668945312,
+          "p95": 32.341959953308105,
+          "p99": 32.341959953308105,
+          "min": 20.220046997070312,
+          "max": 32.341959953308105
+        }
+      },
+      "after": {
+        "browserCPU": {
+          "n": 5,
+          "p50": 0.6222997673645732,
+          "p95": 0.7021304882507394,
+          "p99": 0.7021304882507394,
+          "min": 0.6154331964965347,
+          "max": 0.7021304882507394
+        },
+        "rendererCPU": {
+          "n": 5,
+          "p50": 0.36859773324026995,
+          "p95": 0.4197826303719214,
+          "p99": 0.4197826303719214,
+          "min": 0.3575938850116318,
+          "max": 0.4197826303719214
+        },
+        "gpuProcessCPU": {
+          "n": 5,
+          "p50": 0.2532865761438615,
+          "p95": 0.2810183800312427,
+          "p99": 0.2810183800312427,
+          "min": 0.24642738451312737,
+          "max": 0.2810183800312427
+        },
+        "browserMainCPU": {
+          "n": 5,
+          "p50": 0.001329477847575366,
+          "p95": 0.01811232967763376,
+          "p99": 0.01811232967763376,
+          "min": 0.0011633897854376812,
+          "max": 0.01811232967763376
+        },
+        "goCPU": {
+          "n": 5,
+          "p50": 0,
+          "p95": 0.00016616816218012644,
+          "p99": 0.00016616816218012644,
+          "min": 0,
+          "max": 0.00016616816218012644
+        },
+        "cpuMsPerJSFrame": {
+          "n": 5,
+          "p50": 10.369423845555328,
+          "p95": 11.697182309075147,
+          "p99": 11.697182309075147,
+          "min": 10.25243418739495,
+          "max": 11.697182309075147
+        },
+        "jsFPS": {
+          "n": 5,
+          "p50": 60.026008495219656,
+          "p95": 60.0282074295128,
+          "p99": 60.0282074295128,
+          "min": 60.01295507187808,
+          "max": 60.0282074295128
+        },
+        "intervalP95ms": {
+          "n": 5,
+          "p50": 18,
+          "p95": 18.699999999254942,
+          "p99": 18.699999999254942,
+          "min": 17.5,
+          "max": 18.699999999254942
+        },
+        "intervalP99ms": {
+          "n": 5,
+          "p50": 18.699999999254942,
+          "p95": 19,
+          "p99": 19,
+          "min": 17.700000002980232,
+          "max": 19
+        },
+        "submitP95ms": {
+          "n": 5,
+          "p50": 4.600000001490116,
+          "p95": 5.100000001490116,
+          "p99": 5.100000001490116,
+          "min": 4.5,
+          "max": 5.100000001490116
+        },
+        "callbackStoreP95ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "callbackDrawProxyP95ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "maxProcessRSSMiB": {
+          "n": 5,
+          "p50": 349.875,
+          "p95": 378.40625,
+          "p99": 378.40625,
+          "min": 335.5625,
+          "max": 378.40625
+        },
+        "jsHeapEndMiB": {
+          "n": 5,
+          "p50": 26.698914527893066,
+          "p95": 29.241995811462402,
+          "p99": 29.241995811462402,
+          "min": 24.721832275390625,
+          "max": 29.241995811462402
+        }
+      }
+    },
+    {
+      "scenario": "panel-closed-events",
+      "before": {
+        "browserCPU": {
+          "n": 5,
+          "p50": 0.6757160895859641,
+          "p95": 0.6894833028742317,
+          "p99": 0.6894833028742317,
+          "min": 0.6286967501827607,
+          "max": 0.6894833028742317
+        },
+        "rendererCPU": {
+          "n": 5,
+          "p50": 0.42417093108260784,
+          "p95": 0.4317275747508305,
+          "p99": 0.4317275747508305,
+          "min": 0.395486797720135,
+          "max": 0.4317275747508305
+        },
+        "gpuProcessCPU": {
+          "n": 5,
+          "p50": 0.2475576526882436,
+          "p95": 0.2550257517860109,
+          "p99": 0.2550257517860109,
+          "min": 0.22928158436897728,
+          "max": 0.2550257517860109
+        },
+        "browserMainCPU": {
+          "n": 5,
+          "p50": 0.0026583372100750964,
+          "p95": 0.00299052998837016,
+          "p99": 0.00299052998837016,
+          "min": 0.0024925638511773193,
+          "max": 0.00299052998837016
+        },
+        "goCPU": {
+          "n": 5,
+          "p50": 0.003322811098189068,
+          "p95": 0.0034883720930232558,
+          "p99": 0.0034883720930232558,
+          "min": 0.003156775436964179,
+          "max": 0.0034883720930232558
+        },
+        "cpuMsPerJSFrame": {
+          "n": 5,
+          "p50": 11.261022372223152,
+          "p95": 11.487499478650479,
+          "p99": 11.487499478650479,
+          "min": 10.477569763465045,
+          "max": 11.487499478650479
+        },
+        "jsFPS": {
+          "n": 5,
+          "p50": 60.01085657005577,
+          "p95": 60.02031200572732,
+          "p99": 60.02031200572732,
+          "min": 60.004062428198424,
+          "max": 60.02031200572732
+        },
+        "intervalP95ms": {
+          "n": 5,
+          "p50": 18.699999999254942,
+          "p95": 19.099999997764826,
+          "p99": 19.099999997764826,
+          "min": 17.800000000745058,
+          "max": 19.099999997764826
+        },
+        "intervalP99ms": {
+          "n": 5,
+          "p50": 19.199999999254942,
+          "p95": 21.900000002235174,
+          "p99": 21.900000002235174,
+          "min": 18.900000002235174,
+          "max": 21.900000002235174
+        },
+        "submitP95ms": {
+          "n": 5,
+          "p50": 4.800000000745058,
+          "p95": 5,
+          "p99": 5,
+          "min": 4.5,
+          "max": 5
+        },
+        "callbackStoreP95ms": {
+          "n": 5,
+          "p50": 0.8999999985098839,
+          "p95": 0.9000000022351742,
+          "p99": 0.9000000022351742,
+          "min": 0.8000000007450581,
+          "max": 0.9000000022351742
+        },
+        "callbackDrawProxyP95ms": {
+          "n": 5,
+          "p50": 15.699999999254942,
+          "p95": 23.199999999254942,
+          "p99": 23.199999999254942,
+          "min": 14.100000001490116,
+          "max": 23.199999999254942
+        },
+        "maxProcessRSSMiB": {
+          "n": 5,
+          "p50": 362.96875,
+          "p95": 376.765625,
+          "p99": 376.765625,
+          "min": 360.34375,
+          "max": 376.765625
+        },
+        "jsHeapEndMiB": {
+          "n": 5,
+          "p50": 28.17570400238037,
+          "p95": 47.46533203125,
+          "p99": 47.46533203125,
+          "min": 22.68136215209961,
+          "max": 47.46533203125
+        }
+      },
+      "after": {
+        "browserCPU": {
+          "n": 5,
+          "p50": 0.6157168964944346,
+          "p95": 0.682482721956406,
+          "p99": 0.682482721956406,
+          "min": 0.6029240737664064,
+          "max": 0.682482721956406
+        },
+        "rendererCPU": {
+          "n": 5,
+          "p50": 0.38660907127429817,
+          "p95": 0.43128654970760233,
+          "p99": 0.43128654970760233,
+          "min": 0.3779697624190066,
+          "max": 0.43128654970760233
+        },
+        "gpuProcessCPU": {
+          "n": 5,
+          "p50": 0.2256188735670378,
+          "p95": 0.24687666135034544,
+          "p99": 0.24687666135034544,
+          "min": 0.22163150024921083,
+          "max": 0.24687666135034544
+        },
+        "browserMainCPU": {
+          "n": 5,
+          "p50": 0.0026584697183683627,
+          "p95": 0.0033231975807121606,
+          "p99": 0.0033231975807121606,
+          "min": 0.0024921083236417994,
+          "max": 0.0033231975807121606
+        },
+        "goCPU": {
+          "n": 5,
+          "p50": 0.0031570377016765534,
+          "p95": 0.0034888357256778312,
+          "p99": 0.0034888357256778312,
+          "min": 0.0031566705432796147,
+          "max": 0.0034888357256778312
+        },
+        "cpuMsPerJSFrame": {
+          "n": 5,
+          "p50": 10.260621397023023,
+          "p95": 11.371809193475006,
+          "p99": 11.371809193475006,
+          "min": 10.047702922432645,
+          "max": 11.371809193475006
+        },
+        "jsFPS": {
+          "n": 5,
+          "p50": 60.007759049863814,
+          "p95": 60.02870720977095,
+          "p99": 60.02870720977095,
+          "min": 59.99120861555601,
+          "max": 60.02870720977095
+        },
+        "intervalP95ms": {
+          "n": 5,
+          "p50": 17.900000002235174,
+          "p95": 18.699999999254942,
+          "p99": 18.699999999254942,
+          "min": 17.699999999254942,
+          "max": 18.699999999254942
+        },
+        "intervalP99ms": {
+          "n": 5,
+          "p50": 19.099999997764826,
+          "p95": 19.799999997019768,
+          "p99": 19.799999997019768,
+          "min": 18,
+          "max": 19.799999997019768
+        },
+        "submitP95ms": {
+          "n": 5,
+          "p50": 4.199999999254942,
+          "p95": 4.800000000745058,
+          "p99": 4.800000000745058,
+          "min": 4,
+          "max": 4.800000000745058
+        },
+        "callbackStoreP95ms": {
+          "n": 5,
+          "p50": 0.8000000007450581,
+          "p95": 0.9000000022351742,
+          "p99": 0.9000000022351742,
+          "min": 0.7000000029802322,
+          "max": 0.9000000022351742
+        },
+        "callbackDrawProxyP95ms": {
+          "n": 5,
+          "p50": 14.199999999254942,
+          "p95": 20,
+          "p99": 20,
+          "min": 13.100000001490116,
+          "max": 20
+        },
+        "maxProcessRSSMiB": {
+          "n": 5,
+          "p50": 369.625,
+          "p95": 380.359375,
+          "p99": 380.359375,
+          "min": 357.4375,
+          "max": 380.359375
+        },
+        "jsHeapEndMiB": {
+          "n": 5,
+          "p50": 25.67886447906494,
+          "p95": 41.82153606414795,
+          "p99": 41.82153606414795,
+          "min": 24.13743019104004,
+          "max": 41.82153606414795
+        }
+      }
+    },
+    {
+      "scenario": "panel-open-events",
+      "before": {
+        "browserCPU": {
+          "n": 5,
+          "p50": 0.6708309798318769,
+          "p95": 0.6966273467353381,
+          "p99": 0.6966273467353381,
+          "min": 0.6344380762521804,
+          "max": 0.6966273467353381
+        },
+        "rendererCPU": {
+          "n": 5,
+          "p50": 0.42346413263780447,
+          "p95": 0.43960790829041385,
+          "p99": 0.43960790829041385,
+          "min": 0.39671069025666594,
+          "max": 0.43960790829041385
+        },
+        "gpuProcessCPU": {
+          "n": 5,
+          "p50": 0.24321360932983355,
+          "p95": 0.25236750290745974,
+          "p99": 0.25236750290745974,
+          "min": 0.23374034388238216,
+          "max": 0.25236750290745974
+        },
+        "browserMainCPU": {
+          "n": 5,
+          "p50": 0.002989933889239561,
+          "p95": 0.003322811098189069,
+          "p99": 0.003322811098189069,
+          "min": 0.0028242017476824955,
+          "max": 0.003322811098189069
+        },
+        "goCPU": {
+          "n": 5,
+          "p50": 0.003322811098189068,
+          "p95": 0.0034887198059607273,
+          "p99": 0.0034887198059607273,
+          "min": 0.00299028158484924,
+          "max": 0.0034887198059607273
+        },
+        "cpuMsPerJSFrame": {
+          "n": 5,
+          "p50": 11.17621159914022,
+          "p95": 11.606429962078016,
+          "p99": 11.606429962078016,
+          "min": 10.573076015712138,
+          "max": 11.606429962078016
+        },
+        "jsFPS": {
+          "n": 5,
+          "p50": 60.01541588768859,
+          "p95": 60.02311014615038,
+          "p99": 60.02311014615038,
+          "min": 60.00416233090531,
+          "max": 60.02311014615038
+        },
+        "intervalP95ms": {
+          "n": 5,
+          "p50": 18.600000001490116,
+          "p95": 18.699999999254942,
+          "p99": 18.699999999254942,
+          "min": 17.900000002235174,
+          "max": 18.699999999254942
+        },
+        "intervalP99ms": {
+          "n": 5,
+          "p50": 19.199999999254942,
+          "p95": 19.300000000745058,
+          "p99": 19.300000000745058,
+          "min": 18.899999998509884,
+          "max": 19.300000000745058
+        },
+        "submitP95ms": {
+          "n": 5,
+          "p50": 4.300000000745058,
+          "p95": 4.699999999254942,
+          "p99": 4.699999999254942,
+          "min": 4,
+          "max": 4.699999999254942
+        },
+        "callbackStoreP95ms": {
+          "n": 5,
+          "p50": 0.8999999985098839,
+          "p95": 0.9000000022351742,
+          "p99": 0.9000000022351742,
+          "min": 0.6999999992549419,
+          "max": 0.9000000022351742
+        },
+        "callbackDrawProxyP95ms": {
+          "n": 5,
+          "p50": 17.399999998509884,
+          "p95": 23.800000000745058,
+          "p99": 23.800000000745058,
+          "min": 14.600000001490116,
+          "max": 23.800000000745058
+        },
+        "maxProcessRSSMiB": {
+          "n": 5,
+          "p50": 395.875,
+          "p95": 411.28125,
+          "p99": 411.28125,
+          "min": 360.4375,
+          "max": 411.28125
+        },
+        "jsHeapEndMiB": {
+          "n": 5,
+          "p50": 43.23613929748535,
+          "p95": 43.47050857543945,
+          "p99": 43.47050857543945,
+          "min": 21.847721099853516,
+          "max": 43.47050857543945
+        }
+      },
+      "after": {
+        "browserCPU": {
+          "n": 5,
+          "p50": 0.6822148710873217,
+          "p95": 0.7046862800471787,
+          "p99": 0.7046862800471787,
+          "min": 0.6375024921911344,
+          "max": 0.7046862800471787
+        },
+        "rendererCPU": {
+          "n": 5,
+          "p50": 0.4273816845919844,
+          "p95": 0.44553715301426994,
+          "p99": 0.44553715301426994,
+          "min": 0.39991360404067255,
+          "max": 0.44553715301426994
+        },
+        "gpuProcessCPU": {
+          "n": 5,
+          "p50": 0.24452682148378402,
+          "p95": 0.254331611209861,
+          "p99": 0.254331611209861,
+          "min": 0.23360138233534922,
+          "max": 0.254331611209861
+        },
+        "browserMainCPU": {
+          "n": 5,
+          "p50": 0.002990629361334486,
+          "p95": 0.009135302129355875,
+          "p99": 0.009135302129355875,
+          "min": 0.002824717943605336,
+          "max": 0.009135302129355875
+        },
+        "goCPU": {
+          "n": 5,
+          "p50": 0.0031570377016765534,
+          "p95": 0.0034885459408276163,
+          "p99": 0.0034885459408276163,
+          "min": 0.003155831644686576,
+          "max": 0.0034885459408276163
+        },
+        "cpuMsPerJSFrame": {
+          "n": 5,
+          "p50": 11.367578068029509,
+          "p95": 11.74079668196219,
+          "p99": 11.74079668196219,
+          "min": 10.620473210754245,
+          "max": 11.74079668196219
+        },
+        "jsFPS": {
+          "n": 5,
+          "p50": 60.02111144779985,
+          "p95": 60.03006497430642,
+          "p99": 60.03006497430642,
+          "min": 60.014091568546306,
+          "max": 60.03006497430642
+        },
+        "intervalP95ms": {
+          "n": 5,
+          "p50": 17.800000000745058,
+          "p95": 18.600000001490116,
+          "p99": 18.600000001490116,
+          "min": 17.600000001490116,
+          "max": 18.600000001490116
+        },
+        "intervalP99ms": {
+          "n": 5,
+          "p50": 18.800000000745058,
+          "p95": 20,
+          "p99": 20,
+          "min": 18,
+          "max": 20
+        },
+        "submitP95ms": {
+          "n": 5,
+          "p50": 4.200000002980232,
+          "p95": 4.699999999254942,
+          "p99": 4.699999999254942,
+          "min": 3.800000000745058,
+          "max": 4.699999999254942
+        },
+        "callbackStoreP95ms": {
+          "n": 5,
+          "p50": 0.8000000007450581,
+          "p95": 0.8999999985098839,
+          "p99": 0.8999999985098839,
+          "min": 0.6999999992549419,
+          "max": 0.8999999985098839
+        },
+        "callbackDrawProxyP95ms": {
+          "n": 5,
+          "p50": 18.300000000745058,
+          "p95": 20.599999997764826,
+          "p99": 20.599999997764826,
+          "min": 15,
+          "max": 20.599999997764826
+        },
+        "maxProcessRSSMiB": {
+          "n": 5,
+          "p50": 398.71875,
+          "p95": 416.953125,
+          "p99": 416.953125,
+          "min": 374.203125,
+          "max": 416.953125
+        },
+        "jsHeapEndMiB": {
+          "n": 5,
+          "p50": 34.13071632385254,
+          "p95": 43.57941150665283,
+          "p99": 43.57941150665283,
+          "min": 24.351455688476562,
+          "max": 43.57941150665283
+        }
+      }
+    }
+  ],
+  "deltas": [
+    [
+      {
+        "events": false,
+        "blocks": [
+          {
+            "block": 0,
+            "closed": 0.6290499451699729,
+            "open": 0.6273258904837852,
+            "delta": -0.0017240546861877482
+          },
+          {
+            "block": 1,
+            "closed": 0.6193895870736087,
+            "open": 0.6348256722172365,
+            "delta": 0.01543608514362782
+          },
+          {
+            "block": 2,
+            "closed": 0.6078890939011619,
+            "open": 0.6192778691657114,
+            "delta": 0.011388775264549511
+          },
+          {
+            "block": 3,
+            "closed": 0.6289684518466806,
+            "open": 0.6337150359819842,
+            "delta": 0.0047465841353036
+          },
+          {
+            "block": 4,
+            "closed": 0.6212088478221128,
+            "open": 0.6373502185438167,
+            "delta": 0.01614137072170385
+          }
+        ],
+        "signedDelta": {
+          "n": 5,
+          "p50": 0.011388775264549511,
+          "p95": 0.01614137072170385,
+          "p99": 0.01614137072170385,
+          "min": -0.0017240546861877482,
+          "max": 0.01614137072170385
+        }
+      },
+      {
+        "events": true,
+        "blocks": [
+          {
+            "block": 0,
+            "closed": 0.6757160895859641,
+            "open": 0.6861832923506347,
+            "delta": 0.010467202764670613
+          },
+          {
+            "block": 1,
+            "closed": 0.6291231160371558,
+            "open": 0.6504767283478955,
+            "delta": 0.021353612310739734
+          },
+          {
+            "block": 2,
+            "closed": 0.6286967501827607,
+            "open": 0.6708309798318769,
+            "delta": 0.04213422964911617
+          },
+          {
+            "block": 3,
+            "closed": 0.6865448504983388,
+            "open": 0.6966273467353381,
+            "delta": 0.010082496236999305
+          },
+          {
+            "block": 4,
+            "closed": 0.6894833028742317,
+            "open": 0.6344380762521804,
+            "delta": -0.055045226622051247
+          }
+        ],
+        "signedDelta": {
+          "n": 5,
+          "p50": 0.010467202764670613,
+          "p95": 0.04213422964911617,
+          "p99": 0.04213422964911617,
+          "min": -0.055045226622051247,
+          "max": 0.04213422964911617
+        }
+      }
+    ],
+    [
+      {
+        "events": false,
+        "blocks": [
+          {
+            "block": 0,
+            "closed": 0.6061361521074325,
+            "open": 0.6222997673645732,
+            "delta": 0.016163615257140607
+          },
+          {
+            "block": 1,
+            "closed": 0.6221535188324855,
+            "open": 0.6213647090105361,
+            "delta": -0.0007888098219493989
+          },
+          {
+            "block": 2,
+            "closed": 0.6228189703878493,
+            "open": 0.6367383572117143,
+            "delta": 0.013919386823865065
+          },
+          {
+            "block": 3,
+            "closed": 0.6122109742515669,
+            "open": 0.6154331964965347,
+            "delta": 0.0032222222449678206
+          },
+          {
+            "block": 4,
+            "closed": 0.6984279969424042,
+            "open": 0.7021304882507394,
+            "delta": 0.0037024913083352207
+          }
+        ],
+        "signedDelta": {
+          "n": 5,
+          "p50": 0.0037024913083352207,
+          "p95": 0.016163615257140607,
+          "p99": 0.016163615257140607,
+          "min": -0.0007888098219493989,
+          "max": 0.016163615257140607
+        }
+      },
+      {
+        "events": true,
+        "blocks": [
+          {
+            "block": 0,
+            "closed": 0.682482721956406,
+            "open": 0.6822148710873217,
+            "delta": -0.00026785086908431843
+          },
+          {
+            "block": 1,
+            "closed": 0.6029240737664064,
+            "open": 0.6375024921911344,
+            "delta": 0.034578418424727975
+          },
+          {
+            "block": 2,
+            "closed": 0.6122991542462157,
+            "open": 0.6564976820696874,
+            "delta": 0.04419852782347167
+          },
+          {
+            "block": 3,
+            "closed": 0.6157168964944346,
+            "open": 0.6886356841510812,
+            "delta": 0.07291878765664661
+          },
+          {
+            "block": 4,
+            "closed": 0.6242419207443715,
+            "open": 0.7046862800471787,
+            "delta": 0.08044435930280724
+          }
+        ],
+        "signedDelta": {
+          "n": 5,
+          "p50": 0.04419852782347167,
+          "p95": 0.08044435930280724,
+          "p99": 0.08044435930280724,
+          "min": -0.00026785086908431843,
+          "max": 0.08044435930280724
+        }
+      }
+    ]
+  ],
+  "samples": [
+    [
+      {
+        "runId": "cat16-balanced-p0-A-20261112T184345Z",
+        "scenario": "panel-closed",
+        "block": 0,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6290499451699729,
+          "gpuProcessCores": 0.25886418768484365,
+          "rendererProcessCores": 0.36819193832452723,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 332176,
+          "backendRSSKiB": 47328,
+          "browserMainCores": 0.0014953643704515996,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60186,
+            "activeMs": 60059.199999999255,
+            "differenceMs": 126.80000000074506,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p0-A-20261112T184345Z",
+        "scenario": "panel-open",
+        "block": 0,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6273258904837852,
+          "gpuProcessCores": 0.2523591174906964,
+          "rendererProcessCores": 0.3733054226475279,
+          "backendCores": 0.00016613503455608733,
+          "maxBrowserProcessRSSKiB": 349312,
+          "backendRSSKiB": 47328,
+          "browserMainCores": 0.0011629452418926113,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60192,
+            "activeMs": 60062.599999997765,
+            "differenceMs": 129.40000000223517,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p0-A-20261112T184345Z",
+        "scenario": "panel-closed-events",
+        "block": 0,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6757160895859641,
+          "gpuProcessCores": 0.2475576526882436,
+          "rendererProcessCores": 0.42417093108260784,
+          "backendCores": 0.0033229215125938727,
+          "maxBrowserProcessRSSKiB": 385808,
+          "backendRSSKiB": 51440,
+          "browserMainCores": 0.00282448328570479,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60188,
+            "activeMs": 60061.79999999702,
+            "differenceMs": 126.20000000298023,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p0-A-20261112T184345Z",
+        "scenario": "panel-open-events",
+        "block": 0,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6861832923506347,
+          "gpuProcessCores": 0.24955140559579975,
+          "rendererProcessCores": 0.43281052701535194,
+          "backendCores": 0.0033229215125938727,
+          "maxBrowserProcessRSSKiB": 405376,
+          "backendRSSKiB": 50352,
+          "browserMainCores": 0.00282448328570479,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60188,
+            "activeMs": 60062.5,
+            "differenceMs": 125.5,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p1-A-20261112T190207Z",
+        "scenario": "panel-open-events",
+        "block": 1,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6504767283478955,
+          "gpuProcessCores": 0.23387927311385007,
+          "rendererProcessCores": 0.4124447692767682,
+          "backendCores": 0.0031560413275306468,
+          "maxBrowserProcessRSSKiB": 376480,
+          "backendRSSKiB": 51392,
+          "browserMainCores": 0.002989933889239561,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60202,
+            "activeMs": 60067.89999999851,
+            "differenceMs": 134.10000000149012,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p1-A-20261112T190207Z",
+        "scenario": "panel-closed-events",
+        "block": 1,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6291231160371558,
+          "gpuProcessCores": 0.23014672892537266,
+          "rendererProcessCores": 0.395486797720135,
+          "backendCores": 0.0031572475448246066,
+          "maxBrowserProcessRSSKiB": 371680,
+          "backendRSSKiB": 51520,
+          "browserMainCores": 0.0024925638511773193,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60179,
+            "activeMs": 60055.800000000745,
+            "differenceMs": 123.19999999925494,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p1-A-20261112T190207Z",
+        "scenario": "panel-open",
+        "block": 1,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6348256722172365,
+          "gpuProcessCores": 0.2575863329677268,
+          "rendererProcessCores": 0.37574367667098746,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 349152,
+          "backendRSSKiB": 47504,
+          "browserMainCores": 0.001329477847575366,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60174,
+            "activeMs": 60061,
+            "differenceMs": 113,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p1-A-20261112T190207Z",
+        "scenario": "panel-closed",
+        "block": 1,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6193895870736087,
+          "gpuProcessCores": 0.2526763747589601,
+          "rendererProcessCores": 0.36521710220094433,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 345744,
+          "backendRSSKiB": 47056,
+          "browserMainCores": 0.0013298756566261067,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60156,
+            "activeMs": 60054.300000000745,
+            "differenceMs": 101.69999999925494,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p2-A-20261112T190815Z",
+        "scenario": "panel-closed",
+        "block": 2,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6078890939011619,
+          "gpuProcessCores": 0.25000415565418305,
+          "rendererProcessCores": 0.35605645040642303,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 329952,
+          "backendRSSKiB": 46656,
+          "browserMainCores": 0.0013298093385860797,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60159,
+            "activeMs": 60045.199999999255,
+            "differenceMs": 113.80000000074506,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p2-A-20261112T190815Z",
+        "scenario": "panel-open",
+        "block": 2,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6192778691657114,
+          "gpuProcessCores": 0.2517322167389463,
+          "rendererProcessCores": 0.36621637339448027,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 323360,
+          "backendRSSKiB": 46400,
+          "browserMainCores": 0.0011631191532492575,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60183,
+            "activeMs": 60049.5,
+            "differenceMs": 133.5,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p2-A-20261112T190815Z",
+        "scenario": "panel-closed-events",
+        "block": 2,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6286967501827607,
+          "gpuProcessCores": 0.22928158436897728,
+          "rendererProcessCores": 0.39559380607430056,
+          "backendCores": 0.003156775436964179,
+          "maxBrowserProcessRSSKiB": 370144,
+          "backendRSSKiB": 51392,
+          "browserMainCores": 0.0026583372100750964,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60188,
+            "activeMs": 60062.60000000149,
+            "differenceMs": 125.39999999850988,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p2-A-20261112T190815Z",
+        "scenario": "panel-open-events",
+        "block": 2,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6708309798318769,
+          "gpuProcessCores": 0.24321360932983355,
+          "rendererProcessCores": 0.42346413263780447,
+          "backendCores": 0.0034887198059607273,
+          "maxBrowserProcessRSSKiB": 407568,
+          "backendRSSKiB": 50592,
+          "browserMainCores": 0.0028242017476824955,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60194,
+            "activeMs": 60060.20000000298,
+            "differenceMs": 133.79999999701977,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p3-A-20261112T192636Z",
+        "scenario": "panel-open-events",
+        "block": 3,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6966273467353381,
+          "gpuProcessCores": 0.25236750290745974,
+          "rendererProcessCores": 0.43960790829041385,
+          "backendCores": 0.003322811098189068,
+          "maxBrowserProcessRSSKiB": 369088,
+          "backendRSSKiB": 49680,
+          "browserMainCores": 0.003322811098189069,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60190,
+            "activeMs": 60062.5,
+            "differenceMs": 127.5,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p3-A-20261112T192636Z",
+        "scenario": "panel-closed-events",
+        "block": 3,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6865448504983388,
+          "gpuProcessCores": 0.2511627906976745,
+          "rendererProcessCores": 0.4317275747508305,
+          "backendCores": 0.0034883720930232558,
+          "maxBrowserProcessRSSKiB": 368992,
+          "backendRSSKiB": 51520,
+          "browserMainCores": 0.002657807308970098,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60200,
+            "activeMs": 60071.39999999851,
+            "differenceMs": 128.60000000149012,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p3-A-20261112T192636Z",
+        "scenario": "panel-open",
+        "block": 3,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6337150359819842,
+          "gpuProcessCores": 0.25677674550017454,
+          "rendererProcessCores": 0.3752763050740416,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 352480,
+          "backendRSSKiB": 46768,
+          "browserMainCores": 0.001329588326214497,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60169,
+            "activeMs": 60059.199999999255,
+            "differenceMs": 109.80000000074506,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p3-A-20261112T192636Z",
+        "scenario": "panel-closed",
+        "block": 3,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6289684518466806,
+          "gpuProcessCores": 0.2576377115122503,
+          "rendererProcessCores": 0.36950234367208545,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 327344,
+          "backendRSSKiB": 47744,
+          "browserMainCores": 0.0016621787839500033,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60162,
+            "activeMs": 60050.5,
+            "differenceMs": 111.5,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p4-A-20261112T193244Z",
+        "scenario": "panel-closed",
+        "block": 4,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6212088478221128,
+          "gpuProcessCores": 0.2594186761504329,
+          "rendererProcessCores": 0.3599621092516577,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 409856,
+          "backendRSSKiB": 46432,
+          "browserMainCores": 0.0014956874345636742,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60173,
+            "activeMs": 60059.60000000149,
+            "differenceMs": 113.39999999850988,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p4-A-20261112T193244Z",
+        "scenario": "panel-open",
+        "block": 4,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6373502185438167,
+          "gpuProcessCores": 0.25992587791461,
+          "rendererProcessCores": 0.3759286034800818,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 325232,
+          "backendRSSKiB": 46576,
+          "browserMainCores": 0.0013295441325555512,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60171,
+            "activeMs": 60050.800000000745,
+            "differenceMs": 120.19999999925494,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p4-A-20261112T193244Z",
+        "scenario": "panel-closed-events",
+        "block": 4,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6894833028742317,
+          "gpuProcessCores": 0.2550257517860109,
+          "rendererProcessCores": 0.4304701777703938,
+          "backendCores": 0.003322811098189068,
+          "maxBrowserProcessRSSKiB": 373184,
+          "backendRSSKiB": 50016,
+          "browserMainCores": 0.00299052998837016,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60190,
+            "activeMs": 60063,
+            "differenceMs": 127,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p4-A-20261112T193244Z",
+        "scenario": "panel-open-events",
+        "block": 4,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6344380762521804,
+          "gpuProcessCores": 0.23374034388238216,
+          "rendererProcessCores": 0.39671069025666594,
+          "backendCores": 0.00299028158484924,
+          "maxBrowserProcessRSSKiB": 421152,
+          "backendRSSKiB": 51696,
+          "browserMainCores": 0.0031564083395630893,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60195,
+            "activeMs": 60061.599999997765,
+            "differenceMs": 133.40000000223517,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      }
+    ],
+    [
+      {
+        "runId": "cat16-balanced-p0-B-20261112T184952Z",
+        "scenario": "panel-closed",
+        "block": 0,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6061361521074325,
+          "gpuProcessCores": 0.2502991623454328,
+          "rendererProcessCores": 0.3471945220050524,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 412240,
+          "backendRSSKiB": 47392,
+          "browserMainCores": 0.00831006515091078,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60168,
+            "activeMs": 60045.5,
+            "differenceMs": 122.5,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p0-B-20261112T184952Z",
+        "scenario": "panel-open",
+        "block": 0,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6222997673645732,
+          "gpuProcessCores": 0.24642738451312737,
+          "rendererProcessCores": 0.3575938850116318,
+          "backendCores": 0.00016616816218012644,
+          "maxBrowserProcessRSSKiB": 364960,
+          "backendRSSKiB": 45840,
+          "browserMainCores": 0.01811232967763376,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60180,
+            "activeMs": 60053.699999999255,
+            "differenceMs": 126.30000000074506,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p0-B-20261112T184952Z",
+        "scenario": "panel-closed-events",
+        "block": 0,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.682482721956406,
+          "gpuProcessCores": 0.24687666135034544,
+          "rendererProcessCores": 0.43128654970760233,
+          "backendCores": 0.0034888357256778312,
+          "maxBrowserProcessRSSKiB": 389488,
+          "backendRSSKiB": 50560,
+          "browserMainCores": 0.0031565656565656483,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60192,
+            "activeMs": 60068,
+            "differenceMs": 124,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p0-B-20261112T184952Z",
+        "scenario": "panel-open-events",
+        "block": 0,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6822148710873217,
+          "gpuProcessCores": 0.24452682148378402,
+          "rendererProcessCores": 0.4273816845919844,
+          "backendCores": 0.0033246338746945494,
+          "maxBrowserProcessRSSKiB": 426960,
+          "backendRSSKiB": 49664,
+          "browserMainCores": 0.008976511461675284,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60157,
+            "activeMs": 60035.89999999851,
+            "differenceMs": 121.10000000149012,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p1-B-20261112T185600Z",
+        "scenario": "panel-open-events",
+        "block": 1,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6375024921911344,
+          "gpuProcessCores": 0.23360138233534922,
+          "rendererProcessCores": 0.39991360404067255,
+          "backendCores": 0.003156775436964179,
+          "maxBrowserProcessRSSKiB": 408288,
+          "backendRSSKiB": 51536,
+          "browserMainCores": 0.002990629361334486,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60188,
+            "activeMs": 60057.5,
+            "differenceMs": 130.5,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p1-B-20261112T185600Z",
+        "scenario": "panel-closed-events",
+        "block": 1,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6029240737664064,
+          "gpuProcessCores": 0.22163150024921083,
+          "rendererProcessCores": 0.3779697624190066,
+          "backendCores": 0.0031566705432796147,
+          "maxBrowserProcessRSSKiB": 378496,
+          "backendRSSKiB": 51680,
+          "browserMainCores": 0.0024921083236417994,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60190,
+            "activeMs": 60060.5,
+            "differenceMs": 129.5,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p1-B-20261112T185600Z",
+        "scenario": "panel-open",
+        "block": 1,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6213647090105361,
+          "gpuProcessCores": 0.251271313191744,
+          "rendererProcessCores": 0.36859773324026995,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 343616,
+          "backendRSSKiB": 45920,
+          "browserMainCores": 0.001329477847575366,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60174,
+            "activeMs": 60057.300000000745,
+            "differenceMs": 116.69999999925494,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p1-B-20261112T185600Z",
+        "scenario": "panel-closed",
+        "block": 1,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6221535188324855,
+          "gpuProcessCores": 0.2566404042418802,
+          "rendererProcessCores": 0.36401715368505033,
+          "backendCores": 0.00016621787839500032,
+          "maxBrowserProcessRSSKiB": 414112,
+          "backendRSSKiB": 46960,
+          "browserMainCores": 0.0013297430271600025,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60162,
+            "activeMs": 60059.10000000149,
+            "differenceMs": 102.89999999850988,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p2-B-20261112T191422Z",
+        "scenario": "panel-closed",
+        "block": 2,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6228189703878493,
+          "gpuProcessCores": 0.2554089534381336,
+          "rendererProcessCores": 0.365748280102363,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 329056,
+          "backendRSSKiB": 48064,
+          "browserMainCores": 0.001329389477882282,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60178,
+            "activeMs": 60061.199999999255,
+            "differenceMs": 116.80000000074506,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p2-B-20261112T191422Z",
+        "scenario": "panel-open",
+        "block": 2,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6367383572117143,
+          "gpuProcessCores": 0.2637702356812819,
+          "rendererProcessCores": 0.3716384669082206,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 351296,
+          "backendRSSKiB": 47040,
+          "browserMainCores": 0.0011634477944353966,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60166,
+            "activeMs": 60055.099999997765,
+            "differenceMs": 110.90000000223517,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p2-B-20261112T191422Z",
+        "scenario": "panel-closed-events",
+        "block": 2,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6122991542462157,
+          "gpuProcessCores": 0.22481431633517762,
+          "rendererProcessCores": 0.38233388166093424,
+          "backendCores": 0.0031570377016765534,
+          "maxBrowserProcessRSSKiB": 368496,
+          "backendRSSKiB": 51008,
+          "browserMainCores": 0.0033231975807121606,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60183,
+            "activeMs": 60054.60000000149,
+            "differenceMs": 128.39999999850988,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p2-B-20261112T191422Z",
+        "scenario": "panel-open-events",
+        "block": 2,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6564976820696874,
+          "gpuProcessCores": 0.2381071066580263,
+          "rendererProcessCores": 0.4145688981938422,
+          "backendCores": 0.0031570377016765534,
+          "maxBrowserProcessRSSKiB": 413136,
+          "backendRSSKiB": 51120,
+          "browserMainCores": 0.002824717943605336,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60183,
+            "activeMs": 60062.199999999255,
+            "differenceMs": 120.80000000074506,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p3-B-20261112T192029Z",
+        "scenario": "panel-open-events",
+        "block": 3,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6886356841510812,
+          "gpuProcessCores": 0.24499219346908946,
+          "rendererProcessCores": 0.4333455137361724,
+          "backendCores": 0.003155831644686576,
+          "maxBrowserProcessRSSKiB": 392784,
+          "backendRSSKiB": 50880,
+          "browserMainCores": 0.009135302129355875,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60206,
+            "activeMs": 60069.89999999851,
+            "differenceMs": 136.10000000149012,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p3-B-20261112T192029Z",
+        "scenario": "panel-closed-events",
+        "block": 3,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6157168964944346,
+          "gpuProcessCores": 0.2256188735670378,
+          "rendererProcessCores": 0.38660907127429817,
+          "backendCores": 0.0031566705432796147,
+          "maxBrowserProcessRSSKiB": 366016,
+          "backendRSSKiB": 51408,
+          "browserMainCores": 0.0026582488785512567,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60190,
+            "activeMs": 60058.900000002235,
+            "differenceMs": 131.09999999776483,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p3-B-20261112T192029Z",
+        "scenario": "panel-open",
+        "block": 3,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6154331964965347,
+          "gpuProcessCores": 0.2532865761438615,
+          "rendererProcessCores": 0.36065083348568205,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 387488,
+          "backendRSSKiB": 47360,
+          "browserMainCores": 0.0011633897854376812,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60169,
+            "activeMs": 60055.300000000745,
+            "differenceMs": 113.69999999925494,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p3-B-20261112T192029Z",
+        "scenario": "panel-closed",
+        "block": 3,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6122109742515669,
+          "gpuProcessCores": 0.2524975481640322,
+          "rendererProcessCores": 0.35838361674894864,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 331216,
+          "backendRSSKiB": 46176,
+          "browserMainCores": 0.0013298093385860814,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60159,
+            "activeMs": 60055.800000000745,
+            "differenceMs": 103.19999999925494,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p4-B-20261112T193853Z",
+        "scenario": "panel-closed",
+        "block": 4,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6984279969424042,
+          "gpuProcessCores": 0.29163481671042574,
+          "rendererProcessCores": 0.4046329223304198,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 325472,
+          "backendRSSKiB": 46960,
+          "browserMainCores": 0.0016617368473528548,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60178,
+            "activeMs": 60061.5,
+            "differenceMs": 116.5,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p4-B-20261112T193853Z",
+        "scenario": "panel-open",
+        "block": 4,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.7021304882507394,
+          "gpuProcessCores": 0.2810183800312427,
+          "rendererProcessCores": 0.4197826303719214,
+          "backendCores": 0,
+          "maxBrowserProcessRSSKiB": 358272,
+          "backendRSSKiB": 47264,
+          "browserMainCores": 0.001329477847575366,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60174,
+            "activeMs": 60057.699999999255,
+            "differenceMs": 116.30000000074506,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p4-B-20261112T193853Z",
+        "scenario": "panel-closed-events",
+        "block": 4,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.6242419207443715,
+          "gpuProcessCores": 0.22962532192406745,
+          "rendererProcessCores": 0.3907950486001496,
+          "backendCores": 0.0033230871479604553,
+          "maxBrowserProcessRSSKiB": 382336,
+          "backendRSSKiB": 51904,
+          "browserMainCores": 0.0026584697183683627,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60185,
+            "activeMs": 60058.800000000745,
+            "differenceMs": 126.19999999925494,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      },
+      {
+        "runId": "cat16-balanced-p4-B-20261112T193853Z",
+        "scenario": "panel-open-events",
+        "block": 4,
+        "process": {
+          "valid": true,
+          "reasons": [],
+          "browserCores": 0.7046862800471787,
+          "gpuProcessCores": 0.254331611209861,
+          "rendererProcessCores": 0.44553715301426994,
+          "backendCores": 0.0034885459408276163,
+          "maxBrowserProcessRSSKiB": 383184,
+          "backendRSSKiB": 51824,
+          "browserMainCores": 0.002990182234995098,
+          "churn": [],
+          "clockWindow": {
+            "wallMs": 60197,
+            "activeMs": 60063,
+            "differenceMs": 134,
+            "toleranceMs": 1000,
+            "valid": true
+          },
+          "complete": true
+        }
+      }
+    ]
+  ],
+  "interpretation": "Signed open-minus-closed deltas within each balanced block, no positivity constraint. Supplemental blocks included in full. Process CPU time/core equivalents; no summed physical RSS or GPU-time inference. DOM/draw latency is a proxy, not visible presentation."
+}

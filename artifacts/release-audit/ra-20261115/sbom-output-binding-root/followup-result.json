@@ -1,0 +1,42 @@
+{
+  "time": "2026-11-15T10:30:15.960256+00:00",
+  "finding": "SBOM-REVIEW-001",
+  "classification": "prepared build-output integrity contract; synthetic fixture, not demonstrated production exploitation",
+  "red": {
+    "exitCode": 1,
+    "tests": 1,
+    "pass": 0,
+    "fail": 1,
+    "reason": "Missing expected exception; changed HTML accepted"
+  },
+  "green": {
+    "exitCode": 0,
+    "tests": 37,
+    "pass": 37,
+    "fail": 0,
+    "skip": 0
+  },
+  "sourceBeforeAfterEqual": true,
+  "files": {
+    "scripts/build-release.mjs": "3dc598b31bcf402d4e9c3bcd5ed897733afe76a43024dfb2d3634771b763e57e",
+    "scripts/build-release.test.mjs": "2b1e113527e1875c0d4abf557451c37ba5874ce458367f5064e58a8398b7479f",
+    "scripts/release-sbom.mjs": "67633f23985bdd6d79ebdc8a6ff225339301a63c0d4b2811703c52cfae0e3340",
+    "frontend/build/package-inventory.mjs": "fbeb25148c7c0edc204f15fd889ebcb4e436a87c3368810f22d38340e9a74dbe",
+    ".github/workflows/ci.yml": "4438c58da548d05790aecb362269f3de54b508cfe46b26380f5c7addb36707cc"
+  },
+  "independentFixReview": "../sbom-independent-review-worker/FIX-REVIEW.md",
+  "scope": "Node executor fixtures; no compiler/npm/archive/browser/cluster E2E",
+  "followup": {
+    "realViteInitialBuild": "../sbom-real-package-root/frontend-result.json",
+    "failureReason": "Vite normal generateBundle rewrites preload addresses after the initial inventory hook",
+    "fix": "Rollup generateBundle order:post; installed4.62.3 API verified",
+    "targetedTests": 38,
+    "targetedFail": 0,
+    "actualViteRetest": "../sbom-real-package-root/frontend-retest-result.json",
+    "runtimeBytesEqual": true,
+    "filesSHA256": {
+      "frontend/build/package-inventory.mjs": "1b4f4d7c50b153dffe00a5547695c701eb83a645514a876062b61817ec3933d3",
+      "scripts/release-sbom.test.mjs": "b756182e1ec0c88fe8deb8f6aa69657ff18a078976dfad12ae6e6588499b29c6"
+    }
+  }
+}

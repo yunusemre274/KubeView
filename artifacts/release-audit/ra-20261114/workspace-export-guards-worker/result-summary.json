@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-11-14T13:17:27.578681+00:00",
+  "classification": "REAL_OWNED_HTTP_SYNTHETIC_KUBERNETES_FIXTURE",
+  "topLevelPass": 1,
+  "subtestPass": 8,
+  "fail": 0,
+  "skip": 0,
+  "targetElapsedSeconds": 0.06,
+  "testSourceSHA256": "ca0f91743bbe16420238eb21cb0e262a213f1268c3978948533f021e14742d80",
+  "inputsUnchanged": [
+    {
+      "path": "backend/pkg/server/release_workspace_export_test.go",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/pkg/workspace/store.go",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_cookie_test.go",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/pkg/server/repair_resources_integration_test.go",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/pkg/server/server_test.go",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/go.mod",
+      "matchesPreflight": true
+    },
+    {
+      "path": "backend/go.sum",
+      "matchesPreflight": true
+    }
+  ],
+  "allSensitiveMarkerAssertionsPassed": true,
+  "rawHTTPHeadersOrValuesRecorded": false,
+  "cleanup": "httptest servers and Server.Close registered with t.Cleanup, temporary config dirs owned by t.TempDir; process exit0. No independent socket/listener/heap census."
+}

@@ -1,0 +1,19 @@
+{
+  "frontend_source_files": [
+    {
+      "path": "frontend/package.json",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "unchanged": true
+    }
+  ],
+  "worker_production_write_scope": [
+    "backend/go.mod",
+    "backend/go.sum"
+  ],
+  "no_cluster_or_docker_bootstrap": true,
+  "positive_control_node_modules_absent": true,
+  "go_test_explicit_skips": 25
+}

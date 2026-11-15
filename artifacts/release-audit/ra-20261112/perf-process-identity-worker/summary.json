@@ -1,0 +1,69 @@
+{
+  "status": "HARNESS_IDENTITY_GUARDS_GREEN",
+  "runs": {
+    "RED": {
+      "tests": 6,
+      "pass": 0,
+      "fail": 6,
+      "durationMs": 40.521291
+    },
+    "initialGreen": {
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "durationMs": 64.101542
+    },
+    "neighborFirst": {
+      "tests": 18,
+      "pass": 17,
+      "fail": 1,
+      "durationMs": 85.534125
+    },
+    "neighborMigrated": {
+      "tests": 15,
+      "pass": 15,
+      "fail": 0,
+      "durationMs": 48.096208
+    },
+    "rootReviewedGreen": {
+      "tests": 18,
+      "pass": 18,
+      "fail": 0,
+      "durationMs": 35.965375
+    }
+  },
+  "nativeChildProbe": {
+    "status": "PASS",
+    "PID": 19130,
+    "PPID": 19129,
+    "sameObservedBirthCommand": true,
+    "elapsedMs": 168,
+    "childAbsent": true,
+    "processesStarted": 1,
+    "OS": "darwin",
+    "birthResolutionMs": 1000
+  },
+  "CPUInvalidOrUnknown": "null, never synthesized zero",
+  "RSSInvalidOrUnknown": "null; observed finite zero remains distinct from missing",
+  "cohortContract": "all sampled identities stable at endpoints and every retained interior snapshot; PID+PPID+OSbirth+command+cohort+role",
+  "cacheContract": "only currently snapshot-present exact pid/birth/command children retained; active orphan identity preserved, exited generations pruned",
+  "legacyMissingBirth": "rejected; historical raw reports unchanged",
+  "processRoles": "browser main/renderer/GPU/other descendants and backend/root-child separated; observer subprocesses excluded from accounting",
+  "nativePreparationFailure": "module import traversal error before any probe child, preserved separately",
+  "realAppBrowserBuildScanLabRuns": 0,
+  "originalPlanSeconds": 900,
+  "rootExplicitExtensionSeconds": 180,
+  "elapsedThroughReceiptSeconds": 980.151071,
+  "originalPlanExceeded": true,
+  "extensionBudgetRespected": true,
+  "sourceOwnershipReleasedToRoot": true,
+  "limits": [
+    "OS ps lstart is second-resolution; same-second same-PID/executable reuse cannot be excluded with this source",
+    "processes born and exited entirely between samples, or orphaned before first observation, can remain unseen",
+    "complete means observed cohort/clock consistency, not a kernel-complete CPU accounting trace",
+    "Linux lowercase basename support unit-tested only; no Linux runtime probe",
+    "ps comm omits argv; Linux GPU/renderer subroles without recognizable executable names remain browser-other, their separate metrics null",
+    "PPID/executable/role changes conservatively invalidate a span even when a process change could be benign",
+    "No CPU comparison/performance acceptance or final package/release claim"
+  ]
+}

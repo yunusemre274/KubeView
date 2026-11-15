@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-11T18:45:49.039721+00:00",
+  "deadlineAt": "2026-11-11T18:50:49.039721+00:00",
+  "totalBudgetSeconds": 300,
+  "runtimeBudgetSeconds": 120,
+  "originalHelperSHA256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b",
+  "singleRetestOnly": true,
+  "NodeAddCancelDeleteForbidden": true,
+  "helperSHA256": "7f17ba97182d34dbfcb35c12ea8ce3d62fd9882fa485696150f677944bc7fe58",
+  "appSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "rootReportedSource": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "runtimeStartedAt": "2026-11-11T18:47:03.039403+00:00",
+  "workCutoffAt": "2026-11-11T18:48:58.039403+00:00"
+}

@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-08T20:48:24.289Z",
+  "type": "guarded own fixture cleanup after failed browser startup",
+  "results": [
+    {
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespace": "kv-repair-v11-qa",
+      "status": "PASS",
+      "result": "deleted-and-404-observed",
+      "uid": "e17fa2c2-9093-41f6-bbab-239e3babe4eb",
+      "cleanupSessionRevoked": true
+    },
+    {
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespace": "kv-repair-v11-qa",
+      "status": "PASS",
+      "result": "deleted-and-404-observed",
+      "uid": "df8a3970-c775-4065-9757-e93defda364f",
+      "cleanupSessionRevoked": true
+    }
+  ]
+}

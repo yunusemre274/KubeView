@@ -1,0 +1,154 @@
+{
+  "status": "REVIEWABLE_PLAN_NOT_RUN_AWAITING_ROOT_CLEARANCE",
+  "at": "2026-11-12T11:16:25.419734+00:00",
+  "newHelperOwner": "frontend/e2e/release-secret-purpose-browser.mjs (not created yet)",
+  "scope": [
+    "TEST05.07 actual normal UI Secret reveal\u2192hide\u2192purpose edit",
+    "TEST05.08 unknown label/annotation UI roundtrip"
+  ],
+  "scopeExcluded": [
+    "TEST05.09 API masked write already verified by root",
+    "browser restricted identity E2E not part of this one admin flow",
+    "frontend unit rerun",
+    "runtime/frontend product source changes",
+    "CPU/FPS/physical latency claim"
+  ],
+  "target": {
+    "context": "kvml-d32afbf634e8-a",
+    "systemUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+    "markerUID": "0cded75c-bc00-472f-b69f-39dfd43251f3",
+    "namespace": "kvrel-secret-20261112-21bddadc",
+    "namespaceUID": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d",
+    "seal": "db34037d06b44bddba8b63eb7c586ec1",
+    "namespaceLifecycle": "root owns; worker never deletes namespace",
+    "fixture": "one new exact UID-owned synthetic Secret; no SA/Role/Pod/Node/provider fixture"
+  },
+  "app": {
+    "binary": ".git/release-audit/candidate-runtime-profilelock10/kubeview",
+    "binarySHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+    "source": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+    "port": 19843,
+    "argv": [
+      "--context",
+      "kvml-d32afbf634e8-a",
+      "--namespace",
+      "kvrel-secret-20261112-21bddadc",
+      "--write",
+      "--kubeconfig",
+      "explicit STATE/private/admin.json",
+      "--data-dir",
+      "fresh STATE/private/secret-ui-<run>/app-data0700",
+      "--bind",
+      "127.0.0.1",
+      "--port",
+      "19843"
+    ],
+    "environment": "explicit private kubeconfig/context/namespace, providers+replay disabled; app stdout/stderr DEVNULL; no user data directory",
+    "ownership": "exact captured PID/birth/PGID and lsof listener binding before browser; existing listener causes BLOCKED, never killed"
+  },
+  "browser": {
+    "engine": "headed Chromium, fresh profile, requested --use-angle=metal",
+    "rendererGuard": "read actual WEBGL_debug_renderer_info from existing canvas; require Metal and reject SwiftShader/llvmpipe/software; BLOCKED without fallback if not established",
+    "viewport": "1440x900, deviceScaleFactor1",
+    "network": "same-origin app only; no API mocks/state/selection injection; request log method+pathname+status only",
+    "limits": "browser<=120s, cleanup<=45s, one shot; execution phase<=480s including report reserve",
+    "noVideoTraceHARConsoleBodyOrHTMLSnapshot": true,
+    "pageErrorHandling": "counts/class/current-step only, never error.message/stack that may contain typed YAML"
+  },
+  "normalUIFlow": [
+    {
+      "step": 1,
+      "actions": "navigate actual embedded app; wait live scoped snapshot; record index hash and actual Metal; capture initial canvas ElementHandle",
+      "proof": "one canvas; exact context/ns diagnostics and own Secret metadata/UID in canonical snapshot; sanitized data shape"
+    },
+    {
+      "step": 2,
+      "actions": "Bul \u2192 D\u00fcnyada bul \u2192 Nesne veya kaynak ara fill own fixture name \u2192 Bulucu kaynak t\u00fcr\u00fc select Secret \u2192 click exact result \u2192 \u00d6zet",
+      "proof": "resource panel h2/name/namespace/UID match without injected selection"
+    },
+    {
+      "step": 3,
+      "actions": "click Yetkiyle Secret de\u011ferlerini a\u00e7",
+      "proof": "one successful purpose endpoint response, actual .yaml-output decoded value equality/hash asserted in memory only; De\u011ferleri gizle button visible"
+    },
+    {
+      "step": 4,
+      "actions": "click De\u011ferleri gizle",
+      "proof": "reveal output removed and payload absent from page DOM; ordinary reveal button restored; local hide does not require mutation"
+    },
+    {
+      "step": 5,
+      "actions": "close competing panels as normal; Ba\u011flant\u0131 ve cluster kapsam\u0131n\u0131 a\u00e7 \u2192 Y\u00f6netim modunu a\u00e7 \u2192 close dialog; reopen exact Secret normally if needed",
+      "proof": "production management POST200; correct active scope and unchanged canvas"
+    },
+    {
+      "step": 6,
+      "actions": "click Gizli i\u00e7eri\u011fi d\u00fczenle; wait Kaynak YAML purpose content; read YAML privately, preserve all fields while adding one label and one annotation; fill through normal textarea",
+      "proof": "form purpose reveal is successful; UID/RV/data/old labels+annotations match baseline before edit; no app state injection"
+    },
+    {
+      "step": 7,
+      "actions": "click Server dry-run; inspect sanitized Uygulanacak kaynak \u00f6nizlemesi; click Uygula",
+      "proof": "normal dry-run PUT200 then normal actual PUT200, form closes; private YAML never exported"
+    },
+    {
+      "step": 8,
+      "actions": "observe new label through ordinary Secret detail/canonical update; close form/details/windows normally",
+      "proof": "direct guarded private API read of exact synthetic UID confirms data/type/UID/old unknown metadata equality and expected new metadata; canonical shared metadata remains sanitized; same canvas element and viewport preserved"
+    }
+  ],
+  "valueIsolation": {
+    "generatedValues": "one cryptorandom synthetic payload and private synthetic annotation, private in-memory/API fixture record; no user Secret read",
+    "privateIPC": "fixture values and complete own object may live only in STATE/private/...0700 with0600 file; browser helper reads privately; artifact contains hashes/booleans/UID/status only",
+    "noExpectedValueErrors": "use boolean/hash comparisons with fixed failure messages; never expect.toHaveText/private value or log locator.fill error.message",
+    "requestLog": "pathname only, no query/cookie/nonce/headers/body; no response bodies or websocket frames saved",
+    "runtimeLog": "no app log capture; console/pageerror messages not retained"
+  },
+  "screenshots": {
+    "max": 4,
+    "captureMode": "Playwright screenshot mask; no post-hoc unmasked file; inspect every captured PNG before final delivery",
+    "masks": [
+      "all pre/code/textarea/input elements",
+      "all revealed .yaml-output and YAML editor/preview regions",
+      "alerts/error regions that may echo validation content"
+    ],
+    "planned": [
+      {
+        "file": "01-secret-hidden.png",
+        "evidence": "normal finder-selected exact Secret panel before reveal, masked form-like surfaces"
+      },
+      {
+        "file": "02-secret-revealed-masked.png",
+        "evidence": "warning and hide control visible; actual revealed output fully masked"
+      },
+      {
+        "file": "03-purpose-dryrun-masked.png",
+        "evidence": "purpose editor/dry-run success and apply controls; YAML/preview fully masked"
+      },
+      {
+        "file": "04-panels-closed.png",
+        "evidence": "normal world after panels close; same canvas, no private DOM value"
+      }
+    ],
+    "failureCapture": "at most one remaining-slot masked image, same masks; no fifth image, unmasked fallback or video"
+  },
+  "fixtureAndCleanup": [
+    "live root cluster/marker and namespace UID/owner/seal guards before create, UI-write phase and cleanup",
+    "metadata-only inventory and exact own unique label selector; create one new Secret, capture UID/owner immediately",
+    "no global kubeconfig/current-context writes; use existing manual-lab guarded client only for exact owned namespace metadata/create/read/delete",
+    "in finally close only owned Chromium context/browser and exact app PID/birth group; verify port19843 empty",
+    "guard exact Secret UID/owner/RV and delete only that object; prove metadata GET404 and no own run-selector object; retain namespace/default resources",
+    "remove private Secret IPC/config files and private browser temp profile; preserve safe receipts, initial failure, source hashes and report"
+  ],
+  "budgetSeconds": {
+    "executionPhase": 480,
+    "sourceAndPreflight": 120,
+    "fixtureAndAppSetup": 45,
+    "browser": 120,
+    "cleanup": 45,
+    "maskedImageInspectionAndReport": 120,
+    "reserve": 30
+  },
+  "clearanceRequiredBefore": "Kubernetes fixture mutation, app and Chromium launch",
+  "currentMutations": 0
+}

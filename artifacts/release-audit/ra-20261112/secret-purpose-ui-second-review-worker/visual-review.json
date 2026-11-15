@@ -1,0 +1,30 @@
+[
+  {
+    "file": "01-secret-metadata.png",
+    "SHA256": "fd303b087c0ba9991b310b1dcf8deb0b7d14fef0e0636c4d95198d5d1179558d",
+    "openedBySecondReviewer": true,
+    "visibleRawSecretValue": false,
+    "assessment": "Metadata panel; UID/RV/labels masked; no raw value shown"
+  },
+  {
+    "file": "02-after-hide.png",
+    "SHA256": "43e92a02e96b04d4a3f30e0d958fa2d04b1b41bb8259b6a5fdecf9ebc91a5094",
+    "openedBySecondReviewer": true,
+    "visibleRawSecretValue": false,
+    "assessment": "Reveal control restored; no raw value visible"
+  },
+  {
+    "file": "03-purpose-dryrun-masked.png",
+    "SHA256": "2ad529cc1dc9a56ea81e77c42f8abf58fb079b175b59b9176e546b91759f4c1a",
+    "openedBySecondReviewer": true,
+    "visibleRawSecretValue": false,
+    "assessment": "YAML/preview/input surfaces masked; unseen dry-run controls are not inferred from screenshot"
+  },
+  {
+    "file": "04-panels-closed.png",
+    "SHA256": "6517ab6540cf2e9ee192e350592fba9cc43205ff8b081a7ec82725696e630f0b",
+    "openedBySecondReviewer": true,
+    "visibleRawSecretValue": false,
+    "assessment": "World remains with no Secret panel/value; namespace/context names are fixture metadata"
+  }
+]

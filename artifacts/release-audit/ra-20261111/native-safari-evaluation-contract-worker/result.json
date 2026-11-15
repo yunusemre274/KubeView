@@ -1,0 +1,133 @@
+{
+  "startedAt": "2026-11-11T18:52:39.656725+00:00",
+  "status": "THREE_FIXED_EXPRESSIONS_OBSERVED",
+  "argv": [
+    "/usr/bin/safaridriver",
+    "--mcp"
+  ],
+  "scope": "New owned about:blank tab only; three constant JavaScript contract probes and raw responses; no app or user content",
+  "methods": [
+    "initialize",
+    "notifications/initialized",
+    "tools/list",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call"
+  ],
+  "toolsCalled": [
+    "create_tab",
+    "switch_tab",
+    "page_info",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "close_tab"
+  ],
+  "driverLimitSeconds": 20,
+  "responseLimitBytes": 65536,
+  "baseHelperSHA256": "f44900d39cc0c86944058de42f56d835c8f2c4d061f8d0292c611769e502cc17",
+  "evaluations": [
+    {
+      "expression": "1+1",
+      "rawToolResultBeforeDecoder": {
+        "content": [
+          {
+            "text": "null",
+            "type": "text"
+          }
+        ]
+      },
+      "isError": false
+    },
+    {
+      "expression": "JSON.stringify({ok:true,marker:\"kv-owned-eval\"})",
+      "rawToolResultBeforeDecoder": {
+        "content": [
+          {
+            "text": "null",
+            "type": "text"
+          }
+        ]
+      },
+      "isError": false
+    },
+    {
+      "expression": "return 1+1",
+      "rawToolResultBeforeDecoder": {
+        "content": [
+          {
+            "text": "2",
+            "type": "text"
+          }
+        ]
+      },
+      "isError": false
+    }
+  ],
+  "sourceHEAD": "3e8df4d71fae2dec7d31139630c328586898dec6",
+  "executableSHA256": "0e113cd573e6cfdcf0329107c78c50fca01a15ed448e1b6827042df5335d33e8",
+  "ownedChildPID": 90384,
+  "negotiatedProtocol": "2024-11-05",
+  "evaluateInstalledContract": {
+    "name": "evaluate_javascript",
+    "description": "Execute a JavaScript function body within the page. The script may contain multiple statements; add an explicit `return` for any value you want back. Use `$uid(N)` to reference DOM elements by their UID from get_page_content output (e.g. `return $uid(42).href`). When `frameId` is set, runs inside that iframe. Prefer get_page_content for reading page text or structure \u2014 reach for it with `region: \"entire_page\"` or relaxed filters before scripting a DOM scrape here. Reserve this tool for actions or computations that text extraction can't express.",
+    "inputSchema": {
+      "properties": {
+        "expression": {
+          "description": "JavaScript code to evaluate, treated as a function body. Use an explicit `return` for a value. Supports $uid(N) macros.",
+          "type": "string"
+        },
+        "frameId": {
+          "description": "UID of an iframe element from get_page_content output. When set, the expression runs inside that iframe instead of the main frame.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expression"
+      ],
+      "type": "object"
+    }
+  },
+  "createResponse": {
+    "content": [
+      {
+        "text": "{\"handle\": \"page-E771D289-DDFC-42F9-A578-367FACF99BC9\"}",
+        "type": "text"
+      }
+    ]
+  },
+  "ownedHandleFromCreateOnly": "page-E771D289-DDFC-42F9-A578-367FACF99BC9",
+  "ownedTabPending": false,
+  "ownedHandleAndBlankPageVerified": true,
+  "closeResponse": {
+    "content": [
+      {
+        "text": "Closed tab page-E771D289-DDFC-42F9-A578-367FACF99BC9",
+        "type": "text"
+      }
+    ]
+  },
+  "ownedChildExited": true,
+  "exitCode": 0,
+  "bytesReadStdoutAndStderr": 13287,
+  "elapsedSeconds": 0.8880263339997327,
+  "within20s": true,
+  "finishedAt": "2026-11-11T18:52:40.544764+00:00",
+  "helperSHA256": "36cd34b94e9bb05c557f07167827e43226291d6e5c06dcb550f2a8e407fc9577"
+}

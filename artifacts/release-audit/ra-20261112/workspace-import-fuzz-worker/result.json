@@ -1,0 +1,161 @@
+{
+  "status": "PASS_BOUNDED_IMPORT_NEGATIVE_AND_PROPERTY_FUZZ",
+  "sourceCommitAtAuthorization": "362e91c3f0117aee8f518c20674832da159c0061",
+  "runtimeAtAuthorization": "15770296056ca2629601dba540c04741e1822e0d",
+  "implementationFrozenAt": "2026-11-12T21:38:34Z",
+  "newSourceSHA256": "c65955e90f357987e9057a305bb051af432ba9ddedacec3ed357ec39fb79345d",
+  "originalFourSourcesUnchanged": true,
+  "historical111850FuzzNotRerun": true,
+  "jobs": {
+    "unit": {
+      "supervisorStatus": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+      "exitCode": 0,
+      "elapsedSeconds": 1.1571301670010143,
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=60s",
+        "-run",
+        "^(TestReleaseImportRejectsInvalidWithoutMutation|TestReleaseImportRemapsAuthorityIDsAndRelations|TestReleaseImportTransactionCapacityPreservesDisk)$",
+        "./pkg/workspace"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+      "goVersion": "go version go1.26.11 darwin/arm64",
+      "GOMAXPROCS": 2,
+      "sourceBeforeMatches": true,
+      "sourceAfterMatches": true,
+      "sourceSHA256": {
+        "backend/pkg/workspace/release_import_fuzz_test.go": "c65955e90f357987e9057a305bb051af432ba9ddedacec3ed357ec39fb79345d",
+        "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+        "backend/pkg/workspace/store_test.go": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+        "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+        "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+      },
+      "topPass": [
+        "TestReleaseImportRejectsInvalidWithoutMutation",
+        "TestReleaseImportRemapsAuthorityIDsAndRelations",
+        "TestReleaseImportTransactionCapacityPreservesDisk"
+      ],
+      "subPass": [
+        "TestReleaseImportRejectsInvalidWithoutMutation/malformed-identity",
+        "TestReleaseImportRejectsInvalidWithoutMutation/future-schema",
+        "TestReleaseImportRejectsInvalidWithoutMutation/unsafe-preferences",
+        "TestReleaseImportRejectsInvalidWithoutMutation/unsafe-view",
+        "TestReleaseImportRejectsInvalidWithoutMutation/duplicate-id",
+        "TestReleaseImportRejectsInvalidWithoutMutation/missing-connection",
+        "TestReleaseImportRejectsInvalidWithoutMutation/invalid-selector",
+        "TestReleaseImportRejectsInvalidWithoutMutation/invalid-namespace",
+        "TestReleaseImportRejectsInvalidWithoutMutation/invalid-relation"
+      ],
+      "failEvents": [],
+      "skipEvents": [],
+      "packagePass": true,
+      "stderrBytes": 0,
+      "capturedIdentityCount": 2,
+      "allCapturedAbsent": true,
+      "sampledWithoutCapturedBirthPIDs": [],
+      "maximumObservedTreeRSSKiB": 30944,
+      "fuzzProgress": [],
+      "sourceHashCurrentStillMatches": true
+    },
+    "fuzz": {
+      "supervisorStatus": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+      "exitCode": 0,
+      "elapsedSeconds": 12.320015542001784,
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=60s",
+        "-run",
+        "^$",
+        "-fuzz",
+        "^FuzzReleaseImportInto$",
+        "-fuzztime=10s",
+        "./pkg/workspace",
+        "-test.fuzzcachedir=/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache"
+      ],
+      "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+      "goVersion": "go version go1.26.11 darwin/arm64",
+      "GOMAXPROCS": 2,
+      "sourceBeforeMatches": true,
+      "sourceAfterMatches": true,
+      "sourceSHA256": {
+        "backend/pkg/workspace/release_import_fuzz_test.go": "c65955e90f357987e9057a305bb051af432ba9ddedacec3ed357ec39fb79345d",
+        "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+        "backend/pkg/workspace/store_test.go": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+        "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+        "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+      },
+      "topPass": [
+        "FuzzReleaseImportInto"
+      ],
+      "subPass": [],
+      "failEvents": [],
+      "skipEvents": [],
+      "packagePass": true,
+      "stderrBytes": 0,
+      "capturedIdentityCount": 5,
+      "allCapturedAbsent": true,
+      "sampledWithoutCapturedBirthPIDs": [],
+      "maximumObservedTreeRSSKiB": 161920,
+      "fuzzProgress": [
+        "fuzz: elapsed: 0s, gathering baseline coverage: 0/8 completed",
+        "fuzz: elapsed: 0s, gathering baseline coverage: 8/8 completed, now fuzzing with 1 workers",
+        "fuzz: elapsed: 3s, execs: 211 (70/sec), new interesting: 1 (total: 9)",
+        "fuzz: elapsed: 6s, execs: 207765 (69185/sec), new interesting: 12 (total: 20)",
+        "fuzz: elapsed: 9s, execs: 457351 (83195/sec), new interesting: 12 (total: 20)",
+        "fuzz: elapsed: 11s, execs: 563506 (52986/sec), new interesting: 17 (total: 25)"
+      ],
+      "sourceHashCurrentStillMatches": true
+    }
+  },
+  "fuzz": {
+    "target": "FuzzReleaseImportInto",
+    "configuredSeconds": 10,
+    "observedTargetSeconds": 11.01,
+    "engineExecutions": 563506,
+    "baselineSeeds": 8,
+    "newInteresting": 17,
+    "reportedTotalCorpus": 25,
+    "retainedCacheFiles": 17,
+    "failureCount": 0,
+    "minimalFailureCase": null,
+    "executionCountLimit": "Engine count includes parse-rejected/malformed inputs; valid parsed ImportInto invocation/acceptance counts were not separately instrumented. Never claim563506 successful imports.",
+    "inputCapBytes": 65536,
+    "oversizeTreatment": "Skip/excluded; no large-body validation/PASS claim.",
+    "perCaseFilesystemWrites": false
+  },
+  "invariants": [
+    "Source Document and raw input bytes unchanged; invalid Export-normalized source returns error with destination unchanged.",
+    "Valid import preserves existing trusted destination bindings/identity/preferences/objects; strips imported Context/Bound authority.",
+    "Imported connection/harbor/relation IDs fresh against source/destination; harbor WorkspaceID/ref and relation endpoints remapped.",
+    "Imported relation type/origin become configured/user-imported; mutable view/namespace payload does not alias source.",
+    "Combined-capacity transaction checked through Store.Update: valid64-connection source +existing1 fails without disk/snapshot/reopen/source changes."
+  ],
+  "scopeLimits": [
+    "Malformed typed Document negatives are ImportInto checks; malformed JSON seed stops at json.Unmarshal and is not a production HTTP parser test.",
+    "Unknown fields follow existing json.Unmarshal policy; no fictional reject-unknown-fields rule.",
+    "Context/Bound inconsistencies can be intentionally healed by Export before Validate; no false invalid-source assertion on raw authority mismatch.",
+    "ImportInto is not itself aggregate-capacity transactional; Store.Update is the transaction boundary.",
+    "Historical FuzzWorkspaceDocument exact4-source applicability remains separate, not new ImportInto or broad security evidence.",
+    "Only bounded pure workspace model tests, not realKubernetes/usercredentials/lab/UI/security/performance acceptance.",
+    "Captured OS birth/command cleanup is not an exhaustive short-lived/unsampled process census."
+  ],
+  "phaseStartedAt": "2026-11-12T21:36:13+00:00",
+  "finishedAt": "2026-11-12T21:43:22.429243+00:00",
+  "phaseElapsedSeconds": 429.429243,
+  "implementationWithin450Seconds": true,
+  "within600Seconds": true
+}

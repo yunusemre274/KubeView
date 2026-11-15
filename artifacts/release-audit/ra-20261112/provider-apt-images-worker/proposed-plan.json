@@ -1,0 +1,44 @@
+{
+  "status": "ROOT_BUILD_CLEARANCE_RECEIVED",
+  "sequence": [
+    {
+      "label": "cilium",
+      "base": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+      "localTag": "kubeview-private/cilium:1.20.4-apt-security.1",
+      "suite": "resolute-security",
+      "pinnedUpgradePackages": {
+        "apt": "3.2.1ubuntu0.1",
+        "libapt-pkg7.0": "3.2.1ubuntu0.1"
+      },
+      "resolverPolicy": "Reject all Inst outside the two pinned packages and every Remv before install; missing mandatory dependency results in bounded failure, not broader upgrade",
+      "temporaryHTTPSOnlySource": "Ubuntu ports security main arm64 with existing Signed-By keyring; original source files unchanged",
+      "rootUserRestore": "Both official Config.User are unset (root); no USER or ENV instruction introduced",
+      "network": "Build RUN uses default network for authenticated HTTPS Ubuntu apt only; scan offline Docker-only",
+      "buildContext": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/build-cilium"
+    },
+    {
+      "label": "envoy",
+      "base": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+      "localTag": "kubeview-private/cilium-envoy:1.20.4-apt-security.1",
+      "suite": "noble-security",
+      "pinnedUpgradePackages": {
+        "apt": "2.8.4ubuntu0.1",
+        "libapt-pkg6.0t64": "2.8.4ubuntu0.1"
+      },
+      "resolverPolicy": "Reject all Inst outside the two pinned packages and every Remv before install; missing mandatory dependency results in bounded failure, not broader upgrade",
+      "temporaryHTTPSOnlySource": "Ubuntu ports security main arm64 with existing Signed-By keyring; original source files unchanged",
+      "rootUserRestore": "Both official Config.User are unset (root); no USER or ENV instruction introduced",
+      "network": "Build RUN uses default network for authenticated HTTPS Ubuntu apt only; scan offline Docker-only",
+      "buildContext": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/build-envoy"
+    }
+  ],
+  "sessionDeadlineSeconds": 600,
+  "CPUQuota": 2,
+  "memoryLimitBytes": 4294967296,
+  "minimumBatteryPercent": 30,
+  "minimumFreeDiskBytes": 10737418240,
+  "sequencePolicy": "Two image baseline/build/candidate scans strictly sequential, no concurrent performance build",
+  "basePreservation": "Exact official FROM adds one apt update layer; no flatten; runtime config/layer prefix/license/provider asset comparison required",
+  "scanPolicy": "Same cached DB, os+library/gobinary actual inventories required; no all-security clean claim; remaining Go module findings are retained",
+  "rootClearance": "Root explicitly read exact Dockerfiles/plan and approved two pinned packages only, strict simulation rejection, no authentication/TLS bypass, bounded exact intermediate CID cleanup"
+}

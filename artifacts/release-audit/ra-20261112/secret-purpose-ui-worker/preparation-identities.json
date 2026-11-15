@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-12T11:16:25.419734+00:00",
+  "sourceSHA256": {
+    "frontend/e2e/release-real-harbors.mjs": "b99072275a3036a7104d19fb61027713815f7a1a9bd26809942a210d285674eb",
+    "frontend/e2e/release-packaged-startup.mjs": "dac6141c997caada2bae6cd22d932f322a9d271331e86bdcdf724d052707c134",
+    "frontend/e2e/v11-ui.helpers.js": "f4dba3ab40d1ac7021483430189bedb5a7707d1102b4da6d7e873e1e02122be6",
+    "frontend/src/workbench/ResourceDetails.jsx": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+    "frontend/src/workbench/ResourceForms.jsx": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+    "frontend/src/workbench/secretPayload.js": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+    "frontend/src/App.jsx": "92912b2f27bc4e910e966644588a134997c75ea341ee3d3e4a01305caa67e114",
+    "frontend/src/world/UtilityWindows.jsx": "3075f109d49ff0d67498fa810a0151cfc576e392320534dcb73a14f36eba74ce",
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "frontend/package.json": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+    "frontend/package-lock.json": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "frontend/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+    "backend/internal/webui/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3"
+  },
+  "binary": ".git/release-audit/candidate-runtime-profilelock10/kubeview",
+  "binarySHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+  "expectedBinarySHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+  "buildSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "embeddedAndFrontendIndexEqual": true,
+  "expectedIndexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+  "priorFrontendUnitManifestSHA256": "c6dbf874346fe2adec807011efc05f283cae81a07e4305c75e9331dea9264c95",
+  "priorFrontendUnitOutcome": "3 PASS,0.132s; unit-only, not UI E2E; will not rerun",
+  "namespaceReceiptSHA256": "35a72b752d6837cd1f3bf8e17e7d8798f09cb584b8d93aa479cac30558ff3871",
+  "newHelperCreated": false,
+  "KubernetesMutationBrowserAppStarted": false
+}

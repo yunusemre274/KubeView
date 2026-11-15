@@ -1,0 +1,34 @@
+=== RUN   TestOwnedRepairRealSyntheticSecretMetadataRoundTrip
+    repair_resources_integration_test.go:147: REAL API + gateway Secret purpose edit: context=kv-repair-1101 namespace=kv-repair-log UID=4c6b4262-6e76-42ba-9d66-32a2eedacec5; unknown labels/annotations and synthetic data preserved; bulk data/annotation redaction and masked-write rejection verified; no values recorded
+--- PASS: TestOwnedRepairRealSyntheticSecretMetadataRoundTrip (0.04s)
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/Deployment
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=deployments/kv-cap-659a09d1-deployment UID=ff0c526d-bd11-44ea-b032-4db84c836bc0 target=deployments UID=ff0c526d-bd11-44ea-b032-4db84c836bc0 supported=true effect=rollout
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=pods/kv-cap-659a09d1-deployment-655f5574f8-wb2hg UID=4e261bf9-3c9d-433e-8899-0c5e6a86667d target=deployments UID=ff0c526d-bd11-44ea-b032-4db84c836bc0 supported=true effect=rollout
+    repair_resources_integration_test.go:283: REAL resource mutation kind=Deployment UID=ff0c526d-bd11-44ea-b032-4db84c836bc0 HTTP=202; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/StatefulSet
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=statefulsets/kv-cap-659a09d1-statefulset UID=7683ec03-2a79-40ac-8b60-1f0ad93c6c86 target=statefulsets UID=7683ec03-2a79-40ac-8b60-1f0ad93c6c86 supported=true effect=rollout
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=pods/kv-cap-659a09d1-statefulset-0 UID=c4d3843b-84fe-4097-894d-91332f662137 target=statefulsets UID=7683ec03-2a79-40ac-8b60-1f0ad93c6c86 supported=true effect=rollout
+    repair_resources_integration_test.go:283: REAL resource mutation kind=StatefulSet UID=7683ec03-2a79-40ac-8b60-1f0ad93c6c86 HTTP=202; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/DaemonSet
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=daemonsets/kv-cap-659a09d1-daemonset UID=c199f528-471e-4bdc-9c21-e093a432a9fb target=daemonsets UID=c199f528-471e-4bdc-9c21-e093a432a9fb supported=true effect=rollout
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=pods/kv-cap-659a09d1-daemonset-cntcw UID=1c9d0140-235e-4244-9dc3-0bed69d74c46 target=daemonsets UID=c199f528-471e-4bdc-9c21-e093a432a9fb supported=true effect=rollout
+    repair_resources_integration_test.go:283: REAL resource mutation kind=DaemonSet UID=c199f528-471e-4bdc-9c21-e093a432a9fb HTTP=202; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/ReplicaSet
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=replicasets/kv-cap-659a09d1-replicaset UID=fe100013-cc2f-4109-b77f-ee985a9b8f56 target=replicasets UID=fe100013-cc2f-4109-b77f-ee985a9b8f56 supported=false effect=unsupported
+    repair_resources_integration_test.go:283: REAL resource mutation kind=ReplicaSet UID=fe100013-cc2f-4109-b77f-ee985a9b8f56 HTTP=422; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/Job
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=jobs/kv-cap-659a09d1-job UID=330921bf-f08f-4a13-82cf-1ea13f7a92f1 target=jobs UID=330921bf-f08f-4a13-82cf-1ea13f7a92f1 supported=false effect=unsupported
+    repair_resources_integration_test.go:283: REAL resource mutation kind=Job UID=330921bf-f08f-4a13-82cf-1ea13f7a92f1 HTTP=422; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+=== RUN   TestOwnedRepairRealTemplateCapabilityTargets/CronJob
+    repair_resources_integration_test.go:209: REAL HTTP capability selected=cronjobs/kv-cap-659a09d1-cronjob UID=7ae45570-0aa3-4c60-a8dc-d74fac7bd206 target=cronjobs UID=7ae45570-0aa3-4c60-a8dc-d74fac7bd206 supported=false effect=unsupported
+    repair_resources_integration_test.go:283: REAL resource mutation kind=CronJob UID=7ae45570-0aa3-4c60-a8dc-d74fac7bd206 HTTP=422; template accepted/rejected consistently; gated workload readiness intentionally not asserted
+--- PASS: TestOwnedRepairRealTemplateCapabilityTargets (0.29s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/Deployment (0.05s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/StatefulSet (0.10s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/DaemonSet (0.10s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/ReplicaSet (0.02s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/Job (0.01s)
+    --- PASS: TestOwnedRepairRealTemplateCapabilityTargets/CronJob (0.01s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	0.763s

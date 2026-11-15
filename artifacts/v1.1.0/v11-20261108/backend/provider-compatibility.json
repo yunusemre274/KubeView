@@ -1,0 +1,309 @@
+{
+  "recorded_at": "2026-11-08T21:03:53.263128+00:00",
+  "analysis_only": true,
+  "baseline_commit": "2b76e215fdbe201be1611ccea4c40dcd547b2ba7",
+  "current_head": "6f0a8297911141776f065e7e47999fe4e322228c",
+  "module_equality": {
+    "all_provisioning_core_and_tests_equal": true,
+    "all_traffic_core_and_tests_equal": true,
+    "traffic_http_handler_equal": true
+  },
+  "source_hashes": [
+    {
+      "file": "backend/pkg/provision/cli.go",
+      "baseline_sha256": "a98674ee47c27ce4e919ceeac8f5fe113dcce6caa4d715a9696e243da905814f",
+      "current_sha256": "a98674ee47c27ce4e919ceeac8f5fe113dcce6caa4d715a9696e243da905814f",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/provision/cli_test.go",
+      "baseline_sha256": "d0da83268f33a3b50352aa1586534f6a47891f82b594382f13f7b9911b477bf7",
+      "current_sha256": "d0da83268f33a3b50352aa1586534f6a47891f82b594382f13f7b9911b477bf7",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/provision/lock_unix.go",
+      "baseline_sha256": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+      "current_sha256": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/provision/lock_windows.go",
+      "baseline_sha256": "fb3fd946a2aa60fbfc20005dc4766f1e62867841f538b149815a8c6d97b57a9b",
+      "current_sha256": "fb3fd946a2aa60fbfc20005dc4766f1e62867841f538b149815a8c6d97b57a9b",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/provision/minikube.go",
+      "baseline_sha256": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+      "current_sha256": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/provision/minikube_test.go",
+      "baseline_sha256": "36c803e6ab0766b968fd274043ed66f1090d16b29d5349837ad8affbe15c0287",
+      "current_sha256": "36c803e6ab0766b968fd274043ed66f1090d16b29d5349837ad8affbe15c0287",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/traffic/actual_protocol_test.go",
+      "baseline_sha256": "78bcc63e787c70e80e36894693c137f82610c5a01ddbf23868778244ce31083e",
+      "current_sha256": "78bcc63e787c70e80e36894693c137f82610c5a01ddbf23868778244ce31083e",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/traffic/config.go",
+      "baseline_sha256": "752b3caca8081b3ea8e42107165d7b237dbe2f64baaa9e74061fafa175884f06",
+      "current_sha256": "752b3caca8081b3ea8e42107165d7b237dbe2f64baaa9e74061fafa175884f06",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/traffic/flow.go",
+      "baseline_sha256": "5f6698bdc8530f588f6ce016c4e58679a669cddf30c7906a05a2d4402f441786",
+      "current_sha256": "5f6698bdc8530f588f6ce016c4e58679a669cddf30c7906a05a2d4402f441786",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/traffic/history.go",
+      "baseline_sha256": "92510d00d3044e1a4a9022bd0b374fbf2f92caedb4ceb94c8589ba463f28b09b",
+      "current_sha256": "92510d00d3044e1a4a9022bd0b374fbf2f92caedb4ceb94c8589ba463f28b09b",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/traffic/hub.go",
+      "baseline_sha256": "62127effd6b152cd8de70dfdd8e655bb3f5b329c7114785123d601ba81297454",
+      "current_sha256": "62127effd6b152cd8de70dfdd8e655bb3f5b329c7114785123d601ba81297454",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/traffic/process_unix.go",
+      "baseline_sha256": "3924ed3c81482a69a67ea2e479fb1289840a31d4eb7cb99968be7cb5ac9d26b4",
+      "current_sha256": "3924ed3c81482a69a67ea2e479fb1289840a31d4eb7cb99968be7cb5ac9d26b4",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/traffic/process_windows.go",
+      "baseline_sha256": "f79b534dc54ae796fd2c0f478967e03fc869216f55c1d0fdb0ca650a4536f6aa",
+      "current_sha256": "f79b534dc54ae796fd2c0f478967e03fc869216f55c1d0fdb0ca650a4536f6aa",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/traffic/traffic_test.go",
+      "baseline_sha256": "13f082a51a3fa67bc035c54268940efcffea08503d5cd80c9e17d68c9ea5175c",
+      "current_sha256": "13f082a51a3fa67bc035c54268940efcffea08503d5cd80c9e17d68c9ea5175c",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/server/traffic_handlers.go",
+      "baseline_sha256": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+      "current_sha256": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+      "equal": true,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/server/provider_handlers.go",
+      "baseline_sha256": "8e1367596521bb0995f88b8a7af05e3c47afc07e93ee47922c612c9a3b14d9ce",
+      "current_sha256": "131539d99c818f52f0518e81fd3defefe791bf8dabd86cb44b799126bbd427bd",
+      "equal": false,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/server/server.go",
+      "baseline_sha256": "57b5e102dd218446556895caab5d48f899688ae8407184f7d47a0ae64220227d",
+      "current_sha256": "ce4174bbeb11af011d404e7687b5bafb7a63941fe4bb7a5079f0a625b2429a58",
+      "equal": false,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/server/resources.go",
+      "baseline_sha256": "3a8047f303ed9a30f90a16f8dfb81b0cdf11b87da224a39bbe3e107dfd03ebe5",
+      "current_sha256": "01c50606e3812238aa641f3e0e355b82b637c7771dfdbf2d2554ccce6ea5f72c",
+      "equal": false,
+      "baseline_exists": true
+    },
+    {
+      "file": "backend/pkg/server/connection.go",
+      "baseline_sha256": null,
+      "current_sha256": "02863427c5546eea2218db16a0cc9b3d974c14120dfe55560a1dc604fa2d49ca",
+      "equal": false,
+      "baseline_exists": false
+    }
+  ],
+  "historical_proof_files": [
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/provision-final-2.json",
+      "file_sha256": "e5706d77948a52897583132ae72d3cabf2c797b9164837ddcc7af408aadc79b9",
+      "exists": true,
+      "top_level_keys": [
+        "name",
+        "startedAt",
+        "source",
+        "engine",
+        "clusterUID",
+        "context",
+        "errors",
+        "captures",
+        "checks",
+        "beforeNodes",
+        "operationID",
+        "newNode",
+        "motionSamples",
+        "afterJoinMotion",
+        "newDockerID",
+        "oldDockerID"
+      ]
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/provision-final-2-visual-review.json",
+      "file_sha256": "966ecdd9ce172a22606d48315e59fccc0a27b12775d7ccf56f3e7d2a4d6dafe2",
+      "exists": true,
+      "top_level_keys": [
+        "reviewedAt",
+        "reviewer",
+        "scope",
+        "result",
+        "reportedSourceCommit",
+        "reportedBackendIdentity",
+        "sourceIdentityNote",
+        "context",
+        "clusterUID",
+        "sourceType",
+        "engine",
+        "readInputs",
+        "stdoutVerified",
+        "runtimeErrors",
+        "providerChecks",
+        "newIdentity",
+        "canonicalVsDraft",
+        "timeline",
+        "afterJoinFleetMotion",
+        "openedScreenshots",
+        "screenshotFindings",
+        "video",
+        "limits",
+        "evidenceSHA256"
+      ]
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/backend-hubble-reader-163936Z.txt",
+      "file_sha256": "d3abe40db522a8db612632b87e0f20b78204591f0a1e73835bb862e5df19e055",
+      "exists": true
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/backend-protocol-real-172201Z.txt",
+      "file_sha256": "70d43f3c1e70d6413ad08070d6b6c9eafce364274bfca4230a24e0496ee40ecd",
+      "exists": true
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-visual-final.json",
+      "file_sha256": "89bafdaff415a3fd96faea9c3bf40abc5089005e6ff19933003169f0b47cd0b7",
+      "exists": true,
+      "top_level_keys": [
+        "name",
+        "startedAt",
+        "source",
+        "engine",
+        "clusterUID",
+        "context",
+        "errors",
+        "captures",
+        "checks",
+        "fixtures",
+        "phases",
+        "providerSnapshots",
+        "actions",
+        "limits",
+        "initialKnownFlows",
+        "verifiedPairs",
+        "protocols",
+        "windowIncrease",
+        "trafficStoppedAt",
+        "finalKnownFlows",
+        "finalRender",
+        "status",
+        "endedAt",
+        "visualReview"
+      ]
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-provider-recovery-real.json",
+      "file_sha256": "cb1615071b785f156fa2061544c99d9411ed0db98d974130c248a871985a0164",
+      "exists": true,
+      "top_level_keys": [
+        "name",
+        "startedAt",
+        "source",
+        "engine",
+        "clusterUID",
+        "context",
+        "errors",
+        "captures",
+        "checks",
+        "forwardBefore",
+        "interruptedAt",
+        "stale",
+        "expired",
+        "recovered",
+        "dns",
+        "status",
+        "snapshots"
+      ]
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-provider-recovery-visual-review.json",
+      "file_sha256": "1b4cca41cff60a08ba405b3b91481f34f69abb240228a05dd6ac830e2e778d46",
+      "exists": true,
+      "top_level_keys": [
+        "reviewedAt",
+        "source",
+        "reviewedScreens",
+        "reviewedVideoFramesSeconds",
+        "videoDurationSeconds",
+        "observations",
+        "limits"
+      ]
+    }
+  ],
+  "historical_provision_scope": "provision-final-2: actual owned minikube Docker worker new machine + Node UID + Ready; same key same operation202; different concurrent key409; profile/context/cluster UID/lock/journal implementation unchanged",
+  "historical_hubble_scope": "Real Hubble1.20.2 mTLS CLI flow decoding, namespace+identity filtering, TCP/HTTP/DNS/UDP and provider loss/stale/recovery; uncertain endpoint UID remains null. Source equality does not prove current provider availability",
+  "changed_http_contract": [
+    "provider_handlers.go only three raw error strings replaced by safe static text; no core scheduling/idempotency/CLI semantics changed",
+    "server.go now reuses clients by opaque credential/API fingerprint; trusted kubeconfig reload can invalidate client ID",
+    "protect applies strict actual-scheme+Host Origin and cross-site Fetch rejection; operator cookie+current nonce gates authorize create/update/patch/delete",
+    "connection/management intent nonce resets across context/namespace/config; old HTTP/log/WS requests canceled on revoke/switch"
+  ],
+  "required_new_narrow_provision_regressions": [
+    "Current actual gateway with READ_ONLY=false and configured pinned own minikube: unseeded/no-management/missingnonce POST worker returns403 and creates no operation or machine",
+    "With explicit matching management session+nonce, provider status canAdd only for loopback operator, allowed cluster-scope SSAR, exact configured context and kube-system UID; wrong context or changed UID cannot invoke runner",
+    "Capture existing operation with same idempotency key through current gate returns same ID202; different concurrent key409 only if safely existing owned operation; avoid provisioning a new node solely to re-prove unchanged core",
+    "After revoke or A\u2192B\u2192A stale nonce worker POST409; canceled request/late management enable cannot restore provider write; verify no new operation/machine"
+  ],
+  "required_new_narrow_hubble_regressions": [
+    "Current gateway authenticated/guarded GET flow with authorized namespace returns actual provider data and existing per-identity scope; no management opt-in required for read",
+    "Rapid context/namespace switch cancels old request and frontend epoch discards old flow callback; no cross-context/UID/namespace contamination",
+    "Current same-origin/null-Origin/foreign-Origin and cookie/session negatives still block use of workload opaque sandbox as API origin",
+    "Acquire/release current lease on real configured provider and observe current bounded stale/recovery semantics; no reinstall/CNI mutation or traffic payload exposure"
+  ],
+  "reuse_decision": {
+    "status": "SOURCE_COMPATIBLE_HISTORICAL_CORE_EVIDENCE_ONLY",
+    "automatic_current_release_PASS": false,
+    "current_real_gateway_or_normal_UI_covered_by_historical_proof": false,
+    "current_real_Hubble_or_provisioning_execution_in_this_analysis": false,
+    "fresh_CPU_or_browser_performance_proven": false,
+    "requirements": "Pair source-identical historical core evidence with narrow current gate/context/provider tests and explicit provider availability; retain historical negative/failed records. A current dry-run or readonly denial is not a new worker Ready E2E."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "attempt": "a-lifecycle-recovery-02",
+  "sourceSHA256": "a27516af0ca78d641463332de3b0217a5cc5408d163af3e44f121bbc46a1e64c",
+  "priorEvidence": "a-fixtures-lifecycle-01.json; seven API fixture leaves PASS retained, down/reup failure retained",
+  "steps": [],
+  "normalUI": false,
+  "nodeStopScenario": false,
+  "pass": false,
+  "failure": {
+    "type": "RuntimeError",
+    "message": "manual-lab: Mevcut owned cluster180s içinde Ready olmadı: Node Ready bekleniyor\n"
+  },
+  "elapsedSeconds": 180.881,
+  "sourceUnchanged": true
+}

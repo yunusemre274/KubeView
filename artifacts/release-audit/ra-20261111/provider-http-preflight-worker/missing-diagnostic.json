@@ -1,0 +1,12 @@
+{
+  "beforeSnapshotPersisted": false,
+  "afterSnapshotPersisted": false,
+  "beforeProfileSHA256Persisted": false,
+  "wrapperProcessAlreadyExited": true,
+  "canRecoverOriginalInMemoryBaseline": false,
+  "comparison": "tx.snapshot()==baseline AND hash(profile)==profile_before",
+  "failedCondition": "combined equality false; exact component/field not known",
+  "noCauseAttributed": true,
+  "noNormalizationOrRetry": true,
+  "stdoutReceipt": "The original runner printed json.dumps(proof); first-failure.stdout preserves that serialization of the unchanged result.json. Original tool stdout is retained in the conversation."
+}

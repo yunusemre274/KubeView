@@ -1,0 +1,16 @@
+{
+  "startedAt": "2026-11-14T12:56:23.021205+00:00",
+  "command": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-reporter=tap",
+    "src/workbench/release_yaml_parser_guards.test.js"
+  ],
+  "cwd": "frontend",
+  "status": "PASS",
+  "timedOut": false,
+  "exitCode": 0,
+  "elapsedSeconds": 0.2686799999999039,
+  "finishedAt": "2026-11-14T12:56:23.289888+00:00"
+}

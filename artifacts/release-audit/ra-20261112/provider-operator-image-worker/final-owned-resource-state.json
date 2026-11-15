@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-11-12T10:28:04.829443+00:00",
+  "ownedImage02ContainersRemaining": [],
+  "localImageIntentionallyRetained": "kubeview-private/cilium-operator-generic:1.20.4-security.2-image02",
+  "privateBuildContextRetained": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02",
+  "extractedVerificationCopy": {
+    "path": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/image-extracted-operator",
+    "sha256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+    "mode": "0o755",
+    "bytes": 114819234,
+    "removed": true
+  }
+}

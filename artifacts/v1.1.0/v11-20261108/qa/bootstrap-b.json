@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-08T14:28:23.219736+00:00",
+  "status": "BOOTSTRAP_READY_NOT_UI_TEST",
+  "context": "kv-repair-v11-b",
+  "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+  "namespace": "kv-repair-v11-qa",
+  "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+  "namespaceOwner": "v11-20261108",
+  "containerID": "8d282993012be6958ae42309fc4d2f904fb218d27b2303abfc6d82d8bc11463f",
+  "baseImage": "gcr.io/k8s-minikube/kicbase:v0.0.50",
+  "containerRuntime": "containerd://2.2.1",
+  "kubernetes": "v1.35.1",
+  "nodes": [
+    {
+      "name": "kv-repair-v11-b",
+      "uid": "ba528415-458a-47fa-be66-cb9a8361ff14",
+      "ready": true
+    }
+  ],
+  "bootstrapSeconds": 11,
+  "flags": [
+    "--base-image=gcr.io/k8s-minikube/kicbase:v0.0.50",
+    "--cache-images=false",
+    "--preload=true",
+    "--keep-context"
+  ],
+  "preloadValidation": {
+    "bytes": 306570269,
+    "tarListExit": 0,
+    "entries": 8460
+  },
+  "primarySources": [
+    "https://raw.githubusercontent.com/kubernetes/minikube/c93a4cb9311efc66b90d33ea03f75f2c4120e9b0/pkg/minikube/node/cache.go",
+    "https://raw.githubusercontent.com/kubernetes/minikube/c93a4cb9311efc66b90d33ea03f75f2c4120e9b0/pkg/minikube/download/image.go"
+  ],
+  "limits": [
+    "Bootstrap only; no normal UI or acceptance test was executed.",
+    "A and user containers were not modified.",
+    "Partial digest-named image caches were not trusted or removed."
+  ],
+  "globalKubeconfig": {
+    "recordedBefore": "290dbb3ee808e86875580e62e3faedc92d5d7392fa32ac41a74222010e170ec7",
+    "currentSHA256": "290dbb3ee808e86875580e62e3faedc92d5d7392fa32ac41a74222010e170ec7",
+    "unchanged": true,
+    "scope": "Global kubeconfig content hash only; no contents recorded"
+  }
+}

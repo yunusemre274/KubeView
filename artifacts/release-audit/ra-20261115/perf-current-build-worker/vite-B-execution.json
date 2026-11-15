@@ -1,0 +1,26 @@
+{
+  "name": "vite-B",
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "/Users/yunusemre/Desktop/KubeView/benchmarks/panel-build.mjs",
+    "cat16-current157-20261115T095801Z",
+    "--source",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-current-build-20261115/source/frontend"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView",
+  "startedAt": "2026-11-15T09:59:22.190878+00:00",
+  "maxSeconds": 120,
+  "env": {
+    "GOTOOLCHAIN": "local",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "2GiB",
+    "CGO_ENABLED": "0",
+    "GOPROXY": "off",
+    "UV_THREADPOOL_SIZE": "2",
+    "NODE_OPTIONS": "--max-old-space-size=2048"
+  },
+  "pid": 10204,
+  "birthCommandIdentity": "Sun Nov 15 12:59:22 2026     /Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node /Users/yunusemre/Desktop/KubeView/benchmarks/panel-build.mjs cat16-current157-20261115T095801Z --source /Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-current-build-20261115/source/frontend",
+  "exitCode": 0,
+  "finishedAt": "2026-11-15T09:59:24.577217+00:00"
+}

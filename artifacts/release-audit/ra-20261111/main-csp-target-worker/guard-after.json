@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-11T16:42:11.515922+00:00",
+  "batteryPercent": 16,
+  "sourceHEAD": "96adbf6092cba098cef351072b045e0946a4525a",
+  "helperSHA256": "22a3532fb7397e03a0d6a431392e3b6d445b024ec9833ced91daae4d73a0c4bb",
+  "binarySHA256": "322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2",
+  "otherProcessRecordsUnchanged": true,
+  "normalProcesses": [
+    {
+      "profile": "07-yuk-ve-gecis",
+      "pid": 13278,
+      "port": 19847,
+      "variant": "M-h05"
+    }
+  ],
+  "hubbleProcesses": [
+    {
+      "profile": "06-limanlar-arasi-ag",
+      "pid": 80336,
+      "port": 19846
+    },
+    {
+      "profile": "telemetry-forward",
+      "pid": 80393,
+      "port": 19848
+    }
+  ],
+  "command": "GOMAXPROCS=1 node frontend/e2e/release-main-csp-target.mjs"
+}

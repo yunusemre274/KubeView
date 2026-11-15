@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-11-10T09:09:23.743617+00:00",
+  "purpose": "Second targeted warm telemetry recovery candidate; never another cold-start claim",
+  "binarySha256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "testsStarted": false,
+  "clusterAppTrafficStarted": false,
+  "runtimeRepoDependency": false,
+  "attempt": "telemetry-full-tls-retry-fs-v06-02",
+  "standaloneBundleName": "20261110-tls-v06-02",
+  "sourceSha256": {
+    "scripts/manual_lab.py": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+    "manual-lab/telemetry.py": "2a6c9b31e4411f8b24e2c7a9833a7245c7e3b3b62f8ca48b4e2acc7dec71247a",
+    "manual-lab/templates/telemetry-values.json": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796",
+    "MANUAL_TEST_GUIDE.md": "e8100d9a1c5a226b8af00b3ee13f67c4cbbc8654dec594844e14c1662ce53a7c",
+    "manual-lab/tests/test_telemetry_bootstrap.py": "44b779264ef36bdb586013eb538c22db070736f9b5e2c19825bf32c7987e6f90"
+  },
+  "previousColdFailureAndBundlePreserved": true,
+  "plannedRetry": "same stopped lab kvml-f99e938d3301; exactUID relay network stage only after concrete source fix",
+  "actualRetryLease": "PENDING_ROOT",
+  "secretRead": false
+}

@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-10T09:27:21.611784+00:00",
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "sourceAfter": "ff682d9b633c86062fa3e1379aef7c92747f2bee0b31a9cbaec0995cda9219b9",
+  "indexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+  "red": {
+    "kind": "actual App React dispatcher with synthetic connection state",
+    "command": "node --test --test-name-pattern='closed log panel' tests/workspace-app-state.test.js",
+    "tests": 1,
+    "pass": 0,
+    "fail": 1,
+    "exitCode": 1
+  },
+  "targetedGreen": {
+    "files": [
+      "tests/workspace-app-state.test.js",
+      "src/workbench/ResourceForms.test.js"
+    ],
+    "tests": 14,
+    "pass": 14,
+    "fail": 0,
+    "exitCode": 0
+  },
+  "fullFrontend": {
+    "command": "npm test",
+    "tests": 202,
+    "pass": 202,
+    "fail": 0,
+    "exitCode": 0,
+    "reportedDurationMs": 1529.050166
+  },
+  "productionBuild": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "reportedSeconds": 1.68
+  },
+  "changedSourceFiles": {
+    "frontend/src/App.jsx": "5d751cd104bac5407850da6870a1db7f06e63e2530b2b3a47f69714ed647a8aa"
+  },
+  "testFileSHA256": "5e1f2ef770fbee78c2ed4517186da50a77938920a2d2852973f08fb951ca449e",
+  "limits": [
+    "Unit inputs are synthetic and do not prove normal browser log cleanup.",
+    "Normal UI on this changed frontend requires a fresh embedded binary; old ee974 UI evidence is historical.",
+    "No Secret or grant persistence format changed; no extra timer or renderer change."
+  ]
+}

@@ -1,0 +1,128 @@
+TAP version 13
+# Subtest: current read-only CI lane has reviewed triggers, grants, pins and data boundaries
+ok 1 - current read-only CI lane has reviewed triggers, grants, pins and data boundaries
+  ---
+  duration_ms: 0.935959
+  type: 'test'
+  ...
+# Subtest: bounded trust-boundary mutations are rejected without executing any workflow
+    # Subtest: privileged pull-request trigger
+    ok 1 - privileged pull-request trigger
+      ---
+      duration_ms: 0.130792
+      type: 'test'
+      ...
+    # Subtest: privileged workflow consumer
+    ok 2 - privileged workflow consumer
+      ---
+      duration_ms: 0.072625
+      type: 'test'
+      ...
+    # Subtest: global write grant
+    ok 3 - global write grant
+      ---
+      duration_ms: 0.060958
+      type: 'test'
+      ...
+    # Subtest: job write override
+    ok 4 - job write override
+      ---
+      duration_ms: 0.065125
+      type: 'test'
+      ...
+    # Subtest: persisted checkout token
+    ok 5 - persisted checkout token
+      ---
+      duration_ms: 0.073709
+      type: 'test'
+      ...
+    # Subtest: mutable action tag
+    ok 6 - mutable action tag
+      ---
+      duration_ms: 0.054708
+      type: 'test'
+      ...
+    # Subtest: alternate attacker checkout
+    ok 7 - alternate attacker checkout
+      ---
+      duration_ms: 0.060625
+      type: 'test'
+      ...
+    # Subtest: PR expression to shell
+    ok 8 - PR expression to shell
+      ---
+      duration_ms: 0.091833
+      type: 'test'
+      ...
+    # Subtest: secret injected into job
+    ok 9 - secret injected into job
+      ---
+      duration_ms: 0.089583
+      type: 'test'
+      ...
+    # Subtest: dependency cache key input changed
+    ok 10 - dependency cache key input changed
+      ---
+      duration_ms: 0.054625
+      type: 'test'
+      ...
+    # Subtest: hidden or unrestricted artifact payload
+    ok 11 - hidden or unrestricted artifact payload
+      ---
+      duration_ms: 0.060167
+      type: 'test'
+      ...
+    # Subtest: unreviewed reusable job
+    ok 12 - unreviewed reusable job
+      ---
+      duration_ms: 0.050875
+      type: 'test'
+      ...
+    # Subtest: security guard omitted from CI
+    ok 13 - security guard omitted from CI
+      ---
+      duration_ms: 0.052083
+      type: 'test'
+      ...
+    # Subtest: quoted artifact flags are still enabled inputs
+    not ok 14 - quoted artifact flags are still enabled inputs
+      ---
+      duration_ms: 0.266541
+      type: 'test'
+      location: '/Users/yunusemre/Desktop/KubeView/scripts/release-ci-policy.test.mjs:86:13'
+      failureType: 'testCodeFailure'
+      error: 'missing rejection: artifact-boundary'
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected: true
+      actual: false
+      operator: '=='
+      stack: |-
+        TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/scripts/release-ci-policy.test.mjs:90:14)
+        Test.runInAsyncScope (node:async_hooks:227:14)
+        Test.run (node:internal/test_runner/test:1306:25)
+        Test.start (node:internal/test_runner/test:1177:17)
+        TestContext.test (node:internal/test_runner/test:380:20)
+        TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/scripts/release-ci-policy.test.mjs:86:13)
+        async Test.run (node:internal/test_runner/test:1313:7)
+        async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+      ...
+    1..14
+not ok 2 - bounded trust-boundary mutations are rejected without executing any workflow
+  ---
+  duration_ms: 1.707625
+  type: 'test'
+  location: '/Users/yunusemre/Desktop/KubeView/scripts/release-ci-policy.test.mjs:67:1'
+  failureType: 'subtestsFailed'
+  error: '1 subtest failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..2
+# tests 16
+# suites 0
+# pass 14
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 46.764042

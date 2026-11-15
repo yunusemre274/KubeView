@@ -2,132 +2,257 @@ package main
 
 import (
 	"context"
+	"encoding/json"
+	"flag"
 	"fmt"
+	"io/fs"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
 	"path/filepath"
+	"runtime"
+	"strconv"
+	"strings"
 	"syscall"
+	"time"
 
-	"github.com/k8s-tersane/tersane/backend/pkg/api"
-	"github.com/k8s-tersane/tersane/backend/pkg/k8s"
+	"github.com/k8s-tersane/tersane/backend/internal/webui"
 	"github.com/k8s-tersane/tersane/backend/pkg/netutils"
-	ws "github.com/k8s-tersane/tersane/backend/pkg/websocket"
+	"github.com/k8s-tersane/tersane/backend/pkg/server"
 )
 
-func resolveStaticDir() string {
-	if envDir := os.Getenv("STATIC_DIR"); envDir != "" {
-		if _, err := os.Stat(filepath.Join(envDir, "index.html")); err == nil {
-			return envDir
+// Set by the reproducible release build; source-only development is explicit.
+var version = "development"
+var commit = "unknown"
+
+func configure(args []string) (bool, error) {
+	flags := flag.NewFlagSet("kubeview", flag.ContinueOnError)
+	showVersion := flags.Bool("version", false, "Print build version and exit")
+	kubeconfig := flags.String("kubeconfig", "", "Trusted kubeconfig file(s), separated by the platform path separator")
+	contextName := flags.String("context", "", "Initial kubeconfig context; does not change global current-context")
+	namespace := flags.String("namespace", "", "Restrict this gateway to one namespace (optional)")
+	bind := flags.String("bind", "", "Listen address; default 127.0.0.1. Non-loopback requires API_TOKEN")
+	port := flags.String("port", "", "HTTP listen port; default 8000")
+	write := flags.Bool("write", false, "Allow explicit per-browser management enablement; Kubernetes RBAC still applies")
+	dataDir := flags.String("data-dir", "", "Private workspace data directory; default user configuration directory/KubeView")
+	replay := flags.String("replay-profile", "", "Explicit loopback-only TEST/REPLAY source: M or L; always read-only, never loads kubeconfig")
+	tokenFile := flags.String("api-token-file", "", "Read operator access token from a private file; never send it in process arguments")
+	if err := flags.Parse(args); err != nil {
+		return false, err
+	}
+	if flags.NArg() != 0 {
+		return false, fmt.Errorf("unexpected positional arguments")
+	}
+	if *showVersion {
+		fmt.Printf("KubeView %s (%s) %s/%s\n", version, commit, runtime.GOOS, runtime.GOARCH)
+		return true, nil
+	}
+	profile := *replay
+	if profile == "" {
+		profile = os.Getenv("KUBEVIEW_REPLAY_PROFILE")
+	}
+	if profile != "" {
+		if profile != "M" && profile != "L" {
+			return false, fmt.Errorf("--replay-profile must be M or L")
+		}
+		host := *bind
+		if host == "" {
+			host = os.Getenv("BIND_ADDR")
+		}
+		if host != "" && host != "127.0.0.1" && host != "localhost" && host != "::1" {
+			return false, fmt.Errorf("TEST/REPLAY requires a loopback --bind")
+		}
+		if *write {
+			return false, fmt.Errorf("TEST/REPLAY cannot enable --write")
+		}
+		os.Setenv("KUBEVIEW_REPLAY_PROFILE", profile)
+		os.Setenv("READ_ONLY", "true")
+	}
+	directory := *dataDir
+	if directory == "" {
+		directory = os.Getenv("KUBEVIEW_DATA_DIR")
+	}
+	if directory == "" {
+		base, err := os.UserConfigDir()
+		if err != nil {
+			return false, fmt.Errorf("workspace directory unavailable; use --data-dir")
+		}
+		directory = filepath.Join(base, "KubeView")
+	}
+	absolute, err := filepath.Abs(directory)
+	if err != nil {
+		return false, fmt.Errorf("invalid --data-dir")
+	}
+	os.Setenv("KUBEVIEW_DATA_DIR", absolute)
+	for key, value := range map[string]string{"KUBECONFIG": *kubeconfig, "KUBE_CONTEXT": *contextName, "WATCH_NAMESPACE": *namespace, "BIND_ADDR": *bind, "PORT": *port} {
+		if value != "" {
+			if err := os.Setenv(key, value); err != nil {
+				return false, err
+			}
 		}
 	}
-	candidates := []string{"./public", "/app/public", "../frontend/dist", "public"}
-	for _, dir := range candidates {
+	if *port != "" {
+		p, err := strconv.Atoi(*port)
+		if err != nil || p < 1 || p > 65535 {
+			return false, fmt.Errorf("--port must be an integer from 1 to 65535")
+		}
+	}
+	if *write {
+		os.Setenv("READ_ONLY", "false")
+	}
+	if *tokenFile != "" {
+		data, err := os.ReadFile(*tokenFile)
+		if err != nil {
+			return false, fmt.Errorf("operator token file could not be read")
+		}
+		token := strings.TrimSpace(string(data))
+		if len(token) < 32 || strings.ContainsAny(token, "\r\n") {
+			return false, fmt.Errorf("operator token must contain at least 32 characters on one line")
+		}
+		os.Setenv("API_TOKEN", token)
+	}
+	return false, nil
+}
+
+func frontendHandler(root fs.FS) http.Handler {
+	files := http.FileServer(http.FS(root))
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet && r.Method != http.MethodHead {
+			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+		if r.URL.Path == "/api" || strings.HasPrefix(r.URL.Path, "/api/") || r.URL.Path == "/ws" {
+			http.NotFound(w, r)
+			return
+		}
+		w.Header().Set("X-Content-Type-Options", "nosniff")
+		w.Header().Set("Referrer-Policy", "no-referrer")
+		w.Header().Set("X-Frame-Options", "DENY")
+		// UI-only: workload previews have their own opaque sandbox policy. An
+		// outer middleware policy would stack with ReverseProxy's Header.Add.
+		w.Header().Set("Content-Security-Policy", "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; script-src 'self'; worker-src 'self' blob:")
+		name := strings.TrimPrefix(r.URL.Path, "/")
+		if name == "" {
+			name = "index.html"
+		}
+		if info, err := fs.Stat(root, name); err == nil && !info.IsDir() {
+			if strings.HasPrefix(name, "assets/") {
+				w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+			} else {
+				w.Header().Set("Cache-Control", "no-cache")
+			}
+			files.ServeHTTP(w, r)
+			return
+		}
+		// Missing assets are errors, never HTML disguised as JavaScript or fonts.
+		if filepath.Ext(name) != "" {
+			http.NotFound(w, r)
+			return
+		}
+		data, err := fs.ReadFile(root, "index.html")
+		if err != nil {
+			http.Error(w, "frontend unavailable", http.StatusServiceUnavailable)
+			return
+		}
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Header().Set("Cache-Control", "no-cache")
+		if r.Method != http.MethodHead {
+			w.Write(data)
+		}
+	})
+}
+
+func resolveStaticDir() string {
+	if dir := os.Getenv("STATIC_DIR"); dir != "" {
+		if _, err := os.Stat(filepath.Join(dir, "index.html")); err == nil {
+			return dir
+		}
+	}
+	for _, dir := range []string{"./public", "/app/public", "../frontend/dist", "frontend/dist"} {
 		if _, err := os.Stat(filepath.Join(dir, "index.html")); err == nil {
 			return dir
 		}
 	}
 	return ""
 }
-
 func main() {
-	fmt.Println("==================================================")
-	fmt.Println(" 🚢 TERSANE (K8s Shipyard 3D) — Backend Server")
-	fmt.Println("==================================================")
-
-	defaultPort := netutils.ParsePortEnv(os.Getenv("PORT"), 8000)
-
+	stop, err := configure(os.Args[1:])
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(2)
+	}
+	if stop {
+		return
+	}
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
-
-	// Initialize K8s Client & RestConfig
-	clientset, restConfig, kubeconfigPath, err := k8s.NewKubeClient()
-	if err != nil {
-		fmt.Printf("[fatal] Failed to initialize Kubernetes client: %v\n", err)
+	gateway := server.New()
+	defer gateway.Close()
+	if profile := os.Getenv("KUBEVIEW_REPLAY_PROFILE"); profile != "" {
+		if err := gateway.EnableReplay(profile); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+	}
+	if err := gateway.ConfigureWorkspace(os.Getenv("KUBEVIEW_DATA_DIR"), os.Getenv("KUBE_CONTEXT"), gateway.Namespace); err != nil {
+		fmt.Fprintln(os.Stderr, "Workspace could not be opened:", err)
 		os.Exit(1)
 	}
-
-	watchNamespace := os.Getenv("WATCH_NAMESPACE")
-
-	// Forward declaration for Initial State Provider closure
-	var watcher *k8s.Watcher
-
-	// Initialize WebSocket Hub
-	hub := ws.NewHub(func() api.InitialStatePayload {
-		if watcher != nil {
-			return watcher.GetInitialState()
-		}
-		return api.InitialStatePayload{}
-	})
-	go hub.Run()
-
-	// Initialize K8s Watcher with WebSocket Hub and Kubeconfig Path/Host Tracking
-	watcher = k8s.NewWatcher(clientset, watchNamespace, hub, kubeconfigPath, restConfig.Host)
-	go func() {
-		if err := watcher.StartInformerFactory(ctx); err != nil {
-			fmt.Printf("[error] Watcher stopped with error: %v\n", err)
-		}
-	}()
-
-	// Register HTTP / WebSocket routes
 	mux := http.NewServeMux()
-	mux.HandleFunc("/ws", hub.ServeWS)
-	mux.HandleFunc("/api/v1/pods/logs/stream", func(w http.ResponseWriter, r *http.Request) {
-		streamFn := func(streamCtx context.Context, namespace, podName, containerName string, tailLines int64, follow bool, ch chan<- string) error {
-			return k8s.StreamPodLogs(streamCtx, clientset, namespace, podName, containerName, tailLines, follow, ch)
-		}
-		ws.ServePodLogsWS(w, r, streamFn)
+	gateway.Register(mux)
+	mux.HandleFunc("/api/version", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(map[string]string{"version": version, "commit": commit, "os": runtime.GOOS, "arch": runtime.GOARCH})
 	})
 	mux.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
+		w.Header().Set("Content-Type", "text/plain")
 		w.Write([]byte("OK"))
 	})
-
-	// Static File Server (Production / Standalone Bundle Handler)
 	staticDir := resolveStaticDir()
-	if staticDir != "" {
-		fmt.Printf("[http] 🌐 Serving production 3D Frontend assets from: %s\n", staticDir)
-		fileServer := http.FileServer(http.Dir(staticDir))
-		mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			path := r.URL.Path
-			fullPath := filepath.Join(staticDir, path)
-			fi, err := os.Stat(fullPath)
-			if err != nil || fi.IsDir() {
-				// Serve index.html for SPA routing fallback
-				http.ServeFile(w, r, filepath.Join(staticDir, "index.html"))
-				return
-			}
-			fileServer.ServeHTTP(w, r)
-		})
+	assets, embedded := webui.Files()
+	if override := os.Getenv("STATIC_DIR"); override != "" {
+		if _, err := os.Stat(filepath.Join(override, "index.html")); err != nil {
+			fmt.Fprintln(os.Stderr, "STATIC_DIR does not contain index.html")
+			os.Exit(1)
+		}
+		mux.Handle("/", frontendHandler(os.DirFS(override)))
+		staticDir = override
+	} else if embedded {
+		mux.Handle("/", frontendHandler(assets))
+		staticDir = "embedded"
+	} else if staticDir != "" {
+		mux.Handle("/", frontendHandler(os.DirFS(staticDir)))
 	} else {
-		fmt.Println("[http] ℹ️ Static frontend assets not found. Running in API-only / Dev mode.")
 		mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			w.WriteHeader(http.StatusOK)
 			w.Header().Set("Content-Type", "text/html; charset=utf-8")
-			w.Write([]byte(`<!DOCTYPE html><html><head><title>Tersane Backend API</title></head><body style="font-family:sans-serif;background:#0f172a;color:#f8fafc;padding:40px;"><h1>🚢 Tersane K8s Backend API</h1><p>API Server is running in API-only mode.</p><p>Frontend Dev Server: <a href="http://localhost:5173" style="color:#38bdf8;">http://localhost:5173</a></p><p>WebSocket: <code>ws://localhost:8000/ws</code></p></body></html>`))
+			w.Write([]byte("<!doctype html><html lang='tr'><title>KubeView API</title><body><h1>KubeView API</h1><p>Ön yüz derlenmedi. frontend dizininde npm run dev çalıştırın.</p></body></html>"))
 		})
 	}
-
-	// Resolve available port (Auto Port Detect & Fallback: 8000-8020)
-	listener, assignedPort, err := netutils.ResolveAvailablePort(defaultPort, defaultPort+20)
-	if err != nil {
-		fmt.Printf("[fatal] Port resolution failed: %v\n", err)
+	host := os.Getenv("BIND_ADDR")
+	if host == "" {
+		host = "127.0.0.1"
+	}
+	if host != "127.0.0.1" && host != "localhost" && host != "::1" && gateway.Token == "" {
+		fmt.Fprintln(os.Stderr, "Paylaşılan erişim için API_TOKEN gerekli; yerel kullanımda BIND_ADDR=127.0.0.1 kullanın")
 		os.Exit(1)
 	}
-
-	server := &http.Server{
-		Handler: mux,
+	port := netutils.ParsePortEnv(os.Getenv("PORT"), 8000)
+	listener, err := net.Listen("tcp", net.JoinHostPort(host, fmt.Sprint(port)))
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
-
+	httpServer := &http.Server{Handler: mux, ReadHeaderTimeout: 10 * time.Second, IdleTimeout: 90 * time.Second}
 	go func() {
-		fmt.Printf("[http] 🚀 Tersane Backend WebSocket Server listening on http://0.0.0.0:%d\n", assignedPort)
-		if err := server.Serve(listener); err != nil && err != http.ErrServerClosed {
-			fmt.Printf("[fatal] HTTP server error: %v\n", err)
+		fmt.Printf("KubeView: http://%s (readOnly=%t, static=%s)\n", listener.Addr(), gateway.ReadOnly, staticDir)
+		if err := httpServer.Serve(listener); err != nil && err != http.ErrServerClosed {
+			fmt.Fprintln(os.Stderr, err)
+			cancel()
 		}
 	}()
-
 	<-ctx.Done()
-	fmt.Println("\n[info] Shutting down HTTP server...")
-	server.Shutdown(context.Background())
-	fmt.Println("[info] Tersane Backend Server gracefully stopped.")
+	shutdown, cancelShutdown := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancelShutdown()
+	httpServer.Shutdown(shutdown)
 }

@@ -1,0 +1,126 @@
+{
+  "startedAt": "2026-11-11T18:55:50.954940+00:00",
+  "status": "BLOCKED_FIRST_UNEXPECTED_FAILURE",
+  "argv": [
+    "/usr/bin/safaridriver",
+    "--mcp"
+  ],
+  "scope": "Fresh readonly empty KubeView app; only newly created owned tab; programmatic DOM click/type functional smoke",
+  "methods": [
+    "initialize",
+    "notifications/initialized",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call"
+  ],
+  "toolsCalled": [
+    "create_tab",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "switch_tab",
+    "page_info",
+    "screenshot",
+    "close_tab"
+  ],
+  "driverLimitSeconds": 120,
+  "responseLimitBytes": 24000000,
+  "baseHelperSHA256": "f44900d39cc0c86944058de42f56d835c8f2c4d061f8d0292c611769e502cc17",
+  "checks": {
+    "initialEmptyOneCanvas": true
+  },
+  "screenshots": [],
+  "guardCount": 2,
+  "sourceHEAD": "ef0b546a3d3580dfe6d9d0802e571a8de6ebe1c3",
+  "runtimeSourceCommit": "4c6c2ac5",
+  "binarySHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "preflightPortFree": true,
+  "privateDirectoryModeVerified": true,
+  "appArgv": [
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/candidate-runtime-provider09/kubeview",
+    "--bind",
+    "127.0.0.1",
+    "--port",
+    "19843",
+    "--data-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/native-safari-app-contract-retest-worker/data",
+    "--kubeconfig",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/native-safari-app-contract-retest-worker/nonexistent-kubeconfig"
+  ],
+  "appEnvironmentNames": [
+    "HOME",
+    "KUBECONFIG",
+    "KV_HUBBLE_ENABLED",
+    "KV_MINIKUBE_ENABLED",
+    "PATH",
+    "READ_ONLY",
+    "TMPDIR"
+  ],
+  "ownedAppPID": 91715,
+  "ownedAppPGID": 91715,
+  "ownedAppBirth": "Wed Nov 11 21:55:51 2026",
+  "appHealthyAndOwnsListener": true,
+  "ownedChildPID": 91719,
+  "negotiatedProtocol": "2024-11-05",
+  "serverInfo": {
+    "name": "Safari",
+    "version": "1.0.0"
+  },
+  "ownedHandleFromCreateOnly": "page-C74B0625-F23F-4592-BFCF-9F7C6CE9D347",
+  "ownedTabPending": false,
+  "readinessPollCount": 1,
+  "rawSafeEvaluationsBeforeUnpack": [
+    {
+      "content": [
+        {
+          "text": "{\"readyState\":\"complete\",\"canvasCount\":1,\"emptyConnectButton\":true,\"workspaceCount\":0,\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Safari/605.1.15\",\"reportedDPR\":2,\"viewport\":{\"width\":1024,\"height\":664},\"canvas\":{\"width\":300,\"height\":150,\"rect\":{\"x\":0,\"y\":0,\"width\":300,\"height\":150}}}",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "initial": {
+    "readyState": "complete",
+    "canvasCount": 1,
+    "emptyConnectButton": true,
+    "workspaceCount": 0,
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Safari/605.1.15",
+    "reportedDPR": 2,
+    "viewport": {
+      "width": 1024,
+      "height": 664
+    },
+    "canvas": {
+      "width": 300,
+      "height": 150,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 300,
+        "height": 150
+      }
+    }
+  },
+  "errorClass": "RuntimeError",
+  "reason": "SCREENSHOT_RESPONSE_NOT_ONE_IMAGE",
+  "ownedTabClosed": true,
+  "ownedDriverExited": true,
+  "driverExitCode": 0,
+  "appBirthGuardBeforeStop": true,
+  "ownedAppExited": true,
+  "appExitCode": 0,
+  "startupStderrBytesCaptured": 0,
+  "startupStderrTruncated": false,
+  "noListener19843": true,
+  "portBindAfterCleanup": true,
+  "bytesReadStdoutAndStderr": 1645,
+  "elapsedSeconds": 1.65093912500015,
+  "within120s": true,
+  "finishedAt": "2026-11-11T18:55:52.605915+00:00",
+  "helperSHA256": "cce7f5e747cc7e90efebcf3e2294ff52c3931efcc92519b98a1bc6e940e14bf2"
+}

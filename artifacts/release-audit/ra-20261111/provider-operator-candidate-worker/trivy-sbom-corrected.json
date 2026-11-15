@@ -1,0 +1,74 @@
+{
+  "startedAt": "2026-11-11T19:49:54.126677+00:00",
+  "command": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate/trivy.yaml",
+    "sbom",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "library",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate/empty.ignore",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate/trivy-sbom-corrected.json",
+    "--timeout",
+    "60s",
+    "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-operator-candidate-worker/binary-dependencies.cdx.json"
+  ],
+  "GOMAXPROCS": 1,
+  "parallel": 1,
+  "maxSeconds": 60,
+  "rssLimitBytes": 1610612736,
+  "dbMetadataBefore": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  },
+  "dbMetadataSHA256Before": "62046a71bc29e0ded194e98fe3cde2f51f7179f5ed9d150b7853a33cbe307477",
+  "inputSHA256Before": "7bba6629021f9f1437ba09626c904ff92cba0493cb2655db76eeccb2c75a061a",
+  "peakOwnedRSSBytes": 4849664,
+  "samples": [
+    {
+      "elapsed": 0.058,
+      "rssBytes": 4849664,
+      "freeDiskBytes": 454213308416
+    }
+  ],
+  "ownedScanPID": 2172,
+  "exitCode": 0,
+  "ownedScanExited": true,
+  "status": "SBOM_DEPENDENCY_COVERAGE",
+  "analyzerCoverage": [
+    {
+      "target": "",
+      "type": "gobinary",
+      "packageCount": 164
+    }
+  ],
+  "findingCount": 2,
+  "severityCounts": {
+    "MEDIUM": 1,
+    "UNKNOWN": 1
+  },
+  "highCriticalIDs": [],
+  "rawJSONSHA256": "4076be2ec6be685dec8e92aece0b91c485595a3b7947f1d9e3b59c279a8010cf",
+  "inputSHA256After": "7bba6629021f9f1437ba09626c904ff92cba0493cb2655db76eeccb2c75a061a",
+  "dbMetadataSHA256After": "62046a71bc29e0ded194e98fe3cde2f51f7179f5ed9d150b7853a33cbe307477",
+  "elapsedSeconds": 0.6615624580008443,
+  "finishedAt": "2026-11-11T19:49:54.788228+00:00",
+  "helperSHA256": "5c9dd481f642135d4e053c01067e3349c96ba72e52808e729415d7fb1304dad8"
+}

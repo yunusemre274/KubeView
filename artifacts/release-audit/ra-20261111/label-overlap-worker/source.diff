@@ -1,0 +1,152 @@
+diff --git a/frontend/src/harbor/HarborScene.jsx b/frontend/src/harbor/HarborScene.jsx
+index 2e5e27a8..154c25ea 100644
+--- a/frontend/src/harbor/HarborScene.jsx
++++ b/frontend/src/harbor/HarborScene.jsx
+@@ -104,6 +104,12 @@ const labelStyle = {
+ };
+ const statusLabelStyle = { fontSize: 12, color: "#536776", marginTop: 2 };
+ const labelPoint = new THREE.Vector3();
++const nameplatePoint = new THREE.Vector3();
++const nameplateLayouts = new WeakMap();
++function sceneNameplates(scene) {
++  if (!nameplateLayouts.has(scene)) nameplateLayouts.set(scene, new Map());
++  return nameplateLayouts.get(scene);
++}
+ 
+ function Terrain({ materials: m, bounds, lowDetail }) {
+   const blocks = useMemo(() => {
+@@ -269,6 +275,7 @@ function ResourceLabel({
+     nameRef = useRef(),
+     last = useRef({});
+   const size = useThree((state) => state.size);
++  const scene = useThree((state) => state.scene);
+   const labelSize = useRef([420, 72]);
+   const measureLabel = useCallback((node) => {
+     ref.current = node;
+@@ -280,13 +287,27 @@ function ResourceLabel({
+   }, [resource.metadata?.name, resource.metadata?.namespace, selected, hover, labels, state, size.width, size.height]);
+   const calculatePosition = useCallback((object, camera, viewport) => {
+     labelPoint.setFromMatrixPosition(object.matrixWorld).project(camera);
++    const x = (labelPoint.x + 1) * viewport.width / 2, y = (1 - labelPoint.y) * viewport.height / 2;
++    const obstacles = selected || hover ? [] : EMPTY_OPERATIONS;
++    if (selected || hover) {
++      let checked = 0;
++      for (const entry of sceneNameplates(scene).values()) {
++        if (++checked > 16 || obstacles.length === 8) break;
++        if (!entry.object) continue;
++        nameplatePoint.setFromMatrixPosition(entry.object.matrixWorld).project(camera);
++        if (nameplatePoint.z < -1 || nameplatePoint.z > 1) continue;
++        const cx = (nameplatePoint.x + 1) * viewport.width / 2, cy = (1 - nameplatePoint.y) * viewport.height / 2;
++        const [width, height] = entry.size;
++        if (cx + width/2 < 0 || cx - width/2 > viewport.width || cy + height/2 < 0 || cy - height/2 > viewport.height) continue;
++        obstacles.push({ left: cx-width/2, right: cx+width/2, top: cy-height/2, bottom: cy+height/2 });
++      }
++    }
+     return resourceLabelPosition(
+-      (labelPoint.x + 1) * viewport.width / 2,
+-      (1 - labelPoint.y) * viewport.height / 2,
++      x, y,
+       ...labelSize.current, viewport.width, viewport.height,
+-      resource.kind === "Pod", offset,
++      resource.kind === "Pod", offset, obstacles,
+     );
+-  }, [resource.kind, offset]);
++  }, [resource.kind, offset, selected, hover, scene]);
+   useFrame(() => {
+     if (!visualStatus) return;
+     const visual = visualStatus(),
+@@ -1926,8 +1947,22 @@ function NearbyHarbor({ harbor, index, session, views, protectedSources, materia
+ }
+ 
+ function HarborNameplate({ harbor, position, onSelect, active = false, stale = false }) {
+-  return <Html position={[position[0] + 8, 110, position[1] - 76]} center zIndexRange={[5, 0]}>
+-    <button className="harbor-nameplate" data-active={active} aria-label={`${harbor.name} — limanı aç`} title={`${harbor.namespaces.join(", ")}${stale ? " · Son bilinen veri" : ""}`}
++  const scene = useThree(state => state.scene), size = useThree(state => state.size);
++  const entry = useRef({ object: null, size: [112, 36] }), button = useRef();
++  const measure = useCallback(node => { button.current = node; if (node) entry.current.size = [node.offsetWidth, node.offsetHeight]; }, []);
++  useLayoutEffect(() => {
++    const cache = sceneNameplates(scene), item = entry.current;
++    cache.set(item, item);
++    return () => cache.delete(item);
++  }, [scene]);
++  useLayoutEffect(() => { if (button.current) entry.current.size = [button.current.offsetWidth, button.current.offsetHeight]; }, [harbor.name, stale, size.width, size.height]);
++  const calculatePosition = useCallback((object, camera, viewport) => {
++    entry.current.object = object;
++    nameplatePoint.setFromMatrixPosition(object.matrixWorld).project(camera);
++    return [(nameplatePoint.x + 1) * viewport.width/2, (1 - nameplatePoint.y) * viewport.height/2];
++  }, []);
++  return <Html position={[position[0] + 8, 110, position[1] - 76]} center zIndexRange={[5, 0]} calculatePosition={calculatePosition}>
++    <button ref={measure} className="harbor-nameplate" data-active={active} aria-label={`${harbor.name} — limanı aç`} title={`${harbor.namespaces.join(", ")}${stale ? " · Son bilinen veri" : ""}`}
+       onPointerDown={event => event.stopPropagation()} onClick={event => { event.stopPropagation(); onSelect?.(harbor.id); }}>
+       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m12 2 10 5.5v9L12 22 2 16.5v-9Z M2 7.5l10 5.5 10-5.5M12 13v9M7 4.75l10 5.5" /></svg>
+       <span>{harbor.name}</span>{stale && <small>Eski veri</small>}
+diff --git a/frontend/src/harbor/interactions.js b/frontend/src/harbor/interactions.js
+index 91ae4de1..4cd87f1a 100644
+--- a/frontend/src/harbor/interactions.js
++++ b/frontend/src/harbor/interactions.js
+@@ -30,14 +30,28 @@ export function containerInstances(pods) {
+ // HTML labels stay beside their real anchor, but remain readable at the edge
+ // of the canvas. Dimensions are cached on mount/content/viewport changes, not
+ // read from layout during the scene's frame loop.
+-export function resourceLabelPosition(x, y, width, height, viewportWidth, viewportHeight, pod = false, offset = 0) {
++export function resourceLabelPosition(x, y, width, height, viewportWidth, viewportHeight, pod = false, offset = 0, obstacles = []) {
+   const halfWidth = Math.min(width, Math.max(0, viewportWidth - 32)) / 2;
+   const halfHeight = Math.min(height, Math.max(0, viewportHeight - 32)) / 2;
+   const clamp = (value, half, extent) => Math.max(16 + half, Math.min(extent - 16 - half, value));
+-  return [
+-    clamp(x + offset + (pod ? halfWidth + 26 : 0), halfWidth, viewportWidth) - offset,
+-    clamp(y - (pod ? 12 : 0), halfHeight, viewportHeight),
+-  ];
++  const preferred = [clamp(x + offset + (pod ? halfWidth + 26 : 0), halfWidth, viewportWidth), clamp(y - (pod ? 12 : 0), halfHeight, viewportHeight)];
++  if (!obstacles.length) return [preferred[0] - offset, preferred[1]];
++  const boxes = obstacles.slice(0, 8);
++  const candidates = [preferred];
++  for (const box of boxes) candidates.push(
++    [box.left - halfWidth - 8, preferred[1]], [box.right + halfWidth + 8, preferred[1]],
++    [preferred[0], box.top - halfHeight - 8], [preferred[0], box.bottom + halfHeight + 8],
++  );
++  let best = preferred, bestOverlap = Infinity, bestDistance = Infinity;
++  for (const candidate of candidates) {
++    const cx = clamp(candidate[0], halfWidth, viewportWidth), cy = clamp(candidate[1], halfHeight, viewportHeight);
++    let overlap = 0;
++    for (const box of boxes) overlap += Math.max(0, Math.min(cx + halfWidth, box.right + 8) - Math.max(cx - halfWidth, box.left - 8)) * Math.max(0, Math.min(cy + halfHeight, box.bottom + 8) - Math.max(cy - halfHeight, box.top - 8));
++    const distance = (cx - preferred[0]) ** 2 + (cy - preferred[1]) ** 2;
++    if (overlap < bestOverlap || overlap === bestOverlap && distance < bestDistance) { best = [cx, cy]; bestOverlap = overlap; bestDistance = distance; }
++    if (bestOverlap === 0 && bestDistance === 0) break;
++  }
++  return [best[0] - offset, best[1]];
+ }
+ export class PointerGesture {
+   constructor(threshold = 5) {
+diff --git a/frontend/src/harbor/interactions.test.js b/frontend/src/harbor/interactions.test.js
+index 837a966e..61cc8aa1 100644
+--- a/frontend/src/harbor/interactions.test.js
++++ b/frontend/src/harbor/interactions.test.js
+@@ -16,6 +16,27 @@ test('selected resource labels fit all canvas edges without changing their world
+   }
+ });
+ 
++test('selected labels avoid cached harbor nameplates while staying within phone and desktop bounds', () => {
++  for (const [w,h] of [[390,844],[768,900],[1440,900]]) {
++    const box = {left:w/2-55,right:w/2+55,top:h/2-18,bottom:h/2+18};
++    const width=Math.min(220,w-32),height=80,offset=12;
++    const [x,y]=resourceLabelPosition(w/2-120,h/2+15,width,height,w,h,true,offset,[box]);
++    const left=x+offset-width/2,right=x+offset+width/2,top=y-height/2,bottom=y+height/2;
++    assert.ok(left>=16 && right<=w-16 && top>=16 && bottom<=h-16);
++    assert.ok(right<=box.left-8 || left>=box.right+8 || bottom<=box.top-8 || top>=box.bottom+8);
++  }
++});
++
++test('bounded collision placement is deterministic and preserves visible labels when no free space exists', () => {
++  const boxes=[{left:16,right:374,top:16,bottom:828}];
++  const args=[190,400,220,80,390,844,true,0,boxes];
++  assert.deepEqual(resourceLabelPosition(...args),resourceLabelPosition(...args));
++  const [x,y]=resourceLabelPosition(...args);
++  assert.ok(Number.isFinite(x)&&Number.isFinite(y));
++  assert.ok(x>=126&&x<=264&&y>=56&&y<=788);
++  assert.deepEqual(resourceLabelPosition(300,200,200,48,1440,900,true,0,[{left:1000,right:1200,top:600,bottom:650}]),[426,188]);
++});
++
+ test('every regular, init, restartable init and ephemeral container maps to its exact Pod UID and raw name',()=>{
+   const resource={kind:'Pod',metadata:{uid:'pod-uid',name:'plain-api-name',namespace:'test'},spec:{containers:[{name:'api'},{name:'metrics'},{name:'proxy'},{name:'fourth'}],initContainers:[{name:'prepare'},{name:'init-sidecar',restartPolicy:'Always'}],ephemeralContainers:[{name:'debug'}]}}
+   const instances=containerInstances([resource])

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-06-43-563Z-1e2c7e8b",
+  "startedAt": "2026-11-09T08:06:43.563Z",
+  "tests": [
+    {
+      "title": "V11-05 empty scope and unreachable context stay distinct from explicitly selected Demo",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 7259,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-06-43-722Z-b4381893/v11-scope-security-V11-05--73384-om-explicitly-selected-Demo-chromium/attachments/v11-evidence-bd92411598fd21afee8f2c271224ff1a70a8f251.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:06:51.066Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-06-43-563Z-1e2c7e8b.json"
+}

@@ -1,0 +1,3528 @@
+{
+  "verdict": "NOT_REPRODUCED_CAPTURED_CONTENT_INVENTORIES_MATCH",
+  "findingStatus": "BENCH-RENDER-001 remains OPEN; earlier persistent extra object was not identified by these two bounded runs",
+  "jobs": [
+    {
+      "side": "A",
+      "id": "cat16-render-identity-A-20261112T195727Z",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-render-identity-diag-worker/run.mjs",
+        "--phase",
+        "baseline",
+        "--build-tag",
+        "cat16-36d-20261112T113255Z",
+        "--backend-tag",
+        "cat16-common-f32-20261112T113255Z",
+        "--reuse-build",
+        "--reuse-binary",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "panel-open-events",
+        "--panel-matrix",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "3",
+        "--warmup",
+        "30",
+        "--seconds",
+        "15",
+        "--camera-fov",
+        "38",
+        "--dpr",
+        "1",
+        "--harbors",
+        "1",
+        "--lock-input",
+        "--lock-visual-start",
+        "--scene-inventory",
+        "--disable-browser-energy-saver",
+        "--max-minutes",
+        "1.7",
+        "--port",
+        "5192",
+        "--experiment-family",
+        "INSTRUMENTED_RENDER_IDENTITY_NOT_PERFORMANCE_ACCEPTANCE",
+        "--id",
+        "cat16-render-identity-A-20261112T195727Z"
+      ],
+      "startedAt": "2026-11-12T20:01:07.982698+00:00",
+      "PID": 58914,
+      "exitCode": 0,
+      "finishedAt": "2026-11-12T20:01:56.748147+00:00",
+      "elapsedSecondsIncludingCleanup": 49.21421504020691
+    },
+    {
+      "side": "B",
+      "id": "cat16-render-identity-B-20261112T195727Z",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-render-identity-diag-worker/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "cat16-f32-20261112T113255Z",
+        "--backend-tag",
+        "cat16-common-f32-20261112T113255Z",
+        "--reuse-build",
+        "--reuse-binary",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "panel-open-events",
+        "--panel-matrix",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "3",
+        "--warmup",
+        "30",
+        "--seconds",
+        "15",
+        "--camera-fov",
+        "38",
+        "--dpr",
+        "1",
+        "--harbors",
+        "1",
+        "--lock-input",
+        "--lock-visual-start",
+        "--scene-inventory",
+        "--disable-browser-energy-saver",
+        "--max-minutes",
+        "1.7",
+        "--port",
+        "5192",
+        "--experiment-family",
+        "INSTRUMENTED_RENDER_IDENTITY_NOT_PERFORMANCE_ACCEPTANCE",
+        "--id",
+        "cat16-render-identity-B-20261112T195727Z"
+      ],
+      "startedAt": "2026-11-12T20:01:57.207626+00:00",
+      "PID": 59488,
+      "exitCode": 0,
+      "finishedAt": "2026-11-12T20:02:45.712603+00:00",
+      "elapsedSecondsIncludingCleanup": 49.00390696525574
+    }
+  ],
+  "captureRows": [
+    {
+      "side": "A",
+      "stage": "00-before",
+      "elapsedMs": 0,
+      "callbackCount": 238,
+      "mainCameraFrame": 1815,
+      "uniqueRenderedGeometryCount": 24,
+      "rendererInfoPostCallback": {
+        "render": {
+          "frame": 1815,
+          "calls": 426,
+          "triangles": 71170,
+          "points": 0,
+          "lines": 60
+        },
+        "memory": {
+          "geometries": 32,
+          "textures": 4
+        }
+      },
+      "callbacksRestored": true,
+      "upstreamEventsAfterSnapshot": 0,
+      "canonicalEqualAtPostSnapshotRead": true,
+      "panelUID": "node-0",
+      "panelTitle": "worker-001",
+      "panelTab": "\u00d6zet",
+      "pointer": {
+        "canvasPointerEvents": "none",
+        "rootPointer": [
+          -0.9888888888888889,
+          0.9822222222222222
+        ],
+        "lastEvent": null,
+        "connectedTag": "DIV",
+        "elementAt8_8": {
+          "tag": "DIV",
+          "className": ""
+        },
+        "hoveredObjects": []
+      },
+      "outlineIdentities": [
+        {
+          "uuid": "9b40368f-cd2c-4652-8293-ee0d6257ec17",
+          "type": "LineSegments",
+          "target": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "geometryUUID": "56b145d0-009d-4896-92af-b15a76f06343",
+          "geometryType": "EdgesGeometry",
+          "geometryContentSHA256": "b2bdbb0fe2c829ae5ac23ea2a1f0b0b4d703f0d0072990287b0eea4321916875",
+          "materialUUID": "a2a4062e-f146-450f-80b2-052b0145b4a4",
+          "material": {
+            "uuid": "a2a4062e-f146-450f-80b2-052b0145b4a4",
+            "type": "LineBasicMaterial",
+            "name": null,
+            "color": "4a8bd8",
+            "wireframe": false,
+            "transparent": true,
+            "opacity": 0.95,
+            "depthTest": false,
+            "depthWrite": true,
+            "side": 0,
+            "contentSHA256": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68"
+          },
+          "parentChain": [
+            {
+              "uuid": "9b40368f-cd2c-4652-8293-ee0d6257ec17",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "901c4433-9382-41aa-941f-608e1dbcc735",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "889a2229-a195-47c2-a07c-215dc4d70dc8",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "0e225f5a-6fd7-4d77-b884-892308578344",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "38301b71-b403-414a-a500-3e360860d6c5",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "880897a9-db36-47b0-a1a3-4042fd27819f",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "A",
+      "stage": "active-5000",
+      "elapsedMs": 5046,
+      "callbackCount": 246,
+      "mainCameraFrame": 2120,
+      "uniqueRenderedGeometryCount": 32,
+      "rendererInfoPostCallback": {
+        "render": {
+          "frame": 2121,
+          "calls": 434,
+          "triangles": 72322,
+          "points": 0,
+          "lines": 60
+        },
+        "memory": {
+          "geometries": 34,
+          "textures": 4
+        }
+      },
+      "callbacksRestored": true,
+      "upstreamEventsAfterSnapshot": 27,
+      "canonicalEqualAtPostSnapshotRead": true,
+      "panelUID": "node-0",
+      "panelTitle": "worker-001",
+      "panelTab": "\u00d6zet",
+      "pointer": {
+        "canvasPointerEvents": "",
+        "rootPointer": [
+          -0.9888888888888889,
+          0.9822222222222222
+        ],
+        "lastEvent": null,
+        "connectedTag": "DIV",
+        "elementAt8_8": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "hoveredObjects": []
+      },
+      "outlineIdentities": [
+        {
+          "uuid": "9b40368f-cd2c-4652-8293-ee0d6257ec17",
+          "type": "LineSegments",
+          "target": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "geometryUUID": "56b145d0-009d-4896-92af-b15a76f06343",
+          "geometryType": "EdgesGeometry",
+          "geometryContentSHA256": "b2bdbb0fe2c829ae5ac23ea2a1f0b0b4d703f0d0072990287b0eea4321916875",
+          "materialUUID": "a2a4062e-f146-450f-80b2-052b0145b4a4",
+          "material": {
+            "uuid": "a2a4062e-f146-450f-80b2-052b0145b4a4",
+            "type": "LineBasicMaterial",
+            "name": null,
+            "color": "4a8bd8",
+            "wireframe": false,
+            "transparent": true,
+            "opacity": 0.95,
+            "depthTest": false,
+            "depthWrite": true,
+            "side": 0,
+            "contentSHA256": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68"
+          },
+          "parentChain": [
+            {
+              "uuid": "9b40368f-cd2c-4652-8293-ee0d6257ec17",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "901c4433-9382-41aa-941f-608e1dbcc735",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "889a2229-a195-47c2-a07c-215dc4d70dc8",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "0e225f5a-6fd7-4d77-b884-892308578344",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "38301b71-b403-414a-a500-3e360860d6c5",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "880897a9-db36-47b0-a1a3-4042fd27819f",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "A",
+      "stage": "active-10000",
+      "elapsedMs": 10566,
+      "callbackCount": 246,
+      "mainCameraFrame": 2444,
+      "uniqueRenderedGeometryCount": 32,
+      "rendererInfoPostCallback": {
+        "render": {
+          "frame": 2445,
+          "calls": 434,
+          "triangles": 72322,
+          "points": 0,
+          "lines": 60
+        },
+        "memory": {
+          "geometries": 34,
+          "textures": 4
+        }
+      },
+      "callbacksRestored": true,
+      "upstreamEventsAfterSnapshot": 54,
+      "canonicalEqualAtPostSnapshotRead": true,
+      "panelUID": "node-0",
+      "panelTitle": "worker-001",
+      "panelTab": "\u00d6zet",
+      "pointer": {
+        "canvasPointerEvents": "",
+        "rootPointer": [
+          -0.9888888888888889,
+          0.9822222222222222
+        ],
+        "lastEvent": null,
+        "connectedTag": "DIV",
+        "elementAt8_8": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "hoveredObjects": []
+      },
+      "outlineIdentities": [
+        {
+          "uuid": "9b40368f-cd2c-4652-8293-ee0d6257ec17",
+          "type": "LineSegments",
+          "target": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "geometryUUID": "56b145d0-009d-4896-92af-b15a76f06343",
+          "geometryType": "EdgesGeometry",
+          "geometryContentSHA256": "b2bdbb0fe2c829ae5ac23ea2a1f0b0b4d703f0d0072990287b0eea4321916875",
+          "materialUUID": "a2a4062e-f146-450f-80b2-052b0145b4a4",
+          "material": {
+            "uuid": "a2a4062e-f146-450f-80b2-052b0145b4a4",
+            "type": "LineBasicMaterial",
+            "name": null,
+            "color": "4a8bd8",
+            "wireframe": false,
+            "transparent": true,
+            "opacity": 0.95,
+            "depthTest": false,
+            "depthWrite": true,
+            "side": 0,
+            "contentSHA256": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68"
+          },
+          "parentChain": [
+            {
+              "uuid": "9b40368f-cd2c-4652-8293-ee0d6257ec17",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "901c4433-9382-41aa-941f-608e1dbcc735",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "889a2229-a195-47c2-a07c-215dc4d70dc8",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "0e225f5a-6fd7-4d77-b884-892308578344",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "38301b71-b403-414a-a500-3e360860d6c5",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "880897a9-db36-47b0-a1a3-4042fd27819f",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "A",
+      "stage": "after",
+      "elapsedMs": 15105,
+      "callbackCount": 246,
+      "mainCameraFrame": 2709,
+      "uniqueRenderedGeometryCount": 32,
+      "rendererInfoPostCallback": {
+        "render": {
+          "frame": 2710,
+          "calls": 434,
+          "triangles": 72322,
+          "points": 0,
+          "lines": 60
+        },
+        "memory": {
+          "geometries": 34,
+          "textures": 4
+        }
+      },
+      "callbacksRestored": true,
+      "upstreamEventsAfterSnapshot": 75,
+      "canonicalEqualAtPostSnapshotRead": true,
+      "panelUID": "node-0",
+      "panelTitle": "worker-001",
+      "panelTab": "\u00d6zet",
+      "pointer": {
+        "canvasPointerEvents": "",
+        "rootPointer": [
+          -0.9888888888888889,
+          0.9822222222222222
+        ],
+        "lastEvent": null,
+        "connectedTag": "DIV",
+        "elementAt8_8": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "hoveredObjects": []
+      },
+      "outlineIdentities": [
+        {
+          "uuid": "9b40368f-cd2c-4652-8293-ee0d6257ec17",
+          "type": "LineSegments",
+          "target": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "geometryUUID": "56b145d0-009d-4896-92af-b15a76f06343",
+          "geometryType": "EdgesGeometry",
+          "geometryContentSHA256": "b2bdbb0fe2c829ae5ac23ea2a1f0b0b4d703f0d0072990287b0eea4321916875",
+          "materialUUID": "a2a4062e-f146-450f-80b2-052b0145b4a4",
+          "material": {
+            "uuid": "a2a4062e-f146-450f-80b2-052b0145b4a4",
+            "type": "LineBasicMaterial",
+            "name": null,
+            "color": "4a8bd8",
+            "wireframe": false,
+            "transparent": true,
+            "opacity": 0.95,
+            "depthTest": false,
+            "depthWrite": true,
+            "side": 0,
+            "contentSHA256": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68"
+          },
+          "parentChain": [
+            {
+              "uuid": "9b40368f-cd2c-4652-8293-ee0d6257ec17",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "901c4433-9382-41aa-941f-608e1dbcc735",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "889a2229-a195-47c2-a07c-215dc4d70dc8",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "0e225f5a-6fd7-4d77-b884-892308578344",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "38301b71-b403-414a-a500-3e360860d6c5",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "880897a9-db36-47b0-a1a3-4042fd27819f",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "B",
+      "stage": "00-before",
+      "elapsedMs": 0,
+      "callbackCount": 238,
+      "mainCameraFrame": 1815,
+      "uniqueRenderedGeometryCount": 24,
+      "rendererInfoPostCallback": {
+        "render": {
+          "frame": 1815,
+          "calls": 426,
+          "triangles": 71170,
+          "points": 0,
+          "lines": 60
+        },
+        "memory": {
+          "geometries": 32,
+          "textures": 4
+        }
+      },
+      "callbacksRestored": true,
+      "upstreamEventsAfterSnapshot": 0,
+      "canonicalEqualAtPostSnapshotRead": true,
+      "panelUID": "node-0",
+      "panelTitle": "worker-001",
+      "panelTab": "\u00d6zet",
+      "pointer": {
+        "canvasPointerEvents": "none",
+        "rootPointer": [
+          -0.9888888888888889,
+          0.9822222222222222
+        ],
+        "lastEvent": null,
+        "connectedTag": "DIV",
+        "elementAt8_8": {
+          "tag": "DIV",
+          "className": ""
+        },
+        "hoveredObjects": []
+      },
+      "outlineIdentities": [
+        {
+          "uuid": "c9df5f33-ff84-4518-bc3c-34d0517daf37",
+          "type": "LineSegments",
+          "target": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "geometryUUID": "a4b3ed43-e7ee-47ef-842e-c3d85053f065",
+          "geometryType": "EdgesGeometry",
+          "geometryContentSHA256": "01d4fdb296af3246af31924b9b129ef5b857908df5d870f258d8e1273b96a187",
+          "materialUUID": "2510c59f-d65c-4d7c-90d5-b4cf6872a6a7",
+          "material": {
+            "uuid": "2510c59f-d65c-4d7c-90d5-b4cf6872a6a7",
+            "type": "LineBasicMaterial",
+            "name": null,
+            "color": "4a8bd8",
+            "wireframe": false,
+            "transparent": true,
+            "opacity": 0.95,
+            "depthTest": false,
+            "depthWrite": true,
+            "side": 0,
+            "contentSHA256": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68"
+          },
+          "parentChain": [
+            {
+              "uuid": "c9df5f33-ff84-4518-bc3c-34d0517daf37",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "2ac337c1-6daa-47cd-ada2-8ca34e557de0",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "3701a7c5-5851-4f0d-a6d5-ffe3de00dbe1",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "bd7d7fd1-1e82-495f-a296-986f5d0a939e",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "0de7b55c-6e04-4c7e-acc0-ba98b32fd7a1",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "f9072233-db43-4a43-9420-5815afad11c4",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "B",
+      "stage": "active-5000",
+      "elapsedMs": 5054,
+      "callbackCount": 246,
+      "mainCameraFrame": 2121,
+      "uniqueRenderedGeometryCount": 32,
+      "rendererInfoPostCallback": {
+        "render": {
+          "frame": 2122,
+          "calls": 434,
+          "triangles": 72322,
+          "points": 0,
+          "lines": 60
+        },
+        "memory": {
+          "geometries": 34,
+          "textures": 4
+        }
+      },
+      "callbacksRestored": true,
+      "upstreamEventsAfterSnapshot": 27,
+      "canonicalEqualAtPostSnapshotRead": true,
+      "panelUID": "node-0",
+      "panelTitle": "worker-001",
+      "panelTab": "\u00d6zet",
+      "pointer": {
+        "canvasPointerEvents": "",
+        "rootPointer": [
+          -0.9888888888888889,
+          0.9822222222222222
+        ],
+        "lastEvent": null,
+        "connectedTag": "DIV",
+        "elementAt8_8": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "hoveredObjects": []
+      },
+      "outlineIdentities": [
+        {
+          "uuid": "c9df5f33-ff84-4518-bc3c-34d0517daf37",
+          "type": "LineSegments",
+          "target": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "geometryUUID": "a4b3ed43-e7ee-47ef-842e-c3d85053f065",
+          "geometryType": "EdgesGeometry",
+          "geometryContentSHA256": "01d4fdb296af3246af31924b9b129ef5b857908df5d870f258d8e1273b96a187",
+          "materialUUID": "2510c59f-d65c-4d7c-90d5-b4cf6872a6a7",
+          "material": {
+            "uuid": "2510c59f-d65c-4d7c-90d5-b4cf6872a6a7",
+            "type": "LineBasicMaterial",
+            "name": null,
+            "color": "4a8bd8",
+            "wireframe": false,
+            "transparent": true,
+            "opacity": 0.95,
+            "depthTest": false,
+            "depthWrite": true,
+            "side": 0,
+            "contentSHA256": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68"
+          },
+          "parentChain": [
+            {
+              "uuid": "c9df5f33-ff84-4518-bc3c-34d0517daf37",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "2ac337c1-6daa-47cd-ada2-8ca34e557de0",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "3701a7c5-5851-4f0d-a6d5-ffe3de00dbe1",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "bd7d7fd1-1e82-495f-a296-986f5d0a939e",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "0de7b55c-6e04-4c7e-acc0-ba98b32fd7a1",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "f9072233-db43-4a43-9420-5815afad11c4",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "B",
+      "stage": "active-10000",
+      "elapsedMs": 10579,
+      "callbackCount": 246,
+      "mainCameraFrame": 2445,
+      "uniqueRenderedGeometryCount": 32,
+      "rendererInfoPostCallback": {
+        "render": {
+          "frame": 2446,
+          "calls": 434,
+          "triangles": 72322,
+          "points": 0,
+          "lines": 60
+        },
+        "memory": {
+          "geometries": 34,
+          "textures": 4
+        }
+      },
+      "callbacksRestored": true,
+      "upstreamEventsAfterSnapshot": 55,
+      "canonicalEqualAtPostSnapshotRead": true,
+      "panelUID": "node-0",
+      "panelTitle": "worker-001",
+      "panelTab": "\u00d6zet",
+      "pointer": {
+        "canvasPointerEvents": "",
+        "rootPointer": [
+          -0.9888888888888889,
+          0.9822222222222222
+        ],
+        "lastEvent": null,
+        "connectedTag": "DIV",
+        "elementAt8_8": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "hoveredObjects": []
+      },
+      "outlineIdentities": [
+        {
+          "uuid": "c9df5f33-ff84-4518-bc3c-34d0517daf37",
+          "type": "LineSegments",
+          "target": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "geometryUUID": "a4b3ed43-e7ee-47ef-842e-c3d85053f065",
+          "geometryType": "EdgesGeometry",
+          "geometryContentSHA256": "01d4fdb296af3246af31924b9b129ef5b857908df5d870f258d8e1273b96a187",
+          "materialUUID": "2510c59f-d65c-4d7c-90d5-b4cf6872a6a7",
+          "material": {
+            "uuid": "2510c59f-d65c-4d7c-90d5-b4cf6872a6a7",
+            "type": "LineBasicMaterial",
+            "name": null,
+            "color": "4a8bd8",
+            "wireframe": false,
+            "transparent": true,
+            "opacity": 0.95,
+            "depthTest": false,
+            "depthWrite": true,
+            "side": 0,
+            "contentSHA256": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68"
+          },
+          "parentChain": [
+            {
+              "uuid": "c9df5f33-ff84-4518-bc3c-34d0517daf37",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "2ac337c1-6daa-47cd-ada2-8ca34e557de0",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "3701a7c5-5851-4f0d-a6d5-ffe3de00dbe1",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "bd7d7fd1-1e82-495f-a296-986f5d0a939e",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "0de7b55c-6e04-4c7e-acc0-ba98b32fd7a1",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "f9072233-db43-4a43-9420-5815afad11c4",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "B",
+      "stage": "after",
+      "elapsedMs": 15098,
+      "callbackCount": 246,
+      "mainCameraFrame": 2710,
+      "uniqueRenderedGeometryCount": 32,
+      "rendererInfoPostCallback": {
+        "render": {
+          "frame": 2711,
+          "calls": 434,
+          "triangles": 72322,
+          "points": 0,
+          "lines": 60
+        },
+        "memory": {
+          "geometries": 34,
+          "textures": 4
+        }
+      },
+      "callbacksRestored": true,
+      "upstreamEventsAfterSnapshot": 75,
+      "canonicalEqualAtPostSnapshotRead": true,
+      "panelUID": "node-0",
+      "panelTitle": "worker-001",
+      "panelTab": "\u00d6zet",
+      "pointer": {
+        "canvasPointerEvents": "",
+        "rootPointer": [
+          -0.9888888888888889,
+          0.9822222222222222
+        ],
+        "lastEvent": null,
+        "connectedTag": "DIV",
+        "elementAt8_8": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "hoveredObjects": []
+      },
+      "outlineIdentities": [
+        {
+          "uuid": "c9df5f33-ff84-4518-bc3c-34d0517daf37",
+          "type": "LineSegments",
+          "target": {
+            "type": "node",
+            "uid": "node-0",
+            "name": "worker-001"
+          },
+          "geometryUUID": "a4b3ed43-e7ee-47ef-842e-c3d85053f065",
+          "geometryType": "EdgesGeometry",
+          "geometryContentSHA256": "01d4fdb296af3246af31924b9b129ef5b857908df5d870f258d8e1273b96a187",
+          "materialUUID": "2510c59f-d65c-4d7c-90d5-b4cf6872a6a7",
+          "material": {
+            "uuid": "2510c59f-d65c-4d7c-90d5-b4cf6872a6a7",
+            "type": "LineBasicMaterial",
+            "name": null,
+            "color": "4a8bd8",
+            "wireframe": false,
+            "transparent": true,
+            "opacity": 0.95,
+            "depthTest": false,
+            "depthWrite": true,
+            "side": 0,
+            "contentSHA256": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68"
+          },
+          "parentChain": [
+            {
+              "uuid": "c9df5f33-ff84-4518-bc3c-34d0517daf37",
+              "type": "LineSegments",
+              "name": null,
+              "siblingIndex": 11,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "2ac337c1-6daa-47cd-ada2-8ca34e557de0",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 0,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "3701a7c5-5851-4f0d-a6d5-ffe3de00dbe1",
+              "type": "Group",
+              "name": "node:node-0",
+              "siblingIndex": 0,
+              "target": {
+                "type": "node",
+                "uid": "node-0",
+                "name": "worker-001"
+              },
+              "selectedProp": null
+            },
+            {
+              "uuid": "bd7d7fd1-1e82-495f-a296-986f5d0a939e",
+              "type": "Group",
+              "name": null,
+              "siblingIndex": 3,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "0de7b55c-6e04-4c7e-acc0-ba98b32fd7a1",
+              "type": "Group",
+              "name": "workspace:active-harbor",
+              "siblingIndex": 6,
+              "target": null,
+              "selectedProp": null
+            },
+            {
+              "uuid": "f9072233-db43-4a43-9420-5815afad11c4",
+              "type": "Scene",
+              "name": null,
+              "siblingIndex": null,
+              "target": null,
+              "selectedProp": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "stage": "00-before",
+      "inventoryKey": "type/name/nearest recorded harborTarget + geometry content SHA256 + material content SHA256 + instance count + draw group; transforms and UUIDs excluded",
+      "actualCallbackMultisetMatched": false,
+      "AcallbackCount": 238,
+      "BcallbackCount": 238,
+      "distinctKeysA": 206,
+      "distinctKeysB": 206,
+      "Aonly": [
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ff35348570d7d038415137cf1920076d6dc3fa5b37057bdebc695166aa6f5bc8",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "afbe0c287f8390e68c68ffe3d9a3314872f55ccb7d31f179567cedf93c01660d",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c9790f0e02d21d6190c3edf750159a33b606000428f06dcbd5e46615e11529c1",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b0a1f7c0a91a3aff3ad8cac0b444343b08086ab5558dc5679aa53c30eb3b0968",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "5a92a14762edb7d982a7c4795bbd1855c80ab461acecad037facfaf35a1d4d42",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "config",
+              "name": "Talimat panosu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "74efca3118e32d430a35947b07e0b58039d344c148aff70a8270eaccb91365de",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "e10a206ff99f608f7ffce3ef0c89e2976cca706336c7f72921403c546feda9a7",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ef8b9d31c03a44293229f2e8767024ec2aa75451d9fc31560fdd4f632f43ae86",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b522a3ac61b1861e10b62ace3f503ffd84c9a2fa4629f1fafe89c77a5977e8b5",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "identity",
+              "name": "Personel ve kimlik",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bf7c18824adf066a7349253d8497c071501f4399a77dea78cc6d5c222131319c",
+            "group": null,
+            "instances": null,
+            "material": "fe62fe949eaa69410d49c01248be455e623ea883f32d34b4c47c62ee59103660",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bf7c18824adf066a7349253d8497c071501f4399a77dea78cc6d5c222131319c",
+            "group": null,
+            "instances": null,
+            "material": "06b5a82284e254faa2a224e7802367e83294c8f3740b5ec6fd3cc9cd87237a76",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "cdc4fa8d59af3e9803cac3351339157af2bc17b1b8a157d5c76e06b01b769dd4",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "network",
+              "name": "A\u011f istasyonu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bfd6881a54cdb862e3c9ef44f569400de76fa67ae027d3609082557c31dd650c",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "schedule",
+              "name": "Sefer takvimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f22995a09ebf564345245717ac03e999b7e4aa2f8d59cec835d71fce652382e6",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f7101d77c45043c5a9a42db9dc14f8bf9f99ac0d197927e1b75168df0567e371",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "6b86d38c026a4863f66c2724f3b735e427f88088becf20db4893af7ad2e16e48",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "secrets",
+              "name": "G\u00fcvenlik kasas\u0131",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b2bdbb0fe2c829ae5ac23ea2a1f0b0b4d703f0d0072990287b0eea4321916875",
+            "group": null,
+            "instances": null,
+            "material": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68",
+            "name": null,
+            "target": {
+              "name": "worker-001",
+              "type": "node",
+              "uid": "node-0"
+            },
+            "type": "LineSegments"
+          }
+        }
+      ],
+      "Bonly": [
+        {
+          "count": 1,
+          "key": {
+            "geometry": "25cb39bdfdf43d711854d20e480bfe4120622021590545d70eadfac7a78cb8f0",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c87bf31df51ad122a5fccc171a2527c837fb0964256555ec7b8f7c5ed29252d6",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "d3fc82475ea044482ed03335aec47e2092bc4403214228a6e17c214bd8b914c9",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "6610b16a1f4dd8de6df3fe24cdc43e99c7781b99f6e8c2f2d20ecacc1764ff92",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "74ff4dcb3c884acbb1ab5a18247fdbdf570df7f86bfa479f38eb4bbd248dce54",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "config",
+              "name": "Talimat panosu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c17ebb79b51b3d9d835394eaa89a8c00fd871d1cca3706a6a9dc44e1d26b257d",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "628b08521aaaf5015564f29731abb77ce9581d7bd13ae5adc98a2b9d02215699",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "16039c4029fbce98bd428df1edb33dd59f667c593492593781611c3e131a8c2f",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "9088ab5c0cd1ac51e598e347d18e28d7d7b52dd43dc806520b17d9b9aaac82ff",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "identity",
+              "name": "Personel ve kimlik",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "971941f3cb7d21365df76ce9ffc7cb7d899b129cf17cebdac5ebb4a2a9a8eb4c",
+            "group": null,
+            "instances": null,
+            "material": "fe62fe949eaa69410d49c01248be455e623ea883f32d34b4c47c62ee59103660",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "971941f3cb7d21365df76ce9ffc7cb7d899b129cf17cebdac5ebb4a2a9a8eb4c",
+            "group": null,
+            "instances": null,
+            "material": "06b5a82284e254faa2a224e7802367e83294c8f3740b5ec6fd3cc9cd87237a76",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ca3c845e672d3c29f82a596c125bdd4d10553909abd2b2fccd8e4115b29eb605",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "network",
+              "name": "A\u011f istasyonu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "309cf5ca3d70b220a6049d910e57a3f57066fb966f67c910e4636220a9009853",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "schedule",
+              "name": "Sefer takvimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "d99021263e32c9e88e390097789f961beb096a8fc6e4cba7c95b5ae8c96a3ed2",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "cf8248fc3f1257df271d7863454f2acffd6a9e4dd997f574d388ba1f56859067",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f6ada16b4edf49a65e8ddd8fd1bf51d7198d5760281b15cf83490825670e79f0",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "secrets",
+              "name": "G\u00fcvenlik kasas\u0131",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "01d4fdb296af3246af31924b9b129ef5b857908df5d870f258d8e1273b96a187",
+            "group": null,
+            "instances": null,
+            "material": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68",
+            "name": null,
+            "target": {
+              "name": "worker-001",
+              "type": "node",
+              "uid": "node-0"
+            },
+            "type": "LineSegments"
+          }
+        }
+      ],
+      "geometryFingerprintsMatched": false,
+      "eventCountsAfterSnapshot": [
+        0,
+        0
+      ],
+      "cameraStrictEqualPostSnapshot": true,
+      "canonicalPostReadHashesEqualAcrossBuilds": true
+    },
+    {
+      "stage": "active-5000",
+      "inventoryKey": "type/name/nearest recorded harborTarget + geometry content SHA256 + material content SHA256 + instance count + draw group; transforms and UUIDs excluded",
+      "actualCallbackMultisetMatched": false,
+      "AcallbackCount": 246,
+      "BcallbackCount": 246,
+      "distinctKeysA": 207,
+      "distinctKeysB": 207,
+      "Aonly": [
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ff35348570d7d038415137cf1920076d6dc3fa5b37057bdebc695166aa6f5bc8",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "afbe0c287f8390e68c68ffe3d9a3314872f55ccb7d31f179567cedf93c01660d",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c9790f0e02d21d6190c3edf750159a33b606000428f06dcbd5e46615e11529c1",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b0a1f7c0a91a3aff3ad8cac0b444343b08086ab5558dc5679aa53c30eb3b0968",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "5a92a14762edb7d982a7c4795bbd1855c80ab461acecad037facfaf35a1d4d42",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "config",
+              "name": "Talimat panosu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "74efca3118e32d430a35947b07e0b58039d344c148aff70a8270eaccb91365de",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "e10a206ff99f608f7ffce3ef0c89e2976cca706336c7f72921403c546feda9a7",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ef8b9d31c03a44293229f2e8767024ec2aa75451d9fc31560fdd4f632f43ae86",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b522a3ac61b1861e10b62ace3f503ffd84c9a2fa4629f1fafe89c77a5977e8b5",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "identity",
+              "name": "Personel ve kimlik",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bf7c18824adf066a7349253d8497c071501f4399a77dea78cc6d5c222131319c",
+            "group": null,
+            "instances": null,
+            "material": "fe62fe949eaa69410d49c01248be455e623ea883f32d34b4c47c62ee59103660",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bf7c18824adf066a7349253d8497c071501f4399a77dea78cc6d5c222131319c",
+            "group": null,
+            "instances": null,
+            "material": "06b5a82284e254faa2a224e7802367e83294c8f3740b5ec6fd3cc9cd87237a76",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "cdc4fa8d59af3e9803cac3351339157af2bc17b1b8a157d5c76e06b01b769dd4",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "network",
+              "name": "A\u011f istasyonu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bfd6881a54cdb862e3c9ef44f569400de76fa67ae027d3609082557c31dd650c",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "schedule",
+              "name": "Sefer takvimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f22995a09ebf564345245717ac03e999b7e4aa2f8d59cec835d71fce652382e6",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f7101d77c45043c5a9a42db9dc14f8bf9f99ac0d197927e1b75168df0567e371",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "6b86d38c026a4863f66c2724f3b735e427f88088becf20db4893af7ad2e16e48",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "secrets",
+              "name": "G\u00fcvenlik kasas\u0131",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b2bdbb0fe2c829ae5ac23ea2a1f0b0b4d703f0d0072990287b0eea4321916875",
+            "group": null,
+            "instances": null,
+            "material": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68",
+            "name": null,
+            "target": {
+              "name": "worker-001",
+              "type": "node",
+              "uid": "node-0"
+            },
+            "type": "LineSegments"
+          }
+        }
+      ],
+      "Bonly": [
+        {
+          "count": 1,
+          "key": {
+            "geometry": "25cb39bdfdf43d711854d20e480bfe4120622021590545d70eadfac7a78cb8f0",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c87bf31df51ad122a5fccc171a2527c837fb0964256555ec7b8f7c5ed29252d6",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "d3fc82475ea044482ed03335aec47e2092bc4403214228a6e17c214bd8b914c9",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "6610b16a1f4dd8de6df3fe24cdc43e99c7781b99f6e8c2f2d20ecacc1764ff92",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "74ff4dcb3c884acbb1ab5a18247fdbdf570df7f86bfa479f38eb4bbd248dce54",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "config",
+              "name": "Talimat panosu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c17ebb79b51b3d9d835394eaa89a8c00fd871d1cca3706a6a9dc44e1d26b257d",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "628b08521aaaf5015564f29731abb77ce9581d7bd13ae5adc98a2b9d02215699",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "16039c4029fbce98bd428df1edb33dd59f667c593492593781611c3e131a8c2f",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "9088ab5c0cd1ac51e598e347d18e28d7d7b52dd43dc806520b17d9b9aaac82ff",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "identity",
+              "name": "Personel ve kimlik",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "971941f3cb7d21365df76ce9ffc7cb7d899b129cf17cebdac5ebb4a2a9a8eb4c",
+            "group": null,
+            "instances": null,
+            "material": "fe62fe949eaa69410d49c01248be455e623ea883f32d34b4c47c62ee59103660",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "971941f3cb7d21365df76ce9ffc7cb7d899b129cf17cebdac5ebb4a2a9a8eb4c",
+            "group": null,
+            "instances": null,
+            "material": "06b5a82284e254faa2a224e7802367e83294c8f3740b5ec6fd3cc9cd87237a76",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ca3c845e672d3c29f82a596c125bdd4d10553909abd2b2fccd8e4115b29eb605",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "network",
+              "name": "A\u011f istasyonu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "309cf5ca3d70b220a6049d910e57a3f57066fb966f67c910e4636220a9009853",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "schedule",
+              "name": "Sefer takvimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "d99021263e32c9e88e390097789f961beb096a8fc6e4cba7c95b5ae8c96a3ed2",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "cf8248fc3f1257df271d7863454f2acffd6a9e4dd997f574d388ba1f56859067",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f6ada16b4edf49a65e8ddd8fd1bf51d7198d5760281b15cf83490825670e79f0",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "secrets",
+              "name": "G\u00fcvenlik kasas\u0131",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "01d4fdb296af3246af31924b9b129ef5b857908df5d870f258d8e1273b96a187",
+            "group": null,
+            "instances": null,
+            "material": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68",
+            "name": null,
+            "target": {
+              "name": "worker-001",
+              "type": "node",
+              "uid": "node-0"
+            },
+            "type": "LineSegments"
+          }
+        }
+      ],
+      "geometryFingerprintsMatched": false,
+      "eventCountsAfterSnapshot": [
+        27,
+        27
+      ],
+      "cameraStrictEqualPostSnapshot": true,
+      "canonicalPostReadHashesEqualAcrossBuilds": true
+    },
+    {
+      "stage": "active-10000",
+      "inventoryKey": "type/name/nearest recorded harborTarget + geometry content SHA256 + material content SHA256 + instance count + draw group; transforms and UUIDs excluded",
+      "actualCallbackMultisetMatched": false,
+      "AcallbackCount": 246,
+      "BcallbackCount": 246,
+      "distinctKeysA": 207,
+      "distinctKeysB": 207,
+      "Aonly": [
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ff35348570d7d038415137cf1920076d6dc3fa5b37057bdebc695166aa6f5bc8",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "afbe0c287f8390e68c68ffe3d9a3314872f55ccb7d31f179567cedf93c01660d",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c9790f0e02d21d6190c3edf750159a33b606000428f06dcbd5e46615e11529c1",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b0a1f7c0a91a3aff3ad8cac0b444343b08086ab5558dc5679aa53c30eb3b0968",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "5a92a14762edb7d982a7c4795bbd1855c80ab461acecad037facfaf35a1d4d42",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "config",
+              "name": "Talimat panosu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "74efca3118e32d430a35947b07e0b58039d344c148aff70a8270eaccb91365de",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "e10a206ff99f608f7ffce3ef0c89e2976cca706336c7f72921403c546feda9a7",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ef8b9d31c03a44293229f2e8767024ec2aa75451d9fc31560fdd4f632f43ae86",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b522a3ac61b1861e10b62ace3f503ffd84c9a2fa4629f1fafe89c77a5977e8b5",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "identity",
+              "name": "Personel ve kimlik",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bf7c18824adf066a7349253d8497c071501f4399a77dea78cc6d5c222131319c",
+            "group": null,
+            "instances": null,
+            "material": "fe62fe949eaa69410d49c01248be455e623ea883f32d34b4c47c62ee59103660",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bf7c18824adf066a7349253d8497c071501f4399a77dea78cc6d5c222131319c",
+            "group": null,
+            "instances": null,
+            "material": "06b5a82284e254faa2a224e7802367e83294c8f3740b5ec6fd3cc9cd87237a76",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "cdc4fa8d59af3e9803cac3351339157af2bc17b1b8a157d5c76e06b01b769dd4",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "network",
+              "name": "A\u011f istasyonu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bfd6881a54cdb862e3c9ef44f569400de76fa67ae027d3609082557c31dd650c",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "schedule",
+              "name": "Sefer takvimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f22995a09ebf564345245717ac03e999b7e4aa2f8d59cec835d71fce652382e6",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f7101d77c45043c5a9a42db9dc14f8bf9f99ac0d197927e1b75168df0567e371",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "6b86d38c026a4863f66c2724f3b735e427f88088becf20db4893af7ad2e16e48",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "secrets",
+              "name": "G\u00fcvenlik kasas\u0131",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b2bdbb0fe2c829ae5ac23ea2a1f0b0b4d703f0d0072990287b0eea4321916875",
+            "group": null,
+            "instances": null,
+            "material": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68",
+            "name": null,
+            "target": {
+              "name": "worker-001",
+              "type": "node",
+              "uid": "node-0"
+            },
+            "type": "LineSegments"
+          }
+        }
+      ],
+      "Bonly": [
+        {
+          "count": 1,
+          "key": {
+            "geometry": "25cb39bdfdf43d711854d20e480bfe4120622021590545d70eadfac7a78cb8f0",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c87bf31df51ad122a5fccc171a2527c837fb0964256555ec7b8f7c5ed29252d6",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "d3fc82475ea044482ed03335aec47e2092bc4403214228a6e17c214bd8b914c9",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "6610b16a1f4dd8de6df3fe24cdc43e99c7781b99f6e8c2f2d20ecacc1764ff92",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "74ff4dcb3c884acbb1ab5a18247fdbdf570df7f86bfa479f38eb4bbd248dce54",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "config",
+              "name": "Talimat panosu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c17ebb79b51b3d9d835394eaa89a8c00fd871d1cca3706a6a9dc44e1d26b257d",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "628b08521aaaf5015564f29731abb77ce9581d7bd13ae5adc98a2b9d02215699",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "16039c4029fbce98bd428df1edb33dd59f667c593492593781611c3e131a8c2f",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "9088ab5c0cd1ac51e598e347d18e28d7d7b52dd43dc806520b17d9b9aaac82ff",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "identity",
+              "name": "Personel ve kimlik",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "971941f3cb7d21365df76ce9ffc7cb7d899b129cf17cebdac5ebb4a2a9a8eb4c",
+            "group": null,
+            "instances": null,
+            "material": "fe62fe949eaa69410d49c01248be455e623ea883f32d34b4c47c62ee59103660",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "971941f3cb7d21365df76ce9ffc7cb7d899b129cf17cebdac5ebb4a2a9a8eb4c",
+            "group": null,
+            "instances": null,
+            "material": "06b5a82284e254faa2a224e7802367e83294c8f3740b5ec6fd3cc9cd87237a76",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ca3c845e672d3c29f82a596c125bdd4d10553909abd2b2fccd8e4115b29eb605",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "network",
+              "name": "A\u011f istasyonu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "309cf5ca3d70b220a6049d910e57a3f57066fb966f67c910e4636220a9009853",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "schedule",
+              "name": "Sefer takvimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "d99021263e32c9e88e390097789f961beb096a8fc6e4cba7c95b5ae8c96a3ed2",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "cf8248fc3f1257df271d7863454f2acffd6a9e4dd997f574d388ba1f56859067",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f6ada16b4edf49a65e8ddd8fd1bf51d7198d5760281b15cf83490825670e79f0",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "secrets",
+              "name": "G\u00fcvenlik kasas\u0131",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "01d4fdb296af3246af31924b9b129ef5b857908df5d870f258d8e1273b96a187",
+            "group": null,
+            "instances": null,
+            "material": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68",
+            "name": null,
+            "target": {
+              "name": "worker-001",
+              "type": "node",
+              "uid": "node-0"
+            },
+            "type": "LineSegments"
+          }
+        }
+      ],
+      "geometryFingerprintsMatched": false,
+      "eventCountsAfterSnapshot": [
+        54,
+        55
+      ],
+      "cameraStrictEqualPostSnapshot": true,
+      "canonicalPostReadHashesEqualAcrossBuilds": false
+    },
+    {
+      "stage": "after",
+      "inventoryKey": "type/name/nearest recorded harborTarget + geometry content SHA256 + material content SHA256 + instance count + draw group; transforms and UUIDs excluded",
+      "actualCallbackMultisetMatched": false,
+      "AcallbackCount": 246,
+      "BcallbackCount": 246,
+      "distinctKeysA": 207,
+      "distinctKeysB": 207,
+      "Aonly": [
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ff35348570d7d038415137cf1920076d6dc3fa5b37057bdebc695166aa6f5bc8",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "afbe0c287f8390e68c68ffe3d9a3314872f55ccb7d31f179567cedf93c01660d",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c9790f0e02d21d6190c3edf750159a33b606000428f06dcbd5e46615e11529c1",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b0a1f7c0a91a3aff3ad8cac0b444343b08086ab5558dc5679aa53c30eb3b0968",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "5a92a14762edb7d982a7c4795bbd1855c80ab461acecad037facfaf35a1d4d42",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "config",
+              "name": "Talimat panosu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "74efca3118e32d430a35947b07e0b58039d344c148aff70a8270eaccb91365de",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "e10a206ff99f608f7ffce3ef0c89e2976cca706336c7f72921403c546feda9a7",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ef8b9d31c03a44293229f2e8767024ec2aa75451d9fc31560fdd4f632f43ae86",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b522a3ac61b1861e10b62ace3f503ffd84c9a2fa4629f1fafe89c77a5977e8b5",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "identity",
+              "name": "Personel ve kimlik",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bf7c18824adf066a7349253d8497c071501f4399a77dea78cc6d5c222131319c",
+            "group": null,
+            "instances": null,
+            "material": "fe62fe949eaa69410d49c01248be455e623ea883f32d34b4c47c62ee59103660",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bf7c18824adf066a7349253d8497c071501f4399a77dea78cc6d5c222131319c",
+            "group": null,
+            "instances": null,
+            "material": "06b5a82284e254faa2a224e7802367e83294c8f3740b5ec6fd3cc9cd87237a76",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "cdc4fa8d59af3e9803cac3351339157af2bc17b1b8a157d5c76e06b01b769dd4",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "network",
+              "name": "A\u011f istasyonu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "bfd6881a54cdb862e3c9ef44f569400de76fa67ae027d3609082557c31dd650c",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "schedule",
+              "name": "Sefer takvimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f22995a09ebf564345245717ac03e999b7e4aa2f8d59cec835d71fce652382e6",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f7101d77c45043c5a9a42db9dc14f8bf9f99ac0d197927e1b75168df0567e371",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "6b86d38c026a4863f66c2724f3b735e427f88088becf20db4893af7ad2e16e48",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "secrets",
+              "name": "G\u00fcvenlik kasas\u0131",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "b2bdbb0fe2c829ae5ac23ea2a1f0b0b4d703f0d0072990287b0eea4321916875",
+            "group": null,
+            "instances": null,
+            "material": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68",
+            "name": null,
+            "target": {
+              "name": "worker-001",
+              "type": "node",
+              "uid": "node-0"
+            },
+            "type": "LineSegments"
+          }
+        }
+      ],
+      "Bonly": [
+        {
+          "count": 1,
+          "key": {
+            "geometry": "25cb39bdfdf43d711854d20e480bfe4120622021590545d70eadfac7a78cb8f0",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c87bf31df51ad122a5fccc171a2527c837fb0964256555ec7b8f7c5ed29252d6",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "d3fc82475ea044482ed03335aec47e2092bc4403214228a6e17c214bd8b914c9",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "6610b16a1f4dd8de6df3fe24cdc43e99c7781b99f6e8c2f2d20ecacc1764ff92",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "74ff4dcb3c884acbb1ab5a18247fdbdf570df7f86bfa479f38eb4bbd248dce54",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "config",
+              "name": "Talimat panosu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "c17ebb79b51b3d9d835394eaa89a8c00fd871d1cca3706a6a9dc44e1d26b257d",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "628b08521aaaf5015564f29731abb77ce9581d7bd13ae5adc98a2b9d02215699",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "16039c4029fbce98bd428df1edb33dd59f667c593492593781611c3e131a8c2f",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": null,
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "9088ab5c0cd1ac51e598e347d18e28d7d7b52dd43dc806520b17d9b9aaac82ff",
+            "group": null,
+            "instances": null,
+            "material": "d0559d74f7f13d99340d9257e10ef749bdb0c34f53a7835f9f7f9a01e587e711",
+            "name": null,
+            "target": {
+              "id": "identity",
+              "name": "Personel ve kimlik",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "971941f3cb7d21365df76ce9ffc7cb7d899b129cf17cebdac5ebb4a2a9a8eb4c",
+            "group": null,
+            "instances": null,
+            "material": "fe62fe949eaa69410d49c01248be455e623ea883f32d34b4c47c62ee59103660",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "971941f3cb7d21365df76ce9ffc7cb7d899b129cf17cebdac5ebb4a2a9a8eb4c",
+            "group": null,
+            "instances": null,
+            "material": "06b5a82284e254faa2a224e7802367e83294c8f3740b5ec6fd3cc9cd87237a76",
+            "name": null,
+            "target": {
+              "id": "storage",
+              "name": "Depolama",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "ca3c845e672d3c29f82a596c125bdd4d10553909abd2b2fccd8e4115b29eb605",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "network",
+              "name": "A\u011f istasyonu",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "309cf5ca3d70b220a6049d910e57a3f57066fb966f67c910e4636220a9009853",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "schedule",
+              "name": "Sefer takvimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "d99021263e32c9e88e390097789f961beb096a8fc6e4cba7c95b5ae8c96a3ed2",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "workloads",
+              "name": "\u0130\u015f y\u00fckleri",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "cf8248fc3f1257df271d7863454f2acffd6a9e4dd997f574d388ba1f56859067",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "center",
+              "name": "Liman y\u00f6netimi",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "f6ada16b4edf49a65e8ddd8fd1bf51d7198d5760281b15cf83490825670e79f0",
+            "group": null,
+            "instances": null,
+            "material": "e4bd3dd855557126638cdb51a54a77bfe7126699fc18aa1a03e788c751bc0c18",
+            "name": null,
+            "target": {
+              "id": "secrets",
+              "name": "G\u00fcvenlik kasas\u0131",
+              "type": "facility"
+            },
+            "type": "Mesh"
+          }
+        },
+        {
+          "count": 1,
+          "key": {
+            "geometry": "01d4fdb296af3246af31924b9b129ef5b857908df5d870f258d8e1273b96a187",
+            "group": null,
+            "instances": null,
+            "material": "26e4901907ac95ea35f4e7b24dfc504232836f297a0c8731a685d87019730a68",
+            "name": null,
+            "target": {
+              "name": "worker-001",
+              "type": "node",
+              "uid": "node-0"
+            },
+            "type": "LineSegments"
+          }
+        }
+      ],
+      "geometryFingerprintsMatched": false,
+      "eventCountsAfterSnapshot": [
+        75,
+        75
+      ],
+      "cameraStrictEqualPostSnapshot": true,
+      "canonicalPostReadHashesEqualAcrossBuilds": true
+    }
+  ],
+  "imageReview": {
+    "openedAllEight": true,
+    "paths": [
+      "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z/00-before.png",
+      "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z/active-5000.png",
+      "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z/active-10000.png",
+      "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-A-20261112T195727Z/after.png",
+      "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-B-20261112T195727Z/00-before.png",
+      "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-B-20261112T195727Z/active-5000.png",
+      "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-B-20261112T195727Z/active-10000.png",
+      "artifacts/release-audit/ra-20261112/perf-render-identity-diag-worker/runtime/cat16-render-identity-B-20261112T195727Z/after.png"
+    ],
+    "observations": "Node0 Summary remained open and blue ship selection outline visible; no extra yellow cargo wireframe observed. Baseline problem badge differed A21/B22, later stages24/25 agree; image/pixel equivalence is not claimed.",
+    "causalLabelInterpretation": "No claim that label differences are explained only by panel occlusion."
+  },
+  "probeLimits": [
+    "One main-camera onBeforeRender callback identity set per stage; shadow-camera render passes excluded. Callback inventory is not a one-to-one count of total renderer.info.draw calls.",
+    "Properties/content/instances/transforms sampled after callback and asynchronous SHA; not an atomic rendered pose.",
+    "Instanced batches retain count and parent/nearest harborTarget but no explicit per-instance harborTargets UID map was saved; nearest target may be null.",
+    "R3F hovered map empty at captured stages does not prove no earlier React hover/reconciliation state.",
+    "15second instrumentation may affect scheduling and does not reproduce the historical60second family path or prove absence of the finding.",
+    "No CPU/FPS/energy/full-runtime/Kubernetes/soak acceptance; raw profiler=false metadata is superseded for classification by classification.json, without rewriting raw artifacts."
+  ],
+  "noPointerLeaveControl": "Not run: no historical extra-call/geometry condition reproduced; no further run or sweep.",
+  "cleanup": {
+    "port5192Free": true,
+    "capturedIdentityCount": 39,
+    "allExactBirthCommandIdentitiesAbsent": true
+  },
+  "normalizedContentComparisons": [
+    {
+      "stage": "00-before",
+      "matched": true,
+      "callbacksA": 238,
+      "callbacksB": 238,
+      "geometryContentMultisetMatched": true,
+      "Aonly": [],
+      "Bonly": []
+    },
+    {
+      "stage": "active-5000",
+      "matched": true,
+      "callbacksA": 246,
+      "callbacksB": 246,
+      "geometryContentMultisetMatched": true,
+      "Aonly": [],
+      "Bonly": []
+    },
+    {
+      "stage": "active-10000",
+      "matched": true,
+      "callbacksA": 246,
+      "callbacksB": 246,
+      "geometryContentMultisetMatched": true,
+      "Aonly": [],
+      "Bonly": []
+    },
+    {
+      "stage": "after",
+      "matched": true,
+      "callbacksA": 246,
+      "callbacksB": 246,
+      "geometryContentMultisetMatched": true,
+      "Aonly": [],
+      "Bonly": []
+    }
+  ],
+  "normalizedGeometryContentSHA256": {
+    "A": {
+      "00-before": {
+        "464ed14b-ed62-48fa-96b6-6683a5575eff": "5935255985075117e8796e5512c9f4d52fb0dc30e80645114e6b2f75cf69f453",
+        "c319916c-2b0a-4f3c-8aa7-a96ee1091140": "8c62ea8f7a346f95b13ceb4a4fcf0053ae26f86da133a773fc66567e83cead4b",
+        "89bf2071-93fe-40de-b072-122cdd27a32b": "78b021392d6b78b3c164b0c963a5fb0725486bd7bc81268f48869bc29a07061c",
+        "3078c1b5-02f7-4189-82a7-08cf5f1598c5": "f73f9c8a781ecd0be1f8886944b4982d09956af077f17bb84da33a2c88b14498",
+        "9bc54601-9253-4585-9bb6-c7d196083c06": "a99c1b5c5982cdaa33963b4feacf3da5db8a0605214e040999ea421322b91aae",
+        "128db18b-ed8f-46a4-b38f-4ba7a67355f9": "960c3ed63aa3cd1f0dd30cecebc78147f926bc1a4a41b42df77586fe825ce8ef",
+        "84e201d8-dfd9-4db3-8022-2c1a5b496656": "ddbfc763e8ed47f5150546d9095b70a8298f64a5c7cfb9873e37f8457637391a",
+        "d946333c-6e81-4bba-85b7-3b0b314b4588": "ed46cf33cf84cc7b86abe565bb31db1bd9821a5cafd3e8d6589e9691aa7cd32a",
+        "aa8e208c-084c-4f97-bdca-51c54cafd721": "52f304bda0dcc42e65762a73127bd7c7da0b4b85d801d08e392ec6593f85bd3d",
+        "09f545c9-f9e3-43bc-b879-957516f841a2": "dcd60231593cdd23c84a8a4af7b6fbd861017ecd826ab7deb2f0fb9802ddc174",
+        "342550dd-e211-4a15-b6ac-3fd324bc03b3": "1f6cf1466da3cd8d6ae6aa401cdee633fe558ddc4f704479931dbd888f6bef7c",
+        "0903777b-e7d1-4c91-a802-f99ade87dc5d": "3a15e56ed58a7e31ab2960a0a02bf4e9060a8a2cb306678d3c5446c25ffad8c2",
+        "9d4a3d9a-b828-47f1-b507-f407e4ea7269": "ff54542a3ea8080d51b59cb5e9478d3f217596aa009e222a65fba39664428752",
+        "c056a1d8-47ac-4f85-abed-a54da27d2005": "7559aab6287d3f83833f8db9c45112b7cc036c1d925e619cd0d4c52c43b5308e",
+        "d6bd9ce2-4cce-4bcf-8ffd-5be0a931b567": "4874f1b838f7d225bfe3df3c6a21c351643160f15f7ea1bc12d917c217c9dbdc",
+        "96150318-1fb7-491b-99f4-d1400eba9514": "6d2cd3397eef150b48d5fdd62d0d55b84ad3bb171f3adf02dbd8501fa45c32af",
+        "d0fc1a9b-fb4a-4caf-9422-13ace1306f66": "698c1d49129be08f287b06fed2c5e5e80c568c1922d610c08d93a72bccc3b5aa",
+        "906fb1fa-f4a2-4c1f-8296-31dcf234a74a": "c1d51a646cd3a9708aebc7cf0496203ae2c642f68926ecb6630672d9ced5cd7c",
+        "d2144f13-17f2-4206-9660-4a8a908e1678": "32e5a4b3e070c593b0a389a01ec2eee78f4c153c238ab8faafdf33fa5e7da6bf",
+        "5ca54ce2-ec85-4f22-bee5-baceb8d3e091": "2ffead33d3100fe87cffc68dc225d4a8f9e75d7321c928c325c322e18358d10f",
+        "4f038653-f6d0-4521-a42d-8e65134fb9c9": "3745ff2416612428cb4d4a553ac4179a3ada6422ab328cb31a8581a360f100c5",
+        "acf41264-d246-48ad-8f9f-359074149478": "d14ea2b7166a5a600f030b190fed4657dffa4b423b8aadcf2748e3ef5cc8f594",
+        "d74364ed-f32e-4689-b710-b08fd6e8ce8b": "f86b625a28c4e039a9422517ab6666be92c7ca19e8fc95edd55dea2f041cc540",
+        "56b145d0-009d-4896-92af-b15a76f06343": "c2b1f4ba1af9c6be39abb57362f9f7c72fdb78f5a0b6195a3c272021e4bdf31d"
+      },
+      "active-5000": {
+        "464ed14b-ed62-48fa-96b6-6683a5575eff": "5935255985075117e8796e5512c9f4d52fb0dc30e80645114e6b2f75cf69f453",
+        "c319916c-2b0a-4f3c-8aa7-a96ee1091140": "8c62ea8f7a346f95b13ceb4a4fcf0053ae26f86da133a773fc66567e83cead4b",
+        "89bf2071-93fe-40de-b072-122cdd27a32b": "78b021392d6b78b3c164b0c963a5fb0725486bd7bc81268f48869bc29a07061c",
+        "3078c1b5-02f7-4189-82a7-08cf5f1598c5": "f73f9c8a781ecd0be1f8886944b4982d09956af077f17bb84da33a2c88b14498",
+        "9bc54601-9253-4585-9bb6-c7d196083c06": "a99c1b5c5982cdaa33963b4feacf3da5db8a0605214e040999ea421322b91aae",
+        "128db18b-ed8f-46a4-b38f-4ba7a67355f9": "960c3ed63aa3cd1f0dd30cecebc78147f926bc1a4a41b42df77586fe825ce8ef",
+        "84e201d8-dfd9-4db3-8022-2c1a5b496656": "ddbfc763e8ed47f5150546d9095b70a8298f64a5c7cfb9873e37f8457637391a",
+        "d946333c-6e81-4bba-85b7-3b0b314b4588": "ed46cf33cf84cc7b86abe565bb31db1bd9821a5cafd3e8d6589e9691aa7cd32a",
+        "aa8e208c-084c-4f97-bdca-51c54cafd721": "52f304bda0dcc42e65762a73127bd7c7da0b4b85d801d08e392ec6593f85bd3d",
+        "09f545c9-f9e3-43bc-b879-957516f841a2": "dcd60231593cdd23c84a8a4af7b6fbd861017ecd826ab7deb2f0fb9802ddc174",
+        "342550dd-e211-4a15-b6ac-3fd324bc03b3": "1f6cf1466da3cd8d6ae6aa401cdee633fe558ddc4f704479931dbd888f6bef7c",
+        "0903777b-e7d1-4c91-a802-f99ade87dc5d": "3a15e56ed58a7e31ab2960a0a02bf4e9060a8a2cb306678d3c5446c25ffad8c2",
+        "9d4a3d9a-b828-47f1-b507-f407e4ea7269": "ff54542a3ea8080d51b59cb5e9478d3f217596aa009e222a65fba39664428752",
+        "c056a1d8-47ac-4f85-abed-a54da27d2005": "7559aab6287d3f83833f8db9c45112b7cc036c1d925e619cd0d4c52c43b5308e",
+        "d6bd9ce2-4cce-4bcf-8ffd-5be0a931b567": "4874f1b838f7d225bfe3df3c6a21c351643160f15f7ea1bc12d917c217c9dbdc",
+        "96150318-1fb7-491b-99f4-d1400eba9514": "6d2cd3397eef150b48d5fdd62d0d55b84ad3bb171f3adf02dbd8501fa45c32af",
+        "d0fc1a9b-fb4a-4caf-9422-13ace1306f66": "698c1d49129be08f287b06fed2c5e5e80c568c1922d610c08d93a72bccc3b5aa",
+        "906fb1fa-f4a2-4c1f-8296-31dcf234a74a": "c1d51a646cd3a9708aebc7cf0496203ae2c642f68926ecb6630672d9ced5cd7c",
+        "d2144f13-17f2-4206-9660-4a8a908e1678": "32e5a4b3e070c593b0a389a01ec2eee78f4c153c238ab8faafdf33fa5e7da6bf",
+        "5ca54ce2-ec85-4f22-bee5-baceb8d3e091": "2ffead33d3100fe87cffc68dc225d4a8f9e75d7321c928c325c322e18358d10f",
+        "4f038653-f6d0-4521-a42d-8e65134fb9c9": "3745ff2416612428cb4d4a553ac4179a3ada6422ab328cb31a8581a360f100c5",
+        "acf41264-d246-48ad-8f9f-359074149478": "d14ea2b7166a5a600f030b190fed4657dffa4b423b8aadcf2748e3ef5cc8f594",
+        "d74364ed-f32e-4689-b710-b08fd6e8ce8b": "f86b625a28c4e039a9422517ab6666be92c7ca19e8fc95edd55dea2f041cc540",
+        "5de9676c-bb04-47a6-8890-5408281adb03": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "3c1993c2-6581-4405-b5ad-f8a0a0026cae": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "13df9a09-2cdf-4c88-a506-9409994f39ee": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "d6561d71-2df8-4116-bc6a-caf9c2cb68bc": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "4974f3fc-bcab-492c-b552-1662b4aef513": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "75aed89f-6753-419f-a8f4-22ba5d534ad7": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "56b145d0-009d-4896-92af-b15a76f06343": "c2b1f4ba1af9c6be39abb57362f9f7c72fdb78f5a0b6195a3c272021e4bdf31d",
+        "6d23cbf2-4984-4433-9dd7-a609c2c513bd": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "45e750e6-d7fc-4221-ad30-8b979238c8ea": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3"
+      },
+      "active-10000": {
+        "464ed14b-ed62-48fa-96b6-6683a5575eff": "5935255985075117e8796e5512c9f4d52fb0dc30e80645114e6b2f75cf69f453",
+        "c319916c-2b0a-4f3c-8aa7-a96ee1091140": "8c62ea8f7a346f95b13ceb4a4fcf0053ae26f86da133a773fc66567e83cead4b",
+        "89bf2071-93fe-40de-b072-122cdd27a32b": "78b021392d6b78b3c164b0c963a5fb0725486bd7bc81268f48869bc29a07061c",
+        "3078c1b5-02f7-4189-82a7-08cf5f1598c5": "f73f9c8a781ecd0be1f8886944b4982d09956af077f17bb84da33a2c88b14498",
+        "9bc54601-9253-4585-9bb6-c7d196083c06": "a99c1b5c5982cdaa33963b4feacf3da5db8a0605214e040999ea421322b91aae",
+        "128db18b-ed8f-46a4-b38f-4ba7a67355f9": "960c3ed63aa3cd1f0dd30cecebc78147f926bc1a4a41b42df77586fe825ce8ef",
+        "84e201d8-dfd9-4db3-8022-2c1a5b496656": "ddbfc763e8ed47f5150546d9095b70a8298f64a5c7cfb9873e37f8457637391a",
+        "d946333c-6e81-4bba-85b7-3b0b314b4588": "ed46cf33cf84cc7b86abe565bb31db1bd9821a5cafd3e8d6589e9691aa7cd32a",
+        "aa8e208c-084c-4f97-bdca-51c54cafd721": "52f304bda0dcc42e65762a73127bd7c7da0b4b85d801d08e392ec6593f85bd3d",
+        "09f545c9-f9e3-43bc-b879-957516f841a2": "dcd60231593cdd23c84a8a4af7b6fbd861017ecd826ab7deb2f0fb9802ddc174",
+        "342550dd-e211-4a15-b6ac-3fd324bc03b3": "1f6cf1466da3cd8d6ae6aa401cdee633fe558ddc4f704479931dbd888f6bef7c",
+        "0903777b-e7d1-4c91-a802-f99ade87dc5d": "3a15e56ed58a7e31ab2960a0a02bf4e9060a8a2cb306678d3c5446c25ffad8c2",
+        "9d4a3d9a-b828-47f1-b507-f407e4ea7269": "ff54542a3ea8080d51b59cb5e9478d3f217596aa009e222a65fba39664428752",
+        "c056a1d8-47ac-4f85-abed-a54da27d2005": "7559aab6287d3f83833f8db9c45112b7cc036c1d925e619cd0d4c52c43b5308e",
+        "d6bd9ce2-4cce-4bcf-8ffd-5be0a931b567": "4874f1b838f7d225bfe3df3c6a21c351643160f15f7ea1bc12d917c217c9dbdc",
+        "96150318-1fb7-491b-99f4-d1400eba9514": "6d2cd3397eef150b48d5fdd62d0d55b84ad3bb171f3adf02dbd8501fa45c32af",
+        "d0fc1a9b-fb4a-4caf-9422-13ace1306f66": "698c1d49129be08f287b06fed2c5e5e80c568c1922d610c08d93a72bccc3b5aa",
+        "906fb1fa-f4a2-4c1f-8296-31dcf234a74a": "c1d51a646cd3a9708aebc7cf0496203ae2c642f68926ecb6630672d9ced5cd7c",
+        "d2144f13-17f2-4206-9660-4a8a908e1678": "32e5a4b3e070c593b0a389a01ec2eee78f4c153c238ab8faafdf33fa5e7da6bf",
+        "5ca54ce2-ec85-4f22-bee5-baceb8d3e091": "2ffead33d3100fe87cffc68dc225d4a8f9e75d7321c928c325c322e18358d10f",
+        "4f038653-f6d0-4521-a42d-8e65134fb9c9": "3745ff2416612428cb4d4a553ac4179a3ada6422ab328cb31a8581a360f100c5",
+        "acf41264-d246-48ad-8f9f-359074149478": "d14ea2b7166a5a600f030b190fed4657dffa4b423b8aadcf2748e3ef5cc8f594",
+        "d74364ed-f32e-4689-b710-b08fd6e8ce8b": "f86b625a28c4e039a9422517ab6666be92c7ca19e8fc95edd55dea2f041cc540",
+        "5de9676c-bb04-47a6-8890-5408281adb03": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "13df9a09-2cdf-4c88-a506-9409994f39ee": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "3c1993c2-6581-4405-b5ad-f8a0a0026cae": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "d6561d71-2df8-4116-bc6a-caf9c2cb68bc": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "75aed89f-6753-419f-a8f4-22ba5d534ad7": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "56b145d0-009d-4896-92af-b15a76f06343": "c2b1f4ba1af9c6be39abb57362f9f7c72fdb78f5a0b6195a3c272021e4bdf31d",
+        "6d23cbf2-4984-4433-9dd7-a609c2c513bd": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "4974f3fc-bcab-492c-b552-1662b4aef513": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "45e750e6-d7fc-4221-ad30-8b979238c8ea": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3"
+      },
+      "after": {
+        "464ed14b-ed62-48fa-96b6-6683a5575eff": "5935255985075117e8796e5512c9f4d52fb0dc30e80645114e6b2f75cf69f453",
+        "c319916c-2b0a-4f3c-8aa7-a96ee1091140": "8c62ea8f7a346f95b13ceb4a4fcf0053ae26f86da133a773fc66567e83cead4b",
+        "89bf2071-93fe-40de-b072-122cdd27a32b": "78b021392d6b78b3c164b0c963a5fb0725486bd7bc81268f48869bc29a07061c",
+        "3078c1b5-02f7-4189-82a7-08cf5f1598c5": "f73f9c8a781ecd0be1f8886944b4982d09956af077f17bb84da33a2c88b14498",
+        "9bc54601-9253-4585-9bb6-c7d196083c06": "a99c1b5c5982cdaa33963b4feacf3da5db8a0605214e040999ea421322b91aae",
+        "128db18b-ed8f-46a4-b38f-4ba7a67355f9": "960c3ed63aa3cd1f0dd30cecebc78147f926bc1a4a41b42df77586fe825ce8ef",
+        "84e201d8-dfd9-4db3-8022-2c1a5b496656": "ddbfc763e8ed47f5150546d9095b70a8298f64a5c7cfb9873e37f8457637391a",
+        "d946333c-6e81-4bba-85b7-3b0b314b4588": "ed46cf33cf84cc7b86abe565bb31db1bd9821a5cafd3e8d6589e9691aa7cd32a",
+        "aa8e208c-084c-4f97-bdca-51c54cafd721": "52f304bda0dcc42e65762a73127bd7c7da0b4b85d801d08e392ec6593f85bd3d",
+        "09f545c9-f9e3-43bc-b879-957516f841a2": "dcd60231593cdd23c84a8a4af7b6fbd861017ecd826ab7deb2f0fb9802ddc174",
+        "342550dd-e211-4a15-b6ac-3fd324bc03b3": "1f6cf1466da3cd8d6ae6aa401cdee633fe558ddc4f704479931dbd888f6bef7c",
+        "0903777b-e7d1-4c91-a802-f99ade87dc5d": "3a15e56ed58a7e31ab2960a0a02bf4e9060a8a2cb306678d3c5446c25ffad8c2",
+        "9d4a3d9a-b828-47f1-b507-f407e4ea7269": "ff54542a3ea8080d51b59cb5e9478d3f217596aa009e222a65fba39664428752",
+        "c056a1d8-47ac-4f85-abed-a54da27d2005": "7559aab6287d3f83833f8db9c45112b7cc036c1d925e619cd0d4c52c43b5308e",
+        "d6bd9ce2-4cce-4bcf-8ffd-5be0a931b567": "4874f1b838f7d225bfe3df3c6a21c351643160f15f7ea1bc12d917c217c9dbdc",
+        "96150318-1fb7-491b-99f4-d1400eba9514": "6d2cd3397eef150b48d5fdd62d0d55b84ad3bb171f3adf02dbd8501fa45c32af",
+        "d0fc1a9b-fb4a-4caf-9422-13ace1306f66": "698c1d49129be08f287b06fed2c5e5e80c568c1922d610c08d93a72bccc3b5aa",
+        "906fb1fa-f4a2-4c1f-8296-31dcf234a74a": "c1d51a646cd3a9708aebc7cf0496203ae2c642f68926ecb6630672d9ced5cd7c",
+        "d2144f13-17f2-4206-9660-4a8a908e1678": "32e5a4b3e070c593b0a389a01ec2eee78f4c153c238ab8faafdf33fa5e7da6bf",
+        "5ca54ce2-ec85-4f22-bee5-baceb8d3e091": "2ffead33d3100fe87cffc68dc225d4a8f9e75d7321c928c325c322e18358d10f",
+        "4f038653-f6d0-4521-a42d-8e65134fb9c9": "3745ff2416612428cb4d4a553ac4179a3ada6422ab328cb31a8581a360f100c5",
+        "acf41264-d246-48ad-8f9f-359074149478": "d14ea2b7166a5a600f030b190fed4657dffa4b423b8aadcf2748e3ef5cc8f594",
+        "d74364ed-f32e-4689-b710-b08fd6e8ce8b": "f86b625a28c4e039a9422517ab6666be92c7ca19e8fc95edd55dea2f041cc540",
+        "13df9a09-2cdf-4c88-a506-9409994f39ee": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "5de9676c-bb04-47a6-8890-5408281adb03": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "3c1993c2-6581-4405-b5ad-f8a0a0026cae": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "75aed89f-6753-419f-a8f4-22ba5d534ad7": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "d6561d71-2df8-4116-bc6a-caf9c2cb68bc": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "56b145d0-009d-4896-92af-b15a76f06343": "c2b1f4ba1af9c6be39abb57362f9f7c72fdb78f5a0b6195a3c272021e4bdf31d",
+        "4974f3fc-bcab-492c-b552-1662b4aef513": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "45e750e6-d7fc-4221-ad30-8b979238c8ea": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "6d23cbf2-4984-4433-9dd7-a609c2c513bd": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3"
+      }
+    },
+    "B": {
+      "00-before": {
+        "5d6cb6f9-9175-45ea-bb0a-cd1df7cd996a": "5935255985075117e8796e5512c9f4d52fb0dc30e80645114e6b2f75cf69f453",
+        "272f1342-b87c-4179-ac1d-adb26dd31556": "8c62ea8f7a346f95b13ceb4a4fcf0053ae26f86da133a773fc66567e83cead4b",
+        "263b5864-818d-40be-8c9e-b1c6fc020dd6": "78b021392d6b78b3c164b0c963a5fb0725486bd7bc81268f48869bc29a07061c",
+        "321d7b4f-dce7-48d6-8380-d99fc0b63d9a": "f73f9c8a781ecd0be1f8886944b4982d09956af077f17bb84da33a2c88b14498",
+        "420dd4fc-65fe-4134-bb3f-0e996cebf9b1": "a99c1b5c5982cdaa33963b4feacf3da5db8a0605214e040999ea421322b91aae",
+        "27ae3da7-af70-4f9a-bc18-2dc81ce55be5": "960c3ed63aa3cd1f0dd30cecebc78147f926bc1a4a41b42df77586fe825ce8ef",
+        "380870a0-32c0-4e16-a444-a9914755f582": "ddbfc763e8ed47f5150546d9095b70a8298f64a5c7cfb9873e37f8457637391a",
+        "d489cc6e-f48a-4f06-bf7a-84aaf562b61d": "ed46cf33cf84cc7b86abe565bb31db1bd9821a5cafd3e8d6589e9691aa7cd32a",
+        "9e7d79e3-1b8c-451a-86c1-1167eea8155b": "52f304bda0dcc42e65762a73127bd7c7da0b4b85d801d08e392ec6593f85bd3d",
+        "62b5d64b-23e2-4f88-9fc3-3fee8e1c322f": "dcd60231593cdd23c84a8a4af7b6fbd861017ecd826ab7deb2f0fb9802ddc174",
+        "c71510b0-d57d-4b03-8ca4-c477e445df96": "1f6cf1466da3cd8d6ae6aa401cdee633fe558ddc4f704479931dbd888f6bef7c",
+        "fc61ea05-db8b-4a2e-9c0d-d32423e082d4": "3a15e56ed58a7e31ab2960a0a02bf4e9060a8a2cb306678d3c5446c25ffad8c2",
+        "10d352e0-4931-47fd-b006-df931bddd8e8": "ff54542a3ea8080d51b59cb5e9478d3f217596aa009e222a65fba39664428752",
+        "4805e7b7-8ea2-4c78-aaea-8d0bbd01cc1c": "7559aab6287d3f83833f8db9c45112b7cc036c1d925e619cd0d4c52c43b5308e",
+        "a7916018-92a1-4c72-8de5-12a64b7967fa": "4874f1b838f7d225bfe3df3c6a21c351643160f15f7ea1bc12d917c217c9dbdc",
+        "a3f4d39a-26e4-441e-8559-555590338848": "6d2cd3397eef150b48d5fdd62d0d55b84ad3bb171f3adf02dbd8501fa45c32af",
+        "9da5ae07-128e-47f2-b0e0-0b399d37c84e": "698c1d49129be08f287b06fed2c5e5e80c568c1922d610c08d93a72bccc3b5aa",
+        "74733835-1b97-478b-9a47-54944d164872": "c1d51a646cd3a9708aebc7cf0496203ae2c642f68926ecb6630672d9ced5cd7c",
+        "e12042f2-1631-4a3f-ba00-67dcaaa4e417": "32e5a4b3e070c593b0a389a01ec2eee78f4c153c238ab8faafdf33fa5e7da6bf",
+        "2e98ba1d-f431-45dc-b4c7-3dd693712df3": "2ffead33d3100fe87cffc68dc225d4a8f9e75d7321c928c325c322e18358d10f",
+        "0a95f0c5-7831-4ff4-8611-92b0919f22e1": "3745ff2416612428cb4d4a553ac4179a3ada6422ab328cb31a8581a360f100c5",
+        "08319a52-cb70-4985-97c6-17af3c6b9e3f": "d14ea2b7166a5a600f030b190fed4657dffa4b423b8aadcf2748e3ef5cc8f594",
+        "2e82b14d-d381-4362-901d-563c95aba2bf": "f86b625a28c4e039a9422517ab6666be92c7ca19e8fc95edd55dea2f041cc540",
+        "a4b3ed43-e7ee-47ef-842e-c3d85053f065": "c2b1f4ba1af9c6be39abb57362f9f7c72fdb78f5a0b6195a3c272021e4bdf31d"
+      },
+      "active-5000": {
+        "5d6cb6f9-9175-45ea-bb0a-cd1df7cd996a": "5935255985075117e8796e5512c9f4d52fb0dc30e80645114e6b2f75cf69f453",
+        "272f1342-b87c-4179-ac1d-adb26dd31556": "8c62ea8f7a346f95b13ceb4a4fcf0053ae26f86da133a773fc66567e83cead4b",
+        "263b5864-818d-40be-8c9e-b1c6fc020dd6": "78b021392d6b78b3c164b0c963a5fb0725486bd7bc81268f48869bc29a07061c",
+        "321d7b4f-dce7-48d6-8380-d99fc0b63d9a": "f73f9c8a781ecd0be1f8886944b4982d09956af077f17bb84da33a2c88b14498",
+        "420dd4fc-65fe-4134-bb3f-0e996cebf9b1": "a99c1b5c5982cdaa33963b4feacf3da5db8a0605214e040999ea421322b91aae",
+        "27ae3da7-af70-4f9a-bc18-2dc81ce55be5": "960c3ed63aa3cd1f0dd30cecebc78147f926bc1a4a41b42df77586fe825ce8ef",
+        "380870a0-32c0-4e16-a444-a9914755f582": "ddbfc763e8ed47f5150546d9095b70a8298f64a5c7cfb9873e37f8457637391a",
+        "d489cc6e-f48a-4f06-bf7a-84aaf562b61d": "ed46cf33cf84cc7b86abe565bb31db1bd9821a5cafd3e8d6589e9691aa7cd32a",
+        "9e7d79e3-1b8c-451a-86c1-1167eea8155b": "52f304bda0dcc42e65762a73127bd7c7da0b4b85d801d08e392ec6593f85bd3d",
+        "62b5d64b-23e2-4f88-9fc3-3fee8e1c322f": "dcd60231593cdd23c84a8a4af7b6fbd861017ecd826ab7deb2f0fb9802ddc174",
+        "c71510b0-d57d-4b03-8ca4-c477e445df96": "1f6cf1466da3cd8d6ae6aa401cdee633fe558ddc4f704479931dbd888f6bef7c",
+        "fc61ea05-db8b-4a2e-9c0d-d32423e082d4": "3a15e56ed58a7e31ab2960a0a02bf4e9060a8a2cb306678d3c5446c25ffad8c2",
+        "10d352e0-4931-47fd-b006-df931bddd8e8": "ff54542a3ea8080d51b59cb5e9478d3f217596aa009e222a65fba39664428752",
+        "4805e7b7-8ea2-4c78-aaea-8d0bbd01cc1c": "7559aab6287d3f83833f8db9c45112b7cc036c1d925e619cd0d4c52c43b5308e",
+        "a7916018-92a1-4c72-8de5-12a64b7967fa": "4874f1b838f7d225bfe3df3c6a21c351643160f15f7ea1bc12d917c217c9dbdc",
+        "a3f4d39a-26e4-441e-8559-555590338848": "6d2cd3397eef150b48d5fdd62d0d55b84ad3bb171f3adf02dbd8501fa45c32af",
+        "9da5ae07-128e-47f2-b0e0-0b399d37c84e": "698c1d49129be08f287b06fed2c5e5e80c568c1922d610c08d93a72bccc3b5aa",
+        "74733835-1b97-478b-9a47-54944d164872": "c1d51a646cd3a9708aebc7cf0496203ae2c642f68926ecb6630672d9ced5cd7c",
+        "e12042f2-1631-4a3f-ba00-67dcaaa4e417": "32e5a4b3e070c593b0a389a01ec2eee78f4c153c238ab8faafdf33fa5e7da6bf",
+        "2e98ba1d-f431-45dc-b4c7-3dd693712df3": "2ffead33d3100fe87cffc68dc225d4a8f9e75d7321c928c325c322e18358d10f",
+        "0a95f0c5-7831-4ff4-8611-92b0919f22e1": "3745ff2416612428cb4d4a553ac4179a3ada6422ab328cb31a8581a360f100c5",
+        "08319a52-cb70-4985-97c6-17af3c6b9e3f": "d14ea2b7166a5a600f030b190fed4657dffa4b423b8aadcf2748e3ef5cc8f594",
+        "2e82b14d-d381-4362-901d-563c95aba2bf": "f86b625a28c4e039a9422517ab6666be92c7ca19e8fc95edd55dea2f041cc540",
+        "ecdcd317-baae-47f6-a041-ef4ccf596a00": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "a41807ba-7c91-4b12-86ab-53e74472b6a6": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "c745daeb-a260-497b-9555-24a4348b107f": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "ed520308-caa2-4190-8416-3a1293d9bff6": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "3c14bd81-6091-4bb4-8318-17d554400b10": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "b754adfd-d05c-4184-ae17-11228adea035": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "a4b3ed43-e7ee-47ef-842e-c3d85053f065": "c2b1f4ba1af9c6be39abb57362f9f7c72fdb78f5a0b6195a3c272021e4bdf31d",
+        "cc2b43fe-d94c-476f-a891-c7ab1941438f": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "7ef59bd9-3c5b-42fd-9f04-04640a76d407": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3"
+      },
+      "active-10000": {
+        "5d6cb6f9-9175-45ea-bb0a-cd1df7cd996a": "5935255985075117e8796e5512c9f4d52fb0dc30e80645114e6b2f75cf69f453",
+        "272f1342-b87c-4179-ac1d-adb26dd31556": "8c62ea8f7a346f95b13ceb4a4fcf0053ae26f86da133a773fc66567e83cead4b",
+        "263b5864-818d-40be-8c9e-b1c6fc020dd6": "78b021392d6b78b3c164b0c963a5fb0725486bd7bc81268f48869bc29a07061c",
+        "321d7b4f-dce7-48d6-8380-d99fc0b63d9a": "f73f9c8a781ecd0be1f8886944b4982d09956af077f17bb84da33a2c88b14498",
+        "420dd4fc-65fe-4134-bb3f-0e996cebf9b1": "a99c1b5c5982cdaa33963b4feacf3da5db8a0605214e040999ea421322b91aae",
+        "27ae3da7-af70-4f9a-bc18-2dc81ce55be5": "960c3ed63aa3cd1f0dd30cecebc78147f926bc1a4a41b42df77586fe825ce8ef",
+        "380870a0-32c0-4e16-a444-a9914755f582": "ddbfc763e8ed47f5150546d9095b70a8298f64a5c7cfb9873e37f8457637391a",
+        "d489cc6e-f48a-4f06-bf7a-84aaf562b61d": "ed46cf33cf84cc7b86abe565bb31db1bd9821a5cafd3e8d6589e9691aa7cd32a",
+        "9e7d79e3-1b8c-451a-86c1-1167eea8155b": "52f304bda0dcc42e65762a73127bd7c7da0b4b85d801d08e392ec6593f85bd3d",
+        "62b5d64b-23e2-4f88-9fc3-3fee8e1c322f": "dcd60231593cdd23c84a8a4af7b6fbd861017ecd826ab7deb2f0fb9802ddc174",
+        "c71510b0-d57d-4b03-8ca4-c477e445df96": "1f6cf1466da3cd8d6ae6aa401cdee633fe558ddc4f704479931dbd888f6bef7c",
+        "fc61ea05-db8b-4a2e-9c0d-d32423e082d4": "3a15e56ed58a7e31ab2960a0a02bf4e9060a8a2cb306678d3c5446c25ffad8c2",
+        "10d352e0-4931-47fd-b006-df931bddd8e8": "ff54542a3ea8080d51b59cb5e9478d3f217596aa009e222a65fba39664428752",
+        "4805e7b7-8ea2-4c78-aaea-8d0bbd01cc1c": "7559aab6287d3f83833f8db9c45112b7cc036c1d925e619cd0d4c52c43b5308e",
+        "a7916018-92a1-4c72-8de5-12a64b7967fa": "4874f1b838f7d225bfe3df3c6a21c351643160f15f7ea1bc12d917c217c9dbdc",
+        "a3f4d39a-26e4-441e-8559-555590338848": "6d2cd3397eef150b48d5fdd62d0d55b84ad3bb171f3adf02dbd8501fa45c32af",
+        "9da5ae07-128e-47f2-b0e0-0b399d37c84e": "698c1d49129be08f287b06fed2c5e5e80c568c1922d610c08d93a72bccc3b5aa",
+        "74733835-1b97-478b-9a47-54944d164872": "c1d51a646cd3a9708aebc7cf0496203ae2c642f68926ecb6630672d9ced5cd7c",
+        "e12042f2-1631-4a3f-ba00-67dcaaa4e417": "32e5a4b3e070c593b0a389a01ec2eee78f4c153c238ab8faafdf33fa5e7da6bf",
+        "2e98ba1d-f431-45dc-b4c7-3dd693712df3": "2ffead33d3100fe87cffc68dc225d4a8f9e75d7321c928c325c322e18358d10f",
+        "0a95f0c5-7831-4ff4-8611-92b0919f22e1": "3745ff2416612428cb4d4a553ac4179a3ada6422ab328cb31a8581a360f100c5",
+        "08319a52-cb70-4985-97c6-17af3c6b9e3f": "d14ea2b7166a5a600f030b190fed4657dffa4b423b8aadcf2748e3ef5cc8f594",
+        "2e82b14d-d381-4362-901d-563c95aba2bf": "f86b625a28c4e039a9422517ab6666be92c7ca19e8fc95edd55dea2f041cc540",
+        "ecdcd317-baae-47f6-a041-ef4ccf596a00": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "c745daeb-a260-497b-9555-24a4348b107f": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "a41807ba-7c91-4b12-86ab-53e74472b6a6": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "ed520308-caa2-4190-8416-3a1293d9bff6": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "b754adfd-d05c-4184-ae17-11228adea035": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "a4b3ed43-e7ee-47ef-842e-c3d85053f065": "c2b1f4ba1af9c6be39abb57362f9f7c72fdb78f5a0b6195a3c272021e4bdf31d",
+        "cc2b43fe-d94c-476f-a891-c7ab1941438f": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "3c14bd81-6091-4bb4-8318-17d554400b10": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "7ef59bd9-3c5b-42fd-9f04-04640a76d407": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3"
+      },
+      "after": {
+        "5d6cb6f9-9175-45ea-bb0a-cd1df7cd996a": "5935255985075117e8796e5512c9f4d52fb0dc30e80645114e6b2f75cf69f453",
+        "272f1342-b87c-4179-ac1d-adb26dd31556": "8c62ea8f7a346f95b13ceb4a4fcf0053ae26f86da133a773fc66567e83cead4b",
+        "263b5864-818d-40be-8c9e-b1c6fc020dd6": "78b021392d6b78b3c164b0c963a5fb0725486bd7bc81268f48869bc29a07061c",
+        "321d7b4f-dce7-48d6-8380-d99fc0b63d9a": "f73f9c8a781ecd0be1f8886944b4982d09956af077f17bb84da33a2c88b14498",
+        "420dd4fc-65fe-4134-bb3f-0e996cebf9b1": "a99c1b5c5982cdaa33963b4feacf3da5db8a0605214e040999ea421322b91aae",
+        "27ae3da7-af70-4f9a-bc18-2dc81ce55be5": "960c3ed63aa3cd1f0dd30cecebc78147f926bc1a4a41b42df77586fe825ce8ef",
+        "380870a0-32c0-4e16-a444-a9914755f582": "ddbfc763e8ed47f5150546d9095b70a8298f64a5c7cfb9873e37f8457637391a",
+        "d489cc6e-f48a-4f06-bf7a-84aaf562b61d": "ed46cf33cf84cc7b86abe565bb31db1bd9821a5cafd3e8d6589e9691aa7cd32a",
+        "9e7d79e3-1b8c-451a-86c1-1167eea8155b": "52f304bda0dcc42e65762a73127bd7c7da0b4b85d801d08e392ec6593f85bd3d",
+        "62b5d64b-23e2-4f88-9fc3-3fee8e1c322f": "dcd60231593cdd23c84a8a4af7b6fbd861017ecd826ab7deb2f0fb9802ddc174",
+        "c71510b0-d57d-4b03-8ca4-c477e445df96": "1f6cf1466da3cd8d6ae6aa401cdee633fe558ddc4f704479931dbd888f6bef7c",
+        "fc61ea05-db8b-4a2e-9c0d-d32423e082d4": "3a15e56ed58a7e31ab2960a0a02bf4e9060a8a2cb306678d3c5446c25ffad8c2",
+        "10d352e0-4931-47fd-b006-df931bddd8e8": "ff54542a3ea8080d51b59cb5e9478d3f217596aa009e222a65fba39664428752",
+        "4805e7b7-8ea2-4c78-aaea-8d0bbd01cc1c": "7559aab6287d3f83833f8db9c45112b7cc036c1d925e619cd0d4c52c43b5308e",
+        "a7916018-92a1-4c72-8de5-12a64b7967fa": "4874f1b838f7d225bfe3df3c6a21c351643160f15f7ea1bc12d917c217c9dbdc",
+        "a3f4d39a-26e4-441e-8559-555590338848": "6d2cd3397eef150b48d5fdd62d0d55b84ad3bb171f3adf02dbd8501fa45c32af",
+        "9da5ae07-128e-47f2-b0e0-0b399d37c84e": "698c1d49129be08f287b06fed2c5e5e80c568c1922d610c08d93a72bccc3b5aa",
+        "74733835-1b97-478b-9a47-54944d164872": "c1d51a646cd3a9708aebc7cf0496203ae2c642f68926ecb6630672d9ced5cd7c",
+        "e12042f2-1631-4a3f-ba00-67dcaaa4e417": "32e5a4b3e070c593b0a389a01ec2eee78f4c153c238ab8faafdf33fa5e7da6bf",
+        "2e98ba1d-f431-45dc-b4c7-3dd693712df3": "2ffead33d3100fe87cffc68dc225d4a8f9e75d7321c928c325c322e18358d10f",
+        "0a95f0c5-7831-4ff4-8611-92b0919f22e1": "3745ff2416612428cb4d4a553ac4179a3ada6422ab328cb31a8581a360f100c5",
+        "08319a52-cb70-4985-97c6-17af3c6b9e3f": "d14ea2b7166a5a600f030b190fed4657dffa4b423b8aadcf2748e3ef5cc8f594",
+        "2e82b14d-d381-4362-901d-563c95aba2bf": "f86b625a28c4e039a9422517ab6666be92c7ca19e8fc95edd55dea2f041cc540",
+        "c745daeb-a260-497b-9555-24a4348b107f": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "ecdcd317-baae-47f6-a041-ef4ccf596a00": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "a41807ba-7c91-4b12-86ab-53e74472b6a6": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "b754adfd-d05c-4184-ae17-11228adea035": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "ed520308-caa2-4190-8416-3a1293d9bff6": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "a4b3ed43-e7ee-47ef-842e-c3d85053f065": "c2b1f4ba1af9c6be39abb57362f9f7c72fdb78f5a0b6195a3c272021e4bdf31d",
+        "3c14bd81-6091-4bb4-8318-17d554400b10": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "7ef59bd9-3c5b-42fd-9f04-04640a76d407": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3",
+        "cc2b43fe-d94c-476f-a891-c7ab1941438f": "130830a1015461db3c6966eb32d97888e73c04a079d8c5b6a408e3b314c349d3"
+      }
+    }
+  },
+  "contentFingerprintProtocol": {
+    "rule": "Recursively exclude only literal uuid keys from captured geometry metadata/parameters, exclude top contentSHA256; retain all captured attribute/index byte SHA256, item sizes/counts/types, geometry type/params/groups/draw range. Sort object keys for canonical JSON. Material content hash already excludes its top UUID.",
+    "why": "Raw parameter serialization includes random Shape.uuid and referenced geometry.uuid. First identity-bearing hash comparison is preserved separately. Raw runtime snapshots and private code were not rewritten.",
+    "noTransformOrInstanceDataEquivalence": "Object matrices/transforms, per-instance matrix/color buffers and atomic frame property equality are outside this comparison."
+  }
+}

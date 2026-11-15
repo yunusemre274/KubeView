@@ -1,0 +1,9 @@
+{
+  "elapsedSeconds": 0.023500625,
+  "events": [],
+  "failed": true,
+  "mode": "PRODUCTION_WS_REAL_ROLEBINDING_REVOCATION_NOT_BROWSER_UI",
+  "startedAt": "2026-11-12T21:21:29.617259Z",
+  "valuesRecorded": false,
+  "within180Seconds": true
+}

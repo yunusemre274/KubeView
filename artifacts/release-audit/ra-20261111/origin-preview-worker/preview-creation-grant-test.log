@@ -1,0 +1,21 @@
+source_sha: 4ec526b7ce1bc39c21b603864c9096f72eb39184
+source_delta: new release_origin_preview_test.go only by this worker
+start_utc: 2026-11-11T11:52:35.571658+00:00
+command_argv: ["go", "test", "-p", "1", "-parallel", "1", "-timeout", "90s", "-count=1", "-v", "./pkg/server", "-run", "^TestReleaseOriginPreviewCreationReadOnlyAndGrant$"]
+environment: GOMAXPROCS=1; providers disabled; synthetic absent KUBECONFIG; no credential read
+=== RUN   TestReleaseOriginPreviewCreationReadOnlyAndGrant
+=== RUN   TestReleaseOriginPreviewCreationReadOnlyAndGrant/server-read-only
+=== RUN   TestReleaseOriginPreviewCreationReadOnlyAndGrant/browser-read-only
+=== RUN   TestReleaseOriginPreviewCreationReadOnlyAndGrant/enabled-no-transport
+=== RUN   TestReleaseOriginPreviewCreationReadOnlyAndGrant/missing-nonce
+=== RUN   TestReleaseOriginPreviewCreationReadOnlyAndGrant/stale-nonce
+--- PASS: TestReleaseOriginPreviewCreationReadOnlyAndGrant (0.00s)
+    --- PASS: TestReleaseOriginPreviewCreationReadOnlyAndGrant/server-read-only (0.00s)
+    --- PASS: TestReleaseOriginPreviewCreationReadOnlyAndGrant/browser-read-only (0.00s)
+    --- PASS: TestReleaseOriginPreviewCreationReadOnlyAndGrant/enabled-no-transport (0.00s)
+    --- PASS: TestReleaseOriginPreviewCreationReadOnlyAndGrant/missing-nonce (0.00s)
+    --- PASS: TestReleaseOriginPreviewCreationReadOnlyAndGrant/stale-nonce (0.00s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	0.466s
+end_utc: 2026-11-11T11:52:38.758685+00:00
+exit_code: 0

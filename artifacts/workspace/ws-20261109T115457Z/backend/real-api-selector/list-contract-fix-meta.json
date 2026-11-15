@@ -1,0 +1,68 @@
+{
+  "scope": "Upstream multi-namespace union list type metadata only; no actual API retry",
+  "red": {
+    "command": [
+      "go",
+      "test",
+      "-json",
+      "-count=1",
+      "-p=1",
+      "-timeout=60s",
+      "./pkg/server",
+      "-run",
+      "^TestWorkspaceMultiNamespaceListJSONContract$"
+    ],
+    "exitCode": 1,
+    "packageSeconds": 0.682,
+    "productionSHA256": "838e96c4c33b0fe55e1396ca8c33c863a19f5490ec7ff3365c816984dadefe06",
+    "output": "list-contract-red.jsonl",
+    "observed": "Both populated and empty union JSON failed with missing Kind"
+  },
+  "green": {
+    "command": [
+      "go",
+      "test",
+      "-json",
+      "-count=1",
+      "-p=1",
+      "-timeout=90s",
+      "./pkg/server",
+      "-run",
+      "^TestWorkspace(MultiNamespace|HTTPPersistenceCSRFAndScope|Selector|Owner|Offline|Shared|Cookie|Credential)"
+    ],
+    "exitCode": 0,
+    "packageSeconds": 0.979,
+    "topLevelTests": 9,
+    "output": "list-contract-green.jsonl"
+  },
+  "race": {
+    "command": [
+      "go",
+      "test",
+      "-race",
+      "-json",
+      "-count=1",
+      "-p=1",
+      "-timeout=90s",
+      "./pkg/server",
+      "-run",
+      "^TestWorkspace(MultiNamespace|HTTPPersistenceCSRFAndScope|Selector|Owner|Offline|Shared|Cookie|Credential)"
+    ],
+    "exitCode": 0,
+    "packageSeconds": 2.13,
+    "topLevelTests": 9,
+    "output": "list-contract-race.jsonl"
+  },
+  "sourceSHA256": {
+    "backend/pkg/server/workspace_scope.go": "13cee96a6793fee156e72d0539331b15a2bd7edb2e11f8faf62dd25416a423b5",
+    "backend/pkg/server/workspace_scope_list_test.go": "0f7f9dbb2a1ff4ccf6db4ecd4e90536c2f8424667e943ee3f227f2e70725674e",
+    "backend/pkg/server/workspace_real_test.go": "1fc2eba98b9c316b1eee45e3c5e9dffaad83aef35a17bbb6bf2fd294492142f0"
+  },
+  "behavior": [
+    "Preserve upstream APIVersion and Kind for populated or empty union",
+    "Reject missing/inconsistent upstream list type without guessing",
+    "Do not present namespace-specific resourceVersion/pagination as a global union version",
+    "Existing selector/filter and child membership tests pass"
+  ],
+  "pending": "Root v06 immutable embed/restart, then one expressly leased failed-selector-phase retry. v05 actual FAIL retained."
+}

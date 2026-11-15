@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-15T10:31:08.802636+00:00",
+  "scope": "15finite unittest cases; actual offline pinned schema+format QA; fixtures only, not actual release SBOM",
+  "sources": [
+    {
+      "path": "scripts/validate-release-sbom.py",
+      "bytes": 8880,
+      "sha256": "b2644988c384a3349f089da53659f790b10957527b119126f3179775b24061eb"
+    },
+    {
+      "path": "scripts/test_validate_release_sbom.py",
+      "bytes": 6485,
+      "sha256": "4be8110bd33a3783a3fc4cb4ca2c9a85abfea9b59948581772830323be8cd97f"
+    }
+  ],
+  "interpreter": "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+  "limits": {
+    "seconds": 30,
+    "testCaseCount": 15
+  },
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+    "scripts/test_validate_release_sbom.py",
+    "-v"
+  ]
+}

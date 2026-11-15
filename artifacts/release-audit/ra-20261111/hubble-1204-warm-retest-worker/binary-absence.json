@@ -1,0 +1,7 @@
+{
+  "exists": false,
+  "lstat_result": "FileNotFoundError",
+  "path": ".git/release-audit/hubble-v1.20.4-patched1/hubble-v1.20.4-kubeview-patched.1",
+  "checked_at_utc": "2026-11-11T15:57:20.775584+00:00",
+  "no_candidate_execution_or_scanner_followup": true
+}

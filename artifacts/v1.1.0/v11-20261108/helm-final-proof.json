@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-09T08:50:49.842924+00:00",
+  "commit": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "helmVersion": "v4.2.3+g43e8b7f",
+  "lintStatus": "PASS (one informational icon recommendation)",
+  "templateStatus": "PASS",
+  "renderedSHA256": "b3b5f6af1770f19fc17c81517940c7b6c57b3f8aa68fbfd738e648bd90ed8333",
+  "clusterApplied": false,
+  "sourceHashes": {
+    "charts/tersane/Chart.yaml": "e830eaf7395c1d5085fb0109f421e93809cf34356b298adff920e128a7ecb11b",
+    "charts/tersane/templates/_helpers.tpl": "0c4e63bdd697957204fd5db8c99323b11dfc8c1d3d65d5763ac8b6f7bcf880a3",
+    "charts/tersane/templates/auth.yaml": "49644ab6b4297c1cf8e0adaccbece2ac078d138285ddfaedd59e6387e4440f92",
+    "charts/tersane/templates/deployment.yaml": "a12361656fd32ab387e798ce05844c93f6c9babe2b0ee891523f272447f93d5c",
+    "charts/tersane/templates/rbac.yaml": "e69217b07a0579001b236de84f5b682e2934adb1efb27880711d6b51f82f339f",
+    "charts/tersane/templates/service.yaml": "bfe432fb7fdb86fdd6856a5784618d95ae3bcf6eb061a1b78b3b077c97db8bd6",
+    "charts/tersane/values.yaml": "8d8b4ad30704b99118f713af587380ffbe13148e1af7e305a7cfcd3fc88120b9"
+  },
+  "note": "Static render/lint, not a Helm in-cluster runtime test."
+}

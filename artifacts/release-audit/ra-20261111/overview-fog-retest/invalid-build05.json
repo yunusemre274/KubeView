@@ -1,0 +1,6 @@
+{
+  "status": "INVALID_PREPARATION",
+  "reason": "prepare-webui was invoked from backend with a root-relative path; command failed but shell continued. Binary may contain the older prepared frontend and is not used as evidence.",
+  "binaryExists": true,
+  "binarySHA256": "f6e422fc49c86ed92ef8fe67cbf5c319bf0c698b206c53e3dbdeebc2f63f94ee"
+}

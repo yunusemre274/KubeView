@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-15T10:34:26.230535+00:00",
+  "status": "FIXTURE_VERIFIED_NOT_FINAL_RELEASE_ACCEPTANCE",
+  "tests": {
+    "methods": 15,
+    "pass": 15,
+    "fail": 0,
+    "skip": 0,
+    "wallSeconds": 0.11478133399941726
+  },
+  "initialFailurePreserved": true,
+  "failureCause": "Supervisor resolved venv interpreter symlink to global Python",
+  "sources": [
+    {
+      "path": "scripts/validate-release-sbom.py",
+      "bytes": 8880,
+      "sha256": "b2644988c384a3349f089da53659f790b10957527b119126f3179775b24061eb"
+    },
+    {
+      "path": "scripts/test_validate_release_sbom.py",
+      "bytes": 6485,
+      "sha256": "4be8110bd33a3783a3fc4cb4ca2c9a85abfea9b59948581772830323be8cd97f"
+    }
+  ],
+  "elapsedSeconds": 468.711327,
+  "phaseBudgetSeconds": 480,
+  "withinPhaseBudget": true,
+  "runtimeBuildDependencyAdded": false,
+  "actualReleaseSbomValidated": false,
+  "liveKubernetesTest": false,
+  "networkUsed": false,
+  "pendingRootReview": true
+}

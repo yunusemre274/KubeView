@@ -1,20 +1,1062 @@
-import React from 'react'
-import ShipyardScene from './components/ShipyardScene'
-import { useShipyardWebSocket } from './hooks/useShipyardWebSocket'
-
+import React, {
+  Suspense,
+  lazy,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  useLayoutEffect,
+} from "react";
+import {
+  Anchor,
+  Search,
+  Compass,
+  Settings,
+  HelpCircle,
+  X,
+  Activity,
+  AlertTriangle,
+  Focus,
+  ArrowUpRight,
+  Pause,
+  Play,
+} from "lucide-react";
+import { useClusterConnection } from "./context/ShipyardClusterContext";
+import { hasProblem } from "./data/resourceStore";
+import { detailResourceScope } from "./data/resourceIndex.js";
+import ResourceDetails from "./workbench/ResourceDetails";
+import ResourceForms from "./workbench/ResourceForms";
+import FacilityWindow from "./world/FacilityWindow";
+import { ProviderWindow, FlowWindow } from "./world/ProviderWindows.jsx";
+import useWorldProviders from "./world/useWorldProviders.js";
+import WorkspaceWindow from "./world/WorkspaceWindow.jsx";
+import { sharedResources, canonicalResourceKey, workspaceRelations as deriveWorkspaceRelations, flowHarborEndpoints, harborViewNamespace } from "./world/workspace.js";
+import {
+  ConnectionWindow,
+  FinderWindow,
+  HelpWindow,
+  NotificationsWindow,
+  PreferencesWindow,
+} from "./world/UtilityWindows";
+import { FACILITIES, facilityFor, ownerNode } from "./world/registry";
+import { acceptedOperation, observeOperation } from "./world/operations";
+import { connectionStatus } from "./world/connectionState.js";
+import { focusElement } from "./world/focus.js";
+import {
+  loadPreferences,
+  savePreferences,
+  resolvePreferences,
+} from "./world/preferences.js";
+const safeStored = (key) => {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+};
+const HarborScene = lazy(() => import("./harbor/HarborScene"));
+function useCommittedEvent(callback) {
+  const latest = useRef(callback);
+  useLayoutEffect(() => {
+    latest.current = callback;
+  });
+  return useCallback((...args) => latest.current(...args), []);
+}
+function ConnectionUpdateStamp() {
+  const { lastUpdated } = useClusterConnection();
+  return lastUpdated
+    ? ` · Son veri ${new Date(lastUpdated).toLocaleTimeString("tr-TR")}`
+    : null;
+}
+const CONNECTION_UPDATE_STAMP = <ConnectionUpdateStamp />;
+function savedSelectionResource(byUID, descriptor) {
+  const resource = descriptor?.uid && byUID.get(descriptor.uid);
+  return resource && resource.kind !== "Secret" &&
+    (!descriptor.kind || descriptor.kind === resource.kind) &&
+    (descriptor.namespace === undefined || descriptor.namespace === (resource.metadata.namespace || ""))
+    ? resource : null;
+}
 export default function App() {
-  const { isConnected, ships, totalShips, totalPallets, eventsLog, deployments } = useShipyardWebSocket()
-
+  const connection = useClusterConnection();
+  const workspace = connection.workspace;
+  const harborUI = useRef(new Map()), currentHarbor = useRef(workspace?.activeId),
+    sceneView = useRef(null), safeDraft = useRef(null), sensitiveDraft = useRef(false), pendingHarborSelection = useRef(null), pendingSelectionRestore = useRef(null);
+  const {
+    resources,
+    resourceIndex,
+    api,
+    context,
+    mode,
+    readOnly,
+    stale,
+    snapshotReady,
+    sourceKey,
+    lastUpdated,
+  } = connection;
+  useEffect(() => {
+    globalThis.__KUBEVIEW_BENCHMARK__?.commit(resources);
+  }, [resources]);
+  const [namespace, setNamespace] = useState("all"),
+    [panel, setPanel] = useState(null),
+    [selection, setSelection] = useState(null),
+    [utility, setUtility] = useState(null),
+    [form, setForm] = useState(null),
+    [selectedFlow, setSelectedFlow] = useState(null),
+    [operations, setOperations] = useState([]);
+  const [preferences, setPreferences] = useState(loadPreferences);
+  const [systemReduced, setSystemReduced] = useState(
+    () => matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  const [systemDark, setSystemDark] = useState(
+    () => matchMedia("(prefers-color-scheme: dark)").matches,
+  );
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const resolved = useMemo(
+    () =>
+      resolvePreferences(preferences, {
+        systemReduced,
+        systemDark,
+        viewportWidth,
+        hardwareConcurrency: navigator.hardwareConcurrency,
+        deviceMemory: navigator.deviceMemory,
+      }),
+    [preferences, systemReduced, systemDark, viewportWidth],
+  );
+  const { theme, quality, contrast, motion } = resolved;
+  const reducedMotion = motion.reduced || motion.paused;
+  const [layers, setLayers] = useState({
+    nodes: true,
+    pods: true,
+    storage: true,
+    network: false,
+    labels: false,
+    measuredTraffic: false,
+    controlPlane: true,
+  });
+  const [shipControls, setShipControls] = useState({
+    pausedUIDs: [],
+    followUID: null,
+  });
+  const [shipMotion, setShipMotion] = useState(null);
+  const lastShipMotion = useRef(null);
+  const onShipMotionChange = useCallback((value) => {
+    const previous = lastShipMotion.current;
+    if (
+      (!previous && !value) ||
+      (previous &&
+        value &&
+        previous.uid === value.uid &&
+        previous.state === value.state &&
+        previous.paused === value.paused &&
+        previous.visualLoading === value.visualLoading)
+    )
+      return;
+    const next = value
+      ? {
+          uid: value.uid,
+          state: value.state,
+          paused: value.paused,
+          visualLoading: value.visualLoading,
+        }
+      : null;
+    lastShipMotion.current = next;
+    setShipMotion(next);
+  }, []);
+  const onFollowEnd = useCallback(
+    () =>
+      setShipControls((value) =>
+        value.followUID ? { ...value, followUID: null } : value,
+      ),
+    [],
+  );
+  const [guide, setGuide] = useState(
+      () => safeStored("kubeview-world-guide") !== "seen",
+    ),
+    [focusRequest, setFocusRequest] = useState(0),
+    [overviewRequest, setOverviewRequest] = useState(0),
+    [focusFacilityRequest, setFocusFacilityRequest] = useState(null),
+    [clock, setClock] = useState(Date.now());
+  const currentSource = useRef(null),
+    seenUIDs = useRef(new Set()),
+    formRef = useRef(form),
+    utilityRef = useRef(utility),
+    panelRef = useRef(panel),
+    savedTrigger = useRef(null);
+  formRef.current = form;
+  utilityRef.current = utility;
+  panelRef.current = panel;
+  const byUID = resourceIndex.byUID;
+  useEffect(() => {
+    const uid = selection?.resource?.metadata?.uid;
+    const keepDeletedSelection = uid && seenUIDs.current.has(uid);
+    seenUIDs.current = new Set(
+      resources.map((resource) => resource.metadata.uid),
+    );
+    if (keepDeletedSelection) seenUIDs.current.add(uid);
+  }, [resources, selection?.resource?.metadata?.uid]);
+  useLayoutEffect(() => {
+    if (currentSource.current !== sourceKey) {
+      const previousHarbor = currentHarbor.current;
+      if (workspace && previousHarbor) {
+        harborUI.current.set(previousHarbor, {
+          selection: selection?.resource?.kind === "Secret" ? null : selection,
+          sourceKey: currentSource.current,
+          panel, namespace, operations, shipControls,
+          form: sensitiveDraft.current || form?.resource?.kind === "Secret" || form?.initialObject?.kind === "Secret" ? null : form,
+          draft: sensitiveDraft.current ? null : safeDraft.current,
+        });
+        while (harborUI.current.size > 64) harborUI.current.delete(harborUI.current.keys().next().value);
+      }
+      currentHarbor.current = workspace?.activeId;
+      currentSource.current = sourceKey;
+      seenUIDs.current.clear();
+      const candidate = harborUI.current.get(workspace?.activeId);
+      const cached = candidate?.sourceKey === sourceKey ? candidate : null;
+      const savedSelection = workspace?.view?.selection;
+      const pendingSelection = pendingHarborSelection.current?.harborId === workspace?.activeId ? pendingHarborSelection.current : null;
+      pendingHarborSelection.current = null;
+      const cachedResource = cached?.selection?.resource;
+      const descriptor = pendingSelection || (cachedResource
+        ? { uid: cachedResource.metadata.uid, kind: cachedResource.kind, namespace: cachedResource.metadata.namespace || "" }
+        : savedSelection);
+      const selectionView = { ...(pendingSelection ? {} : cached?.selection || {}),
+        containerName: pendingSelection ? pendingSelection.containerName : cached?.selection?.containerName || savedSelection?.containerName,
+        containerRole: pendingSelection?.containerRole || cached?.selection?.containerRole,
+        tab: pendingSelection ? undefined : cached?.selection?.tab || workspace?.view?.tab };
+      const openResourcePanel = Boolean(pendingSelection || !cached || cached.panel?.type === "resource");
+      const restored = savedSelectionResource(byUID, descriptor);
+      pendingSelectionRestore.current = !restored && descriptor?.uid && descriptor.kind !== "Secret" && (!snapshotReady || stale)
+        ? { sourceKey, harborId: workspace?.activeId, descriptor, selectionView, openResourcePanel } : null;
+      setSelection(restored ? { ...selectionView, resource: restored } : null);
+      setSelectedFlow(null);
+      setPanel(pendingSelection?.facilityId ? { type: "facility", id: pendingSelection.facilityId } : !pendingSelection && cached?.panel?.type === "facility" ? cached.panel : restored && openResourcePanel ? { type: "resource" } : null);
+      setForm(cached?.form?.sourceKey === sourceKey && (!cached.form.resource?.metadata?.uid || byUID.has(cached.form.resource.metadata.uid)) ? { ...cached.form, restoredDraft: cached.draft } : null);
+      safeDraft.current = cached?.draft || null;
+      sensitiveDraft.current = false;
+      setOperations(cached?.operations || []);
+      const nextNamespace = workspace?.activeHarbor
+        ? harborViewNamespace(workspace.activeHarbor, cached?.namespace || workspace.view?.namespace)
+        : connection.watchNamespace || connection.namespaceHint || "all";
+      previousNamespace.current = nextNamespace;
+      setNamespace(nextNamespace);
+      setShipControls(cached?.shipControls || { pausedUIDs: [], followUID: null });
+      setShipMotion(null);
+      lastShipMotion.current = null;
+    }
+  }, [sourceKey]);
+  useLayoutEffect(() => {
+    const pending = pendingSelectionRestore.current;
+    if (!pending || pending.sourceKey !== sourceKey || pending.harborId !== workspace?.activeId || !snapshotReady || stale) return;
+    // The first current snapshot resolves this saved UID once. Absence never
+    // selects a same-name replacement, and later ADDs cannot reopen the panel.
+    pendingSelectionRestore.current = null;
+    const resource = savedSelectionResource(byUID, pending.descriptor);
+    if (!resource) return;
+    setSelection({ ...pending.selectionView, resource });
+    if (pending.openResourcePanel) setPanel({ type: "resource" });
+  }, [sourceKey, workspace?.activeId, snapshotReady, stale, byUID]);
+  const switchHarbor = useCommittedEvent((id) => {
+    if (!workspace || id === workspace.activeId) { setUtility(null); return; }
+    const camera = sceneView.current?.harborId === workspace.activeId ? sceneView.current.capture?.() : null;
+    const view = {
+      ...workspace.getView(workspace.activeId),
+      ...(camera ? { camera } : {}), namespace,
+      selection: selection?.resource ? { uid: selection.resource.metadata.uid, kind: selection.resource.kind, namespace: selection.resource.metadata.namespace, containerName: selection.containerName } : undefined,
+      tab: selection?.tab,
+      search: workspace.getView(workspace.activeId)?.search,
+    };
+    if (workspace.activeId) {
+      workspace.saveView(workspace.activeId, view);
+      workspace.persistView(workspace.activeId, view).catch(() => {});
+    }
+    workspace.selectHarbor(id);
+    setUtility(null);
+  });
+  const namespaceSource = useRef(sourceKey);
+  const viewNamespace = useRef(namespace);
+  viewNamespace.current = namespace;
+  const previousNamespace = useRef(namespace);
+  useEffect(() => {
+    if (previousNamespace.current === namespace) return;
+    previousNamespace.current = namespace;
+    pendingSelectionRestore.current = null;
+    setSelection(null);
+    setSelectedFlow(null);
+    setForm(null);
+    setOperations([]);
+    setPanel((value) => (value?.type === "resource" ? null : value));
+  }, [namespace]);
+  const observeNamespace = useCommittedEvent(connection.observeNamespace);
+  useEffect(() => {
+    if (namespaceSource.current !== sourceKey) {
+      namespaceSource.current = sourceKey;
+      return;
+    }
+    observeNamespace(namespace, sourceKey);
+  }, [namespace, sourceKey, observeNamespace]);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset.contrast = contrast;
+  }, [theme, contrast]);
+  useEffect(() => {
+    savePreferences(preferences);
+  }, [preferences]);
+  useEffect(() => {
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)"),
+      dark = matchMedia("(prefers-color-scheme: dark)");
+    const changeReduced = () => setSystemReduced(reduced.matches),
+      changeDark = () => setSystemDark(dark.matches),
+      resize = () => setViewportWidth(window.innerWidth);
+    reduced.addEventListener("change", changeReduced);
+    dark.addEventListener("change", changeDark);
+    window.addEventListener("resize", resize);
+    return () => {
+      reduced.removeEventListener("change", changeReduced);
+      dark.removeEventListener("change", changeDark);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+  useEffect(() => {
+    if (
+      !snapshotReady ||
+      (!shipControls.pausedUIDs.length && !shipControls.followUID)
+    )
+      return;
+    const nodes = new Set(resourceIndex.nodes.map((r) => r.metadata.uid));
+    const pausedUIDs = shipControls.pausedUIDs.filter((uid) => nodes.has(uid));
+    const followUID = nodes.has(shipControls.followUID)
+      ? shipControls.followUID
+      : null;
+    if (
+      pausedUIDs.length !== shipControls.pausedUIDs.length ||
+      followUID !== shipControls.followUID
+    )
+      setShipControls({ ...shipControls, pausedUIDs, followUID });
+  }, [resourceIndex.nodes, snapshotReady, shipControls]);
+  useEffect(() => {
+    if (!operations.length) return;
+    const timer = setInterval(() => setClock(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, [operations.length]);
+  useEffect(() => {
+    const key = (e) => {
+      if (
+        (e.metaKey || e.ctrlKey) &&
+        e.key.toLowerCase() === "k" &&
+        !formRef.current
+      ) {
+        e.preventDefault();
+        setUtility("finder");
+      }
+      if (
+        e.key === "Escape" &&
+        !document.querySelector(".resource-form-dialog") &&
+        !document.querySelector(".world-window") &&
+        !document.querySelector(".resource-details")
+      ) {
+        setUtility(null);
+        setPanel(null);
+      }
+    };
+    window.addEventListener("keydown", key);
+    return () => window.removeEventListener("keydown", key);
+  }, []);
+  const selected = selection
+    ? byUID.get(selection.resource.metadata.uid) || selection.resource
+    : null;
+  const selectedObservation = useMemo(
+    () => selected && connection.resourceObservation(selected),
+    [
+      selected,
+      connection.scopes,
+      connection.tombstones,
+      connection.outOfScope,
+      connection.isConnected,
+      connection.upstream,
+      connection.snapshotReady,
+      sourceKey,
+    ],
+  );
+  const setObservationPin = useCommittedEvent(connection.setObservationPin || (() => {}));
+  const selectedSource = currentSource.current;
+  useLayoutEffect(() => {
+    setObservationPin("selection", selectedSource === sourceKey ? selected?.metadata?.uid : null);
+    setObservationPin("form", form?.sourceKey === sourceKey ? form.resource?.metadata?.uid : null);
+    // Inactive harbor pins stay bounded to these two slots until its next
+    // selection, source generation change, removal or provider disposal.
+  }, [setObservationPin, sourceKey, selectedSource, selected?.metadata?.uid, form?.sourceKey, form?.resource?.metadata?.uid]);
+  const retainKind = useCommittedEvent(connection.retainKind);
+  const selectedDescriptor =
+    selected &&
+    connection.discovery.find(
+      (d) =>
+        d.kind === selected.kind &&
+        `${d.group ? d.group + "/" : ""}${d.version}` === selected.apiVersion,
+    );
+  useEffect(() => {
+    // A layout source switch schedules a new selection, but the previous
+    // render's passive effect can still run with the new committed callback.
+    if (!selectedDescriptor || selectedSource !== sourceKey) return;
+    return retainKind(
+      selectedDescriptor.kind,
+      selected?.metadata.namespace || "",
+      selectedDescriptor,
+    );
+  }, [selectedDescriptor, selected?.metadata.namespace, sourceKey, selectedSource, retainKind]);
+  const selectedNode =
+    selected?.kind === "Node"
+      ? selected
+      : selected?.kind === "Pod"
+        ? resourceIndex.nodesByName.get(selected.spec?.nodeName)
+        : ownerNode(selected, resources);
+  const selectedNodeUID = selectedNode?.metadata.uid;
+  const sharedNodeHarbors = workspace?.record && selectedNode ? (() => {
+    const connections = workspace.registry.connections(workspace.record.connections);
+    const union = sharedResources(workspace.record.harbors, workspace.registry.snapshots(), connections);
+    const activeConnection = connections.find((item) => item.id === workspace.activeHarbor?.connectionRef);
+    if (activeConnection?.identity?.confidence !== "verified") return [];
+    return (union.membership.get(canonicalResourceKey(activeConnection, selectedNode)) || []).map((id) => workspace.record.harbors.find((harbor) => harbor.id === id)?.name).filter(Boolean);
+  })() : [];
+  const deleted = Boolean(selectedObservation?.deleted);
+  const tracked = useMemo(
+    () => [...operations.map((op) => observeOperation(op, byUID, clock)), ...(connection.detachedOperations || []).map((op) => ({
+      id: op.operationId || op.id, at: op.at, action: op.action, sourceKey,
+      resource: { kind: op.target.kind || "Kaynak", metadata: { uid: op.target.uid, name: op.target.name, namespace: op.target.namespace } },
+      status: op.status === "accepted" ? "accepted" : op.status === "failed" ? "failed" : "timed-out",
+      observation: `${workspace?.activeHarbor?.name || op.harborId} · ${op.context}: ${op.status === "accepted" ? "API kabulü özgün limana bağlıdır; controller sonucunu bu limanda inceleyin." : "Liman değiştirilirken istek sonucu belirsiz kaldı. Otomatik tekrar gönderilmedi; gerçek GET/watch durumunu inceleyin."}`,
+    }))],
+    [operations, byUID, clock, connection.detachedOperations, sourceKey],
+  );
+  const activeCount = tracked.filter((op) =>
+    ["accepted", "reconciling", "partial", "failed", "timed-out"].includes(
+      op.status,
+    ),
+  ).length;
+  const problems = resources.filter(
+    (r) => (r.kind === "Node" || r.kind === "Pod") && hasProblem(r),
+  ).length;
+  const mutationDisabled = readOnly || mode === "demo" || stale;
+  const worldProviders = useWorldProviders({
+    connection,
+    namespace,
+    trafficEnabled: layers.measuredTraffic,
+    selectedUID: selected?.kind === "Pod" ? selected.metadata.uid : null,
+    managementVisible: utility === "providers",
+  });
+  const harborEndpoints = workspace?.record ? flowHarborEndpoints(workspace.record, workspace.activeId, workspace.registry.snapshots(), workspace.registry.connections(workspace.record.connections), worldProviders.measuredFlows.authorizedHarborIds) : new Map();
+  const harborRelations = workspace?.record && layers.network ? deriveWorkspaceRelations(workspace.record, workspace.registry.snapshots(), workspace.registry.connections(workspace.record.connections)) : [];
+  const inspectHarbor = useCommittedEvent((id, facilityId) => {
+    if (formRef.current) return;
+    if (facilityId) {
+      if (id === workspace?.activeId) { openFacility(facilityId); return; }
+      pendingHarborSelection.current = { harborId: id, facilityId };
+      switchHarbor(id); setUtility(null);
+    } else { switchHarbor(id); setUtility("connection"); }
+  });
+  const inspectHarborResource = useCommittedEvent((id, resource, options = {}) => {
+    if (formRef.current) return;
+    if (id === workspace?.activeId) return detailSelectResource(resource, options);
+    pendingHarborSelection.current = { harborId: id, uid: resource.metadata.uid, kind: resource.kind, namespace: resource.metadata.namespace || "", ...options };
+    switchHarbor(id);
+  });
+  const openProviders = useCommittedEvent(() => {
+    captureTrigger();
+    setUtility("providers");
+  });
+  const selectFlow = useCommittedEvent((flow) => {
+    if (formRef.current) return;
+    captureTrigger();
+    setSelectedFlow(flow);
+    setUtility("flow");
+  });
+  const flowResource = useCommittedEvent((uid) => {
+    const resource = byUID.get(uid);
+    if (resource) selectResource(resource);
+    else {
+      const endpoint = harborEndpoints.get(uid);
+      if (endpoint) {
+        pendingHarborSelection.current = { harborId: endpoint.harborId, uid };
+        switchHarbor(endpoint.harborId);
+      }
+    }
+  });
+  const status = connectionStatus(connection);
+  function captureTrigger(trigger = document.activeElement) {
+    pendingSelectionRestore.current = null;
+    savedTrigger.current = focusElement(trigger);
+  }
+  function closePanel() {
+    pendingSelectionRestore.current = null;
+    setPanel(null);
+    requestAnimationFrame(() => {
+      focusElement(savedTrigger.current, document.getElementById("world-find"));
+    });
+  }
+  function openFacility(id) {
+    if (formRef.current) return;
+    captureTrigger();
+    setUtility(null);
+    setPanel({ type: "facility", id });
+    if (connection.authRequired) setUtility("connection");
+  }
+  function selectResource(resource, options = {}) {
+    if (!resource?.metadata?.uid || formRef.current) return;
+    captureTrigger();
+    setUtility(null);
+    const node = ownerNode(resource, resources);
+    const origin =
+      options.origin ||
+      (panelRef.current?.type === "facility"
+        ? panelRef.current
+        : node && node.metadata.uid !== resource.metadata.uid
+          ? { type: "resource", resource: node }
+          : { type: "facility", id: facilityFor(resource) || "center" });
+    setSelection({ resource, containerName: options.containerName, origin });
+    setPanel({ type: "resource" });
+  }
+  function back() {
+    if (selection?.containerName) {
+      setSelection((s) => ({ ...s, containerName: null, tab: null }));
+      return;
+    }
+    const origin = selection?.origin;
+    if (origin?.type === "resource") {
+      setSelection({
+        resource: byUID.get(origin.resource.metadata.uid) || origin.resource,
+        origin: { type: "facility", id: "center" },
+      });
+      setPanel({ type: "resource" });
+    } else if (origin?.id) {
+      setPanel(origin);
+    } else closePanel();
+  }
+  function create(options = {}) {
+    setUtility(null);
+    setForm({
+      action: "create",
+      ...options,
+      sourceKey,
+      viewNamespace: namespace,
+    });
+  }
+  function action(name, resource) {
+    if (name === "secret-edit") {
+      setForm({
+        action: "edit",
+        secretEdit: true,
+        resource,
+        sourceKey,
+        viewNamespace: namespace,
+      });
+      return;
+    }
+    if (name === "inspect") {
+      selectResource(resource);
+      return;
+    }
+    if (name === "logs") {
+      selectResource(resource, { containerName: selection?.containerName });
+      setSelection((s) => ({ ...s, tab: "logs" }));
+      return;
+    }
+    if (name === "focus") {
+      showInScene(resource);
+      return;
+    }
+    setForm({ action: name, resource, sourceKey, viewNamespace: namespace });
+  }
+  function showInScene(resource) {
+    if (resource.kind === "Node" || resource.kind === "Pod") {
+      setSelection({ resource, origin: selection?.origin });
+      setFocusRequest((n) => n + 1);
+    } else
+      setFocusFacilityRequest({
+        id: facilityFor(resource) || "center",
+        revision: Date.now(),
+      });
+    setPanel(null);
+    setUtility(null);
+  }
+  function submit(result, meta = {}) {
+    const submitSource = form?.sourceKey;
+    if (
+      submitSource !== currentSource.current ||
+      form?.viewNamespace !== viewNamespace.current
+    )
+      return;
+    const op = acceptedOperation(
+      result,
+      { ...meta, action: meta.action || form?.action },
+      sourceKey,
+    );
+    setOperations((list) => [op, ...list].slice(0, 30));
+    setForm(null);
+    // Observe generic/discovered resources with a real authoritative read, never local success insertion.
+    const r = op.resource;
+    if (r?.kind && mode !== "demo")
+      connection.loadKind(r.kind, namespace).catch(() => {});
+    if (r?.metadata?.uid) {
+      setSelection({
+        resource: r,
+        origin:
+          panel?.type === "facility"
+            ? panel
+            : selection?.origin || { type: "facility", id: "center" },
+      });
+      setPanel({ type: "resource" });
+    }
+  }
+  function focusFacility(id) {
+    setPanel(null);
+    setFocusFacilityRequest({ id, revision: Date.now() });
+  }
+  const detailSelectResource = useCommittedEvent(selectResource);
+  const sceneOpenFacility = useCommittedEvent(openFacility);
+  const detailsClose = useCommittedEvent(closePanel),
+    detailsBack = useCommittedEvent(back),
+    detailsAction = useCommittedEvent(action);
+  const detailsAddPod = useCommittedEvent((node) =>
+    create({ createKind: "Pod", targetNode: node }),
+  );
+  const detailsShow = useCommittedEvent(showInScene);
+  const detailsContainer = useCommittedEvent((containerName) =>
+    setSelection((s) => ({ ...s, containerName })),
+  );
+  const tabTarget = useRef(null), selectedTabUID = selected?.metadata.uid;
+  useLayoutEffect(() => {
+    tabTarget.current = { sourceKey, revision: connection.sessionRevision, uid: selectedTabUID };
+  }, [sourceKey, connection.sessionRevision, selectedTabUID]);
+  const detailsTab = useCallback((tab) => {
+    const target = tabTarget.current;
+    if (!selectedTabUID || target?.sourceKey !== sourceKey || target.revision !== connection.sessionRevision || target.uid !== selectedTabUID) return;
+    setSelection((current) => current?.resource?.metadata.uid === selectedTabUID && current.tab !== tab ? { ...current, tab } : current);
+  }, [sourceKey, connection.sessionRevision, selectedTabUID]);
+  const detailsPause = useCommittedEvent(() =>
+    setShipControls((value) => ({
+      ...value,
+      pausedUIDs: value.pausedUIDs.includes(selectedNodeUID)
+        ? value.pausedUIDs.filter((uid) => uid !== selectedNodeUID)
+        : [...value.pausedUIDs, selectedNodeUID],
+    })),
+  );
+  const detailsFollow = useCommittedEvent(() =>
+    setShipControls((value) => ({
+      ...value,
+      followUID: value.followUID === selectedNodeUID ? null : selectedNodeUID,
+    })),
+  );
+  const breadcrumb = useMemo(
+    () =>
+      selected?.kind === "Pod" && selectedNode
+        ? [
+            {
+              label: selectedNode.metadata.name,
+              onClick: () =>
+                detailSelectResource(selectedNode, {
+                  origin: { type: "facility", id: "center" },
+                }),
+            },
+          ]
+        : [],
+    [selected?.kind, selectedNode, detailSelectResource],
+  );
+  const previousScope = useRef();
+  const detailScope = useMemo(
+    () => detailResourceScope(resourceIndex, selected, previousScope.current),
+    [resourceIndex, selected],
+  );
+  useLayoutEffect(() => {
+    previousScope.current = detailScope;
+  }, [detailScope]);
+  const detailResource = useMemo(
+    () => (selection?.tab ? { ...selected, __tab: selection.tab } : selected),
+    [selected, selection?.tab],
+  );
+  const detailMetrics = useMemo(
+    () => ({
+      ...connection.metrics,
+      history: connection.metricHistory,
+      stale: connection.stale,
+    }),
+    [connection.metrics, connection.metricHistory, connection.stale],
+  );
+  const detailEvents = selected
+    ? resourceIndex.eventsByUID.get(selected.metadata.uid)
+    : undefined;
+  const detailMotion = useMemo(
+    () =>
+      selectedNodeUID && !deleted
+        ? {
+            state:
+              shipMotion?.uid === selectedNodeUID
+                ? shipMotion.state
+                : undefined,
+            paused: shipControls.pausedUIDs.includes(selectedNodeUID),
+            following: shipControls.followUID === selectedNodeUID,
+            reduced: motion.reduced,
+          }
+        : undefined,
+    [selectedNodeUID, deleted, shipMotion, shipControls, motion.reduced],
+  );
   return (
-    <main className="w-full h-full h-screen relative bg-slate-950 overflow-hidden">
-      <ShipyardScene
-        ships={ships}
-        totalShips={totalShips}
-        totalPallets={totalPallets}
-        isConnected={isConnected}
-        deployments={deployments}
-        eventsLog={eventsLog}
-      />
+    <main className="world-root" aria-label="KubeView etkileşimli tersane">
+      <a href="#world-find" className="skip-link">
+        Nesne bulucusuna geç
+      </a>
+      <div
+        className="world-canvas"
+        role="region"
+        aria-label="Etkileşimli 3D liman"
+      >
+        <Suspense
+          fallback={
+            <div className="world-loading">
+              <Anchor size={32} />
+              <p>Tersane hazırlanıyor…</p>
+            </div>
+          }
+        >
+          <HarborScene
+            resources={resources}
+            resourceTombstones={connection.tombstones}
+            snapshotUIDs={connection.snapshotUIDs}
+            selectedContainerName={selection?.containerName}
+            workloadOperations={operations}
+            provisionOperations={worldProviders.provisionOperations}
+            measuredFlows={worldProviders.measuredFlows}
+            onFlowSelect={selectFlow}
+            visibleNamespace={namespace === "all" ? null : namespace}
+            snapshotReady={snapshotReady}
+            selectedUID={selected?.metadata.uid}
+            selectedFacility={panel?.type === "facility" ? panel.id : null}
+            onSelect={detailSelectResource}
+            onOpenFacility={sceneOpenFacility}
+            quality={quality}
+            layers={layers}
+            focusRequest={focusRequest}
+            focusFacilityRequest={focusFacilityRequest}
+            overviewRequest={overviewRequest}
+            reducedMotion={reducedMotion}
+            motion={motion}
+            shipControls={shipControls}
+            onFollowEnd={onFollowEnd}
+            onShipMotionChange={onShipMotionChange}
+            sourceKey={sourceKey}
+            isStale={mode !== "demo" && stale && Boolean(lastUpdated)}
+            workspaceHarbors={workspace?.record?.harbors}
+            workspaceRegistry={workspace?.registry}
+            onHarborResourceSelect={inspectHarborResource}
+            activeHarborId={workspace?.activeId}
+            onHarborSelect={inspectHarbor}
+            onHarborRelations={() => setUtility("harbors")}
+            workspaceRelations={harborRelations}
+            harborEndpoints={harborEndpoints}
+            harborView={workspace?.view}
+            viewBridge={sceneView}
+          />
+        </Suspense>
+      </div>
+      <div className="world-overlay">
+        {(workspace?.dataSource === "test-replay" || connection.connectionChecks?.dataSource === "test-replay") && <div className="world-replay-badge" role="status">TEST/REPLAY — sentetik performans verisi · salt okunur</div>}
+        <button
+          className={`world-brand-control ${mode === "demo" ? "is-demo" : stale ? "is-stale" : ""}`}
+          aria-label="Bağlantı ve cluster kapsamını aç"
+          title="Bağlantı ve kapsam"
+          onClick={(event) => {
+            captureTrigger(event.currentTarget);
+            setUtility(workspace && !workspace.activeHarbor && !workspace.authRequired ? "harbors" : "connection");
+          }}
+        >
+          <span className="world-brand-mark">
+            <Anchor size={19} />
+          </span>
+          <strong>KubeView</strong>
+          <span className="brand-separator" />
+          <span className="world-cluster-name">
+            {mode === "demo" ? "Tersane demo" : workspace?.activeHarbor ? `${workspace.activeHarbor.name} · ${context} · ${workspace.activeHarbor.namespaces.join(", ")}` : context || "Tersane"}
+          </span>
+          <span className="connection-light" />
+          <span className="connection-short">{status}</span>
+        </button>
+        <div
+          className="world-tools"
+          role="toolbar"
+          aria-label="Liman yardımcı kontrolleri"
+        >
+          {[
+            ...(workspace ? [["harbors", "Limanlar ve deniz haritası", Compass]] : []),
+            ["finder", "Bul", Search],
+            ["home", "Limana dön", Compass],
+            ["preferences", "Görünüm ve ayarlar", Settings],
+            ["help", "Yardım", HelpCircle],
+          ].map(([id, label, Icon]) => (
+            <button
+              key={id}
+              id={id === "finder" ? "world-find" : undefined}
+              className="world-tool"
+              aria-label={label}
+              title={id === "finder" ? `${label} · Cmd/Ctrl+K` : label}
+              aria-pressed={utility === id}
+              onClick={(event) => {
+                captureTrigger(event.currentTarget);
+                if (id === "harbors") setUtility((current) => current === id ? null : id);
+                else if (id === "home") {
+                  if (form) return;
+                  setPanel(null);
+                  setUtility(null);
+                  setOverviewRequest((n) => n + 1);
+                } else if (!form)
+                  setUtility((current) => (current === id ? null : id));
+              }}
+            >
+              <Icon size={18} />
+            </button>
+          ))}
+        </div>
+        <button
+          className="world-tool world-motion-toggle"
+          style={{ position: "absolute", left: 16, top: 68 }}
+          aria-label={
+            preferences.paused
+              ? "Görsel hareketleri sürdür"
+              : "Görsel hareketleri duraklat"
+          }
+          title={
+            preferences.paused
+              ? "Görsel hareketleri sürdür · Kubernetes verisi devam ediyor"
+              : "Görsel hareketleri duraklat · yalnız görsel sunum"
+          }
+          aria-pressed={preferences.paused}
+          onClick={() =>
+            setPreferences((value) => ({ ...value, paused: !value.paused }))
+          }
+        >
+          {preferences.paused ? <Play size={18} /> : <Pause size={18} />}
+        </button>
+        {workspace && mode !== "demo" && !workspace.activeHarbor && !utility && <section className="world-first-harbor" aria-label="İlk limanını bağla"><h1>Deniz senin; ilk limanını bağla</h1><p>Mevcut Kubernetes projenin namespace ve etiket kapsamını seç. Kaynak yaratılmaz.</p>{workspace.error && <p role="alert">{workspace.error}</p>}{workspace.authRequired ? <button className="button button-primary" onClick={() => setUtility("connection")}>Uygulama oturumu aç</button> : <button className="button button-primary" disabled={workspace.loading || !workspace.record} onClick={() => setUtility("harbors")}>İlk limanını bağla</button>}{workspace.error && <button className="button" onClick={workspace.reload}>Workspace'i yeniden oku</button>}<button className="button" onClick={workspace.enterDemo}>Demo ile incele</button></section>}
+        {guide && !panel && !utility && (!workspace || workspace.activeHarbor || mode === "demo") && (
+          <div className="world-first-guide">
+            {mode !== "demo" && !snapshotReady ? (
+              <div className="connection-onboarding-actions">
+                <button
+                  className="button button-primary"
+                  onClick={() => setUtility("connection")}
+                >
+                  Kendi Kubernetes kümeme bağlan
+                </button>
+                <button
+                  className="button"
+                  onClick={() => workspace ? workspace.enterDemo() : connection.selectSource("__demo__")}
+                >
+                  Demo ile incele
+                </button>
+              </div>
+            ) : null}
+            <p>
+              <strong>Merkez:</strong> yönetim <span>·</span>{" "}
+              <strong>Gemi:</strong> Node <span>·</span>{" "}
+              <strong>Konteynır:</strong> Pod/container
+            </p>
+            <button
+              className="icon-button"
+              aria-label="Kısa rehberi kapat"
+              onClick={() => {
+                setGuide(false);
+                try {
+                  localStorage.setItem("kubeview-world-guide", "seen");
+                } catch {}
+              }}
+            >
+              <X size={17} />
+            </button>
+          </div>
+        )}
+        {(operations.length > 0 || problems > 0) && (
+          <button
+            className={`world-notification ${panel ? "notification-with-panel" : ""}`}
+            aria-label={`Olaylar ve işlemler: ${activeCount} işlem, ${problems} sorunlu kaynak`}
+            onClick={() => setUtility("notifications")}
+            title="Olaylar ve işlem takibi"
+          >
+            {problems && !activeCount ? (
+              <AlertTriangle size={17} />
+            ) : (
+              <Activity size={17} />
+            )}
+            <span>
+              {activeCount
+                ? `${activeCount} işlem`
+                : problems
+                  ? `${problems} sorun`
+                  : "İşlem geçmişi"}
+            </span>
+          </button>
+        )}
+        {namespace !== "all" && !panel && !utility && (
+          <button
+            className="world-scope-chip"
+            onClick={() => setUtility("connection")}
+          >
+            {namespace}
+            <span>Namespace kapsamı</span>
+          </button>
+        )}
+        {panel?.type === "facility" && selectedSource === sourceKey && (
+          <FacilityWindow
+            key={panel.id}
+            id={panel.id}
+            connection={connection}
+            namespace={namespace}
+            onNamespace={setNamespace}
+            onClose={closePanel}
+            onSelect={selectResource}
+            onAction={action}
+            onCreate={create}
+            onFocus={focusFacility}
+            onConnection={() => setUtility("connection")}
+            onProviders={openProviders}
+            measuredFlows={worldProviders.measuredFlows}
+            trafficEnabled={layers.measuredTraffic}
+            onEnableTraffic={() =>
+              setLayers((value) => ({ ...value, measuredTraffic: true }))
+            }
+            onFlowSelect={selectFlow}
+          />
+        )}
+        {panel?.type === "resource" && selected && selectedSource === sourceKey && (
+          <ResourceDetails
+            key={selected.metadata.uid}
+            resource={detailResource}
+            deleted={deleted}
+            observation={selectedObservation}
+            cluster={mode === "demo" ? "Demo — örnek veri" : context}
+            harborName={workspace?.activeHarbor?.name}
+            sharedNodeHarbors={sharedNodeHarbors}
+            updateStamp={CONNECTION_UPDATE_STAMP}
+            resources={detailScope.resources}
+            onClose={detailsClose}
+            onBack={detailsBack}
+            breadcrumb={breadcrumb}
+            onAddPod={detailsAddPod}
+            onShowInScene={detailsShow}
+            selectedContainerName={selection?.containerName}
+            onSelectContainer={detailsContainer}
+            onTabChange={detailsTab}
+            visualMotion={detailMotion}
+            onToggleShipPause={detailsPause}
+            onToggleShipFollow={detailsFollow}
+            onAction={detailsAction}
+            api={api}
+            metrics={detailMetrics}
+            events={detailEvents}
+            readOnly={
+              mutationDisabled || selectedObservation?.status !== "live"
+            }
+          />
+        )}
+        {utility === "connection" && (
+          <ConnectionWindow
+            connection={connection}
+            namespace={namespace}
+            onNamespace={setNamespace}
+            onClose={() => setUtility(null)}
+            onEditHarbor={() => setUtility("harbor-edit")}
+          />
+        )}
+        {(utility === "harbors" || utility === "harbor-edit") && workspace?.record && <WorkspaceWindow workspace={workspace} onSelect={switchHarbor} onOverview={() => { setUtility(null); sceneView.current?.overviewWorkspace?.(); }} editHarborId={utility === "harbor-edit" ? workspace.activeId : null} first={!workspace.record.harbors.length} onClose={() => setUtility(null)} />}
+        {utility === "finder" && (
+          <FinderWindow
+            connection={connection}
+            namespace={namespace}
+            onSelect={selectResource}
+            onFacility={openFacility}
+            onClose={() => setUtility(null)}
+          />
+        )}
+        {utility === "preferences" && (
+          <PreferencesWindow
+            preferences={preferences}
+            onPreferences={setPreferences}
+            motion={motion}
+            layers={layers}
+            onLayers={setLayers}
+            onProviders={openProviders}
+            onClose={() => setUtility(null)}
+            mode={mode}
+            onDemoScenario={() => {
+              setUtility(null);
+              connection.runDemoScenario();
+            }}
+          />
+        )}
+        {utility === "providers" && (
+          <ProviderWindow
+            {...worldProviders}
+            context={context}
+            readOnly={mutationDisabled}
+            onRefresh={worldProviders.refresh}
+            onAddWorker={worldProviders.addWorker}
+            onCancelWorker={worldProviders.cancelWorker}
+            harborName={workspace?.activeHarbor?.name}
+            sharedImpactRequired={Boolean(workspace)}
+            onClose={() => setUtility(null)}
+          />
+        )}
+        {utility === "flow" && (
+          <FlowWindow
+            flow={
+              worldProviders.measuredFlows.flows.find(
+                (f) => f.id === selectedFlow?.id,
+              ) || selectedFlow
+            }
+            measuredFlows={worldProviders.measuredFlows}
+            context={context}
+            onSelectResource={flowResource}
+            endpointHarbors={harborEndpoints}
+            onClose={() => setUtility(null)}
+          />
+        )}
+        {utility === "help" && <HelpWindow onClose={() => setUtility(null)} />}
+        {utility === "notifications" && (
+          <NotificationsWindow
+            operations={tracked}
+            connection={connection}
+            namespace={namespace}
+            onSelect={selectResource}
+            onClose={() => setUtility(null)}
+          />
+        )}
+        {form && form.sourceKey === sourceKey && (
+          <ResourceForms
+            {...form}
+            cluster={context}
+            namespace={
+              namespace === "all"
+                ? connection.watchNamespace || "default"
+                : namespace
+            }
+            api={api}
+            resources={resources}
+            readOnly={
+              mutationDisabled ||
+              Boolean(
+                form.resource &&
+                connection.resourceObservation(form.resource).status !== "live",
+              )
+            }
+            onClose={() => setForm(null)}
+            onSubmitted={submit}
+            harborName={workspace?.activeHarbor?.name}
+            onHarbors={workspace ? () => setUtility("harbors") : undefined}
+            onSafeDraft={(draft) => { safeDraft.current = draft; sensitiveDraft.current = !draft; }}
+          />
+        )}
+      </div>
+      <div className="sr-only" aria-live="polite">
+        {status}. {connection.totalShips} gerçek Node, {connection.totalPallets}{" "}
+        gerçek Pod. Kaynak ve tesislere Bul kontrolüyle ulaşabilirsiniz.
+      </div>
     </main>
-  )
+  );
 }

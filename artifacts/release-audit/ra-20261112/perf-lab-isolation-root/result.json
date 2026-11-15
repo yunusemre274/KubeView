@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-11-12T17:05:16.376206+00:00",
+  "status": "PASS",
+  "purpose": "Stop only owned lab; preserve restart/manual data; no performance window yet",
+  "sourceSHA256": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5",
+  "ownedNamespaceRetained": {
+    "name": "kvrel-secret-20261112-21bddadc",
+    "uid": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d"
+  },
+  "before": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "name": "kvml-d32afbf634e8-a",
+      "running": true
+    },
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "name": "kvml-d32afbf634e8-a-m02",
+      "running": true
+    }
+  ],
+  "after": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "name": "kvml-d32afbf634e8-a",
+      "running": false
+    },
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "name": "kvml-d32afbf634e8-a-m02",
+      "running": false
+    }
+  ],
+  "finishedAt": "2026-11-12T17:05:38.403827+00:00",
+  "elapsedSeconds": 22.027523708000444
+}

@@ -1,0 +1,26 @@
+✔ generic CLI preserves valid synthetic positive (26.726833ms)
+✔ generic CLI rejects PID reuse (23.811417ms)
+✔ generic CLI rejects legacy missing birth (24.756417ms)
+✔ generic CLI rejects interior cohort disappearance (24.074292ms)
+✔ generic CLI rejects interior counter regression (22.928792ms)
+✔ generic CLI rejects invalid clock (23.948917ms)
+✔ generic CLI rejects missing process samples (22.541334ms)
+✔ generic CLI rejects empty process samples (24.477834ms)
+✔ generic CLI rejects malformed sample body (22.766042ms)
+✔ generic CLI rejects both empty runs (22.437333ms)
+✔ generic CLI rejects missing declared group on both sides (22.910209ms)
+✔ generic CLI rejects extra after group (22.952125ms)
+✔ generic CLI rejects missing after group (22.882167ms)
+✔ generic CLI rejects duplicate repeat (23.150291ms)
+✔ generic CLI rejects missing summary (21.8635ms)
+✔ generic CLI rejects malformed summary JSON (23.852041ms)
+✔ generic CLI rejects missing run body (23.070166ms)
+✔ generic CLI rejects missing errors body (23.02175ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 451.201042

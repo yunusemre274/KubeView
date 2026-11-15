@@ -1,0 +1,70 @@
+[
+  {
+    "file": "source-before.json",
+    "line": 2,
+    "rule": "generic-api-key",
+    "sourceLineIsHashField": true,
+    "lineField": "\"frontend/e2e/release-secret-purpose-browser.mjs\"",
+    "record": {
+      "frontend/e2e/release-secret-purpose-browser.mjs": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+      "frontend/src/workbench/ResourceDetails.jsx": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+      "frontend/src/workbench/ResourceForms.jsx": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+      "frontend/src/workbench/secretPayload.js": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "frontend/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backend/internal/webui/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe"
+    }
+  },
+  {
+    "file": "source-before.json",
+    "line": 5,
+    "rule": "generic-api-key",
+    "sourceLineIsHashField": true,
+    "lineField": "\"frontend/src/workbench/secretPayload.js\"",
+    "record": {
+      "frontend/e2e/release-secret-purpose-browser.mjs": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+      "frontend/src/workbench/ResourceDetails.jsx": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+      "frontend/src/workbench/ResourceForms.jsx": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+      "frontend/src/workbench/secretPayload.js": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "frontend/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backend/internal/webui/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe"
+    }
+  },
+  {
+    "file": "source-after.json",
+    "line": 2,
+    "rule": "generic-api-key",
+    "sourceLineIsHashField": true,
+    "lineField": "\"frontend/e2e/release-secret-purpose-browser.mjs\"",
+    "record": {
+      "frontend/e2e/release-secret-purpose-browser.mjs": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+      "frontend/src/workbench/ResourceDetails.jsx": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+      "frontend/src/workbench/ResourceForms.jsx": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+      "frontend/src/workbench/secretPayload.js": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "frontend/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backend/internal/webui/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe"
+    }
+  },
+  {
+    "file": "source-after.json",
+    "line": 5,
+    "rule": "generic-api-key",
+    "sourceLineIsHashField": true,
+    "lineField": "\"frontend/src/workbench/secretPayload.js\"",
+    "record": {
+      "frontend/e2e/release-secret-purpose-browser.mjs": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+      "frontend/src/workbench/ResourceDetails.jsx": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+      "frontend/src/workbench/ResourceForms.jsx": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+      "frontend/src/workbench/secretPayload.js": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "frontend/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backend/internal/webui/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe"
+    }
+  }
+]

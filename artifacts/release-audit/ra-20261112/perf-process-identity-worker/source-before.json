@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-12T17:02:10.098611+00:00",
+  "sourceSHA256": {
+    "benchmarks/run.mjs": "6e1bd7659db63d0d7fe42e1bf41dbdc2cdd953b79e0549914bec40b814fa94bb",
+    "benchmarks/metrics.mjs": "40e00b9550c43db063db839601586d3f22fdb149dd9ba5bb0491bdaf7cdf36c9",
+    "benchmarks/metrics.test.mjs": "ad7fced8bb416244c2c3b9bf3ae5051a106afb8a476d7372c7d22159772e7428",
+    "benchmarks/panel-compare.mjs": "e23586629e69d3f20952a0988b368d76334743c0efe801843aefb47b77013886",
+    "benchmarks/panel-compare.test.mjs": "ea2ec13a020ec182c61312f58129c2bf4ef248dbae9aadf06c3efb191afa5bc6"
+  }
+}

@@ -1,0 +1,26 @@
+✔ measurement windows allow boundary IPC overhead and reject sleep/time jumps (0.31025ms)
+✔ render rate is total frames/active wall time; missing metrics stay null (0.201042ms)
+✔ load correlation uses opaque RV equality and handles DELETE's last stored version (0.530208ms)
+✔ identity regression rejects same PID with a new OS birth (0.367375ms)
+✔ identity regression never publishes a falling CPU counter (0.06525ms)
+✔ identity regression rejects zero span and missing OS birth (0.073209ms)
+✔ identity regression unknown role metrics are null rather than synthetic zero (0.116208ms)
+✔ process coverage flags even an intermediate browser child that exits before final sample (1.704334ms)
+✔ sleep-diluted CPU is rejected even with stable browser PIDs (0.108ms)
+✔ paired comparison retains negative deltas and rejects a missing/duplicate cell (2.094042ms)
+✔ identity regression rejects simultaneous child exit and PID reuse (0.119833ms)
+✔ identity regression rejects a sampled cohort disappearance even when endpoints match (0.103375ms)
+✔ native C-locale ps columns preserve PID PPID birth and executable with spaces (1.152334ms)
+✔ all observed browser descendants count even with non-Chrome executable names (0.486667ms)
+✔ root reuse, role change, missing identity, duplicate rows and decreasing intermediate counters reject (0.693792ms)
+✔ previously observed orphan child remains in accounting and sampled failures cannot pass (0.112375ms)
+✔ child bindings prune exited generations and retain only active exact orphan identities (0.691834ms)
+✔ known owned browser main basenames permit Linux lowercase without guessing unknown binaries (0.090791ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35.965375

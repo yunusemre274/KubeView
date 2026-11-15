@@ -1,0 +1,15 @@
+{
+  "checked_at_utc": "2026-11-11T13:22:21.302428+00:00",
+  "old_binary_original_unchanged": true,
+  "old_binary_preserved_copy_unchanged": true,
+  "old_go_mod_unchanged": true,
+  "old_go_sum_unchanged": true,
+  "old_vendor_modules_unchanged": true,
+  "old_sdk_alias_unchanged": true,
+  "new_sdk_alias_hash_same": true,
+  "new_go_mod_sha256": "7f659bc6090878152f28a11f0c2a72d774550343e9a35b361f77c2bb6fc09486",
+  "new_go_sum_sha256": "b0d1399cb09be023c9467038a4ecd92f39dd998adf5566407f2793fdadf9418d",
+  "new_vendor_modules_sha256": "0b8997084a4b3c0827135ec66bb5f6e47d470ff02de87f40113da9fee2ec69b9",
+  "trivy_db_unchanged": true,
+  "old_vendor_tree_unchanged": true
+}

@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-11T16:24:45.003205+00:00",
+  "appPID": 13278,
+  "binarySHA256": "322bd5b5b4dc396c8b9b2c555ae7e2017ebe7a00d58dff221603a044d2389aa2",
+  "non07ProcessRecordsUnchanged": true,
+  "hubbleIdentitiesListenersVerified": true,
+  "sourceHEAD": "46ec55080c23eb1502092ddd8b3c63ff409fded7",
+  "helperSHA256": "b2af99d64e7a9ed30c4dfc7f71263603fa1ea384ec6c2b6c23b687f5f1e01771",
+  "command": "GOMAXPROCS=1 node frontend/e2e/release-main-csp-diagnostic.mjs"
+}

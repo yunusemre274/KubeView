@@ -1,0 +1,65 @@
+{
+  "status": "READONLY_LATER_PODS0_ALL_GUARDS_PASS",
+  "observedAt": "2026-11-11T19:36:00.453255+00:00",
+  "originalCase03RemainsFAIL": true,
+  "noClaimForOriginal20sPASS": true,
+  "singleObservationNoWait": true,
+  "podCount": 0,
+  "podsAssignedNEW": [],
+  "case03ExactCleanupPodUIDs": [
+    "08b1d12a-028a-4184-b426-4088c1c73285",
+    "1dc97b71-de34-411f-9ec7-393e9d13297e",
+    "30d0f0e4-217a-4e19-b3dc-5107f102d4c1"
+  ],
+  "knownDaemonSets": {
+    "kube-system/cilium": "144ba330-5232-4969-b850-7a23bacfddbb",
+    "kube-system/cilium-envoy": "2ee3ea8b-2d77-4df7-9aeb-4548241ce4d3",
+    "kube-system/kube-proxy": "3a85e654-153d-4a0b-a454-d4731eabf3bb"
+  },
+  "newNodeAbsent": true,
+  "newContainerAbsent": true,
+  "newVolumeAbsent": true,
+  "newNetworkAbsent": true,
+  "newMachineDirectoryAbsent": true,
+  "newLabelTargets": {
+    "containers": [],
+    "volumes": [],
+    "networks": []
+  },
+  "original2ReadyUIDs": {
+    "kvml-d32afbf634e8-a": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+    "kvml-d32afbf634e8-a-m02": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+  },
+  "originalBaselineEqual": true,
+  "profile": {
+    "beforeSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+    "currentSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+    "beforeBytes": 3946,
+    "currentBytes": 4744,
+    "beforeNewlines": 167,
+    "currentNewlines": 167,
+    "parsedJSONExactlyEqual": true,
+    "onlyWhitespaceOutsideJSONStringsDiffers": true,
+    "privateCurrentPath": ".git/release-audit/real-minikube-add-gc-battery-followup-worker/profile-current-full-private.json"
+  },
+  "cleanupEventGaps": [
+    {
+      "event": "cleanup_exact_target_and_DaemonSet_Pods_verified",
+      "at": "2026-11-11T19:29:24.169328+00:00",
+      "secondsUntilCurrentPodObservation": 396.28392696380615
+    },
+    {
+      "event": "cleanup_restored_exact_originals",
+      "at": "2026-11-11T19:29:29.753064+00:00",
+      "secondsUntilCurrentPodObservation": 390.7001910209656
+    },
+    {
+      "event": "transaction_pass_after_verified_cleanup",
+      "at": "2026-11-11T19:29:29.753852+00:00",
+      "secondsUntilCurrentPodObservation": 390.69940304756165
+    }
+  ],
+  "deleteTimeLimit": "Node-delete command boundaries not separately timestamped; cleanup guard/restored events bound it. No actual Pod GC time inferred.",
+  "workElapsedSeconds": 1.0762181282043457,
+  "workWithin45s": true
+}

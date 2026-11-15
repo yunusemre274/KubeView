@@ -1,0 +1,36 @@
+--- baseline/resourceStore.js
++++ generation-guard-disabled/resourceStore.js
+@@ -64,7 +64,7 @@
+     message.type !== "SNAPSHOT" &&
+     state.generation !== null &&
+     generation !== undefined &&
+-    generation !== state.generation
++    false && generation !== state.generation
+   )
+     return state;
+   if (message.type === "SNAPSHOT") {
+
+--- baseline/resourceStore.js
++++ delete-by-address/resourceStore.js
+@@ -181,7 +181,8 @@
+       delete outOfScope[identity(r)];
+     }
+     if (payload.action === "DELETE") {
+-      delete resources[identity(r)];
++      for (const [uid, old] of Object.entries(resources))
++        if (address(old) === address(r)) delete resources[uid];
+       recordDeletion(identity(r), "delete-event");
+     } else {
+       // A recreated address has a new identity; delayed DELETE cannot remove it.
+
+--- baseline/resourceStore.js
++++ equivalent-limit-expression/resourceStore.js
+@@ -27,7 +27,7 @@
+     metricHistory: [],
+   };
+ }
+-const MAX_TOMBSTONES = 1000;
++const MAX_TOMBSTONES = 10 ** 3;
+ const MAX_OUT_OF_SCOPE = 1000;
+ function boundedScopeExits(exits, pinnedUIDs) {
+   const pins = new Set(pinnedUIDs), ordinary = [], protectedEntries = [];

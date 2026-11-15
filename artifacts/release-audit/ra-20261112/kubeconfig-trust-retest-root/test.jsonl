@@ -1,0 +1,16 @@
+{"Time":"2026-11-12T13:35:17.285196+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/server"}
+{"Time":"2026-11-12T13:35:18.005934+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseExecAuthCanaryHelper"}
+{"Time":"2026-11-12T13:35:18.006135+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseExecAuthCanaryHelper","Output":"=== RUN   TestReleaseExecAuthCanaryHelper\n"}
+{"Time":"2026-11-12T13:35:18.006183+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseExecAuthCanaryHelper","Output":"--- PASS: TestReleaseExecAuthCanaryHelper (0.00s)\n"}
+{"Time":"2026-11-12T13:35:18.006209+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseExecAuthCanaryHelper","Elapsed":0}
+{"Time":"2026-11-12T13:35:18.006222+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseKubeconfigTrustExecIsOperatorConfigured"}
+{"Time":"2026-11-12T13:35:18.006248+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseKubeconfigTrustExecIsOperatorConfigured","Output":"=== RUN   TestReleaseKubeconfigTrustExecIsOperatorConfigured\n"}
+{"Time":"2026-11-12T13:35:18.034207+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseKubeconfigTrustExecIsOperatorConfigured","Output":"--- PASS: TestReleaseKubeconfigTrustExecIsOperatorConfigured (0.03s)\n"}
+{"Time":"2026-11-12T13:35:18.034234+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseKubeconfigTrustExecIsOperatorConfigured","Elapsed":0.03}
+{"Time":"2026-11-12T13:35:18.034258+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseWorkspaceCannotSupplyExecConfiguration"}
+{"Time":"2026-11-12T13:35:18.034264+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseWorkspaceCannotSupplyExecConfiguration","Output":"=== RUN   TestReleaseWorkspaceCannotSupplyExecConfiguration\n"}
+{"Time":"2026-11-12T13:35:18.073444+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseWorkspaceCannotSupplyExecConfiguration","Output":"--- PASS: TestReleaseWorkspaceCannotSupplyExecConfiguration (0.04s)\n"}
+{"Time":"2026-11-12T13:35:18.073463+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseWorkspaceCannotSupplyExecConfiguration","Elapsed":0.04}
+{"Time":"2026-11-12T13:35:18.073477+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"PASS\n"}
+{"Time":"2026-11-12T13:35:18.074591+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"ok  \tgithub.com/k8s-tersane/tersane/backend/pkg/server\t0.789s\n"}
+{"Time":"2026-11-12T13:35:18.074619+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Elapsed":0.789}

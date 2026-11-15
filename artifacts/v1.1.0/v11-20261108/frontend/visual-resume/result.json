@@ -1,0 +1,3817 @@
+{
+  "startedAt": "2026-11-09T08:06:31.575Z",
+  "type": "actual owned Kubernetes + actual configured Hubble + normal production UI",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace": "kv-repair-v11-visual",
+  "owner": "v11-20261108",
+  "fixtures": [
+    {
+      "name": "flow-client",
+      "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+      "rv": "28447",
+      "node": "kv-repair-1101",
+      "ip": "10.244.0.69",
+      "phase": "Running",
+      "statuses": [
+        {
+          "name": "app",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-11-09T08:06:32Z"
+            }
+          },
+          "lastState": {}
+        }
+      ]
+    },
+    {
+      "name": "flow-same",
+      "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+      "rv": "28446",
+      "node": "kv-repair-1101",
+      "ip": "10.244.0.50",
+      "phase": "Running",
+      "statuses": [
+        {
+          "name": "app",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-11-09T08:06:32Z"
+            }
+          },
+          "lastState": {}
+        }
+      ]
+    },
+    {
+      "name": "flow-cross",
+      "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+      "rv": "28451",
+      "node": "kv-repair-1101-m03",
+      "ip": "10.244.6.249",
+      "phase": "Running",
+      "statuses": [
+        {
+          "name": "app",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-11-09T08:06:32Z"
+            }
+          },
+          "lastState": {}
+        }
+      ]
+    },
+    {
+      "name": "controlled-pair",
+      "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+      "rv": "28449",
+      "node": "kv-repair-1101",
+      "ip": "10.244.0.58",
+      "phase": "Running",
+      "statuses": [
+        {
+          "name": "controlled-crash",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-11-09T08:06:32Z"
+            }
+          },
+          "lastState": {}
+        },
+        {
+          "name": "healthy",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-11-09T08:06:32Z"
+            }
+          },
+          "lastState": {}
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "at": "2026-11-09T08:06:36.491Z",
+      "status": "connecting",
+      "source": "hubble",
+      "observedAt": "2026-11-09T08:06:36.481928Z",
+      "windowSeconds": 10,
+      "rows": []
+    },
+    {
+      "at": "2026-11-09T08:06:37.499Z",
+      "status": "live",
+      "source": "hubble",
+      "observedAt": "2026-11-09T08:06:37.497919Z",
+      "windowSeconds": 10,
+      "rows": []
+    },
+    {
+      "at": "2026-11-09T08:06:38.511Z",
+      "status": "live",
+      "source": "hubble",
+      "observedAt": "2026-11-09T08:06:38.509626Z",
+      "windowSeconds": 10,
+      "rows": [
+        {
+          "id": "e972fb89257a133884984290",
+          "protocol": "TCP",
+          "eventCount": 2,
+          "lastObserved": "2026-11-09T08:06:37.121771135Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "1dff9c414b8fad780a1cd392",
+          "protocol": "TCP",
+          "eventCount": 1,
+          "lastObserved": "2026-11-09T08:06:37.121762927Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "01a1d642857b7dc4b1ffba0b",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:36.716984468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "0154b64d2bdaf9031cb709ff",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716958468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "eaf78cec238f1339f58ec3ee",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716864301Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "51e62e4bf1e9ff7f227e9575",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:36.716095135Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "b407f89990ba7bd405422f1c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716093676Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        }
+      ]
+    },
+    {
+      "at": "2026-11-09T08:06:39.524Z",
+      "status": "live",
+      "source": "hubble",
+      "observedAt": "2026-11-09T08:06:39.52016Z",
+      "windowSeconds": 10,
+      "rows": [
+        {
+          "id": "aead672618378131ec96198c",
+          "protocol": "TCP",
+          "eventCount": 1,
+          "lastObserved": "2026-11-09T08:06:37.933564135Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "f571153f42ea5269cd08dd0e",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.531938468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "949d9f23f9887679c6ce068d",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.531904718Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "0cffb491410913d6f92c523f",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.531902218Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "091d80596dd3e9b11727ebb4",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.529556968Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "aecb8f52ec92d9a2661fbf0e",
+          "protocol": "TCP",
+          "eventCount": 3,
+          "lastObserved": "2026-11-09T08:06:37.52954651Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "85b86ae8d82cb1970cda4f10",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.124546677Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "2733fe134fdc48ff4dcb4968",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.124529468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "769c0a1fcae49f915c8d3a07",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.124437885Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "e972fb89257a133884984290",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.12223276Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "1dff9c414b8fad780a1cd392",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.122219927Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "01a1d642857b7dc4b1ffba0b",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:36.716984468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "0154b64d2bdaf9031cb709ff",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716958468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "eaf78cec238f1339f58ec3ee",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716864301Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "51e62e4bf1e9ff7f227e9575",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:36.716095135Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "b407f89990ba7bd405422f1c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716093676Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        }
+      ]
+    },
+    {
+      "at": "2026-11-09T08:06:40.680Z",
+      "status": "live",
+      "source": "hubble",
+      "observedAt": "2026-11-09T08:06:40.530991Z",
+      "windowSeconds": 10,
+      "rows": [
+        {
+          "id": "4d19fd4d103ed83257d461a7",
+          "protocol": "TCP",
+          "eventCount": 3,
+          "lastObserved": "2026-11-09T08:06:39.150228927Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "5a483b63a5021ae7a36cd4bb",
+          "protocol": "TCP",
+          "eventCount": 1,
+          "lastObserved": "2026-11-09T08:06:39.150023219Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "f25496bef132e5a3f077a0b1",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.746754386Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "3f1654a7c5ccbe67ad18a991",
+          "protocol": "TCP",
+          "eventCount": 8,
+          "lastObserved": "2026-11-09T08:06:38.746736094Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "3c08393c5baca302bfff8b7e",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.746708386Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "10d3c5ed3d5d3e1810ded83b",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.744803927Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "17b0c74f89e2b07c054c40f6",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:38.744798552Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "cbbc0adb5a6992ee5b831218",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.341012177Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "e0c045651b076d6b52e988cc",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.34101201Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "6cb71ae023e74b0b3c95886e",
+          "protocol": "TCP",
+          "eventCount": 8,
+          "lastObserved": "2026-11-09T08:06:38.341006635Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "18aa9d588bbe7e6949758863",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:38.338198094Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "50b3073bf27e4b16d8a80b9c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.33819226Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "c71c70b5bdb2b459633c0651",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.93508826Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "17477b9cf384a66129d52f4e",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.935086719Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "a550fe2bcd3be7cc816e2dcd",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.935015677Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "aead672618378131ec96198c",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.933864427Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "257ea9747bdf33c0f2375d97",
+          "protocol": "TCP",
+          "eventCount": 3,
+          "lastObserved": "2026-11-09T08:06:37.933860802Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "f571153f42ea5269cd08dd0e",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.531938468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "949d9f23f9887679c6ce068d",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.531904718Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "0cffb491410913d6f92c523f",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.531902218Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "091d80596dd3e9b11727ebb4",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.529556968Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "aecb8f52ec92d9a2661fbf0e",
+          "protocol": "TCP",
+          "eventCount": 3,
+          "lastObserved": "2026-11-09T08:06:37.52954651Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "85b86ae8d82cb1970cda4f10",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.124546677Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "2733fe134fdc48ff4dcb4968",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.124529468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "769c0a1fcae49f915c8d3a07",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.124437885Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "e972fb89257a133884984290",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.12223276Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "1dff9c414b8fad780a1cd392",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.122219927Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "01a1d642857b7dc4b1ffba0b",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:36.716984468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "0154b64d2bdaf9031cb709ff",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716958468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "eaf78cec238f1339f58ec3ee",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716864301Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "51e62e4bf1e9ff7f227e9575",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:36.716095135Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "b407f89990ba7bd405422f1c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716093676Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        }
+      ]
+    },
+    {
+      "at": "2026-11-09T08:06:41.543Z",
+      "status": "live",
+      "source": "hubble",
+      "observedAt": "2026-11-09T08:06:41.54049Z",
+      "windowSeconds": 10,
+      "rows": [
+        {
+          "id": "f2aa34d076136ad453226b17",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.957484553Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "6a24283dac75f458dd69980a",
+          "protocol": "TCP",
+          "eventCount": 2,
+          "lastObserved": "2026-11-09T08:06:39.95739172Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "a5ae5c93dc52a9457e417e1a",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:39.555770428Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "c8490301165530623d2db60d",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.555742928Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "ff9dd1d79571b12afe029c28",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.555567928Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "40b82adfc6d542d57631cc98",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.554587719Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "62a5e687615ba4145a66fa43",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:39.554586303Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "2a817703318910b4c14f8b98",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.152521344Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "816fa52e2030e71dd833874d",
+          "protocol": "TCP",
+          "eventCount": 8,
+          "lastObserved": "2026-11-09T08:06:39.152519761Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "5290eeffc5bcaf8e86e8cad2",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.152454344Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "5a483b63a5021ae7a36cd4bb",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.150686636Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "4d19fd4d103ed83257d461a7",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:39.150683052Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "f25496bef132e5a3f077a0b1",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.746754386Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "3f1654a7c5ccbe67ad18a991",
+          "protocol": "TCP",
+          "eventCount": 8,
+          "lastObserved": "2026-11-09T08:06:38.746736094Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "3c08393c5baca302bfff8b7e",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.746708386Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "10d3c5ed3d5d3e1810ded83b",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.744803927Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "17b0c74f89e2b07c054c40f6",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:38.744798552Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "cbbc0adb5a6992ee5b831218",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.341012177Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "e0c045651b076d6b52e988cc",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.34101201Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "6cb71ae023e74b0b3c95886e",
+          "protocol": "TCP",
+          "eventCount": 8,
+          "lastObserved": "2026-11-09T08:06:38.341006635Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "18aa9d588bbe7e6949758863",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:38.338198094Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "50b3073bf27e4b16d8a80b9c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.33819226Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "c71c70b5bdb2b459633c0651",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.93508826Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "17477b9cf384a66129d52f4e",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.935086719Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "a550fe2bcd3be7cc816e2dcd",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.935015677Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "aead672618378131ec96198c",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.933864427Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "257ea9747bdf33c0f2375d97",
+          "protocol": "TCP",
+          "eventCount": 3,
+          "lastObserved": "2026-11-09T08:06:37.933860802Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "f571153f42ea5269cd08dd0e",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.531938468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "949d9f23f9887679c6ce068d",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.531904718Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "0cffb491410913d6f92c523f",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.531902218Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "091d80596dd3e9b11727ebb4",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.529556968Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "aecb8f52ec92d9a2661fbf0e",
+          "protocol": "TCP",
+          "eventCount": 3,
+          "lastObserved": "2026-11-09T08:06:37.52954651Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "85b86ae8d82cb1970cda4f10",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.124546677Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "2733fe134fdc48ff4dcb4968",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.124529468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "769c0a1fcae49f915c8d3a07",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.124437885Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "e972fb89257a133884984290",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.12223276Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "1dff9c414b8fad780a1cd392",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.122219927Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "01a1d642857b7dc4b1ffba0b",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:36.716984468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "0154b64d2bdaf9031cb709ff",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716958468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "eaf78cec238f1339f58ec3ee",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716864301Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "51e62e4bf1e9ff7f227e9575",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:36.716095135Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "b407f89990ba7bd405422f1c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716093676Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        }
+      ]
+    },
+    {
+      "at": "2026-11-09T08:06:42.555Z",
+      "status": "live",
+      "source": "hubble",
+      "observedAt": "2026-11-09T08:06:42.553088Z",
+      "windowSeconds": 10,
+      "rows": [
+        {
+          "id": "80915fc5aa0ea8d83d046499",
+          "protocol": "TCP",
+          "eventCount": 1,
+          "lastObserved": "2026-11-09T08:06:41.16743597Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "ad712037610774a1d7002a0d",
+          "protocol": "TCP",
+          "eventCount": 1,
+          "lastObserved": "2026-11-09T08:06:41.16739822Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "718d7126604080230e003a22",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:40.764777095Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "f0930e45ab48f0ae4a42c702",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:40.764399053Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "c95dd21030ed40104a445b71",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:40.764277012Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "5a1b7e46af52d9532d109753",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:40.763176053Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "e43470d1c189f292be3f85bb",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:40.763174762Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "0a4c1ccac8b34ec96dad9b32",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:40.361938761Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "0f0b2ef5e9f50e5192714c3a",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:40.361938345Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "cb8b7f04d356033ec4428c45",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:40.36190322Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "d1c8fb1a367bb8f9c6f9071f",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:40.360884845Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "84f0024c6437425ff352e69c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:40.360863803Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "017ad477cc40253ce5b94950",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.958583595Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "a076c27d250438a2491691e3",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:39.958572053Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "c3940fdc12bdf5c5330278e5",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.958571386Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "6a24283dac75f458dd69980a",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.957487928Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "f2aa34d076136ad453226b17",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:39.957486761Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "a5ae5c93dc52a9457e417e1a",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:39.555770428Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "c8490301165530623d2db60d",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.555742928Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "ff9dd1d79571b12afe029c28",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.555567928Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "40b82adfc6d542d57631cc98",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.554587719Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "62a5e687615ba4145a66fa43",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:39.554586303Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "2a817703318910b4c14f8b98",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.152521344Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "816fa52e2030e71dd833874d",
+          "protocol": "TCP",
+          "eventCount": 8,
+          "lastObserved": "2026-11-09T08:06:39.152519761Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "5290eeffc5bcaf8e86e8cad2",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.152454344Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "5a483b63a5021ae7a36cd4bb",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:39.150686636Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "4d19fd4d103ed83257d461a7",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:39.150683052Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "f25496bef132e5a3f077a0b1",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.746754386Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "3f1654a7c5ccbe67ad18a991",
+          "protocol": "TCP",
+          "eventCount": 8,
+          "lastObserved": "2026-11-09T08:06:38.746736094Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "3c08393c5baca302bfff8b7e",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.746708386Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "10d3c5ed3d5d3e1810ded83b",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.744803927Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "17b0c74f89e2b07c054c40f6",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:38.744798552Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "cbbc0adb5a6992ee5b831218",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.341012177Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "e0c045651b076d6b52e988cc",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.34101201Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "6cb71ae023e74b0b3c95886e",
+          "protocol": "TCP",
+          "eventCount": 8,
+          "lastObserved": "2026-11-09T08:06:38.341006635Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "18aa9d588bbe7e6949758863",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:38.338198094Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "50b3073bf27e4b16d8a80b9c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:38.33819226Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "c71c70b5bdb2b459633c0651",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.93508826Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "17477b9cf384a66129d52f4e",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.935086719Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "a550fe2bcd3be7cc816e2dcd",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.935015677Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "aead672618378131ec96198c",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.933864427Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "257ea9747bdf33c0f2375d97",
+          "protocol": "TCP",
+          "eventCount": 3,
+          "lastObserved": "2026-11-09T08:06:37.933860802Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "f571153f42ea5269cd08dd0e",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.531938468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "949d9f23f9887679c6ce068d",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.531904718Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "0cffb491410913d6f92c523f",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.531902218Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "091d80596dd3e9b11727ebb4",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.529556968Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "aecb8f52ec92d9a2661fbf0e",
+          "protocol": "TCP",
+          "eventCount": 3,
+          "lastObserved": "2026-11-09T08:06:37.52954651Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "85b86ae8d82cb1970cda4f10",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.124546677Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "2733fe134fdc48ff4dcb4968",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:37.124529468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "769c0a1fcae49f915c8d3a07",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.124437885Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "e972fb89257a133884984290",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:37.12223276Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "1dff9c414b8fad780a1cd392",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:37.122219927Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "01a1d642857b7dc4b1ffba0b",
+          "protocol": "TCP",
+          "eventCount": 10,
+          "lastObserved": "2026-11-09T08:06:36.716984468Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          }
+        },
+        {
+          "id": "0154b64d2bdaf9031cb709ff",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716958468Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "eaf78cec238f1339f58ec3ee",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716864301Z",
+          "source": {
+            "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+            "name": "flow-cross",
+            "nodeName": "kv-repair-1101-m03"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "51e62e4bf1e9ff7f227e9575",
+          "protocol": "TCP",
+          "eventCount": 5,
+          "lastObserved": "2026-11-09T08:06:36.716095135Z",
+          "source": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          }
+        },
+        {
+          "id": "b407f89990ba7bd405422f1c",
+          "protocol": "TCP",
+          "eventCount": 4,
+          "lastObserved": "2026-11-09T08:06:36.716093676Z",
+          "source": {
+            "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+            "name": "flow-same",
+            "nodeName": "kv-repair-1101"
+          },
+          "destination": {
+            "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+            "name": "flow-client",
+            "nodeName": "kv-repair-1101"
+          }
+        }
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "label": "before-actual-fault",
+      "at": "2026-11-09T08:06:40.356Z",
+      "source": "live:kv-repair-1101:1",
+      "clock": 6.8767000000001755,
+      "sourceWallStart": 1794211593480,
+      "nodes": [
+        {
+          "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 916.9213694115335,
+            "position": [
+              -92.54969999999287,
+              -0.07139718003173956,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0.0021446408096600263,
+            "roll": -0.001983350518732026,
+            "state": "patrolling",
+            "speed": 8.999999999994671,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1090.5142867644201,
+            "position": [
+              -175,
+              0.04310635746756555,
+              127.5432173528909
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0006421236607408158,
+            "roll": 0.0034599186452966705,
+            "state": "patrolling",
+            "speed": 8.999999999994671,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1264.1072041173059,
+            "position": [
+              -175,
+              0.0004882967613943575,
+              -46.04969999999477
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0036674662392353727,
+            "roll": 0.0019283289600484053,
+            "state": "patrolling",
+            "speed": 8.99999999999286,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        }
+      ],
+      "containers": [],
+      "signals": [],
+      "summary": {
+        "nodeFaults": 0,
+        "containerFaults": 0,
+        "containerTransitions": 0,
+        "processSignals": 0,
+        "summarized": 0
+      }
+    },
+    {
+      "label": "await-failure",
+      "at": "2026-11-09T08:06:40.681Z",
+      "source": "live:kv-repair-1101:1",
+      "clock": 7.193900000000129,
+      "sourceWallStart": 1794211593480,
+      "nodes": [
+        {
+          "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 919.7761694115313,
+            "position": [
+              -95.40449999999066,
+              -0.07533177149508112,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0.0010144871643353141,
+            "roll": -0.002526483217539919,
+            "state": "patrolling",
+            "speed": 8.999999999983315,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1093.3690867644198,
+            "position": [
+              -175,
+              0.04212267933894586,
+              124.68841735289129
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0010896662547843529,
+            "roll": 0.002883126909443465,
+            "state": "patrolling",
+            "speed": 8.999999999983315,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1266.9620041173055,
+            "position": [
+              -175,
+              0.019071285850932783,
+              -48.904499999994414
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.003614783430197198,
+            "roll": 0.002160209002546321,
+            "state": "patrolling",
+            "speed": 8.999999999983315,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        }
+      ],
+      "containers": [],
+      "signals": [],
+      "summary": {
+        "nodeFaults": 0,
+        "containerFaults": 0,
+        "containerTransitions": 0,
+        "processSignals": 0,
+        "summarized": 0
+      }
+    },
+    {
+      "label": "await-failure",
+      "at": "2026-11-09T08:06:40.864Z",
+      "source": "live:kv-repair-1101:1",
+      "clock": 7.378400000000127,
+      "sourceWallStart": 1794211593480,
+      "nodes": [
+        {
+          "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 921.4366694115317,
+            "position": [
+              -97.06499999999107,
+              -0.07504007114266793,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0.0002860970623668772,
+            "roll": -0.002759593080846164,
+            "state": "patrolling",
+            "speed": 8.999999999991454,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1095.0295867644206,
+            "position": [
+              -175,
+              0.04034346394823642,
+              123.02791735289043
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0013129304458871355,
+            "roll": 0.0024832392093355974,
+            "state": "patrolling",
+            "speed": 9.000000000018849,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1268.6225041173063,
+            "position": [
+              -175,
+              0.02966466029692262,
+              -50.56499999999528
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.003503270084612111,
+            "roll": 0.00224862962876395,
+            "state": "patrolling",
+            "speed": 9.000000000018849,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        }
+      ],
+      "containers": [],
+      "signals": [],
+      "summary": {
+        "nodeFaults": 0,
+        "containerFaults": 0,
+        "containerTransitions": 0,
+        "processSignals": 0,
+        "summarized": 0
+      }
+    },
+    {
+      "label": "await-failure",
+      "at": "2026-11-09T08:06:41.048Z",
+      "source": "live:kv-repair-1101:1",
+      "clock": 7.561900000000126,
+      "sourceWallStart": 1794211593480,
+      "nodes": [
+        {
+          "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 923.0881694115321,
+            "position": [
+              -98.71649999999147,
+              -0.07273960363242435,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0004581182082391649,
+            "roll": -0.0029223292106005734,
+            "state": "patrolling",
+            "speed": 8.99999999999165,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1096.6810867644197,
+            "position": [
+              -175,
+              0.03777150839658672,
+              121.3764173528914
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0015036718415160945,
+            "roll": 0.002045571328739396,
+            "state": "patrolling",
+            "speed": 8.99999999999165,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1270.2740041173054,
+            "position": [
+              -175,
+              0.03980958356441467,
+              -52.21649999999431
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0033366856796631823,
+            "roll": 0.002299950042472513,
+            "state": "patrolling",
+            "speed": 8.99999999999165,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        }
+      ],
+      "containers": [
+        {
+          "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+          "name": "controlled-crash",
+          "role": "app",
+          "phase": "warning",
+          "reason": "Error",
+          "count": 0,
+          "started": 7476.60000000008,
+          "recoverAt": null,
+          "position": [
+            -92.3663677190999,
+            5.363620931782971,
+            241.66591108602523
+          ],
+          "origin": [
+            -91.51069498154604,
+            5.364776029972822,
+            241.66554752763196
+          ],
+          "destination": [
+            -91.51069498154604,
+            0.45,
+            254.66554752763196
+          ]
+        }
+      ],
+      "signals": [],
+      "summary": {
+        "nodeFaults": 0,
+        "containerFaults": 1,
+        "containerTransitions": 1,
+        "processSignals": 0,
+        "summarized": 0
+      }
+    },
+    {
+      "label": "early",
+      "at": "2026-11-09T08:06:41.053Z",
+      "source": "live:kv-repair-1101:1",
+      "clock": 7.577900000000126,
+      "sourceWallStart": 1794211593480,
+      "nodes": [
+        {
+          "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 923.2321694115324,
+            "position": [
+              -98.8604999999917,
+              -0.07244374143418204,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0005229039501570983,
+            "roll": -0.002933130614070066,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1096.82508676442,
+            "position": [
+              -175,
+              0.03751229923834535,
+              121.23241735289116
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0015187193555254073,
+            "roll": 0.002005796767631878,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1270.4180041173056,
+            "position": [
+              -175,
+              0.04066860349598319,
+              -52.360499999994545
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0033196864898713883,
+            "roll": 0.002302636080376657,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        }
+      ],
+      "containers": [
+        {
+          "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+          "name": "controlled-crash",
+          "role": "app",
+          "phase": "warning",
+          "reason": "Error",
+          "count": 0,
+          "started": 7476.60000000008,
+          "recoverAt": null,
+          "position": [
+            -92.55850220575174,
+            5.36345996567018,
+            241.6659698379959
+          ],
+          "origin": [
+            -91.51069498154604,
+            5.364776029972822,
+            241.66554752763196
+          ],
+          "destination": [
+            -91.51069498154604,
+            0.45,
+            254.66554752763196
+          ]
+        }
+      ],
+      "signals": [],
+      "summary": {
+        "nodeFaults": 0,
+        "containerFaults": 1,
+        "containerTransitions": 1,
+        "processSignals": 0,
+        "summarized": 0
+      }
+    },
+    {
+      "label": "middle",
+      "at": "2026-11-09T08:06:41.866Z",
+      "source": "live:kv-repair-1101:1",
+      "clock": 8.378400000000125,
+      "sourceWallStart": 1794211593480,
+      "nodes": [
+        {
+          "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 930.4366694115313,
+            "position": [
+              -106.06499999999062,
+              -0.03966881787508846,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.003230390426898805,
+            "roll": -0.00281197838979343,
+            "state": "patrolling",
+            "speed": 8.999999999995122,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1104.029586764418,
+            "position": [
+              -175,
+              0.018815091483586257,
+              114.02791735289316
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0019278323293574918,
+            "roll": -0.00020084009780263598,
+            "state": "patrolling",
+            "speed": 8.999999999995122,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1277.6225041173036,
+            "position": [
+              -175,
+              0.07593381783997798,
+              -59.56499999999255
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0020458577032078187,
+            "roll": 0.002048941472957571,
+            "state": "patrolling",
+            "speed": 8.999999999995122,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        }
+      ],
+      "containers": [
+        {
+          "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+          "name": "controlled-crash",
+          "role": "app",
+          "phase": "falling",
+          "reason": "Error",
+          "count": 0,
+          "started": 7476.60000000008,
+          "recoverAt": null,
+          "position": [
+            -91.51069498154604,
+            10.204241552993132,
+            247.11235901058458
+          ],
+          "origin": [
+            -91.51069498154604,
+            5.364776029972822,
+            241.66554752763196
+          ],
+          "destination": [
+            -91.51069498154604,
+            0.45,
+            254.66554752763196
+          ]
+        }
+      ],
+      "signals": [],
+      "summary": {
+        "nodeFaults": 0,
+        "containerFaults": 1,
+        "containerTransitions": 1,
+        "processSignals": 0,
+        "summarized": 0
+      }
+    },
+    {
+      "label": "late",
+      "at": "2026-11-09T08:06:42.884Z",
+      "source": "live:kv-repair-1101:1",
+      "clock": 9.395200000000175,
+      "sourceWallStart": 1794211593480,
+      "nodes": [
+        {
+          "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 939.5878694115297,
+            "position": [
+              -115.21619999998904,
+              0.025067122655179727,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0029458903871233105,
+            "roll": -0.0015369504078752336,
+            "state": "patrolling",
+            "speed": 8.999999999989607,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1113.180786764419,
+            "position": [
+              -175,
+              -0.012031488485923975,
+              104.876717352892
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0015501229180606424,
+            "roll": -0.0028459105887169277,
+            "state": "patrolling",
+            "speed": 8.999999999989607,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1286.7737041173048,
+            "position": [
+              -175,
+              0.0890762592718121,
+              -68.7161999999937
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.00012745651627107062,
+            "roll": 0.0006457151770817821,
+            "state": "patrolling",
+            "speed": 8.999999999989607,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        }
+      ],
+      "containers": [
+        {
+          "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+          "name": "controlled-crash",
+          "role": "app",
+          "phase": "faulted",
+          "reason": "Error",
+          "count": 1,
+          "started": 7476.60000000008,
+          "recoverAt": null,
+          "position": [
+            -91.51069498154604,
+            0.45,
+            254.66554752763196
+          ],
+          "origin": [
+            -91.51069498154604,
+            5.364776029972822,
+            241.66554752763196
+          ],
+          "destination": [
+            -91.51069498154604,
+            0.45,
+            254.66554752763196
+          ]
+        }
+      ],
+      "signals": [],
+      "summary": {
+        "nodeFaults": 0,
+        "containerFaults": 1,
+        "containerTransitions": 1,
+        "processSignals": 0,
+        "summarized": 0
+      }
+    }
+  ],
+  "cases": [
+    {
+      "name": "actual distinct same/cross-node TCP Hubble flows",
+      "status": "PASS"
+    },
+    {
+      "name": "actual one-container exit42, sibling healthy, UID retained; falling label evidence",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "flow-client",
+      "uid": "5fdce837-ab9d-4c39-8065-5bc7967a4a53",
+      "status": "exact UID/RV delete and404"
+    },
+    {
+      "name": "flow-same",
+      "uid": "8b4238ca-590b-4d24-939f-b076270895b2",
+      "status": "exact UID/RV delete and404"
+    },
+    {
+      "name": "flow-cross",
+      "uid": "193bcfad-76de-4f60-910a-cd809d41c8b4",
+      "status": "exact UID/RV delete and404"
+    },
+    {
+      "name": "controlled-pair",
+      "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+      "status": "exact UID/RV delete and404"
+    },
+    {
+      "namespace": "kv-repair-v11-visual",
+      "uid": "d7caf112-1bcd-4405-a85b-2d850d8a5482",
+      "status": 200
+    }
+  ],
+  "limits": [
+    "Controlled container exit42 is deliberate fault injection, not spontaneous infrastructure failure.",
+    "No source state, camera, quality or DPR injection. No physical FPS/latency claim.",
+    "HTTP payloads, URLs, headers, credentials and nonces are not recorded."
+  ],
+  "namespaceUID": "d7caf112-1bcd-4405-a85b-2d850d8a5482",
+  "titleChecks": [
+    {
+      "text": "Hubble · ölçülmüş akış olayları · 10sn · 7/7 akış · flow olayı ≠ paket",
+      "viewport": 768,
+      "rect": {
+        "left": 432,
+        "right": 752,
+        "top": 294.2116394042969,
+        "bottom": 339.8053894042969,
+        "width": 320,
+        "height": 45.59375
+      },
+      "scrollWidth": 318,
+      "clientWidth": 318,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "clipped": false
+    },
+    {
+      "text": "Hubble · ölçülmüş akış olayları · 10sn · 7/7 akış · flow olayı ≠ paket",
+      "viewport": 1280,
+      "rect": {
+        "left": 859.44189453125,
+        "right": 1179.44189453125,
+        "top": 212.01528930664062,
+        "bottom": 257.6090393066406,
+        "width": 320,
+        "height": 45.59375
+      },
+      "scrollWidth": 318,
+      "clientWidth": 318,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "clipped": false
+    },
+    {
+      "text": "Hubble · ölçülmüş akış olayları · 10sn · 16/16 akış · flow olayı ≠ paket",
+      "viewport": 1440,
+      "rect": {
+        "left": 951.5865478515625,
+        "right": 1271.5865478515625,
+        "top": 203.91363525390625,
+        "bottom": 249.50738525390625,
+        "width": 320,
+        "height": 45.59375
+      },
+      "scrollWidth": 318,
+      "clientWidth": 318,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "clipped": false
+    }
+  ],
+  "captures": [
+    {
+      "label": "traffic-title-768",
+      "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/frontend/visual-resume/traffic-title-768.png",
+      "at": "2026-11-09T08:06:39.074Z"
+    },
+    {
+      "label": "traffic-title-1280",
+      "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/frontend/visual-resume/traffic-title-1280.png",
+      "at": "2026-11-09T08:06:39.519Z"
+    },
+    {
+      "label": "traffic-title-1440",
+      "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/frontend/visual-resume/traffic-title-1440.png",
+      "at": "2026-11-09T08:06:39.981Z"
+    },
+    {
+      "label": "flow-normal-mouse-selection",
+      "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/frontend/visual-resume/flow-normal-mouse-selection.png",
+      "at": "2026-11-09T08:06:40.098Z"
+    },
+    {
+      "label": "container-ready-baseline",
+      "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/frontend/visual-resume/container-ready-baseline.png",
+      "at": "2026-11-09T08:06:40.513Z"
+    },
+    {
+      "label": "container-fall-early",
+      "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/frontend/visual-resume/container-fall-early.png",
+      "at": "2026-11-09T08:06:41.212Z"
+    },
+    {
+      "label": "container-fall-middle",
+      "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/frontend/visual-resume/container-fall-middle.png",
+      "at": "2026-11-09T08:06:42.030Z"
+    },
+    {
+      "label": "container-fall-late",
+      "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/frontend/visual-resume/container-fall-late.png",
+      "at": "2026-11-09T08:06:43.067Z"
+    }
+  ],
+  "flowTargets": [
+    {
+      "type": "measured-flow",
+      "uid": "01a1d642857b7dc4b1ffba0b",
+      "name": "flow-client → flow-cross",
+      "x": 419.4888003358059,
+      "y": 335.27778740472064,
+      "visible": true
+    }
+  ],
+  "selectedFlowText": "Ölçülmüş ağ akışı\n\nkv-repair-1101 · Hubble gözlemi\n\nTCP · FORWARDED\nYön\nEGRESS\nTaşıma protokolü\nTCP\nİlk / son gözlem\n09.11.2026 11:06:36 / 09.11.2026 11:06:36\nToplama penceresi\n10 saniye\nGözlenen flow olayı\n10\nL7 olay/yanıt gecikmesi\nÖlçüm yok\nSağlayıcı durumu\nHubble / live\nSeçili akışın gözlemi\nGüncel 10 saniyelik ölçüm penceresinde\nSon sağlayıcı verisi\n09.11.2026 11:06:37\nDüşürülen / özetlenen kayıt\n0 / 65\nToplam / gösterilmeyen akış grubu\n16 / 0\nFiltrelenen / yinelenen olay\n0 / 0\nSağlayıcı kaybı / kimlik eşlenemeyen\n0 / 0\nÖlçüm birimi\nflow observations / 10 seconds; not packets, bytes or bandwidth; provider loss may have wider scope\n\nOlay sayısı paket, byte veya bant genişliği değildir. L7 gecikmesi bütün TCP bağlantısının RTT’si değildir. Porttan protokol veya şifreli mesaj içeriği çıkarılmaz; sağlayıcının vermediği alanlar bilinmiyor kalır.\n\nKaynak: flow-client\nNamespace\nkv-repair-v11-visual\nPod UID\n5fdce837-ab9d-4c39-8065-5bc7967a4a53\nNode\nkv-repair-1101\nNode UID\nBilinmiyor\nIP / port\n10.244.0.69 / 40056\nContainer\nBilinmiyor\nKimlik eşlemesi\nconfirmed-observation-interval\nKaynağı incele\nHedef: flow-cross\nNamespace\nkv-repair-v11-visual\nPod UID\n193bcfad-76de-4f60-910a-cd809d41c8b4\nNode\nkv-repair-1101-m03\nNode UID\nBilinmiyor\nIP / port\n10.244.6.249 / 80\nContainer\nBilinmiyor\nKimlik eşlemesi\nconfirmed-observation-interval\nKaynağı incele",
+  "beforeFailure": {
+    "name": "controlled-pair",
+    "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+    "rv": "28449",
+    "node": "kv-repair-1101",
+    "ip": "10.244.0.58",
+    "phase": "Running",
+    "statuses": [
+      {
+        "name": "controlled-crash",
+        "ready": true,
+        "restartCount": 0,
+        "state": {
+          "running": {
+            "startedAt": "2026-11-09T08:06:32Z"
+          }
+        },
+        "lastState": {}
+      },
+      {
+        "name": "healthy",
+        "ready": true,
+        "restartCount": 0,
+        "state": {
+          "running": {
+            "startedAt": "2026-11-09T08:06:32Z"
+          }
+        },
+        "lastState": {}
+      }
+    ]
+  },
+  "faultRequest": {
+    "at": "2026-11-09T08:06:40.607Z",
+    "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+    "rv": "28449",
+    "container": "controlled-crash",
+    "method": "actual kubectl exec creates owned emptyDir test flag; process exits42"
+  },
+  "afterFailure": {
+    "name": "controlled-pair",
+    "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+    "rv": "28471",
+    "node": "kv-repair-1101",
+    "ip": "10.244.0.58",
+    "phase": "Running",
+    "statuses": [
+      {
+        "name": "controlled-crash",
+        "ready": false,
+        "restartCount": 1,
+        "state": {
+          "running": {
+            "startedAt": "2026-11-09T08:06:41Z"
+          }
+        },
+        "lastState": {
+          "terminated": {
+            "containerID": "containerd://019ec6c984536ab28309011e6c23f92cb1984a25aa4218930bf131e129681fe2",
+            "exitCode": 42,
+            "finishedAt": "2026-11-09T08:06:40Z",
+            "reason": "Error",
+            "startedAt": "2026-11-09T08:06:32Z"
+          }
+        }
+      },
+      {
+        "name": "healthy",
+        "ready": true,
+        "restartCount": 0,
+        "state": {
+          "running": {
+            "startedAt": "2026-11-09T08:06:32Z"
+          }
+        },
+        "lastState": {}
+      }
+    ]
+  },
+  "status": "PASS",
+  "finalPresentation": {
+    "camera": [
+      155.32070332934845,
+      297.3149971650057,
+      468.72488860383254
+    ],
+    "dpr": 1,
+    "lifecycle": {
+      "source": "live:kv-repair-1101:1",
+      "clock": 9.693600000000082,
+      "sourceWallStart": 1794211593480,
+      "nodes": [
+        {
+          "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 0,
+            "progress": 942.2734694115286,
+            "position": [
+              -117.90179999998793,
+              0.039268734678812624,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0018875331245889555,
+            "roll": -0.00116359011820019,
+            "state": "patrolling",
+            "speed": 8.999999999983425,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 1,
+            "progress": 1115.8663867644198,
+            "position": [
+              -175,
+              -0.02045129942995509,
+              102.1911173528913
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0013108537066173886,
+            "roll": -0.0034013506612011473,
+            "state": "patrolling",
+            "speed": 9.000000000010333,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        },
+        {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "fault": 0,
+          "communication": false,
+          "phase": "ready",
+          "pose": {
+            "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+            "name": "kv-repair-1101-m03",
+            "slot": 2,
+            "progress": 1289.4593041173055,
+            "position": [
+              -175,
+              0.08531427516768873,
+              -71.40179999999441
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0007095458528207722,
+            "roll": 0.00004572385589182877,
+            "state": "patrolling",
+            "speed": 9.000000000010333,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        }
+      ],
+      "containers": [
+        {
+          "uid": "56ff1fc5-f1e1-4cd0-b9e2-3f66990ca16d",
+          "name": "controlled-crash",
+          "role": "app",
+          "phase": "faulted",
+          "reason": "Error",
+          "count": 1,
+          "started": 7476.60000000008,
+          "recoverAt": null,
+          "position": [
+            -91.51069498154604,
+            0.45,
+            254.66554752763196
+          ],
+          "origin": [
+            -91.51069498154604,
+            5.364776029972822,
+            241.66554752763196
+          ],
+          "destination": [
+            -91.51069498154604,
+            0.45,
+            254.66554752763196
+          ]
+        }
+      ],
+      "signals": [],
+      "summary": {
+        "nodeFaults": 0,
+        "containerFaults": 1,
+        "containerTransitions": 1,
+        "processSignals": 0,
+        "summarized": 0
+      }
+    },
+    "traffic": {
+      "provider": "hubble",
+      "status": "live",
+      "windowSeconds": 10,
+      "inputFlows": 57,
+      "renderedFlows": 57,
+      "unresolved": 0,
+      "otherRegion": 0,
+      "outsideNamespace": 0,
+      "expired": 0,
+      "aggregatedOutOfView": 0,
+      "providerDropped": 0,
+      "providerSummarized": 234
+    }
+  },
+  "finishedAt": "2026-11-09T08:06:44.236Z",
+  "remaining": [],
+  "ownedProcessPIDs": {
+    "producer": 10333,
+    "proxy": 10484,
+    "browserClosed": true
+  },
+  "sourceFiles": {
+    "frontend/src/workbench/ResourceForms.jsx": "634cb66753b31899b8e3acd41972f46950bde37d5dd1aac47f9f06da46702398",
+    "frontend/src/context/ShipyardClusterContext.jsx": "4373befda5ef637f99fa632a55a9d06e05e202b4b003e37d7e1337283f3fab6e",
+    "frontend/src/harbor/LifecycleEffects.jsx": "e68fd8a180a44ae7ea0974a8572c099cf16e6be6642f71dde7831a2e32eb607c",
+    "frontend/src/harbor/MeasuredTraffic.jsx": "2379cfe1f870ff366a336295641592f4958f230dbf03230889662cef333d539d"
+  }
+}

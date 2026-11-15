@@ -1,0 +1,115 @@
+{
+  "id": "ws-20261110-manual07-eight-variants-webkit",
+  "startedAt": "2026-11-10T08:59:16.798Z",
+  "status": "failed",
+  "binarySHA256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "cases": [
+    {
+      "load": "M",
+      "harbors": 1,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-M-h1",
+      "startedAt": "2026-11-10T08:59:16.878Z",
+      "status": "failed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "c8d33bfd-1311-4e8a-8c3e-7c038be6d43f",
+            "harborCount": 1,
+            "context": "test-replay-M",
+            "canonicalNodes": 20,
+            "canonicalPods": 300,
+            "visibleNodes": 8,
+            "visiblePods": 120,
+            "canvasCount": 1
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "M-h01",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-M-h1-final-world.png",
+        "chromium-M-h1-failure.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 20,
+          "pods": 300,
+          "harborId": "28066124-ee4c-40c8-83d8-dff7a3d99714"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "failure": "Expected values to be strictly equal:\n\n1 !== 0\n",
+      "finishedAt": "2026-11-10T08:59:19.942Z"
+    }
+  ],
+  "runnerCommands": [
+    {
+      "name": "up",
+      "profile": "07-yuk-ve-gecis",
+      "exitCode": 0,
+      "durationMs": 74
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h01",
+      "exitCode": 0,
+      "durationMs": 58
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h01",
+      "exitCode": 0,
+      "durationMs": 1066
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "exitCode": 2,
+      "signal": null,
+      "stderrSHA256": "5c849e6ccb553a12a50193d5a73688f9e365388a1dfcc35ced181092c80cf896",
+      "durationMs": 15274
+    }
+  ],
+  "limits": [
+    "TEST/REPLAY is synthetic; no real Kubernetes, Hubble or fault proof.",
+    "No CPU, FPS, physical latency, native Safari or old acceptance-gate claim.",
+    "Only official manual07 up/app/down; normal-user variant files remain preserved.",
+    "WebKit cases are functional compatibility checks, not native Safari or performance.",
+    "No credential, raw log, nonce, HTTP headers or full workspace document is recorded."
+  ],
+  "runnerSHA256Before": "87e59639ad8a14684c50048f4c49a00e66df91433c36aeed642936317b354ed4",
+  "failure": "Expected values to be strictly equal:\n\n1 !== 0\n",
+  "manual07AppStopped": false,
+  "clusterRecordsUnchanged": true,
+  "manual07AppRecordPresent": true,
+  "preservedVariants": [
+    "M-h01"
+  ],
+  "cleanupError": "Final manual07 stop/preservation/cluster-record guard failed",
+  "sourceAfter": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "runnerSHA256After": "87e59639ad8a14684c50048f4c49a00e66df91433c36aeed642936317b354ed4",
+  "binarySHA256After": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "finishedAt": "2026-11-10T08:59:35.515Z"
+}

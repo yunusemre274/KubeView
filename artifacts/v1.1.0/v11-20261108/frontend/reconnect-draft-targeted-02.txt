@@ -1,0 +1,26 @@
+✔ same-UID stale/live GET keeps all dirty values and invalidates the previous dry-run (8.2255ms)
+✔ revalidation keeps invalid YAML and the reviewed RV until explicit user review (6.209541ms)
+✔ different UID or source never adopts the old target's dirty draft (1.083292ms)
+✔ dirty Secret reveal revalidates before reuse, fails closed on error, and clears on close (0.950958ms)
+✔ edit, template resources and Pod resize lock the first render before the fresh GET (0.280708ms)
+✔ readonly, absent API/resource and unsupported Secret paths never wait for a GET that will not run (0.057583ms)
+✔ purposeful Secret edit waits for reveal and does not require a generic resource path (0.048125ms)
+✔ first mount can observe namespace before contexts arrive without opening streams or claiming authority (1.289042ms)
+✔ management revoke is awaitable and fails closed before configuration and in demo (0.092833ms)
+✔ connection labels distinguish browser, API, first synchronization and demo (0.07475ms)
+✔ copy diagnostics excludes raw errors, Secret metadata, endpoint and session credentials (0.124125ms)
+✔ context cleanup aborts pending HTTP and rejects a late accepted mutation (6.942917ms)
+✔ namespace switch cancels metrics and never appends an alpha response into beta (1.18625ms)
+✔ late management enable cannot restore writes after alpha to beta to alpha (0.2915ms)
+✔ diagnostics never reenable management without an explicit current-view intent (0.221167ms)
+✔ each current socket open refreshes authority once and a revoked grant stays readonly after snapshot (1.275459ms)
+✔ a superseded socket's diagnostic success or failure cannot replace current authority (0.267625ms)
+✔ late management enable from an earlier socket cannot restore a same-scope grant (0.152167ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 190.1555

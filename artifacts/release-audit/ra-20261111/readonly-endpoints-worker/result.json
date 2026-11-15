@@ -1,0 +1,34 @@
+{
+  "startedAt": "2026-11-11T17:08:05.794317+00:00",
+  "sourceHEAD": "de0b41ebe0ed386e671d5ba983ec8554aaa03721",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "./pkg/server",
+    "-run",
+    "Test(ReleaseReadOnlyEndpointsRetainedGrant|ReleaseReadOnlySecretReadAndUnsupportedPatch|ManagementStartsReadOnlyAndCannotBypassSession|ReadOnlyAndNamespaceEnforced|ReadOnlyDrainRejectedBeforeEviction|TemplateCapabilityPreservesControllerStrategyAndReadOnly|ReleaseOriginPreviewCreationReadOnlyAndGrant)$",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "30s",
+    "-count",
+    "1",
+    "-v"
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local"
+  },
+  "testSHA256": "13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e",
+  "scope": "UNIT synthetic HTTP via production Register + fake clients; no network or actual Kubernetes",
+  "finishedAt": "2026-11-11T17:08:12.024351+00:00",
+  "exitCode": 0,
+  "retryReason": "Trivial synthetic fixture address: provider localOperator requires loopback; httptest default remote is documentation range192.0.2.1.",
+  "topLevelPASS": 7,
+  "subcasePASS": 27,
+  "SKIP": 0
+}

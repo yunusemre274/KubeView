@@ -1,0 +1,43 @@
+{
+  "startedAt": "2026-11-11T18:02:56.905572+00:00",
+  "sourceHEAD": "42a5abde7d25a11a102e49dc9f3f5a7361f9deb5",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "./pkg/server",
+    "-run",
+    "^TestReleaseProviderCachedKeyRemainsBoundToLiveCluster$",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "30s",
+    "-count",
+    "1",
+    "-v"
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local"
+  },
+  "fileSHA256": {
+    "backend/pkg/server/release_provider_cache_scope_test.go": "1e6f3d029240f96dbff0327aece205c78b14eb510d50e0d2516a631d68aaeacf",
+    "backend/pkg/server/provider_handlers.go": "b1963e2803f06a7d21b1a465abde292c63710c7f0431303df1fd51e3a61a97b8",
+    "backend/pkg/provision/minikube.go": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+    "backend/pkg/provision/minikube_test.go": "36c803e6ab0766b968fd274043ed66f1090d16b29d5349837ad8affbe15c0287",
+    "backend/pkg/provision/lock_unix.go": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/connection_test.go": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+    "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8"
+  },
+  "scope": "UNIT production Register HTTP + fake client/runner + temporary terminal journal; no real CLI/cluster/network; no keys/nonce/journal values logged",
+  "finishedAt": "2026-11-11T18:03:09.047861+00:00",
+  "exitCode": 1,
+  "outcome": "RED confirmed: changed live cluster UID returned cached terminal operation",
+  "findingID": "PROV-CACHE-001",
+  "retryCount": 0
+}

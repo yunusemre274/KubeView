@@ -1,0 +1,6 @@
+{
+  "classification": "EXACT_SYNTHETIC_TEST_SOURCE_SHA_NOT_CREDENTIAL",
+  "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-authz-repro-worker/plan.json:generic-api-key:12",
+  "valueVerifiedBy": "SHA256 of staged test-source.go.txt equals exact new uncommittedGo testsource, independently byteequal; valueisnottoken",
+  "SHA256": "c8ac4401d14770547b66792264109e5821718f04b7b98d48ecd4b481f0cd506f"
+}

@@ -1,0 +1,219 @@
+{
+  "at": "2026-11-09T08:41:19.747063+00:00",
+  "target": {
+    "proof": "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+    "gitHead": "0f5a5ab6b8e52e645b9e2e71dd063112ca105e98",
+    "sourceSHA256": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+    "binarySHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+    "staticSHA256": "7cb5d75f94045dbe7ba549db66ab56175f0425a5683927680c2e0233565a8f49",
+    "version": "1.1.0"
+  },
+  "status": "QA_CURRENT_0F5_FUNCTIONAL_CHECKPOINT_WITH_EXPLICIT_APPLICABILITY",
+  "groups": [
+    {
+      "gate": "Native reconnect dirty-draft and real revoked-grant UI regression",
+      "proof": "runs/2026-11-09T08-03-50-519Z-chromium-f787d296/result.json",
+      "proofStatus": "PASS",
+      "proofSourceSHA256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "proofBinarySHA256": "60eb0ebd63c1fcd6c4ec072d229ab042c36efb6605865937dbab4ccfcd5fb74e",
+      "wholeSourceIdentical": false,
+      "changedSourcePaths": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx",
+        "frontend/src/world/focus.js"
+      ],
+      "requiredRuntimeFileEquality": {
+        "frontend/src/workbench/ResourceForms.jsx": true,
+        "frontend/src/workbench/formLoading.js": true,
+        "frontend/src/workbench/workbench.css": true,
+        "frontend/src/context/ShipyardClusterContext.jsx": true,
+        "backend/pkg/server/connection.go": true,
+        "backend/pkg/server/stream.go": true,
+        "frontend/src/workbench/resourceUtils.js": true
+      },
+      "requiredRuntimeFilesEqual": true,
+      "executedTestAndHelperEqualityAtCheckpoint": {
+        "frontend/e2e/v11-transport-draft.spec.js": true,
+        "frontend/e2e/v11-fixtures.js": true,
+        "frontend/e2e/v11-lab.mjs": true,
+        "frontend/e2e/v11-evidence.mjs": true,
+        "frontend/e2e/v11-ui.helpers.js": true
+      },
+      "testCodeEqual": true,
+      "applicability": "Reuse only the explicitly tested unchanged branch/module subchecks. Changed toolbar/dialog focus was separately revalidated on the target build. Changed connection-onopen code is separately covered by target A/B+G00 and native fixed-reconnect proof; no old whole-build PASS is claimed."
+    },
+    {
+      "gate": "Filled Chromium actual Node/Pod usage charts",
+      "proof": "runs/2026-11-09T07-49-44-587Z-chromium-f4224ad6/result.json",
+      "proofStatus": "PASS",
+      "proofSourceSHA256": "63cc05cb9f891856029adec959fea2d200a8f9ffdb6a951d678a72a8b9c9400d",
+      "proofBinarySHA256": "7211abc3e5baa28c88c8367cd53953b7ab1a2ff1eae97a6b3ce4c7271126caee",
+      "wholeSourceIdentical": false,
+      "changedSourcePaths": [
+        "frontend/src/App.jsx",
+        "frontend/src/context/ShipyardClusterContext.jsx",
+        "frontend/src/workbench/ResourceForms.jsx",
+        "frontend/src/workbench/ResourceForms.test.js",
+        "frontend/src/world/Window.jsx",
+        "frontend/src/world/focus.js"
+      ],
+      "requiredRuntimeFileEquality": {
+        "frontend/src/workbench/MetricsPanel.jsx": true,
+        "frontend/src/workbench/metricModel.js": true,
+        "frontend/src/data/resourceStore.js": true,
+        "backend/pkg/server/stream.go": true,
+        "frontend/src/workbench/resourceUtils.js": true
+      },
+      "requiredRuntimeFilesEqual": true,
+      "executedTestAndHelperEqualityAtCheckpoint": {
+        "frontend/e2e/v11-real-cluster.spec.js": true,
+        "frontend/e2e/v11-fixtures.js": true,
+        "frontend/e2e/v11-lab.mjs": true,
+        "frontend/e2e/v11-evidence.mjs": true,
+        "frontend/e2e/v11-ui.helpers.js": true
+      },
+      "testCodeEqual": true,
+      "applicability": "Reuse only the explicitly tested unchanged branch/module subchecks. Changed toolbar/dialog focus was separately revalidated on the target build. Changed connection-onopen code is separately covered by target A/B+G00 and native fixed-reconnect proof; no old whole-build PASS is claimed."
+    },
+    {
+      "gate": "Filled WebKit actual Node/Pod usage charts",
+      "proof": "runs/2026-11-09T08-10-37-722Z-webkit-d3caf439/result.json",
+      "proofStatus": "PASS",
+      "proofSourceSHA256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "proofBinarySHA256": "60eb0ebd63c1fcd6c4ec072d229ab042c36efb6605865937dbab4ccfcd5fb74e",
+      "wholeSourceIdentical": false,
+      "changedSourcePaths": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx",
+        "frontend/src/world/focus.js"
+      ],
+      "requiredRuntimeFileEquality": {
+        "frontend/src/workbench/MetricsPanel.jsx": true,
+        "frontend/src/workbench/metricModel.js": true,
+        "frontend/src/data/resourceStore.js": true,
+        "frontend/src/context/ShipyardClusterContext.jsx": true,
+        "backend/pkg/server/stream.go": true,
+        "frontend/src/workbench/resourceUtils.js": true
+      },
+      "requiredRuntimeFilesEqual": true,
+      "executedTestAndHelperEqualityAtCheckpoint": {
+        "frontend/e2e/v11-real-cluster.spec.js": true,
+        "frontend/e2e/v11-fixtures.js": true,
+        "frontend/e2e/v11-lab.mjs": true,
+        "frontend/e2e/v11-evidence.mjs": true,
+        "frontend/e2e/v11-ui.helpers.js": true
+      },
+      "testCodeEqual": true,
+      "applicability": "Reuse only the explicitly tested unchanged branch/module subchecks. Changed toolbar/dialog focus was separately revalidated on the target build. Changed connection-onopen code is separately covered by target A/B+G00 and native fixed-reconnect proof; no old whole-build PASS is claimed."
+    },
+    {
+      "gate": "Restricted actual Namespace/Node403 and empty metrics series",
+      "proof": "runs/2026-11-09T08-05-39-229Z-chromium-56ab4a46/result.json",
+      "proofStatus": "PASS",
+      "proofSourceSHA256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "proofBinarySHA256": "60eb0ebd63c1fcd6c4ec072d229ab042c36efb6605865937dbab4ccfcd5fb74e",
+      "wholeSourceIdentical": false,
+      "changedSourcePaths": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx",
+        "frontend/src/world/focus.js"
+      ],
+      "requiredRuntimeFileEquality": {
+        "frontend/src/workbench/MetricsPanel.jsx": true,
+        "frontend/src/workbench/metricModel.js": true,
+        "frontend/src/data/resourceStore.js": true,
+        "frontend/src/context/ShipyardClusterContext.jsx": true,
+        "backend/pkg/server/connection.go": true,
+        "backend/pkg/server/stream.go": true,
+        "frontend/src/workbench/resourceUtils.js": true
+      },
+      "requiredRuntimeFilesEqual": true,
+      "executedTestAndHelperEqualityAtCheckpoint": {
+        "frontend/e2e/v11-scope-security.spec.js": true,
+        "frontend/e2e/v11-fixtures.js": true,
+        "frontend/e2e/v11-lab.mjs": true,
+        "frontend/e2e/v11-evidence.mjs": true,
+        "frontend/e2e/v11-ui.helpers.js": true
+      },
+      "testCodeEqual": true,
+      "applicability": "Reuse only the explicitly tested unchanged branch/module subchecks. Changed toolbar/dialog focus was separately revalidated on the target build. Changed connection-onopen code is separately covered by target A/B+G00 and native fixed-reconnect proof; no old whole-build PASS is claimed."
+    },
+    {
+      "gate": "Exact old UID finalizer and same-name new UID explicit reselection",
+      "proof": "runs/2026-11-09T08-07-07-947Z-chromium-338db7dd/result.json",
+      "proofStatus": "PASS",
+      "proofSourceSHA256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "proofBinarySHA256": "60eb0ebd63c1fcd6c4ec072d229ab042c36efb6605865937dbab4ccfcd5fb74e",
+      "wholeSourceIdentical": false,
+      "changedSourcePaths": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx",
+        "frontend/src/world/focus.js"
+      ],
+      "requiredRuntimeFileEquality": {
+        "frontend/src/workbench/ResourceForms.jsx": true,
+        "frontend/src/workbench/ResourceDetails.jsx": true,
+        "frontend/src/data/resourceStore.js": true,
+        "frontend/src/data/resourceScopes.js": true,
+        "frontend/src/context/ShipyardClusterContext.jsx": true,
+        "backend/pkg/server/resources.go": true,
+        "backend/pkg/server/stream.go": true,
+        "backend/pkg/server/resource_scopes.go": true,
+        "frontend/src/workbench/resourceUtils.js": true
+      },
+      "requiredRuntimeFilesEqual": true,
+      "executedTestAndHelperEqualityAtCheckpoint": {
+        "frontend/e2e/v11-real-cluster.spec.js": true,
+        "frontend/e2e/v11-fixtures.js": true,
+        "frontend/e2e/v11-lab.mjs": true,
+        "frontend/e2e/v11-evidence.mjs": true,
+        "frontend/e2e/v11-ui.helpers.js": true
+      },
+      "testCodeEqual": true,
+      "applicability": "Reuse only the explicitly tested unchanged branch/module subchecks. Changed toolbar/dialog focus was separately revalidated on the target build. Changed connection-onopen code is separately covered by target A/B+G00 and native fixed-reconnect proof; no old whole-build PASS is claimed."
+    },
+    {
+      "gate": "Reachable B actual Metrics API absence Node/Pod panels",
+      "proof": "runs/2026-11-09T08-09-02-605Z-chromium-e0514610/result.json",
+      "proofStatus": "PASS",
+      "proofSourceSHA256": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "proofBinarySHA256": "60eb0ebd63c1fcd6c4ec072d229ab042c36efb6605865937dbab4ccfcd5fb74e",
+      "wholeSourceIdentical": false,
+      "changedSourcePaths": [
+        "frontend/src/App.jsx",
+        "frontend/src/world/Window.jsx",
+        "frontend/src/world/focus.js"
+      ],
+      "requiredRuntimeFileEquality": {
+        "frontend/src/workbench/MetricsPanel.jsx": true,
+        "frontend/src/workbench/metricModel.js": true,
+        "frontend/src/data/resourceStore.js": true,
+        "frontend/src/context/ShipyardClusterContext.jsx": true,
+        "backend/pkg/server/connection.go": true,
+        "backend/pkg/server/stream.go": true,
+        "frontend/src/workbench/resourceUtils.js": true
+      },
+      "requiredRuntimeFilesEqual": true,
+      "executedTestAndHelperEqualityAtCheckpoint": {
+        "frontend/e2e/v11-metrics-missing.spec.js": true,
+        "frontend/e2e/v11-fixtures.js": true,
+        "frontend/e2e/v11-lab.mjs": true,
+        "frontend/e2e/v11-evidence.mjs": true,
+        "frontend/e2e/v11-ui.helpers.js": true
+      },
+      "testCodeEqual": true,
+      "applicability": "Reuse only the explicitly tested unchanged branch/module subchecks. Changed toolbar/dialog focus was separately revalidated on the target build. Changed connection-onopen code is separately covered by target A/B+G00 and native fixed-reconnect proof; no old whole-build PASS is claimed."
+    }
+  ],
+  "historicalInitialGetGuard": {
+    "proof": "runs/2026-11-09T07-49-09-654Z-chromium-3e964047/result.json",
+    "status": "PASS_ON_FORM_FIX_BINARY",
+    "limit": "Actual held initial GET/header/ESC/ordinary Pod watch proof predates the reconnect dirty-state source change. Native fieldset predicate/CSS are preserved; current full positive resources chain and native reconnect regression cover changed behavior. Do not call that historical invocation a new target-binary run."
+  },
+  "futureChange": "Root/frontend status fix changes only resourceUtils.js and its unit tests: suspended Job terminal precedence/status and empty/partial/stale DaemonSet status guards. The new embedded build and narrow real UI status validation are a separate future delta. This record remains pinned to0f5/b741 and is not an automatic future-build signoff.",
+  "wholeReleasePASS": false,
+  "qualifiedHarborCore": {
+    "proof": "../harbor-source-applicability.json",
+    "scope": "13 of16 harbor runtime modules byte-identical; LifecycleEffects and MeasuredTraffic only caption layout plus new caption helper. Historical Node fault/worker/crane proof remains historical, with qualified module applicability. Changed captions have separate actual video/flow UI proof; no newly executed worker add or Node stop is claimed."
+  }
+}

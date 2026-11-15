@@ -1,0 +1,1278 @@
+{
+  "at": "2026-11-11T13:38:14.161132+00:00",
+  "scope": "Exact159 matches only. Each complete matched line is a public upstream commit/compare URL in advisory JSON, not a credential field. Private baseline applies only these staged-file fingerprints; no global scanner rule disabled.",
+  "decisions": [
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/trivy-sbom.stdout",
+      "line": 2208,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "d1f3d41640996589eb9fb95b1fe350d58f4efeb8c85f2ef8e51dcc1f83a27b6c",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/trivy-sbom.stdout",
+      "line": 2209,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "f4d53646ea5f985a3b3f05b51f8052c5b1bf71f7f7073df0cad0876bcaa548e1",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/trivy-sbom.stdout",
+      "line": 2398,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "0ed1ff775781d091fba3a94298f3960f47c7a4473eb76cc371b80c2030dc3da8",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 1480,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "c421e639e2f224dcf2c963131cdacedb3a5f48448bf4f30dcf267c69310be6c1",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 1558,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "27edfa0c9b615a066ae195d903f975aaf3f28a20ddd5442ec69fa193bb573308",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 1671,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "b19adf4d9cf78abdff8c97d4d644c6a5625cb07e9c8b02b881d73fd10284e8a3",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 1768,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "bf7f04e2b3ae4d27f68f9084f1dfaef8a9defa47be1a9de1a098761f88698485",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 1830,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "7f654c6edbb592d0735399409ee8109576e6e8de4c0e3ac8f253fedd86b2f772",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 1941,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "d1f3d41640996589eb9fb95b1fe350d58f4efeb8c85f2ef8e51dcc1f83a27b6c",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 1945,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "f4d53646ea5f985a3b3f05b51f8052c5b1bf71f7f7073df0cad0876bcaa548e1",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2023,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "12d93380bf9723e77ff83aa70c6c3092e00808448925db1abaae2be73d7e2889",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2027,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "0d59f27cb876f69b3e6a997a0f4232aac78ddaabd59ae0da100594efda239bbd",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2145,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "6f639b72e69d9fc0742fd8b8ad0b932c47dec9486f0f9f3ac088daf331ce1883",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2215,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "584bd30efbd3fc47df6f7260fd88a64dac37747e6c829752a3d7cd4933d6e25c",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2285,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "9bee6df7fc33b44ed9c0bda222e6c05d6b0a2d11cb5722ab06d1285ce22b8c4d",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2355,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "bbb06769a5fff8a1a10e4945ee6dd9263ed262597f1ff7c30f4105360237bf72",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2429,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "960a86515a85cba65cd580df3bc015a2b68b72a6a7cba266819946b9cd420a61",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2495,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "41016f11ae138f4be801407b15fe04ef0bf5f061be581da4d2d76bef25e6acc2",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2569,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "41016f11ae138f4be801407b15fe04ef0bf5f061be581da4d2d76bef25e6acc2",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2717,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "de313cbea4220f5b1836786e1bf35324c476bb133d0feee89f9573e46c3521b1",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2845,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "df68c418f8778d7f2ee36a3f0cfc47d34481b2bd27002507acc05aec9bac5d2d",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 2915,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "977848ba3800b9ac3e13ce51abf3d03c4b4affda75ff38d3fd3a028eb6758eee",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 3408,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "bbc56b453c18bb936e54878201b0304cae9e30d1a87c732a49a0599d82b4d432",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 3569,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "bb862178b2b55bc31395273f785ad7ca8fadc4c47fc797ef59401a26ea091a15",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 3573,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "9d71608941445247e957b03e8451da78637f103bacc024e9005b416b091e596d",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 3577,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "f7458e6971a1ed47f8f48ed9a6ff37267a408a1ede019e44869dd2ce47bfa53d",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 3659,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "562c4ec063b416b0772feacbdb3c3b00c57cc31bae65bb263b1f0d95a6d85a88",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 3663,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "bef234acd92ac6cb51ece2b3dcd4b15fbd4ea3f414594317082bd60b66ccd2b2",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 3795,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "50d04c7422e12e5efb71b12997adad9c923baf617a0f2c52aadc383547e9003e",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 3883,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "e9580972e9545de70da73c69f72a8257c5f683208cff7980dc0ea884f6b4e798",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4063,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "998b87188b2197de92d2d9d80400e0d29fa344b63cca75951c4ab347b3f27ec9",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4067,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "459812a0c25eacf6744de21b1ad2b3703ca077be160b0e11bc42522928630407",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4071,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "1b7baa0dbc96f35e4639cc841b5f442e0099d5cd161660caf8e836012a60b67b",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4075,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "3fa291cee144730325155d6e42a65b232b5093f926aea7347dbefb54e256c159",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4079,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "5641f1817fdd277bc23e50ae58b11cb719cf8a899b7a12db211ce157678588e7",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4083,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "0d7fbe5022a81763196c146b707a3456a78704d273a4818e966979fa5ad1ce79",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4087,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "f5d24484f1ca6f73e6b4c5e6e5aef0136c504f2bc7bd98c5f7c02bba9036cbe2",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4091,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "12d5b480f1e346f1b07a0925e50a4d121bb3237eb57aa565abdf112742913d57",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4095,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "3ec5475c7f3f858a0851ec0c8e4320604f86c813219dc740c15c5bf3b0d2d053",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4099,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "a824f23b476853e279ed7f1bde0ec696ca928f485ac48d71fbc894d8c571bab8",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4211,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "42ad64c7059d4270ca1430ad5870cf34994ee4826ff992bf9e0b0c258863a0c6",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4299,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "0ed1ff775781d091fba3a94298f3960f47c7a4473eb76cc371b80c2030dc3da8",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4391,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "306985deb7eee7e676bd8cdae176fd73c50756307d5eb3274db9a502b37f09e1",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4836,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "49826dbff3e8957bf2ef6852d36f12c85e991bc9b22a36b0f2a191e83f36ad64",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4991,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "d4037fabb3d256bb53eab8c29e7ba67bd9b746b5f2f8344960751d0b59e5be81",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4995,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "11afc78f0d0600dbba1ca2691ad58f3c216bdf2fe39856e788280bfe70eac38c",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 4999,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "c6ee3e791f487bd994498fc3d4f565798cdfd383ccd3c854979f0c66e02725ff",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5135,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "034d9fbf703ba06d9e83e1406f9b092865a744d1160244a1510f8032f223f8c5",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5397,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "5b6055e2333b1ae23a6803be1b8075ef56eaa24783aeac1e31e9c3f3f222937f",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5463,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "190470c91cc62816792ffd168ded31bd319fc0d1332f8f44187c92268f381b60",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5621,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "4a046a28f5e5c5882f6ec3948350bc372757a94a289b64aa647696cc5bfea7cb",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5625,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "3d35d8cf9faf54d8af9d0ad82dba9868eca444a0db0a9a6256ae53934c856c4a",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5766,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "ddd1d2f33409aa4847c78f2d758ef9d01dfef36b6a61cb849b2c6a161f92c7d7",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5770,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "ea1a85bc51f7d979568eacef29d21059bbbe359f773a64d12048bdfa8f56eb7c",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5839,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "d873a2d2854af11880e36f57345d311b5899e944bb63ba917e0b6cb6a853f377",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5912,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "d873a2d2854af11880e36f57345d311b5899e944bb63ba917e0b6cb6a853f377",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 5985,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "31afc0a46c5722a1ac8726dbb0f2181a95959ae453c989685edb04dab70bbdff",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 6102,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "e3bf7468e4b88831d3a0141028387ff86d69793a7271330546cb65a66ad8c7f4",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 6174,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "b8a963ba337d55ad9efbdcecd9131160fe74ead3b1e4e09159cbf364ba81a823",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 6317,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "8ade125cfeeb06bb035ccebc458d99afdf3ed06f916efabf01fb16c969ec457c",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 6465,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "58e452470cd38c789c7a665767c81e0782fcf7fd8368a5df60742de86981cbdd",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 6555,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "6e81ad6e6371bc46a7a8a717141caeae8da05c56aee06a42d1a4e43f70e5fd5e",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 6614,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "0a7e619f2e096cbb410d48db2b312fb741d741adfd69b14d9eba0e3e66d4e86a",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 6748,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "b58d063edc4636c417b3f5e68c8e88eead07b04eddc435a5b56ba272fbda1116",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7222,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "766b71c8f461e8c026c5b80d85f30cdbe73d2494d4ae99cbef8f2116ce03eb62",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7280,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "443e0532b5e037b5d6aaaad790cd8b9fce173fbf2318006980100a069906295d",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7473,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "5bf1327aa58aa601a4b34ca333a436e99d210bd5ca2afd7ca9a75e854c058c3f",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7535,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "02c942e5b3d60aaf373ce49fb2a1c9368d8ef1454ac19808669c5fb02cc685b7",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7626,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "01e501d8b1deb60ba51f6deb8862358140710155eda4767c2f82ff668ece50df",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7695,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "a03eb1b7bd6b2b50c89b71bf37bd0fd113f96a25686ac0c844765f2a3971e8cd",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7768,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "06196048c0515e6753352f4350c4054caa90295487d5c3fa6a2fc0cbec14756e",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7836,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "147561fd6e4a179f06154ab7491129c7f2ec24e77774168b98383b98c2e96996",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 7906,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "558cf901657995e67f60f8d901f539b9357169d36ceb4fa26d2ead6c3cb7fcb0",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 8007,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "54df41689fcc3f0d57db4729030c595b3e95ff5622c2d1ab24aed37b6ca33d26",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 8163,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "31e309ff9d0ab117c576155309459f29e33dfcbbf12bc3b8ea2d55ce1d51d0ff",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 8293,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "ba14eb3119715ae7360dfb1e64bb15520e700b8d1fd7bad7c72ecb8d00e0544d",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 8443,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "9aee4d2e54fedd95728c5f08b85c621eb3e3957efae21158c0d48a37e2df2e69",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 10366,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "4d62a15822c896bf063aa9616adb41d8dd808d53ca5a5d19c411b57023c438fe",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 10437,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "d2fdaf5cea6724468088c14d101adf5cffdf0644275f18db0edcebc206889300",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 10517,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "37d2e5c333e410126af8444ee2ca2fca20527ec4e583fd64fbcf39ad7bc5bd59",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 10594,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "87048b615e3f0d3ac1d322db2b349c42b291d41a10bc1b39ea8921ab48cc39b6",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 10664,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "3ddb1e3221d6f7ab5ca58613ae94cf8d4d4a3f50e93a6a49c69961324df7d035",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 10736,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "5b294577503048e1eb10f939f1172600f9df2f83f2d06130dd3db6b9f6ab828a",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 10843,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "0078b4dca6b5b6e77513533b9a5b0467126e7d1f1ed5cf6da0faf799d7b11851",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 11061,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "5b1d9979342fe08664e1ad4e4cae78477cdee50b4479dc13349eaff0e84f59a4",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 16003,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "ca5a92fab7f5f27a83d9c9ad62eba16020c4cade8173983ec4155a9b2c845017",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 16081,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "0d16b9de2a44b50812b20b77624607b830a19c3ed86bbe780652a25b55664ec9",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 16396,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "06c40ea18a5ab170823b2a39ff24c0485bacb7acc73d258e95e4a308f6d7379c",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 16454,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "fd0620803db04ca3d7a8d9d16047c6bc7342e9990b4591ffe7bd3e66051b5860",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 16601,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "1fbc841819cf9299145f48e6a0db7a58a1c2c0cebed08714e7364536dde09a1b",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 16702,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "56fe122ca7f84e617b94f4be3f9793a523768c05a9841bba733b26d4b8be857e",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 16706,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "467bbeb721b959b817c1550ab0fd0d25c5b612aaeced0054a4e8f7c9b87b61ff",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17101,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "b6431ec38aa71026b17fd5f5af9eb9837a2c0196bcf94519eda21d235621da0b",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17196,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "300552905283de040b40627bc7be1e0c091c45c8b3cc654c9900363cf6f097ce",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17261,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "28ebab546c1afd3e3d844044a84036c9c56dd740c8cc47422c0fdf381b6cfd56",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17320,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "7ecce462e61409065516768b250cf2f73ff6ef689b6f475b9cbda9d857b6b5f2",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17592,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "11c7f96951da636f7ef91683c64d5fd0ebd467e9bd09c480fa7d710404b63482",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17664,
+      "publicHost": "github.com",
+      "upstreamReferenceSHA256": "7127787a9e30fb957f0608ea1863d620d5d1fc3bd125e81b1e027e7836bab755",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17726,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "48529c7653585b0594e3c062ac9299d6544a6c64398a7907fdf8c062aaa95af1",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17798,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "5f68a545b82554d1ec4b272029ae6bd79cf7c02f936a2b3e753339407e0c1414",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 17872,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "ca8ed9cbfc0aa75e8955e329bd4b6474ee0083d95fde74872f5e6cb810cc58d0",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18030,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "d9d37038f6e329452fbd906867e5a7adfacf47fccb61516b7834da03489aba18",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18046,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "daddc34938e31271525551f7e34d3d73004d55c66759c12c7925cf013ad689d5",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18050,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "98ad4d2178037362421dbaef36bf4dbf8b339878efbee606670bf46510e40107",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18054,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "3fd048e3825b84a40255b265fd854449aa9b210f0873f8ea4d050d43c696b091",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18133,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "871b9242970e926979cad6598126c84ad2212e498c15c53dd1e26d585d3b09b7",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18137,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "9ddfaeead66fccea8518ee0f1123c606fbb79a4307b21a495dd1793a7a37dbe4",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18218,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "2f1c2a2d2fdea397209fe6e97e30aeca0ef5fa0f271e6212d825c96e038bf442",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18290,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "cbc913da1f625a669ff662b4757b8349b8e62fde5fdda8170d48852c0b9bafd7",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18367,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "d2de7da0c05b6975422ba68b13c0735332bd1f2b04e78f7e5fd5d12979358413",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18447,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "b43f83086b99b996896410bb1cd4f73d9bb51f392b26ccffe85e28819a27dd11",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18524,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "4ac6fb0a5c90d53e5bd497b500f5e9b69a5b362b9f7b0095e3640ddfc06e506f",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18626,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "c518512c3fb8175a28d496a29539fd8db2cff7837875d35c0dbc53ab57da8dfd",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18703,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "9325def28da68e70cbc622208b0428e57a3b3468bd1e3cc428824d1424370df4",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18780,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "f8cfc29a7a8594751ed50e595b05df98df1b7ebd0aba269775b228ce15cca1aa",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18864,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "53034057bc68f87f6ba93be90bc916a4d25cb4220f1a4c5b3203dc37c419c4d3",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 18944,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "55d044b49f460724585bf67a8f22eb1d5e81e3d511f160da76ece25f631191c4",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19024,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "f712b25203ab58c726e36dd79dc16aafe893e97904fb08467071fc756a0b5b2c",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19104,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "af60d4e46177b913d151d90ca81f76b2175eb1982d9bf4bb6feb6d12afb98e81",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19184,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "f470f76c395aee512090b74600c21fd6b623bcd29d854a4c627ca09cd697b439",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19261,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "1366900818a8d374ead1d131a4f98f1680d59813f8b1510c849492b353c32aae",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19338,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "65be8cc94b9143867ac74e159337b87c5be3df4b5ecea300d58cad428af7bc36",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19416,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "376c555d2e16ba669db98888b190edfc806a327b4bef0f61eed19e1c839c7d97",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19496,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "4b4376c363ce736a7655b6cf6068fa75cbedec8bda55b4fa846a4537b8a5c16e",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19575,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "6cbfa70464c1c3e5f8aecb9cc9c3f2dab2cf44baf3d7c363ed7fce7314ce5009",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19652,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "774bcc183c19dc88801a30887e10d7d899adc21a917befbaed7c577b7c0f0abd",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19729,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "0e6c4e0d586dd3b46aad67569f9ce3b208956ba55bf46ea853d1582a8ad9d991",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19806,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "742687f641955afe81168b5cecc51bcd38dd49db89d893e76a5f9db8346bae32",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19886,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "1762b61d3a007c875a3454a0da28b60d0680c3eac2a2eaa1e8157a53944ad9c5",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 19967,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "7dfb888736db9108fd703aac557961113465ad21752ddcd70097e9177d87397a",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20046,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "e525adb989fa3852f932bb5ae36b70d116b24a15a020257cddc88ce518029223",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20129,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "3d269b1749e3a9f509aecb4d69aca18e0560a34115a6a5f9696b36221a719de2",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20212,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "6c7c3470b3e86d9464275e0364725bb42df0e20df2fe333a0ba7759d5d723f84",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20292,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "293103b2cfa52eb34d85c807318015c632fb91fe3a06b5c6e92b304f1c749608",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20378,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "4ba8745305c215e5f3d3651e8395127e7e0866d00ba4bfc79b33fa680cd24a4d",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20482,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "54df41689fcc3f0d57db4729030c595b3e95ff5622c2d1ab24aed37b6ca33d26",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20597,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "0078b4dca6b5b6e77513533b9a5b0467126e7d1f1ed5cf6da0faf799d7b11851",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20675,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "6469f7163186fe2794d44cc209c0e3234ceab16ce454156d820060fdf979a895",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20859,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "12dbaa14f6163b3c178ee75352a2e2baa06bd18e5a60cf9b3a4dd6c4f117af55",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 20947,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "463f7f5b0a385e6d3186c37f60715a110690c7abe23af49b189ea1abb0f751d8",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21021,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "edfb6eb2f89ff8fd21fdbdecf9e4e558e0c82a92cd2d08f3eb353045f810994b",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21103,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "e8515cf69fd98fec80b066b9f7036fb18acc9f7172e897d5b2ce430298225a75",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21183,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "b55ac5bb1126edf2e92345ec01c0a4995927d4c9ac1d14ee1e6bfb837fdd7772",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21379,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "d7781d63ac809823f931ef0102baf7a295e1d4c64297290e2deec5e8d7a14208",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21456,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "d72d9d88c1cc5be0bd005e142b5c712283f9b6a316b8142af6078fab67334963",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21533,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "973a58ebfc21a18e3de30c62b20ab8749708dafa6222ff6af3ad325b2e930cdf",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21613,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "381fb4289c979517e730836758581a05873fb9ab1df35c5091c6d73e605213c8",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21692,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "fb2b720a9061fc8e467b154639ac79a2298877a094a7e4ae5e2b2447352e4059",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21764,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "e5937113756165bc16b4262203a69f0ae10d44f0faec7d885b48aa26305a7c90",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21836,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "77f8b2ceb99c3c18630470ea5370612b21af3abdd4677980f3044450b76e07d6",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21919,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "708afd4bdd2928cc7bd0c6d43149e792f1ff16008ee0b5adafe2a8da6039ff14",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 21991,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "b50a10ed6624ff8a14f3468834caf7d9569c89a10b850ff914a82e8a161bc346",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 22063,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "86c105e60f997e821771cddab6c0cc1bd1ebbffd5604611042c486b52396f1df",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 22143,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "8be9a48901306335351f06f539928165ddade2926e250ecafc53b94ea3892018",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 22229,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "7e5c7fd2b9e4b5c79781be4ad236b973fa345834ebc2714a1fc58a7641f78c53",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 22309,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "8fdc9a9cbd7c68124c8739bdd6d77592f2d446eac0e4c3ee480038ee6f731630",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 22418,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "5b1d9979342fe08664e1ad4e4cae78477cdee50b4479dc13349eaff0e84f59a4",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 22496,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "09afad272cd7e82a9bed3150c7cfa4355788409198a234cbf461397fbb0d0226",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    },
+    {
+      "rule": "sourcegraph-access-token",
+      "file": "artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/govulncheck.stdout",
+      "line": 22573,
+      "publicHost": "go.googlesource.com",
+      "upstreamReferenceSHA256": "82dcfa48a5189fa59a6ef6a2a2d225899b9989b5a2835ec331a7910ccd88ba2b",
+      "decision": "FALSE_POSITIVE_PUBLIC_UPSTREAM_COMMIT_REFERENCE"
+    }
+  ]
+}

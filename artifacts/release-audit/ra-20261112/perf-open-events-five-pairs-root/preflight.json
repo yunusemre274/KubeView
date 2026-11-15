@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-12T17:30:36.553809+00:00",
+  "head": "3278451bf98cd8fb0c20f85118eccc0a9ba57bf2",
+  "trackedTreeClean": true,
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t62%; discharging; 7:41 remaining present: true\n",
+  "powerSettings": "Battery Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         120\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           1\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         120\n womp                 1\n networkoversleep     0\n sleep                1\n tcpkeepalive         1\n disksleep            10\n",
+  "ownedLabContainersStopped": [
+    "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+    "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9"
+  ],
+  "port5192Free": true,
+  "otherTestWorkers": "completed/idle confirmed via collaboration.list_agents",
+  "topBackgroundProcessesCommOnly": [
+    {
+      "pid": 171,
+      "ppid": 1,
+      "percentCPU": 36.8,
+      "rssKiB": 137776,
+      "executableName": "WindowServer"
+    },
+    {
+      "pid": 8047,
+      "ppid": 1,
+      "percentCPU": 12.4,
+      "rssKiB": 116080,
+      "executableName": "Terminal"
+    },
+    {
+      "pid": 22484,
+      "ppid": 2109,
+      "percentCPU": 10.5,
+      "rssKiB": 18336,
+      "executableName": "Python"
+    },
+    {
+      "pid": 302,
+      "ppid": 1,
+      "percentCPU": 8.1,
+      "rssKiB": 56160,
+      "executableName": "coreaudiod"
+    },
+    {
+      "pid": 2109,
+      "ppid": 1327,
+      "percentCPU": 6.2,
+      "rssKiB": 365568,
+      "executableName": "codex"
+    },
+    {
+      "pid": 22439,
+      "ppid": 1,
+      "percentCPU": 6.2,
+      "rssKiB": 127296,
+      "executableName": "QuickTime Player"
+    },
+    {
+      "pid": 8556,
+      "ppid": 8050,
+      "percentCPU": 5.6,
+      "rssKiB": 75472,
+      "executableName": "codex"
+    },
+    {
+      "pid": 10027,
+      "ppid": 1,
+      "percentCPU": 5.0,
+      "rssKiB": 3821968,
+      "executableName": "com.apple.Virtualization.VirtualMachine"
+    },
+    {
+      "pid": 22443,
+      "ppid": 1,
+      "percentCPU": 3.7,
+      "rssKiB": 38096,
+      "executableName": "VTDecoderXPCService"
+    },
+    {
+      "pid": 454,
+      "ppid": 1,
+      "percentCPU": 2.8,
+      "rssKiB": 22336,
+      "executableName": "WindowManager"
+    }
+  ],
+  "noUnownedProcessStopped": true
+}

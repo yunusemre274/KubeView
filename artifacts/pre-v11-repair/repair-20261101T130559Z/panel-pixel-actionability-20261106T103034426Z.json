@@ -1,0 +1,1079 @@
+{
+  "startedAt": "2026-11-06T10:30:34.426Z",
+  "source": "SYNTHETIC M fixture, current production build/backend; real pointer hit, visible/enabled UI and PNG readback upper bound. Not physical display presentation latency.",
+  "samples": [
+    {
+      "index": 2,
+      "at": "2026-11-06T10:30:38.171Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 70.32566599999973,
+      "pixelReadbackUpperBoundMs": 42.48320799999965,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-02.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 3,
+      "at": "2026-11-06T10:30:38.421Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 70.62024999999994,
+      "pixelReadbackUpperBoundMs": 44.36775000000034,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-03.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 4,
+      "at": "2026-11-06T10:30:38.671Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 87.34270899999956,
+      "pixelReadbackUpperBoundMs": 55.70912500000031,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-04.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 5,
+      "at": "2026-11-06T10:30:38.921Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 71.65700000000015,
+      "pixelReadbackUpperBoundMs": 46.04620900000009,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-05.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 6,
+      "at": "2026-11-06T10:30:39.155Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 70.91191600000002,
+      "pixelReadbackUpperBoundMs": 44.025665999999546,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-06.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 7,
+      "at": "2026-11-06T10:30:39.405Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 70.5927499999998,
+      "pixelReadbackUpperBoundMs": 45.10962500000005,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-07.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 8,
+      "at": "2026-11-06T10:30:39.638Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 70.73258400000032,
+      "pixelReadbackUpperBoundMs": 43.07474999999977,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-08.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 9,
+      "at": "2026-11-06T10:30:39.888Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 70.32966599999963,
+      "pixelReadbackUpperBoundMs": 42.99225000000024,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-09.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 10,
+      "at": "2026-11-06T10:30:40.121Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 70.61191600000075,
+      "pixelReadbackUpperBoundMs": 43.08137500000066,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-10.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 11,
+      "at": "2026-11-06T10:30:40.371Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 70.00466599999982,
+      "pixelReadbackUpperBoundMs": 42.38841599999978,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-11.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 12,
+      "at": "2026-11-06T10:30:40.605Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 70.74150000000009,
+      "pixelReadbackUpperBoundMs": 42.95295799999985,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-12.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 13,
+      "at": "2026-11-06T10:30:40.855Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 71.01866700000028,
+      "pixelReadbackUpperBoundMs": 43.24841699999979,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-13.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 14,
+      "at": "2026-11-06T10:30:41.088Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 71.19566599999962,
+      "pixelReadbackUpperBoundMs": 45.46349999999984,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-14.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 15,
+      "at": "2026-11-06T10:30:41.338Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 70.61425000000054,
+      "pixelReadbackUpperBoundMs": 43.0717910000003,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-15.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 16,
+      "at": "2026-11-06T10:30:41.571Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 70.47062499999993,
+      "pixelReadbackUpperBoundMs": 41.31433399999969,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-16.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 17,
+      "at": "2026-11-06T10:30:41.821Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 70.37154199999986,
+      "pixelReadbackUpperBoundMs": 42.96349999999984,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-17.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 18,
+      "at": "2026-11-06T10:30:42.054Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 70.34820899999977,
+      "pixelReadbackUpperBoundMs": 42.94295899999997,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-18.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 19,
+      "at": "2026-11-06T10:30:42.304Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 70.50679200000013,
+      "pixelReadbackUpperBoundMs": 44.8095000000003,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-19.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 20,
+      "at": "2026-11-06T10:30:42.538Z",
+      "target": {
+        "type": "node",
+        "uid": "node-0",
+        "name": "worker-001"
+      },
+      "title": "worker-001",
+      "actionableUpperBoundMs": 70.82508300000063,
+      "pixelReadbackUpperBoundMs": 42.99591599999894,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-20.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    },
+    {
+      "index": 21,
+      "at": "2026-11-06T10:30:42.789Z",
+      "target": {
+        "type": "container",
+        "uid": "pod-1",
+        "name": "app-1",
+        "containerName": "app"
+      },
+      "title": "app",
+      "actionableUpperBoundMs": 71.16220900000008,
+      "pixelReadbackUpperBoundMs": 42.80662499999926,
+      "visibleEnabledTabs": [
+        {
+          "text": "Özet",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Container’lar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Metrikler",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Loglar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Terminal",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Port-forward",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "Olaylar",
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "text": "YAML",
+          "enabled": true,
+          "visible": true
+        }
+      ],
+      "headerBox": {
+        "x": 1045,
+        "y": 173,
+        "width": 358,
+        "height": 26.09375
+      },
+      "path": "panel-pixel-actionability-20261106T103034426Z-21.png",
+      "limits": "Host call→visible/enabled controls and returned PNG; screenshot readback is not physical presented time."
+    }
+  ],
+  "errors": [],
+  "browser": "156.0.8078.4",
+  "summary": {
+    "actionableUpperBoundMs": {
+      "n": 20,
+      "p50": 70.62024999999994,
+      "p95": 87.34270899999956,
+      "p99": 87.34270899999956,
+      "min": 70.00466599999982,
+      "max": 87.34270899999956
+    },
+    "pixelReadbackUpperBoundMs": {
+      "n": 20,
+      "p50": 43.07474999999977,
+      "p95": 55.70912500000031,
+      "p99": 55.70912500000031,
+      "min": 41.31433399999969,
+      "max": 55.70912500000031
+    },
+    "physicalPresentedLatencyMs": null
+  },
+  "status": "COMPLETED_DIAGNOSTIC",
+  "finishedAt": "2026-11-06T10:30:42.908Z"
+}

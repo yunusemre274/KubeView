@@ -1,0 +1,1646 @@
+{
+  "scope": "Frontend-browser/common fixed backend; M38/medium/DPR1/Node0Summary open/5event-s",
+  "orders": [
+    "AB",
+    "BA",
+    "AB",
+    "BA",
+    "AB"
+  ],
+  "pairs": 5,
+  "cells": [
+    {
+      "pair": 0,
+      "side": "A",
+      "runId": "cat16-open5-p0-A-20261112T173036Z",
+      "metrics": {
+        "browserCores": 0.6886526000996844,
+        "rendererCores": 0.4357866755274963,
+        "gpuProcessCores": 0.24688486459544776,
+        "browserMainCores": 0.004984216647283603,
+        "backendFixtureCores": 0.0031566705432796147,
+        "maxSingleBrowserProcessRSSMiB": 387.15625,
+        "backendProcessRSSMiB": 50.421875,
+        "pageJSHeapUsedMiB": 29.31558322906494,
+        "jsDrawsPerSecond": 60.02400960384079,
+        "windowFrameP95Ms": 17.800000000745058,
+        "windowFrameP99Ms": 18.699999999254942,
+        "windowCallbackStoreP95Ms": 0.6999999992549419,
+        "windowVisibleDrawProxyP95Ms": 19.800000000745058
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 0,
+      "side": "B",
+      "runId": "cat16-open5-p0-B-20261112T173210Z",
+      "metrics": {
+        "browserCores": 0.625851470343911,
+        "rendererCores": 0.3914271473666723,
+        "gpuProcessCores": 0.23043694965941186,
+        "browserMainCores": 0.002990529988370162,
+        "backendFixtureCores": 0.0029905299883701613,
+        "maxSingleBrowserProcessRSSMiB": 391.6875,
+        "backendProcessRSSMiB": 48.765625,
+        "pageJSHeapUsedMiB": 23.839597702026367,
+        "jsDrawsPerSecond": 60.0106567203943,
+        "windowFrameP95Ms": 17.699999999254942,
+        "windowFrameP99Ms": 18.5,
+        "windowCallbackStoreP95Ms": 0.6999999992549419,
+        "windowVisibleDrawProxyP95Ms": 20.5
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 115,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 1,
+      "side": "A",
+      "runId": "cat16-open5-p1-A-20261112T173517Z",
+      "metrics": {
+        "browserCores": 0.6640637979730852,
+        "rendererCores": 0.41800963615218484,
+        "gpuProcessCores": 0.24140222628343583,
+        "browserMainCores": 0.003322811098189069,
+        "backendFixtureCores": 0.0031566705432796147,
+        "maxSingleBrowserProcessRSSMiB": 398.015625,
+        "backendProcessRSSMiB": 48.5625,
+        "pageJSHeapUsedMiB": 41.339735984802246,
+        "jsDrawsPerSecond": 60.01605312853051,
+        "windowFrameP95Ms": 19.399999998509884,
+        "windowFrameP99Ms": 20.800000000745058,
+        "windowCallbackStoreP95Ms": 0.8999999985098839,
+        "windowVisibleDrawProxyP95Ms": 14.100000001490116
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 1,
+      "side": "B",
+      "runId": "cat16-open5-p1-B-20261112T173343Z",
+      "metrics": {
+        "browserCores": 0.6822939163371763,
+        "rendererCores": 0.4334319035119779,
+        "gpuProcessCores": 0.24437651593182041,
+        "browserMainCores": 0.0033225902913911697,
+        "backendFixtureCores": 0.0033225902913911684,
+        "maxSingleBrowserProcessRSSMiB": 407.546875,
+        "backendProcessRSSMiB": 48.359375,
+        "pageJSHeapUsedMiB": 43.26718997955322,
+        "jsDrawsPerSecond": 60.02360984154175,
+        "windowFrameP95Ms": 17.699999999254942,
+        "windowFrameP99Ms": 18.599999997764826,
+        "windowCallbackStoreP95Ms": 0.7999999970197678,
+        "windowVisibleDrawProxyP95Ms": 18
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 2,
+      "side": "A",
+      "runId": "cat16-open5-p2-A-20261112T173650Z",
+      "metrics": {
+        "browserCores": 0.686613283715985,
+        "rendererCores": 0.4345948101139649,
+        "gpuProcessCores": 0.24753297670864202,
+        "browserMainCores": 0.0031564607768216108,
+        "backendFixtureCores": 0.0034887198059607273,
+        "maxSingleBrowserProcessRSSMiB": 375.984375,
+        "backendProcessRSSMiB": 49.0625,
+        "pageJSHeapUsedMiB": 48.960455894470215,
+        "jsDrawsPerSecond": 60.017713966066005,
+        "windowFrameP95Ms": 18.700000002980232,
+        "windowFrameP99Ms": 19.300000000745058,
+        "windowCallbackStoreP95Ms": 0.8000000007450581,
+        "windowVisibleDrawProxyP95Ms": 22.399999998509884
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 2,
+      "side": "B",
+      "runId": "cat16-open5-p2-B-20261112T173824Z",
+      "metrics": {
+        "browserCores": 0.7070119773410634,
+        "rendererCores": 0.4476967290728774,
+        "gpuProcessCores": 0.25499609615097096,
+        "browserMainCores": 0.0031563034702726056,
+        "backendFixtureCores": 0.0034885459408276163,
+        "maxSingleBrowserProcessRSSMiB": 383.734375,
+        "backendProcessRSSMiB": 49.3125,
+        "pageJSHeapUsedMiB": 25.532755851745605,
+        "jsDrawsPerSecond": 60.02121137955773,
+        "windowFrameP95Ms": 18.699999999254942,
+        "windowFrameP99Ms": 19.5,
+        "windowCallbackStoreP95Ms": 0.9000000022351742,
+        "windowVisibleDrawProxyP95Ms": 15
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 3,
+      "side": "A",
+      "runId": "cat16-open5-p3-A-20261112T174133Z",
+      "metrics": {
+        "browserCores": 0.6552772838316187,
+        "rendererCores": 0.4144716068668672,
+        "gpuProcessCores": 0.23665098964651918,
+        "browserMainCores": 0.00299137486912735,
+        "backendFixtureCores": 0.0031575623618566467,
+        "maxSingleBrowserProcessRSSMiB": 387.46875,
+        "backendProcessRSSMiB": 49.1875,
+        "pageJSHeapUsedMiB": 31.997879028320312,
+        "jsDrawsPerSecond": 60.025649139754506,
+        "windowFrameP95Ms": 18.600000001490116,
+        "windowFrameP99Ms": 19,
+        "windowCallbackStoreP95Ms": 0.8000000007450581,
+        "windowVisibleDrawProxyP95Ms": 21.300000000745058
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 3,
+      "side": "B",
+      "runId": "cat16-open5-p3-B-20261112T173958Z",
+      "metrics": {
+        "browserCores": 0.6547925631780949,
+        "rendererCores": 0.412713708940469,
+        "gpuProcessCores": 0.2369282403176766,
+        "browserMainCores": 0.003987572067057672,
+        "backendFixtureCores": 0.0033229767225480588,
+        "maxSingleBrowserProcessRSSMiB": 396.859375,
+        "backendProcessRSSMiB": 49,
+        "pageJSHeapUsedMiB": 46.208478927612305,
+        "jsDrawsPerSecond": 60.02790756534576,
+        "windowFrameP95Ms": 18.699999999254942,
+        "windowFrameP99Ms": 19,
+        "windowCallbackStoreP95Ms": 0.8999999985098839,
+        "windowVisibleDrawProxyP95Ms": 18.699999999254942
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 4,
+      "side": "A",
+      "runId": "cat16-open5-p4-A-20261112T174307Z",
+      "metrics": {
+        "browserCores": 0.707367721571559,
+        "rendererCores": 0.4450535758783952,
+        "gpuProcessCores": 0.25782872331589,
+        "browserMainCores": 0.0033225350942769345,
+        "backendFixtureCores": 0.00348866184899078,
+        "maxSingleBrowserProcessRSSMiB": 381.921875,
+        "backendProcessRSSMiB": 50.1875,
+        "pageJSHeapUsedMiB": 46.18450450897217,
+        "jsDrawsPerSecond": 60.019812365246786,
+        "windowFrameP95Ms": 18.5,
+        "windowFrameP99Ms": 19,
+        "windowCallbackStoreP95Ms": 0.8000000007450581,
+        "windowVisibleDrawProxyP95Ms": 15.700000002980232
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    },
+    {
+      "pair": 4,
+      "side": "B",
+      "runId": "cat16-open5-p4-B-20261112T174441Z",
+      "metrics": {
+        "browserCores": 0.6878104700038212,
+        "rendererCores": 0.4316259905966009,
+        "gpuProcessCores": 0.2515326211559868,
+        "browserMainCores": 0.003156618099051354,
+        "backendFixtureCores": 0.003156618099051353,
+        "maxSingleBrowserProcessRSSMiB": 403.984375,
+        "backendProcessRSSMiB": 49.453125,
+        "pageJSHeapUsedMiB": 44.26815128326416,
+        "jsDrawsPerSecond": 60.002863621681534,
+        "windowFrameP95Ms": 19,
+        "windowFrameP99Ms": 21.100000001490116,
+        "windowCallbackStoreP95Ms": 0.9000000022351742,
+        "windowVisibleDrawProxyP95Ms": 14.800000000745058
+      },
+      "dataCorrect": true,
+      "receivedEvents": 300,
+      "visibleDrawProxySamples": 121,
+      "sourceCommit": null,
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "camera": {
+        "position": [
+          155.32070332934842,
+          297.3149971650057,
+          468.72488860383254
+        ],
+        "quaternion": [
+          -0.32546078412600804,
+          0.1940594243420255,
+          0.06843554348917547,
+          0.9228937068847457
+        ],
+        "zoom": 1,
+        "fov": 38,
+        "near": 9.479309145645514,
+        "far": 2000,
+        "target": [
+          6.663204746845622,
+          0,
+          130.86693727996243
+        ],
+        "forward": [
+          -0.3136462716817104,
+          -0.6272925433634212,
+          -0.7128324356402513
+        ]
+      },
+      "phaseFleetUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "drawFootprint": {
+        "calls": 426,
+        "triangles": 71170,
+        "lines": 60,
+        "points": 0
+      }
+    }
+  ],
+  "totalPlannedEvents": 3000,
+  "totalReceivedEvents": 3000,
+  "allCanonicalContentEqual": true,
+  "rows": [
+    {
+      "metric": "browserCores",
+      "before": {
+        "n": 5,
+        "p50": 0.686613283715985,
+        "p95": 0.707367721571559,
+        "p99": 0.707367721571559,
+        "min": 0.6552772838316187,
+        "max": 0.707367721571559
+      },
+      "after": {
+        "n": 5,
+        "p50": 0.6822939163371763,
+        "p95": 0.7070119773410634,
+        "p99": 0.7070119773410634,
+        "min": 0.625851470343911,
+        "max": 0.7070119773410634
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": -0.0004847206535237847,
+        "p95": 0.0203986936250784,
+        "p99": 0.0203986936250784,
+        "min": -0.06280112975577345,
+        "max": 0.0203986936250784
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": -0.07397183840853844,
+        "p95": 2.970914502946938,
+        "p99": 2.970914502946938,
+        "min": -9.119420989143554,
+        "max": 2.970914502946938
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 0.6886526000996844,
+          "after": 0.625851470343911,
+          "difference": -0.06280112975577345,
+          "percent": -9.119420989143554
+        },
+        {
+          "pair": 1,
+          "before": 0.6640637979730852,
+          "after": 0.6822939163371763,
+          "difference": 0.018230118364091052,
+          "percent": 2.7452359878274715
+        },
+        {
+          "pair": 2,
+          "before": 0.686613283715985,
+          "after": 0.7070119773410634,
+          "difference": 0.0203986936250784,
+          "percent": 2.970914502946938
+        },
+        {
+          "pair": 3,
+          "before": 0.6552772838316187,
+          "after": 0.6547925631780949,
+          "difference": -0.0004847206535237847,
+          "percent": -0.07397183840853844
+        },
+        {
+          "pair": 4,
+          "before": 0.707367721571559,
+          "after": 0.6878104700038212,
+          "difference": -0.0195572515677378,
+          "percent": -2.7647927621417967
+        }
+      ]
+    },
+    {
+      "metric": "rendererCores",
+      "before": {
+        "n": 5,
+        "p50": 0.4345948101139649,
+        "p95": 0.4450535758783952,
+        "p99": 0.4450535758783952,
+        "min": 0.4144716068668672,
+        "max": 0.4450535758783952
+      },
+      "after": {
+        "n": 5,
+        "p50": 0.4316259905966009,
+        "p95": 0.4476967290728774,
+        "p99": 0.4476967290728774,
+        "min": 0.3914271473666723,
+        "max": 0.4476967290728774
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": -0.0017578979263981886,
+        "p95": 0.015422267359793074,
+        "p99": 0.015422267359793074,
+        "min": -0.044359528160824,
+        "max": 0.015422267359793074
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": -0.4241298794112198,
+        "p95": 3.6894525929489066,
+        "p99": 3.6894525929489066,
+        "min": -10.179184140297357,
+        "max": 3.6894525929489066
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 0.4357866755274963,
+          "after": 0.3914271473666723,
+          "difference": -0.044359528160824,
+          "percent": -10.179184140297357
+        },
+        {
+          "pair": 1,
+          "before": 0.41800963615218484,
+          "after": 0.4334319035119779,
+          "difference": 0.015422267359793074,
+          "percent": 3.6894525929489066
+        },
+        {
+          "pair": 2,
+          "before": 0.4345948101139649,
+          "after": 0.4476967290728774,
+          "difference": 0.013101918958912495,
+          "percent": 3.0147435390396735
+        },
+        {
+          "pair": 3,
+          "before": 0.4144716068668672,
+          "after": 0.412713708940469,
+          "difference": -0.0017578979263981886,
+          "percent": -0.4241298794112198
+        },
+        {
+          "pair": 4,
+          "before": 0.4450535758783952,
+          "after": 0.4316259905966009,
+          "difference": -0.01342758528179433,
+          "percent": -3.017071653742477
+        }
+      ]
+    },
+    {
+      "metric": "gpuProcessCores",
+      "before": {
+        "n": 5,
+        "p50": 0.24688486459544776,
+        "p95": 0.25782872331589,
+        "p99": 0.25782872331589,
+        "min": 0.23665098964651918,
+        "max": 0.25782872331589
+      },
+      "after": {
+        "n": 5,
+        "p50": 0.24437651593182041,
+        "p95": 0.25499609615097096,
+        "p99": 0.25499609615097096,
+        "min": 0.23043694965941186,
+        "max": 0.25499609615097096
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": 0.0002772506711574141,
+        "p95": 0.0074631194423289415,
+        "p99": 0.0074631194423289415,
+        "min": -0.016447914936035896,
+        "max": 0.0074631194423289415
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": 0.11715593142945983,
+        "p95": 3.0150000786009956,
+        "p99": 3.0150000786009956,
+        "min": -6.662180349932709,
+        "max": 3.0150000786009956
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 0.24688486459544776,
+          "after": 0.23043694965941186,
+          "difference": -0.016447914936035896,
+          "percent": -6.662180349932709
+        },
+        {
+          "pair": 1,
+          "before": 0.24140222628343583,
+          "after": 0.24437651593182041,
+          "difference": 0.002974289648384587,
+          "percent": 1.2320887400981986
+        },
+        {
+          "pair": 2,
+          "before": 0.24753297670864202,
+          "after": 0.25499609615097096,
+          "difference": 0.0074631194423289415,
+          "percent": 3.0150000786009956
+        },
+        {
+          "pair": 3,
+          "before": 0.23665098964651918,
+          "after": 0.2369282403176766,
+          "difference": 0.0002772506711574141,
+          "percent": 0.11715593142945983
+        },
+        {
+          "pair": 4,
+          "before": 0.25782872331589,
+          "after": 0.2515326211559868,
+          "difference": -0.006296102159903227,
+          "percent": -2.441970808733085
+        }
+      ]
+    },
+    {
+      "metric": "browserMainCores",
+      "before": {
+        "n": 5,
+        "p50": 0.0033225350942769345,
+        "p95": 0.004984216647283603,
+        "p99": 0.004984216647283603,
+        "min": 0.00299137486912735,
+        "max": 0.004984216647283603
+      },
+      "after": {
+        "n": 5,
+        "p50": 0.003156618099051354,
+        "p95": 0.003987572067057672,
+        "p99": 0.003987572067057672,
+        "min": 0.002990529988370162,
+        "max": 0.003987572067057672
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": -2.2080679789931654e-7,
+        "p95": 0.0009961971979303218,
+        "p99": 0.0009961971979303218,
+        "min": -0.001993686658913441,
+        "max": 0.0009961971979303218
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": -0.00664518058277993,
+        "p95": 33.30231888392291,
+        "p99": 33.30231888392291,
+        "min": -39.99999999999999,
+        "max": 33.30231888392291
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 0.004984216647283603,
+          "after": 0.002990529988370162,
+          "difference": -0.001993686658913441,
+          "percent": -39.99999999999999
+        },
+        {
+          "pair": 1,
+          "before": 0.003322811098189069,
+          "after": 0.0033225902913911697,
+          "difference": -2.2080679789931654e-7,
+          "percent": -0.00664518058277993
+        },
+        {
+          "pair": 2,
+          "before": 0.0031564607768216108,
+          "after": 0.0031563034702726056,
+          "difference": -1.573065490051255e-7,
+          "percent": -0.004983637058323433
+        },
+        {
+          "pair": 3,
+          "before": 0.00299137486912735,
+          "after": 0.003987572067057672,
+          "difference": 0.0009961971979303218,
+          "percent": 33.30231888392291
+        },
+        {
+          "pair": 4,
+          "before": 0.0033225350942769345,
+          "after": 0.003156618099051354,
+          "difference": -0.00016591699522558066,
+          "percent": -4.993686763801912
+        }
+      ]
+    },
+    {
+      "metric": "backendFixtureCores",
+      "before": {
+        "n": 5,
+        "p50": 0.0031575623618566467,
+        "p95": 0.0034887198059607273,
+        "p99": 0.0034887198059607273,
+        "min": 0.0031566705432796147,
+        "max": 0.0034887198059607273
+      },
+      "after": {
+        "n": 5,
+        "p50": 0.0033225902913911684,
+        "p95": 0.0034885459408276163,
+        "p99": 0.0034885459408276163,
+        "min": 0.0029905299883701613,
+        "max": 0.0034885459408276163
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": -1.7386513311099666e-7,
+        "p95": 0.00016591974811155366,
+        "p99": 0.00016591974811155366,
+        "min": -0.00033204374993942715,
+        "max": 0.00016591974811155366
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": -0.004983637058325396,
+        "p95": 5.256162967807587,
+        "p99": 5.256162967807587,
+        "min": -9.51779691790658,
+        "max": 5.256162967807587
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 0.0031566705432796147,
+          "after": 0.0029905299883701613,
+          "difference": -0.0001661405549094534,
+          "percent": -5.263157894736842
+        },
+        {
+          "pair": 1,
+          "before": 0.0031566705432796147,
+          "after": 0.0033225902913911684,
+          "difference": 0.00016591974811155366,
+          "percent": 5.256162967807587
+        },
+        {
+          "pair": 2,
+          "before": 0.0034887198059607273,
+          "after": 0.0034885459408276163,
+          "difference": -1.7386513311099666e-7,
+          "percent": -0.004983637058325396
+        },
+        {
+          "pair": 3,
+          "before": 0.0031575623618566467,
+          "after": 0.0033229767225480588,
+          "difference": 0.00016541436069141208,
+          "percent": 5.23867280309702
+        },
+        {
+          "pair": 4,
+          "before": 0.00348866184899078,
+          "after": 0.003156618099051353,
+          "difference": -0.00033204374993942715,
+          "percent": -9.51779691790658
+        }
+      ]
+    },
+    {
+      "metric": "maxSingleBrowserProcessRSSMiB",
+      "before": {
+        "n": 5,
+        "p50": 387.15625,
+        "p95": 398.015625,
+        "p99": 398.015625,
+        "min": 375.984375,
+        "max": 398.015625
+      },
+      "after": {
+        "n": 5,
+        "p50": 396.859375,
+        "p95": 407.546875,
+        "p99": 407.546875,
+        "min": 383.734375,
+        "max": 407.546875
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": 9.390625,
+        "p95": 22.0625,
+        "p99": 22.0625,
+        "min": 4.53125,
+        "max": 22.0625
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": 2.3946924194244885,
+        "p95": 5.776704987112875,
+        "p99": 5.776704987112875,
+        "min": 1.170393090644927,
+        "max": 5.776704987112875
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 387.15625,
+          "after": 391.6875,
+          "difference": 4.53125,
+          "percent": 1.170393090644927
+        },
+        {
+          "pair": 1,
+          "before": 398.015625,
+          "after": 407.546875,
+          "difference": 9.53125,
+          "percent": 2.3946924194244885
+        },
+        {
+          "pair": 2,
+          "before": 375.984375,
+          "after": 383.734375,
+          "difference": 7.75,
+          "percent": 2.061255870007896
+        },
+        {
+          "pair": 3,
+          "before": 387.46875,
+          "after": 396.859375,
+          "difference": 9.390625,
+          "percent": 2.423582546979595
+        },
+        {
+          "pair": 4,
+          "before": 381.921875,
+          "after": 403.984375,
+          "difference": 22.0625,
+          "percent": 5.776704987112875
+        }
+      ]
+    },
+    {
+      "metric": "backendProcessRSSMiB",
+      "before": {
+        "n": 5,
+        "p50": 49.1875,
+        "p95": 50.421875,
+        "p99": 50.421875,
+        "min": 48.5625,
+        "max": 50.421875
+      },
+      "after": {
+        "n": 5,
+        "p50": 49,
+        "p95": 49.453125,
+        "p99": 49.453125,
+        "min": 48.359375,
+        "max": 49.453125
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": -0.203125,
+        "p95": 0.25,
+        "p99": 0.25,
+        "min": -1.65625,
+        "max": 0.25
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": -0.41827541827541825,
+        "p95": 0.5095541401273885,
+        "p99": 0.5095541401273885,
+        "min": -3.284784629687016,
+        "max": 0.5095541401273885
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 50.421875,
+          "after": 48.765625,
+          "difference": -1.65625,
+          "percent": -3.284784629687016
+        },
+        {
+          "pair": 1,
+          "before": 48.5625,
+          "after": 48.359375,
+          "difference": -0.203125,
+          "percent": -0.41827541827541825
+        },
+        {
+          "pair": 2,
+          "before": 49.0625,
+          "after": 49.3125,
+          "difference": 0.25,
+          "percent": 0.5095541401273885
+        },
+        {
+          "pair": 3,
+          "before": 49.1875,
+          "after": 49,
+          "difference": -0.1875,
+          "percent": -0.3811944091486658
+        },
+        {
+          "pair": 4,
+          "before": 50.1875,
+          "after": 49.453125,
+          "difference": -0.734375,
+          "percent": -1.4632627646326275
+        }
+      ]
+    },
+    {
+      "metric": "pageJSHeapUsedMiB",
+      "before": {
+        "n": 5,
+        "p50": 41.339735984802246,
+        "p95": 48.960455894470215,
+        "p99": 48.960455894470215,
+        "min": 29.31558322906494,
+        "max": 48.960455894470215
+      },
+      "after": {
+        "n": 5,
+        "p50": 43.26718997955322,
+        "p95": 46.208478927612305,
+        "p99": 46.208478927612305,
+        "min": 23.839597702026367,
+        "max": 46.208478927612305
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": -1.9163532257080078,
+        "p95": 14.210599899291992,
+        "p99": 14.210599899291992,
+        "min": -23.42770004272461,
+        "max": 14.210599899291992
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": -4.149342395425552,
+        "p95": 44.411068267101825,
+        "p99": 44.411068267101825,
+        "min": -47.850248970763005,
+        "max": 44.411068267101825
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 29.31558322906494,
+          "after": 23.839597702026367,
+          "difference": -5.475985527038574,
+          "percent": -18.679435726216106
+        },
+        {
+          "pair": 1,
+          "before": 41.339735984802246,
+          "after": 43.26718997955322,
+          "difference": 1.9274539947509766,
+          "percent": 4.66247291821014
+        },
+        {
+          "pair": 2,
+          "before": 48.960455894470215,
+          "after": 25.532755851745605,
+          "difference": -23.42770004272461,
+          "percent": -47.850248970763005
+        },
+        {
+          "pair": 3,
+          "before": 31.997879028320312,
+          "after": 46.208478927612305,
+          "difference": 14.210599899291992,
+          "percent": 44.411068267101825
+        },
+        {
+          "pair": 4,
+          "before": 46.18450450897217,
+          "after": 44.26815128326416,
+          "difference": -1.9163532257080078,
+          "percent": -4.149342395425552
+        }
+      ]
+    },
+    {
+      "metric": "jsDrawsPerSecond",
+      "before": {
+        "n": 5,
+        "p50": 60.019812365246786,
+        "p95": 60.025649139754506,
+        "p99": 60.025649139754506,
+        "min": 60.01605312853051,
+        "max": 60.025649139754506
+      },
+      "after": {
+        "n": 5,
+        "p50": 60.02121137955773,
+        "p95": 60.02790756534576,
+        "p99": 60.02790756534576,
+        "min": 60.002863621681534,
+        "max": 60.02790756534576
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": 0.002258425591250557,
+        "p95": 0.00755671301124039,
+        "p99": 0.00755671301124039,
+        "min": -0.016948743565251334,
+        "max": 0.00755671301124039
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": 0.0037624342653794305,
+        "p95": 0.012591152895471011,
+        "p99": 0.012591152895471011,
+        "min": -0.028238581390609526,
+        "max": 0.012591152895471011
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 60.02400960384079,
+          "after": 60.0106567203943,
+          "difference": -0.013352883446486885,
+          "percent": -0.022245903821847428
+        },
+        {
+          "pair": 1,
+          "before": 60.01605312853051,
+          "after": 60.02360984154175,
+          "difference": 0.00755671301124039,
+          "percent": 0.012591152895471011
+        },
+        {
+          "pair": 2,
+          "before": 60.017713966066005,
+          "after": 60.02121137955773,
+          "difference": 0.0034974134917220567,
+          "percent": 0.0058273020756830106
+        },
+        {
+          "pair": 3,
+          "before": 60.025649139754506,
+          "after": 60.02790756534576,
+          "difference": 0.002258425591250557,
+          "percent": 0.0037624342653794305
+        },
+        {
+          "pair": 4,
+          "before": 60.019812365246786,
+          "after": 60.002863621681534,
+          "difference": -0.016948743565251334,
+          "percent": -0.028238581390609526
+        }
+      ]
+    },
+    {
+      "metric": "windowFrameP95Ms",
+      "before": {
+        "n": 5,
+        "p50": 18.600000001490116,
+        "p95": 19.399999998509884,
+        "p99": 19.399999998509884,
+        "min": 17.800000000745058,
+        "max": 19.399999998509884
+      },
+      "after": {
+        "n": 5,
+        "p50": 18.699999999254942,
+        "p95": 19,
+        "p99": 19,
+        "min": 17.699999999254942,
+        "max": 19
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": -3.725290298461914e-9,
+        "p95": 0.5,
+        "p99": 0.5,
+        "min": -1.699999999254942,
+        "max": 0.5
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": -1.992133849127386e-8,
+        "p95": 2.7027027027027026,
+        "p99": 2.7027027027027026,
+        "min": -8.762886594770718,
+        "max": 2.7027027027027026
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 17.800000000745058,
+          "after": 17.699999999254942,
+          "difference": -0.10000000149011612,
+          "percent": -0.5617977611569123
+        },
+        {
+          "pair": 1,
+          "before": 19.399999998509884,
+          "after": 17.699999999254942,
+          "difference": -1.699999999254942,
+          "percent": -8.762886594770718
+        },
+        {
+          "pair": 2,
+          "before": 18.700000002980232,
+          "after": 18.699999999254942,
+          "difference": -3.725290298461914e-9,
+          "percent": -1.992133849127386e-8
+        },
+        {
+          "pair": 3,
+          "before": 18.600000001490116,
+          "after": 18.699999999254942,
+          "difference": 0.09999999776482582,
+          "percent": 0.5376343965420132
+        },
+        {
+          "pair": 4,
+          "before": 18.5,
+          "after": 19,
+          "difference": 0.5,
+          "percent": 2.7027027027027026
+        }
+      ]
+    },
+    {
+      "metric": "windowFrameP99Ms",
+      "before": {
+        "n": 5,
+        "p50": 19,
+        "p95": 20.800000000745058,
+        "p99": 20.800000000745058,
+        "min": 18.699999999254942,
+        "max": 20.800000000745058
+      },
+      "after": {
+        "n": 5,
+        "p50": 19,
+        "p95": 21.100000001490116,
+        "p99": 21.100000001490116,
+        "min": 18.5,
+        "max": 21.100000001490116
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": 0,
+        "p95": 2.100000001490116,
+        "p99": 2.100000001490116,
+        "min": -2.2000000029802322,
+        "max": 2.100000001490116
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": 0,
+        "p95": 11.052631586790085,
+        "p99": 11.052631586790085,
+        "min": -10.576923090872251,
+        "max": 11.052631586790085
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 18.699999999254942,
+          "after": 18.5,
+          "difference": -0.19999999925494194,
+          "percent": -1.069518712635885
+        },
+        {
+          "pair": 1,
+          "before": 20.800000000745058,
+          "after": 18.599999997764826,
+          "difference": -2.2000000029802322,
+          "percent": -10.576923090872251
+        },
+        {
+          "pair": 2,
+          "before": 19.300000000745058,
+          "after": 19.5,
+          "difference": 0.19999999925494194,
+          "percent": 1.036269426151405
+        },
+        {
+          "pair": 3,
+          "before": 19,
+          "after": 19,
+          "difference": 0,
+          "percent": 0
+        },
+        {
+          "pair": 4,
+          "before": 19,
+          "after": 21.100000001490116,
+          "difference": 2.100000001490116,
+          "percent": 11.052631586790085
+        }
+      ]
+    },
+    {
+      "metric": "windowCallbackStoreP95Ms",
+      "before": {
+        "n": 5,
+        "p50": 0.8000000007450581,
+        "p95": 0.8999999985098839,
+        "p99": 0.8999999985098839,
+        "min": 0.6999999992549419,
+        "max": 0.8999999985098839
+      },
+      "after": {
+        "n": 5,
+        "p50": 0.8999999985098839,
+        "p95": 0.9000000022351742,
+        "p99": 0.9000000022351742,
+        "min": 0.6999999992549419,
+        "max": 0.9000000022351742
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": 0.09999999776482582,
+        "p95": 0.10000000149011612,
+        "p99": 0.10000000149011612,
+        "min": -0.10000000149011612,
+        "max": 0.10000000149011612
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": 12.499999708961695,
+        "p95": 12.500000174622983,
+        "p99": 12.500000174622983,
+        "min": -11.111111295076064,
+        "max": 12.500000174622983
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 0.6999999992549419,
+          "after": 0.6999999992549419,
+          "difference": 0,
+          "percent": 0
+        },
+        {
+          "pair": 1,
+          "before": 0.8999999985098839,
+          "after": 0.7999999970197678,
+          "difference": -0.10000000149011612,
+          "percent": -11.111111295076064
+        },
+        {
+          "pair": 2,
+          "before": 0.8000000007450581,
+          "after": 0.9000000022351742,
+          "difference": 0.10000000149011612,
+          "percent": 12.500000174622983
+        },
+        {
+          "pair": 3,
+          "before": 0.8000000007450581,
+          "after": 0.8999999985098839,
+          "difference": 0.09999999776482582,
+          "percent": 12.499999708961695
+        },
+        {
+          "pair": 4,
+          "before": 0.8000000007450581,
+          "after": 0.9000000022351742,
+          "difference": 0.10000000149011612,
+          "percent": 12.500000174622983
+        }
+      ]
+    },
+    {
+      "metric": "windowVisibleDrawProxyP95Ms",
+      "before": {
+        "n": 5,
+        "p50": 19.800000000745058,
+        "p95": 22.399999998509884,
+        "p99": 22.399999998509884,
+        "min": 14.100000001490116,
+        "max": 22.399999998509884
+      },
+      "after": {
+        "n": 5,
+        "p50": 18,
+        "p95": 20.5,
+        "p99": 20.5,
+        "min": 14.800000000745058,
+        "max": 20.5
+      },
+      "pairedDifference": {
+        "n": 5,
+        "p50": -0.9000000022351742,
+        "p95": 3.899999998509884,
+        "p99": 3.899999998509884,
+        "min": -7.399999998509884,
+        "max": 3.899999998509884
+      },
+      "pairedPercent": {
+        "n": 5,
+        "p50": -5.732484089581738,
+        "p95": 27.659574454593788,
+        "p99": 27.659574454593788,
+        "min": -33.03571428125962,
+        "max": 27.659574454593788
+      },
+      "pairs": [
+        {
+          "pair": 0,
+          "before": 19.800000000745058,
+          "after": 20.5,
+          "difference": 0.6999999992549419,
+          "percent": 3.5353535314575835
+        },
+        {
+          "pair": 1,
+          "before": 14.100000001490116,
+          "after": 18,
+          "difference": 3.899999998509884,
+          "percent": 27.659574454593788
+        },
+        {
+          "pair": 2,
+          "before": 22.399999998509884,
+          "after": 15,
+          "difference": -7.399999998509884,
+          "percent": -33.03571428125962
+        },
+        {
+          "pair": 3,
+          "before": 21.300000000745058,
+          "after": 18.699999999254942,
+          "difference": -2.600000001490116,
+          "percent": -12.206572776521925
+        },
+        {
+          "pair": 4,
+          "before": 15.700000002980232,
+          "after": 14.800000000745058,
+          "difference": -0.9000000022351742,
+          "percent": -5.732484089581738
+        }
+      ]
+    }
+  ],
+  "deltaPanel": null,
+  "fullRuntimeComparison": false,
+  "limitations": [
+    "No closed panel/0event condition in this family; no signed delta-panel conclusion.",
+    "Backend CPU includes fake upstream tracker/producer; no isolated real Kubernetes gateway claim.",
+    "GPU-process CPU is not GPU utilization. Draw cadence is JS submit, not physical presented FPS.",
+    "Max single process RSS and pageJSHeap are separate metrics, not total physical application RAM.",
+    "Window p95/p99 medians are across repeats; not pooled percentile of all frames/events.",
+    "Observed cohort CPU uses second-resolution OS birth and cannot include wholly unsampled short processes.",
+    "No energy or nativeSafari/Retina/physical-screen latency measurement.",
+    "Only frozen frontend sources differ; no measured product optimization introduced by these harness fixes."
+  ]
+}

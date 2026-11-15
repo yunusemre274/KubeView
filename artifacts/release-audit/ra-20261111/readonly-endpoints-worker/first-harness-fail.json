@@ -1,0 +1,30 @@
+{
+  "startedAt": "2026-11-11T17:06:56.397981+00:00",
+  "sourceHEAD": "de0b41ebe0ed386e671d5ba983ec8554aaa03721",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "./pkg/server",
+    "-run",
+    "Test(ReleaseReadOnlyEndpointsRetainedGrant|ReleaseReadOnlySecretReadAndUnsupportedPatch|ManagementStartsReadOnlyAndCannotBypassSession|ReadOnlyAndNamespaceEnforced|ReadOnlyDrainRejectedBeforeEviction|TemplateCapabilityPreservesControllerStrategyAndReadOnly|ReleaseOriginPreviewCreationReadOnlyAndGrant)$",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "45s",
+    "-count",
+    "1",
+    "-v"
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local"
+  },
+  "testSHA256": "51c78c3eaa288a631680f5334200302d8688ed03ad5652dc86b99b6676b2d76e",
+  "scope": "UNIT synthetic HTTP via production Register + fake clients; no network or actual Kubernetes",
+  "finishedAt": "2026-11-11T17:07:05.311931+00:00",
+  "exitCode": 1
+}

@@ -1,0 +1,30 @@
+✖ global workspace overview includes distant harbor silhouettes and fits a narrow 24-degree viewport (1.314792ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.057667
+
+✖ failing tests:
+
+test at src/harbor/cameraViews.test.js:47:1
+✖ global workspace overview includes distant harbor silhouettes and fits a narrow 24-degree viewport (1.314792ms)
+  AssertionError [ERR_ASSERTION]: explicit global map must include the other harbor's geometry
+  
+  8 !== 16
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/src/harbor/cameraViews.test.js:56:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 16,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

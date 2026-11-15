@@ -1,0 +1,6 @@
+{
+  "cmd/minikube/cmd/node_delete.go": "ad813b87be70bcfb91aa9e450ff56203603e235e0dde2948d17c90f0e9915f81",
+  "pkg/minikube/node/node.go": "54539bb7c8771b52c28424639b7804adfac420e5dc06d37e21dac7f8670fbbf5",
+  "pkg/minikube/delete/delete.go": "058050c949c0f587fac252ac9cf07be8bb420cfe74b50066d489a3088400de88",
+  "pkg/minikube/machine/delete.go": "8fc479a4a83a1e58605d674df8313696a4a3cbe6e69db4b22d0f639e2a32cec6"
+}

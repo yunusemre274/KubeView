@@ -1,0 +1,228 @@
+{
+  "status": "PASS_JOB_REQUIRES_FULL_FIVE_BLOCK_SET",
+  "pair": 0,
+  "side": "B",
+  "reasons": [],
+  "cells": [
+    {
+      "scenario": "panel-closed",
+      "coverage": {
+        "valid": true,
+        "reasons": [],
+        "browserCores": 0.6061361521074325,
+        "gpuProcessCores": 0.2502991623454328,
+        "rendererProcessCores": 0.3471945220050524,
+        "backendCores": 0,
+        "maxBrowserProcessRSSKiB": 412240,
+        "backendRSSKiB": 47392,
+        "browserMainCores": 0.00831006515091078,
+        "churn": [],
+        "clockWindow": {
+          "wallMs": 60168,
+          "activeMs": 60045.5,
+          "differenceMs": 122.5,
+          "toleranceMs": 1000,
+          "valid": true
+        },
+        "complete": true
+      },
+      "summary": {
+        "renderedFPS": 60.02115062744086,
+        "interval": {
+          "n": 3603,
+          "p50": 16.699999999254942,
+          "p95": 17.600000001490116,
+          "p99": 17.800000000745058,
+          "min": 2.2999999970197678,
+          "max": 19.100000001490116
+        },
+        "callbackStore": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "drawProxy": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        }
+      },
+      "canonicalEqual": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "plannedEvents": 0
+    },
+    {
+      "scenario": "panel-open",
+      "coverage": {
+        "valid": true,
+        "reasons": [],
+        "browserCores": 0.6222997673645732,
+        "gpuProcessCores": 0.24642738451312737,
+        "rendererProcessCores": 0.3575938850116318,
+        "backendCores": 0.00016616816218012644,
+        "maxBrowserProcessRSSKiB": 364960,
+        "backendRSSKiB": 45840,
+        "browserMainCores": 0.01811232967763376,
+        "churn": [],
+        "clockWindow": {
+          "wallMs": 60180,
+          "activeMs": 60053.699999999255,
+          "differenceMs": 126.30000000074506,
+          "toleranceMs": 1000,
+          "valid": true
+        },
+        "complete": true
+      },
+      "summary": {
+        "renderedFPS": 60.01295507187808,
+        "interval": {
+          "n": 3603,
+          "p50": 16.699999999254942,
+          "p95": 17.5,
+          "p99": 17.700000002980232,
+          "min": 6.199999999254942,
+          "max": 18.100000001490116
+        },
+        "callbackStore": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "drawProxy": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        }
+      },
+      "canonicalEqual": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "plannedEvents": 0
+    },
+    {
+      "scenario": "panel-closed-events",
+      "coverage": {
+        "valid": true,
+        "reasons": [],
+        "browserCores": 0.682482721956406,
+        "gpuProcessCores": 0.24687666135034544,
+        "rendererProcessCores": 0.43128654970760233,
+        "backendCores": 0.0034888357256778312,
+        "maxBrowserProcessRSSKiB": 389488,
+        "backendRSSKiB": 50560,
+        "browserMainCores": 0.0031565656565656483,
+        "churn": [],
+        "clockWindow": {
+          "wallMs": 60192,
+          "activeMs": 60068,
+          "differenceMs": 124,
+          "toleranceMs": 1000,
+          "valid": true
+        },
+        "complete": true
+      },
+      "summary": {
+        "renderedFPS": 60.01531597522808,
+        "interval": {
+          "n": 3604,
+          "p50": 16.699999999254942,
+          "p95": 17.899999998509884,
+          "p99": 18.600000001490116,
+          "min": 11.600000001490116,
+          "max": 21.699999999254942
+        },
+        "callbackStore": {
+          "n": 300,
+          "p50": 0.6000000014901161,
+          "p95": 0.9000000022351742,
+          "p99": 1.0999999977648258,
+          "min": 0.10000000149011612,
+          "max": 1.199999999254942
+        },
+        "drawProxy": {
+          "n": 121,
+          "p50": 12.5,
+          "p95": 14,
+          "p99": 16.100000001490116,
+          "min": 8.5,
+          "max": 24.300000000745058
+        }
+      },
+      "canonicalEqual": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "plannedEvents": 300
+    },
+    {
+      "scenario": "panel-open-events",
+      "coverage": {
+        "valid": true,
+        "reasons": [],
+        "browserCores": 0.6822148710873217,
+        "gpuProcessCores": 0.24452682148378402,
+        "rendererProcessCores": 0.4273816845919844,
+        "backendCores": 0.0033246338746945494,
+        "maxBrowserProcessRSSKiB": 426960,
+        "backendRSSKiB": 49664,
+        "browserMainCores": 0.008976511461675284,
+        "churn": [],
+        "clockWindow": {
+          "wallMs": 60157,
+          "activeMs": 60035.89999999851,
+          "differenceMs": 121.10000000149012,
+          "toleranceMs": 1000,
+          "valid": true
+        },
+        "complete": true
+      },
+      "summary": {
+        "renderedFPS": 60.014091568546306,
+        "interval": {
+          "n": 3602,
+          "p50": 16.699999999254942,
+          "p95": 18.199999999254942,
+          "p99": 20,
+          "min": 11.299999997019768,
+          "max": 21.400000002235174
+        },
+        "callbackStore": {
+          "n": 300,
+          "p50": 0.5999999977648258,
+          "p95": 0.8999999985098839,
+          "p99": 0.9000000022351742,
+          "min": 0.10000000149011612,
+          "max": 1
+        },
+        "drawProxy": {
+          "n": 121,
+          "p50": 12.899999998509884,
+          "p95": 15,
+          "p99": 22.600000001490116,
+          "min": 8.100000001490116,
+          "max": 24.100000001490116
+        }
+      },
+      "canonicalEqual": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "plannedEvents": 300
+    }
+  ]
+}

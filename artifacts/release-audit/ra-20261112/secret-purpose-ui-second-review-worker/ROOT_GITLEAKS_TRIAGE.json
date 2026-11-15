@@ -1,0 +1,54 @@
+{
+  "disposition": "FALSE_POSITIVE_EMBEDDED_RECOMPUTED_SOURCE_CHECKSUMS",
+  "findings": [
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-second-review-worker/gitleaks-field-review-initial.json:generic-api-key:9",
+      "verifiedSourcePath": "frontend/e2e/release-secret-purpose-browser.mjs",
+      "recomputedSourceDigestMatches": true,
+      "reason": "source SHA256 embedded in preliminary scanner-field review; not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-second-review-worker/gitleaks-field-review-initial.json:generic-api-key:12",
+      "verifiedSourcePath": "frontend/src/workbench/secretPayload.js",
+      "recomputedSourceDigestMatches": true,
+      "reason": "source SHA256 embedded in preliminary scanner-field review; not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-second-review-worker/gitleaks-field-review-initial.json:generic-api-key:26",
+      "verifiedSourcePath": "frontend/e2e/release-secret-purpose-browser.mjs",
+      "recomputedSourceDigestMatches": true,
+      "reason": "source SHA256 embedded in preliminary scanner-field review; not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-second-review-worker/gitleaks-field-review-initial.json:generic-api-key:29",
+      "verifiedSourcePath": "frontend/src/workbench/secretPayload.js",
+      "recomputedSourceDigestMatches": true,
+      "reason": "source SHA256 embedded in preliminary scanner-field review; not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-second-review-worker/gitleaks-field-review-initial.json:generic-api-key:43",
+      "verifiedSourcePath": "frontend/e2e/release-secret-purpose-browser.mjs",
+      "recomputedSourceDigestMatches": true,
+      "reason": "source SHA256 embedded in preliminary scanner-field review; not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-second-review-worker/gitleaks-field-review-initial.json:generic-api-key:46",
+      "verifiedSourcePath": "frontend/src/workbench/secretPayload.js",
+      "recomputedSourceDigestMatches": true,
+      "reason": "source SHA256 embedded in preliminary scanner-field review; not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-second-review-worker/gitleaks-field-review-initial.json:generic-api-key:60",
+      "verifiedSourcePath": "frontend/e2e/release-secret-purpose-browser.mjs",
+      "recomputedSourceDigestMatches": true,
+      "reason": "source SHA256 embedded in preliminary scanner-field review; not credential"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-second-review-worker/gitleaks-field-review-initial.json:generic-api-key:63",
+      "verifiedSourcePath": "frontend/src/workbench/secretPayload.js",
+      "recomputedSourceDigestMatches": true,
+      "reason": "source SHA256 embedded in preliminary scanner-field review; not credential"
+    }
+  ],
+  "globalIgnoreAdded": false
+}

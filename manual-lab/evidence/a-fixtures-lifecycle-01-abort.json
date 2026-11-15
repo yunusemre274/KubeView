@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-09T12:45:55.845989+00:00",
+  "action": "SIGTERM only current test-owned minikube startup process group",
+  "childPids": [
+    29161
+  ],
+  "reason": "control-plane Ready, existing exact-owned worker still stopped; node_ready wait prevents reaching worker restart",
+  "sourceModified": false,
+  "clusterMutatedByAbort": false
+}

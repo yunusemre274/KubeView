@@ -1,0 +1,107 @@
+[
+  {
+    "elapsed_seconds": 0.027,
+    "owned_rss_bytes": 23166976,
+    "free_disk_bytes": 458881126400
+  },
+  {
+    "elapsed_seconds": 1.079,
+    "owned_rss_bytes": 121700352,
+    "free_disk_bytes": 458880151552
+  },
+  {
+    "elapsed_seconds": 2.113,
+    "owned_rss_bytes": 133300224,
+    "free_disk_bytes": 458880139264
+  },
+  {
+    "elapsed_seconds": 3.138,
+    "owned_rss_bytes": 149504000,
+    "free_disk_bytes": 458880139264
+  },
+  {
+    "elapsed_seconds": 4.191,
+    "owned_rss_bytes": 155353088,
+    "free_disk_bytes": 458880122880
+  },
+  {
+    "elapsed_seconds": 5.226,
+    "owned_rss_bytes": 155385856,
+    "free_disk_bytes": 458880118784
+  },
+  {
+    "elapsed_seconds": 6.26,
+    "owned_rss_bytes": 155418624,
+    "free_disk_bytes": 458880045056
+  },
+  {
+    "elapsed_seconds": 7.295,
+    "owned_rss_bytes": 157204480,
+    "free_disk_bytes": 458879954944
+  },
+  {
+    "elapsed_seconds": 8.328,
+    "owned_rss_bytes": 193626112,
+    "free_disk_bytes": 458879954944
+  },
+  {
+    "elapsed_seconds": 9.361,
+    "owned_rss_bytes": 317014016,
+    "free_disk_bytes": 458879954944
+  },
+  {
+    "elapsed_seconds": 10.418,
+    "owned_rss_bytes": 333185024,
+    "free_disk_bytes": 458879631360
+  },
+  {
+    "elapsed_seconds": 11.478,
+    "owned_rss_bytes": 334249984,
+    "free_disk_bytes": 458879291392
+  },
+  {
+    "elapsed_seconds": 12.526,
+    "owned_rss_bytes": 334282752,
+    "free_disk_bytes": 458879287296
+  },
+  {
+    "elapsed_seconds": 13.576,
+    "owned_rss_bytes": 334331904,
+    "free_disk_bytes": 458879283200
+  },
+  {
+    "elapsed_seconds": 14.604,
+    "owned_rss_bytes": 338051072,
+    "free_disk_bytes": 458853941248
+  },
+  {
+    "elapsed_seconds": 15.628,
+    "owned_rss_bytes": 338083840,
+    "free_disk_bytes": 458777157632
+  },
+  {
+    "elapsed_seconds": 16.656,
+    "owned_rss_bytes": 338100224,
+    "free_disk_bytes": 458873851904
+  },
+  {
+    "elapsed_seconds": 17.68,
+    "owned_rss_bytes": 338231296,
+    "free_disk_bytes": 458873839616
+  },
+  {
+    "elapsed_seconds": 18.711,
+    "owned_rss_bytes": 446824448,
+    "free_disk_bytes": 458873815040
+  },
+  {
+    "elapsed_seconds": 19.741,
+    "owned_rss_bytes": 446824448,
+    "free_disk_bytes": 458874961920
+  },
+  {
+    "elapsed_seconds": 20.771,
+    "owned_rss_bytes": 447381504,
+    "free_disk_bytes": 458875031552
+  }
+]

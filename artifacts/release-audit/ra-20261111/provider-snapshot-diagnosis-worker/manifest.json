@@ -1,0 +1,26 @@
+{
+  "status": "READ_ONLY_DIAGNOSIS_COMPLETE",
+  "workElapsedSeconds": 4.435389,
+  "phaseElapsedSecondsAtFinalization": 68.55657,
+  "workWithin120s": true,
+  "within240s": true,
+  "snapshotCount": 3,
+  "currentPairFinding": "Only raw order of the2recorded control-plane mount objects changed; current profile bytes and all other recorded fields equal.",
+  "rawDifferenceCount": 4,
+  "profileHashChanged": false,
+  "pastPreflightCause": "UNPROVEN; lost snapshots are not reconstructed",
+  "normalizationScope": "diagnostic deep-copy of mounts list only; raw before/after/additional preserved; no helper acceptance guard changed",
+  "actualNodeUIDs": {
+    "kvml-d32afbf634e8-a": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+    "kvml-d32afbf634e8-a-m02": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+  },
+  "actualNodeCount": 2,
+  "allReady": true,
+  "realCONTROLStillAbsent": true,
+  "helperUnchanged": true,
+  "RUN_CLEARED": false,
+  "helperSHA256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b",
+  "diagnosticSourceSHA256": "4f0cbc877d1620e52a89c9a06433d99f32fda5bf51c974f26d420cbaaf5a6812",
+  "noAppManagerProviderPOSTCLIAddDeleteCancelOrLabUpDown": true,
+  "finalizedAt": "2026-11-11T18:44:10.488320+00:00"
+}

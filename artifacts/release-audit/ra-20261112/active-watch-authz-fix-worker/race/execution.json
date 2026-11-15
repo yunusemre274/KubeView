@@ -1,0 +1,1557 @@
+{
+  "status": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+  "startedAt": "2026-11-12T20:59:09.683436+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=180s",
+    "-run",
+    "^(TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat|TestWatchAuthorizationReviewDecisions|TestWatchAuthorizationExactPermissionAttributes|TestWatchAuthorizationPermissionDenialAndError|TestWatchAuthorizationCapacityBudget|TestWatchAuthorizationBatchDeadlineAndBufferedCancel|TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives|TestWorkspaceSharedBrokerSelectorExitAndLastRelease|TestScopeSwitchCancelsInFlightStreams)$",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "captured": [
+    {
+      "pid": 62656,
+      "identity": "Thu Nov 12 23:59:09 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -race -json -p 1 -parallel 1 -count=1 -timeout=180s -run ^(TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat|TestWatchAuthorizationReviewDecisions|TestWatchAuthorizationExactPermissionAttributes|TestWatchAuthorizationPermissionDenialAndError|TestWatchAuthorizationCapacityBudget|TestWatchAuthorizationBatchDeadlineAndBufferedCancel|TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives|TestWorkspaceSharedBrokerSelectorExitAndLastRelease|TestScopeSwitchCancelsInFlightStreams)$ ./pkg/server",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 62669,
+      "identity": "Thu Nov 12 23:59:10 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/compile -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build3922291717/b124/_pkg_.a -trimpath /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build3922291717/b124=> -p github.com/k8s-tersane/tersane/backend/pkg/server -lang=go1.26 -complete -installsuffix race -buildid 6tvAITaxjssmW95bQ2oI/6tvAITaxjssmW95bQ2oI -goversion go1.26.11 -c=2 -shared -race -nolocalimports -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build3922291717/b124/importcfg -embedcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build3922291717/b124/embedcfg -pack /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection_errors.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/log_session.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/maintenance.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/portforward.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/provider_handlers.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/replay_source.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/resource_scopes.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/resources.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/server.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/sessions.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/stream.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/template_capability.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/traffic_handlers.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/watch_authorization.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_broker.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_membership.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_projection.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_scope.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/benchmark_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/correctness_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/rbac_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_active_watch_authz_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_kubeconfig_trust_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_operations_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_origin_preview_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_preview_browser_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_provider_cache_scope_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_readonly_endpoints_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_secret_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_security_regression_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_session_expiry_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_session_lifecycle_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_lifecycle_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_maintenance_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_protocol_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_resources_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_traffic_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/replay_source_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/server_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/stream_benchmark_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/traffic_handlers_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_cr_scope_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_hubble_scope_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_log_roles_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_provider_gate_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/watch_authorization_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_cookie_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_acceptance_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_helpers_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_isolation_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_recovery_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_scope_list_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_test.go",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 62686,
+      "identity": "Thu Nov 12 23:59:12 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/link -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build3922291717/b001/server.test -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build3922291717/b001/importcfg.link -installsuffix race -s -w -buildmode=pie -buildid=cpQcLl4RTOLtY44ROVLI/W94rYKkEn9Av-Woqh5i6/SVFNcQaZp6XrTaRUvkSN/cpQcLl4RTOLtY44ROVLI -race -X testing.testBinary=1 -extld=clang /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build3922291717/b001/_pkg_.a",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 62703,
+      "identity": "Thu Nov 12 23:59:14 2026     /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build3922291717/b001/server.test -test.paniconexit0 -test.v=test2json -test.parallel=1 -test.count=1 -test.timeout=3m0s -test.run=^(TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat|TestWatchAuthorizationReviewDecisions|TestWatchAuthorizationExactPermissionAttributes|TestWatchAuthorizationPermissionDenialAndError|TestWatchAuthorizationCapacityBudget|TestWatchAuthorizationBatchDeadlineAndBufferedCancel|TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives|TestWorkspaceSharedBrokerSelectorExitAndLastRelease|TestScopeSwitchCancelsInFlightStreams)$",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.020178708000457846,
+      "ownedRSSKiB": 4368,
+      "ownedPIDs": [
+        62656
+      ]
+    },
+    {
+      "elapsedSeconds": 0.240115374999732,
+      "ownedRSSKiB": 53776,
+      "ownedPIDs": [
+        62656
+      ]
+    },
+    {
+      "elapsedSeconds": 0.46004425000137417,
+      "ownedRSSKiB": 55376,
+      "ownedPIDs": [
+        62656
+      ]
+    },
+    {
+      "elapsedSeconds": 0.6753107920012553,
+      "ownedRSSKiB": 55472,
+      "ownedPIDs": [
+        62656
+      ]
+    },
+    {
+      "elapsedSeconds": 0.898104208001314,
+      "ownedRSSKiB": 127312,
+      "ownedPIDs": [
+        62656,
+        62669
+      ]
+    },
+    {
+      "elapsedSeconds": 1.1182850000004692,
+      "ownedRSSKiB": 227040,
+      "ownedPIDs": [
+        62656,
+        62669
+      ]
+    },
+    {
+      "elapsedSeconds": 1.3285532500012778,
+      "ownedRSSKiB": 310576,
+      "ownedPIDs": [
+        62656,
+        62669
+      ]
+    },
+    {
+      "elapsedSeconds": 1.5484003750025295,
+      "ownedRSSKiB": 357264,
+      "ownedPIDs": [
+        62656,
+        62669
+      ]
+    },
+    {
+      "elapsedSeconds": 1.7690421250008512,
+      "ownedRSSKiB": 394640,
+      "ownedPIDs": [
+        62656,
+        62669
+      ]
+    },
+    {
+      "elapsedSeconds": 1.9889256250025937,
+      "ownedRSSKiB": 397024,
+      "ownedPIDs": [
+        62656,
+        62669
+      ]
+    },
+    {
+      "elapsedSeconds": 2.2089675000024727,
+      "ownedRSSKiB": 422016,
+      "ownedPIDs": [
+        62656,
+        62669
+      ]
+    },
+    {
+      "elapsedSeconds": 2.4218954579991987,
+      "ownedRSSKiB": 72544,
+      "ownedPIDs": [
+        62656,
+        62686
+      ]
+    },
+    {
+      "elapsedSeconds": 2.6424726250006643,
+      "ownedRSSKiB": 170256,
+      "ownedPIDs": [
+        62656,
+        62686
+      ]
+    },
+    {
+      "elapsedSeconds": 2.8626926249999087,
+      "ownedRSSKiB": 248272,
+      "ownedPIDs": [
+        62656,
+        62686
+      ]
+    },
+    {
+      "elapsedSeconds": 3.0826667080000334,
+      "ownedRSSKiB": 317888,
+      "ownedPIDs": [
+        62656,
+        62686
+      ]
+    },
+    {
+      "elapsedSeconds": 3.3030594580013712,
+      "ownedRSSKiB": 468320,
+      "ownedPIDs": [
+        62656,
+        62686
+      ]
+    },
+    {
+      "elapsedSeconds": 3.523075749999407,
+      "ownedRSSKiB": 579088,
+      "ownedPIDs": [
+        62656,
+        62686
+      ]
+    },
+    {
+      "elapsedSeconds": 3.733453249999002,
+      "ownedRSSKiB": 649312,
+      "ownedPIDs": [
+        62656,
+        62686
+      ]
+    },
+    {
+      "elapsedSeconds": 3.953078958002152,
+      "ownedRSSKiB": 753392,
+      "ownedPIDs": [
+        62656,
+        62686
+      ]
+    },
+    {
+      "elapsedSeconds": 4.173188749999099,
+      "ownedRSSKiB": 55792,
+      "ownedPIDs": [
+        62656
+      ]
+    },
+    {
+      "elapsedSeconds": 4.393417582999973,
+      "ownedRSSKiB": 56128,
+      "ownedPIDs": [
+        62656
+      ]
+    },
+    {
+      "elapsedSeconds": 4.620896458000061,
+      "ownedRSSKiB": 56224,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 4.864596375002293,
+      "ownedRSSKiB": 56224,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 5.106243666999944,
+      "ownedRSSKiB": 56224,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 5.344540833000792,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 5.5872326669996255,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 5.831771583001682,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 6.079128417000902,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 6.32817870800136,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 6.578093542000715,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 6.826700375000655,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 7.074806625001656,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 7.3227808750016266,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 7.571647583001322,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 7.8014301670009445,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 8.051082124999084,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 8.293019958000514,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 8.542091833001905,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 8.783416917001887,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 9.03038608299903,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 9.27841704200182,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 9.526988707999408,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 9.773747082999762,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 10.02360200000112,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 10.271122375001141,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 10.517977041999984,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 10.76543033300186,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 11.011675583002216,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 11.260136375000002,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 11.504647792000469,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 11.751884125002107,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 11.99270795800112,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 12.231737000001885,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 12.479236833001778,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 12.72585829200034,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 12.97189020800215,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 13.219110542002454,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 13.46646999999939,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 13.713555458001792,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 13.95446845799961,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 14.200740500000393,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 14.448102708000079,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 14.69298287499987,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 14.939943833000143,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 15.182409583001572,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 15.43049691700071,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 15.674986083002295,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 15.922788292002224,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 16.16798016699977,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 16.414961208000022,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 16.66162600000098,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 16.907463542000187,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 17.15279612499944,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 17.40207200000077,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 17.648632042000827,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 17.896401666999736,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 18.144711291999556,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 18.394184667002264,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 18.641246541999863,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 18.88508533300046,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 19.13383620800232,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 19.376413083002262,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 19.623197917000653,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 19.870537792001414,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 20.118561416999,
+      "ownedRSSKiB": 127728,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 20.363559875000647,
+      "ownedRSSKiB": 128400,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 20.60990033300186,
+      "ownedRSSKiB": 130880,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 20.856409833002544,
+      "ownedRSSKiB": 130896,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 21.102447583001776,
+      "ownedRSSKiB": 130896,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 21.351056667001103,
+      "ownedRSSKiB": 130912,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 21.59539225000117,
+      "ownedRSSKiB": 130912,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 21.84172820800086,
+      "ownedRSSKiB": 130928,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 22.087880875002156,
+      "ownedRSSKiB": 130928,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 22.334726667002542,
+      "ownedRSSKiB": 130944,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 22.58124804199906,
+      "ownedRSSKiB": 130944,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 22.82957379200161,
+      "ownedRSSKiB": 130960,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 23.077057124999556,
+      "ownedRSSKiB": 130960,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 23.323349292000785,
+      "ownedRSSKiB": 130960,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 23.56582687500122,
+      "ownedRSSKiB": 130976,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 23.80615187500007,
+      "ownedRSSKiB": 130976,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 24.043666125002346,
+      "ownedRSSKiB": 130992,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 24.29165629199997,
+      "ownedRSSKiB": 130992,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 24.539699042001303,
+      "ownedRSSKiB": 131008,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 24.78654616700078,
+      "ownedRSSKiB": 131008,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 25.033593167001527,
+      "ownedRSSKiB": 131024,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 25.277483792000567,
+      "ownedRSSKiB": 131040,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 25.52471562500068,
+      "ownedRSSKiB": 131056,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 25.772259833000135,
+      "ownedRSSKiB": 131072,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 26.015222624999296,
+      "ownedRSSKiB": 131072,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 26.264057291999052,
+      "ownedRSSKiB": 131088,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 26.511180207999132,
+      "ownedRSSKiB": 131088,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 26.75778587500099,
+      "ownedRSSKiB": 131088,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 27.00328024999908,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 27.239166082999873,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 27.482282583001506,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 27.72744608300127,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 27.97635525000078,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 28.222767999999633,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 28.469964583000547,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 28.71607883300021,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 28.961037625002064,
+      "ownedRSSKiB": 131184,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 29.20529987500049,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 29.435483458000817,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 29.67694316699999,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 29.924057708001783,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 30.173237125000014,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 30.421121250001306,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 30.66820650000227,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 30.915012207999098,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 31.16352541699962,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 31.411526208001305,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 31.659617833000084,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 31.906398125000123,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 32.156052458001795,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 32.40350266700261,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 32.65105704199959,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 32.897943042000406,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 33.146218624999165,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 33.38733416700052,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 33.634538875001454,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 33.88300962500216,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 34.122370000000956,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 34.36956720799935,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 34.61861004200182,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 34.864944291999564,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 35.11296766700252,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 35.34995345800053,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 35.590201082999556,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 35.83307825000156,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 36.079765500002395,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 36.32660783300162,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 36.57409924999956,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 36.821857582999655,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 37.06982133299971,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 37.31794379200073,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 37.567172375001974,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 37.81476287500118,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 38.06124266700135,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 38.30550362500071,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 38.55227866700079,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 38.79248650000227,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 39.03971695799919,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 39.289340499999525,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 39.536376042000484,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 39.78603679200023,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 40.03269916700083,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 40.28106695799943,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 40.5310755419996,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 40.77744554200035,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 41.02433091700004,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 41.27264487499997,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 41.52367920799952,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 41.770995000002586,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 42.0179050830011,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 42.2653522920009,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 42.51377158300238,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 42.760801208001794,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 43.00936520799951,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 43.25616291700135,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 43.50361266700202,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 43.752979083001264,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 44.00035887500053,
+      "ownedRSSKiB": 136336,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 44.23713958300141,
+      "ownedRSSKiB": 140048,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 44.47922420800023,
+      "ownedRSSKiB": 140320,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 44.72692966700197,
+      "ownedRSSKiB": 140320,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 44.97490066699902,
+      "ownedRSSKiB": 140320,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    },
+    {
+      "elapsedSeconds": 45.222810582999955,
+      "ownedRSSKiB": 140320,
+      "ownedPIDs": [
+        62656,
+        62703
+      ]
+    }
+  ],
+  "safety": "new concurrency + actual rate limiter coverage; race Go180/wall240; tree2GiB/disk10GiB; same fake/loopback fixtures",
+  "limitSeconds": 240,
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "sourceBeforeMatches": true,
+  "exitCode": 0,
+  "topLevelTests": [
+    "TestScopeSwitchCancelsInFlightStreams",
+    "TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat",
+    "TestWatchAuthorizationReviewDecisions",
+    "TestWatchAuthorizationExactPermissionAttributes",
+    "TestWatchAuthorizationPermissionDenialAndError",
+    "TestWatchAuthorizationCapacityBudget",
+    "TestWatchAuthorizationBatchDeadlineAndBufferedCancel",
+    "TestWatchAuthorizationPendingReviewFlowsAndSiblingSurvives",
+    "TestWorkspaceSharedBrokerSelectorExitAndLastRelease"
+  ],
+  "topLevelPassed": 9,
+  "subtestsPassed": 9,
+  "failures": 0,
+  "skips": 0,
+  "sourceAfterMatches": true,
+  "elapsedSeconds": 45.908354792001774,
+  "finishedAt": "2026-11-12T20:59:55.591763+00:00"
+}

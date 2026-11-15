@@ -1,0 +1,236 @@
+{
+  "sourceChecks": [
+    {
+      "label": "12Nov actual RoleBinding production HTTP/WS plan",
+      "rows": [
+        {
+          "path": "backend/pkg/server/release_active_watch_real_test.go",
+          "expectedSHA256": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb",
+          "actualSHA256": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/stream.go",
+          "expectedSHA256": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+          "actualSHA256": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/watch_authorization.go",
+          "expectedSHA256": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+          "actualSHA256": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace.go",
+          "expectedSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+          "actualSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace_scope.go",
+          "expectedSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+          "actualSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace_broker.go",
+          "expectedSHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+          "actualSHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace_membership.go",
+          "expectedSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+          "actualSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/connection.go",
+          "expectedSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "actualSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/resources.go",
+          "expectedSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+          "actualSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/server.go",
+          "expectedSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "actualSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "equal": true
+        },
+        {
+          "path": "backend/go.mod",
+          "expectedSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+          "actualSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+          "equal": true
+        },
+        {
+          "path": "backend/go.sum",
+          "expectedSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+          "actualSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+          "equal": true
+        }
+      ],
+      "allRecordedFilesEqual": true
+    },
+    {
+      "label": "11Nov SEC001 final repair identity",
+      "rows": [
+        {
+          "path": "backend/pkg/server/workspace_scope.go",
+          "expectedSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+          "actualSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/release_security_regression_test.go",
+          "expectedSHA256": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+          "actualSHA256": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+          "equal": true
+        }
+      ],
+      "allRecordedFilesEqual": true
+    },
+    {
+      "label": "12Nov frontend failed-scope reducer GREEN receipt",
+      "rows": [
+        {
+          "path": "frontend/src/data/resourceStore.js",
+          "expectedSHA256": "a88fd60b1519c23e622ac986fe6d96caf8a1a8e780bb2f36d603b4eedbdeb525",
+          "actualSHA256": "a88fd60b1519c23e622ac986fe6d96caf8a1a8e780bb2f36d603b4eedbdeb525",
+          "equal": true
+        },
+        {
+          "path": "frontend/src/data/resourceScopes.js",
+          "expectedSHA256": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158",
+          "actualSHA256": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158",
+          "equal": true
+        },
+        {
+          "path": "frontend/tests/release-watch-authz.test.js",
+          "expectedSHA256": "de4a2f8741ecf17d90e4a386dbd7f3b47b081f51a2542b37e99f420315c4a215",
+          "actualSHA256": "de4a2f8741ecf17d90e4a386dbd7f3b47b081f51a2542b37e99f420315c4a215",
+          "equal": true
+        }
+      ],
+      "allRecordedFilesEqual": true
+    },
+    {
+      "label": "Frontend GREEN companion files at recorded base2be79c84 (store change separately exact sourceAfter)",
+      "rows": [
+        {
+          "path": "frontend/src/context/WorkspaceRegistry.js",
+          "baselineGitSHA256": "010ae39dec13d12f58547333c9eaa6292e146ddfba41a85fdb2962613de1e59b",
+          "currentSHA256": "010ae39dec13d12f58547333c9eaa6292e146ddfba41a85fdb2962613de1e59b",
+          "equal": true
+        },
+        {
+          "path": "frontend/src/context/WorkspaceProvider.jsx",
+          "baselineGitSHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+          "currentSHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+          "equal": true
+        },
+        {
+          "path": "frontend/src/context/ShipyardClusterContext.jsx",
+          "baselineGitSHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+          "currentSHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+          "equal": true
+        },
+        {
+          "path": "frontend/src/world/workspace.js",
+          "baselineGitSHA256": "8bc30c6f259aa26033cc3d4709220630a6912bd8be8f5a03711e875d879c689a",
+          "currentSHA256": "8bc30c6f259aa26033cc3d4709220630a6912bd8be8f5a03711e875d879c689a",
+          "equal": true
+        },
+        {
+          "path": "frontend/tests/workspace.test.js",
+          "baselineGitSHA256": "1b977cf41716a2225569568adf998242e100620d455d5fd9941a176f7465fe08",
+          "currentSHA256": "1b977cf41716a2225569568adf998242e100620d455d5fd9941a176f7465fe08",
+          "equal": true
+        },
+        {
+          "path": "frontend/tests/store.test.js",
+          "baselineGitSHA256": "e0602bb6627b32a2ae15999d4a457ddee6116f3d2ba5a69ca05c8f5c4239ab27",
+          "currentSHA256": "e0602bb6627b32a2ae15999d4a457ddee6116f3d2ba5a69ca05c8f5c4239ab27",
+          "equal": true
+        }
+      ],
+      "allRecordedFilesEqual": true
+    }
+  ],
+  "evidence": [
+    {
+      "type": "REAL_KUBERNETES_PRODUCTION_HTTP_WS",
+      "path": "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/REPORT.md",
+      "sha256": "5e0db646037fcb723fb9b86382ce26cdec569e8492404c4005e7d7f2e1ef4a0a",
+      "bytes": 3847
+    },
+    {
+      "type": "REAL_KUBERNETES_PRODUCTION_HTTP_WS",
+      "path": "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/safe-result.json",
+      "sha256": "1b059652745db94036609c982472e0920dd653eeeaeb3f189f6e3a59161c5b8e",
+      "bytes": 2035
+    },
+    {
+      "type": "SYNTHETIC_GUARD_RED",
+      "path": "artifacts/release-audit/ra-20261111/security-worker/regression-secret-discovery.log",
+      "sha256": "15b48090199b5bb15442d803b231cad77863e95ae6e0678fbb09a0f20cc6272e",
+      "bytes": 893
+    },
+    {
+      "type": "SYNTHETIC_GUARD_GREEN",
+      "path": "artifacts/release-audit/ra-20261111/security-worker/retest-sec001.log",
+      "sha256": "80468ce26266f16a6d7b0a32dd589824aa51cdacc32dc7d5e589ef37e8c50245",
+      "bytes": 27520
+    },
+    {
+      "type": "SYNTHETIC_PROTOCOL_UNIT_GREEN",
+      "path": "artifacts/release-audit/ra-20261112/active-watch-frontend-root/green.stdout",
+      "sha256": "c65226f85bf606aa669c061ee1d279e9f0235cedcf5ef0fac97da611fa58514a",
+      "bytes": 4923
+    },
+    {
+      "type": "SYNTHETIC_PROTOCOL_UNIT_RED",
+      "path": "artifacts/release-audit/ra-20261112/active-watch-frontend-root/red.stdout",
+      "sha256": "73a44f5f0876e49612d187b3efc92cd2c0affa73866a1fe4d6e031a52725ac74",
+      "bytes": 2242
+    },
+    {
+      "type": "UNIT_SOURCE_AND_CONTROL_INVENTORY",
+      "path": "backend/pkg/server/workspace_test.go",
+      "sha256": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+      "bytes": 15332
+    },
+    {
+      "type": "HISTORICAL_REPLAY_NORMAL_UI_NOT_CURRENT_E2E",
+      "path": "artifacts/workspace/ws-vertical03-replayM5-settled-camera/result.json",
+      "sha256": "f7ce7de337ca751c9b45d8b8e7468926d3570ea222f176a74b4789f8b9565f35",
+      "bytes": 38374
+    },
+    {
+      "type": "HISTORICAL_REAL_K8S_NORMAL_UI_NOT_CURRENT_E2E",
+      "path": "artifacts/workspace/ws-vertical03-real04-uid-logs/result.json",
+      "sha256": "c2048d94b9c7fb53c2605c2f1f7ef269dd7074dd0e01957ce80326f26fc47f4a",
+      "bytes": 8248
+    },
+    {
+      "type": "HISTORICAL_REAL_K8S_SCALE_NORMAL_UI_NOT_CURRENT_E2E",
+      "path": "artifacts/workspace/ws-vertical05-real03-scale-accepted-contract/result.json",
+      "sha256": "f4a3295a385d5dcd237b9661dcf1fbee261a4e39e4f69b0694038d5e9a96d0f4",
+      "bytes": 3079
+    }
+  ],
+  "newTestRunCount": 0,
+  "historicalUIWarning": "09Nov vertical03/05 receipts are historical; no complete source/binary equivalence or new screenshot/video review claimed.",
+  "frontendUnitRawSummary": [
+    "\u2139 tests 46",
+    "\u2139 pass 46",
+    "\u2139 fail 0",
+    "\u2139 skipped 0"
+  ]
+}

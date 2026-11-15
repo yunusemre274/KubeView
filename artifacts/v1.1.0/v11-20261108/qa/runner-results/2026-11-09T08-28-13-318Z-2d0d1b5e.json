@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-28-13-318Z-2d0d1b5e",
+  "startedAt": "2026-11-09T08:28:13.318Z",
+  "tests": [
+    {
+      "title": "V11-11 explicit readonly production gateway normal UI cannot enable writes or create a real object",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 3970,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-28-13-510Z-0f09fe09/v11-readonly-V11-11-explic-a2e85-tes-or-create-a-real-object-chromium/attachments/v11-evidence-0004f83e73a17cc8f464bb2c6b4bdcc52a6e7549.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:28:17.562Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-28-13-318Z-2d0d1b5e.json"
+}

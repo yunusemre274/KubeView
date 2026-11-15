@@ -1,0 +1,213 @@
+package server
+
+import (
+	"bytes"
+	"crypto/sha256"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"net/http/httptest"
+	"os"
+	"path/filepath"
+	"reflect"
+	"strings"
+	"testing"
+
+	ws "github.com/k8s-tersane/tersane/backend/pkg/workspace"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+)
+
+// These guards exercise the registered production HTTP handlers in-process.
+// Kubernetes clients remain the existing fixture's fakes; this is not an E2E.
+func releaseParserFixture(t *testing.T) (*workspaceFixture, string) {
+	t.Helper()
+	t.Setenv("KV_HUBBLE_ENABLED", "false")
+	t.Setenv("KV_MINIKUBE_ENABLED", "false")
+	s, c := testServer(t, true, labeledPod("visible", "parser-visible-uid", "qa", "allowed"), labeledPod("hidden", "parser-hidden-uid", "qa", "other"), labeledPod("visible", "parser-other-ns-uid", "other", "allowed"))
+	s.Namespace = ""
+	dir := filepath.Join(t.TempDir(), "private-workspace")
+	if err := s.ConfigureWorkspace(dir, "", ""); err != nil {
+		t.Fatal(err)
+	}
+	f := &workspaceFixture{t: t, s: s, c: c, mux: http.NewServeMux()}
+	s.Register(f.mux)
+	r := f.request("GET", "/api/workspace", nil, "", "")
+	if r.Code != http.StatusOK {
+		t.Fatalf("bootstrap status=%d", r.Code)
+	}
+	f.accept(r)
+	return f, dir
+}
+
+func releaseParserRaw(f *workspaceFixture, method, path, mime, nonce string, body []byte) *httptest.ResponseRecorder {
+	r := httptest.NewRequest(method, "http://localhost"+path, bytes.NewReader(body))
+	r.Header.Set("Content-Type", mime)
+	r.Header.Set("X-KubeView-Workspace-Nonce", nonce)
+	if f.cookie != nil {
+		r.AddCookie(f.cookie)
+	}
+	out := httptest.NewRecorder()
+	f.mux.ServeHTTP(out, r)
+	return out
+}
+
+func releaseParserJSON(t *testing.T, v interface{}) []byte {
+	t.Helper()
+	b, err := json.Marshal(v)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return b
+}
+
+func releaseParserFiles(t *testing.T, dir string) map[string]string {
+	t.Helper()
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	files := map[string]string{}
+	for _, entry := range entries {
+		b, err := os.ReadFile(filepath.Join(dir, entry.Name()))
+		if err != nil {
+			t.Fatal(err)
+		}
+		files[entry.Name()] = string(b)
+	}
+	return files
+}
+
+func TestReleaseWorkspaceParserAllowedJSONAndScope(t *testing.T) {
+	f, _ := releaseParserFixture(t)
+	prior := f.doc.Revision
+	r := f.request("PATCH", "/api/workspace", map[string]interface{}{"revision": prior, "name": "parser allowed", "preferences": map[string]interface{}{"theme": "dark", "camera": map[string]interface{}{"zoom": 2}}}, "", "")
+	if r.Code != 200 {
+		t.Fatalf("allowed JSON status=%d", r.Code)
+	}
+	f.accept(r)
+	if f.doc.Revision != prior+1 || f.doc.Name != "parser allowed" || f.nonce == "" || f.cookie == nil {
+		t.Fatal("normal JSON/nonce contract not retained")
+	}
+	conn := f.addConnection()
+	harbor := f.addHarbor(conn, []string{"qa"}, "app=allowed")
+	r = f.request("GET", "/api/resources?resource=pods&"+f.scope(harbor, "parser-tab"), nil, "", "")
+	var list unstructured.UnstructuredList
+	if r.Code != 200 || json.Unmarshal(r.Body.Bytes(), &list) != nil || len(list.Items) != 1 || string(list.Items[0].GetUID()) != "parser-visible-uid" {
+		t.Fatalf("exact scope status=%d items=%d", r.Code, len(list.Items))
+	}
+	t.Log("PARSER_CASE allowed_json status=200; exact_scope status=200 exactUID=true noncePresent=true")
+}
+
+func TestReleaseWorkspaceParserRejectsWithoutMutation(t *testing.T) {
+	f, dir := releaseParserFixture(t)
+	conn := f.addConnection()
+	f.addHarbor(conn, []string{"qa"}, "app=allowed")
+	base := f.s.workspace.store.Snapshot()
+	importBody := func(change func(*ws.Document)) []byte {
+		var d ws.Document
+		if err := json.Unmarshal(releaseParserJSON(t, base), &d); err != nil {
+			t.Fatal(err)
+		}
+		change(&d)
+		return releaseParserJSON(t, map[string]interface{}{"revision": base.Revision, "workspace": d})
+	}
+	deep := interface{}("leaf")
+	for i := 0; i < 12; i++ {
+		deep = map[string]interface{}{"child": deep}
+	}
+	patch := func(p interface{}) []byte {
+		return releaseParserJSON(t, map[string]interface{}{"revision": base.Revision, "preferences": p})
+	}
+	large := []byte(fmt.Sprintf(`{"revision":%d,"ignored":"`, base.Revision) + strings.Repeat("x", (2<<20)+256) + `"}`)
+	if len(large) <= 2<<20 || len(large) > 4<<20 {
+		t.Fatal("large fixture outside bounded body range")
+	}
+	cases := []struct {
+		name, path, mime, nonce string
+		body                    []byte
+		status                  int
+	}{
+		{"malformed", "", "application/json", f.nonce, []byte(`{"revision":`), 400},
+		{"second_value", "", "application/json", f.nonce, append(patch(map[string]interface{}{}), []byte(` {}`)...), 400},
+		{"future_schema", "/import", "application/json", f.nonce, importBody(func(d *ws.Document) { d.SchemaVersion = ws.SchemaVersion + 1 }), 422},
+		{"nested_credential", "", "application/json", f.nonce, patch(map[string]interface{}{"display": map[string]interface{}{"credential": "synthetic-parser-marker"}}), 422},
+		{"bogus_reference", "/import", "application/json", f.nonce, importBody(func(d *ws.Document) { d.Harbors[0].ConnectionRef = "missing-connection" }), 422},
+		{"over_depth", "", "application/json", f.nonce, patch(deep), 422},
+		{"over_2MiB", "", "application/json", f.nonce, large, 400},
+		{"non_json_mime", "", "text/plain", f.nonce, patch(map[string]interface{}{}), 415},
+		{"wrong_nonce", "", "application/json", "wrong-synthetic-nonce", patch(map[string]interface{}{}), 403},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			before := f.s.workspace.store.Snapshot()
+			files := releaseParserFiles(t, dir)
+			method := "PATCH"
+			if tc.path == "/import" {
+				method = "POST"
+			}
+			r := releaseParserRaw(f, method, "/api/workspace"+tc.path, tc.mime, tc.nonce, tc.body)
+			if r.Code != tc.status {
+				t.Fatalf("status=%d want=%d bodyBytes=%d", r.Code, tc.status, len(tc.body))
+			}
+			if !reflect.DeepEqual(before, f.s.workspace.store.Snapshot()) || !reflect.DeepEqual(files, releaseParserFiles(t, dir)) {
+				t.Fatal("rejected request mutated snapshot/revision/persisted files")
+			}
+			t.Logf("PARSER_CASE %s status=%d bytes=%d bodySHA256=%x snapshotRevisionFilesUnchanged=true", tc.name, r.Code, len(tc.body), sha256.Sum256(tc.body))
+		})
+	}
+}
+
+func TestReleaseWorkspaceParserDuplicateUnknownAndImport(t *testing.T) {
+	f, dir := releaseParserFixture(t)
+	conn := f.addConnection()
+	harbor := f.addHarbor(conn, []string{"qa"}, "app=allowed")
+	// encoding/json accepts repeated fields and ignores unknown fields.
+	// Scalars use the last value. Repeated objects merge: an earlier unsafe
+	// map key must still be rejected, rather than treated as overwritten.
+	before := f.s.workspace.store.Snapshot()
+	files := releaseParserFiles(t, dir)
+	merged := []byte(fmt.Sprintf(`{"revision":%d,"preferences":{"credential":"synthetic-discarded-marker"},"preferences":{"theme":"light"}}`, f.doc.Revision))
+	r := releaseParserRaw(f, "PATCH", "/api/workspace", "application/json", f.nonce, merged)
+	if r.Code != 422 || !reflect.DeepEqual(before, f.s.workspace.store.Snapshot()) || !reflect.DeepEqual(files, releaseParserFiles(t, dir)) {
+		t.Fatalf("duplicate-object safety status=%d or state/files mutated", r.Code)
+	}
+	t.Log("PARSER_CASE duplicate_object_merge status=422 snapshotRevisionFilesUnchanged=true")
+	body := []byte(fmt.Sprintf(`{"revision":0,"revision":%d,"preferences":{"theme":"light"},"credential":"synthetic-ignored-marker"}`, f.doc.Revision))
+	r = releaseParserRaw(f, "PATCH", "/api/workspace", "application/json; charset=utf-8", f.nonce, body)
+	if r.Code != 200 {
+		t.Fatalf("duplicate-last/unknown policy status=%d", r.Code)
+	}
+	f.accept(r)
+	if !reflect.DeepEqual(f.doc.Preferences, map[string]interface{}{"theme": "light"}) {
+		t.Fatal("duplicate-last safe preference not preserved")
+	}
+	src := f.s.workspace.store.Snapshot()
+	if len(src.Connections) != 1 || !src.Connections[0].Bound || src.Connections[0].Context != "test" {
+		t.Fatal("import fixture lacks actual bound source context")
+	}
+	encoded := releaseParserJSON(t, src)
+	encoded = bytes.Replace(encoded, []byte(`"connections":[{`), []byte(`"connections":[{"credential":"synthetic-import-marker",`), 1)
+	body = []byte(fmt.Sprintf(`{"revision":%d,"workspace":%s,"unknownAuthority":{"bound":true,"context":"test"}}`, f.doc.Revision, encoded))
+	r = releaseParserRaw(f, "POST", "/api/workspace/import", "application/json", f.nonce, body)
+	if r.Code != 200 {
+		t.Fatalf("valid import status=%d", r.Code)
+	}
+	f.accept(r)
+	d := f.s.workspace.store.Snapshot()
+	if d.Revision != src.Revision+1 || len(d.Connections) != 2 || len(d.Harbors) != 2 {
+		t.Fatal("import revision/collection contract changed")
+	}
+	if !reflect.DeepEqual(d.Connections[0], src.Connections[0]) || !reflect.DeepEqual(d.Harbors[0], src.Harbors[0]) {
+		t.Fatal("HTTP import changed the existing trusted connection or harbor")
+	}
+	imported, importedHarbor := d.Connections[1], d.Harbors[1]
+	if imported.ID == conn || imported.Context != "" || imported.Bound || importedHarbor.ID == harbor || importedHarbor.ConnectionRef != imported.ID || importedHarbor.WorkspaceID != d.ID {
+		t.Fatal("import restored authority or failed ID remapping")
+	}
+	for _, contents := range releaseParserFiles(t, dir) {
+		if strings.Contains(contents, "synthetic-") || strings.Contains(contents, "unknownAuthority") || strings.Contains(contents, `"credential"`) {
+			t.Fatal("ignored/discarded credential or authority fields persisted")
+		}
+	}
+	t.Log("PARSER_CASE duplicate_last_and_unknown status=200 discardedCredentialAbsent=true; valid_import status=200 importedContextEmpty=true importedBoundFalse=true IDsRemapped=true")
+}

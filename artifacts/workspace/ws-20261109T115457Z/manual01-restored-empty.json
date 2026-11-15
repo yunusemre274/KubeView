@@ -1,0 +1,18 @@
+{
+  "before": {
+    "harbors": 1,
+    "connections": 1,
+    "revision": 3
+  },
+  "after": {
+    "harbors": 0,
+    "connections": 0,
+    "revision": 5
+  },
+  "removedOnlyRootCreatedOnboardingAppRecords": {
+    "harborId": "9431766e-e9a5-4e49-b038-859fcfa40aab",
+    "connectionId": "01121641-45c8-4be9-8aad-081f2b8bf1e7"
+  },
+  "kubernetesMutations": 0,
+  "method": "Normal standalone Go CLI + native nonce/revision guarded workspace DELETE, offline cluster; no direct file reset; backups/data preserved"
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "npm",
+    "sbom",
+    "--package-lock-only",
+    "--sbom-format",
+    "cyclonedx"
+  ],
+  "cwd_relative_to_repository": "frontend",
+  "started_at_utc": "2026-11-11T10:21:56.751098+00:00",
+  "finished_at_utc": "2026-11-11T10:21:56.937469+00:00",
+  "duration_seconds": 0.186,
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+  "stdout_file": "npm-sbom.stdout",
+  "stderr_file": "npm-sbom.stderr"
+}

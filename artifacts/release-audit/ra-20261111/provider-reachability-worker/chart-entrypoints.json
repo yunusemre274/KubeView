@@ -1,0 +1,35 @@
+[
+  {
+    "path": "cilium/templates/cilium-agent/daemonset.yaml",
+    "command_lines": [
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "cp /usr/bin/cilium-mount /hostbin/cilium-mount;",
+      "command:",
+      "cp /usr/bin/cilium-sysctlfix /hostbin/cilium-sysctlfix;",
+      "command:",
+      "command:",
+      "command:",
+      "command:",
+      "command:"
+    ]
+  },
+  {
+    "path": "cilium/templates/cilium-envoy/daemonset.yaml",
+    "command_lines": [
+      "command:",
+      "- /usr/bin/cilium-envoy-bootstrap-locality",
+      "command:",
+      "- /usr/bin/cilium-envoy-starter"
+    ]
+  }
+]

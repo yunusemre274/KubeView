@@ -1,0 +1,25 @@
+{
+  "reviewedAt": "2026-11-01T18:46:06.276411+00:00",
+  "source": "ACTUAL owned cluster + real Cilium/Hubble mTLS, not replay",
+  "reviewedScreens": [
+    "traffic-provider-recovery-real-02-provider-stale-no-fleet-fault.png",
+    "traffic-provider-recovery-real-04-provider-recovered-new-observation.png"
+  ],
+  "reviewedVideoFramesSeconds": [
+    8,
+    17,
+    28
+  ],
+  "videoDurationSeconds": 35.52,
+  "observations": [
+    "17s video frame and stale screenshot visibly label veri eski · canlı iddiası yok; all3ships remain selectable and patrolling, no fire/sink",
+    "Observed flow window expires renderedFlows15→0 during loss",
+    "Recovered screenshot labels measured flow observations; new provider samples observed after reconnect",
+    "DNS/UDP actual API record, endpoint UIDs null with unverified-time-interval; no fabricated identity/HTTP fields"
+  ],
+  "limits": [
+    "Stationary historical arrows may remain within10s window; this is explicitly stale, not live traffic",
+    "Approximate videoPTS mapping, no physical presented FPS claim",
+    "DNS mapping was not held long enough for positive two-observation UID interval; exact UID not claimed"
+  ]
+}

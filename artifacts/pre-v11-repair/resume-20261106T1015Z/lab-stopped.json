@@ -1,0 +1,7 @@
+{
+  "at": "2026-11-06T10:29:27.120203+00:00",
+  "context": "kv-repair-1101",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "gatewayStoppedPID": 4307,
+  "scope": "owned3Nodeprofileonly; retained, notdeleted; othercontainersuntouched"
+}

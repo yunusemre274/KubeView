@@ -1,0 +1,41 @@
+{
+  "startedAt": "2026-11-12T21:11:27.763022+00:00",
+  "status": "FAIL",
+  "purpose": "owned lab resume prerequisite, NOT cold bootstrap or feature test",
+  "sourceCommit": "15770296056ca2629601dba540c04741e1822e0d",
+  "mainLimitSeconds": 120,
+  "wholeLimitSeconds": 180,
+  "startedContainers": [
+    "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+    "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9"
+  ],
+  "polls": [],
+  "powerStart": {
+    "batteryPercent": 34,
+    "batteryPower": true
+  },
+  "stateBeforeSHA256": "345aa6ac8fc6b7284e7709176f90fd4c9a279f82cd26c11dffb2c86b97d72961",
+  "profileBeforeSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "portDiagnosis": {
+    "previousConfiguredAPI": "https://127.0.0.1:50676",
+    "actualOwnedLoopbackAPI": "https://127.0.0.1:54862",
+    "changed": true,
+    "firstAttemptOmittedExistingRefresh": true
+  },
+  "credentialsAndOtherContextsUnchanged": true,
+  "failureCategory": "LabError",
+  "cleanupActive": true,
+  "cleanup": [
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "stopped": true
+    },
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "stopped": true
+    }
+  ],
+  "elapsedSeconds": 8.020291041997552,
+  "finishedAt": "2026-11-12T21:11:35.783292+00:00",
+  "within180Seconds": true
+}

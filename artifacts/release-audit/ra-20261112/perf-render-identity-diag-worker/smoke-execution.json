@@ -1,0 +1,2418 @@
+{
+  "status": "PASS_INSTRUMENTED_JOBS_REVIEW_PENDING",
+  "startedAt": "2026-11-12T20:01:07.860645+00:00",
+  "phaseLimitSeconds": 600,
+  "eachJobLimitSeconds": 120,
+  "phaseStartedAt": "2026-11-12T19:57:27Z",
+  "mode": "INSTRUMENTED_RENDER_IDENTITY_NOT_PERFORMANCE_ACCEPTANCE",
+  "realKubernetesOrUserCLI": false,
+  "jobs": [
+    {
+      "side": "A",
+      "id": "cat16-render-identity-A-20261112T195727Z",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-render-identity-diag-worker/run.mjs",
+        "--phase",
+        "baseline",
+        "--build-tag",
+        "cat16-36d-20261112T113255Z",
+        "--backend-tag",
+        "cat16-common-f32-20261112T113255Z",
+        "--reuse-build",
+        "--reuse-binary",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "panel-open-events",
+        "--panel-matrix",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "3",
+        "--warmup",
+        "30",
+        "--seconds",
+        "15",
+        "--camera-fov",
+        "38",
+        "--dpr",
+        "1",
+        "--harbors",
+        "1",
+        "--lock-input",
+        "--lock-visual-start",
+        "--scene-inventory",
+        "--disable-browser-energy-saver",
+        "--max-minutes",
+        "1.7",
+        "--port",
+        "5192",
+        "--experiment-family",
+        "INSTRUMENTED_RENDER_IDENTITY_NOT_PERFORMANCE_ACCEPTANCE",
+        "--id",
+        "cat16-render-identity-A-20261112T195727Z"
+      ],
+      "startedAt": "2026-11-12T20:01:07.982698+00:00",
+      "PID": 58914,
+      "exitCode": 0,
+      "finishedAt": "2026-11-12T20:01:56.748147+00:00",
+      "elapsedSecondsIncludingCleanup": 49.21421504020691
+    },
+    {
+      "side": "B",
+      "id": "cat16-render-identity-B-20261112T195727Z",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-render-identity-diag-worker/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "cat16-f32-20261112T113255Z",
+        "--backend-tag",
+        "cat16-common-f32-20261112T113255Z",
+        "--reuse-build",
+        "--reuse-binary",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "panel-open-events",
+        "--panel-matrix",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "3",
+        "--warmup",
+        "30",
+        "--seconds",
+        "15",
+        "--camera-fov",
+        "38",
+        "--dpr",
+        "1",
+        "--harbors",
+        "1",
+        "--lock-input",
+        "--lock-visual-start",
+        "--scene-inventory",
+        "--disable-browser-energy-saver",
+        "--max-minutes",
+        "1.7",
+        "--port",
+        "5192",
+        "--experiment-family",
+        "INSTRUMENTED_RENDER_IDENTITY_NOT_PERFORMANCE_ACCEPTANCE",
+        "--id",
+        "cat16-render-identity-B-20261112T195727Z"
+      ],
+      "startedAt": "2026-11-12T20:01:57.207626+00:00",
+      "PID": 59488,
+      "exitCode": 0,
+      "finishedAt": "2026-11-12T20:02:45.712603+00:00",
+      "elapsedSecondsIncludingCleanup": 49.00390696525574
+    }
+  ],
+  "power": [
+    {
+      "at": "2026-11-12T20:01:07.895580+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453224022016,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:01:07.905573+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453224022016,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": true
+    },
+    {
+      "at": "2026-11-12T20:01:08.018673+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453224022016,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:01:18.302930+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453214003200,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:01:28.453098+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453213929472,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:01:38.637795+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453205012480,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:01:48.835724+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453196795904,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:01:57.132010+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453207400448,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": true
+    },
+    {
+      "at": "2026-11-12T20:01:57.243850+00:00",
+      "batteryPercent": 41,
+      "diskBytes": 453207396352,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:02:07.524783+00:00",
+      "batteryPercent": 40,
+      "diskBytes": 453192085504,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:02:17.659739+00:00",
+      "batteryPercent": 40,
+      "diskBytes": 453190598656,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:02:27.831232+00:00",
+      "batteryPercent": 40,
+      "diskBytes": 453189382144,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    },
+    {
+      "at": "2026-11-12T20:02:38.031315+00:00",
+      "batteryPercent": 40,
+      "diskBytes": 453181153280,
+      "lowPowerModes": [
+        0,
+        0
+      ],
+      "startGuard": false
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.14630603790283203,
+      "ownedProcesses": 1,
+      "browserSummedRSSKiB": 0,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 0.43752408027648926,
+      "ownedProcesses": 3,
+      "browserSummedRSSKiB": 0,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 0.7213671207427979,
+      "ownedProcesses": 4,
+      "browserSummedRSSKiB": 86896,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 1.0357050895690918,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 977984,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 1.3369770050048828,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 954672,
+      "appRSSKiB": 38192
+    },
+    {
+      "elapsedSeconds": 1.6149001121520996,
+      "ownedProcesses": 7,
+      "browserSummedRSSKiB": 605920,
+      "appRSSKiB": 33904
+    },
+    {
+      "elapsedSeconds": 1.9039108753204346,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1092192,
+      "appRSSKiB": 41728
+    },
+    {
+      "elapsedSeconds": 2.1833221912384033,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1201104,
+      "appRSSKiB": 44976
+    },
+    {
+      "elapsedSeconds": 2.466294050216675,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1227632,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 2.7559680938720703,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1228832,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 3.051151990890503,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1237568,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 3.356398105621338,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1238256,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 3.664386034011841,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1238912,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 3.9701690673828125,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1241760,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 4.273175001144409,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1242736,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 4.58022403717041,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1244688,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 4.891960144042969,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1245936,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 5.202474117279053,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1246544,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 5.508403062820435,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1247184,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 5.816388845443726,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1247632,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 6.125416040420532,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1248224,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 6.431567907333374,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1248880,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 6.74111795425415,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1249504,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 7.050551176071167,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1250144,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 7.359415054321289,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1249984,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 7.662847995758057,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1250272,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 7.968585014343262,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1250096,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 8.273802995681763,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1250736,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 8.581630945205688,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1251296,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 8.889304161071777,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1251968,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 9.19307017326355,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1252544,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 9.500449180603027,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1253168,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 9.809916019439697,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1253760,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 10.116351127624512,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1254144,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 10.424121141433716,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1254736,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 10.747765064239502,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1255424,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 11.05945611000061,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1256192,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 11.364789009094238,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1256816,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 11.678798198699951,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1257248,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 11.988495111465454,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1258016,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 12.292927980422974,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1258672,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 12.600835084915161,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1259216,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 12.89689016342163,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1260000,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 13.204154968261719,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1260832,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 13.49570608139038,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1261664,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 13.794538974761963,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1262512,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 14.10207223892212,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1263264,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 14.409425020217896,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1264128,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 14.718408107757568,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1264960,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 15.026722192764282,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1265808,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 15.331859111785889,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1266656,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 15.644603967666626,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1267536,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 15.956526041030884,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1268416,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 16.263216972351074,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1269344,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 16.570906162261963,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1270160,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 16.87933611869812,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1270992,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 17.181649923324585,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1272096,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 17.48980712890625,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1273200,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 17.78959012031555,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1274000,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 18.09711003303528,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1275136,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 18.408015966415405,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1275920,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 18.717836141586304,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1276736,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 19.02775502204895,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1277520,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 19.337095022201538,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1278320,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 19.643907070159912,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1279056,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 19.952630043029785,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1279872,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 20.261548042297363,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1280640,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 20.572613954544067,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1281424,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 20.897653102874756,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1282256,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 21.207054138183594,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1283104,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 21.514148235321045,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1283872,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 21.829052925109863,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1284688,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 22.142256021499634,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1285440,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 22.45283007621765,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1286256,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 22.7582049369812,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1287120,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 23.0676212310791,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1287888,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 23.37569308280945,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1288688,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 23.684041023254395,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1289552,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 23.994354009628296,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1290384,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 24.304567098617554,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1291200,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 24.61015295982361,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1292048,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 24.92184090614319,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1292848,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 25.22765016555786,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1293760,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 25.5387179851532,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1294576,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 25.84570813179016,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1295392,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 26.152472257614136,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1296272,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 26.4624080657959,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1297056,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 26.770282983779907,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1297920,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 27.074690103530884,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1298704,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 27.380617141723633,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1299488,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 27.681895971298218,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1300320,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 27.987974882125854,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1301136,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 28.292895078659058,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1301936,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 28.593154191970825,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1302784,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 28.90156388282776,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1303568,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 29.211528062820435,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304432,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 29.522575855255127,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1305216,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 29.83114194869995,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1306000,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 30.139227867126465,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1306848,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 30.448278188705444,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1307680,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 30.759312868118286,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1309168,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 31.08304524421692,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1310976,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 31.39563298225403,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1311824,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 31.706063985824585,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1312704,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 32.01283407211304,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1309472,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 32.322036027908325,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1310528,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 32.5991051197052,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353616,
+      "appRSSKiB": 47296
+    },
+    {
+      "elapsedSeconds": 32.87380003929138,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369248,
+      "appRSSKiB": 51280
+    },
+    {
+      "elapsedSeconds": 33.165924072265625,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1367872,
+      "appRSSKiB": 51472
+    },
+    {
+      "elapsedSeconds": 33.464928150177,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369040,
+      "appRSSKiB": 51472
+    },
+    {
+      "elapsedSeconds": 33.76258301734924,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369344,
+      "appRSSKiB": 51472
+    },
+    {
+      "elapsedSeconds": 34.06256103515625,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369456,
+      "appRSSKiB": 51472
+    },
+    {
+      "elapsedSeconds": 34.36349606513977,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369472,
+      "appRSSKiB": 51472
+    },
+    {
+      "elapsedSeconds": 34.664602279663086,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369632,
+      "appRSSKiB": 51472
+    },
+    {
+      "elapsedSeconds": 34.967631101608276,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369664,
+      "appRSSKiB": 51472
+    },
+    {
+      "elapsedSeconds": 35.268285036087036,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369760,
+      "appRSSKiB": 51472
+    },
+    {
+      "elapsedSeconds": 35.57129716873169,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369792,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 35.871721029281616,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1369936,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 36.1736478805542,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1370096,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 36.47543001174927,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1370304,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 36.77994203567505,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1370336,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 37.08362007141113,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1370368,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 37.390411138534546,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1370384,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 37.6866409778595,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1370384,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 37.9936420917511,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1365072,
+      "appRSSKiB": 51488
+    },
+    {
+      "elapsedSeconds": 38.27123212814331,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1366096,
+      "appRSSKiB": 52000
+    },
+    {
+      "elapsedSeconds": 38.54876208305359,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1363968,
+      "appRSSKiB": 52000
+    },
+    {
+      "elapsedSeconds": 38.84950923919678,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1363968,
+      "appRSSKiB": 52000
+    },
+    {
+      "elapsedSeconds": 39.15356206893921,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364000,
+      "appRSSKiB": 52048
+    },
+    {
+      "elapsedSeconds": 39.45198607444763,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364048,
+      "appRSSKiB": 52080
+    },
+    {
+      "elapsedSeconds": 39.75714302062988,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364048,
+      "appRSSKiB": 52080
+    },
+    {
+      "elapsedSeconds": 40.05368399620056,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364064,
+      "appRSSKiB": 52096
+    },
+    {
+      "elapsedSeconds": 40.35309600830078,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364144,
+      "appRSSKiB": 52096
+    },
+    {
+      "elapsedSeconds": 40.65001702308655,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364224,
+      "appRSSKiB": 52096
+    },
+    {
+      "elapsedSeconds": 40.95681691169739,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364224,
+      "appRSSKiB": 52096
+    },
+    {
+      "elapsedSeconds": 41.2716019153595,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364416,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 41.57041597366333,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364464,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 41.86664915084839,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364480,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 42.17170524597168,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364416,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 42.47070598602295,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364448,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 42.77200102806091,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364480,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 43.07350301742554,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364496,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 43.37543296813965,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364528,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 43.657517194747925,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1362496,
+      "appRSSKiB": 52112
+    },
+    {
+      "elapsedSeconds": 43.93220114707947,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1374768,
+      "appRSSKiB": 52192
+    },
+    {
+      "elapsedSeconds": 44.228628158569336,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1370576,
+      "appRSSKiB": 52272
+    },
+    {
+      "elapsedSeconds": 44.53221011161804,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1370848,
+      "appRSSKiB": 52304
+    },
+    {
+      "elapsedSeconds": 44.83164024353027,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1371712,
+      "appRSSKiB": 52352
+    },
+    {
+      "elapsedSeconds": 45.135782957077026,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372016,
+      "appRSSKiB": 52352
+    },
+    {
+      "elapsedSeconds": 45.42746615409851,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372480,
+      "appRSSKiB": 52416
+    },
+    {
+      "elapsedSeconds": 45.7273530960083,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372496,
+      "appRSSKiB": 52432
+    },
+    {
+      "elapsedSeconds": 46.025994062423706,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372496,
+      "appRSSKiB": 52464
+    },
+    {
+      "elapsedSeconds": 46.33350396156311,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372480,
+      "appRSSKiB": 52464
+    },
+    {
+      "elapsedSeconds": 46.63108801841736,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372496,
+      "appRSSKiB": 52464
+    },
+    {
+      "elapsedSeconds": 46.93429112434387,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372496,
+      "appRSSKiB": 52464
+    },
+    {
+      "elapsedSeconds": 47.22943425178528,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372512,
+      "appRSSKiB": 52464
+    },
+    {
+      "elapsedSeconds": 47.51070594787598,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372512,
+      "appRSSKiB": 52464
+    },
+    {
+      "elapsedSeconds": 47.79924201965332,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372512,
+      "appRSSKiB": 52464
+    },
+    {
+      "elapsedSeconds": 48.07824516296387,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1372928,
+      "appRSSKiB": 52464
+    },
+    {
+      "elapsedSeconds": 48.355966091156006,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1373040,
+      "appRSSKiB": 52688
+    },
+    {
+      "elapsedSeconds": 48.6322340965271,
+      "ownedProcesses": 9,
+      "browserSummedRSSKiB": 646608,
+      "appRSSKiB": 52784
+    },
+    {
+      "elapsedSeconds": 49.37129616737366,
+      "ownedProcesses": 1,
+      "browserSummedRSSKiB": 0,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 49.66281604766846,
+      "ownedProcesses": 3,
+      "browserSummedRSSKiB": 0,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 49.95076894760132,
+      "ownedProcesses": 4,
+      "browserSummedRSSKiB": 86752,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 50.26286220550537,
+      "ownedProcesses": 9,
+      "browserSummedRSSKiB": 1015824,
+      "appRSSKiB": 0
+    },
+    {
+      "elapsedSeconds": 50.559306144714355,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1050384,
+      "appRSSKiB": 39904
+    },
+    {
+      "elapsedSeconds": 50.83903217315674,
+      "ownedProcesses": 7,
+      "browserSummedRSSKiB": 612160,
+      "appRSSKiB": 34608
+    },
+    {
+      "elapsedSeconds": 51.12594199180603,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1115280,
+      "appRSSKiB": 44192
+    },
+    {
+      "elapsedSeconds": 51.407135009765625,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1203168,
+      "appRSSKiB": 46368
+    },
+    {
+      "elapsedSeconds": 51.69537901878357,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1230624,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 51.992209911346436,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1231392,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 52.28689002990723,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1240128,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 52.58270812034607,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1240864,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 52.889853954315186,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1241504,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 53.1920850276947,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1244064,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 53.495152950286865,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1245024,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 53.79892110824585,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1247008,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 54.105555057525635,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1248208,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 54.40967297554016,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1248816,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 54.71913027763367,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1249408,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 55.02671003341675,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1249872,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 55.33236622810364,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1250576,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 55.639944076538086,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1251136,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 55.952975273132324,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1251744,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 56.261616945266724,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1252368,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 56.56783103942871,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1252112,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 56.87641501426697,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1252480,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 57.18395805358887,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1252256,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 57.490570068359375,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1252896,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 57.78912115097046,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1253440,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 58.09692597389221,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1254112,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 58.407742977142334,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1254672,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 58.71717095375061,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1255312,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 59.02611207962036,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1255888,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 59.33886504173279,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1256416,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 59.646100997924805,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1257024,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 59.974406003952026,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1257776,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 60.281113147735596,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1258752,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 60.5883891582489,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1259520,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 60.890575885772705,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1260144,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 61.20010185241699,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1261088,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 61.50840401649475,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1261984,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 61.818010091781616,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1262784,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 62.12657904624939,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1263648,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 62.433603048324585,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1264464,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 62.74651122093201,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1265328,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 63.05392003059387,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1266192,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 63.357532024383545,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1266976,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 63.66824913024902,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1267856,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 63.972508907318115,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1268704,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 64.2583110332489,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1269488,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 64.56441187858582,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1270256,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 64.87529611587524,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1271104,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 65.18223810195923,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1272016,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 65.4920539855957,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1272912,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 65.80183601379395,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1273696,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 66.10521197319031,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1274576,
+      "appRSSKiB": 47504
+    },
+    {
+      "elapsedSeconds": 66.4085419178009,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1275776,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 66.71766090393066,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1276944,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 67.02648615837097,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1277856,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 67.33442807197571,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1278928,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 67.64188289642334,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1279696,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 67.94875907897949,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1280512,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 68.26074028015137,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1281248,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 68.57080292701721,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1282080,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 68.86830997467041,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1282800,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 69.17423009872437,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1283600,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 69.48442006111145,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1284336,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 69.78021502494812,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1285152,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 70.10969018936157,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1285920,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 70.41741108894348,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1286752,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 70.72414326667786,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1287568,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 71.03231906890869,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1288400,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 71.34408617019653,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1289168,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 71.65337610244751,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1289968,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 71.96141290664673,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1290752,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 72.27107787132263,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1291568,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 72.57836604118347,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1292384,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 72.88378190994263,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1293200,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 73.1929543018341,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1294064,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 73.50270104408264,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1294928,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 73.80251026153564,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1295728,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 74.10832595825195,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1296512,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 74.41778111457825,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1297408,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 74.7241940498352,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1298176,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 75.03439497947693,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1299088,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 75.34180998802185,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1299920,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 75.65354108810425,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1300720,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 75.9617600440979,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1301536,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 76.27121996879578,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1302368,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 76.57735514640808,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1303152,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 76.88283205032349,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1303968,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 77.18536806106567,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304800,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 77.49233603477478,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304640,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 77.79850506782532,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304768,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 78.11096000671387,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304784,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 78.40595316886902,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304784,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 78.71677589416504,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304784,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 79.02730011940002,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304784,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 79.33723402023315,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304784,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 79.64465808868408,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1304800,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 79.95145010948181,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1305440,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 80.27469396591187,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1306192,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 80.58579421043396,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1306208,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 80.8939950466156,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1306448,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 81.208172082901,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1302832,
+      "appRSSKiB": 47520
+    },
+    {
+      "elapsedSeconds": 81.51606607437134,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1303008,
+      "appRSSKiB": 47536
+    },
+    {
+      "elapsedSeconds": 81.79265403747559,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1341536,
+      "appRSSKiB": 47536
+    },
+    {
+      "elapsedSeconds": 82.06751418113708,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1356544,
+      "appRSSKiB": 49840
+    },
+    {
+      "elapsedSeconds": 82.36068606376648,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353504,
+      "appRSSKiB": 50592
+    },
+    {
+      "elapsedSeconds": 82.65913605690002,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354256,
+      "appRSSKiB": 50656
+    },
+    {
+      "elapsedSeconds": 82.95845818519592,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354320,
+      "appRSSKiB": 50720
+    },
+    {
+      "elapsedSeconds": 83.25751805305481,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354432,
+      "appRSSKiB": 50864
+    },
+    {
+      "elapsedSeconds": 83.55919909477234,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354464,
+      "appRSSKiB": 50880
+    },
+    {
+      "elapsedSeconds": 83.8559091091156,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354544,
+      "appRSSKiB": 50976
+    },
+    {
+      "elapsedSeconds": 84.15822505950928,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354560,
+      "appRSSKiB": 51040
+    },
+    {
+      "elapsedSeconds": 84.46076703071594,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354704,
+      "appRSSKiB": 51120
+    },
+    {
+      "elapsedSeconds": 84.76444220542908,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354736,
+      "appRSSKiB": 51136
+    },
+    {
+      "elapsedSeconds": 85.06888508796692,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354768,
+      "appRSSKiB": 51216
+    },
+    {
+      "elapsedSeconds": 85.37226605415344,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354784,
+      "appRSSKiB": 51248
+    },
+    {
+      "elapsedSeconds": 85.67638397216797,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354704,
+      "appRSSKiB": 51344
+    },
+    {
+      "elapsedSeconds": 85.97976303100586,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354704,
+      "appRSSKiB": 51424
+    },
+    {
+      "elapsedSeconds": 86.28761720657349,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354768,
+      "appRSSKiB": 51456
+    },
+    {
+      "elapsedSeconds": 86.59134006500244,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354800,
+      "appRSSKiB": 51536
+    },
+    {
+      "elapsedSeconds": 86.89438223838806,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354832,
+      "appRSSKiB": 51536
+    },
+    {
+      "elapsedSeconds": 87.19485592842102,
+      "ownedProcesses": 11,
+      "browserSummedRSSKiB": 1349360,
+      "appRSSKiB": 51536
+    },
+    {
+      "elapsedSeconds": 87.47272205352783,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1350528,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 87.7519359588623,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353616,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 88.05191612243652,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353616,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 88.35250210762024,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353696,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 88.65309309959412,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353744,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 88.95481610298157,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353744,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 89.253014087677,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353760,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 89.55394625663757,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353792,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 89.85173726081848,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353856,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 90.15333104133606,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353888,
+      "appRSSKiB": 51904
+    },
+    {
+      "elapsedSeconds": 90.46568298339844,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353984,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 90.76889204978943,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354000,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 91.07001304626465,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1353952,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 91.37658190727234,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354000,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 91.6792540550232,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354016,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 91.98440504074097,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354032,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 92.28745102882385,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1354080,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 92.584890127182,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1348928,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 92.85993719100952,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1351712,
+      "appRSSKiB": 51920
+    },
+    {
+      "elapsedSeconds": 93.13540720939636,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1363200,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 93.42836785316467,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358128,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 93.7310311794281,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358128,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 94.03088307380676,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358128,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 94.33433198928833,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358144,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 94.63306021690369,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358144,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 94.93568587303162,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358144,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 95.23452115058899,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358144,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 95.5349509716034,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358144,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 95.83494901657104,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358112,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 96.13864207267761,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358112,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 96.43471813201904,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358160,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 96.74310994148254,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358160,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 97.04371523857117,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1358160,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 97.3199200630188,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1359088,
+      "appRSSKiB": 51952
+    },
+    {
+      "elapsedSeconds": 97.59687399864197,
+      "ownedProcesses": 10,
+      "browserSummedRSSKiB": 1364896,
+      "appRSSKiB": 51952
+    }
+  ],
+  "cleanup": [
+    {
+      "pid": 58914,
+      "birthStartText": "Thu Nov 12 23:01:07 2026",
+      "exactBirthCommandSHA256": "a45a342421f2e13be3dfbd4c771ea5eeb5f7b0d9bb602805491057b59ad89324",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59000,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "d1822b0b751ec39394f8385609fdd87b33d3b8271ea5ca512ae609ba00b87068",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 58999,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "2b0fedeb1a250e6451b27ee315eb31ae6e89da51b1adf4232b8f4aacd1791e16",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59041,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "44ddb3df5a4b4f227b7884afe32c0564ad90470a802e8b594b620fde2b53a082",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59035,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "e07d3221d2b9b089866043c562fa772defc57431ac4c73bc3d052d03b581c54e",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59036,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "6861e394d43d017d0584a40a6a7f9b4f6eef081b8bfd7abce331011c66a56e19",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59053,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "adae8e845472ae9167c54ff5d84c6b4c79f657a648b13e3542f8746085692343",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59054,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "c11a9385ce80794b36e7320098744e0b7d4ffc786afd2d28fdb232f6c4801116",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59055,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "ac527af06bb2b6221d311bb46ea7182b56ec7ca300bddee107fd9b9a0b715b1c",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59057,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "5bbc442f86535dfd95af96eded57e135a823e1916bbc5d4dfea6acb09ca195e0",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59059,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "75b3b4c40168d16fef132df5deff5d72ee413a2a670b7c1a4b3d00f07e764269",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59061,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "fc3c3cd191d7edf98095aa675d640e89d89cd974bb054d3f45c37446e0a00b49",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59088,
+      "birthStartText": "Thu Nov 12 23:01:08 2026",
+      "exactBirthCommandSHA256": "ef18089b9e7fc5f95631e37bc788b7e12e5671de5838064f1656a6f9775931d5",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59089,
+      "birthStartText": "Thu Nov 12 23:01:09 2026",
+      "exactBirthCommandSHA256": "278ecd731a635dd5f703aacd8977826c10a5aaa47eaebd69003a06c9f5272f85",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59090,
+      "birthStartText": "Thu Nov 12 23:01:09 2026",
+      "exactBirthCommandSHA256": "8da825b105bd5b5960fbd7fbd480232dbeeb785aed1796f2c72f4e37fd56b358",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59091,
+      "birthStartText": "Thu Nov 12 23:01:09 2026",
+      "exactBirthCommandSHA256": "a505b8572bb845744a3ef1adc24ba7da54dfb8804b15d1cea4dea472f2372940",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59097,
+      "birthStartText": "Thu Nov 12 23:01:09 2026",
+      "exactBirthCommandSHA256": "e56f9f67c52a54e27c6a8f7722d6878a5d4adaf482dfe294573c472a572cc3d7",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59100,
+      "birthStartText": "Thu Nov 12 23:01:09 2026",
+      "exactBirthCommandSHA256": "6af4ddb7d9315fac3d2b85b01a033619231ac418b0f26daa27f1db750c225609",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59101,
+      "birthStartText": "Thu Nov 12 23:01:09 2026",
+      "exactBirthCommandSHA256": "2b268112c4f77f61df8898a94d35b790cfa9254eb27f46705f70cd7a54a08d19",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59102,
+      "birthStartText": "Thu Nov 12 23:01:09 2026",
+      "exactBirthCommandSHA256": "67cc7950368d001892da95f8ede9a6a7c83e90362399fe8215b06915140418a0",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59488,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "cc75ed10aac45731e89421a19478604c10937e8a4e6c23b655ee5a9281aa142c",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59578,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "7874c072add19a949104bcf7754059ab22cdc1aaebb5c3e049694758d51b8cd1",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59579,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "343fb9136aef68d9a336e4f5cf84938534e44e9704b0a25c12c34d190bbfb116",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59614,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "7430bdb1b1f69674f123a933e4131cd89ae5e2bcff34bab91eb0fd7419cbb253",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59615,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "dfc68762b2c1e9f7e79460d3d69662035dd586d74b8081b799f73d849e66c0ac",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59627,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "7458f5120fab5559072257648cea17deab94058559470f2bcb120d31d2390d05",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59628,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "afeed2ed286e1aca1582506644fc6e1beca2347437bbc8d494adc5058a7140ee",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59629,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "00756d134fb3031377df544eccf94f1ef9ce0684c3559bf9f24c6001eb580cc6",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59631,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "d529080fa931a9990cb43b27cc86eef183c31cd54885acb4ee641d0c0e9f38f3",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59633,
+      "birthStartText": "Thu Nov 12 23:01:57 2026",
+      "exactBirthCommandSHA256": "50c7cad27188a83e253a570898ddeaac452e5637a57da215cab618708c4b7240",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59635,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "17a2249118d93e29a494247f0903e29f1cc63ec50b765386f703ebfa70be82ab",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59660,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "72f7ae4636270bfaec58bb67cfb07694d62c804d701fb373d7322e3acb0ca726",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59661,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "8d0c60ff52c9847ff3127f93649ca5b5e05632dd03f5676fdb2930179e5b2f2a",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59662,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "775b4eb182113275e6a26e87dd0d2d2dab100c15623e5aefb157a532973b8c0f",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59663,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "df11f5807d4c36993c5b8852adfa52e4fb1e51960a44615ae9c3b1f4cd369d17",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59669,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "72f7ae4636270bfaec58bb67cfb07694d62c804d701fb373d7322e3acb0ca726",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59672,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "12731b52809bc5bb17e5122552e5efcee00da59e1c27801126284fb7b017f012",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59673,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "3da7b4cb25b981d2371ba11154e51cc3f3a11a4bc275692cb509b97459f78de5",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 59674,
+      "birthStartText": "Thu Nov 12 23:01:58 2026",
+      "exactBirthCommandSHA256": "feac62ad6c4e395b1d8cf884f21e67fea6c22ce7b25255c3a48e6535a79b8dd8",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "port5192Free": true,
+  "finishedAt": "2026-11-12T20:02:46.584871+00:00",
+  "elapsedSeconds": 98.72433423995972,
+  "phaseElapsedSeconds": 319.5848891735077,
+  "backendUnchanged": true,
+  "repositoryRunUnchanged": true,
+  "privateRunUnchanged": true
+}

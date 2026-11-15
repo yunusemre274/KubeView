@@ -1,0 +1,33 @@
+{
+  "status": "paused-by-user",
+  "pausedAt": "2026-11-01T19:49:01.190039+00:00",
+  "reason": "User agreed to pause while unrelated iOS simulators/Java tests load same Mac. Do not kill unrelated processes.",
+  "head": "6bb9dea540130a32a29a3f4ebaba80c26d06cf00",
+  "branch": "redesign/harbor-workbench",
+  "source": "frontend frozen c9f5c8cc; productionGo40c1; source6bb9dea pushed",
+  "performanceSession": "repair-final-ac-20261101-resume1",
+  "acceptedCompleteJobCells": 21,
+  "plannedPrimaryCells": 49,
+  "failedJobs": [
+    {
+      "id": "repair-final-ac-20261101-baseline-M-panel-b1",
+      "reason": "OS/browser window difference1438.3ms; external machine load, excluded wholejob",
+      "cleanupComplete": true
+    }
+  ],
+  "liveOwnedPerformanceJob": null,
+  "ownedLab": "kv-repair-1101 stopped3nodes; retainednotdeleted",
+  "providers": "productiongateway18081andownedHubbleportforwardstoppedbeforefixtureperf; noNodeprovisionpending",
+  "realProviderCost": "traffic-cost-final-20261101T184714650Z sixcellsPASSED; firstunguardedcamerachangerunrejected",
+  "completed": "realCR/logUID/Secret/template,NodeFalseinjection/naturalUnknown/recovery,containerfailure/recovery,realworkerlaunch,realHubble same/cross/UI/DNS/providerloss; docs ownstage;129frontend26benchmark5supervisor tests+Go/race",
+  "remaining": [
+    "Check external CPU load has ended; exactsource/power/buildconditions, preserve all completed jobs; explicit newresumeID onlyfailedandpending, do notrerunall",
+    "Primary3pairedblocks andevents/interaction/20minlong20panelcycles unfinished",
+    "Panel order double-reversal found: actual first3primarypanelblocksclosed-first; assess2explicitopen-firstextras(max5pairs) usingpreparedrepair-panel-counterbalance; notyetexecuted",
+    "GPUtimer diagnostic supportednotyetmeasured; pixel/actionabilityhelper preparednotrun",
+    "Afterexclusiveperf rootrestoreONLYownedlab+productiongateway, runpreparedfrontend-final-failures max5min; actualmetricsfinalread3Nodes3Pods",
+    "Curateevidencevideos/screens/JSON andopen, finaldocsperformance/audit/matrix/TODO/CHANGELOG, targetedhelpervalidation, commitpushverify; noV1.1"
+  ],
+  "handoff": "post-performance-plan.json",
+  "git": "uncommitteddocs/testharnesshelpers preserved; no reset/stash/force; no newproductedits since sourcefreeze"
+}

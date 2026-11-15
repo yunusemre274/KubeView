@@ -1,0 +1,20 @@
+{
+  "scope": "Official operator-generic image plus existing candidate02 only; no APT exists in this scratch-based operator image",
+  "rootClearance": "2026-11-12 root message approved baseline+candidate image+scan+version",
+  "maxSessionSeconds": 600,
+  "minBatteryPercent": 30,
+  "minDiskBytes": 10737418240,
+  "processTreeRSSLimitBytes": 4294967296,
+  "cpuLimit": 2,
+  "buildMethod": "DOCKER_BUILDKIT=0 docker build --cpu-period=100000 --cpu-quota=200000 --memory=4g --memory-swap=4g --network=none --force-rm --platform=linux/arm64 --pull=false; COPY-only, no RUN",
+  "baseReference": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+  "candidateBinarySHA256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "scan": "Trivy0.74.0 image --image-src docker --pkg-types os,library --scanners vuln --offline-scan --skip-db-update and other automatic updates disabled; existing unchanged November10 DB",
+  "runtimeSmoke": "network none; read-only; capdrop ALL; no-new-privileges; uid65532; memory256MiB; cpu1; pids32; no mounts; /usr/bin/cilium-operator-generic --version",
+  "scopeLimits": [
+    "No APT repository/package changes applicable; Cilium/Envoy APT gate remains separate",
+    "Inherited official LICENSE.all is preserved; changed dependency license inventory is not regenerated or accepted",
+    "No registry publication, no immutable registry identity invented, no CNI/lab install",
+    "Legacy builder flags bound any build containers; COPY-only daemon work is outside client process-tree RSS sampling"
+  ]
+}

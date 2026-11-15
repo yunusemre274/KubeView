@@ -1,0 +1,1 @@
+Git altkümesi: report/result/build/sourcecomparison, recipe ve test edilen monitor. Büyük iki7130dosya envanteri yereldekorunur, originalSHA256SUMS hashleriiçerir. Git altkümesi DELIVERY_SHA256SUMS iledoğrulanır. ROOT_ENVIRONMENT_ADDITION, başarısızjobun sleep ile çakışmasını ayrıca kaydeder; eskiFAIL/rapor değiştirilmedi ve sonuçPASS yapılmadı.

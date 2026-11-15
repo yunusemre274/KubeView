@@ -1,0 +1,241 @@
+{
+  "verdict": "PASS_BOUNDED_SOURCE_AND_EVIDENCE_REVIEW",
+  "reviewOnly": true,
+  "newTestsOrFuzzRuns": 0,
+  "reviewFinalizedAt": "2026-11-12T21:46:50.022318+00:00",
+  "reviewElapsedSecondsAtWrite": 113.896,
+  "hardLimitSeconds": 120,
+  "inputSHA256": {
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/PLAN.json": "7772f9ccef26e51b6b6c77574109f9c1c612a1cb3c3bc84e5de763de668948fd",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/REPORT.md": "93d9a0713f1176ba9d850e658c015ff8dfe5a2e929d83bea220515dead08f862",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/SHA256SUMS": "b6b35d90224d2fbb2c5b957624c34be3dccd0c45b5c0f88027f81d5e099a0a27",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/corpus-SHA256.json": "3fd9bbbe227b72286d69608e513e2de6e35773e66ade962d1703f42ef5e50574",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/execution.json": "df44e4dc035cf034f2056d50cbc13987684d71cad13a98e116aebd2c3297926a",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/go-test.jsonl": "c5bbe123872e052bc9b962164458dd90ed43ab02572efc971a989a3e1dad7309",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/go-test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/plan.json": "255ad1924830e8b66d4f6a016a52ddd34b4d1a0ea2a85eaec1d274419efbc144",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/run.py": "c9fb7fab45487ae820807e9f41e58038e882e3490de91e12c7c840e865b78a6a",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/supervisor.json": "1dc902191494c753e0bba47496d2c8a5148c26573c6355ce89ebd53d4507de9a",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/198327597dd8ded2": "198327597dd8ded2c52a39cdc7aff29abc194b6cbac8dcf6d4be6f84ace3b0ba",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/19981bffc2abbaf1": "19981bffc2abbaf1dbf340525460fe7b2435cf273d347c491d6e2d74fc3680bd",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/19bfb2278ecfafd1": "19bfb2278ecfafd1a9b00be4a9a2ebe1694955958600348128d0c1d8a6c8011e",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/2b5ae89d1e7a2baa": "2b5ae89d1e7a2baab6ae14078fd7d79e2657c13e695ab31c7db5ff84cc425ca8",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/34564772f6002875": "34564772f6002875be70a3a9c98f634b32ef3386e7444ed6c8b97cac90c8aae0",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/3a9de1852b8ffab2": "3a9de1852b8ffab2e65b46de7625839844e83d33f921296df34273374e2de1e8",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/499eba404bd2f511": "499eba404bd2f511620c1caae32f72e0beff9ec06735b975a930688162767a3a",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/6485cd8b482db4ce": "6485cd8b482db4cedacec95326e96dd54608e6645c82f21eaf3b0d28991f56d7",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/8727b16d337d7b81": "8727b16d337d7b8187433233f3a90099024e580a6ba319ea2bf539880c50bd7c",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/9a15ff0c3faf6867": "9a15ff0c3faf68671587c912f3db2f4db3602169bf3f1cfcad4aef81247d7683",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/9cc52906ed53ef5f": "9cc52906ed53ef5fbe2cf9e8e8f134ec69489cca8a4cc8d0e4ec82e499179bc4",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/a87d6c0077a9a55c": "a87d6c0077a9a55c4357dfc04894523243345c4949017debbcc2a0376fe85169",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/bb7702bc8401ab8c": "bb7702bc8401ab8c87e274b268849d74c2c772b7564eae993453aed5a6febe42",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/d49b2338d6369a09": "d49b2338d6369a094537074b9a28722462da2404cd12e41f3707d0fba919d636",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/d6ae6a9d8112ab1c": "d6ae6a9d8112ab1cf0d732d24ffce373d68edcb7a2c42d2b0ace724c428e97bb",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/f9938266d588e567": "f9938266d588e567d2df440ae3b3d66dedeef5ebdf2e3b407b374dc6df1ad9d8",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache/FuzzReleaseImportInto/fbab04f43516aa5e": "fbab04f43516aa5e2b159a4081fcca5a99a50f57e96df8ce95d58ffff75b9902",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/historical-source-reuse.json": "8911a973e7c5db584e8c7a77544ac2d078bfca6ff46083a3f2763dae9e59ea53",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/result.json": "af063b34438eefde0f4136ff1d853ce125f660ede06f041e101e5960f5ecbc5d",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/seed-protocol.json": "b1dccd051df03ecb201c5bb25189db5c4b8dd6e5552338c4e5061c0aeacde3c7",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/test-source.go.txt": "c65955e90f357987e9057a305bb051af432ba9ddedacec3ed357ec39fb79345d",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/execution.json": "c31c94eb0ec4425e55b2ceb2bcbfe10a65a8b5b7212369afcd41bf5f82f514d5",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/go-test.jsonl": "8886cef524732c7aa7982f588e9b369d04111b50e13fad88b21c31b5d8bb9239",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/go-test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/plan.json": "1e63633ac895b960e66805ef2a71a105ba71021ebe7724a7bbbb0c9499e58d86",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/run.py": "78ee491acad0ff0f7b4bfc18c32aa72b01301a8418e2a0f285a08b9e837bcff6",
+    "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/unit/supervisor.json": "c5b7f92a055fc27de87a0c8e97b7daee28785d77ed70a01b5f757049da2f64d5",
+    "backend/pkg/workspace/release_import_fuzz_test.go": "c65955e90f357987e9057a305bb051af432ba9ddedacec3ed357ec39fb79345d",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/pkg/workspace/store_test.go": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+  },
+  "inputManifest": {
+    "entries": 36,
+    "allMatch": true
+  },
+  "currentSourceMatchesArchivedExactBytes": true,
+  "historicalReuse": {
+    "oldTarget": "FuzzWorkspaceDocument",
+    "reportedHistoricalExecutions": 111850,
+    "currentFourSHARecomputed": [
+      {
+        "path": "backend/pkg/workspace/store.go",
+        "actualSHA256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+        "matchesReceiptAndHistorical": true
+      },
+      {
+        "path": "backend/pkg/workspace/store_test.go",
+        "actualSHA256": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+        "matchesReceiptAndHistorical": true
+      },
+      {
+        "path": "backend/go.mod",
+        "actualSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+        "matchesReceiptAndHistorical": true
+      },
+      {
+        "path": "backend/go.sum",
+        "actualSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+        "matchesReceiptAndHistorical": true
+      }
+    ],
+    "noOldTargetInNewJobCommands": true,
+    "scope": "receipt/current exact-source match; historical run not repeated or independently rerun"
+  },
+  "jobs": {
+    "unit": {
+      "exitCode": 0,
+      "topLevelPass": [
+        "TestReleaseImportRejectsInvalidWithoutMutation",
+        "TestReleaseImportRemapsAuthorityIDsAndRelations",
+        "TestReleaseImportTransactionCapacityPreservesDisk"
+      ],
+      "subtestPassCount": 9,
+      "failEvents": 0,
+      "skipEvents": 0,
+      "packagePass": true,
+      "packageSeconds": 0.334,
+      "outerSeconds": 1.1571301670010143,
+      "beforeAfterSourceGuards": true,
+      "planHashesMatchCurrent": true,
+      "capturedIdentityCount": 2,
+      "allCapturedAbsentInReceipt": true,
+      "observedPeakRSSKiB": 30944,
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=60s",
+        "-run",
+        "^(TestReleaseImportRejectsInvalidWithoutMutation|TestReleaseImportRemapsAuthorityIDsAndRelations|TestReleaseImportTransactionCapacityPreservesDisk)$",
+        "./pkg/workspace"
+      ],
+      "progress": []
+    },
+    "fuzz": {
+      "exitCode": 0,
+      "topLevelPass": [
+        "FuzzReleaseImportInto"
+      ],
+      "subtestPassCount": 0,
+      "failEvents": 0,
+      "skipEvents": 0,
+      "packagePass": true,
+      "packageSeconds": 11.273,
+      "outerSeconds": 12.320015542001784,
+      "beforeAfterSourceGuards": true,
+      "planHashesMatchCurrent": true,
+      "capturedIdentityCount": 5,
+      "allCapturedAbsentInReceipt": true,
+      "observedPeakRSSKiB": 161920,
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count=1",
+        "-timeout=60s",
+        "-run",
+        "^$",
+        "-fuzz",
+        "^FuzzReleaseImportInto$",
+        "-fuzztime=10s",
+        "./pkg/workspace",
+        "-test.fuzzcachedir=/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz-cache"
+      ],
+      "progress": [
+        "fuzz: elapsed: 0s, gathering baseline coverage: 0/8 completed",
+        "fuzz: elapsed: 0s, gathering baseline coverage: 8/8 completed, now fuzzing with 1 workers",
+        "fuzz: elapsed: 3s, execs: 211 (70/sec), new interesting: 1 (total: 9)",
+        "fuzz: elapsed: 6s, execs: 207765 (69185/sec), new interesting: 12 (total: 20)",
+        "fuzz: elapsed: 9s, execs: 457351 (83195/sec), new interesting: 12 (total: 20)",
+        "fuzz: elapsed: 11s, execs: 563506 (52986/sec), new interesting: 17 (total: 25)"
+      ]
+    }
+  },
+  "seeds": [
+    {
+      "name": "trusted-context-relations",
+      "hashScope": "expression",
+      "hashMatches": true
+    },
+    {
+      "name": "already-exported",
+      "hashScope": "expression",
+      "hashMatches": true
+    },
+    {
+      "name": "nullable-empty",
+      "hashScope": "literal",
+      "hashMatches": true
+    },
+    {
+      "name": "future-schema",
+      "hashScope": "literal",
+      "hashMatches": true
+    },
+    {
+      "name": "unsafe-preferences",
+      "hashScope": "literal",
+      "hashMatches": true
+    },
+    {
+      "name": "unknown-extension-current-policy",
+      "hashScope": "literal",
+      "hashMatches": true
+    },
+    {
+      "name": "truncated-json",
+      "hashScope": "literal",
+      "hashMatches": true
+    },
+    {
+      "name": "null-document",
+      "hashScope": "literal",
+      "hashMatches": true
+    }
+  ],
+  "corpus": {
+    "baselineSeeds": 8,
+    "newInteresting": 17,
+    "reportedTotal": 25,
+    "retainedCacheFiles": 17,
+    "allSHAAndSizesMatch": true,
+    "generatorSourceSHAMatches": true
+  },
+  "fuzzCountInterpretation": {
+    "engineExecutions": 563506,
+    "successfulImports": "NOT_MEASURED",
+    "parsedImportCalls": "NOT_MEASURED",
+    "above65536Bytes": "SKIP_EXCLUDED",
+    "malformedJSON": "returns before ImportInto",
+    "noTopLevelSkipEventDoesNotProveNoPerInputExclusions": true
+  },
+  "invariantReview": {
+    "sourceAndRawInputImmutability": "meaningful byte comparisons",
+    "invalidSourceDestinationRollback": "checks error plus unchanged destination for Export-normalized invalid documents",
+    "trustedDestinationState": "existing prefix + workspace identity/preferences/revision serialized unchanged",
+    "importedBinding": "Context empty and Bound false independently asserted",
+    "IDsAndReferences": "fresh IDs against all source/destination IDs; workspace/connection/harbor/relation mapping checked",
+    "relationAuthority": "configured/user-imported independently asserted",
+    "mutableAliasing": "destination view and namespace mutation must not affect source",
+    "combinedCapacity": "actual Store.Update rejection preserves primary persisted bytes, snapshot/revision/source and reopened state"
+  },
+  "limitations": [
+    "Validity oracle calls production Export/Validate, so shared policy defects are not independently excluded; explicit authority/ID/destination invariants are separate assertions.",
+    "Not a full field-by-field imported display metadata preservation proof.",
+    "No coverage-per-valid-import counter; engine execution count cannot be interpreted as accepted imports.",
+    "Captured birth/command identities absent in receipts do not enumerate all short-lived/unsampled processes.",
+    "Historical four-hash reuse does not extend its original Validate/Export target to ImportInto.",
+    "No HTTP/YAML/real Kubernetes/UI/final binary or broad security verdict."
+  ],
+  "blockingFindings": []
+}

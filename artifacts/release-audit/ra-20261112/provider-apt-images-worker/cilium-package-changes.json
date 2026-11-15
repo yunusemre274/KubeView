@@ -1,0 +1,22 @@
+{
+  "apt": {
+    "before": {
+      "version": "3.2.0",
+      "architecture": "arm64"
+    },
+    "after": {
+      "version": "3.2.1ubuntu0.1",
+      "architecture": "arm64"
+    }
+  },
+  "libapt-pkg7.0": {
+    "before": {
+      "version": "3.2.0",
+      "architecture": "arm64"
+    },
+    "after": {
+      "version": "3.2.1ubuntu0.1",
+      "architecture": "arm64"
+    }
+  }
+}

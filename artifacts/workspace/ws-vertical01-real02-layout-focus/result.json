@@ -1,0 +1,763 @@
+{
+  "id": "ws-vertical01-real02-layout-focus",
+  "startedAt": "2026-11-09T15:00:42.493Z",
+  "url": "http://127.0.0.1:19702",
+  "browser": "chromium",
+  "browserVersion": "156.0.8078.4",
+  "dataSource": "Normal product UI; source kind verified from actual profile",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:48.641Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:00:48.829Z",
+      "detail": {
+        "file": "01-initial-world.png"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:48.910Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:48.980Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.043Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.111Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.177Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.244Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.310Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.378Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.444Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.511Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.577Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.645Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.711Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.777Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.843Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.911Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:49.978Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.045Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.111Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.178Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.245Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.311Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.377Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.445Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.511Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.578Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.643Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.710Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.776Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.844Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.910Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:50.977Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.044Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.112Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.178Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.246Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.311Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.378Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.444Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.511Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.577Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.644Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.712Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.778Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.845Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.911Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:51.977Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:52.045Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:52.111Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 1 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p1Canlı"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-09T15:00:52.178Z",
+      "detail": {
+        "nodes": 2,
+        "pods": 1,
+        "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+      }
+    },
+    {
+      "name": "normal-ui-harbor-switches",
+      "at": "2026-11-09T15:00:52.180Z",
+      "detail": {
+        "completed": 50,
+        "canvasPreserved": true,
+        "before": {
+          "frame": 363,
+          "calls": 198,
+          "triangles": 42740,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 33,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "after": {
+          "frame": 564,
+          "calls": 198,
+          "triangles": 42740,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 33,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 1,
+            "visiblePods": 1,
+            "nodeSlots": 2,
+            "podSlots": 1,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:00:52.353Z",
+      "detail": {
+        "file": "03-after-switches.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:00:52.585Z",
+      "detail": {
+        "file": "world-1440-light.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:00:52.721Z",
+      "detail": {
+        "file": "harbors-1440-light.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:00:52.928Z",
+      "detail": {
+        "file": "world-1280-dark.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:00:53.058Z",
+      "detail": {
+        "file": "harbors-1280-dark.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:00:53.218Z",
+      "detail": {
+        "file": "world-768-light.png"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T15:00:53.301Z",
+      "detail": {
+        "file": "harbors-768-light.png"
+      }
+    }
+  ],
+  "errors": [],
+  "workspaceBefore": {
+    "id": "4d50944a-6f37-4d8a-88b7-4569ea6e1a3e",
+    "revision": 5,
+    "schemaVersion": 1,
+    "connections": [
+      {
+        "id": "90209681-ba98-4149-b1dc-6c7e767bbf62",
+        "name": "Lab kvml-ccdfe731dabd-a",
+        "context": "kvml-ccdfe731dabd-a",
+        "bound": true,
+        "identity": {
+          "clusterUID": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5",
+          "confidence": "verified",
+          "authorizationKey": "8cf272cd9eef37256df8f73d598854ba",
+          "credentialGeneration": "a3f8ef9e-63ca-4be0-a44b-6f6a6049c3c2"
+        }
+      }
+    ],
+    "harbors": [
+      {
+        "id": "0632b558-1fc6-4921-831c-00a04301a1e4",
+        "name": "Proje 1",
+        "connectionRef": "90209681-ba98-4149-b1dc-6c7e767bbf62",
+        "namespaces": [
+          "kvml-e731dabd-02-p1"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "c0e5fe06-d853-40fd-84ff-5f43b46115c4",
+        "name": "Proje 2",
+        "connectionRef": "90209681-ba98-4149-b1dc-6c7e767bbf62",
+        "namespaces": [
+          "kvml-e731dabd-02-p2"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          0
+        ]
+      }
+    ]
+  },
+  "workspaceAfter": {
+    "id": "4d50944a-6f37-4d8a-88b7-4569ea6e1a3e",
+    "revision": 54,
+    "schemaVersion": 1,
+    "connections": [
+      {
+        "id": "90209681-ba98-4149-b1dc-6c7e767bbf62",
+        "name": "Lab kvml-ccdfe731dabd-a",
+        "context": "kvml-ccdfe731dabd-a",
+        "bound": true,
+        "identity": {
+          "confidence": "unknown",
+          "authorizationKey": "8cf272cd9eef37256df8f73d598854ba",
+          "credentialGeneration": "a3f8ef9e-63ca-4be0-a44b-6f6a6049c3c2"
+        }
+      }
+    ],
+    "harbors": [
+      {
+        "id": "0632b558-1fc6-4921-831c-00a04301a1e4",
+        "name": "Proje 1",
+        "connectionRef": "90209681-ba98-4149-b1dc-6c7e767bbf62",
+        "namespaces": [
+          "kvml-e731dabd-02-p1"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "c0e5fe06-d853-40fd-84ff-5f43b46115c4",
+        "name": "Proje 2",
+        "connectionRef": "90209681-ba98-4149-b1dc-6c7e767bbf62",
+        "namespaces": [
+          "kvml-e731dabd-02-p2"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          0
+        ]
+      }
+    ]
+  },
+  "final": {
+    "canvasCount": 1,
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 768,
+      "height": 900
+    },
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "bodyScroll": 900,
+    "stats": {
+      "frame": 620,
+      "calls": 3,
+      "triangles": 17484,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 34,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 2,
+        "visibleNodes": 2,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 1,
+        "visiblePods": 1,
+        "nodeSlots": 2,
+        "podSlots": 1,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "camera": {
+      "position": [
+        215.56584632258577,
+        337.05223590523576,
+        511.5469643081354
+      ],
+      "quaternion": [
+        -0.325460784126008,
+        0.19405942434202564,
+        0.06843554348917548,
+        0.9228937068847457
+      ],
+      "zoom": 1
+    },
+    "brand": "KubeViewProje 2 · kvml-ccdfe731dabd-a · kvml-e731dabd-02-p2Canlı"
+  },
+  "finishedAt": "2026-11-09T15:00:53.309Z"
+}

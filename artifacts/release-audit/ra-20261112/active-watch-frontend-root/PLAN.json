@@ -1,0 +1,16 @@
+{
+  "startedAt": "2026-11-12T20:54:47.979378+00:00",
+  "sourceCommit": "2be79c84e4c936e064897cbae6b35c26e094dea3",
+  "classification": "SYNTHETIC_PROTOCOL_REDUCER_UNIT_NOT_BROWSER_OR_REAL_KUBERNETES",
+  "maxSeconds": 180,
+  "sequence": [
+    "one focused unchanged-product RED",
+    "minimal STATUS failure-scope merge",
+    "one focused GREEN and existing store neighbors"
+  ],
+  "scope": "Retain canonical UID; explicit forbidden/unavailable scope; no authorization promotion via STATUS; generation/context guards",
+  "sourceBefore": {
+    "frontend/src/data/resourceStore.js": "825a3503c74876ac464a35a2b7c16746a2f41a377f8a7d486716b3d49852f0bd",
+    "frontend/src/data/resourceScopes.js": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158"
+  }
+}

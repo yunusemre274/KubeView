@@ -1,0 +1,7 @@
+{
+  "change": "Go-style port bind probe ignores closed TIME_WAIT without SO_REUSEPORT; active listener still rejected",
+  "binarySHA256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "runnerSHA256": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "tests": "2 real loopback port cases +18 runner ownership cases PASS; prior red and actual Darwin TIME_WAIT proof preserved",
+  "scope": "No runtime Go/frontend/fixture/quality change; no CPU claim"
+}

@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-11-11T16:58:43.736652+00:00",
+  "sourceHEAD": "f1a26cbbd45988607b788348e316affd39809ca4",
+  "files": {
+    ".github/workflows/ci.yml": "39d75d70f69e7c4600843b67baa0ccb322de8329dc13fa7d0ffe41cb60029ea5",
+    "scripts/build-release.mjs": "af573e3eaa34fc420f9310b0718a78b4e2eee99305e2852c0d623ac4e39e7452",
+    "scripts/prepare-webui.mjs": "35a2ffee2055876f6cf4089777f63f48fe356c59803e9b5e987146d22f7663d0",
+    "frontend/package.json": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+    "frontend/e2e/production-smoke.config.js": "a5adb3e4f421442c5202a83727e62bc805bacdb089b276f14d55546e12beb439",
+    "frontend/e2e/production-smoke.spec.js": "3c8b473319b853e46ba8cdeb317b9acb8f6523723a2e06d0803ec9d981ba8081",
+    "AGENTS/AGENTS.md": "bfc5be3dd42357bd0b3128f48785bee028bf03e4e0f27cf1447a51d702fb0b3d",
+    "AGENTS/security-agent.md": "0f43017a85319ac6a512fa845294839cc00226c4cf51e01169c9e4f8dd8e19dd",
+    "AGENTS/devops-agent.md": "da929dc81feed452d6909177fefe63cb235338efbffcd207359a54946d295db3",
+    "artifacts/release-audit/ra-20261111/ci-action-refs.json": "8a73ff03aca8cb7c5d197fe84dde3e67cf307465bbd9e68a1d2a9b7e226e2a33",
+    "artifacts/release-audit/ra-20261111/ci-package-dns-evidence/results.json": "f9d83d10f5df4a1dee01c3a1e42643b07b2d83453ea28dee0fbd5ff2b92ccf96"
+  },
+  "commands": [
+    "rg --files .github/workflows AGENTS scripts",
+    "nl -ba .github/workflows/ci.yml",
+    "rg expression/secret/permission/checkout/artifact paths (static source reads)",
+    "read existing CI/action SHA metadata; no new execution"
+  ],
+  "officialSources": [
+    "https://docs.github.com/en/actions/reference/security/secure-use",
+    "https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching"
+  ],
+  "tests": "NOT RUN",
+  "externalPRTrial": "NOT RUN",
+  "repositorySettings": "BLOCKED: unobserved, no administrative access requested"
+}

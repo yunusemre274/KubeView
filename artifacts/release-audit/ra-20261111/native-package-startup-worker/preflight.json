@@ -1,0 +1,11 @@
+{
+  "startedAt": "2026-11-11T17:08:18.908425+00:00",
+  "workDeadlineAt": "2026-11-11T17:11:18.908425+00:00",
+  "hardDeadlineAt": "2026-11-11T17:12:18.908425+00:00",
+  "workBudgetSeconds": 180,
+  "totalBudgetSeconds": 240,
+  "allowedPort": 19849,
+  "binarySHA256": "191fb0ca99a4f1b4327a92f04681edd93b74d1cd22236dcdedbb20be1d32c406",
+  "sourceMerge": "5373657169e8bf332940fd2366022925f48eb85c",
+  "sourceTree": "2112579043ca1325013f7b5bac6b95fc7d0d3164"
+}

@@ -1,0 +1,35 @@
+{
+  "final": {
+    "backend/pkg/server/stream.go": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+    "backend/pkg/server/watch_authorization.go": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+    "backend/pkg/server/watch_authorization_test.go": "b1440b71afb5642c6a5797aab8f92db895af6fda15df123b4cce5d3d2f5a6415",
+    "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+  },
+  "perPhase": {
+    "strict-red": {
+      "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72",
+      "backend/pkg/server/stream.go": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "backend/pkg/server/workspace_broker.go": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377"
+    },
+    "green": {
+      "backend/pkg/server/stream.go": "94875555bb816a9f9c91d1dc38a78b2f942334446a3b4b198248149bd1e4bc17",
+      "backend/pkg/server/watch_authorization.go": "835059f047256356a6842877851088c681f7e9302ee2b6059e67bc05faa26246",
+      "backend/pkg/server/watch_authorization_test.go": "a18652f82f998ebbf96b615ba595203e5fb7a0d48178fa3338bb884577543250",
+      "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+    },
+    "race": {
+      "backend/pkg/server/stream.go": "61302bcd58dd1f77f666255820e84600c94e7865190490af45375959ce5d5a4c",
+      "backend/pkg/server/watch_authorization.go": "650614ce1bce64a54cd51504b86ec8b837db3968e3605b8aa74376c48efa33f9",
+      "backend/pkg/server/watch_authorization_test.go": "948abf2c62c4b50cab559a1d01466df3fb83a4ca1761ff7b1e7878961fca8328",
+      "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+    },
+    "final-green": {
+      "backend/pkg/server/stream.go": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+      "backend/pkg/server/watch_authorization.go": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+      "backend/pkg/server/watch_authorization_test.go": "b1440b71afb5642c6a5797aab8f92db895af6fda15df123b4cce5d3d2f5a6415",
+      "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+    }
+  },
+  "immutableFirstReproReportSHA256": "a7e21f31693cfd7506da985af9546ec0e2ad911c2f6dc091bc985f864483f7a4"
+}

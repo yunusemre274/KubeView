@@ -1,0 +1,14 @@
+[
+  {
+    "sourcePath": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01/private/release-provider-one-worker-20261111/attempt.json",
+    "privateImmutableCopy": ".git/release-audit/real-minikube-add-current-worker/attempt-original.json",
+    "sha256": "b39a2b00b38efe5d7ee53f8d3f652c5aab12d56448850644c288e9bb36180a4f",
+    "sourceMatchesCopyNow": true
+  },
+  {
+    "sourcePath": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01/private/release-provider-one-worker-20261111/provider-journal/minikube-kvml-d32afbf634e8-a.json",
+    "privateImmutableCopy": ".git/release-audit/real-minikube-add-current-worker/provider-journal-original.json",
+    "sha256": "322ee84efd3b6359498a2ce69168c02b4c800f0f1fdc041c5860ace57cc8f1bc",
+    "sourceMatchesCopyNow": true
+  }
+]

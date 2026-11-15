@@ -1,0 +1,2 @@
+go test fuzz v1
+[]byte("{\"id\":\"empty\",\"schemaVersion\":1,\"revision\":1,\"name\":\"empty\",\"connections\":null,\"Harbors\":null,\"relations\":null}")

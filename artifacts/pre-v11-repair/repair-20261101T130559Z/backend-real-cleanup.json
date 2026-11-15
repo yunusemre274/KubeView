@@ -1,0 +1,7 @@
+{
+  "context": "kv-repair-1101",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace": "kv-repair-log",
+  "remainingOwnedResources": [],
+  "namespaceRetainedForFurtherOwnedTests": true
+}

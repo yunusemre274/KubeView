@@ -1,0 +1,51 @@
+{
+  "startedAt": "2026-11-10T12:44:44.241508+00:00",
+  "source": "Explicit TEST/REPLAY M; not real Kubernetes",
+  "firstArgparseFailurePreserved": true,
+  "steps": [
+    {
+      "args": [
+        "up",
+        "--profile",
+        "07-yuk-ve-gecis",
+        "--base-port",
+        "19840"
+      ],
+      "returncode": 0,
+      "stdout": "Haz\u0131r: 07-yuk-ve-gecis; labId=kvml-6f485d3a8ef4; 0 kay\u0131t plan\u0131. app komutu ayr\u0131 \u00e7al\u0131\u015ft\u0131r\u0131l\u0131r.\nVarsay\u0131lan fixture sa\u011fl\u0131\u011f\u0131 i\u00e7in status; kullan\u0131c\u0131n\u0131n \u00f6nceki scenario de\u011fi\u015fiklikleri up ile s\u0131f\u0131rlanmaz.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "app",
+        "--profile",
+        "07-yuk-ve-gecis",
+        "--replay",
+        "M",
+        "--harbors",
+        "1"
+      ],
+      "returncode": 0,
+      "stdout": "A\u00e7\u0131ld\u0131: http://127.0.0.1:19847/\nProfil veri dizini: /Users/yunusemre/Library/Application Support/KubeView/qa-ws-archive-state-izm7s2hd/profiles/07-yuk-ve-gecis/app-data/M-h01\nTEST / REPLAY: ger\u00e7ek Kubernetes de\u011fil; y\u00f6netim zorunlu salt okunur.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "down"
+      ],
+      "returncode": 0,
+      "stdout": "Bu lab'\u0131n app/container s\u00fcre\u00e7leri durdu. Workspace, private config ve manifestler korundu.\n",
+      "stderr": ""
+    }
+  ],
+  "status": "PASS",
+  "compilerExecutablesOnPATH": false,
+  "harbors": 1,
+  "pods": 300,
+  "servedIndexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+  "runtimeBinarySHA256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+  "mode": "TEST/REPLAY mandatory read-only",
+  "actualTarExtract": true,
+  "cleanup": true,
+  "finishedAt": "2026-11-10T12:44:45.334597+00:00"
+}

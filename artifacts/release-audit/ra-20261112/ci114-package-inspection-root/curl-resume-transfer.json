@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-12T21:40:39.028934+00:00",
+  "transport": "system curl HTTPS/TLSverification ON; bounded Range resume of known GitHubartifact bytes",
+  "before": {
+    "bytes": 4620288,
+    "sha256": "1121331ddad15ee3b5a8693364a5d8b59d36014ca3f5826fec2faaf41b48d78d"
+  },
+  "exitCode": 0,
+  "elapsedSeconds": 1.5836958750005579,
+  "downloadBytes": 26238940,
+  "signedURLRecorded": false,
+  "timeoutRationale": "20s received4.62MiB; remaining21.6MiB at observedrate fits finite120s; no retry loop"
+}

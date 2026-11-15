@@ -1,0 +1,22 @@
+{
+  "name": "profile-lifecycle-race",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count",
+    "1",
+    "-timeout",
+    "90s",
+    "-run",
+    "^(TestReleaseProfileLock.*|TestProfileLockAndRestartNeverBlindlyRetry)$",
+    "./pkg/provision"
+  ],
+  "startedAt": "2026-11-11T19:54:14.793900+00:00",
+  "outerTimeoutSeconds": 95
+}

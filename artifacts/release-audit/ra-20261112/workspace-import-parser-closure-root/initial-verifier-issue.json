@@ -1,0 +1,5 @@
+{
+  "at": "2026-11-14T12:38:05.739712+00:00",
+  "result": "ROOT_CHECKER_PATH_ASSUMPTION_FAILED",
+  "reason": "Parser manifest uses repository-relative paths; first checker assumed every path directory-relative. No test rerun, source or existing evidence changed."
+}

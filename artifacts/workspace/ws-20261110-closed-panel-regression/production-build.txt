@@ -1,0 +1,10 @@
+✓ 2214 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                        0.59 kB │ gzip:   0.35 kB
+dist/assets/index-Dz9u4ySq.css        62.22 kB │ gzip:  11.92 kB
+dist/assets/HarborScene-BoSBkm5r.js  217.12 kB │ gzip:  75.25 kB
+dist/assets/index-DY8FoL2T.js        435.88 kB │ gzip: 131.82 kB
+dist/assets/three-B8kFHjBd.js        973.63 kB │ gzip: 270.80 kB
+✓ built in 1.68s
+

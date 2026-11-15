@@ -1,0 +1,57 @@
+{
+  "preparedAt": "2026-11-14T12:56:11.760121+00:00",
+  "sourceHEAD": "6ffd1b22a164c6be83ca2783f4daf7e8346aa0d3",
+  "runtimeSource": "15770296056ca2629601dba540c04741e1822e0d",
+  "scope": "Node actual ResourceForms handler/effect synthetic hook harness, fake API JSON boundary; no DOM/browser/Kubernetes E2E",
+  "limits": {
+    "payloadCount": 10,
+    "payloadBytes": 262144,
+    "maxDepth": 128,
+    "maxLogicalAliasLeaves": 10000,
+    "childTimeoutSeconds": 15,
+    "wholeTestSeconds": 60,
+    "workers": 1
+  },
+  "files": [
+    {
+      "path": "frontend/src/workbench/ResourceForms.jsx",
+      "bytes": 88314,
+      "sha256": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66"
+    },
+    {
+      "path": "frontend/src/workbench/ResourceForms.test.js",
+      "bytes": 13613,
+      "sha256": "fe342f35bf5459ee70af38e5dc8da660b169a81949ee5e9eb382a56e7ee7b2cb"
+    },
+    {
+      "path": "frontend/src/workbench/resourceUtils.js",
+      "bytes": 8891,
+      "sha256": "55b4dc602aa52e81a923c4ec312ef37d8ee33f97ed300b7a480a94a38c61f5d3"
+    },
+    {
+      "path": "frontend/package.json",
+      "bytes": 982,
+      "sha256": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "bytes": 98953,
+      "sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "bytes": 17391,
+      "sha256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7"
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "bytes": 21606,
+      "sha256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe"
+    },
+    {
+      "path": "frontend/src/workbench/release_yaml_parser_guards.test.js",
+      "bytes": 10095,
+      "sha256": "a46f37ad0f68983a29f1f4fd8ce70c691166717e1b738290e98f5af371b7e0f1"
+    }
+  ]
+}

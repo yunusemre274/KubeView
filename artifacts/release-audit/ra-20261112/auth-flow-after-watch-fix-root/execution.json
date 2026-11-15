@@ -1,0 +1,145 @@
+{
+  "status": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+  "startedAt": "2026-11-12T21:02:18.510879+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=90s",
+    "-run",
+    "^(TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|TestLocalServerRejectsDNSRebindingHost|TestManagementStartsReadOnlyAndCannotBypassSession|TestOriginAndAuthentication|TestOriginHostJSONAndSessionNegatives|TestReadOnlyAndNamespaceEnforced|TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry|TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest|TestReleaseReadOnlyEndpointsRetainedGrant|TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource|TestReleaseSessionCreationShapeFreshnessAndCookieFlags|TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant|TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|TestWorkspaceHTTPPersistenceCSRFAndScope|TestWorkspaceNodeImpactRequiresAcknowledgement|TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant|TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts|TestClusterScopedReviewsIgnoreWatchNamespace|TestConnectionErrorsDoNotExposeCredentials|TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|TestScopeSwitchCancelsInFlightStreams|TestWorkspaceCookieNamesKeepLegacyGatewayContract)$",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "captured": [
+    {
+      "pid": 63258,
+      "identity": "Fri Nov 13 00:02:18 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -json -p 1 -parallel 1 -count=1 -timeout=90s -run ^(TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|TestLocalServerRejectsDNSRebindingHost|TestManagementStartsReadOnlyAndCannotBypassSession|TestOriginAndAuthentication|TestOriginHostJSONAndSessionNegatives|TestReadOnlyAndNamespaceEnforced|TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry|TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest|TestReleaseReadOnlyEndpointsRetainedGrant|TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource|TestReleaseSessionCreationShapeFreshnessAndCookieFlags|TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant|TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|TestWorkspaceHTTPPersistenceCSRFAndScope|TestWorkspaceNodeImpactRequiresAcknowledgement|TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant|TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts|TestClusterScopedReviewsIgnoreWatchNamespace|TestConnectionErrorsDoNotExposeCredentials|TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|TestScopeSwitchCancelsInFlightStreams|TestWorkspaceCookieNamesKeepLegacyGatewayContract)$ ./pkg/server",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 63265,
+      "identity": "Fri Nov 13 00:02:18 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/link -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build4227223723/b001/server.test -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build4227223723/b001/importcfg.link -s -w -buildmode=pie -buildid=YuNkCvlbGLoAfJU76TCR/8bFCjTvwiJMM1nowDSN6/dh-b-dxcQEK8XC4qshVT/YuNkCvlbGLoAfJU76TCR -X testing.testBinary=1 -extld=clang /Users/yunusemre/Library/Caches/go-build/f5/f5b212b5dc78a428adeaf96f395dc9742fec4f16231d3eebe552f27115b15424-d",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 63270,
+      "identity": "Fri Nov 13 00:02:19 2026     /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build4227223723/b001/server.test -test.paniconexit0 -test.v=test2json -test.parallel=1 -test.count=1 -test.timeout=1m30s -test.run=^(TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|TestLocalServerRejectsDNSRebindingHost|TestManagementStartsReadOnlyAndCannotBypassSession|TestOriginAndAuthentication|TestOriginHostJSONAndSessionNegatives|TestReadOnlyAndNamespaceEnforced|TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry|TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest|TestReleaseReadOnlyEndpointsRetainedGrant|TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource|TestReleaseSessionCreationShapeFreshnessAndCookieFlags|TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant|TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|TestWorkspaceHTTPPersistenceCSRFAndScope|TestWorkspaceNodeImpactRequiresAcknowledgement|TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant|TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts|TestClusterScopedReviewsIgnoreWatchNamespace|TestConnectionErrorsDoNotExposeCredentials|TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|TestScopeSwitchCancelsInFlightStreams|TestWorkspaceCookieNamesKeepLegacyGatewayContract)$",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.0197475420027331,
+      "ownedRSSKiB": 3024,
+      "ownedPIDs": [
+        63258
+      ]
+    },
+    {
+      "elapsedSeconds": 0.2387643330002902,
+      "ownedRSSKiB": 57840,
+      "ownedPIDs": [
+        63258
+      ]
+    },
+    {
+      "elapsedSeconds": 0.45577116700223996,
+      "ownedRSSKiB": 540064,
+      "ownedPIDs": [
+        63258,
+        63265
+      ]
+    },
+    {
+      "elapsedSeconds": 0.6668233750024228,
+      "ownedRSSKiB": 58800,
+      "ownedPIDs": [
+        63258
+      ]
+    },
+    {
+      "elapsedSeconds": 0.8989392500006943,
+      "ownedRSSKiB": 59552,
+      "ownedPIDs": [
+        63258,
+        63270
+      ]
+    },
+    {
+      "elapsedSeconds": 1.1328649580027559,
+      "ownedRSSKiB": 59552,
+      "ownedPIDs": [
+        63258,
+        63270
+      ]
+    },
+    {
+      "elapsedSeconds": 1.368588000001182,
+      "ownedRSSKiB": 97056,
+      "ownedPIDs": [
+        63258,
+        63270
+      ]
+    },
+    {
+      "elapsedSeconds": 1.5961546250000538,
+      "ownedRSSKiB": 59616,
+      "ownedPIDs": [
+        63258
+      ]
+    }
+  ],
+  "safety": {
+    "wallSeconds": 150,
+    "goTimeoutSeconds": 90,
+    "GOMAXPROCS": 2,
+    "p": 1,
+    "parallel": 1,
+    "ownedRSSMiB": 1536,
+    "freeDiskGiB": 10,
+    "providersDisabled": true,
+    "noRealCluster": true
+  },
+  "limitSeconds": 150,
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "sourceBeforeMatches": true,
+  "exitCode": 0,
+  "topLevelTests": [
+    "TestManagementStartsReadOnlyAndCannotBypassSession",
+    "TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip",
+    "TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList",
+    "TestOriginHostJSONAndSessionNegatives",
+    "TestConnectionErrorsDoNotExposeCredentials",
+    "TestScopeSwitchCancelsInFlightStreams",
+    "TestReleaseReadOnlyEndpointsRetainedGrant",
+    "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource",
+    "TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry",
+    "TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest",
+    "TestReleaseSessionCreationShapeFreshnessAndCookieFlags",
+    "TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant",
+    "TestReadOnlyAndNamespaceEnforced",
+    "TestOriginAndAuthentication",
+    "TestLocalServerRejectsDNSRebindingHost",
+    "TestClusterScopedReviewsIgnoreWatchNamespace",
+    "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts",
+    "TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant",
+    "TestWorkspaceCookieNamesKeepLegacyGatewayContract",
+    "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+    "TestWorkspaceHTTPPersistenceCSRFAndScope",
+    "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+    "TestWorkspaceNodeImpactRequiresAcknowledgement"
+  ],
+  "topLevelPassed": 23,
+  "subtestsPassed": 31,
+  "failures": 0,
+  "skips": 0,
+  "sourceAfterMatches": true,
+  "elapsedSeconds": 2.2940441250029835,
+  "finishedAt": "2026-11-12T21:02:20.804907+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-12T17:49:25.935368+00:00",
+  "allCapturedProcessIdentitiesAbsent": true,
+  "recordedProcessRefs": 125,
+  "port5192Free": true,
+  "commonBackendUnchanged": true,
+  "powerSamplesSources": [
+    "battery"
+  ],
+  "batteryRange": [
+    59,
+    62
+  ],
+  "allHarnessSourceSHAUnchanged": true,
+  "proof": "controller checks source SHA at start/eachwindow/final; allreturnedPASS"
+}

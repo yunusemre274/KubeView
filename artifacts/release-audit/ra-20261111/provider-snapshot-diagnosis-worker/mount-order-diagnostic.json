@@ -1,0 +1,18 @@
+{
+  "diagnosticCopyOnly": true,
+  "notAnAcceptanceNormalization": true,
+  "mountComparisons": [
+    {
+      "host": "kvml-d32afbf634e8-a",
+      "rawListEqual": false,
+      "sameMountObjectsIgnoringOrder": true
+    },
+    {
+      "host": "kvml-d32afbf634e8-a-m02",
+      "rawListEqual": true,
+      "sameMountObjectsIgnoringOrder": true
+    }
+  ],
+  "remainingDifferencesAfterMountOrderOnlySort": [],
+  "currentPairOnlyConclusion": "mount_order_only"
+}

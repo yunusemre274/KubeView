@@ -1,0 +1,6 @@
+{
+  "stage": "red",
+  "sourceHEAD": "482c79ba2231546e41a1db9a82e3f4564552a4d4",
+  "startedAt": "2026-11-11T13:42:24.999667+00:00",
+  "command": "GOMAXPROCS=1 GOTOOLCHAIN=local go1.26.11 test -p 1 -parallel 1 -timeout 60s -count 1 -run TestMainUI -v ."
+}

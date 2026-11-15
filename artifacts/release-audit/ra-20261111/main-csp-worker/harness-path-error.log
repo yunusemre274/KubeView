@@ -1,0 +1,1 @@
+Initial shell used backend cwd with root-relative paths; test file creation/gofmt/red log path failed before Go tests ran. Corrected to root cwd with go -C backend. No production source had changed.

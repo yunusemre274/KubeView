@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "phase": "TEST04.04 actual scale2\u21923\u21921",
+  "runCount": 1,
+  "testExecutionSeconds": 9.438041791,
+  "goTestJobSeconds": 18.206,
+  "maxTestSampleGapSeconds": 0.256344,
+  "maxOuterSampleGapSeconds": 0.255,
+  "validBounded": true,
+  "gatewayURL": "http://127.0.0.1:56907",
+  "mutationsConfinedToOwnedDeployment": true,
+  "readinessSequence": [
+    {
+      "replicas": 2,
+      "generation": 1,
+      "observedGeneration": 1,
+      "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+      "readyOwnerChainCount": 2
+    },
+    {
+      "replicas": 3,
+      "generation": 2,
+      "observedGeneration": 2,
+      "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+      "readyOwnerChainCount": 3
+    },
+    {
+      "replicas": 1,
+      "generation": 3,
+      "observedGeneration": 3,
+      "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+      "readyOwnerChainCount": 1
+    }
+  ],
+  "negativeStatuses": {
+    "readonly_create_rejected": 403,
+    "stale_UID_scale_rejected": 409,
+    "stale_RV_scale_rejected": 409
+  },
+  "planFlushedBeforeFirstMutation": true,
+  "planAt": "2026-11-11T16:16:41.860996Z",
+  "firstCreateAcceptanceAt": "2026-11-11T16:16:41.880616Z",
+  "cleanup": {
+    "UIDAndRVDeletePreconditions": true,
+    "deploymentUID": "f4754930-4f24-489c-8743-a888bb740f48",
+    "dynamicGVKGET404": true,
+    "podLabelListCount": 0,
+    "replicaSetLabelListCount": 0,
+    "typedGET404": true
+  },
+  "postCleanupFixtureHashesEqual": true,
+  "firstFailedAttemptUnchanged": true,
+  "testSourceSHA256": "d6c246b284f49c713d737f84ab5b6285cc0154afaf7fa8a82205a56d79fcb3d3",
+  "sourceUnchangedDuringJob": true,
+  "gatewayLifecycle": "httptest gateway Close, transport idle Close and Server.Close returned in successful test cleanups; no WebSocket opened",
+  "scopeLimitations": [
+    "Separate in-process gateway real HTTP/API acceptance, not active app19846 or normal UI acceptance",
+    "Admin static kubeconfig SSAR allow path tested; restricted-RBAC deny path is outside this phase",
+    "Readiness and observedGeneration checked on real typed Deployment GET; dynamic GET cross-checks exact GVK and UID",
+    "No performance/CPU benchmark conclusion"
+  ],
+  "finalizedAt": "2026-11-11T16:18:45.291332+00:00"
+}

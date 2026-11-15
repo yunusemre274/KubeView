@@ -1,0 +1,12 @@
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:19:33+03:00","CreatedBy":"CMD [\"/usr/bin/cilium-dbg\"]","CreatedSince":"2 weeks ago","ID":"sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:19:33+03:00","CreatedBy":"ENV INITSYSTEM=SYSTEMD","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:19:33+03:00","CreatedBy":"WORKDIR /home/cilium","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"12.3kB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:19:33+03:00","CreatedBy":"COPY /tmp/install/linux/arm64 / # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"372MB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:38+03:00","CreatedBy":"ENV HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:38+03:00","CreatedBy":"COPY /usr/bin/cilium-envoy /usr/bin/cilium-envoy-starter /usr/bin/ # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"80.5MB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:36+03:00","CreatedBy":"RUN |2 TARGETOS=linux TARGETARCH=arm64 /bin/sh -c echo \". /etc/profile.d/bash_completion.sh\" \u003e\u003e /etc/bash.bashrc # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"12.3kB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:36+03:00","CreatedBy":"LABEL maintainer=maintainer@cilium.io","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:36+03:00","CreatedBy":"ARG TARGETARCH=arm64","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-23T17:13:36+03:00","CreatedBy":"ARG TARGETOS=linux","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-22T14:20:27+03:00","CreatedBy":"COPY / / # buildkit","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"282MB"}
+{"Comment":"buildkit.dockerfile.v0","CreatedAt":"2026-10-22T14:20:27+03:00","CreatedBy":"LABEL maintainer=maintainer@cilium.io","CreatedSince":"2 weeks ago","ID":"\u003cmissing\u003e","Size":"0B"}

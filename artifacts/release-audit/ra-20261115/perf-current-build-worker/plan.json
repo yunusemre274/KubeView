@@ -1,0 +1,27 @@
+{
+  "startedAt": "2026-11-15T09:58:01.407771+00:00",
+  "startedEpoch": 1794736681.4077702,
+  "workDeadlineEpoch": 1794737041.4077702,
+  "deadlineEpoch": 1794737101.4077702,
+  "head": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+  "runtimeSource": "15770296056ca2629601dba540c04741e1822e0d",
+  "tags": {
+    "B": "cat16-current157-20261115T095801Z",
+    "common": "cat16-common157-20261115T095801Z",
+    "A": "cat16-36d-20261112T113255Z"
+  },
+  "limits": {
+    "ViteSeconds": 120,
+    "GoCompileSeconds": 180,
+    "workSeconds": 360,
+    "reportReserveSeconds": 60,
+    "ownedRSSBytes": 4294967296,
+    "diskMinimumBytes": 10737418240,
+    "batteryFloorPercent": 30,
+    "ACRequired": true,
+    "lowPowerRequired": 0,
+    "autoRetries": 0
+  },
+  "actions": "one Vite build from exact private tracked frontend snapshot, one Go test -c from same tracked backend; no test/server/browser/measurement/cluster",
+  "privateRoot": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-current-build-20261115"
+}

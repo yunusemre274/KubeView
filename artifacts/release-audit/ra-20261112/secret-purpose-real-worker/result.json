@@ -1,0 +1,173 @@
+{
+  "SecretUID": "bed7eca2-c83b-4e57-bef4-6135260693a6",
+  "allExactFixturesAbsent": true,
+  "cleanup": [
+    {
+      "UID": "27924754-2ba7-41d5-a58a-b2c9ff67b855",
+      "absent": true
+    },
+    {
+      "UID": "0eb78d45-9ed6-461f-b2ab-2adf2dd48855",
+      "absent": true
+    },
+    {
+      "UID": "a5f7a89b-bd20-4c5e-a4cb-81dfd5d2c394",
+      "absent": true
+    },
+    {
+      "UID": "205be36e-f824-4c3c-a8b9-4019dcd29641",
+      "absent": true
+    },
+    {
+      "UID": "2994f567-9cbb-4836-865c-828c87b00ebe",
+      "absent": true
+    },
+    {
+      "UID": "ea31496e-b462-4d84-bbbf-aa9eeecc3c89",
+      "absent": true
+    },
+    {
+      "UID": "bed7eca2-c83b-4e57-bef4-6135260693a6",
+      "absent": true
+    }
+  ],
+  "elapsedSeconds": 1.508352417,
+  "events": [
+    {
+      "at": "2026-11-12T10:52:54.867468Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "GET",
+        "path": "/api/secrets/reveal",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:54.873005Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "PUT",
+        "path": "/api/resources",
+        "status": 403
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:54.878073Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "POST",
+        "path": "/api/management",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.028541Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "PUT",
+        "path": "/api/resources",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.260898Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "GET",
+        "path": "/api/resources",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.357774Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "GET",
+        "path": "/api/resources",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.367159Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": true,
+        "identity": "secret-list-a2e2f0779d759351",
+        "verb": "list"
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.369466Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": false,
+        "identity": "secret-list-a2e2f0779d759351",
+        "verb": "get"
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.370426Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": false,
+        "identity": "secret-list-a2e2f0779d759351",
+        "verb": "update"
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.460613Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-list-a2e2f0779d759351",
+        "method": "POST",
+        "path": "/api/management",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.463201Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-list-a2e2f0779d759351",
+        "method": "GET",
+        "path": "/api/secrets/reveal",
+        "status": 403
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.475677Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-list-a2e2f0779d759351",
+        "method": "GET",
+        "path": "/api/resources",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T10:52:55.56033Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-list-a2e2f0779d759351",
+        "method": "PUT",
+        "path": "/api/resources",
+        "status": 400
+      }
+    }
+  ],
+  "failed": true,
+  "mode": "PRODUCTION_HANDLER_REAL_KUBERNETES_SYNTHETIC_SECRET_NOT_BROWSER_UI",
+  "namespaceNotDeleted": true,
+  "namespaceUID": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d",
+  "profileLabAndOriginalNodesUnchanged": true,
+  "startedAt": "2026-11-12T10:52:54.779771Z",
+  "syntheticDataHash": "0e1c1bf7e157fa9f0b95290d4df38ee205f2488a095bb035a9ec1a0bc8ca0cc4",
+  "valuesRecorded": false,
+  "within180Seconds": true
+}

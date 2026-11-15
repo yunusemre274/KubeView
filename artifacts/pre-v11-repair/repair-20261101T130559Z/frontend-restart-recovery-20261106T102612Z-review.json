@@ -1,0 +1,151 @@
+{
+  "role": "KV-FRONTEND-MANAGER",
+  "reviewedAt": "2026-11-06T10:28:25.770411+00:00",
+  "status": "PASSED_RESTART_ONLY_RECOVERY",
+  "originalArtifact": "frontend-final-failures-20261106T102147Z.json",
+  "originalArtifactSHA256": "eec25ab60cce3a5429c4561547d0fa31e2318eec1ae38431ac85cc1818a59202",
+  "originalStatusPreserved": "FAILED",
+  "originalCases": [
+    {
+      "name": "normal center dry-run absence then real Deployment owner/assignment/Ready",
+      "status": "PASSED"
+    },
+    {
+      "name": "normal UI scale uses real scale endpoint and preserves existing Pod UID",
+      "status": "PASSED"
+    },
+    {
+      "name": "normal UI rollout restart observes new ReplicaSet/new Pods without changing Node identity",
+      "status": "FAILED"
+    },
+    {
+      "name": "real no-eligible-Node workload stays Pending with scheduler Unschedulable reason",
+      "status": "PASSED"
+    },
+    {
+      "name": "real invalid image reports ErrImagePull/ImagePullBackOff without fabricated readiness",
+      "status": "PASSED"
+    },
+    {
+      "name": "real quota admission rejects create after successful server dry-run preview",
+      "status": "PASSED"
+    },
+    {
+      "name": "discarded unsent draft then real context switch; accepted workload is not server-cancelled",
+      "status": "PASSED"
+    },
+    {
+      "name": "reuse prior actual RBAC rejection only when the relevant authorization source still matches",
+      "status": "PASSED"
+    }
+  ],
+  "rootCause": "Test-helper scope mismatch. Canonical Kubernetes state correctly retained a terminating old Pod. ready() checked only live Pods while the following all-Pod UID assertion included the terminating old incarnation. New ReplicaSet and new Ready Pods were already real; no product defect was identified.",
+  "helperChange": "When checking restart completion, wait for old ReplicaSet Pod incarnations to disappear as well as new live Pods to become Ready. Record old terminating observations separately and require old Pod DELETE watch events, disjoint new Pod UIDs, real new ReplicaSet ownership, exact target Node assignment and unchanged Node UID. Add explicit restart-only two-minute execution mode with reserved bounded cleanup.",
+  "newRun": "frontend-restart-recovery-20261106T102612Z.json",
+  "elapsedSeconds": 17.52,
+  "onlyOneRestartCase": true,
+  "priorSevenPassingCasesRerun": false,
+  "newRunSourceUnchanged": true,
+  "sourceMatchesOriginalRun": true,
+  "pageErrors": [],
+  "operation": {
+    "at": "2026-11-06T10:26:24.842Z",
+    "action": "restart",
+    "id": "d4d6ec0a-b145-4bb0-bcc0-875a6a94d595",
+    "uid": "a52819f5-235a-4a62-87dc-29c3284d4051",
+    "name": "final-ready",
+    "statusHTTP": 202,
+    "serverStatus": "accepted"
+  },
+  "oldPodUIDs": [
+    "7d52f680-e2d4-4c28-a34b-50bff21f7034",
+    "67162b9a-5b1c-4902-a288-6ee4bcfcb4d4"
+  ],
+  "newPodUIDs": [
+    "d58730a3-411d-4d29-8077-356f9c1b9e8b",
+    "655efd80-c70a-4bf5-87ae-5c5bb6c6951c"
+  ],
+  "newReplicaSetUIDs": [
+    "ad8b874c-c255-4547-a4c4-09f1649492e1"
+  ],
+  "newPodsTargetNodeNames": [
+    "kv-repair-1101",
+    "kv-repair-1101"
+  ],
+  "unchangedNodeUID": "f8b02052-1800-4d5a-9620-2d041485e891",
+  "oldTerminatingObservationCount": 4,
+  "oldPodDeleteWatch": [
+    {
+      "at": "2026-11-06T10:26:29.521Z",
+      "uid": "7d52f680-e2d4-4c28-a34b-50bff21f7034",
+      "action": "DELETE",
+      "nodeName": "kv-repair-1101",
+      "owners": [
+        {
+          "apiVersion": "apps/v1",
+          "blockOwnerDeletion": true,
+          "controller": true,
+          "kind": "ReplicaSet",
+          "name": "final-ready-5f46848fcd",
+          "uid": "d6463120-55cc-42ba-9ee7-e00e088f4b08"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-06T10:26:28.513Z",
+      "uid": "67162b9a-5b1c-4902-a288-6ee4bcfcb4d4",
+      "action": "DELETE",
+      "nodeName": "kv-repair-1101",
+      "owners": [
+        {
+          "apiVersion": "apps/v1",
+          "blockOwnerDeletion": true,
+          "controller": true,
+          "kind": "ReplicaSet",
+          "name": "final-ready-5f46848fcd",
+          "uid": "d6463120-55cc-42ba-9ee7-e00e088f4b08"
+        }
+      ]
+    }
+  ],
+  "cleanup": [
+    {
+      "uid": "a52819f5-235a-4a62-87dc-29c3284d4051",
+      "name": "final-ready",
+      "resource": "deployments",
+      "status": "observed-absent",
+      "statusHTTP": 202,
+      "uidAndResourceVersionPrecondition": true,
+      "observedHTTP404": true
+    },
+    {
+      "uid": "51fe774d-bb22-4571-8b9f-a91628e691d9",
+      "name": "kv-repair-final-mw4txfqe",
+      "resource": "namespaces",
+      "status": "observed-absent",
+      "statusHTTP": 202,
+      "uidAndResourceVersionPrecondition": true,
+      "observedHTTP404": true
+    }
+  ],
+  "browserClosed": "ui.finish awaited context.close and browser.close before successful process exit0",
+  "visualQA": {
+    "method": "Opened actual screenshots and decoded frames from both recorded WebM files with view_image. Sampled frames are not a claim of full real-time playback.",
+    "openedScreenshots": [
+      "frontend-final-failures-20261106T102147Z-03-case-3-failed.png",
+      "frontend-restart-recovery-20261106T102612Z-02-restart-new-pod-owner-ready.png",
+      "frontend-restart-recovery-20261106T102612Z-03-restart-real-observed-operation.png"
+    ],
+    "openedVideoFrames": [
+      "frontend-restart-recovery-20261106T102612Z-prior-failed-video-18s.png",
+      "frontend-restart-recovery-20261106T102612Z-prior-failed-video-20s.png",
+      "frontend-restart-recovery-20261106T102612Z-video-09s.png",
+      "frontend-restart-recovery-20261106T102612Z-video-11s.png",
+      "frontend-restart-recovery-20261106T102612Z-video-13s.png"
+    ],
+    "newVideo": "frontend-restart-recovery-20261106T102612Z-video/page@8ab1574ff168fcbc6d7cb470a808b32a.webm",
+    "newVideoDurationSeconds": 16.64,
+    "findings": "Actual full-screen harbor remained visible; new Pod panel showed Running and app Ready, and restart operation row showed observed result verified. Cleanup frames separately show terminating resources after test completion. No additional UI or cluster work was started."
+  },
+  "scope": "No product, docs or Git changes; helper plus unique new-run artifacts only. No performance or battery claim. Root owns the exclusive subsequent battery measurement."
+}

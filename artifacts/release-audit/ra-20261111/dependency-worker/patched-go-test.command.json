@@ -1,0 +1,25 @@
+{
+  "command": [
+    "env",
+    "GOTOOLCHAIN=go1.26.11",
+    "go",
+    "test",
+    "-p=1",
+    "-parallel=2",
+    "-timeout=90s",
+    "-json",
+    "./..."
+  ],
+  "cwd_relative_to_repository": "backend",
+  "started_at_utc": "2026-11-11T10:30:25.761972+00:00",
+  "finished_at_utc": "2026-11-11T10:30:53.736708+00:00",
+  "duration_seconds": 27.974,
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+  "stdout_file": "patched-go-test.stdout.gz",
+  "stderr_file": "patched-go-test.stderr",
+  "stdout_encoding": "gzip; decompress to original unmodified newline-delimited JSON test stream",
+  "stdout_sha256_uncompressed": "2cbe643c4fa39ba4252cc66c79b078562cc6ab0bd4a61ada2d17db8cfc02b6bd"
+}

@@ -1,0 +1,135 @@
+{
+  "startedAt": "2026-11-11T17:32:59.330524+00:00",
+  "argv": [
+    "go",
+    "test",
+    "-count=1",
+    "-p=1",
+    "-parallel=1",
+    "-run",
+    "^TestReleaseOwnedScaleTwoThreeOne$",
+    "-timeout=180s",
+    "-json",
+    "./pkg/server"
+  ],
+  "cwd": "backend",
+  "env": {
+    "GOTOOLCHAIN": "go1.26.11",
+    "GOMAXPROCS": "1",
+    "KUBEVIEW_RELEASE_REAL_SCALE": "owned-profile06-2-3-1",
+    "KUBEVIEW_RELEASE_REAL_STATE": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01/lab.json",
+    "KUBEVIEW_RELEASE_REAL_KUBECONFIG": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01/private/admin.json",
+    "KUBEVIEW_RELEASE_REAL_OUTPUT": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/real-scale-current-helper-worker"
+  },
+  "outerProcessWallLimitSeconds": 240,
+  "testTimeoutSeconds": 180,
+  "parallel": 1,
+  "sourceBaselineReferences": [
+    "9e87141b"
+  ],
+  "sleepStallGapSecondsThreshold": 5,
+  "powerSamples": [
+    {
+      "at": "2026-11-11T17:32:59.356243+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453385543680
+    },
+    {
+      "at": "2026-11-11T17:33:00.397627+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453384740864
+    },
+    {
+      "at": "2026-11-11T17:33:01.422398+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453383049216
+    },
+    {
+      "at": "2026-11-11T17:33:02.450120+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453385265152
+    },
+    {
+      "at": "2026-11-11T17:33:03.479395+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453385220096
+    },
+    {
+      "at": "2026-11-11T17:33:04.508424+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453385203712
+    },
+    {
+      "at": "2026-11-11T17:33:05.543887+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453339078656
+    },
+    {
+      "at": "2026-11-11T17:33:06.568383+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453338402816
+    },
+    {
+      "at": "2026-11-11T17:33:07.591199+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453339652096
+    },
+    {
+      "at": "2026-11-11T17:33:08.618483+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453338574848
+    },
+    {
+      "at": "2026-11-11T17:33:09.641771+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453338435584
+    },
+    {
+      "at": "2026-11-11T17:33:10.676025+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453337567232
+    },
+    {
+      "at": "2026-11-11T17:33:11.702974+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453337509888
+    },
+    {
+      "at": "2026-11-11T17:33:12.731041+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453337341952
+    },
+    {
+      "at": "2026-11-11T17:33:13.763039+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453337681920
+    },
+    {
+      "at": "2026-11-11T17:33:14.807178+00:00",
+      "AC": true,
+      "batteryPercent": 24,
+      "freeDiskBytes": 453305913344
+    }
+  ],
+  "exitCode": 0,
+  "stopReason": null,
+  "elapsedSeconds": 16.234,
+  "maxOuterSampleGapSeconds": 0.288,
+  "boundedControlValid": true,
+  "completedAt": "2026-11-11T17:33:15.564570+00:00"
+}

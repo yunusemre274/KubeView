@@ -1,0 +1,34 @@
+{
+  "startedAt": "2026-11-11T16:48:49.138018+00:00",
+  "batteryPercent": 12,
+  "sourceHEAD": "96adbf6092cba098cef351072b045e0946a4525a",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "30s",
+    "-count",
+    "1",
+    "-v",
+    "."
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local"
+  },
+  "sourceSHA256": {
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "backend/security_headers_test.go": "5248f666fa430a7d94d054098b755715ecb901463940b69ca6644ffb08f1221b"
+  },
+  "externalScriptBrowserCanary": "NOT RUN",
+  "productChange": false,
+  "finishedAt": "2026-11-11T16:48:51.299430+00:00",
+  "exitCode": 0,
+  "retryReason": "Trivial test harness conditional: direct ResponseRecorder does not suppress HEAD http.Error body. Only successful HEAD body assertion restricted; MIME/security/404 assertions unchanged."
+}

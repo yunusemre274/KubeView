@@ -1,0 +1,1 @@
+Git altkümesi: adayprovenance, unit/header ve başarısızbrowser/retest PNG+JSON+logs. Orijinal35MiBWebMler yerelde SHA256SUMS hashleriyle korunur, Git tesliminde yoktur. DELIVERY_SHA256SUMS yalnız Git altkümesidir. Bu sonuç runtimePASS değildir; report/phase mandatoryeksikleriaçıktutar.

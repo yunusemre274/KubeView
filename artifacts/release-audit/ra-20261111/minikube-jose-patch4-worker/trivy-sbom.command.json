@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/opt/homebrew/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/trivy.yaml",
+    "sbom",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "library",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/empty.ignore",
+    "--format",
+    "json",
+    "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/minikube-jose-patch4-worker/binary-components.cdx.json"
+  ],
+  "started_at_utc": "2026-11-11T13:19:58.747786+00:00",
+  "timeout_seconds": 30,
+  "cwd": ".git/release-audit/minikube-jose-patch4",
+  "exit_code": 0,
+  "timed_out": false,
+  "duration_seconds": 0.507,
+  "finished_at_utc": "2026-11-11T13:19:59.255061+00:00"
+}

@@ -1,0 +1,11 @@
+source_head: 496729e2e1df38081496bad3313fd7e594fbe10f
+start_utc: 2026-11-11T12:38:05.868579+00:00
+command_argv: ["go", "test", "-p", "1", "-parallel", "1", "-timeout", "30s", "-count=1", "-v", "./pkg/server", "-run", "^TestReleasePreviewBrowserFixture$"]
+environment: GOMAXPROCS=1, explicit browser opt-in absent, nonexistent synthetic KUBECONFIG
+=== RUN   TestReleasePreviewBrowserFixture
+    release_preview_browser_test.go:51: explicit synthetic browser fixture opt-in required
+--- SKIP: TestReleasePreviewBrowserFixture (0.00s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	0.998s
+end_utc: 2026-11-11T12:38:08.761704+00:00
+exit_code: 0

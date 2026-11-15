@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "zeroEventRuntime": true,
+  "canonicalFullComparison": true,
+  "missingDelayPreservedNull": true,
+  "allTenHistoricalPositiveProducersStillValid": [
+    {
+      "pair": 0,
+      "side": "A",
+      "sourceSHA256": "b771d09b84c7d5080d476aa734e36879b135542319c0fa491fff43f9a5fdfb01",
+      "passed": true
+    },
+    {
+      "pair": 0,
+      "side": "B",
+      "sourceSHA256": "24a695856055555360962e1569ad9fe66a824a3f2860496f448b60c33dcfd5f9",
+      "passed": true
+    },
+    {
+      "pair": 1,
+      "side": "A",
+      "sourceSHA256": "14a85430f79544a125bc2e61e6de7dd547480420ebf416268edaff69e61fce2a",
+      "passed": true
+    },
+    {
+      "pair": 1,
+      "side": "B",
+      "sourceSHA256": "d38f81fab6291f2d07dd029fd188c475e6fbb730537bff4c7e8b805ba9e8d700",
+      "passed": true
+    },
+    {
+      "pair": 2,
+      "side": "A",
+      "sourceSHA256": "a09eb0e5c449169fbe045ff272c101a96a891167a0bdf5c87b71f69bf7cb82a1",
+      "passed": true
+    },
+    {
+      "pair": 2,
+      "side": "B",
+      "sourceSHA256": "b432c69d4d26f9a57fb2a53b686d222d717496a4942b93a0aeeaa0584fddddb7",
+      "passed": true
+    },
+    {
+      "pair": 3,
+      "side": "A",
+      "sourceSHA256": "b643d6d196dbeffb7dcef74597aa2a02178eb7f04f1aadfe710a321810e0c99c",
+      "passed": true
+    },
+    {
+      "pair": 3,
+      "side": "B",
+      "sourceSHA256": "ded340e169817c0085f6127bf5d19a28ae725a4163e5e9eec3bf6cff26689bce",
+      "passed": true
+    },
+    {
+      "pair": 4,
+      "side": "A",
+      "sourceSHA256": "2767f4dd48ae3f0f6a14a132ad89a17b5c140e1e82c01a713271b8353931a3ba",
+      "passed": true
+    },
+    {
+      "pair": 4,
+      "side": "B",
+      "sourceSHA256": "69ae1cf78017292481afef20c28426e25d16f2f2d521bfe6fa31ecc0a9db3ead",
+      "passed": true
+    }
+  ],
+  "newPerformanceWindows": 0,
+  "explanation": "One1s no-event data smoke is diagnostic only; offline positive records re-evaluated without rerunning CPU benchmarks"
+}

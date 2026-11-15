@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-08T20-59-30-932Z-e79e7c24",
+  "startedAt": "2026-11-08T20:59:30.932Z",
+  "tests": [
+    {
+      "title": "V11-07 V11-08 V11-09 V11-10 center dry-run/create/scale/resources/restart/Pod replacement/delete",
+      "project": "chromium",
+      "status": "FAIL",
+      "durationMs": 48296,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "TimeoutError: locator.click: Timeout 15000ms exceeded."
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T20-59-31-122Z-0e05d395/v11-real-cluster-V11-07-V1-5d8a7-tart-Pod-replacement-delete-chromium/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T20-59-31-122Z-0e05d395/v11-real-cluster-V11-07-V1-5d8a7-tart-Pod-replacement-delete-chromium/attachments/v11-evidence-0598891df24109d48836bd6353c52bfb3206bcc7.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T20-59-31-122Z-0e05d395/v11-real-cluster-V11-07-V1-5d8a7-tart-Pod-replacement-delete-chromium/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "Error",
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "expectedTests": 6,
+  "finishedAt": "2026-11-08T21:00:19.505Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-08T20-59-30-932Z-e79e7c24.json"
+}

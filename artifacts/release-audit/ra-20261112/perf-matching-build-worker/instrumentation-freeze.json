@@ -1,0 +1,57 @@
+{
+  "benchmarks/run.mjs": {
+    "SHA256": "12f77e64ecc1ad69ef82f2fd0a00722513509521798eabee271d0efe8dd0cc75",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/run.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/fixtures.mjs": {
+    "SHA256": "c53ffc7cab18c06991437fe0f17ebdade10c28bbb56146ee19ba2ee63a45becc",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/fixtures.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/probe.mjs": {
+    "SHA256": "bec5e6362c57c0ce2c2ed2865d6fa7e05fd8446daa153ea7054fdcdb0089d367",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/probe.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/repair-scenarios.mjs": {
+    "SHA256": "fd5525a58f12a2569d73af63a19dec3f6f7680278386a637f778d984f49628d7",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/repair-scenarios.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/metrics.mjs": {
+    "SHA256": "40e00b9550c43db063db839601586d3f22fdb149dd9ba5bb0491bdaf7cdf36c9",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/metrics.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/panel-compare.mjs": {
+    "SHA256": "e23586629e69d3f20952a0988b368d76334743c0efe801843aefb47b77013886",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/panel-compare.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/panel-accept.mjs": {
+    "SHA256": "6ba13310ac83e9f8b74d6afae071bc1523fc6b617dd0b21934289b9482ee0aa3",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/panel-accept.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/repair-session.mjs": {
+    "SHA256": "fe41d018cbc25f660e1c0e16f885c723a237e0faa4a07bafcf0ae8c4afc2ddcb",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/repair-session.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/build-lock.mjs": {
+    "SHA256": "3452669b2237796240ea934ba7727abc4e6401d1917d6ccd2ce215443ebc97cf",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/build-lock.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/scene-inventory.mjs": {
+    "SHA256": "30bacc95832df464502cb9ffa4796fa0b7b3cf14fa00f47d3b32114ce251dbe5",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/scene-inventory.mjs",
+    "equalsImmutableF32": true
+  },
+  "benchmarks/lifecycle-probe.mjs": {
+    "SHA256": "5c68851815509e0a449483d160558a61d1bf3b062a403b3e2c570232e3e64022",
+    "privateFrozenCopy": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/harness-freeze/benchmarks/lifecycle-probe.mjs",
+    "equalsImmutableF32": true
+  }
+}

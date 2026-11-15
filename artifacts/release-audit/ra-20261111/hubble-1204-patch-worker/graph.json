@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "go",
+    "get",
+    "-p=1",
+    "golang.org/x/net@v0.62.0"
+  ],
+  "cwd": ".git/release-audit/hubble-v1.20.4-patched1/source/cilium-hubble-3e268bb",
+  "env": {
+    "GOTOOLCHAIN": "go1.27.4",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "1GiB",
+    "CGO_ENABLED": "0"
+  },
+  "started_at_utc": "2026-11-11T13:45:09.704953+00:00",
+  "elapsed_seconds": 0.981,
+  "exit_code": 0,
+  "peak_owned_rss_bytes": 23986176,
+  "stop_reason": null,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "20eed0d0ee67dd4fbcf57e31e9fed5e451383137bc8b414ca98e3e99303fb4d2"
+}

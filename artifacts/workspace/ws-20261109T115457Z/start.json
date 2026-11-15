@@ -1,0 +1,27 @@
+{
+  "runID": "ws-20261109T115457Z",
+  "at": "2026-11-09T12:12:39.912948+00:00",
+  "head": "0029672c7dce2c6cdf5f19c49fea956bc618c7d3",
+  "branch": "redesign/harbor-workbench",
+  "remote": "https://github.com/yunusemre274/KubeView.git",
+  "upstreamAheadBehind": "0/0 verified before delegation",
+  "trackedStart": "clean verified before delegation; concurrent owned work may now start",
+  "promptFile": "KubeView_v1.1_Coklu_Liman_Workspace_Test_Promptu.md.md",
+  "promptSHA256": "db95db0ff9a6d344975c7b01a79861d5dfd6d507b3b91d218a548eb6b2dfbad2",
+  "privateSourceArchiveSHA256": "c446023fa66502f4ab178f3b1375b50a75a8d636ac3bfcdeb50ffa62c2f162f8",
+  "sourceArchiveScope": "tracked backend/frontend/scripts/Dockerfile/Makefile/start.sh/charts at immutableHEAD; no historical artifact/cache/credential content",
+  "oldGates": {
+    "V11-16": "BLOCKED physicalUIlatency",
+    "V11-18": "BLOCKED unexplainedCPU",
+    "V11-19": "BLOCKED stable delivery"
+  },
+  "newGate": "USER MANUAL ACCEPTANCE PENDING; no stable/tag/mainmerge/milestoneclose",
+  "logicalBranches": 2,
+  "filesProtectedCount": 936,
+  "baselineNote": "Tracked tree verified clean before delegated work. Some newly created files were captured concurrently; task ownership is tracked separately. Historical/user untracked artifacts are preserved, not blanket staged.",
+  "initialRemoteVerified": {
+    "sha": "0029672c7dce2c6cdf5f19c49fea956bc618c7d3",
+    "push": "Everything up-to-date",
+    "remoteRef": "refs/heads/redesign/harbor-workbench"
+  }
+}

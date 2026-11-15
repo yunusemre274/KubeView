@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/cilium/cilium/v1.20.2/pkg/hubble/relay/server/server.go",
+    "status": "BLOCKED_FETCH",
+    "error_class": "URLError",
+    "web_tool_primary_read": "SUCCESS; immutable v1.20.2 primary source viewed",
+    "local_download_note": "Direct urllib copy failed; no local full-source fetch success claimed"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/cilium/cilium/v1.20.2/operator/cmd/root.go",
+    "status": "BLOCKED_FETCH",
+    "error_class": "URLError",
+    "web_tool_primary_read": "SUCCESS; immutable v1.20.2 primary source viewed",
+    "local_download_note": "Direct urllib copy failed; no local full-source fetch success claimed"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "kind": "real Kubernetes + immutable HTTP gateway; not normal UI",
+  "phase": "isolation",
+  "runId": "qa-ws-ee6c402dc8204c8f",
+  "workspaceId": "a3d554b1-429c-49cd-95ec-ba578cf00275",
+  "clusterUID": "a51d8e09-b035-4571-a5b3-4f0a40401f91",
+  "gatewayBinarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+  "passedSteps": [
+    "same_name_distinct_uid_ready",
+    "scale_A_preserves_B",
+    "restart_A_preserves_B",
+    "stale_uid_and_opaque_rv_rejected",
+    "restricted04_real_rbac_and_direct_routes"
+  ],
+  "objects": [
+    {
+      "namespace": "kvml-bc565b30-02-p1",
+      "name": "qa-ws-ee6c402dc8204c8f-same",
+      "uid": "332c2243-7412-40e5-a725-df301e87ef6b",
+      "cleanupGet404": true
+    },
+    {
+      "namespace": "kvml-bc565b30-02-p2",
+      "name": "qa-ws-ee6c402dc8204c8f-same",
+      "uid": "95c50091-1653-4ebb-8ee0-e96dfe918076",
+      "cleanupGet404": true
+    }
+  ],
+  "cleanup": [
+    "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0",
+    "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0"
+  ],
+  "failed": false
+}

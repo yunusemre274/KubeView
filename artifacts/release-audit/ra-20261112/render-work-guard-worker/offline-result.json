@@ -1,0 +1,57 @@
+{
+  "status": "PASS_OFFLINE_GUARD_RETEST_NO_NEW_MEASUREMENTS",
+  "originalComparable": true,
+  "correctedComparable": false,
+  "renderWorkStatus": "REQUIRES_RENDER_EQUIVALENCE_REVIEW",
+  "affectedPairedCells": 3,
+  "knownCounterExample": {
+    "block": 3,
+    "scenario": "panel-open-events",
+    "status": "REQUIRES_RENDER_EQUIVALENCE_REVIEW",
+    "differences": [
+      {
+        "path": "before.stats.calls",
+        "before": 426,
+        "after": 427,
+        "status": "DIFFERENT"
+      },
+      {
+        "path": "before.stats.lines",
+        "before": 60,
+        "after": 72,
+        "status": "DIFFERENT"
+      },
+      {
+        "path": "summary.calls.p50",
+        "before": 434,
+        "after": 435,
+        "status": "DIFFERENT"
+      },
+      {
+        "path": "summary.calls.p95",
+        "before": 440,
+        "after": 441,
+        "status": "DIFFERENT"
+      },
+      {
+        "path": "summary.calls.p99",
+        "before": 443,
+        "after": 444,
+        "status": "DIFFERENT"
+      },
+      {
+        "path": "summary.calls.max",
+        "before": 444,
+        "after": 445,
+        "status": "DIFFERENT"
+      }
+    ],
+    "unknowns": []
+  },
+  "numericTableDeltasSamplesInputsUnchanged": true,
+  "historicalFilesVerifiedUnchanged": 178,
+  "originalSourceSHA256": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+  "currentSourceSHA256": "66662ee807299a3db414160be75bfbf912e10fc94ff34ba60c0661361fa4a001",
+  "importRebinding": "Only original relative imports resolved to their original directory; original source preserved.",
+  "newPerformanceWindows": 0
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-08T19-26-11-359Z-9d602f3c",
+  "startedAt": "2026-11-08T19:26:11.359Z",
+  "tests": [
+    {
+      "title": "V11-02 V11-03 V11-12 same-name different-UID A→B→A isolates normal details and live logs",
+      "project": "chromium",
+      "status": "FAIL",
+      "durationMs": 240125,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+        },
+        {
+          "name": "Error",
+          "message": "Error: Unexpected application errors\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m"
+        },
+        {
+          "name": "Error",
+          "message": "Error: Guarded cleanup remains required for owned cluster slots B, A"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T19-26-11-542Z-9e1d9f5f/v11-real-cluster-V11-02-V1-09150-ormal-details-and-live-logs-chromium/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T19-26-11-542Z-9e1d9f5f/v11-real-cluster-V11-02-V1-09150-ormal-details-and-live-logs-chromium/attachments/v11-evidence-7110f65220fc6d292512aa79bd221a6962f4aabe.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T19-26-11-542Z-9e1d9f5f/v11-real-cluster-V11-02-V1-09150-ormal-details-and-live-logs-chromium/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    },
+    {
+      "title": "V11-11 initial read-only, absent/stale nonce and hostile Origin cannot mutate the real lab",
+      "project": "chromium",
+      "status": "FAIL",
+      "durationMs": 180115,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "\u001b[31mTest timeout of 180000ms exceeded.\u001b[39m"
+        },
+        {
+          "name": "Error",
+          "message": "Error: Unexpected application errors\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m"
+        },
+        {
+          "name": "Error",
+          "message": "Error: locator.click: Test timeout of 180000ms exceeded."
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T19-30-12-020Z-70b1e954/v11-scope-security-V11-11--04a8b--cannot-mutate-the-real-lab-chromium/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T19-30-12-020Z-70b1e954/v11-scope-security-V11-11--04a8b--cannot-mutate-the-real-lab-chromium/attachments/v11-evidence-4a868fd6ea58b17bfd5b47ca5e89a05690b0c60d.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T19-30-12-020Z-70b1e954/v11-scope-security-V11-11--04a8b--cannot-mutate-the-real-lab-chromium/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 2,
+  "finishedAt": "2026-11-08T19:33:12.230Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 2,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-08T19-26-11-359Z-9d602f3c.json"
+}

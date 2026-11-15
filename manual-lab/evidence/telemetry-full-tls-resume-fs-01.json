@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "attempt": "telemetry-full-tls-resume-fs-01",
+  "preparedAt": "2026-11-10T08:34:27.463899+00:00",
+  "sourceSha256": {
+    "scripts/manual-lab.sh": "c6ad10b2a4497774f35a45f174a3e028c44c7f3b4fe36634a5e9d3c96f613d7a",
+    "scripts/manual_lab.py": "87e59639ad8a14684c50048f4c49a00e66df91433c36aeed642936317b354ed4",
+    "manual-lab/telemetry.py": "14de490e7aece7b29e148a529f0dca621c885a5d86f6e8c32e55e5dc2c4bf2ff",
+    "manual-lab/templates/telemetry-values.json": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796",
+    "manual-lab/tests/test_telemetry_tls.py": "c805154766b1d96d03af4b22ee6e33bc48f9f5ecedb8dbcda3693e718d33aceb",
+    "MANUAL_TEST_GUIDE.md": "a99da887f8678236446845bc78f81a2aec11ccf59e9728b254b841807dc1f9a2"
+  },
+  "binarySha256": "2ba3e80a3b6ef604780f3db76087bee066784ae29b81056b663eaa91c645e080",
+  "hubbleSha256": "f99c58c404124ee541403839c47976e80920a6ce935e48bf6f63cae9a08b8892",
+  "standaloneBundleName": "20261110-tls-v05-01",
+  "standaloneBundlePrepared": true,
+  "oldTemporaryBundleMissing": true,
+  "normalLabId": "kvml-ccdfe731dabd",
+  "normalClusterKeys": [
+    "a",
+    "b"
+  ],
+  "telemetryStateExists": false,
+  "testsStarted": false,
+  "clusterAppTrafficStarted": false,
+  "secretRead": false,
+  "privatePathsOrSecretValuesRecorded": false,
+  "mutationLease": "PENDING_ROOT_EXCLUSIVE_LEASE",
+  "previousFullTLSUnitProofStillMatches": true
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "type": "unit/fake; real API tests separate",
+  "command": "go -C backend test -p 2 -timeout 120s ./...; node --test benchmarks/*.test.mjs",
+  "goPackagesPassed": 5,
+  "benchmarkTests": 43,
+  "benchmarkFailed": 0,
+  "benchmarkSkipped": 0,
+  "notes": "Go optional integration SKIP remains SKIP, not real E2E proof. See backend corrected JSONL for individual55 cases.",
+  "goPackagesWithoutTests": 5
+}

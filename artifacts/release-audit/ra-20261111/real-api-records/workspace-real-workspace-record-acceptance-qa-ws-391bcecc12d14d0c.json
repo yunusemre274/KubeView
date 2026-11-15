@@ -1,0 +1,12 @@
+{
+  "kind": "real Kubernetes + immutable HTTP gateway; not normal UI",
+  "phase": "workspace-record-acceptance",
+  "runId": "qa-ws-391bcecc12d14d0c",
+  "workspaceId": "a3d554b1-429c-49cd-95ec-ba578cf00275",
+  "clusterUID": "a51d8e09-b035-4571-a5b3-4f0a40401f91",
+  "gatewayBinarySHA256": "1003a43a6a808193d0d36695a4d7782fee8b754fb92df99ab0220511df1f7bf0",
+  "passedSteps": [],
+  "objects": [],
+  "cleanup": [],
+  "failed": true
+}

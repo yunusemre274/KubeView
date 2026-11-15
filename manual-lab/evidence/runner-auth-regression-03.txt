@@ -1,0 +1,7 @@
+test_empty_admin_auth_is_rejected_before_api_process (test_runner.RunnerContracts.test_empty_admin_auth_is_rejected_before_api_process) ... ok
+test_owned_auth_repair_preserves_other_cluster_and_reader (test_runner.RunnerContracts.test_owned_auth_repair_preserves_other_cluster_and_reader) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.003s
+
+OK

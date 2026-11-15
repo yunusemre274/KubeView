@@ -1,0 +1,56 @@
+{
+  "sourceCommit": "2461bbfb6824455a06c4fd9366ecd72a7928654e",
+  "sourceHashes": {
+    "frontend/src/harbor/HarborScene.jsx": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1",
+    "frontend/src/harbor/cameraViews.js": "3fdeec14417762d221fee20270c7de9574f90e1ab5d377456f387077faacce97",
+    "frontend/src/harbor/cameraViews.test.js": "a647900c87e76aef8ae5246df84d7979125e3eb0e00c1ca6aaa0a682add59b10",
+    "frontend/src/harbor/interactions.js": "829b5e5846ebe5fcc46a5500abe148c1ce990d191352332d769bd43488b2e157",
+    "frontend/src/harbor/interactions.test.js": "385bfdd7d2581a0328ffb0e2a1ba324e4000377d84708bcc7c4a3bd270f40702"
+  },
+  "runs": [
+    {
+      "name": "frontend-tests",
+      "argv": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/*.test.js",
+        "src/harbor/cameraViews.test.js",
+        "src/harbor/cargoTransforms.test.js",
+        "src/harbor/fleet.test.js",
+        "src/harbor/interactions.test.js",
+        "src/harbor/layout.test.js",
+        "src/harbor/resourceRelations.test.js",
+        "src/harbor/visualLifecycle.test.js",
+        "src/harbor/visualViews.test.js",
+        "src/harbor/waterModel.test.js",
+        "src/harbor/workspaceLayout.test.js",
+        "src/workbench/ResourceForms.test.js",
+        "src/workbench/containerModel.test.js",
+        "src/workbench/formLoading.test.js",
+        "src/workbench/logBuffer.test.js",
+        "src/workbench/logProtocol.test.js",
+        "src/workbench/logView.test.js",
+        "src/workbench/metricModel.test.js",
+        "src/workbench/placement.test.js",
+        "src/workbench/resourceUtils.test.js",
+        "src/workbench/secretPayload.test.js"
+      ],
+      "cwd": "frontend",
+      "exit": 0,
+      "seconds": 8.222937667000224
+    },
+    {
+      "name": "frontend-build",
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "frontend",
+      "exit": 0,
+      "seconds": 5.469999334000022
+    }
+  ],
+  "testCorrection": "Intermediate post-fix unit compared Quaternion callback identity; corrected to numeric toArray. This was a test assertion error, separate from original fixed fog horizon regression."
+}

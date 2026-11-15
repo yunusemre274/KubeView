@@ -1,0 +1,31 @@
+{
+  "existsBefore": true,
+  "files": [
+    {
+      "name": "id_rsa",
+      "bytes": 1679,
+      "mtimeNs": 1794424454137675830,
+      "birthTime": 1794424454.1376247,
+      "isSymlink": false
+    },
+    {
+      "name": "config.json",
+      "bytes": 3818,
+      "mtimeNs": 1794424452246046137,
+      "birthTime": 1794424452.2458558,
+      "isSymlink": false
+    },
+    {
+      "name": "id_rsa.pub",
+      "bytes": 381,
+      "mtimeNs": 1794424454137733946,
+      "birthTime": 1794424454.137709,
+      "isSymlink": false
+    }
+  ],
+  "safeIdentity": {
+    "name": "kvml-d32afbf634e8-a-m03",
+    "driverName": "docker",
+    "driverDockerID": null
+  }
+}

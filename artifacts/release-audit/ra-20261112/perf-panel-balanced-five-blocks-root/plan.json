@@ -1,0 +1,162 @@
+{
+  "status": "PLANNED_NOT_STARTED",
+  "question": "Within-build signed panel open-minus-closed at0/5events and sourceA/B difference of those deltas",
+  "scope": "Frontend-browser-common fixed backend; controlledM38/medium/DPR1/1440x900; no fullruntime/provider/energy/physicalFPS claim",
+  "protocol": 5,
+  "jobs": [
+    {
+      "block": 0,
+      "side": "A",
+      "expectedScenarioOrder": [
+        "panel-closed",
+        "panel-open",
+        "panel-closed-events",
+        "panel-open-events"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 0,
+      "side": "B",
+      "expectedScenarioOrder": [
+        "panel-closed",
+        "panel-open",
+        "panel-closed-events",
+        "panel-open-events"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 1,
+      "side": "B",
+      "expectedScenarioOrder": [
+        "panel-open-events",
+        "panel-closed-events",
+        "panel-open",
+        "panel-closed"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 1,
+      "side": "A",
+      "expectedScenarioOrder": [
+        "panel-open-events",
+        "panel-closed-events",
+        "panel-open",
+        "panel-closed"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 2,
+      "side": "A",
+      "expectedScenarioOrder": [
+        "panel-closed",
+        "panel-open",
+        "panel-closed-events",
+        "panel-open-events"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 2,
+      "side": "B",
+      "expectedScenarioOrder": [
+        "panel-closed",
+        "panel-open",
+        "panel-closed-events",
+        "panel-open-events"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 3,
+      "side": "B",
+      "expectedScenarioOrder": [
+        "panel-open-events",
+        "panel-closed-events",
+        "panel-open",
+        "panel-closed"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 3,
+      "side": "A",
+      "expectedScenarioOrder": [
+        "panel-open-events",
+        "panel-closed-events",
+        "panel-open",
+        "panel-closed"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 4,
+      "side": "A",
+      "expectedScenarioOrder": [
+        "panel-closed",
+        "panel-open",
+        "panel-closed-events",
+        "panel-open-events"
+      ],
+      "windows": 4
+    },
+    {
+      "block": 4,
+      "side": "B",
+      "expectedScenarioOrder": [
+        "panel-closed",
+        "panel-open",
+        "panel-closed-events",
+        "panel-open-events"
+      ],
+      "windows": 4
+    }
+  ],
+  "windows": 40,
+  "independentBlocks": 5,
+  "fixedMaximumJobs": 10,
+  "automaticRetries": 0,
+  "warmupSeconds": 30,
+  "measureSeconds": 60,
+  "pureWarmMeasureMinutes": 60,
+  "maxWallSeconds": 4500,
+  "perRunnerMaxMinutes": 8,
+  "conditionOrderRule": "Existing run.mjs reverses the four-scenario list exactly once on odd repeat-offset. Both builds use the same per-block order; AB/BA build order alternates. No double reversal.",
+  "historicalOpenFamily": "First n5 open-only protocol4 family is separately accepted for its question; NOT pooled into causal \u0394panel or protocol5 grid.",
+  "zeroEventDataRule": "Protocol5 fullnested client/upstream/planned consistency, planned/completed0 and n0/null delays; positivecells300planned/applied/received",
+  "sourceEvidence": [
+    "../perf-panel-transition-worker/REPORT.md",
+    "../perf-zero-event-contract-root/REPORT.md",
+    "../perf-native-harness-validation-root/REPORT.md"
+  ],
+  "naturalOpenClosedDifference": "Same Node0 UID/outline/canvas/camera retained; closing exposes more scene/labels. This is natural total panel cost, not a promise of pixel-equivalent composition.",
+  "powerPolicy": {
+    "startBatteryAtLeastPercent": 50,
+    "noNextJobBelowPercent": 40,
+    "abortDuringJobBelowPercent": 35,
+    "globalEmergencyPercent": 30,
+    "sourceAndLowPower": "fixed Battery/lowpower0; changes invalidate affected job/block",
+    "basis": "Prior same M workload consumed observed62\u219259percent over940s; not energy/frequency proof. Each6min job independently guarded; uncertain forecast never overrides live guard. Initial50 gives a20-point margin above global30; no-next40 and live35 remain stricter limits. This is fixed before the first preflight/run."
+  },
+  "limits": {
+    "summedOwnedBrowserRSSGiB": 6,
+    "appRSSGiB": 2,
+    "freeDiskGiB": 10,
+    "onlyPort": 5192,
+    "perJobCleanupReserveSeconds": 15
+  },
+  "validity": [
+    "5complete paired blocks/4conditions each, source/build/fixture/browser/quality/pose/visible/canonical counters fixed",
+    "same UID selection using normalpick+close proved by directUI flow; panel0counterfactual preservesselection",
+    "all observed process identities/interior samples monotonic/stable; sourcecodecaptured limits retained",
+    "all perwindowM55draw/p9520/p9933.3 and normalcallbackstore100/drawproxy250 where events measured",
+    "canonical fullnested content equality, no missingmetrics coercedzero",
+    "all captured jobprocesses absent and portfree; no builds/scans/otherbenchmarks/provider/labjobs while actual windows run"
+  ],
+  "failurePolicy": "Keep every job/window and any incomplete pair; first failed/invalid job stops family. No automatic replacement, no discard based on CPU value. Completed independent paired blocks remain recorded; incomplete block not silently accepted.",
+  "continuousSoak": "This restarts app/fixture/browser across jobs and is NOT CAT18 continuous60min use.",
+  "practicalCPUThreshold": "Paired median +5percent with full distribution/quality/latency considered; no causal improvement from a single signed number."
+}

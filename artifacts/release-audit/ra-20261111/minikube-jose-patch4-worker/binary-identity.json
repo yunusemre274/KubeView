@@ -1,0 +1,7 @@
+{
+  "path": ".git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+  "sha256": "98e42bafefb50d652b8c4760412703d936b6201d1d6d6c27163c5f69f130ddae",
+  "bytes": 136795746,
+  "version": "v1.38.1-kubeview-patched.4",
+  "upstream_commit": "c93a4cb9311efc66b90d33ea03f75f2c4120e9b0"
+}

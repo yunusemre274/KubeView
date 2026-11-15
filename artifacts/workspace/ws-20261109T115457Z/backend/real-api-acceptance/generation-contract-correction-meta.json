@@ -1,0 +1,29 @@
+{
+  "scope": "test-only correction; no product changes",
+  "sourceCitation": "https://raw.githubusercontent.com/kubernetes/kubernetes/v1.35.1/pkg/registry/apps/deployment/strategy.go",
+  "sourceFunction": "PrepareForUpdate",
+  "sourceLines": "105-110",
+  "contract": "A Deployment annotation PUT increments Generation by one even when Spec is unchanged; preserve B Spec bytes, PodUIDs, exact annotation/UID and A duplicate202/409 checks.",
+  "correctedAssertions": [
+    "concurrent B generation == beforeB+1",
+    "suppressed-response B generation == before+1"
+  ],
+  "diagnostics": "compound checks split into individual failures plus generation/spec/PodUID/RV boolean logs",
+  "sourceFile": "backend/pkg/server/workspace_real_acceptance_test.go",
+  "sourceSHA256": "bd26dc88c17163ad371206ed407e0349c3f1262da392faf6a4ebc38113615bfe",
+  "unitCommand": [
+    "go",
+    "test",
+    "-json",
+    "-count=1",
+    "-p=1",
+    "-timeout=60s",
+    "./pkg/server",
+    "-run",
+    "^TestWorkspaceAcceptanceSelectorCorrelationPredicates$"
+  ],
+  "unitResult": "pass",
+  "unitPackageSeconds": 0.709,
+  "passedTestAndSubtestCount": 9,
+  "firstFailurePreserved": "G-20261110T121959Z-meta.json"
+}

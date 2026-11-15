@@ -1,0 +1,97 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync, readdirSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+
+const require = createRequire(new URL('../frontend/package.json', import.meta.url));
+const { parse } = require('yaml');
+const directory = fileURLToPath(new URL('../.github/workflows/', import.meta.url));
+const source = readFileSync(`${directory}/ci.yml`, 'utf8');
+const workflow = parse(source, { maxAliasCount: 0 });
+
+// These finite policy checks protect this read-only CI lane. They do not model
+// GitHub organization settings, actual fork grants, or action bundle safety.
+function reviewPolicy(value) {
+  const issues = [];
+  const events = typeof value.on === 'string' ? [value.on] : Object.keys(value.on || {});
+  if (events.some(name => !['push', 'pull_request', 'workflow_dispatch'].includes(name))) issues.push('privileged-event');
+  const minimal = permissions => permissions && typeof permissions === 'object' && !Array.isArray(permissions)
+    && Object.entries(permissions).every(([key, access]) => key === 'contents' && access === 'read')
+    && permissions.contents === 'read';
+  if (!minimal(value.permissions)) issues.push('token-permissions');
+  if (/\$\{\{\s*secrets\./i.test(JSON.stringify(value))) issues.push('repository-secret');
+  for (const job of Object.values(value.jobs || {})) {
+    if (job.permissions !== undefined && !minimal(job.permissions)) issues.push('token-permissions');
+    if (job.uses) issues.push('unreviewed-reusable-workflow');
+    if (job['runs-on'] !== 'ubuntu-latest') issues.push('runner-trust');
+    for (const step of job.steps || []) {
+      if (typeof step.run === 'string' && /\$\{\{/.test(step.run)) issues.push('expression-in-shell');
+      if (!step.uses) continue;
+      const match = /^(actions\/(?:checkout|setup-go|setup-node|upload-artifact))@([0-9a-f]{40})$/.exec(step.uses);
+      if (!match) {
+        issues.push('unreviewed-action-ref');
+        continue;
+      }
+      const input = step.with || {};
+      if (match[1] === 'actions/checkout') {
+        if (input['persist-credentials'] !== false) issues.push('persisted-checkout-credential');
+        if (input.repository !== undefined || input.ref !== undefined) issues.push('alternate-checkout');
+      }
+      if (match[1] === 'actions/setup-go' && input['cache-dependency-path'] !== 'backend/go.sum') issues.push('cache-key-input');
+      if (match[1] === 'actions/setup-node' && (input.cache !== 'npm' || input['cache-dependency-path'] !== 'frontend/package-lock.json')) issues.push('cache-key-input');
+      if (match[1] === 'actions/upload-artifact') {
+        const paths = String(input.path || '').trim().split(/\s+/).sort();
+        // Action inputs can be quoted YAML strings. Only explicitly disabled
+        // flags are allowed in this read-only lane; reject unknown expressions.
+        const disabled = input => input === undefined || input === false
+          || (typeof input === 'string' && /^(false|False|FALSE)$/.test(input));
+        if (JSON.stringify(paths) !== JSON.stringify(['dist/*.tar.gz', 'dist/SHA256SUMS', 'dist/build.json'].sort()) || !disabled(input['include-hidden-files']) || !disabled(input.overwrite)) issues.push('artifact-boundary');
+      }
+    }
+  }
+  const invoked = Object.values(value.jobs || {}).some(job =>
+    (job.steps || []).some(step => typeof step.run === 'string'
+      && /^node\s+--test\b/.test(step.run)
+      && step.run.split(/\s+/).includes('scripts/release-ci-policy.test.mjs')));
+  if (!invoked) issues.push('ci-policy-not-invoked');
+  return [...new Set(issues)];
+}
+
+const clone = () => structuredClone(workflow);
+const steps = value => value.jobs['test-build'].steps;
+const action = (value, prefix) => steps(value).find(step => step.uses?.startsWith(prefix));
+
+test('current read-only CI lane has reviewed triggers, grants, pins and data boundaries', { timeout: 15000 }, () => {
+  assert.deepEqual(readdirSync(directory).filter(name => /\.ya?ml$/.test(name)), ['ci.yml']);
+  assert.ok(Buffer.byteLength(source) < 64 * 1024);
+  assert.deepEqual(reviewPolicy(workflow), []);
+});
+
+test('bounded trust-boundary mutations are rejected without executing any workflow', { timeout: 15000 }, async t => {
+  const mutants = [
+    ['privileged pull-request trigger', 'privileged-event', value => { value.on.pull_request_target = null; }],
+    ['privileged workflow consumer', 'privileged-event', value => { value.on.workflow_run = { workflows: ['CI'], types: ['completed'] }; }],
+    ['global write grant', 'token-permissions', value => { value.permissions.contents = 'write'; }],
+    ['job write override', 'token-permissions', value => { value.jobs['test-build'].permissions = { packages: 'write' }; }],
+    ['persisted checkout token', 'persisted-checkout-credential', value => { action(value, 'actions/checkout@').with['persist-credentials'] = true; }],
+    ['mutable action tag', 'unreviewed-action-ref', value => { action(value, 'actions/checkout@').uses = 'actions/checkout@v5'; }],
+    ['alternate attacker checkout', 'alternate-checkout', value => { action(value, 'actions/checkout@').with.repository = 'canary/owned-fixture'; }],
+    ['PR expression to shell', 'expression-in-shell', value => { steps(value).find(step => step.run).run = 'echo "${{ github.event.pull_request.title }}"'; }],
+    ['secret injected into job', 'repository-secret', value => { value.jobs['test-build'].env = { CANARY: '${{ secrets.CANARY }}' }; }],
+    ['dependency cache key input changed', 'cache-key-input', value => { action(value, 'actions/setup-node@').with['cache-dependency-path'] = '~/.ssh/id_canary'; }],
+    ['hidden or unrestricted artifact payload', 'artifact-boundary', value => { action(value, 'actions/upload-artifact@').with.path = '.'; action(value, 'actions/upload-artifact@').with['include-hidden-files'] = true; }],
+    ['unreviewed reusable job', 'unreviewed-reusable-workflow', value => { value.jobs.consumer = { uses: 'canary/fixture/.github/workflows/publish.yml@main' }; }],
+    ['security guard omitted from CI', 'ci-policy-not-invoked', value => { steps(value).find(step => step.run?.includes('scripts/release-ci-policy.test.mjs')).run = 'node --test scripts/build-release.test.mjs'; }],
+    ['quoted artifact flags are still enabled inputs', 'artifact-boundary', value => { const input = action(value, 'actions/upload-artifact@').with; input['include-hidden-files'] = 'true'; input.overwrite = 'true'; }],
+  ];
+  assert.ok(mutants.length + 1 <= 15);
+  for (const [name, issue, mutate] of mutants) {
+    await t.test(name, () => {
+      const value = clone();
+      mutate(value);
+      assert.ok(Buffer.byteLength(JSON.stringify(value)) <= 64 * 1024);
+      assert.ok(reviewPolicy(value).includes(issue), `missing rejection: ${issue}`);
+    });
+  }
+});

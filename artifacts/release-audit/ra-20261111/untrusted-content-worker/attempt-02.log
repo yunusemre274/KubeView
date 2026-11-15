@@ -1,0 +1,1 @@
+{"status":"FAIL","checks":4,"httpRequests":20,"canaryRequests":0,"failure":{"type":"TimeoutError","message":"locator.click: Timeout 5000ms exceeded."}}

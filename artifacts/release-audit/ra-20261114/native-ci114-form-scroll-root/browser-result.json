@@ -1,0 +1,18 @@
+{
+  "startedAt": "2026-11-14T12:48:56.524Z",
+  "tooling": "Absolute Node + headed Playwright Chromium are automation tools, not app runtime dependencies",
+  "status": "FAIL",
+  "checks": [
+    "embedded normal empty-workspace onboarding and one Metal canvas"
+  ],
+  "externalRequestsBlocked": [],
+  "mutationRequests": [],
+  "pageErrors": [],
+  "renderer": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)"
+  },
+  "browserVersion": "156.0.8078.4",
+  "failure": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   height: 900,\n+   width: 1440,\n-   height: 150,\n-   width: 300,\n    x: 0,\n    y: 0\n  }\n",
+  "finishedAt": "2026-11-14T12:48:57.429Z"
+}

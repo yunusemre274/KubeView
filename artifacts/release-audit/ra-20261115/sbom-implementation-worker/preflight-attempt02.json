@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-15T10:14:41.324354+00:00",
+  "TEST_SLOT": "root granted after perf actual jobs released; fake-only tests",
+  "priorFailurePreserved": true,
+  "changes": "prepared assertion distinguishes metadata-only npmSBOM from prohibited npmci/install/run; public ref/filename dictionaries bounded source checks",
+  "limits": {
+    "childSeconds": 15,
+    "RSSMiB": 1024
+  },
+  "sources": [
+    {
+      "path": "scripts/release-sbom.mjs",
+      "bytes": 16461,
+      "sha256": "84be619743806526c8c85106bf1ee15eb31948cfeeb1d642a69d0223eb0c6187"
+    },
+    {
+      "path": "scripts/release-sbom.test.mjs",
+      "bytes": 10501,
+      "sha256": "bd0f268f8a1d8dc5105fd99afa184d8d448e2c5463ab30e90e7a149889b98f78"
+    },
+    {
+      "path": "scripts/build-release.mjs",
+      "bytes": 11200,
+      "sha256": "3dc598b31bcf402d4e9c3bcd5ed897733afe76a43024dfb2d3634771b763e57e"
+    },
+    {
+      "path": "scripts/build-release.test.mjs",
+      "bytes": 17392,
+      "sha256": "43fb7a91873d176ffcd9c3b61aee911db2e2f988ea511530a5da9436e51cb7ee"
+    },
+    {
+      "path": "frontend/build/package-inventory.mjs",
+      "bytes": 9009,
+      "sha256": "99a8482d81574800bc57073bbc31a535bc8ba016fb1ced4ce0eb27dcc46391ae"
+    },
+    {
+      "path": "frontend/vite.config.js",
+      "bytes": 1053,
+      "sha256": "24a1a0f38919c46e3f7af01a4c72693c1bae5d11933c34d8cd8b9f4853c223cd"
+    }
+  ]
+}

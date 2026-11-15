@@ -1,0 +1,1187 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:2fcca88c-06c7-4878-b155-cc00e260ad73",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-15T10:40:23.262Z",
+    "lifecycles": [
+      {
+        "phase": "post-build"
+      }
+    ],
+    "tools": [
+      {
+        "vendor": "KubeView",
+        "name": "release-sbom",
+        "version": "1"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "KubeView",
+      "version": "1.1.0",
+      "bom-ref": "kubeview:binary:darwin-arm64",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "819658d5b7044a5ad69eb534e698d3e8d7b0d588f43b4ead87c59a7e699f57af"
+        }
+      ],
+      "properties": [
+        {
+          "name": "kubeview:sourceCommit",
+          "value": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43"
+        },
+        {
+          "name": "kubeview:target",
+          "value": "darwin-arm64"
+        },
+        {
+          "name": "kubeview:compiler",
+          "value": "go1.26.11"
+        },
+        {
+          "name": "kubeview:goVcsModified",
+          "value": "true"
+        },
+        {
+          "name": "kubeview:runtimeInputsDirty",
+          "value": "false"
+        },
+        {
+          "name": "kubeview:coverage",
+          "value": "linked Go modules and positive-rendered JavaScript package ownership; no function reachability or host OS inventory"
+        },
+        {
+          "name": "kubeview:goBuildInfoSHA256",
+          "value": "a06fe2fe85fb35316baedc08eaa9f577e22bd1d99ae40a38013296357e5de2de"
+        },
+        {
+          "name": "kubeview:frontendInventorySHA256",
+          "value": "a05fde1291b34410a189cfeb5c46d73c9f07b18a0adae1afbba210fc38040408"
+        },
+        {
+          "name": "kubeview:frontendLockSHA256",
+          "value": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+        },
+        {
+          "name": "kubeview:frontendPackageJSONSHA256",
+          "value": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c"
+        },
+        {
+          "name": "kubeview:frontendAssetsSHA256",
+          "value": "79675cbfae5d26f1973f104ef62cf339660c4498efb22be31d041ea5006e0b98"
+        },
+        {
+          "name": "kubeview:dependencyEdges",
+          "value": "root assembly membership; Go import edges unavailable"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "github.com/davecgh/go-spew",
+      "version": "v1.1.1",
+      "bom-ref": "pkg:golang/github.com/davecgh/go-spew@v1.1.1",
+      "purl": "pkg:golang/github.com/davecgh/go-spew@v1.1.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/emicklei/go-restful/v3",
+      "version": "v3.11.0",
+      "bom-ref": "pkg:golang/github.com/emicklei/go-restful/v3@v3.11.0",
+      "purl": "pkg:golang/github.com/emicklei/go-restful/v3@v3.11.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:rAQeMHw1c7zTmncogyy8VvRZwtkmkZ4FxERmMY4rD+g="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/evanphx/json-patch",
+      "version": "v4.12.0+incompatible",
+      "bom-ref": "pkg:golang/github.com/evanphx/json-patch@v4.12.0%2Bincompatible",
+      "purl": "pkg:golang/github.com/evanphx/json-patch@v4.12.0%2Bincompatible",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:4onqiflcdA9EOZ4RxV643DvftH5pOlLGNtQ5lPWQu84="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/go-logr/logr",
+      "version": "v1.4.1",
+      "bom-ref": "pkg:golang/github.com/go-logr/logr@v1.4.1",
+      "purl": "pkg:golang/github.com/go-logr/logr@v1.4.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:pKouT5E8xu9zeFC39JXRDukb6JFQPXM5p5I91188VAQ="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/go-openapi/jsonpointer",
+      "version": "v0.19.6",
+      "bom-ref": "pkg:golang/github.com/go-openapi/jsonpointer@v0.19.6",
+      "purl": "pkg:golang/github.com/go-openapi/jsonpointer@v0.19.6",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:eCs3fxoIi3Wh6vtgmLTOjdhSpiqphQ+DaPn38N2ZdrE="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/go-openapi/jsonreference",
+      "version": "v0.20.2",
+      "bom-ref": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
+      "purl": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:3sVjiK66+uXK/6oQ8xgcRKcFgQ5KXa2KvnJRumpMGbE="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/go-openapi/swag",
+      "version": "v0.22.3",
+      "bom-ref": "pkg:golang/github.com/go-openapi/swag@v0.22.3",
+      "purl": "pkg:golang/github.com/go-openapi/swag@v0.22.3",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:yMBqmnQ0gyZvEb/+KzuWZOXgllrXT4SADYbvDaXHv/g="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/gogo/protobuf",
+      "version": "v1.3.2",
+      "bom-ref": "pkg:golang/github.com/gogo/protobuf@v1.3.2",
+      "purl": "pkg:golang/github.com/gogo/protobuf@v1.3.2",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/golang/protobuf",
+      "version": "v1.5.4",
+      "bom-ref": "pkg:golang/github.com/golang/protobuf@v1.5.4",
+      "purl": "pkg:golang/github.com/golang/protobuf@v1.5.4",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/google/gnostic-models",
+      "version": "v0.6.8",
+      "bom-ref": "pkg:golang/github.com/google/gnostic-models@v0.6.8",
+      "purl": "pkg:golang/github.com/google/gnostic-models@v0.6.8",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:yo/ABAfM5IMRsS1VnXjTBvUb61tFIHozhlYvRgGre9I="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/google/go-cmp",
+      "version": "v0.6.0",
+      "bom-ref": "pkg:golang/github.com/google/go-cmp@v0.6.0",
+      "purl": "pkg:golang/github.com/google/go-cmp@v0.6.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/google/gofuzz",
+      "version": "v1.2.0",
+      "bom-ref": "pkg:golang/github.com/google/gofuzz@v1.2.0",
+      "purl": "pkg:golang/github.com/google/gofuzz@v1.2.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:xRy4A+RhZaiKjJ1bPfwQ8sedCA+YS2YcCHW6ec7JMi0="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/google/uuid",
+      "version": "v1.3.0",
+      "bom-ref": "pkg:golang/github.com/google/uuid@v1.3.0",
+      "purl": "pkg:golang/github.com/google/uuid@v1.3.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/gorilla/websocket",
+      "version": "v1.5.3",
+      "bom-ref": "pkg:golang/github.com/gorilla/websocket@v1.5.3",
+      "purl": "pkg:golang/github.com/gorilla/websocket@v1.5.3",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/imdario/mergo",
+      "version": "v0.3.6",
+      "bom-ref": "pkg:golang/github.com/imdario/mergo@v0.3.6",
+      "purl": "pkg:golang/github.com/imdario/mergo@v0.3.6",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:xTNEAn+kxVO7dTZGu0CegyqKZmoWFI0rF8UxjlB2d28="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/josharian/intern",
+      "version": "v1.0.0",
+      "bom-ref": "pkg:golang/github.com/josharian/intern@v1.0.0",
+      "purl": "pkg:golang/github.com/josharian/intern@v1.0.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:vlS4z54oSdjm0bgjRigI+G1HpF+tI+9rE5LLzOg8HmY="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/json-iterator/go",
+      "version": "v1.1.12",
+      "bom-ref": "pkg:golang/github.com/json-iterator/go@v1.1.12",
+      "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/mailru/easyjson",
+      "version": "v0.7.7",
+      "bom-ref": "pkg:golang/github.com/mailru/easyjson@v0.7.7",
+      "purl": "pkg:golang/github.com/mailru/easyjson@v0.7.7",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:UGYAvKxe3sBsEDzO8ZeWOSlIQfWFlxbzLZe7hwFURr0="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/moby/spdystream",
+      "version": "v0.5.1",
+      "bom-ref": "pkg:golang/github.com/moby/spdystream@v0.5.1",
+      "purl": "pkg:golang/github.com/moby/spdystream@v0.5.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:9sNYeYZUcci9R6/w7KDaFWEWeV4LStVG78Mpyq/Zm/Y="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/modern-go/concurrent",
+      "version": "v0.0.0-20180306012644-bacd9c7ef1dd",
+      "bom-ref": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
+      "purl": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/modern-go/reflect2",
+      "version": "v1.0.2",
+      "bom-ref": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
+      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9Gz0M="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/munnerz/goautoneg",
+      "version": "v0.0.0-20191010083416-a7dc8b61c822",
+      "bom-ref": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+      "purl": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:C3w9PqII01/Oq1c1nUAm88MOHcQC9l5mIlSMApZMrHA="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/mxk/go-flowrate",
+      "version": "v0.0.0-20140419014527-cca7078d478f",
+      "bom-ref": "pkg:golang/github.com/mxk/go-flowrate@v0.0.0-20140419014527-cca7078d478f",
+      "purl": "pkg:golang/github.com/mxk/go-flowrate@v0.0.0-20140419014527-cca7078d478f",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:y5//uYreIhSUg3J1GEMiLbxo1LJaP8RfCpH6pymGZus="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "bom-ref": "pkg:golang/github.com/pkg/errors@v0.9.1",
+      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "golang.org/x/net",
+      "version": "v0.62.0",
+      "bom-ref": "pkg:golang/golang.org/x/net@v0.62.0",
+      "purl": "pkg:golang/golang.org/x/net@v0.62.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:18ELalfM5+XNRwzM2nYqXsZQ9ByS1uhj2O/U7+5jqRY="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "golang.org/x/oauth2",
+      "version": "v0.27.0",
+      "bom-ref": "pkg:golang/golang.org/x/oauth2@v0.27.0",
+      "purl": "pkg:golang/golang.org/x/oauth2@v0.27.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:da9Vo7/tDv5RH/7nZDz1eMGS/q1Vv1N/7FCrBhI9I3M="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "golang.org/x/sys",
+      "version": "v0.49.0",
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.49.0",
+      "purl": "pkg:golang/golang.org/x/sys@v0.49.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:XbzkgYJHdqh/8m2Uu0W/dQv8nktxx4BFHp1M0gROTXA="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "golang.org/x/term",
+      "version": "v0.47.0",
+      "bom-ref": "pkg:golang/golang.org/x/term@v0.47.0",
+      "purl": "pkg:golang/golang.org/x/term@v0.47.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:cpyOwQkr2Nzxe2p6KnrTG7Ei2wtzjsuSjhpXXepZ/BM="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "golang.org/x/text",
+      "version": "v0.43.0",
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.43.0",
+      "purl": "pkg:golang/golang.org/x/text@v0.43.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:1QivrlhwAsnMOcqgOdl9my7s9OyZl8O5/UGUTJVXoWc="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "golang.org/x/time",
+      "version": "v0.3.0",
+      "bom-ref": "pkg:golang/golang.org/x/time@v0.3.0",
+      "purl": "pkg:golang/golang.org/x/time@v0.3.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:rg5rLMjNzMS1RkNLzCG38eapWhnYLFYXDXj2gOlr8j4="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "google.golang.org/protobuf",
+      "version": "v1.33.0",
+      "bom-ref": "pkg:golang/google.golang.org/protobuf@v1.33.0",
+      "purl": "pkg:golang/google.golang.org/protobuf@v1.33.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:uNO2rsAINq/JlFpSdYEKIZ0uKD/R9cpdv0T+yoGwGmI="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "gopkg.in/inf.v0",
+      "version": "v0.9.1",
+      "bom-ref": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
+      "purl": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:73M5CoZyi3ZLMOyDlQh031Cx6N9NDJ2Vvfl76EDAgDc="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "gopkg.in/yaml.v2",
+      "version": "v2.4.0",
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+      "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "k8s.io/api",
+      "version": "v0.30.0",
+      "bom-ref": "pkg:golang/k8s.io/api@v0.30.0",
+      "purl": "pkg:golang/k8s.io/api@v0.30.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:siWhRq7cNjy2iHssOB9SCGNCl2spiF1dO3dABqZ8niA="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "k8s.io/apimachinery",
+      "version": "v0.30.0",
+      "bom-ref": "pkg:golang/k8s.io/apimachinery@v0.30.0",
+      "purl": "pkg:golang/k8s.io/apimachinery@v0.30.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:qxVPsyDM5XS96NIh9Oj6LavoVFYff/Pon9cZeDIkHHA="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "k8s.io/client-go",
+      "version": "v0.30.0",
+      "bom-ref": "pkg:golang/k8s.io/client-go@v0.30.0",
+      "purl": "pkg:golang/k8s.io/client-go@v0.30.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:sB1AGGlhY/o7KCyCEQ0bPWzYDL0pwOZO4vAtTSh/gJQ="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "k8s.io/klog/v2",
+      "version": "v2.120.1",
+      "bom-ref": "pkg:golang/k8s.io/klog/v2@v2.120.1",
+      "purl": "pkg:golang/k8s.io/klog/v2@v2.120.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:QXU6cPEOIslTGvZaXvFWiP9VKyeet3sawzTOvdXb4Vw="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "k8s.io/kube-openapi",
+      "version": "v0.0.0-20240228011516-70dd3763d340",
+      "bom-ref": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20240228011516-70dd3763d340",
+      "purl": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20240228011516-70dd3763d340",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:BZqlfIlq5YbRMFko6/PM7FjZpUb45WallggurYhKGag="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "k8s.io/metrics",
+      "version": "v0.30.0",
+      "bom-ref": "pkg:golang/k8s.io/metrics@v0.30.0",
+      "purl": "pkg:golang/k8s.io/metrics@v0.30.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:tqB+T0GJY288KahaO3Eb41HaDVeLR18gBmyPo0R417s="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "k8s.io/utils",
+      "version": "v0.0.0-20230726121419-3b25d923346b",
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20230726121419-3b25d923346b",
+      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20230726121419-3b25d923346b",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:sgn3ZU783SCgtaSJjpcVVlRqd6GSnlTLKgpAAttJvpI="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sigs.k8s.io/json",
+      "version": "v0.0.0-20221116044647-bc3834ca7abd",
+      "bom-ref": "pkg:golang/sigs.k8s.io/json@v0.0.0-20221116044647-bc3834ca7abd",
+      "purl": "pkg:golang/sigs.k8s.io/json@v0.0.0-20221116044647-bc3834ca7abd",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:EDPBXCAspyGV4jQlpZSudPeMmr1bNJefnuqLsRAsHZo="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sigs.k8s.io/structured-merge-diff/v4",
+      "version": "v4.4.1",
+      "bom-ref": "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.4.1",
+      "purl": "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.4.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:150L+0vs/8DA78h1u02ooW1/fFq/Lwr+sGiqlzvrtq4="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sigs.k8s.io/yaml",
+      "version": "v1.3.0",
+      "bom-ref": "pkg:golang/sigs.k8s.io/yaml@v1.3.0",
+      "purl": "pkg:golang/sigs.k8s.io/yaml@v1.3.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "embedded Go BuildInfo module"
+        },
+        {
+          "name": "kubeview:goModuleH1",
+          "value": "h1:a2VclLzOGrwOHDiV8EfBGhvjHvP46CtW5j6POvhYGGo="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "stdlib",
+      "version": "1.26.11",
+      "bom-ref": "pkg:golang/stdlib@1.26.11",
+      "purl": "pkg:golang/stdlib@1.26.11",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "actual compiler standard library version; not symbol reachability"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@babel/runtime",
+      "version": "7.29.7",
+      "bom-ref": "pkg:npm/%40babel/runtime@7.29.7",
+      "purl": "pkg:npm/%40babel/runtime@7.29.7",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/@babel/runtime\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@react-three/drei",
+      "version": "9.122.0",
+      "bom-ref": "pkg:npm/%40react-three/drei@9.122.0",
+      "purl": "pkg:npm/%40react-three/drei@9.122.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/@react-three/drei\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@react-three/fiber",
+      "version": "8.18.0",
+      "bom-ref": "pkg:npm/%40react-three/fiber@8.18.0",
+      "purl": "pkg:npm/%40react-three/fiber@8.18.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/@react-three/fiber\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "its-fine",
+      "version": "1.2.5",
+      "bom-ref": "pkg:npm/its-fine@1.2.5",
+      "purl": "pkg:npm/its-fine@1.2.5",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/its-fine\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lucide-react",
+      "version": "0.378.0",
+      "bom-ref": "pkg:npm/lucide-react@0.378.0",
+      "purl": "pkg:npm/lucide-react@0.378.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/lucide-react\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "bom-ref": "pkg:npm/react-dom@18.3.1",
+      "purl": "pkg:npm/react-dom@18.3.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/react-dom\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-reconciler",
+      "version": "0.27.0",
+      "bom-ref": "pkg:npm/react-reconciler@0.27.0",
+      "purl": "pkg:npm/react-reconciler@0.27.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/react-reconciler\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-use-measure",
+      "version": "2.1.7",
+      "bom-ref": "pkg:npm/react-use-measure@2.1.7",
+      "purl": "pkg:npm/react-use-measure@2.1.7",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/react-use-measure\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "18.3.1",
+      "bom-ref": "pkg:npm/react@18.3.1",
+      "purl": "pkg:npm/react@18.3.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/react\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "scheduler",
+      "version": "0.21.0",
+      "bom-ref": "pkg:npm/scheduler@0.21.0",
+      "purl": "pkg:npm/scheduler@0.21.0",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/scheduler\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "scheduler",
+      "version": "0.23.2",
+      "bom-ref": "pkg:npm/scheduler@0.23.2",
+      "purl": "pkg:npm/scheduler@0.23.2",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/react-dom/node_modules/scheduler\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "three-stdlib",
+      "version": "2.36.1",
+      "bom-ref": "pkg:npm/three-stdlib@2.36.1",
+      "purl": "pkg:npm/three-stdlib@2.36.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/three-stdlib\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "three",
+      "version": "0.164.1",
+      "bom-ref": "pkg:npm/three@0.164.1",
+      "purl": "pkg:npm/three@0.164.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/three\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "yaml",
+      "version": "2.9.1",
+      "bom-ref": "pkg:npm/yaml@2.9.1",
+      "purl": "pkg:npm/yaml@2.9.1",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/yaml\"]"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "zustand",
+      "version": "3.7.2",
+      "bom-ref": "pkg:npm/zustand@3.7.2",
+      "purl": "pkg:npm/zustand@3.7.2",
+      "properties": [
+        {
+          "name": "kubeview:coverage",
+          "value": "positive-rendered JavaScript module package"
+        },
+        {
+          "name": "kubeview:lockPaths",
+          "value": "[\"node_modules/@react-three/fiber/node_modules/zustand\"]"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "kubeview:binary:darwin-arm64",
+      "dependsOn": [
+        "pkg:golang/github.com/davecgh/go-spew@v1.1.1",
+        "pkg:golang/github.com/emicklei/go-restful/v3@v3.11.0",
+        "pkg:golang/github.com/evanphx/json-patch@v4.12.0%2Bincompatible",
+        "pkg:golang/github.com/go-logr/logr@v1.4.1",
+        "pkg:golang/github.com/go-openapi/jsonpointer@v0.19.6",
+        "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
+        "pkg:golang/github.com/go-openapi/swag@v0.22.3",
+        "pkg:golang/github.com/gogo/protobuf@v1.3.2",
+        "pkg:golang/github.com/golang/protobuf@v1.5.4",
+        "pkg:golang/github.com/google/gnostic-models@v0.6.8",
+        "pkg:golang/github.com/google/go-cmp@v0.6.0",
+        "pkg:golang/github.com/google/gofuzz@v1.2.0",
+        "pkg:golang/github.com/google/uuid@v1.3.0",
+        "pkg:golang/github.com/gorilla/websocket@v1.5.3",
+        "pkg:golang/github.com/imdario/mergo@v0.3.6",
+        "pkg:golang/github.com/josharian/intern@v1.0.0",
+        "pkg:golang/github.com/json-iterator/go@v1.1.12",
+        "pkg:golang/github.com/mailru/easyjson@v0.7.7",
+        "pkg:golang/github.com/moby/spdystream@v0.5.1",
+        "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
+        "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
+        "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+        "pkg:golang/github.com/mxk/go-flowrate@v0.0.0-20140419014527-cca7078d478f",
+        "pkg:golang/github.com/pkg/errors@v0.9.1",
+        "pkg:golang/github.com/spf13/pflag@v1.0.5",
+        "pkg:golang/golang.org/x/net@v0.62.0",
+        "pkg:golang/golang.org/x/oauth2@v0.27.0",
+        "pkg:golang/golang.org/x/sys@v0.49.0",
+        "pkg:golang/golang.org/x/term@v0.47.0",
+        "pkg:golang/golang.org/x/text@v0.43.0",
+        "pkg:golang/golang.org/x/time@v0.3.0",
+        "pkg:golang/google.golang.org/protobuf@v1.33.0",
+        "pkg:golang/gopkg.in/inf.v0@v0.9.1",
+        "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+        "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+        "pkg:golang/k8s.io/api@v0.30.0",
+        "pkg:golang/k8s.io/apimachinery@v0.30.0",
+        "pkg:golang/k8s.io/client-go@v0.30.0",
+        "pkg:golang/k8s.io/klog/v2@v2.120.1",
+        "pkg:golang/k8s.io/kube-openapi@v0.0.0-20240228011516-70dd3763d340",
+        "pkg:golang/k8s.io/metrics@v0.30.0",
+        "pkg:golang/k8s.io/utils@v0.0.0-20230726121419-3b25d923346b",
+        "pkg:golang/sigs.k8s.io/json@v0.0.0-20221116044647-bc3834ca7abd",
+        "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.4.1",
+        "pkg:golang/sigs.k8s.io/yaml@v1.3.0",
+        "pkg:golang/stdlib@1.26.11",
+        "pkg:npm/%40babel/runtime@7.29.7",
+        "pkg:npm/%40react-three/drei@9.122.0",
+        "pkg:npm/%40react-three/fiber@8.18.0",
+        "pkg:npm/its-fine@1.2.5",
+        "pkg:npm/lucide-react@0.378.0",
+        "pkg:npm/react-dom@18.3.1",
+        "pkg:npm/react-reconciler@0.27.0",
+        "pkg:npm/react-use-measure@2.1.7",
+        "pkg:npm/react@18.3.1",
+        "pkg:npm/scheduler@0.21.0",
+        "pkg:npm/scheduler@0.23.2",
+        "pkg:npm/three-stdlib@2.36.1",
+        "pkg:npm/three@0.164.1",
+        "pkg:npm/yaml@2.9.1",
+        "pkg:npm/zustand@3.7.2"
+      ]
+    }
+  ]
+}

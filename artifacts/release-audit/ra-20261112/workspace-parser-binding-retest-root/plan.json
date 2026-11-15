@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-12T21:47:38.607630+00:00",
+  "tests": [
+    "TestReleaseWorkspaceParserAllowedJSONAndScope",
+    "TestReleaseWorkspaceParserRejectsWithoutMutation",
+    "TestReleaseWorkspaceParserDuplicateUnknownAndImport"
+  ],
+  "regex": "^(TestReleaseWorkspaceParserAllowedJSONAndScope|TestReleaseWorkspaceParserRejectsWithoutMutation|TestReleaseWorkspaceParserDuplicateUnknownAndImport)$",
+  "fileSHA256": {
+    "backend/pkg/server/release_workspace_parser_test.go": "71b3a61b23a939ff8dc66ba75cf7810a13bb3a1bb856fd7d8b6d4073cea00e4d",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+  },
+  "safety": {
+    "wallSeconds": 90,
+    "goSeconds": 60,
+    "GOMAXPROCS": 2,
+    "parallel": 1,
+    "RSSMiB": 1536,
+    "noKubernetesOrBrowser": true
+  },
+  "reason": "Secondreview found HTTPtest checked newimport stripping/remap but reportoverclaimed post-import existingbinding; adddirectprefixpostconditionandrerunshortgroup once, no productcodechange or fuzzrepeat."
+}

@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-12T11:31:02.055202+00:00",
+  "appSHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+  "appBuildSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "embeddedIndexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+  "browserHelperSHA256": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+  "controllerSHA256": "206b65eaaabce471e2912abfe7993e192acc40f46be79fd8da0d15f27a04f9cd",
+  "buildReceiptSHA256": "18cd745218e4520aaed75cec681632ecbc9b399cbab1046a5c2cb05003adf341",
+  "firstAttempt": {
+    "status": "BLOCKED_BEFORE_UI",
+    "UIAssertions": 0,
+    "executionResultSHA256": "057326871b5a408f6de14b156a7dd4bf4c923f2c64a26d65597553f2c1988306",
+    "firstControllerSourceSHA256": "f9b8b49a1abf2916257be6ebb6ba519ba4daa54785ec4f63ac4631175ecb3324",
+    "summarySHA256": "1de39d4f77ab7a20d5af1dc1a1d74d255a386994ccd6fdfff61ba49b1154cd0b",
+    "SHA256SUMSSHA256": "70c921a4e78b1560dfe6bfff02acc2c083b64a05f1589bfa2cabb643e0cb598c"
+  },
+  "rootNullableMetadataFixtureFix": "require status200/POMList/present items key, accept null or empty list only; missing/nonempty/other response fails",
+  "runtimeSourceBeforeAfterEqual": true,
+  "noFirstFailureRewrite": true,
+  "noUIAdmissionOrPerformanceClaim": true
+}

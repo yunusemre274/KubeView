@@ -1,0 +1,59 @@
+✖ cold persisted exact UID restores its panel once after the first current snapshot arrives (2.9205ms)
+✖ resource tab handlers report normal tab clicks and container log routes to the parent (2.556917ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 414.949166
+
+✖ failing tests:
+
+test at tests/workspace-app-state.test.js:80:1
+✖ cold persisted exact UID restores its panel once after the first current snapshot arrives (2.9205ms)
+  AssertionError [ERR_ASSERTION]: App must receive normal UI tab changes
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:88:10
+      at withApp (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:73:15)
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:80:111)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/workspace-app-state.test.js:113:1
+✖ resource tab handlers report normal tab clicks and container log routes to the parent (2.556917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'yaml'
+  - ]
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:123:30)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'yaml' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

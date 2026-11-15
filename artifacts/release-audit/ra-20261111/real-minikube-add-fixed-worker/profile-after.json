@@ -1,0 +1,32 @@
+{
+  "profile": {
+    "Name": "kvml-d32afbf634e8-a",
+    "Driver": "docker",
+    "Memory": 2048,
+    "CPUs": 2,
+    "Nodes": [
+      {
+        "Name": "",
+        "IP": "172.29.232.2",
+        "Port": 8443,
+        "ControlPlane": true,
+        "Worker": true
+      },
+      {
+        "Name": "m02",
+        "IP": "172.29.232.3",
+        "Port": 8443,
+        "ControlPlane": false,
+        "Worker": true
+      },
+      {
+        "Name": "m03",
+        "IP": "",
+        "Port": 0,
+        "ControlPlane": false,
+        "Worker": true
+      }
+    ]
+  },
+  "SHA256": "da28c0b820f7d4c870bce1ad32c6849cf26f2e3f61b5ebc8b2b9e7f1f79f1dea"
+}

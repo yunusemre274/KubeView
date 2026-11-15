@@ -1,0 +1,2480 @@
+{
+  "name": "frontend-storage-real",
+  "startedAt": "2026-11-01T17:42:52.718Z",
+  "source": "REAL Kubernetes/minikube hostpath provisioning → informer/WS → normal depot catalog/physical UID markers → actual UI UID/RV-preconditioned delete/reclaim",
+  "engine": "chromium",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "context": "kv-repair-1101",
+  "errors": [],
+  "captures": [
+    {
+      "at": "2026-11-01T17:42:54.786Z",
+      "label": "depot-before-owned-claims",
+      "path": "frontend-storage-real-01-depot-before-owned-claims.png",
+      "view": {
+        "stats": {
+          "frame": 56,
+          "calls": 196,
+          "triangles": 42668,
+          "points": 0,
+          "lines": 12,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 33,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 0,
+            "progress": 884.2216694115402,
+            "position": [
+              -59.84999999999957,
+              -0.014298897347379297,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0020427687192725997,
+            "roll": -0.0022672711276688078,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 1,
+            "progress": 1057.814586764426,
+            "position": [
+              -175,
+              -0.06132762821691028,
+              160.24291735288512
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.00040709132849175484,
+            "roll": -0.00406079778872112,
+            "state": "patrolling",
+            "speed": 9.000000000014552,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 0.8003000000007449,
+          "nodes": [
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+                "name": "kv-repair-1101-m02",
+                "slot": 0,
+                "progress": 884.2216694115402,
+                "position": [
+                  -59.84999999999957,
+                  -0.014298897347379297,
+                  238
+                ],
+                "yaw": -1.5707963267948966,
+                "pitch": -0.0020427687192725997,
+                "roll": -0.0022672711276688078,
+                "state": "patrolling",
+                "speed": 9.000000000014552,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": true
+              }
+            },
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 1,
+                "progress": 1057.814586764426,
+                "position": [
+                  -175,
+                  -0.06132762821691028,
+                  160.24291735288512
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": -0.00040709132849175484,
+                "roll": -0.00406079778872112,
+                "state": "patrolling",
+                "speed": 9.000000000014552,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "Depo ve Tahsisler\n\nkv-repair-1101 · kv-repair-storage\n\nKaynaklar\nİlgili olaylar\nNamespace\nTümü\ncilium-secrets\ndefault\nkube-node-lease\nkube-public\nkube-system\nkv-repair-log\nkv-repair-qa\nkv-repair-storage\nRBAC denetimli\nPVC oluştur\nYAML\nPVC\n0\nPV\n0\nStorageClass\n1\nSorunlular\n0 kaynak\n\t\nAd\n\t\nNamespace\n\t\nDurum\n\t\nKapasite / istenen\n\t\nStorageClass\n\t\nErişim\n\t\nBağlı kaynak\n\t\nYaş\n\tİşlemler\nBu kapsamda kaynak yok\n\nNamespace kapsamını değiştirin veya yeni bir kaynak oluşturun.\n\n0–0 / 0 kaynak\n1 / 1\n\nPV, PVC ve StorageClass; gerçek kapasite ve tahsis sözleşmeleri.\n\nYaklaş",
+        "selectedLabels": []
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:56.231Z",
+      "label": "actual-bound-pvc-uid-module-selected",
+      "path": "frontend-storage-real-02-actual-bound-pvc-uid-module-selected.png",
+      "view": {
+        "stats": {
+          "frame": 140,
+          "calls": 204,
+          "triangles": 42764,
+          "points": 0,
+          "lines": 36,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 34,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 0,
+            "progress": 896.9719694115331,
+            "position": [
+              -72.60029999999244,
+              0.012817213718270467,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.00021618099791980217,
+            "roll": -0.000122269257919121,
+            "state": "patrolling",
+            "speed": 8.999999999990688,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 1,
+            "progress": 1070.564886764422,
+            "position": [
+              -175,
+              -0.059748387280339696,
+              147.49261735288906
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.002602041344208724,
+            "roll": -0.0019311731642641778,
+            "state": "patrolling",
+            "speed": 9.000000000017756,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 2.2170000000000005,
+          "nodes": [
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+                "name": "kv-repair-1101-m02",
+                "slot": 0,
+                "progress": 896.9719694115331,
+                "position": [
+                  -72.60029999999244,
+                  0.012817213718270467,
+                  238
+                ],
+                "yaw": -1.5707963267948966,
+                "pitch": -0.00021618099791980217,
+                "roll": -0.000122269257919121,
+                "state": "patrolling",
+                "speed": 8.999999999990688,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": true
+              }
+            },
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 1,
+                "progress": 1070.564886764422,
+                "position": [
+                  -175,
+                  -0.059748387280339696,
+                  147.49261735288906
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": -0.002602041344208724,
+                "roll": -0.0019311731642641778,
+                "state": "patrolling",
+                "speed": 9.000000000017756,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "PersistentVolumeClaim\nstorage-cycle-0\nkv-repair-1101\n/\nkv-repair-storage\nBound\n\nresourceVersion 10542 · 1 sn önce oluşturuldu · Son veri 20:42:55\n\nÖzet\nOlaylar3\nYAML\nGözlenen kaynak YAML\napiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n  annotations:\n    pv.kubernetes.io/bind-completed: yes\n    pv.kubernetes.io/bound-by-controller: yes\n    volume.beta.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath\n    volume.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath\n  creationTimestamp: 2026-11-01T17:42:55Z\n  finalizers:\n    - kubernetes.io/pvc-protection\n  labels:\n    kubeview.io/owner: pre-v11-repair\n    kubeview.io/repair-run: repair-20261101T130559Z\n  name: storage-cycle-0\n  namespace: kv-repair-storage\n  resourceVersion: \"10542\"\n  uid: f8af10ef-a438-49b1-a90a-52980c1a15ba\nspec:\n  accessModes:\n    - ReadWriteOnce\n  resources:\n    requests:\n      storage: 10Mi\n  storageClassName: standard\n  volumeMode: Filesystem\n  volumeName: pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba\nstatus:\n  accessModes:\n    - ReadWriteOnce\n  capacity:\n    storage: 10Mi\n  phase: Bound\n\nDüzenle\nSil",
+        "selectedLabels": []
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:56.648Z",
+      "label": "actual-bound-pv-claim-uid-selected",
+      "path": "frontend-storage-real-03-actual-bound-pv-claim-uid-selected.png",
+      "view": {
+        "stats": {
+          "frame": 162,
+          "calls": 204,
+          "triangles": 42764,
+          "points": 0,
+          "lines": 36,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 34,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 0,
+            "progress": 900.7222694115428,
+            "position": [
+              -76.35060000000215,
+              0.012118693494888704,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0.0006364588919069482,
+            "roll": 0.0009415578857131415,
+            "state": "patrolling",
+            "speed": 8.999999999994369,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 1,
+            "progress": 1074.315186764433,
+            "position": [
+              -175,
+              -0.04687285175789419,
+              143.742317352878
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0028854157121422502,
+            "roll": -0.0008104809215333855,
+            "state": "patrolling",
+            "speed": 8.999999999994369,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 2.633700000001118,
+          "nodes": [
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+                "name": "kv-repair-1101-m02",
+                "slot": 0,
+                "progress": 900.7222694115428,
+                "position": [
+                  -76.35060000000215,
+                  0.012118693494888704,
+                  238
+                ],
+                "yaw": -1.5707963267948966,
+                "pitch": 0.0006364588919069482,
+                "roll": 0.0009415578857131415,
+                "state": "patrolling",
+                "speed": 8.999999999994369,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": true
+              }
+            },
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 1,
+                "progress": 1074.315186764433,
+                "position": [
+                  -175,
+                  -0.04687285175789419,
+                  143.742317352878
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": -0.0028854157121422502,
+                "roll": -0.0008104809215333855,
+                "state": "patrolling",
+                "speed": 8.999999999994369,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "PersistentVolume\npvc-f8af10ef-a438-49b1-a90a-52980c1a15ba\nkv-repair-1101\n/\nKüme kapsamı\nBound\n\nresourceVersion 10539 · 1 sn önce oluşturuldu · Son veri 20:42:55\n\nÖzet\nOlaylar\nYAML\nGözlenen kaynak YAML\napiVersion: v1\nkind: PersistentVolume\nmetadata:\n  annotations:\n    hostPathProvisionerIdentity: 1778dad1-de25-4676-a203-b08b5806804e\n    pv.kubernetes.io/provisioned-by: k8s.io/minikube-hostpath\n  creationTimestamp: 2026-11-01T17:42:55Z\n  finalizers:\n    - kubernetes.io/pv-protection\n  name: pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba\n  resourceVersion: \"10539\"\n  uid: a33dda57-3963-4406-ba24-96c41425b8de\nspec:\n  accessModes:\n    - ReadWriteOnce\n  capacity:\n    storage: 10Mi\n  claimRef:\n    apiVersion: v1\n    kind: PersistentVolumeClaim\n    name: storage-cycle-0\n    namespace: kv-repair-storage\n    resourceVersion: \"10535\"\n    uid: f8af10ef-a438-49b1-a90a-52980c1a15ba\n  hostPath:\n    path: /tmp/hostpath-provisioner/kv-repair-storage/storage-cycle-0\n    type: \"\"\n  persistentVolumeReclaimPolicy: Delete\n  storageClassName: standard\n  volumeMode: Filesystem\nstatus:\n  lastPhaseTransitionTime: 2026-11-01T17:42:55Z\n  phase: Bound\n\nDüzenle\nSil",
+        "selectedLabels": []
+      }
+    },
+    {
+      "at": "2026-11-01T17:43:02.566Z",
+      "label": "after-three-real-claims-reclaimed",
+      "path": "frontend-storage-real-04-after-three-real-claims-reclaimed.png",
+      "view": {
+        "stats": {
+          "frame": 514,
+          "calls": 195,
+          "triangles": 42668,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 33,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "fleet": [
+          {
+            "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+            "name": "kv-repair-1101-m02",
+            "slot": 0,
+            "progress": 953.9716694115302,
+            "position": [
+              -129.59999999998956,
+              0.03854012576045821,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0009371833944323134,
+            "roll": 0.0002816340373455208,
+            "state": "patrolling",
+            "speed": 8.99999999998582,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+            "name": "kv-repair-1101",
+            "slot": 1,
+            "progress": 1127.5645867644332,
+            "position": [
+              -175,
+              -0.006106424758257911,
+              90.49291735287784
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0001431471347379101,
+            "roll": -0.005090071927136975,
+            "state": "patrolling",
+            "speed": 8.99999999998582,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "lifecycle": {
+          "source": "live:kv-repair-1101:2",
+          "clock": 8.550300000000734,
+          "nodes": [
+            {
+              "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+                "name": "kv-repair-1101-m02",
+                "slot": 0,
+                "progress": 953.9716694115302,
+                "position": [
+                  -129.59999999998956,
+                  0.03854012576045821,
+                  238
+                ],
+                "yaw": -1.5707963267948966,
+                "pitch": -0.0009371833944323134,
+                "roll": 0.0002816340373455208,
+                "state": "patrolling",
+                "speed": 8.99999999998582,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            },
+            {
+              "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+              "fault": 0,
+              "communication": false,
+              "phase": "ready",
+              "pose": {
+                "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+                "name": "kv-repair-1101",
+                "slot": 1,
+                "progress": 1127.5645867644332,
+                "position": [
+                  -175,
+                  -0.006106424758257911,
+                  90.49291735287784
+                ],
+                "yaw": 3.141592653589793,
+                "pitch": -0.0001431471347379101,
+                "roll": -0.005090071927136975,
+                "state": "patrolling",
+                "speed": 8.99999999998582,
+                "paused": false,
+                "healthy": true,
+                "reason": "",
+                "reservation": null,
+                "eligibleForDock": false
+              }
+            }
+          ],
+          "containers": [],
+          "signals": [],
+          "summary": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          }
+        },
+        "canvas": {
+          "width": 1440,
+          "height": 900,
+          "count": 1
+        },
+        "panel": "PersistentVolumeClaim\nstorage-cycle-2\nkv-repair-1101\n/\nkv-repair-storage\nBound\n\nresourceVersion 10578 · 1 sn önce oluşturuldu · Son veri 20:43:01\n\nÖzet\nOlaylar3\nYAML\nBu kaynak silindi. Gösterilen bilgiler son gözlenen UID’ye aittir; aynı adla yeni kaynak oluşturulması bu paneli değiştirmez.\nGözlenen kaynak YAML\napiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n  annotations:\n    pv.kubernetes.io/bind-completed: yes\n    pv.kubernetes.io/bound-by-controller: yes\n    volume.beta.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath\n    volume.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath\n  creationTimestamp: 2026-11-01T17:43:00Z\n  finalizers:\n    - kubernetes.io/pvc-protection\n  labels:\n    kubeview.io/owner: pre-v11-repair\n    kubeview.io/repair-run: repair-20261101T130559Z\n  name: storage-cycle-2\n  namespace: kv-repair-storage\n  resourceVersion: \"10578\"\n  uid: ee1d5241-f071-4b7c-b93f-a5babe748f54\nspec:\n  accessModes:\n    - ReadWriteOnce\n  resources:\n    requests:\n      storage: 10Mi\n  storageClassName: standard\n  volumeMode: Filesystem\n  volumeName: pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54\nstatus:\n  accessModes:\n    - ReadWriteOnce\n  capacity:\n    storage: 10Mi\n  phase: Bound\n\nDüzenle\nSil",
+        "selectedLabels": [
+          "Bu kaynak silindi. Gösterilen bilgiler son gözlenen UID’ye aittir; aynı adla yeni kaynak oluşturulması bu paneli değiştirmez."
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "label": "baseline",
+      "at": "2026-11-01T17:42:54.789Z",
+      "modules": [],
+      "refs": {
+        "objects": 284,
+        "geometries": 38,
+        "materials": 33
+      },
+      "renderer": {
+        "frame": 62,
+        "calls": 196,
+        "triangles": 42668,
+        "points": 0,
+        "lines": 12,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "bound-0",
+      "at": "2026-11-01T17:42:55.813Z",
+      "modules": [
+        {
+          "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+          "name": "storage-cycle-0",
+          "kind": "PersistentVolumeClaim",
+          "position": [
+            67,
+            1,
+            -42
+          ]
+        },
+        {
+          "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+          "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+          "kind": "PersistentVolume",
+          "position": [
+            74,
+            1,
+            -42
+          ]
+        }
+      ],
+      "refs": {
+        "objects": 297,
+        "geometries": 39,
+        "materials": 34
+      },
+      "renderer": {
+        "frame": 123,
+        "calls": 205,
+        "triangles": 42764,
+        "points": 0,
+        "lines": 48,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 34,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "bound-modules-cycle-0",
+      "at": "2026-11-01T17:42:56.651Z",
+      "modules": [
+        {
+          "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+          "name": "storage-cycle-0",
+          "kind": "PersistentVolumeClaim",
+          "position": [
+            67,
+            1,
+            -42
+          ]
+        },
+        {
+          "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+          "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+          "kind": "PersistentVolume",
+          "position": [
+            74,
+            1,
+            -42
+          ]
+        }
+      ],
+      "refs": {
+        "objects": 296,
+        "geometries": 38,
+        "materials": 33
+      },
+      "renderer": {
+        "frame": 168,
+        "calls": 204,
+        "triangles": 42764,
+        "points": 0,
+        "lines": 36,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 34,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "removed-0",
+      "at": "2026-11-01T17:42:57.205Z",
+      "modules": [],
+      "refs": {
+        "objects": 283,
+        "geometries": 37,
+        "materials": 32
+      },
+      "renderer": {
+        "frame": 201,
+        "calls": 195,
+        "triangles": 42668,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "after-cycle-0",
+      "at": "2026-11-01T17:42:57.559Z",
+      "modules": [],
+      "refs": {
+        "objects": 283,
+        "geometries": 37,
+        "materials": 32
+      },
+      "renderer": {
+        "frame": 222,
+        "calls": 195,
+        "triangles": 42668,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "bound-1",
+      "at": "2026-11-01T17:42:58.529Z",
+      "modules": [
+        {
+          "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+          "name": "storage-cycle-1",
+          "kind": "PersistentVolumeClaim",
+          "position": [
+            67,
+            1,
+            -42
+          ]
+        },
+        {
+          "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+          "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+          "kind": "PersistentVolume",
+          "position": [
+            74,
+            1,
+            -42
+          ]
+        }
+      ],
+      "refs": {
+        "objects": 297,
+        "geometries": 39,
+        "materials": 34
+      },
+      "renderer": {
+        "frame": 280,
+        "calls": 205,
+        "triangles": 42764,
+        "points": 0,
+        "lines": 48,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 34,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "bound-modules-cycle-1",
+      "at": "2026-11-01T17:42:59.069Z",
+      "modules": [
+        {
+          "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+          "name": "storage-cycle-1",
+          "kind": "PersistentVolumeClaim",
+          "position": [
+            67,
+            1,
+            -42
+          ]
+        },
+        {
+          "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+          "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+          "kind": "PersistentVolume",
+          "position": [
+            74,
+            1,
+            -42
+          ]
+        }
+      ],
+      "refs": {
+        "objects": 296,
+        "geometries": 38,
+        "materials": 33
+      },
+      "renderer": {
+        "frame": 313,
+        "calls": 204,
+        "triangles": 42764,
+        "points": 0,
+        "lines": 36,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 34,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "removed-1",
+      "at": "2026-11-01T17:42:59.626Z",
+      "modules": [],
+      "refs": {
+        "objects": 283,
+        "geometries": 37,
+        "materials": 32
+      },
+      "renderer": {
+        "frame": 346,
+        "calls": 195,
+        "triangles": 42668,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "after-cycle-1",
+      "at": "2026-11-01T17:42:59.979Z",
+      "modules": [],
+      "refs": {
+        "objects": 283,
+        "geometries": 37,
+        "materials": 32
+      },
+      "renderer": {
+        "frame": 367,
+        "calls": 195,
+        "triangles": 42668,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "bound-2",
+      "at": "2026-11-01T17:43:00.963Z",
+      "modules": [
+        {
+          "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+          "name": "storage-cycle-2",
+          "kind": "PersistentVolumeClaim",
+          "position": [
+            67,
+            1,
+            -42
+          ]
+        },
+        {
+          "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+          "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+          "kind": "PersistentVolume",
+          "position": [
+            74,
+            1,
+            -42
+          ]
+        }
+      ],
+      "refs": {
+        "objects": 297,
+        "geometries": 39,
+        "materials": 34
+      },
+      "renderer": {
+        "frame": 426,
+        "calls": 205,
+        "triangles": 42764,
+        "points": 0,
+        "lines": 48,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 34,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "bound-modules-cycle-2",
+      "at": "2026-11-01T17:43:01.505Z",
+      "modules": [
+        {
+          "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+          "name": "storage-cycle-2",
+          "kind": "PersistentVolumeClaim",
+          "position": [
+            67,
+            1,
+            -42
+          ]
+        },
+        {
+          "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+          "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+          "kind": "PersistentVolume",
+          "position": [
+            74,
+            1,
+            -42
+          ]
+        }
+      ],
+      "refs": {
+        "objects": 296,
+        "geometries": 38,
+        "materials": 33
+      },
+      "renderer": {
+        "frame": 459,
+        "calls": 204,
+        "triangles": 42764,
+        "points": 0,
+        "lines": 36,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 34,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "removed-2",
+      "at": "2026-11-01T17:43:02.063Z",
+      "modules": [],
+      "refs": {
+        "objects": 283,
+        "geometries": 37,
+        "materials": 32
+      },
+      "renderer": {
+        "frame": 492,
+        "calls": 195,
+        "triangles": 42668,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "after-cycle-2",
+      "at": "2026-11-01T17:43:02.416Z",
+      "modules": [],
+      "refs": {
+        "objects": 283,
+        "geometries": 37,
+        "materials": 32
+      },
+      "renderer": {
+        "frame": 514,
+        "calls": 195,
+        "triangles": 42668,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    },
+    {
+      "label": "final-baseline-restored",
+      "at": "2026-11-01T17:43:02.419Z",
+      "modules": [],
+      "refs": {
+        "objects": 283,
+        "geometries": 37,
+        "materials": 32
+      },
+      "renderer": {
+        "frame": 514,
+        "calls": 195,
+        "triangles": 42668,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 33,
+          "textures": 3
+        },
+        "lifecycle": {
+          "canonicalNodes": 2,
+          "visibleNodes": 2,
+          "nodePage": 0,
+          "nodePages": 1,
+          "canonicalPods": 0,
+          "visiblePods": 0,
+          "nodeSlots": 2,
+          "podSlots": 0,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 0,
+            "containerTransitions": 0,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      }
+    }
+  ],
+  "namespace": "kv-repair-storage",
+  "sourceCommitFromParent": "f090c59",
+  "sourceBefore": {
+    "frontend/src/harbor/FacilityResources.jsx": "0c1b6f4d76726ae7bb2036c04dd6aebf177a7e556d8e4fc9fd18d03e41382ad2",
+    "frontend/src/harbor/resourceRelations.js": "d1c8d9a8eefb0457ce9c842ebab3d36749791e845a76799eaf2289e35372d6e2",
+    "frontend/src/data/resourceStore.js": "6d9f600f1a807a26bb702cfd000a385d1d657eab26bf159e779ac19e32054dfa",
+    "frontend/src/world/FacilityWindow.jsx": "2a93316f9db5f6acebbb32ec19bfb985e49c4ea96a78e36389300145e0726790"
+  },
+  "cycles": [
+    {
+      "index": 0,
+      "name": "storage-cycle-0",
+      "startedAt": "2026-11-01T17:42:54.789Z",
+      "dryRunResourceAbsent": true,
+      "pvc": {
+        "name": "storage-cycle-0",
+        "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+        "rv": "10542",
+        "phase": "Bound",
+        "requested": "10Mi",
+        "capacity": "10Mi"
+      },
+      "pv": {
+        "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+        "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+        "rv": "10539",
+        "phase": "Bound",
+        "claimUID": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+        "reclaimPolicy": "Delete"
+      },
+      "bound": {
+        "at": "2026-11-01T17:42:56.651Z",
+        "modules": [
+          {
+            "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+            "name": "storage-cycle-0",
+            "kind": "PersistentVolumeClaim",
+            "position": [
+              67,
+              1,
+              -42
+            ]
+          },
+          {
+            "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+            "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+            "kind": "PersistentVolume",
+            "position": [
+              74,
+              1,
+              -42
+            ]
+          }
+        ],
+        "refs": {
+          "objects": 296,
+          "geometries": 38,
+          "materials": 33
+        },
+        "renderer": {
+          "frame": 168,
+          "calls": 204,
+          "triangles": 42764,
+          "points": 0,
+          "lines": 36,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 34,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      },
+      "after": {
+        "at": "2026-11-01T17:42:57.559Z",
+        "modules": [],
+        "refs": {
+          "objects": 283,
+          "geometries": 37,
+          "materials": 32
+        },
+        "renderer": {
+          "frame": 222,
+          "calls": 195,
+          "triangles": 42668,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 33,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      },
+      "deletedBoth": true,
+      "completedAt": "2026-11-01T17:42:57.560Z"
+    },
+    {
+      "index": 1,
+      "name": "storage-cycle-1",
+      "startedAt": "2026-11-01T17:42:57.561Z",
+      "dryRunResourceAbsent": true,
+      "pvc": {
+        "name": "storage-cycle-1",
+        "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+        "rv": "10558",
+        "phase": "Bound",
+        "requested": "10Mi",
+        "capacity": "10Mi"
+      },
+      "pv": {
+        "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+        "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+        "rv": "10556",
+        "phase": "Bound",
+        "claimUID": "328a29f0-8796-4bcd-8454-91966ec44b04",
+        "reclaimPolicy": "Delete"
+      },
+      "bound": {
+        "at": "2026-11-01T17:42:59.069Z",
+        "modules": [
+          {
+            "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+            "name": "storage-cycle-1",
+            "kind": "PersistentVolumeClaim",
+            "position": [
+              67,
+              1,
+              -42
+            ]
+          },
+          {
+            "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+            "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+            "kind": "PersistentVolume",
+            "position": [
+              74,
+              1,
+              -42
+            ]
+          }
+        ],
+        "refs": {
+          "objects": 296,
+          "geometries": 38,
+          "materials": 33
+        },
+        "renderer": {
+          "frame": 313,
+          "calls": 204,
+          "triangles": 42764,
+          "points": 0,
+          "lines": 36,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 34,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      },
+      "after": {
+        "at": "2026-11-01T17:42:59.979Z",
+        "modules": [],
+        "refs": {
+          "objects": 283,
+          "geometries": 37,
+          "materials": 32
+        },
+        "renderer": {
+          "frame": 367,
+          "calls": 195,
+          "triangles": 42668,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 33,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      },
+      "deletedBoth": true,
+      "completedAt": "2026-11-01T17:42:59.979Z"
+    },
+    {
+      "index": 2,
+      "name": "storage-cycle-2",
+      "startedAt": "2026-11-01T17:42:59.980Z",
+      "dryRunResourceAbsent": true,
+      "pvc": {
+        "name": "storage-cycle-2",
+        "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+        "rv": "10578",
+        "phase": "Bound",
+        "requested": "10Mi",
+        "capacity": "10Mi"
+      },
+      "pv": {
+        "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+        "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+        "rv": "10575",
+        "phase": "Bound",
+        "claimUID": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+        "reclaimPolicy": "Delete"
+      },
+      "bound": {
+        "at": "2026-11-01T17:43:01.505Z",
+        "modules": [
+          {
+            "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+            "name": "storage-cycle-2",
+            "kind": "PersistentVolumeClaim",
+            "position": [
+              67,
+              1,
+              -42
+            ]
+          },
+          {
+            "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+            "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+            "kind": "PersistentVolume",
+            "position": [
+              74,
+              1,
+              -42
+            ]
+          }
+        ],
+        "refs": {
+          "objects": 296,
+          "geometries": 38,
+          "materials": 33
+        },
+        "renderer": {
+          "frame": 459,
+          "calls": 204,
+          "triangles": 42764,
+          "points": 0,
+          "lines": 36,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 34,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      },
+      "after": {
+        "at": "2026-11-01T17:43:02.416Z",
+        "modules": [],
+        "refs": {
+          "objects": 283,
+          "geometries": 37,
+          "materials": 32
+        },
+        "renderer": {
+          "frame": 514,
+          "calls": 195,
+          "triangles": 42668,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 33,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 2,
+            "visibleNodes": 2,
+            "nodePage": 0,
+            "nodePages": 1,
+            "canonicalPods": 0,
+            "visiblePods": 0,
+            "nodeSlots": 2,
+            "podSlots": 0,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 0,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      },
+      "deletedBoth": true,
+      "completedAt": "2026-11-01T17:43:02.416Z"
+    }
+  ],
+  "wire": [
+    {
+      "at": "2026-11-01T17:42:55.416Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "ADD",
+      "kind": "PersistentVolumeClaim",
+      "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "name": "storage-cycle-0",
+      "namespace": "kv-repair-storage",
+      "rv": "10534",
+      "phase": "Pending",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:55.437Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "name": "storage-cycle-0",
+      "namespace": "kv-repair-storage",
+      "rv": "10535",
+      "phase": "Pending",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:55.437Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "ADD",
+      "kind": "PersistentVolume",
+      "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+      "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "rv": "10538",
+      "phase": "Pending",
+      "claimRef": {
+        "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+        "name": "storage-cycle-0",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:55.438Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+      "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "rv": "10539",
+      "phase": "Bound",
+      "claimRef": {
+        "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+        "name": "storage-cycle-0",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:55.438Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "name": "storage-cycle-0",
+      "namespace": "kv-repair-storage",
+      "rv": "10541",
+      "phase": "Pending",
+      "volumeName": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:55.440Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "name": "storage-cycle-0",
+      "namespace": "kv-repair-storage",
+      "rv": "10542",
+      "phase": "Bound",
+      "volumeName": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:57.068Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "name": "storage-cycle-0",
+      "namespace": "kv-repair-storage",
+      "rv": "10543",
+      "phase": "Bound",
+      "volumeName": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:57.077Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "DELETE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "name": "storage-cycle-0",
+      "namespace": "kv-repair-storage",
+      "rv": "10544",
+      "phase": "Bound",
+      "volumeName": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:57.078Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+      "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "rv": "10545",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+        "name": "storage-cycle-0",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:57.080Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+      "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "rv": "10546",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+        "name": "storage-cycle-0",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:57.085Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "DELETE",
+      "kind": "PersistentVolume",
+      "uid": "a33dda57-3963-4406-ba24-96c41425b8de",
+      "name": "pvc-f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "rv": "10547",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+        "name": "storage-cycle-0",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:58.149Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "ADD",
+      "kind": "PersistentVolumeClaim",
+      "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+      "name": "storage-cycle-1",
+      "namespace": "kv-repair-storage",
+      "rv": "10550",
+      "phase": "Pending",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:58.151Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+      "name": "storage-cycle-1",
+      "namespace": "kv-repair-storage",
+      "rv": "10551",
+      "phase": "Pending",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:58.154Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "ADD",
+      "kind": "PersistentVolume",
+      "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+      "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "rv": "10553",
+      "phase": "Pending",
+      "claimRef": {
+        "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+        "name": "storage-cycle-1",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:58.159Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+      "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "rv": "10556",
+      "phase": "Bound",
+      "claimRef": {
+        "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+        "name": "storage-cycle-1",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:58.163Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+      "name": "storage-cycle-1",
+      "namespace": "kv-repair-storage",
+      "rv": "10557",
+      "phase": "Pending",
+      "volumeName": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:58.169Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+      "name": "storage-cycle-1",
+      "namespace": "kv-repair-storage",
+      "rv": "10558",
+      "phase": "Bound",
+      "volumeName": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:59.483Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+      "name": "storage-cycle-1",
+      "namespace": "kv-repair-storage",
+      "rv": "10561",
+      "phase": "Bound",
+      "volumeName": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:59.483Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "DELETE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+      "name": "storage-cycle-1",
+      "namespace": "kv-repair-storage",
+      "rv": "10562",
+      "phase": "Bound",
+      "volumeName": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:42:59.487Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+      "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "rv": "10563",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+        "name": "storage-cycle-1",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:59.492Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+      "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "rv": "10564",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+        "name": "storage-cycle-1",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:42:59.493Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "DELETE",
+      "kind": "PersistentVolume",
+      "uid": "04742843-be3a-4c47-aa2d-90adda65c0a3",
+      "name": "pvc-328a29f0-8796-4bcd-8454-91966ec44b04",
+      "rv": "10565",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+        "name": "storage-cycle-1",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:43:00.582Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "ADD",
+      "kind": "PersistentVolumeClaim",
+      "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "name": "storage-cycle-2",
+      "namespace": "kv-repair-storage",
+      "rv": "10570",
+      "phase": "Pending",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:43:00.584Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "name": "storage-cycle-2",
+      "namespace": "kv-repair-storage",
+      "rv": "10571",
+      "phase": "Pending",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:43:00.587Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "ADD",
+      "kind": "PersistentVolume",
+      "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+      "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "rv": "10574",
+      "phase": "Pending",
+      "claimRef": {
+        "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+        "name": "storage-cycle-2",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:43:00.592Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+      "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "rv": "10575",
+      "phase": "Bound",
+      "claimRef": {
+        "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+        "name": "storage-cycle-2",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:43:00.594Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "name": "storage-cycle-2",
+      "namespace": "kv-repair-storage",
+      "rv": "10577",
+      "phase": "Pending",
+      "volumeName": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:43:00.596Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "name": "storage-cycle-2",
+      "namespace": "kv-repair-storage",
+      "rv": "10578",
+      "phase": "Bound",
+      "volumeName": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:43:01.917Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "name": "storage-cycle-2",
+      "namespace": "kv-repair-storage",
+      "rv": "10581",
+      "phase": "Bound",
+      "volumeName": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:43:01.917Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "DELETE",
+      "kind": "PersistentVolumeClaim",
+      "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "name": "storage-cycle-2",
+      "namespace": "kv-repair-storage",
+      "rv": "10582",
+      "phase": "Bound",
+      "volumeName": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "claimRef": null
+    },
+    {
+      "at": "2026-11-01T17:43:01.920Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+      "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "rv": "10583",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+        "name": "storage-cycle-2",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:43:01.921Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "UPDATE",
+      "kind": "PersistentVolume",
+      "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+      "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "rv": "10584",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+        "name": "storage-cycle-2",
+        "namespace": "kv-repair-storage"
+      }
+    },
+    {
+      "at": "2026-11-01T17:43:01.927Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "834dae86-72af-44f9-8bf2-8006699ad7e7",
+      "action": "DELETE",
+      "kind": "PersistentVolume",
+      "uid": "4d396674-8c1e-4516-8468-83d3191df194",
+      "name": "pvc-ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "rv": "10585",
+      "phase": "Released",
+      "claimRef": {
+        "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+        "name": "storage-cycle-2",
+        "namespace": "kv-repair-storage"
+      }
+    }
+  ],
+  "deletes": [
+    {
+      "at": "2026-11-01T17:42:57.067Z",
+      "resource": "persistentvolumeclaims",
+      "name": "storage-cycle-0",
+      "namespace": "kv-repair-storage",
+      "status": 202,
+      "uid": "f8af10ef-a438-49b1-a90a-52980c1a15ba",
+      "resourceVersion": "10542"
+    },
+    {
+      "at": "2026-11-01T17:42:59.483Z",
+      "resource": "persistentvolumeclaims",
+      "name": "storage-cycle-1",
+      "namespace": "kv-repair-storage",
+      "status": 202,
+      "uid": "328a29f0-8796-4bcd-8454-91966ec44b04",
+      "resourceVersion": "10558"
+    },
+    {
+      "at": "2026-11-01T17:43:01.917Z",
+      "resource": "persistentvolumeclaims",
+      "name": "storage-cycle-2",
+      "namespace": "kv-repair-storage",
+      "status": 202,
+      "uid": "ee1d5241-f071-4b7c-b93f-a5babe748f54",
+      "resourceVersion": "10578"
+    }
+  ],
+  "cleanup": [
+    {
+      "namespace": "kv-repair-storage",
+      "status": "exact-owned-delete-requested"
+    }
+  ],
+  "storageClass": {
+    "name": "standard",
+    "uid": "b84c3aa2-b256-47c1-9c5b-c0b553223352",
+    "provisioner": "k8s.io/minikube-hostpath",
+    "reclaimPolicy": "Delete",
+    "volumeBindingMode": "Immediate"
+  },
+  "baseline": {
+    "at": "2026-11-01T17:42:54.789Z",
+    "modules": [],
+    "refs": {
+      "objects": 284,
+      "geometries": 38,
+      "materials": 33
+    },
+    "renderer": {
+      "frame": 62,
+      "calls": 196,
+      "triangles": 42668,
+      "points": 0,
+      "lines": 12,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 33,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 2,
+        "visibleNodes": 2,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 0,
+        "visiblePods": 0,
+        "nodeSlots": 2,
+        "podSlots": 0,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    }
+  },
+  "slotPositions": [
+    [
+      "67,1,-42",
+      "74,1,-42"
+    ],
+    [
+      "67,1,-42",
+      "74,1,-42"
+    ],
+    [
+      "67,1,-42",
+      "74,1,-42"
+    ]
+  ],
+  "final": {
+    "at": "2026-11-01T17:43:02.419Z",
+    "modules": [],
+    "refs": {
+      "objects": 283,
+      "geometries": 37,
+      "materials": 32
+    },
+    "renderer": {
+      "frame": 514,
+      "calls": 195,
+      "triangles": 42668,
+      "points": 0,
+      "lines": 0,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 33,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 2,
+        "visibleNodes": 2,
+        "nodePage": 0,
+        "nodePages": 1,
+        "canonicalPods": 0,
+        "visiblePods": 0,
+        "nodeSlots": 2,
+        "podSlots": 0,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 0,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    }
+  },
+  "status": "PASSED",
+  "sourceAfter": {
+    "frontend/src/harbor/FacilityResources.jsx": "0c1b6f4d76726ae7bb2036c04dd6aebf177a7e556d8e4fc9fd18d03e41382ad2",
+    "frontend/src/harbor/resourceRelations.js": "d1c8d9a8eefb0457ce9c842ebab3d36749791e845a76799eaf2289e35372d6e2",
+    "frontend/src/data/resourceStore.js": "6d9f600f1a807a26bb702cfd000a385d1d657eab26bf159e779ac19e32054dfa",
+    "frontend/src/world/FacilityWindow.jsx": "2a93316f9db5f6acebbb32ec19bfb985e49c4ea96a78e36389300145e0726790"
+  },
+  "sourceUnchangedDuringRun": true,
+  "endedAt": "2026-11-01T17:43:03.054Z",
+  "cleanupConfirmedNamespaceAbsent": true,
+  "visualReview": {
+    "opened": [
+      "frontend-storage-real-01-depot-before-owned-claims.png",
+      "frontend-storage-real-02-actual-bound-pvc-uid-module-selected.png",
+      "frontend-storage-real-03-actual-bound-pv-claim-uid-selected.png",
+      "frontend-storage-real-04-after-three-real-claims-reclaimed.png"
+    ],
+    "finding": "Normal depot empty state, Bound PVC/PV exact UID YAML and module selection, and old-UID deleted state reviewed. These are selectable metadata modules; generic YAML access is not specialized storage visual behavior or measured byte usage.",
+    "refsInterpretation": "All three post-cycle samples stable: scene283objects/37geometries/32materials; baseline284/38/33 includes an extra hovered facility visual. GPU geometry33/texture3 unchanged. Runtime markers returned0 and slots67,1,-42 /74,1,-42 reused. No physical RAM/long-term leak claim."
+  }
+}

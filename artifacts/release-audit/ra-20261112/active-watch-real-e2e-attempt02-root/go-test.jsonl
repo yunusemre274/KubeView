@@ -1,0 +1,8 @@
+{"Time":"2026-11-13T00:25:26.220599+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/server"}
+{"Time":"2026-11-13T00:25:26.825021+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal"}
+{"Time":"2026-11-13T00:25:26.82508+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal","Output":"=== RUN   TestReleaseOwnedWatchRoleBindingRevocationReal\n"}
+{"Time":"2026-11-13T00:25:42.15789+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal","Output":"--- PASS: TestReleaseOwnedWatchRoleBindingRevocationReal (15.33s)\n"}
+{"Time":"2026-11-13T00:25:42.157954+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedWatchRoleBindingRevocationReal","Elapsed":15.33}
+{"Time":"2026-11-13T00:25:42.157993+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"PASS\n"}
+{"Time":"2026-11-13T00:25:42.159843+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"ok  \tgithub.com/k8s-tersane/tersane/backend/pkg/server\t15.939s\n"}
+{"Time":"2026-11-13T00:25:42.159861+03:00","Action":"pass","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Elapsed":15.939}

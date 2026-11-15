@@ -1,0 +1,3 @@
+Küme A: Ready; 2 exact-owned container açıldı; kubelet start=1; adres onarımı=True
+Hazır: 06-limanlar-arasi-ag; labId=kvml-d32afbf634e8; 2 kayıt planı. app komutu ayrı çalıştırılır.
+Varsayılan fixture sağlığı için status; kullanıcının önceki scenario değişiklikleri up ile sıfırlanmaz.

@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-12T10:30:33.780219+00:00",
+  "HTTPRunStarted": false,
+  "HTTPRequests": 0,
+  "appProcessesStarted": 0,
+  "ports": [
+    {
+      "port": 19846,
+      "noListener": true
+    },
+    {
+      "port": 19847,
+      "noListener": true
+    }
+  ],
+  "profileSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "labFileSHA256": "814bd85e417e856fb409e43c0f53c67eeb74caa4f9d001d38d0f35bc2dc0ff1f",
+  "storedOriginalNodeUIDs": {
+    "kvml-d32afbf634e8-a": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+    "kvml-d32afbf634e8-a-m02": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+  },
+  "liveOriginalNodeUIDReadyGuard": "BLOCKED_BY_API_TIMEOUT",
+  "controlDirCreated": false,
+  "batteryPercent": 52,
+  "freeDiskBytes": 454549635072,
+  "CPKubeletSafeShow": {
+    "Result": "success",
+    "ExecMainStatus": "0",
+    "ActiveState": "active",
+    "SubState": "running"
+  },
+  "CPControlPlaneAliasGetent": {
+    "exitCode": 2,
+    "outputBytes": 0
+  },
+  "noAdditionalMutations": true
+}

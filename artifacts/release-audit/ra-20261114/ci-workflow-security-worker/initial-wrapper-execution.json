@@ -1,0 +1,17 @@
+{
+  "status": "FAIL",
+  "startedAt": "2026-11-14T13:15:10.963846+00:00",
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "scripts/release-ci-policy.test.mjs"
+  ],
+  "sourceBeforeMatches": true,
+  "exitCode": 0,
+  "tapSummary": [],
+  "error": "AssertionError: ",
+  "sourceAfterMatches": true,
+  "elapsedSeconds": 0.12786125000002357,
+  "finishedAt": "2026-11-14T13:15:11.091708+00:00"
+}

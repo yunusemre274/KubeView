@@ -1,0 +1,23 @@
+{
+  "ROADMAP_FOR_TESTS.md": "71411fa87d4f2d305c5988348e05b671ca6833fe13286549959f34c9e86316a5",
+  "docs/PERFORMANCE.md": "42a8a5ce38f71bdc7556c3ace7b5d0f53d7262b1911e63119d076922d79d062f",
+  "docs/PERFORMANCE_REPORT.md": "c024d7d6250b92ac54eea65af6450f043ddcb7d3ae9d41a82470bc7c31c860b9",
+  "docs/ARCHITECTURE.md": "ea9dc2ed26f45712b79065ec2b1bfb9c296513a72d6148d2f76e47f67a275a67",
+  "benchmarks/run.mjs": "12f77e64ecc1ad69ef82f2fd0a00722513509521798eabee271d0efe8dd0cc75",
+  "benchmarks/fixtures.mjs": "c53ffc7cab18c06991437fe0f17ebdade10c28bbb56146ee19ba2ee63a45becc",
+  "benchmarks/probe.mjs": "bec5e6362c57c0ce2c2ed2865d6fa7e05fd8446daa153ea7054fdcdb0089d367",
+  "benchmarks/metrics.mjs": "40e00b9550c43db063db839601586d3f22fdb149dd9ba5bb0491bdaf7cdf36c9",
+  "benchmarks/panel-build.mjs": "2a11578dda8e7b0eb6463154fb6b162a4c9fb22325a5adb86ea9463637b76505",
+  "benchmarks/panel-accept.mjs": "6ba13310ac83e9f8b74d6afae071bc1523fc6b617dd0b21934289b9482ee0aa3",
+  "benchmarks/panel-compare.mjs": "e23586629e69d3f20952a0988b368d76334743c0efe801843aefb47b77013886",
+  "benchmarks/panel-finish.mjs": "17093497f73bea9ab2d50b392f6323a3b15420357f30c03510e7761909ce9b8c",
+  "benchmarks/repair-session.mjs": "fe41d018cbc25f660e1c0e16f885c723a237e0faa4a07bafcf0ae8c4afc2ddcb",
+  "benchmarks/orchestration/supervise-job.mjs": "16a3b2c84768ac7177b548d884854ee75a87f5a0df24e914d849026695a11564",
+  "frontend/e2e/benchmark.spec.js": "7c9e93e917f85afa0e70bd9404d3c057829d26f95825b2e3d26c26157168079b",
+  "frontend/e2e/fleet-benchmark.mjs": "72b184a59b85cb057f39ed521cc44dd2fc705d87b1e3b407651608a472a85f50",
+  "frontend/src/workbench/ResourceDetails.jsx": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+  "frontend/src/workbench/logBuffer.js": "13ce6ff7f59a20ab82a6114d53e05bcb6ef9b783bcd83482219c27438c219473",
+  "frontend/src/workbench/PodLogs.jsx": "437ad950a11ef92c1ca3308dfecd10761f9d9b6f3543d957f0e8c2ce3e539b56",
+  "frontend/src/harbor/HarborScene.jsx": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1",
+  "artifacts/release-audit/ra-20261111/baseline.json": "d6c38389bb72993638c4bea27a79ca2207616effcb4dd162ba5747e95353d0e8"
+}

@@ -1,0 +1,33 @@
+{
+  "command": [
+    "go",
+    "build",
+    "-trimpath",
+    "-buildvcs=false",
+    "-p=1",
+    "-mod=vendor",
+    "-tags",
+    "libvirt_dlopen",
+    "-ldflags",
+    "-X k8s.io/minikube/pkg/version.version=v1.38.1-kubeview-patched.4 -X k8s.io/minikube/pkg/version.isoVersion=v1.38.0 -X k8s.io/minikube/pkg/version.gitCommitID=c93a4cb9311efc66b90d33ea03f75f2c4120e9b0 -X k8s.io/minikube/pkg/version.storageProvisionerVersion=v5",
+    "-o",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+    "k8s.io/minikube/cmd/minikube"
+  ],
+  "started_at_utc": "2026-11-11T13:19:21.552129+00:00",
+  "cwd": ".git/release-audit/minikube-jose-patch4/source",
+  "timeout_seconds": 163,
+  "GOTOOLCHAIN": "go1.27.4",
+  "GOMAXPROCS": 2,
+  "GOMEMLIMIT": "1536MiB",
+  "CGO_ENABLED": 1,
+  "GOFLAGS": "-mod=vendor -p=1",
+  "rss_limit_bytes": 4294967296,
+  "build_attempts": 1,
+  "exit_code": 0,
+  "stop_reason": null,
+  "duration_seconds": 31.91,
+  "peak_owned_rss_bytes": 2643968000,
+  "finished_at_utc": "2026-11-11T13:19:53.462209+00:00",
+  "binary_produced": true
+}

@@ -1,0 +1,71 @@
+{
+  "name": "envoy-candidate",
+  "argv": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/trivy.yaml",
+    "image",
+    "--image-src",
+    "docker",
+    "--docker-host",
+    "unix:///var/run/docker.sock",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/attempt02/envoy-candidate.json",
+    "--timeout",
+    "70s",
+    "kubeview-private/cilium-envoy:1.20.4-os-security.2"
+  ],
+  "startedAt": "2026-11-12T11:08:52.280741+00:00",
+  "maxSeconds": 75,
+  "samples": [
+    {
+      "elapsedSeconds": 5.516,
+      "ownedRSSBytes": 45645824,
+      "ownedPIDs": [
+        13408,
+        13467,
+        13468
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454347485184
+    },
+    {
+      "elapsedSeconds": 6.038,
+      "ownedRSSBytes": 132120576,
+      "ownedPIDs": [
+        13408,
+        13467,
+        13476
+      ],
+      "batteryPercent": 46,
+      "freeDiskBytes": 454270402560
+    }
+  ],
+  "pid": 13467,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T11:08:53.332075+00:00"
+}

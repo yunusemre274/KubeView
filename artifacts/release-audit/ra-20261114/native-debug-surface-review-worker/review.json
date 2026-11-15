@@ -1,0 +1,101 @@
+{
+  "reviewedAt": "2026-11-14T13:05:24.610692+00:00",
+  "reviewKind": "Same agent system independent second source/evidence review; not external professional pentest",
+  "scope": "TEST-12.10 native debug/test endpoint exposure only, not TEST-20.10 private archive scan",
+  "sourceBuild": "71b4098314c71d7c9473d88356edf7200fe62f1f",
+  "binarySHA256": "24ef0ce34d3381644fc14dc16a768bbeb7b8c580d19813ff580780e536378e68",
+  "sourceBindings": [
+    {
+      "path": "backend/main.go",
+      "currentSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "buildCommitSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "expected": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "allEqual": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "buildCommitSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "expected": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "allEqual": true
+    },
+    {
+      "path": "backend/pkg/server/replay_source.go",
+      "currentSHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "buildCommitSHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "expected": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "allEqual": true
+    },
+    {
+      "path": "backend/pkg/server/benchmark_test.go",
+      "currentSHA256": "0ed76eaddeeeeeab94dad2b1d388f7bc6867dba1c0265ef468eddfd3c2b6a76e",
+      "buildCommitSHA256": "0ed76eaddeeeeeab94dad2b1d388f7bc6867dba1c0265ef468eddfd3c2b6a76e",
+      "expected": "0ed76eaddeeeeeab94dad2b1d388f7bc6867dba1c0265ef468eddfd3c2b6a76e",
+      "allEqual": true
+    }
+  ],
+  "firstAttempt": {
+    "status": "FAIL",
+    "requests": 19,
+    "elapsedSeconds": 2.506020875000104,
+    "reason": {
+      "type": "AssertionError",
+      "reason": "disabled/absent API not404: /api/replay/scenario"
+    },
+    "productDefect": false
+  },
+  "retest": {
+    "status": "PASS",
+    "requests": 42,
+    "elapsedSeconds": 5.512804292000055,
+    "modes": [
+      {
+        "name": "default",
+        "requests": 21,
+        "spaIndexEquivalenceVerified": true,
+        "ownedSingleListenerVerified": true,
+        "cleanupVerified": true,
+        "testEnvironmentKeys": []
+      },
+      {
+        "name": "benchmark-test-environment-set",
+        "requests": 21,
+        "spaIndexEquivalenceVerified": true,
+        "ownedSingleListenerVerified": true,
+        "cleanupVerified": true,
+        "testEnvironmentKeys": [
+          "KUBEVIEW_BENCH_FIXTURE",
+          "KUBEVIEW_BENCH_PORT",
+          "KUBEVIEW_BENCH_STATIC",
+          "KUBEVIEW_BENCH_RESULT_DIR",
+          "KUBEVIEW_BENCH_BOOTSTRAP",
+          "KUBEVIEW_BENCH_LOG_GATED"
+        ]
+      }
+    ]
+  },
+  "reviewerExecutedTests": false,
+  "gaps": [
+    "Initial42request retest used unused KUBEVIEW_BENCH_PORT; preserved as historical limitation. One21request actual KUBEVIEW_BENCH_ADDR follow-up closes the tested fixture-bind key question; no need to repeat default mode.",
+    "Direct child census only at guards; short-lived/reparented children and UDP/unix listeners not exhaustively observed.",
+    "Production TEST/REPLAY enabled workflow read from source, not exercised here.",
+    "No private-data/SBOM/archive scan, all-platform acceptance, auth/RBAC or real Kubernetes, browser/CPU result."
+  ],
+  "actualAddressFollowUp": {
+    "status": "PASS",
+    "requests": 21,
+    "elapsedSeconds": 2.687978208000004,
+    "sourceAfterMatches": true,
+    "actualFixtureAddressEnvironmentKeySet": true,
+    "ownedTCPListenEndpoints": [
+      "127.0.0.1:19849"
+    ],
+    "cleanup": {
+      "exitCode": 0,
+      "ownedIdentityAbsent": true,
+      "portNoListener": true
+    },
+    "defaultModeNotRepeated": true
+  },
+  "adjudication": "TEST-12.10 narrow native release test/debug surface supported VERIFIED_DONE by source+bounded normal/default and real fixture-env probes. TEST-20.10 private archive/data scan remains open; not global security/release ready."
+}

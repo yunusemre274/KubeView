@@ -1,0 +1,49 @@
+{
+  "startedAt": "2026-11-11T17:33:08.865358+00:00",
+  "sourceHEAD": "9e87141b398e27e15b21fa4c2d5e63d7a0c69e00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "./pkg/server",
+    "-run",
+    "^TestReleaseSession(CreationShapeFreshnessAndCookieFlags|ExpiredCookieCannotReplayOrRestoreGrant)$",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "30s",
+    "-count",
+    "1",
+    "-v"
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local"
+  },
+  "fileSHA256": {
+    "backend/pkg/server/release_session_lifecycle_test.go": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/release_session_expiry_test.go": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+    "backend/pkg/server/connection_test.go": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+    "artifacts/release-audit/ra-20261111/session-expiry-red.log": "7625dcb88ad01bef9c5e4d877d7f2fad19fd58f1f19a6526806ef9711347ce9b",
+    "artifacts/release-audit/ra-20261111/session-scope-retest.log": "f8a5f4ea3dccc27db2c07f4814700c770b644ef4505e2775e0ead7af5dc83c0a",
+    "/Users/yunusemre/go/pkg/mod/github.com/google/uuid@v1.3.0/version4.go": "f252aeb4028659d83cbf7b037d4524f7c9b76cde1fdca1f6f7de310dab6f4dcd",
+    "/Users/yunusemre/go/pkg/mod/github.com/google/uuid@v1.3.0/uuid.go": "f6e767f1b9e3e5946f600afccc01c0e40f1d494171f2f9d8659a2e15daf3d79e"
+  },
+  "unchangedSince49999815": {
+    "backend/pkg/server/connection.go": true,
+    "backend/pkg/server/server.go": true,
+    "backend/pkg/server/release_session_expiry_test.go": true,
+    "backend/pkg/server/connection_test.go": true
+  },
+  "scope": "UNIT synthetic in-process HTTP/fake; no real credential or cookie/nonce values recorded",
+  "exitCode": 0,
+  "finishedAt": "2026-11-11T17:33:17.319906+00:00",
+  "topPASS": 2,
+  "subPASS": 2,
+  "SKIP": 0
+}

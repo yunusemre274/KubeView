@@ -1,0 +1,66 @@
+{
+  "headCommit": "594e090710cef4ad178b896f03802542c2756d3c",
+  "ci": {
+    "conclusion": "success",
+    "databaseId": 42604991277,
+    "event": "pull_request",
+    "headSha": "594e090710cef4ad178b896f03802542c2756d3c",
+    "startedAt": "2026-11-09T10:56:43Z",
+    "status": "completed",
+    "updatedAt": "2026-11-09T10:58:05Z",
+    "url": "https://github.com/yunusemre274/KubeView/actions/runs/42604991277"
+  },
+  "artifactBuild": {
+    "version": "1.1.0",
+    "commit": "09ee97d1268bd25f63445564ef0a4d675aa2c83e",
+    "dirty": false,
+    "targets": [
+      "darwin-arm64",
+      "linux-amd64"
+    ],
+    "builtAt": "2026-11-09T10:57:42.469Z",
+    "note": "Cross-compilation is not a runtime platform test. See V11_ACCEPTANCE_REPORT."
+  },
+  "actualCITestMergeCommit": "09ee97d1268bd25f63445564ef0a4d675aa2c83e",
+  "headAndCITestMergeTreesByteEqual": true,
+  "treeSHA": "91c5c0f393af45f109c6c748fd2aa10c8f4d6b3c",
+  "note": "GitHub pull_request CI builds a synthetic merge ref. This is not an actual main merge or a published release. Initial helper expected headSHA and failed before any binary execution; corrected source-tree verification follows actual CI semantics.",
+  "initialHelperAssertion": "FAIL: build.commit!=PRhead; no product failure, archive was not executed then",
+  "archives": [
+    {
+      "name": "kubeview_1.1.0_darwin-arm64.tar.gz",
+      "sha256": "7c948ea668245317c04186832adac68ff669338df3c64d01419aab16caf720e7",
+      "bytes": 11974387
+    },
+    {
+      "name": "kubeview_1.1.0_linux-amd64.tar.gz",
+      "sha256": "b2572f57f85ff18e085359adc86a896a942c27d2e7d76d0f7446cf96d516f5c3",
+      "bytes": 12964724
+    }
+  ],
+  "macNativeCleanSmoke": {
+    "versionOutput": "KubeView 1.1.0 (09ee97d1268bd25f63445564ef0a4d675aa2c83e) darwin/arm64",
+    "binarySHA256": "1759d58a0b3ccbfcedd473a6045d6f65bb74180b5c2036d360742076d3bfd3a6",
+    "embeddedIndexSHA256": "2fe167683b9af127878e84036d68732ebe0035bca49fad7b4961f1f8f7c7b395",
+    "embeddedIndexByteEqualToMeasuredCandidate": true,
+    "configured": false,
+    "readOnly": true,
+    "kubeconfig": "explicit absent private path; no user config read",
+    "httpVersion": {
+      "arch": "arm64",
+      "commit": "09ee97d1268bd25f63445564ef0a4d675aa2c83e",
+      "os": "darwin",
+      "version": "1.1.0"
+    },
+    "gatewayStopped": true,
+    "port18415Closed": true,
+    "noGoNodeViteRequired": true,
+    "staticSource": "embedded"
+  },
+  "runtimeDiffFrom32a0468": [],
+  "limits": [
+    "This is an additional empty-config install/static smoke, not a fresh two-cluster TLS/API/UI/performance certification.",
+    "Linux native CI startup/browser smoke passed; actual Kubernetes TLS/UID API evidence on32 remains source-qualified.",
+    "Stable1.1.0 release/tag/main merge/milestone close remain blocked by CPU/physicalUIlatency gates."
+  ]
+}

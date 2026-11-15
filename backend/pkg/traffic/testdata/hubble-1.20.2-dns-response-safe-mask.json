@@ -1,0 +1,37 @@
+{
+  "flow": {
+    "time": "2026-11-01T17:17:36.147547427Z",
+    "uuid": "ddfa8571-15a9-4fc6-a17e-80fecefdad5c",
+    "verdict": "FORWARDED",
+    "IP": {
+      "source": "10.244.0.199",
+      "destination": "10.244.0.88"
+    },
+    "l4": {
+      "UDP": {
+        "source_port": 53,
+        "destination_port": 42938
+      }
+    },
+    "source": {
+      "cluster_name": "default",
+      "namespace": "kube-system",
+      "pod_name": "coredns-7d764666f9-rwpth"
+    },
+    "destination": {
+      "cluster_name": "default",
+      "namespace": "kv-repair-qa",
+      "pod_name": "flow-client"
+    },
+    "Type": "L7",
+    "node_name": "kv-repair-1101",
+    "l7": {
+      "type": "RESPONSE",
+      "dns": {}
+    },
+    "traffic_direction": "EGRESS",
+    "is_reply": true
+  },
+  "node_name": "kv-repair-1101",
+  "time": "2026-11-01T17:17:36.147547427Z"
+}

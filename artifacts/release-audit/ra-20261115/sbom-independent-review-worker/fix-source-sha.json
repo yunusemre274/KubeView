@@ -1,0 +1,46 @@
+{
+  "status": "FIX_SOURCE_REVIEW_ACCEPTED_FOR_SBOM_REVIEW_001_NOT_GLOBAL_PACKAGE_PASS",
+  "startedAt": "2026-11-15T10:28:15.727144+00:00",
+  "finishedAt": "2026-11-15T10:29:03.887217+00:00",
+  "elapsedSeconds": 48.160123109817505,
+  "budgetSeconds": 120,
+  "withinBudget": true,
+  "uniqueSourceFiles": 3,
+  "evidenceFilesInspected": 2,
+  "sourceSHA256AtStart": {
+    "scripts/release-sbom.mjs": "67633f23985bdd6d79ebdc8a6ff225339301a63c0d4b2811703c52cfae0e3340",
+    "frontend/build/package-inventory.mjs": "fbeb25148c7c0edc204f15fd889ebcb4e436a87c3368810f22d38340e9a74dbe",
+    "scripts/build-release.test.mjs": "2b1e113527e1875c0d4abf557451c37ba5874ce458367f5064e58a8398b7479f"
+  },
+  "sourceSHA256AtFinish": {
+    "scripts/release-sbom.mjs": "67633f23985bdd6d79ebdc8a6ff225339301a63c0d4b2811703c52cfae0e3340",
+    "frontend/build/package-inventory.mjs": "fbeb25148c7c0edc204f15fd889ebcb4e436a87c3368810f22d38340e9a74dbe",
+    "scripts/build-release.test.mjs": "2b1e113527e1875c0d4abf557451c37ba5874ce458367f5064e58a8398b7479f"
+  },
+  "sourceStable": true,
+  "rootEvidence": "artifacts/release-audit/ra-20261115/sbom-output-binding-root",
+  "rootReportedRed": "assertion expected throw absent on original source",
+  "rootReportedGreen": {
+    "tests": 37,
+    "pass": 37,
+    "fail": 0,
+    "skipped": 0
+  },
+  "redTextInspected": [
+    "✖ prepared output tampering or added files cannot be blessed by newly computed package hashes (31.641083ms)",
+    "ℹ tests 1",
+    "ℹ pass 0",
+    "ℹ fail 1",
+    "✖ prepared output tampering or added files cannot be blessed by newly computed package hashes (31.641083ms)",
+    "  AssertionError [ERR_ASSERTION]: Missing expected exception.",
+    "    code: 'ERR_ASSERTION',"
+  ],
+  "workerTestBuildRuns": 0,
+  "remaining": [
+    "actual Vite generateBundle HTML/CSS ordering and complete asset capture",
+    "actual fresh production package/npm/Go build metadata",
+    "official schema validation",
+    "native runtime and final package QA"
+  ],
+  "firstReviewUntouched": true
+}

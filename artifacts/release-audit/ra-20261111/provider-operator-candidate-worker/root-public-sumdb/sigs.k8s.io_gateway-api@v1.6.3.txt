@@ -1,0 +1,9 @@
+66855038
+sigs.k8s.io/gateway-api v1.6.3 h1:lKpJa5bGlraC/QeACvCpsHLdmO6y0iKfzVl6gzaFEYc=
+sigs.k8s.io/gateway-api v1.6.3/go.mod h1:FVfx3t389ybeXOqvDghLbdvJdSCfI/PReqCUI3lu3mY=
+
+go.sum database tree
+71239014
+qm4xmw3FSgGBM9nKITW4+cN1XPPskV0aQM7Xgv0uwPA=
+
+— sum.golang.org Az3grpEthS8i8hlG3gVTzysZvjXdszLlTa/RluFvYCShjNfB1KykjUjlh9u88bbHIt9UhR2UVmPBzIaOMcBWoHs2AQk=

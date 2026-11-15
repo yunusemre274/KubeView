@@ -1,0 +1,52 @@
+{
+  "at": "2026-11-11T11:59:48.261298+00:00",
+  "baseCommit": "4ec526b7ce1bc39c21b603864c9096f72eb39184",
+  "binary": ".git/release-audit/candidate-runtime-scope04/kubeview",
+  "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+  "indexSHA256": "fdf1015652ca471b342393f9cf15fab865ccc4dd818c93404d57c62ee1fd2d3e",
+  "dirtyRuntime": {
+    "frontend/src/App.jsx": "92912b2f27bc4e910e966644588a134997c75ea341ee3d3e4a01305caa67e114",
+    "frontend/src/harbor/HarborScene.jsx": "5092be31dd1c9711b33d8878c41087ad99f7c93165103eafc35a4953b0d4c82c",
+    "frontend/src/harbor/interactions.js": "245b74c2d2f51bd074c03d9a79b624e2f3213e1f297a9b0833cbdbed44fed86b"
+  },
+  "steps": [
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/prepare-webui.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "go",
+        "build",
+        "-p",
+        "1",
+        "-trimpath",
+        "-ldflags",
+        "-s -w -X main.version=1.1.0-candidate -X main.commit=4ec526b-dirty-scope04",
+        "-o",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/candidate-runtime-scope04/kubeview",
+        "."
+      ],
+      "exit": 0
+    }
+  ],
+  "notFinalPackage": true
+}

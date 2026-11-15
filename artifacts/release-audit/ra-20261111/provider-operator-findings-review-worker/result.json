@@ -1,0 +1,48 @@
+{
+  "status": "PROPOSE_MINIMAL_TWO_FLOOR_CANDIDATE_PATCH_NO_WAIVER",
+  "startedAt": "2026-11-11T19:52:36+00:00",
+  "finishedAt": "2026-11-11T19:56:01.326223+00:00",
+  "candidate1SHA256BeforeAndAfter": "7bba6629021f9f1437ba09626c904ff92cba0493cb2655db76eeccb2c75a061a",
+  "cryptoVerdict": "Module match; affected OpenPGP function names absent in exact ELF full Go tables. Fixed parent floor isolates still-unsafe nested module; not general crypto hardening. No severity automatically assigned to UNKNOWN.",
+  "gopacketVerdict": "SCTP vulnerable sinks genuinely linked; crafted SCTP chunk + non-recovering decode path needed for crash. Actual generic operator attacker ingress not demonstrated; patch recommended without claiming unreachable.",
+  "pclntab": {
+    "functionEntries": 172260,
+    "parsedEntries": 172260,
+    "allFuncnameTableNames": 184657,
+    "symtabPresent": false,
+    "openpgpNames": [],
+    "selectedSCTPSinks": [
+      "github.com/gopacket/gopacket/layers.decodeSCTPInit",
+      "github.com/gopacket/gopacket/layers.decodeSCTPParameter",
+      "github.com/gopacket/gopacket/layers.decodeSCTPSack",
+      "github.com/gopacket/gopacket/layers.decodeSCTPError",
+      "github.com/gopacket/gopacket/layers.decodeSCTPShutdown",
+      "github.com/gopacket/gopacket/layers.decodeSCTPShutdownAck"
+    ]
+  },
+  "proposedFloors": {
+    "golang.org/x/crypto": "v0.58.1-0.20261009181718-2f1f834330b2",
+    "github.com/gopacket/gopacket": "v1.7.2"
+  },
+  "goDirectives": {
+    "cryptoFixed": "1.26.0",
+    "gopacketFixed": "1.25.0",
+    "installedCompiler": "1.26.11"
+  },
+  "MVSClosure": "Declared requirements already satisfied: crypto fixed mod has byte-identical requirements to candidate crypto0.58.0; gopacket1.7.2 minima net0.55/sys0.45/netlink1.1/netns202111 below current selected versions. Full graph/rebuild remains NOT RUN.",
+  "productionOrCandidate1Modified": false,
+  "rebuildScanImageLabDone": false,
+  "limits": [
+    "No whole-module matching interpreted as linked vulnerable package",
+    "No observed attacker-controlled operator input to SCTP sinks",
+    "No full callgraph/dynamic proof or exploit execution",
+    "APT/fixed derived image/TLS/lab acceptance remains open"
+  ],
+  "sourceHashes": {
+    ".git/release-audit/cilium-operator-security-candidate/source/operator/Makefile": "6463539714c0cc0d2b684a25d7772e9b4bff693a909de99ed2db526af43b67b7",
+    ".git/release-audit/cilium-operator-security-candidate/source/pkg/monitor/dissect.go": "524ef55b0402e4aaf9ee9bd2b721549cc36b04b8f2b6199c150098bb5a5ff7ec",
+    ".git/release-audit/cilium-operator-security-candidate/source/vendor/github.com/gopacket/gopacket/layers/sctp.go": "3182cdf5523aff6b45b483edd57579b5d075bf602d6967885e391ca2ee1ac278",
+    ".git/release-audit/cilium-operator-security-candidate/source/vendor/github.com/gopacket/gopacket/parser.go": "1c3a30a7af1fbdfcbe5d0fb393745662a0082800546ee6c7930541296c45143b"
+  },
+  "parserHelperSHA256": "405bbf2b5b614978de9eabef85a2f57c3deec9943275f7e11bcccb6ce8ac062a"
+}

@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
+	"strings"
 	"sync"
 
 	"github.com/gorilla/websocket"
@@ -13,9 +15,13 @@ import (
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
-	// Allow all origins for development & cluster port-forwarding
+	// Only same-origin browser clients may access Kubernetes data.
 	CheckOrigin: func(r *http.Request) bool {
-		return true
+		if r.Header.Get("Origin") == "" {
+			return true
+		}
+		u, err := url.Parse(r.Header.Get("Origin"))
+		return err == nil && strings.EqualFold(u.Host, r.Host)
 	},
 }
 
@@ -79,7 +85,7 @@ func (h *Hub) Run() {
 			h.mu.Unlock()
 
 		case message := <-h.broadcast:
-			h.mu.RLock()
+			h.mu.Lock()
 			for client := range h.clients {
 				select {
 				case client.send <- message:
@@ -88,7 +94,7 @@ func (h *Hub) Run() {
 					delete(h.clients, client)
 				}
 			}
-			h.mu.RUnlock()
+			h.mu.Unlock()
 		}
 	}
 }

@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-08T19:35:43.933Z",
+  "hostUnixMs": 1794166543933,
+  "clusters": [
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "containerUTC": "2026-11-08T19:35:44Z",
+      "hostMinusContainerSeconds": 0.053
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "containerUTC": "2026-11-08T19:35:44Z",
+      "hostMinusContainerSeconds": 0.166
+    }
+  ],
+  "reader": {
+    "pods": {
+      "exit": 1,
+      "error": "Kubernetes request rejected; credential-safe diagnostic"
+    },
+    "nodes": {
+      "exit": 1,
+      "error": "Kubernetes request rejected; credential-safe diagnostic"
+    },
+    "namespaces": {
+      "exit": 1,
+      "error": "Kubernetes request rejected; credential-safe diagnostic"
+    }
+  }
+}

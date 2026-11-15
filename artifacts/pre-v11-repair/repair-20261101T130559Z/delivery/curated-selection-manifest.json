@@ -1,0 +1,202 @@
+{
+  "generatedAt": "2026-11-06T10:36:07.342842+00:00",
+  "selectionKind": "Small sanitized JSON extractions and unedited key PNGs; originals preserved",
+  "evidenceRoot": "artifacts/pre-v11-repair/repair-20261101T130559Z",
+  "sources": [
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/node-fire-final-2.json",
+      "bytes": 59083,
+      "sha256": "5add9937bb57cb3f47b7bb04a7e8affe559357019ef47db18e3fdd80a13bd1d5"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/node-visual-real.json",
+      "bytes": 102154,
+      "sha256": "4f23101b0efeed3c9e27ec6b8f3d0047c9d7ffc8ff9626b6ba46f7cb138f4f98"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-container-preparation-2.json",
+      "bytes": 2632721,
+      "sha256": "aef9c9f7535f9175d6eca72a2eea2cfce6dcdbc9242d6c21ee6c4464d8472581"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-final-crane.json",
+      "bytes": 962858,
+      "sha256": "b587664eb1b8a9e079192d2f860a8e368b44cb34d02df4249b9f20e9e5fa8a22"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-final-crane-envelope-3.json",
+      "bytes": 756920,
+      "sha256": "51d1f99e8cedbb407c4ce2567a1952aaf1fb6e5fc67f77f8c6cc3550a25a4d6c"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-control-plane-real.json",
+      "bytes": 232703,
+      "sha256": "791bb519be2dc02cf1fb5d08a31aeb29455f3b23ced2fb4655a7fb50cab76c6c"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/provision-final-2.json",
+      "bytes": 121669,
+      "sha256": "e5706d77948a52897583132ae72d3cabf2c797b9164837ddcc7af408aadc79b9"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/provision-final-2-visual-review.json",
+      "bytes": 14917,
+      "sha256": "966ecdd9ce172a22606d48315e59fccc0a27b12775d7ccf56f3e7d2a4d6dafe2"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-visual-final.json",
+      "bytes": 7533040,
+      "sha256": "89bafdaff415a3fd96faea9c3bf40abc5089005e6ff19933003169f0b47cd0b7"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-provider-recovery-real.json",
+      "bytes": 560909,
+      "sha256": "cb1615071b785f156fa2061544c99d9411ed0db98d974130c248a871985a0164"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-provider-recovery-visual-review.json",
+      "bytes": 1177,
+      "sha256": "1b4cca41cff60a08ba405b3b91481f34f69abb240228a05dd6ac830e2e778d46"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/final-actual-metrics.json",
+      "bytes": 3057,
+      "sha256": "5c2a6ddb0d7d1562bbff760857c4989d9c6464882047078b32b268b8c934bc88"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-final-failures-20261106T102147Z.json",
+      "bytes": 377712,
+      "sha256": "eec25ab60cce3a5429c4561547d0fa31e2318eec1ae38431ac85cc1818a59202"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/PAUSED_CHECKPOINT.json",
+      "bytes": 2309,
+      "sha256": "264915f6da586bc1705b5d6481ebace259dd708907db361b3fbaf32a1500393e"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/traffic-cost-summary.json",
+      "bytes": 2892,
+      "sha256": "eb4a498b443a973adc1bc69456c427381eee05a9f35af0c768bbd1493ea7b567"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-restart-recovery-20261106T102612Z.json",
+      "bytes": 259755,
+      "sha256": "37ce0dfdb3cfc4d18206d356f10d27e0555074518d06d21d3bb3fe542b07da2f"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/frontend-restart-recovery-20261106T102612Z-review.json",
+      "bytes": 6270,
+      "sha256": "3a5f174cf3521e5f2f0fc5980f9f1fffb132b134cb35c3ca9c558139d270b156"
+    },
+    {
+      "path": "artifacts/pre-v11-repair/repair-20261101T130559Z/panel-pixel-actionability-20261106T103034426Z.json",
+      "bytes": 26717,
+      "sha256": "73c820e8b3b30c14c00a8f5bf41ed6b39adeb2b1749e332a32f2f58839bfca4b"
+    }
+  ],
+  "screens": [
+    {
+      "path": "screens/01-node-false.png",
+      "source": "node-fire-final-2-04-False-2800.png",
+      "bytes": 446911,
+      "sha256": "78248cdb75c0bbd2066e0e247e344f2809b55b857a5c70c86235be3850b2c89f",
+      "openedAndInspected": true,
+      "caption": "Ready=False API status injection: color flame/smoke and partial descent; naturalUnknown is separate"
+    },
+    {
+      "path": "screens/02-single-container-water.png",
+      "source": "frontend-final-crane-12-clean-single-container-fall-6.png",
+      "bytes": 370800,
+      "sha256": "90d79ff963961d62a6ff7538a079988a029bf29ad324a998ad046ab19da3ad92",
+      "openedAndInspected": true,
+      "caption": "One failed actual container at water ring; healthy box remains on deck; label still narrow"
+    },
+    {
+      "path": "screens/03-new-worker-launch.png",
+      "source": "provision-final-2-review-frames/pts-70.76s.png",
+      "bytes": 668589,
+      "sha256": "d096ef648832261ecac1009683e38db3a3efcb24ac0187990f3f7057a57d7804",
+      "openedAndInspected": true,
+      "caption": "Original videoPTS70.76s; actual new Node enters open water, two prior ships remain"
+    },
+    {
+      "path": "screens/04-crane-envelope.png",
+      "source": "frontend-final-crane-envelope-3-03-full-rope-phase-2.png",
+      "bytes": 787128,
+      "sha256": "2d63a9c18f2bb7599cccbde4d2289e54b20b1f550cde8dcfeb30e6e154e3492a",
+      "openedAndInspected": true,
+      "caption": "Actual gantry rope and load in manually framed envelope; canonicalReady is independent"
+    },
+    {
+      "path": "screens/05-flow-detail.png",
+      "source": "traffic-visual-final-03-actual-3d-arrow-exact-endpoints.png",
+      "bytes": 475396,
+      "sha256": "750d50a31d1009ab39dcbcb7d66ab9d08d76bb0ee0a1de20444d342b20770811",
+      "openedAndInspected": true,
+      "caption": "Actual cross-Node arrow opens measuredTCP panel; upper portion only; status caption clips at high density"
+    },
+    {
+      "path": "screens/06-provider-stale.png",
+      "source": "traffic-provider-recovery-real-02-provider-stale-no-fleet-fault.png",
+      "bytes": 712371,
+      "sha256": "69bf4b6f0ccbacba6b3fc8a1674aa3af2eec8494024900bb4921e2e3d8b0b64e",
+      "openedAndInspected": true,
+      "caption": "Explicit stale/no-live-claim caption;15 historical flows inside10s window; noNodefault"
+    },
+    {
+      "path": "screens/07-process-concept.png",
+      "source": "frontend-control-plane-real-02-actual-process-phase-5.png",
+      "bytes": 802969,
+      "sha256": "c2cb4ca7063352ec9a4ba7f771dcafe54f59df587a4fdb46641db788285965e2",
+      "openedAndInspected": true,
+      "caption": "Explicit representative process caption and actors; actual owner/operation observations, no internalRPCmeasurement"
+    },
+    {
+      "path": "screens/08-restart-open.png",
+      "source": "frontend-final-failures-20261106T102147Z-03-case-3-failed.png",
+      "bytes": 644531,
+      "sha256": "6be9512d6681e545ae7e7f9be3560e18a78e660ad7fc47952e1c821d45c7b561",
+      "openedAndInspected": true,
+      "caption": "OriginalFAILED restart helper assertion retained; later separate recovery passed; Ready screenshot alone is notUIDproof"
+    },
+    {
+      "path": "screens/09-admission-rejected.png",
+      "source": "frontend-final-failures-20261106T102147Z-06-actual-admission-quota-rejected.png",
+      "bytes": 371577,
+      "sha256": "9c1471192d3f8855e437bbcc583b2f722d432343a27274111615c4dabe8162dc",
+      "openedAndInspected": true,
+      "caption": "Normal form shows actualquota admission refusal after prior successfulpreview"
+    },
+    {
+      "path": "screens/10-restart-recovered.png",
+      "source": "frontend-restart-recovery-20261106T102612Z-03-restart-real-observed-operation.png",
+      "bytes": 530294,
+      "sha256": "209bbe603dfb3c37523c1621e14f7081660f97790a30266123738f1a59f350b2",
+      "openedAndInspected": true,
+      "caption": "Separate restart-only PASSED: observedoperation row; raw record proves oldUID DELETE/newRS/newReadyPodUID and sameNodeUID"
+    }
+  ],
+  "csvVerification": {
+    "rows": 76,
+    "originalColumns": 18,
+    "repairColumns": 8,
+    "historicalValuesPreserved": true,
+    "historicalSHA256": "6865e76a9330bce09435fb4d9c7673ac7437d20e332d5dbb30bbb6c419c0d81a",
+    "currentSHA256": "45f7f365f96df7048a863b563453111aca9fa8f23a08c0f95ddc368df129ac6c",
+    "currentHistoricalValuesVerifiedAt": "2026-11-06T12:32:00.596340+00:00"
+  },
+  "sanitization": "JSON fields explicitly allowlisted; no Secretvalue, kubeconfig, TLSmaterial, credentials, URL/header/payload content copied. PNGs opened and inspected; no image edits.",
+  "failurePreservation": "Original restart FAILED and historical failedrecords remain unchanged; separate restart-only recoveryPASSED is recorded without rewriting originalaggregate",
+  "videos": {
+    "plan": "video-clip-plan.json",
+    "clips": 7,
+    "encodedDurationSeconds": 72.16,
+    "status": "ENCODED_DECODED_VISUALLY_REVIEWED",
+    "limits": "Actual source PTS preserved; NodeFalse status injection explicit. Contact sheets resized/labeled for mechanical review; original decoded PNGs and source video retained."
+  },
+  "totalScreenBytes": 5810566,
+  "historicalVideosNote": "Sourcevideos notcopied orencoded. video-clip-plan.json uses originalPTS and reviewedframes; originalfiles remain at evidenceRoot",
+  "updatedAt": "2026-11-06T12:32:00.596340+00:00",
+  "overallAcceptance": "PRE_V11_REPAIR_COMPLETE_WITH_EXPLICIT_LIMITS",
+  "materialReview": "../../resume-20261106T1015Z/material-cleanup-review.json"
+}

@@ -1,0 +1,267 @@
+{
+  "startedAt": "2026-11-11T19:06:30.028819+00:00",
+  "status": "FUNCTIONAL_SMOKE_PASS_PROGRAMMATIC_DOM",
+  "argv": [
+    "/usr/bin/safaridriver",
+    "--mcp"
+  ],
+  "scope": "Fresh readonly empty KubeView app; only newly created owned tab; programmatic DOM click/type functional smoke",
+  "methods": [
+    "initialize",
+    "notifications/initialized",
+    "tools/list",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call",
+    "tools/call"
+  ],
+  "toolsCalled": [
+    "create_tab",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "switch_tab",
+    "page_info",
+    "screenshot",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "switch_tab",
+    "page_info",
+    "screenshot",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "switch_tab",
+    "page_info",
+    "evaluate_javascript",
+    "close_tab"
+  ],
+  "driverLimitSeconds": 120,
+  "responseLimitBytes": 24000000,
+  "baseHelperSHA256": "f44900d39cc0c86944058de42f56d835c8f2c4d061f8d0292c611769e502cc17",
+  "checks": {
+    "initialEmptyOneCanvas": true,
+    "programmaticOpenAndType": true,
+    "programmaticCloseSameCanvas": true
+  },
+  "screenshots": [
+    {
+      "file": "closed.png",
+      "bytes": 2628285,
+      "sha256": "16c4ac806706725d6dee894066aaa664b0bec34c2a9b3f4f5aedf970aa138a06"
+    },
+    {
+      "file": "form-open.png",
+      "bytes": 1039063,
+      "sha256": "7a1494c9b782931c511c2fee960b97829765496e2987a0fd7ebd57ef83ade040"
+    }
+  ],
+  "guardCount": 8,
+  "sourceHEAD": "2e891b3618edf6e73bace6e3d16f1f1a36fbbd11",
+  "runtimeSourceCommit": "4c6c2ac5",
+  "binarySHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "preflightPortFree": true,
+  "privateDirectoryModeVerified": true,
+  "appArgv": [
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/candidate-runtime-provider09/kubeview",
+    "--bind",
+    "127.0.0.1",
+    "--port",
+    "19843",
+    "--data-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/native-safari-visual-capture-worker/data",
+    "--kubeconfig",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/native-safari-visual-capture-worker/nonexistent-kubeconfig"
+  ],
+  "appEnvironmentNames": [
+    "HOME",
+    "KUBECONFIG",
+    "KV_HUBBLE_ENABLED",
+    "KV_MINIKUBE_ENABLED",
+    "PATH",
+    "READ_ONLY",
+    "TMPDIR"
+  ],
+  "ownedAppPID": 93508,
+  "ownedAppPGID": 93508,
+  "ownedAppBirth": "Wed Nov 11 22:06:30 2026",
+  "appHealthyAndOwnsListener": true,
+  "ownedChildPID": 93512,
+  "negotiatedProtocol": "2024-11-05",
+  "serverInfo": {
+    "name": "Safari",
+    "version": "1.0.0"
+  },
+  "installedScreenshotContract": {
+    "name": "screenshot",
+    "description": "Capture a screenshot of the current page and save it as a PNG. Returns the file path (never inline base64). Defaults to the visible viewport; pass `full_page: true` for the entire scrollable page. Pass `savePath` to write to a specific location, otherwise the PNG is saved to a temporary file. Prefer get_page_content for reading a page — its text extraction is cheaper and more reliable than reading a screenshot. Use this only when the visual rendering itself matters (e.g. layout, charts, or verifying appearance).",
+    "inputSchema": {
+      "properties": {
+        "full_page": {
+          "description": "Capture the entire scrollable page instead of just the viewport.",
+          "type": "boolean"
+        },
+        "node": {
+          "description": "Node UID from get_page_content output to capture only that element. (Currently no-op pending dispatcher support; falls back to viewport.)",
+          "type": "string"
+        },
+        "savePath": {
+          "description": "File path to write the PNG to. If omitted, the PNG is written to a temporary file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "ownedHandleFromCreateOnly": "page-C0DED95C-599C-47F9-8815-6A67F25FABDF",
+  "ownedTabPending": false,
+  "readinessPollCount": 2,
+  "rawSafeEvaluationsBeforeUnpack": [
+    {
+      "content": [
+        {
+          "text": "{\"readyState\":\"complete\",\"canvasCount\":1,\"emptyConnectButton\":true,\"workspaceCount\":0,\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Safari/605.1.15\",\"reportedDPR\":2,\"viewport\":{\"width\":1024,\"height\":664},\"canvas\":{\"width\":300,\"height\":150,\"rect\":{\"x\":0,\"y\":0,\"width\":300,\"height\":150}}}",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "text": "{\"readyState\":\"complete\",\"canvasCount\":1,\"emptyConnectButton\":true,\"workspaceCount\":0,\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Safari/605.1.15\",\"reportedDPR\":2,\"viewport\":{\"width\":1024,\"height\":664},\"canvas\":{\"width\":1433,\"height\":929,\"rect\":{\"x\":0,\"y\":0,\"width\":1024,\"height\":664}}}",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "text": "{\"clicked\":true}",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "text": "{\"form\":true,\"input\":true,\"typed\":true,\"canvasCount\":1,\"sameCanvas\":true}",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "text": "{\"clicked\":true}",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "text": "{\"workspaceCount\":0,\"canvasCount\":1,\"sameCanvas\":true,\"emptyConnectButton\":true}",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "initial": {
+    "readyState": "complete",
+    "canvasCount": 1,
+    "emptyConnectButton": true,
+    "workspaceCount": 0,
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Safari/605.1.15",
+    "reportedDPR": 2,
+    "viewport": {
+      "width": 1024,
+      "height": 664
+    },
+    "canvas": {
+      "width": 1433,
+      "height": 929,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 664
+      }
+    }
+  },
+  "viewportCanvasReady": true,
+  "rawSafeScreenshotResponsesBeforeDecode": [
+    {
+      "content": [
+        {
+          "text": "Saved screenshot to '/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/native-safari-visual-capture-worker/closed.png' (2.5 MB).",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "text": "Saved screenshot to '/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/native-safari-visual-capture-worker/form-open.png' (1014.7 kB).",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "form": {
+    "form": true,
+    "input": true,
+    "typed": true,
+    "canvasCount": 1,
+    "sameCanvas": true
+  },
+  "final": {
+    "workspaceCount": 0,
+    "canvasCount": 1,
+    "sameCanvas": true,
+    "emptyConnectButton": true
+  },
+  "ownedTabClosed": true,
+  "ownedDriverExited": true,
+  "driverExitCode": 0,
+  "appBirthGuardBeforeStop": true,
+  "ownedAppExited": true,
+  "appExitCode": 0,
+  "startupStderrBytesCaptured": 0,
+  "startupStderrTruncated": false,
+  "noListener19843": true,
+  "portBindAfterCleanup": true,
+  "bytesReadStdoutAndStderr": 16176,
+  "elapsedSeconds": 2.763748208999459,
+  "within120s": true,
+  "finishedAt": "2026-11-11T19:06:32.792581+00:00",
+  "helperSHA256": "ae6b717d29d6e6f5294113af4cf171efb35bbeff4c3b6df6503a2e8eb4890f32"
+}

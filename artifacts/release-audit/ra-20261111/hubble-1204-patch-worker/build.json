@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "go",
+    "build",
+    "-trimpath",
+    "-buildvcs=false",
+    "-p=1",
+    "-mod=mod",
+    "-ldflags",
+    "-w -s -X github.com/cilium/cilium/hubble/pkg.Version=v1.20.4-kubeview-patched.1 -X github.com/cilium/cilium/hubble/pkg.GitHash=3e268bbcc7243b90300debb6e5de3062656669ce -X github.com/cilium/cilium/hubble/pkg.GitBranch=kubeview-audit-v1.20.4-patched.1",
+    "-o",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/hubble-v1.20.4-patched1/hubble-v1.20.4-kubeview-patched.1",
+    "."
+  ],
+  "cwd": ".git/release-audit/hubble-v1.20.4-patched1/source/cilium-hubble-3e268bb",
+  "env": {
+    "GOTOOLCHAIN": "go1.27.4",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "1GiB",
+    "CGO_ENABLED": "0"
+  },
+  "started_at_utc": "2026-11-11T13:45:10.712870+00:00",
+  "elapsed_seconds": 61.186,
+  "exit_code": -15,
+  "peak_owned_rss_bytes": 537100288,
+  "stop_reason": "DEADLINE_TIMEOUT",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "7f33ba5b690b571501a9d53e31648c364d6e6d3f146f081ce80f52729e4bb590"
+}

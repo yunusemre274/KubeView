@@ -1,0 +1,90 @@
+{
+  "at": "2026-11-14T13:18:34.999055+00:00",
+  "auditHEAD": "ae7aebc51984a144f10b4780989a6d1a8f19197e",
+  "productRuntimeSource": "15770296056ca2629601dba540c04741e1822e0d",
+  "files": {
+    ".github/workflows/ci.yml": "39d75d70f69e7c4600843b67baa0ccb322de8329dc13fa7d0ffe41cb60029ea5",
+    "scripts/build-release.mjs": "af573e3eaa34fc420f9310b0718a78b4e2eee99305e2852c0d623ac4e39e7452",
+    "scripts/prepare-webui.mjs": "35a2ffee2055876f6cf4089777f63f48fe356c59803e9b5e987146d22f7663d0",
+    "frontend/package.json": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+    "frontend/e2e/production-smoke.config.js": "a5adb3e4f421442c5202a83727e62bc805bacdb089b276f14d55546e12beb439",
+    "frontend/e2e/production-smoke.spec.js": "3c8b473319b853e46ba8cdeb317b9acb8f6523723a2e06d0803ec9d981ba8081",
+    "frontend/package-lock.json": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "scripts/release-ci-policy.test.mjs": "6a7c40409529dcc82c0f17c7703e99aef27ea8b6825d3e2e637f7eeff5434873"
+  },
+  "oldReviewReuse": {
+    ".github/workflows/ci.yml": {
+      "priorSHA256": "39d75d70f69e7c4600843b67baa0ccb322de8329dc13fa7d0ffe41cb60029ea5",
+      "currentSHA256": "39d75d70f69e7c4600843b67baa0ccb322de8329dc13fa7d0ffe41cb60029ea5",
+      "equal": true
+    },
+    "scripts/build-release.mjs": {
+      "priorSHA256": "af573e3eaa34fc420f9310b0718a78b4e2eee99305e2852c0d623ac4e39e7452",
+      "currentSHA256": "af573e3eaa34fc420f9310b0718a78b4e2eee99305e2852c0d623ac4e39e7452",
+      "equal": true
+    },
+    "scripts/prepare-webui.mjs": {
+      "priorSHA256": "35a2ffee2055876f6cf4089777f63f48fe356c59803e9b5e987146d22f7663d0",
+      "currentSHA256": "35a2ffee2055876f6cf4089777f63f48fe356c59803e9b5e987146d22f7663d0",
+      "equal": true
+    },
+    "frontend/package.json": {
+      "priorSHA256": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+      "currentSHA256": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+      "equal": true
+    },
+    "frontend/e2e/production-smoke.config.js": {
+      "priorSHA256": "a5adb3e4f421442c5202a83727e62bc805bacdb089b276f14d55546e12beb439",
+      "currentSHA256": "a5adb3e4f421442c5202a83727e62bc805bacdb089b276f14d55546e12beb439",
+      "equal": true
+    },
+    "frontend/e2e/production-smoke.spec.js": {
+      "priorSHA256": "3c8b473319b853e46ba8cdeb317b9acb8f6523723a2e06d0803ec9d981ba8081",
+      "currentSHA256": "3c8b473319b853e46ba8cdeb317b9acb8f6523723a2e06d0803ec9d981ba8081",
+      "equal": true
+    }
+  },
+  "CI116": {
+    "run": 43597337382,
+    "PRHead": "57ad606e059d31f50d316a12f6a218f6a2edb11a",
+    "job": 132454562302,
+    "stepCount": 18,
+    "conclusion": "success",
+    "artifactID": 14114409346,
+    "artifactDigest": "sha256:8d062db0eac9e9cd5b8945736ae788254cf3bb4db5e47beb6874203f666c5715"
+  },
+  "rootOwnershipRespected": true,
+  "noProductWorkflowGitRoadmapChanges": true,
+  "newTestNotInCurrentCICommand": true,
+  "phaseRecommendation": {
+    "TEST-20.11": "IN_PROGRESS: source policy/reuse and synthetic boundary guards passed; actual external-fork/token/admin settings negative trials unobserved",
+    "TEST-20.12": "IN_PROGRESS: exact pins/version/runtime/license/targeted cache+artifact source/normal CI metadata and synthetic mutation guard verified; transitive/runtime cache poisoning/release promotion/signature provenance and server policy not verified"
+  },
+  "findings": [
+    {
+      "id": "CI-TRUST-01",
+      "severity": "informational",
+      "state": "OPEN",
+      "summary": "Unsigned candidate artifacts are not publisher authenticity or stable promotion. No privileged consumer exists in activeworkflow."
+    },
+    {
+      "id": "CI-TRUST-02",
+      "severity": "evidence gap; not demonstrated exploit",
+      "state": "OPEN",
+      "summary": "Repository/org policies and actual external fork/token/cache negative trial unobserved."
+    },
+    {
+      "id": "CI-TRUST-03",
+      "severity": "evidence gap; not demonstrated exploit",
+      "state": "PARTIAL",
+      "summary": "Four upstream exact version/runtime/license and targeted source paths reviewed; bundle/transitive/runner/toolchain provenance remains incomplete."
+    },
+    {
+      "id": "CI-POLICY-01",
+      "severity": "test harness issue",
+      "state": "RESOLVED_OFFLINE_NO_RERUN",
+      "summary": "First wrapper assumed TAP but Node emitted spec; original14namedPASS/0FAIL/0SKIP parsed offline."
+    }
+  ],
+  "newConfirmedCriticalHighExploit": false
+}

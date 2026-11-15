@@ -1,0 +1,106 @@
+{
+  "kind": "backend_workspace_implementation_checkpoint",
+  "scope": "manual acceptance candidate; no stable-release claim",
+  "currentWGoAllSHA256": "ab93026daa3a6f50b78ecb151d18f675faf26de0a9c0d95bc603948a00332720",
+  "fullUnitCheckpointSHA256": "c8e6faa6c267813057f730ee43352196c8ea34ba7bbed58b86ac9e85d42ed2df",
+  "onlyPostFullSuiteChange": "pkg/server/stream.go: skip unused membership-signature JSON work outside nonempty workspace selectors; targeted race5PASS, no CPU benefit claim",
+  "startup": "Server.ConfigureWorkspace(dataDir, explicitLegacyContext, legacyNamespace string) error, before Register; EnableReplay if used is called first",
+  "storage": {
+    "file": "workspace.json",
+    "schemaVersion": 1,
+    "directoryMode": "0700; existing public directory rejected unchanged",
+    "fileMode": "0600",
+    "backup": "workspace.json.bak; previous valid revision, atomic write+fsync",
+    "invalidOrFuture": "error without reset; externally replaced invalid/revision data not overwritten",
+    "legacy": "explicit context only, first creation only; empty context starts empty",
+    "exportImport": "no credential/host-file fields; context binding removed, imported IDs remapped, connections unbound; imported relationships are configured/user-imported"
+  },
+  "http": {
+    "get": "/api/workspace -> direct safe document +workspaceNonce",
+    "mutations": "same-origin/auth cookie +X-KubeView-Workspace-Nonce +revision; allowed in server read-only for application configuration",
+    "crud": [
+      "POST/PATCH/DELETE /api/workspace/connections[/id]",
+      "POST/PATCH/DELETE /api/workspace/harbors[/id]",
+      "POST/PATCH/DELETE /api/workspace/relations[/id]",
+      "PATCH /api/workspace",
+      "POST /api/workspace/preview|validate",
+      "GET /api/workspace/export",
+      "POST /api/workspace/import"
+    ],
+    "body": "{revision, connection|harbor|relation}; all mutations return direct current document",
+    "scope": "X-KubeView-Workspace/Harbor/Tab or workspaceId/harborId/tabId; configured production cannot bypass through old unscoped endpoints; /contexts and workspace bootstrap remain global",
+    "grant": "per cookie+workspace+harbor+tab; current client generation/context/scope nonce; scope/credential changes cancel/revoke; preferences/rename retain identity",
+    "clusterWrites": "X-KubeView-Cluster-Impact: acknowledged plus normal management+Kubernetes RBAC; capabilities probes remain read-only"
+  },
+  "stream": {
+    "broker": "shared raw informer by connectionRef+credential generation+GVR+exact namespace, subscriber projection; current list/watch SSAR before every new binding",
+    "protocol": "existing G00/opaque RV/UID/delete/relist preserved; RESOURCE_EVENT OUT_OF_SCOPE metadata only, not DELETE",
+    "offline": "SNAPSHOT.outOfScope only previously published UIDs from that operator scope which still exist outside membership; no outsider UID inventory",
+    "relationships": "label/template/owner UID chain/service dependencies; owner membership changes project child updates without child RV change, using shared cache in WS hot path",
+    "identity": "workspaceId/harborId/tabId/connectionRef/authorizationKey/credentialGeneration/sessionGeneration envelope fields",
+    "revokeLimit": "new subscribers are checked; established Kubernetes watch is not claimed to revoke instantly"
+  },
+  "traffic": {
+    "api": "SnapshotScopes/ReleaseScopesIdentity; legacy single-namespace methods preserved",
+    "http": "repeated harborIds=idA&harborIds=idB for explicit same-connection union; omitted means active harbor only; GET/DELETE use same set",
+    "authorization": "every chosen harbor must exist and use same connectionRef; explicit namespace list SSAR+same-credential Pod reads; full selector union before endpoint metadata history; no empty all-namespace fallback for explicit sets",
+    "response": "namespaceScopes +authorizedHarborIds; existing provider UID/TLS binding and temporal endpoint mapping remain",
+    "evidence": "unit synthetic metadata/flow contract only for new multi-namespace path; current real Hubble regression still requires a separate lease"
+  },
+  "bounds": {
+    "harbors": 100,
+    "connections": 64,
+    "namespacesPerHarbor": 64,
+    "relations": 512,
+    "documentBytes": 2097152,
+    "operatorSessions": 128,
+    "membershipUIDsPerSession": 4096,
+    "sharedWatches": 512,
+    "additionalGVRSubscriptionsPerSocket": 32,
+    "outboundQueue": 2048
+  },
+  "validation": {
+    "fullGo": {
+      "passTop": 86,
+      "passSubtests": 41,
+      "skipTop": 20,
+      "fail": 0,
+      "fuzzSeedTargetIncludedInTop": true
+    },
+    "targetedRace": {
+      "passTop": 23,
+      "fail": 0
+    },
+    "fuzz": {
+      "seconds": 2,
+      "parallel": 1,
+      "baselineSeeds": 3,
+      "executions": 148248,
+      "pass": true
+    },
+    "guardRace": {
+      "passTop": 5,
+      "fail": 0
+    },
+    "firstFailure": "retained backend-first-unit.jsonl; offline relist fake tracker mixed typed/unstructured rows; fixture corrected, no runtime fix",
+    "sourceBeforeAfter": "equal within both corrected job and guard job",
+    "activeTestChildren": 0
+  },
+  "evidence": [
+    "backend-corrected-unit.jsonl",
+    "backend-corrected-race.jsonl",
+    "backend-corrected-fuzz.txt",
+    "backend-corrected-meta.json",
+    "backend-membership-guard-before.json",
+    "backend-membership-guard-meta.json",
+    "backend-membership-guard-race.jsonl",
+    "backend-first-unit.jsonl",
+    "backend-first-meta.json"
+  ],
+  "limits": [
+    "These results are unit/fake/race/fuzz, not real Kubernetes or real flow proof.",
+    "Historical v1.1 API/provider/performance evidence is not automatically a current workspace PASS.",
+    "Root frozen vertical01 embedded binary predates the null-collection normalization and final membership-work guard; its normal UI evidence remains tied to its own source manifest.",
+    "V11 physical feedback/CPU/stable gates remain open; manual user acceptance remains pending."
+  ]
+}

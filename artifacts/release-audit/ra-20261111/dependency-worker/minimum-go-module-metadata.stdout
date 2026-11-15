@@ -1,0 +1,78 @@
+{
+	"Path": "golang.org/x/net",
+	"Version": "v0.62.0",
+	"Time": "2026-10-27T19:00:16Z",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/net/@v/v0.62.0.mod",
+	"GoVersion": "1.26.0",
+	"Origin": {
+		"VCS": "git",
+		"URL": "https://go.googlesource.com/net",
+		"Hash": "3de643db506517b3e652a13cc0b56034cea6b8e6",
+		"Ref": "refs/tags/v0.62.0"
+	}
+}
+{
+	"Path": "golang.org/x/text",
+	"Version": "v0.41.0",
+	"Time": "2026-08-11T15:22:47Z",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/text/@v/v0.41.0.mod",
+	"GoVersion": "1.25.0",
+	"Origin": {
+		"VCS": "git",
+		"URL": "https://go.googlesource.com/text",
+		"Hash": "acdba6655fd45cdb5ab73c9d6a8981333bd65a39",
+		"Ref": "refs/tags/v0.41.0"
+	}
+}
+{
+	"Path": "golang.org/x/sys",
+	"Version": "v0.44.0",
+	"Time": "2026-04-23T15:37:02Z",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/sys/@v/v0.44.0.mod",
+	"GoVersion": "1.25.0",
+	"Origin": {
+		"VCS": "git",
+		"URL": "https://go.googlesource.com/sys",
+		"Hash": "fb1facd76f95fa87c151018200ea5e4892ff115d",
+		"Ref": "refs/tags/v0.44.0"
+	}
+}
+{
+	"Path": "golang.org/x/oauth2",
+	"Version": "v0.27.0",
+	"Time": "2025-02-24T17:56:26Z",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/oauth2/@v/v0.27.0.mod",
+	"GoVersion": "1.23.0",
+	"Origin": {
+		"VCS": "git",
+		"URL": "https://go.googlesource.com/oauth2",
+		"Hash": "681b4d8edca1bcfea5bce685d77ea7b82ed3e7b3",
+		"Ref": "refs/tags/v0.27.0"
+	}
+}
+{
+	"Path": "github.com/moby/spdystream",
+	"Version": "v0.5.1",
+	"Time": "2026-04-13T17:36:51Z",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/moby/spdystream/@v/v0.5.1.mod",
+	"GoVersion": "1.13",
+	"Origin": {
+		"VCS": "git",
+		"URL": "https://github.com/moby/spdystream",
+		"Hash": "c59e5d73daa301bde452ea77545bdf51e32554a2",
+		"Ref": "refs/tags/v0.5.1"
+	}
+}
+{
+	"Path": "github.com/gorilla/websocket",
+	"Version": "v1.5.3",
+	"Time": "2024-06-14T03:18:03Z",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/gorilla/websocket/@v/v1.5.3.mod",
+	"GoVersion": "1.12",
+	"Origin": {
+		"VCS": "git",
+		"URL": "https://github.com/gorilla/websocket",
+		"Hash": "ce903f6d1d961af3a8602f2842c8b1c3fca58c4d",
+		"Ref": "refs/tags/v1.5.3"
+	}
+}

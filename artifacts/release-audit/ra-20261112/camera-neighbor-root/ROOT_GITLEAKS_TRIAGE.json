@@ -1,0 +1,114 @@
+{
+  "findingCount": 12,
+  "checks": [
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frontend-A-build-provenance.json:generic-api-key:89",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frontend-A-build-provenance.json:generic-api-key:90",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frontend-B-build-provenance.json:generic-api-key:89",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frontend-B-build-provenance.json:generic-api-key:90",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-camera-comparability-worker/B-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-camera-comparability-worker/B-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-matching-build-worker/result.json:generic-api-key:425",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-matching-build-worker/result.json:generic-api-key:426",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-matching-build-worker/result.json:generic-api-key:544",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-matching-build-worker/result.json:generic-api-key:545",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-camera-comparability-worker/A-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-camera-comparability-worker/A-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js",
+      "verifiedAtRefs": [
+        "36d5b8f",
+        "f32d6b23"
+      ]
+    }
+  ],
+  "rawArtifactWhitespace": "Two Vite stderr files retain their original trailing blank line and SHA; not normalized as source code."
+}

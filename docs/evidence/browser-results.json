@@ -1,0 +1,1551 @@
+{
+  "config": {
+    "argv": [
+      "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/yunusemre/Desktop/KubeView/frontend/node_modules/.bin/playwright",
+      "test",
+      "--output=/tmp/kubeview-motion-release-suite"
+    ],
+    "configFile": "/Users/yunusemre/Desktop/KubeView/frontend/playwright.config.js",
+    "rootDir": "/Users/yunusemre/Desktop/KubeView/frontend/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/kubeview-motion-release-suite",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/yunusemre/Desktop/KubeView/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/tmp/kubeview-motion-release-suite",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/yunusemre/Desktop/KubeView/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/tmp/kubeview-motion-release-suite",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "/Users/yunusemre/Desktop/KubeView/frontend/e2e",
+        "snapshotDir": "/Users/yunusemre/Desktop/KubeView/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5173",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "launchOptions": {
+            "args": [
+              "--use-angle=metal"
+            ]
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/tmp/kubeview-motion-release-suite",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "/Users/yunusemre/Desktop/KubeView/frontend/e2e",
+        "snapshotDir": "/Users/yunusemre/Desktop/KubeView/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5173",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "screen": {
+            "width": 1792,
+            "height": 1120
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../docs/evidence/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "acceptance.spec.js",
+      "file": "acceptance.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "full viewport world, physical facilities, Node→Pod, stable camera, keyboard and narrow sheet",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6312,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:17.014Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-084705b01f5c8cfa314d",
+          "file": "acceptance.spec.js",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "camera drag does not select, panel scroll stays isolated, reduced motion lifecycle leaves no ghosts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11254,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:23.393Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-07c7e021926a74d7425f",
+          "file": "acceptance.spec.js",
+          "line": 129,
+          "column": 1
+        },
+        {
+          "title": "no cluster stays an empty interactive world with connection entry and semantic finder",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1646,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:34.652Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-d7dff7bbf65635624e43",
+          "file": "acceptance.spec.js",
+          "line": 177,
+          "column": 1
+        },
+        {
+          "title": "initial backend failure can reconnect without reloading or inventing Nodes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1092,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:36.306Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-552bca39b4bb450c3635",
+          "file": "acceptance.spec.js",
+          "line": 204,
+          "column": 1
+        },
+        {
+          "title": "WebGL context loss keeps semantic world actions accessible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1005,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:37.403Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-8fbfa9a4f98853868b65",
+          "file": "acceptance.spec.js",
+          "line": 236,
+          "column": 1
+        },
+        {
+          "title": "full viewport world, physical facilities, Node→Pod, stable camera, keyboard and narrow sheet",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7043,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:39.197Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-cc09c90b757271e25169",
+          "file": "acceptance.spec.js",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "camera drag does not select, panel scroll stays isolated, reduced motion lifecycle leaves no ghosts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11297,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:46.397Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-db960a25c262ac63e106",
+          "file": "acceptance.spec.js",
+          "line": 129,
+          "column": 1
+        },
+        {
+          "title": "no cluster stays an empty interactive world with connection entry and semantic finder",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1247,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:57.701Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-e9c226bec2dfff651205",
+          "file": "acceptance.spec.js",
+          "line": 177,
+          "column": 1
+        },
+        {
+          "title": "initial backend failure can reconnect without reloading or inventing Nodes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 916,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:58.956Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-a40c65f051c9469a093b",
+          "file": "acceptance.spec.js",
+          "line": 204,
+          "column": 1
+        },
+        {
+          "title": "WebGL context loss keeps semantic world actions accessible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1112,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:59.877Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-b8804a8c17499f95762e",
+          "file": "acceptance.spec.js",
+          "line": 236,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "live.spec.js",
+      "file": "live.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real center → create Deployment → watch cargo → exact Pod log → scale → delete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4551,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:38.416Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed0cb703495a228a0509-57ce8695edb8a866b429",
+          "file": "live.spec.js",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "real ship → required affinity Pod → observed chosen Node → delete; no scheduler bypass",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4438,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:42.972Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed0cb703495a228a0509-063beff4d08aa73dc536",
+          "file": "live.spec.js",
+          "line": 163,
+          "column": 1
+        },
+        {
+          "title": "real center → create Deployment → watch cargo → exact Pod log → scale → delete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Mutation runs once; read flows run in both engines",
+                  "location": {
+                    "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/live.spec.js",
+                    "line": 33,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:01.000Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Mutation runs once; read flows run in both engines",
+                      "location": {
+                        "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/live.spec.js",
+                        "line": 33,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "ed0cb703495a228a0509-38f1e7d432d6bf83bd8f",
+          "file": "live.spec.js",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "real ship → required affinity Pod → observed chosen Node → delete; no scheduler bypass",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Mutation runs once; read flows run in both engines",
+                  "location": {
+                    "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/live.spec.js",
+                    "line": 33,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:01.003Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Mutation runs once; read flows run in both engines",
+                      "location": {
+                        "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/live.spec.js",
+                        "line": 33,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "ed0cb703495a228a0509-22bd7d1e870911186149",
+          "file": "live.spec.js",
+          "line": 163,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "motion.spec.js",
+      "file": "motion.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "moving Node/cargo keep UID; local pause and follow preserve canvas, camera and data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6440,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:47.446Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-0c3cb18d0ada12f70a82",
+          "file": "motion.spec.js",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "sea toggle freezes only water; patrol/global pause and system preference retain phase",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10883,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:08:53.892Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-a40d11430b72dfe75f7f",
+          "file": "motion.spec.js",
+          "line": 116,
+          "column": 1
+        },
+        {
+          "title": "soft UI settings remain opaque, accessible and persistent in both themes and narrow world",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2932,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:04.781Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-6b81ba38e1d8cc9ae75b",
+          "file": "motion.spec.js",
+          "line": 190,
+          "column": 1
+        },
+        {
+          "title": "real WebSocket reconnect keeps Node UID, selection and patrol progress",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4928,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:07.716Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-f3eb4cc00f0f0a2fe3d5",
+          "file": "motion.spec.js",
+          "line": 253,
+          "column": 1
+        },
+        {
+          "title": "far-vessel arrival stays one UID and finishes without an unbounded crane queue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18779,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:12.648Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-facabbcd98da6ecedbad",
+          "file": "motion.spec.js",
+          "line": 291,
+          "column": 1
+        },
+        {
+          "title": "moving Node/cargo keep UID; local pause and follow preserve canvas, camera and data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6694,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:01.036Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-0365ce7b9d163d6d43cb",
+          "file": "motion.spec.js",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "sea toggle freezes only water; patrol/global pause and system preference retain phase",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11080,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:07.735Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-766cfb73dfd59c76bcda",
+          "file": "motion.spec.js",
+          "line": 116,
+          "column": 1
+        },
+        {
+          "title": "soft UI settings remain opaque, accessible and persistent in both themes and narrow world",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3042,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:18.822Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-31ad21041c443e6d243c",
+          "file": "motion.spec.js",
+          "line": 190,
+          "column": 1
+        },
+        {
+          "title": "real WebSocket reconnect keeps Node UID, selection and patrol progress",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Real upstream reconnect once",
+                  "location": {
+                    "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/motion.spec.js",
+                    "line": 261,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 160,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:21.871Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Real upstream reconnect once",
+                      "location": {
+                        "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/motion.spec.js",
+                        "line": 261,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-32a43493035f9fd5f5e2",
+          "file": "motion.spec.js",
+          "line": 253,
+          "column": 1
+        },
+        {
+          "title": "far-vessel arrival stays one UID and finishes without an unbounded crane queue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18821,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:22.036Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ff7637d3e5d3b9e2ba70-6acfe58105f4fecb82c8",
+          "file": "motion.spec.js",
+          "line": 291,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "workbench.spec.js",
+      "file": "workbench.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "YAML round trip preserves unmapped fields while form updates image; invalid YAML stays visible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1041,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:31.438Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-deb31dead736cd0b12fb",
+          "file": "workbench.spec.js",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "CPU sorting is numeric and a noninteractive row cell selects the same UID",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 939,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:32.484Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-982871b093329dfc2739",
+          "file": "workbench.spec.js",
+          "line": 82,
+          "column": 1
+        },
+        {
+          "title": "dedicated namespace: bulk deletion keeps refused UID and reports partial acceptance per resource",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1246,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:33.427Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-f428ba85935d773a6654",
+          "file": "workbench.spec.js",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "dedicated namespace: ship Pod form validates fresh UID twice and schedules with metadata.name affinity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1599,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:34.678Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-9edffba0c7d6f6e68c86",
+          "file": "workbench.spec.js",
+          "line": 197,
+          "column": 1
+        },
+        {
+          "title": "dedicated namespace: Secret edit uses purposeful reveal, preserves real values, and operation state stays metadata-only",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1407,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:36.281Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-a82792d819fe8c8e10da",
+          "file": "workbench.spec.js",
+          "line": 344,
+          "column": 1
+        },
+        {
+          "title": "mocked Secret purpose flow rejects forbidden reveal and never sends masked metadata",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1256,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:09:37.693Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-49b57059432369ad78f4",
+          "file": "workbench.spec.js",
+          "line": 463,
+          "column": 1
+        },
+        {
+          "title": "YAML round trip preserves unmapped fields while form updates image; invalid YAML stays visible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1229,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:40.870Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-5eda8f8f9f81a851d10f",
+          "file": "workbench.spec.js",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "CPU sorting is numeric and a noninteractive row cell selects the same UID",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1012,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:42.104Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-6bb804180ff9e1f361d4",
+          "file": "workbench.spec.js",
+          "line": 82,
+          "column": 1
+        },
+        {
+          "title": "dedicated namespace: bulk deletion keeps refused UID and reports partial acceptance per resource",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Mutations run once; browser-independent read flows run in both projects",
+                  "location": {
+                    "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/workbench.spec.js",
+                    "line": 115,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 161,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:43.122Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Mutations run once; browser-independent read flows run in both projects",
+                      "location": {
+                        "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/workbench.spec.js",
+                        "line": 115,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-962b2c9bc8ce9b2c9994",
+          "file": "workbench.spec.js",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "dedicated namespace: ship Pod form validates fresh UID twice and schedules with metadata.name affinity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Real mutation once; read and form flows run in both browser projects",
+                  "location": {
+                    "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/workbench.spec.js",
+                    "line": 206,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 164,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:43.287Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Real mutation once; read and form flows run in both browser projects",
+                      "location": {
+                        "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/workbench.spec.js",
+                        "line": 206,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-03a8cdd2fcdddf1a5e82",
+          "file": "workbench.spec.js",
+          "line": 197,
+          "column": 1
+        },
+        {
+          "title": "dedicated namespace: Secret edit uses purposeful reveal, preserves real values, and operation state stays metadata-only",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Real mutation once; Secret sanitization also has pure tests",
+                  "location": {
+                    "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/workbench.spec.js",
+                    "line": 353,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 169,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:43.456Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Real mutation once; Secret sanitization also has pure tests",
+                      "location": {
+                        "file": "/Users/yunusemre/Desktop/KubeView/frontend/e2e/workbench.spec.js",
+                        "line": 353,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-f158db323678d674934a",
+          "file": "workbench.spec.js",
+          "line": 344,
+          "column": 1
+        },
+        {
+          "title": "mocked Secret purpose flow rejects forbidden reveal and never sends masked metadata",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1120,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T16:10:43.628Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "786bed9da8f8fd2ce49c-f8dc4b4f06730beae846",
+          "file": "workbench.spec.js",
+          "line": 463,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T16:08:16.794Z",
+    "duration": 148004.025,
+    "expected": 30,
+    "skipped": 6,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

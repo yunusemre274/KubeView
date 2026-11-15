@@ -1,0 +1,330 @@
+{
+  "status": "PASS",
+  "mode": "NORMAL_HEADED_UI_REAL_KUBERNETES_SYNTHETIC_SECRET",
+  "startedAt": "2026-11-12T11:27:09.579Z",
+  "checks": [
+    {
+      "name": "normal_finder_exact_UID_namespace",
+      "proof": {
+        "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+        "namespace": "kvrel-secret-20261112-21bddadc"
+      }
+    },
+    {
+      "name": "revealed_private_DOM_equals_synthetic",
+      "proof": {
+        "valueEqual": true,
+        "valueHash": "1b32c0b24e37777abd146b942ef05dff56482f21a4695eb1a98eede5381bc671",
+        "screenshotWhileRevealed": false
+      }
+    },
+    {
+      "name": "normal_hide_removes_private_DOM",
+      "proof": {}
+    },
+    {
+      "name": "normal_pregrant_purpose_edit_disabled",
+      "proof": {}
+    },
+    {
+      "name": "normal_YAML_metadata_edit_only",
+      "proof": {
+        "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+        "originalDataEqual": true,
+        "oldUnknownMetadataEqual": true
+      }
+    },
+    {
+      "name": "normal_server_dryrun_preview_sanitized",
+      "proof": {}
+    },
+    {
+      "name": "normal_save_accepted_and_canonical_label_observed",
+      "proof": {
+        "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+        "acceptedResourceVersion": "31778"
+      }
+    },
+    {
+      "name": "normal_close_same_canvas_private_DOM_clear",
+      "proof": {}
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-DDfzt6ML.js"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/three-BKmXRbXN.js"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-CCZQtIvj.css"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-CCZQtIvj.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-DDfzt6ML.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/three-BKmXRbXN.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/HarborScene-COc_bafo.js"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace"
+    },
+    {
+      "method": "GET",
+      "path": "/api/contexts"
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/HarborScene-COc_bafo.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/contexts",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.svg",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection"
+    },
+    {
+      "method": "POST",
+      "path": "/api/management"
+    },
+    {
+      "method": "POST",
+      "path": "/api/management",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection"
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics"
+    },
+    {
+      "method": "GET",
+      "path": "/api/discovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection"
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics"
+    },
+    {
+      "method": "GET",
+      "path": "/api/discovery",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection"
+    },
+    {
+      "method": "GET",
+      "path": "/api/resources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/resources",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/secrets/reveal"
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/secrets/reveal",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/management"
+    },
+    {
+      "method": "POST",
+      "path": "/api/management",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection"
+    },
+    {
+      "method": "GET",
+      "path": "/api/capabilities"
+    },
+    {
+      "method": "GET",
+      "path": "/api/resources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/capabilities"
+    },
+    {
+      "method": "GET",
+      "path": "/api/resources",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/connection",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/capabilities",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/capabilities",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/secrets/reveal"
+    },
+    {
+      "method": "GET",
+      "path": "/api/secrets/reveal",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/resources"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/resources",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/resources"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/resources",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/resources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/resources",
+      "status": 200
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "01-secret-metadata.png",
+      "maskProof": true,
+      "privateOutsideMask": false
+    },
+    {
+      "file": "02-after-hide.png",
+      "maskProof": true,
+      "privateOutsideMask": false
+    },
+    {
+      "file": "03-purpose-dryrun-masked.png",
+      "maskProof": true,
+      "privateOutsideMask": false
+    },
+    {
+      "file": "04-panels-closed.png",
+      "maskProof": true,
+      "privateOutsideMask": false
+    }
+  ],
+  "screenshotBlocks": [],
+  "pageErrorCount": 0,
+  "consoleMessageCount": 0,
+  "indexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+  "renderer": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)"
+  },
+  "acceptedResourceVersion": "31778",
+  "finishedAt": "2026-11-12T11:27:14.916Z"
+}

@@ -1,0 +1,31 @@
+{
+  "startedAt": "2026-11-11T18:15:24.710388+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "-race",
+    "./pkg/server",
+    "-run",
+    "^TestReleaseProviderCachedKey(RemainsBoundToLiveCluster|NamespaceReadErrors)$",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "30s",
+    "-count",
+    "1",
+    "-v"
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local",
+    "CGO_ENABLED": "1"
+  },
+  "scope": "only two cached-scope unit tests; outer build+test budget35s",
+  "exitCode": 0,
+  "status": "PASS",
+  "finishedAt": "2026-11-11T18:15:35.673692+00:00"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "path": "artifacts/release-audit/ra-20261112/provider-apt-images-worker/cilium-result.json",
+    "sha256": "f78b592ec43563672443aa6c243f61b45326d9ca442825867afe59ed8938c88e",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261112/provider-apt-images-worker/cilium-candidate-raw.json.gz",
+    "sha256": "19371eebae37913c08ac2db8481b157061dcfb2ec515efd6fe3633793661908a",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261112/provider-apt-images-worker/summary.json",
+    "sha256": "0212fb392a0b2b59b208bece834ac872ed49e7b4ed9effbb68194f72a9625122",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261112/provider-apt-images-worker/analyzer-inventory-comparison.json",
+    "sha256": "f7b75a53ef9f614a595a502fccf6f294cecd85b36c9f873f332d4533b9933b17",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261112/provider-operator-image-worker/candidate-image-raw.json.gz",
+    "sha256": "0d0a081dc5df9ab08a1d5c4f2eea82cda300d05debdf00037141bd1424340153",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261112/provider-operator-image-worker/runtime-assets-layer-comparison.json",
+    "sha256": "e09c139c8ee88c3efda5d7bdaafbdd9a78c7a74d5db57d1be6254daeacb081cb",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261112/provider-operator-image-worker/summary.json",
+    "sha256": "85dc059a68684990db65f5f70ed6c281ce114a5c492e50b736b313144837d12f",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/provider-reachability-worker/binary-manifest.json",
+    "sha256": "5e22f45a4b2d2210055364316cbbd9d0eb67db1d8573b29e33a291fe5de6f097",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/provider-reachability-worker/cilium-pclntab.json",
+    "sha256": "7b06ea0663dd91c5e43f93879a6c3b7c8dc39f72eabda177922f91c12dbea6b8",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/provider-reachability-worker/pcln.py",
+    "sha256": "f0edd1411991a5539087f6d7ad91f93a9df4ba8f7add2a71743a868db90b935b",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/provider-reachability-worker/analysis-correction.json",
+    "sha256": "3de34a954643cba37992e3c31c1f8b25e06893f04bb3f6d9a585b07c279090d0",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/provider-reachability-worker/REPORT.md",
+    "sha256": "731f87cd0d84f7991fee1c1454cf2d7e872273dd6379dbb64bce20a81e613ccc",
+    "matchesOriginalEvidenceSHA256SUMS": true
+  },
+  {
+    "privateScanProjectionInput": ".git/release-audit/provider-apt-images/cilium-candidate.json",
+    "decompressedArtifactSHA256": "53bc7c6b52300e41b72c38af2927e6ad53404517cc327c86072d1bf894016626",
+    "matchesPreservedRawScan": true
+  },
+  {
+    "privateScanProjectionInput": ".git/release-audit/provider-operator-image02/candidate-image.json",
+    "decompressedArtifactSHA256": "b9b9f2d480bd4dcd0d4384ae372d60036e51c8ad758c7be064148e39899fa916",
+    "matchesPreservedRawScan": true
+  }
+]

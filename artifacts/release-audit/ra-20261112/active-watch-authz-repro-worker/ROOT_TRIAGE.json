@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-12T23:46:07.089927+03:00",
+  "id": "SEC-WATCH-REVOKE-001",
+  "severity": "MEDIUM",
+  "scope": "local-first/singleoperator; priorauthorizedreader and retainedupstreamwatch; Podmetadata controlledfixture, no actualSecret/othernamespace/adminbypass shown",
+  "status": "CONFIRMED_SYNTHETIC_PRODUCTION_WS_PATH_OPEN",
+  "rootVerifiedReproSHAEntries": 10,
+  "rootVerifiedDesignSHAEntries": 12,
+  "realKubernetesE2E": "NOT_RUN",
+  "newProductFix": "NOT_APPLIED",
+  "firstRed": "exactUID/RV/annotationactualWS resourceUPDATE, freshHTTP403, unchangedclient/context, observedheartbeat thenmarker",
+  "futureGreenTestQuality": "Must distinguish timeout from confirmedclosedstream+explicitforbiddennon-authoritativescope before acceptingGREEN",
+  "failingGoTestStaged": false,
+  "oldEvidenceImmutable": true
+}

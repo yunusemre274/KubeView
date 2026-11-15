@@ -1,0 +1,54 @@
+{
+  "sourceCommit": "496729e2e1df38081496bad3313fd7e594fbe10f",
+  "type": "isolated unit/fixture; NOT real archive/runtime acceptance",
+  "runs": [
+    {
+      "name": "packaging",
+      "argv": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "scripts/build-release.test.mjs"
+      ],
+      "startedAt": "2026-11-11T13:18:05.142095+00:00",
+      "seconds": 0.14802770800088183,
+      "exitCode": 0
+    },
+    {
+      "name": "manual-runner",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "manual-lab/tests",
+        "-p",
+        "test_runner.py"
+      ],
+      "startedAt": "2026-11-11T13:18:05.290262+00:00",
+      "seconds": 0.22368187499887426,
+      "exitCode": 0
+    },
+    {
+      "name": "label-pure",
+      "argv": [
+        "node",
+        "--test",
+        "frontend/src/harbor/interactions.test.js"
+      ],
+      "startedAt": "2026-11-11T13:18:05.513966+00:00",
+      "seconds": 0.07702891600274597,
+      "exitCode": 0
+    }
+  ],
+  "sourceHashes": {
+    "scripts/build-release.mjs": "af573e3eaa34fc420f9310b0718a78b4e2eee99305e2852c0d623ac4e39e7452",
+    "scripts/build-release.test.mjs": "020deb3bd364036693df7d8049250cc06421de8181ef59304602b1b413fd1cf7",
+    "scripts/manual_lab.py": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5",
+    "manual-lab/tests/test_runner.py": "5abc733a45f763aa9a28bd70c3d9af9f664115f0ecfadbc8bb4cb33a2b3e2fde",
+    "frontend/src/harbor/HarborScene.jsx": "d5e7f57e52f9f2cb963cb49fb3abee82a82d5f8c2498631a041f26400e283d72",
+    "frontend/src/harbor/interactions.js": "829b5e5846ebe5fcc46a5500abe148c1ce990d191352332d769bd43488b2e157",
+    "frontend/src/harbor/interactions.test.js": "385bfdd7d2581a0328ffb0e2a1ba324e4000377d84708bcc7c4a3bd270f40702"
+  }
+}

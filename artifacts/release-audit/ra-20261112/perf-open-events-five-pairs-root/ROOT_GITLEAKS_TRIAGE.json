@@ -1,0 +1,247 @@
+{
+  "findings": [
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-A-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-A-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-B-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-B-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-B-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-B-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-A-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-A-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-A-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-A-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-A-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-A-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-B-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-B-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p1-A-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p1-A-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p0-A-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p0-A-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p0-B-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p0-B-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p1-B-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p1-B-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-A-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-A-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p2-A-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p2-A-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p2-B-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p2-B-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p3-A-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p3-A-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p3-B-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p3-B-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-B-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-B-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-B-runner-summary.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-B-runner-summary.json:generic-api-key:196",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p4-A-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p4-A-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p4-B-manifest.json:generic-api-key:194",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p4-B-manifest.json:generic-api-key:195",
+      "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+      "verifiedAtBothFrozenCommits": true,
+      "sourcePath": "frontend/src/workbench/secretPayload.test.js"
+    }
+  ],
+  "globalIgnoreAdded": false,
+  "rawPayloadScope": "Decompressed10rawJSON parsed; fixturetypesNamespace/Node/Deployment/StatefulSet/Pod only, no realcredentials/Secret/log/provider input.",
+  "rawStdoutPreservation": "Checksum-sealed raw stdout may retain terminal whitespace. Source/docs separately whitespace checked."
+}

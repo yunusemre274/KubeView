@@ -1,0 +1,13 @@
+# Secret UI second review — narrow technical PASS; worker plan-time FAIL
+
+20/20 worker SHA entries pass; repository browser helper equals tested copy (79d3cd8c…). Source and safe actual evidence support all8 normal UI checks, canonical sameUID and accepted/readback RV31778, preserved data/type/old unknown metadata and only intended metadata additions. This is real Kubernetes through production UI, distinct from the3 helper unit tests and restricted-identity API matrix.
+
+I opened all4 masked PNGs: no raw Secret value is visible; reveal-open capture count is0. The editor screenshot masks YAML/preview/input surfaces and does not independently show every dry-run control. Click/response/DOM assertions supply that evidence. No real Secret or private IPC content was read by this reviewer.
+
+Helper review confirms method/pathname/status-only request records, counted console/errors without contents, no cookie/nonce/header/body/rawDOM/HAR/trace/video export, private0700/0600 IPC/TLS files and capture-time mask proof. Exact owner/UID/RV cleanup reachesGET404; birth/command/PGID checks protect process signaling. Final independent evidence records app/port/browser absent and privateControlAbsent. Caveat: controller privateFilesRemoved is assigned before removal, so it is not itself absence proof. Full Node metadata equality was not captured by this UI job.
+
+All4 gitleaks findings at source-before/after lines2/5 recompute exactly to actual helper/secretPayload source SHA256 values, not credentials. Scoped FALSE_POSITIVE_SOURCE_HASH disposition is supported; root retains final triage authority. No scanner rerun, suppression or history rewrite occurred.
+
+Timing is separate: browser5.337s, execution-through-cleanup5.898s and cleanup0.114s meet their120/45s limits. Receipt232.791s is within240, but finalizedAt minus phaseStartedAt is260.641827s: **complete plan-time FAIL**,20.641827s over. phaseWithinTarget=true covers receipt only. This reporting overrun is not an admission/load/runtime latency SLO failure and does not invalidate the8 recorded functional observations; it also cannot be called a full strict phase-time PASS.
+
+Recommendation for05.07/08: support narrow normal reveal→hide→purpose-edit and metadata roundtrip functional verification, keeping the process-time failure separate. No heap/GC secure erase, broadRBAC, admission denial, restricted-identity browser flow, CPU/physical latency, third-party pentest or release acceptance is established. Initial preflight failure and all raw history remain intact. Review made no product/helper/Git/index/roadmap change and launched no test/app/browser/scan/build/K8s command.

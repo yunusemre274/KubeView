@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-01T17:56:59.167097+00:00",
+  "source": "Actual own Kubernetes normal UI namespace switch default->kv-repair-qa",
+  "evidence": "provision-final.json",
+  "initialAt": "2026-11-01T17:45:04.380Z",
+  "queuedOldPodUIDs": [
+    "c3787c43-ad96-4bba-b67a-71f150959e20",
+    "3bf472e6-0adb-49d7-bf58-39a8c97671b4"
+  ],
+  "initialLifecycle": {
+    "canonicalNodes": 2,
+    "visibleNodes": 2,
+    "nodePage": 0,
+    "nodePages": 1,
+    "canonicalPods": 2,
+    "visiblePods": 2,
+    "nodeSlots": 2,
+    "podSlots": 2,
+    "activeTransfers": 0,
+    "queuedTransfers": 2,
+    "visualLoadingUIDs": [
+      "c3787c43-ad96-4bba-b67a-71f150959e20",
+      "3bf472e6-0adb-49d7-bf58-39a8c97671b4"
+    ],
+    "exitGhosts": 0,
+    "containerTransitions": 0,
+    "visualEvents": {
+      "nodeFaults": 0,
+      "containerFaults": 0,
+      "containerTransitions": 0,
+      "processSignals": 6,
+      "summarized": 0
+    },
+    "summarizedTransfers": 0
+  },
+  "effect": "Old existing namespace Pods incorrectly queue transfer+process signals on new scoped snapshot, delaying safe launch window",
+  "status": "CONFIRMED_RUNTIME_BUG; repair in progress, not timeout-only change"
+}

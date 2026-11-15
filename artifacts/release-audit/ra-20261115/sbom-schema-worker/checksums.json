@@ -1,0 +1,102 @@
+[
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/REPORT.md",
+    "bytes": 4003,
+    "sha256": "d9e2ea5192a807c43472988c305bfa38b6fa39e4932f3cd515e6fc9a168ecd45"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/attempt01-result.json",
+    "bytes": 235,
+    "sha256": "ee709a92afe80beeca6c142c76a58ec728a1104434c81d6debf6337f936d0812"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/attempt01.stderr",
+    "bytes": 793,
+    "sha256": "b39fa7b62a3c457692be14ef32ffb468a84d909ee552db76a29b86f205e4b67c"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/attempt01.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/attempt02-result.json",
+    "bytes": 235,
+    "sha256": "4eff4b68224b98c5099fa2a2966aa058f3acfce57f780d6c692fe66e50b20627"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/attempt02.stderr",
+    "bytes": 1432,
+    "sha256": "f4f312f8f51015f8bcbb55a324f83ff82d1ce054e5597c19b019bee3b5c84228"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/attempt02.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/normal-python-negative.json",
+    "bytes": 609,
+    "sha256": "e5c9c4278ab7a605101b1ba7ac3a439758ab7e919a49fd943520efeaf3fda291"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/plan.json",
+    "bytes": 1441,
+    "sha256": "ad01eea09f671897a0cf41430014a8b3237b22cdb4649524f0486c4e21683a92"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/preflight-attempt01.json",
+    "bytes": 818,
+    "sha256": "8d90c4980d1e5a34448b47d3695ad729d93f16f5f81d677d3c52212b20707660"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/preflight-attempt02.json",
+    "bytes": 942,
+    "sha256": "0484f74100e76755c5644b14d449801f059667c06c906d5868903db3e9f3491d"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/qa-environment-attempt02.json",
+    "bytes": 502,
+    "sha256": "f4137cad92d290086db7cb1541d9288d1074606fe06c57db40707a9858950712"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/qa-environment.json",
+    "bytes": 164,
+    "sha256": "27e5359a7f218393436dc018c83cb9f8c8df88df22220d2d480106781dc12281"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/qa-freeze-attempt02.txt",
+    "bytes": 311,
+    "sha256": "e32745e342fc86fdfcb962214ecbd7c37be3bb6baed396a5d71eb039a090acec"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/qa-freeze.txt",
+    "bytes": 2506,
+    "sha256": "819bba36f736971aadc38fd95402df2cc6d14b4b8cc4217b5774a932add14130"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/test_validate_release_sbom.py.attempt01.txt",
+    "bytes": 6485,
+    "sha256": "4be8110bd33a3783a3fc4cb4ca2c9a85abfea9b59948581772830323be8cd97f"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/test_validate_release_sbom.py.attempt02.txt",
+    "bytes": 6485,
+    "sha256": "4be8110bd33a3783a3fc4cb4ca2c9a85abfea9b59948581772830323be8cd97f"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/validate-release-sbom.py.attempt01.txt",
+    "bytes": 8880,
+    "sha256": "b2644988c384a3349f089da53659f790b10957527b119126f3179775b24061eb"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/validate-release-sbom.py.attempt02.txt",
+    "bytes": 8880,
+    "sha256": "b2644988c384a3349f089da53659f790b10957527b119126f3179775b24061eb"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261115/sbom-schema-worker/worker-result.json",
+    "bytes": 959,
+    "sha256": "74bd88ce442a4dd98247c5a13c76330d49770be3577f78903347616a4f95c163"
+  }
+]

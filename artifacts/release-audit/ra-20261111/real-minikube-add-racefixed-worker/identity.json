@@ -1,0 +1,12 @@
+{
+  "helperSHA256": "1a0db67621ed41059632bc246c23891d497cb02c8e23ab84c9f5bc415953d2e8",
+  "appSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "CLIPath": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+  "CLISHA256": "98e42bafefb50d652b8c4760412703d936b6201d1d6d6c27163c5f69f130ddae",
+  "sourceCommit": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "rootCheckpoint": "4450b5aa",
+  "privateClearanceSHA256": "b2218bf3c3e67543284d477718e187aa53752d0532bbbc85e199a54c19d635e4",
+  "RUN_CLEAREDSourceConstant": false,
+  "override": "memory only, one main(run) call",
+  "expected": "kvml-d32afbf634e8-a-m03"
+}

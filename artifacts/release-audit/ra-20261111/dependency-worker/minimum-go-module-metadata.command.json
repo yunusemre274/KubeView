@@ -1,0 +1,27 @@
+{
+  "command": [
+    "env",
+    "GOTOOLCHAIN=local",
+    "go",
+    "list",
+    "-m",
+    "-json",
+    "-mod=readonly",
+    "golang.org/x/net@v0.62.0",
+    "golang.org/x/text@v0.41.0",
+    "golang.org/x/sys@v0.44.0",
+    "golang.org/x/oauth2@v0.27.0",
+    "github.com/moby/spdystream@v0.5.1",
+    "github.com/gorilla/websocket@v1.5.3"
+  ],
+  "cwd_relative_to_repository": "backend",
+  "started_at_utc": "2026-11-11T10:24:29.515247+00:00",
+  "finished_at_utc": "2026-11-11T10:24:32.046379+00:00",
+  "duration_seconds": 2.531,
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+  "stdout_file": "minimum-go-module-metadata.stdout",
+  "stderr_file": "minimum-go-module-metadata.stderr"
+}

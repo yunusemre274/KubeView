@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "attempt": "a-fixtures-lifecycle-01",
+  "startedAt": "2026-11-09T12:41:23.328417+00:00",
+  "sourceSHA256": "33418ee5baef97b9281fd9328ce2c3ea13cf1f4e23cc416b65e0a86b8f460fe1",
+  "testType": "real owned Kubernetes API/runner; no normal UI",
+  "steps": [
+    {
+      "name": "04 actual reader API isolation",
+      "pass": true,
+      "data": {
+        "namespace": "kvml-e731dabd-04-restricted",
+        "namespaceUid": "20b92777-2024-48c5-94fb-8d10d1beb7e9",
+        "podUids": [
+          "7887c8f0-f4f9-48a6-a280-4a0a55897a04"
+        ],
+        "actualForbidden": {
+          "nodes": true,
+          "namespaces": true,
+          "secrets": true
+        },
+        "tokenRecorded": false,
+        "tokenRefreshedAt": "2026-11-09T12:41:25.526417+00:00"
+      },
+      "elapsedSeconds": 2.326
+    },
+    {
+      "name": "05 real single-container crash",
+      "pass": true,
+      "data": {
+        "namespace": "kvml-e731dabd-05-fault",
+        "podUid": "10b252ff-6ae9-431c-8b07-a9e70558a871",
+        "exit42": true,
+        "healthyPeerReady": true,
+        "restartCount": 0
+      },
+      "elapsedSeconds": 9.958
+    },
+    {
+      "name": "05 actual image and scheduling failures",
+      "pass": true,
+      "data": {
+        "badImagePodUid": "f7499de7-cece-4cad-8ea3-a6f77e88fd52",
+        "unschedulablePodUid": "23113067-93fb-4cf9-b556-b126966dcd52",
+        "sameUidRecovery": "10b252ff-6ae9-431c-8b07-a9e70558a871"
+      },
+      "elapsedSeconds": 24.239
+    },
+    {
+      "name": "05 guarded reset healthy",
+      "pass": true,
+      "data": {
+        "newPodUid": "7975a3ae-1190-4559-9df6-11218806a7c7",
+        "namespacePreserved": true
+      },
+      "elapsedSeconds": 35.053
+    },
+    {
+      "name": "06 traffic-start",
+      "pass": true,
+      "data": {
+        "clientNamespace": "kvml-e731dabd-06-client",
+        "serverNamespace": "kvml-e731dabd-06-server",
+        "clientPods": 1,
+        "podUids": [
+          "97a0c478-8636-4965-9bff-e8c1052ea778"
+        ],
+        "actualHTTP_OK": true,
+        "dnsTarget": "http.kvml-e731dabd-06-server.svc.cluster.local",
+        "rawLogRecorded": false
+      },
+      "elapsedSeconds": 39.033
+    },
+    {
+      "name": "06 traffic-increase",
+      "pass": true,
+      "data": {
+        "clientNamespace": "kvml-e731dabd-06-client",
+        "serverNamespace": "kvml-e731dabd-06-server",
+        "clientPods": 3,
+        "podUids": [
+          "d86ad4d1-7d30-4e0f-9f03-2b9392c4fea0",
+          "97a0c478-8636-4965-9bff-e8c1052ea778",
+          "c1a41664-b9ce-49f9-94ef-465ef9b5ed03"
+        ],
+        "actualHTTP_OK": true,
+        "dnsTarget": "http.kvml-e731dabd-06-server.svc.cluster.local",
+        "rawLogRecorded": false
+      },
+      "elapsedSeconds": 40.004
+    },
+    {
+      "name": "06 stop/reset no producers",
+      "pass": true,
+      "data": {
+        "producerPods": 0,
+        "serverPods": 1
+      },
+      "elapsedSeconds": 51.203
+    }
+  ],
+  "nodeStopInvoked": false,
+  "BStarted": false,
+  "telemetryStarted": false,
+  "pass": false,
+  "failure": {
+    "type": "RuntimeError",
+    "message": "manual-lab.sh exit2: manual-lab: minikube çıkış -15: ! You cannot change the number of nodes for an existing minikube cluster. Please use 'minikube node add' to add nodes to an existing cluster.\n\n"
+  },
+  "elapsedSeconds": 272.56,
+  "globalKubeconfigUnchanged": true,
+  "sourceUnchanged": true
+}

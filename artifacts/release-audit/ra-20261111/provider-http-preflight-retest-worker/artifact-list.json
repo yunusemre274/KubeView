@@ -1,0 +1,67 @@
+[
+  {
+    "path": "REPORT.md",
+    "bytes": 2980,
+    "sha256": "622331c6d2d3de09e3302cde2f7d294dbb61d716b5a5bda1ca1eabbb8e7867cd"
+  },
+  {
+    "path": "after.json",
+    "bytes": 4030,
+    "sha256": "c59f0e9b1fd2f22714e5391a4cb01e11487ead0d3634f3cf3a5248d0bef6236b"
+  },
+  {
+    "path": "before-helper.py",
+    "bytes": 35683,
+    "sha256": "723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b"
+  },
+  {
+    "path": "before.json",
+    "bytes": 4030,
+    "sha256": "c59f0e9b1fd2f22714e5391a4cb01e11487ead0d3634f3cf3a5248d0bef6236b"
+  },
+  {
+    "path": "exact-diff.json",
+    "bytes": 90,
+    "sha256": "7b11bce967a4649bedb75c5e237bf937b8a071ca53b9947f44ce1029b0c5a447"
+  },
+  {
+    "path": "helper.patch",
+    "bytes": 2955,
+    "sha256": "331e71b55c5d4321695f8de7b71a3d26741daef1fe44b592acae7b9206b25e61"
+  },
+  {
+    "path": "journal-source-contract.json",
+    "bytes": 485,
+    "sha256": "219087e86bff8156e02a754f639b62561fdabefdec473f9763932c5073d40305"
+  },
+  {
+    "path": "manifest.json",
+    "bytes": 2599,
+    "sha256": "f661eade400d2bcf7410c5b86e4f43d31dcfa59d2af2124e90b052a3f76ac0b7"
+  },
+  {
+    "path": "preflight.json",
+    "bytes": 677,
+    "sha256": "4a9af7be1425ddd53bd9375640e9bdd05e59d517958af4e7f794d8746395e57d"
+  },
+  {
+    "path": "pure-guard-tests.json",
+    "bytes": 801,
+    "sha256": "a4e14cc0652c2fd7561277b1faa34de3d2e506f4a4bdcf2a3b748816ab2366f3"
+  },
+  {
+    "path": "release-provider-lab.py",
+    "bytes": 36580,
+    "sha256": "7f17ba97182d34dbfcb35c12ea8ce3d62fd9882fa485696150f677944bc7fe58"
+  },
+  {
+    "path": "result.json",
+    "bytes": 2741,
+    "sha256": "fcc6abe40d5bc94de908bb202e547bb51b6f30688acaee76d82e6011cda82787"
+  },
+  {
+    "path": "run.py",
+    "bytes": 8508,
+    "sha256": "5ae231fb9f2867b2668de8a91d33fdce64ff473ed5c91fbb0a094692e22f8649"
+  }
+]

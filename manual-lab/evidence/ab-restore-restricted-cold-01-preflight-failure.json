@@ -1,0 +1,10 @@
+{
+  "attempt": "ab-restore-restricted-cold-01",
+  "pass": false,
+  "failure": "Orchestration Python syntax error: missing closing brace in identity snapshot, detected before script execution",
+  "clusterMutation": false,
+  "appStopInvoked": false,
+  "caffeinateStarted": false,
+  "helperSourceChanged": false,
+  "at": "2026-11-09T15:21:48.825584+00:00"
+}

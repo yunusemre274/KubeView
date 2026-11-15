@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-11-11T16:28:09.276779+00:00",
+  "argv": [
+    "go",
+    "test",
+    "-count=1",
+    "-p=1",
+    "-parallel=1",
+    "-run",
+    "^TestReleaseOwnedResourcesTemplate$",
+    "-timeout=180s",
+    "-json",
+    "./pkg/server"
+  ],
+  "cwd": "backend",
+  "env": {
+    "GOTOOLCHAIN": "go1.26.11",
+    "GOMAXPROCS": "1",
+    "KUBEVIEW_RELEASE_REAL_RESOURCES": "owned-profile06-template-resources",
+    "KUBEVIEW_RELEASE_REAL_STATE": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01/lab.json",
+    "KUBEVIEW_RELEASE_REAL_KUBECONFIG": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01/private/admin.json",
+    "KUBEVIEW_RELEASE_REAL_OUTPUT": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/real-resources-worker"
+  },
+  "outerProcessWallLimitSeconds": 240,
+  "testTimeoutSeconds": 180,
+  "parallel": 1,
+  "sourceBaselineReferences": [
+    "4a05095a",
+    "52c80a31"
+  ],
+  "sleepStallGapSecondsThreshold": 5,
+  "exitCode": 1,
+  "stopReason": null,
+  "elapsedSeconds": 18.201,
+  "maxOuterSampleGapSeconds": 0.255,
+  "boundedControlValid": true,
+  "completedAt": "2026-11-11T16:28:27.477671+00:00"
+}

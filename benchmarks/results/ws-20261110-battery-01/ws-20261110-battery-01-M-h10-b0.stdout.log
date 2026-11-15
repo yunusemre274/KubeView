@@ -1,0 +1,3 @@
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+{"profile":"M","scenario":"living","repeat":0,"fps":60.00053304193633,"p95":18.40000000037253,"messages":0}
+Results: /Users/yunusemre/Desktop/KubeView/benchmarks/results/ws-20261110-battery-01-M-h10-b0

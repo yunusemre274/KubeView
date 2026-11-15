@@ -1,0 +1,69 @@
+{
+  "at": "2026-11-08T14:30:06.864385+00:00",
+  "context": "kv-repair-v11-reader",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace": "kv-repair-v11-qa",
+  "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+  "resources": [
+    {
+      "kind": "ServiceAccount",
+      "name": "v11-reader",
+      "namespace": "kv-repair-v11-qa",
+      "uid": "40ee58f8-ed2d-4eff-a2ad-f9fa067c79d5",
+      "resourceVersion": "21139"
+    },
+    {
+      "kind": "Role",
+      "name": "v11-reader",
+      "namespace": "kv-repair-v11-qa",
+      "uid": "ffce8bc8-9ec6-48e7-a9f8-91ab3ee972a4",
+      "resourceVersion": "21140"
+    },
+    {
+      "kind": "RoleBinding",
+      "name": "v11-reader",
+      "namespace": "kv-repair-v11-qa",
+      "uid": "29e3bd35-547d-4026-8920-e9014a85fae5",
+      "resourceVersion": "21142"
+    }
+  ],
+  "rules": [
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "pods",
+        "events"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    },
+    {
+      "apiGroups": [
+        "apps"
+      ],
+      "resources": [
+        "deployments",
+        "replicasets"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    }
+  ],
+  "tokenDurationSeconds": 3600,
+  "secretMaterialRecorded": false,
+  "mergedContexts": [
+    "kv-repair-1101",
+    "kv-repair-v11-b",
+    "kv-repair-v11-reader",
+    "kv-repair-v11-unavailable"
+  ],
+  "kubeconfigGlobalUnmodified": true
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-08T20-54-37-846Z-6cc5b9a6",
+  "startedAt": "2026-11-08T20:54:37.846Z",
+  "tests": [
+    {
+      "title": "V11-02 V11-03 V11-12 same-name different-UID A→B→A isolates normal details and live logs",
+      "project": "chromium",
+      "status": "FAIL",
+      "durationMs": 116083,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "Error: After rapid switch, manual scope requires the actual A/QA snapshot\n\nAfter rapid switch, manual scope requires the actual A/QA snapshot\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 30000ms exceeded while waiting on the predicate"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T20-54-38-048Z-10e666ef/v11-real-cluster-V11-02-V1-09150-ormal-details-and-live-logs-chromium/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T20-54-38-048Z-10e666ef/v11-real-cluster-V11-02-V1-09150-ormal-details-and-live-logs-chromium/attachments/v11-evidence-7ae8f5f21c0e7c144239fb9ca8c05bf6bd7d41f7.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-08T20-54-38-048Z-10e666ef/v11-real-cluster-V11-02-V1-09150-ormal-details-and-live-logs-chromium/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "Error",
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "expectedTests": 2,
+  "finishedAt": "2026-11-08T20:56:34.214Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-08T20-54-37-846Z-6cc5b9a6.json"
+}

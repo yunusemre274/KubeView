@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-11-11T19:31:34.525390+00:00",
+  "port": 19849,
+  "command": [
+    "/usr/sbin/lsof",
+    "-nP",
+    "-iTCP:19849",
+    "-sTCP:LISTEN",
+    "-Fpc"
+  ],
+  "returnCode": 1,
+  "listenerAbsent": true,
+  "unexpectedListenerOutputOmitted": false
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "path": "REPORT.md",
+    "bytes": 4027,
+    "sha256": "d32a7a4effd406b40edadbb390ac876485bb42e1b9f388f3e9176d7103a7cb9d"
+  },
+  {
+    "path": "guard-diff.txt",
+    "bytes": 1155,
+    "sha256": "0098e8b4081ef3da6ec2ed271e2bea3669eb1701b3996c1b467f0c2ab263fe13"
+  },
+  {
+    "path": "review.json",
+    "bytes": 2083,
+    "sha256": "8cf75a67aa2984cac195283e4711436cb66d8b982201d5ccbd16d0afda9c7c3b"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "command": [
+    "go",
+    "test",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "210s",
+    "-count",
+    "1",
+    "-v",
+    "./pkg/server",
+    "-run",
+    "^TestOwnedWorkspaceRealWorkspaceRecordAcceptance$"
+  ],
+  "source": "4ec526b7ce1bc39c21b603864c9096f72eb39184",
+  "start": "2026-11-11T11:47:13.906196+00:00",
+  "end": "2026-11-11T11:47:15.241146+00:00",
+  "exitCode": 1,
+  "target": "owned02 guard; isolated qa workspace records"
+}

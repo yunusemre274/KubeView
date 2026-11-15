@@ -1,0 +1,137 @@
+{
+  "name": "go-test-compile",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-c",
+    "-p",
+    "1",
+    "-o",
+    "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common-f32-20261112T113255Z/backend.test",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/source-B/backend",
+  "startedAt": "2026-11-12T11:35:25.060071+00:00",
+  "maxSeconds": 180,
+  "environment": {
+    "GOTOOLCHAIN": "local",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "2GiB",
+    "CGO_ENABLED": "0",
+    "GOPROXY": "off",
+    "UV_THREADPOOL_SIZE": "2",
+    "NODE_OPTIONS": "--max-old-space-size=2048"
+  },
+  "samples": [
+    {
+      "at": "2026-11-12T11:35:25.113275+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14318
+      ],
+      "ownedRSSBytes": 39206912,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454308315136
+    },
+    {
+      "at": "2026-11-12T11:35:25.639427+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14322
+      ],
+      "ownedRSSBytes": 78086144,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454306234368
+    },
+    {
+      "at": "2026-11-12T11:35:26.162546+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14325,
+        14326
+      ],
+      "ownedRSSBytes": 177274880,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454297874432
+    },
+    {
+      "at": "2026-11-12T11:35:26.688743+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14329,
+        14330
+      ],
+      "ownedRSSBytes": 238059520,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454291480576
+    },
+    {
+      "at": "2026-11-12T11:35:27.215365+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14329,
+        14332
+      ],
+      "ownedRSSBytes": 417415168,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454291476480
+    },
+    {
+      "at": "2026-11-12T11:35:27.740365+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14336,
+        14337
+      ],
+      "ownedRSSBytes": 234684416,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454259236864
+    },
+    {
+      "at": "2026-11-12T11:35:28.266179+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14336,
+        14339
+      ],
+      "ownedRSSBytes": 528384000,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454259228672
+    },
+    {
+      "at": "2026-11-12T11:35:28.792953+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14336,
+        14343
+      ],
+      "ownedRSSBytes": 778878976,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454259224576
+    },
+    {
+      "at": "2026-11-12T11:35:29.312790+00:00",
+      "ownedPIDs": [
+        14284,
+        14316,
+        14346,
+        14347
+      ],
+      "ownedRSSBytes": 137576448,
+      "batteryPercent": 42,
+      "freeDiskBytes": 454193176576
+    }
+  ],
+  "pid": 14316,
+  "birth": "Thu Nov 12 14:35:25 2026",
+  "exitCode": 0,
+  "finishedAt": "2026-11-12T11:35:29.823000+00:00"
+}

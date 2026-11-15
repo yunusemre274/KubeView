@@ -1,0 +1,15 @@
+PASS_BOUNDED_PARSER_GROUP_WITH_SCOPE_NOTE
+
+Independent raw JSON review confirms final attempt02 exactly3top-level/9subtest PASS, packagePASS and0FAIL/SKIP, exit0 in2.781483s. All three SHA manifests match; current testSHA isf759b7b9fe1186685bd7e5803ede75716c609525e51bb39d7030f8856c9807b7, identical to attempt02 source. Original attempt01 source/JSON/execution remains distinct and intact, with the single duplicate-policy test FAIL. Top-level worker execution.json/go-test.jsonl are originalRED aliases, so finalPASS must be attributed to attempt02.
+
+RED triage is correct: repeated object-valued preferences merge, retaining the earlier credential key and returning422; expected200 was a fixture error. Corrected source retains that422+state/file immutability check, and separately proves scalar revision0→current last-wins200 plus unknown-field ignore/discard. Product decode intentionally lacks DisallowUnknownFields; no product fix/bug is implied.
+
+Nine exact rejects are verified from raw logs: malformed/trailing second JSON400, MIME415, nonce403, future schema/unsafe preference/reference/depth422, and2097435-byte body400 (>2097152, <4194304). Every reject compares full Store.Snapshot (revision included) and all directory-entry/file-byte maps, including backups. Additional duplicate-map422 does the same. Production decode's2MiB MaxBytesReader and single-value EOF check, and workspace Store.Update→Validate/ImportInto error mapping, agree with those assertions. No broad YAML/parser/fuzz claim follows.
+
+Positive source/assertions cover normal nonce-authenticated JSON mutation, exact namespace/selector Pod UID selection, imported fresh connection/harbor IDs, destination WorkspaceID/ref remap, imported Context empty/Boundfalse and ignored authority markers absent from current/backup files.
+
+One scope note prevents overclaim: existing binding is verified bound/context=test BEFORE import, but not explicitly asserted unchanged in the post-import destination. Current ImportInto append-only source supports preservation; this parser group alone does not runtime-assert that postcondition. Qualify that claim or let root add a future explicit postcondition. The separate pure ImportInto worker evidence does check the full existing prefix; it is separate evidence, not a parser assertion added retroactively. No product failure was demonstrated.
+
+All five recorded runtime/support source files stayed unchanged during both runs and match current hashes. Fixtures use real registered handlers through in-process httptest recorders with fake clients, no actual listener/Kubernetes/user credentials. Recorded process-group cleanup is empty and Go TempDir/Server cleanup is source-backed; this review ran no fresh process probe. This is bounded JSON guard evidence, not realKubernetes, all endpoints, YAML/anchors, fuzz-complete or final security acceptance.
+
+Only this three-file review directory was written; no source/Git/ROADMAP/private inputs/test/build/lab action. Started21:45:10Z; report written2026-11-12T21:47:14.526102+00:00, 124.5s (90s minimal-report target/120s hard bound). Root retains tests/index/integration ownership.

@@ -1,0 +1,13 @@
+{
+  "tests": [
+    "TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat"
+  ],
+  "regex": "^TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat$",
+  "fileSHA256": {
+    "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72",
+    "backend/pkg/server/stream.go": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/workspace_broker.go": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377"
+  },
+  "safety": "strict RED against unchanged product, one fake real loopback WS test; Go60/wall90; tree2GiB/disk10GiB"
+}

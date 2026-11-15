@@ -1,0 +1,13 @@
+{
+  "preparedAt": "2026-11-15T10:43:36.290629+00:00",
+  "archiveSHA256": "8eb2d9b954b916ce043241437fbf8c3950fd198191ad00226449627b5a1b148c",
+  "binarySHA256": "819658d5b7044a5ad69eb534e698d3e8d7b0d588f43b4ead87c59a7e699f57af",
+  "sourceMerge": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+  "scope": "NATIVE_DARWIN_ARM64_NEW_SBOM_BUILD_STANDALONE_EMPTY_WORKSPACE_NOT_K8S_PERFORMANCE_FINAL_RELEASE",
+  "workLimitSeconds": 120,
+  "browserLimitSeconds": 45,
+  "maxExpandedBytes": 268435456,
+  "maxMembers": 1000,
+  "parentHelper": "../ra-20261114/native-ci114-startup-root/run.py",
+  "important": "Only packaging subject and extraction input changed; same native UX/cleanup assertions. No toolchain in appPATH; originalHOME and explicit absent kubeconfig."
+}

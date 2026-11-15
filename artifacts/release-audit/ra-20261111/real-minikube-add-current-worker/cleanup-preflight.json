@@ -1,0 +1,7 @@
+{
+  "startedAt": "2026-11-11T18:59:03.687095+00:00",
+  "cleanupDeadlineAt": "2026-11-11T19:01:03.687095+00:00",
+  "totalDeadlineAt": "2026-11-11T19:02:03.687095+00:00",
+  "scope": "root-authorized exact volume+proven profile pending-entry rollback only",
+  "originalOperationRemainsFAIL": true
+}

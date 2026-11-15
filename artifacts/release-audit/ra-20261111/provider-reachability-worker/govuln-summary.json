@@ -1,0 +1,315 @@
+[
+  {
+    "image": "hubble-relay",
+    "binary_sha256": "849470e7b06c960cb1fcdcf31a507698235ff68ae06659935943d9d1fbbd7fd9",
+    "status": "COMPLETED",
+    "exit_code": 0,
+    "duration_seconds": 1.541,
+    "matched_ids": [
+      "GO-2026-6859",
+      "GO-2026-6860",
+      "GO-2026-6866"
+    ],
+    "html_advisory_findings": [
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseWithOptions"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseFragmentWithOptions"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseFragment"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "Parse"
+          }
+        ]
+      }
+    ],
+    "html_symbol_findings": [
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseWithOptions"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseFragmentWithOptions"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseFragment"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "Parse"
+          }
+        ]
+      }
+    ],
+    "buildinfo_vcs_lines": [
+      "build\tvcs.revision=beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+      "build\tvcs.time=2026-10-23T14:07:20Z",
+      "build\tvcs.modified=false"
+    ]
+  },
+  {
+    "image": "cilium",
+    "binary_sha256": "0144e472f4f0573684a13a0a2e7d1ff304fb78bc06b5f9cc9d9221dd934ab03e",
+    "status": "COMPLETED",
+    "exit_code": 0,
+    "duration_seconds": 1.614,
+    "matched_ids": [
+      "GO-2026-4736",
+      "GO-2026-5932",
+      "GO-2026-6859",
+      "GO-2026-6860",
+      "GO-2026-6865",
+      "GO-2026-6866"
+    ],
+    "html_advisory_findings": [
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseFragment"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "Parse"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseFragmentWithOptions"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseWithOptions"
+          }
+        ]
+      }
+    ],
+    "html_symbol_findings": [
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseFragment"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "Parse"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseFragmentWithOptions"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0",
+            "package": "golang.org/x/net/html",
+            "function": "ParseWithOptions"
+          }
+        ]
+      }
+    ],
+    "buildinfo_vcs_lines": [
+      "build\tvcs.revision=beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+      "build\tvcs.time=2026-10-23T14:07:20Z",
+      "build\tvcs.modified=false"
+    ]
+  },
+  {
+    "image": "operator-generic",
+    "binary_sha256": "b8820c0b796229914ed0345c78c8ab40560be9af5e54fb4be6ac62029789e219",
+    "status": "COMPLETED",
+    "exit_code": 0,
+    "duration_seconds": 1.905,
+    "matched_ids": [
+      "GO-2026-4736",
+      "GO-2026-5932",
+      "GO-2026-6859",
+      "GO-2026-6860",
+      "GO-2026-6865",
+      "GO-2026-6866"
+    ],
+    "html_advisory_findings": [
+      {
+        "osv": "GO-2026-6860",
+        "fixed_version": "v0.62.0",
+        "trace": [
+          {
+            "module": "golang.org/x/net",
+            "version": "v0.60.0"
+          }
+        ]
+      }
+    ],
+    "html_symbol_findings": [],
+    "buildinfo_vcs_lines": [
+      "dep\tgithub.com/spiffe/go-spiffe/v2\tv2.8.1",
+      "build\tvcs.revision=beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+      "build\tvcs.time=2026-10-23T14:07:20Z",
+      "build\tvcs.modified=false"
+    ]
+  }
+]

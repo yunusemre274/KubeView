@@ -1,0 +1,77 @@
+{
+  "format": "gzip, deterministic mtime0; original raw files retained locally unchanged, exact roundtrip verified",
+  "files": [
+    {
+      "raw": "runtime/hover-order-0-20261115T101142Z/00-before-render-identity.json",
+      "rawSHA256": "9e77cd5bcbc44b1378e464316ae457c914f4b7aca9a8bed67f8c1a88dd4ed556",
+      "rawBytes": 3787387,
+      "archive": "runtime/hover-order-0-20261115T101142Z/00-before-render-identity.json.gz",
+      "archiveSHA256": "df59d130c91d0d5a7622eb795efec4871883ef0b00683d8b8943393060d59bea",
+      "archiveBytes": 573616,
+      "exactRoundtrip": true
+    },
+    {
+      "raw": "runtime/hover-order-0-20261115T101142Z/01-hover-render-identity.json",
+      "rawSHA256": "7a15ba59b7904b05907882fd09cdbcbd2fbdd15ad015615f390c92e6fc1af5e4",
+      "rawBytes": 3211210,
+      "archive": "runtime/hover-order-0-20261115T101142Z/01-hover-render-identity.json.gz",
+      "archiveSHA256": "e3268b5e3caca021c058f5a185fa5213b5096eb977ea7529173d705d6a085faf",
+      "archiveBytes": 462516,
+      "exactRoundtrip": true
+    },
+    {
+      "raw": "runtime/hover-order-0-20261115T101142Z/02-guard-reset-render-identity.json",
+      "rawSHA256": "948e72512511a369eab362d25e689fb638e07001aee51d439ebab9ee96218b04",
+      "rawBytes": 3175854,
+      "archive": "runtime/hover-order-0-20261115T101142Z/02-guard-reset-render-identity.json.gz",
+      "archiveSHA256": "65d0f8e97f05f5b6a7f1b254da9539abf6d171cfdba92e1992d26f1148386e16",
+      "archiveBytes": 457856,
+      "exactRoundtrip": true
+    },
+    {
+      "raw": "runtime/hover-order-0-20261115T101142Z/03-cleanup-render-identity.json",
+      "rawSHA256": "60b230350ae058b242747c76e771db07ff8842d4aebc3d38f932ff631b3bb75e",
+      "rawBytes": 3205035,
+      "archive": "runtime/hover-order-0-20261115T101142Z/03-cleanup-render-identity.json.gz",
+      "archiveSHA256": "9d5124f49df5c84e3ce50652d9b98bfccb6530e52d5e2b7525c6bec9ff682bf4",
+      "archiveBytes": 461798,
+      "exactRoundtrip": true
+    },
+    {
+      "raw": "runtime/hover-order-1-20261115T101203Z/00-before-render-identity.json",
+      "rawSHA256": "9b11ee38850c7df48d6e984aa76e100aadfafb58b8546b12a566dedd173627dc",
+      "rawBytes": 3787462,
+      "archive": "runtime/hover-order-1-20261115T101203Z/00-before-render-identity.json.gz",
+      "archiveSHA256": "701441908987456a9522b41203fe928efefccfa8e609f4ec508f8416238fd103",
+      "archiveBytes": 573703,
+      "exactRoundtrip": true
+    },
+    {
+      "raw": "runtime/hover-order-1-20261115T101203Z/01-hover-render-identity.json",
+      "rawSHA256": "9dbca4bc41c4495300923b93aff97064bf2ccc3991e10afc688387d0d1c0108d",
+      "rawBytes": 3211175,
+      "archive": "runtime/hover-order-1-20261115T101203Z/01-hover-render-identity.json.gz",
+      "archiveSHA256": "48603bd00156837b6c51bc51079c4826ea0b064170971989e419c9fe561d345d",
+      "archiveBytes": 462521,
+      "exactRoundtrip": true
+    },
+    {
+      "raw": "runtime/hover-order-1-20261115T101203Z/02-guard-reset-render-identity.json",
+      "rawSHA256": "112a80c7513db5af9a501ba56e11bca745b019faa7d0c7387bf229642aecf913",
+      "rawBytes": 3175852,
+      "archive": "runtime/hover-order-1-20261115T101203Z/02-guard-reset-render-identity.json.gz",
+      "archiveSHA256": "61e3afa748d47a825351ff57bf45146ea43dcc63ab35b77282a99b747f12780e",
+      "archiveBytes": 457843,
+      "exactRoundtrip": true
+    },
+    {
+      "raw": "runtime/hover-order-1-20261115T101203Z/03-cleanup-render-identity.json",
+      "rawSHA256": "86ba35ca04c0f7779ce4a9b1f48c13586e4b1a85f7035d0df7b19da7fe9e0106",
+      "rawBytes": 3205029,
+      "archive": "runtime/hover-order-1-20261115T101203Z/03-cleanup-render-identity.json.gz",
+      "archiveSHA256": "0013c8bfc6edd10ae0ed202072f15993243949feadaafc6bac8bbc1a8de455f2",
+      "archiveBytes": 461849,
+      "exactRoundtrip": true
+    }
+  ]
+}

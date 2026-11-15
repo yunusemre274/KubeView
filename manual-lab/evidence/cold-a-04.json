@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "startedAt": 1794227658.444287,
+  "command": "up --profile 02-ortak-kume",
+  "cwd": "outside bundle /tmp",
+  "attempt": "cold-a-04",
+  "priorAttempt": "02/03 pre-container Docker object parsing faults retained; container-specific inspect fixed",
+  "exitCode": 0,
+  "elapsedSeconds": 84.92,
+  "output": "Küme A: kvml-ccdfe731dabd-a (2 Node), private state; bounded start\nHazır: 02-ortak-kume; labId=kvml-ccdfe731dabd; 2 kayıt planı. app komutu ayrı çalıştırılır.\nVarsayılan fixture sağlığı için status; kullanıcının önceki scenario değişiklikleri up ile sıfırlanmaz.\n"
+}

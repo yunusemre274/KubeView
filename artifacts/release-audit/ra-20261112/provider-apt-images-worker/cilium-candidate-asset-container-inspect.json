@@ -1,0 +1,238 @@
+{
+  "Id": "a6e61ad932d4fd8d6295e2941619d8d36108da9cee1f842baa254e3a9417d700",
+  "Created": "2026-11-12T10:41:36.610434209Z",
+  "Path": "/usr/bin/sha256sum",
+  "Args": [
+    "/cni/loopback",
+    "/opt/cni/bin/cilium-cni",
+    "/usr/bin/cilium-agent",
+    "/usr/bin/cilium-bugtool",
+    "/usr/bin/cilium-dbg",
+    "/usr/bin/cilium-envoy-bootstrap-locality",
+    "/usr/bin/cilium-health",
+    "/usr/bin/cilium-health-responder",
+    "/usr/bin/cilium-mount",
+    "/usr/bin/cilium-sysctlfix",
+    "/usr/bin/gops",
+    "/usr/bin/hubble",
+    "/usr/sbin/iptables-wrapper",
+    "/usr/bin/cilium-envoy",
+    "/usr/bin/cilium-envoy-starter",
+    "/etc/ssl/certs/ca-certificates.crt",
+    "/etc/apt/sources.list.d/ubuntu.sources",
+    "/usr/share/keyrings/ubuntu-archive-keyring.gpg",
+    "/LICENSE.all"
+  ],
+  "State": {
+    "Status": "created",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "0001-01-01T00:00:00Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "Image": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+  "ResolvConfPath": "",
+  "HostnamePath": "",
+  "HostsPath": "",
+  "LogPath": "",
+  "Name": "/kv-apt-images-0ed413f7cad04ea2a426cc37e6832034-cilium-candidate",
+  "RestartCount": 0,
+  "Driver": "overlayfs",
+  "Platform": "linux",
+  "MountLabel": "",
+  "ProcessLabel": "",
+  "AppArmorProfile": "",
+  "ExecIDs": null,
+  "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "json-file",
+      "Config": {}
+    },
+    "NetworkMode": "none",
+    "PortBindings": {},
+    "RestartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+      "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": [],
+    "DnsSearch": [],
+    "ExtraHosts": null,
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+      "no-new-privileges"
+    ],
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 268435456,
+    "NanoCpus": 1000000000,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": [],
+    "BlkioDeviceReadBps": [],
+    "BlkioDeviceWriteBps": [],
+    "BlkioDeviceReadIOps": [],
+    "BlkioDeviceWriteIOps": [],
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": [],
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 536870912,
+    "MemorySwappiness": null,
+    "OomKillDisable": false,
+    "PidsLimit": 32,
+    "Ulimits": [],
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+      "/proc/acpi",
+      "/proc/asound",
+      "/proc/interrupts",
+      "/proc/kcore",
+      "/proc/keys",
+      "/proc/latency_stats",
+      "/proc/sched_debug",
+      "/proc/scsi",
+      "/proc/timer_list",
+      "/proc/timer_stats",
+      "/sys/devices/virtual/powercap",
+      "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+      "/proc/bus",
+      "/proc/fs",
+      "/proc/irq",
+      "/proc/sys",
+      "/proc/sysrq-trigger"
+    ]
+  },
+  "Storage": {
+    "RootFS": {
+      "Snapshot": {
+        "Name": "overlayfs"
+      }
+    }
+  },
+  "Mounts": [],
+  "Config": {
+    "Hostname": "a6e61ad932d4",
+    "Domainname": "",
+    "User": "65532:65532",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+      "INITSYSTEM=SYSTEMD"
+    ],
+    "Cmd": [
+      "/cni/loopback",
+      "/opt/cni/bin/cilium-cni",
+      "/usr/bin/cilium-agent",
+      "/usr/bin/cilium-bugtool",
+      "/usr/bin/cilium-dbg",
+      "/usr/bin/cilium-envoy-bootstrap-locality",
+      "/usr/bin/cilium-health",
+      "/usr/bin/cilium-health-responder",
+      "/usr/bin/cilium-mount",
+      "/usr/bin/cilium-sysctlfix",
+      "/usr/bin/gops",
+      "/usr/bin/hubble",
+      "/usr/sbin/iptables-wrapper",
+      "/usr/bin/cilium-envoy",
+      "/usr/bin/cilium-envoy-starter",
+      "/etc/ssl/certs/ca-certificates.crt",
+      "/etc/apt/sources.list.d/ubuntu.sources",
+      "/usr/share/keyrings/ubuntu-archive-keyring.gpg",
+      "/LICENSE.all"
+    ],
+    "Image": "kubeview-private/cilium:1.20.4-apt-security.1",
+    "Volumes": null,
+    "WorkingDir": "/home/cilium",
+    "Entrypoint": [
+      "/usr/bin/sha256sum"
+    ],
+    "Labels": {
+      "com.kubeview.release-audit.owner": "kv-apt-images-0ed413f7cad04ea2a426cc37e6832034-cilium-candidate",
+      "maintainer": "maintainer@cilium.io"
+    },
+    "StopTimeout": 1
+  },
+  "NetworkSettings": {
+    "SandboxID": "",
+    "SandboxKey": "",
+    "Ports": {},
+    "Networks": {
+      "none": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "",
+        "EndpointID": "",
+        "Gateway": "",
+        "IPAddress": "",
+        "MacAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+      }
+    }
+  },
+  "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+    "size": 1619,
+    "platform": {
+      "architecture": "arm64",
+      "os": "linux"
+    }
+  }
+}

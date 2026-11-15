@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-11-08T14:25:52.851794+00:00",
+  "status": "PASS",
+  "context": "kv-repair-1101",
+  "cluster_uid": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace": "kv-repair-v11-backend",
+  "namespace_uid": "42337a2d-ae0b-49ba-bdc5-4badd8a5f92f",
+  "namespace_labels": {
+    "kubernetes.io/metadata.name": "kv-repair-v11-backend",
+    "kubeview.io/repair-owner": "backend-manager",
+    "kubeview.io/v11-owner": "v11-20261108"
+  },
+  "ready_nodes": 3,
+  "total_nodes": 3,
+  "kubelet_versions": [
+    "v1.35.1"
+  ],
+  "source_git_head": "2b76e215fdbe201be1611ccea4c40dcd547b2ba7",
+  "scope": "owned backend namespace only; no drain, worker stop, provisioning or Hubble"
+}

@@ -1,0 +1,16 @@
+{
+  "recordedPreflightAt": "2026-11-12T10:21:47.664913+00:00",
+  "artifactRuntimeStartedAt": "2026-11-12T10:23:54.385629+00:00",
+  "artifactReceiptAt": "2026-11-12T10:35:38.048590+00:00",
+  "recordedPreflightThroughReceiptSeconds": 830.383677,
+  "artifactRuntimeThroughReceiptSeconds": 703.662961,
+  "aggregatePhasePlanSeconds": 300,
+  "aggregatePhasePlanExceeded": true,
+  "aggregateOverrunSeconds": 530.383677,
+  "earlierUntimedSourceInspectionExcluded": true,
+  "recordedPhaseWallIsLowerBoundForWholeWorker": true,
+  "HTTPRuntimeSeconds": 4.549313068389893,
+  "HTTPRuntimeLimitSeconds": 300,
+  "HTTPWithinOwnLimit": true,
+  "noPerformanceClaim": true
+}

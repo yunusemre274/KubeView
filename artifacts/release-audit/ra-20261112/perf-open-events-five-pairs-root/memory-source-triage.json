@@ -1,0 +1,91 @@
+{
+  "classification": "OPEN_OBSERVATION_NOT_CAUSAL_ATTRIBUTION",
+  "rows": [
+    {
+      "pair": 0,
+      "side": "A",
+      "pageJSHeapUsedBytes": 30739617,
+      "pageJSHeapTotalBytes": 97439477,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 396448
+    },
+    {
+      "pair": 0,
+      "side": "B",
+      "pageJSHeapUsedBytes": 24997630,
+      "pageJSHeapTotalBytes": 96384418,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 401088
+    },
+    {
+      "pair": 1,
+      "side": "A",
+      "pageJSHeapUsedBytes": 43347855,
+      "pageJSHeapTotalBytes": 90362915,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 407568
+    },
+    {
+      "pair": 1,
+      "side": "B",
+      "pageJSHeapUsedBytes": 45368937,
+      "pageJSHeapTotalBytes": 91938553,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 417328
+    },
+    {
+      "pair": 2,
+      "side": "A",
+      "pageJSHeapUsedBytes": 51338759,
+      "pageJSHeapTotalBytes": 92734375,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 385008
+    },
+    {
+      "pair": 2,
+      "side": "B",
+      "pageJSHeapUsedBytes": 26773035,
+      "pageJSHeapTotalBytes": 93256895,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 392944
+    },
+    {
+      "pair": 3,
+      "side": "A",
+      "pageJSHeapUsedBytes": 33552208,
+      "pageJSHeapTotalBytes": 94821384,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 396768
+    },
+    {
+      "pair": 3,
+      "side": "B",
+      "pageJSHeapUsedBytes": 48453102,
+      "pageJSHeapTotalBytes": 89588662,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 406384
+    },
+    {
+      "pair": 4,
+      "side": "A",
+      "pageJSHeapUsedBytes": 48427963,
+      "pageJSHeapTotalBytes": 92995139,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 391088
+    },
+    {
+      "pair": 4,
+      "side": "B",
+      "pageJSHeapUsedBytes": 46418521,
+      "pageJSHeapTotalBytes": 88823017,
+      "largestBrowserProcessRole": "browser-renderer",
+      "largestBrowserProcessRSSKiB": 413680
+    }
+  ],
+  "sourceDiff": " frontend/src/App.jsx                            | 10 +--\n frontend/src/context/ShipyardClusterContext.jsx | 11 ++++\n frontend/src/harbor/HarborScene.jsx             | 87 +++++++++++++++++++++----\n frontend/src/harbor/cameraViews.js              | 28 +++++---\n frontend/src/harbor/cameraViews.test.js         | 36 ++++++++++\n frontend/src/harbor/interactions.js             | 27 ++++++++\n frontend/src/harbor/interactions.test.js        | 37 ++++++++++-\n 7 files changed, 209 insertions(+), 27 deletions(-)\n",
+  "notes": [
+    "RSS B\u2212A positive5/5; used/totalJSheap differences mixed. No forcedGC, retainedheap or nativeallocation trace measured.",
+    "Five runtime frontendfiles differ: source-namespace guard, camera/fog/framing and cached label bounds/placement. Static diff does not establish the RSS cause.",
+    "No product change or optimization applied from this observation; bounded follow-up diagnostic needed."
+  ]
+}

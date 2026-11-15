@@ -1,0 +1,293 @@
+{
+  "runID": "prod-security-2026-11-09T08-23-40-408Z-ab318112",
+  "startedAt": "2026-11-09T08:23:40.408Z",
+  "status": "PASS",
+  "type": "Real copied production binary / actual Kubernetes read / HTTP and WebSocket transport; no browser UI proof",
+  "command": "node artifacts/v1.1.0/v11-20261108/backend/prod-security-test.mjs",
+  "checks": [
+    {
+      "name": "current binary version and readonly server diagnostics/direct mutation denial",
+      "startedAt": "2026-11-09T08:23:41.242Z",
+      "status": "PASS",
+      "proof": {
+        "diagnostic": {
+          "readOnly": true,
+          "serverReadOnly": true,
+          "managementEnabled": false,
+          "managementAvailable": false,
+          "serverWriteAllowedDerivedFromServerReadOnly": false
+        },
+        "operatorCookieFlags": {
+          "name": "kubeview_operator",
+          "httpOnly": true,
+          "sameSiteStrict": true,
+          "pathRoot": true,
+          "secure": false
+        },
+        "enableStatus": 403,
+        "createStatus": 403,
+        "deniedObjectGETBefore": 404,
+        "deniedObjectGETAfter": 404,
+        "actionStatus": 403,
+        "actionProbe": "identity-valid namespace, shared mutation authorization gate, dryRun=true; not a workload operation completion test"
+      },
+      "finishedAt": "2026-11-09T08:23:41.292Z"
+    },
+    {
+      "name": "actual readonly WebSocket same-origin SNAPSHOT and three hostile Origin handshakes",
+      "startedAt": "2026-11-09T08:23:41.292Z",
+      "status": "PASS",
+      "proof": {
+        "positive": {
+          "handshakeStatus": 101,
+          "actualSnapshot": true,
+          "context": "kv-repair-1101",
+          "generationPresent": true,
+          "explicitScopeCount": 23,
+          "resourceCount": 122
+        },
+        "negatives": [
+          {
+            "name": "foreign",
+            "handshakeStatus": 403
+          },
+          {
+            "name": "opaque",
+            "handshakeStatus": 403
+          },
+          {
+            "name": "wrong-scheme",
+            "handshakeStatus": 403
+          }
+        ]
+      },
+      "finishedAt": "2026-11-09T08:23:41.577Z"
+    },
+    {
+      "name": "actual API_TOKEN absent/wrong HTTP and WebSocket401; proper Bearer200",
+      "startedAt": "2026-11-09T08:23:41.712Z",
+      "status": "PASS",
+      "proof": {
+        "missingHTTP": 401,
+        "wrongHTTP": 401,
+        "missingWS": 401,
+        "wrongWS": 401,
+        "properBearerHTTP": 200
+      },
+      "finishedAt": "2026-11-09T08:23:41.715Z"
+    },
+    {
+      "name": "actual token session login and HttpOnly SameSiteStrict cookie read/WS flow",
+      "startedAt": "2026-11-09T08:23:41.715Z",
+      "status": "PASS",
+      "proof": {
+        "missingSessionStatus": 401,
+        "wrongSessionStatus": 401,
+        "loginStatus": 200,
+        "cookieFlags": {
+          "name": "kubeview_session",
+          "httpOnly": true,
+          "sameSiteStrict": true,
+          "pathRoot": true,
+          "secure": false
+        },
+        "cookieOnlyReadStatus": 200,
+        "cookieOnlyWS": {
+          "handshakeStatus": 101,
+          "actualSnapshot": true,
+          "context": "kv-repair-1101",
+          "generationPresent": true,
+          "explicitScopeCount": 23,
+          "resourceCount": 122
+        },
+        "readonlyAfterAuthentication": {
+          "diagnostic": {
+            "readOnly": true,
+            "serverReadOnly": true,
+            "managementEnabled": false,
+            "managementAvailable": false,
+            "serverWriteAllowedDerivedFromServerReadOnly": false
+          },
+          "operatorCookieFlags": {
+            "name": "kubeview_operator",
+            "httpOnly": true,
+            "sameSiteStrict": true,
+            "pathRoot": true,
+            "secure": false
+          },
+          "enableStatus": 403,
+          "createStatus": 403,
+          "deniedObjectGETBefore": 404,
+          "deniedObjectGETAfter": 404,
+          "actionStatus": 403,
+          "actionProbe": "identity-valid namespace, shared mutation authorization gate, dryRun=true; not a workload operation completion test"
+        },
+        "secureFlagScope": "Secure=false is expected for direct loopback HTTP; code sets Secure for actual TLS"
+      },
+      "finishedAt": "2026-11-09T08:23:41.991Z"
+    },
+    {
+      "name": "proper authentication does not bypass actual WebSocket Origin boundary",
+      "startedAt": "2026-11-09T08:23:41.992Z",
+      "status": "PASS",
+      "proof": {
+        "positive": {
+          "handshakeStatus": 101,
+          "actualSnapshot": true,
+          "context": "kv-repair-1101",
+          "generationPresent": true,
+          "explicitScopeCount": 23,
+          "resourceCount": 122
+        },
+        "negatives": [
+          {
+            "name": "foreign",
+            "handshakeStatus": 403
+          },
+          {
+            "name": "opaque",
+            "handshakeStatus": 403
+          },
+          {
+            "name": "wrong-scheme",
+            "handshakeStatus": 403
+          }
+        ]
+      },
+      "finishedAt": "2026-11-09T08:23:43.649Z"
+    }
+  ],
+  "gateways": [
+    {
+      "url": "http://127.0.0.1:18412",
+      "pid": 14721,
+      "owner": "backend-manager/prod-security-test",
+      "readOnlyEnvironment": true,
+      "writeFlagPassed": false,
+      "tokenRequired": false,
+      "privateLog": ".git/kv-v11-runtime/prod-security-2026-11-09T08-23-40-408Z-ab318112/gateway-18412.log",
+      "binarySHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "scope": {
+        "context": "kv-repair-1101",
+        "namespace": "kv-repair-v11-qa"
+      },
+      "stopped": true,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "url": "http://127.0.0.1:18413",
+      "pid": 14733,
+      "owner": "backend-manager/prod-security-test",
+      "readOnlyEnvironment": true,
+      "writeFlagPassed": false,
+      "tokenRequired": true,
+      "privateLog": ".git/kv-v11-runtime/prod-security-2026-11-09T08-23-40-408Z-ab318112/gateway-18413.log",
+      "binarySHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "scope": {
+        "context": "kv-repair-1101",
+        "namespace": "kv-repair-v11-qa"
+      },
+      "stopped": true,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "credentialValuesLogged": false,
+  "providerOperations": false,
+  "clusterMutations": 0,
+  "guardBefore": {
+    "context": "kv-repair-1101",
+    "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+    "namespace": "kv-repair-v11-qa",
+    "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+    "owner": "v11-20261108"
+  },
+  "runtimeSourceBefore": {
+    "backend/pkg/server/connection.go": "02863427c5546eea2218db16a0cc9b3d974c14120dfe55560a1dc604fa2d49ca",
+    "backend/pkg/server/connection_errors.go": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+    "backend/pkg/server/log_session.go": "1f575b4bb24bb8a26dcf3b04a9b1ec82d884ee758789a0bc57d2029c354e0ede",
+    "backend/pkg/server/maintenance.go": "4708bcf04a91202e84c7b0c0f1d843fb8d4d2fb99d6c7c53cbf4c8f9f7982efd",
+    "backend/pkg/server/placement.go": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+    "backend/pkg/server/portforward.go": "8bd00d7e80d4190e97cf09b7cb3d02684dd520b5927056bcdaef5e1e67f2f3ca",
+    "backend/pkg/server/provider_handlers.go": "131539d99c818f52f0518e81fd3defefe791bf8dabd86cb44b799126bbd427bd",
+    "backend/pkg/server/resource_scopes.go": "e0e0c13db9fe0bbef1f3ae6b65d50b55364c1d93264f9fe391d92592704eacbd",
+    "backend/pkg/server/resources.go": "01c50606e3812238aa641f3e0e355b82b637c7771dfdbf2d2554ccce6ea5f72c",
+    "backend/pkg/server/server.go": "ce4174bbeb11af011d404e7687b5bafb7a63941fe4bb7a5079f0a625b2429a58",
+    "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+    "backend/pkg/server/stream.go": "705934ae746929790ee2ed253ad7e9ca16d92ad1a7c7bbae0dda578ad6c43718",
+    "backend/pkg/server/template_capability.go": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+    "backend/pkg/server/traffic_handlers.go": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+    "backend/go.mod": "9063188102dfa5ed6f60be6b7f34adaf150fdf87fc54cbecb9be0a3501a5344f",
+    "backend/go.sum": "9b3181f96a3e08d824d0b8861442f07353806b27b358b8a30f3fb5b9631c0679"
+  },
+  "binary": {
+    "source": ".git/kv-v11-runtime/install-macos/kubeview",
+    "privateFrozenPath": ".git/kv-v11-runtime/prod-security-2026-11-09T08-23-40-408Z-ab318112/kubeview",
+    "sha256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+    "expectedCommit": "0f5a5ab",
+    "frontend": "current root rebuilt frontend including focus fix; copied atomically before launch",
+    "sourceBeforeAfterGuard": true,
+    "reportedVersion": {
+      "arch": "arm64",
+      "commit": "0f5a5ab6b8e52e645b9e2e71dd063112ca105e98",
+      "os": "darwin",
+      "version": "1.1.0"
+    }
+  },
+  "cleanupErrors": [],
+  "guardAfter": {
+    "context": "kv-repair-1101",
+    "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+    "namespace": "kv-repair-v11-qa",
+    "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+    "owner": "v11-20261108"
+  },
+  "runtimeSourceAfter": {
+    "backend/pkg/server/connection.go": "02863427c5546eea2218db16a0cc9b3d974c14120dfe55560a1dc604fa2d49ca",
+    "backend/pkg/server/connection_errors.go": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+    "backend/pkg/server/log_session.go": "1f575b4bb24bb8a26dcf3b04a9b1ec82d884ee758789a0bc57d2029c354e0ede",
+    "backend/pkg/server/maintenance.go": "4708bcf04a91202e84c7b0c0f1d843fb8d4d2fb99d6c7c53cbf4c8f9f7982efd",
+    "backend/pkg/server/placement.go": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+    "backend/pkg/server/portforward.go": "8bd00d7e80d4190e97cf09b7cb3d02684dd520b5927056bcdaef5e1e67f2f3ca",
+    "backend/pkg/server/provider_handlers.go": "131539d99c818f52f0518e81fd3defefe791bf8dabd86cb44b799126bbd427bd",
+    "backend/pkg/server/resource_scopes.go": "e0e0c13db9fe0bbef1f3ae6b65d50b55364c1d93264f9fe391d92592704eacbd",
+    "backend/pkg/server/resources.go": "01c50606e3812238aa641f3e0e355b82b637c7771dfdbf2d2554ccce6ea5f72c",
+    "backend/pkg/server/server.go": "ce4174bbeb11af011d404e7687b5bafb7a63941fe4bb7a5079f0a625b2429a58",
+    "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+    "backend/pkg/server/stream.go": "705934ae746929790ee2ed253ad7e9ca16d92ad1a7c7bbae0dda578ad6c43718",
+    "backend/pkg/server/template_capability.go": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+    "backend/pkg/server/traffic_handlers.go": "4b777e2e78c2e57a076a7b492604bf6aea5533119bdd96ba08a44b168c010bd9",
+    "backend/go.mod": "9063188102dfa5ed6f60be6b7f34adaf150fdf87fc54cbecb9be0a3501a5344f",
+    "backend/go.sum": "9b3181f96a3e08d824d0b8861442f07353806b27b358b8a30f3fb5b9631c0679"
+  },
+  "runtimeSourceUnchanged": true,
+  "binaryCopySHAAfter": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+  "allOwnedGatewayPIDsStopped": true,
+  "finishedAt": "2026-11-09T08:23:43.728Z",
+  "wallSeconds": 3.32,
+  "counts": {
+    "PASS": 5,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "limits": [
+    "No normal browser UI acceptance is claimed",
+    "Actual HTTP loopback; no real TLS termination/cookie Secure transport test",
+    "Shared actions authorization probe is dryRun=true against identity-valid namespace, not a workload operation",
+    "Root main18410 and relay forwarding process were untouched",
+    "Raw production server logs remain private under .git, never a public artifact"
+  ],
+  "helperSHA256": "ffd5a5e6f75d249302e04efd1ac9b6359939d3e49ee51678a395db428fe3e7f2",
+  "cleanupPortVerification": [
+    {
+      "port": 18412,
+      "loopbackBindAvailableAfterCleanup": true
+    },
+    {
+      "port": 18413,
+      "loopbackBindAvailableAfterCleanup": true
+    }
+  ],
+  "parentSourceIdentityNote": "Root reports current binary built from committed/pushed0f5a5ab. This helper verifies exact copied SHA and actual /api/version marker, plus16 exact backend runtime files; it does not run Git or build."
+}

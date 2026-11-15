@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-12T11:27:09.187314+00:00",
+  "HTTPStatus": 200,
+  "contentType": "application/json",
+  "kind": "PartialObjectMetadataList",
+  "apiVersion": "meta.k8s.io/v1",
+  "itemsFieldPresent": true,
+  "itemsType": "NoneType",
+  "count": 0,
+  "guards": {
+    "clusterUID": true,
+    "markerUIDOwner": true,
+    "namespaceUIDOwnerSeal": true
+  },
+  "valuesOrResponseBodyExported": false,
+  "mutations": 0
+}

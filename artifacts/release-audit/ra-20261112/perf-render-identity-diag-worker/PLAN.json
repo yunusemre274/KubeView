@@ -1,0 +1,50 @@
+{
+  "startedAt": "2026-11-12T19:57:27Z",
+  "absoluteDeadline": "2026-11-12T20:07:27Z",
+  "phaseLimitSeconds": 600,
+  "status": "PREPARED_NOT_STARTED",
+  "sourceGuard": "80cc55ad70f65857c5df2fa5eb79155aae5b8a5daec2d21916b8c588e39bb850",
+  "jobsMaximum": 2,
+  "order": [
+    "A",
+    "B"
+  ],
+  "warmupSeconds": 30,
+  "activeSeconds": 15,
+  "eachJobLimitSeconds": 120,
+  "cleanupReserveSeconds": 15,
+  "scope": "INSTRUMENTED_RENDER_OBJECT_IDENTITY_NOT_CPU_ACCEPTANCE",
+  "config": {
+    "profile": "M",
+    "scenario": "panel-open-events",
+    "repeatOffset": 3,
+    "fov": 38,
+    "dpr": 1,
+    "viewport": [
+      1440,
+      900
+    ],
+    "quality": "medium",
+    "inputLocked": true,
+    "visualStartLocked": true,
+    "harbors": 1
+  },
+  "stages": [
+    "00-before",
+    "active-5000",
+    "active-10000",
+    "after"
+  ],
+  "probe": "One main-camera frame onBeforeRender, finally restored; actual callback objects plus content fingerprint and read-only pointer/hover/DOM. No hover mutation before baseline, no product mesh or state creation.",
+  "firstFailureStops": true,
+  "automaticRetries": 0,
+  "resourceGuards": {
+    "batteryStartMinPercent": 40,
+    "abortBelowPercent": 35,
+    "lowPowerMode": 0,
+    "diskMinGiB": 10,
+    "appMaxGiB": 2,
+    "browserMaxGiB": 6
+  },
+  "productsUnchanged": true
+}

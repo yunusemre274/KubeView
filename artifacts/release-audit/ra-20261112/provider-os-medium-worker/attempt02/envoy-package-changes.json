@@ -1,0 +1,12 @@
+{
+  "libpcre2-8-0": {
+    "before": {
+      "version": "10.42-4ubuntu2.1",
+      "architecture": "arm64"
+    },
+    "after": {
+      "version": "10.42-4ubuntu2.2",
+      "architecture": "arm64"
+    }
+  }
+}

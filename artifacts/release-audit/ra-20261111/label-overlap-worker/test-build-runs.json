@@ -1,0 +1,65 @@
+[
+  {
+    "log": "frontend-tests.log",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "src/harbor/cameraViews.test.js",
+      "src/harbor/cargoTransforms.test.js",
+      "src/harbor/fleet.test.js",
+      "src/harbor/interactions.test.js",
+      "src/harbor/layout.test.js",
+      "src/harbor/resourceRelations.test.js",
+      "src/harbor/visualLifecycle.test.js",
+      "src/harbor/visualViews.test.js",
+      "src/harbor/waterModel.test.js",
+      "src/harbor/workspaceLayout.test.js",
+      "src/workbench/ResourceForms.test.js",
+      "src/workbench/containerModel.test.js",
+      "src/workbench/formLoading.test.js",
+      "src/workbench/logBuffer.test.js",
+      "src/workbench/logProtocol.test.js",
+      "src/workbench/logView.test.js",
+      "src/workbench/metricModel.test.js",
+      "src/workbench/placement.test.js",
+      "src/workbench/resourceUtils.test.js",
+      "src/workbench/secretPayload.test.js",
+      "tests/connection.test.js",
+      "tests/focus.test.js",
+      "tests/preferences.test.js",
+      "tests/provider-epoch.test.js",
+      "tests/resourceIndex.test.js",
+      "tests/store.test.js",
+      "tests/workspace-app-state.test.js",
+      "tests/workspace-bootstrap.test.js",
+      "tests/workspace.test.js",
+      "tests/world.test.js",
+      "tests/worldProviders.test.js"
+    ],
+    "start_utc": "2026-11-11T12:53:25.074493+00:00",
+    "end_utc": "2026-11-11T12:53:28.946900+00:00",
+    "exit_code": 0
+  },
+  {
+    "log": "frontend-build.log",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "start_utc": "2026-11-11T12:53:28.947094+00:00",
+    "end_utc": "2026-11-11T12:53:30.961074+00:00",
+    "exit_code": 0
+  },
+  {
+    "log": "prepare-webui.log",
+    "command": [
+      "node",
+      "scripts/prepare-webui.mjs"
+    ],
+    "start_utc": "2026-11-11T12:53:30.961146+00:00",
+    "end_utc": "2026-11-11T12:53:31.001750+00:00",
+    "exit_code": 0
+  }
+]

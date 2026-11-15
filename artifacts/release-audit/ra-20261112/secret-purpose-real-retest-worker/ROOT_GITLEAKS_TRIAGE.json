@@ -1,0 +1,36 @@
+{
+  "disposition": "FALSE_POSITIVE_TYPED_NONCREDENTIAL_METADATA",
+  "findings": [
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/source-after.json:generic-api-key:2",
+      "reason": "recomputed exact source SHA256; not credential",
+      "fileSHA256": "1c3382e8560f3af07ffc046209bb9b5fdf7ba66b347afa10bc35aa5875d7ab95"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/source-before.json:generic-api-key:2",
+      "reason": "recomputed exact source SHA256; not credential",
+      "fileSHA256": "1c3382e8560f3af07ffc046209bb9b5fdf7ba66b347afa10bc35aa5875d7ab95"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/ROOT_REVIEW.json:generic-api-key:8",
+      "reason": "recomputed exact source SHA256; not credential",
+      "fileSHA256": "5c031643feaf826c92b1ec042967b6da740e66c32fa011311cf67e5a7b8eb7aa"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/command-result.json:generic-api-key:33",
+      "reason": "recomputed exact source SHA256; not credential",
+      "fileSHA256": "4507744bda84d656ec895e0d4869c1de45e23f5447360b6cc397e871dbe97f21"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/result.json:generic-api-key:2",
+      "reason": "owned Kubernetes resource UID; not Secret data/token",
+      "fileSHA256": "42e92045fef5822406854f4eba24c931b22d8fc41c2128b9d3999ac1fa8e8863"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/result.json:generic-api-key:285",
+      "reason": "owned Kubernetes resource UID; not Secret data/token",
+      "fileSHA256": "42e92045fef5822406854f4eba24c931b22d8fc41c2128b9d3999ac1fa8e8863"
+    }
+  ],
+  "globalIgnoreAdded": false
+}

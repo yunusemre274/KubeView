@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "namespace": "kv-repair-v11-backend",
+  "cluster_uid": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace_uid": "42337a2d-ae0b-49ba-bdc5-4badd8a5f92f",
+  "resource_types": "pods,deployments.apps,statefulsets.apps,daemonsets.apps,replicasets.apps,jobs.batch,cronjobs.batch,secrets",
+  "checks": [
+    {
+      "recorded_at": "2026-11-08T14:26:54.863894+00:00",
+      "all_count": 0,
+      "owned_fixture_count": 0,
+      "owned_fixture_metadata": []
+    }
+  ],
+  "cleanup": "performed by each test using exact created UID preconditions; this verifier performs no mutation",
+  "credential_output": "metadata-only kubectl jsonpath; Secret values never printed or saved"
+}

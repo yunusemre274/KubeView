@@ -1,0 +1,12 @@
+{
+  "status": "EXPECTED_RED",
+  "exitCode": 1,
+  "elapsedSeconds": 0.07784345800018855,
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "scripts/release-ci-policy.test.mjs"
+  ]
+}

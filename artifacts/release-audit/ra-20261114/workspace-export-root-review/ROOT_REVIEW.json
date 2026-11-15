@@ -1,0 +1,15 @@
+{
+  "reviewedAt": "2026-11-14T13:19:01.747116+00:00",
+  "decision": "VERIFIED_DONE_TEST12_06_BOUNDED_HTTP_EXPORT_AUTHORITY",
+  "auditInputHEAD": "ae7aebc51984a144f10b4780989a6d1a8f19197e",
+  "evidenceHashesChecked": 7,
+  "classification": "REAL_OWNED_HTTP_SYNTHETIC_KUBERNETES_FIXTURE",
+  "testSourceSHA256": "ca0f91743bbe16420238eb21cb0e262a213f1268c3978948533f021e14742d80",
+  "reviewer": "root source/raw-evidence review separate from worker author; same agent system, not third-party professional pentest",
+  "limits": [
+    "Kubernetes/Secret/privatecache synthetic; realHTTP and application grant/session handlers",
+    "no browser/native finalpackage/realKubernetes",
+    "source cleanup registered, no exhaustive socket/process/heap census",
+    "safe display/preferences intentionally preserved; not generic redaction of user-authored secret text"
+  ]
+}

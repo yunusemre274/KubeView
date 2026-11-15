@@ -1,0 +1,22 @@
+[
+  {
+    "fingerprint": "artifacts/release-audit/ra-20261112/perf-panel-transition-worker/runtime/cat16-panel-transition-B-20261112T180554Z/manifest.json:generic-api-key:194",
+    "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+    "verifiedFrozenSource": "frontend/src/workbench/secretPayload.js"
+  },
+  {
+    "fingerprint": "artifacts/release-audit/ra-20261112/perf-panel-transition-worker/runtime/cat16-panel-transition-B-20261112T180554Z/manifest.json:generic-api-key:195",
+    "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+    "verifiedFrozenSource": "frontend/src/workbench/secretPayload.test.js"
+  },
+  {
+    "fingerprint": "artifacts/release-audit/ra-20261112/perf-panel-transition-worker/runtime/cat16-panel-transition-B-20261112T180554Z/summary.json:generic-api-key:195",
+    "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+    "verifiedFrozenSource": "frontend/src/workbench/secretPayload.js"
+  },
+  {
+    "fingerprint": "artifacts/release-audit/ra-20261112/perf-panel-transition-worker/runtime/cat16-panel-transition-B-20261112T180554Z/summary.json:generic-api-key:196",
+    "classification": "FALSE_POSITIVE_SOURCE_SHA256",
+    "verifiedFrozenSource": "frontend/src/workbench/secretPayload.test.js"
+  }
+]

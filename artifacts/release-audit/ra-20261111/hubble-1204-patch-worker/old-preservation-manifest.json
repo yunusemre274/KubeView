@@ -1,0 +1,17 @@
+[
+  {
+    "path": ".git/release-audit/patched-hubble-v1.20.2/hubble-v1.20.2-kubeview-patched.1",
+    "sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2",
+    "bytes": 55919698
+  },
+  {
+    "path": ".git/release-audit/patched-hubble-v1.20.2/source/cilium-hubble-b63160e/go.mod",
+    "sha256": "5c53e774a00aebdd1d74af86c3becd2c6c712fcc5e383f56eca34e64b8ac7436",
+    "bytes": 7774
+  },
+  {
+    "path": ".git/release-audit/patched-hubble-v1.20.2/source/cilium-hubble-b63160e/go.sum",
+    "sha256": "f928d7701840c1e7b8e3bbabcd785535c536e06a6901716e4052828217cb1755",
+    "bytes": 37243
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "scope": "physical profile ownership and legacy journal exclusion; synthetic-only backend validation",
+  "constructor": "Legacy StateDir lock remains first. A defer cancels lifecycle and closes physical lock if present plus legacy lock on every later constructor error. Invalid-journal test exercises post-acquisition failure and independent reacquisition of both lock files.",
+  "close": "Close cancels work and persists disposition, unlocks mutex, waits wg, then releases physical lock followed by legacy lock. Original fake operation join and focused race pass.",
+  "lockOrder": "Both flock acquisitions are nonblocking; physical-lock contention returns through constructor cleanup, releasing its already-acquired legacy lock.",
+  "alias": "OS inode identity provides exclusion for tested Home symlink alias; distinct-StateDir and separate Go-process cases reject the same Home/Profile and permit acquisition after Close.",
+  "compatibility": "Original same-StateDir rejection and restart/no-blind-retry test retained; journal remains in StateDir. No unsupported Windows/provider/driver contract added.",
+  "criticalIssuesFound": [],
+  "limits": [
+    "No actual minikube CLI/global CLI lock behavior tested.",
+    "No new worker/UI/E2E or historical pending-journal recovery acceptance.",
+    "Tests use local synthetic temp directories/fake runner/client; no credentials or real API."
+  ]
+}

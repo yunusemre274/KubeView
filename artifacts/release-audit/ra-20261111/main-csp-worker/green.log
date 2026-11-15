@@ -1,0 +1,81 @@
+=== RUN   TestProductionFrontendRoutesAndBoundary
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/harbor
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/assets/app-123.js
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/assets/missing.js
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/api/missing
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/api
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/ws
+=== RUN   TestProductionFrontendRoutesAndBoundary/POST/
+--- PASS: TestProductionFrontendRoutesAndBoundary (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/ (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/harbor (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/assets/app-123.js (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/assets/missing.js (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/api/missing (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/api (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/ws (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/POST/ (0.00s)
+=== RUN   TestCLIContextDoesNotRewriteKubeconfig
+--- PASS: TestCLIContextDoesNotRewriteKubeconfig (0.00s)
+=== RUN   TestCLIWorkspaceAndReplayBoundary
+--- PASS: TestCLIWorkspaceAndReplayBoundary (0.00s)
+=== RUN   TestCLIVersionDoesNotLoadConfigOrCreateDirectory
+KubeView development (unknown) darwin/arm64
+--- PASS: TestCLIVersionDoesNotLoadConfigOrCreateDirectory (0.00s)
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//harbor
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//harbor?next=/api/portforward/demo/
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//%68arbor
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//assets/app.js
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//assets/%61pp.js
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//index.html?script-src=unsafe-inline
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//assets/missing.js
+=== RUN   TestMainUIRestrictsScriptAndWorkerSources//harbor/%2e%2e/index.html
+--- PASS: TestMainUIRestrictsScriptAndWorkerSources (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources// (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources//harbor (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources//harbor?next=/api/portforward/demo/ (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources//%68arbor (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources//assets/app.js (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources//assets/%61pp.js (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources//index.html?script-src=unsafe-inline (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources//assets/missing.js (0.00s)
+    --- PASS: TestMainUIRestrictsScriptAndWorkerSources//harbor/%2e%2e/index.html (0.00s)
+=== RUN   TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview
+=== RUN   TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/portforward/demo/
+=== RUN   TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/portforward/demo/?next=/index.html
+=== RUN   TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/%70ortforward/demo/
+=== RUN   TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//%61pi/portforward/demo/
+=== RUN   TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/portforward/demo/%2e%2e/index.html
+=== RUN   TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/portforward/demo/%2findex.html
+--- PASS: TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview (0.00s)
+    --- PASS: TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/portforward/demo/ (0.00s)
+    --- PASS: TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/portforward/demo/?next=/index.html (0.00s)
+    --- PASS: TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/%70ortforward/demo/ (0.00s)
+    --- PASS: TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//%61pi/portforward/demo/ (0.00s)
+    --- PASS: TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/portforward/demo/%2e%2e/index.html (0.00s)
+    --- PASS: TestMainUICSPDoesNotStackOnOpaqueWorkloadPreview//api/portforward/demo/%2findex.html (0.00s)
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary//api/resources
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary//%61pi/resources
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary//api/%72esources?next=/harbor
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary//ws
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary//%77s
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary//api/missing
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary//api/portforward/demo/../
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary///api/resources
+=== RUN   TestMainUICSPAPIAndCanonicalRedirectBoundary//harbor/../api/resources
+--- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary//api/resources (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary//%61pi/resources (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary//api/%72esources?next=/harbor (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary//ws (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary//%77s (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary//api/missing (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary//api/portforward/demo/../ (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary///api/resources (0.00s)
+    --- PASS: TestMainUICSPAPIAndCanonicalRedirectBoundary//harbor/../api/resources (0.00s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend	0.493s

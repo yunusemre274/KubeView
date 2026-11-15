@@ -1,0 +1,50 @@
+{
+  "kind": "real Kubernetes + immutable HTTP gateway; not normal UI",
+  "phase": "selector-multins-overlap",
+  "runId": "qa-ws-471a793fc34f49d8",
+  "workspaceId": "a3d554b1-429c-49cd-95ec-ba578cf00275",
+  "clusterUID": "a51d8e09-b035-4571-a5b3-4f0a40401f91",
+  "gatewayBinarySHA256": "1003a43a6a808193d0d36695a4d7782fee8b754fb92df99ab0220511df1f7bf0",
+  "passedSteps": [
+    "owned_selector_multins_harbors_and_real_ready",
+    "selector_negatives_and_exact_overlap_union",
+    "multins_real_update_and_target_uid",
+    "out_of_scope_is_metadata_only_and_real_object_survives",
+    "same_uid_reentry",
+    "reconnect_generation_guard",
+    "real_uid_precondition_delete_reaches_all_overlapping_harbors"
+  ],
+  "objects": [
+    {
+      "namespace": "kvml-bc565b30-02-p1",
+      "name": "qa-ws-471a793fc34f49d8-alpha",
+      "uid": "1dc9adc3-4af4-44b0-bad4-ff30d7933d1c",
+      "cleanupGet404": true
+    },
+    {
+      "namespace": "kvml-bc565b30-02-p2",
+      "name": "qa-ws-471a793fc34f49d8-beta",
+      "uid": "c05a388b-55db-4ba0-a1da-c2cffa99d767",
+      "cleanupGet404": true
+    },
+    {
+      "namespace": "kvml-bc565b30-02-p1",
+      "name": "qa-ws-471a793fc34f49d8-denied-selector",
+      "uid": "",
+      "cleanupGet404": true
+    }
+  ],
+  "cleanup": [
+    "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0",
+    "created temporary harbor ID removed",
+    "created temporary harbor ID removed",
+    "created temporary harbor ID removed",
+    "original workspace document preserved except revision"
+  ],
+  "failed": false,
+  "temporaryHarborIds": [
+    "c9f6a992-72e6-4b44-b6b9-cfa0f12f2d69",
+    "d5f462d9-a258-4a7a-88f3-6bb8205dd135",
+    "ccca8350-0e7f-4475-a91d-29861b7fa258"
+  ]
+}

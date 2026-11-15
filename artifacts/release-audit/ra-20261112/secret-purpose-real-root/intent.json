@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-12T10:47:32.874055+00:00",
+  "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+  "ownerMarkerUID": "0cded75c-bc00-472f-b69f-39dfd43251f3",
+  "namespace": "kvrel-secret-20261112-21bddadc",
+  "namespaceOwnerLabel": "manual.kubeview.local/lab-id",
+  "labId": "kvml-d32afbf634e8",
+  "seal": "db34037d06b44bddba8b63eb7c586ec1",
+  "request": {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": {
+      "name": "kvrel-secret-20261112-21bddadc",
+      "labels": {
+        "manual.kubeview.local/lab-id": "kvml-d32afbf634e8",
+        "kubeview.io/audit-run": "ra-20261112-secret-purpose",
+        "pod-security.kubernetes.io/enforce": "restricted"
+      },
+      "annotations": {
+        "kubeview.io/audit-seal": "db34037d06b44bddba8b63eb7c586ec1"
+      }
+    }
+  },
+  "purpose": "one synthetic Secret / two restricted identities; root-owned namespace lifecycle"
+}

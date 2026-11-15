@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-11-11T19:29:12.215395+00:00",
+  "deadlineAt": "2026-11-11T19:41:12.215395+00:00",
+  "clearanceSHA256": "b2218bf3c3e67543284d477718e187aa53752d0532bbbc85e199a54c19d635e4",
+  "case": 3,
+  "oneTransactionOnly": true,
+  "noFourthAttempt": true
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "source_head": "4ec526b7ce1bc39c21b603864c9096f72eb39184",
+    "source_delta_sha256": {
+      "scripts/build-release.mjs": "507863321b72040490f72e2caccc34f67156427ce4ded536af07624071b68505",
+      "scripts/build-release.test.mjs": "f2d590ad03bf3bbb652091aaded1a36df4cff45fc713a9205e54173b6355e743"
+    },
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "scripts/build-release.test.mjs"
+    ],
+    "start_utc": "2026-11-11T12:04:24.798805+00:00",
+    "end_utc": "2026-11-11T12:04:24.927594+00:00",
+    "exit_code": 0,
+    "log": "packaging-fixture-tests-initial.log"
+  },
+  {
+    "source_head": "4ec526b7ce1bc39c21b603864c9096f72eb39184",
+    "source_delta_sha256": {
+      "scripts/build-release.mjs": "507863321b72040490f72e2caccc34f67156427ce4ded536af07624071b68505",
+      "scripts/build-release.test.mjs": "f191ecc5026e18c639c17e1f897d62c49689fc329c824daba82a165ef4e363bd"
+    },
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "scripts/build-release.test.mjs"
+    ],
+    "start_utc": "2026-11-11T12:06:39.859063+00:00",
+    "end_utc": "2026-11-11T12:06:39.987161+00:00",
+    "exit_code": 0,
+    "log": "packaging-fixture-tests.log"
+  }
+]

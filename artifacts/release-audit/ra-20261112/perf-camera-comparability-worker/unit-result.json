@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "tests": 3,
+  "durationMs": 45.435083,
+  "command": [
+    "node",
+    "--test",
+    "benchmarks/camera-contract.test.mjs"
+  ],
+  "testsRerun": false,
+  "sourceSHA256": {
+    "benchmarks/camera-contract.mjs": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7",
+    "benchmarks/camera-contract.test.mjs": "7f4fa1d650857f8c77f7b9c8089d6f8fd71ac97dab85e8a0596aa9cddb07edf9"
+  }
+}

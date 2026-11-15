@@ -1,0 +1,194 @@
+[
+  {
+    "pattern": "/",
+    "source": "backend/main.go",
+    "line": 222,
+    "registration": "main frontend selection: trusted STATIC_DIR override / embedded / development static / source-only placeholder",
+    "protected": false,
+    "activeImplementation": "frontendHandler(embedded assets); response index SHA equals bundled build receipt"
+  },
+  {
+    "pattern": "/api/actions",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.actions)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/capabilities",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.capabilities)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/connection",
+    "source": "backend/pkg/server/server.go",
+    "line": 85,
+    "registration": "s.protect(s.connection))",
+    "protected": true
+  },
+  {
+    "pattern": "/api/contexts",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.contexts)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/discovery",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.discovery)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/exec",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.exec)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/flows",
+    "source": "backend/pkg/server/provider_handlers.go",
+    "line": 63,
+    "registration": "s.protect(s.flows))",
+    "protected": true
+  },
+  {
+    "pattern": "/api/logs",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.logs)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/management",
+    "source": "backend/pkg/server/server.go",
+    "line": 86,
+    "registration": "s.protect(s.management))",
+    "protected": true
+  },
+  {
+    "pattern": "/api/metrics",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.metrics)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/openapi",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.openapi)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/portforward",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.rawPortforward)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/portforward/",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.proxyForward)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/portforwards",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.portforwards)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/providers",
+    "source": "backend/pkg/server/provider_handlers.go",
+    "line": 64,
+    "registration": "s.protect(s.providersStatus))",
+    "protected": true
+  },
+  {
+    "pattern": "/api/providers/minikube/workers",
+    "source": "backend/pkg/server/provider_handlers.go",
+    "line": 65,
+    "registration": "s.protect(s.providerWorker))",
+    "protected": true
+  },
+  {
+    "pattern": "/api/resources",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.resources)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/secrets/reveal",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.revealSecret)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/session",
+    "source": "backend/pkg/server/server.go",
+    "line": 84,
+    "registration": "s.session)",
+    "protected": false
+  },
+  {
+    "pattern": "/api/version",
+    "source": "backend/main.go",
+    "line": 204,
+    "registration": "func(w http.ResponseWriter, r *http.Request) {",
+    "protected": false
+  },
+  {
+    "pattern": "/api/workspace",
+    "source": "backend/pkg/server/server.go",
+    "line": 82,
+    "registration": "s.protect(s.workspaceHandler))",
+    "protected": true
+  },
+  {
+    "pattern": "/api/workspace/",
+    "source": "backend/pkg/server/server.go",
+    "line": 83,
+    "registration": "s.protect(s.workspaceHandler))",
+    "protected": true
+  },
+  {
+    "pattern": "/healthz",
+    "source": "backend/main.go",
+    "line": 208,
+    "registration": "func(w http.ResponseWriter, r *http.Request) {",
+    "protected": false
+  },
+  {
+    "pattern": "/ws",
+    "source": "backend/pkg/server/server.go",
+    "line": 87,
+    "registration": "Register map \u2192 s.protect(s.websocket)",
+    "protected": true
+  },
+  {
+    "pattern": "/api/replay/status",
+    "source": "backend/pkg/server/replay_source.go",
+    "line": 198,
+    "protected": true,
+    "condition": "explicit validated loopback read-only replay only",
+    "method": "GET"
+  },
+  {
+    "pattern": "/api/replay/scenario",
+    "source": "backend/pkg/server/replay_source.go",
+    "line": 208,
+    "protected": true,
+    "condition": "explicit validated loopback read-only replay only",
+    "method": "POST"
+  }
+]

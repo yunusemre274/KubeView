@@ -1,0 +1,34 @@
+{
+  "attempt": "ab-restore-restricted-cold-02",
+  "startedAt": "2026-11-09T15:22:58.467652+00:00",
+  "testType": "actual owned Kubernetes API/runner, no UI claims",
+  "sourceSHA256": {
+    "scripts/manual-lab.sh": "c6ad10b2a4497774f35a45f174a3e028c44c7f3b4fe36634a5e9d3c96f613d7a",
+    "scripts/manual_lab.py": "efa80d5ceb050ae54f552151fe12485eac36a35178b9c2bfdd0da1721f88fe8e",
+    "manual-lab/telemetry.py": "50c09c79e8cb75f514731516af6382330b1b405eaaee0bcdd072bb6e34a157f9",
+    "manual-lab/profiles.json": "2a93d43b62551511e023d9636bb557dbc4f2047f0436e067f31a85bdfdeb3699"
+  },
+  "steps": [
+    {
+      "name": "owned apps stopped and actual A2 down",
+      "pass": true,
+      "data": {
+        "apps": 0,
+        "containersStopped": 2,
+        "output": "Bu lab'ın app/container süreçleri durdu. Workspace, private config ve manifestler korundu.\n",
+        "workspacesPreserved": 2
+      },
+      "elapsedSeconds": 21.75
+    }
+  ],
+  "telemetryStarted": false,
+  "nodeStopScenarioInvoked": false,
+  "pass": false,
+  "failure": {
+    "type": "RuntimeError",
+    "message": "manual-lab.sh exit2: manual-lab: kubectl çıkış 1: error: EOF\n\n"
+  },
+  "elapsedSeconds": 122.799,
+  "globalKubeconfigUnchanged": true,
+  "sourceUnchanged": true
+}

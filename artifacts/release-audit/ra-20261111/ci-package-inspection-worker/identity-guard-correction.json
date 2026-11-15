@@ -1,0 +1,13 @@
+{
+  "initialGuard": "STOP: declared merge SHA differed from task PR-head label",
+  "rootVerifiedMergeCommit": "5373657169e8bf332940fd2366022925f48eb85c",
+  "rootVerifiedParents": [
+    "bed7ad9b463129bb6c120365a67fede7091bed46",
+    "3bdb7c0c41eff0b45aec169fef89ff6b99f9db8c"
+  ],
+  "rootVerifiedIdenticalFullTree": "2112579043ca1325013f7b5bac6b95fc7d0d3164",
+  "rootReportedDiffEmpty": true,
+  "disposition": "Resolved by parent exact Git object/tree proof: PR merge checkout, not equality of commit SHAs. Parent owns canonical proof.",
+  "markdownInputHashDifferences": "Expected source-vs-shipped distinction: build-release.mjs:116 rewrites relative Markdown links using exact package commit. Raw mismatch rows retained.",
+  "packagerSourceSHA256": "af573e3eaa34fc420f9310b0718a78b4e2eee99305e2852c0d623ac4e39e7452"
+}

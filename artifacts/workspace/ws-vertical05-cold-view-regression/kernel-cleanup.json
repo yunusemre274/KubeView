@@ -1,0 +1,10 @@
+{
+  "observation": "After bounded frontend cold-reload helper closed its browser/context; owned gateway process/port only",
+  "pid": 47579,
+  "port": 19807,
+  "binarySHA256": "2ba3e80a3b6ef604780f3db76087bee066784ae29b81056b663eaa91c645e080",
+  "establishedTCPConnections": 0,
+  "logOpened": 3,
+  "logClosed": 3,
+  "limits": "One kernel TCP snapshot and gateway log counters; not retained heap, geometry or every websocket event callback proof."
+}

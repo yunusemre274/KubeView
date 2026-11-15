@@ -1,0 +1,17 @@
+{
+  "dataSource": "UNIT only; calls rejected before network/sleep",
+  "cases": [
+    {
+      "case": "all-requests-exhausted",
+      "passed": true,
+      "countUnchanged": true
+    },
+    {
+      "case": "startup-deadline-expired",
+      "passed": true,
+      "countUnchanged": true
+    }
+  ],
+  "sourceSHA256": "d6446cb768d2d66c9a4cabea75647f982249335156881fb2b1c22ff478c7d83d",
+  "at": "2026-11-12T17:08:30.331818+00:00"
+}

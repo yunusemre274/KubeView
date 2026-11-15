@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-15T09:33:54.423143+00:00",
+  "auditHEAD": "2d5aced373b609aa012a7a4f80ed9dfe0410e29f",
+  "decision": "SOURCE_MAP_CONTENT_AND_IDENTITIES_VERIFIED_NOT_RUNTIME_ACCEPTANCE",
+  "workspaceSources": 30,
+  "hostSources": 44,
+  "evidenceFilesHashChecked": 10,
+  "historicalReportHashesChecked": 10,
+  "initialRootVerifierError": "KeyError actualSHA256 on explicitly named currentSHA256 companion-row schema; no test/product change; corrected exact-schema hash recheck only",
+  "workerTimeBudgetPassed": false,
+  "originalWorkerSeconds": [
+    343.82304787635803,
+    340.0943
+  ],
+  "sourceClarifications": [
+    "broker key contains no selector; unfiltered share is per credentialGeneration+connection+GVR+namespace; perconsumer membership before publish",
+    "clientmap128 is resetthreshold, not allinstant retainedsize proof"
+  ],
+  "newDynamicTests": 0,
+  "scriptCheckSeconds": 0.00425066599927959,
+  "limits": "Root report/code reading time not measured by this script; no performance/wholeworkertimeclaim. Historical source mismatch is preserved, not globallyPASS."
+}

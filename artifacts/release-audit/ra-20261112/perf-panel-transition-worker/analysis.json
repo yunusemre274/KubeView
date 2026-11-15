@@ -1,0 +1,64 @@
+{
+  "verdict": "PASS_NORMAL_NODE_PANEL_TRANSITION_ONLY",
+  "visualReview": {
+    "performed": true,
+    "method": "Opened all three saved PNGs via view_image",
+    "files": [
+      "artifacts/release-audit/ra-20261112/perf-panel-transition-worker/runtime/cat16-panel-transition-B-20261112T180554Z/01-open.png",
+      "artifacts/release-audit/ra-20261112/perf-panel-transition-worker/runtime/cat16-panel-transition-B-20261112T180554Z/02-closed.png",
+      "artifacts/release-audit/ra-20261112/perf-panel-transition-worker/runtime/cat16-panel-transition-B-20261112T180554Z/03-reopened.png"
+    ],
+    "observation": "Open and reopened Node0 overview readable; closed preserves worker-001 / Node \u00b7 Haz\u0131r label and blue selection outline. Additional anomaly labels become visible where panel occlusion is removed. No claim of pixel identity."
+  },
+  "uiDeadlineMs": 10000,
+  "uiElapsedMs": 772,
+  "appBrowserCleanupLimitSeconds": 120,
+  "appBrowserCleanupElapsedSeconds": 33.871086835861206,
+  "panelStateSequence": [
+    true,
+    false,
+    true
+  ],
+  "sameCanvasAllStages": true,
+  "sameOutlineUUIDs": true,
+  "sameNodeUID": true,
+  "selectedLabelAllStages": true,
+  "cameraAllFieldsStrictEqual": true,
+  "fleetStrictEqual": true,
+  "fleetStateCount": 8,
+  "projectedVisibleUIDsEqual": true,
+  "projectedVisibleUIDs": [
+    "node-0",
+    "node-1",
+    "node-2",
+    "node-3",
+    "node-4",
+    "node-5",
+    "node-6",
+    "node-7"
+  ],
+  "canonicalNodes": 20,
+  "canonicalPods": 300,
+  "visibleNodes": 8,
+  "visiblePods": 120,
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+  "canonicalReconciliation": {
+    "initialSHA256": "a8960f86f0c7d28e9d8d80701e816bf62701181f551396396dfebb285ebbb237",
+    "upstreamSHA256": "a8960f86f0c7d28e9d8d80701e816bf62701181f551396396dfebb285ebbb237",
+    "clientSHA256": "a8960f86f0c7d28e9d8d80701e816bf62701181f551396396dfebb285ebbb237",
+    "initialEqualsUpstream": true,
+    "clientEqualsUpstream": true,
+    "eventCount": 0
+  },
+  "sourceUnchanged": true,
+  "capturedIdentitiesAbsent": true,
+  "capturedIdentityCount": 19,
+  "port5192Free": true,
+  "noCPUWindow": true,
+  "noRealKubernetes": true,
+  "frozenSourceMatches": {
+    "frontend/src/App.jsx": true,
+    "frontend/src/harbor/HarborScene.jsx": true,
+    "frontend/src/harbor/assets.jsx": true
+  }
+}

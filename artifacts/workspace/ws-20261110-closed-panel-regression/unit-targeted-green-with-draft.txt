@@ -1,0 +1,23 @@
+✔ same-UID stale/live GET keeps all dirty values and invalidates the previous dry-run (6.63775ms)
+✔ revalidation keeps invalid YAML and the reviewed RV until explicit user review (8.535625ms)
+✔ different UID or source never adopts the old target's dirty draft (1.815ms)
+✔ dirty Secret reveal revalidates before reuse, fails closed on error, and clears on close (1.953292ms)
+✔ same harbor safe memory draft resumes dirty values and fresh GET revalidates its original UID (1.34225ms)
+✔ cluster-scoped generic PV deletion requires explicit impact acknowledgement and sends its header (0.964459ms)
+✔ closed log panel stays closed across warm harbor return while its UID highlight survives (3.166875ms)
+✔ closed log panel stays closed after a returning harbor's first fresh snapshot (0.716541ms)
+✔ cached facility remains open when a returning selection resolves after its snapshot (0.498084ms)
+✔ an open safe dirty form and resource panel still restore together on harbor return (0.373959ms)
+✔ cold persisted exact UID restores its panel once after the first current snapshot arrives (0.516625ms)
+✔ cold restore never follows a same-name replacement or overrides a newer user panel (0.295ms)
+✔ empty onboarding has no last-known-view stale label, while a disconnected observed harbor does (2.2855ms)
+✔ resource tab handlers report normal tab clicks and container log routes to the parent (2.726875ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 447.45
+

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-18-33-199Z-cdf37bd2",
+  "startedAt": "2026-11-09T08:18:33.199Z",
+  "tests": [
+    {
+      "title": "V11-16 finder mouse versus keyboard trigger focus restoration probe",
+      "project": "webkit",
+      "status": "PASS",
+      "durationMs": 6831,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-18-33-395Z-97e94654/v11-focus-probe-V11-16-fin-d95b4-ger-focus-restoration-probe-webkit/attachments/v11-evidence-46eeb2405385c2da5f8d281c4f40c1206b8a6d37.json",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "title": "V11-16 normal finder/form keyboard, viewport and reduced-motion preserve the single full canvas",
+      "project": "webkit",
+      "status": "PASS",
+      "durationMs": 7037,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-18-33-395Z-97e94654/v11-real-cluster-V11-16-no-4c731-erve-the-single-full-canvas-webkit/attachments/v11-evidence-81b0c0439adf73f1f4b4d8562d8015e3adef4732.json",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "title": "V11-05 empty scope and unreachable context stay distinct from explicitly selected Demo",
+      "project": "webkit",
+      "status": "PASS",
+      "durationMs": 7235,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-18-33-395Z-97e94654/v11-scope-security-V11-05--73384-om-explicitly-selected-Demo-webkit/attachments/v11-evidence-a67b527c97c2b4871f173997df1a9070b01024c6.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 3,
+  "finishedAt": "2026-11-09T08:18:54.667Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 3,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-18-33-199Z-cdf37bd2.json"
+}

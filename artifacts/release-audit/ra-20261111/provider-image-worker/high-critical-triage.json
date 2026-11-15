@@ -1,0 +1,1250 @@
+[
+  {
+    "id": "CVE-2026-109518",
+    "scanner_severity": "HIGH",
+    "title": "apt: apt: Remote code execution via hard link reuse during package download retries",
+    "primary_source": "https://ubuntu.com/security/notices/USN-8996-1",
+    "prerequisite_assessment": "APT package-download retry and an on-path attacker, not ordinary Cilium network traffic.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "quay.io/cilium/cilium@sha256:2939231d0d3e3ebddcd80fffa168b7ddcc78fdf0dc864d1c8c126ff523c54f01 (ubuntu 26.04)",
+        "pkg": "apt",
+        "installed": "3.2.0",
+        "fixed": "3.2.1ubuntu0.1",
+        "severity_source": "ubuntu"
+      },
+      {
+        "image": "cilium",
+        "target": "quay.io/cilium/cilium@sha256:2939231d0d3e3ebddcd80fffa168b7ddcc78fdf0dc864d1c8c126ff523c54f01 (ubuntu 26.04)",
+        "pkg": "libapt-pkg7.0",
+        "installed": "3.2.0",
+        "fixed": "3.2.1ubuntu0.1",
+        "severity_source": "ubuntu"
+      },
+      {
+        "image": "cilium-envoy",
+        "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+        "pkg": "apt",
+        "installed": "2.8.3",
+        "fixed": "2.8.4ubuntu0.1",
+        "severity_source": "ubuntu"
+      },
+      {
+        "image": "cilium-envoy",
+        "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+        "pkg": "libapt-pkg6.0t64",
+        "installed": "2.8.3",
+        "fixed": "2.8.4ubuntu0.1",
+        "severity_source": "ubuntu"
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-111943",
+    "scanner_severity": "HIGH",
+    "title": "crypto/x509: golang: crypto/x509: Man-in-the-middle attacks via untrusted intermediate certificates",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6809",
+    "prerequisite_assessment": "Go x509.Verify with compromised intermediates in affected trust-store circumstances; no malicious-chain acceptance was tested.",
+    "component_matches": [
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/hubble-relay",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "cni/loopback",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "opt/cni/bin/cilium-cni",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-bugtool",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health-responder",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-mount",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-sysctlfix",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/hubble",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/sbin/iptables-wrapper",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.10, 1.27.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-116587",
+    "scanner_severity": "HIGH",
+    "title": "github.com/go-jose/go-jose: go-jose: Denial of Service via crafted RSA parameters in JWKs",
+    "primary_source": "https://github.com/go-jose/go-jose/security/advisories/GHSA-mgcc-cww5-fp2q",
+    "prerequisite_assessment": "Attacker-controlled large RSA private JWK parsing; operator parser reachability is unverified.",
+    "component_matches": [
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "github.com/go-jose/go-jose/v4",
+        "installed": "v4.1.4",
+        "fixed": "4.1.6",
+        "severity_source": "ghsa"
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-33818",
+    "scanner_severity": "HIGH",
+    "title": "encoding/asn1: golang: Go encoding/asn1: Denial of Service via excessive recursion in Unmarshal",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-5972",
+    "prerequisite_assessment": "Older stdlib finding in bundled pebble; vulnerable function/input and actual helper execution remain unverified. See exact advisory imports and component row.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.25.13, 1.26.6, 1.27.0-rc.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-39821",
+    "scanner_severity": "HIGH",
+    "title": "golang.org/x/net/idna: golang: net/http: golang.org/x/net/idna: Privilege escalation via incorrect Punycode label processing",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-5026",
+    "prerequisite_assessment": "Older stdlib finding in bundled pebble; vulnerable function/input and actual helper execution remain unverified. See exact advisory imports and component row.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.25.13, 1.26.6, 1.27.0-rc.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-46600",
+    "scanner_severity": "HIGH",
+    "title": "golang.org/x/net/dns/dnsmessage: golang.org/x/net/dns/dnsmessage: Denial of Service via invalid DNS record parsing",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-5942",
+    "prerequisite_assessment": "Older stdlib finding in bundled pebble; vulnerable function/input and actual helper execution remain unverified. See exact advisory imports and component row.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.26.6, 1.27.0-rc.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-56851",
+    "scanner_severity": "HIGH",
+    "title": "golang.org/x/text: golang.org/x/text: Denial of Service via out-of-bounds slice error in Nickname profile",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6629",
+    "prerequisite_assessment": "PRECIS Nickname transformation of crafted input with a short destination buffer; profile reachability is unverified.",
+    "component_matches": [
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/hubble-relay",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "opt/cni/bin/cilium-cni",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-bugtool",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-mount",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/hubble",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "golang.org/x/text",
+        "installed": "v0.39.0",
+        "fixed": "0.41.0",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-56853",
+    "scanner_severity": "HIGH",
+    "title": "net/http: golang: Go net/http: Unencrypted HTTP/2 connections vulnerable to Denial of Service",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6089",
+    "prerequisite_assessment": "Older stdlib finding in bundled pebble; vulnerable function/input and actual helper execution remain unverified. See exact advisory imports and component row.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.25.13, 1.26.6, 1.27.0-rc.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-56854",
+    "scanner_severity": "HIGH",
+    "title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Authentication bypass due to unenforced source-address restrictions",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6303",
+    "prerequisite_assessment": "SSH server certificate authentication relies on source-address restrictions; no Cilium SSH-server entrypoint was demonstrated.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "golang.org/x/crypto",
+        "installed": "v0.53.0",
+        "fixed": "0.55.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "golang.org/x/crypto",
+        "installed": "v0.53.0",
+        "fixed": "0.55.0",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "golang.org/x/crypto",
+        "installed": "v0.53.0",
+        "fixed": "0.55.0",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-56858",
+    "scanner_severity": "HIGH",
+    "title": "html/template: golang: Go html/template: Cross-Site Scripting via pathological input",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6091",
+    "prerequisite_assessment": "Older stdlib finding in bundled pebble; vulnerable function/input and actual helper execution remain unverified. See exact advisory imports and component row.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.25.13, 1.26.6, 1.27.0-rc.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-56859",
+    "scanner_severity": "HIGH",
+    "title": "encoding/xml: golang: Go: Denial of Service via XML decoding recursion depth issue",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6088",
+    "prerequisite_assessment": "Older stdlib finding in bundled pebble; vulnerable function/input and actual helper execution remain unverified. See exact advisory imports and component row.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.25.13, 1.26.6, 1.27.0-rc.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-56860",
+    "scanner_severity": "HIGH",
+    "title": "net/url: golang: golang net/url: Denial of Service from quadratic complexity in path resolution",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6218",
+    "prerequisite_assessment": "Older stdlib finding in bundled pebble; vulnerable function/input and actual helper execution remain unverified. See exact advisory imports and component row.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.25.13, 1.26.6, 1.27.0-rc.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-56862",
+    "scanner_severity": "HIGH",
+    "title": "crypto/tls: golang: Golang crypto/tls: Denial of Service via indefinite KeyUpdate messages",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6090",
+    "prerequisite_assessment": "Older stdlib finding in bundled pebble; vulnerable function/input and actual helper execution remain unverified. See exact advisory imports and component row.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.25.13, 1.26.6, 1.27.0-rc.3",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-63209",
+    "scanner_severity": "HIGH",
+    "title": "github.com/klauspost/compress: klauspost/compress: Denial of Service via integer overflow in dictionary processing",
+    "primary_source": "https://github.com/klauspost/compress/security/advisories/GHSA-259r-337f-4rfw",
+    "prerequisite_assessment": "Untrusted S2 dictionary through NewDict followed by Dict.Encode; generic compression is insufficient evidence.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "github.com/klauspost/compress",
+        "installed": "v1.18.6",
+        "fixed": "1.18.7",
+        "severity_source": "ghsa"
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "github.com/klauspost/compress",
+        "installed": "v1.18.6",
+        "fixed": "1.18.7",
+        "severity_source": "ghsa"
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "github.com/klauspost/compress",
+        "installed": "v1.18.6",
+        "fixed": "1.18.7",
+        "severity_source": "ghsa"
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-78661",
+    "scanner_severity": "HIGH",
+    "title": "golang.org/x/net/html: golang.org/x/net/html: Denial of Service via crafted HTML input",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6860",
+    "prerequisite_assessment": "Crafted input reaches x/net/html text coalescing; protobuf flow handling is not itself HTML parsing.",
+    "component_matches": [
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/hubble-relay",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "opt/cni/bin/cilium-cni",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-bugtool",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-mount",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/hubble",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.62.0",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-78667",
+    "scanner_severity": "HIGH",
+    "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6609",
+    "prerequisite_assessment": "net/http FileServer/ServeContent/ServeFile with many Range values; reference relay metrics uses promhttp rather than an identified file-serving route.",
+    "component_matches": [
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/hubble-relay",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "cni/loopback",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "opt/cni/bin/cilium-cni",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-bugtool",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health-responder",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-mount",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-sysctlfix",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/hubble",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/sbin/iptables-wrapper",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-78669",
+    "scanner_severity": "HIGH",
+    "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6611",
+    "prerequisite_assessment": "HTTP/2 peer sends many small SETTINGS window updates across many streams; relay gRPC is a relevant transport, but exact vulnerable calls are unverified.",
+    "component_matches": [
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/hubble-relay",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/hubble-relay",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "cni/loopback",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "opt/cni/bin/cilium-cni",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "opt/cni/bin/cilium-cni",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-bugtool",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-bugtool",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health-responder",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-mount",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-mount",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-sysctlfix",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/hubble",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/hubble",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/sbin/iptables-wrapper",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "golang.org/x/net",
+        "installed": "v0.56.0",
+        "fixed": "0.60.0",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-84445",
+    "scanner_severity": "HIGH",
+    "title": "google.golang.org/grpc: gRPC-Go: Denial of Service via malformed RPC requests",
+    "primary_source": "https://github.com/grpc/grpc-go/security/advisories/GHSA-2v4p-qf9q-27wj",
+    "prerequisite_assessment": "gRPC xds.NewGRPCServer routing after a transport connection, with missing authority/Host. Reference relay constructor uses plain grpc.NewServer.",
+    "component_matches": [
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/hubble-relay",
+        "pkg": "google.golang.org/grpc",
+        "installed": "v1.83.1",
+        "fixed": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+        "severity_source": "ghsa"
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "google.golang.org/grpc",
+        "installed": "v1.83.1",
+        "fixed": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+        "severity_source": "ghsa"
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "google.golang.org/grpc",
+        "installed": "v1.83.1",
+        "fixed": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+        "severity_source": "ghsa"
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/hubble",
+        "pkg": "google.golang.org/grpc",
+        "installed": "v1.83.1",
+        "fixed": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+        "severity_source": "ghsa"
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "google.golang.org/grpc",
+        "installed": "v1.83.1",
+        "fixed": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+        "severity_source": "ghsa"
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-84782",
+    "scanner_severity": "HIGH",
+    "title": "openssl: compat-openssl: openssl: Information disclosure via DTLS handshake retransmission",
+    "primary_source": "https://openssl-library.org/news/secadv/20260929.txt",
+    "prerequisite_assessment": "OpenSSL DTLS handshake retransmission while a write is suspended; TCP Go TLS does not itself establish that path.",
+    "component_matches": [
+      {
+        "image": "cilium",
+        "target": "quay.io/cilium/cilium@sha256:2939231d0d3e3ebddcd80fffa168b7ddcc78fdf0dc864d1c8c126ff523c54f01 (ubuntu 26.04)",
+        "pkg": "libssl3t64",
+        "installed": "3.5.5-1ubuntu3.5",
+        "fixed": "3.5.5-1ubuntu3.6",
+        "severity_source": "ubuntu"
+      },
+      {
+        "image": "cilium",
+        "target": "quay.io/cilium/cilium@sha256:2939231d0d3e3ebddcd80fffa168b7ddcc78fdf0dc864d1c8c126ff523c54f01 (ubuntu 26.04)",
+        "pkg": "openssl",
+        "installed": "3.5.5-1ubuntu3.5",
+        "fixed": "3.5.5-1ubuntu3.6",
+        "severity_source": "ubuntu"
+      },
+      {
+        "image": "cilium",
+        "target": "quay.io/cilium/cilium@sha256:2939231d0d3e3ebddcd80fffa168b7ddcc78fdf0dc864d1c8c126ff523c54f01 (ubuntu 26.04)",
+        "pkg": "openssl-provider-legacy",
+        "installed": "3.5.5-1ubuntu3.5",
+        "fixed": "3.5.5-1ubuntu3.6",
+        "severity_source": "ubuntu"
+      },
+      {
+        "image": "cilium-envoy",
+        "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+        "pkg": "libssl3t64",
+        "installed": "3.0.13-0ubuntu3.15",
+        "fixed": "3.0.13-0ubuntu3.16",
+        "severity_source": "ubuntu"
+      },
+      {
+        "image": "cilium-envoy",
+        "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+        "pkg": "openssl",
+        "installed": "3.0.13-0ubuntu3.15",
+        "fixed": "3.0.13-0ubuntu3.16",
+        "severity_source": "ubuntu"
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  },
+  {
+    "id": "CVE-2026-97031",
+    "scanner_severity": "HIGH",
+    "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+    "primary_source": "https://pkg.go.dev/vuln/GO-2026-6607",
+    "prerequisite_assessment": "Go TLS server processes malformed ECH extension references; ECH configuration was not established.",
+    "component_matches": [
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "hubble-relay",
+        "target": "usr/bin/hubble-relay",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "cni/loopback",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "opt/cni/bin/cilium-cni",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-agent",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-bugtool",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-dbg",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-envoy-bootstrap-locality",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-health-responder",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-mount",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/cilium-sysctlfix",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/hubble",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/bin/pebble",
+        "pkg": "stdlib",
+        "installed": "v1.26.5",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "cilium",
+        "target": "usr/sbin/iptables-wrapper",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/cilium-operator-generic",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      },
+      {
+        "image": "operator-generic",
+        "target": "usr/bin/gops",
+        "pkg": "stdlib",
+        "installed": "v1.26.8",
+        "fixed": "1.26.9, 1.27.2",
+        "severity_source": null
+      }
+    ],
+    "status": "OPEN_PACKAGE_FINDING_REACHABILITY_UNVERIFIED"
+  }
+]

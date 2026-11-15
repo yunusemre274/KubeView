@@ -1,0 +1,16 @@
+{
+  "attempt": "ab-restore-kubelet-fix-03",
+  "sourceSHA256": "03322d064924aeaf0d2b140d36f8985f321a4f23f78492b07d3e6df0cb782215",
+  "priorFailure": "ab-restore-restricted-cold-02.json",
+  "steps": [],
+  "fullMinikubeStartUsed": false,
+  "systemctlEnableUsed": false,
+  "CNIChanged": false,
+  "pass": false,
+  "failure": {
+    "type": "RuntimeError",
+    "message": "manual-lab: kubectl çıkış 1: error: EOF\n\n"
+  },
+  "elapsedSeconds": 101.125,
+  "sourceUnchanged": true
+}

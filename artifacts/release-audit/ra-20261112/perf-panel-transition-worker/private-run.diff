@@ -1,0 +1,117 @@
+--- repository/run.mjs
++++ private/run.mjs
+@@ -20,19 +20,19 @@
+   signature,
+   VERSION,
+   PROFILES,
+-} from "./fixtures.mjs";
+-import { REPAIR_SCENARIOS, REPAIR_SCENARIO_VERSION, repairScenario, readRepairSnapshot, assessRepairRun, recordRepairPanelCycle } from "./repair-scenarios.mjs";
+-import { installProbe, installFrameMarks } from "./probe.mjs";
+-import { installGPUProbe } from "./gpu-probe.mjs";
+-import { installBufferProbe } from './buffer-probe.mjs';
+-import { installLifecycleProbe } from "./lifecycle-probe.mjs";
+-import { readSceneInventory } from "./scene-inventory.mjs";
+-import { buildLockIdentity } from './build-lock.mjs';
+-import { workspaceSoakTransition } from './workspace-cycle.mjs';
+-import { validatedCameraFov } from './camera-contract.mjs';
+-import { parseProcessRows, collectScopedProcesses } from './process-identity.mjs';
+-import { summarize, distribution, cpuSeconds, loadBands, measurementWindow } from "./metrics.mjs";
+-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
++} from "file:///Users/yunusemre/Desktop/KubeView/benchmarks/fixtures.mjs";
++import { REPAIR_SCENARIOS, REPAIR_SCENARIO_VERSION, repairScenario, readRepairSnapshot, assessRepairRun, recordRepairPanelCycle } from "file:///Users/yunusemre/Desktop/KubeView/benchmarks/repair-scenarios.mjs";
++import { installProbe, installFrameMarks } from "file:///Users/yunusemre/Desktop/KubeView/benchmarks/probe.mjs";
++import { installGPUProbe } from "file:///Users/yunusemre/Desktop/KubeView/benchmarks/gpu-probe.mjs";
++import { installBufferProbe } from 'file:///Users/yunusemre/Desktop/KubeView/benchmarks/buffer-probe.mjs';
++import { installLifecycleProbe } from "file:///Users/yunusemre/Desktop/KubeView/benchmarks/lifecycle-probe.mjs";
++import { readSceneInventory } from "file:///Users/yunusemre/Desktop/KubeView/benchmarks/scene-inventory.mjs";
++import { buildLockIdentity } from 'file:///Users/yunusemre/Desktop/KubeView/benchmarks/build-lock.mjs';
++import { workspaceSoakTransition } from 'file:///Users/yunusemre/Desktop/KubeView/benchmarks/workspace-cycle.mjs';
++import { validatedCameraFov } from 'file:///Users/yunusemre/Desktop/KubeView/benchmarks/camera-contract.mjs';
++import { parseProcessRows, collectScopedProcesses } from 'file:///Users/yunusemre/Desktop/KubeView/benchmarks/process-identity.mjs';
++import { summarize, distribution, cpuSeconds, loadBands, measurementWindow } from "file:///Users/yunusemre/Desktop/KubeView/benchmarks/metrics.mjs";
++const root = "/Users/yunusemre/Desktop/KubeView";
+ const require = createRequire(path.join(root, "frontend/package.json"));
+ const { chromium, webkit } = require("playwright");
+ const exec = promisify(execFile),
+@@ -128,7 +128,7 @@
+   "id",
+   `${new Date().toISOString().replace(/[:.]/g, "-")}-${phase}-${browserName}`,
+ );
+-const out = path.join(root, "benchmarks/results", id),
++const out = path.join("/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261112/perf-panel-transition-worker", "runtime", id),
+   buildTag = option("build-tag", phase),
+   build = path.join(root, "benchmarks/.build", buildTag);
+ if (!/^[\w.-]+$/.test(buildTag)) throw new Error("Invalid build tag");
+@@ -510,7 +510,7 @@
+     child.kill("SIGTERM");
+     await new Promise((r) => child.once("exit", r));
+   }
+-  const file = path.join(root, `benchmarks/.build/fixture-${profile}.json`);
++  const file = path.join("/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-panel-transition-worker", `fixture-${profile}.json`);
+   await writeFile(file, JSON.stringify(fixture(profile)));
+   child = spawn(
+     backendFile,
+@@ -1044,13 +1044,58 @@
+       path: path.join(out, `${profile}-${scenario}-${repeat}-start.png`),
+     });
+   if (comparabilitySmoke) {
+-    const before = await inventory();
+-    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+-    const after = await inventory();
+-    report.runs.push({profile, scenario, repeat, comparabilityOnly: true, before, after});
+-    await save();
++    const need = (ok, reason) => { if (!ok) throw Error(reason); };
++    const uiStart = Date.now();
++    const uiGuard = setTimeout(() => { report.errors.push('Active UI 10 second guard'); browser?.close().catch(()=>{}); },10000);
++    const stages = [];
++    try {
++      await setInputGuard(false);
++      await page.evaluate(() => { const c=document.querySelector('canvas'); globalThis.__KV_TRANSITION_CANVAS__=c; c.dataset.panelTransitionIdentity='owned-node0-transition'; c.style.pointerEvents='auto'; });
++      const snapshot = async name => {
++        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(()=>requestAnimationFrame(resolve))));
++        const inv = await inventory();
++        const selected = await page.evaluate(() => {
++          const c=document.querySelector('canvas'),node=c.__harbor.scene.getObjectByName('node:node-0');
++          const outlines=[];node?.traverse(o=>{ if(o.isLineSegments && o.material?.color?.getHexString()==='4a8bd8')outlines.push({uuid:o.uuid,visible:o.visible,color:o.material.color.getHexString()}); });
++          const label=[...document.querySelectorAll('span[title="worker-001"]')].find(e=>e.parentElement?.textContent.includes('Node'))?.parentElement;
++          return {sameCanvas:c===globalThis.__KV_TRANSITION_CANVAS__ && c.isSameNode(globalThis.__KV_TRANSITION_CANVAS__),marker:c.dataset.panelTransitionIdentity,label:label?.textContent?.replace(/\s+/g,' ').trim(),labelBorder:label?getComputedStyle(label).borderColor:null,nodeTargetUID:node?.userData.harborTarget.uid,outlines};
++        });
++        stages.push({name,inventory:inv,selected});
++        await writeFile(path.join(out,'transition-stages.json'),JSON.stringify({uiElapsedMs:Date.now()-uiStart,stages},null,2));
++        await page.screenshot({path:path.join(out,name+'.png'),timeout:2000});
++        need(inv.renderer?.includes('Metal') && !/SwiftShader|software/i.test(inv.renderer),'Actual Metal required');
++        need(inv.stats.lifecycle.canonicalNodes===20 && inv.stats.lifecycle.canonicalPods===300 && inv.stats.lifecycle.visibleNodes===8 && inv.stats.lifecycle.visiblePods===120,'Canonical or visible workload differs');
++        need(selected.sameCanvas && selected.marker==='owned-node0-transition','Canvas identity changed');
++        need(selected.nodeTargetUID==='node-0' && selected.outlines.length>0 && selected.outlines.every(x=>x.visible),'Node0 selected outline missing');
++        need(selected.label?.includes('worker-001') && selected.label.includes('Node · Hazır') && selected.labelBorder==='rgb(75, 137, 209)','Selected Node label differs');
++        return stages.at(-1);
++      };
++      const before=await snapshot('01-open');
++      need(before.inventory.panel.open && before.inventory.panel.uid==='node-0' && before.inventory.panel.tab==='Özet','Initial Node0 overview missing');
++      await closePanel();
++      const closed=await snapshot('02-closed');
++      need(!closed.inventory.panel.open,'Panel did not close');
++      const reopenedTarget=await pick({type:'node',uid:'node-0'});
++      await page.mouse.move(8,8);
++      const reopened=await snapshot('03-reopened');
++      need(reopenedTarget.uid==='node-0' && reopened.inventory.panel.open && reopened.inventory.panel.uid==='node-0' && reopened.inventory.panel.tab==='Özet','Native Node0 reopen missing');
++      const round=value=>JSON.stringify(value,(_,v)=>typeof v==='number'?Number(v.toFixed(9)):v);
++      need(stages.every(s=>round(s.inventory.camera)===round(before.inventory.camera)),'Close/reopen camera changed before any reset');
++      need(stages.every(s=>JSON.stringify(s.selected.outlines)===JSON.stringify(before.selected.outlines)),'Selected outline identity changed');
++      need(stages.every(s=>round(s.inventory.fleet)===round(before.inventory.fleet)),'UID-keyed fleet pose changed');
++      need(stages.every(s=>JSON.stringify(s.inventory.projectedVisibleNodeUIDs)===JSON.stringify(before.inventory.projectedVisibleNodeUIDs)),'Visible UID scope changed');
++      need(reopened.inventory.panel.summaryContent===before.inventory.panel.summaryContent,'Overview content changed');
++      const upstream=await state(), client=Object.values(await page.evaluate(()=>globalThis.__KUBEVIEW_BENCHMARK__.resources));
++      const initialSignature=JSON.stringify(signature(initialResources)), upstreamSignature=JSON.stringify(signature(upstream.resources)), clientSignature=JSON.stringify(signature(client));
++      const canonical={initialSHA256:hash(initialSignature),upstreamSHA256:hash(upstreamSignature),clientSHA256:hash(clientSignature),initialEqualsUpstream:initialSignature===upstreamSignature,clientEqualsUpstream:clientSignature===upstreamSignature,eventCount:upstream.samples.length};
++      await writeFile(path.join(out,'canonical-reconciliation.json'),JSON.stringify(canonical,null,2));
++      need(canonical.initialEqualsUpstream && canonical.clientEqualsUpstream && canonical.eventCount===0,'No-event canonical reconciliation failed');
++      report.runs.push({canonical,profile,scenario,repeat,comparabilityOnly:true,purpose:'NORMAL_PANEL_TRANSITION_NO_PERFORMANCE_WINDOW',before:before.inventory,after:reopened.inventory,transition:{valid:true,uiElapsedMs:Date.now()-uiStart,reopenedTargetUID:reopenedTarget.uid,stages}});
++      await save();
++    } finally { clearTimeout(uiGuard); }
+     return;
+   }
++
+   const repairBefore = repairPlan ? await page.evaluate(readRepairSnapshot) : null;
+   const repairObservations = [], repairPanelCycles = [], workspaceCycles = [];
+   const before = await inventory(),

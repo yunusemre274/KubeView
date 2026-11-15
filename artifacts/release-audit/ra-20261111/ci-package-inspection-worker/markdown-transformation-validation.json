@@ -1,0 +1,74 @@
+[
+  {
+    "target": "darwin-arm64",
+    "path": "MANUAL_TEST_GUIDE.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "README.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "docs/V11_ACCEPTANCE_REPORT.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "docs/WORKSPACE_ACCEPTANCE.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "docs/RELEASE_NOTES_v1.1.0.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "darwin-arm64",
+    "path": "docs/SECURITY.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "linux-amd64",
+    "path": "MANUAL_TEST_GUIDE.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "linux-amd64",
+    "path": "README.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "linux-amd64",
+    "path": "docs/V11_ACCEPTANCE_REPORT.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "linux-amd64",
+    "path": "docs/WORKSPACE_ACCEPTANCE.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "linux-amd64",
+    "path": "docs/RELEASE_NOTES_v1.1.0.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  },
+  {
+    "target": "linux-amd64",
+    "path": "docs/SECURITY.md",
+    "exactMergeSourceInputMatches": true,
+    "documentedLinkRewriteMatchesShippedBytes": true
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "type": "real normal binary; explicit empty kubeconfig; no replay",
+  "at": "2026-11-11T12:06:00.513371+00:00",
+  "exitCode": 1,
+  "expectedTokenGuard": true,
+  "remainingListener": false,
+  "result": "PASS",
+  "firstDriverError": "language-specific assertion; preserved separately"
+}

@@ -1,0 +1,32 @@
+import {spawn,execFileSync} from 'node:child_process';
+import {writeFile} from 'node:fs/promises';
+import {setTimeout as wait} from 'node:timers/promises';
+import {parseProcessRows,processIdentity} from '../../../../../../benchmarks/process-identity.mjs';
+const out=new URL('./native-child-probe.json',import.meta.url),started=Date.now();
+const result={startedAt:new Date().toISOString(),status:'FAIL',processesStarted:1,scope:'One owned idle Node child identity probe; no app/browser/build/lab/performance comparison'};
+let child;
+function sample(pid){
+ try{
+  const raw=execFileSync('/bin/ps',['-p',String(pid),'-o','pid=,ppid=,lstart=,time=,rss=,comm='],{encoding:'utf8',env:{...process.env,LC_ALL:'C'},stdio:['ignore','pipe','pipe']});
+  return parseProcessRows(raw,process.platform)[0];
+ }catch{return null;}
+}
+try{
+ child=spawn(process.execPath,['-e','setTimeout(()=>{},2500)'],{stdio:'ignore'});
+ const first=sample(child.pid);if(!first||first.pid!==child.pid||first.ppid!==process.pid)throw Error('owned child PID PPID not established');
+ await wait(150);const second=sample(child.pid);
+ const a={...first,cohort:'observer',role:'observer'},b={...second,cohort:'observer',role:'observer'};
+ if(!second||processIdentity(a)!==processIdentity(b)||second.cpuSeconds<first.cpuSeconds||!Number.isFinite(second.rssKiB))throw Error('native identity or counters changed');
+ result.before=first;result.after=second;result.sameObservedIdentity=true;result.expectedPPID=process.pid;
+ const exited=new Promise(resolve=>child.once('exit',resolve));
+ if(processIdentity({...sample(child.pid),cohort:'observer',role:'observer'})!==processIdentity(a))throw Error('refusing changed PID before signal');
+ child.kill('SIGTERM');await Promise.race([exited,wait(1000).then(()=>{throw Error('owned child did not exit')})]);
+ result.childAbsent=sample(child.pid)===null;result.exitCode=child.exitCode;result.exitSignal=child.signalCode;
+ if(!result.childAbsent)throw Error('owned child remains');result.status='PASS';
+}catch(error){result.failureClass=error.name;result.safeCategory=error.message;}
+finally{
+ if(child&&child.exitCode===null&&child.signalCode===null){const current=sample(child.pid);if(current&&current.ppid===process.pid)child.kill('SIGKILL');}
+ result.elapsedMs=Date.now()-started;result.within10Seconds=result.elapsedMs<10000;result.completedAt=new Date().toISOString();
+ await writeFile(out,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+}
+if(result.status!=='PASS'||!result.within10Seconds)process.exitCode=1;

@@ -1,0 +1,80 @@
+{
+  "status": "FAIL",
+  "phase": "TEST04.05 real Deployment template request/limit",
+  "classification": "OWNED_POD_COUNT_CEILING_GUARD",
+  "singleRun": true,
+  "failure": "readReady detected len(owned run-label Pods)>3 during positive template rollout; exact count/phase/deletion flags were not captured.",
+  "deploymentUID": "2042bb69-7af4-4cdf-a3d5-318bb37c3234",
+  "initial2ReadyVerified": true,
+  "positiveHTTP202": true,
+  "positiveNew2ReadyAndAllQuantitiesVerified": false,
+  "negativeInvalidQuantityHTTP": 422,
+  "negativeRequestExceedsLimitHTTP": 422,
+  "rejectedTemplateProofs": [
+    {
+      "case": "invalid_quantity",
+      "deploymentUID": "2042bb69-7af4-4cdf-a3d5-318bb37c3234",
+      "generation": 1,
+      "podUIDs": [
+        "234903ca-c37f-49ae-9f32-763a6c13de84",
+        "af2cad47-3a9e-4b2e-8e6b-2fc850ed2d79"
+      ],
+      "templateSHA256": "28282b5f472c6ae97223d995e10c5487e66853387088c1bc4bfcf29bb9977581"
+    },
+    {
+      "case": "request_exceeds_limit",
+      "deploymentUID": "2042bb69-7af4-4cdf-a3d5-318bb37c3234",
+      "generation": 1,
+      "podUIDs": [
+        "234903ca-c37f-49ae-9f32-763a6c13de84",
+        "af2cad47-3a9e-4b2e-8e6b-2fc850ed2d79"
+      ],
+      "templateSHA256": "28282b5f472c6ae97223d995e10c5487e66853387088c1bc4bfcf29bb9977581"
+    }
+  ],
+  "requestedResourceDelta": {
+    "before": {
+      "requests": {
+        "cpu": "5m",
+        "memory": "8Mi"
+      },
+      "limits": {
+        "cpu": "50m",
+        "memory": "32Mi"
+      }
+    },
+    "afterRequested": {
+      "requests": {
+        "cpu": "10m",
+        "memory": "16Mi"
+      },
+      "limits": {
+        "cpu": "100m",
+        "memory": "64Mi"
+      }
+    }
+  },
+  "metricsOrUsageClaim": false,
+  "testExecutionSeconds": 6.260494,
+  "outerJobSeconds": 18.201,
+  "maxTestSampleGapSeconds": 0.255964,
+  "maxOuterSampleGapSeconds": 0.255,
+  "environmentTimingControlValid": true,
+  "validPhasePASS": false,
+  "preMutationPlanFlushed": true,
+  "cleanup": {
+    "UIDAndRVDeletePreconditions": true,
+    "deploymentUID": "2042bb69-7af4-4cdf-a3d5-318bb37c3234",
+    "dynamicGVKGET404": true,
+    "podLabelListCount": 0,
+    "replicaSetLabelListCount": 0,
+    "typedGET404": true
+  },
+  "postCleanupFixturesEqual": true,
+  "sourceUnchangedDuringJob": true,
+  "historicalScaleArtifactsUnchanged": true,
+  "scaleNewSourceRegression": "RETEST_REQUIRED: shared private helper extracted; not run in this job per root instruction",
+  "sourceSHA256": "fa9065f305c9deae4301e7cf5a2a7b3b429ab84e21aba05d8ac55bad3dea690b",
+  "noAutomaticRetry": true,
+  "finalizedAt": "2026-11-11T16:30:11.715312+00:00"
+}

@@ -1,0 +1,53 @@
+{
+  "at": "2026-11-14T12:38:32.224803+00:00",
+  "manifestChecks": [
+    {
+      "directory": "artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker",
+      "entries": 36,
+      "historicalSourceMatches": []
+    },
+    {
+      "directory": "artifacts/release-audit/ra-20261112/workspace-import-fuzz-review-worker",
+      "entries": 2,
+      "historicalSourceMatches": []
+    },
+    {
+      "directory": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker",
+      "entries": 19,
+      "historicalSourceMatches": [
+        {
+          "path": "backend/pkg/server/release_workspace_parser_test.go",
+          "resolvedAgainst": "artifacts/release-audit/ra-20261112/workspace-parser-guards-worker/attempt02/release_workspace_parser_test.go.txt",
+          "reason": "Root added post-import prefix assertion later; final source has separate retest."
+        }
+      ]
+    },
+    {
+      "directory": "artifacts/release-audit/ra-20261112/workspace-parser-guards-review-worker",
+      "entries": 2,
+      "historicalSourceMatches": []
+    }
+  ],
+  "finalParserSourceSHA256": "71b3a61b23a939ff8dc66ba75cf7810a13bb3a1bb856fd7d8b6d4073cea00e4d",
+  "rootRetest": {
+    "topPass": 3,
+    "subPass": 9,
+    "skip": 0,
+    "elapsedSeconds": 3.421787957999186,
+    "sourceBeforeAfterMatch": true,
+    "capturedIdentitiesAbsent": 4
+  },
+  "decision": "VERIFIED_DONE_BOUNDED_TEST13_01",
+  "noNewTestExecutedOnResume": true,
+  "verifierIssues": [
+    "manifest repository-relative vs directory-relative paths",
+    "archived source actual basename discovered before final comparison"
+  ],
+  "limits": [
+    "Not all parser/YAML/endpoints acceptance",
+    "No actual Kubernetes/browser/security-complete claim",
+    "563506 engine executions are not valid imported documents"
+  ],
+  "auditHEAD": "362e91c3f0117aee8f518c20674832da159c0061",
+  "runtimeSource": "15770296056ca2629601dba540c04741e1822e0d"
+}

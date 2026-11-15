@@ -1,0 +1,202 @@
+{
+  "Id": "f9791f54d5e04080a6824077948b0f71fe44fb3f700e587db988af7df0ee10c4",
+  "Created": "2026-11-12T11:05:09.196809294Z",
+  "Path": "/bin/sh",
+  "Args": [
+    "-c",
+    "set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     cd /tmp/kubeview-os-medium &&     sha256sum -c SHA256SUMS &&     plan=\"$(apt-get --simulate --no-download --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb /tmp/kubeview-os-medium/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"${package%%:*}\" in libpcre2-8-0|zlib1g) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt-get -y --no-download --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb /tmp/kubeview-os-medium/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb &&     test \"$(dpkg-query -W -f='${Version}' libpcre2-8-0)\" = '10.46-1ubuntu0.1' &&     test \"$(dpkg-query -W -f='${Version}' zlib1g)\" = '1:1.3.dfsg+really1.3.1-1ubuntu3.2' &&     cd / &&     rm -rf /tmp/kubeview-os-medium /var/lib/apt/lists/* /var/cache/apt/archives/*.deb"
+  ],
+  "State": {
+    "Status": "removing",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": true,
+    "Pid": 0,
+    "ExitCode": 100,
+    "Error": "",
+    "StartedAt": "2026-11-12T11:05:09.222543086Z",
+    "FinishedAt": "2026-11-12T11:05:09.317248836Z"
+  },
+  "Image": "sha256:527944c142689fe37f20559e29bb7d3cd506578b07e307e934ffcb156d6a4cba",
+  "ResolvConfPath": "/var/lib/docker/containers/f9791f54d5e04080a6824077948b0f71fe44fb3f700e587db988af7df0ee10c4/resolv.conf",
+  "HostnamePath": "/var/lib/docker/containers/f9791f54d5e04080a6824077948b0f71fe44fb3f700e587db988af7df0ee10c4/hostname",
+  "HostsPath": "/var/lib/docker/containers/f9791f54d5e04080a6824077948b0f71fe44fb3f700e587db988af7df0ee10c4/hosts",
+  "LogPath": "",
+  "Name": "/flamboyant_hawking",
+  "RestartCount": 0,
+  "Driver": "overlayfs",
+  "Platform": "linux",
+  "MountLabel": "",
+  "ProcessLabel": "",
+  "AppArmorProfile": "",
+  "ExecIDs": null,
+  "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "none",
+      "Config": {}
+    },
+    "NetworkMode": "none",
+    "PortBindings": {},
+    "RestartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "CapAdd": null,
+    "CapDrop": null,
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": null,
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": null,
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 4294967296,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 100000,
+    "CpuQuota": 200000,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 4294967296,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": null,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+      "/proc/acpi",
+      "/proc/asound",
+      "/proc/interrupts",
+      "/proc/kcore",
+      "/proc/keys",
+      "/proc/latency_stats",
+      "/proc/sched_debug",
+      "/proc/scsi",
+      "/proc/timer_list",
+      "/proc/timer_stats",
+      "/sys/devices/virtual/powercap",
+      "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+      "/proc/bus",
+      "/proc/fs",
+      "/proc/irq",
+      "/proc/sys",
+      "/proc/sysrq-trigger"
+    ]
+  },
+  "Storage": {
+    "RootFS": {
+      "Snapshot": {
+        "Name": "overlayfs"
+      }
+    }
+  },
+  "Mounts": [],
+  "Config": {
+    "Hostname": "f9791f54d5e0",
+    "Domainname": "",
+    "User": "",
+    "AttachStdin": false,
+    "AttachStdout": false,
+    "AttachStderr": false,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+      "INITSYSTEM=SYSTEMD"
+    ],
+    "Cmd": [
+      "/bin/sh",
+      "-c",
+      "set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     cd /tmp/kubeview-os-medium &&     sha256sum -c SHA256SUMS &&     plan=\"$(apt-get --simulate --no-download --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb /tmp/kubeview-os-medium/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"${package%%:*}\" in libpcre2-8-0|zlib1g) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt-get -y --no-download --no-install-recommends --only-upgrade --no-remove install /tmp/kubeview-os-medium/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb /tmp/kubeview-os-medium/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb &&     test \"$(dpkg-query -W -f='${Version}' libpcre2-8-0)\" = '10.46-1ubuntu0.1' &&     test \"$(dpkg-query -W -f='${Version}' zlib1g)\" = '1:1.3.dfsg+really1.3.1-1ubuntu3.2' &&     cd / &&     rm -rf /tmp/kubeview-os-medium /var/lib/apt/lists/* /var/cache/apt/archives/*.deb"
+    ],
+    "Healthcheck": {
+      "Test": [
+        "NONE"
+      ]
+    },
+    "Image": "sha256:527944c142689fe37f20559e29bb7d3cd506578b07e307e934ffcb156d6a4cba",
+    "Volumes": null,
+    "WorkingDir": "/home/cilium",
+    "Entrypoint": null,
+    "Labels": {
+      "maintainer": "maintainer@cilium.io"
+    }
+  },
+  "NetworkSettings": {
+    "SandboxID": "",
+    "SandboxKey": "",
+    "Ports": {},
+    "Networks": {
+      "none": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "2250f305e6cf57b925d94c4d2eec3b230d053d0eedded7624853cec603aeef32",
+        "EndpointID": "",
+        "Gateway": "",
+        "IPAddress": "",
+        "MacAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+      }
+    }
+  },
+  "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:527944c142689fe37f20559e29bb7d3cd506578b07e307e934ffcb156d6a4cba",
+    "size": 1842,
+    "platform": {
+      "architecture": "arm64",
+      "os": "linux"
+    }
+  }
+}

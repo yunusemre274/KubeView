@@ -1,0 +1,195 @@
+{
+  "go_version": "go1.26.11",
+  "modules": [
+    {
+      "path": "github.com/k8s-tersane/tersane/backend"
+    },
+    {
+      "path": "github.com/davecgh/go-spew",
+      "version": "v1.1.1"
+    },
+    {
+      "path": "github.com/emicklei/go-restful/v3",
+      "version": "v3.11.0"
+    },
+    {
+      "path": "github.com/evanphx/json-patch",
+      "version": "v4.12.0+incompatible"
+    },
+    {
+      "path": "github.com/go-logr/logr",
+      "version": "v1.4.1"
+    },
+    {
+      "path": "github.com/go-openapi/jsonpointer",
+      "version": "v0.19.6"
+    },
+    {
+      "path": "github.com/go-openapi/jsonreference",
+      "version": "v0.20.2"
+    },
+    {
+      "path": "github.com/go-openapi/swag",
+      "version": "v0.22.3"
+    },
+    {
+      "path": "github.com/gogo/protobuf",
+      "version": "v1.3.2"
+    },
+    {
+      "path": "github.com/golang/protobuf",
+      "version": "v1.5.4"
+    },
+    {
+      "path": "github.com/google/gnostic-models",
+      "version": "v0.6.8"
+    },
+    {
+      "path": "github.com/google/go-cmp",
+      "version": "v0.6.0"
+    },
+    {
+      "path": "github.com/google/gofuzz",
+      "version": "v1.2.0"
+    },
+    {
+      "path": "github.com/google/uuid",
+      "version": "v1.3.0"
+    },
+    {
+      "path": "github.com/gorilla/websocket",
+      "version": "v1.5.3"
+    },
+    {
+      "path": "github.com/imdario/mergo",
+      "version": "v0.3.6"
+    },
+    {
+      "path": "github.com/josharian/intern",
+      "version": "v1.0.0"
+    },
+    {
+      "path": "github.com/json-iterator/go",
+      "version": "v1.1.12"
+    },
+    {
+      "path": "github.com/mailru/easyjson",
+      "version": "v0.7.7"
+    },
+    {
+      "path": "github.com/moby/spdystream",
+      "version": "v0.5.1"
+    },
+    {
+      "path": "github.com/modern-go/concurrent",
+      "version": "v0.0.0-20180306012644-bacd9c7ef1dd"
+    },
+    {
+      "path": "github.com/modern-go/reflect2",
+      "version": "v1.0.2"
+    },
+    {
+      "path": "github.com/munnerz/goautoneg",
+      "version": "v0.0.0-20191010083416-a7dc8b61c822"
+    },
+    {
+      "path": "github.com/mxk/go-flowrate",
+      "version": "v0.0.0-20140419014527-cca7078d478f"
+    },
+    {
+      "path": "github.com/pkg/errors",
+      "version": "v0.9.1"
+    },
+    {
+      "path": "github.com/spf13/pflag",
+      "version": "v1.0.5"
+    },
+    {
+      "path": "golang.org/x/net",
+      "version": "v0.62.0"
+    },
+    {
+      "path": "golang.org/x/oauth2",
+      "version": "v0.27.0"
+    },
+    {
+      "path": "golang.org/x/sys",
+      "version": "v0.49.0"
+    },
+    {
+      "path": "golang.org/x/term",
+      "version": "v0.47.0"
+    },
+    {
+      "path": "golang.org/x/text",
+      "version": "v0.43.0"
+    },
+    {
+      "path": "golang.org/x/time",
+      "version": "v0.3.0"
+    },
+    {
+      "path": "google.golang.org/protobuf",
+      "version": "v1.33.0"
+    },
+    {
+      "path": "gopkg.in/inf.v0",
+      "version": "v0.9.1"
+    },
+    {
+      "path": "gopkg.in/yaml.v2",
+      "version": "v2.4.0"
+    },
+    {
+      "path": "gopkg.in/yaml.v3",
+      "version": "v3.0.1"
+    },
+    {
+      "path": "k8s.io/api",
+      "version": "v0.30.0"
+    },
+    {
+      "path": "k8s.io/apimachinery",
+      "version": "v0.30.0"
+    },
+    {
+      "path": "k8s.io/client-go",
+      "version": "v0.30.0"
+    },
+    {
+      "path": "k8s.io/klog/v2",
+      "version": "v2.120.1"
+    },
+    {
+      "path": "k8s.io/kube-openapi",
+      "version": "v0.0.0-20240228011516-70dd3763d340"
+    },
+    {
+      "path": "k8s.io/metrics",
+      "version": "v0.30.0"
+    },
+    {
+      "path": "k8s.io/utils",
+      "version": "v0.0.0-20230726121419-3b25d923346b"
+    },
+    {
+      "path": "sigs.k8s.io/json",
+      "version": "v0.0.0-20221116044647-bc3834ca7abd"
+    },
+    {
+      "path": "sigs.k8s.io/structured-merge-diff/v4",
+      "version": "v4.4.1"
+    },
+    {
+      "path": "sigs.k8s.io/yaml",
+      "version": "v1.3.0"
+    },
+    {
+      "path": "stdlib",
+      "version": "v1.26.11"
+    }
+  ],
+  "roots": [
+    "github.com/k8s-tersane/tersane/backend"
+  ]
+}

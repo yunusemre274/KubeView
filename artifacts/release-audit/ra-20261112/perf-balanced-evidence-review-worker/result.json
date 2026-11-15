@@ -1,0 +1,1347 @@
+{
+  "status": "GUARD_DATA_EVIDENCE_PASS_RENDER_COMPARABILITY_UNRESOLVED",
+  "reviewedAt": "2026-11-12T19:52:01.122531+00:00",
+  "scope": "OFFLINE evidence/source review only; CPU arithmetic independently assigned to numeric worker, not duplicated here.",
+  "execution": {
+    "finishedAt": "2026-11-12T19:45:02.409178+00:00",
+    "elapsedSeconds": 3677.400941133499,
+    "limitSeconds": 4500,
+    "jobs": 10,
+    "blocks": 5,
+    "windows": 40,
+    "exactOrder": "ABBAABBAAB; odd blocks reverse four scenarios exactly once",
+    "protocol": 5,
+    "warmupSecondsConfigured": 30,
+    "measuredDurationMsRange": [
+      60035.89999999851,
+      60071.39999999851
+    ],
+    "allJobExitCodes0": true,
+    "noGuardFailure": true,
+    "progressCounts": [
+      10,
+      40
+    ],
+    "progressStatusCaveat": "progress.status remains RUNNING despite final40 count; stopped execution finishedAt/cleanup are authoritative. No new live process probe."
+  },
+  "guardIssues": [],
+  "sourceSeals": [
+    {
+      "path": "benchmarks/run.mjs",
+      "expectedSHA256": "80cc55ad70f65857c5df2fa5eb79155aae5b8a5daec2d21916b8c588e39bb850",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/metrics.mjs",
+      "expectedSHA256": "6aab91b45ec8e3ef50300f1f90095c39070af2190a76a71662c6a2c84451c9e7",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/process-identity.mjs",
+      "expectedSHA256": "b2790f88e7d5111ec43babf8362605ca5f0718ad5fd3fac122ba9ad361956a32",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/panel-compare.mjs",
+      "expectedSHA256": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/camera-contract.mjs",
+      "expectedSHA256": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/compare.mjs",
+      "expectedSHA256": "e8c2685ceef1b674ea0331d1fc93a91bed5dacdd14bf324ecf8c844a7f78c397",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/fixtures.mjs",
+      "expectedSHA256": "c53ffc7cab18c06991437fe0f17ebdade10c28bbb56146ee19ba2ee63a45becc",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/probe.mjs",
+      "expectedSHA256": "bec5e6362c57c0ce2c2ed2865d6fa7e05fd8446daa153ea7054fdcdb0089d367",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/lifecycle-probe.mjs",
+      "expectedSHA256": "5c68851815509e0a449483d160558a61d1bf3b062a403b3e2c570232e3e64022",
+      "matches": true
+    },
+    {
+      "path": "benchmarks/build-lock.mjs",
+      "expectedSHA256": "3452669b2237796240ea934ba7727abc4e6401d1917d6ccd2ce215443ebc97cf",
+      "matches": true
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "expectedSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/run.py",
+      "expectedSHA256": "6355096b8bafcd40fc58109b9c3b51f316e6ee87442581b204b4736de3b01cd7",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/validate-job.mjs",
+      "expectedSHA256": "03338df0de79b4c4a6af11e26582b525eda79646b4878853a372f44edd029d2d",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/plan.json",
+      "expectedSHA256": "bfba6a51dfb92eed034092f25038347e578eaa597d338c9eb060e88b0bf510de",
+      "matches": true
+    }
+  ],
+  "frozenBuildChecks": [
+    {
+      "side": "A",
+      "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "sourceSHA256": "25c0877480526832445bc61d4b6355cdb89024c0f45556772c2a8109e3ede293",
+      "sourceFiles": 98,
+      "assets": 6,
+      "currentBackendMatches": true
+    },
+    {
+      "side": "B",
+      "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "sourceSHA256": "2ebbbd715eb1e449736cf2e4b88489782136a19bbc25a99cf58701c9a234fe4a",
+      "sourceFiles": 98,
+      "assets": 6,
+      "currentBackendMatches": true
+    }
+  ],
+  "quality": {
+    "fixtureCanonical": [
+      20,
+      300
+    ],
+    "visible": [
+      8,
+      120
+    ],
+    "DPR": 1,
+    "buffer": [
+      1440,
+      900
+    ],
+    "quality": "medium",
+    "FOV": 38,
+    "exactCameraFleetPreferencesAll40Equal": true,
+    "openUID": "node-0",
+    "openTab": "Özet",
+    "openInitialPanelContentAll20Equal": true,
+    "closedUIDEvidence": "Normal same-Node pick then close source path and reused direct UI transition proof; closed panel inventory itself has no open-panel UID field.",
+    "noFPSCapAdaptiveQualityProfilerVideo": true,
+    "sourceAndFixtureManifestFieldsEqual": true
+  },
+  "actualBudgetRanges": {
+    "FPS": [
+      59.99120861555601,
+      60.03006497430642
+    ],
+    "frameP95": [
+      17.5,
+      19.099999997764826
+    ],
+    "frameP99": [
+      17.700000002980232,
+      21.900000002235174
+    ],
+    "storeP95": [
+      0.6999999992549419,
+      0.9000000022351742
+    ],
+    "drawP95": [
+      13.100000001490116,
+      23.800000000745058
+    ],
+    "clockDifferenceMs": [
+      101.69999999925494,
+      136.10000000149012
+    ]
+  },
+  "data": {
+    "positiveCells": 20,
+    "zeroCells": 20,
+    "plannedCompletedReceivedTotal": [
+      6000,
+      6000,
+      6000
+    ],
+    "allFullNestedCanonicalVerdictsTrue": true,
+    "finalCanonicalObjectsSeparatelySaved": false,
+    "zeroDelayAndLatenciesNull": true,
+    "errorFreeAll40": true
+  },
+  "power": {
+    "records": 371,
+    "source": "Battery",
+    "batteryPercentStartEnd": [
+      53,
+      43
+    ],
+    "sameSettingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008",
+    "lowpowermodeBoth0": true,
+    "preJob40AndStart50Satisfied": true,
+    "minimumDiskGiB": 422.09881591796875,
+    "thermalFrequencyEnergyMeasured": false
+  },
+  "cleanup": {
+    "perJobReceipts": [
+      {
+        "pair": 0,
+        "side": "A",
+        "id": "cat16-balanced-p0-A-20261112T184345Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd"
+      },
+      {
+        "pair": 0,
+        "side": "B",
+        "id": "cat16-balanced-p0-B-20261112T184952Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12"
+      },
+      {
+        "pair": 1,
+        "side": "B",
+        "id": "cat16-balanced-p1-B-20261112T185600Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12"
+      },
+      {
+        "pair": 1,
+        "side": "A",
+        "id": "cat16-balanced-p1-A-20261112T190207Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd"
+      },
+      {
+        "pair": 2,
+        "side": "A",
+        "id": "cat16-balanced-p2-A-20261112T190815Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd"
+      },
+      {
+        "pair": 2,
+        "side": "B",
+        "id": "cat16-balanced-p2-B-20261112T191422Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12"
+      },
+      {
+        "pair": 3,
+        "side": "B",
+        "id": "cat16-balanced-p3-B-20261112T192029Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12"
+      },
+      {
+        "pair": 3,
+        "side": "A",
+        "id": "cat16-balanced-p3-A-20261112T192636Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd"
+      },
+      {
+        "pair": 4,
+        "side": "A",
+        "id": "cat16-balanced-p4-A-20261112T193244Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd"
+      },
+      {
+        "pair": 4,
+        "side": "B",
+        "id": "cat16-balanced-p4-B-20261112T193853Z",
+        "cleanup": {
+          "allCapturedIdentitiesAbsent": true,
+          "port5192Free": true
+        },
+        "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12"
+      }
+    ],
+    "exactCapturedReferences": 247,
+    "allRecordedAbsent": true,
+    "port5192Free": true,
+    "backendUnchanged": true,
+    "sourceRerunProtection": "run.py refuses execution or supervisor identity before writing; reducer refuses existing output; archive uses exclusive writes. No automatic retry or favorable window replacement."
+  },
+  "archive": {
+    "files": 70,
+    "rawWindows": 40,
+    "bytes": 24481650,
+    "gzipBytes": 1604492,
+    "failedInitialCount": 0,
+    "allRoundtrips": true,
+    "initialEmptyIndexDisposition": "Preserved failed archive attempt despite misleading ALL_JSON... status. files=[]/0bytes is not accepted evidence; successful final index requires70 exact named files.",
+    "archiveSourceSHA256": "f4a95090be4dff8ad959fb9e96b96cce961ef9896c4c1bebee81d97edce61fe8",
+    "indexSHA256": "5a9973bb55fe08d18d4ce0149db8ca5f23e8fb880a95ab2e78b2107728539848",
+    "initialEmptyIndexSHA256": "4f4742c5b6e7f9e1fe766a892299259feea6e12d5a77f0e67a8fa409f3f6285b"
+  },
+  "renderFinding": {
+    "id": "BALANCED-EVIDENCE-01",
+    "status": "UNRESOLVED_MATCHED_RENDER_WORK",
+    "beforeVariation": [
+      {
+        "job": "p3-B",
+        "scenario": "panel-open-events",
+        "stats": {
+          "frame": 1813,
+          "calls": 427,
+          "triangles": 71170,
+          "points": 0,
+          "lines": 72,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 33,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "afterCalls": 436,
+        "afterTriangles": 72386
+      }
+    ],
+    "otherInitialGeometryVariations": [
+      {
+        "job": "p0-B",
+        "scenario": "panel-open",
+        "initial": [
+          426,
+          71170,
+          60,
+          33
+        ],
+        "end": [
+          434,
+          72322,
+          60,
+          33
+        ]
+      },
+      {
+        "job": "p0-B",
+        "scenario": "panel-closed-events",
+        "initial": [
+          426,
+          71170,
+          60,
+          33
+        ],
+        "end": [
+          434,
+          72322,
+          60,
+          36
+        ]
+      },
+      {
+        "job": "p3-B",
+        "scenario": "panel-open-events",
+        "initial": [
+          427,
+          71170,
+          72,
+          33
+        ],
+        "end": [
+          436,
+          72386,
+          60,
+          38
+        ]
+      },
+      {
+        "job": "p3-B",
+        "scenario": "panel-closed-events",
+        "initial": [
+          426,
+          71170,
+          60,
+          33
+        ],
+        "end": [
+          436,
+          72386,
+          60,
+          38
+        ]
+      }
+    ],
+    "p3OpenEventRaw": [
+      {
+        "job": "p3-B",
+        "initial": [
+          427,
+          71170,
+          72,
+          33
+        ],
+        "end": [
+          436,
+          72386,
+          60,
+          38
+        ],
+        "rawFrames": 3606,
+        "rawCallsHistogram": {
+          "435": 1645,
+          "445": 12,
+          "443": 25,
+          "444": 35,
+          "434": 322,
+          "437": 448,
+          "436": 360,
+          "439": 194,
+          "441": 112,
+          "438": 273,
+          "440": 66,
+          "442": 10,
+          "433": 104
+        },
+        "rawTrianglesHistogram": {
+          "72322": 1815,
+          "72830": 12,
+          "72578": 25,
+          "72590": 35,
+          "72178": 2,
+          "72378": 125,
+          "72574": 47,
+          "72334": 154,
+          "72406": 1,
+          "72434": 12,
+          "72346": 29,
+          "72290": 229,
+          "72386": 438,
+          "72442": 210,
+          "72498": 12,
+          "72538": 99,
+          "72450": 26,
+          "72418": 89,
+          "72474": 2,
+          "72666": 10,
+          "72610": 30,
+          "72482": 107,
+          "72514": 34,
+          "72638": 12,
+          "72554": 1,
+          "72398": 23,
+          "72490": 1,
+          "72354": 12,
+          "72410": 14
+        }
+      },
+      {
+        "job": "p3-A",
+        "initial": [
+          426,
+          71170,
+          60,
+          32
+        ],
+        "end": [
+          436,
+          72386,
+          60,
+          37
+        ],
+        "rawFrames": 3605,
+        "rawCallsHistogram": {
+          "434": 1803,
+          "444": 12,
+          "443": 36,
+          "442": 24,
+          "436": 624,
+          "433": 227,
+          "435": 200,
+          "438": 363,
+          "440": 134,
+          "437": 128,
+          "439": 44,
+          "441": 10
+        },
+        "rawTrianglesHistogram": {
+          "72322": 1803,
+          "72830": 12,
+          "72590": 36,
+          "72578": 24,
+          "72378": 112,
+          "72178": 1,
+          "72574": 48,
+          "72334": 156,
+          "72434": 12,
+          "72346": 32,
+          "72290": 226,
+          "72386": 451,
+          "72442": 221,
+          "72498": 12,
+          "72538": 99,
+          "72450": 25,
+          "72418": 90,
+          "72474": 2,
+          "72666": 10,
+          "72610": 29,
+          "72482": 107,
+          "72514": 35,
+          "72470": 1,
+          "72638": 11,
+          "72398": 23,
+          "72354": 12,
+          "72410": 15
+        }
+      }
+    ],
+    "sourceNotes": {
+      "reset": "HarborScene.jsx:464-485 resets fleet/clock/water and visualHold, not a complete scene-object/hover/renderer-allocation reconciliation.",
+      "input": "run.mjs:656-690 guards selected trusted events and fixes controls/pointerEvents; these settings do not record which extra line/geometry was submitted.",
+      "lineCandidates": "assets.jsx:174 has selected/hovered hull lineSegments; WorldFacilities.jsx:28 has hover/selected box-edge lineSegments; HarborScene.jsx:1193 has selected/hovered container outline geometry. Counts alone do not attribute the observed extra draw to a unique object or path.",
+      "recordingLimit": "Raw frames include calls/triangles/geometries/textures, no per-frame lines, object UUIDs, active selection/hover outline inventory or retained-vs-active geometry attribution."
+    },
+    "decision": "Extra p3-B draw/geometry persists into measured frames; not justified as a transient setup-only difference or proven outline. Recorded quality/canonical/pose guards pass, but those guards do not prove fully matched submitted scene work. Do not auto-accept causal delta-panel/source gains or waive the cell; preserve the complete grid for root adjudication."
+  },
+  "openInterpretationIssues": [
+    "RSS mechanism unresolved; geometry allocation counters and RSS do not establish retained JS, leak or leak-free behavior.",
+    "Event-load signed delta variance remains unresolved; negative signed costs remain retained. Numeric-worker independent CPU review is separate.",
+    "Natural panel closure exposes scene/labels; composition intentionally differs open vs closed and is not pixel-equivalent.",
+    "Observed process coverage uses one-second birth and periodic snapshots; not kernel-complete coverage of wholly unsampled short children.",
+    "Battery/settings stability does not measure thermal state, frequency or energy."
+  ],
+  "excludedClaims": [
+    "full-runtime A/B",
+    "native Safari",
+    "Retina",
+    "physical screen FPS/latency",
+    "GPU utilization",
+    "energy savings",
+    "continuous60-minute stability soak",
+    "real Kubernetes/provider load acceptance",
+    "new product optimization"
+  ],
+  "windows": [
+    {
+      "pair": 0,
+      "side": "A",
+      "scenario": "panel-closed",
+      "durationMs": 60059.199999999255,
+      "FPS": 60.02410954524943,
+      "frameP95": 18.100000001490116,
+      "frameP99": 18.699999999254942,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 126.80000000074506,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 0,
+      "side": "A",
+      "scenario": "panel-open",
+      "durationMs": 60062.599999997765,
+      "FPS": 60.00406242820215,
+      "frameP95": 18.600000001490116,
+      "frameP99": 19,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 129.40000000223517,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 0,
+      "side": "A",
+      "scenario": "panel-closed-events",
+      "durationMs": 60061.79999999702,
+      "FPS": 60.00486165916071,
+      "frameP95": 17.800000000745058,
+      "frameP99": 18.900000002235174,
+      "storeP95": 0.8999999985098839,
+      "drawP95": 16.900000002235174,
+      "messages": 300,
+      "clockDifferenceMs": 126.20000000298023,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 0,
+      "side": "A",
+      "scenario": "panel-open-events",
+      "durationMs": 60062.5,
+      "FPS": 60.00416233090531,
+      "frameP95": 17.900000002235174,
+      "frameP99": 19.300000000745058,
+      "storeP95": 0.9000000022351742,
+      "drawP95": 14.600000001490116,
+      "messages": 300,
+      "clockDifferenceMs": 125.5,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 0,
+      "side": "B",
+      "scenario": "panel-closed",
+      "durationMs": 60045.5,
+      "FPS": 60.02115062744086,
+      "frameP95": 17.600000001490116,
+      "frameP99": 17.800000000745058,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 122.5,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 0,
+      "side": "B",
+      "scenario": "panel-open",
+      "durationMs": 60053.699999999255,
+      "FPS": 60.01295507187808,
+      "frameP95": 17.5,
+      "frameP99": 17.700000002980232,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 126.30000000074506,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 0,
+      "side": "B",
+      "scenario": "panel-closed-events",
+      "durationMs": 60068,
+      "FPS": 60.01531597522808,
+      "frameP95": 17.899999998509884,
+      "frameP99": 18.600000001490116,
+      "storeP95": 0.9000000022351742,
+      "drawP95": 14,
+      "messages": 300,
+      "clockDifferenceMs": 124,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 0,
+      "side": "B",
+      "scenario": "panel-open-events",
+      "durationMs": 60035.89999999851,
+      "FPS": 60.014091568546306,
+      "frameP95": 18.199999999254942,
+      "frameP99": 20,
+      "storeP95": 0.8999999985098839,
+      "drawP95": 15,
+      "messages": 300,
+      "clockDifferenceMs": 121.10000000149012,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 1,
+      "side": "B",
+      "scenario": "panel-open-events",
+      "durationMs": 60057.5,
+      "FPS": 60.02580860009158,
+      "frameP95": 17.600000001490116,
+      "frameP99": 18,
+      "storeP95": 0.6999999992549419,
+      "drawP95": 19.5,
+      "messages": 300,
+      "clockDifferenceMs": 130.5,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 1,
+      "side": "B",
+      "scenario": "panel-closed-events",
+      "durationMs": 60060.5,
+      "FPS": 60.00616045487467,
+      "frameP95": 17.900000002235174,
+      "frameP99": 19.200000002980232,
+      "storeP95": 0.7000000029802322,
+      "drawP95": 14.199999999254942,
+      "messages": 300,
+      "clockDifferenceMs": 129.5,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 1,
+      "side": "B",
+      "scenario": "panel-open",
+      "durationMs": 60057.300000000745,
+      "FPS": 60.026008495219656,
+      "frameP95": 18,
+      "frameP99": 18.699999999254942,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 116.69999999925494,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 1,
+      "side": "B",
+      "scenario": "panel-closed",
+      "durationMs": 60059.10000000149,
+      "FPS": 60.007559220832654,
+      "frameP95": 18.5,
+      "frameP99": 18.800000000745058,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 102.89999999850988,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 1,
+      "side": "A",
+      "scenario": "panel-open-events",
+      "durationMs": 60067.89999999851,
+      "FPS": 60.01541588768859,
+      "frameP95": 18.600000001490116,
+      "frameP99": 18.899999998509884,
+      "storeP95": 0.8000000007450581,
+      "drawP95": 19.300000000745058,
+      "messages": 300,
+      "clockDifferenceMs": 134.10000000149012,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 1,
+      "side": "A",
+      "scenario": "panel-closed-events",
+      "durationMs": 60055.800000000745,
+      "FPS": 60.01085657005577,
+      "frameP95": 18.699999999254942,
+      "frameP99": 19.199999999254942,
+      "storeP95": 0.8000000007450581,
+      "drawP95": 15.5,
+      "messages": 300,
+      "clockDifferenceMs": 123.19999999925494,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 1,
+      "side": "A",
+      "scenario": "panel-open",
+      "durationMs": 60061,
+      "FPS": 60.005660911406736,
+      "frameP95": 18.600000001490116,
+      "frameP99": 18.899999998509884,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 113,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 1,
+      "side": "A",
+      "scenario": "panel-closed",
+      "durationMs": 60054.300000000745,
+      "FPS": 60.01235548495204,
+      "frameP95": 18.599999997764826,
+      "frameP99": 18.800000000745058,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 101.69999999925494,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 2,
+      "side": "A",
+      "scenario": "panel-closed",
+      "durationMs": 60045.199999999255,
+      "FPS": 60.004796386722745,
+      "frameP95": 17.5,
+      "frameP99": 17.800000000745058,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 113.80000000074506,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 2,
+      "side": "A",
+      "scenario": "panel-open",
+      "durationMs": 60049.5,
+      "FPS": 60.0171525158411,
+      "frameP95": 17.699999999254942,
+      "frameP99": 17.900000002235174,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 133.5,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 2,
+      "side": "A",
+      "scenario": "panel-closed-events",
+      "durationMs": 60062.60000000149,
+      "FPS": 60.004062428198424,
+      "frameP95": 19.099999997764826,
+      "frameP99": 20.600000001490116,
+      "storeP95": 0.9000000022351742,
+      "drawP95": 14.100000001490116,
+      "messages": 300,
+      "clockDifferenceMs": 125.39999999850988,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 2,
+      "side": "A",
+      "scenario": "panel-open-events",
+      "durationMs": 60060.20000000298,
+      "FPS": 60.02311014615038,
+      "frameP95": 18.699999999254942,
+      "frameP99": 19.199999999254942,
+      "storeP95": 0.9000000022351742,
+      "drawP95": 15.400000002235174,
+      "messages": 300,
+      "clockDifferenceMs": 133.79999999701977,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 2,
+      "side": "B",
+      "scenario": "panel-closed",
+      "durationMs": 60061.199999999255,
+      "FPS": 60.00546109634914,
+      "frameP95": 18.599999997764826,
+      "frameP99": 18.899999998509884,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 116.80000000074506,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 2,
+      "side": "B",
+      "scenario": "panel-open",
+      "durationMs": 60055.099999997765,
+      "FPS": 60.0282074295128,
+      "frameP95": 18.5,
+      "frameP99": 18.800000000745058,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 110.90000000223517,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 2,
+      "side": "B",
+      "scenario": "panel-closed-events",
+      "durationMs": 60054.60000000149,
+      "FPS": 60.02870720977095,
+      "frameP95": 17.699999999254942,
+      "frameP99": 18,
+      "storeP95": 0.8000000007450581,
+      "drawP95": 20,
+      "messages": 300,
+      "clockDifferenceMs": 128.39999999850988,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 2,
+      "side": "B",
+      "scenario": "panel-open-events",
+      "durationMs": 60062.199999999255,
+      "FPS": 60.02111144779985,
+      "frameP95": 17.699999999254942,
+      "frameP99": 18.199999999254942,
+      "storeP95": 0.8000000007450581,
+      "drawP95": 20.599999997764826,
+      "messages": 300,
+      "clockDifferenceMs": 120.80000000074506,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 3,
+      "side": "B",
+      "scenario": "panel-open-events",
+      "durationMs": 60069.89999999851,
+      "FPS": 60.03006497430642,
+      "frameP95": 17.800000000745058,
+      "frameP99": 18.800000000745058,
+      "storeP95": 0.8000000007450581,
+      "drawP95": 16.800000000745058,
+      "messages": 300,
+      "clockDifferenceMs": 136.10000000149012,
+      "coverage": true,
+      "drawCalls": 427,
+      "triangles": 71170
+    },
+    {
+      "pair": 3,
+      "side": "B",
+      "scenario": "panel-closed-events",
+      "durationMs": 60058.900000002235,
+      "FPS": 60.007759049863814,
+      "frameP95": 18.399999998509884,
+      "frameP99": 19.799999997019768,
+      "storeP95": 0.8000000007450581,
+      "drawP95": 13.100000001490116,
+      "messages": 300,
+      "clockDifferenceMs": 131.09999999776483,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 3,
+      "side": "B",
+      "scenario": "panel-open",
+      "durationMs": 60055.300000000745,
+      "FPS": 60.02800751973523,
+      "frameP95": 17.599999997764826,
+      "frameP99": 17.800000000745058,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 113.69999999925494,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 3,
+      "side": "B",
+      "scenario": "panel-closed",
+      "durationMs": 60055.800000000745,
+      "FPS": 60.02750775112404,
+      "frameP95": 17.699999999254942,
+      "frameP99": 17.900000002235174,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 103.19999999925494,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 3,
+      "side": "A",
+      "scenario": "panel-open-events",
+      "durationMs": 60062.5,
+      "FPS": 60.02081165452653,
+      "frameP95": 18.600000001490116,
+      "frameP99": 19.199999999254942,
+      "storeP95": 0.8999999985098839,
+      "drawP95": 17.399999998509884,
+      "messages": 300,
+      "clockDifferenceMs": 127.5,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 3,
+      "side": "A",
+      "scenario": "panel-closed-events",
+      "durationMs": 60071.39999999851,
+      "FPS": 60.01191914954686,
+      "frameP95": 18.899999998509884,
+      "frameP99": 21.900000002235174,
+      "storeP95": 0.8999999985098839,
+      "drawP95": 23.199999999254942,
+      "messages": 300,
+      "clockDifferenceMs": 128.60000000149012,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 3,
+      "side": "A",
+      "scenario": "panel-open",
+      "durationMs": 60059.199999999255,
+      "FPS": 60.00745930681801,
+      "frameP95": 18.600000001490116,
+      "frameP99": 18.899999998509884,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 109.80000000074506,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 3,
+      "side": "A",
+      "scenario": "panel-closed",
+      "durationMs": 60050.5,
+      "FPS": 60.0161530711651,
+      "frameP95": 18.100000001490116,
+      "frameP99": 18.699999999254942,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 111.5,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 4,
+      "side": "A",
+      "scenario": "panel-closed",
+      "durationMs": 60059.60000000149,
+      "FPS": 60.00705965407546,
+      "frameP95": 18.600000001490116,
+      "frameP99": 19,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 113.39999999850988,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 4,
+      "side": "A",
+      "scenario": "panel-open",
+      "durationMs": 60050.800000000745,
+      "FPS": 60.01585324425245,
+      "frameP95": 18.600000001490116,
+      "frameP99": 18.899999998509884,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 120.19999999925494,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 4,
+      "side": "A",
+      "scenario": "panel-closed-events",
+      "durationMs": 60063,
+      "FPS": 60.02031200572732,
+      "frameP95": 18.699999999254942,
+      "frameP99": 19.199999999254942,
+      "storeP95": 0.8000000007450581,
+      "drawP95": 15.699999999254942,
+      "messages": 300,
+      "clockDifferenceMs": 127,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 4,
+      "side": "A",
+      "scenario": "panel-open-events",
+      "durationMs": 60061.599999997765,
+      "FPS": 60.00506147022613,
+      "frameP95": 18.599999997764826,
+      "frameP99": 19,
+      "storeP95": 0.6999999992549419,
+      "drawP95": 23.800000000745058,
+      "messages": 300,
+      "clockDifferenceMs": 133.40000000223517,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 4,
+      "side": "B",
+      "scenario": "panel-closed",
+      "durationMs": 60061.5,
+      "FPS": 60.005161376256005,
+      "frameP95": 18.300000000745058,
+      "frameP99": 18.699999999254942,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 116.5,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 4,
+      "side": "B",
+      "scenario": "panel-open",
+      "durationMs": 60057.699999999255,
+      "FPS": 60.025608706294854,
+      "frameP95": 18.699999999254942,
+      "frameP99": 19,
+      "storeP95": null,
+      "drawP95": null,
+      "messages": 0,
+      "clockDifferenceMs": 116.30000000074506,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 4,
+      "side": "B",
+      "scenario": "panel-closed-events",
+      "durationMs": 60058.800000000745,
+      "FPS": 59.99120861555601,
+      "frameP95": 18.699999999254942,
+      "frameP99": 19.099999997764826,
+      "storeP95": 0.8000000007450581,
+      "drawP95": 18.399999998509884,
+      "messages": 300,
+      "clockDifferenceMs": 126.19999999925494,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    },
+    {
+      "pair": 4,
+      "side": "B",
+      "scenario": "panel-open-events",
+      "durationMs": 60063,
+      "FPS": 60.02031200572732,
+      "frameP95": 18.600000001490116,
+      "frameP99": 19.199999999254942,
+      "storeP95": 0.8999999985098839,
+      "drawP95": 18.300000000745058,
+      "messages": 300,
+      "clockDifferenceMs": 134,
+      "coverage": true,
+      "drawCalls": 426,
+      "triangles": 71170
+    }
+  ],
+  "inputSHA256": {
+    "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frontend-A-build-provenance.json": "ee5e15a1831233005624e05c29198a16c2995bd289d241a88ab15ad162380a52",
+    "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frontend-B-build-provenance.json": "fb96c40c0719f5242309a1a7971f244bcf48193628848419904fd60c1b3d0312",
+    "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frozen-build-manifests.json": "40a9291437815fe678bae72c26bea60ab3ae8773cbc3d613d44a17186cfc10bf",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/RAW_INDEX-initial-zero-files.json": "4f4742c5b6e7f9e1fe766a892299259feea6e12d5a77f0e67a8fa409f3f6285b",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/RAW_INDEX.json": "5a9973bb55fe08d18d4ce0149db8ca5f23e8fb880a95ab2e78b2107728539848",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/archive.py": "f4a95090be4dff8ad959fb9e96b96cce961ef9896c4c1bebee81d97edce61fe8",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/balanced-summary.json": "22192b72bb36b05a7806f60a5ad8ce4b53f4d65db7a9b7e4063cc651dd21092e",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/execution.json": "fcf0cff56bc7adad729b487e4096f1855a7dc49e10e2a86d4de3bd2e7c727750",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-A-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-A-process-samples.json": "ac52f17ea2ba923d10820dfdcd1ca4a77443da32719af2d74018e40ba563f798",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-A-runner-summary.json": "d3914376a3322c023d8f45219f434d358039ed62367e7886ed46c5981494aa90",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-A-validation.json": "a38f4db85b8dc97e9e32eba7d06c7779a454e179537d541807e35fc1635edaf7",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-B-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-B-process-samples.json": "9c7e9ceb0dd3d642dc67f3356f226d6fad5e612353aa72025d5a265a50bfa90c",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-B-runner-summary.json": "7f61323810082d8fa8792e2d24cb5b71fb386e4dfcbaa0f0388f38292a00e84f",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-B-validation.json": "578f07b85269ddaffaf0797cc2cecf5353944f42f00aaa421118f3c53906bf87",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-A-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-A-process-samples.json": "6aafc2b3b76f3899d1fdaf5fe83e6858d3fcf89ab796f0f639848e4767888b7b",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-A-runner-summary.json": "6a58f2645a12c3a01dc5d8b292ec24aad8785be986ba604fd6bb23060e3d89bd",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-A-validation.json": "4d49a217d68668d37e7fa4be56dba4b6884e4f1e648366a284f4c3951365f50c",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-B-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-B-process-samples.json": "909f59920d8c73e76a008f2d593fcd924c08fd58e75b0db9cc30975bb32ad778",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-B-runner-summary.json": "0b9251c71dedb8edfc5d65f067462b27aed64b767e596574d40387db9cf51b45",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-B-validation.json": "56e6c074ed75233c4d6c3e22a23d2e5b452259925fc8ea02bb51ef44a103ebcd",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-A-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-A-process-samples.json": "65205f548305d826467ac4d0bfe588e288fae79d84697d0418f4494dfc1b5b64",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-A-runner-summary.json": "12c2cf4fd932b35c00c2a53107a02051f35ccff27ffdd6605a26ae1101befe2b",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-A-validation.json": "55f19490b461535093239192cd5567a55209aa73d26b3d2c6fd58fa30f808dcd",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-B-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-B-process-samples.json": "cf7c62f1fd2b3e6d42921b6d4c55a1d6f3e3a9ef12f03b3021360bb76ae6881f",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-B-runner-summary.json": "242b9fb506c21dae2a9b7e2bd1b84419e051917df08a6c5af78df1d7b9df6275",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-B-validation.json": "129ae12e2f6739a7dbae70f931cbc82710d0ae5646788f35c8c8b20d8bf0ad6c",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-A-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-A-process-samples.json": "d98e39218422c86820a3be80e6ebef44a8fb97ad5d13a7d6e42bc58504d5e5d0",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-A-runner-summary.json": "0b5007ee89d1a58dad1ed32e91e55a6e6f3a0b547ffef9dd76bb16aac1bd602e",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-A-validation.json": "8b2b037aee5b70f03ba2debb52265c85cb4cb51c3287193a271b957dddc6cd8b",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-B-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-B-process-samples.json": "0d232f05d00a69825bd6a082c524cec4d363d5fa9bcd6754c03835f3a24b0fce",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-B-runner-summary.json": "99afcf90f3f4b96650de5d0d75fbee334bb0c99ab8c5877e399a2932f4c97859",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-B-validation.json": "90c06a29294e772639d17cfde97df0d770a37e35fdf3a2766fc054c43aeaab22",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-A-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-A-process-samples.json": "f31ddb2ad382452d884a4f0c995c85cf930d28e6c8d6750e37cfa089e3af600e",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-A-runner-summary.json": "7091e57976c3590239499b4662e53f14992a070452a0e604fab28f22db25a0e1",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-A-validation.json": "30a4e08f429d23058d66767c8f1ad693d226809630ed0f391571b2f2eeb7dbb7",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-B-cleanup.json": "dda19f7c933a0cb03c31f35541dd228348c772d63985962350b4fef4cd100178",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-B-process-samples.json": "58a9e6d31200ef1b20e571e3d065ea3c303b73a482911379954da04065b09301",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-B-runner-summary.json": "db4d4d54d5f5c80c46341c2812b7646f229c1393feafa20c836f3f4dd5b0722c",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-B-validation.json": "622686579febb363c179a6d4732a06bd847959253ac3040694a8a5f846c57015",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/plan.json": "bfba6a51dfb92eed034092f25038347e578eaa597d338c9eb060e88b0bf510de",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/preflight.json": "c6075b77f950f14b83ee87afd9e3bda68409b5459387033396a71052b1cdd9cc",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/progress.json": "43c7a8cb6f55f0d803051a3ed961028f89140f7dced4a3017706794bf67690ce",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-A-20261112T184345Z--M-panel-closed-0-raw.json.gz": "4b00cf9addda7396b16c6b83fbba30272a8a5829b7fd74278f167b20790cda3f",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-A-20261112T184345Z--M-panel-closed-events-0-raw.json.gz": "665341270a3fabf0c28c9a79926e7a41e618973495fc5c3928094a0b9e47fefd",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-A-20261112T184345Z--M-panel-open-0-raw.json.gz": "90c12182c7da4f10ca4b9ee8b05da38a02febcb1369d2caa2a2933500e188b25",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-A-20261112T184345Z--M-panel-open-events-0-raw.json.gz": "b82f11033116e99b483b380a109b159fe3a91048f4be2464ecea87b7e7dc83bb",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-A-20261112T184345Z--manifest.json.gz": "32f310b6b2545343b4ed8196a666329057785d474115419a8fac43ae967103f7",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-A-20261112T184345Z--process-samples.json.gz": "3dd6d612a46b90a045c5aafe6968e8053a7691171e1ef6edca39eb4f8860b4b5",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-A-20261112T184345Z--summary.json.gz": "f48aaf6104f8972d0ce3c90880c75941489a9106716211a9bafddc73d2d22606",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-B-20261112T184952Z--M-panel-closed-0-raw.json.gz": "03e008c6ff2c56551fdac39129dcd6c955ee1699c4ae8371a8b98142b8a091db",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-B-20261112T184952Z--M-panel-closed-events-0-raw.json.gz": "bf20848b69f7822da98dda9dbbb2a8e6808e936e9267b42700a3037341583f00",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-B-20261112T184952Z--M-panel-open-0-raw.json.gz": "2ef78f3614b470f0c6fb53b2cc62449ef9e582ca20feee75124806c232f6927e",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-B-20261112T184952Z--M-panel-open-events-0-raw.json.gz": "6998154321b462592ff4db1c8f4c946d21c6d85a43c4d766094461ef77c84c01",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-B-20261112T184952Z--manifest.json.gz": "6c08df98676e1934c56a1b430270cda8280b6d1b0047b642aeed6a307b6f383c",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-B-20261112T184952Z--process-samples.json.gz": "031e6a19c752e669c64b5c3c9a3e502b239f20a20fb8c178b7d9071d91de54d5",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p0-B-20261112T184952Z--summary.json.gz": "bb8ba76f25c15416703629c714f577cc2dbd836f01daa1b28698ca1bf3490794",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-A-20261112T190207Z--M-panel-closed-1-raw.json.gz": "e6ff251135617136d6145ab06f3e52afc3d67c0118d0a910cdbfbe41d6cf7971",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-A-20261112T190207Z--M-panel-closed-events-1-raw.json.gz": "76eed47810e1f335309aba282f1f0d903d063d44f0b62a1735d2a8a4d48757df",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-A-20261112T190207Z--M-panel-open-1-raw.json.gz": "e0bb05e1fd6260d5578b1c3bd1a37ab8f3189bedf8921a81ebb5d1730356aa32",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-A-20261112T190207Z--M-panel-open-events-1-raw.json.gz": "33d8fc55d305744e85bb2134cb356120a77bbec2f81f6f8ec07b33935ec003b5",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-A-20261112T190207Z--manifest.json.gz": "2205757fc497452ee6cdbf1b32a20a87651eb28cd7e9af878d4d47ae62c4ec66",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-A-20261112T190207Z--process-samples.json.gz": "5bf9077323e5df9ab69663c3fc659a4ea7165dd4e63168e0062151c58883f9ad",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-A-20261112T190207Z--summary.json.gz": "a8029bb16789ba22f318782a550f26c29476314ef31de4a9a5a6ccc011f6b388",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-B-20261112T185600Z--M-panel-closed-1-raw.json.gz": "b2ef6ca21c710ccc6ba46832ce19d96a2d44ee1cbc030a2e35b682ba19c188f9",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-B-20261112T185600Z--M-panel-closed-events-1-raw.json.gz": "ee50c05765eb95a3ebdcfada76cdfcf0118443ed418d8d6988d1689ff621c687",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-B-20261112T185600Z--M-panel-open-1-raw.json.gz": "1ae7ecce14603136207cabe3cac450ec0d147736588b38b9af1239df13dd3af7",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-B-20261112T185600Z--M-panel-open-events-1-raw.json.gz": "b23a4e40f15e934a2cc6a1feaf7c2e518828e15d373579e8c4d58ac1511ef447",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-B-20261112T185600Z--manifest.json.gz": "de50ffc0d6187c0a14046964d58f2c3033858ba2a93a4edd106e6dc548a24ea5",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-B-20261112T185600Z--process-samples.json.gz": "4b44b11ae517c9a743fe4da04264faa9115f69b2a82f0c8990be7044d726d67f",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p1-B-20261112T185600Z--summary.json.gz": "9cc97792c74537140fdf3c056c2a74e0fd3cbce3d7e24c3b3bac96b126fcc1f6",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-A-20261112T190815Z--M-panel-closed-2-raw.json.gz": "3acb8b4a1d87b171dec24063e9f5bd97a27eef3d18dba70f0328e9c26e940309",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-A-20261112T190815Z--M-panel-closed-events-2-raw.json.gz": "b007c1a802039134a58157fda849054bc40e60afe62ee63f38cdcc0d16129369",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-A-20261112T190815Z--M-panel-open-2-raw.json.gz": "2271f0a03048f951eb2596bd445d1b4038cfe7e99b1773ea8975f7037f52e597",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-A-20261112T190815Z--M-panel-open-events-2-raw.json.gz": "4369dd7105ec7c2dd16a4b988fbfbe29f542d947f6c6cb1a7d586c6145e6370b",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-A-20261112T190815Z--manifest.json.gz": "e3cb8e7b5a248d7c09ad09e858b40c76e0d514ae683bd1690f0268ae3c027e6d",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-A-20261112T190815Z--process-samples.json.gz": "a613e49aa1803123060302e32cc40de5dfba7a1cac1a8ffbf2a46df695c77107",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-A-20261112T190815Z--summary.json.gz": "c042b1351e99e64329a58247c1964a2e2ff3f5be7047db54ce3982e2cbe0366b",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-B-20261112T191422Z--M-panel-closed-2-raw.json.gz": "fdaa76e94f55f3d57022ef3423a57a3c41f630726655acea9d6dd123cc1a6569",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-B-20261112T191422Z--M-panel-closed-events-2-raw.json.gz": "f2027697c91c91ab79c86096a12d905b02aaff8a9c4acc7ad8399cf416bdc795",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-B-20261112T191422Z--M-panel-open-2-raw.json.gz": "826b213943c749ce2a3addca824463be9cdcb88b5fb02db4c2b6a63523731687",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-B-20261112T191422Z--M-panel-open-events-2-raw.json.gz": "8e391e80afcb372bb993c15660168c1854c67e73ace37e381760ca4bd2bdae42",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-B-20261112T191422Z--manifest.json.gz": "5700fd8bd15af70bb02799bac2daecb5086b3a8e006b488471d16868e7c86bc9",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-B-20261112T191422Z--process-samples.json.gz": "a9c9916b63c226d3cb8afe28a0ed34cb04766c0fc0f714af94fde2cb292712a4",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p2-B-20261112T191422Z--summary.json.gz": "03c71a3ad654b1d9b235bb5b8cc1d493fca511b256ab594f403b89fe29f22d1d",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-A-20261112T192636Z--M-panel-closed-3-raw.json.gz": "77a69895f9baa8db6ffa6945e2caf0d76011008b2b39fce5bd1e0c259f4cc2ba",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-A-20261112T192636Z--M-panel-closed-events-3-raw.json.gz": "3be9d0a0b87b104598f483a538b297819f7e244c0566f635544beb4809b6e8c4",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-A-20261112T192636Z--M-panel-open-3-raw.json.gz": "74bfe23ca7ff7c14785038e10117b687fd62969787c02f20026a01918992fdbd",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-A-20261112T192636Z--M-panel-open-events-3-raw.json.gz": "142067b341a155970399b4c9d045cc28efa133bd32f67c02a553da7610db3d4b",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-A-20261112T192636Z--manifest.json.gz": "8b4b20a35a3bf6020c0519bbc27f72a838431278bbb192aba44f0937c4f35b22",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-A-20261112T192636Z--process-samples.json.gz": "51a5cfb52e192bc48316522e7d04d9d0fd84195dbc90a0bba84067b028205184",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-A-20261112T192636Z--summary.json.gz": "c4de83686dd64807868ef0c8ba2af115e102fde04887e34b4576ce245933061a",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-B-20261112T192029Z--M-panel-closed-3-raw.json.gz": "eaaa0857509cc5d2ed45ac45814ba232d9d984b89dce41470e6fbb91afdca15b",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-B-20261112T192029Z--M-panel-closed-events-3-raw.json.gz": "b09f386a354e70c904381e3c6c83dfae4cd6d3abc22665b998275734555a2c28",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-B-20261112T192029Z--M-panel-open-3-raw.json.gz": "1a8d1478a9d9322f4c60cba67a4d2cf160934fcdc30b32584b3de67fac9e2fce",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-B-20261112T192029Z--M-panel-open-events-3-raw.json.gz": "18e006dfddfcbd6d24457667da7469e4baf7471ebfceaff528a16403bb1b9f27",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-B-20261112T192029Z--manifest.json.gz": "b7853a4c132d609d7d3fb63971b4604049259071109fb0feff1f921dca3f55e8",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-B-20261112T192029Z--process-samples.json.gz": "963c2b44086533d9089fac897c2222c9486aa04abe2fd22e29e7896bb64c1a52",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p3-B-20261112T192029Z--summary.json.gz": "9d5b41d3cc9616ea9f6d121ed31d869985f84dcb2df7d26c0f4cffb54d1215c8",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-A-20261112T193244Z--M-panel-closed-4-raw.json.gz": "1aee4c5dd5ba13f1e8c6049e236e814e41417f56b80fce7a2ce30ed635e0bdb5",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-A-20261112T193244Z--M-panel-closed-events-4-raw.json.gz": "e2982943d177069af320b61c650c13e348e23a2dc244129f0ed7de8eac4f486a",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-A-20261112T193244Z--M-panel-open-4-raw.json.gz": "49da918d386d0e9afa27c63fc4d571d1b3d8e4a55e094ddd9645492773118500",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-A-20261112T193244Z--M-panel-open-events-4-raw.json.gz": "691c353bf2a830b030d1c2fe3ccb6215804edac956c3bd9eaca1ffa24220b088",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-A-20261112T193244Z--manifest.json.gz": "b75ab9bd3021aec098d3cee8582e22008473f9011adfda4934bf4d46b8659265",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-A-20261112T193244Z--process-samples.json.gz": "c68bf3e52a8634433e2c0b40bca3681288c8501c76fc86dce1c0f6c03fd88dae",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-A-20261112T193244Z--summary.json.gz": "d7acebbdaeba795ac408edac67f1b0e570d77af61c8d61aecfc197b9f1f71d49",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-B-20261112T193853Z--M-panel-closed-4-raw.json.gz": "85acb078908a10851a494ef1aca2bec5525878dcc85b72d375eaeaf1b51bfb6e",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-B-20261112T193853Z--M-panel-closed-events-4-raw.json.gz": "aeb0afd557fca9f71b84373f9457ae5c446ce8709ff6b13c2dcc805f7df04714",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-B-20261112T193853Z--M-panel-open-4-raw.json.gz": "ea7ef434691fe4fe305bca26cb7fac0bc49fdbdbe9db2e606aaccec68a085a99",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-B-20261112T193853Z--M-panel-open-events-4-raw.json.gz": "8c042536a0bd91c41527640d357ccf12ef1a107bd741869be8f76137c953ee54",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-B-20261112T193853Z--manifest.json.gz": "85942b0c73170dd72d38e6ea60993d83daa86d21f5cb732cfbbed02a94991485",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-B-20261112T193853Z--process-samples.json.gz": "f8b30ba1720377791a88fc92b5a69fefbb1cd1b118faefe3cf2f83f087a06ba9",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/raw/cat16-balanced-p4-B-20261112T193853Z--summary.json.gz": "486da584694f650b31bc9206aa0fa28467fd5816d03228b4ec87924aa820d7d7",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/reduce.mjs": "bdb12ac1d5e83c0da6a35283f96e4cd07fa638bdffa1a36c973833b21bd0585a",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/run.py": "6355096b8bafcd40fc58109b9c3b51f316e6ee87442581b204b4736de3b01cd7",
+    "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/validate-job.mjs": "03338df0de79b4c4a6af11e26582b525eda79646b4878853a372f44edd029d2d",
+    "frontend/src/harbor/HarborScene.jsx": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1",
+    "frontend/src/harbor/WorldFacilities.jsx": "b7440e44f580ceb717ea37c273c8e29f0df081b5ce198ba1c4d82e40c0938a9f",
+    "frontend/src/harbor/assets.jsx": "dfc512a3baa639c4f0fdd420b69e64014c537c20dd42a5b1b3da58dd1df35a3b"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "official-baseline",
+  "argv": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/trivy.yaml",
+    "image",
+    "--image-src",
+    "docker",
+    "--docker-host",
+    "unix:///var/run/docker.sock",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/official-baseline.json",
+    "--timeout",
+    "150s",
+    "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82"
+  ],
+  "startedAt": "2026-11-12T10:25:54.381097+00:00",
+  "maxSeconds": 155,
+  "samples": [
+    {
+      "elapsedSeconds": 0.731,
+      "ownedRSSBytes": 8323072,
+      "ownedPIDs": [
+        10780
+      ],
+      "freeDiskBytes": 454702190592,
+      "batteryPercent": 52
+    }
+  ],
+  "pid": 10780,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:25:54.900127+00:00"
+}

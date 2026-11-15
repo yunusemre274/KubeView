@@ -1,0 +1,54 @@
+{
+  "status": "PASS_WINDOW_REQUIRES_FULL_PAIRED_SET",
+  "purpose": "One valid30/60 window, no independent n1 CPU acceptance",
+  "pair": 0,
+  "side": "B",
+  "reasons": [],
+  "coverage": {
+    "valid": true,
+    "reasons": [],
+    "browserCores": 0.625851470343911,
+    "gpuProcessCores": 0.23043694965941186,
+    "rendererProcessCores": 0.3914271473666723,
+    "backendCores": 0.0029905299883701613,
+    "maxBrowserProcessRSSKiB": 401088,
+    "backendRSSKiB": 49936,
+    "browserMainCores": 0.002990529988370162,
+    "churn": [],
+    "clockWindow": {
+      "wallMs": 60190,
+      "activeMs": 60056,
+      "differenceMs": 134,
+      "toleranceMs": 1000,
+      "valid": true
+    },
+    "complete": true
+  },
+  "summary": {
+    "renderedFPS": 60.0106567203943,
+    "interval": {
+      "n": 3603,
+      "p50": 16.699999999254942,
+      "p95": 17.699999999254942,
+      "p99": 18.5,
+      "min": 11.800000000745058,
+      "max": 20.100000001490116
+    },
+    "callbackToStore": {
+      "n": 300,
+      "p50": 0.5,
+      "p95": 0.6999999992549419,
+      "p99": 0.8000000007450581,
+      "min": 0.19999999925494194,
+      "max": 0.8999999985098839
+    },
+    "drawProxy": {
+      "n": 115,
+      "p50": 15,
+      "p95": 20.5,
+      "p99": 29.299999997019768,
+      "min": 2.699999999254942,
+      "max": 30
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "status": "FAIL",
+  "errorClass": "Guard",
+  "safeCategory": "new_Node_Pod_GC_deadline"
+}

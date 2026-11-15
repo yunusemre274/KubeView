@@ -1,0 +1,172 @@
+{
+  "originalFunctionTextUnchanged": true,
+  "originalTestSHA256": "2a146f4688e741a26be340a48641602efd11218161f1b5a37aef5b50c1f8f1a2",
+  "augmentedTestSHA256": "e1576b460be3e4487e8c5b2b984c21ea31a5936d2daa0ac361ccb1e375f4c6af",
+  "rootFixUnchanged": true,
+  "results": [
+    {
+      "name": "provision-all",
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count",
+        "1",
+        "-timeout",
+        "45s",
+        "./pkg/provision"
+      ],
+      "startedAt": "2026-11-11T19:54:09.398247+00:00",
+      "outerTimeoutSeconds": 65,
+      "status": "PASS",
+      "exitCode": 0,
+      "timeout": false,
+      "elapsedSeconds": 1.601248025894165,
+      "allTestOutcomes": {
+        "TestInstalledMinikubeProfileNames": "pass",
+        "TestWrongContextOrProfileClusterNeverRuns": "pass",
+        "TestProfileLockAndRestartNeverBlindlyRetry": "pass",
+        "TestCLIExitZeroIsNotReadyOrUnrelatedNodeAttribution": "pass",
+        "TestDoubleRequestAndRealObservationAssociation": "pass",
+        "TestUnsupportedDriverAndInvalidIdempotency": "pass",
+        "TestReleaseProfileLockSpansStateDirs": "pass",
+        "TestReleaseProfileLockAcrossProcesses": "pass",
+        "TestReleaseProfileLockChild": "skip",
+        "TestReleaseProfileLockHomeSymlinkAlias": "pass",
+        "TestReleaseProfileLockConstructorFailureReleasesBoth": "pass"
+      },
+      "topLevelCounts": {
+        "pass": 10,
+        "fail": 0,
+        "skip": 1
+      },
+      "allNamedTestCounts": {
+        "pass": 10,
+        "fail": 0,
+        "skip": 1
+      },
+      "skips": [
+        "TestReleaseProfileLockChild"
+      ]
+    },
+    {
+      "name": "server-targeted",
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count",
+        "1",
+        "-timeout",
+        "50s",
+        "-run",
+        "^Test(ReleaseProviderCachedKey(RemainsBoundToLiveCluster|NamespaceReadErrors)|ReleaseReadOnlyEndpointsRetainedGrant|ReleaseReadOnlySecretReadAndUnsupportedPatch|ManagementStartsReadOnlyAndCannotBypassSession|ReadOnlyAndNamespaceEnforced)$",
+        "./pkg/server"
+      ],
+      "startedAt": "2026-11-11T19:54:10.999620+00:00",
+      "outerTimeoutSeconds": 70,
+      "status": "PASS",
+      "exitCode": 0,
+      "timeout": false,
+      "elapsedSeconds": 3.7941551208496094,
+      "allTestOutcomes": {
+        "TestManagementStartsReadOnlyAndCannotBypassSession": "pass",
+        "TestReleaseProviderCachedKeyRemainsBoundToLiveCluster/valid-cached-control": "pass",
+        "TestReleaseProviderCachedKeyRemainsBoundToLiveCluster/wrong-selected-context": "pass",
+        "TestReleaseProviderCachedKeyRemainsBoundToLiveCluster/changed-actual-cluster-uid": "pass",
+        "TestReleaseProviderCachedKeyRemainsBoundToLiveCluster": "pass",
+        "TestReleaseProviderCachedKeyNamespaceReadErrors/forbidden": "pass",
+        "TestReleaseProviderCachedKeyNamespaceReadErrors/unavailable": "pass",
+        "TestReleaseProviderCachedKeyNamespaceReadErrors/missing": "pass",
+        "TestReleaseProviderCachedKeyNamespaceReadErrors": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/create/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/create/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/replace/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/replace/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/delete/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/delete/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/restart-action/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/restart-action/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/resize-patch-action/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/resize-patch-action/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/exec/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/exec/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/preview-create/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/preview-create/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/raw-forward/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/raw-forward/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/provision/write-enabled": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant/provision/global-read-only": "pass",
+        "TestReleaseReadOnlyEndpointsRetainedGrant": "pass",
+        "TestReleaseReadOnlySecretReadAndUnsupportedPatch": "pass",
+        "TestReadOnlyAndNamespaceEnforced": "pass"
+      },
+      "topLevelCounts": {
+        "pass": 6,
+        "fail": 0,
+        "skip": 0
+      },
+      "allNamedTestCounts": {
+        "pass": 30,
+        "fail": 0,
+        "skip": 0
+      },
+      "skips": []
+    },
+    {
+      "name": "profile-lifecycle-race",
+      "argv": [
+        "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+        "test",
+        "-race",
+        "-json",
+        "-p",
+        "1",
+        "-parallel",
+        "1",
+        "-count",
+        "1",
+        "-timeout",
+        "90s",
+        "-run",
+        "^(TestReleaseProfileLock.*|TestProfileLockAndRestartNeverBlindlyRetry)$",
+        "./pkg/provision"
+      ],
+      "startedAt": "2026-11-11T19:54:14.793900+00:00",
+      "outerTimeoutSeconds": 95,
+      "status": "PASS",
+      "exitCode": 0,
+      "timeout": false,
+      "elapsedSeconds": 6.460912227630615,
+      "allTestOutcomes": {
+        "TestProfileLockAndRestartNeverBlindlyRetry": "pass",
+        "TestReleaseProfileLockSpansStateDirs": "pass",
+        "TestReleaseProfileLockAcrossProcesses": "pass",
+        "TestReleaseProfileLockChild": "skip",
+        "TestReleaseProfileLockHomeSymlinkAlias": "pass",
+        "TestReleaseProfileLockConstructorFailureReleasesBoth": "pass"
+      },
+      "topLevelCounts": {
+        "pass": 5,
+        "fail": 0,
+        "skip": 1
+      },
+      "allNamedTestCounts": {
+        "pass": 5,
+        "fail": 0,
+        "skip": 1
+      },
+      "skips": [
+        "TestReleaseProfileLockChild"
+      ]
+    }
+  ]
+}

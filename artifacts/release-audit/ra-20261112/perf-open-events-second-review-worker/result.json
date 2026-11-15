@@ -1,0 +1,889 @@
+{
+  "status": "PASS_LIMITED_FRONTEND_BROWSER_OPEN_EVENTS_FIVE_PAIR_EVIDENCE",
+  "reviewedAt": "2026-11-12T17:56:09.084125+00:00",
+  "reviewMethod": "Read-only artifacts/source, SHA256, gzip and independent offline arithmetic. No measurements, app/server/browser, build, test, scan or lab started.",
+  "comparisonScope": "frontend-browser-common-backend; controlled M38, one registered harbor, Node0 Summary open, 5 events/s",
+  "invocationCommit": "3278451bf98cd8fb0c20f85118eccc0a9ba57bf2",
+  "frozenFrontends": [
+    {
+      "side": "A",
+      "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "tag": "cat16-36d-20261112T113255Z",
+      "sourceSHA256": "25c0877480526832445bc61d4b6355cdb89024c0f45556772c2a8109e3ede293",
+      "sourceFilesVerified": 98,
+      "assetsVerified": 6,
+      "indexSHA256": "f682f5740ba518542ed6d84e3008b57a4a592e162b093276b4b3354e12e634a5",
+      "backendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8"
+    },
+    {
+      "side": "B",
+      "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "tag": "cat16-f32-20261112T113255Z",
+      "sourceSHA256": "2ebbbd715eb1e449736cf2e4b88489782136a19bbc25a99cf58701c9a234fe4a",
+      "sourceFilesVerified": 98,
+      "assetsVerified": 6,
+      "indexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+      "backendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8"
+    }
+  ],
+  "commonBackendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+  "sourceChecks": [
+    {
+      "path": "benchmarks/run.mjs",
+      "SHA256": "1bbe0778389f4b80a88fd9fbc42dab0e4920c201c30a639757974abd2b9f70ec",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/metrics.mjs",
+      "SHA256": "9181e3d5a486d4cbddd18debfccf0a55cd26f064354cce6a6c379ec063b0fe81",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/process-identity.mjs",
+      "SHA256": "b2790f88e7d5111ec43babf8362605ca5f0718ad5fd3fac122ba9ad361956a32",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/panel-compare.mjs",
+      "SHA256": "d3c2927c658909b0a297b2ba43327167eacfb2d09a597270ee0c275e17b52646",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/camera-contract.mjs",
+      "SHA256": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/compare.mjs",
+      "SHA256": "e8c2685ceef1b674ea0331d1fc93a91bed5dacdd14bf324ecf8c844a7f78c397",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/fixtures.mjs",
+      "SHA256": "c53ffc7cab18c06991437fe0f17ebdade10c28bbb56146ee19ba2ee63a45becc",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/probe.mjs",
+      "SHA256": "bec5e6362c57c0ce2c2ed2865d6fa7e05fd8446daa153ea7054fdcdb0089d367",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/repair-scenarios.mjs",
+      "SHA256": "fd5525a58f12a2569d73af63a19dec3f6f7680278386a637f778d984f49628d7",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/build-lock.mjs",
+      "SHA256": "3452669b2237796240ea934ba7727abc4e6401d1917d6ccd2ce215443ebc97cf",
+      "equalsInvocationCommit3278451b": true
+    },
+    {
+      "path": "benchmarks/panel-build.mjs",
+      "SHA256": "2a11578dda8e7b0eb6463154fb6b162a4c9fb22325a5adb86ea9463637b76505",
+      "equalsInvocationCommit3278451b": true
+    }
+  ],
+  "execution": {
+    "elapsedSeconds": 940.3374378681183,
+    "orders": [
+      "AB",
+      "BA",
+      "AB",
+      "BA",
+      "AB"
+    ],
+    "actualWindowOrder": "ABBAABBAAB",
+    "allTenExitCodesZero": true,
+    "automaticRetries": 0,
+    "warmupSecondsEach": 30,
+    "measureSecondsEach": 60,
+    "warmupEvidence": "manifest params plus run.mjs await sleep(warmup*1000); each actual job duration exceeds90s",
+    "plannedAppliedReceivedTotal": [
+      3000,
+      3000,
+      3000
+    ],
+    "canonicalEqualAllTen": true
+  },
+  "independentRecomputation": {
+    "cpuAndRSSAllTenCellsMatch": true,
+    "metricRows": 13,
+    "eachSideSampleCount": 5,
+    "allDistributionsSignedPairDifferencesPercentagesMatch": true,
+    "rawFrameIntervalP95P99AndMessageStoreDrawDistributionsMatch": true,
+    "matchingPairEventSequenceActionUIDVersionPlannedScheduleEqual": true,
+    "sampledPIDBirthCommandParentCohortStable": true,
+    "countersMonotonic": true,
+    "clockToleranceMs": 1000,
+    "mismatches": []
+  },
+  "qualityEquality": {
+    "allManifestComparisonFieldsEqual": true,
+    "exactCameraAndFleetPhaseEqual": true,
+    "panelUID": "node-0",
+    "panelTitle": "worker-001",
+    "panelTab": "Özet",
+    "initialPanelContentExactlyEqual": true,
+    "panelOpenBeforeAndAfterAllTen": true,
+    "canonicalNodesPods": [
+      20,
+      300
+    ],
+    "visibleNodesPods": [
+      8,
+      120
+    ],
+    "registeredHarbors": 1,
+    "quality": "medium",
+    "DPR": 1,
+    "buffer": [
+      1440,
+      900
+    ],
+    "FOV": 38,
+    "shadowsWaterPatrol": true,
+    "fpsCapAdaptiveProfilerVideo": false,
+    "browserEnergySaverValue": 0,
+    "initialDrawCallsTriangles": [
+      426,
+      71170
+    ],
+    "renderer": "ANGLE Metal / Apple M5",
+    "noStaleOrContextLost": true
+  },
+  "cells": [
+    {
+      "pair": 0,
+      "side": "A",
+      "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "windowActiveSeconds": 60.059300000000746,
+      "windowWallSeconds": 60.19,
+      "clockDifferenceMs": 130.69999999925494,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.6886526000996844,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 387.15625,
+      "JSHeapUsedMiB": 29.31558322906494,
+      "JSHeapTotalMiB": 92.92552661895752,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "20449e87c857494ee53583bea650a7931d2babc3a5fbef3e6d562661187cb7c7"
+    },
+    {
+      "pair": 0,
+      "side": "B",
+      "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "windowActiveSeconds": 60.056,
+      "windowWallSeconds": 60.19,
+      "clockDifferenceMs": 134,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.625851470343911,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 391.6875,
+      "JSHeapUsedMiB": 23.839597702026367,
+      "JSHeapTotalMiB": 91.91934394836426,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "d6819af8b3d47970207fb24803dba9272a25a6fd9a131a715a6ba03e2aa016a5"
+    },
+    {
+      "pair": 1,
+      "side": "B",
+      "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "windowActiveSeconds": 60.05969999999925,
+      "windowWallSeconds": 60.194,
+      "clockDifferenceMs": 134.30000000074506,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.6822939163371764,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 407.546875,
+      "JSHeapUsedMiB": 43.26718997955322,
+      "JSHeapTotalMiB": 87.67943668365479,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "115f41134023b019f020cf8bef1ada79c19f435cb5b006c26aca7a55dbba8703"
+    },
+    {
+      "pair": 1,
+      "side": "A",
+      "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "windowActiveSeconds": 60.050599999997765,
+      "windowWallSeconds": 60.19,
+      "clockDifferenceMs": 139.40000000223517,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.6640637979730853,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 398.015625,
+      "JSHeapUsedMiB": 41.339735984802246,
+      "JSHeapTotalMiB": 86.17679119110107,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "d221ea55ac7f9a4a53322264a415a4458dd6fea9e97516997985474bdd55866e"
+    },
+    {
+      "pair": 2,
+      "side": "A",
+      "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "windowActiveSeconds": 60.065599999997765,
+      "windowWallSeconds": 60.194,
+      "clockDifferenceMs": 128.40000000223517,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.686613283715985,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 375.984375,
+      "JSHeapUsedMiB": 48.960455894470215,
+      "JSHeapTotalMiB": 88.43839168548584,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "52eed3097cd643204a756692b741a40f51d01458aa8576ededc88761b7af6352"
+    },
+    {
+      "pair": 2,
+      "side": "B",
+      "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "windowActiveSeconds": 60.06209999999776,
+      "windowWallSeconds": 60.197,
+      "clockDifferenceMs": 134.90000000223517,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.7070119773410635,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 383.734375,
+      "JSHeapUsedMiB": 25.532755851745605,
+      "JSHeapTotalMiB": 88.93670558929443,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "b0a108ce775559e408e196bd567d55aa96f1b2082a2b0925acfd2d2d4f92d386"
+    },
+    {
+      "pair": 3,
+      "side": "B",
+      "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "windowActiveSeconds": 60.05540000000224,
+      "windowWallSeconds": 60.187,
+      "clockDifferenceMs": 131.59999999776483,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.654792563178095,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 396.859375,
+      "JSHeapUsedMiB": 46.208478927612305,
+      "JSHeapTotalMiB": 85.43840599060059,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "ee903906d601c1297880c6aa7de2807777a0cb5b4958351b100e64605c3dc6bd"
+    },
+    {
+      "pair": 3,
+      "side": "A",
+      "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "windowActiveSeconds": 60.041,
+      "windowWallSeconds": 60.173,
+      "clockDifferenceMs": 132,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.6552772838316188,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 387.46875,
+      "JSHeapUsedMiB": 31.997879028320312,
+      "JSHeapTotalMiB": 90.42871856689453,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "c299a11e853d12157abd01ffb76ff182318eea10553e911c07291290a7fe49d7"
+    },
+    {
+      "pair": 4,
+      "side": "A",
+      "sourceCommit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "windowActiveSeconds": 60.0635,
+      "windowWallSeconds": 60.195,
+      "clockDifferenceMs": 131.5,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.707367721571559,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 381.921875,
+      "JSHeapUsedMiB": 46.18450450897217,
+      "JSHeapTotalMiB": 88.6870756149292,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "a7cb9502836bd2795761c96dd6b6de0a394c0324925e3de946a3a40f588049f2"
+    },
+    {
+      "pair": 4,
+      "side": "B",
+      "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "windowActiveSeconds": 60.06380000000075,
+      "windowWallSeconds": 60.191,
+      "clockDifferenceMs": 127.19999999925494,
+      "coverageComplete": true,
+      "sampledAccountingSnapshots": 14,
+      "processRoles": {
+        "browser-main": 1,
+        "browser-gpu": 1,
+        "browser-other": 2,
+        "backend": 1,
+        "browser-renderer": 3
+      },
+      "browserCoresRecomputed": 0.6878104700038212,
+      "largestBrowserRSSRole": "browser-renderer",
+      "largestBrowserRSSMiB": 403.984375,
+      "JSHeapUsedMiB": 44.26815128326416,
+      "JSHeapTotalMiB": 84.70823001861572,
+      "plannedAppliedReceived": [
+        300,
+        300,
+        300
+      ],
+      "eventActions": {
+        "ADD": 15,
+        "DELETE": 15,
+        "UPDATE": 270
+      },
+      "fullObjectCanonicalEqualityAssertions": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      },
+      "rawDecompressedSHA256": "47d1358ee1d9e1e55e0fdd82f5fc4e8c6716c1cf0992be7458e741a3f2ecdabe"
+    }
+  ],
+  "metrics": [
+    {
+      "metric": "browserCores",
+      "Amedian": 0.686613283715985,
+      "Bmedian": 0.6822939163371763,
+      "pairedDifferenceMedian": -0.0004847206535237847,
+      "pairedDifferenceRange": [
+        -0.06280112975577345,
+        0.0203986936250784
+      ],
+      "pairedPercentMedian": -0.07397183840853844,
+      "allFivePairs": [
+        {
+          "pair": 0,
+          "before": 0.6886526000996844,
+          "after": 0.625851470343911,
+          "difference": -0.06280112975577345,
+          "percent": -9.119420989143554
+        },
+        {
+          "pair": 1,
+          "before": 0.6640637979730852,
+          "after": 0.6822939163371763,
+          "difference": 0.018230118364091052,
+          "percent": 2.7452359878274715
+        },
+        {
+          "pair": 2,
+          "before": 0.686613283715985,
+          "after": 0.7070119773410634,
+          "difference": 0.0203986936250784,
+          "percent": 2.970914502946938
+        },
+        {
+          "pair": 3,
+          "before": 0.6552772838316187,
+          "after": 0.6547925631780949,
+          "difference": -0.0004847206535237847,
+          "percent": -0.07397183840853844
+        },
+        {
+          "pair": 4,
+          "before": 0.707367721571559,
+          "after": 0.6878104700038212,
+          "difference": -0.0195572515677378,
+          "percent": -2.7647927621417967
+        }
+      ]
+    },
+    {
+      "metric": "rendererCores",
+      "Amedian": 0.4345948101139649,
+      "Bmedian": 0.4316259905966009,
+      "pairedDifferenceMedian": -0.0017578979263981886,
+      "pairedDifferenceRange": [
+        -0.044359528160824,
+        0.015422267359793074
+      ],
+      "pairedPercentMedian": -0.4241298794112198,
+      "allFivePairs": null
+    },
+    {
+      "metric": "gpuProcessCores",
+      "Amedian": 0.24688486459544776,
+      "Bmedian": 0.24437651593182041,
+      "pairedDifferenceMedian": 0.0002772506711574141,
+      "pairedDifferenceRange": [
+        -0.016447914936035896,
+        0.0074631194423289415
+      ],
+      "pairedPercentMedian": 0.11715593142945983,
+      "allFivePairs": null
+    },
+    {
+      "metric": "browserMainCores",
+      "Amedian": 0.0033225350942769345,
+      "Bmedian": 0.003156618099051354,
+      "pairedDifferenceMedian": -2.2080679789931654e-07,
+      "pairedDifferenceRange": [
+        -0.001993686658913441,
+        0.0009961971979303218
+      ],
+      "pairedPercentMedian": -0.00664518058277993,
+      "allFivePairs": null
+    },
+    {
+      "metric": "backendFixtureCores",
+      "Amedian": 0.0031575623618566467,
+      "Bmedian": 0.0033225902913911684,
+      "pairedDifferenceMedian": -1.7386513311099666e-07,
+      "pairedDifferenceRange": [
+        -0.00033204374993942715,
+        0.00016591974811155366
+      ],
+      "pairedPercentMedian": -0.004983637058325396,
+      "allFivePairs": null
+    },
+    {
+      "metric": "maxSingleBrowserProcessRSSMiB",
+      "Amedian": 387.15625,
+      "Bmedian": 396.859375,
+      "pairedDifferenceMedian": 9.390625,
+      "pairedDifferenceRange": [
+        4.53125,
+        22.0625
+      ],
+      "pairedPercentMedian": 2.3946924194244885,
+      "allFivePairs": [
+        {
+          "pair": 0,
+          "before": 387.15625,
+          "after": 391.6875,
+          "difference": 4.53125,
+          "percent": 1.170393090644927
+        },
+        {
+          "pair": 1,
+          "before": 398.015625,
+          "after": 407.546875,
+          "difference": 9.53125,
+          "percent": 2.3946924194244885
+        },
+        {
+          "pair": 2,
+          "before": 375.984375,
+          "after": 383.734375,
+          "difference": 7.75,
+          "percent": 2.061255870007896
+        },
+        {
+          "pair": 3,
+          "before": 387.46875,
+          "after": 396.859375,
+          "difference": 9.390625,
+          "percent": 2.423582546979595
+        },
+        {
+          "pair": 4,
+          "before": 381.921875,
+          "after": 403.984375,
+          "difference": 22.0625,
+          "percent": 5.776704987112875
+        }
+      ]
+    },
+    {
+      "metric": "backendProcessRSSMiB",
+      "Amedian": 49.1875,
+      "Bmedian": 49,
+      "pairedDifferenceMedian": -0.203125,
+      "pairedDifferenceRange": [
+        -1.65625,
+        0.25
+      ],
+      "pairedPercentMedian": -0.41827541827541825,
+      "allFivePairs": null
+    },
+    {
+      "metric": "pageJSHeapUsedMiB",
+      "Amedian": 41.339735984802246,
+      "Bmedian": 43.26718997955322,
+      "pairedDifferenceMedian": -1.9163532257080078,
+      "pairedDifferenceRange": [
+        -23.42770004272461,
+        14.210599899291992
+      ],
+      "pairedPercentMedian": -4.149342395425552,
+      "allFivePairs": null
+    },
+    {
+      "metric": "jsDrawsPerSecond",
+      "Amedian": 60.019812365246786,
+      "Bmedian": 60.02121137955773,
+      "pairedDifferenceMedian": 0.002258425591250557,
+      "pairedDifferenceRange": [
+        -0.016948743565251334,
+        0.00755671301124039
+      ],
+      "pairedPercentMedian": 0.0037624342653794305,
+      "allFivePairs": null
+    },
+    {
+      "metric": "windowFrameP95Ms",
+      "Amedian": 18.600000001490116,
+      "Bmedian": 18.699999999254942,
+      "pairedDifferenceMedian": -3.725290298461914e-09,
+      "pairedDifferenceRange": [
+        -1.699999999254942,
+        0.5
+      ],
+      "pairedPercentMedian": -1.992133849127386e-08,
+      "allFivePairs": null
+    },
+    {
+      "metric": "windowFrameP99Ms",
+      "Amedian": 19,
+      "Bmedian": 19,
+      "pairedDifferenceMedian": 0,
+      "pairedDifferenceRange": [
+        -2.2000000029802322,
+        2.100000001490116
+      ],
+      "pairedPercentMedian": 0,
+      "allFivePairs": null
+    },
+    {
+      "metric": "windowCallbackStoreP95Ms",
+      "Amedian": 0.8000000007450581,
+      "Bmedian": 0.8999999985098839,
+      "pairedDifferenceMedian": 0.09999999776482582,
+      "pairedDifferenceRange": [
+        -0.10000000149011612,
+        0.10000000149011612
+      ],
+      "pairedPercentMedian": 12.499999708961695,
+      "allFivePairs": null
+    },
+    {
+      "metric": "windowVisibleDrawProxyP95Ms",
+      "Amedian": 19.800000000745058,
+      "Bmedian": 18,
+      "pairedDifferenceMedian": -0.9000000022351742,
+      "pairedDifferenceRange": [
+        -7.399999998509884,
+        3.899999998509884
+      ],
+      "pairedPercentMedian": -5.732484089581738,
+      "allFivePairs": null
+    }
+  ],
+  "interpretation": {
+    "CPU": "No demonstrated optimization: paired CPU median B-A=-0.0004847206535237847 core (-0.07397183840853844% median paired percent), with mixed signs and broad pair range.",
+    "differenceOfCPUMedians": -0.0043193673788086695,
+    "differenceOfCPUMediansPercent": -0.6290829905637771,
+    "RSS": "All five B-A differences are positive, median+9.390625MiB, range+4.53125..+22.0625MiB. All largest-RSS processes are renderers. Preserve as unresolved mechanism, without a noise waiver, leak/leak-free claim or retained9MiB cache inference.",
+    "RSSDefinition": "Maximum across individual browser PIDs at the OS-after sample, not peak across time, summed unique physical RAM or retained JS.",
+    "JSHeap": "End snapshots of used/total heap differ in both directions; GC/allocator/native-memory causes were not established.",
+    "percentileDefinition": "Per-window percentile followed by five-window distribution; not pooled-frame/event p95/p99."
+  },
+  "powerAndResources": {
+    "source": "battery",
+    "sampleCount": 101,
+    "batteryPercentRange": [
+      59,
+      62
+    ],
+    "lowPowerMode": 0,
+    "sameRecordedSettingsAllTen": true,
+    "minimumDiskGiB": 422.11801528930664,
+    "maximumSummedBrowserRSSMiB": 1329.3125,
+    "maximumAppRSSMiB": 50.421875,
+    "thresholdsMet": "No next window below40%; abort floor30%; disk10GiB; app2GiB/browser summed6GiB",
+    "isolation": "Preflight records owned lab stopped and workers idle. Ambient user processes remain; no claim of a noiseless machine or energy measurement."
+  },
+  "cleanup": {
+    "capturedProcessReferences": 125,
+    "allRecordedIdentitiesAbsent": true,
+    "port5192Free": true,
+    "backendUnchanged": true,
+    "postflight": {
+      "at": "2026-11-12T17:49:25.935368+00:00",
+      "allCapturedProcessIdentitiesAbsent": true,
+      "recordedProcessRefs": 125,
+      "port5192Free": true,
+      "commonBackendUnchanged": true,
+      "powerSamplesSources": [
+        "battery"
+      ],
+      "batteryRange": [
+        59,
+        62
+      ],
+      "allHarnessSourceSHAUnchanged": true,
+      "proof": "controller checks source SHA at start/eachwindow/final; allreturnedPASS"
+    },
+    "newLiveProbeByReviewer": false
+  },
+  "rawArchive": {
+    "files": 10,
+    "allGzipAndRawSHA256SizesAndOriginalByteEqualityVerified": true,
+    "sourceBytes": 5090511,
+    "gzipBytes": 306253
+  },
+  "metadataFinding": {
+    "id": "PERF-REVIEW-01",
+    "initial": "Reducer referenced absent buildProvenance.commit; sourceCommit null in all ten cells.",
+    "disposition": "FIXED_OFFLINE_VERIFIED; initial summary/reducer preserved. New reducer validates side/tag/index/backend/provenance and separates sourceCommit from invocationCommit. All rows and non-attribution data unchanged; newMeasurements=0.",
+    "source": "summarize.mjs:10-17; source-attribution-retest.json"
+  },
+  "canonicalEvidenceLimit": "Source fixtures.mjs signature canonicalizes complete nested objects and run.mjs compares client/upstream/planned. Both live verdicts true in all10. Final canonical objects are not independently persisted in raw snapshots (snapshots is a counter); this review verifies the recorded verdicts and source, not a new live-state comparison.",
+  "excludedClaims": [
+    "signed delta-panel or closed/0-event matrix",
+    "full-runtime A/B",
+    "V11-18 closure",
+    "production FOV24 or two-detailed-harbor16/240 equivalence",
+    "native Safari/Retina",
+    "GPU utilization or physical presented FPS/latency",
+    "energy/battery savings",
+    "real Kubernetes/provider CPU acceptance",
+    "statistical significance or established optimization",
+    "leak or leak-free acceptance"
+  ],
+  "reviewedInputSHA256": {
+    "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frontend-A-build-provenance.json": "ee5e15a1831233005624e05c29198a16c2995bd289d241a88ab15ad162380a52",
+    "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frontend-B-build-provenance.json": "fb96c40c0719f5242309a1a7971f244bcf48193628848419904fd60c1b3d0312",
+    "artifacts/release-audit/ra-20261112/perf-matching-build-worker/frozen-build-manifests.json": "40a9291437815fe678bae72c26bea60ab3ae8773cbc3d613d44a17186cfc10bf",
+    "artifacts/release-audit/ra-20261112/perf-matching-build-worker/prepared-source-and-cache-proof.json": "d6156bda2ac9d073f4d525b5fede9b7b5ee32733f88c7d2ea87933e2fcb721c4",
+    "artifacts/release-audit/ra-20261112/perf-matching-build-worker/public-assets-and-source-delta.json": "1d02d1846780dd219a0e9e81f723fa9f61a9ffd3c5dae967d00911a3ce01d9a3",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/RAW_INDEX.json": "9ad158a577c82681d4dcfd79ca2f14132606ad43e96bc873bdf172b77cbd6dd3",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/execution.json": "c8dc1651a1e367c274aad5ede692cf04c7fdae7d1275acea7745e42f1932bb6e",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/fresh-display.json": "833cb4e481bd41f2611ccd384e738c35b480697a87ad0d1e5d632af95a8c8545",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-A-process-samples.json": "a6af1f4030ff68f41dbe1ccb3296dc135088647bafa6e0f75bceeb4a01e310ee",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-A-runner-summary.json": "b771d09b84c7d5080d476aa734e36879b135542319c0fa491fff43f9a5fdfb01",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-A-validation.json": "2b200896097480b60237f2e12d9e67831921b228a1a5174f313a5aced8eb54c4",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-B-process-samples.json": "2d8867f6c3e17ed56a975a24e0e3c6ae6e4832dce17e889e6cb548bff9a40aa9",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-B-runner-summary.json": "24a695856055555360962e1569ad9fe66a824a3f2860496f448b60c33dcfd5f9",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p0-B-validation.json": "d6b239c75ac8f98b2b29d90391ac969cf58d31f3e18963e642b1a26ac5ff16f5",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-A-process-samples.json": "61f66f8ba981127496d72daccc17c187960a05122f9cb76b20c91dc74a65138b",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-A-runner-summary.json": "14a85430f79544a125bc2e61e6de7dd547480420ebf416268edaff69e61fce2a",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-A-validation.json": "61e5592c225b44da1ce2cea379d15b7b5e878bc7c26f378008540de6cad98b0e",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-B-process-samples.json": "2b4282b662d2e61c4ed3c90bdeb6d688c67a81511181ce115a2d4745beffd576",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-B-runner-summary.json": "d38f81fab6291f2d07dd029fd188c475e6fbb730537bff4c7e8b805ba9e8d700",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p1-B-validation.json": "34f974659c1c335fdd8c5dbcf8eb6a00a1e45298c9e599f8585d50832bd76b41",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-A-process-samples.json": "4038095f677e0df31c055deeeae430e311d95722e535eaa1a86c9ea9f011f504",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-A-runner-summary.json": "a09eb0e5c449169fbe045ff272c101a96a891167a0bdf5c87b71f69bf7cb82a1",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-A-validation.json": "c92a7513318f721c52bba067ae71bc070720e80f7b7d91e32e4a3d597efc7bd1",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-B-process-samples.json": "56ceb986136c272e0f12c21ffcb805b04edbd37c3a0bd612e875b9c26eb433d1",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-B-runner-summary.json": "b432c69d4d26f9a57fb2a53b686d222d717496a4942b93a0aeeaa0584fddddb7",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p2-B-validation.json": "e5ecf26e12b11c9e8a0440432d60581a27bc64630437b1ce24708582d23e6cd2",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-A-process-samples.json": "425db2b97fbfbc5052648e983645156e37bb131818dd5021492f9b77e7b05d5a",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-A-runner-summary.json": "b643d6d196dbeffb7dcef74597aa2a02178eb7f04f1aadfe710a321810e0c99c",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-A-validation.json": "360136e7a3691d4a11978bf53ce164e2d27dd76ed64f2c5cfeb9ec29a8ca1986",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-B-process-samples.json": "255af47ed8a4b87efb0733510892c18f20e6c2d7d60a69e243e574bacbcda0da",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-B-runner-summary.json": "ded340e169817c0085f6127bf5d19a28ae725a4163e5e9eec3bf6cff26689bce",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p3-B-validation.json": "31c1cf3bb6c9ea4c51126b54a058bb534326ce93fdb3756ccec006ef55bc865b",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-A-process-samples.json": "f747cb82da514057bffbe7e7d2978ee9702b696fbe4bda073bc72ae14b37eb1b",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-A-runner-summary.json": "2767f4dd48ae3f0f6a14a132ad89a17b5c140e1e82c01a713271b8353931a3ba",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-A-validation.json": "1fb9eb7783b27476b6513ec20a5ddf1e71acb53302255a771159cad69c82030d",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-B-process-samples.json": "032249a533da8e5df4d1859cb40b497f5b868c778053f44766bef31de1ba0e08",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-B-runner-summary.json": "69ae1cf78017292481afef20c28426e25d16f2f2d521bfe6fa31ecc0a9db3ead",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/p4-B-validation.json": "197e5e68d0ac86886fa130eb3c2fe01b046583a586f375e41419fe5d3deae4a6",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/paired-summary-initial-missing-source.json": "7613b19434f1ab6a476909042b991858e68c3525a899bac368ded319d9ac78ce",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/paired-summary.json": "fc385670e6b17062d978dd93851fdbe983dd7841417bdf88ee67c90e84396ba6",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/plan.json": "607628b027dfced57d3dbf637dc5f35a6e3deba8a8aec5b557f90d728f68cc73",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/postflight.json": "59183cc39b142d67fd55b33c25630edfefdfff828bcf5c4241f863571cce38fe",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/preflight.json": "5da27c156574f55b8a34a4af9c14245d7853ab776a62a7c023a93924cf8d2af7",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p0-A-raw.json.gz": "21e4dff7b6e5356609ecfeb1c10250a42fb8bc96c9d3d976786ad8fd2a727f7a",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p0-B-raw.json.gz": "1d63bf3615825769f8f24461cc7bc684bc59b3f3ab35671b80ce79d74d7ac6f3",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p1-A-raw.json.gz": "1a2351e4175198a7d740dcbded57c37fd0cf3c91bac5cee79348090b642a4d2c",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p1-B-raw.json.gz": "e3527f43accff022dfb634aef607616d3786204681d737c9feca10beb83b5119",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p2-A-raw.json.gz": "0fe7ed970fbd00e7666e1193f9ce1aa2bc768a4853786241b26b0ceb341242b1",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p2-B-raw.json.gz": "96c72ee410ff588acacd7e6d2a89f6712f650f1cef6d43e86d9c88217833f027",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p3-A-raw.json.gz": "e4d7dbd32f66656f4fa09041f34dedde1a1dcb3e8043df5b92c0816d5c3e9f6d",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p3-B-raw.json.gz": "2b6f401c2b7055fd35d7b5a504c74b007078db712046de3799125dd3d2fadd19",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p4-A-raw.json.gz": "8c193c83ccc57adc6abe451dff520c08f518296fff7045d8e8d6bcd7ff3aff8d",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/raw/p4-B-raw.json.gz": "96cef6a6d5d55c05dd70d1f0d3113539b348d90dbdffddcd3794db659d5327b0",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/run.py": "224b5bac7f49b5eab55ce722e603ce3e2f58215a522b2ebe52281be6a73e976f",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/source-attribution-retest.json": "c4cddd47189f49ffc9be1ba271b3034d20bf1f3cb51b583f4321470a9eff670b",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/summarize-initial-source.mjs.txt": "d51fc56b63780751c616110260f24edc57f56afd8992b7cd749b928345aaa7a0",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/summarize.mjs": "357e6814cd9a9245e07ca749c501abe16dd480964f4ae0827ee1786ac9875556",
+    "artifacts/release-audit/ra-20261112/perf-open-events-five-pairs-root/validate-window.mjs": "b3a384e26cc6fdd3b315e472a27e89d3c5521887d1fa7cb442ad0f624da36fa7"
+  }
+}

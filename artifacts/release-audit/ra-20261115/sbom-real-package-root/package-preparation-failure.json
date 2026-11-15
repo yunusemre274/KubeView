@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-15T10:40:17.792556+00:00",
+  "stage": "source archive preparation, before npm/Go/packager start",
+  "status": "FAIL",
+  "exitCode": 128,
+  "reason": "helper assumed tracked root LICENSE; path absent. Existing packager skips absent optional package files. No project license fabricated.",
+  "noPackageCommandStarted": true,
+  "correction": "select only actual committed top-level path entries; keep first helper and empty archive"
+}

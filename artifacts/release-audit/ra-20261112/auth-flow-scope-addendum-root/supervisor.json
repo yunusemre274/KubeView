@@ -1,0 +1,5 @@
+{
+  "pid": 60892,
+  "identity": "Thu Nov 12 23:13:26 2026     /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python artifacts/release-audit/ra-20261112/auth-flow-scope-addendum-root/run.py",
+  "purpose": "SIGTERM/SIGINT triggers owned captured-child cleanup"
+}

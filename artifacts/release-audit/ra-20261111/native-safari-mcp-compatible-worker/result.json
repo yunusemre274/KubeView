@@ -1,0 +1,408 @@
+{
+  "startedAt": "2026-11-11T18:36:52.512008+00:00",
+  "status": "METADATA_DISCOVERED",
+  "scope": "Owned stdio MCP initialize + tools/list metadata ONLY; no tools/call, session/browser/page/OS setting action",
+  "argv": [
+    "/usr/bin/safaridriver",
+    "--mcp"
+  ],
+  "requestedProtocol": "2024-11-05",
+  "outputLimitBytes": 65536,
+  "processLimitSeconds": 10,
+  "methodsSent": [
+    "initialize",
+    "notifications/initialized",
+    "tools/list"
+  ],
+  "executableResolved": "/System/Volumes/Preboot/Cryptexes/App/usr/bin/safaridriver",
+  "executableSHA256": "0e113cd573e6cfdcf0329107c78c50fca01a15ed448e1b6827042df5335d33e8",
+  "ownedChildPID": 82246,
+  "ownership": "Direct Popen child handle plus exclusively owned stdin/stdout pipes; no HTTP listener ancestry inference",
+  "negotiatedProtocol": "2024-11-05",
+  "serverInfo": {
+    "name": "Safari",
+    "version": "1.0.0"
+  },
+  "safeInputSchemas": [
+    {
+      "name": "browser_console_messages",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "clear": {
+            "type": "boolean"
+          },
+          "level_filter": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "tab_handle": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "browser_dialogs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "inputText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    },
+    {
+      "name": "close_tab",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "handle"
+        ]
+      }
+    },
+    {
+      "name": "create_tab",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "evaluate_javascript",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "expression": {
+            "type": "string"
+          },
+          "frameId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expression"
+        ]
+      }
+    },
+    {
+      "name": "get_network_request",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "request_id"
+        ]
+      }
+    },
+    {
+      "name": "get_page_content",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "format": {
+            "type": "string"
+          },
+          "includeAccessibilityAttributes": {
+            "type": "boolean"
+          },
+          "includeEventListeners": {
+            "type": "boolean"
+          },
+          "includeRects": {
+            "type": "boolean"
+          },
+          "includeSelectOptions": {
+            "type": "boolean"
+          },
+          "includeSubframes": {
+            "type": "boolean"
+          },
+          "includeURLs": {
+            "type": "boolean"
+          },
+          "maxWordsPerParagraph": {
+            "type": "integer"
+          },
+          "nodeIds": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "savePath": {
+            "type": "string"
+          },
+          "shortenURLs": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "name": "list_network_requests",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "clear": {
+            "type": "boolean"
+          },
+          "filter": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string"
+              },
+              "status_max": {
+                "type": "integer"
+              },
+              "status_min": {
+                "type": "integer"
+              },
+              "url_substring": {
+                "type": "string"
+              }
+            }
+          },
+          "since": {
+            "type": "string"
+          },
+          "tab_handle": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "list_tabs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "navigate_to_url",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tab_uuid": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "name": "page_info",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "page_interactions",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fullText": {
+            "type": "boolean"
+          },
+          "interactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "node": {
+                  "type": "string"
+                },
+                "point": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "pressReturn": {
+                  "type": "boolean"
+                },
+                "purpose": {
+                  "type": "string"
+                },
+                "replaceAll": {
+                  "type": "boolean"
+                },
+                "scrollDelta": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "scrollToVisible": {
+                  "type": "boolean"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "purpose",
+                "type"
+              ]
+            }
+          }
+        },
+        "required": [
+          "interactions"
+        ]
+      }
+    },
+    {
+      "name": "screenshot",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "full_page": {
+            "type": "boolean"
+          },
+          "node": {
+            "type": "string"
+          },
+          "savePath": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "set_emulated_media",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "media": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "media"
+        ]
+      }
+    },
+    {
+      "name": "set_viewport_size",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "height": {
+            "type": "integer"
+          },
+          "width": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "width",
+          "height"
+        ]
+      }
+    },
+    {
+      "name": "switch_tab",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "handle"
+        ]
+      }
+    },
+    {
+      "name": "wait_for_navigation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "timeout_seconds": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  ],
+  "schemaProjection": "Only type/properties/required/items/additionalProperties; descriptions/defaults/examples/enum/pattern/refs omitted",
+  "toolNames": [
+    "browser_console_messages",
+    "browser_dialogs",
+    "close_tab",
+    "create_tab",
+    "evaluate_javascript",
+    "get_network_request",
+    "get_page_content",
+    "list_network_requests",
+    "list_tabs",
+    "navigate_to_url",
+    "page_info",
+    "page_interactions",
+    "screenshot",
+    "set_emulated_media",
+    "set_viewport_size",
+    "switch_tab",
+    "wait_for_navigation"
+  ],
+  "toolCount": 17,
+  "paginationRemaining": false,
+  "ownedChildExited": true,
+  "exitCode": 0,
+  "bytesReadStdoutAndStderr": 11811,
+  "elapsedSeconds": 0.17001716699815006,
+  "within10s": true,
+  "finishedAt": "2026-11-11T18:36:52.682021+00:00",
+  "helperSHA256": "f44900d39cc0c86944058de42f56d835c8f2c4d061f8d0292c611769e502cc17"
+}

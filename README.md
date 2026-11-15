@@ -1,291 +1,245 @@
-# 🚢 Tersane (K8s Shipyard 3D)
+# KubeView / Tersane
 
-> **Kubernetes Cluster'ınızı Gerçek Zamanlı Bir Liman ve Tersane Metaforu ile Görselleştirin.**  
-> *Kubernetes'in soyut pod, node, service ve controller kavramlarını somut, etkileşimli ve 3D bir liman simülasyonuna dönüştüren canlı kontrol platformu.*
+Kubernetes kümenizin arayüzü, tam ekran etkileşimli bir tersanedir. Merkez binasına, Node gemisine veya Pod yüküne tıklayarak çalışırsınız. Kalıcı dashboard, sidebar veya açık kaynak tablosu yoktur. Listeler, formlar, grafikler ve loglar ilgili nesnenin geçici penceresinde açılır.
 
-[![Release](https://img.shields.io/badge/Release-v1.0.0--Stable-emerald?style=for-the-badge&logo=github)](https://github.com/k8s-tersane/tersane)
-[![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![React](https://img.shields.io/badge/React-18+-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![Three.js](https://img.shields.io/badge/Three.js-R3F-000000?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-client--go-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+**Sürüm durumu:** **çoklu liman için 1.1.0 manuel kabul adayı geliştiriliyor**. Stable release yayımlanmadı; kullanıcının manuel onayı, eski CPU farkı ve fiziksel arayüz gecikmesi kapıları açık. Güncel kapsam ve kanıtlar [workspace kabul defterinde](docs/WORKSPACE_ACCEPTANCE.md), kullanıcı profilleri [manuel test rehberinde](MANUAL_TEST_GUIDE.md) tutulur. `32a0468` runtime / `594e090` kanıt / `0029672` paket kontrolü önceki tek-liman adayıdır; o testler yeni kodun otomatik kabulü değildir. Tarihsel platform ve build kimlikleri [release notlarında](docs/RELEASE_NOTES_v1.1.0.md); önceki CR/UID, gemi/container onarımı, worker ve Hubble kanıtları [onarım kaydında](docs/PRE_V11_VISUAL_REPAIR.md) korunur.
 
----
+## 10 Kasım manuel aday sınırı
 
-## 📸 3D Liman Arayüzü & Görsel Mimari
+Temiz macOS paketi `ca3b9ec` runtime'ını içerir; gerçek05/06 arayüz/yön tuşu16 kontrolü, scoped eşzamanlı işlem4 ve güvenli workspace-record5 kontrolü geçti. Gerçek A2+B1 ve iki kimlik,07'de M/L×1/5/10/20 liman denendi. Model en çok100 liman/64 bağlantı saklar, frontend64 farklı canlı kaynak kapsamını sınırlar;100 liman performansı test edilmiş değildir.
 
-```
-+-----------------------------------------------------------------------------------------------+
-| 🏢 CONTROL PLANE (Tersane Yönetim Binası)          [ 🌐 Cluster Context: minikube ]             |
-|   ├── 🗼 API Server (Kontrol Kulesi)              [ 🔒 Salt İzleme Modu: PASİF ]            |
-|   ├── 📚 etcd (Arşiv Odası)                        [ 📸 PNG Ekran Görüntüsü İndir ]           |
-|   └── 📜 Live Deployments Overlay                                                             |
-|                                                                                               |
-| 🚢 WORKER NODES (Kargo Gemileri Filosu)                                                       |
-|   ├── 🚢 node-alpha  ➔ 🧱 Paletler: [ 📦 web-frontend ] [ 📦 api-backend ]                    |
-|   └── 🚢 node-beta   ➔ 🧱 Paletler: [ 📦 redis-cache ]  [ 📦 worker-job ]                     |
-|                                                                                               |
-| 🏗️ İNŞAAT VE YARDIMCI ALTYAPI TESİSLERİ                                                      |
-|   ├── 🤖 Kube-Scheduler Vinci    ➔ Pod yükleme ve düğüm yerleşim vinci (LeastRequested)       |
-|   ├── 🚨 Ingress Deniz Feneri     ➔ Dış trafik gümrük kapısı (tersane.k8s.local)               |
-|   ├── 🛡️ NetworkPolicy Bariyeri  ➔ Kırmızı lazer güvenlik çiti (Default-Deny)                  |
-|   ├── 📋 ConfigMap Sevkiyat Föyü ➔ Tahta duyuru panosu (ENV, nginx.conf)                       |
-|   ├── 🔐 Secret Kilitli Çeli Kasa➔ Ağır çelik kasa (Şifreli veriler masked-only)               |
-|   ├── 🏭 PVC/PV Depo Ambarı      ➔ Karadaki kiralanmış kalıcı depolama alanları               |
-|   ├── ⚡ HPA Mobil Vinci         ➔ Otomatik kargo yükleme vinci                              |
-|   └── 🚤 Job Görev Şalupası      ➔ Tek seferlik tarifeli görev teknesi                        |
-|                                                                                               |
-| 📢 LİMAN TELSİZ ANONS GÜNLÜĞÜ (Events):                                                      |
-|   [12:54:10] 🟢 Pod "web-frontend-deploy-74b89" node-alpha gemisine yüklendi (Running)        |
-+-----------------------------------------------------------------------------------------------+
-```
+Kullanıcı testine ayrılan yedi profil ve sekiz replay varyantı korunmuştur; ağır lab'lar kapalıdır. Yeni1200s koşu pil9% korumasında~19dk'da kesildi; üç eşleşmiş CPU bloğu ve fullTLS/Hubble lab E2E açık. Native Safari/fiziksel gecikme ve eski CPU kapıları kapanmadı. Bu nedenle stable sürüm veya eksiksiz performans kabulü iddiası yoktur. [Güncel A–O kabul tablosu](docs/WORKSPACE_ACCEPTANCE.md), [ölçüm geçerlilik kararı](docs/PERFORMANCE_REPORT.md), [manuel komutlar](MANUAL_TEST_GUIDE.md).
 
----
+## 11 Kasım — UI 2.0 görünümü
 
-## 🎯 Neden Tersane?
+Kök dizindeki UI 2.0 referansına göre petrol mavisi, ince dalgalı ve güneş parıltılı deniz; ayrıntılı gemi gövdeleri, vinçler ve hangarlar uygulandı. Geniş ekranda aktif liman ile en yakın bir liman aynı dünyada ayrıntılı görünür. Liman levhaları gerçek proje adını taşır; komşu gemi/kutuya tıklamak o limanın kendi kaynak panelini açar. Referansı doldurmak için canlı moda örnek Node veya Pod eklenmez.
 
-Kubernetes güçlü, esnek ve modern bulut mimarilerinin omurgasını oluşturur. Ancak **`kubectl get pods`**, **`kubectl describe node`** veya metin ağırlıklı standart web panellerinde görünen karmaşık tablolar; Kubernetes öğrenen öğrenciler, geliştiriciler ve teknik olmayan paydaşlar için oldukça **soyut** kalmaktadır.
+**Görünüm ve ayarlar → Liman hareketi** içindeki deniz hareketi, gemi izi, salınım, devriye ve yeni **Güneş yansımaları** seçenekleri ayrı kontrol edilir. Toplu duraklatma ve azaltılmış hareket de korunur. Panellerin Soft UI görünümü, tam ekran Canvas, klavye kamerası ve Kubernetes servisleri korunmuştur. Görsel karşılaştırma ve test sınırları: [UI 2.0 uygulama kaydı](docs/UI_2_0.md).
 
-**Tersane**, bu soyutluğu ortadan kaldırmak için tasarlanmıştır:
-- 💡 **Somut Görsel Hafıza:** Pod'ların oluşturulması gemiye vinçle kargo yüklenmesi, Node arızası geminin su alması/karaya çekilmesi, Ingress ise liman girişindeki deniz feneri olarak somutlaşır.
-- 🎓 **Eğitim ve Sunum Odaklı:** K8s mimarisini, controller ilişkilerini ve veri akışını tek bir bakışta anlaşılır kılar.
-- ⚡ **Sıfır Gecikmeli Canlı Yayın:** Polling (periyodik sorgulama) yapmadan, Kubernetes `client-go` Informer/Watch mimarisi ile API Server'a doğrudan bağlanarak anlık durumu WebSocket üzerinden 3D animasyonlarla sunar.
+## Birden fazla proje, ayrı limanlar
 
----
+Bir workspace, güvenilir Kubernetes bağlantıları ve bu bağlantılara bağlı proje/liman kayıtları içerir. Bir liman açık namespace kümesi ve isteğe bağlı label seçicisi kullanır. **Limanlar** pusulası veya merkez üzerinden eklenir; ilk boş kurulumda **İlk limanını bağla** açılır. İzinli namespace adı, namespace LIST izni olmadan elle girilebilir. Bağlantı ve kapsam gerçek API ile önizlenir. Liman kaydetmek, yeniden adlandırmak veya kaldırmak Kubernetes kaynaklarını yaratmaz, taşımaz veya silmez.
 
-## ✨ Ana Özellikler
+Aynı doğrulanmış cluster ve Node UID'si birden fazla projede **Paylaşılan Node** görünümü olabilir; bunlar ayrı sunucu değildir. Yalnız ilgili projenin yükleri gösterilir. Bilinmeyen cluster kimlikleri güvenli biçimde ayrı tutulur. Ortak altyapı, yapılandırılmış ilişki ve Hubble'dan ölçülmüş trafik farklı anlam taşır. Farklı kümeler tek scheduler/CPU havuzu değildir; doğrulanmış ağ altyapısı olmadan cross-cluster trafik iddiası yoktur.
 
-- 🚢 **Canlı Node ve Pod Görselleştirmesi:** Cluster'daki tüm Worker Node'ların kargo gemisi, Pod'ların ise gemi üzerindeki taşıyıcı paletler olarak 3D simülasyonu.
-- ⚡ **Event-Driven WebSocket Akışı:** `client-go` Informer & Watch pattern ile sıfır gecikmeli canlı durum yayını. Pod silme/scale durumlarında tombstone unwrap & multi-node purge garantisi.
-- 📜 **Canlı Container Log Akışı (PodLogViewer):** Sahnede seçilen herhangi bir Pod'un konteynır loglarını WebSocket üzerinden gerçek zamanlı izleme (`/api/v1/pods/logs/stream`).
-- 📊 **Canlı Metrikler ve Zaman Serisi Trend Grafikleri:** `metrics-server` entegrasyonu ile anlık CPU/RAM kullanımı, mini sparkline'lar ve 1 saatlik ring buffer trend grafik dökümü (`DetailedMetricTrendModal`).
-- 🏢 **%100 Zengin 3D Obje Müfettişi (InfoCard):** Sahnede seçilebilen 15 farklı nesne tipinin (`Node`, `Pod`, `Deployment`, `StatefulSet`, `DaemonSet`, `Job`, `ConfigMap`, `Secret`, `PVC`, `PV`, `Ingress`, `NetworkPolicy`, `Kubelet`, `Kube-proxy`, `RBAC`) tamamı için zengin detay, zaman damgası ve bağımlılık kartları.
-- 🛡️ **RBAC İlişkisel İnceleme & Aşırı Yetki Uyarıları:** ServiceAccount kimlik kartları, Role/ClusterRole izin matrisleri (`resources`, `verbs`) ve `cluster-admin` bağlı hesaplar için otomatik güvenlik ikazı.
-- 🔐 **Şifreli Veri Koruma (Masked Secret Policy):** Secret nesnelerinin içerik değerleri asla istemciye gönderilmez; sadece key isimleri ve maskeli değerler (`••••••••`) gösterilir.
-- 🔄 **Otomatik Kubeconfig Port Auto-Heal:** minikube / local k8s yeniden başlatmalarında değişen API Server port adreslerini 3 denemede diskten otomatik algılama ve kesintisiz canlı bağlanma.
-- 🔒 **Güvenli Mutasyon İşlemleri & Salt İzleme Modu:** UI üzerinden onay modalı doğrulamalı Pod Restart/Delete ve Deployment Scale işlemleri, Salt İzleme (Read-Only) modu ve kilitli namespace (`kube-system`) koruması.
-- 📸 **PNG Ekran Görüntüsü Dışa Aktarımı & Multi-Cluster Context Seçici:** 3D sahneyi yüksek çözünürlüklü PNG görseli olarak indirme ve minikube / docker-desktop / prod-cluster bağlamları arasında geçiş yapma.
+Uygulama tek Canvas kullanır; aktif ve en yakın komşu liman ayrıntılı, kalan limanlar hafif uzak temsillerle gösterilir. Her görünüm kendi yetkili veri aboneliğini kullanır. Paneller, kamera ve kaynak seçimi liman bağlamındadır. Yazma niyeti liman ve tarayıcı sekmesine bağlıdır; kayıt/import bunu açmaz. Paylaşılan Node ve diğer cluster kapsamlı işlemlerde etki ayrıca onaylanır. Label filtresi Kubernetes RBAC yerine geçmez.
 
----
+Workspace, varsayılan kullanıcı yapılandırma dizinindeki `KubeView/workspace.json` dosyasına atomik ve yedekli yazılır. `--data-dir` ayrı profiller sağlar; bozuk/gelecek şema kullanıcı verisini sıfırlamaz. Güvenli export credential, mutlak kubeconfig yolu veya Secret taşımaz; import bağlantıları güvenilir context'e açıkça bağlanmadan erişim açmaz. Bu sözleşmelerin test durumu kabul defterindedir; kullanıcı manuel PASS/FAIL alanları önceden doldurulmaz.
 
-## ⚓ Metafor Eşleştirmesi
+![Hareketli tersane](docs/evidence/motion/fleet-overview.png)
 
-Kubernetes kavramlarının **Tersane** dünyasındaki sezgisel karşılıkları:
+## Kullanım
 
-| Kubernetes Kavramı | Tersane Metaforu | Açıklama |
-| :--- | :--- | :--- |
-| **Cluster** | 🏗️ **Tersanenin Tamamı** | Tüm operasyonun gerçekleştiği liman ve deniz tesisi alanı |
-| **Control Plane / Master Node** | 🏢 **Tersane Yönetim Binası** | Tüm kararların alındığı ve komutların dağıtıldığı merkez bina |
-| **API Server** | 🗼 **Kontrol Kulesi / Santral** | Tüm iletişimin geçtiği tek erişim ve doğrulama noktası |
-| **etcd** | 📚 **Arşiv Odası / Ana Defter** | Tersanedeki tüm varlıkların ve durumların tutulduğu ana defter |
-| **Kube-Scheduler** | 🤖 **Sevkiyat Planlayıcı Vinci** | Hangi kargonun hangi gemiye yükleneceğine karar veren vinç |
-| **Controller Manager** | 👮 **Denetim Müfettişi** | Hedeflenen kargo sayısı ile mevcut durumu kıyaslayan birim |
-| **Worker Node** | 🚢 **Kargo Gemisi** | Konteynırları taşıyan ve işlem gücü sunan ana gemiler |
-| **Kubelet** | 📡 **Geminin Kaptanı / Dümenci** | Gemi üzerindeki yükleri yöneten ve kuleye rapor veren agent |
-| **Kube-proxy** | 📻 **Geminin Ağ İstasyonu** | Gemiler ve ambarlar arası iletişim ağını düzenleyen istasyon |
-| **Container Runtime** | ⚙️ **Geminin Makine Dairesi** | Konteynırların fiilen çalışmasını sağlayan motor |
-| **Pod** | 🧱 **Palet / Kargo Platformu** | Bir veya birden fazla kargo kutusunu bir arada tutan taşıyıcı |
-| **Container** | 📦 **Kargo Kutusu** | Uygulamanın kendisini barındıran tekil birim |
-| **Namespace** | 🚪 **Geminin Ambarları / Bölmeleri** | Mantıksal olarak ayrılmış çalışma ve depolama alanları |
-| **Deployment** | 📜 **Sefer Siparişi** | Kaç adet paletin taşınacağını bildiren genel talimatname |
-| **ReplicaSet** | 🧾 **Sipariş Fişi** | İstenen palet sayısının korunmasını garantileyen alt fiş |
-| **Service** | 🎟️ **Liman Gişesi / Yönlendirme** | Gelen trafiği doğru ambar ve paletlere yönlendiren kapı |
-| **Ingress** | 🚨 **Ana Giriş / Deniz Feneri** | Dış dünyadan limana giren ana giriş ve fener yönlendirme noktası |
-| **NetworkPolicy** | 🛡️ **Güvenlik Çiti / Lazer Bariyer** | Ambarlar ve gemiler arasına çekilen kırmızı lazer barierler |
-| **ConfigMap** | 📋 **Sevkiyat Föyü** | Uygulama ayarlarını içeren açık tahta duyuru panosu |
-| **Secret** | 🔐 **Kilitli Çelik Kasa** | Şifreler ve anahtarların saklandığı ağır çelik kasa |
-| **PersistentVolume / PVC** | 🏭 **Kiralanmış Depo Ambarı** | Kalıcı verilerin depolandığı karadaki ambar yapıları |
-| **HPA (Autoscaler)** | ⚡ **Otomatik Ekstra Mobil Vinç** | Kargo yoğunluğuna göre otomatik palet ekleyen raylı vinç |
-| **DaemonSet** | 🧯 **Gemi Standart Ekipmanı** | Her gemi direğinde bulunması zorunlu olan standart ekipman |
-| **StatefulSet** | 🔢 **Numaralı Sabit Gemiler** | Kimliği ve sırası değişmeyen özel taşıyıcı gemiler |
-| **Job / CronJob** | 🚤 **Tek Seferlik Görev Teknesi** | Belirli bir işi tamamlayıp bitiren görev şalupası |
-| **ServiceAccount / Role** | 🪪 **Kimlik Kartı & Yetki Rozeti** | Personel kimlik kartları ve erişim yetkileri matrisi |
-| **Events** | 📢 **Liman Telsiz Anonsları** | Limanda gerçekleşen tüm önemli olayların canlı yayın kaydı |
+- **Merkez / kontrol kulesi:** Deployment ve workload oluşturma, kaynak kataloğu, gerçek olaylar ve metrikler.
+- **Gemi:** gerçek Node; koşullar, o Node’daki Pod’lar, kapasite ve izinli bakım işlemleri. **Bu gemiye Pod ekle**, scheduler’ı atlamayan affinity formunu açar.
+- **Yük grubu / kutu:** Pod ve belirli container; gerçek image, durum, kaynak ayarları, log, exec ve port-forward.
+- **Vinç:** bekleyen yükler ve gözlenen scheduler olayları.
+- **Depo, talimat panosu, kasa, ağ tesisi, fener ve personel bölümü:** ilgili gerçek kaynak türleri.
 
----
+**Bul** veya **Cmd/Ctrl+K**, kaynak ve tesislere klavye ile erişir. **Limana dön**, genel kadraja döner. Paneller kapanırken canvas ve kamera korunur. Dar ekranda da ana görünüm limandır; ayrıntı paneli genişletilebilir alt sheet olur.
 
-## 🏗️ Mimarisi
+Bul penceresi mouse veya klavye ile açılabilir; ESC kapanışında odak açan kontrole döner. Input, YAML veya terminal odağı kameranın yön tuşlarını devralmasını engeller. Bir Pod/container seçiminde ham namespace/ad ve UID korunur; aynı adla yeniden oluşan kaynak ayrıca seçilir.
 
-```
-+---------------------------------------------------------------------------------------------------+
-|                                        KUBERNETES CLUSTER                                         |
-|                                                                                                   |
-|  +-----------------------+     Watch / Informers Stream      +---------------------------------+  |
-|  | K8s API Server        | <-------------------------------> | Tersane Backend (Go)            |  |
-|  | (v1.22+)              |  (Pods, Nodes, Deploy, RS, SA)    | ├── client-go Watcher & Informer|  |
-|  +-----------------------+                                   | ├── Metrics Collector           |  |
-|              ^                                               | └── Dynamic Kubeconfig AutoHeal |  |
-|              | Metrikler                                     +---------------------------------+  |
-|  +-----------------------+                                                   |                    |
-|  | metrics-server        |                                            WebSocket STREAM            |
-|  +-----------------------+                                                   |                    |
-|                                                                              v                    |
-|                                                              +---------------------------------+  |
-|                                                              | Tersane Frontend (React 18)     |  |
-|                                                              | ├── Three.js / React Three Fiber|  |
-|                                                              | ├── 3D Shipyard Scene Engine    |  |
-|                                                              | └── InfoCard & Master Dashboard |  |
-|                                                              +---------------------------------+  |
-+---------------------------------------------------------------------------------------------------+
+## Filo, deniz ve panel tercihleri
+
+Sağlıklı Node gemileri varsayılan olarak kapalı ve güvenli su rotasında dolaşır. UID'ye bağlı seyir fazı kaynak güncellemesi, filtre veya pencere açılmasıyla sıfırlanmaz. Her bölgede en fazla **8 görünür gemi** vardır; bölge denetimi ve Bul bütün gerçek kaynaklara erişimi korur. Diğer bölgeler ek sahte Node üretmez. Normal tur yaklaşık **154 saniyedir**; duraklatma ve trafik bu süreyi uzatabilir.
+
+Gözlenen yeni yük için uygun gemi geçici yanaşır, vinç işi bitince ayrılır. Görsel yaklaşma uzun sürecekse yaklaşık10 saniye sonra hedef gemide kısa varış kullanılır; bu, gerçek yanaşma olayı olarak kaydedilmez. Kanonik Node/Pod ataması ve Ready bilgisi animasyonları beklemez.
+
+**Görünüm ve ayarlar**: seyir, hız, salınım, deniz, dalga şiddeti, güneş yansımaları, iz, operasyon biçimi; sistem/azaltılmış/tam hareket; otomatik kalite; açık/koyu/sistem panel teması ve yüksek kontrast. Sol üstteki duraklatma düğmesi yalnız görsel hareketi durdurur. Node/Pod panelindeki **Görsel seyir ve kamera** bölümünden tek gemi durdurulabilir veya açıkça kamera takibi başlatılır. Elle kamera hareketi takibi bırakır. Bunlar Kubernetes cordon/scale işlemi değildir.
+
+Deniz kapatılınca su fazı ve iz/salınım durur, yüzey yumuşakça statik hâle gelir; seyir ve gerçek veri akışı sürer. Tercihler sürümlü küçük yerel kayıtta doğrulanarak saklanır; depolama erişilemezse uygulama çalışmaya devam eder. Mat Neumorphism paneller opaktır; log/YAML/tablo yüzeyleri okunaklı tutulur.
+
+Kanıt: [hareketli demo kaydı](docs/evidence/motion/demo-living-fleet.webm), [gerçek yanaşma döngüsü](docs/evidence/motion/live-docking-cycle.webm), [test ve ölçüm koşulları](docs/VALIDATION.md).
+
+## Yerel kurulum ve kendi kümene bağlanma
+
+Normal kullanım için çalışan bir Kubernetes kümesi, yalnız güvendiğiniz bir kubeconfig ve kimliğinizin ihtiyaç duyduğu mevcut auth plugin gerekir. Kubernetes kaynak koduna SDK eklenmez. Metrics API ve Hubble isteğe bağlıdır; yoklukları temel kaynakları incelemeyi engellemez. Gerçek küme olmadan yalnız açıkça seçilen demo kullanılabilir.
+
+Hedef aday paketler `kubeview_1.1.0_darwin-arm64.tar.gz` ve `kubeview_1.1.0_linux-amd64.tar.gz` adlarını kullanır. Güncel macOS ARM64 binary temiz kurulum dizininden gömülü arayüzle ve gerçek normal UI ile çalıştırıldı. Linux AMD64 binary macOS ARM64 üzerindeki Docker emülasyonunda gerçek API ve gömülü asset kontrollerini geçti; native Intel/Linux browser veya performans kabulü bu kayıtta yoktur. Paketlerin yayımlanma durumu ve tam kimlikleri release notlarından kontrol edilmelidir. Doğrulanmış paket elinizde olduğunda macOS ARM64 örneği:
+
+```sh
+tar -xzf kubeview_1.1.0_darwin-arm64.tar.gz
+cd kubeview_1.1.0_darwin-arm64
+./kubeview --version
+./kubeview --context kendi-context-adiniz
 ```
 
----
+Linux AMD64 için dosya ve dizin adındaki `darwin-arm64` yerine `linux-amd64` kullanılır. Dağıtımın `SHA256SUMS` dosyasını aynı kaynaktan doğrulayın: macOS'ta `shasum -a 256 -c SHA256SUMS`, Linux'ta `sha256sum -c SHA256SUMS`. Her satırın denetlenmesi için listelenen arşivler aynı dizinde olmalıdır. Kaynaktan paket üretimi aşağıda açıklanır; henüz bir indirme/release adresi vaat edilmiyor.
 
-## 🛠️ Kullanılan Teknolojiler
+Tarayıcıda `http://127.0.0.1:8000` açılır. Aynı Go süreci gömülü frontend'i, API'yi ve WebSocket'i sunar; günlük kullanım için Node, Go veya Vite başlatılmaz.
 
-- **Backend Engine:** ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white) `k8s.io/client-go`, `gorilla/websocket`, `k8s.io/metrics`
-- **Frontend 3D UI:** ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![Three.js](https://img.shields.io/badge/Three.js-black?style=flat-square&logo=three.js&logoColor=white) React Three Fiber (R3F), Drei, Lucide Icons, TailwindCSS
-- **Orkestrasyon & Deploy:** ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) Minikube / Kind / K3s / Cloud K8s, Docker, Helm v3
+1. Boş workspace'te **İlk limanını bağla**, sonrakiler için küçük **Limanlar** pusulasından **Liman ekle** seçin. Demo ayrı ve açık seçimdir; bağlantı hatası demoya dönmez.
+2. Liman adı ve mevcut/yeni güvenilir bağlantıyı seçin. **Cluster / context** sunucunun güvenilir kubeconfig bağlamlarını listeler; global `current-context` değişmez. Bir liman tek bağlantıya bağlıdır; aynı bağlantıda farklı projeler kaydedilebilir.
+3. Açık namespace kümesini virgülle girin; isteğe bağlı label seçicisini belirtin. **Bağlantıyı dene ve kapsamı önizle** ardından kaydedin. Node/namespace LIST izni olmaması izinli Pod/Deployment erişimini ortadan kaldırmaz. Kapsam seçimi RBAC yetkisi vermez.
+4. Bağlantı penceresinde tarayıcı/backend, Kubernetes API, discovery, kaynak okuma izinleri ve snapshot senkronizasyonunu ayrı inceleyin. Boş kapsam, Forbidden, eski veri, Metrics ve Hubble yokluğu ayrıca görünür. **Tanılamayı kopyala** yalnız izinli durum alanlarını kopyalar; token, kubeconfig, bağlantı nonce'u, kaynak içeriği ve ham hata mesajları bu özete dahil edilmez.
+5. Gerçek kaynakları **Bul** ile arayın; Node gemisi veya Pod/container üzerinden ayrıntı açın. Bağlantı olmasa da merkez erişilebilir kalır. Boş namespace'e sahte yük eklenmez.
 
----
+Başlangıç salt okunurdur. Yönetim gerekiyorsa sunucuyu `--write` ile başlatın, ardından bağlantı penceresinde **Yönetim modunu aç** eylemini açıkça seçin:
 
-## 🚀 Kurulum ve Çalıştırma
+```sh
+./kubeview --context kendi-context-adiniz --namespace kendi-namespace-adiniz --write
+```
 
-### Ön Koşullar
-- `kubectl` CLI aracı kurulu ve aktif bir Kubernetes kümesine bağlı olmalı (`kubectl get nodes`).
-- Çalışan bir Kubernetes ortamı (Minikube, Kind, K3s veya bulut k8s).
-- Lokal geliştirme için: **Go 1.22+** ve **Node.js 18+**.
+`--write` / `READ_ONLY=false` sunucu kilidini açar; Kubernetes rolü vermez ve tarayıcıyı kendiliğinden yazma moduna geçirmez. Her işlem gerçek Kubernetes yetkileriyle denetlenir. Context veya namespace değişince tarayıcı yazma niyeti iptal edilir; tekrar açık onay gerekir. API kabulü, controller uygulanması ve gözlenen Ready/tamamlanma ayrı gösterilir. Ağ hatasında sonucu belirsiz gönderim otomatik tekrarlanmaz; formdan gerçek kaynak durumu sorgulanır.
 
----
+Yeniden bağlantıda yönetim durumu backend'den tekrar doğrulanır; backend izni kaldırmışsa açık panel de salt okunur olur. Aynı kaynak UID'sindeki kullanıcı taslağı gecikmiş GET ile ezilmez. Güncel sürüm yüklenirken form alanları bekler; resourceVersion değişmişse taslak korunur ve açık gözden geçirme gerekir. Önceki dry-run önizlemesi yeniden doğrulanır. Farklı context/namespace'e ait seçim, taslak ve akışlar yeni kümeye taşınmaz.
 
-### Seçenek A: Tek Komutla Kolay Kurulum (Lokal Geliştirme)
+| Seçenek | Etkisi |
+|---|---|
+| `--kubeconfig PATH_LIST` | Güvenilir kubeconfig dosyalarını `KUBECONFIG` yüklemesine verir. macOS/Linux'ta çoklu yol `:` ile ayrılır. |
+| `--context NAME` | İlk gerçek context'i seçer; global current-context değişmez. |
+| `--namespace NAME` | Sunucunun namespaced okuma/yazma kapsamını sınırlar (`WATCH_NAMESPACE`). UI filtresinden farklı bir sunucu sınırıdır. |
+| `--write` | Sunucu yazma kilidini açar; tarayıcı yönetim seçimi ve RBAC ayrıca gerekir. |
+| `--port PORT` | Dinleme portu; varsayılan `8000`, geçerli aralık `1–65535`. |
+| `--bind ADDRESS` | Dinleme adresi; varsayılan `127.0.0.1`. Loopback dışı adres erişim token'ı gerektirir. |
+| `--api-token-file PATH` | En az 32 karakterlik, tek satırlık erişim token'ını dosyadan okur; token komut argümanına yazılmaz. |
+| `--version` | Binary'ye gömülen sürüm, commit ve OS/CPU bilgisini gösterir. |
+| `--data-dir PATH` | Workspace ve güvenli görünüm tercihleri için ayrı özel dizin (`KUBEVIEW_DATA_DIR`). Repo veya `.git` gerekmez. |
+| `--replay-profile M\|L` | Yalnız açık TEST/REPLAY manuel yük profili. Loopback ve salt okuma zorunludur; gerçek kubeconfig yüklemez, gerçek kullanım metriği üretmez. |
 
-Tersane'yi bilgisayarınızda geliştirme modunda çalıştırmak için:
+Bayrak verilmezse mevcut ortam ayarları kullanılır. Standart yükleme `KUBECONFIG` dosya listesini birleştirir; yoksa yerel `~/.kube/config`, uygun ortamda in-cluster ServiceAccount değerlendirilir. Örnek çoklu dosya: `./kubeview --kubeconfig "$HOME/.kube/config:$HOME/.kube/ek-config" --context kendi-context-adiniz`. Kubeconfig ve kimlik bilgileri backend'de kalır. **Yalnız güvendiğiniz kubeconfig dosyalarını kullanın:** içindeki exec auth plugin'i backend makinesinde yerel program çalıştırabilir. TLS doğrulaması bağlantı hatasını gidermek için otomatik kapatılmaz.
 
-```bash
-git clone https://github.com/k8s-tersane/tersane.git
-cd tersane
+Bağlanmak cluster kaynaklarını değiştirmez, Node eklemez veya ağ sağlayıcısı kurmaz. Mutasyonlar ayrı, açık kullanıcı eylemiyle ve sunucu kapsamı/RBAC denetimiyle çalışır.
 
-# Backend (Go) ve Frontend (React Vite) sunucularını paralel başlatır:
-make dev
-# veya alternatif olarak:
+Bayrakla açık `--context` seçimi, henüz workspace dosyası yoksa tek-liman kurulumunu bir defa taşır. Kayıtlı workspace her açılışta yeniden oluşturulmaz. `--context` vermeden yeni veri diziniyle başlamak boş onboarding'i korur. Yedi izole manuel profil ve yeniden başlatma komutları için [MANUAL_TEST_GUIDE.md](MANUAL_TEST_GUIDE.md).
+
+`STATIC_DIR=/tam/yol/frontend ./kubeview` gömülü arayüz yerine belirtilen dizini sunar; dizinde `index.html` bulunmalıdır. Override güvenilir ve aynı adayın API'siyle uyumlu olmalıdır. Hazırlanmamış geliştirme derlemesinde dış statik dizin veya Vite yolu korunur.
+
+## Kaynaktan derleme ve geliştirme
+
+Kaynaktan üretimde Node/npm ve Go gerekir; repo `go.mod` alt sınırı1.26.11'dir; CI ve Docker aynı Go patch sürümünü kullanır. Docker frontend derlemesi Node24 kullanır. Çalıştırılmış araç/platform sürümleri kabul raporundan ayrıca değerlendirilir.
+
+```sh
+make build
+./bin/kubeview --context kendi-context-adiniz
+```
+
+`make build` frontend'i derleyip Go embed alanına hazırlar; `bin/kubeview` ve uyumluluk adı `bin/tersane-backend` oluşur. Aday arşivleri repo kökünde `node scripts/build-release.mjs` ile hazırlanır; varsayılan hedefler macOS ARM64 ve Linux AMD64, çıktı `dist/` altındadır. `--require-clean`, uygulama kaynaklarıyla birlikte pakete giren manuel lab, belge ve RBAC girdilerinin commitlenmesini ister. Önceki çıktılar üzerine yazılmaz; yeni bir deneme için henüz var olmayan `--output-dir=/mutlak/yeni-dizin` verin. `--prepared` mevcut frontend build'ini kullanır; kaynak/build eşitliği doğrulanmadan release için kullanılmamalıdır. `build.json` ve arşiv içindeki `build-provenance.json`, kaynak commit'i ve paket girdileri/frontend dosyalarının SHA256 değerlerini kaydeder. Bunlar yayıncı imzası veya hazırlanmış frontend'in kaynakla eşitliğinin tek başına kanıtı değildir. Çapraz derleme platform çalıştırma testi değildir.
+
+Geliştirme ortamı:
+
+```sh
 ./start.sh
 ```
 
-- **Backend (Go API & WebSocket):** `http://localhost:8000`
-- **Frontend (React 3D UI Dev Server):** `http://localhost:5173`
+Vite `http://127.0.0.1:5173` üzerinde `/api` ve `/ws` isteklerini aynı origin üzerinden backend’e iletir. Backend portunu değiştirirken `PORT=8002 API_TARGET=http://127.0.0.1:8002 ./start.sh` kullanın.
 
----
+Yalnız bu görev için ayrılmış test ortamında yazma erişimi:
 
-### Seçenek B: Production Derlemesi (Single Binary)
-
-Frontend statik çıktılarını Go backend sunucusu ile tek bir çalıştırılabilir dosyada birleştirmek için:
-
-```bash
-cd tersane
-
-# Statik frontend paketini derler ve Go binary üretir:
-make build
-
-# Uygulamayı başlatın:
-./bin/tersane-backend
+```sh
+KUBE_CONTEXT=kubeview-test WATCH_NAMESPACE=kubeview-qa READ_ONLY=false ./start.sh
 ```
 
-Tarayıcınızdan **`http://localhost:8000`** adresine gittiğinizde backend sunucusu 3D React SPA uygulamasını doğrudan sunacaktır.
+Bu geliştirme örneği de bağlantı penceresinden açık yönetim seçimi gerektirir. Genel cluster kapsamlı mutasyonlar namespace ile sınırlandırılmış bağlantıda kapalıdır; Node cordon/uncordon ayrı izinlerle değerlendirilir.
 
----
+## Gerçek işlemler ve sınırlar
 
-### Seçenek C: Kubernetes / Minikube Üzerine Deploy Etme (YAML Manifest)
+Discovery tabanlı list/get/create/edit/delete, server dry-run, UID/resourceVersion koruması, scale, uygun restart/rollback, container request/limit, koşullu `pods/resize`, CronJob işlemleri, cordon/uncordon ve eviction tabanlı drain servisi bulunur. Log/exec/port-forward gerçek Kubernetes alt kaynaklarını kullanır. Özellik ve test kapsamı [CAPABILITIES.md](docs/CAPABILITIES.md) içinde açıkça ayrılmıştır.
 
-Tersane'yi canlı kümeniz üzerinde salt-okunur Pod olarak çalıştırmak için:
+Merkez veya sefer panosundan Deployment oluştururken önce **Server dry-run**, sonra gerçek oluşturma kullanılır; dry-run nesne yaratmaz. Pod ataması, owner zinciri ve Ready durumu gerçek watch verisinden izlenir. Workload panelindeki **Ölçekle**, **CPU / RAM**, **Rollout restart** ve **Sil** kendi eylemidir. Pod silmek controller'ın yeni UID ile replacement yaratmasına yol açabilir; replica azaltma ve workload silme farklı sonuçlardır. CPU/RAM template düzenleme doğrulanmış Deployment/StatefulSet/DaemonSet hedefine uygulanır; standalone ReplicaSet/Job/CronJob için gerekçe gösterilir. RollingUpdate, OnDelete ve partition sonuçları aynı kabul eşiğiyle sunulmaz.
 
-```bash
-git clone https://github.com/k8s-tersane/tersane.git
-cd tersane
+StatefulSet/DaemonSet CPU/RAM template düzenlemesinde bilinmeyen kullanıcı etiketleri/annotation'ları ve diğer container alanlarının korunması [gerçek form akışında doğrulandı](artifacts/v1.1.0/v11-20261108/frontend/forms-resume/REVIEW.md). Controller'ın kendi template-generation annotation değişimi bu kayıtta ayrıca ayrılır.
 
-# 1. RBAC Read-Only İzinlerini Uygulayın:
-kubectl apply -f deploy/rbac.yaml
+Kasa Secret değerlerini toplu akışta taşımaz; ayrı **Yetkiyle Secret değerlerini aç** ve **Gizli içeriği düzenle** yolları gerçek yetki ister. Maskeli placeholder gerçek Secret değeri olarak geri yazılmaz. Container loglarında app, tamamlanmış init, geçici debug ve previous/current seçimi gerçek container adını kullanır. **Duraklat**, HTTP log akışını kapatır; devam et seçili son satır sayısını yeniden alır, aradaki bütün satırların saklanmasını garanti etmez. Askıdaki Job **Askıya alındı** görünür; DaemonSet ancak bilinen ready/desired sayıları ve güncel observedGeneration ile **Hazır** sayılır.
 
-# 2. Deployment ve Service Manifestini Uygulayın:
-kubectl apply -f deploy/deployment.yaml
+`metrics.k8s.io` gerçek CPU/RAM ölçümlerini sağlar; grafikler ölçüm zamanını ve birimini gösterir. Request/limit/allocatable kullanım ölçümü değildir. Ölçüm yoksa/Forbidden ise sahte sıfır çizilmez. Geçmiş yalnız oturum belleğindedir; Prometheus gibi uzun geçmiş deposu değildir. Exec arayüzü non-TTY satır tabanlı shell'dir. Kullanıcıya sunulan port-forward yolu seçili Pod'un TCP portundaki **HTTP önizlemesidir**; genel ağ proxy'si veya UDP desteği vaat edilmez. Önizleme sandbox uygular; mutlak asset yolları kullanan karmaşık uygulamalar sınırlıdır. Log UID guard'ları aynı-ad/yeni-UID yarışını sınırlar; Kubernetes logs API'si atomik UID önkoşulu sunmadığından mutlak UID-pinned log garantisi yoktur. Helm release yönetimi ve genel bulut worker sağlama yoktur; izinli yerel minikube worker ve gerçek Hubble akışı aşağıdaki sınırlı sağlayıcılardır.
 
-# 3. Port Forwarding ile Erişin:
-kubectl port-forward svc/tersane-service 8000:8000
-```
-Tarayıcınızda **`http://localhost:8000`** adresini açın.
+Görsel kanıt: [önceki dashboard](docs/evidence/chromium-overview-1440.png) → [tam ekran dünya](docs/evidence/world/chromium-world-1440.png) · [gerçek yaşam döngüsü videosu](docs/evidence/world/lifecycle-live.webm). Test ortamı, ölçümler ve açık sınırlar: [VALIDATION](docs/VALIDATION.md).
 
----
+## Doğrulama
 
-### Seçenek D: Helm Chart ile Kurulum
+Güncel seri frontend unit grubu **165/165 PASS** içerir. Son beş vaka gerçek `useWorldProviders` hook'unu sentetik deferred yanıtlarla sınar: A→B→A, namespace ve stream-session değişiminde eski Hubble UID/protokol verisi modele girmez, güncel nonempty yanıt kabul edilir ve pinned lease cleanup korunur. Bunlar gerçek Hubble E2E yerine geçmez. [Unit kanıtı](artifacts/v1.1.0/v11-20261108/frontend/provider-epoch-evidence.json), [gerçek Job/DS UI kabulü](artifacts/v1.1.0/v11-20261108/frontend/status-resume/REVIEW.md) ve bütün kabul satırlarının [durumu](docs/V11_ACCEPTANCE_REPORT.md) ayrı kayıtlardır.
 
-Helm paket yöneticisi ile tek komutla dağıtmak için:
-
-```bash
-cd tersane
-
-# Helm Chart kurulumu
-helm install tersane ./charts/tersane
-
-# Port Forwarding ile erişim
-kubectl port-forward svc/tersane 8000:8000
+```sh
+make test
+npm --prefix frontend run test:e2e
+KUBEVIEW_TEST_CONTEXT=kubeview-test KUBEVIEW_TEST_NAMESPACE=kubeview-qa \
+  npm --prefix frontend run test:e2e -- --project=chromium live.spec.js
+cd backend
+KUBEVIEW_TEST_CONTEXT=kubeview-test KUBEVIEW_TEST_NAMESPACE=kubeview-qa \
+  KUBEVIEW_TEST_CLUSTER_UID=dogrulanmis-kube-system-uid \
+  go test -race ./pkg/server -run TestDedicatedCluster -v
 ```
 
----
+Production performans altyapısı, gerçek Go informer → WebSocket → store → mevcut sahne yolunu deterministik sentetik verilerle kullanır. Gerçek kümeye kaynak uygulamaz. S/M/L profilleri, 30 sn ısınma + 60 sn ×3 tekrar, efekt/olay/etkileşim koşuları ve 20 dakikalık kaynak/log/reconnect döngüsü için [ölçüm kılavuzuna](docs/PERFORMANCE.md) bakın. Ölçülen sonuçlar ve native Safari erişim sınırı [performans raporunda](docs/PERFORMANCE_REPORT.md) ayrılır. Önceki `e2e/fleet-benchmark.mjs` geliştirme tanılaması production benchmark yerine kullanılmaz.
 
-### Seçenek E: Docker Imajı Derleme
+Son aday için 31 AC hücresi ve ayrı dört kontrollü pil hücresi tamamlandı; AC karşılaştırma kaydı `valid=true/partial=false` döner. 20 dakikalık sentetik koşuda 20 panel döngüsü ve 24/24 log kapanışı bulunur. [Ham ölçüm kapsamı](artifacts/v1.1.0/v11-20261108/performance/raw-measurements-manifest.json) ve [AC karşılaştırması](artifacts/v1.1.0/v11-20261108/performance/comparison-ac.json) kaynak/güç koşullarına bağlıdır. Pil ile AC oranlanmaz; JS çizim sıklığı fiziksel presented FPS, sentetik replay de gerçek provider maliyeti değildir. Yayın kararı kalan final kanıt/CI/release kapılarına bağlıdır.
 
-```bash
-make docker-build
-# Üretilen imaj: tersane:latest
+26–30 Ekim panel araştırması, güncel sınırlı-log sürümünü yeni baseline olarak kullanır: [panel CPU deneyi ve tekrarlama](docs/PANEL_CPU_OPTIMIZATION.md). Beş çiftte dolu-log takılması ve süreç RSS'i azaldı; net toplam CPU kazanımı kanıtlanmadı. Açık/kapalı panel farkı aynı seçili UID ile eşleşmiş bloklarda ölçülür; tarihsel sürümler arasındaki fark panel açma maliyeti sayılmaz. Son doğrulama durumu ve reddedilen kapasite adayı da raporda ayrı tutulur.
+
+```sh
+npm --prefix frontend run bench:test
+npm --prefix frontend run bench:run -- --phase optimized --profiles M --scenarios living
+npm --prefix frontend run bench:compare -- BEFORE_DIR AFTER_DIR OUTPUT.json
 ```
 
----
+`--phase` dondurulan build'i, `--profiles` kaynak yükünü, `--scenarios` ölçüm akışını seçer. Var olan build tekrar kullanılacaksa `--reuse-build --reuse-binary` eklenir; tarihsel baseline güncel kodla ezilmez. Log ekranının yerel geçmişi 5000 satır / 1 MiB ve satır başına16 KiB ile sınırlıdır; kısaltma görünür biçimde bildirilir. Ham Kubernetes log verisi değiştirilmez.
 
-## 🎮 İntuitif Sahne Kontrolleri
+Tarihsel tarayıcı testleri çalışan Vite/backend bekler; yeni v1.1 gerçek-küme suite'i `frontend/e2e/v11-playwright.config.js` altında production sunucusunu hedefler. `npx playwright install chromium webkit` komutu frontend dizininden gerekli motorları kurar. Canlı mutasyon testleri açık test context'i, namespace'i ve ilgili harness'in cluster UID/sahiplik kontrolleri olmadan çalıştırılmamalıdır; üretim context'i otomatik seçilmez. Yukarıdaki UID bir yer tutucudur. `SKIP` gerçek küme testi geçti anlamına gelmez. Native Safari, Playwright WebKit ve çapraz derlenmiş platform kanıtları ayrı tutulur.
 
-| Eylem | Kontrol | Açıklama |
-| :--- | :--- | :--- |
-| **Kamera Döndürme (Orbit)** | `Sol Tık + Sürükle` | 3D Liman sahnesini 360 derece etrafında döndürür |
-| **Kamera Kaydırma (Pan)** | `Sağ Tık + Sürükle` | Kamerayı eksenlerde yatay/dikey kaydırır |
-| **Yakınlaşma / Uzaklaşma** | `Fare Tekerleği (Scroll)` | Gemi ve palet detaylarına yakınlaşır |
-| **Obje İnceleme** | `Sol Tık (Objeye)` | Seçilen nesneye odaklanır ve sağ müfettiş çekmecesini açar |
-| **Odak Sıfırlama** | `X Butonu` veya `Boşluğa Tık` | Kamerayı varsayılan genel liman açısına döndürür |
+## Paketleme
 
----
+```sh
+docker build -t kubeview:local .
+helm lint charts/tersane
+helm template kubeview charts/tersane >/dev/null
+```
 
-## ⚙️ Yapılandırma (Environment Variables)
+Docker varsayılan olarak container'ın dış arayüzüne bind ettiği için `API_TOKEN` gerektirir. Host yayını gerekiyorsa yalnız loopback'e yayınlayın (`-p 127.0.0.1:8000:8000`) ve özel token dosyasını `--api-token-file` ile container'a salt okunur bağlayın. Host kubeconfig/auth plugin yollarını container'a rastgele taşımayın; dosyalar, sertifika başvuruları ve gerekli plugin container ortamıyla uyumlu olmalıdır.
 
-Uygulama davranışını aşağıdaki çevre değişkenleri ile özelleştirebilirsiniz:
+İkinci model Kubernetes içinde mevcut ServiceAccount ile çalışmadır. Helm `ClusterIP` erişimi ve release'e ait token Secret'ı veya `auth.existingSecret` kullanır. Image repository/tag ayarı, image'ın gerçekten yayımlandığının kanıtı değildir; doğrulanmış image'ı açıkça seçin. Paylaşılan erişimde bütün kullanıcılar aynı gateway Kubernetes kimliğini kullanır; kullanıcı bazlı Kubernetes impersonation veya SaaS hesap/rol ayrımı yoktur. Tek operatör/özel ağ sınırını koruyun. Yazma, exec, port-forward ve Node bakımı izinleri ayrı opt-in değerlerdir.
 
-| Değişken Adı | Varsayılan Değer | Açıklama |
-| :--- | :--- | :--- |
-| `PORT` | `8000` | Sunucunun çalışacağı HTTP / WebSocket portu |
-| `WATCH_NAMESPACE` | `""` *(Tüm Cluster)* | İzlenecek özel namespace (Boş bırakılırsa tüm cluster izlenir) |
-| `KUBECONFIG` | `~/.kube/config` | Küme dışı çalışırken kullanılacak Kubeconfig dosya yolu |
-| `STATIC_DIR` | `./public` | Production statik frontend derleme dizin yolu |
+Minimum izin örnekleri, `kubeview-example` yerine önceden var olan ve yönettiğiniz namespace yazılarak değerlendirilir:
 
----
+- [Namespace okuyucu](deploy/rbac-namespace-readonly.yaml): ServiceAccount, sınırlı Role ve RoleBinding; varsayılan Secret, exec, RBAC yönetimi veya Node yazması yok.
+- [İsteğe bağlı workload yazma](deploy/rbac-namespace-write.yaml): seçili namespace için D/STS/DS yönetimi ve Pod create/delete; backend ve tarayıcı kilitleri ayrıca gerekir.
+- [İsteğe bağlı log ve Pod metrics](deploy/rbac-namespace-observability.yaml): `pods/log` ve `metrics.k8s.io` Pod okuma izinleri.
+- [İsteğe bağlı Node/Node metrics okuma](deploy/rbac-node-observability.yaml): küme kapsamlı ek izin; namespace uygulaması için zorunlu değildir.
 
-## 🗺️ Yol Haritası (Roadmap)
+Manifestler yetki örneğidir; addon kurmaz ve kullanıcının gerçek RBAC sonucunu değiştirmiş gibi gösterilmez. Kendi kullanıcı kimliğinizin mevcut kubeconfig erişimiyle yerel kullanımda yeni ServiceAccount oluşturmanız gerekmez. Credential içeren dosyaları depoya eklemeyin.
 
-### 🟢 v1.0.0 (Kararlı Sürüm — Tamamlandı)
-- [x] Node, Pod, Deployment, Service, StatefulSet, DaemonSet, Job, CronJob 3D liman görselleştirmesi.
-- [x] WebSocket tabanlı sıfır gecikmeli canlı durum akışı ve tombstone purge garantisi.
-- [x] Ingress Deniz Feneri, NetworkPolicy Kırmızı Lazer Bariyerleri ve HPA Mobil Vinçler.
-- [x] ConfigMap Sevkiyat Föyü, Secret Kilitli Kasa (Masked-Only Policy) ve PVC/PV Depo Ambarları.
-- [x] Canlı Pod Log akış yayınlayıcısı (`PodLogViewer`) ve 1 saatlik metrik trend grafikleri.
-- [x] ServiceAccount kimlik kartları, RBAC izin matrisi ve `cluster-admin` aşırı yetki ikazları.
-- [x] Salt İzleme Modu (Read-Only), kilitli namespace koruması ve onay modalı doğrulaması.
-- [x] Dinamik Kubeconfig port sapması otomatik algılama ve yeniden bağlanma (Auto-Heal).
+## Erişim sınırı ve kaldırma
 
-### 🔵 v1.1.0 (Planlanan Gelecek Sürüm)
-- [ ] **Container Exec / Terminal Erişimi:** Güvenli opsiyonel in-browser container shell sekmesi.
-- [ ] **Sesli Telsiz Anons Efektleri:** Kritik K8s Event'leri için opsiyonel liman anons ses efektleri.
-- [ ] **Gelişmiş Multi-Cluster Dashboard:** Birden fazla uzak limanı eşzamanlı izleme paneli.
+Varsayılan `127.0.0.1` HTTP dinleyicisini koruyun. Uzak makinede çalışan tek operatör kurulumu için gateway'i orada da loopback'te bırakıp SSH tüneli açabilirsiniz: `ssh -N -L 127.0.0.1:8000:127.0.0.1:8000 operator@sunucu`. Yerel tarayıcı aynı `http://127.0.0.1:8000` adresini kullanır. In-cluster kurulumda benzer biçimde explicit context ve namespace ile `kubectl --context kendi-context-adiniz --namespace kubeview port-forward --address 127.0.0.1 service/kubeview-tersane 8000:8000` kullanılır; Service adını gerçek Helm release'inize göre doğrulayın. Token gerektiren sunucuda bağlantı penceresinden erişim anahtarıyla oturum açın.
 
----
+Token dosyası örneği: `umask 077` ardından `openssl rand -hex 32 > kubeview.token`; uygulamayı `./kubeview --api-token-file ./kubeview.token` ile başlatın. Dosyayı paylaşmayın veya repoya eklemeyin. HTTP/WS isteği tarayıcının gerçek scheme + Host/port origin'iyle eşleşmelidir. `X-Forwarded-*` güvenilir kabul edilmez; mevcut gateway'de TLS dinleme bayrağı veya otomatik TLS sonlandıran reverse proxy desteği vaat edilmez. Origin denetimini gevşeterek proxy bağlamayın. Ayrıntılı sınırlar: [SECURITY](docs/SECURITY.md).
 
-## 🤝 Katkıda Bulunma (Contributing)
+Yerel kaldırma için süreci `Ctrl+C` ile durdurun, kurduğunuz binary ve açtığınız paket dizinini kaldırın. Tarayıcı site verisini temizlemek görünüm tercihlerini ve oturum cookie'lerini kaldırır; backend yeniden başlatılması bellekteki yönetim oturumlarını kapatır. Kubeconfig, küme, uygulama workload'ları veya minikube makineleri bu işlemle silinmez. Sağlayıcı kullanıldıysa journal varsayılan olarak `~/.local/state/kubeview/providers` altındadır (`KV_PROVIDER_STATE_DIR` ile değişebilir). Açık/belirsiz worker işlemi varsa envanterini uzlaştırmadan bu journal'ı silmeyin. Helm kaldırma yalnız kendi KubeView release'ini hedeflemeli; örnek RBAC manifestlerinden kalan yalnız size ait nesneleri ayrıca gözden geçirin. Kullanıcı workload'ları, PVC'leri veya namespace'leri kaldırma adımı yoktur.
 
-Katkılarınız projeyi daha da harika hale getirmek için çok değerli!
+Mimari: [ARCHITECTURE](docs/ARCHITECTURE.md) · dünya eşleştirmeleri: [METAPHOR](METAPHOR.md) · tasarım: [UI-UX](docs/UI-UX.md) · gerçek durum: [ROADMAP](docs/ROADMAP.md).
 
-1. Bu repoyu Fork edin (`git checkout -b feature/HarikaOzellik`).
-2. Değişikliklerinizi commit edin (`git commit -m 'feat: Harika bir özellik eklendi'`).
-3. Dalınıza Push edin (`git push origin feature/HarikaOzellik`).
-4. Bir **Pull Request** açın.
+### İsteğe bağlı gerçek worker ve trafik sağlayıcıları
 
----
+Tam ekran dünyada merkez → **Sağlayıcılar / Worker ekle** yerel minikube işlem kaydını açar. Sağlayıcı kapalıysa gerekçesi görünür; taslak gemi gerçek Node sayılmaz. Aşağıdaki örnekte değerleri yalnız yönettiğiniz test profiline göre verin:
 
-## 📄 Lisans
+```sh
+READ_ONLY=false \
+KV_MINIKUBE_ENABLED=true \
+KV_MINIKUBE_PROFILE=your-test-profile \
+KV_MINIKUBE_CONTEXT=your-test-context \
+KV_MINIKUBE_CLUSTER_UID=verified-kube-system-uid \
+KV_MINIKUBE_MAX_NODES=3 \
+./kubeview --context your-test-context --write
+```
 
-Bu proje **MIT Lisansı** altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakabilirsiniz.
+`READ_ONLY=false` sunucu yazma kilidini açar; tarayıcıda açık yönetim seçimi ayrıca gerekir. Profil/context/UID sabit allowlist'tir. İlk adaptör minikube1.38.1/docker üzerinde sınandı. `KV_MINIKUBE_HOME` profil dizinini, `KV_PROVIDER_STATE_DIR` özel kalıcı journal dizinini belirler. Aynı Home/Profile için fiziksel kilit `KV_MINIKUBE_HOME/.kubeview-provider-locks` altında paylaşılır; farklı journal dizini ikinci sağlayıcıya eşzamanlı sahiplik vermez. Eski StateDir kilidi de korunur; kilitler çalışan iş sonlandıktan sonra bırakılır. Açık/sonucu belirsiz işlem ikinci worker'ı otomatik oluşturmaz. İptal veya timeout oluşmuş makineyi silmez; envanter uzlaştırılmadan kör retry yapılmaz. Yerel operatör erişimi ve Kubernetes `nodes create` yetkisi ayrıca denetlenir. Gerçek Ready sonucu görsel katılımı beklemez. Filoya giriş, gemi gövdeleri ve rota takip mesafesi güvenliyken başlar; yoğun trafikte bekleyebilir.
+
+**Görünüm ve ayarlar → Ölçülmüş trafik — Hubble** opsiyonel gerçek flow katmanıdır. CNI/agent uygulama tarafından kurulmaz. Operatörün mevcut Hubble relay'ine backend'den TLS ile erişebilmesi ve resmi Hubble CLI1.20.2'nin kurulu olması gerekir:
+
+```sh
+KV_HUBBLE_ENABLED=true \
+KV_HUBBLE_CONTEXT=your-observer-context \
+KV_HUBBLE_CLUSTER_UID=verified-kube-system-uid \
+KV_HUBBLE_CLUSTER_NAME=your-cilium-cluster-name \
+KV_HUBBLE_SERVER=relay.example:4245 \
+KV_HUBBLE_TLS_CA=/private/ca.crt \
+KV_HUBBLE_TLS_CERT=/private/client.crt \
+KV_HUBBLE_TLS_KEY=/private/client.key \
+KV_HUBBLE_TLS_SERVER_NAME=relay.example \
+./kubeview --context your-observer-context
+```
+
+`KV_HUBBLE_BINARY` varsayılan `hubble` yerine sabit bir executable yolu verebilir. Sağlayıcı kimliği context/clusterUID/API TLS binding ve gerçek Cilium cluster.name ile sınırlandırılır. Namespace yetkisi ayrıca uygulanır; relay sertifikası uygulama kullanıcısına tüm namespace yetkisi vermez. Flow olayları10sn pencerede toplanır; paket, byte veya bant genişliği değildir. L7 yalnız sağlayıcı kaydı varsa görünür; şifreli içerik çıkarılmaz. UID/kimlik belirsizliği, kapasite sınırları ve eski veri açıkça belirtilir. Selector/EndpointSlice çizgileri ayrı yapılandırma katmanıdır.
+
+Tarihsel Node arızası/worker/vinç sağlayıcı kanıtları [v1.1 öncesi onarım kaydında](docs/PRE_V11_VISUAL_REPAIR.md) kalır; güncel [kaynak uygulanabilirliği](artifacts/v1.1.0/v11-20261108/harbor-source-applicability.json) ve [son runtime farkı](artifacts/v1.1.0/v11-20261108/source-applicability-32a0468.json) hangi modüllerin korunduğunu belirtir. Bunlar yeni bir gerçek Node stop veya worker-add koşusu olarak sayılmaz. Değişen caption'lar ayrı gerçek container/flow UI [kanıtıyla](artifacts/v1.1.0/v11-20261108/frontend/visual-resume/REVIEW.md) incelendi. Adayın yayın ve kabul durumu [release notlarından](docs/RELEASE_NOTES_v1.1.0.md) izlenir.

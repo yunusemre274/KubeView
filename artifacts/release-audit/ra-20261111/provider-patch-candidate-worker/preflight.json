@@ -1,0 +1,119 @@
+{
+  "started_at_utc": "2026-11-11T13:05:27.674376+00:00",
+  "inventory_path": "artifacts/release-audit/ra-20261111/hubble-cold01/collector-image-inventory.json",
+  "inventory_sha256": "d46af9ed8c432f994360e0226940ff96f26ca49b810e431ffb7bcee5e89d8706",
+  "labId": "kvml-d32afbf634e8",
+  "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+  "targets_in_order": [
+    {
+      "label": "hubble-relay",
+      "ref": "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1",
+      "official_tag": "v1.20.4",
+      "source": "https://github.com/cilium/cilium/releases/tag/v1.20.4"
+    },
+    {
+      "label": "cilium",
+      "ref": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+      "official_tag": "v1.20.4",
+      "source": "https://github.com/cilium/cilium/releases/tag/v1.20.4"
+    },
+    {
+      "label": "operator-generic",
+      "ref": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+      "official_tag": "v1.20.4",
+      "source": "https://github.com/cilium/cilium/releases/tag/v1.20.4"
+    },
+    {
+      "label": "cilium-envoy",
+      "ref": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+      "official_tag": "v1.39.5-1792733054-8c73b2816bc8239e27f1fd53b271884688137459",
+      "source": "https://helm.cilium.io/cilium-1.20.4.tgz"
+    }
+  ],
+  "trivy_binary": "/opt/homebrew/bin/trivy",
+  "trivy_resolved_binary": "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+  "trivy_binary_sha256": "5fd45afccbd5efd7a88e6da92a7b3a52c2e3ffd30d5b954f324123d6d1d24469",
+  "platform": "linux/arm64",
+  "cache_dir": ".git/release-audit/trivy-cache",
+  "db_metadata": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  },
+  "help_commands": [
+    {
+      "command": [
+        "/opt/homebrew/bin/trivy",
+        "--cache-dir",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+        "--version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/bin/trivy",
+        "image",
+        "--help"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "GOMAXPROCS": 1,
+  "parallel": 1,
+  "per_image_timeout_seconds": 150,
+  "remaining_job_scan_budget_seconds": 540,
+  "rss_limit_bytes": 1610612736,
+  "minimum_free_bytes": 10737418240,
+  "free_bytes": 458887147520,
+  "image_sources": [
+    "remote"
+  ],
+  "scanners": [
+    "vuln"
+  ],
+  "pkg_types": [
+    "os",
+    "library"
+  ],
+  "automatic_db_update": false,
+  "registry_credentials": "No existing config loaded; empty private Docker/auth paths and credential environment variables removed",
+  "default_cache_version_note": "Initial trivy --version inspected default cache (October metadata); scans explicitly use private cache downloaded November 11, not default cache",
+  "baseline_report": "artifacts/release-audit/ra-20261111/provider-image-worker/summary.json",
+  "official_release_metadata_path": "artifacts/release-audit/ra-20261111/provider-release-metadata/result.json",
+  "official_release_metadata_sha256": "c5bbdf64909675f23889c9bdfcf98594f34d2284bd4f3a19e111f1f1c270ce15",
+  "official_chart_url": "https://helm.cilium.io/cilium-1.20.4.tgz",
+  "official_chart_sha256": "505abff8385811df1a949776fc42e9f10697989a332acc86d6e8933efcb855ed",
+  "chart_values_sha256": "b92711b7da0f27d21d6fa10a3c363be34d004adfaac821109a5c0a98cbcfe0a3",
+  "chart_metadata_sha256": "0c96fb9e2088669fb9a84c7831206d46b8a5c0756a6d0999ca6d6e844e5ce1a8",
+  "tag_resolution": "Three index digests from official release body; Envoy digest/tag from official packaged release chart. Scans are digest-only.",
+  "binary_targets": [
+    {
+      "label": "custom-minikube3",
+      "ref": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/patched-minikube-v1.38.1/minikube-v1.38.1-kubeview-patched.3",
+      "sha256": "0ea47b1aa27343751614b25f427771974bca6534365ab8ddee4bf7aee8ce0371",
+      "execution_authorized": false
+    },
+    {
+      "label": "custom-hubble1",
+      "ref": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/patched-hubble-v1.20.2/hubble-v1.20.2-kubeview-patched.1",
+      "sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2",
+      "execution_authorized": false
+    }
+  ],
+  "binary_targets_sbom": [
+    {
+      "label": "custom-minikube3-sbom",
+      "ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-minikube3.cdx.json",
+      "sha256": "8beac4b69b01ce7233117d6a1a8f74958bdf3d9dbb140473ee76246c8b9ea7a5",
+      "binary_sha256": "0ea47b1aa27343751614b25f427771974bca6534365ab8ddee4bf7aee8ce0371"
+    },
+    {
+      "label": "custom-hubble1-sbom",
+      "ref": "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/custom-hubble1.cdx.json",
+      "sha256": "c3f7d6a71be2cfb12fb5ddbbdedae7510790fd3a7675bef7472ac11f99658471",
+      "binary_sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2"
+    }
+  ]
+}

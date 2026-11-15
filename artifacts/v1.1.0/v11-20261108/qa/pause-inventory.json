@@ -1,0 +1,136 @@
+{
+  "at": "2026-11-08T21:06:53.568Z",
+  "status": "PAUSED_AT_USER_REQUEST",
+  "clusters": [
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespace": "kv-repair-v11-qa",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "items": [
+        {
+          "kind": "Deployment",
+          "name": "v11-ui-mw8bfgl6",
+          "uid": "c5e42ecc-9987-4349-9c28-c89769f162c7",
+          "resourceVersion": "24835",
+          "owner": "v11-20261108",
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": null,
+          "desiredReplicas": 1,
+          "readyReplicas": 1
+        },
+        {
+          "kind": "Pod",
+          "name": "v11-ui-mw8bfgl6-6cf6f669b9-rp6wr",
+          "uid": "df6effb4-aa05-42d2-88e0-b00798681ad3",
+          "resourceVersion": "24777",
+          "owner": "v11-20261108",
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": "Running",
+          "desiredReplicas": null,
+          "readyReplicas": null
+        },
+        {
+          "kind": "ServiceAccount",
+          "name": "default",
+          "uid": "c4959a8a-865c-4cdb-b400-302f324ac6b2",
+          "resourceVersion": "20536",
+          "owner": null,
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": null,
+          "desiredReplicas": null,
+          "readyReplicas": null
+        },
+        {
+          "kind": "ServiceAccount",
+          "name": "v11-reader",
+          "uid": "40ee58f8-ed2d-4eff-a2ad-f9fa067c79d5",
+          "resourceVersion": "21139",
+          "owner": "v11-20261108",
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": null,
+          "desiredReplicas": null,
+          "readyReplicas": null
+        },
+        {
+          "kind": "Role",
+          "name": "v11-reader",
+          "uid": "ffce8bc8-9ec6-48e7-a9f8-91ab3ee972a4",
+          "resourceVersion": "21140",
+          "owner": "v11-20261108",
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": null,
+          "desiredReplicas": null,
+          "readyReplicas": null
+        },
+        {
+          "kind": "RoleBinding",
+          "name": "v11-reader",
+          "uid": "29e3bd35-547d-4026-8920-e9014a85fae5",
+          "resourceVersion": "21142",
+          "owner": "v11-20261108",
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": null,
+          "desiredReplicas": null,
+          "readyReplicas": null
+        },
+        {
+          "kind": "ConfigMap",
+          "name": "kube-root-ca.crt",
+          "uid": "30d1c6d2-f606-40aa-99ad-f2b5a36d8a8f",
+          "resourceVersion": "20535",
+          "owner": null,
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": null,
+          "desiredReplicas": null,
+          "readyReplicas": null
+        }
+      ]
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespace": "kv-repair-v11-qa",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "items": [
+        {
+          "kind": "ServiceAccount",
+          "name": "default",
+          "uid": "7e2b181c-edc7-4e11-b220-e75f1523a187",
+          "resourceVersion": "394",
+          "owner": null,
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": null,
+          "desiredReplicas": null,
+          "readyReplicas": null
+        },
+        {
+          "kind": "ConfigMap",
+          "name": "kube-root-ca.crt",
+          "uid": "8b70c5da-9f63-48eb-af46-7286159b2b11",
+          "resourceVersion": "395",
+          "owner": null,
+          "namespace": "kv-repair-v11-qa",
+          "deleting": null,
+          "phase": null,
+          "desiredReplicas": null,
+          "readyReplicas": null
+        }
+      ]
+    }
+  ],
+  "reader": {
+    "context": "kv-repair-v11-reader",
+    "issuedAt": "2026-11-08T20:54:37.000Z",
+    "expiresAt": "2026-11-08T21:54:37.000Z",
+    "credentialRecorded": false
+  }
+}

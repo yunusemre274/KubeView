@@ -1,0 +1,27 @@
+{
+  "name": "cilium-candidate-asset-hashes",
+  "argv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "start",
+    "--attach",
+    "a6e61ad932d4fd8d6295e2941619d8d36108da9cee1f842baa254e3a9417d700"
+  ],
+  "startedAt": "2026-11-12T10:41:36.649161+00:00",
+  "maxSeconds": 35,
+  "samples": [
+    {
+      "elapsedSeconds": 9.458,
+      "ownedRSSBytes": 4096000,
+      "ownedPIDs": [
+        12281
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454503587840
+    }
+  ],
+  "pid": 12281,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:41:37.178342+00:00"
+}

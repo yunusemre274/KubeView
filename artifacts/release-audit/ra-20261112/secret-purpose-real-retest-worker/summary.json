@@ -1,0 +1,36 @@
+{
+  "status": "TEST_MATRIX_PASS_ADMISSION_CASE_NOT_RUN",
+  "goTestStatus": "PASS",
+  "testedBackendCases": [
+    "admin purpose reveal200",
+    "pre-management edit403/unchanged",
+    "managed metadata edit200/data+unknown metadata/type/UID equality",
+    "sanitized admin named/list reads200",
+    "real list-only SA identity/SSAR/reveal403/list200/update403",
+    "real exact-name get-only SA identity/SSAR/reveal200/list403/update403",
+    "both restricted PUT typed envelope booleans alltrue",
+    "current-UID/RV masked PUT422/known masked-message true and stored unchanged",
+    "non-purpose raw/base64 canaries absent including denial/error outputs",
+    "7/7 exactUID/RV cleanup with GET404 and empty own Secret metadata inventory",
+    "original2 Ready Node UID+metadata/spec/profile/lab equality"
+  ],
+  "notRun": [
+    "deliberate real Kubernetes admission/validation failure",
+    "browser UI reveal/hide/edit E2E",
+    "live discovery-omission injection SEC001"
+  ],
+  "cleanupUIDCount": 7,
+  "allExactFixturesAbsent": true,
+  "namespaceKeptForRoot": true,
+  "initialFailurePreserved": true,
+  "testSeconds": 2.340327667,
+  "commandSeconds": 5.08991003036499,
+  "commandCeilingSeconds": 120.16733002662659,
+  "phaseElapsedSeconds": 131.697178,
+  "phaseLimitSeconds": 180,
+  "phaseWithinLimit": true,
+  "newFixtureUIDsDisjointFromFirst": true,
+  "runtimeChanged": false,
+  "noAdditionalTestJobs": true,
+  "noReleaseOrWholePhaseClosureClaim": true
+}

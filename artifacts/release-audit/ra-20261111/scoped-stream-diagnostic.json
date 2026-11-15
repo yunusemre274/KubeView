@@ -1,0 +1,50 @@
+[
+  {
+    "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+    "namespace": [
+      "kvml-bc565b30-02-p1"
+    ],
+    "messages": [
+      {
+        "type": "STATUS",
+        "synced": false,
+        "reachable": false
+      },
+      {
+        "type": "SNAPSHOT",
+        "synced": true,
+        "reachable": true,
+        "count": 104
+      },
+      {
+        "type": "SNAPSHOT_READY",
+        "synced": true,
+        "reachable": true
+      }
+    ]
+  },
+  {
+    "harborId": "940ea70a-0b63-4656-8f77-c56620496a4a",
+    "namespace": [
+      "kvml-bc565b30-02-p2"
+    ],
+    "messages": [
+      {
+        "type": "STATUS",
+        "synced": false,
+        "reachable": false
+      },
+      {
+        "type": "SNAPSHOT",
+        "synced": true,
+        "reachable": true,
+        "count": 104
+      },
+      {
+        "type": "SNAPSHOT_READY",
+        "synced": true,
+        "reachable": true
+      }
+    ]
+  }
+]

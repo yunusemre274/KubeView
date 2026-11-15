@@ -1,0 +1,282 @@
+{
+  "id": "ws-vertical03-real04-uid-logs",
+  "profile": "04-kisitli-yetki",
+  "source": "Real Kubernetes; normal DOM/pointer UI, read-only diagnostic observations",
+  "startedAt": "2026-11-09T17:39:23.385Z",
+  "browser": "chromium",
+  "version": "156.0.8078.4",
+  "checks": [
+    {
+      "name": "exact-active-resource-counts",
+      "at": "2026-11-09T17:39:24.482Z",
+      "detail": {
+        "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+        "nodes": 0,
+        "pods": 1
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:39:25.016Z",
+      "detail": "1-pod-reader.png"
+    },
+    {
+      "name": "actual-log-opening-guard",
+      "at": "2026-11-09T17:39:25.407Z",
+      "detail": {
+        "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+        "context": "kvml-ccdfe731dabd-a-reader",
+        "namespace": "kvml-e731dabd-04-restricted",
+        "name": "web-5f68f9fd69-82x68",
+        "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+        "container": "web",
+        "payloadRecorded": false
+      }
+    },
+    {
+      "name": "text-input-arrow-does-not-pan",
+      "at": "2026-11-09T17:39:25.420Z",
+      "detail": {
+        "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:39:25.566Z",
+      "detail": "1-logs-reader.png"
+    },
+    {
+      "name": "exact-active-resource-counts",
+      "at": "2026-11-09T17:39:25.665Z",
+      "detail": {
+        "harborId": "e9e8db19-d6df-43f0-ad76-847ba75ba77e",
+        "nodes": 2,
+        "pods": 1
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:39:26.580Z",
+      "detail": "2-pod-a.png"
+    },
+    {
+      "name": "actual-log-opening-guard",
+      "at": "2026-11-09T17:39:26.723Z",
+      "detail": {
+        "harborId": "e9e8db19-d6df-43f0-ad76-847ba75ba77e",
+        "context": "kvml-ccdfe731dabd-a",
+        "namespace": "kvml-e731dabd-04-restricted",
+        "name": "web-5f68f9fd69-82x68",
+        "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+        "container": "web",
+        "payloadRecorded": false
+      }
+    },
+    {
+      "name": "text-input-arrow-does-not-pan",
+      "at": "2026-11-09T17:39:26.732Z",
+      "detail": {
+        "harborId": "e9e8db19-d6df-43f0-ad76-847ba75ba77e"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:39:26.886Z",
+      "detail": "2-logs-a.png"
+    },
+    {
+      "name": "exact-active-resource-counts",
+      "at": "2026-11-09T17:39:26.981Z",
+      "detail": {
+        "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+        "nodes": 0,
+        "pods": 1
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:39:27.899Z",
+      "detail": "3-pod-reader.png"
+    },
+    {
+      "name": "actual-log-opening-guard",
+      "at": "2026-11-09T17:39:27.958Z",
+      "detail": {
+        "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+        "context": "kvml-ccdfe731dabd-a-reader",
+        "namespace": "kvml-e731dabd-04-restricted",
+        "name": "web-5f68f9fd69-82x68",
+        "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+        "container": "web",
+        "payloadRecorded": false
+      }
+    },
+    {
+      "name": "text-input-arrow-does-not-pan",
+      "at": "2026-11-09T17:39:27.967Z",
+      "detail": {
+        "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:39:28.113Z",
+      "detail": "3-logs-reader.png"
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:39:28.426Z",
+      "detail": "4-world-all-panels-closed.png"
+    },
+    {
+      "name": "closed-log-cleanup",
+      "at": "2026-11-09T17:39:28.426Z",
+      "detail": {
+        "requests": 5,
+        "active": 0
+      }
+    }
+  ],
+  "streams": [
+    {
+      "opened": "2026-11-09T17:39:25.050Z",
+      "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+      "context": "kvml-ccdfe731dabd-a-reader",
+      "namespace": "kvml-e731dabd-04-restricted",
+      "pod": "web-5f68f9fd69-82x68",
+      "container": "web",
+      "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "ended": true,
+      "status": 200,
+      "openingUID": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "protocol": "guarded-text-v1",
+      "closed": "2026-11-09T17:39:25.647Z"
+    },
+    {
+      "opened": "2026-11-09T17:39:25.637Z",
+      "harborId": "e9e8db19-d6df-43f0-ad76-847ba75ba77e",
+      "context": "kvml-ccdfe731dabd-a",
+      "namespace": "kvml-e731dabd-04-restricted",
+      "pod": "web-5f68f9fd69-82x68",
+      "container": "web",
+      "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "ended": true,
+      "closed": "2026-11-09T17:39:25.658Z"
+    },
+    {
+      "opened": "2026-11-09T17:39:26.618Z",
+      "harborId": "e9e8db19-d6df-43f0-ad76-847ba75ba77e",
+      "context": "kvml-ccdfe731dabd-a",
+      "namespace": "kvml-e731dabd-04-restricted",
+      "pod": "web-5f68f9fd69-82x68",
+      "container": "web",
+      "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "ended": true,
+      "status": 200,
+      "openingUID": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "protocol": "guarded-text-v1",
+      "closed": "2026-11-09T17:39:26.963Z"
+    },
+    {
+      "opened": "2026-11-09T17:39:26.951Z",
+      "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+      "context": "kvml-ccdfe731dabd-a-reader",
+      "namespace": "kvml-e731dabd-04-restricted",
+      "pod": "web-5f68f9fd69-82x68",
+      "container": "web",
+      "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "ended": true,
+      "status": 200,
+      "openingUID": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "protocol": "guarded-text-v1",
+      "closed": "2026-11-09T17:39:27.666Z"
+    },
+    {
+      "opened": "2026-11-09T17:39:27.933Z",
+      "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+      "context": "kvml-ccdfe731dabd-a-reader",
+      "namespace": "kvml-e731dabd-04-restricted",
+      "pod": "web-5f68f9fd69-82x68",
+      "container": "web",
+      "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "ended": true,
+      "status": 200,
+      "openingUID": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+      "protocol": "guarded-text-v1",
+      "closed": "2026-11-09T17:39:28.165Z"
+    }
+  ],
+  "sockets": [
+    {
+      "harborId": "e9e8db19-d6df-43f0-ad76-847ba75ba77e",
+      "context": "kvml-ccdfe731dabd-a",
+      "namespaces": "kvml-e731dabd-04-restricted",
+      "snapshots": [
+        {
+          "at": "2026-11-09T17:39:25.302Z",
+          "pods": [
+            {
+              "name": "web-5f68f9fd69-82x68",
+              "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+              "namespace": "kvml-e731dabd-04-restricted"
+            }
+          ],
+          "nodes": [
+            {
+              "name": "kvml-ccdfe731dabd-a",
+              "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59"
+            },
+            {
+              "name": "kvml-ccdfe731dabd-a-m02",
+              "uid": "607adac0-75e9-4de1-9903-8e6422f77564"
+            }
+          ]
+        }
+      ],
+      "closed": false
+    },
+    {
+      "harborId": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+      "context": "kvml-ccdfe731dabd-a-reader",
+      "namespaces": "kvml-e731dabd-04-restricted",
+      "snapshots": [
+        {
+          "at": "2026-11-09T17:39:24.451Z",
+          "pods": [
+            {
+              "name": "web-5f68f9fd69-82x68",
+              "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+              "namespace": "kvml-e731dabd-04-restricted"
+            }
+          ],
+          "nodes": []
+        }
+      ],
+      "closed": false
+    }
+  ],
+  "errors": [],
+  "status": "passed",
+  "workspace": {
+    "id": "910c5751-2666-4d5e-97db-ed7f0b5c4930",
+    "harbors": [
+      {
+        "id": "3b79c723-cd38-4a97-a6fd-5fd46c4d16b6",
+        "name": "Kısıtlı okuyucu",
+        "connectionRef": "0cd057a1-6c63-4c95-9c72-96561bef57c3",
+        "namespaces": [
+          "kvml-e731dabd-04-restricted"
+        ]
+      },
+      {
+        "id": "e9e8db19-d6df-43f0-ad76-847ba75ba77e",
+        "name": "Ayrı admin",
+        "connectionRef": "8d573701-d54b-4657-8a43-7540f1af5b69",
+        "namespaces": [
+          "kvml-e731dabd-04-restricted"
+        ]
+      }
+    ]
+  },
+  "finishedAt": "2026-11-09T17:39:28.426Z"
+}

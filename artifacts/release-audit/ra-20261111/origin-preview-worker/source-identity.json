@@ -1,0 +1,16 @@
+{
+  "source_sha": "4ec526b7ce1bc39c21b603864c9096f72eb39184",
+  "base_source_sha256": {
+    "backend/main.go": "d6e6ca96084c62447df46cf55c7837d40dac89d1f4a6a90bc1201d00fb91e4e5",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/portforward.go": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+    "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+    "backend/pkg/server/provider_handlers.go": "b1963e2803f06a7d21b1a465abde292c63710c7f0431303df1fd51e3a61a97b8",
+    "backend/pkg/server/replay_source.go": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+    "frontend/src/workbench/PortForward.jsx": "24292f68267ce07791fd61177ffb2b2260ee71427d98a879777c6280cf81aecd"
+  },
+  "new_test_file_sha256": "c0fa35acd6d40c07704725e2cd36993f3b923381d67a10817d1e5d5c81faeaef",
+  "final_test_file_sha256": "8714457eefdb67c710b14a4ed29adb261ba433ef0c96bc01d93d1367a9a65a34",
+  "recorded_utc": "2026-11-11T11:55:31.908428+00:00"
+}

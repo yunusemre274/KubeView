@@ -1,0 +1,21 @@
+=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap
+=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/owned_selector_multins_harbors_and_real_ready
+    workspace_real_test.go:702: REAL Ready deploymentUID=1dc9adc3-4af4-44b0-bad4-ff30d7933d1c replicaSetUID=5fa93192-5801-44ab-af29-07c0e2933d64 podUID=2f9714a0-7c31-4b50-9dba-4acfe8b45900 nodeUID=bf794757-0d42-43e7-ab96-465103f5cabf
+    workspace_real_test.go:703: REAL Ready deploymentUID=c05a388b-55db-4ba0-a1da-c2cffa99d767 replicaSetUID=8d0a2cb3-1862-4b8e-b75a-603fd9fcb6a8 podUID=0c705696-3765-4fe8-99ec-1803bd042dff nodeUID=bf794757-0d42-43e7-ab96-465103f5cabf
+=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/selector_negatives_and_exact_overlap_union
+=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/multins_real_update_and_target_uid
+=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/out_of_scope_is_metadata_only_and_real_object_survives
+=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/same_uid_reentry
+=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/reconnect_generation_guard
+    workspace_real_test.go:786: REAL reconnect rotated session generation and retained workspace/harbor/tab/authorization/credential binding
+=== RUN   TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/real_uid_precondition_delete_reaches_all_overlapping_harbors
+--- PASS: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap (24.77s)
+    --- PASS: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/owned_selector_multins_harbors_and_real_ready (4.83s)
+    --- PASS: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/selector_negatives_and_exact_overlap_union (0.03s)
+    --- PASS: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/multins_real_update_and_target_uid (0.67s)
+    --- PASS: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/out_of_scope_is_metadata_only_and_real_object_survives (0.83s)
+    --- PASS: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/same_uid_reentry (0.50s)
+    --- PASS: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/reconnect_generation_guard (2.93s)
+    --- PASS: TestOwnedWorkspaceRealAPISelectorMultiNSOverlap/real_uid_precondition_delete_reaches_all_overlapping_harbors (0.67s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	25.485s

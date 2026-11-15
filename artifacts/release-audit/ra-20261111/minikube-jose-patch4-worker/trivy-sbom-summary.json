@@ -1,0 +1,14 @@
+{
+  "package_count": 214,
+  "rows": 5,
+  "unique_ids": 5,
+  "high_ids": [
+    "CVE-2026-41567",
+    "CVE-2026-42306"
+  ],
+  "severity_rows": {
+    "MEDIUM": 3,
+    "HIGH": 2
+  },
+  "go_jose_rows": []
+}

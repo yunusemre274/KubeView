@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-12T23:08:31.406609+03:00",
+  "rootVerifiedInputSHAEntries": 41,
+  "images": [
+    {
+      "path": "runtime/cat16-render-identity-A-20261112T195727Z/00-before.png",
+      "sha256": "96e55f7ec8039c161dc8b0ecc47a6dfb6027533162f63ca71bd3f0844f816a67",
+      "actuallyOpenedByRoot": true
+    },
+    {
+      "path": "runtime/cat16-render-identity-A-20261112T195727Z/after.png",
+      "sha256": "e2dc252bde08f8a926f68307ddc9714d860361d252f55607c0549e43ff733692",
+      "actuallyOpenedByRoot": true
+    },
+    {
+      "path": "runtime/cat16-render-identity-B-20261112T195727Z/00-before.png",
+      "sha256": "07b65d69fa43a5ad0cd53f2c731435e62bb2b84d504e9c572be9baa437ca3c23",
+      "actuallyOpenedByRoot": true
+    },
+    {
+      "path": "runtime/cat16-render-identity-B-20261112T195727Z/after.png",
+      "sha256": "93446df4e845ccc6d7ac4fef3a0d6e41fd31d65cda4fd9b812c79e3f6a109fad",
+      "actuallyOpenedByRoot": true
+    }
+  ],
+  "observations": [
+    "Full-screen sea/harbor and stationary SoftUI Node worker-001 summary panel remain readable; selected blue ship outline follows the moving ship.",
+    "No yellow cargo wireframe observed in the four opened images. This cannot identify the historical extra object.",
+    "Motion/time/UI badge differences and post-callback transform samples prevent pixel/atomic-state equivalence claims.",
+    "Worker opened8PNGs; root opened4before/afterPNGs.2shortinstrumentedruns are not productionCPU evidence."
+  ],
+  "decision": "NOT_REPRODUCED; BENCH-RENDER-001 remains OPEN; no extra run authorized in this finite job."
+}

@@ -1,0 +1,28 @@
+{
+  "prepared_at": "2026-11-09T08:39:54.510289+00:00",
+  "status": "PREPARED_NOT_RUN",
+  "helper": "linux-install.mjs",
+  "helper_sha256": "147be030bbd7cd0be864d75effae0b1c1cf5d9ede3dc45c037b4b4496e70fb1f",
+  "plan_sha256": "5a57b37565215fc5c569848bf6ad8a26a70f5cf9e5be25d21740323b3178123f",
+  "activities_performed": [
+    "Read existing source and historical public artifacts",
+    "Write helper and plan only"
+  ],
+  "activities_not_performed": [
+    "No tests or syntax-check execution",
+    "No builds",
+    "No Docker calls",
+    "No cluster or provider calls",
+    "No Git/runtime/existing-doc edits"
+  ],
+  "required_root_inputs": [
+    "KUBEVIEW_PLATFORM_FINAL_LEASE",
+    "KUBEVIEW_PLATFORM_EXPECT_COMMIT",
+    "KUBEVIEW_PLATFORM_EXPECT_BINARY_SHA256",
+    "KUBEVIEW_PLATFORM_SOURCE_PROOF",
+    "KUBEVIEW_PLATFORM_EXPECT_SOURCE_PROOF_SHA256"
+  ],
+  "planned_result": "Unique run JSON beside helper; only actual future execution can produce PASS",
+  "previous_linux_smoke": "../linux-install-smoke.json: historical721d95d-candidate, not final platform acceptance",
+  "native_Intel_or_Linux_browser_claim": false
+}

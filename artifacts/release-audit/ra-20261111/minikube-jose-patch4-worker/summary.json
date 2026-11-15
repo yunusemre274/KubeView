@@ -1,0 +1,111 @@
+{
+  "status": "PATCH4_BUILD_PASS_JOSE_FINDINGS_REMOVED_OTHER_INVENTORY_RETAINED",
+  "binary": {
+    "path": ".git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+    "sha256": "98e42bafefb50d652b8c4760412703d936b6201d1d6d6c27163c5f69f130ddae",
+    "bytes": 136795746,
+    "version": "v1.38.1-kubeview-patched.4",
+    "upstream_commit": "c93a4cb9311efc66b90d33ea03f75f2c4120e9b0"
+  },
+  "build": {
+    "command": [
+      "go",
+      "build",
+      "-trimpath",
+      "-buildvcs=false",
+      "-p=1",
+      "-mod=vendor",
+      "-tags",
+      "libvirt_dlopen",
+      "-ldflags",
+      "-X k8s.io/minikube/pkg/version.version=v1.38.1-kubeview-patched.4 -X k8s.io/minikube/pkg/version.isoVersion=v1.38.0 -X k8s.io/minikube/pkg/version.gitCommitID=c93a4cb9311efc66b90d33ea03f75f2c4120e9b0 -X k8s.io/minikube/pkg/version.storageProvisionerVersion=v5",
+      "-o",
+      "/Users/yunusemre/Desktop/KubeView/.git/release-audit/minikube-jose-patch4/minikube-v1.38.1-kubeview-patched.4",
+      "k8s.io/minikube/cmd/minikube"
+    ],
+    "started_at_utc": "2026-11-11T13:19:21.552129+00:00",
+    "cwd": ".git/release-audit/minikube-jose-patch4/source",
+    "timeout_seconds": 163,
+    "GOTOOLCHAIN": "go1.27.4",
+    "GOMAXPROCS": 2,
+    "GOMEMLIMIT": "1536MiB",
+    "CGO_ENABLED": 1,
+    "GOFLAGS": "-mod=vendor -p=1",
+    "rss_limit_bytes": 4294967296,
+    "build_attempts": 1,
+    "exit_code": 0,
+    "stop_reason": null,
+    "duration_seconds": 31.91,
+    "peak_owned_rss_bytes": 2643968000,
+    "finished_at_utc": "2026-11-11T13:19:53.462209+00:00",
+    "binary_produced": true
+  },
+  "graph_delta": {
+    "require_version_changes": {
+      "github.com/go-jose/go-jose/v4": {
+        "before": "v4.1.4",
+        "after": "v4.1.6"
+      }
+    },
+    "other_require_versions_unchanged": true,
+    "language_toolchain_unchanged": true,
+    "go_mod_sha256": "7f659bc6090878152f28a11f0c2a72d774550343e9a35b361f77c2bb6fc09486",
+    "go_sum_sha256": "b0d1399cb09be023c9467038a4ecd92f39dd998adf5566407f2793fdadf9418d"
+  },
+  "go_db": {
+    "finding_events": 592,
+    "matched_ids": [
+      "GO-2026-4883",
+      "GO-2026-4887",
+      "GO-2026-5617",
+      "GO-2026-5668",
+      "GO-2026-5746",
+      "GO-2026-6778"
+    ],
+    "matched_count": 6,
+    "catalog_count_not_findings": 356,
+    "config": [
+      {
+        "protocol_version": "v1.0.0",
+        "scanner_name": "govulncheck",
+        "scanner_version": "v1.9.0",
+        "db": "https://vuln.go.dev",
+        "db_last_modified": "2026-11-11T02:51:11Z",
+        "scan_level": "symbol",
+        "scan_mode": "binary"
+      }
+    ]
+  },
+  "trivy_sbom": {
+    "package_count": 214,
+    "rows": 5,
+    "unique_ids": 5,
+    "high_ids": [
+      "CVE-2026-41567",
+      "CVE-2026-42306"
+    ],
+    "severity_rows": {
+      "MEDIUM": 3,
+      "HIGH": 2
+    },
+    "go_jose_rows": []
+  },
+  "previous_trivy_rows": 8,
+  "current_trivy_rows": 5,
+  "previous_trivy_high": 3,
+  "current_trivy_high": 2,
+  "cli_version_pass": true,
+  "cli_help_pass": true,
+  "isolated_MINIKUBE_HOME": ".git/release-audit/minikube-jose-patch4/cli-home",
+  "KUBECONFIG": "/dev/null",
+  "real_provider_functional_test": "NOT_RUN; root owns acceptance",
+  "main_devel_gap_retained": true,
+  "docker_daemon_disposition_retained": true,
+  "completed_at_utc": "2026-11-11T13:22:21.302428+00:00",
+  "source_budget": {
+    "started_at_utc": "2026-11-11T13:17:33.183709+00:00",
+    "deadline_utc": "2026-11-11T13:22:29.693399+00:00",
+    "task_budget_started_at_utc": "2026-11-11T13:16:29.693399+00:00"
+  },
+  "no_production_pin_lab_global_git_changes": true
+}

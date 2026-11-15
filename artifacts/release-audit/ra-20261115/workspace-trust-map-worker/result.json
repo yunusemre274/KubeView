@@ -1,0 +1,19 @@
+{
+  "finishedAt": "2026-11-15T09:26:22.577640+00:00",
+  "elapsedSeconds": 343.82304787635803,
+  "status": "SOURCE_MAP_COMPLETE_ROOT_REVIEW_PENDING_BUDGET_OVERRUN",
+  "sourceFiles": 30,
+  "outputBytesBeforeFinalReceipts": 62456,
+  "limitChecks": {
+    "within300Seconds": false,
+    "within60SourceFiles": true,
+    "within1MiBOutput": true
+  },
+  "initialFinalizerFailure": "First finalizer assert on combined time/size check failed; no result was written or test run. Actual limit checks recorded separately here.",
+  "newTestBuildBrowserClusterScanCount": 0,
+  "sourceBeforeAfterEqual": true,
+  "recommendation": "Source inventory useful but worker timing limit exceeded; root must adjudicate as incomplete timing rather than silently PASS. No full crossharbor/runtime/UI/final package acceptance.",
+  "newConfirmedExploit": false,
+  "productWorkflowTestGitRoadmapChanged": false,
+  "reviewer": "same agent system worker; not external professional audit"
+}

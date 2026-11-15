@@ -1,0 +1,74 @@
+import fs from 'node:fs/promises';
+import {execFileSync,spawn} from 'node:child_process';
+import {createRequire} from 'node:module';
+import {createHash} from 'node:crypto';
+const root='/Users/yunusemre/Desktop/KubeView',dir=new URL('.',import.meta.url).pathname;
+const require=createRequire(root+'/frontend/package.json'),{chromium,expect}=require('@playwright/test');
+const config=root+'/.git/kv-repair-runtime/kubeconfig',ctx='kv-repair-1101',clusterUID='a24740ba-cf3e-461d-b5b3-250deeb060d7',ns='kv-repair-v11-visual',owner='v11-20261108';
+const label='kubeview.io/v11-owner',fixtures=[],flows=[],samples=[];
+const result={startedAt:new Date().toISOString(),type:'actual owned Kubernetes + actual configured Hubble + normal production UI',clusterUID,namespace:ns,owner,fixtures,flows,samples,cases:[],cleanup:[],limits:['Controlled container exit42 is deliberate fault injection, not spontaneous infrastructure failure.','No source state, camera, quality or DPR injection. No physical FPS/latency claim.','HTTP payloads, URLs, headers, credentials and nonces are not recorded.']};
+let nsUID,browser,context,page,proxy,producer;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const kub=(args,input)=>execFileSync('kubectl',['--kubeconfig',config,'--context',ctx,...args],{input,encoding:'utf8',timeout:20000,stdio:['pipe','pipe','pipe']});
+const get=(kind,name,namespace=ns)=>JSON.parse(kub(['get',kind,...(name?[name]:[]),...(namespace?['-n',namespace]:[]),'-o','json']));
+const view=p=>({name:p.metadata.name,uid:p.metadata.uid,rv:p.metadata.resourceVersion,node:p.spec?.nodeName,ip:p.status?.podIP,phase:p.status?.phase,statuses:p.status?.containerStatuses?.map(c=>({name:c.name,ready:c.ready,restartCount:c.restartCount,state:c.state,lastState:c.lastState}))});
+function guard(){if(get('namespace','kube-system','').metadata.uid!==clusterUID)throw Error('Cluster UID guard');if(nsUID){const n=get('namespace',ns,'');if(n.metadata.uid!==nsUID||n.metadata.labels?.[label]!==owner)throw Error('Namespace identity/owner guard');}}
+function owned(name){guard();const p=get('pod',name);if(p.metadata.labels?.[label]!==owner||fixtures.find(x=>x.name===name)?.uid!==p.metadata.uid)throw Error('Pod ownership/UID guard');return p;}
+async function poll(fn,bound=30000){const start=Date.now();while(Date.now()-start<bound){const value=await fn();if(value)return value;await sleep(180);}throw Error('Condition deadline '+bound);}
+function create(o){guard();if(o.metadata.labels?.[label]!==owner||(o.kind!=='Namespace'&&o.metadata.namespace!==ns))throw Error('Create owner guard');return JSON.parse(kub(['create','-f','-','-o','json'],JSON.stringify(o)));}
+const affinity=node=>({nodeAffinity:{requiredDuringSchedulingIgnoredDuringExecution:{nodeSelectorTerms:[{matchFields:[{key:'metadata.name',operator:'In',values:[node]}]}]}}});
+const resources={requests:{cpu:'5m',memory:'8Mi'},limits:{cpu:'100m',memory:'64Mi'}};
+async function pod(name,node,containers,extra={}){const p=create({apiVersion:'v1',kind:'Pod',metadata:{name,namespace:ns,labels:{[label]:owner,'kubeview.io/visual-fixture':'true'}},spec:{affinity:affinity(node),containers:containers.map(c=>({...c,imagePullPolicy:'IfNotPresent',resources})),...extra}});fixtures.push({name,uid:p.metadata.uid,rv:p.metadata.resourceVersion});return p;}
+async function capture(label){const path=dir+label+'.png';await page.screenshot({path});result.captures||=[];result.captures.push({label,path,at:new Date().toISOString()});}
+async function lifecycle(label){const value=await page.locator('canvas').evaluate(c=>c.__harbor.visualLifecycleState());const row={label,at:new Date().toISOString(),...value};samples.push(row);return row;}
+async function save(){await fs.writeFile(dir+'result.json',JSON.stringify(result,null,2));}
+async function closePanels(){for(let i=0;i<4;i++){const close=page.getByRole('button',{name:'Pencereyi kapat',exact:true}).last();if(!await close.isVisible())break;await close.click();}}
+try{
+  guard();let existing;try{existing=get('namespace',ns,'');}catch(e){if(!String(e.stderr).includes('NotFound'))throw e;}
+  if(existing){if(existing.metadata.labels?.[label]!==owner)throw Error('Existing namespace owner mismatch');nsUID=existing.metadata.uid;if(get('pods').items.length)throw Error('Namespace not empty; existing objects not touched');}
+  else nsUID=create({apiVersion:'v1',kind:'Namespace',metadata:{name:ns,labels:{[label]:owner}}}).metadata.uid;
+  result.namespaceUID=nsUID;
+  await pod('flow-client','kv-repair-1101',[{name:'app',image:'alpine:3.21',command:['sleep','600']}]);
+  for(const [name,node]of[['flow-same','kv-repair-1101'],['flow-cross','kv-repair-1101-m03']])await pod(name,node,[{name:'app',image:'nginx:1.27-alpine',ports:[{containerPort:80}]}]);
+  await pod('controlled-pair','kv-repair-1101',[{name:'healthy',image:'alpine:3.21',command:['sleep','600']},{name:'controlled-crash',image:'alpine:3.21',command:['sh','-c','if [ -f /signal/fail ]; then sleep 20; exit 42; fi; while [ ! -f /signal/fail ]; do sleep 0.2; done; exit 42'],volumeMounts:[{name:'signal',mountPath:'/signal'}],readinessProbe:{exec:{command:['sh','-c','test ! -f /signal/fail']},periodSeconds:1}}],{volumes:[{name:'signal',emptyDir:{}}]});
+  for(const f of fixtures){const p=await poll(()=>{const p=owned(f.name);return p.status?.conditions?.some(c=>c.type==='Ready'&&c.status==='True')&&p;},70000);Object.assign(f,view(p));}
+  browser=await chromium.launch({headless:true,args:['--use-angle=metal']});context=await browser.newContext({viewport:{width:1440,height:900},recordVideo:{dir:dir+'video',size:{width:1440,height:900}}});page=await context.newPage();
+  page.on('pageerror',e=>{result.pageErrors||=[];result.pageErrors.push(e.message);});
+  page.on('response',async response=>{if(new URL(response.url()).pathname!=='/api/flows'||response.request().method()!=='GET')return;try{const data=await response.json();flows.push({at:new Date().toISOString(),status:data.status,source:data.provider,observedAt:data.observedAt,windowSeconds:data.windowSeconds,rows:(data.flows||[]).filter(f=>fixtures.some(p=>p.uid===f.source?.uid)&&fixtures.some(p=>p.uid===f.destination?.uid)&&f.source.uid!==f.destination.uid).map(f=>({id:f.id,protocol:f.protocol,eventCount:f.eventCount,lastObserved:f.lastObserved,source:{uid:f.source.uid,name:f.source.name,nodeName:f.source.nodeName},destination:{uid:f.destination.uid,name:f.destination.name,nodeName:f.destination.nodeName}}))});}catch{}});
+  await page.goto('http://127.0.0.1:18410');await page.getByRole('button',{name:'Bağlantı ve cluster kapsamını aç',exact:true}).click();let dialog=page.getByRole('dialog',{name:'Bağlantı ve kapsam',exact:true});
+  if(await dialog.getByLabel('Cluster / context',{exact:true}).inputValue()!==ctx)await dialog.getByLabel('Cluster / context',{exact:true}).selectOption(ctx);
+  await dialog.getByLabel('Namespace adıyla kapsam',{exact:true}).fill(ns);await dialog.getByRole('button',{name:'Kapsamı uygula',exact:true}).click();await expect(dialog.getByText('Snapshot alındı',{exact:true})).toBeVisible({timeout:30000});await dialog.getByRole('button',{name:'Pencereyi kapat',exact:true}).click();
+  await page.getByRole('button',{name:'Görünüm ve ayarlar',exact:true}).click();await page.getByRole('checkbox',{name:'Ölçülmüş trafik — Hubble',exact:true}).check();await closePanels();
+  const targets=fixtures.filter(p=>p.name==='flow-same'||p.name==='flow-cross');if(targets.some(p=>!/^\d+\.\d+\.\d+\.\d+$/.test(p.ip)))throw Error('IP validation');owned('flow-client');
+  const commands=targets.map(p=>`wget -q -O /dev/null http://${p.ip}:80 || exit 21`).join(';');
+  producer=spawn('kubectl',['--kubeconfig',config,'--context',ctx,'exec','-n',ns,'flow-client','-c','app','--','sh','-c',`i=0;while [ "$i" -lt 100 ];do ${commands};i=$((i+1));sleep 0.4;done`],{stdio:'ignore'});
+  await poll(()=>targets.every(p=>flows.some(s=>s.status==='live'&&s.rows.some(f=>f.source.name==='flow-client'&&f.destination.uid===p.uid&&f.protocol==='TCP'&&f.eventCount>0))),30000);
+  result.cases.push({name:'actual distinct same/cross-node TCP Hubble flows',status:'PASS'});
+  for(const width of[768,1280,1440]){await page.setViewportSize({width,height:900});await sleep(300);const title=page.locator('span').filter({hasText:/^Hubble ·/}).last();await expect(title).toBeVisible();result.titleChecks||=[];result.titleChecks.push(await title.evaluate((e)=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return{text:e.textContent,viewport:innerWidth,rect:{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height},scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,whiteSpace:s.whiteSpace,overflow:s.overflow,clipped:r.left<0||r.right>innerWidth||r.top<0||r.bottom>innerHeight||e.scrollWidth>e.clientWidth+1};}));await capture('traffic-title-'+width);}
+  const cross=flows.flatMap(s=>s.rows).find(f=>f.source.name==='flow-client'&&f.destination.name==='flow-cross');
+  const projected=await page.locator('canvas').evaluate((c,id)=>c.__harbor.projectTargets({type:'measured-flow',uid:id}),cross.id);result.flowTargets=projected;
+  if(projected[0]){await page.mouse.click(projected[0].x,projected[0].y);await expect(page.getByRole('heading',{name:'Ölçülmüş ağ akışı',exact:true})).toBeVisible({timeout:4000});result.selectedFlowText=await page.getByRole('dialog',{name:'Ölçülmüş ağ akışı',exact:true}).innerText();await capture('flow-normal-mouse-selection');await closePanels();}else result.cases.push({name:'physical flow selection',status:'BLOCKED',reason:'No projected visible target'});
+  await page.getByRole('button',{name:'Bul',exact:true}).click();dialog=page.getByRole('dialog',{name:'Dünyada bul',exact:true});await dialog.getByLabel('Nesne veya kaynak ara',{exact:true}).fill('controlled-pair');await dialog.getByLabel('Bulucu kaynak türü',{exact:true}).selectOption('Pod');await dialog.locator('.finder-result').filter({has:page.getByText('controlled-pair',{exact:true})}).click();
+  const details=page.locator('.resource-details');const focus=details.getByRole('button',{name:/odak/i}).first();if(await focus.isVisible())await focus.click();await page.getByRole('button',{name:'Ayrıntı panelini kapat',exact:true}).click();
+  result.beforeFailure=view(owned('controlled-pair'));await lifecycle('before-actual-fault');await capture('container-ready-baseline');
+  const before=owned('controlled-pair');result.faultRequest={at:new Date().toISOString(),uid:before.metadata.uid,rv:before.metadata.resourceVersion,container:'controlled-crash',method:'actual kubectl exec creates owned emptyDir test flag; process exits42'};
+  kub(['exec','-n',ns,'controlled-pair','-c','controlled-crash','--','touch','/signal/fail']);
+  await poll(async()=>{const s=await lifecycle('await-failure');return s.containers.some(c=>c.uid===before.metadata.uid&&c.name==='controlled-crash'&&['warning','falling','faulted'].includes(c.phase));},15000);
+  for(const[caption,delay]of[['early',0],['middle',650],['late',850]]){await sleep(delay);await lifecycle(caption);await capture('container-fall-'+caption);}
+  result.afterFailure=view(owned('controlled-pair'));const actual=result.afterFailure.statuses.find(c=>c.name==='controlled-crash'),healthy=result.afterFailure.statuses.find(c=>c.name==='healthy');
+  if(result.afterFailure.uid!==before.metadata.uid||!healthy.ready||actual.restartCount<1||actual.lastState?.terminated?.exitCode!==42)throw Error('Actual single-container failure identity/status mismatch');
+  if(samples.some(s=>s.containers?.some(c=>c.uid===before.metadata.uid&&c.name==='healthy')))throw Error('Healthy container false failure');
+  result.cases.push({name:'actual one-container exit42, sibling healthy, UID retained; falling label evidence',status:'PASS'});
+  result.status=result.titleChecks.every(x=>!x.clipped)?'PASS':'FAIL';if(result.status==='FAIL')result.error='At least one measured-traffic title clips';await save();
+}catch(e){result.status='FAIL';result.error=e.stack?.slice(0,4000);if(page)await capture('error').catch(()=>{});}
+finally{
+  producer?.kill('SIGTERM');if(page){result.finalPresentation=await page.locator('canvas').evaluate(c=>({camera:c.__harbor.camera.position.toArray(),dpr:devicePixelRatio,lifecycle:c.__harbor.visualLifecycleState(),traffic:c.__harbor.scene.userData.measuredTrafficStats?.()})).catch(()=>null);await page.getByRole('button',{name:'Görünüm ve ayarlar',exact:true}).click().catch(()=>{});await page.getByRole('checkbox',{name:'Ölçülmüş trafik — Hubble',exact:true}).uncheck().catch(()=>{});}
+  await context?.close();await browser?.close();
+  try{guard();proxy=spawn('kubectl',['--kubeconfig',config,'--context',ctx,'proxy','--address=127.0.0.1','--port=19487'],{stdio:'ignore'});await poll(async()=>{try{return(await fetch('http://127.0.0.1:19487/version')).ok;}catch{return false;}},5000);
+    for(const f of fixtures){const p=owned(f.name);const response=await fetch(`http://127.0.0.1:19487/api/v1/namespaces/${ns}/pods/${f.name}`,{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiVersion:'v1',kind:'DeleteOptions',gracePeriodSeconds:0,preconditions:{uid:p.metadata.uid,resourceVersion:p.metadata.resourceVersion}})});if(!response.ok)throw Error('UID/RV delete status '+response.status);await poll(async()=>(await fetch(`http://127.0.0.1:19487/api/v1/namespaces/${ns}/pods/${f.name}`)).status===404,15000);result.cleanup.push({name:f.name,uid:f.uid,status:'exact UID/RV delete and404'});}
+    const n=get('namespace',ns,'');if(get('pods').items.length)throw Error('Unexpected namespace resources remain');const response=await fetch(`http://127.0.0.1:19487/api/v1/namespaces/${ns}`,{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiVersion:'v1',kind:'DeleteOptions',preconditions:{uid:n.metadata.uid,resourceVersion:n.metadata.resourceVersion}})});result.cleanup.push({namespace:ns,uid:nsUID,status:response.status});
+  }catch(e){result.cleanup.push({status:'FAIL',error:e.message});}finally{proxy?.kill('SIGTERM');}
+  result.finishedAt=new Date().toISOString();result.remaining=fixtures.flatMap(f=>{try{return[view(get('pod',f.name))];}catch{return[];}});result.ownedProcessPIDs={producer:producer?.pid,proxy:proxy?.pid,browserClosed:true};
+  result.sourceFiles={};for(const file of['frontend/src/workbench/ResourceForms.jsx','frontend/src/context/ShipyardClusterContext.jsx','frontend/src/harbor/LifecycleEffects.jsx','frontend/src/harbor/MeasuredTraffic.jsx'])result.sourceFiles[file]=createHash('sha256').update(await fs.readFile(root+'/'+file)).digest('hex');await save();
+}
+console.log(JSON.stringify({status:result.status,error:result.error,fixtures:fixtures.length,flowSamples:flows.length,cases:result.cases,cleanup:result.cleanup,remaining:result.remaining}));if(result.status!=='PASS')process.exitCode=1;

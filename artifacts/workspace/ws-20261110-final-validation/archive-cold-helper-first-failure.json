@@ -1,0 +1,16 @@
+{
+  "status": "HELPER_ARGPARSE_FAILURE_BEFORE_APP",
+  "rejectedArgs": [
+    "up",
+    "--profile",
+    "07-yuk-ve-gecis",
+    "--replay",
+    "M",
+    "--harbors",
+    "1"
+  ],
+  "reason": "--replay/--harbors belong to app; up rejected them before ledger creation",
+  "firstStateEmpty": true,
+  "appStarted": false,
+  "productionCodeChanged": false
+}

@@ -1,0 +1,27 @@
+source_sha: 4ec526b7ce1bc39c21b603864c9096f72eb39184
+source_delta: new release_origin_preview_test.go only by this worker
+start_utc: 2026-11-11T11:50:25.940685+00:00
+command_argv: ["go", "test", "-p", "1", "-parallel", "1", "-timeout", "90s", "-count=1", "-v", ".", "-run", "^TestProductionFrontendRoutesAndBoundary$"]
+environment: GOMAXPROCS=1; providers disabled; synthetic absent KUBECONFIG; no credential read
+=== RUN   TestProductionFrontendRoutesAndBoundary
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/harbor
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/assets/app-123.js
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/assets/missing.js
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/api/missing
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/api
+=== RUN   TestProductionFrontendRoutesAndBoundary/GET/ws
+=== RUN   TestProductionFrontendRoutesAndBoundary/POST/
+--- PASS: TestProductionFrontendRoutesAndBoundary (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/ (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/harbor (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/assets/app-123.js (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/assets/missing.js (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/api/missing (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/api (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/GET/ws (0.00s)
+    --- PASS: TestProductionFrontendRoutesAndBoundary/POST/ (0.00s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend	0.412s
+end_utc: 2026-11-11T11:50:28.071666+00:00
+exit_code: 0

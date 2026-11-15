@@ -1,0 +1,105 @@
+{
+  "name": "envoy-build",
+  "argv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "build",
+    "--cpu-period=100000",
+    "--cpu-quota=200000",
+    "--memory=4g",
+    "--memory-swap=4g",
+    "--network=default",
+    "--force-rm",
+    "--platform=linux/arm64",
+    "--pull=false",
+    "--iidfile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/envoy-image-id.txt",
+    "--tag",
+    "kubeview-private/cilium-envoy:1.20.4-apt-security.1",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/build-envoy"
+  ],
+  "startedAt": "2026-11-12T10:41:38.803871+00:00",
+  "maxSeconds": 150,
+  "samples": [
+    {
+      "elapsedSeconds": 11.617,
+      "ownedRSSBytes": 3407872,
+      "ownedPIDs": [
+        12301
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454502133760
+    },
+    {
+      "elapsedSeconds": 12.17,
+      "ownedRSSBytes": 26624000,
+      "ownedPIDs": [
+        12301
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454501994496
+    },
+    {
+      "elapsedSeconds": 12.74,
+      "ownedRSSBytes": 26624000,
+      "ownedPIDs": [
+        12301
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454501691392
+    },
+    {
+      "elapsedSeconds": 13.277,
+      "ownedRSSBytes": 26624000,
+      "ownedPIDs": [
+        12301
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454500139008
+    },
+    {
+      "elapsedSeconds": 13.831,
+      "ownedRSSBytes": 26624000,
+      "ownedPIDs": [
+        12301
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454501679104
+    },
+    {
+      "elapsedSeconds": 14.384,
+      "ownedRSSBytes": 26624000,
+      "ownedPIDs": [
+        12301
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454501675008
+    },
+    {
+      "elapsedSeconds": 14.934,
+      "ownedRSSBytes": 26624000,
+      "ownedPIDs": [
+        12301
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454499377152
+    },
+    {
+      "elapsedSeconds": 15.471,
+      "ownedRSSBytes": 26624000,
+      "ownedPIDs": [
+        12301
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454495932416
+    }
+  ],
+  "expectedRUNNormalized": "set -eu && export DEBIAN_FRONTEND=noninteractive && printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports noble-security main' > /tmp/kubeview-apt-security.list && apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; }; apt_safe update && plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1)\" && printf '%s\\n' \"$plan\" && printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg6.0t64) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done && apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1 && dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg6.0t64 && dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 2.8.4ubuntu0.1 && dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg6.0t64)\" ge 2.8.4ubuntu0.1 && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list",
+  "baseReference": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+  "baseManifestID": "sha256:5a17281b6262e00a8bfe6efa0463f4cbc19aa3d6e0116bc9407ce3c71c629dae",
+  "baseConfigID": "sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+  "pid": 12301,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:41:43.261769+00:00"
+}

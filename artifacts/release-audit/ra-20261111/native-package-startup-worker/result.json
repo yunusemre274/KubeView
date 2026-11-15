@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "checks": [
+    "full verified bundle extracted outside repo into new0700 root; port initially free"
+  ],
+  "cleanup": {
+    "ownedPIDExited": true,
+    "exitCode": 0,
+    "portNoListener": true
+  },
+  "externalRoot": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261111-01",
+  "appProcessSnapshots": [
+    {
+      "at": "2026-11-11T17:10:18.405018+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-11T17:10:18.490468+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-11T17:10:19.069405+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-11T17:10:19.991573+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-11T17:10:21.450119+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-11T17:10:22.035777+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-11T17:10:22.626141+00:00",
+      "children": []
+    },
+    {
+      "at": "2026-11-11T17:10:23.225444+00:00",
+      "children": []
+    }
+  ],
+  "appInvocation": {
+    "argv": [
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261111-01/kubeview_1.1.0_darwin-arm64/kubeview",
+      "--kubeconfig",
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261111-01/nonexistent-kubeconfig",
+      "--data-dir",
+      "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261111-01/app-data",
+      "--bind",
+      "127.0.0.1",
+      "--port",
+      "19849"
+    ],
+    "cwd": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261111-01/kubeview_1.1.0_darwin-arm64",
+    "env": {
+      "HOME": "/Users/yunusemre",
+      "PATH": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-clean-package-20261111-01/empty-tools",
+      "READ_ONLY": "true",
+      "KV_MINIKUBE_ENABLED": "false",
+      "KV_HUBBLE_ENABLED": "false"
+    },
+    "HOME_preserved": true,
+    "inheritedOverridesExcluded": true,
+    "runtimeToolsDirectoryEmpty": true,
+    "binarySHA256": "191fb0ca99a4f1b4327a92f04681edd93b74d1cd22236dcdedbb20be1d32c406"
+  },
+  "pid": 45303,
+  "birth": "Wed Nov 11 20:10:17 2026",
+  "http": {
+    "healthOK": true,
+    "version": {
+      "arch": "arm64",
+      "commit": "5373657169e8bf332940fd2366022925f48eb85c",
+      "os": "darwin",
+      "version": "1.1.0"
+    },
+    "workspaceHarborCount": 0,
+    "workspaceConnectionCount": 0,
+    "contextCount": 0,
+    "htmlSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+    "assets": [
+      {
+        "path": "/assets/index-DDfzt6ML.js",
+        "bytes": 438030,
+        "sha256": "b48977d352b3f17f8e2e2987f5ac04d98c89f593c2fcce6479b01aa110562313",
+        "contentType": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/assets/three-BKmXRbXN.js",
+        "bytes": 973665,
+        "sha256": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+        "contentType": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "/assets/index-CCZQtIvj.css",
+        "bytes": 64427,
+        "sha256": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+        "contentType": "text/css; charset=utf-8"
+      }
+    ],
+    "missingKubeconfigStillAbsent": true,
+    "auth": "empty configured token; loopback only; no token cookie recorded"
+  },
+  "browser": {
+    "startedAt": "2026-11-11T17:10:18.893Z",
+    "tooling": "Absolute Node + headed Playwright Chromium are automation tools, not app runtime dependencies",
+    "status": "PASS",
+    "checks": [
+      "embedded normal empty-workspace onboarding and one Metal canvas",
+      "normal onboarding form open/type/close preserves identical canvas"
+    ],
+    "externalRequestsBlocked": [],
+    "mutationRequests": [],
+    "pageErrors": [],
+    "renderer": {
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "vendor": "Google Inc. (Apple)"
+    },
+    "finishedAt": "2026-11-11T17:10:23.037Z"
+  },
+  "externalBundleAndStatePreserved": true,
+  "elapsedSeconds": 6.265509128570557,
+  "completedAt": "2026-11-11T17:10:23.323722+00:00"
+}

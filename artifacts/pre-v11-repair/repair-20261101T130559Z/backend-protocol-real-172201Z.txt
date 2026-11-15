@@ -1,0 +1,5 @@
+=== RUN   TestOwnedRepairRealHubbleMeasuredProtocols
+    repair_protocol_integration_test.go:136: REAL owned CP-pair request→Cilium/Hubble1.20.2 TLS→strict mask/decoder→HTTP API: L4=TCP with no L7 fields; genuine HTTP/1.1 response200 + L7 response latency; genuine DNS/UDP. context=kv-repair-1101 clusterUID=a24740ba-cf3e-461d-b5b3-250deeb060d7 clientUID=c3787c43-ad96-4bba-b67a-71f150959e20 serverUID=3bf472e6-0adb-49d7-bf58-39a8c97671b4 CoreDNSUID=6cbaff50-ebe4-451f-8fad-bc37f102b165 policyUID=7dd9c4a2-cd46-43a3-be8e-2f884a71a30d; QA filter excludes DNS cross-namespace while separately authorized all-namespace scope includes it; observations are not packet/byte counts
+--- PASS: TestOwnedRepairRealHubbleMeasuredProtocols (3.11s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	3.680s

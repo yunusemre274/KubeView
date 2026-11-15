@@ -1,0 +1,372 @@
+{
+  "startedAt": "2026-11-11T19:35:15+00:00",
+  "observedAt": "2026-11-11T19:36:42.838496+00:00",
+  "kind": "Primary public release/chart/source/advisory metadata only; no image pull/scan/install/build/lab",
+  "sources": {
+    "releases": {
+      "url": "https://api.github.com/repos/cilium/cilium/releases?per_page=100",
+      "bytes": 1594947,
+      "sha256": "3b330f7bf1aa37130717c6ad278a785de26cee3a5e5a9851be68c9c06512289d",
+      "count": 100,
+      "oneTwenty": [
+        {
+          "tag_name": "v1.20.4",
+          "published_at": "2026-10-23T14:51:39Z",
+          "draft": false,
+          "prerelease": false,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.4"
+        },
+        {
+          "tag_name": "v1.20.3",
+          "published_at": "2026-10-15T15:26:34Z",
+          "draft": false,
+          "prerelease": false,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.3"
+        },
+        {
+          "tag_name": "v1.20.2",
+          "published_at": "2026-09-16T01:53:22Z",
+          "draft": false,
+          "prerelease": false,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.2"
+        },
+        {
+          "tag_name": "v1.20.1",
+          "published_at": "2026-08-18T10:36:16Z",
+          "draft": false,
+          "prerelease": false,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.1"
+        },
+        {
+          "tag_name": "v1.20.0",
+          "published_at": "2026-07-29T15:00:29Z",
+          "draft": false,
+          "prerelease": false,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.0"
+        },
+        {
+          "tag_name": "v1.20.0-rc.1",
+          "published_at": "2026-07-21T23:28:11Z",
+          "draft": false,
+          "prerelease": true,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.0-rc.1"
+        },
+        {
+          "tag_name": "v1.20.0-rc.0",
+          "published_at": "2026-07-14T02:52:53Z",
+          "draft": false,
+          "prerelease": true,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.0-rc.0"
+        },
+        {
+          "tag_name": "v1.20.0-pre.4",
+          "published_at": "2026-07-03T20:50:44Z",
+          "draft": false,
+          "prerelease": true,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.0-pre.4"
+        },
+        {
+          "tag_name": "v1.20.0-pre.3",
+          "published_at": "2026-06-02T00:41:32Z",
+          "draft": false,
+          "prerelease": true,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.0-pre.3"
+        },
+        {
+          "tag_name": "v1.20.0-pre.2",
+          "published_at": "2026-05-04T23:42:00Z",
+          "draft": false,
+          "prerelease": true,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.0-pre.2"
+        },
+        {
+          "tag_name": "v1.20.0-pre.1",
+          "published_at": "2026-04-01T19:40:00Z",
+          "draft": false,
+          "prerelease": true,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.0-pre.1"
+        },
+        {
+          "tag_name": "v1.20.0-pre.0",
+          "published_at": "2026-03-02T23:15:11Z",
+          "draft": false,
+          "prerelease": true,
+          "html_url": "https://github.com/cilium/cilium/releases/tag/v1.20.0-pre.0"
+        }
+      ]
+    },
+    "tagRefs": {
+      "url": "https://api.github.com/repos/cilium/cilium/git/matching-refs/tags/v1.20.",
+      "exitCode": 0,
+      "bytes": 4831,
+      "sha256": "0859abe1b16b989656a4d38a2419dcc62debf32cd3dfe9b6a60aac943b8de310",
+      "refs": [
+        {
+          "ref": "refs/tags/v1.20.0",
+          "type": "tag",
+          "sha": "97ce49d65e777e07fa2457e942725050b086d553",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/97ce49d65e777e07fa2457e942725050b086d553"
+        },
+        {
+          "ref": "refs/tags/v1.20.0-pre.0",
+          "type": "tag",
+          "sha": "d07c3149a3d32b2c12fe71bd768c5dce886c06db",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/d07c3149a3d32b2c12fe71bd768c5dce886c06db"
+        },
+        {
+          "ref": "refs/tags/v1.20.0-pre.1",
+          "type": "tag",
+          "sha": "5649c9b26721cdc9709db67c1c4cefec29ddb215",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/5649c9b26721cdc9709db67c1c4cefec29ddb215"
+        },
+        {
+          "ref": "refs/tags/v1.20.0-pre.2",
+          "type": "tag",
+          "sha": "85e345cf1854f10a6ec82e2bbcb50ababe2ae88e",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/85e345cf1854f10a6ec82e2bbcb50ababe2ae88e"
+        },
+        {
+          "ref": "refs/tags/v1.20.0-pre.3",
+          "type": "tag",
+          "sha": "bf2f57f4fd2825329bc4bd4c18499afe62212f76",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/bf2f57f4fd2825329bc4bd4c18499afe62212f76"
+        },
+        {
+          "ref": "refs/tags/v1.20.0-pre.4",
+          "type": "tag",
+          "sha": "6ba795fd94fcfbdd493c8b05d2c36c62da258df6",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/6ba795fd94fcfbdd493c8b05d2c36c62da258df6"
+        },
+        {
+          "ref": "refs/tags/v1.20.0-rc.0",
+          "type": "tag",
+          "sha": "bee5a7a46a6763ae327cded049ad97f88c5f77f9",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/bee5a7a46a6763ae327cded049ad97f88c5f77f9"
+        },
+        {
+          "ref": "refs/tags/v1.20.0-rc.1",
+          "type": "tag",
+          "sha": "7fbea9d5609c022f4128b0da35d0467a7141eadd",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/7fbea9d5609c022f4128b0da35d0467a7141eadd"
+        },
+        {
+          "ref": "refs/tags/v1.20.1",
+          "type": "tag",
+          "sha": "2428bc06f693c9ccde087c8901ebd291941262b6",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/2428bc06f693c9ccde087c8901ebd291941262b6"
+        },
+        {
+          "ref": "refs/tags/v1.20.2",
+          "type": "tag",
+          "sha": "c0bb57aaf53aed4496fe87a62512c843358ac3f2",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/c0bb57aaf53aed4496fe87a62512c843358ac3f2"
+        },
+        {
+          "ref": "refs/tags/v1.20.3",
+          "type": "tag",
+          "sha": "36d5950fbbc4491144d3fa0794a110b701988bfb",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/36d5950fbbc4491144d3fa0794a110b701988bfb"
+        },
+        {
+          "ref": "refs/tags/v1.20.4",
+          "type": "tag",
+          "sha": "6660d6eac7f93a2176ac039f03e7f2bf885bdb2e",
+          "objectURL": "https://api.github.com/repos/cilium/cilium/git/tags/6660d6eac7f93a2176ac039f03e7f2bf885bdb2e"
+        }
+      ],
+      "stableTags": [
+        "refs/tags/v1.20.0",
+        "refs/tags/v1.20.1",
+        "refs/tags/v1.20.2",
+        "refs/tags/v1.20.3",
+        "refs/tags/v1.20.4"
+      ]
+    },
+    "helmIndex": {
+      "url": "https://helm.cilium.io/index.yaml",
+      "exitCode": 0,
+      "bytes": 1828182,
+      "sha256": "3805a7be8113f6b02eddbeebb18e5a189ac888b0651cbc0d4262c4954d208818",
+      "stableOneTwentyVersions": [
+        "1.20.0",
+        "1.20.1",
+        "1.20.2",
+        "1.20.3",
+        "1.20.4"
+      ],
+      "maxStableOneTwenty": "1.20.4"
+    },
+    "goMod": {
+      "url": "https://raw.githubusercontent.com/cilium/cilium/v1.20.4/go.mod",
+      "exitCode": 0,
+      "bytes": 13941,
+      "sha256": "ce3e78849b7866c5f9bd2534343f4cde778542b2f51dd4c928cbdff897d18ca0",
+      "goDirective": "1.26.0",
+      "xNet": "v0.60.0",
+      "goJoseV4": "v4.1.4",
+      "grpc": "v1.83.2"
+    },
+    "goAdvisory": {
+      "url": "https://vuln.go.dev/ID/GO-2026-6860.json",
+      "exitCode": 0,
+      "bytes": 1407,
+      "sha256": "443304c129b9540dc46d28392b973a136db90644019dc20c3e25941833d49df3",
+      "id": "GO-2026-6860",
+      "aliases": [
+        "CVE-2026-78661"
+      ],
+      "modified": "2026-10-27T21:16:18Z",
+      "affected": [
+        {
+          "package": {
+            "name": "golang.org/x/net",
+            "ecosystem": "Go"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "0.62.0"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "withdrawn": null
+    },
+    "peeledTag": {
+      "url": "https://api.github.com/repos/cilium/cilium/git/tags/6660d6eac7f93a2176ac039f03e7f2bf885bdb2e",
+      "bytes": 2321,
+      "sha256": "3ec4b03b1f42d0c00860bc61bf34322040ba892c4bb4584c292759d75d0b7364",
+      "tag": "v1.20.4",
+      "tagObjectSHA": "6660d6eac7f93a2176ac039f03e7f2bf885bdb2e",
+      "commit": "beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+      "objectType": "commit",
+      "githubVerification": {
+        "verified": true,
+        "reason": "valid",
+        "verified_at": "2026-10-23T14:11:36Z"
+      }
+    },
+    "supportREADME": {
+      "url": "https://raw.githubusercontent.com/cilium/cilium/main/README.rst",
+      "bytes": 17610,
+      "sha256": "0e162a60a486accdd12f8ed928b6efc4b81743e322433093c5d607746803a64b",
+      "policyLastThreeMinorVersions": true,
+      "stableTableOneTwentyPatch": true
+    }
+  },
+  "errors": [
+    {
+      "method": "web.open GitHub API",
+      "reason": "tool inaccessible"
+    },
+    {
+      "method": "Python urllib verified TLS",
+      "reason": "local CA verification failed; no insecure fallback used; curl verified TLS succeeded"
+    }
+  ],
+  "latestStable1_20Release": "v1.20.4",
+  "sourceHEAD": "00a7d433306136c6adfab152a21b842aaa6d2683",
+  "reusedEvidence": {
+    "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/REPORT.md": {
+      "sha256": "487472a734f08015b06b4ca1a7e97adac17091bdba2a0be18a74ec86b9e1a1d4"
+    },
+    "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/official-chart-Chart.yaml": {
+      "sha256": "0c96fb9e2088669fb9a84c7831206d46b8a5c0756a6d0999ca6d6e844e5ce1a8"
+    },
+    "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/official-chart-values.yaml": {
+      "sha256": "b92711b7da0f27d21d6fa10a3c363be34d004adfaac821109a5c0a98cbcfe0a3"
+    },
+    "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/remaining-high-components.json": {
+      "sha256": "dcf4f740e15d4b03ed09553af30097c13be8d6c9f99305bb00f3a12e6b0cc236"
+    },
+    "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/image-component-versions.json": {
+      "sha256": "27b049cac16dc2f6df09fdff5d30330209c72f2d00564e9679456af6e10c5c4b"
+    },
+    "artifacts/release-audit/ra-20261111/provider-patch-candidate-worker/sbom-provenance.json": {
+      "sha256": "8017c6ed20feb91bb2084a3d411ce8dad03f325e7e8e2a5c2a2e7af4583562fa"
+    },
+    "artifacts/release-audit/ra-20261111/provider-reachability-worker/REPORT.md": {
+      "sha256": "731f87cd0d84f7991fee1c1454cf2d7e872273dd6379dbb64bce20a81e613ccc"
+    }
+  },
+  "officialChart": {
+    "version": "1.20.4",
+    "appVersion": "1.20.4",
+    "source": "https://raw.githubusercontent.com/cilium/cilium/v1.20.4/install/kubernetes/cilium/Chart.yaml",
+    "packageURL": "https://helm.cilium.io/cilium-1.20.4.tgz",
+    "packageDownload": "Reused existing official static candidate evidence; no new package download/install",
+    "envoyTagFound": true,
+    "envoyPinnedDigestFound": true
+  },
+  "existingCandidateHigh": {
+    "rows": 15,
+    "distinctIDs": [
+      "CVE-2026-109518",
+      "CVE-2026-116587",
+      "CVE-2026-78661"
+    ],
+    "packages": [
+      [
+        "apt",
+        "2.8.3",
+        "2.8.4ubuntu0.1"
+      ],
+      [
+        "apt",
+        "3.2.0",
+        "3.2.1ubuntu0.1"
+      ],
+      [
+        "github.com/go-jose/go-jose/v4",
+        "v4.1.4",
+        "4.1.6"
+      ],
+      [
+        "golang.org/x/net",
+        "v0.60.0",
+        "0.62.0"
+      ],
+      [
+        "libapt-pkg6.0t64",
+        "2.8.3",
+        "2.8.4ubuntu0.1"
+      ],
+      [
+        "libapt-pkg7.0",
+        "3.2.0",
+        "3.2.1ubuntu0.1"
+      ]
+    ]
+  },
+  "advisoryFloors": {
+    "GO-2026-6860": {
+      "module": "golang.org/x/net",
+      "fixed": "0.62.0",
+      "primary": "https://vuln.go.dev/ID/GO-2026-6860.json"
+    },
+    "CVE-2026-116587": {
+      "module": "github.com/go-jose/go-jose/v4",
+      "fixed": "4.1.6",
+      "primary": "https://github.com/go-jose/go-jose/security/advisories/GHSA-mgcc-cww5-fp2q"
+    },
+    "CVE-2026-109518": {
+      "ubuntu26_04": "3.2.1ubuntu0.1",
+      "ubuntu24_04": "2.8.4ubuntu0.1",
+      "primary": "https://ubuntu.com/security/notices/USN-8996-1"
+    }
+  },
+  "conclusion": "NO_NEWER_OFFICIAL_STABLE_1_20_PATCH_OBSERVED; latest1.20.4 source still below x/net/go-jose floors; prior exact image APT findings remain",
+  "noNewImageScansOrImagePulls": true,
+  "installedLabUntouched": true,
+  "installedImageScannedByThisJob": false,
+  "noRiskAcceptance": true,
+  "finishedAt": "2026-11-11T19:39:05.104089+00:00",
+  "status": "NO_NEW_OFFICIAL_PATCH_PROVIDER_HIGH_GATE_REMAINS_OPEN"
+}

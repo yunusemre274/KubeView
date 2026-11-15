@@ -1,0 +1,282 @@
+{
+  "kind": "controlled loopback ephemeral TCP bind experiment; no cluster/API/product mutation",
+  "startedAt": "2026-11-10T09:04:00.194563+00:00",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "python": "3.13.14",
+  "pid": 7497,
+  "sourceSHA256": "87e59639ad8a14684c50048f4c49a00e66df91433c36aeed642936317b354ed4",
+  "currentFreePortSource": "def free_port(port):\n    with socket.socket() as sock:\n        try:\n            sock.bind((\"127.0.0.1\", port))\n            return True\n        except OSError:\n            return False\n",
+  "liveListenerControls": [
+    {
+      "serverReuseAddr": false,
+      "port": 50175,
+      "manualFreePort": false,
+      "plainProbe": {
+        "bindSucceeded": false,
+        "errno": 48,
+        "errorName": "EADDRINUSE"
+      },
+      "reuseProbe": {
+        "bindSucceeded": false,
+        "errno": 48,
+        "errorName": "EADDRINUSE"
+      },
+      "state": {
+        "exitCode": 0,
+        "ownedPortRows": [
+          {
+            "local": "127.0.0.1.50175",
+            "foreign": "*.*",
+            "state": "LISTEN"
+          }
+        ]
+      }
+    },
+    {
+      "serverReuseAddr": true,
+      "port": 50176,
+      "manualFreePort": false,
+      "plainProbe": {
+        "bindSucceeded": false,
+        "errno": 48,
+        "errorName": "EADDRINUSE"
+      },
+      "reuseProbe": {
+        "bindSucceeded": false,
+        "errno": 48,
+        "errorName": "EADDRINUSE"
+      },
+      "state": {
+        "exitCode": 0,
+        "ownedPortRows": [
+          {
+            "local": "127.0.0.1.50176",
+            "foreign": "*.*",
+            "state": "LISTEN"
+          }
+        ]
+      }
+    }
+  ],
+  "closedWithoutConnectionControls": [
+    {
+      "serverReuseAddr": false,
+      "port": 50175,
+      "manualFreePort": true,
+      "plainProbe": {
+        "bindSucceeded": true,
+        "errno": null
+      },
+      "reuseProbe": {
+        "bindSucceeded": true,
+        "errno": null
+      }
+    },
+    {
+      "serverReuseAddr": true,
+      "port": 50176,
+      "manualFreePort": true,
+      "plainProbe": {
+        "bindSucceeded": true,
+        "errno": null
+      },
+      "reuseProbe": {
+        "bindSucceeded": true,
+        "errno": null
+      }
+    }
+  ],
+  "timeWaitCases": [
+    {
+      "serverReuseAddr": false,
+      "port": 50177,
+      "closeOrder": "server accepted socket SHUT_WR first; client receives EOF and closes; accepted/listener close",
+      "samples": [
+        {
+          "elapsedSeconds": 0.0,
+          "manualFreePort": false,
+          "plainProbe": {
+            "bindSucceeded": false,
+            "errno": 48,
+            "errorName": "EADDRINUSE"
+          },
+          "reuseProbe": {
+            "bindSucceeded": true,
+            "errno": null
+          },
+          "state": {
+            "exitCode": 0,
+            "ownedPortRows": [
+              {
+                "local": "127.0.0.1.50177",
+                "foreign": "127.0.0.1.50178",
+                "state": "TIME_WAIT"
+              }
+            ]
+          }
+        },
+        {
+          "elapsedSeconds": 0.205,
+          "manualFreePort": false,
+          "plainProbe": {
+            "bindSucceeded": false,
+            "errno": 48,
+            "errorName": "EADDRINUSE"
+          },
+          "reuseProbe": {
+            "bindSucceeded": true,
+            "errno": null
+          },
+          "state": {
+            "exitCode": 0,
+            "ownedPortRows": [
+              {
+                "local": "127.0.0.1.50177",
+                "foreign": "127.0.0.1.50178",
+                "state": "TIME_WAIT"
+              }
+            ]
+          }
+        },
+        {
+          "elapsedSeconds": 1.005,
+          "manualFreePort": false,
+          "plainProbe": {
+            "bindSucceeded": false,
+            "errno": 48,
+            "errorName": "EADDRINUSE"
+          },
+          "reuseProbe": {
+            "bindSucceeded": true,
+            "errno": null
+          },
+          "state": {
+            "exitCode": 0,
+            "ownedPortRows": [
+              {
+                "local": "127.0.0.1.50177",
+                "foreign": "127.0.0.1.50178",
+                "state": "TIME_WAIT"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "serverReuseAddr": true,
+      "port": 50179,
+      "closeOrder": "server accepted socket SHUT_WR first; client receives EOF and closes; accepted/listener close",
+      "samples": [
+        {
+          "elapsedSeconds": 0.0,
+          "manualFreePort": false,
+          "plainProbe": {
+            "bindSucceeded": false,
+            "errno": 48,
+            "errorName": "EADDRINUSE"
+          },
+          "reuseProbe": {
+            "bindSucceeded": true,
+            "errno": null
+          },
+          "state": {
+            "exitCode": 0,
+            "ownedPortRows": [
+              {
+                "local": "127.0.0.1.50179",
+                "foreign": "127.0.0.1.50180",
+                "state": "TIME_WAIT"
+              }
+            ]
+          }
+        },
+        {
+          "elapsedSeconds": 0.205,
+          "manualFreePort": false,
+          "plainProbe": {
+            "bindSucceeded": false,
+            "errno": 48,
+            "errorName": "EADDRINUSE"
+          },
+          "reuseProbe": {
+            "bindSucceeded": true,
+            "errno": null
+          },
+          "state": {
+            "exitCode": 0,
+            "ownedPortRows": [
+              {
+                "local": "127.0.0.1.50179",
+                "foreign": "127.0.0.1.50180",
+                "state": "TIME_WAIT"
+              }
+            ]
+          }
+        },
+        {
+          "elapsedSeconds": 1.002,
+          "manualFreePort": false,
+          "plainProbe": {
+            "bindSucceeded": false,
+            "errno": 48,
+            "errorName": "EADDRINUSE"
+          },
+          "reuseProbe": {
+            "bindSucceeded": true,
+            "errno": null
+          },
+          "state": {
+            "exitCode": 0,
+            "ownedPortRows": [
+              {
+                "local": "127.0.0.1.50179",
+                "foreign": "127.0.0.1.50180",
+                "state": "TIME_WAIT"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "assertions": {
+    "liveListenerNeverReportedFreeByReuse": true,
+    "closedWithoutConnectionFree": true,
+    "serverReuseEnabledTimeWaitReproduced": true
+  },
+  "status": "PASS",
+  "finishedAt": "2026-11-10T09:04:02.260990+00:00",
+  "elapsedSeconds": 2.09,
+  "finalOwnedPortStates": {
+    "50175": {
+      "exitCode": 0,
+      "ownedPortRows": []
+    },
+    "50176": {
+      "exitCode": 0,
+      "ownedPortRows": []
+    },
+    "50177": {
+      "exitCode": 0,
+      "ownedPortRows": [
+        {
+          "local": "127.0.0.1.50177",
+          "foreign": "127.0.0.1.50178",
+          "state": "TIME_WAIT"
+        }
+      ]
+    },
+    "50179": {
+      "exitCode": 0,
+      "ownedPortRows": [
+        {
+          "local": "127.0.0.1.50179",
+          "foreign": "127.0.0.1.50180",
+          "state": "TIME_WAIT"
+        }
+      ]
+    }
+  },
+  "ownedListeningSocketsRemaining": 0
+}

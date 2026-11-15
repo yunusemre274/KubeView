@@ -1,0 +1,26 @@
+{
+  "status": "WAITING_ROOT_REPAIR_RECIPE_CLEARANCE",
+  "attempt01Status": "BLOCKED_OR_FAILED",
+  "attempt01Failure": "cilium-build exit 100",
+  "attempt01Seconds": 1.943,
+  "attempt01OwnedRUNContainersRemovedAndAbsent": true,
+  "failureRootCauseObserved": "APT --no-download local-deb install internal pathname error after successful SHA and strict two-package simulation; epoch-encoded zlib filename in error",
+  "proposals": [
+    {
+      "image": "cilium",
+      "Dockerfile": "cilium.PROPOSED-v2.Dockerfile",
+      "SHA256": "6e963640247aba89f88054ac3f9f1b7c6bf6e3f44a1a1e6478b1309a6fa13344",
+      "onlyDelta": "Remove --no-download from actual local-deb apt-get install; keep simulation --no-download, strict Inst/Remv allowlist, exact local parent, SHA checks, networknone, no new metadata or payload downloads"
+    },
+    {
+      "image": "envoy",
+      "Dockerfile": "envoy.PROPOSED-v2.Dockerfile",
+      "SHA256": "6b69c3edb10cc18574f2ad42ca411fe8fa86a7fdfab04a7d00f76b8a607c393d",
+      "onlyDelta": "Remove --no-download from actual local-deb apt-get install; keep simulation --no-download, strict Inst/Remv allowlist, exact local parent, SHA checks, networknone, no new metadata or payload downloads"
+    }
+  ],
+  "remoteNetworkRemainsUnavailable": "Docker RUN networknone; APT inputs are only local verified debs; local file acquisition is enabled by omitting --no-download for actual install",
+  "noNewMetadataOrPayloadGETs": true,
+  "noTagFallbackOrImagePull": true,
+  "budgetPolicy": "Continue within original600s total wall budget; reserve report time and stop if clearance/repair would exceed it"
+}

@@ -1,0 +1,118 @@
+{
+  "updated_at": "2026-11-08T14:22:14.661632+00:00",
+  "get_connection": {
+    "path": "/api/connection?context=<trusted-name>&namespace=<raw-namespace-or-empty>",
+    "method": "GET",
+    "response_fields": [
+      "context",
+      "namespace",
+      "defaultNamespace",
+      "connectionID",
+      "readOnly",
+      "serverReadOnly",
+      "managementEnabled",
+      "managementAvailable",
+      "checks"
+    ],
+    "checks": [
+      "configuration",
+      "api",
+      "discovery",
+      "permissions.pods",
+      "permissions.deployments",
+      "permissions.nodes",
+      "permissions.namespaces",
+      "metrics",
+      "hubble"
+    ],
+    "optional_provider_status": "Hubble configured is not live; real observations remain validated by existing /api/flows"
+  },
+  "management": {
+    "path": "/api/management",
+    "method": "POST",
+    "body": {
+      "enabled": "boolean",
+      "context": "string",
+      "namespace": "string; empty selects all",
+      "connectionID": "opaque per-browser current intent nonce for enable"
+    },
+    "response_fields": [
+      "readOnly",
+      "managementEnabled",
+      "connectionID"
+    ],
+    "initial_revoke": "enabled:false may issue first operator cookie before diagnostics",
+    "enable": "prior diagnostic cookie/nonce plus API check; reload config and revalidate request cancellation, nonce, selected context, namespace and private client identity under lock after checks",
+    "revoke": "rotate intent nonce, cancel streams, close operator-owned HTTP forwards; stale delayed enable cannot restore permission"
+  },
+  "http_writes": {
+    "cookie": "kubeview_operator (random HttpOnly SameSite=Strict, Secure with direct TLS, 8 hours)",
+    "header": "X-KubeView-Connection",
+    "websocket_nonce_query": "connectionID for exec/raw portforward; browser cannot set arbitrary WS headers",
+    "missing_session_or_nonce": 403,
+    "valid_nonce_without_management": 403,
+    "stale_nonce_context_or_config": 409,
+    "server_READ_ONLY_true": 403,
+    "upstream_RBAC": "additional real SSAR and API authorization; management opt-in never grants Kubernetes privileges"
+  },
+  "context_loading": {
+    "implementation": "client-go default KUBECONFIG multi-file merge, default kubeconfig, noninteractive explicit context overrides, in-cluster fallback",
+    "current_context_file": "never written",
+    "effective_default_namespace": "kubeconfig namespace or default; in-cluster POD_NAMESPACE or ServiceAccount namespace file or default",
+    "cache": "bounded128 name references; unchanged credential/API fingerprint reuses client; file/credential/TLS changes invalidate opaque client identity"
+  },
+  "origin_boundary": {
+    "same_origin": "exact actual HTTP/TLS scheme plus Host/port, reject opaque Origin, userinfo, path/query/fragment",
+    "sec_fetch_site": "cross-site rejected even if Origin missing",
+    "host_without_API_TOKEN": "localhost or loopback only",
+    "json": "exact parsed application/json, one bounded JSON value; reject form/text masquerading",
+    "reverse_proxy": "forwarded host/proto not trusted; TLS-terminating reverse proxies are not implicitly supported; Vite changeOrigin=false"
+  },
+  "portforward": {
+    "preserved": "real HTML HTTP preview and raw SPDY transport",
+    "response_isolation": "CSP sandbox allow-scripts allow-forms; no allow-same-origin; no upstream Set-Cookie/CORS",
+    "upstream_stripping": [
+      "Authorization",
+      "Cookie",
+      "Proxy-Authorization",
+      "X-KubeView-Connection",
+      "connectionID query"
+    ],
+    "ownership": "list/read/close bound to operator cookie; revoke and scope change close sessions"
+  },
+  "errors": {
+    "never_expose": "raw config, tokens, API URL credentials, cert/private-key material, exec plugin stderr, rejected Secret values",
+    "categories": [
+      "configuration",
+      "authentication",
+      "auth_plugin",
+      "tls",
+      "dns",
+      "network",
+      "timeout",
+      "discovery",
+      "forbidden",
+      "read_only",
+      "management_disabled",
+      "connection_changed",
+      "not_found",
+      "conflict",
+      "validation",
+      "quota",
+      "admission",
+      "disruption_budget",
+      "rate_limited",
+      "upstream"
+    ]
+  },
+  "real_integration_test_helpers": {
+    "owned_repair": "retains explicit kv-repair context/namespace, loopback API, expected kube-system UID and namespace ownership label before explicit management handshake",
+    "dedicated_legacy": "existing kubeview-test/kubeview-qa opt-in plus new mandatory KUBEVIEW_TEST_CLUSTER_UID, then explicit production session handshake"
+  },
+  "evidence_notes": [
+    "connection-negatives-initial-failure.txt preserves fake reactor mutex timeout; corrected hook interposition is nil in production",
+    "server-unit-final.jsonl preserves PDB reason classification failure",
+    "server-unit-final-corrected.jsonl has 39 PASS,16 SKIP,0 FAIL; opt-in real cluster SKIP is not PASS",
+    "server-targeted-race.jsonl: 11 PASS,0 FAIL; race-detected unit/fake tests only"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "status": "BLOCKED_BEFORE_HTTP",
+  "at": "2026-11-12T10:31:18.637125+00:00",
+  "firstResumeHarnessResult": "FAIL preserved",
+  "ownedExistingServiceResume": "PASS",
+  "postServiceLiveUIDReadyGuard": "FAIL fixed_command_timeout; 81.95895195007324/90s",
+  "HTTPTestsRun": 0,
+  "HTTPWorkerPOST": 0,
+  "appsStarted": 0,
+  "ownedAppOrCLIProcessesRemaining": [],
+  "profileSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "earlierHTTPFailurePreserved": true,
+  "noReleaseOrRealNodeAddAcceptance": true,
+  "rootDispositionRequired": "exact-owned alias repair not authorized in last clearance; no automatic extra mutation"
+}

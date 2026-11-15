@@ -1,0 +1,12 @@
+{
+  "label": "vertical03-integration",
+  "at": "2026-11-09T15:38:20.214421+00:00",
+  "baseCommit": "0029672c7dce2c6cdf5f19c49fea956bc618c7d3",
+  "binarySHA256": "52d256b74f1d8a6714db87914ad89a45507381ec25c6bf1b70f479210095c0ef",
+  "indexSHA256": "ff2e598fb97c51eaf1a2c423fa90acd5524ea25ee189c8b2a8ecd27812ed521d",
+  "note": "Adds canonical multi-namespace transport fix to previous camera/dark/cookie candidate. Explicit TEST/REPLAY only.",
+  "frontendSourceSHA256": "a8e5636bbc1c792c3d3459956f8b1b2d824afe09981282d5f9b7879fca990862",
+  "frontendDistSHA256": "b8505f8d6c8cfe1ad0c92f9ce2e541c96cfb85e134548cd55eb592d76b0dde88",
+  "backendAllGoSHA256": "d6394ab909000749605f5d117066f2854b565d60a7fe30b1e2523ca2dccfa152",
+  "testScope": "Frontend192 unit; Go86top+41sub/20optinSKIP before cookiechange; cookie targeted23top+11sub unit andrace after; realfixture/normalUI/replay evidence separate."
+}

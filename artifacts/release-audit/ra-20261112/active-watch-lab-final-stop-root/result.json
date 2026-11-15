@@ -1,0 +1,37 @@
+{
+  "startedAt": "2026-11-12T21:28:06.668238+00:00",
+  "status": "PASS_STOPPED_MANUAL_STATE_PRESERVED",
+  "scope": "EXACT_TWO_OWNED_CONTAINERS_ONLY",
+  "limitSeconds": 60,
+  "before": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "name": "kvml-d32afbf634e8-a",
+      "running": true
+    },
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "name": "kvml-d32afbf634e8-a-m02",
+      "running": true
+    }
+  ],
+  "after": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "name": "kvml-d32afbf634e8-a",
+      "running": false
+    },
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "name": "kvml-d32afbf634e8-a-m02",
+      "running": false
+    }
+  ],
+  "stateProfileUnchanged": true,
+  "sealedNamespacePreserved": true,
+  "sealedNamespacePodsEmpty": true,
+  "originalNodeUIDsVerifiedBeforeStop": true,
+  "elapsedSeconds": 11.827971791997697,
+  "finishedAt": "2026-11-12T21:28:18.496205+00:00",
+  "within60Seconds": true
+}

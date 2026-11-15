@@ -1,0 +1,20 @@
+{
+  "command": [
+    "env",
+    "GOTOOLCHAIN=go1.26.11",
+    "GOFLAGS=-p=1",
+    "go",
+    "mod",
+    "tidy"
+  ],
+  "cwd_relative_to_repository": "backend",
+  "started_at_utc": "2026-11-11T10:29:25.430850+00:00",
+  "finished_at_utc": "2026-11-11T10:29:26.193508+00:00",
+  "duration_seconds": 0.763,
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+  "stdout_file": "go-mod-tidy.stdout",
+  "stderr_file": "go-mod-tidy.stderr"
+}

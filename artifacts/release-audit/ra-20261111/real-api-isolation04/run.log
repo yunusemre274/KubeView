@@ -1,0 +1,17 @@
+=== RUN   TestOwnedWorkspaceRealAPIIsolation
+=== RUN   TestOwnedWorkspaceRealAPIIsolation/same_name_distinct_uid_ready
+    workspace_real_isolation_test.go:93: REAL Ready deploymentUID=332c2243-7412-40e5-a725-df301e87ef6b replicaSetUID=2826c302-1284-457b-af52-2e74d1c321eb podUID=a0a7d57f-afbb-425d-9ffc-429cdde2d0f1 nodeUID=bf794757-0d42-43e7-ab96-465103f5cabf
+    workspace_real_isolation_test.go:94: REAL Ready deploymentUID=95c50091-1653-4ebb-8ee0-e96dfe918076 replicaSetUID=105835a5-313b-46f1-ac0c-b0f283bd90d2 podUID=9da1f06a-8e76-4a21-ae04-d0a0de9201f0 nodeUID=bf794757-0d42-43e7-ab96-465103f5cabf
+=== RUN   TestOwnedWorkspaceRealAPIIsolation/scale_A_preserves_B
+=== RUN   TestOwnedWorkspaceRealAPIIsolation/restart_A_preserves_B
+=== RUN   TestOwnedWorkspaceRealAPIIsolation/stale_uid_and_opaque_rv_rejected
+=== RUN   TestOwnedWorkspaceRealAPIIsolation/restricted04_real_rbac_and_direct_routes
+    workspace_real_isolation_test.go:156: REAL readonly SA: own Pod read, cluster identity403, dryruncreate403/GET404, scoped logs/metrics/flows403, wronglogUID409, admincontext409
+--- PASS: TestOwnedWorkspaceRealAPIIsolation (13.30s)
+    --- PASS: TestOwnedWorkspaceRealAPIIsolation/same_name_distinct_uid_ready (2.10s)
+    --- PASS: TestOwnedWorkspaceRealAPIIsolation/scale_A_preserves_B (1.20s)
+    --- PASS: TestOwnedWorkspaceRealAPIIsolation/restart_A_preserves_B (5.05s)
+    --- PASS: TestOwnedWorkspaceRealAPIIsolation/stale_uid_and_opaque_rv_rejected (0.02s)
+    --- PASS: TestOwnedWorkspaceRealAPIIsolation/restricted04_real_rbac_and_direct_routes (1.07s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	13.989s

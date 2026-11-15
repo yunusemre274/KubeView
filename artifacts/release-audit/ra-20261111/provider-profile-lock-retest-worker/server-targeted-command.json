@@ -1,0 +1,21 @@
+{
+  "name": "server-targeted",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count",
+    "1",
+    "-timeout",
+    "50s",
+    "-run",
+    "^Test(ReleaseProviderCachedKey(RemainsBoundToLiveCluster|NamespaceReadErrors)|ReleaseReadOnlyEndpointsRetainedGrant|ReleaseReadOnlySecretReadAndUnsupportedPatch|ManagementStartsReadOnlyAndCannotBypassSession|ReadOnlyAndNamespaceEnforced)$",
+    "./pkg/server"
+  ],
+  "startedAt": "2026-11-11T19:54:10.999620+00:00",
+  "outerTimeoutSeconds": 70
+}

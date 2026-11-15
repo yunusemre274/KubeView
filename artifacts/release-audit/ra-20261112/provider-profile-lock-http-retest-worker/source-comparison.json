@@ -1,0 +1,10 @@
+{
+  "beforeHEAD": "94d48dea0cdf959af56e56541430a49e68ec265e",
+  "afterHEAD": "94d48dea0cdf959af56e56541430a49e68ec265e",
+  "privateBinarySource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "runtimeHashesBeforeEqualAfter": true,
+  "runtimeInputsEqualBuildReceipt": true,
+  "helperBeforeEqualAfter": true,
+  "binaryBeforeEqualAfter": true,
+  "headDifferenceDoesNotImplyPrivateBinaryRebuild": true
+}

@@ -1,0 +1,307 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {
+  DEFAULT_PREFERENCES,
+  PREFERENCES_STORAGE_KEY,
+  validatePreferences,
+  loadPreferences,
+  savePreferences,
+  resolvePreferences,
+} from "../src/world/preferences.js";
+const memoryStorage = (initial) => {
+  const values = new Map(Object.entries(initial || {}));
+  return {
+    getItem: (key) => (values.has(key) ? values.get(key) : null),
+    setItem: (key, value) => values.set(key, value),
+  };
+};
+test("visual preferences have explicit defaults and reject unknown keys, types and future versions", () => {
+  const prefs = validatePreferences({
+    patrol: false,
+    speed: "fast",
+    theme: "dark",
+    quality: "high",
+    contrast: "high",
+    paused: "true",
+    bob: 1,
+    seaStrength: "storm",
+    prototype: "unsafe",
+    cluster: "unrelated",
+  });
+  assert.equal(prefs.patrol, false);
+  assert.equal(prefs.speed, "fast");
+  assert.equal(prefs.theme, "dark");
+  assert.equal(prefs.quality, "high");
+  assert.equal(prefs.paused, false);
+  assert.equal(prefs.bob, true);
+  assert.equal(prefs.seaStrength, "light");
+  assert.equal(prefs.cluster, undefined);
+  assert.equal(prefs.prototype, undefined);
+  assert.deepEqual(
+    validatePreferences({ version: 900, patrol: false }),
+    DEFAULT_PREFERENCES,
+  );
+  assert.deepEqual(validatePreferences([]), DEFAULT_PREFERENCES);
+});
+test("storage round trip is versioned; malformed/unavailable storage never breaks startup", () => {
+  const storage = memoryStorage();
+  assert.equal(
+    savePreferences(
+      { ...DEFAULT_PREFERENCES, paused: true, speed: "slow" },
+      storage,
+    ),
+    true,
+  );
+  const loaded = loadPreferences(storage);
+  assert.equal(loaded.version, 1);
+  assert.equal(loaded.paused, true);
+  assert.equal(loaded.speed, "slow");
+  assert.deepEqual(
+    loadPreferences(memoryStorage({ [PREFERENCES_STORAGE_KEY]: "{broken" })),
+    DEFAULT_PREFERENCES,
+  );
+  assert.deepEqual(
+    loadPreferences({
+      getItem() {
+        throw new Error("SecurityError");
+      },
+    }),
+    DEFAULT_PREFERENCES,
+  );
+  assert.equal(
+    savePreferences(DEFAULT_PREFERENCES, {
+      setItem() {
+        throw new Error("QuotaExceeded");
+      },
+    }),
+    false,
+  );
+  assert.equal(savePreferences(DEFAULT_PREFERENCES, null), false);
+  assert.deepEqual(loadPreferences(null), DEFAULT_PREFERENCES);
+});
+test("legacy explicit theme and quality migrate while new installs follow system defaults", () => {
+  assert.equal(loadPreferences(memoryStorage()).theme, "system");
+  const loaded = loadPreferences(
+    memoryStorage({ "kubeview-theme": "dark", "kubeview-quality": "low" }),
+  );
+  assert.equal(loaded.theme, "dark");
+  assert.equal(loaded.quality, "low");
+  assert.equal(loaded.patrol, true);
+});
+test("OS reduced motion and visual pause disable decoration without overwriting saved choices", () => {
+  const original = {
+    ...DEFAULT_PREFERENCES,
+    patrol: true,
+    sea: true,
+    speed: "fast",
+  };
+  const effective = resolvePreferences(original, {
+    systemReduced: true,
+    systemDark: true,
+    hardwareConcurrency: 8,
+    viewportWidth: 1440,
+  });
+  assert.equal(effective.theme, "dark");
+  assert.equal(effective.quality, "medium");
+  assert.equal(effective.motion.reduced, true);
+  assert.equal(effective.motion.patrol, false);
+  assert.equal(effective.motion.sea, false);
+  assert.equal(effective.motion.bob, false);
+  assert.equal(effective.motion.wake, false);
+  assert.equal(effective.motion.operations, "simple");
+  assert.equal(original.patrol, true);
+  assert.equal(original.sea, true);
+  assert.equal(
+    resolvePreferences(
+      { ...original, motionPreference: "full" },
+      { systemReduced: true },
+    ).motion.patrol,
+    true,
+  );
+  const paused = resolvePreferences({ ...original, paused: true });
+  assert.equal(paused.motion.paused, true);
+  assert.equal(paused.motion.patrol, false);
+  assert.equal(paused.preferences.speed, "fast");
+});
+test("auto quality responds only to hardware/viewport budget; explicit quality remains authoritative", () => {
+  assert.equal(
+    resolvePreferences(DEFAULT_PREFERENCES, {
+      hardwareConcurrency: 2,
+      viewportWidth: 1440,
+    }).quality,
+    "low",
+  );
+  assert.equal(
+    resolvePreferences(DEFAULT_PREFERENCES, { viewportWidth: 390 }).quality,
+    "low",
+  );
+  assert.equal(
+    resolvePreferences(DEFAULT_PREFERENCES, { deviceMemory: 2 }).quality,
+    "low",
+  );
+  assert.equal(
+    resolvePreferences(
+      { ...DEFAULT_PREFERENCES, quality: "high" },
+      { hardwareConcurrency: 2 },
+    ).quality,
+    "high",
+  );
+  const p = resolvePreferences({
+    ...DEFAULT_PREFERENCES,
+    patrol: false,
+    sea: false,
+  });
+  assert.equal(p.motion.wake, false);
+  assert.equal(p.motion.seaAmplitude, 0);
+  assert.equal(p.preferences.wake, true);
+});
+
+test("sea-off, low quality and patrol-off simplify only effective motion", () => {
+  const dry = resolvePreferences({ ...DEFAULT_PREFERENCES, sea: false });
+  assert.equal(dry.motion.bob, false);
+  assert.equal(dry.motion.wake, false);
+  assert.equal(dry.preferences.bob, true);
+  const low = resolvePreferences({ ...DEFAULT_PREFERENCES, quality: "low" });
+  assert.equal(low.motion.wake, false);
+  assert.equal(low.preferences.wake, true);
+  const stopped = resolvePreferences({
+    ...DEFAULT_PREFERENCES,
+    paused: true,
+    operations: "full",
+  });
+  assert.equal(stopped.motion.operations, "simple");
+  assert.equal(stopped.preferences.operations, "full");
+  const docked = resolvePreferences({ ...DEFAULT_PREFERENCES, patrol: false });
+  assert.equal(docked.motion.operations, "simple");
+  assert.equal(docked.preferences.operations, "full");
+});
+
+test("UI 2.0 sunlight preference is additive, validated and persisted without resetting existing choices", () => {
+  const prior = {
+    ...DEFAULT_PREFERENCES,
+    patrol: false,
+    sea: false,
+    bob: false,
+    quality: "high",
+    theme: "dark",
+    motionPreference: "full",
+  };
+  delete prior.sunGlint;
+  const storage = memoryStorage({
+    [PREFERENCES_STORAGE_KEY]: JSON.stringify(prior),
+  });
+  const migrated = loadPreferences(storage);
+  assert.equal(migrated.sunGlint, true);
+  for (const [key, value] of Object.entries(prior))
+    assert.equal(migrated[key], value, `keeps existing ${key}`);
+  assert.equal(savePreferences({ ...migrated, sunGlint: false }, storage), true);
+  assert.equal(loadPreferences(storage).sunGlint, false);
+  assert.equal(validatePreferences({ sunGlint: "false" }).sunGlint, true);
+  assert.equal(validatePreferences({ sunGlint: 0 }).sunGlint, true);
+});
+
+test("sea, foam, hull motion and sunlight switches preserve independent behavior", () => {
+  const options = { ...DEFAULT_PREFERENCES, quality: "medium", motionPreference: "full" };
+  const moving = resolvePreferences(options).motion;
+  assert.equal(moving.patrol, true);
+  assert.equal(moving.sea, true);
+  assert.equal(moving.bob, true);
+  assert.equal(moving.wake, true);
+  assert.equal(moving.sunGlint, true);
+  const stillWater = resolvePreferences({ ...options, sea: false });
+  assert.equal(stillWater.motion.patrol, true);
+  assert.equal(stillWater.motion.sea, false);
+  assert.equal(stillWater.motion.bob, false);
+  assert.equal(stillWater.motion.wake, false);
+  assert.equal(stillWater.motion.sunGlint, true);
+  assert.equal(stillWater.motion.seaAmplitude, 0);
+  assert.equal(stillWater.preferences.wake, true);
+  assert.equal(stillWater.preferences.bob, true);
+  const noFoam = resolvePreferences({ ...options, wake: false }).motion;
+  assert.equal(noFoam.wake, false);
+  assert.equal(noFoam.patrol, true);
+  assert.equal(noFoam.sea, true);
+  assert.equal(noFoam.bob, true);
+  const noBob = resolvePreferences({ ...options, bob: false }).motion;
+  assert.equal(noBob.bob, false);
+  assert.equal(noBob.sea, true);
+  assert.equal(noBob.wake, true);
+  const noGlint = resolvePreferences({ ...options, sunGlint: false }).motion;
+  assert.equal(noGlint.sunGlint, false);
+  for (const key of ["patrol", "sea", "bob", "wake", "seaAmplitude"])
+    assert.equal(noGlint[key], moving[key], `${key} is independent from sunlight`);
+  for (const overrides of [{ paused: true }, { motionPreference: "reduced" }]) {
+    const stopped = resolvePreferences({ ...options, ...overrides });
+    for (const key of ["patrol", "sea", "bob", "wake"])
+      assert.equal(stopped.motion[key], false);
+    assert.equal(stopped.motion.seaAmplitude, 0);
+    assert.equal(stopped.motion.operations, "simple");
+    assert.equal(stopped.motion.sunGlint, true, "static reflection does not animate independently");
+  }
+});
+
+test("actual light/dark/high-contrast CSS tokens meet text, boundary and focus contrast targets", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const css = await readFile(
+    new URL("../src/index.css", import.meta.url),
+    "utf8",
+  );
+  const workspaceCSS = await readFile(new URL("../src/world/workspace.css", import.meta.url), "utf8");
+  const luminance = (hex) => {
+    const channels = [1, 3, 5]
+      .map((index) => parseInt(hex.slice(index, index + 2), 16) / 255)
+      .map((value) =>
+        value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4,
+      );
+    return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+  };
+  const contrast = (a, b) =>
+    (Math.max(luminance(a), luminance(b)) + 0.05) /
+    (Math.min(luminance(a), luminance(b)) + 0.05);
+  const blocks = [
+    ...css.matchAll(/\/\* NEUMORPHISM:([A-Z-]+) \*\/\s*[^\{]+\{([^}]+)/g),
+  ];
+  assert.equal(blocks.length, 4);
+  for (const [, name, block] of blocks) {
+    const colors = Object.fromEntries(
+      [...block.matchAll(/(--nm-[a-z-]+):\s*(#[a-fA-F0-9]{6})\s*;/g)].map(
+        (match) => [match[1], match[2]],
+      ),
+    );
+    const base = colors["--nm-base"];
+    const themedColor = (expression, inherited) => {
+      if (!expression) return inherited;
+      if (/^#[a-fA-F0-9]{6}$/.test(expression)) return expression;
+      const match = expression.match(/^var\((--[a-z-]+)(?:,\s*(#[a-fA-F0-9]{6}))?\)$/);
+      if (!match) return inherited;
+      return ({ "--panel": base, "--text": colors["--nm-text"], "--border": colors["--nm-boundary"] })[match[1]] || match[2] || inherited;
+    };
+    for (const selector of ["workspace-port", "world-first-harbor", "shared-node-badge", "workspace-world-port"]) {
+      const rule = workspaceCSS.match(new RegExp(`\\.${selector}\\s*\\{([^}]+)`))?.[1];
+      assert.ok(rule, `${selector} style exists`);
+      const declaration = (property) => rule.match(new RegExp(`(?:^|;)\\s*${property}:\\s*([^;]+)`))?.[1].trim();
+      assert.ok(contrast(themedColor(declaration("color"), colors["--nm-text"]), themedColor(declaration("background"), base)) >= 4.5, `${name} ${selector} actual text/background contrast`);
+    }
+    assert.ok(
+      contrast(colors["--nm-text"], base) >= 4.5,
+      `${name} primary text AA`,
+    );
+    assert.ok(
+      contrast(colors["--nm-muted"], base) >= 4.5,
+      `${name} helper text AA`,
+    );
+    assert.ok(
+      contrast(colors["--nm-boundary"], base) >= 3,
+      `${name} explicit boundary`,
+    );
+    assert.ok(
+      contrast(colors["--nm-focus"], base) >= 4.5,
+      `${name} focus ring`,
+    );
+    if (colors["--nm-action"])
+      assert.ok(
+        contrast(colors["--nm-action"], colors["--nm-action-text"]) >= 4.5,
+        `${name} action text AA`,
+      );
+  }
+});

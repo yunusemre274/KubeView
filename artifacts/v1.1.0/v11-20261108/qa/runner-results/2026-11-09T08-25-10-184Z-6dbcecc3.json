@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-25-10-184Z-6dbcecc3",
+  "startedAt": "2026-11-09T08:25:10.184Z",
+  "tests": [
+    {
+      "title": "V11-07 normal UI actual unschedulable image-pull quota-admission and discarded context draft stay truthful",
+      "project": "chromium",
+      "status": "FAIL",
+      "durationMs": 31845,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "TimeoutError: locator.click: Timeout 15000ms exceeded."
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-25-10-379Z-6e3f4dae/v11-workload-negative-V11--ed04e-context-draft-stay-truthful-chromium/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-25-10-379Z-6e3f4dae/v11-workload-negative-V11--ed04e-context-draft-stay-truthful-chromium/attachments/v11-evidence-7832042ef8ba7ff179a5e6d7fb7cf0de66e0895d.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-25-10-379Z-6e3f4dae/v11-workload-negative-V11--ed04e-context-draft-stay-truthful-chromium/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "Error",
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:25:42.314Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-25-10-184Z-6dbcecc3.json"
+}

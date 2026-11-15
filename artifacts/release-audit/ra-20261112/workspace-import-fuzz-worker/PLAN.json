@@ -1,0 +1,16 @@
+{
+  "phaseStartedAt": "2026-11-12T21:36:13Z",
+  "implementationFreezeBy": "2026-11-12T21:43:43Z",
+  "reportDeadline": "2026-11-12T21:46:13Z",
+  "phaseMaxSeconds": 600,
+  "newOwnedSource": "backend/pkg/workspace/release_import_fuzz_test.go",
+  "jobs": [
+    "one deterministic unit group",
+    "one10second FuzzReleaseImportInto target"
+  ],
+  "fuzzInputCapBytes": 65536,
+  "capMeaning": "Oversize inputs explicitly excluded/skipped, no large-body acceptance claim",
+  "hotLoopFilesystem": false,
+  "combinedCapacity": "ImportInto itself may exceed aggregate limits; transaction guarantee checked through Store.Update only",
+  "noRealK8sOrUserCredentials": true
+}

@@ -1,0 +1,173 @@
+{
+  "id": "ws-20261110-webkit-L20-target-viewport",
+  "startedAt": "2026-11-10T09:10:42.380Z",
+  "status": "passed",
+  "binarySHA256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "cases": [
+    {
+      "load": "L",
+      "harbors": 20,
+      "engine": "webkit",
+      "motion": "reduce",
+      "width": 1280,
+      "height": 800,
+      "narrow": true,
+      "name": "webkit-L-h20",
+      "startedAt": "2026-11-10T09:10:42.437Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "5ef91ace-cf18-4fb5-89fe-b975d2ab5749",
+            "harborCount": 20,
+            "context": "test-replay-L",
+            "canonicalNodes": 50,
+            "canonicalPods": 1500,
+            "visibleNodes": 8,
+            "visiblePods": 270,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1280,
+              800
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "L-h20",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "webkit-native-caret-focus-escape-and-map-access",
+          "detail": {
+            "width": 1280,
+            "theme": "dark",
+            "reduced": true,
+            "nativeSafari": false
+          }
+        },
+        {
+          "name": "webkit-native-caret-focus-escape-and-map-access",
+          "detail": {
+            "width": 768,
+            "theme": "dark",
+            "reduced": true,
+            "nativeSafari": false
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        },
+        {
+          "name": "two-normal-harbor-switches-preserve-exact-uid-and-canvas",
+          "detail": {
+            "uid": "node-0",
+            "activeHarborId": "2819d9fc-b6b1-44e3-9691-2cef3643d8b6",
+            "otherHarborId": "637289bb-a1be-4a80-801d-a2563b616426",
+            "switches": 2
+          }
+        }
+      ],
+      "screenshots": [
+        "webkit-L-h20-1280-map-access.png",
+        "webkit-L-h20-768-map-access.png",
+        "webkit-L-h20-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 50,
+          "pods": 1500,
+          "harborId": "2819d9fc-b6b1-44e3-9691-2cef3643d8b6"
+        }
+      ],
+      "browserVersion": "27.2",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "2819d9fc-b6b1-44e3-9691-2cef3643d8b6"
+        }
+      ],
+      "lastWorldGeometry": {
+        "width": 768,
+        "height": 900,
+        "viewport": [
+          768,
+          900
+        ],
+        "dpr": 1,
+        "canvasPixels": [
+          768,
+          900
+        ]
+      },
+      "finishedAt": "2026-11-10T09:10:45.378Z"
+    }
+  ],
+  "runnerCommands": [
+    {
+      "name": "up",
+      "profile": "07-yuk-ve-gecis",
+      "exitCode": 0,
+      "durationMs": 55
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h20",
+      "exitCode": 0,
+      "durationMs": 51
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h20",
+      "exitCode": 0,
+      "durationMs": 229
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "exitCode": 0,
+      "durationMs": 87
+    }
+  ],
+  "limits": [
+    "TEST/REPLAY is synthetic; no real Kubernetes, Hubble or fault proof.",
+    "No CPU, FPS, physical latency, native Safari or old acceptance-gate claim.",
+    "Only official manual07 up/app/down; normal-user variant files remain preserved.",
+    "WebKit cases are functional compatibility checks, not native Safari or performance.",
+    "No credential, raw log, nonce, HTTP headers or full workspace document is recorded."
+  ],
+  "runnerSHA256Before": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "manual07AppStopped": true,
+  "clusterRecordsUnchanged": true,
+  "manual07AppRecordPresent": false,
+  "preservedVariants": [
+    "L-h01",
+    "L-h05",
+    "L-h10",
+    "L-h20",
+    "M-h01",
+    "M-h05",
+    "M-h10",
+    "M-h20"
+  ],
+  "sourceAfter": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "runnerSHA256After": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "binarySHA256After": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "finishedAt": "2026-11-10T09:10:45.523Z"
+}

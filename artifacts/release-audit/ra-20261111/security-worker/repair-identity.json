@@ -1,0 +1,11 @@
+{
+  "base_source_sha": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+  "recorded_utc": "2026-11-11T10:32:32.402481+00:00",
+  "authorized_files": {
+    "backend/pkg/server/workspace_scope.go": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+    "backend/pkg/server/release_security_regression_test.go": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca"
+  },
+  "verification_log": "retest-sec001.log",
+  "verification_exit_code": 0,
+  "original_failure_log": "regression-secret-discovery.log"
+}

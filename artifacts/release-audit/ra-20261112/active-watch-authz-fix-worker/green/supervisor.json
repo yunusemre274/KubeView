@@ -1,0 +1,5 @@
+{
+  "pid": 62290,
+  "identity": "Thu Nov 12 23:55:49 2026     /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python artifacts/release-audit/ra-20261112/active-watch-authz-fix-worker/green/run.py",
+  "purpose": "SIGTERM/SIGINT triggers owned captured-child cleanup"
+}

@@ -1,0 +1,113 @@
+{
+  "status": "SOURCE_ONLY_MINIMAL_MITIGATION_DESIGN_RUNTIME_REPRO_PENDING",
+  "assignmentHEAD": "0ef8ea4e",
+  "reviewedStreamSnapshot": {
+    "readAt": "2026-11-12T20:32:33.789440+00:00",
+    "SHA256": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+    "currentAtFinalizationSHA256": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+    "changedDuringReview": false
+  },
+  "finalizedAt": "2026-11-12T20:36:20.457565+00:00",
+  "sourceSHA256": {
+    "backend/pkg/server/stream.go": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "backend/pkg/server/resource_scopes.go": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+    "backend/pkg/server/workspace_broker.go": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+    "backend/pkg/server/workspace_membership.go": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+    "backend/pkg/server/log_session.go": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+    "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+    "backend/pkg/server/traffic_handlers.go": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/portforward.go": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be"
+  },
+  "sourceFindings": [
+    {
+      "file": "backend/pkg/server/stream.go",
+      "lines": [
+        310,
+        523,
+        711,
+        727,
+        738
+      ],
+      "finding": "Initial list/watch checks call authorize for each admitted binding. Existing15s heartbeat checks credential ID and ServerVersion, without an evident repeat list/watch SSAR for unchanged credentials. This source observation is not a runtime bug verdict or a claim about live Kubernetes established-watch authorization."
+    },
+    {
+      "file": "backend/pkg/server/stream.go",
+      "lines": [
+        391,
+        407,
+        412,
+        546,
+        720
+      ],
+      "finding": "Emit gate checks ready/watchFailed, but queued-data dispatch sends directly. Terminal authorization failure must not be merely enqueued behind resource data or depend on select prioritizing a failure channel."
+    }
+  ],
+  "minimalDesign": {
+    "scope": "Only active resource-watch consumer authorization refresh; no endpoint/UI-loop/framework change.",
+    "schedule": "Reuse existing15s heartbeat and single writer loop; no SSAR per informer event/message.",
+    "budget": "Create one context.WithTimeout(ctx,5s) for the entire refresh batch, cancel once after all checks. Do not allocate5s per binding. Sequential work stops on first denial/error/deadline. Network and SSAR run outside emit gate/operator/broker locks.",
+    "checkSet": "Snapshot/de-duplicate the already-admitted active bindings by scope.key/GVR/namespace. Check both list and watch for every required active scope, using binding Group/Resource and effective namespace, never Kind or only the first scope. Preserve version in scope identity. Normalize * to all-namespace only where existing workspace rules allow it; explicit multi-namespace scopes remain explicit. Do not silently skip a scope or publish partial green when the total deadline/quota is exhausted.",
+    "authorizationReuse": "Use existing authorize read semantics and existing namespace expansion, or a narrow helper with equivalent attributes. Treat denied Allowed and SSAR call errors separately; a successful HTTP response alone is not permission. Avoid broad cluster-UID authorization caches.",
+    "writerBarrier": "While synchronous heartbeat authorization is pending, the sole writer does not drain queued resource messages. On denial/error set consumer-local terminal state/ready=false/watchFailed=true under a short gate lock, copy failed scope metadata and unlock. Send direct terminal STATUS without resource payload, then return/cancel. Do not put failure status behind out. Make queued dispatch consult local failed/cancelled state before resource-send admission; no extra network call per message. Already in-flight bytes cannot be recalled, and no zero-delay revocation guarantee is claimed.",
+    "status": "Synced/SnapshotReady false; failed scope Authoritative=false; forbidden for explicit permission/auth denial, unavailable for timeout/transport/error, with safe error and GVR/namespace. Cached data is stale, not deletion or OUT_OF_SCOPE evidence. Report Reachable according to observed failure instead of treating ServerVersion success as RBAC authority.",
+    "livenessProbe": "Do authorization before any optional ServerVersion call, or reuse successful checks as liveness; a context-free ServerVersion must not defeat the declared whole-check budget.",
+    "cleanup": "Return through existing consumer defers: cancel context, remove event handlers and release broker subscription. Do not indiscriminately close a shared informer used by an independently authorized peer; last-reference release stops it. Keep workspace membership generation guards.",
+    "capacityAndCost": "For N distinct admitted scope/namespace checks, at most2N reviews per refresh per consumer (plus existing explicit namespace expansion where applicable); nominal average about2N/15 requests/s. Deduplicate and use existing admission limits; if not all required checks fit the fixed request/time budget, close as unavailable. Cost is network/API-server and some Go work; neither CPU impact nor latency/energy savings was measured."
+  },
+  "existingIsolation": {
+    "credentialVsRBAC": "Operator reset/cancellation and credential-generation rotation already revoke grants/streams; unchanged credential with changed RoleBinding is a separate refresh question.",
+    "broker": "workspace_broker.go31/40 keys on client ID plus GVR/namespace. c.ID/connection generation, not common physical cluster UID, must bind sharing and any auth result reuse. Different credentials cannot borrow another consumer permission/cache authority. release77 cancels only at last listener.",
+    "membership": "workspace_membership.go21/37/62 binds updates and previous-member cache to stream generation; failure is not proof of Kubernetes object deletion."
+  },
+  "separatePathLimits": [
+    {
+      "path": "logs",
+      "source": "stream.go105/128; log_session.go54/83/117",
+      "limit": "Start checks pods/log and pod get/watch; UID/membership watch/read guards exist. Those are not proven periodic renewal of established pods/log permission."
+    },
+    {
+      "path": "exec",
+      "source": "sessions.go38/47/86/108",
+      "limit": "Start create pods/exec and UID checks, then context-bound SPDY stream. Operator cancel does not itself establish periodic unchanged-credential RBAC refresh."
+    },
+    {
+      "path": "forward",
+      "source": "portforward.go63/264/288",
+      "limit": "Creation/request identity and authorization plus context termination exist; an already-established forwarded stream needs separate review for permission changes."
+    },
+    {
+      "path": "traffic",
+      "source": "traffic_handlers.go194/214/220/230",
+      "limit": "Request-time scope authorization and credential-bound leases exist. Underlying provider/lease revocation timing is a separate question; no instant-revoke inference."
+    }
+  ],
+  "suggestedFocusedGroup": {
+    "existingReproName": "TestReleaseActiveWatchRevalidatesPodAuthorizationAfterHeartbeat",
+    "status": "NOT_RUN_BY_REVIEWER; runtime result pending",
+    "cases": [
+      "Positive: unchanged permissions survive next heartbeat and controlled event still arrives with same scoped generation.",
+      "Deny: keep fake upstream watch available, change one required list OR watch review to denied, queue a controlled marker while batch is pending; after known denial no queued marker reaches client, terminal non-authoritative scope status and consumer close occur.",
+      "Error/timeout: SSAR transport/error/hanging review fails closed within one total batch deadline across multiple scopes; no per-binding time multiplication and no terminal resource payload.",
+      "Cleanup/isolation: removed handlers, cancelled consumer and release occur exactly once; authorized sibling credential/scope is not closed or lent authority; last subscriber stops shared watch."
+    ],
+    "existingNeighbors": [
+      "TestWorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache",
+      "TestWorkspaceSharedBrokerSelectorExitAndLastRelease",
+      "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity"
+    ]
+  },
+  "laterOwnedRealE2E": "Separate explicitly authorized ServiceAccount/Role/RoleBinding+namespace+synthetic resources, verify live SSAR allow, remove the exact owned RoleBinding and observe live SSAR deny/upstream watch behavior independently, then gateway stale/close and cleanup by owner/UID/RV. Do not assume a fake server proves API-server watch authorization semantics.",
+  "acceptanceLimits": [
+    "Source-only risk; root assigns severity after repro and exposure review.",
+    "No runtime bug/PASS, implementation, regression execution, real-cluster or established-session revocation acceptance in this job.",
+    "Local-first single-operator model retained; no expansion into multi-tenant identity claims."
+  ],
+  "operations": "Source reads and three new design artifacts only; no tests/app/browser/build/agents/Git/index/ROADMAP/product writes.",
+  "reviewTiming": {
+    "targetSeconds": 180,
+    "elapsedAtFinalizationSeconds": 261.992,
+    "withinTarget": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "status": "FAIL; first failure stopped; no retry",
+  "actualRun": "selector-20261110T084004Z-meta.json",
+  "rawEvidence": "selector-20261110T084004Z.jsonl",
+  "proof": "workspace-real-selector-multins-overlap-qa-ws-c4b43746931e44f9.json",
+  "observed": {
+    "firstLeaf": "PASS real owned two Deployments Ready",
+    "secondLeaf": "FAIL at multiNS GET, HTTP200 followed by Kubernetes UnstructuredList JSON decode failure",
+    "singleNamespaceList": "PASS immediately before failing multiNS list",
+    "sourceUnchanged": true,
+    "goTestPID": 4647,
+    "goTestAliveAfterCompletion": false,
+    "runnerOrPhaseProcessesAfterCompletion": 0
+  },
+  "cleanup": {
+    "ownedDeploymentsGet404AndAuditedDependentListsZero": 2,
+    "temporaryHarborIdsRemoved": 3,
+    "originalWorkspaceIncludingPreferencesPreservedExceptRevision": true
+  },
+  "diagnosis": {
+    "confidence": "source-supported inference; raw response body not retained",
+    "productionLocation": "backend/pkg/server/workspace_scope.go:291",
+    "cause": "Multi-namespace union initializes an empty UnstructuredList and appends Items without Kind or APIVersion. Its JSON encoder emits only items. Kubernetes UnstructuredList.UnmarshalJSON requires Kind and returns NewMissingKindErr when absent. Single-namespace upstream list keeps these fields.",
+    "decoderLocation": "k8s.io/apimachinery@v0.30.0/pkg/apis/meta/v1/unstructured/helpers.go:339",
+    "proposedChange": "Set union apiVersion/kind to v1/List or preserve a correct upstream list GVK, and add a focused contract test including an empty union. Root review required before production edit."
+  },
+  "remainingNotRun": [
+    "selector denial after union checks",
+    "OUT_OF_SCOPE metadata-only",
+    "same UID reentry",
+    "real DELETE across three overlapping streams",
+    "session generation reconnect guard"
+  ],
+  "scope": "No production source edits, Git actions, default-context selection, or further API job by this agent."
+}

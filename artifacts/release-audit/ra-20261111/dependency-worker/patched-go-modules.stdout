@@ -1,0 +1,762 @@
+{
+	"Path": "github.com/k8s-tersane/tersane/backend",
+	"Main": true,
+	"Dir": "/Users/yunusemre/Desktop/KubeView/backend",
+	"GoMod": "/Users/yunusemre/Desktop/KubeView/backend/go.mod",
+	"GoVersion": "1.26.11"
+}
+{
+	"Path": "cloud.google.com/go/compute/metadata",
+	"Version": "v0.3.0",
+	"Time": "2024-04-15T20:50:16Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/NYTimes/gziphandler",
+	"Version": "v0.0.0-20170623195520-56545f4a5d46",
+	"Time": "2017-06-23T19:55:20Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/armon/go-socks5",
+	"Version": "v0.0.0-20160902184237-e75332964ef5",
+	"Time": "2016-09-02T18:42:37Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/armon/go-socks5@v0.0.0-20160902184237-e75332964ef5",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/armon/go-socks5/@v/v0.0.0-20160902184237-e75332964ef5.mod",
+	"Sum": "h1:0CwZNZbxp69SHPdPJAN/hZIm0C4OItdklCFmMRWYpio=",
+	"GoModSum": "h1:wHh0iHkYZB8zMSxRWpUBQtwG5a7fFgvEO+odwuTv2gs="
+}
+{
+	"Path": "github.com/asaskevich/govalidator",
+	"Version": "v0.0.0-20190424111038-f61b66f89f4a",
+	"Time": "2019-04-24T11:10:38Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/creack/pty",
+	"Version": "v1.1.9",
+	"Time": "2019-09-25T15:36:33Z",
+	"Indirect": true,
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/creack/pty/@v/v1.1.9.mod",
+	"GoVersion": "1.13",
+	"GoModSum": "h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E="
+}
+{
+	"Path": "github.com/davecgh/go-spew",
+	"Version": "v1.1.1",
+	"Time": "2018-02-21T23:26:28Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/davecgh/go-spew@v1.1.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/davecgh/go-spew/@v/v1.1.1.mod",
+	"Sum": "h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=",
+	"GoModSum": "h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38="
+}
+{
+	"Path": "github.com/emicklei/go-restful/v3",
+	"Version": "v3.11.0",
+	"Time": "2023-08-19T06:54:41Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/emicklei/go-restful/v3@v3.11.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/emicklei/go-restful/v3/@v/v3.11.0.mod",
+	"GoVersion": "1.13",
+	"Sum": "h1:rAQeMHw1c7zTmncogyy8VvRZwtkmkZ4FxERmMY4rD+g=",
+	"GoModSum": "h1:6n3XBCmQQb25CM2LCACGz8ukIrRry+4bhvbpWn3mrbc="
+}
+{
+	"Path": "github.com/evanphx/json-patch",
+	"Version": "v4.12.0+incompatible",
+	"Time": "2021-10-21T16:40:42Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/evanphx/json-patch@v4.12.0+incompatible",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/evanphx/json-patch/@v/v4.12.0+incompatible.mod",
+	"Sum": "h1:4onqiflcdA9EOZ4RxV643DvftH5pOlLGNtQ5lPWQu84=",
+	"GoModSum": "h1:50XU6AFN0ol/bzJsmQLiYLvXMP4fmwYFNcr97nuDLSk="
+}
+{
+	"Path": "github.com/fxamacker/cbor/v2",
+	"Version": "v2.6.0",
+	"Time": "2024-02-12T04:21:59Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/go-logr/logr",
+	"Version": "v1.4.1",
+	"Time": "2023-12-21T15:57:58Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/go-logr/logr@v1.4.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/go-logr/logr/@v/v1.4.1.mod",
+	"GoVersion": "1.18",
+	"Sum": "h1:pKouT5E8xu9zeFC39JXRDukb6JFQPXM5p5I91188VAQ=",
+	"GoModSum": "h1:9T104GzyrTigFIr8wt5mBrctHMim0Nb2HLGrmQ40KvY="
+}
+{
+	"Path": "github.com/go-openapi/jsonpointer",
+	"Version": "v0.19.6",
+	"Time": "2023-01-02T19:46:53Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/go-openapi/jsonpointer@v0.19.6",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/go-openapi/jsonpointer/@v/v0.19.6.mod",
+	"GoVersion": "1.13",
+	"Sum": "h1:eCs3fxoIi3Wh6vtgmLTOjdhSpiqphQ+DaPn38N2ZdrE=",
+	"GoModSum": "h1:osyAmYz/mB/C3I+WsTTSgw1ONzaLJoLCyoi6/zppojs="
+}
+{
+	"Path": "github.com/go-openapi/jsonreference",
+	"Version": "v0.20.2",
+	"Time": "2023-01-14T04:19:40Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/go-openapi/jsonreference@v0.20.2",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/go-openapi/jsonreference/@v/v0.20.2.mod",
+	"GoVersion": "1.13",
+	"Sum": "h1:3sVjiK66+uXK/6oQ8xgcRKcFgQ5KXa2KvnJRumpMGbE=",
+	"GoModSum": "h1:Bl1zwGIM8/wsvqjsOQLJ/SH+En5Ap4rVB5KVcIDZG2k="
+}
+{
+	"Path": "github.com/go-openapi/swag",
+	"Version": "v0.22.3",
+	"Time": "2022-08-18T03:19:56Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/go-openapi/swag@v0.22.3",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/go-openapi/swag/@v/v0.22.3.mod",
+	"GoVersion": "1.18",
+	"Sum": "h1:yMBqmnQ0gyZvEb/+KzuWZOXgllrXT4SADYbvDaXHv/g=",
+	"GoModSum": "h1:UzaqsxGiab7freDnrUUra0MwWfN/q7tE4j+VcZ0yl14="
+}
+{
+	"Path": "github.com/go-task/slim-sprig",
+	"Version": "v0.0.0-20230315185526-52ccab3ef572",
+	"Time": "2023-03-15T18:55:26Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/go-task/slim-sprig@v0.0.0-20230315185526-52ccab3ef572",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/go-task/slim-sprig/@v/v0.0.0-20230315185526-52ccab3ef572.mod",
+	"GoVersion": "1.13",
+	"Sum": "h1:tfuBGBXKqDEevZMzYi5KSi8KkcZtzBcTgAUUtapy0OI=",
+	"GoModSum": "h1:9Pwr4B2jHnOSGXyyzV8ROjYa2ojvAY6HCGYYfMoC3Ls="
+}
+{
+	"Path": "github.com/gogo/protobuf",
+	"Version": "v1.3.2",
+	"Time": "2021-01-10T08:01:47Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/gogo/protobuf@v1.3.2",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/gogo/protobuf/@v/v1.3.2.mod",
+	"GoVersion": "1.15",
+	"Sum": "h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=",
+	"GoModSum": "h1:P1XiOD3dCwIKUDQYPy72D8LYyHL2YPYrpS2s69NZV8Q="
+}
+{
+	"Path": "github.com/golang/groupcache",
+	"Version": "v0.0.0-20210331224755-41bb18bfe9da",
+	"Time": "2021-03-31T22:47:55Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/golang/protobuf",
+	"Version": "v1.5.4",
+	"Time": "2024-03-06T06:45:40Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/golang/protobuf@v1.5.4",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/golang/protobuf/@v/v1.5.4.mod",
+	"GoVersion": "1.17",
+	"Sum": "h1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek=",
+	"GoModSum": "h1:lnTiLA8Wa4RWRcIUkrtSVa5nRhsEGBg48fD6rSs7xps="
+}
+{
+	"Path": "github.com/google/btree",
+	"Version": "v1.0.1",
+	"Time": "2019-10-16T16:15:28Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/google/gnostic-models",
+	"Version": "v0.6.8",
+	"Time": "2022-04-12T22:34:26Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/google/gnostic-models@v0.6.8",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/google/gnostic-models/@v/v0.6.8.mod",
+	"GoVersion": "1.18",
+	"Sum": "h1:yo/ABAfM5IMRsS1VnXjTBvUb61tFIHozhlYvRgGre9I=",
+	"GoModSum": "h1:5n7qKqH0f5wFt+aWF8CW6pZLLNOfYuF5OpfBSENuI8U="
+}
+{
+	"Path": "github.com/google/go-cmp",
+	"Version": "v0.6.0",
+	"Time": "2023-08-31T17:32:40Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/google/go-cmp@v0.6.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/google/go-cmp/@v/v0.6.0.mod",
+	"GoVersion": "1.13",
+	"Sum": "h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=",
+	"GoModSum": "h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY="
+}
+{
+	"Path": "github.com/google/gofuzz",
+	"Version": "v1.2.0",
+	"Time": "2020-08-04T22:43:24Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/google/gofuzz@v1.2.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/google/gofuzz/@v/v1.2.0.mod",
+	"GoVersion": "1.12",
+	"Sum": "h1:xRy4A+RhZaiKjJ1bPfwQ8sedCA+YS2YcCHW6ec7JMi0=",
+	"GoModSum": "h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg="
+}
+{
+	"Path": "github.com/google/pprof",
+	"Version": "v0.0.0-20210720184732-4bb14d4b1be1",
+	"Time": "2021-07-20T18:47:32Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/google/pprof@v0.0.0-20210720184732-4bb14d4b1be1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/google/pprof/@v/v0.0.0-20210720184732-4bb14d4b1be1.mod",
+	"GoVersion": "1.14",
+	"Sum": "h1:K6RDEckDVWvDI9JAJYCmNdQXq6neHJOYx3V6jnqNEec=",
+	"GoModSum": "h1:kpwsk12EmLew5upagYY7GY0pfYCcupk39gWOCRROcvE="
+}
+{
+	"Path": "github.com/google/uuid",
+	"Version": "v1.3.0",
+	"Time": "2021-07-12T22:33:52Z",
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/google/uuid@v1.3.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/google/uuid/@v/v1.3.0.mod",
+	"Sum": "h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=",
+	"GoModSum": "h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo="
+}
+{
+	"Path": "github.com/gorilla/websocket",
+	"Version": "v1.5.3",
+	"Time": "2024-06-14T03:18:03Z",
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/gorilla/websocket@v1.5.3",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/gorilla/websocket/@v/v1.5.3.mod",
+	"GoVersion": "1.12",
+	"Sum": "h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=",
+	"GoModSum": "h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE="
+}
+{
+	"Path": "github.com/gregjones/httpcache",
+	"Version": "v0.0.0-20180305231024-9cad4c3443a7",
+	"Time": "2018-03-05T23:10:24Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/imdario/mergo",
+	"Version": "v0.3.6",
+	"Time": "2018-07-30T21:26:40Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/imdario/mergo@v0.3.6",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/imdario/mergo/@v/v0.3.6.mod",
+	"Sum": "h1:xTNEAn+kxVO7dTZGu0CegyqKZmoWFI0rF8UxjlB2d28=",
+	"GoModSum": "h1:2EnlNZ0deacrJVfApfmtdGgDfMuh/nq6Ok1EcJh5FfA="
+}
+{
+	"Path": "github.com/josharian/intern",
+	"Version": "v1.0.0",
+	"Time": "2019-12-14T22:12:22Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/josharian/intern@v1.0.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/josharian/intern/@v/v1.0.0.mod",
+	"GoVersion": "1.5",
+	"Sum": "h1:vlS4z54oSdjm0bgjRigI+G1HpF+tI+9rE5LLzOg8HmY=",
+	"GoModSum": "h1:5DoeVV0s6jJacbCEi61lwdGj/aVlrQvzHFFd8Hwg//Y="
+}
+{
+	"Path": "github.com/json-iterator/go",
+	"Version": "v1.1.12",
+	"Time": "2021-09-11T02:17:26Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/json-iterator/go@v1.1.12",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/json-iterator/go/@v/v1.1.12.mod",
+	"GoVersion": "1.12",
+	"Sum": "h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=",
+	"GoModSum": "h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHmT4TnhNGBo="
+}
+{
+	"Path": "github.com/kisielk/errcheck",
+	"Version": "v1.5.0",
+	"Time": "2021-01-05T19:12:31Z",
+	"Indirect": true,
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/kisielk/errcheck/@v/v1.5.0.mod",
+	"GoVersion": "1.14",
+	"GoModSum": "h1:pFxgyoBC7bSaBwPgfKdkLd5X25qrDl4LWUI2bnpBCr8="
+}
+{
+	"Path": "github.com/kisielk/gotool",
+	"Version": "v1.0.0",
+	"Time": "2018-02-21T18:54:26Z",
+	"Indirect": true,
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/kisielk/gotool/@v/v1.0.0.mod",
+	"GoModSum": "h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck="
+}
+{
+	"Path": "github.com/kr/pretty",
+	"Version": "v0.3.1",
+	"Time": "2022-08-29T23:03:05Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/kr/pretty@v0.3.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/kr/pretty/@v/v0.3.1.mod",
+	"GoVersion": "1.12",
+	"Sum": "h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=",
+	"GoModSum": "h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk="
+}
+{
+	"Path": "github.com/kr/pty",
+	"Version": "v1.1.1",
+	"Time": "2018-01-13T18:08:13Z",
+	"Indirect": true,
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/kr/pty/@v/v1.1.1.mod",
+	"GoModSum": "h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ="
+}
+{
+	"Path": "github.com/kr/text",
+	"Version": "v0.2.0",
+	"Time": "2020-02-14T20:31:06Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/kr/text@v0.2.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/kr/text/@v/v0.2.0.mod",
+	"Sum": "h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=",
+	"GoModSum": "h1:eLer722TekiGuMkidMxC/pM04lWEeraHUUmBw8l2grE="
+}
+{
+	"Path": "github.com/mailru/easyjson",
+	"Version": "v0.7.7",
+	"Time": "2021-02-06T19:00:08Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/mailru/easyjson@v0.7.7",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/mailru/easyjson/@v/v0.7.7.mod",
+	"GoVersion": "1.12",
+	"Sum": "h1:UGYAvKxe3sBsEDzO8ZeWOSlIQfWFlxbzLZe7hwFURr0=",
+	"GoModSum": "h1:xzfreul335JAWq5oZzymOObrkdz5UnU4kGfJJLY9Nlc="
+}
+{
+	"Path": "github.com/moby/spdystream",
+	"Version": "v0.5.1",
+	"Time": "2026-04-13T17:36:51Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/moby/spdystream@v0.5.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/moby/spdystream/@v/v0.5.1.mod",
+	"GoVersion": "1.13",
+	"Sum": "h1:9sNYeYZUcci9R6/w7KDaFWEWeV4LStVG78Mpyq/Zm/Y=",
+	"GoModSum": "h1:xBAYlnt/ay+11ShkdFKNAG7LsyK/tmNBVvVOwrfMgdI="
+}
+{
+	"Path": "github.com/modern-go/concurrent",
+	"Version": "v0.0.0-20180306012644-bacd9c7ef1dd",
+	"Time": "2018-03-06T01:26:44Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/modern-go/concurrent/@v/v0.0.0-20180306012644-bacd9c7ef1dd.mod",
+	"Sum": "h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg=",
+	"GoModSum": "h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q="
+}
+{
+	"Path": "github.com/modern-go/reflect2",
+	"Version": "v1.0.2",
+	"Time": "2021-09-11T02:10:30Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/modern-go/reflect2@v1.0.2",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/modern-go/reflect2/@v/v1.0.2.mod",
+	"GoVersion": "1.12",
+	"Sum": "h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9Gz0M=",
+	"GoModSum": "h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk="
+}
+{
+	"Path": "github.com/munnerz/goautoneg",
+	"Version": "v0.0.0-20191010083416-a7dc8b61c822",
+	"Time": "2019-10-10T08:34:16Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/munnerz/goautoneg/@v/v0.0.0-20191010083416-a7dc8b61c822.mod",
+	"Sum": "h1:C3w9PqII01/Oq1c1nUAm88MOHcQC9l5mIlSMApZMrHA=",
+	"GoModSum": "h1:+n7T8mK8HuQTcFwEeznm/DIxMOiR9yIdICNftLE1DvQ="
+}
+{
+	"Path": "github.com/mxk/go-flowrate",
+	"Version": "v0.0.0-20140419014527-cca7078d478f",
+	"Time": "2014-04-19T01:45:27Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/mxk/go-flowrate@v0.0.0-20140419014527-cca7078d478f",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/mxk/go-flowrate/@v/v0.0.0-20140419014527-cca7078d478f.mod",
+	"Sum": "h1:y5//uYreIhSUg3J1GEMiLbxo1LJaP8RfCpH6pymGZus=",
+	"GoModSum": "h1:ZdcZmHo+o7JKHSa8/e818NopupXU1YMK5fe1lsApnBw="
+}
+{
+	"Path": "github.com/onsi/ginkgo/v2",
+	"Version": "v2.15.0",
+	"Time": "2024-01-17T22:54:58Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/onsi/ginkgo/v2@v2.15.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/onsi/ginkgo/v2/@v/v2.15.0.mod",
+	"GoVersion": "1.20",
+	"Sum": "h1:79HwNRBAZHOEwrczrgSOPy+eFTTlIGELKy5as+ClttY=",
+	"GoModSum": "h1:HlxMHtYF57y6Dpf+mc5529KKmSq9h2FpCF+/ZkwUxKM="
+}
+{
+	"Path": "github.com/onsi/gomega",
+	"Version": "v1.31.0",
+	"Time": "2024-01-17T22:56:06Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/onsi/gomega@v1.31.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/onsi/gomega/@v/v1.31.0.mod",
+	"GoVersion": "1.20",
+	"Sum": "h1:54UJxxj6cPInHS3a35wm6BK/F9nHYueZ1NVujHDrnXE=",
+	"GoModSum": "h1:DW9aCi7U6Yi40wNVAvT6kzFnEVEI5n3DloYBiKiT6zk="
+}
+{
+	"Path": "github.com/peterbourgon/diskv",
+	"Version": "v2.0.1+incompatible",
+	"Time": "2017-08-14T17:35:58Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/pkg/errors",
+	"Version": "v0.9.1",
+	"Time": "2020-01-14T19:47:44Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/pkg/errors@v0.9.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/pkg/errors/@v/v0.9.1.mod",
+	"Sum": "h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=",
+	"GoModSum": "h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0="
+}
+{
+	"Path": "github.com/pmezard/go-difflib",
+	"Version": "v1.0.0",
+	"Time": "2016-01-10T10:55:54Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/pmezard/go-difflib@v1.0.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/pmezard/go-difflib/@v/v1.0.0.mod",
+	"Sum": "h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=",
+	"GoModSum": "h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4="
+}
+{
+	"Path": "github.com/rogpeppe/go-internal",
+	"Version": "v1.10.0",
+	"Time": "2023-03-27T09:34:06Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/rogpeppe/go-internal@v1.10.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/rogpeppe/go-internal/@v/v1.10.0.mod",
+	"GoVersion": "1.19",
+	"Sum": "h1:TMyTOH3F/DB16zRVcYyreMH6GnZZrwQVAoYjRBZyWFQ=",
+	"GoModSum": "h1:UQnix2H7Ngw/k4C5ijL5+65zddjncjaFoBhdsK/akog="
+}
+{
+	"Path": "github.com/spf13/pflag",
+	"Version": "v1.0.5",
+	"Time": "2019-09-18T19:59:20Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/spf13/pflag@v1.0.5",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/spf13/pflag/@v/v1.0.5.mod",
+	"GoVersion": "1.12",
+	"Sum": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=",
+	"GoModSum": "h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg="
+}
+{
+	"Path": "github.com/stretchr/objx",
+	"Version": "v0.5.0",
+	"Time": "2022-09-18T03:09:40Z",
+	"Indirect": true,
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/stretchr/objx/@v/v0.5.0.mod",
+	"GoVersion": "1.12",
+	"GoModSum": "h1:Yh+to48EsGEfYuaHDzXPcE3xhTkx73EhmCGUpEOglKo="
+}
+{
+	"Path": "github.com/stretchr/testify",
+	"Version": "v1.8.4",
+	"Time": "2023-05-30T09:38:40Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/github.com/stretchr/testify@v1.8.4",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/stretchr/testify/@v/v1.8.4.mod",
+	"GoVersion": "1.20",
+	"Sum": "h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=",
+	"GoModSum": "h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo="
+}
+{
+	"Path": "github.com/x448/float16",
+	"Version": "v0.8.4",
+	"Time": "2020-01-17T18:31:28Z",
+	"Indirect": true
+}
+{
+	"Path": "github.com/yuin/goldmark",
+	"Version": "v1.2.1",
+	"Time": "2020-07-30T13:33:42Z",
+	"Indirect": true,
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/github.com/yuin/goldmark/@v/v1.2.1.mod",
+	"GoVersion": "1.13",
+	"GoModSum": "h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74="
+}
+{
+	"Path": "golang.org/x/crypto",
+	"Version": "v0.58.0",
+	"Time": "2026-10-09T16:24:17Z",
+	"Indirect": true
+}
+{
+	"Path": "golang.org/x/mod",
+	"Version": "v0.41.0",
+	"Time": "2026-08-24T20:56:42Z",
+	"Indirect": true
+}
+{
+	"Path": "golang.org/x/net",
+	"Version": "v0.62.0",
+	"Time": "2026-10-27T19:00:16Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/golang.org/x/net@v0.62.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/net/@v/v0.62.0.mod",
+	"GoVersion": "1.26.0",
+	"Sum": "h1:18ELalfM5+XNRwzM2nYqXsZQ9ByS1uhj2O/U7+5jqRY=",
+	"GoModSum": "h1:WgDCOTH8iwtB66T4/GfI94AHo/hhdb7Hah9NDseQfiI="
+}
+{
+	"Path": "golang.org/x/oauth2",
+	"Version": "v0.27.0",
+	"Time": "2025-02-24T17:56:26Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/golang.org/x/oauth2@v0.27.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/oauth2/@v/v0.27.0.mod",
+	"GoVersion": "1.23.0",
+	"Sum": "h1:da9Vo7/tDv5RH/7nZDz1eMGS/q1Vv1N/7FCrBhI9I3M=",
+	"GoModSum": "h1:onh5ek6nERTohokkhCD/y2cV4Do3fxFHFuAejCkRWT8="
+}
+{
+	"Path": "golang.org/x/sync",
+	"Version": "v0.24.0",
+	"Time": "2026-09-23T16:28:17Z",
+	"Indirect": true
+}
+{
+	"Path": "golang.org/x/sys",
+	"Version": "v0.49.0",
+	"Time": "2026-10-06T18:35:47Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/golang.org/x/sys@v0.49.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/sys/@v/v0.49.0.mod",
+	"GoVersion": "1.26.0",
+	"Sum": "h1:XbzkgYJHdqh/8m2Uu0W/dQv8nktxx4BFHp1M0gROTXA=",
+	"GoModSum": "h1:hNLxWAXmnKAxqDtdwIYC4bM9oQPEecfsnNMuSxOs3og="
+}
+{
+	"Path": "golang.org/x/term",
+	"Version": "v0.47.0",
+	"Time": "2026-10-09T15:22:17Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/golang.org/x/term@v0.47.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/term/@v/v0.47.0.mod",
+	"GoVersion": "1.26.0",
+	"Sum": "h1:cpyOwQkr2Nzxe2p6KnrTG7Ei2wtzjsuSjhpXXepZ/BM=",
+	"GoModSum": "h1:efAfAuG6RKABvg1ArGebRkvX6LXul14SM67o2e4mUCY="
+}
+{
+	"Path": "golang.org/x/text",
+	"Version": "v0.43.0",
+	"Time": "2026-10-09T15:18:32Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/golang.org/x/text@v0.43.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/text/@v/v0.43.0.mod",
+	"GoVersion": "1.26.0",
+	"Sum": "h1:1QivrlhwAsnMOcqgOdl9my7s9OyZl8O5/UGUTJVXoWc=",
+	"GoModSum": "h1:hbSIYA/amXcRXTFSZqh8tWHEoqRvvbKPJ2uz/KU+a+s="
+}
+{
+	"Path": "golang.org/x/time",
+	"Version": "v0.3.0",
+	"Time": "2022-11-16T15:19:46Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/golang.org/x/time@v0.3.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/time/@v/v0.3.0.mod",
+	"Sum": "h1:rg5rLMjNzMS1RkNLzCG38eapWhnYLFYXDXj2gOlr8j4=",
+	"GoModSum": "h1:tRJNPiyCQ0inRvYxbN9jk5I+vvW/OXSQhTDSoE431IQ="
+}
+{
+	"Path": "golang.org/x/tools",
+	"Version": "v0.51.0",
+	"Time": "2026-10-02T18:49:45Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/golang.org/x/tools@v0.51.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/tools/@v/v0.51.0.mod",
+	"GoVersion": "1.26.0",
+	"Sum": "h1:k4Xc/1Om9jwkBJBo4NVLMSARBoWtK10mx+W5BnXCeAI=",
+	"GoModSum": "h1:9eEncMayCV6zRMGhR5eZEC2iBx98qWcF1HZ9Z7wJOoA="
+}
+{
+	"Path": "golang.org/x/xerrors",
+	"Version": "v0.0.0-20220907171357-04be3eba64a2",
+	"Time": "2022-09-07T17:13:57Z",
+	"Indirect": true
+}
+{
+	"Path": "google.golang.org/appengine",
+	"Version": "v1.6.7",
+	"Time": "2020-10-13T00:46:28Z",
+	"Indirect": true
+}
+{
+	"Path": "google.golang.org/protobuf",
+	"Version": "v1.33.0",
+	"Time": "2024-03-05T19:00:20Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/google.golang.org/protobuf@v1.33.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/google.golang.org/protobuf/@v/v1.33.0.mod",
+	"GoVersion": "1.17",
+	"Sum": "h1:uNO2rsAINq/JlFpSdYEKIZ0uKD/R9cpdv0T+yoGwGmI=",
+	"GoModSum": "h1:c6P6GXX6sHbq/GpV6MGZEdwhWPcYBgnhAHhKbcUYpos="
+}
+{
+	"Path": "gopkg.in/check.v1",
+	"Version": "v1.0.0-20201130134442-10cb98267c6c",
+	"Time": "2020-11-30T13:44:42Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/gopkg.in/check.v1@v1.0.0-20201130134442-10cb98267c6c",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/gopkg.in/check.v1/@v/v1.0.0-20201130134442-10cb98267c6c.mod",
+	"GoVersion": "1.11",
+	"Sum": "h1:Hei/4ADfdWqJk1ZMxUNpqntNwaWcugrBjAiHlqqRiVk=",
+	"GoModSum": "h1:JHkPIbrfpd72SG/EVd6muEfDQjcINNoR0C8j2r3qZ4Q="
+}
+{
+	"Path": "gopkg.in/inf.v0",
+	"Version": "v0.9.1",
+	"Time": "2018-03-26T17:23:32Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/gopkg.in/inf.v0@v0.9.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/gopkg.in/inf.v0/@v/v0.9.1.mod",
+	"Sum": "h1:73M5CoZyi3ZLMOyDlQh031Cx6N9NDJ2Vvfl76EDAgDc=",
+	"GoModSum": "h1:cWUDdTG/fYaXco+Dcufb5Vnc6Gp2YChqWtbxRZE0mXw="
+}
+{
+	"Path": "gopkg.in/yaml.v2",
+	"Version": "v2.4.0",
+	"Time": "2020-11-17T15:46:20Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/gopkg.in/yaml.v2@v2.4.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/gopkg.in/yaml.v2/@v/v2.4.0.mod",
+	"GoVersion": "1.15",
+	"Sum": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY=",
+	"GoModSum": "h1:RDklbk79AGWmwhnvt/jBztapEOGDOx6ZbXqjP6csGnQ="
+}
+{
+	"Path": "gopkg.in/yaml.v3",
+	"Version": "v3.0.1",
+	"Time": "2022-05-27T08:35:30Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/gopkg.in/yaml.v3@v3.0.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/gopkg.in/yaml.v3/@v/v3.0.1.mod",
+	"Sum": "h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=",
+	"GoModSum": "h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM="
+}
+{
+	"Path": "k8s.io/api",
+	"Version": "v0.30.0",
+	"Time": "2024-04-17T21:37:06Z",
+	"Dir": "/Users/yunusemre/go/pkg/mod/k8s.io/api@v0.30.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/k8s.io/api/@v/v0.30.0.mod",
+	"GoVersion": "1.22.0",
+	"Sum": "h1:siWhRq7cNjy2iHssOB9SCGNCl2spiF1dO3dABqZ8niA=",
+	"GoModSum": "h1:OPlaYhoHs8EQ1ql0R/TsUgaRPhpKNxIMrKQfWUp8QSE="
+}
+{
+	"Path": "k8s.io/apimachinery",
+	"Version": "v0.30.0",
+	"Time": "2024-04-05T20:08:23Z",
+	"Dir": "/Users/yunusemre/go/pkg/mod/k8s.io/apimachinery@v0.30.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/k8s.io/apimachinery/@v/v0.30.0.mod",
+	"GoVersion": "1.22.0",
+	"Sum": "h1:qxVPsyDM5XS96NIh9Oj6LavoVFYff/Pon9cZeDIkHHA=",
+	"GoModSum": "h1:iexa2somDaxdnj7bha06bhb43Zpa6eWH8N8dbqVjTUc="
+}
+{
+	"Path": "k8s.io/client-go",
+	"Version": "v0.30.0",
+	"Time": "2024-04-17T21:41:50Z",
+	"Dir": "/Users/yunusemre/go/pkg/mod/k8s.io/client-go@v0.30.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/k8s.io/client-go/@v/v0.30.0.mod",
+	"GoVersion": "1.22.0",
+	"Sum": "h1:sB1AGGlhY/o7KCyCEQ0bPWzYDL0pwOZO4vAtTSh/gJQ=",
+	"GoModSum": "h1:g7li5O5256qe6TYdAMyX/otJqMhIiGgTapdLchhmOaY="
+}
+{
+	"Path": "k8s.io/code-generator",
+	"Version": "v0.30.0",
+	"Time": "2024-04-17T21:43:58Z",
+	"Indirect": true
+}
+{
+	"Path": "k8s.io/gengo/v2",
+	"Version": "v2.0.0-20240228010128-51d4e06bde70",
+	"Time": "2024-02-28T01:01:28Z",
+	"Indirect": true
+}
+{
+	"Path": "k8s.io/klog/v2",
+	"Version": "v2.120.1",
+	"Time": "2024-01-18T14:38:33Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/k8s.io/klog/v2@v2.120.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/k8s.io/klog/v2/@v/v2.120.1.mod",
+	"GoVersion": "1.18",
+	"Sum": "h1:QXU6cPEOIslTGvZaXvFWiP9VKyeet3sawzTOvdXb4Vw=",
+	"GoModSum": "h1:3Jpz1GvMt720eyJH1ckRHK1EDfpxISzJ7I9OYgaDtPE="
+}
+{
+	"Path": "k8s.io/kube-openapi",
+	"Version": "v0.0.0-20240228011516-70dd3763d340",
+	"Time": "2024-02-28T01:15:16Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/k8s.io/kube-openapi@v0.0.0-20240228011516-70dd3763d340",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/k8s.io/kube-openapi/@v/v0.0.0-20240228011516-70dd3763d340.mod",
+	"GoVersion": "1.20",
+	"Sum": "h1:BZqlfIlq5YbRMFko6/PM7FjZpUb45WallggurYhKGag=",
+	"GoModSum": "h1:yD4MZYeKMBwQKVht279WycxKyM84kkAx2DPrTXaeb98="
+}
+{
+	"Path": "k8s.io/metrics",
+	"Version": "v0.30.0",
+	"Time": "2024-04-17T22:07:22Z",
+	"Dir": "/Users/yunusemre/go/pkg/mod/k8s.io/metrics@v0.30.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/k8s.io/metrics/@v/v0.30.0.mod",
+	"GoVersion": "1.22.0",
+	"Sum": "h1:tqB+T0GJY288KahaO3Eb41HaDVeLR18gBmyPo0R417s=",
+	"GoModSum": "h1:nSDA8V19WHhCTBhRYuyzJT9yPJBxSpqbyrGCCQ4jPj4="
+}
+{
+	"Path": "k8s.io/utils",
+	"Version": "v0.0.0-20230726121419-3b25d923346b",
+	"Time": "2023-07-26T12:14:19Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/k8s.io/utils@v0.0.0-20230726121419-3b25d923346b",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/k8s.io/utils/@v/v0.0.0-20230726121419-3b25d923346b.mod",
+	"GoVersion": "1.18",
+	"Sum": "h1:sgn3ZU783SCgtaSJjpcVVlRqd6GSnlTLKgpAAttJvpI=",
+	"GoModSum": "h1:OLgZIPagt7ERELqWJFomSt595RzquPNLL48iOWgYOg0="
+}
+{
+	"Path": "sigs.k8s.io/json",
+	"Version": "v0.0.0-20221116044647-bc3834ca7abd",
+	"Time": "2022-11-16T04:46:47Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/sigs.k8s.io/json@v0.0.0-20221116044647-bc3834ca7abd",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/sigs.k8s.io/json/@v/v0.0.0-20221116044647-bc3834ca7abd.mod",
+	"GoVersion": "1.18",
+	"Sum": "h1:EDPBXCAspyGV4jQlpZSudPeMmr1bNJefnuqLsRAsHZo=",
+	"GoModSum": "h1:B8JuhiUyNFVKdsE8h686QcCxMaH6HrOAZj4vswFpcB0="
+}
+{
+	"Path": "sigs.k8s.io/structured-merge-diff/v4",
+	"Version": "v4.4.1",
+	"Time": "2023-10-27T03:34:02Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/sigs.k8s.io/structured-merge-diff/v4@v4.4.1",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/sigs.k8s.io/structured-merge-diff/v4/@v/v4.4.1.mod",
+	"GoVersion": "1.13",
+	"Sum": "h1:150L+0vs/8DA78h1u02ooW1/fFq/Lwr+sGiqlzvrtq4=",
+	"GoModSum": "h1:N8hJocpFajUSSeSJ9bOZ77VzejKZaXsTtZo4/u7Io08="
+}
+{
+	"Path": "sigs.k8s.io/yaml",
+	"Version": "v1.3.0",
+	"Time": "2021-09-22T21:48:32Z",
+	"Indirect": true,
+	"Dir": "/Users/yunusemre/go/pkg/mod/sigs.k8s.io/yaml@v1.3.0",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/sigs.k8s.io/yaml/@v/v1.3.0.mod",
+	"GoVersion": "1.12",
+	"Sum": "h1:a2VclLzOGrwOHDiV8EfBGhvjHvP46CtW5j6POvhYGGo=",
+	"GoModSum": "h1:GeOyir5tyXNByN85N/dRIT9es5UQNerPYEKK56eTBm8="
+}

@@ -1,0 +1,4383 @@
+{
+  "id": "ws-20261110-geometry-revisit",
+  "startedAt": "2026-11-10T12:28:01.811Z",
+  "url": "http://127.0.0.1:19707",
+  "browser": "chromium",
+  "browserVersion": "156.0.8078.4",
+  "dataSource": "Normal product UI; source kind verified from actual profile",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:02.115Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:02.117Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-10T12:28:02.285Z",
+      "detail": {
+        "file": "01-initial-world.png"
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:02.486Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:02.679Z",
+      "detail": {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "geometry-revisit-checkpoint",
+      "at": "2026-11-10T12:28:02.777Z",
+      "detail": {
+        "completed": 0,
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "gpu": {
+          "geometries": 38,
+          "textures": 3
+        },
+        "sceneReachable": {
+          "objects": 424,
+          "geometries": 62,
+          "materials": 44
+        },
+        "inactiveLettering": 19
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:02.920Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:02.921Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:03.613Z",
+      "detail": {
+        "harborId": "1c0303cc-a3b5-4246-a6fe-0021da05b9ef",
+        "coordinates": [
+          1400,
+          0
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:03.751Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:03.752Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:04.448Z",
+      "detail": {
+        "harborId": "e4e94878-f923-4f67-9855-b15598a6cbf0",
+        "coordinates": [
+          2800,
+          0
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:04.584Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:04.585Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:05.283Z",
+      "detail": {
+        "harborId": "a8a4fbf2-b256-4f6f-8b4c-ec6c7282067c",
+        "coordinates": [
+          4200,
+          0
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:05.417Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:05.418Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:06.112Z",
+      "detail": {
+        "harborId": "67b89968-58d3-46d0-ada9-db18bcf48f00",
+        "coordinates": [
+          5600,
+          0
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:06.250Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 06 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:06.251Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:06.950Z",
+      "detail": {
+        "harborId": "104b737c-5ae6-4d41-9cbd-76405cc88cb1",
+        "coordinates": [
+          0,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:07.084Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 07 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:07.085Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:07.785Z",
+      "detail": {
+        "harborId": "2775e9a8-819c-4ea5-8519-b52b6177d8f2",
+        "coordinates": [
+          1400,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:07.918Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 08 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:07.919Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:08.615Z",
+      "detail": {
+        "harborId": "9129d0d5-0416-43c2-8097-9941f8650d56",
+        "coordinates": [
+          2800,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:08.751Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 09 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:08.751Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:09.449Z",
+      "detail": {
+        "harborId": "3cde877a-ff0c-4ec0-9ad3-d9ffbab5c833",
+        "coordinates": [
+          4200,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:09.584Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 10 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:09.585Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:10.283Z",
+      "detail": {
+        "harborId": "f48f8a95-1906-4aa9-a8ae-27705eb7b372",
+        "coordinates": [
+          5600,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:10.417Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 11 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:10.417Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:11.117Z",
+      "detail": {
+        "harborId": "7bbcb300-fd2b-43a6-97ef-a6d4b1780708",
+        "coordinates": [
+          0,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:11.250Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 12 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:11.251Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:11.947Z",
+      "detail": {
+        "harborId": "77fa5e0a-f3aa-4893-b650-4a17dc823740",
+        "coordinates": [
+          1400,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:12.087Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 13 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:12.088Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:12.783Z",
+      "detail": {
+        "harborId": "7c6bd0e6-e138-4ca6-8d43-7ba8556f6299",
+        "coordinates": [
+          2800,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:12.916Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 14 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:12.917Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:13.616Z",
+      "detail": {
+        "harborId": "f0d55386-54d8-4aaf-bac4-b096499a5848",
+        "coordinates": [
+          4200,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:13.750Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 15 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:13.751Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:14.446Z",
+      "detail": {
+        "harborId": "49d2bd07-95de-44d7-b967-d0f3ead06b95",
+        "coordinates": [
+          5600,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:14.584Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 16 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:14.585Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:15.280Z",
+      "detail": {
+        "harborId": "aa114bd5-ec92-4677-a0bd-51bbcc51f661",
+        "coordinates": [
+          0,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:15.417Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 17 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:15.418Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:16.115Z",
+      "detail": {
+        "harborId": "fb67df21-cc65-457c-93a5-9ee46b4ec7d3",
+        "coordinates": [
+          1400,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:16.250Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 18 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:16.251Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:16.946Z",
+      "detail": {
+        "harborId": "e856ace3-703b-4ab4-b2e4-4069d4d09896",
+        "coordinates": [
+          2800,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:17.083Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 19 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:17.084Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:17.783Z",
+      "detail": {
+        "harborId": "6f3289ed-ef18-4ec7-a7fa-5bd570bc992e",
+        "coordinates": [
+          4200,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:17.918Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 20 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:17.919Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:18.613Z",
+      "detail": {
+        "harborId": "522f60d3-1118-4e81-8e3d-38ef74c0e0ee",
+        "coordinates": [
+          5600,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:18.750Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:18.750Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:19.449Z",
+      "detail": {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:19.650Z",
+      "detail": {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "geometry-revisit-checkpoint",
+      "at": "2026-11-10T12:28:19.746Z",
+      "detail": {
+        "completed": 20,
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "gpu": {
+          "geometries": 57,
+          "textures": 3
+        },
+        "sceneReachable": {
+          "objects": 424,
+          "geometries": 62,
+          "materials": 44
+        },
+        "inactiveLettering": 19
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:19.883Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 02 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:19.883Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:20.581Z",
+      "detail": {
+        "harborId": "1c0303cc-a3b5-4246-a6fe-0021da05b9ef",
+        "coordinates": [
+          1400,
+          0
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:20.717Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 03 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:20.718Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:21.417Z",
+      "detail": {
+        "harborId": "e4e94878-f923-4f67-9855-b15598a6cbf0",
+        "coordinates": [
+          2800,
+          0
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:21.551Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 04 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:21.551Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:22.246Z",
+      "detail": {
+        "harborId": "a8a4fbf2-b256-4f6f-8b4c-ec6c7282067c",
+        "coordinates": [
+          4200,
+          0
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:22.384Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 05 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:22.385Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:23.081Z",
+      "detail": {
+        "harborId": "67b89968-58d3-46d0-ada9-db18bcf48f00",
+        "coordinates": [
+          5600,
+          0
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:23.218Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 06 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:23.219Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:23.913Z",
+      "detail": {
+        "harborId": "104b737c-5ae6-4d41-9cbd-76405cc88cb1",
+        "coordinates": [
+          0,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:24.050Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 07 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:24.050Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:24.746Z",
+      "detail": {
+        "harborId": "2775e9a8-819c-4ea5-8519-b52b6177d8f2",
+        "coordinates": [
+          1400,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:24.884Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 08 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:24.884Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:25.582Z",
+      "detail": {
+        "harborId": "9129d0d5-0416-43c2-8097-9941f8650d56",
+        "coordinates": [
+          2800,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:25.716Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 09 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:25.717Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:26.411Z",
+      "detail": {
+        "harborId": "3cde877a-ff0c-4ec0-9ad3-d9ffbab5c833",
+        "coordinates": [
+          4200,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:26.551Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 10 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:26.551Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:27.248Z",
+      "detail": {
+        "harborId": "f48f8a95-1906-4aa9-a8ae-27705eb7b372",
+        "coordinates": [
+          5600,
+          1400
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:27.384Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 11 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:27.385Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:28.083Z",
+      "detail": {
+        "harborId": "7bbcb300-fd2b-43a6-97ef-a6d4b1780708",
+        "coordinates": [
+          0,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:28.217Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 12 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:28.218Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:28.915Z",
+      "detail": {
+        "harborId": "77fa5e0a-f3aa-4893-b650-4a17dc823740",
+        "coordinates": [
+          1400,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:29.051Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 13 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:29.052Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:29.750Z",
+      "detail": {
+        "harborId": "7c6bd0e6-e138-4ca6-8d43-7ba8556f6299",
+        "coordinates": [
+          2800,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:29.884Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 14 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:29.885Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:30.582Z",
+      "detail": {
+        "harborId": "f0d55386-54d8-4aaf-bac4-b096499a5848",
+        "coordinates": [
+          4200,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:30.720Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 15 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:30.721Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:31.416Z",
+      "detail": {
+        "harborId": "49d2bd07-95de-44d7-b967-d0f3ead06b95",
+        "coordinates": [
+          5600,
+          2800
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:31.551Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 16 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:31.551Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:32.245Z",
+      "detail": {
+        "harborId": "aa114bd5-ec92-4677-a0bd-51bbcc51f661",
+        "coordinates": [
+          0,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:32.384Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 17 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:32.385Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:33.081Z",
+      "detail": {
+        "harborId": "fb67df21-cc65-457c-93a5-9ee46b4ec7d3",
+        "coordinates": [
+          1400,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:33.219Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 18 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:33.220Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:33.916Z",
+      "detail": {
+        "harborId": "e856ace3-703b-4ab4-b2e4-4069d4d09896",
+        "coordinates": [
+          2800,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:34.050Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 19 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:34.051Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:34.750Z",
+      "detail": {
+        "harborId": "6f3289ed-ef18-4ec7-a7fa-5bd570bc992e",
+        "coordinates": [
+          4200,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:34.882Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 20 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:34.883Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:35.582Z",
+      "detail": {
+        "harborId": "522f60d3-1118-4e81-8e3d-38ef74c0e0ee",
+        "coordinates": [
+          5600,
+          4200
+        ]
+      }
+    },
+    {
+      "name": "canonical-resources-observed",
+      "at": "2026-11-10T12:28:35.718Z",
+      "detail": {
+        "nodes": 20,
+        "pods": 300,
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+      }
+    },
+    {
+      "name": "active-node-mesh-is-raycast-visible",
+      "at": "2026-11-10T12:28:35.718Z",
+      "detail": {
+        "visible": true,
+        "scope": "Actual projected scene target; separate from canonical counts and DOM brand"
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:36.416Z",
+      "detail": {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:36.616Z",
+      "detail": {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "geometry-revisit-checkpoint",
+      "at": "2026-11-10T12:28:36.712Z",
+      "detail": {
+        "completed": 40,
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "gpu": {
+          "geometries": 57,
+          "textures": 3
+        },
+        "sceneReachable": {
+          "objects": 424,
+          "geometries": 62,
+          "materials": 44
+        },
+        "inactiveLettering": 19
+      }
+    },
+    {
+      "name": "settled-camera-active-harbor-visible",
+      "at": "2026-11-10T12:28:36.917Z",
+      "detail": {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "normal-ui-harbor-switches",
+      "at": "2026-11-10T12:28:36.920Z",
+      "detail": {
+        "completed": 40,
+        "canvasPreserved": true,
+        "before": {
+          "frame": 23,
+          "calls": 260,
+          "triangles": 49314,
+          "points": 0,
+          "lines": 31,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 38,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "after": {
+          "frame": 1047,
+          "calls": 260,
+          "triangles": 49314,
+          "points": 0,
+          "lines": 31,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 57,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-10T12:28:37.139Z",
+      "detail": {
+        "file": "03-after-switches.png"
+      }
+    }
+  ],
+  "errors": [],
+  "geometryRevisit": {
+    "checkpoints": [
+      {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı",
+        "activePosition": [
+          0,
+          0
+        ],
+        "camera": {
+          "position": [
+            155.32070332934845,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.19405942434202558,
+            0.06843554348917548,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "target": [
+            6.663204746845629,
+            0,
+            130.86693727996249
+          ]
+        },
+        "gpu": {
+          "geometries": 38,
+          "textures": 3
+        },
+        "sceneReachable": {
+          "objects": 424,
+          "geometries": 62,
+          "materials": 44
+        },
+        "geometryUUIDs": [
+          "01b3ae2a-11d0-402f-8656-b18563674f3d",
+          "06a65616-bee6-4d0c-8291-5bfa4cf5718e",
+          "08baed90-51ef-468f-b6a0-59fa962fb7cb",
+          "1292f586-175d-4ac3-b184-fe4338120b0c",
+          "13c6c1d8-a417-4ba3-bd2c-efb430a5a2ac",
+          "17c3499e-14fd-4a08-9a69-b1be203bd82f",
+          "18d45a4c-8da3-48c0-91cc-fb691f7ae365",
+          "1b9608d0-31a7-49da-8a62-ea1b24a8e4da",
+          "1e816ff0-efa0-4f5a-8b35-f7fab6234518",
+          "28d9c923-0052-4e3c-ac85-cdfe0b8c20bf",
+          "2a8e35de-9619-4bd3-bfd5-e54ac690d844",
+          "2bdcb4a1-d4e0-4bad-954d-4322e1077c0e",
+          "31eb912c-bd87-469e-b4e2-bfc87484af51",
+          "32ae7543-da43-4c6f-bc0b-fc12c1eb598d",
+          "387efa3a-bbdb-44c3-b300-08a53c30e382",
+          "38efc86a-bf85-401f-a7d4-4a18f71c57d8",
+          "3a4caed1-f0de-4f96-8075-dea2d078c493",
+          "3d156333-7a7c-4378-b92b-aba538903c67",
+          "4459bfd3-2883-4ef0-adac-a3d9ed4eab41",
+          "48109fde-c87b-483c-b414-25c2d27532a1",
+          "499a6a99-2a3a-4a91-9f99-6cdba5cc6b5e",
+          "54e22b09-c28c-4356-aa2b-796f669a4bb2",
+          "5a46f23e-dcb4-4f54-9a03-42443dcdec7f",
+          "5cc367e6-f494-4842-8ebe-13b13ec16598",
+          "60bda02c-345b-426f-8248-e57393659c8f",
+          "66cdf639-d34d-4c37-a08c-cea9be88b06c",
+          "6d1ad231-3683-4e89-bc77-1c90e63260aa",
+          "709dede3-8767-42ec-8b80-143f0484940e",
+          "71b26fe1-4401-4e74-b98a-913a77b64428",
+          "740d9487-5f70-47b9-84cd-70fc6deb8012",
+          "75493c07-a489-4376-a9e7-913137f0e21c",
+          "7787832e-c951-447f-ad3c-0096611b3b05",
+          "7d775664-24bc-4de6-9659-42bf80ed4dc7",
+          "7ffd5cd5-ccc7-4dca-881c-1bb5baf3f921",
+          "832719be-ccab-40cf-bc5c-12cf50de0197",
+          "872edf6d-919d-40ff-af7e-dc4ea28e6b68",
+          "91e08f42-2a92-4e89-a551-c60f939e1391",
+          "974c28fe-e1b0-47bf-ac8e-c8ed72214799",
+          "9b4cf859-23a8-4cf1-b29f-914defd61e6d",
+          "9cd4f32c-2fe5-4956-97b8-35773ab86e9c",
+          "a5e0ba5a-2866-4df6-9258-3e4d396ca69b",
+          "a7c39adb-d4e4-4d03-96ba-a43b7902084e",
+          "a8676a47-40f7-42dc-a48a-106889d1942a",
+          "aaf03184-fa83-4646-8a97-66f5358430ac",
+          "ab7a1c21-3aa3-4e37-ab31-dc3102c78859",
+          "ac610667-97b3-492e-a1cf-eea0c5158266",
+          "ac9159fc-6f24-437c-8cd8-42a796c67f22",
+          "af536771-59bc-42b6-9158-2ffd0ebed61b",
+          "bf4e6174-c91d-4cc7-b70b-3db30fb97c00",
+          "d084f3c7-5fa2-4147-94ae-c6a6578888af",
+          "d17f9021-6bee-41a8-a93a-937dea52398f",
+          "d8f7b8d0-58ba-477c-a6ff-f8c7eb47aa8e",
+          "de09791c-420c-4081-bfd2-6977c2a53ad7",
+          "deee6bf3-05c8-4272-aa11-2aef79cbd77b",
+          "ebcc9469-739b-4100-86ed-5125715d34ad",
+          "f524aaf8-4d2d-41bb-90be-734fa28de9ec",
+          "f6ee99f7-a3db-4fc6-a84f-6044b7ebf44b",
+          "f770bd0c-efaa-4351-9e9a-86c0e381def6",
+          "fb9b141e-06f3-4595-b1d6-3e758e2ab444",
+          "fcb69d89-9991-43c4-add3-7fbb2c4212ab",
+          "fe566038-a354-4022-816a-e068b30af0a3",
+          "ffa284b8-0f92-4749-9c0f-87110fad03c5"
+        ],
+        "geometries": [
+          {
+            "uuid": "01b3ae2a-11d0-402f-8656-b18563674f3d",
+            "id": 42,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "06a65616-bee6-4d0c-8291-5bfa4cf5718e",
+            "id": 197,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "08baed90-51ef-468f-b6a0-59fa962fb7cb",
+            "id": 258,
+            "type": "RingGeometry"
+          },
+          {
+            "uuid": "1292f586-175d-4ac3-b184-fe4338120b0c",
+            "id": 188,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "13c6c1d8-a417-4ba3-bd2c-efb430a5a2ac",
+            "id": 18,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "17c3499e-14fd-4a08-9a69-b1be203bd82f",
+            "id": 297,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "18d45a4c-8da3-48c0-91cc-fb691f7ae365",
+            "id": 34,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "1b9608d0-31a7-49da-8a62-ea1b24a8e4da",
+            "id": 168,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "1e816ff0-efa0-4f5a-8b35-f7fab6234518",
+            "id": 22,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "28d9c923-0052-4e3c-ac85-cdfe0b8c20bf",
+            "id": 32,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "2a8e35de-9619-4bd3-bfd5-e54ac690d844",
+            "id": 2,
+            "type": "BoxGeometry"
+          },
+          {
+            "uuid": "2bdcb4a1-d4e0-4bad-954d-4322e1077c0e",
+            "id": 48,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "31eb912c-bd87-469e-b4e2-bfc87484af51",
+            "id": 283,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "32ae7543-da43-4c6f-bc0b-fc12c1eb598d",
+            "id": 24,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "387efa3a-bbdb-44c3-b300-08a53c30e382",
+            "id": 26,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "38efc86a-bf85-401f-a7d4-4a18f71c57d8",
+            "id": 44,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "3a4caed1-f0de-4f96-8075-dea2d078c493",
+            "id": 30,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "3d156333-7a7c-4378-b92b-aba538903c67",
+            "id": 224,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "4459bfd3-2883-4ef0-adac-a3d9ed4eab41",
+            "id": 139,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "48109fde-c87b-483c-b414-25c2d27532a1",
+            "id": 287,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "499a6a99-2a3a-4a91-9f99-6cdba5cc6b5e",
+            "id": 36,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "54e22b09-c28c-4356-aa2b-796f669a4bb2",
+            "id": 293,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "5a46f23e-dcb4-4f54-9a03-42443dcdec7f",
+            "id": 291,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "5cc367e6-f494-4842-8ebe-13b13ec16598",
+            "id": 7,
+            "type": "EdgesGeometry"
+          },
+          {
+            "uuid": "60bda02c-345b-426f-8248-e57393659c8f",
+            "id": 116,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "66cdf639-d34d-4c37-a08c-cea9be88b06c",
+            "id": 104,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "6d1ad231-3683-4e89-bc77-1c90e63260aa",
+            "id": 54,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "709dede3-8767-42ec-8b80-143f0484940e",
+            "id": 16,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "71b26fe1-4401-4e74-b98a-913a77b64428",
+            "id": 129,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "740d9487-5f70-47b9-84cd-70fc6deb8012",
+            "id": 85,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "75493c07-a489-4376-a9e7-913137f0e21c",
+            "id": 257,
+            "type": "SphereGeometry"
+          },
+          {
+            "uuid": "7787832e-c951-447f-ad3c-0096611b3b05",
+            "id": 242,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "7d775664-24bc-4de6-9659-42bf80ed4dc7",
+            "id": 264,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "7ffd5cd5-ccc7-4dca-881c-1bb5baf3f921",
+            "id": 58,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "832719be-ccab-40cf-bc5c-12cf50de0197",
+            "id": 40,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "872edf6d-919d-40ff-af7e-dc4ea28e6b68",
+            "id": 148,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "91e08f42-2a92-4e89-a551-c60f939e1391",
+            "id": 5,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "974c28fe-e1b0-47bf-ac8e-c8ed72214799",
+            "id": 73,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "9b4cf859-23a8-4cf1-b29f-914defd61e6d",
+            "id": 3,
+            "type": "CylinderGeometry"
+          },
+          {
+            "uuid": "9cd4f32c-2fe5-4956-97b8-35773ab86e9c",
+            "id": 4,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "a5e0ba5a-2866-4df6-9258-3e4d396ca69b",
+            "id": 295,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "a7c39adb-d4e4-4d03-96ba-a43b7902084e",
+            "id": 256,
+            "type": "ConeGeometry"
+          },
+          {
+            "uuid": "a8676a47-40f7-42dc-a48a-106889d1942a",
+            "id": 28,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "aaf03184-fa83-4646-8a97-66f5358430ac",
+            "id": 215,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "ab7a1c21-3aa3-4e37-ab31-dc3102c78859",
+            "id": 160,
+            "type": "ConeGeometry"
+          },
+          {
+            "uuid": "ac610667-97b3-492e-a1cf-eea0c5158266",
+            "id": 260,
+            "type": "SphereGeometry"
+          },
+          {
+            "uuid": "ac9159fc-6f24-437c-8cd8-42a796c67f22",
+            "id": 56,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "af536771-59bc-42b6-9158-2ffd0ebed61b",
+            "id": 285,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "bf4e6174-c91d-4cc7-b70b-3db30fb97c00",
+            "id": 12,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "d084f3c7-5fa2-4147-94ae-c6a6578888af",
+            "id": 289,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "d17f9021-6bee-41a8-a93a-937dea52398f",
+            "id": 259,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "d8f7b8d0-58ba-477c-a6ff-f8c7eb47aa8e",
+            "id": 20,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "de09791c-420c-4081-bfd2-6977c2a53ad7",
+            "id": 52,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "deee6bf3-05c8-4272-aa11-2aef79cbd77b",
+            "id": 179,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "ebcc9469-739b-4100-86ed-5125715d34ad",
+            "id": 46,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "f524aaf8-4d2d-41bb-90be-734fa28de9ec",
+            "id": 38,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "f6ee99f7-a3db-4fc6-a84f-6044b7ebf44b",
+            "id": 233,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "f770bd0c-efaa-4351-9e9a-86c0e381def6",
+            "id": 6,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fb9b141e-06f3-4595-b1d6-3e758e2ab444",
+            "id": 206,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fcb69d89-9991-43c4-add3-7fbb2c4212ab",
+            "id": 50,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fe566038-a354-4022-816a-e068b30af0a3",
+            "id": 71,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "ffa284b8-0f92-4749-9c0f-87110fad03c5",
+            "id": 14,
+            "type": "TextGeometry"
+          }
+        ],
+        "inactiveLettering": [
+          {
+            "geometryUUID": "d8f7b8d0-58ba-477c-a6ff-f8c7eb47aa8e",
+            "objectUUID": "4cb5fa81-cd38-4b0e-a000-0ef63615c840",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "104b737c-5ae6-4d41-9cbd-76405cc88cb1",
+              "harborName": "TEST / REPLAY M 06"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "3a4caed1-f0de-4f96-8075-dea2d078c493",
+            "objectUUID": "912d6f1a-c714-4834-9526-e9c91e7b69f1",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "7bbcb300-fd2b-43a6-97ef-a6d4b1780708",
+              "harborName": "TEST / REPLAY M 11"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "832719be-ccab-40cf-bc5c-12cf50de0197",
+            "objectUUID": "dbc9d8c4-e4a0-4d9e-9e39-4fe720f9f0b3",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "aa114bd5-ec92-4677-a0bd-51bbcc51f661",
+              "harborName": "TEST / REPLAY M 16"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "bf4e6174-c91d-4cc7-b70b-3db30fb97c00",
+            "objectUUID": "161c9c6c-11bc-46e5-bf4f-0876fb22c5aa",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "1c0303cc-a3b5-4246-a6fe-0021da05b9ef",
+              "harborName": "TEST / REPLAY M 02"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "1e816ff0-efa0-4f5a-8b35-f7fab6234518",
+            "objectUUID": "77e0ecb4-3c75-4edd-b8ec-df6c23c37228",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "2775e9a8-819c-4ea5-8519-b52b6177d8f2",
+              "harborName": "TEST / REPLAY M 07"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "28d9c923-0052-4e3c-ac85-cdfe0b8c20bf",
+            "objectUUID": "0e39b57f-53e0-40c9-afc9-1db29221c55a",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "77fa5e0a-f3aa-4893-b650-4a17dc823740",
+              "harborName": "TEST / REPLAY M 12"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "01b3ae2a-11d0-402f-8656-b18563674f3d",
+            "objectUUID": "1776ce75-7326-43e4-b503-b87a55688948",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "fb67df21-cc65-457c-93a5-9ee46b4ec7d3",
+              "harborName": "TEST / REPLAY M 17"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "ffa284b8-0f92-4749-9c0f-87110fad03c5",
+            "objectUUID": "069edd91-0e54-49cc-885b-ed2df01a5d5a",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "e4e94878-f923-4f67-9855-b15598a6cbf0",
+              "harborName": "TEST / REPLAY M 03"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "32ae7543-da43-4c6f-bc0b-fc12c1eb598d",
+            "objectUUID": "6c57a9e5-2f47-438b-a862-eafcdd429309",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "9129d0d5-0416-43c2-8097-9941f8650d56",
+              "harborName": "TEST / REPLAY M 08"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "18d45a4c-8da3-48c0-91cc-fb691f7ae365",
+            "objectUUID": "ed94b391-a254-4b9b-bf5e-a692c041e947",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "7c6bd0e6-e138-4ca6-8d43-7ba8556f6299",
+              "harborName": "TEST / REPLAY M 13"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "38efc86a-bf85-401f-a7d4-4a18f71c57d8",
+            "objectUUID": "1f4cc38f-edf3-4f3e-91f4-c99e799a8a26",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "e856ace3-703b-4ab4-b2e4-4069d4d09896",
+              "harborName": "TEST / REPLAY M 18"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "709dede3-8767-42ec-8b80-143f0484940e",
+            "objectUUID": "349fc609-6c19-44de-9a87-2a773f110def",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "a8a4fbf2-b256-4f6f-8b4c-ec6c7282067c",
+              "harborName": "TEST / REPLAY M 04"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "387efa3a-bbdb-44c3-b300-08a53c30e382",
+            "objectUUID": "6ad67ff1-d476-4d3f-92d1-7393ba5dd8be",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "3cde877a-ff0c-4ec0-9ad3-d9ffbab5c833",
+              "harborName": "TEST / REPLAY M 09"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "499a6a99-2a3a-4a91-9f99-6cdba5cc6b5e",
+            "objectUUID": "fadef7ea-6e3e-4eba-83b6-e54578b319c4",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "f0d55386-54d8-4aaf-bac4-b096499a5848",
+              "harborName": "TEST / REPLAY M 14"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "ebcc9469-739b-4100-86ed-5125715d34ad",
+            "objectUUID": "b7707a88-01fe-4103-a8c2-5f18ec000e14",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "6f3289ed-ef18-4ec7-a7fa-5bd570bc992e",
+              "harborName": "TEST / REPLAY M 19"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "13c6c1d8-a417-4ba3-bd2c-efb430a5a2ac",
+            "objectUUID": "87efcac3-0e7f-4949-ba70-1832dc520a81",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "67b89968-58d3-46d0-ada9-db18bcf48f00",
+              "harborName": "TEST / REPLAY M 05"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "a8676a47-40f7-42dc-a48a-106889d1942a",
+            "objectUUID": "95b3ad5a-17b0-4533-85e9-dba6dd9f585f",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "f48f8a95-1906-4aa9-a8ae-27705eb7b372",
+              "harborName": "TEST / REPLAY M 10"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "f524aaf8-4d2d-41bb-90be-734fa28de9ec",
+            "objectUUID": "497769fe-d316-49c1-b76c-9c1ad74c41c3",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "49d2bd07-95de-44d7-b967-d0f3ead06b95",
+              "harborName": "TEST / REPLAY M 15"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "2bdcb4a1-d4e0-4bad-954d-4322e1077c0e",
+            "objectUUID": "4bfdcadc-3126-401e-8871-77d7b734a052",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "522f60d3-1118-4e81-8e3d-38ef74c0e0ee",
+              "harborName": "TEST / REPLAY M 20"
+            },
+            "textDirectlyAvailable": false
+          }
+        ],
+        "canonical": {
+          "nodes": 20,
+          "pods": 300,
+          "visibleNodes": 8,
+          "visiblePods": 120
+        },
+        "viewport": [
+          1440,
+          900
+        ],
+        "canvasRect": [
+          0,
+          0,
+          1440,
+          900
+        ],
+        "dpr": 1,
+        "rendererDPR": 1,
+        "preferences": "{\"version\":1,\"patrol\":true,\"speed\":\"normal\",\"bob\":true,\"sea\":true,\"seaStrength\":\"light\",\"wake\":true,\"operations\":\"full\",\"motionPreference\":\"system\",\"paused\":false,\"quality\":\"auto\",\"theme\":\"system\",\"contrast\":\"normal\"}",
+        "completed": 0
+      },
+      {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı",
+        "activePosition": [
+          0,
+          0
+        ],
+        "camera": {
+          "position": [
+            155.32070332934836,
+            297.3149971650057,
+            468.72488860383237
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.19405942434202544,
+            0.06843554348917544,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "target": [
+            6.663204746845622,
+            0,
+            130.86693727996226
+          ]
+        },
+        "gpu": {
+          "geometries": 57,
+          "textures": 3
+        },
+        "sceneReachable": {
+          "objects": 424,
+          "geometries": 62,
+          "materials": 44
+        },
+        "geometryUUIDs": [
+          "009ef05c-c550-4f1e-bca5-8cc191afbd3b",
+          "06a65616-bee6-4d0c-8291-5bfa4cf5718e",
+          "08baed90-51ef-468f-b6a0-59fa962fb7cb",
+          "1292f586-175d-4ac3-b184-fe4338120b0c",
+          "1a163a67-4d80-4bfd-9f89-d682a51ebf5c",
+          "1b9608d0-31a7-49da-8a62-ea1b24a8e4da",
+          "21f5f51c-7e32-4607-a805-247a29d67332",
+          "2424dac4-537f-4d11-9f13-92626ea00f6a",
+          "26053765-ec5a-404f-9367-3815d69b7d4e",
+          "2a8e35de-9619-4bd3-bfd5-e54ac690d844",
+          "369d2857-3ec0-443a-8eaa-03bf30a634e3",
+          "3bb349f8-f769-4ff3-8f65-285efc6126c6",
+          "3d156333-7a7c-4378-b92b-aba538903c67",
+          "4459bfd3-2883-4ef0-adac-a3d9ed4eab41",
+          "51cef371-4031-4bd9-ab48-d47e5abfb105",
+          "5cc367e6-f494-4842-8ebe-13b13ec16598",
+          "5cedef48-93b0-4758-9eda-06c045c3cc9d",
+          "60bda02c-345b-426f-8248-e57393659c8f",
+          "66cdf639-d34d-4c37-a08c-cea9be88b06c",
+          "6a404885-2bec-43f9-bc20-4f314377d5a5",
+          "6d1ad231-3683-4e89-bc77-1c90e63260aa",
+          "71b26fe1-4401-4e74-b98a-913a77b64428",
+          "740d9487-5f70-47b9-84cd-70fc6deb8012",
+          "7419ee98-64d9-4325-8967-3fe7c9f3d892",
+          "75493c07-a489-4376-a9e7-913137f0e21c",
+          "7787832e-c951-447f-ad3c-0096611b3b05",
+          "79ad2ea8-7c19-4bfb-8595-ce96d168a5d8",
+          "7d775664-24bc-4de6-9659-42bf80ed4dc7",
+          "7ea7be34-8682-4ffe-b899-2c8ac0392058",
+          "7ecb99e6-8b92-480a-b14e-0d6334c1bd1e",
+          "7ed800d1-ea8f-4a65-aedd-27d6f8d98067",
+          "7ffd5cd5-ccc7-4dca-881c-1bb5baf3f921",
+          "80153586-3256-4d8a-8980-09c543630713",
+          "872edf6d-919d-40ff-af7e-dc4ea28e6b68",
+          "8756e231-5135-4894-b808-e39ce7cdd2b6",
+          "91a8364d-8b32-4d6e-baa0-9e7687232252",
+          "91e08f42-2a92-4e89-a551-c60f939e1391",
+          "96ac4b20-2260-49b2-8a83-683d94ad0eed",
+          "974c28fe-e1b0-47bf-ac8e-c8ed72214799",
+          "9b4cf859-23a8-4cf1-b29f-914defd61e6d",
+          "9cd4f32c-2fe5-4956-97b8-35773ab86e9c",
+          "a7c39adb-d4e4-4d03-96ba-a43b7902084e",
+          "aaf03184-fa83-4646-8a97-66f5358430ac",
+          "ab7a1c21-3aa3-4e37-ab31-dc3102c78859",
+          "ac610667-97b3-492e-a1cf-eea0c5158266",
+          "ac9159fc-6f24-437c-8cd8-42a796c67f22",
+          "ad05b3b6-1d25-447c-892e-b0ec782fb1fe",
+          "ae68747d-32c8-43fb-b34b-a12618b1c944",
+          "b96ef215-dbe7-495b-87c7-7ea0e443e392",
+          "b979b9a9-c417-4bf1-9a29-88138404fc3f",
+          "c5d46c72-165d-4083-b1c7-38acfc419bc5",
+          "d17f9021-6bee-41a8-a93a-937dea52398f",
+          "d4a2cc2d-bfb1-4709-9b9f-9548f7f0381f",
+          "d9cbddb1-f3a5-4214-9de2-ba4d558a6042",
+          "de09791c-420c-4081-bfd2-6977c2a53ad7",
+          "deee6bf3-05c8-4272-aa11-2aef79cbd77b",
+          "e36e378a-87f9-47be-aeb0-66c6a6ae96ab",
+          "f6ee99f7-a3db-4fc6-a84f-6044b7ebf44b",
+          "f770bd0c-efaa-4351-9e9a-86c0e381def6",
+          "fb9b141e-06f3-4595-b1d6-3e758e2ab444",
+          "fcb69d89-9991-43c4-add3-7fbb2c4212ab",
+          "fe566038-a354-4022-816a-e068b30af0a3"
+        ],
+        "geometries": [
+          {
+            "uuid": "009ef05c-c550-4f1e-bca5-8cc191afbd3b",
+            "id": 470,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "06a65616-bee6-4d0c-8291-5bfa4cf5718e",
+            "id": 197,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "08baed90-51ef-468f-b6a0-59fa962fb7cb",
+            "id": 258,
+            "type": "RingGeometry"
+          },
+          {
+            "uuid": "1292f586-175d-4ac3-b184-fe4338120b0c",
+            "id": 188,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "1a163a67-4d80-4bfd-9f89-d682a51ebf5c",
+            "id": 522,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "1b9608d0-31a7-49da-8a62-ea1b24a8e4da",
+            "id": 168,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "21f5f51c-7e32-4607-a805-247a29d67332",
+            "id": 814,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "2424dac4-537f-4d11-9f13-92626ea00f6a",
+            "id": 574,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "26053765-ec5a-404f-9367-3815d69b7d4e",
+            "id": 444,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "2a8e35de-9619-4bd3-bfd5-e54ac690d844",
+            "id": 2,
+            "type": "BoxGeometry"
+          },
+          {
+            "uuid": "369d2857-3ec0-443a-8eaa-03bf30a634e3",
+            "id": 496,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "3bb349f8-f769-4ff3-8f65-285efc6126c6",
+            "id": 418,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "3d156333-7a7c-4378-b92b-aba538903c67",
+            "id": 224,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "4459bfd3-2883-4ef0-adac-a3d9ed4eab41",
+            "id": 139,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "51cef371-4031-4bd9-ab48-d47e5abfb105",
+            "id": 822,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "5cc367e6-f494-4842-8ebe-13b13ec16598",
+            "id": 7,
+            "type": "EdgesGeometry"
+          },
+          {
+            "uuid": "5cedef48-93b0-4758-9eda-06c045c3cc9d",
+            "id": 626,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "60bda02c-345b-426f-8248-e57393659c8f",
+            "id": 116,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "66cdf639-d34d-4c37-a08c-cea9be88b06c",
+            "id": 104,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "6a404885-2bec-43f9-bc20-4f314377d5a5",
+            "id": 340,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "6d1ad231-3683-4e89-bc77-1c90e63260aa",
+            "id": 54,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "71b26fe1-4401-4e74-b98a-913a77b64428",
+            "id": 129,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "740d9487-5f70-47b9-84cd-70fc6deb8012",
+            "id": 85,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "7419ee98-64d9-4325-8967-3fe7c9f3d892",
+            "id": 834,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "75493c07-a489-4376-a9e7-913137f0e21c",
+            "id": 257,
+            "type": "SphereGeometry"
+          },
+          {
+            "uuid": "7787832e-c951-447f-ad3c-0096611b3b05",
+            "id": 242,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "79ad2ea8-7c19-4bfb-8595-ce96d168a5d8",
+            "id": 366,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "7d775664-24bc-4de6-9659-42bf80ed4dc7",
+            "id": 264,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "7ea7be34-8682-4ffe-b899-2c8ac0392058",
+            "id": 730,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "7ecb99e6-8b92-480a-b14e-0d6334c1bd1e",
+            "id": 820,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "7ed800d1-ea8f-4a65-aedd-27d6f8d98067",
+            "id": 678,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "7ffd5cd5-ccc7-4dca-881c-1bb5baf3f921",
+            "id": 58,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "80153586-3256-4d8a-8980-09c543630713",
+            "id": 600,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "872edf6d-919d-40ff-af7e-dc4ea28e6b68",
+            "id": 148,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "8756e231-5135-4894-b808-e39ce7cdd2b6",
+            "id": 828,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "91a8364d-8b32-4d6e-baa0-9e7687232252",
+            "id": 392,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "91e08f42-2a92-4e89-a551-c60f939e1391",
+            "id": 5,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "96ac4b20-2260-49b2-8a83-683d94ad0eed",
+            "id": 762,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "974c28fe-e1b0-47bf-ac8e-c8ed72214799",
+            "id": 73,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "9b4cf859-23a8-4cf1-b29f-914defd61e6d",
+            "id": 3,
+            "type": "CylinderGeometry"
+          },
+          {
+            "uuid": "9cd4f32c-2fe5-4956-97b8-35773ab86e9c",
+            "id": 4,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "a7c39adb-d4e4-4d03-96ba-a43b7902084e",
+            "id": 256,
+            "type": "ConeGeometry"
+          },
+          {
+            "uuid": "aaf03184-fa83-4646-8a97-66f5358430ac",
+            "id": 215,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "ab7a1c21-3aa3-4e37-ab31-dc3102c78859",
+            "id": 160,
+            "type": "ConeGeometry"
+          },
+          {
+            "uuid": "ac610667-97b3-492e-a1cf-eea0c5158266",
+            "id": 260,
+            "type": "SphereGeometry"
+          },
+          {
+            "uuid": "ac9159fc-6f24-437c-8cd8-42a796c67f22",
+            "id": 56,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "ad05b3b6-1d25-447c-892e-b0ec782fb1fe",
+            "id": 826,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "ae68747d-32c8-43fb-b34b-a12618b1c944",
+            "id": 652,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "b96ef215-dbe7-495b-87c7-7ea0e443e392",
+            "id": 830,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "b979b9a9-c417-4bf1-9a29-88138404fc3f",
+            "id": 704,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "c5d46c72-165d-4083-b1c7-38acfc419bc5",
+            "id": 548,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "d17f9021-6bee-41a8-a93a-937dea52398f",
+            "id": 259,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "d4a2cc2d-bfb1-4709-9b9f-9548f7f0381f",
+            "id": 824,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "d9cbddb1-f3a5-4214-9de2-ba4d558a6042",
+            "id": 788,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "de09791c-420c-4081-bfd2-6977c2a53ad7",
+            "id": 52,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "deee6bf3-05c8-4272-aa11-2aef79cbd77b",
+            "id": 179,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "e36e378a-87f9-47be-aeb0-66c6a6ae96ab",
+            "id": 832,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "f6ee99f7-a3db-4fc6-a84f-6044b7ebf44b",
+            "id": 233,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "f770bd0c-efaa-4351-9e9a-86c0e381def6",
+            "id": 6,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fb9b141e-06f3-4595-b1d6-3e758e2ab444",
+            "id": 206,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fcb69d89-9991-43c4-add3-7fbb2c4212ab",
+            "id": 50,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fe566038-a354-4022-816a-e068b30af0a3",
+            "id": 71,
+            "type": "TextGeometry"
+          }
+        ],
+        "inactiveLettering": [
+          {
+            "geometryUUID": "26053765-ec5a-404f-9367-3815d69b7d4e",
+            "objectUUID": "af4d0e90-ff7a-47ba-b225-3d6234e41028",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "104b737c-5ae6-4d41-9cbd-76405cc88cb1",
+              "harborName": "TEST / REPLAY M 06"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "2424dac4-537f-4d11-9f13-92626ea00f6a",
+            "objectUUID": "b12a230b-9fa6-4d7d-9564-650812132adb",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "7bbcb300-fd2b-43a6-97ef-a6d4b1780708",
+              "harborName": "TEST / REPLAY M 11"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "b979b9a9-c417-4bf1-9a29-88138404fc3f",
+            "objectUUID": "359dbc23-7c4f-4556-ba15-ac550295663c",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "aa114bd5-ec92-4677-a0bd-51bbcc51f661",
+              "harborName": "TEST / REPLAY M 16"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "6a404885-2bec-43f9-bc20-4f314377d5a5",
+            "objectUUID": "6de18093-402b-421b-87cd-21bf2d2eb083",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "1c0303cc-a3b5-4246-a6fe-0021da05b9ef",
+              "harborName": "TEST / REPLAY M 02"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "009ef05c-c550-4f1e-bca5-8cc191afbd3b",
+            "objectUUID": "a1320d84-b7b5-4e83-9f57-31b0d233c410",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "2775e9a8-819c-4ea5-8519-b52b6177d8f2",
+              "harborName": "TEST / REPLAY M 07"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "80153586-3256-4d8a-8980-09c543630713",
+            "objectUUID": "c7b92ba7-d97a-4b7f-a5f4-1ef56c314406",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "77fa5e0a-f3aa-4893-b650-4a17dc823740",
+              "harborName": "TEST / REPLAY M 12"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "7ea7be34-8682-4ffe-b899-2c8ac0392058",
+            "objectUUID": "df895c0a-fe47-4dc5-8a55-aecbbbe17406",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "fb67df21-cc65-457c-93a5-9ee46b4ec7d3",
+              "harborName": "TEST / REPLAY M 17"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "79ad2ea8-7c19-4bfb-8595-ce96d168a5d8",
+            "objectUUID": "882bb1a1-515c-4071-b48e-eca65bd01806",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "e4e94878-f923-4f67-9855-b15598a6cbf0",
+              "harborName": "TEST / REPLAY M 03"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "369d2857-3ec0-443a-8eaa-03bf30a634e3",
+            "objectUUID": "607feb3d-4aeb-40c4-ada9-e635c276c64f",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "9129d0d5-0416-43c2-8097-9941f8650d56",
+              "harborName": "TEST / REPLAY M 08"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "5cedef48-93b0-4758-9eda-06c045c3cc9d",
+            "objectUUID": "99bc75d4-d24c-4175-b64d-613a46f52730",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "7c6bd0e6-e138-4ca6-8d43-7ba8556f6299",
+              "harborName": "TEST / REPLAY M 13"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "96ac4b20-2260-49b2-8a83-683d94ad0eed",
+            "objectUUID": "987889dd-adaa-413b-977c-6c898a7eece3",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "e856ace3-703b-4ab4-b2e4-4069d4d09896",
+              "harborName": "TEST / REPLAY M 18"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "91a8364d-8b32-4d6e-baa0-9e7687232252",
+            "objectUUID": "08be3f04-73cc-49f7-bdf1-afed759313c0",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "a8a4fbf2-b256-4f6f-8b4c-ec6c7282067c",
+              "harborName": "TEST / REPLAY M 04"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "1a163a67-4d80-4bfd-9f89-d682a51ebf5c",
+            "objectUUID": "62b75b88-6cde-4aff-b169-6cc81cc91303",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "3cde877a-ff0c-4ec0-9ad3-d9ffbab5c833",
+              "harborName": "TEST / REPLAY M 09"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "ae68747d-32c8-43fb-b34b-a12618b1c944",
+            "objectUUID": "0765802f-f580-41a0-b48e-dbecef69e9b7",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "f0d55386-54d8-4aaf-bac4-b096499a5848",
+              "harborName": "TEST / REPLAY M 14"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "d9cbddb1-f3a5-4214-9de2-ba4d558a6042",
+            "objectUUID": "ba119e7d-be61-43d6-a7c2-750d6f2d177c",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "6f3289ed-ef18-4ec7-a7fa-5bd570bc992e",
+              "harborName": "TEST / REPLAY M 19"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "3bb349f8-f769-4ff3-8f65-285efc6126c6",
+            "objectUUID": "3f172dff-d0a7-4389-8d7b-2bebd15b32c9",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "67b89968-58d3-46d0-ada9-db18bcf48f00",
+              "harborName": "TEST / REPLAY M 05"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "c5d46c72-165d-4083-b1c7-38acfc419bc5",
+            "objectUUID": "d89eb9be-5904-494f-bc61-c8034632597f",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "f48f8a95-1906-4aa9-a8ae-27705eb7b372",
+              "harborName": "TEST / REPLAY M 10"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "7ed800d1-ea8f-4a65-aedd-27d6f8d98067",
+            "objectUUID": "4eff470d-2f6e-4de2-bffa-1f6ed9bed1a3",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "49d2bd07-95de-44d7-b967-d0f3ead06b95",
+              "harborName": "TEST / REPLAY M 15"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "21f5f51c-7e32-4607-a805-247a29d67332",
+            "objectUUID": "3498637b-5f7f-48fd-bfe9-2460475166f2",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "522f60d3-1118-4e81-8e3d-38ef74c0e0ee",
+              "harborName": "TEST / REPLAY M 20"
+            },
+            "textDirectlyAvailable": false
+          }
+        ],
+        "canonical": {
+          "nodes": 20,
+          "pods": 300,
+          "visibleNodes": 8,
+          "visiblePods": 120
+        },
+        "viewport": [
+          1440,
+          900
+        ],
+        "canvasRect": [
+          0,
+          0,
+          1440,
+          900
+        ],
+        "dpr": 1,
+        "rendererDPR": 1,
+        "preferences": "{\"version\":1,\"patrol\":true,\"speed\":\"normal\",\"bob\":true,\"sea\":true,\"seaStrength\":\"light\",\"wake\":true,\"operations\":\"full\",\"motionPreference\":\"system\",\"paused\":false,\"quality\":\"auto\",\"theme\":\"system\",\"contrast\":\"normal\"}",
+        "completed": 20
+      },
+      {
+        "harborId": "4194af08-639d-413d-80a5-191833db2b29",
+        "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı",
+        "activePosition": [
+          0,
+          0
+        ],
+        "camera": {
+          "position": [
+            155.32070332934836,
+            297.3149971650057,
+            468.72488860383237
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.19405942434202544,
+            0.06843554348917544,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "target": [
+            6.663204746845622,
+            0,
+            130.86693727996226
+          ]
+        },
+        "gpu": {
+          "geometries": 57,
+          "textures": 3
+        },
+        "sceneReachable": {
+          "objects": 424,
+          "geometries": 62,
+          "materials": 44
+        },
+        "geometryUUIDs": [
+          "06a65616-bee6-4d0c-8291-5bfa4cf5718e",
+          "08baed90-51ef-468f-b6a0-59fa962fb7cb",
+          "1292f586-175d-4ac3-b184-fe4338120b0c",
+          "1917672f-0bc2-433c-8391-7bf929b119b3",
+          "1b9608d0-31a7-49da-8a62-ea1b24a8e4da",
+          "23a97263-8941-4de3-bff0-8fd5fefe5e95",
+          "2459c8a4-63af-44a8-addb-039187108aba",
+          "2a8e35de-9619-4bd3-bfd5-e54ac690d844",
+          "3b474ebe-5bf2-4f28-b97b-217c0c3b002e",
+          "3d156333-7a7c-4378-b92b-aba538903c67",
+          "4015f75c-6ee8-4f6f-b516-95b20a8b996a",
+          "4459bfd3-2883-4ef0-adac-a3d9ed4eab41",
+          "506bfa7b-e306-443c-ba5b-ae9745e46da9",
+          "5c10172b-7ba8-4359-9394-917cf0b0d2e3",
+          "5cc367e6-f494-4842-8ebe-13b13ec16598",
+          "60bda02c-345b-426f-8248-e57393659c8f",
+          "66cdf639-d34d-4c37-a08c-cea9be88b06c",
+          "6841baad-1603-49d9-a26d-5feb1fd1b6a5",
+          "6d1ad231-3683-4e89-bc77-1c90e63260aa",
+          "71b26fe1-4401-4e74-b98a-913a77b64428",
+          "740d9487-5f70-47b9-84cd-70fc6deb8012",
+          "75493c07-a489-4376-a9e7-913137f0e21c",
+          "7787832e-c951-447f-ad3c-0096611b3b05",
+          "7802144f-a0a8-4313-8156-34e056e1a9fc",
+          "7d775664-24bc-4de6-9659-42bf80ed4dc7",
+          "7ffd5cd5-ccc7-4dca-881c-1bb5baf3f921",
+          "825b5a84-6ff0-4eec-b703-e4a92906bcf3",
+          "872edf6d-919d-40ff-af7e-dc4ea28e6b68",
+          "8dc76507-de26-4cd2-bca2-e40f31895bae",
+          "8e628974-a803-407e-bee6-40c7119883a5",
+          "91e08f42-2a92-4e89-a551-c60f939e1391",
+          "9393271f-852e-4bab-b498-5842f6575d5a",
+          "974c28fe-e1b0-47bf-ac8e-c8ed72214799",
+          "9b4cf859-23a8-4cf1-b29f-914defd61e6d",
+          "9cd4f32c-2fe5-4956-97b8-35773ab86e9c",
+          "a2b8b071-2a5d-401c-a26f-76406e8e530e",
+          "a7c39adb-d4e4-4d03-96ba-a43b7902084e",
+          "aaf03184-fa83-4646-8a97-66f5358430ac",
+          "ab7a1c21-3aa3-4e37-ab31-dc3102c78859",
+          "ac610667-97b3-492e-a1cf-eea0c5158266",
+          "ac9159fc-6f24-437c-8cd8-42a796c67f22",
+          "b07309a2-c2a2-40d7-ac7d-6aee756848b9",
+          "c17b13a4-e6d3-427d-8738-33f81addd686",
+          "c5d3dfb8-01d2-4695-ba55-52d1e5735b3d",
+          "c8498331-a208-448b-a76d-9a2eab6d3224",
+          "cacc54a4-ecde-4962-9fe6-3254ddbf6f6a",
+          "ced7b36b-9055-482a-a174-5729ebe64647",
+          "d17f9021-6bee-41a8-a93a-937dea52398f",
+          "dabc2cbd-abe4-488b-a7e8-e2583e6cc226",
+          "db6ae595-0c37-4526-adbd-6feeced6f64e",
+          "de09791c-420c-4081-bfd2-6977c2a53ad7",
+          "deee6bf3-05c8-4272-aa11-2aef79cbd77b",
+          "e9b81f10-0f8e-437d-83c5-ce01568f8e7c",
+          "f3c55d36-2b31-409c-9f54-e67d17c3574f",
+          "f604fbc7-46cd-4c97-b46c-6844cfad3350",
+          "f6ee99f7-a3db-4fc6-a84f-6044b7ebf44b",
+          "f6f4df31-a928-49fa-b258-e240f9f7bd7b",
+          "f71cc4d8-ae3a-48b9-8159-f654c35de651",
+          "f770bd0c-efaa-4351-9e9a-86c0e381def6",
+          "fb9b141e-06f3-4595-b1d6-3e758e2ab444",
+          "fcb69d89-9991-43c4-add3-7fbb2c4212ab",
+          "fe566038-a354-4022-816a-e068b30af0a3"
+        ],
+        "geometries": [
+          {
+            "uuid": "06a65616-bee6-4d0c-8291-5bfa4cf5718e",
+            "id": 197,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "08baed90-51ef-468f-b6a0-59fa962fb7cb",
+            "id": 258,
+            "type": "RingGeometry"
+          },
+          {
+            "uuid": "1292f586-175d-4ac3-b184-fe4338120b0c",
+            "id": 188,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "1917672f-0bc2-433c-8391-7bf929b119b3",
+            "id": 1079,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "1b9608d0-31a7-49da-8a62-ea1b24a8e4da",
+            "id": 168,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "23a97263-8941-4de3-bff0-8fd5fefe5e95",
+            "id": 949,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "2459c8a4-63af-44a8-addb-039187108aba",
+            "id": 1345,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "2a8e35de-9619-4bd3-bfd5-e54ac690d844",
+            "id": 2,
+            "type": "BoxGeometry"
+          },
+          {
+            "uuid": "3b474ebe-5bf2-4f28-b97b-217c0c3b002e",
+            "id": 923,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "3d156333-7a7c-4378-b92b-aba538903c67",
+            "id": 224,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "4015f75c-6ee8-4f6f-b516-95b20a8b996a",
+            "id": 1293,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "4459bfd3-2883-4ef0-adac-a3d9ed4eab41",
+            "id": 139,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "506bfa7b-e306-443c-ba5b-ae9745e46da9",
+            "id": 1359,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "5c10172b-7ba8-4359-9394-917cf0b0d2e3",
+            "id": 1267,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "5cc367e6-f494-4842-8ebe-13b13ec16598",
+            "id": 7,
+            "type": "EdgesGeometry"
+          },
+          {
+            "uuid": "60bda02c-345b-426f-8248-e57393659c8f",
+            "id": 116,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "66cdf639-d34d-4c37-a08c-cea9be88b06c",
+            "id": 104,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "6841baad-1603-49d9-a26d-5feb1fd1b6a5",
+            "id": 1363,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "6d1ad231-3683-4e89-bc77-1c90e63260aa",
+            "id": 54,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "71b26fe1-4401-4e74-b98a-913a77b64428",
+            "id": 129,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "740d9487-5f70-47b9-84cd-70fc6deb8012",
+            "id": 85,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "75493c07-a489-4376-a9e7-913137f0e21c",
+            "id": 257,
+            "type": "SphereGeometry"
+          },
+          {
+            "uuid": "7787832e-c951-447f-ad3c-0096611b3b05",
+            "id": 242,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "7802144f-a0a8-4313-8156-34e056e1a9fc",
+            "id": 1183,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "7d775664-24bc-4de6-9659-42bf80ed4dc7",
+            "id": 264,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "7ffd5cd5-ccc7-4dca-881c-1bb5baf3f921",
+            "id": 58,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "825b5a84-6ff0-4eec-b703-e4a92906bcf3",
+            "id": 1209,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "872edf6d-919d-40ff-af7e-dc4ea28e6b68",
+            "id": 148,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "8dc76507-de26-4cd2-bca2-e40f31895bae",
+            "id": 1357,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "8e628974-a803-407e-bee6-40c7119883a5",
+            "id": 1351,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "91e08f42-2a92-4e89-a551-c60f939e1391",
+            "id": 5,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "9393271f-852e-4bab-b498-5842f6575d5a",
+            "id": 1053,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "974c28fe-e1b0-47bf-ac8e-c8ed72214799",
+            "id": 73,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "9b4cf859-23a8-4cf1-b29f-914defd61e6d",
+            "id": 3,
+            "type": "CylinderGeometry"
+          },
+          {
+            "uuid": "9cd4f32c-2fe5-4956-97b8-35773ab86e9c",
+            "id": 4,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "a2b8b071-2a5d-401c-a26f-76406e8e530e",
+            "id": 1361,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "a7c39adb-d4e4-4d03-96ba-a43b7902084e",
+            "id": 256,
+            "type": "ConeGeometry"
+          },
+          {
+            "uuid": "aaf03184-fa83-4646-8a97-66f5358430ac",
+            "id": 215,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "ab7a1c21-3aa3-4e37-ab31-dc3102c78859",
+            "id": 160,
+            "type": "ConeGeometry"
+          },
+          {
+            "uuid": "ac610667-97b3-492e-a1cf-eea0c5158266",
+            "id": 260,
+            "type": "SphereGeometry"
+          },
+          {
+            "uuid": "ac9159fc-6f24-437c-8cd8-42a796c67f22",
+            "id": 56,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "b07309a2-c2a2-40d7-ac7d-6aee756848b9",
+            "id": 1105,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "c17b13a4-e6d3-427d-8738-33f81addd686",
+            "id": 897,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "c5d3dfb8-01d2-4695-ba55-52d1e5735b3d",
+            "id": 1131,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "c8498331-a208-448b-a76d-9a2eab6d3224",
+            "id": 1027,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "cacc54a4-ecde-4962-9fe6-3254ddbf6f6a",
+            "id": 1319,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "ced7b36b-9055-482a-a174-5729ebe64647",
+            "id": 1365,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "d17f9021-6bee-41a8-a93a-937dea52398f",
+            "id": 259,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "dabc2cbd-abe4-488b-a7e8-e2583e6cc226",
+            "id": 1353,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "db6ae595-0c37-4526-adbd-6feeced6f64e",
+            "id": 1241,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "de09791c-420c-4081-bfd2-6977c2a53ad7",
+            "id": 52,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "deee6bf3-05c8-4272-aa11-2aef79cbd77b",
+            "id": 179,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "e9b81f10-0f8e-437d-83c5-ce01568f8e7c",
+            "id": 1001,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "f3c55d36-2b31-409c-9f54-e67d17c3574f",
+            "id": 1355,
+            "type": "OctahedronGeometry"
+          },
+          {
+            "uuid": "f604fbc7-46cd-4c97-b46c-6844cfad3350",
+            "id": 1157,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "f6ee99f7-a3db-4fc6-a84f-6044b7ebf44b",
+            "id": 233,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "f6f4df31-a928-49fa-b258-e240f9f7bd7b",
+            "id": 871,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "f71cc4d8-ae3a-48b9-8159-f654c35de651",
+            "id": 975,
+            "type": "TextGeometry"
+          },
+          {
+            "uuid": "f770bd0c-efaa-4351-9e9a-86c0e381def6",
+            "id": 6,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fb9b141e-06f3-4595-b1d6-3e758e2ab444",
+            "id": 206,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fcb69d89-9991-43c4-add3-7fbb2c4212ab",
+            "id": 50,
+            "type": "BufferGeometry"
+          },
+          {
+            "uuid": "fe566038-a354-4022-816a-e068b30af0a3",
+            "id": 71,
+            "type": "TextGeometry"
+          }
+        ],
+        "inactiveLettering": [
+          {
+            "geometryUUID": "f71cc4d8-ae3a-48b9-8159-f654c35de651",
+            "objectUUID": "2e18e706-3dc1-47b7-a172-2208167d12b1",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "104b737c-5ae6-4d41-9cbd-76405cc88cb1",
+              "harborName": "TEST / REPLAY M 06"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "b07309a2-c2a2-40d7-ac7d-6aee756848b9",
+            "objectUUID": "2835bc20-9657-44ca-bc07-882b8d19feeb",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "7bbcb300-fd2b-43a6-97ef-a6d4b1780708",
+              "harborName": "TEST / REPLAY M 11"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "db6ae595-0c37-4526-adbd-6feeced6f64e",
+            "objectUUID": "890d7429-4a7c-4d58-a8f8-7e1c78633109",
+            "objectName": "",
+            "position": [
+              -75,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "aa114bd5-ec92-4677-a0bd-51bbcc51f661",
+              "harborName": "TEST / REPLAY M 16"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "f6f4df31-a928-49fa-b258-e240f9f7bd7b",
+            "objectUUID": "4df8e46a-a44a-491d-9f67-0af85eeff477",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "1c0303cc-a3b5-4246-a6fe-0021da05b9ef",
+              "harborName": "TEST / REPLAY M 02"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "e9b81f10-0f8e-437d-83c5-ce01568f8e7c",
+            "objectUUID": "8c972019-5103-4da1-ac8f-b1be3d0f38f2",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "2775e9a8-819c-4ea5-8519-b52b6177d8f2",
+              "harborName": "TEST / REPLAY M 07"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "c5d3dfb8-01d2-4695-ba55-52d1e5735b3d",
+            "objectUUID": "5facbe49-3792-4079-8aa9-77ff74fce369",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "77fa5e0a-f3aa-4893-b650-4a17dc823740",
+              "harborName": "TEST / REPLAY M 12"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "5c10172b-7ba8-4359-9394-917cf0b0d2e3",
+            "objectUUID": "d477a75f-61d3-447e-8b3f-d247d8d81899",
+            "objectName": "",
+            "position": [
+              1325,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "fb67df21-cc65-457c-93a5-9ee46b4ec7d3",
+              "harborName": "TEST / REPLAY M 17"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "c17b13a4-e6d3-427d-8738-33f81addd686",
+            "objectUUID": "b459b11c-bfa3-4304-bd00-1205e9b67a21",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "e4e94878-f923-4f67-9855-b15598a6cbf0",
+              "harborName": "TEST / REPLAY M 03"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "c8498331-a208-448b-a76d-9a2eab6d3224",
+            "objectUUID": "392fcb2e-def7-4e52-abf7-63c16b4eef7d",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "9129d0d5-0416-43c2-8097-9941f8650d56",
+              "harborName": "TEST / REPLAY M 08"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "f604fbc7-46cd-4c97-b46c-6844cfad3350",
+            "objectUUID": "2de96560-dc9c-4b95-a381-868e7a9cb9a7",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "7c6bd0e6-e138-4ca6-8d43-7ba8556f6299",
+              "harborName": "TEST / REPLAY M 13"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "4015f75c-6ee8-4f6f-b516-95b20a8b996a",
+            "objectUUID": "131f5038-c4e9-4279-b575-6b939c05b90f",
+            "objectName": "",
+            "position": [
+              2725,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "e856ace3-703b-4ab4-b2e4-4069d4d09896",
+              "harborName": "TEST / REPLAY M 18"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "3b474ebe-5bf2-4f28-b97b-217c0c3b002e",
+            "objectUUID": "f45da609-ee79-4aad-ba1a-3eab69b0a206",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "a8a4fbf2-b256-4f6f-8b4c-ec6c7282067c",
+              "harborName": "TEST / REPLAY M 04"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "9393271f-852e-4bab-b498-5842f6575d5a",
+            "objectUUID": "93d5fcb2-39dc-41e8-9216-03fc6901fd2d",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "3cde877a-ff0c-4ec0-9ad3-d9ffbab5c833",
+              "harborName": "TEST / REPLAY M 09"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "7802144f-a0a8-4313-8156-34e056e1a9fc",
+            "objectUUID": "f30457f9-ee83-48bb-8bc9-ce3f9939dd8b",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "f0d55386-54d8-4aaf-bac4-b096499a5848",
+              "harborName": "TEST / REPLAY M 14"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "cacc54a4-ecde-4962-9fe6-3254ddbf6f6a",
+            "objectUUID": "f2c18e5e-27c0-48f1-a839-459c1bf7abbe",
+            "objectName": "",
+            "position": [
+              4125,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "6f3289ed-ef18-4ec7-a7fa-5bd570bc992e",
+              "harborName": "TEST / REPLAY M 19"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "23a97263-8941-4de3-bff0-8fd5fefe5e95",
+            "objectUUID": "2d561ba1-0279-4fd5-87b5-1c2bb4c2c5d2",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              45
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "67b89968-58d3-46d0-ada9-db18bcf48f00",
+              "harborName": "TEST / REPLAY M 05"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "1917672f-0bc2-433c-8391-7bf929b119b3",
+            "objectUUID": "2c33cdc9-6e0a-42ef-bf00-926fa7361e28",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              1445
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "f48f8a95-1906-4aa9-a8ae-27705eb7b372",
+              "harborName": "TEST / REPLAY M 10"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "825b5a84-6ff0-4eec-b703-e4a92906bcf3",
+            "objectUUID": "5bf26a92-c939-4d28-817c-67c7e2acfa8a",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              2845
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "49d2bd07-95de-44d7-b967-d0f3ead06b95",
+              "harborName": "TEST / REPLAY M 15"
+            },
+            "textDirectlyAvailable": false
+          },
+          {
+            "geometryUUID": "2459c8a4-63af-44a8-addb-039187108aba",
+            "objectUUID": "80633a13-a716-469e-a881-b5c57d491c73",
+            "objectName": "",
+            "position": [
+              5525,
+              5,
+              4245
+            ],
+            "association": {
+              "method": "observed mesh position matches existing WorkspaceHarbors label placement",
+              "harborId": "522f60d3-1118-4e81-8e3d-38ef74c0e0ee",
+              "harborName": "TEST / REPLAY M 20"
+            },
+            "textDirectlyAvailable": false
+          }
+        ],
+        "canonical": {
+          "nodes": 20,
+          "pods": 300,
+          "visibleNodes": 8,
+          "visiblePods": 120
+        },
+        "viewport": [
+          1440,
+          900
+        ],
+        "canvasRect": [
+          0,
+          0,
+          1440,
+          900
+        ],
+        "dpr": 1,
+        "rendererDPR": 1,
+        "preferences": "{\"version\":1,\"patrol\":true,\"speed\":\"normal\",\"bob\":true,\"sea\":true,\"seaStrength\":\"light\",\"wake\":true,\"operations\":\"full\",\"motionPreference\":\"system\",\"paused\":false,\"quality\":\"auto\",\"theme\":\"system\",\"contrast\":\"normal\"}",
+        "completed": 40
+      }
+    ],
+    "prohibitedWrites": [],
+    "limits": [
+      "Read-only GPU count/scene UUID diagnostic; not a CPU benchmark or a leak/no-leak acceptance.",
+      "TextGeometry exposes no text string here; any harbor/name association is an explicit mesh-position match, never an inferred glyph decode.",
+      "No visual reset/hold, quality, data, theme, viewport or DPR change."
+    ],
+    "comparison": {
+      "initialTo20GPU": 19,
+      "from20To40GPU": 0,
+      "from20To40AddedUUIDs": [
+        "1917672f-0bc2-433c-8391-7bf929b119b3",
+        "23a97263-8941-4de3-bff0-8fd5fefe5e95",
+        "2459c8a4-63af-44a8-addb-039187108aba",
+        "3b474ebe-5bf2-4f28-b97b-217c0c3b002e",
+        "4015f75c-6ee8-4f6f-b516-95b20a8b996a",
+        "506bfa7b-e306-443c-ba5b-ae9745e46da9",
+        "5c10172b-7ba8-4359-9394-917cf0b0d2e3",
+        "6841baad-1603-49d9-a26d-5feb1fd1b6a5",
+        "7802144f-a0a8-4313-8156-34e056e1a9fc",
+        "825b5a84-6ff0-4eec-b703-e4a92906bcf3",
+        "8dc76507-de26-4cd2-bca2-e40f31895bae",
+        "8e628974-a803-407e-bee6-40c7119883a5",
+        "9393271f-852e-4bab-b498-5842f6575d5a",
+        "a2b8b071-2a5d-401c-a26f-76406e8e530e",
+        "b07309a2-c2a2-40d7-ac7d-6aee756848b9",
+        "c17b13a4-e6d3-427d-8738-33f81addd686",
+        "c5d3dfb8-01d2-4695-ba55-52d1e5735b3d",
+        "c8498331-a208-448b-a76d-9a2eab6d3224",
+        "cacc54a4-ecde-4962-9fe6-3254ddbf6f6a",
+        "ced7b36b-9055-482a-a174-5729ebe64647",
+        "dabc2cbd-abe4-488b-a7e8-e2583e6cc226",
+        "db6ae595-0c37-4526-adbd-6feeced6f64e",
+        "e9b81f10-0f8e-437d-83c5-ce01568f8e7c",
+        "f3c55d36-2b31-409c-9f54-e67d17c3574f",
+        "f604fbc7-46cd-4c97-b46c-6844cfad3350",
+        "f6f4df31-a928-49fa-b258-e240f9f7bd7b",
+        "f71cc4d8-ae3a-48b9-8159-f654c35de651"
+      ],
+      "from20To40RemovedUUIDs": [
+        "009ef05c-c550-4f1e-bca5-8cc191afbd3b",
+        "1a163a67-4d80-4bfd-9f89-d682a51ebf5c",
+        "21f5f51c-7e32-4607-a805-247a29d67332",
+        "2424dac4-537f-4d11-9f13-92626ea00f6a",
+        "26053765-ec5a-404f-9367-3815d69b7d4e",
+        "369d2857-3ec0-443a-8eaa-03bf30a634e3",
+        "3bb349f8-f769-4ff3-8f65-285efc6126c6",
+        "51cef371-4031-4bd9-ab48-d47e5abfb105",
+        "5cedef48-93b0-4758-9eda-06c045c3cc9d",
+        "6a404885-2bec-43f9-bc20-4f314377d5a5",
+        "7419ee98-64d9-4325-8967-3fe7c9f3d892",
+        "79ad2ea8-7c19-4bfb-8595-ce96d168a5d8",
+        "7ea7be34-8682-4ffe-b899-2c8ac0392058",
+        "7ecb99e6-8b92-480a-b14e-0d6334c1bd1e",
+        "7ed800d1-ea8f-4a65-aedd-27d6f8d98067",
+        "80153586-3256-4d8a-8980-09c543630713",
+        "8756e231-5135-4894-b808-e39ce7cdd2b6",
+        "91a8364d-8b32-4d6e-baa0-9e7687232252",
+        "96ac4b20-2260-49b2-8a83-683d94ad0eed",
+        "ad05b3b6-1d25-447c-892e-b0ec782fb1fe",
+        "ae68747d-32c8-43fb-b34b-a12618b1c944",
+        "b96ef215-dbe7-495b-87c7-7ea0e443e392",
+        "b979b9a9-c417-4bf1-9a29-88138404fc3f",
+        "c5d46c72-165d-4083-b1c7-38acfc419bc5",
+        "d4a2cc2d-bfb1-4709-9b9f-9548f7f0381f",
+        "d9cbddb1-f3a5-4214-9de2-ba4d558a6042",
+        "e36e378a-87f9-47be-aeb0-66c6a6ae96ab"
+      ],
+      "matchedHarborAndCamera": true,
+      "interpretation": "Counts and exact identities only; growth attribution and leak/no-leak conclusion require review."
+    }
+  },
+  "workspaceBefore": {
+    "id": "f1128bf7-8bd3-4137-80af-4d7a7ebc4461",
+    "revision": 24,
+    "schemaVersion": 1,
+    "connections": [
+      {
+        "id": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "name": "Lab test-replay-M",
+        "context": "test-replay-M",
+        "bound": true,
+        "identity": {
+          "clusterUID": "test/replay/test-replay-M",
+          "confidence": "test-replay",
+          "authorizationKey": "3e0a43894a224fffe094dd11ef88c574",
+          "credentialGeneration": "779f1709-e577-4c17-92e3-cb2616f39c0d"
+        }
+      }
+    ],
+    "harbors": [
+      {
+        "id": "4194af08-639d-413d-80a5-191833db2b29",
+        "name": "TEST / REPLAY M 01",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "1c0303cc-a3b5-4246-a6fe-0021da05b9ef",
+        "name": "TEST / REPLAY M 02",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          0
+        ]
+      },
+      {
+        "id": "e4e94878-f923-4f67-9855-b15598a6cbf0",
+        "name": "TEST / REPLAY M 03",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          0
+        ]
+      },
+      {
+        "id": "a8a4fbf2-b256-4f6f-8b4c-ec6c7282067c",
+        "name": "TEST / REPLAY M 04",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          0
+        ]
+      },
+      {
+        "id": "67b89968-58d3-46d0-ada9-db18bcf48f00",
+        "name": "TEST / REPLAY M 05",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          0
+        ]
+      },
+      {
+        "id": "104b737c-5ae6-4d41-9cbd-76405cc88cb1",
+        "name": "TEST / REPLAY M 06",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          1400
+        ]
+      },
+      {
+        "id": "2775e9a8-819c-4ea5-8519-b52b6177d8f2",
+        "name": "TEST / REPLAY M 07",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          1400
+        ]
+      },
+      {
+        "id": "9129d0d5-0416-43c2-8097-9941f8650d56",
+        "name": "TEST / REPLAY M 08",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          1400
+        ]
+      },
+      {
+        "id": "3cde877a-ff0c-4ec0-9ad3-d9ffbab5c833",
+        "name": "TEST / REPLAY M 09",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          1400
+        ]
+      },
+      {
+        "id": "f48f8a95-1906-4aa9-a8ae-27705eb7b372",
+        "name": "TEST / REPLAY M 10",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          1400
+        ]
+      },
+      {
+        "id": "7bbcb300-fd2b-43a6-97ef-a6d4b1780708",
+        "name": "TEST / REPLAY M 11",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          2800
+        ]
+      },
+      {
+        "id": "77fa5e0a-f3aa-4893-b650-4a17dc823740",
+        "name": "TEST / REPLAY M 12",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          2800
+        ]
+      },
+      {
+        "id": "7c6bd0e6-e138-4ca6-8d43-7ba8556f6299",
+        "name": "TEST / REPLAY M 13",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          2800
+        ]
+      },
+      {
+        "id": "f0d55386-54d8-4aaf-bac4-b096499a5848",
+        "name": "TEST / REPLAY M 14",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          2800
+        ]
+      },
+      {
+        "id": "49d2bd07-95de-44d7-b967-d0f3ead06b95",
+        "name": "TEST / REPLAY M 15",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          2800
+        ]
+      },
+      {
+        "id": "aa114bd5-ec92-4677-a0bd-51bbcc51f661",
+        "name": "TEST / REPLAY M 16",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          4200
+        ]
+      },
+      {
+        "id": "fb67df21-cc65-457c-93a5-9ee46b4ec7d3",
+        "name": "TEST / REPLAY M 17",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          4200
+        ]
+      },
+      {
+        "id": "e856ace3-703b-4ab4-b2e4-4069d4d09896",
+        "name": "TEST / REPLAY M 18",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          4200
+        ]
+      },
+      {
+        "id": "6f3289ed-ef18-4ec7-a7fa-5bd570bc992e",
+        "name": "TEST / REPLAY M 19",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          4200
+        ]
+      },
+      {
+        "id": "522f60d3-1118-4e81-8e3d-38ef74c0e0ee",
+        "name": "TEST / REPLAY M 20",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          4200
+        ]
+      }
+    ]
+  },
+  "workspaceAfter": {
+    "id": "f1128bf7-8bd3-4137-80af-4d7a7ebc4461",
+    "revision": 64,
+    "schemaVersion": 1,
+    "connections": [
+      {
+        "id": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "name": "Lab test-replay-M",
+        "context": "test-replay-M",
+        "bound": true,
+        "identity": {
+          "clusterUID": "test/replay/test-replay-M",
+          "confidence": "test-replay",
+          "authorizationKey": "3e0a43894a224fffe094dd11ef88c574",
+          "credentialGeneration": "779f1709-e577-4c17-92e3-cb2616f39c0d"
+        }
+      }
+    ],
+    "harbors": [
+      {
+        "id": "4194af08-639d-413d-80a5-191833db2b29",
+        "name": "TEST / REPLAY M 01",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "1c0303cc-a3b5-4246-a6fe-0021da05b9ef",
+        "name": "TEST / REPLAY M 02",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          0
+        ]
+      },
+      {
+        "id": "e4e94878-f923-4f67-9855-b15598a6cbf0",
+        "name": "TEST / REPLAY M 03",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          0
+        ]
+      },
+      {
+        "id": "a8a4fbf2-b256-4f6f-8b4c-ec6c7282067c",
+        "name": "TEST / REPLAY M 04",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          0
+        ]
+      },
+      {
+        "id": "67b89968-58d3-46d0-ada9-db18bcf48f00",
+        "name": "TEST / REPLAY M 05",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          0
+        ]
+      },
+      {
+        "id": "104b737c-5ae6-4d41-9cbd-76405cc88cb1",
+        "name": "TEST / REPLAY M 06",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          1400
+        ]
+      },
+      {
+        "id": "2775e9a8-819c-4ea5-8519-b52b6177d8f2",
+        "name": "TEST / REPLAY M 07",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          1400
+        ]
+      },
+      {
+        "id": "9129d0d5-0416-43c2-8097-9941f8650d56",
+        "name": "TEST / REPLAY M 08",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          1400
+        ]
+      },
+      {
+        "id": "3cde877a-ff0c-4ec0-9ad3-d9ffbab5c833",
+        "name": "TEST / REPLAY M 09",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          1400
+        ]
+      },
+      {
+        "id": "f48f8a95-1906-4aa9-a8ae-27705eb7b372",
+        "name": "TEST / REPLAY M 10",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          1400
+        ]
+      },
+      {
+        "id": "7bbcb300-fd2b-43a6-97ef-a6d4b1780708",
+        "name": "TEST / REPLAY M 11",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          2800
+        ]
+      },
+      {
+        "id": "77fa5e0a-f3aa-4893-b650-4a17dc823740",
+        "name": "TEST / REPLAY M 12",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          2800
+        ]
+      },
+      {
+        "id": "7c6bd0e6-e138-4ca6-8d43-7ba8556f6299",
+        "name": "TEST / REPLAY M 13",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          2800
+        ]
+      },
+      {
+        "id": "f0d55386-54d8-4aaf-bac4-b096499a5848",
+        "name": "TEST / REPLAY M 14",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          2800
+        ]
+      },
+      {
+        "id": "49d2bd07-95de-44d7-b967-d0f3ead06b95",
+        "name": "TEST / REPLAY M 15",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          2800
+        ]
+      },
+      {
+        "id": "aa114bd5-ec92-4677-a0bd-51bbcc51f661",
+        "name": "TEST / REPLAY M 16",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          0,
+          4200
+        ]
+      },
+      {
+        "id": "fb67df21-cc65-457c-93a5-9ee46b4ec7d3",
+        "name": "TEST / REPLAY M 17",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          1400,
+          4200
+        ]
+      },
+      {
+        "id": "e856ace3-703b-4ab4-b2e4-4069d4d09896",
+        "name": "TEST / REPLAY M 18",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          2800,
+          4200
+        ]
+      },
+      {
+        "id": "6f3289ed-ef18-4ec7-a7fa-5bd570bc992e",
+        "name": "TEST / REPLAY M 19",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          4200,
+          4200
+        ]
+      },
+      {
+        "id": "522f60d3-1118-4e81-8e3d-38ef74c0e0ee",
+        "name": "TEST / REPLAY M 20",
+        "connectionRef": "f749e29d-c154-42ef-b22c-566e9ef6a45f",
+        "namespaces": [
+          "bench-0",
+          "bench-1",
+          "bench-2",
+          "bench-3"
+        ],
+        "selector": "",
+        "position": [
+          5600,
+          4200
+        ]
+      }
+    ]
+  },
+  "final": {
+    "canvasCount": 1,
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 900
+    },
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "bodyScroll": 900,
+    "stats": {
+      "frame": 1054,
+      "calls": 260,
+      "triangles": 49314,
+      "points": 0,
+      "lines": 31,
+      "measuredTraffic": null,
+      "memory": {
+        "geometries": 57,
+        "textures": 3
+      },
+      "lifecycle": {
+        "canonicalNodes": 20,
+        "visibleNodes": 8,
+        "nodePage": 0,
+        "nodePages": 3,
+        "canonicalPods": 300,
+        "visiblePods": 120,
+        "nodeSlots": 20,
+        "podSlots": 120,
+        "activeTransfers": 0,
+        "queuedTransfers": 0,
+        "visualLoadingUIDs": [],
+        "exitGhosts": 0,
+        "containerTransitions": 0,
+        "visualEvents": {
+          "nodeFaults": 0,
+          "containerFaults": 10,
+          "containerTransitions": 0,
+          "processSignals": 0,
+          "summarized": 0
+        },
+        "summarizedTransfers": 0
+      }
+    },
+    "camera": {
+      "position": [
+        155.32070332934836,
+        297.3149971650057,
+        468.72488860383237
+      ],
+      "quaternion": [
+        -0.32546078412600804,
+        0.19405942434202544,
+        0.06843554348917544,
+        0.9228937068847457
+      ],
+      "zoom": 1
+    },
+    "brand": "KubeViewTEST / REPLAY M 01 · test-replay-M · bench-0, bench-1, bench-2, bench-3Canlı"
+  },
+  "finishedAt": "2026-11-10T12:28:37.143Z"
+}

@@ -1,0 +1,36 @@
+{
+  "uniqueTopLevelPassed": 23,
+  "nestedPassed": 31,
+  "prior17Repeated": false,
+  "sourceProposed18Covered": [
+    "TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip",
+    "TestLocalServerRejectsDNSRebindingHost",
+    "TestManagementStartsReadOnlyAndCannotBypassSession",
+    "TestOriginAndAuthentication",
+    "TestOriginHostJSONAndSessionNegatives",
+    "TestReadOnlyAndNamespaceEnforced",
+    "TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry",
+    "TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest",
+    "TestReleaseReadOnlyEndpointsRetainedGrant",
+    "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource",
+    "TestReleaseSessionCreationShapeFreshnessAndCookieFlags",
+    "TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant",
+    "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+    "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+    "TestWorkspaceHTTPPersistenceCSRFAndScope",
+    "TestWorkspaceNodeImpactRequiresAcknowledgement",
+    "TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant",
+    "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts"
+  ],
+  "extraFiveNeighbors": [
+    "TestClusterScopedReviewsIgnoreWatchNamespace",
+    "TestConnectionErrorsDoNotExposeCredentials",
+    "TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList",
+    "TestScopeSwitchCancelsInFlightStreams",
+    "TestWorkspaceCookieNamesKeepLegacyGatewayContract"
+  ],
+  "missingRequiredNames": [],
+  "testType": "synthetic fake-client/in-process HTTP; realRBAC/TLS/provider/transport independent",
+  "firstExecution": "../auth-flow-targeted-root/execution.json",
+  "addendumExecution": "execution.json"
+}

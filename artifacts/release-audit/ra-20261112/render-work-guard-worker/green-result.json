@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "benchmarks/panel-compare.test.mjs",
+    "benchmarks/metrics.test.mjs",
+    "benchmarks/compare.test.mjs"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 0.7974032909987727,
+  "neighborsReason": "metrics supplies distributions/process counters; generic compare tests guard shared counter/identity contract",
+  "sourceSHA256": "66662ee807299a3db414160be75bfbf912e10fc94ff34ba60c0661361fa4a001",
+  "testSHA256": "e0051158134792beefaeb36efcaa5e3e3600744ae3cfe255492b5da575db7d2f",
+  "stdoutSHA256": "0cb5d7b8c32339307efa85e9cc5c011ff3033ff44079efe281369722517893bc",
+  "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

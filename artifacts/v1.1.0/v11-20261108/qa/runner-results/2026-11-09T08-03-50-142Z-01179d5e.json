@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-03-50-142Z-01179d5e",
+  "startedAt": "2026-11-09T08:03:50.142Z",
+  "tests": [
+    {
+      "title": "V11-09 V11-11 explicit actual-WebSocket transport fault preserves dirty draft and reconciles revoked server grant",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 20744,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-03-50-295Z-5044c869/v11-transport-draft-V11-09-408e5-nciles-revoked-server-grant-chromium/attachments/v11-evidence-c7dc3ede28745becc0c4315946fcd43e46fc0563.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:04:11.130Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-03-50-142Z-01179d5e.json"
+}

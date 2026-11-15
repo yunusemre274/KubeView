@@ -1,0 +1,947 @@
+{
+  "id": "ws-20261110-manual07-corrected",
+  "startedAt": "2026-11-10T09:06:14.771Z",
+  "status": "failed",
+  "binarySHA256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "cases": [
+    {
+      "load": "M",
+      "harbors": 1,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-M-h1",
+      "startedAt": "2026-11-10T09:06:15.254Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "c8d33bfd-1311-4e8a-8c3e-7c038be6d43f",
+            "harborCount": 1,
+            "context": "test-replay-M",
+            "canonicalNodes": 20,
+            "canonicalPods": 300,
+            "visibleNodes": 8,
+            "visiblePods": 120,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "M-h01",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-M-h1-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 20,
+          "pods": 300,
+          "harborId": "28066124-ee4c-40c8-83d8-dff7a3d99714"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "28066124-ee4c-40c8-83d8-dff7a3d99714"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:17.951Z"
+    },
+    {
+      "load": "M",
+      "harbors": 5,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-M-h5",
+      "startedAt": "2026-11-10T09:06:18.026Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "2123f64b-5159-4cd8-8da3-43a676236c1c",
+            "harborCount": 5,
+            "context": "test-replay-M",
+            "canonicalNodes": 20,
+            "canonicalPods": 300,
+            "visibleNodes": 8,
+            "visiblePods": 120,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "M-h05",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        },
+        {
+          "name": "two-normal-harbor-switches-preserve-exact-uid-and-canvas",
+          "detail": {
+            "uid": "node-0",
+            "activeHarborId": "31a30e50-b0f8-4eb0-830f-be3f5bb0b4b9",
+            "otherHarborId": "7ebe2dd7-3dc8-47ea-b524-2746bc857212",
+            "switches": 2
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-M-h5-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 20,
+          "pods": 300,
+          "harborId": "31a30e50-b0f8-4eb0-830f-be3f5bb0b4b9"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "31a30e50-b0f8-4eb0-830f-be3f5bb0b4b9"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:21.706Z"
+    },
+    {
+      "load": "M",
+      "harbors": 10,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-M-h10",
+      "startedAt": "2026-11-10T09:06:21.786Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "7eb0b73f-f46b-4bb4-a5c8-64f171742cdd",
+            "harborCount": 10,
+            "context": "test-replay-M",
+            "canonicalNodes": 20,
+            "canonicalPods": 300,
+            "visibleNodes": 8,
+            "visiblePods": 120,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "M-h10",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        },
+        {
+          "name": "two-normal-harbor-switches-preserve-exact-uid-and-canvas",
+          "detail": {
+            "uid": "node-0",
+            "activeHarborId": "db34a636-69cd-4221-8e8c-90ac6d0688ea",
+            "otherHarborId": "8e035dab-acd5-4fee-9a61-3702cfd178ba",
+            "switches": 2
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-M-h10-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 20,
+          "pods": 300,
+          "harborId": "db34a636-69cd-4221-8e8c-90ac6d0688ea"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "db34a636-69cd-4221-8e8c-90ac6d0688ea"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:25.576Z"
+    },
+    {
+      "load": "M",
+      "harbors": 20,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-M-h20",
+      "startedAt": "2026-11-10T09:06:25.649Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "f1128bf7-8bd3-4137-80af-4d7a7ebc4461",
+            "harborCount": 20,
+            "context": "test-replay-M",
+            "canonicalNodes": 20,
+            "canonicalPods": 300,
+            "visibleNodes": 8,
+            "visiblePods": 120,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "M-h20",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        },
+        {
+          "name": "two-normal-harbor-switches-preserve-exact-uid-and-canvas",
+          "detail": {
+            "uid": "node-0",
+            "activeHarborId": "4194af08-639d-413d-80a5-191833db2b29",
+            "otherHarborId": "1c0303cc-a3b5-4246-a6fe-0021da05b9ef",
+            "switches": 2
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-M-h20-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 20,
+          "pods": 300,
+          "harborId": "4194af08-639d-413d-80a5-191833db2b29"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "4194af08-639d-413d-80a5-191833db2b29"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:29.668Z"
+    },
+    {
+      "load": "L",
+      "harbors": 1,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-L-h1",
+      "startedAt": "2026-11-10T09:06:29.724Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "3badc7cf-bcc7-4940-811d-ff58d4f412dc",
+            "harborCount": 1,
+            "context": "test-replay-L",
+            "canonicalNodes": 50,
+            "canonicalPods": 1500,
+            "visibleNodes": 8,
+            "visiblePods": 270,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "L-h01",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-L-h1-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 50,
+          "pods": 1500,
+          "harborId": "2176983b-ae77-40e1-ae18-40dbb3486a63"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "2176983b-ae77-40e1-ae18-40dbb3486a63"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:31.561Z"
+    },
+    {
+      "load": "L",
+      "harbors": 5,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-L-h5",
+      "startedAt": "2026-11-10T09:06:31.640Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "c4bdd4da-a3ba-4964-80bf-2e7ffe30c9ef",
+            "harborCount": 5,
+            "context": "test-replay-L",
+            "canonicalNodes": 50,
+            "canonicalPods": 1500,
+            "visibleNodes": 8,
+            "visiblePods": 270,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "L-h05",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        },
+        {
+          "name": "two-normal-harbor-switches-preserve-exact-uid-and-canvas",
+          "detail": {
+            "uid": "node-0",
+            "activeHarborId": "5301889f-1abd-454c-9c91-2e885ebf94c9",
+            "otherHarborId": "efe8edbc-12b3-428a-89c7-9a25667e776d",
+            "switches": 2
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-L-h5-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 50,
+          "pods": 1500,
+          "harborId": "5301889f-1abd-454c-9c91-2e885ebf94c9"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "5301889f-1abd-454c-9c91-2e885ebf94c9"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:35.334Z"
+    },
+    {
+      "load": "L",
+      "harbors": 10,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-L-h10",
+      "startedAt": "2026-11-10T09:06:35.418Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "c06606a5-447b-4d83-abe8-bdb5db1740a0",
+            "harborCount": 10,
+            "context": "test-replay-L",
+            "canonicalNodes": 50,
+            "canonicalPods": 1500,
+            "visibleNodes": 8,
+            "visiblePods": 270,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "L-h10",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        },
+        {
+          "name": "two-normal-harbor-switches-preserve-exact-uid-and-canvas",
+          "detail": {
+            "uid": "node-0",
+            "activeHarborId": "4e67ef8b-47d1-4b6d-8c4f-2d4be71d28b1",
+            "otherHarborId": "ae6f61af-2d97-47c6-bf45-f519ef638a05",
+            "switches": 2
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-L-h10-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 50,
+          "pods": 1500,
+          "harborId": "4e67ef8b-47d1-4b6d-8c4f-2d4be71d28b1"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "4e67ef8b-47d1-4b6d-8c4f-2d4be71d28b1"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:39.107Z"
+    },
+    {
+      "load": "L",
+      "harbors": 20,
+      "engine": "chromium",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "chromium-L-h20",
+      "startedAt": "2026-11-10T09:06:39.173Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "5ef91ace-cf18-4fb5-89fe-b975d2ab5749",
+            "harborCount": 20,
+            "context": "test-replay-L",
+            "canonicalNodes": 50,
+            "canonicalPods": 1500,
+            "visibleNodes": 8,
+            "visiblePods": 270,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "L-h20",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        },
+        {
+          "name": "two-normal-harbor-switches-preserve-exact-uid-and-canvas",
+          "detail": {
+            "uid": "node-0",
+            "activeHarborId": "2819d9fc-b6b1-44e3-9691-2cef3643d8b6",
+            "otherHarborId": "637289bb-a1be-4a80-801d-a2563b616426",
+            "switches": 2
+          }
+        }
+      ],
+      "screenshots": [
+        "chromium-L-h20-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 50,
+          "pods": 1500,
+          "harborId": "2819d9fc-b6b1-44e3-9691-2cef3643d8b6"
+        }
+      ],
+      "browserVersion": "156.0.8078.4",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "2819d9fc-b6b1-44e3-9691-2cef3643d8b6"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:43.042Z"
+    },
+    {
+      "load": "M",
+      "harbors": 5,
+      "engine": "webkit",
+      "motion": "no-preference",
+      "width": 1440,
+      "height": 900,
+      "name": "webkit-M-h5",
+      "startedAt": "2026-11-10T09:06:43.123Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "2123f64b-5159-4cd8-8da3-43a676236c1c",
+            "harborCount": 5,
+            "context": "test-replay-M",
+            "canonicalNodes": 20,
+            "canonicalPods": 300,
+            "visibleNodes": 8,
+            "visiblePods": 120,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1440,
+              900
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "M-h05",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "webkit-native-caret-focus-escape-and-map-access",
+          "detail": {
+            "width": 1440,
+            "theme": "light",
+            "reduced": false,
+            "nativeSafari": false
+          }
+        },
+        {
+          "name": "normal-finder-selects-snapshot-exact-uid",
+          "detail": {
+            "uid": "node-0",
+            "name": "worker-001"
+          }
+        },
+        {
+          "name": "two-normal-harbor-switches-preserve-exact-uid-and-canvas",
+          "detail": {
+            "uid": "node-0",
+            "activeHarborId": "31a30e50-b0f8-4eb0-830f-be3f5bb0b4b9",
+            "otherHarborId": "7ebe2dd7-3dc8-47ea-b524-2746bc857212",
+            "switches": 2
+          }
+        }
+      ],
+      "screenshots": [
+        "webkit-M-h5-1440-map-access.png",
+        "webkit-M-h5-final-world.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 20,
+          "pods": 300,
+          "harborId": "31a30e50-b0f8-4eb0-830f-be3f5bb0b4b9"
+        }
+      ],
+      "browserVersion": "27.2",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "31a30e50-b0f8-4eb0-830f-be3f5bb0b4b9"
+        }
+      ],
+      "finishedAt": "2026-11-10T09:06:47.544Z"
+    },
+    {
+      "load": "L",
+      "harbors": 20,
+      "engine": "webkit",
+      "motion": "reduce",
+      "width": 1280,
+      "height": 800,
+      "narrow": true,
+      "name": "webkit-L-h20",
+      "startedAt": "2026-11-10T09:06:47.574Z",
+      "status": "failed",
+      "checks": [
+        {
+          "name": "public-workspace-explicit-replay-snapshot-and-counts",
+          "detail": {
+            "workspaceId": "5ef91ace-cf18-4fb5-89fe-b975d2ab5749",
+            "harborCount": 20,
+            "context": "test-replay-L",
+            "canonicalNodes": 50,
+            "canonicalPods": 1500,
+            "visibleNodes": 8,
+            "visiblePods": 270,
+            "canvasCount": 1,
+            "dpr": 1,
+            "canvasPixels": [
+              1280,
+              800
+            ]
+          }
+        },
+        {
+          "name": "official-runner-and-normal-ui-readonly",
+          "detail": {
+            "variant": "L-h20",
+            "serverReadOnly": true,
+            "managementDisabled": true
+          }
+        },
+        {
+          "name": "webkit-native-caret-focus-escape-and-map-access",
+          "detail": {
+            "width": 1280,
+            "theme": "dark",
+            "reduced": true,
+            "nativeSafari": false
+          }
+        }
+      ],
+      "screenshots": [
+        "webkit-L-h20-1280-map-access.png",
+        "webkit-L-h20-failure.png"
+      ],
+      "errors": [],
+      "snapshots": [
+        {
+          "nodes": 50,
+          "pods": 1500,
+          "harborId": "2819d9fc-b6b1-44e3-9691-2cef3643d8b6"
+        }
+      ],
+      "browserVersion": "27.2",
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "path": "/api/management",
+          "method": "POST",
+          "enabled": false,
+          "harborId": "2819d9fc-b6b1-44e3-9691-2cef3643d8b6"
+        }
+      ],
+      "failure": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   1280,\n+   800\n-   768,\n-   900\n  ]\n",
+      "finishedAt": "2026-11-10T09:06:48.919Z"
+    }
+  ],
+  "runnerCommands": [
+    {
+      "name": "up",
+      "profile": "07-yuk-ve-gecis",
+      "exitCode": 0,
+      "durationMs": 480
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h01",
+      "exitCode": 0,
+      "durationMs": 49
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h01",
+      "exitCode": 0,
+      "durationMs": 802
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h05",
+      "exitCode": 0,
+      "durationMs": 96
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h05",
+      "exitCode": 0,
+      "durationMs": 319
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h10",
+      "exitCode": 0,
+      "durationMs": 89
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h10",
+      "exitCode": 0,
+      "durationMs": 382
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h20",
+      "exitCode": 0,
+      "durationMs": 87
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h20",
+      "exitCode": 0,
+      "durationMs": 524
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h01",
+      "exitCode": 0,
+      "durationMs": 100
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h01",
+      "exitCode": 0,
+      "durationMs": 266
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h05",
+      "exitCode": 0,
+      "durationMs": 94
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h05",
+      "exitCode": 0,
+      "durationMs": 312
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h10",
+      "exitCode": 0,
+      "durationMs": 88
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h10",
+      "exitCode": 0,
+      "durationMs": 378
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h20",
+      "exitCode": 0,
+      "durationMs": 85
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h20",
+      "exitCode": 0,
+      "durationMs": 515
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h05",
+      "exitCode": 0,
+      "durationMs": 90
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "M-h05",
+      "exitCode": 0,
+      "durationMs": 239
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h20",
+      "exitCode": 0,
+      "durationMs": 91
+    },
+    {
+      "name": "app",
+      "profile": "07-yuk-ve-gecis",
+      "variant": "L-h20",
+      "exitCode": 0,
+      "durationMs": 233
+    },
+    {
+      "name": "down",
+      "profile": "07-yuk-ve-gecis",
+      "exitCode": 0,
+      "durationMs": 88
+    }
+  ],
+  "limits": [
+    "TEST/REPLAY is synthetic; no real Kubernetes, Hubble or fault proof.",
+    "No CPU, FPS, physical latency, native Safari or old acceptance-gate claim.",
+    "Only official manual07 up/app/down; normal-user variant files remain preserved.",
+    "WebKit cases are functional compatibility checks, not native Safari or performance.",
+    "No credential, raw log, nonce, HTTP headers or full workspace document is recorded."
+  ],
+  "runnerSHA256Before": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "failure": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   1280,\n+   800\n-   768,\n-   900\n  ]\n",
+  "manual07AppStopped": true,
+  "clusterRecordsUnchanged": true,
+  "manual07AppRecordPresent": false,
+  "preservedVariants": [
+    "L-h01",
+    "L-h05",
+    "L-h10",
+    "L-h20",
+    "M-h01",
+    "M-h05",
+    "M-h10",
+    "M-h20"
+  ],
+  "sourceAfter": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "runnerSHA256After": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "binarySHA256After": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "finishedAt": "2026-11-10T09:06:49.091Z"
+}

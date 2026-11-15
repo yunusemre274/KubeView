@@ -1,0 +1,387 @@
+{
+  "reviewedAt": "2026-11-01T18:30:32.536655+00:00",
+  "reviewer": "KV-HARBOR-MANAGER",
+  "scope": "Final fresh minikube worker provisioning → real kubelet registration/Ready → derived slipway launch → continuing three-ship fleet. Read-only evidence review.",
+  "result": "PASSED_WITH_EXPLICIT_LIMITS",
+  "reportedSourceCommit": "8768398",
+  "reportedBackendIdentity": "40c1",
+  "sourceIdentityNote": "Source/backend IDs supplied by root for this run; no build, product mutation or new cluster action was performed by reviewer.",
+  "context": "kv-repair-1101",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "sourceType": "REAL Kubernetes and minikube worker provisioning, not fixture/replay/status injection",
+  "engine": "Chromium functional recording, normal ./start.sh Vite frontend + real Go API; not a production benchmark",
+  "readInputs": [
+    "provision-final-2.json",
+    "provision-final-2.stdout.log"
+  ],
+  "stdoutVerified": true,
+  "runtimeErrors": [],
+  "providerChecks": [
+    {
+      "name": "actual normal UI provider request",
+      "passed": true,
+      "at": "2026-11-01T18:21:19.390Z",
+      "operationID": "7aebd6ef-22f1-4ae0-9d58-188a510b2182"
+    },
+    {
+      "name": "same idempotency key returns same operation",
+      "passed": true
+    },
+    {
+      "name": "concurrent different key rejected",
+      "passed": true,
+      "at": "2026-11-01T18:21:19.729Z"
+    },
+    {
+      "name": "real provider planned worker",
+      "passed": true,
+      "at": "2026-11-01T18:21:19.740Z"
+    },
+    {
+      "name": "real Node registered with new UID",
+      "passed": true,
+      "at": "2026-11-01T18:21:36.253Z"
+    },
+    {
+      "name": "real kubelet Node Ready",
+      "passed": true,
+      "at": "2026-11-01T18:21:54.575Z"
+    }
+  ],
+  "newIdentity": {
+    "node": {
+      "name": "kv-repair-1101-m03",
+      "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+      "conditions": [
+        {
+          "lastHeartbeatTime": "2026-11-01T18:21:52Z",
+          "lastTransitionTime": "2026-11-01T18:21:34Z",
+          "message": "kubelet has sufficient memory available",
+          "reason": "KubeletHasSufficientMemory",
+          "status": "False",
+          "type": "MemoryPressure"
+        },
+        {
+          "lastHeartbeatTime": "2026-11-01T18:21:52Z",
+          "lastTransitionTime": "2026-11-01T18:21:34Z",
+          "message": "kubelet has no disk pressure",
+          "reason": "KubeletHasNoDiskPressure",
+          "status": "False",
+          "type": "DiskPressure"
+        },
+        {
+          "lastHeartbeatTime": "2026-11-01T18:21:52Z",
+          "lastTransitionTime": "2026-11-01T18:21:34Z",
+          "message": "kubelet has sufficient PID available",
+          "reason": "KubeletHasSufficientPID",
+          "status": "False",
+          "type": "PIDPressure"
+        },
+        {
+          "lastHeartbeatTime": "2026-11-01T18:21:52Z",
+          "lastTransitionTime": "2026-11-01T18:21:52Z",
+          "message": "kubelet is posting ready status",
+          "reason": "KubeletReady",
+          "status": "True",
+          "type": "Ready"
+        }
+      ],
+      "created": "2026-11-01T18:21:34Z"
+    },
+    "oldDockerID": "2520863994ce3951d0d7365ea875713ba16f801d322f16f4209d74197034bcae",
+    "newDockerID": "018543c908a7d4ec6066ccc476434bc9ef2561619862ab6144f8b4c7324b2ffc",
+    "genuinelyDifferentDockerHost": true,
+    "newUIDAbsentFromBeforeInventory": true
+  },
+  "canonicalVsDraft": {
+    "initial": {
+      "nodes": 2,
+      "pods": 2,
+      "activeTransfers": 0,
+      "queuedTransfers": 0,
+      "processSignals": 0
+    },
+    "draft": {
+      "nodes": 2,
+      "pods": 2
+    },
+    "registered": {
+      "nodes": 3,
+      "pods": 2
+    },
+    "passed": true,
+    "finding": "İlk iki gerçek Node/iki eski QA Pod baseline; scoped snapshot eski Podları yeni iş gibi yanaştırmıyor. Saydam İstek taslağı · Node sayılmaz gerçek Node sayısını artırmıyor; gerçek UID kaydı sonrası sayı3."
+  },
+  "timeline": {
+    "requestAcceptedAt": "2026-11-01T18:21:19.390Z",
+    "nodeCreatedAt": "2026-11-01T18:21:34Z",
+    "registeredObservedAt": "2026-11-01T18:21:36.253Z",
+    "nodeReadyTransitionAt": "2026-11-01T18:21:52Z",
+    "providerReadyObservedAt": "2026-11-01T18:21:54.575Z",
+    "lastSampleBeforeHorizontalLaunch": {
+      "at": "2026-11-01T18:22:23.135Z",
+      "pose": {
+        "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+        "name": "kv-repair-1101-m03",
+        "slot": 2,
+        "progress": 1225.5575041173113,
+        "position": [
+          -140,
+          3.265015367288063,
+          -61
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.000966094160919442,
+        "roll": -0.00209045928600414,
+        "state": "launching",
+        "speed": 0,
+        "paused": false,
+        "healthy": true,
+        "reason": "Gerçek Node · güvenli katılım aralığı bekleniyor",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    },
+    "firstSampleWithHorizontalLaunch": {
+      "at": "2026-11-01T18:22:25.136Z",
+      "pose": {
+        "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+        "name": "kv-repair-1101-m03",
+        "slot": 2,
+        "progress": 0,
+        "position": [
+          -140,
+          0.7460298396375611,
+          -96.11898757480694
+        ],
+        "yaw": 3.141592653589793,
+        "pitch": 0.0015314640679752597,
+        "roll": -0.0038617842408020485,
+        "state": "launching",
+        "speed": 22.891095485779097,
+        "paused": false,
+        "healthy": true,
+        "reason": "Gerçek Node · güvenli katılım aralığı bekleniyor",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    },
+    "firstSamplePatrolling": {
+      "at": "2026-11-01T18:22:31.146Z",
+      "pose": {
+        "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+        "name": "kv-repair-1101-m03",
+        "slot": 2,
+        "progress": 2.7675363899991225,
+        "position": [
+          -127.23246361000088,
+          0.024433192699580275,
+          -145
+        ],
+        "yaw": 1.5707963267948966,
+        "pitch": 0.002905620824767613,
+        "roll": 0.0006240966243134268,
+        "state": "patrolling",
+        "speed": 4.050000000005402,
+        "paused": false,
+        "healthy": true,
+        "reason": "",
+        "reservation": null,
+        "eligibleForDock": false
+      }
+    },
+    "interpretation": "Ready ve görsel katılım farklı. Readyden sonra güvenli rota aralığı beklenir; 18:22:23.135Z ile18:22:25.136Z arasındaki örnek aralığında yatay launch başlar. İki eski gemi bu beklemede seyretmeye devam eder. State=launching tek başına hareket kanıtı değildir; speed/konum birlikte kullanıldı."
+  },
+  "afterJoinFleetMotion": {
+    "firstSampleAt": "2026-11-01T18:22:31.146Z",
+    "nominalWaitSecondsInHelper": 7,
+    "exactEndTimestampNotRecorded": true,
+    "endUpperBound": "2026-11-01T18:22:39.113Z",
+    "ships": [
+      {
+        "uid": "f8b02052-1800-4d5a-9620-2d041485e891",
+        "name": "kv-repair-1101",
+        "initialPosition": [
+          25.596830588315697,
+          0.0489908898471863,
+          -145
+        ],
+        "finalPosition": [
+          95.19653058829431,
+          0.06756110705779785,
+          -145
+        ],
+        "xzDisplacement": 69.5997,
+        "finalState": "patrolling",
+        "finalSpeed": 9.000000000007624
+      },
+      {
+        "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+        "name": "kv-repair-1101-m02",
+        "initialPosition": [
+          174.9751325617012,
+          -0.07384317442055138,
+          -101.49581117037013
+        ],
+        "finalPosition": [
+          175,
+          -0.07157177498035269,
+          -31.896386764576675
+        ],
+        "xzDisplacement": 69.599429,
+        "finalState": "patrolling",
+        "finalSpeed": 9.000000000007624
+      },
+      {
+        "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+        "name": "kv-repair-1101-m03",
+        "initialPosition": [
+          -127.23246361000088,
+          0.024433192699580275,
+          -145
+        ],
+        "finalPosition": [
+          -61.66895312804445,
+          0.002641776634091591,
+          -145
+        ],
+        "xzDisplacement": 65.56351,
+        "finalState": "patrolling",
+        "finalSpeed": 8.999999999994008
+      }
+    ],
+    "passed": true
+  },
+  "openedScreenshots": [
+    "provision-final-2-01-initial-world.png",
+    "provision-final-2-03-request-draft-world.png",
+    "provision-final-2-07-ready-joining.png",
+    "provision-final-2-08-joined-fleet.png"
+  ],
+  "screenshotFindings": {
+    "initial-world": "İki gerçek gemi/liman; dashboard yok, minimal kontroller.",
+    "request-draft-world": "Kıyıda saydam taslak açıkça Node sayılmaz olarak etiketli; eski gemiler hareket ediyor.",
+    "ready-joining": "Gemi hâlâ kızağın başında; doğru etiket Güvenli katılım aralığı bekleniyor · Node Ready. Bu kareyi hareket başladı diye saymadım.",
+    "joined-fleet": "Kızaktaki yer boş, yeni gemi ana rotada; eski iki gemi başka su konumlarında."
+  },
+  "video": {
+    "path": "provision-final-2-video/page@5a866d5871acba79d31c4d10e50f9807.webm",
+    "sha256": "420e06eb9cc51f3e6f03612b9dd4bb0fc56d23acb16b7f59146eb38e38237b36",
+    "durationSeconds": 83.96,
+    "size": [
+      1440,
+      900
+    ],
+    "encodedFrameRate": 25,
+    "extractedFrames": [
+      {
+        "path": "provision-final-2-review-frames/pts-68.76s.png",
+        "videoPTSSeconds": 68.76,
+        "nominalWallTimeFromResultStart": "2026-11-01T18:22:25.147000+00:00",
+        "nearestPoseSampleAt": "2026-11-01T18:22:25.136Z",
+        "pose": {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "name": "kv-repair-1101-m03",
+          "slot": 2,
+          "progress": 0,
+          "position": [
+            -140,
+            0.7460298396375611,
+            -96.11898757480694
+          ],
+          "yaw": 3.141592653589793,
+          "pitch": 0.0015314640679752597,
+          "roll": -0.0038617842408020485,
+          "state": "launching",
+          "speed": 22.891095485779097,
+          "paused": false,
+          "healthy": true,
+          "reason": "Gerçek Node · güvenli katılım aralığı bekleniyor",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        "openedAndInspected": true,
+        "finding": "Gerçek kayıtlı üçüncü gemi kızağın deniz ucuna doğru ilerliyor; Kızaktan katılım · Node Ready etiketi. İki eski gemi farklı seyir konumlarında."
+      },
+      {
+        "path": "provision-final-2-review-frames/pts-70.76s.png",
+        "videoPTSSeconds": 70.76,
+        "nominalWallTimeFromResultStart": "2026-11-01T18:22:27.147000+00:00",
+        "nearestPoseSampleAt": "2026-11-01T18:22:27.139Z",
+        "pose": {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "name": "kv-repair-1101-m03",
+          "slot": 2,
+          "progress": 0,
+          "position": [
+            -142.83899375886477,
+            -0.025912612883751174,
+            -128.3909397127241
+          ],
+          "yaw": -2.8823904749555878,
+          "pitch": -0.0036325866280090507,
+          "roll": -0.00014117594887590092,
+          "state": "launching",
+          "speed": 14.734976686420925,
+          "paused": false,
+          "healthy": true,
+          "reason": "Gerçek Node · güvenli katılım aralığı bekleniyor",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        "openedAndInspected": true,
+        "finding": "Aynı üçüncü gemi kıyı ucundan açık suya dönmüş; konum ve yön önceki kareden farklı, mevcut iki gemi ilerliyor."
+      },
+      {
+        "path": "provision-final-2-review-frames/pts-74.76s.png",
+        "videoPTSSeconds": 74.76,
+        "nominalWallTimeFromResultStart": "2026-11-01T18:22:31.147000+00:00",
+        "nearestPoseSampleAt": "2026-11-01T18:22:31.146Z",
+        "pose": {
+          "uid": "f61df3b2-d0b7-4c08-8847-5883e5d74caa",
+          "name": "kv-repair-1101-m03",
+          "slot": 2,
+          "progress": 2.7675363899991225,
+          "position": [
+            -127.23246361000088,
+            0.024433192699580275,
+            -145
+          ],
+          "yaw": 1.5707963267948966,
+          "pitch": 0.002905620824767613,
+          "roll": 0.0006240966243134268,
+          "state": "patrolling",
+          "speed": 4.050000000005402,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        "openedAndInspected": true,
+        "finding": "Yeni gemi ana su rotasına hizalı, katılım etiketi kapanmış; üç gerçek gemi görünür ve JSON state patrolling."
+      }
+    ],
+    "alignmentLimit": "Video PTS start0; nominal UTC, result.startedAt üzerine PTS eklenerek eşlendi. Page/video startı için bağımsız wall-clock senkronizasyon markerı yok; eşleme yaklaşık, fiziksel presented-frame anı iddiası yok. JSON poz örnekleri ~2sn aralıklı. 25fps kodlama uygulamanın render/presented FPS ölçümü değildir.",
+    "motionVisuallyObserved": true
+  },
+  "limits": [
+    "Bu koşu Node Ready=False arızası veya doğal fiziksel çökme deneyi değildir.",
+    "Tek saydam taslak ile gerçek UID ayrı; kaynak sayısı launch bitmesini beklemez.",
+    "Yeni Node Ready sonrası güvenli rota boşluğu bekleyebilir; kanıtta ~30sn ek görsel bekleme var, sıfır gecikme iddiası yok.",
+    "Bir normal yoğunluk gerçek sağlama örneği; bütün filo yoğunlukları, provider timeout/cancellation veya uzun dönem leak kabulü değildir.",
+    "Hubble trafik doğruluğu, Safari/WebKit ve performance/20dk koşuları bu kaydın kapsamında değil.",
+    "Eski başarısız provisioning/admission kayıtları değiştirilmedi; yalnız final-2 yeni kaydı incelendi."
+  ],
+  "evidenceSHA256": {
+    "provision-final-2.json": "e5706d77948a52897583132ae72d3cabf2c797b9164837ddcc7af408aadc79b9",
+    "provision-final-2.stdout.log": "b8d53d51f71cb181839cef8956adfec53240ffb70b304f35c24e8abb7239b82e",
+    "provision-final-2-01-initial-world.png": "c585a5b90edc392d428cfe647a54f479ad6b63502dd83a0fde60273f5e106557",
+    "provision-final-2-03-request-draft-world.png": "c9f1dc8a47e7771839b75402ba3b6f0dedcbb691f46588b203f7eb77b4fa6c6e",
+    "provision-final-2-07-ready-joining.png": "d06f260783637d5b485654fbe289d870ae883d3fef2a2bc37ab4739357dcc51e",
+    "provision-final-2-08-joined-fleet.png": "9579d9d7abc682ddb8eeec778c09c93ce85cb5cef5460df46cd4da93095729ca",
+    "provision-final-2-review-frames/pts-68.76s.png": "2999f0e55e1ab648c2488397cb2f15bb8608dbfd48bdd2aa5d933b4395709344",
+    "provision-final-2-review-frames/pts-70.76s.png": "d096ef648832261ecac1009683e38db3a3efcb24ac0187990f3f7057a57d7804",
+    "provision-final-2-review-frames/pts-74.76s.png": "e631cefbdaab8c340917c4d56fddf2cd81a6734e1d71aa8dd45f468cfa67c77e"
+  }
+}

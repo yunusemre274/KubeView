@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "phaseStartedAt": "2026-11-12T11:27:09.264476+00:00",
+  "phaseLimitSeconds": 240,
+  "events": [
+    {
+      "at": "2026-11-12T11:27:09.371799+00:00",
+      "event": "synthetic_Secret_created",
+      "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+      "namespaceUID": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d"
+    },
+    {
+      "at": "2026-11-12T11:27:09.376354+00:00",
+      "event": "app_started",
+      "PID": 14030,
+      "birthSHA256": "e6e147bc8965df9c7dc087fe4c580a81003eeb75ad290dd30038efc94dcc6606",
+      "PGID": 14030
+    },
+    {
+      "at": "2026-11-12T11:27:12.278961+00:00",
+      "event": "live_UI_write_guard",
+      "sequence": 1,
+      "namespaceUID": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d"
+    },
+    {
+      "at": "2026-11-12T11:27:14.150506+00:00",
+      "event": "live_UI_write_guard",
+      "sequence": 2,
+      "namespaceUID": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d"
+    },
+    {
+      "at": "2026-11-12T11:27:14.417094+00:00",
+      "event": "live_UI_write_guard",
+      "sequence": 3,
+      "namespaceUID": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d"
+    },
+    {
+      "at": "2026-11-12T11:27:15.048894+00:00",
+      "event": "canonical_own_Secret_readback",
+      "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+      "resourceVersion": "31778",
+      "dataEqual": true,
+      "typeEqual": true,
+      "oldUnknownMetadataEqual": true,
+      "newMetadataObserved": true
+    }
+  ],
+  "valuesExported": false,
+  "appCleanup": [],
+  "powerBefore": {
+    "batteryPercent": 43,
+    "freeDiskBytes": 454348558336
+  },
+  "browserExitCode": 0,
+  "browserStatus": "PASS",
+  "cleanupStartedAt": "2026-11-12T11:27:15.048907+00:00",
+  "SecretCleanup": {
+    "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+    "GET": 404,
+    "namespaceNotDeleted": true
+  },
+  "privateFilesRemoved": true,
+  "port19843Free": true,
+  "cleanupSeconds": 0.11351275444030762,
+  "completedAt": "2026-11-12T11:27:15.162426+00:00",
+  "phaseElapsedSeconds": 5.897968292236328,
+  "appPIDAbsent": true,
+  "browserProcessExited": true,
+  "appBinaryUnchanged": true
+}

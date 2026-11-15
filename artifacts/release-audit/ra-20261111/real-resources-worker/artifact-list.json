@@ -1,0 +1,92 @@
+[
+  {
+    "path": "RECIPE.md",
+    "bytes": 1127,
+    "sha256": "b117b2611e88620138117e4a8fdf4f74dc49037f77cd6a4087e99b50b077c371"
+  },
+  {
+    "path": "REPORT.md",
+    "bytes": 4722,
+    "sha256": "a21ce189889f2f00b29cb063802036d7001fcd936d35cc4e08ed66f450618db0"
+  },
+  {
+    "path": "attempt-runner.py",
+    "bytes": 2921,
+    "sha256": "b477f436b36abbc0f870b74c497c40f98e5c23b2be4f3962901ad30df8c3f279"
+  },
+  {
+    "path": "before-helper.go.txt",
+    "bytes": 21109,
+    "sha256": "d6c246b284f49c713d737f84ab5b6285cc0154afaf7fa8a82205a56d79fcb3d3"
+  },
+  {
+    "path": "command.json",
+    "bytes": 1216,
+    "sha256": "98f7814a126d16ff35a2844e2b66c70d83515ac51c63b64d3a6b772d1a11a3df"
+  },
+  {
+    "path": "go-test.jsonl",
+    "bytes": 1642,
+    "sha256": "f35e32c74877a64d6d3d89902606dec3070c3a0b7b206122972e2f4efcd9fbad"
+  },
+  {
+    "path": "go-test.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "helper.patch",
+    "bytes": 10039,
+    "sha256": "1a2790cb6e7a188e955d12517bc0081727c23748191f75a52c7655711966bef2"
+  },
+  {
+    "path": "manifest.json",
+    "bytes": 2602,
+    "sha256": "0645ba4109d137cdb28730b1d9f0a1946d993335c22f95507917c0659e56ceea"
+  },
+  {
+    "path": "release_operations_real_test.go",
+    "bytes": 26836,
+    "sha256": "fa9065f305c9deae4301e7cf5a2a7b3b429ab84e21aba05d8ac55bad3dea690b"
+  },
+  {
+    "path": "result.json",
+    "bytes": 6568,
+    "sha256": "ff34e3abc04d811e76229df4d2fe2effa3b069be369b5103d60970abf4031972"
+  },
+  {
+    "path": "scale-checkpoint-preservation-after.json",
+    "bytes": 109,
+    "sha256": "cd574ceacf8f2ef1385f0bb1b58454557586c9a2d6d09435b7cc31493ad2580b"
+  },
+  {
+    "path": "scale-checkpoint-preservation-before.json",
+    "bytes": 2878,
+    "sha256": "90d2747dd8397940514721c91bed2de5c21a9edd7b50b0edaafab61cd00ab5dc"
+  },
+  {
+    "path": "source-after.json",
+    "bytes": 962,
+    "sha256": "e962b226910d4098a937a70a0198119375b51476387c0d704632aea001e0dbe0"
+  },
+  {
+    "path": "source-before.json",
+    "bytes": 962,
+    "sha256": "e962b226910d4098a937a70a0198119375b51476387c0d704632aea001e0dbe0"
+  },
+  {
+    "path": "source-comparison.json",
+    "bytes": 41,
+    "sha256": "885758c54985f6408472006de9dd25fac0cee35f6fd58850e444e1fbb464f00c"
+  },
+  {
+    "path": "source-review.json",
+    "bytes": 841,
+    "sha256": "9cd4b91eaa289f668524e845716e708e35e221f7a08d90498682947cb9b6b719"
+  },
+  {
+    "path": "timeline.json",
+    "bytes": 6419,
+    "sha256": "71f1ceaf6135b547e16d9422fced32bdefc01fbe4adf8bb6d891ba2df7ffe477"
+  }
+]

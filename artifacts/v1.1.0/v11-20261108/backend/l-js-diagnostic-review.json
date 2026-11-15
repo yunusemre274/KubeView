@@ -1,0 +1,2275 @@
+{
+  "recordedAt": "2026-11-09T10:53:48.380Z",
+  "kind": "FS_ONLY_TWO_SHORT_CDP_DIAGNOSTICS_NOT_ACCEPTANCE",
+  "inputSHA256": {
+    "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/summary.json": "7f1389fe54a907b177cf9d0dfcde93c22800de1ffccbeb48873406c92fb80d53",
+    "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/manifest.json": "258e7212da7d137dfd27b332348009f0399e4ad3cb5e5322bdd183b41cb584ac",
+    "benchmarks/results/v11-l-js-diagnostic-20261109-baseline/traces/L-living-0.cpuprofile": "029b5ea9f7dacbd0c95487c426e5d2601640a566cbabfbc818d2ee1277d09d00",
+    "benchmarks/.build/v11-start-2b76e21/assets/HarborScene-i8rQ1yJB.js": "0a7f4fea705a0e9a04fdabd9fb64e9d8d197ae00b55a1aa5487a398067a18663",
+    "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/summary.json": "ffded2d74841f0d6280a24ed31a13c2c4b19cb155e1896cfa475cb0f696f0fb1",
+    "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/manifest.json": "86a80dc5c191eb73b9e7d44256a55dfcb2ba5343be5527702de0aefa0e9ec911",
+    "benchmarks/results/v11-l-js-diagnostic-20261109-optimized/traces/L-living-0.cpuprofile": "f1463534c4112583146271de79aab85fd1008a577fbda0b1588042b5e77b5fe6",
+    "benchmarks/.build/v11-final-32a0468/assets/HarborScene-Vy8ofl7a.js": "2a9f5af570bd149ae58864e94746d5356c737898409fcb2d3a7f1f0d4e557682",
+    "benchmarks/.build/v11-final-32a0468/assets/three-CGmfrzlm.js": "73750ce17c108e479ff3b2c1e6245c518daa3d863e7140807c774295245e5036"
+  },
+  "method": {
+    "weights": "Each cpuprofile sample weighted by its matching timeDelta in microseconds. Inclusive time sums descendant samples. Function aggregation de-duplicates recursive appearances per sample.",
+    "limitations": [
+      "Sampled milliseconds are estimated occupied stack time, not function invocation counts. hitCount/sample count is not call count.",
+      "Page V8 sampling excludes GPU process and does not cover all native renderer/driver threads.",
+      "Short15s profiled battery runs are not production CPU acceptance pairs and are not pooled with previous3AC+2battery pairs."
+    ]
+  },
+  "runs": [
+    {
+      "phase": "baseline",
+      "protocol": {
+        "profiler": true,
+        "powerSource": "battery",
+        "params": {
+          "profiles": [
+            "L"
+          ],
+          "scenarios": [
+            "living"
+          ],
+          "repeats": 1,
+          "warmup": 30,
+          "seconds": 15,
+          "longSeconds": 1200
+        },
+        "buildTag": "v11-start-2b76e21",
+        "sceneInventory": true
+      },
+      "measurement": {
+        "profileDurationMs": 15178.854,
+        "sampleWeightedMs": 15178.777,
+        "samples": 10104,
+        "nodeCount": 399,
+        "activeWindowMs": 15040,
+        "frames": 903,
+        "fps": 60.03989361702128,
+        "drawCalls": {
+          "n": 903,
+          "p50": 446,
+          "p95": 452,
+          "p99": 452,
+          "min": 439,
+          "max": 452
+        },
+        "triangles": {
+          "n": 903,
+          "p50": 75492,
+          "p95": 75752,
+          "p99": 75864,
+          "min": 75200,
+          "max": 75864
+        },
+        "jsSubmitMs": {
+          "n": 903,
+          "p50": 2,
+          "p95": 2.699999999254942,
+          "p99": 2.900000000372529,
+          "min": 0.6999999992549419,
+          "max": 3.200000001117587
+        }
+      },
+      "before": {
+        "stats": {
+          "frame": 1817,
+          "calls": 446,
+          "triangles": 75492,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 51,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 50,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 7,
+            "canonicalPods": 1500,
+            "visiblePods": 270,
+            "nodeSlots": 50,
+            "podSlots": 270,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 53,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "scene": {
+          "version": "scene-inventory-v1",
+          "sampledAtMs": 30459,
+          "sceneReachable": {
+            "objects": 408,
+            "geometries": 56,
+            "materials": 50
+          },
+          "gpuRendererInfo": {
+            "geometries": 51,
+            "textures": 3,
+            "programs": 17
+          },
+          "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+        },
+        "dom": {
+          "documents": 2,
+          "nodes": 312,
+          "jsEventListeners": 1809
+        },
+        "lifecycle": {
+          "intervals": 1,
+          "timeouts": 0,
+          "observers": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "observerInstances": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "callbacks": {
+            "timeout": 1,
+            "interval": 2,
+            "MutationObserver": 12,
+            "ResizeObserver": 1
+          },
+          "overflow": false,
+          "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+        }
+      },
+      "after": {
+        "stats": {
+          "frame": 2725,
+          "calls": 449,
+          "triangles": 75574,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 51,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 50,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 7,
+            "canonicalPods": 1500,
+            "visiblePods": 270,
+            "nodeSlots": 50,
+            "podSlots": 270,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 53,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "scene": {
+          "version": "scene-inventory-v1",
+          "sampledAtMs": 45644.5,
+          "sceneReachable": {
+            "objects": 408,
+            "geometries": 56,
+            "materials": 50
+          },
+          "gpuRendererInfo": {
+            "geometries": 51,
+            "textures": 3,
+            "programs": 17
+          },
+          "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+        },
+        "dom": {
+          "documents": 2,
+          "nodes": 312,
+          "jsEventListeners": 1809
+        },
+        "lifecycle": {
+          "intervals": 1,
+          "timeouts": 0,
+          "observers": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "observerInstances": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "callbacks": {
+            "timeout": 1,
+            "interval": 3,
+            "MutationObserver": 12,
+            "ResizeObserver": 1
+          },
+          "overflow": false,
+          "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+        }
+      },
+      "sampledSelfMsByAsset": {
+        "(program)": 293.613,
+        "(root)": 0,
+        "uniformMatrix4fv": 35.33,
+        "three-CGmfrzlm.js": 1654.5060000000012,
+        "gl.render": 3.007,
+        "(idle)": 12456.509,
+        "HarborScene-i8rQ1yJB.js": 531.7399999999999,
+        "drawElementsInstanced": 6.009,
+        "(garbage collector)": 16.259,
+        "bindBuffer": 28.104,
+        "vertexAttribPointer": 24.122,
+        "now": 8.78,
+        "bufferSubData": 11.837,
+        "bindTexture": 3.011,
+        "frontFace": 1.493,
+        "bindVertexArray": 44.634,
+        "drawElements": 13.542,
+        "uniformMatrix3fv": 14.629,
+        "uniform3f": 3.043,
+        "uniform1f": 3.028,
+        "useProgram": 6.002,
+        "drawArrays": 2.995,
+        "viewport": 1.508,
+        "clear": 1.502,
+        "requestAnimationFrame": 1.49,
+        "uniform1i": 1.497,
+        "depthMask": 1.478,
+        "index-Cl8ryhrc.js": 1.525,
+        "evaluate": 1.508,
+        "<anonymous native>": 2.532,
+        "isArrayBuffer": 1.502,
+        "innerSerialize": 0.552,
+        "serialize": 0,
+        "serializeAsCallArgument": 0,
+        "jsonValue": 0,
+        "safeJson": 0,
+        "_promiseAwareJsonValueNoThrow": 0,
+        "read": 1.49
+      },
+      "topSelf": [
+        {
+          "key": "|(idle)|-1:-1",
+          "callFrame": {
+            "functionName": "(idle)",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 12456509,
+          "inclusiveUs": 12456509,
+          "samples": 8302,
+          "selfMs": 12456.509,
+          "inclusiveMs": 12456.509,
+          "selfPercent": 82.0653007814793,
+          "inclusivePercent": 82.0653007814793
+        },
+        {
+          "key": "|(program)|-1:-1",
+          "callFrame": {
+            "functionName": "(program)",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 293613,
+          "inclusiveUs": 293613,
+          "samples": 147,
+          "selfMs": 293.613,
+          "inclusiveMs": 293.613,
+          "selfPercent": 1.9343653312780076,
+          "inclusivePercent": 1.9343653312780076
+        },
+        {
+          "key": "three-CGmfrzlm.js|updateMatrixWorld|43:69214",
+          "callFrame": {
+            "functionName": "updateMatrixWorld",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 69214
+          },
+          "selfUs": 179828,
+          "inclusiveUs": 208181,
+          "samples": 120,
+          "selfMs": 179.828,
+          "inclusiveMs": 208.181,
+          "selfPercent": 1.1847331310025835,
+          "inclusivePercent": 1.3715268364506574
+        },
+        {
+          "key": "HarborScene-i8rQ1yJB.js|<anonymous>|76:14905",
+          "callFrame": {
+            "functionName": "",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-i8rQ1yJB.js",
+            "lineNumber": 76,
+            "columnNumber": 14905
+          },
+          "selfUs": 163077,
+          "inclusiveUs": 507760,
+          "samples": 112,
+          "selfMs": 163.077,
+          "inclusiveMs": 507.76,
+          "selfPercent": 1.0743750962281085,
+          "inclusivePercent": 3.34519704716658
+        },
+        {
+          "key": "three-CGmfrzlm.js|as|3863:32882",
+          "callFrame": {
+            "functionName": "as",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32882
+          },
+          "selfUs": 155005,
+          "inclusiveUs": 226859,
+          "samples": 105,
+          "selfMs": 155.005,
+          "inclusiveMs": 226.859,
+          "selfPercent": 1.0211955811723172,
+          "inclusivePercent": 1.4945802286969496
+        },
+        {
+          "key": "three-CGmfrzlm.js|renderBufferDirect|3863:24725",
+          "callFrame": {
+            "functionName": "renderBufferDirect",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 24725
+          },
+          "selfUs": 150116,
+          "inclusiveUs": 1128035,
+          "samples": 101,
+          "selfMs": 150.116,
+          "inclusiveMs": 1128.035,
+          "selfPercent": 0.9889861350489568,
+          "inclusivePercent": 7.431659349103027
+        },
+        {
+          "key": "three-CGmfrzlm.js|yi|3762:8446",
+          "callFrame": {
+            "functionName": "yi",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 8446
+          },
+          "selfUs": 93005,
+          "inclusiveUs": 93005,
+          "samples": 63,
+          "selfMs": 93.005,
+          "inclusiveMs": 93.005,
+          "selfPercent": 0.6127305249955249,
+          "inclusivePercent": 0.6127305249955249
+        },
+        {
+          "key": "HarborScene-i8rQ1yJB.js|ke|13:30707",
+          "callFrame": {
+            "functionName": "ke",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-i8rQ1yJB.js",
+            "lineNumber": 13,
+            "columnNumber": 30707
+          },
+          "selfUs": 91295,
+          "inclusiveUs": 130440,
+          "samples": 63,
+          "selfMs": 91.295,
+          "inclusiveMs": 130.44,
+          "selfPercent": 0.6014647952203264,
+          "inclusivePercent": 0.8593577730274317
+        },
+        {
+          "key": "three-CGmfrzlm.js|qi|3863:29336",
+          "callFrame": {
+            "functionName": "qi",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 29336
+          },
+          "selfUs": 70753,
+          "inclusiveUs": 118453,
+          "samples": 48,
+          "selfMs": 70.753,
+          "inclusiveMs": 118.453,
+          "selfPercent": 0.46613109870446084,
+          "inclusivePercent": 0.7803856661178961
+        },
+        {
+          "key": "three-CGmfrzlm.js|df|3863:35481",
+          "callFrame": {
+            "functionName": "df",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 35481
+          },
+          "selfUs": 66871,
+          "inclusiveUs": 697361,
+          "samples": 45,
+          "selfMs": 66.871,
+          "inclusiveMs": 697.361,
+          "selfPercent": 0.44055591567093977,
+          "inclusivePercent": 4.594316129685548
+        },
+        {
+          "key": "three-CGmfrzlm.js|multiplyMatrices|43:55166",
+          "callFrame": {
+            "functionName": "multiplyMatrices",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 55166
+          },
+          "selfUs": 64362,
+          "inclusiveUs": 64362,
+          "samples": 43,
+          "selfMs": 64.362,
+          "inclusiveMs": 64.362,
+          "selfPercent": 0.42402625718791437,
+          "inclusivePercent": 0.42402625718791437
+        },
+        {
+          "key": "HarborScene-i8rQ1yJB.js|wt|76:10358",
+          "callFrame": {
+            "functionName": "wt",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-i8rQ1yJB.js",
+            "lineNumber": 76,
+            "columnNumber": 10358
+          },
+          "selfUs": 52274,
+          "inclusiveUs": 222525,
+          "samples": 35,
+          "selfMs": 52.274,
+          "inclusiveMs": 222.525,
+          "selfPercent": 0.3443887475255747,
+          "inclusivePercent": 1.4660272036409785
+        },
+        {
+          "key": "three-CGmfrzlm.js|I|3839:3631",
+          "callFrame": {
+            "functionName": "I",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3839,
+            "columnNumber": 3631
+          },
+          "selfUs": 49414,
+          "inclusiveUs": 336175,
+          "samples": 33,
+          "selfMs": 49.414,
+          "inclusiveMs": 336.175,
+          "selfPercent": 0.3255466497729033,
+          "inclusivePercent": 2.2147700041973075
+        },
+        {
+          "key": "|bindVertexArray|-1:-1",
+          "callFrame": {
+            "functionName": "bindVertexArray",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 44634,
+          "inclusiveUs": 44634,
+          "samples": 31,
+          "selfMs": 44.634,
+          "inclusiveMs": 44.634,
+          "selfPercent": 0.2940553115708861,
+          "inclusivePercent": 0.2940553115708861
+        },
+        {
+          "key": "three-CGmfrzlm.js|T|3811:2372",
+          "callFrame": {
+            "functionName": "T",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3811,
+            "columnNumber": 2372
+          },
+          "selfUs": 43488,
+          "inclusiveUs": 51023,
+          "samples": 30,
+          "selfMs": 43.488,
+          "inclusiveMs": 51.023,
+          "selfPercent": 0.28650529617768283,
+          "inclusivePercent": 0.3361469767952978
+        },
+        {
+          "key": "three-CGmfrzlm.js|setValue|3762:15048",
+          "callFrame": {
+            "functionName": "setValue",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 15048
+          },
+          "selfUs": 37949,
+          "inclusiveUs": 46986,
+          "samples": 26,
+          "selfMs": 37.949,
+          "inclusiveMs": 46.986,
+          "selfPercent": 0.2500135551105336,
+          "inclusivePercent": 0.30955063112133474
+        },
+        {
+          "key": "three-CGmfrzlm.js|computeBoundingSphere|3863:64376",
+          "callFrame": {
+            "functionName": "computeBoundingSphere",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 64376
+          },
+          "selfUs": 37923,
+          "inclusiveUs": 87470,
+          "samples": 26,
+          "selfMs": 37.923,
+          "inclusiveMs": 87.47,
+          "selfPercent": 0.24984226331278206,
+          "inclusivePercent": 0.5762651365126452
+        },
+        {
+          "key": "|uniformMatrix4fv|-1:-1",
+          "callFrame": {
+            "functionName": "uniformMatrix4fv",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 35330,
+          "inclusiveUs": 35330,
+          "samples": 24,
+          "selfMs": 35.33,
+          "inclusiveMs": 35.33,
+          "selfPercent": 0.23275920056009783,
+          "inclusivePercent": 0.23275920056009783
+        },
+        {
+          "key": "three-CGmfrzlm.js|vi|3762:8333",
+          "callFrame": {
+            "functionName": "vi",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 8333
+          },
+          "selfUs": 29636,
+          "inclusiveUs": 29636,
+          "samples": 20,
+          "selfMs": 29.636,
+          "inclusiveMs": 29.636,
+          "selfPercent": 0.19524629685250663,
+          "inclusivePercent": 0.19524629685250663
+        },
+        {
+          "key": "three-CGmfrzlm.js|cf|3762:8128",
+          "callFrame": {
+            "functionName": "cf",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 8128
+          },
+          "selfUs": 28200,
+          "inclusiveUs": 28200,
+          "samples": 19,
+          "selfMs": 28.2,
+          "inclusiveMs": 28.2,
+          "selfPercent": 0.18578571909976674,
+          "inclusivePercent": 0.18578571909976674
+        },
+        {
+          "key": "three-CGmfrzlm.js|Yr|3863:32379",
+          "callFrame": {
+            "functionName": "Yr",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32379
+          },
+          "selfUs": 28139,
+          "inclusiveUs": 915949,
+          "samples": 20,
+          "selfMs": 28.139,
+          "inclusiveMs": 915.949,
+          "selfPercent": 0.1853838421896573,
+          "inclusivePercent": 6.0344058022592995
+        },
+        {
+          "key": "|bindBuffer|-1:-1",
+          "callFrame": {
+            "functionName": "bindBuffer",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 28104,
+          "inclusiveUs": 28104,
+          "samples": 19,
+          "selfMs": 28.104,
+          "inclusiveMs": 28.104,
+          "selfPercent": 0.18515325707729943,
+          "inclusivePercent": 0.18515325707729943
+        },
+        {
+          "key": "HarborScene-i8rQ1yJB.js|<anonymous>|13:64132",
+          "callFrame": {
+            "functionName": "",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-i8rQ1yJB.js",
+            "lineNumber": 13,
+            "columnNumber": 64132
+          },
+          "selfUs": 26865,
+          "inclusiveUs": 26865,
+          "samples": 18,
+          "selfMs": 26.865,
+          "inclusiveMs": 26.865,
+          "selfPercent": 0.17699054409983098,
+          "inclusivePercent": 0.17699054409983098
+        },
+        {
+          "key": "three-CGmfrzlm.js|union|43:47984",
+          "callFrame": {
+            "functionName": "union",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 47984
+          },
+          "selfUs": 26499,
+          "inclusiveUs": 49538,
+          "samples": 18,
+          "selfMs": 26.499,
+          "inclusiveMs": 49.538,
+          "selfPercent": 0.1745792826391744,
+          "inclusivePercent": 0.32636357988525694
+        },
+        {
+          "key": "three-CGmfrzlm.js|expandByPoint|43:47725",
+          "callFrame": {
+            "functionName": "expandByPoint",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 47725
+          },
+          "selfUs": 24543,
+          "inclusiveUs": 24543,
+          "samples": 17,
+          "selfMs": 24.543,
+          "inclusiveMs": 24.543,
+          "selfPercent": 0.16169286893140336,
+          "inclusivePercent": 0.16169286893140336
+        }
+      ],
+      "topInclusive": [
+        {
+          "key": "three-CGmfrzlm.js|c|3897:21172",
+          "callFrame": {
+            "functionName": "c",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3897,
+            "columnNumber": 21172
+          },
+          "selfUs": 13496,
+          "inclusiveUs": 2392792,
+          "samples": 9,
+          "selfMs": 13.496,
+          "inclusiveMs": 2392.792,
+          "selfPercent": 0.08891361932519333,
+          "inclusivePercent": 15.764063204828691
+        },
+        {
+          "key": "three-CGmfrzlm.js|Sv|3897:20700",
+          "callFrame": {
+            "functionName": "Sv",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3897,
+            "columnNumber": 20700
+          },
+          "selfUs": 14644,
+          "inclusiveUs": 2362745,
+          "samples": 10,
+          "selfMs": 14.644,
+          "inclusiveMs": 2362.745,
+          "selfPercent": 0.09647681101053135,
+          "inclusivePercent": 15.566109179942494
+        },
+        {
+          "key": "three-CGmfrzlm.js|render|3863:27667",
+          "callFrame": {
+            "functionName": "render",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 27667
+          },
+          "selfUs": 1495,
+          "inclusiveUs": 1638443,
+          "samples": 1,
+          "selfMs": 1.495,
+          "inclusiveMs": 1638.443,
+          "selfPercent": 0.009849278370714584,
+          "inclusivePercent": 10.794301807055996
+        },
+        {
+          "key": "three-CGmfrzlm.js|renderBufferDirect|3863:24725",
+          "callFrame": {
+            "functionName": "renderBufferDirect",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 24725
+          },
+          "selfUs": 150116,
+          "inclusiveUs": 1128035,
+          "samples": 101,
+          "selfMs": 150.116,
+          "inclusiveMs": 1128.035,
+          "selfPercent": 0.9889861350489568,
+          "inclusivePercent": 7.431659349103027
+        },
+        {
+          "key": "three-CGmfrzlm.js|aa|3863:30423",
+          "callFrame": {
+            "functionName": "aa",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 30423
+          },
+          "selfUs": 0,
+          "inclusiveUs": 920459,
+          "samples": 0,
+          "selfMs": 0,
+          "inclusiveMs": 920.459,
+          "selfPercent": 0,
+          "inclusivePercent": 6.064118341023128
+        },
+        {
+          "key": "three-CGmfrzlm.js|uo|3863:32138",
+          "callFrame": {
+            "functionName": "uo",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32138
+          },
+          "selfUs": 1505,
+          "inclusiveUs": 918971,
+          "samples": 1,
+          "selfMs": 1.505,
+          "inclusiveMs": 918.971,
+          "selfPercent": 0.00991515983138826,
+          "inclusivePercent": 6.054315179674885
+        },
+        {
+          "key": "three-CGmfrzlm.js|Yr|3863:32379",
+          "callFrame": {
+            "functionName": "Yr",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32379
+          },
+          "selfUs": 28139,
+          "inclusiveUs": 915949,
+          "samples": 20,
+          "selfMs": 28.139,
+          "inclusiveMs": 915.949,
+          "selfPercent": 0.1853838421896573,
+          "inclusivePercent": 6.0344058022592995
+        },
+        {
+          "key": "three-CGmfrzlm.js|df|3863:35481",
+          "callFrame": {
+            "functionName": "df",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 35481
+          },
+          "selfUs": 66871,
+          "inclusiveUs": 697361,
+          "samples": 45,
+          "selfMs": 66.871,
+          "inclusiveMs": 697.361,
+          "selfPercent": 0.44055591567093977,
+          "inclusivePercent": 4.594316129685548
+        },
+        {
+          "key": "HarborScene-i8rQ1yJB.js|<anonymous>|76:17411",
+          "callFrame": {
+            "functionName": "",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-i8rQ1yJB.js",
+            "lineNumber": 76,
+            "columnNumber": 17411
+          },
+          "selfUs": 0,
+          "inclusiveUs": 512257,
+          "samples": 0,
+          "selfMs": 0,
+          "inclusiveMs": 512.257,
+          "selfPercent": 0,
+          "inclusivePercent": 3.3748239400315323
+        },
+        {
+          "key": "HarborScene-i8rQ1yJB.js|<anonymous>|76:14905",
+          "callFrame": {
+            "functionName": "",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-i8rQ1yJB.js",
+            "lineNumber": 76,
+            "columnNumber": 14905
+          },
+          "selfUs": 163077,
+          "inclusiveUs": 507760,
+          "samples": 112,
+          "selfMs": 163.077,
+          "inclusiveMs": 507.76,
+          "selfPercent": 1.0743750962281085,
+          "inclusivePercent": 3.34519704716658
+        },
+        {
+          "key": "three-CGmfrzlm.js|render|3839:574",
+          "callFrame": {
+            "functionName": "render",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3839,
+            "columnNumber": 574
+          },
+          "selfUs": 1501,
+          "inclusiveUs": 353783,
+          "samples": 1,
+          "selfMs": 1.501,
+          "inclusiveMs": 353.783,
+          "selfPercent": 0.00988880724711879,
+          "inclusivePercent": 2.330774080151517
+        },
+        {
+          "key": "three-CGmfrzlm.js|I|3839:3631",
+          "callFrame": {
+            "functionName": "I",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3839,
+            "columnNumber": 3631
+          },
+          "selfUs": 49414,
+          "inclusiveUs": 336175,
+          "samples": 33,
+          "selfMs": 49.414,
+          "inclusiveMs": 336.175,
+          "selfPercent": 0.3255466497729033,
+          "inclusivePercent": 2.2147700041973075
+        },
+        {
+          "key": "three-CGmfrzlm.js|as|3863:32882",
+          "callFrame": {
+            "functionName": "as",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32882
+          },
+          "selfUs": 155005,
+          "inclusiveUs": 226859,
+          "samples": 105,
+          "selfMs": 155.005,
+          "inclusiveMs": 226.859,
+          "selfPercent": 1.0211955811723172,
+          "inclusivePercent": 1.4945802286969496
+        },
+        {
+          "key": "HarborScene-i8rQ1yJB.js|wt|76:10358",
+          "callFrame": {
+            "functionName": "wt",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-i8rQ1yJB.js",
+            "lineNumber": 76,
+            "columnNumber": 10358
+          },
+          "selfUs": 52274,
+          "inclusiveUs": 222525,
+          "samples": 35,
+          "selfMs": 52.274,
+          "inclusiveMs": 222.525,
+          "selfPercent": 0.3443887475255747,
+          "inclusivePercent": 1.4660272036409785
+        },
+        {
+          "key": "three-CGmfrzlm.js|setValue|3762:15724",
+          "callFrame": {
+            "functionName": "setValue",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 15724
+          },
+          "selfUs": 9017,
+          "inclusiveUs": 210695,
+          "samples": 6,
+          "selfMs": 9.017,
+          "inclusiveMs": 210.695,
+          "selfPercent": 0.05940531308945378,
+          "inclusivePercent": 1.3880894356640197
+        },
+        {
+          "key": "three-CGmfrzlm.js|updateMatrixWorld|43:69214",
+          "callFrame": {
+            "functionName": "updateMatrixWorld",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 69214
+          },
+          "selfUs": 179828,
+          "inclusiveUs": 208181,
+          "samples": 120,
+          "selfMs": 179.828,
+          "inclusiveMs": 208.181,
+          "selfPercent": 1.1847331310025835,
+          "inclusivePercent": 1.3715268364506574
+        },
+        {
+          "key": "three-CGmfrzlm.js|f|3612:13638",
+          "callFrame": {
+            "functionName": "f",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3612,
+            "columnNumber": 13638
+          },
+          "selfUs": 15001,
+          "inclusiveUs": 183662,
+          "samples": 11,
+          "selfMs": 15.001,
+          "inclusiveMs": 183.662,
+          "selfPercent": 0.0988287791565816,
+          "inclusivePercent": 1.209992083024871
+        },
+        {
+          "key": "three-CGmfrzlm.js|kC|3762:9880",
+          "callFrame": {
+            "functionName": "kC",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 9880
+          },
+          "selfUs": 16354,
+          "inclusiveUs": 159292,
+          "samples": 11,
+          "selfMs": 16.354,
+          "inclusiveMs": 159.292,
+          "selfPercent": 0.10774254078572996,
+          "inclusivePercent": 1.049438963363122
+        },
+        {
+          "key": "HarborScene-i8rQ1yJB.js|ke|13:30707",
+          "callFrame": {
+            "functionName": "ke",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-i8rQ1yJB.js",
+            "lineNumber": 13,
+            "columnNumber": 30707
+          },
+          "selfUs": 91295,
+          "inclusiveUs": 130440,
+          "samples": 63,
+          "selfMs": 91.295,
+          "inclusiveMs": 130.44,
+          "selfPercent": 0.6014647952203264,
+          "inclusivePercent": 0.8593577730274317
+        },
+        {
+          "key": "three-CGmfrzlm.js|upload|3762:15862",
+          "callFrame": {
+            "functionName": "upload",
+            "scriptId": "7",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 15862
+          },
+          "selfUs": 20730,
+          "inclusiveUs": 121517,
+          "samples": 14,
+          "selfMs": 20.73,
+          "inclusiveMs": 121.517,
+          "selfPercent": 0.13657226797653066,
+          "inclusivePercent": 0.8005717456683104
+        }
+      ],
+      "captionFunctions": [],
+      "captionStacks": [],
+      "dreiHtmlFrameCallback": {
+        "asset": "three-CGmfrzlm.js",
+        "lineNumber": 3897,
+        "columnNumber": 39006,
+        "selfMs": 12.024,
+        "inclusiveMs": 44.798,
+        "selfSamples": 8,
+        "stackSamples": 30
+      }
+    },
+    {
+      "phase": "optimized",
+      "protocol": {
+        "profiler": true,
+        "powerSource": "battery",
+        "params": {
+          "profiles": [
+            "L"
+          ],
+          "scenarios": [
+            "living"
+          ],
+          "repeats": 1,
+          "warmup": 30,
+          "seconds": 15,
+          "longSeconds": 1200
+        },
+        "buildTag": "v11-final-32a0468",
+        "sceneInventory": true
+      },
+      "measurement": {
+        "profileDurationMs": 15159.833,
+        "sampleWeightedMs": 15159.734,
+        "samples": 10106,
+        "nodeCount": 413,
+        "activeWindowMs": 15045.599999999627,
+        "frames": 904,
+        "fps": 60.08401127240006,
+        "drawCalls": {
+          "n": 904,
+          "p50": 446,
+          "p95": 452,
+          "p99": 452,
+          "min": 439,
+          "max": 452
+        },
+        "triangles": {
+          "n": 904,
+          "p50": 75492,
+          "p95": 75752,
+          "p99": 75864,
+          "min": 75200,
+          "max": 75864
+        },
+        "jsSubmitMs": {
+          "n": 904,
+          "p50": 1.800000000745058,
+          "p95": 2.400000000372529,
+          "p99": 2.599999999627471,
+          "min": 0.6999999992549419,
+          "max": 2.899999998509884
+        }
+      },
+      "before": {
+        "stats": {
+          "frame": 1817,
+          "calls": 446,
+          "triangles": 75492,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 51,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 50,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 7,
+            "canonicalPods": 1500,
+            "visiblePods": 270,
+            "nodeSlots": 50,
+            "podSlots": 270,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 53,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "scene": {
+          "version": "scene-inventory-v1",
+          "sampledAtMs": 30450.900000000373,
+          "sceneReachable": {
+            "objects": 408,
+            "geometries": 56,
+            "materials": 50
+          },
+          "gpuRendererInfo": {
+            "geometries": 51,
+            "textures": 3,
+            "programs": 17
+          },
+          "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 155,
+          "jsEventListeners": 1801
+        },
+        "lifecycle": {
+          "intervals": 1,
+          "timeouts": 0,
+          "observers": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "observerInstances": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "callbacks": {
+            "timeout": 1,
+            "interval": 2,
+            "MutationObserver": 12,
+            "ResizeObserver": 1
+          },
+          "overflow": false,
+          "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+        }
+      },
+      "after": {
+        "stats": {
+          "frame": 2724,
+          "calls": 449,
+          "triangles": 75574,
+          "points": 0,
+          "lines": 0,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 51,
+            "textures": 3
+          },
+          "lifecycle": {
+            "canonicalNodes": 50,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 7,
+            "canonicalPods": 1500,
+            "visiblePods": 270,
+            "nodeSlots": 50,
+            "podSlots": 270,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 53,
+              "containerTransitions": 0,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "scene": {
+          "version": "scene-inventory-v1",
+          "sampledAtMs": 45616,
+          "sceneReachable": {
+            "objects": 408,
+            "geometries": 56,
+            "materials": 50
+          },
+          "gpuRendererInfo": {
+            "geometries": 51,
+            "textures": 3,
+            "programs": 17
+          },
+          "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 155,
+          "jsEventListeners": 1781
+        },
+        "lifecycle": {
+          "intervals": 1,
+          "timeouts": 0,
+          "observers": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "observerInstances": {
+            "MutationObserver": 2,
+            "ResizeObserver": 1
+          },
+          "callbacks": {
+            "timeout": 1,
+            "interval": 3,
+            "MutationObserver": 12,
+            "ResizeObserver": 1
+          },
+          "overflow": false,
+          "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+        }
+      },
+      "sampledSelfMsByAsset": {
+        "(program)": 216.867,
+        "(root)": 0,
+        "three-CGmfrzlm.js": 1559.9999999999993,
+        "gl.render": 3.013,
+        "(idle)": 12651.153,
+        "HarborScene-Vy8ofl7a.js": 452.78099999999995,
+        "bufferSubData": 16.591,
+        "clear": 3.012,
+        "viewport": 1.507,
+        "uniform1i": 13.081,
+        "drawElements": 10.125,
+        "vertexAttribPointer": 32.361,
+        "uniformMatrix4fv": 39.117,
+        "(garbage collector)": 30.837,
+        "uniformMatrix3fv": 16.576,
+        "bindVertexArray": 36.153,
+        "useProgram": 10.559,
+        "now": 10.485,
+        "bindBuffer": 18.09,
+        "drawElementsInstanced": 8.585,
+        "requestAnimationFrame": 4.485,
+        "drawArrays": 2.997,
+        "enable": 3.02,
+        "uniform3f": 3.633,
+        "bindFramebuffer": 4.295,
+        "clearColor": 1.508,
+        "scissor": 1.511,
+        "index-Fq0GeGG9.js": 1.51,
+        "isTypedArray": 1.351,
+        "innerSerialize": 1.026,
+        "serialize": 0,
+        "serializeAsCallArgument": 0,
+        "jsonValue": 0,
+        "safeJson": 0,
+        "_promiseAwareJsonValueNoThrow": 0,
+        "evaluate": 0,
+        "<anonymous native>": 3.505
+      },
+      "topSelf": [
+        {
+          "key": "|(idle)|-1:-1",
+          "callFrame": {
+            "functionName": "(idle)",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 12651153,
+          "inclusiveUs": 12651153,
+          "samples": 8439,
+          "selfMs": 12651.153,
+          "inclusiveMs": 12651.153,
+          "selfPercent": 83.45234157802504,
+          "inclusivePercent": 83.45234157802504
+        },
+        {
+          "key": "|(program)|-1:-1",
+          "callFrame": {
+            "functionName": "(program)",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 216867,
+          "inclusiveUs": 216867,
+          "samples": 109,
+          "selfMs": 216.867,
+          "inclusiveMs": 216.867,
+          "selfPercent": 1.430546208792318,
+          "inclusivePercent": 1.430546208792318
+        },
+        {
+          "key": "three-CGmfrzlm.js|renderBufferDirect|3863:24725",
+          "callFrame": {
+            "functionName": "renderBufferDirect",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 24725
+          },
+          "selfUs": 152019,
+          "inclusiveUs": 1091668,
+          "samples": 102,
+          "selfMs": 152.019,
+          "inclusiveMs": 1091.668,
+          "selfPercent": 1.0027814472206438,
+          "inclusivePercent": 7.20110260509848
+        },
+        {
+          "key": "three-CGmfrzlm.js|as|3863:32882",
+          "callFrame": {
+            "functionName": "as",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32882
+          },
+          "selfUs": 147579,
+          "inclusiveUs": 190918,
+          "samples": 100,
+          "selfMs": 147.579,
+          "inclusiveMs": 190.918,
+          "selfPercent": 0.9734933343817247,
+          "inclusivePercent": 1.2593756592299048
+        },
+        {
+          "key": "three-CGmfrzlm.js|updateMatrixWorld|43:69214",
+          "callFrame": {
+            "functionName": "updateMatrixWorld",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 69214
+          },
+          "selfUs": 135089,
+          "inclusiveUs": 200736,
+          "samples": 90,
+          "selfMs": 135.089,
+          "inclusiveMs": 200.736,
+          "selfPercent": 0.8911040259677379,
+          "inclusivePercent": 1.3241393285660552
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|<anonymous>|76:14905",
+          "callFrame": {
+            "functionName": "",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 76,
+            "columnNumber": 14905
+          },
+          "selfUs": 111120,
+          "inclusiveUs": 422849,
+          "samples": 75,
+          "selfMs": 111.12,
+          "inclusiveMs": 422.849,
+          "selfPercent": 0.7329943915902483,
+          "inclusivePercent": 2.7892903661766097
+        },
+        {
+          "key": "three-CGmfrzlm.js|multiplyMatrices|43:55166",
+          "callFrame": {
+            "functionName": "multiplyMatrices",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 55166
+          },
+          "selfUs": 110488,
+          "inclusiveUs": 110488,
+          "samples": 74,
+          "selfMs": 110.488,
+          "inclusiveMs": 110.488,
+          "selfPercent": 0.7288254530059696,
+          "inclusivePercent": 0.7288254530059696
+        },
+        {
+          "key": "three-CGmfrzlm.js|yi|3762:8446",
+          "callFrame": {
+            "functionName": "yi",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 8446
+          },
+          "selfUs": 71189,
+          "inclusiveUs": 71189,
+          "samples": 48,
+          "selfMs": 71.189,
+          "inclusiveMs": 71.189,
+          "selfPercent": 0.4695926722724818,
+          "inclusivePercent": 0.4695926722724818
+        },
+        {
+          "key": "three-CGmfrzlm.js|df|3863:35481",
+          "callFrame": {
+            "functionName": "df",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 35481
+          },
+          "selfUs": 66394,
+          "inclusiveUs": 680904,
+          "samples": 45,
+          "selfMs": 66.394,
+          "inclusiveMs": 680.904,
+          "selfPercent": 0.4379628296908112,
+          "inclusivePercent": 4.491529996502577
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|ke|13:30707",
+          "callFrame": {
+            "functionName": "ke",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 13,
+            "columnNumber": 30707
+          },
+          "selfUs": 66167,
+          "inclusiveUs": 109364,
+          "samples": 45,
+          "selfMs": 66.167,
+          "inclusiveMs": 109.364,
+          "selfPercent": 0.4364654419398124,
+          "inclusivePercent": 0.7214110748908918
+        },
+        {
+          "key": "three-CGmfrzlm.js|qi|3863:29336",
+          "callFrame": {
+            "functionName": "qi",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 29336
+          },
+          "selfUs": 49636,
+          "inclusiveUs": 108441,
+          "samples": 33,
+          "selfMs": 49.636,
+          "inclusiveMs": 108.441,
+          "selfPercent": 0.3274199929893229,
+          "inclusivePercent": 0.7153225775597382
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|wt|76:10358",
+          "callFrame": {
+            "functionName": "wt",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 76,
+            "columnNumber": 10358
+          },
+          "selfUs": 43019,
+          "inclusiveUs": 200505,
+          "samples": 29,
+          "selfMs": 43.019,
+          "inclusiveMs": 200.505,
+          "selfPercent": 0.2837714698687985,
+          "inclusivePercent": 1.3226155551278143
+        },
+        {
+          "key": "|uniformMatrix4fv|-1:-1",
+          "callFrame": {
+            "functionName": "uniformMatrix4fv",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 39117,
+          "inclusiveUs": 39117,
+          "samples": 26,
+          "selfMs": 39.117,
+          "inclusiveMs": 39.117,
+          "selfPercent": 0.2580322319639645,
+          "inclusivePercent": 0.2580322319639645
+        },
+        {
+          "key": "three-CGmfrzlm.js|kC|3762:9880",
+          "callFrame": {
+            "functionName": "kC",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 9880
+          },
+          "selfUs": 38755,
+          "inclusiveUs": 153631,
+          "samples": 26,
+          "selfMs": 38.755,
+          "inclusiveMs": 153.631,
+          "selfPercent": 0.25564432726853914,
+          "inclusivePercent": 1.0134148791792785
+        },
+        {
+          "key": "|bindVertexArray|-1:-1",
+          "callFrame": {
+            "functionName": "bindVertexArray",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 36153,
+          "inclusiveUs": 36153,
+          "samples": 25,
+          "selfMs": 36.153,
+          "inclusiveMs": 36.153,
+          "selfPercent": 0.2384804377174428,
+          "inclusivePercent": 0.2384804377174428
+        },
+        {
+          "key": "three-CGmfrzlm.js|intersectsObject|82:3311",
+          "callFrame": {
+            "functionName": "intersectsObject",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 82,
+            "columnNumber": 3311
+          },
+          "selfUs": 32555,
+          "inclusiveUs": 34064,
+          "samples": 22,
+          "selfMs": 32.555,
+          "inclusiveMs": 34.064,
+          "selfPercent": 0.21474651204302134,
+          "inclusivePercent": 0.22470051255516751
+        },
+        {
+          "key": "|vertexAttribPointer|-1:-1",
+          "callFrame": {
+            "functionName": "vertexAttribPointer",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 32361,
+          "inclusiveUs": 32361,
+          "samples": 22,
+          "selfMs": 32.361,
+          "inclusiveMs": 32.361,
+          "selfPercent": 0.21346680621177125,
+          "inclusivePercent": 0.21346680621177125
+        },
+        {
+          "key": "three-CGmfrzlm.js|computeBoundingSphere|3863:64376",
+          "callFrame": {
+            "functionName": "computeBoundingSphere",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 64376
+          },
+          "selfUs": 31974,
+          "inclusiveUs": 69569,
+          "samples": 22,
+          "selfMs": 31.974,
+          "inclusiveMs": 69.569,
+          "selfPercent": 0.2109139909710817,
+          "inclusivePercent": 0.45890646893936266
+        },
+        {
+          "key": "three-CGmfrzlm.js|I|3839:3631",
+          "callFrame": {
+            "functionName": "I",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3839,
+            "columnNumber": 3631
+          },
+          "selfUs": 31170,
+          "inclusiveUs": 285054,
+          "samples": 21,
+          "selfMs": 31.17,
+          "inclusiveMs": 285.054,
+          "selfPercent": 0.20561046783538547,
+          "inclusivePercent": 1.8803364227894765
+        },
+        {
+          "key": "three-CGmfrzlm.js|cf|3762:8128",
+          "callFrame": {
+            "functionName": "cf",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 8128
+          },
+          "selfUs": 31161,
+          "inclusiveUs": 34174,
+          "samples": 21,
+          "selfMs": 31.161,
+          "inclusiveMs": 34.174,
+          "selfPercent": 0.20555110003909038,
+          "inclusivePercent": 0.22542611895432996
+        },
+        {
+          "key": "|(garbage collector)|-1:-1",
+          "callFrame": {
+            "functionName": "(garbage collector)",
+            "scriptId": "0",
+            "url": "",
+            "lineNumber": -1,
+            "columnNumber": -1
+          },
+          "selfUs": 30837,
+          "inclusiveUs": 30837,
+          "samples": 21,
+          "selfMs": 30.837,
+          "inclusiveMs": 30.837,
+          "selfPercent": 0.2034138593724666,
+          "inclusivePercent": 0.2034138593724666
+        },
+        {
+          "key": "three-CGmfrzlm.js|union|43:47984",
+          "callFrame": {
+            "functionName": "union",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 47984
+          },
+          "selfUs": 30259,
+          "inclusiveUs": 39090,
+          "samples": 21,
+          "selfMs": 30.259,
+          "inclusiveMs": 39.09,
+          "selfPercent": 0.1996011275659586,
+          "inclusivePercent": 0.2578541285750792
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|Xe|13:14522",
+          "callFrame": {
+            "functionName": "Xe",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 13,
+            "columnNumber": 14522
+          },
+          "selfUs": 29626,
+          "inclusiveUs": 29626,
+          "samples": 20,
+          "selfMs": 29.626,
+          "inclusiveMs": 29.626,
+          "selfPercent": 0.19542559255986947,
+          "inclusivePercent": 0.19542559255986947
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|mt|0:370",
+          "callFrame": {
+            "functionName": "mt",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 0,
+            "columnNumber": 370
+          },
+          "selfUs": 28159,
+          "inclusiveUs": 28159,
+          "samples": 19,
+          "selfMs": 28.159,
+          "inclusiveMs": 28.159,
+          "selfPercent": 0.1857486417637671,
+          "inclusivePercent": 0.1857486417637671
+        },
+        {
+          "key": "three-CGmfrzlm.js|a|3762:6709",
+          "callFrame": {
+            "functionName": "a",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 6709
+          },
+          "selfUs": 27169,
+          "inclusiveUs": 48288,
+          "samples": 18,
+          "selfMs": 27.169,
+          "inclusiveMs": 48.288,
+          "selfPercent": 0.17921818417130536,
+          "inclusivePercent": 0.31852801638867806
+        }
+      ],
+      "topInclusive": [
+        {
+          "key": "three-CGmfrzlm.js|c|3897:21172",
+          "callFrame": {
+            "functionName": "c",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3897,
+            "columnNumber": 21172
+          },
+          "selfUs": 7314,
+          "inclusiveUs": 2235357,
+          "samples": 5,
+          "selfMs": 7.314,
+          "inclusiveMs": 2235.357,
+          "selfPercent": 0.04824622912248988,
+          "inclusivePercent": 14.745357669204488
+        },
+        {
+          "key": "three-CGmfrzlm.js|Sv|3897:20700",
+          "callFrame": {
+            "functionName": "Sv",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3897,
+            "columnNumber": 20700
+          },
+          "selfUs": 5827,
+          "inclusiveUs": 2217911,
+          "samples": 4,
+          "selfMs": 5.827,
+          "inclusiveMs": 2217.911,
+          "selfPercent": 0.03843734989017617,
+          "inclusivePercent": 14.630276494297329
+        },
+        {
+          "key": "three-CGmfrzlm.js|render|3863:27667",
+          "callFrame": {
+            "functionName": "render",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 27667
+          },
+          "selfUs": 13528,
+          "inclusiveUs": 1611898,
+          "samples": 9,
+          "selfMs": 13.528,
+          "inclusiveMs": 1611.898,
+          "selfPercent": 0.08923639425335564,
+          "inclusivePercent": 10.632759123609953
+        },
+        {
+          "key": "three-CGmfrzlm.js|renderBufferDirect|3863:24725",
+          "callFrame": {
+            "functionName": "renderBufferDirect",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 24725
+          },
+          "selfUs": 152019,
+          "inclusiveUs": 1091668,
+          "samples": 102,
+          "selfMs": 152.019,
+          "inclusiveMs": 1091.668,
+          "selfPercent": 1.0027814472206438,
+          "inclusivePercent": 7.20110260509848
+        },
+        {
+          "key": "three-CGmfrzlm.js|aa|3863:30423",
+          "callFrame": {
+            "functionName": "aa",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 30423
+          },
+          "selfUs": 1509,
+          "inclusiveUs": 920074,
+          "samples": 1,
+          "selfMs": 1.509,
+          "inclusiveMs": 920.074,
+          "selfPercent": 0.00995400051214619,
+          "inclusivePercent": 6.06919620093598
+        },
+        {
+          "key": "three-CGmfrzlm.js|uo|3863:32138",
+          "callFrame": {
+            "functionName": "uo",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32138
+          },
+          "selfUs": 5733,
+          "inclusiveUs": 917058,
+          "samples": 4,
+          "selfMs": 5.733,
+          "inclusiveMs": 917.058,
+          "selfPercent": 0.03781728623998284,
+          "inclusivePercent": 6.049301392755308
+        },
+        {
+          "key": "three-CGmfrzlm.js|Yr|3863:32379",
+          "callFrame": {
+            "functionName": "Yr",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32379
+          },
+          "selfUs": 9705,
+          "inclusiveUs": 908317,
+          "samples": 7,
+          "selfMs": 9.705,
+          "inclusiveMs": 908.317,
+          "selfPercent": 0.0640182736715565,
+          "inclusivePercent": 5.991642069709139
+        },
+        {
+          "key": "three-CGmfrzlm.js|df|3863:35481",
+          "callFrame": {
+            "functionName": "df",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 35481
+          },
+          "selfUs": 66394,
+          "inclusiveUs": 680904,
+          "samples": 45,
+          "selfMs": 66.394,
+          "inclusiveMs": 680.904,
+          "selfPercent": 0.4379628296908112,
+          "inclusivePercent": 4.491529996502577
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|<anonymous>|76:17411",
+          "callFrame": {
+            "functionName": "",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 76,
+            "columnNumber": 17411
+          },
+          "selfUs": 2985,
+          "inclusiveUs": 428748,
+          "samples": 2,
+          "selfMs": 2.985,
+          "inclusiveMs": 428.748,
+          "selfPercent": 0.019690319104543656,
+          "inclusivePercent": 2.8282026584371467
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|<anonymous>|76:14905",
+          "callFrame": {
+            "functionName": "",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 76,
+            "columnNumber": 14905
+          },
+          "selfUs": 111120,
+          "inclusiveUs": 422849,
+          "samples": 75,
+          "selfMs": 111.12,
+          "inclusiveMs": 422.849,
+          "selfPercent": 0.7329943915902483,
+          "inclusivePercent": 2.7892903661766097
+        },
+        {
+          "key": "three-CGmfrzlm.js|render|3839:574",
+          "callFrame": {
+            "functionName": "render",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3839,
+            "columnNumber": 574
+          },
+          "selfUs": 0,
+          "inclusiveUs": 314050,
+          "samples": 0,
+          "selfMs": 0,
+          "inclusiveMs": 314.05,
+          "selfPercent": 0,
+          "inclusivePercent": 2.0716062696086883
+        },
+        {
+          "key": "three-CGmfrzlm.js|I|3839:3631",
+          "callFrame": {
+            "functionName": "I",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3839,
+            "columnNumber": 3631
+          },
+          "selfUs": 31170,
+          "inclusiveUs": 285054,
+          "samples": 21,
+          "selfMs": 31.17,
+          "inclusiveMs": 285.054,
+          "selfPercent": 0.20561046783538547,
+          "inclusivePercent": 1.8803364227894765
+        },
+        {
+          "key": "three-CGmfrzlm.js|setValue|3762:15724",
+          "callFrame": {
+            "functionName": "setValue",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 15724
+          },
+          "selfUs": 13565,
+          "inclusiveUs": 223636,
+          "samples": 9,
+          "selfMs": 13.565,
+          "inclusiveMs": 223.636,
+          "selfPercent": 0.08948046186034662,
+          "inclusivePercent": 1.4751973880280485
+        },
+        {
+          "key": "three-CGmfrzlm.js|updateMatrixWorld|43:69214",
+          "callFrame": {
+            "functionName": "updateMatrixWorld",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 69214
+          },
+          "selfUs": 135089,
+          "inclusiveUs": 200736,
+          "samples": 90,
+          "selfMs": 135.089,
+          "inclusiveMs": 200.736,
+          "selfPercent": 0.8911040259677379,
+          "inclusivePercent": 1.3241393285660552
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|wt|76:10358",
+          "callFrame": {
+            "functionName": "wt",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 76,
+            "columnNumber": 10358
+          },
+          "selfUs": 43019,
+          "inclusiveUs": 200505,
+          "samples": 29,
+          "selfMs": 43.019,
+          "inclusiveMs": 200.505,
+          "selfPercent": 0.2837714698687985,
+          "inclusivePercent": 1.3226155551278143
+        },
+        {
+          "key": "three-CGmfrzlm.js|as|3863:32882",
+          "callFrame": {
+            "functionName": "as",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3863,
+            "columnNumber": 32882
+          },
+          "selfUs": 147579,
+          "inclusiveUs": 190918,
+          "samples": 100,
+          "selfMs": 147.579,
+          "inclusiveMs": 190.918,
+          "selfPercent": 0.9734933343817247,
+          "inclusivePercent": 1.2593756592299048
+        },
+        {
+          "key": "three-CGmfrzlm.js|f|3612:13638",
+          "callFrame": {
+            "functionName": "f",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3612,
+            "columnNumber": 13638
+          },
+          "selfUs": 11711,
+          "inclusiveUs": 174343,
+          "samples": 9,
+          "selfMs": 11.711,
+          "inclusiveMs": 174.343,
+          "selfPercent": 0.07725069582355469,
+          "inclusivePercent": 1.1500399677197504
+        },
+        {
+          "key": "three-CGmfrzlm.js|kC|3762:9880",
+          "callFrame": {
+            "functionName": "kC",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 9880
+          },
+          "selfUs": 38755,
+          "inclusiveUs": 153631,
+          "samples": 26,
+          "selfMs": 38.755,
+          "inclusiveMs": 153.631,
+          "selfPercent": 0.25564432726853914,
+          "inclusivePercent": 1.0134148791792785
+        },
+        {
+          "key": "three-CGmfrzlm.js|upload|3762:15862",
+          "callFrame": {
+            "functionName": "upload",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 3762,
+            "columnNumber": 15862
+          },
+          "selfUs": 21951,
+          "inclusiveUs": 113366,
+          "samples": 15,
+          "selfMs": 21.951,
+          "inclusiveMs": 113.366,
+          "selfPercent": 0.14479805516376473,
+          "inclusivePercent": 0.7478099549767826
+        },
+        {
+          "key": "three-CGmfrzlm.js|multiplyMatrices|43:55166",
+          "callFrame": {
+            "functionName": "multiplyMatrices",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+            "lineNumber": 43,
+            "columnNumber": 55166
+          },
+          "selfUs": 110488,
+          "inclusiveUs": 110488,
+          "samples": 74,
+          "selfMs": 110.488,
+          "inclusiveMs": 110.488,
+          "selfPercent": 0.7288254530059696,
+          "inclusivePercent": 0.7288254530059696
+        }
+      ],
+      "captionFunctions": [
+        {
+          "key": "HarborScene-Vy8ofl7a.js|v1|13:60420",
+          "callFrame": {
+            "functionName": "v1",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 13,
+            "columnNumber": 60420
+          },
+          "selfUs": 2931,
+          "inclusiveUs": 2931,
+          "samples": 2,
+          "selfMs": 2.931,
+          "inclusiveMs": 2.931,
+          "selfPercent": 0.019334112326773015,
+          "inclusivePercent": 0.019334112326773015
+        },
+        {
+          "key": "HarborScene-Vy8ofl7a.js|calculatePosition|13:65803",
+          "callFrame": {
+            "functionName": "calculatePosition",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 13,
+            "columnNumber": 65803
+          },
+          "selfUs": 0,
+          "inclusiveUs": 2931,
+          "samples": 0,
+          "selfMs": 0,
+          "inclusiveMs": 2.931,
+          "selfPercent": 0,
+          "inclusivePercent": 0.019334112326773015
+        }
+      ],
+      "captionStacks": [
+        {
+          "id": 309,
+          "callFrame": {
+            "functionName": "calculatePosition",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 13,
+            "columnNumber": 65803
+          },
+          "selfMs": 0,
+          "inclusiveMs": 2.931,
+          "ancestors": [
+            {
+              "functionName": "",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+              "lineNumber": 3897,
+              "columnNumber": 39006
+            },
+            {
+              "functionName": "Sv",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+              "lineNumber": 3897,
+              "columnNumber": 20700
+            },
+            {
+              "functionName": "c",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+              "lineNumber": 3897,
+              "columnNumber": 21172
+            },
+            {
+              "functionName": "(root)",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1
+            }
+          ]
+        },
+        {
+          "id": 310,
+          "callFrame": {
+            "functionName": "v1",
+            "scriptId": "8",
+            "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+            "lineNumber": 13,
+            "columnNumber": 60420
+          },
+          "selfMs": 2.931,
+          "inclusiveMs": 2.931,
+          "ancestors": [
+            {
+              "functionName": "calculatePosition",
+              "scriptId": "8",
+              "url": "http://127.0.0.1:5192/assets/HarborScene-Vy8ofl7a.js",
+              "lineNumber": 13,
+              "columnNumber": 65803
+            },
+            {
+              "functionName": "",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+              "lineNumber": 3897,
+              "columnNumber": 39006
+            },
+            {
+              "functionName": "Sv",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+              "lineNumber": 3897,
+              "columnNumber": 20700
+            },
+            {
+              "functionName": "c",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5192/assets/three-CGmfrzlm.js",
+              "lineNumber": 3897,
+              "columnNumber": 21172
+            },
+            {
+              "functionName": "(root)",
+              "scriptId": "0",
+              "url": "",
+              "lineNumber": -1,
+              "columnNumber": -1
+            }
+          ]
+        }
+      ],
+      "dreiHtmlFrameCallback": {
+        "asset": "three-CGmfrzlm.js",
+        "lineNumber": 3897,
+        "columnNumber": 39006,
+        "selfMs": 1.501,
+        "inclusiveMs": 25.542,
+        "selfSamples": 1,
+        "stackSamples": 17
+      }
+    }
+  ],
+  "sourceMapping": {
+    "baseline": {
+      "asset": "benchmarks/.build/v11-start-2b76e21/assets/HarborScene-i8rQ1yJB.js",
+      "captionDefinition": null,
+      "positionCallsites": [],
+      "hotFrameSnippets": [
+        {
+          "line": 76,
+          "column": 14905,
+          "mapping": "PodCargo per-frame container matrix loop",
+          "snippet": "()=>{if(!w.current||!v.current||!_.current)return;const M=++S.current;let z=0;for(let ie=0;ie<F.length;ie++){const X=F[ie],J=X.pod,he=X.uid,te=wt(J,t,"
+        },
+        {
+          "line": 76,
+          "column": 10358,
+          "mapping": "podVisual",
+          "snippet": "(e,t,n,i,o){var m,h,q,y,p,f,w;const s=L(e),a=i.current.active.find(v=>v.uid===s),c=i.current.queue.find(v=>v.uid===s),u=t.get((m=e.spec)==null?void 0:"
+        },
+        {
+          "line": 13,
+          "column": 30707,
+          "mapping": "resourcePosition",
+          "snippet": "(e,t,n){var d,m,h,q,y,p,f;const i=L(e);if(e.kind===\"Node\"){const w=n.node(i)-n.windowOffset;return w>=0&&w<n.windowSize?((m=(d=n.fleet)==null?void 0:d"
+        }
+      ]
+    },
+    "optimized": {
+      "asset": "benchmarks/.build/v11-final-32a0468/assets/HarborScene-Vy8ofl7a.js",
+      "captionDefinition": "9,metalness:.25,vertexColors:!1}),selected:new $e({color:\"#3b82f6\",transparent:!0,opacity:.85,depthWrite:!1})};return{...n,dispose(){Object.values(n).forEach(i=>i.dispose())}}}const Nt=new qe;function v1(e,t,n,i=320,r=!1){Nt.setFromMatrixPosition(e.matrixWorld).project(t);const a=Math.min(i,Math.max(120,n.width-32))/2;let c=(Nt.x*.5+.5)*n.width;const u=(-Nt.y*.5+.5)*n.height;return r&&(c+=(c>n.width/2?-1:1)*(a+30)),[Math.max(a+16,Math.min(n.width-a-16,c)),Math.max(55,Math.min(n.height-65,u))]}const Ze={background:\"#fff9ef\",color:\"#713b24\",border:\"1px sol",
+      "positionCallsites": [
+        "calculatePosition:(h,q,_)=>v1(h,q,_,220,!0),style:{pointerEvents:\"none\"},zIndexRange:[8,0],children:",
+        "calculatePosition:v1,style:{pointerEvents:\"none\"},zIndexRange:[7,0],children:l.jsx(\"span\",{ref:p,tit"
+      ],
+      "hotFrameSnippets": [
+        {
+          "line": 76,
+          "column": 14905,
+          "mapping": "PodCargo per-frame container matrix loop",
+          "snippet": "()=>{if(!w.current||!v.current||!y.current)return;const M=++S.current;let z=0;for(let ie=0;ie<F.length;ie++){const X=F[ie],J=X.pod,he=X.uid,te=wt(J,t,"
+        },
+        {
+          "line": 76,
+          "column": 10358,
+          "mapping": "podVisual",
+          "snippet": "(e,t,n,i,r){var m,h,q,_,p,f,w;const s=L(e),a=i.current.active.find(v=>v.uid===s),c=i.current.queue.find(v=>v.uid===s),u=t.get((m=e.spec)==null?void 0:"
+        },
+        {
+          "line": 13,
+          "column": 30707,
+          "mapping": "resourcePosition",
+          "snippet": "(e,t,n){var d,m,h,q,_,p,f;const i=L(e);if(e.kind===\"Node\"){const w=n.node(i)-n.windowOffset;return w>=0&&w<n.windowSize?((m=(d=n.fleet)==null?void 0:d"
+        }
+      ]
+    },
+    "dreiHtml": {
+      "asset": "benchmarks/.build/v11-final-32a0468/assets/three-CGmfrzlm.js",
+      "lineNumber": 3897,
+      "columnNumber": 39006,
+      "meaning": "Drei Html useFrame callback updates object/camera world matrices, calls calculatePosition, then conditionally changes DOM visibility/zIndex/transform.",
+      "verification": "Matched minified source callback containing updateMatrixWorld, updateWorldMatrix and calculatePosition argument; current caption v1 appears beneath its stack."
+    }
+  },
+  "conclusion": {
+    "causeResolved": false,
+    "releaseCPUGate": "BLOCKED_UNCHANGED",
+    "interpretation": "This short diagnostic does not reproduce extra JS submit time in the candidate. No sampled JS result causally explains or clears the earlier AC +4.02% closer-matched residual, much less the initial unadjusted+20.93% median. Native/GPU process is outside this profile. No further runs requested by this review.",
+    "captionInterpretation": "Candidate captionPosition v1 has two self samples weighted2.931ms (0.0193% of15.159734s sampled window), with calculatePosition parent and Drei Html frame callback ancestor. This is not an invocation count, cost upper bound, proof of zero browser layout cost, or explanation of earlier AC CPU residual."
+  }
+}

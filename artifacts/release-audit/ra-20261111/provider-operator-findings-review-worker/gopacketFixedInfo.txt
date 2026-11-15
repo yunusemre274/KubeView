@@ -1,0 +1,1 @@
+{"Version":"v1.7.2","Time":"2026-09-15T01:04:03Z","Origin":{"VCS":"git","URL":"https://github.com/gopacket/gopacket","Hash":"508044327cc2c065b3db753c010a027e7d1ca621","Ref":"refs/tags/v1.7.2"}}

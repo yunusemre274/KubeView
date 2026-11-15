@@ -1,0 +1,35 @@
+{
+  "startedAt": "2026-11-11T19:24:14.920413+00:00",
+  "status": "FAIL",
+  "action": "Atomic quarantine of proven failed audit machine directory; no deletion",
+  "moved": false,
+  "proof": {
+    "files": [
+      {
+        "name": "config.json",
+        "bytes": 3818,
+        "birthTime": 1794424452.2458558,
+        "mode": "0o600"
+      },
+      {
+        "name": "id_rsa",
+        "bytes": 1679,
+        "birthTime": 1794424454.1376247,
+        "mode": "0o600"
+      },
+      {
+        "name": "id_rsa.pub",
+        "bytes": 381,
+        "birthTime": 1794424454.137709,
+        "mode": "0o600"
+      }
+    ],
+    "name": "kvml-d32afbf634e8-a-m03",
+    "driver": "docker",
+    "configSHA256": "f2aeb4f72da163493a3fbcf2a98a81c5317e5f1099dec835d60660db5818dde8",
+    "newLiveResourcesAbsent": true,
+    "profileBeforeSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+    "sourceRelative": "minikube/.minikube/machines/kvml-d32afbf634e8-a-m03",
+    "targetRelative": "private/release-provider-one-worker-20261111-02/quarantined-machine-m03"
+  }
+}

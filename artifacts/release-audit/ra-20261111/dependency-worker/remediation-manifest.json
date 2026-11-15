@@ -1,0 +1,359 @@
+{
+  "source_commit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+  "generated_at_utc": "2026-11-11T10:31:24.536167+00:00",
+  "modified_source_files": [
+    {
+      "path": "backend/go.mod",
+      "sha256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c"
+    },
+    {
+      "path": "backend/go.sum",
+      "sha256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+    }
+  ],
+  "changes": [
+    {
+      "module": "cloud.google.com/go/compute",
+      "before": "v1.20.1",
+      "after": null,
+      "operation": "removed"
+    },
+    {
+      "module": "cloud.google.com/go/compute/metadata",
+      "before": "v0.2.3",
+      "after": "v0.3.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "github.com/gorilla/websocket",
+      "before": "v1.5.1",
+      "after": "v1.5.3",
+      "operation": "upgraded"
+    },
+    {
+      "module": "github.com/moby/spdystream",
+      "before": "v0.2.0",
+      "after": "v0.5.1",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/crypto",
+      "before": "v0.21.0",
+      "after": "v0.58.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/mod",
+      "before": "v0.15.0",
+      "after": "v0.41.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/net",
+      "before": "v0.23.0",
+      "after": "v0.62.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/oauth2",
+      "before": "v0.10.0",
+      "after": "v0.27.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/sync",
+      "before": "v0.0.0-20201020160332-67f06af15bc9",
+      "after": "v0.24.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/sys",
+      "before": "v0.18.0",
+      "after": "v0.49.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/term",
+      "before": "v0.18.0",
+      "after": "v0.47.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/text",
+      "before": "v0.14.0",
+      "after": "v0.43.0",
+      "operation": "upgraded"
+    },
+    {
+      "module": "golang.org/x/tools",
+      "before": "v0.18.0",
+      "after": "v0.51.0",
+      "operation": "upgraded"
+    }
+  ],
+  "kubernetes_modules_unchanged": true,
+  "go_mod_minimum": "1.26.11",
+  "scan": {
+    "findings": 0,
+    "configuration": {
+      "protocol_version": "v1.0.0",
+      "scanner_name": "govulncheck",
+      "scanner_version": "v1.9.0",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-11-11T02:51:11Z",
+      "go_version": "go1.26.11",
+      "scan_level": "symbol",
+      "scan_mode": "source"
+    },
+    "limitations": "darwin/arm64 default source main build; no custom tags, binary, container or explicit platform rescans"
+  },
+  "tests": {
+    "top_level": {
+      "pass": 94,
+      "skip": 25
+    },
+    "all_including_subtests": {
+      "pass": 239,
+      "skip": 25
+    },
+    "packages": [
+      [
+        "github.com/k8s-tersane/tersane/backend",
+        "pass"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/internal/webui",
+        "skip"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/api",
+        "skip"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/k8s",
+        "pass"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/metrics",
+        "skip"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/netutils",
+        "skip"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/provision",
+        "pass"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/server",
+        "pass"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/traffic",
+        "pass"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/websocket",
+        "skip"
+      ],
+      [
+        "github.com/k8s-tersane/tersane/backend/pkg/workspace",
+        "pass"
+      ]
+    ],
+    "skip_names": [
+      "TestBenchmarkFixtureServer",
+      "TestDedicatedClusterManagement",
+      "TestDedicatedClusterPodSessions",
+      "TestDedicatedClusterTargetedScheduling",
+      "TestDedicatedClusterRestrictedRBAC",
+      "TestOwnedRepairRealLogUIDReplacement",
+      "TestOwnedRepairRealCronJobActionsAndCompletion",
+      "TestOwnedRepairRealNativeSidecarAndResize",
+      "TestOwnedRepairRealMetricsAvailability",
+      "TestOwnedRepairRealDeploymentRollbackRevision",
+      "TestOwnedRepairRealDrainRespectsPDB",
+      "TestOwnedRepairRealHubbleMeasuredProtocols",
+      "TestOwnedRepairRealSyntheticSecretMetadataRoundTrip",
+      "TestOwnedRepairRealTemplateCapabilityTargets",
+      "TestOwnedRepairRealHubbleRestrictedNamespace",
+      "TestBenchmarkSlowReaderReconnect",
+      "TestOwnedV11RealCustomScope",
+      "TestOwnedV11RealHubbleReadOnlyScope",
+      "TestOwnedV11RealLogRoles",
+      "TestOwnedV11RealMinikubeManagementGate",
+      "TestOwnedWorkspaceRealConcurrentOperationsAcceptance",
+      "TestOwnedWorkspaceRealWorkspaceRecordAcceptance",
+      "TestOwnedWorkspaceRealAPIIsolation",
+      "TestOwnedWorkspaceRealAPISmoke",
+      "TestOwnedWorkspaceRealAPISelectorMultiNSOverlap"
+    ]
+  },
+  "tracked_backend_changes_at_validation_end": [
+    "backend/go.mod",
+    "backend/go.sum",
+    "backend/pkg/server/workspace_scope.go"
+  ],
+  "validation_commands": [
+    {
+      "command": [
+        "env",
+        "GOTOOLCHAIN=go1.26.11",
+        "go",
+        "version"
+      ],
+      "cwd_relative_to_repository": "backend",
+      "started_at_utc": "2026-11-11T10:27:55.760426+00:00",
+      "finished_at_utc": "2026-11-11T10:28:07.489385+00:00",
+      "duration_seconds": 11.729,
+      "exit_code": 0,
+      "timeout_seconds": 120,
+      "timed_out": false,
+      "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+      "stdout_file": "patched-toolchain-version.stdout",
+      "stderr_file": "patched-toolchain-version.stderr"
+    },
+    {
+      "command": [
+        "env",
+        "GOTOOLCHAIN=go1.26.11",
+        "go",
+        "get",
+        "-p=1",
+        "go@1.26.11",
+        "golang.org/x/net@v0.62.0",
+        "golang.org/x/text@v0.43.0",
+        "golang.org/x/sys@v0.49.0",
+        "golang.org/x/oauth2@v0.27.0",
+        "github.com/gorilla/websocket@v1.5.3",
+        "github.com/moby/spdystream@v0.5.1"
+      ],
+      "cwd_relative_to_repository": "backend",
+      "started_at_utc": "2026-11-11T10:28:40.318529+00:00",
+      "finished_at_utc": "2026-11-11T10:28:44.675717+00:00",
+      "duration_seconds": 4.357,
+      "exit_code": 0,
+      "timeout_seconds": 120,
+      "timed_out": false,
+      "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+      "stdout_file": "go-dependency-update.stdout",
+      "stderr_file": "go-dependency-update.stderr"
+    },
+    {
+      "command": [
+        "env",
+        "GOTOOLCHAIN=go1.26.11",
+        "GOFLAGS=-p=1",
+        "go",
+        "mod",
+        "tidy"
+      ],
+      "cwd_relative_to_repository": "backend",
+      "started_at_utc": "2026-11-11T10:29:25.430850+00:00",
+      "finished_at_utc": "2026-11-11T10:29:26.193508+00:00",
+      "duration_seconds": 0.763,
+      "exit_code": 0,
+      "timeout_seconds": 120,
+      "timed_out": false,
+      "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+      "stdout_file": "go-mod-tidy.stdout",
+      "stderr_file": "go-mod-tidy.stderr"
+    },
+    {
+      "command": [
+        "env",
+        "GOTOOLCHAIN=go1.26.11",
+        "go",
+        "vet",
+        "-p=1",
+        "./..."
+      ],
+      "cwd_relative_to_repository": "backend",
+      "started_at_utc": "2026-11-11T10:29:26.224964+00:00",
+      "finished_at_utc": "2026-11-11T10:30:25.730711+00:00",
+      "duration_seconds": 59.504,
+      "exit_code": 0,
+      "timeout_seconds": 120,
+      "timed_out": false,
+      "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+      "stdout_file": "patched-go-vet.stdout",
+      "stderr_file": "patched-go-vet.stderr"
+    },
+    {
+      "command": [
+        "env",
+        "GOTOOLCHAIN=go1.26.11",
+        "go",
+        "test",
+        "-p=1",
+        "-parallel=2",
+        "-timeout=90s",
+        "-json",
+        "./..."
+      ],
+      "cwd_relative_to_repository": "backend",
+      "started_at_utc": "2026-11-11T10:30:25.761972+00:00",
+      "finished_at_utc": "2026-11-11T10:30:53.736708+00:00",
+      "duration_seconds": 27.974,
+      "exit_code": 0,
+      "timeout_seconds": 120,
+      "timed_out": false,
+      "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+      "stdout_file": "patched-go-test.stdout.gz",
+      "stderr_file": "patched-go-test.stderr",
+      "stdout_encoding": "gzip; decompress to original unmodified newline-delimited JSON test stream",
+      "stdout_sha256_uncompressed": "2cbe643c4fa39ba4252cc66c79b078562cc6ab0bd4a61ada2d17db8cfc02b6bd"
+    },
+    {
+      "command": [
+        "env",
+        "GOTOOLCHAIN=go1.26.11",
+        "GOFLAGS=-p=1",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/tools/govulncheck",
+        "-json",
+        "."
+      ],
+      "cwd_relative_to_repository": "backend",
+      "started_at_utc": "2026-11-11T10:30:53.768882+00:00",
+      "finished_at_utc": "2026-11-11T10:30:57.208268+00:00",
+      "duration_seconds": 3.439,
+      "exit_code": 0,
+      "timeout_seconds": 120,
+      "timed_out": false,
+      "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+      "stdout_file": "patched-govulncheck-main.stdout.gz",
+      "stderr_file": "patched-govulncheck-main.stderr",
+      "stdout_encoding": "gzip; decompress to original unmodified concatenated JSON stream",
+      "stdout_sha256_uncompressed": "bfd6061eb55de08af8f09e8ba07308a98afc90219f03775d20d6bb967355caa4"
+    },
+    {
+      "command": [
+        "env",
+        "GOTOOLCHAIN=go1.26.11",
+        "go",
+        "list",
+        "-m",
+        "-json",
+        "all"
+      ],
+      "cwd_relative_to_repository": "backend",
+      "started_at_utc": "2026-11-11T10:30:57.232025+00:00",
+      "finished_at_utc": "2026-11-11T10:30:57.573693+00:00",
+      "duration_seconds": 0.342,
+      "exit_code": 0,
+      "timeout_seconds": 120,
+      "timed_out": false,
+      "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+      "stdout_file": "patched-go-modules.stdout",
+      "stderr_file": "patched-go-modules.stderr"
+    }
+  ],
+  "other_worker_backend_source_observed": {
+    "path": "backend/pkg/server/workspace_scope.go",
+    "sha256_at_validation_record": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+    "mtime_utc": "2026-11-11T10:29:05.550616+00:00",
+    "ownership": "Another release-audit worker; not edited by dependency worker",
+    "test_started_at_utc": "2026-11-11T10:30:25.761972+00:00"
+  }
+}

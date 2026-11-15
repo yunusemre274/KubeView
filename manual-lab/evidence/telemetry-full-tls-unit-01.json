@@ -1,0 +1,16 @@
+{
+  "attempt": "telemetry-full-tls-unit-01",
+  "testsRun": 4,
+  "pass": true,
+  "elapsedSeconds": 0.09,
+  "sourceSHA256": {
+    "scripts/manual_lab.py": "87e59639ad8a14684c50048f4c49a00e66df91433c36aeed642936317b354ed4",
+    "manual-lab/telemetry.py": "14de490e7aece7b29e148a529f0dca621c885a5d86f6e8c32e55e5dc2c4bf2ff",
+    "manual-lab/templates/telemetry-values.json": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796",
+    "manual-lab/tests/test_telemetry_tls.py": "c805154766b1d96d03af4b22ee6e33bc48f9f5ecedb8dbcda3693e718d33aceb"
+  },
+  "sourceUnchanged": true,
+  "clusterSecretAppTrafficBuildAccess": false,
+  "previousRunner18Repeated": false,
+  "privatePathsOrSecretValuesRecorded": false
+}

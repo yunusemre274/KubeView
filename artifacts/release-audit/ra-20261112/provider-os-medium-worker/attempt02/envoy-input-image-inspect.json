@@ -1,0 +1,43 @@
+{
+  "Architecture": "arm64",
+  "Config": {
+    "Cmd": [
+      "/bin/bash"
+    ],
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    ],
+    "Labels": {
+      "maintainer": "maintainer@cilium.io",
+      "org.opencontainers.image.version": "24.04"
+    }
+  },
+  "Created": "2026-11-12T10:41:42.828944712Z",
+  "Descriptor": {
+    "digest": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "size": 1187
+  },
+  "Id": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+  "Metadata": {
+    "LastTagTime": "2026-11-12T10:41:42.977958796Z"
+  },
+  "Os": "linux",
+  "Parent": "sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+  "RepoDigests": [
+    "kubeview-private/cilium-envoy@sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740"
+  ],
+  "RepoTags": [
+    "kubeview-private/cilium-envoy:1.20.4-apt-security.1"
+  ],
+  "RootFS": {
+    "Layers": [
+      "sha256:9a354992483c962fa69075527e7a2690fd9103f53d2c10af083fb31f24335256",
+      "sha256:d7f8cfac6f1fb8c79131297d6cb1f90fe15395ade151e0a6fd1280ae18416ebc",
+      "sha256:ee8fa9aaac81e8a3c40c7ff288388b559d338f699a9405c7dbaa37e76c9b8d37",
+      "sha256:1fd340ff6abc1230fa08114cecf1ffed8947d122cd1383cec66476a56f216052"
+    ],
+    "Type": "layers"
+  },
+  "Size": 76788578
+}

@@ -1,0 +1,239 @@
+TAP version 13
+# Subtest: strict argument parsing preserves prepared/clean/target and default targets
+ok 1 - strict argument parsing preserves prepared/clean/target and default targets
+  ---
+  duration_ms: 1.560333
+  type: 'test'
+  ...
+# Subtest: existing explicit output directories and symlinks fail before any command
+ok 2 - existing explicit output directories and symlinks fail before any command
+  ---
+  duration_ms: 16.991041
+  type: 'test'
+  ...
+# Subtest: prepared output tampering or added files cannot be blessed by newly computed package hashes
+ok 3 - prepared output tampering or added files cannot be blessed by newly computed package hashes
+  ---
+  duration_ms: 32.789875
+  type: 'test'
+  ...
+# Subtest: default dist rejects every conflicting archive, binary folder or manifest before build
+ok 4 - default dist rejects every conflicting archive, binary folder or manifest before build
+  ---
+  duration_ms: 32.451292
+  type: 'test'
+  ...
+# Subtest: fresh relative output dry-run preserves prepared flow and packages only manual runtime
+ok 5 - fresh relative output dry-run preserves prepared flow and packages only manual runtime
+  ---
+  duration_ms: 19.418041
+  type: 'test'
+  ...
+# Subtest: fresh absolute output keeps both default targets isolated from historical dist
+ok 6 - fresh absolute output keeps both default targets isolated from historical dist
+  ---
+  duration_ms: 19.23475
+  type: 'test'
+  ...
+# Subtest: default output preserves unrelated historical files and keeps normal frontend flow
+ok 7 - default output preserves unrelated historical files and keeps normal frontend flow
+  ---
+  duration_ms: 13.556458
+  type: 'test'
+  ...
+# Subtest: require-clean rejection never reserves output or invokes frontend/build tools
+ok 8 - require-clean rejection never reserves output or invokes frontend/build tools
+  ---
+  duration_ms: 6.890291
+  type: 'test'
+  ...
+# Subtest: require-clean includes the manual runtime, shipped docs and RBAC inputs
+ok 9 - require-clean includes the manual runtime, shipped docs and RBAC inputs
+  ---
+  duration_ms: 57.0165
+  type: 'test'
+  ...
+# Subtest: bundle provenance binds shipped inputs and prepared frontend bytes
+ok 10 - bundle provenance binds shipped inputs and prepared frontend bytes
+  ---
+  duration_ms: 17.85825
+  type: 'test'
+  ...
+# Subtest: missing or symlinked prepared frontend cannot reach embed or compilation
+ok 11 - missing or symlinked prepared frontend cannot reach embed or compilation
+  ---
+  duration_ms: 14.202875
+  type: 'test'
+  ...
+# Subtest: archive published during build cannot be overwritten and temporary output is removed
+ok 12 - archive published during build cannot be overwritten and temporary output is removed
+  ---
+  duration_ms: 12.344792
+  type: 'test'
+  ...
+# Subtest: prepared frontend inventory missing/stale/unknown fails before embed/build
+ok 13 - prepared frontend inventory missing/stale/unknown fails before embed/build
+  ---
+  duration_ms: 65.7165
+  type: 'test'
+  ...
+# Subtest: invalid Go/npm inventory never publishes an archive
+ok 14 - invalid Go/npm inventory never publishes an archive
+  ---
+  duration_ms: 20.788583
+  type: 'test'
+  ...
+# Subtest: current read-only CI lane has reviewed triggers, grants, pins and data boundaries
+ok 15 - current read-only CI lane has reviewed triggers, grants, pins and data boundaries
+  ---
+  duration_ms: 1.466959
+  type: 'test'
+  ...
+# Subtest: bounded trust-boundary mutations are rejected without executing any workflow
+    # Subtest: privileged pull-request trigger
+    ok 1 - privileged pull-request trigger
+      ---
+      duration_ms: 0.461958
+      type: 'test'
+      ...
+    # Subtest: privileged workflow consumer
+    ok 2 - privileged workflow consumer
+      ---
+      duration_ms: 0.224041
+      type: 'test'
+      ...
+    # Subtest: global write grant
+    ok 3 - global write grant
+      ---
+      duration_ms: 0.1455
+      type: 'test'
+      ...
+    # Subtest: job write override
+    ok 4 - job write override
+      ---
+      duration_ms: 0.126291
+      type: 'test'
+      ...
+    # Subtest: persisted checkout token
+    ok 5 - persisted checkout token
+      ---
+      duration_ms: 0.14225
+      type: 'test'
+      ...
+    # Subtest: mutable action tag
+    ok 6 - mutable action tag
+      ---
+      duration_ms: 0.100333
+      type: 'test'
+      ...
+    # Subtest: alternate attacker checkout
+    ok 7 - alternate attacker checkout
+      ---
+      duration_ms: 0.109916
+      type: 'test'
+      ...
+    # Subtest: PR expression to shell
+    ok 8 - PR expression to shell
+      ---
+      duration_ms: 0.163666
+      type: 'test'
+      ...
+    # Subtest: secret injected into job
+    ok 9 - secret injected into job
+      ---
+      duration_ms: 0.156875
+      type: 'test'
+      ...
+    # Subtest: dependency cache key input changed
+    ok 10 - dependency cache key input changed
+      ---
+      duration_ms: 0.100708
+      type: 'test'
+      ...
+    # Subtest: hidden or unrestricted artifact payload
+    ok 11 - hidden or unrestricted artifact payload
+      ---
+      duration_ms: 0.111583
+      type: 'test'
+      ...
+    # Subtest: unreviewed reusable job
+    ok 12 - unreviewed reusable job
+      ---
+      duration_ms: 0.09
+      type: 'test'
+      ...
+    # Subtest: security guard omitted from CI
+    ok 13 - security guard omitted from CI
+      ---
+      duration_ms: 0.09775
+      type: 'test'
+      ...
+    # Subtest: quoted artifact flags are still enabled inputs
+    ok 14 - quoted artifact flags are still enabled inputs
+      ---
+      duration_ms: 0.139541
+      type: 'test'
+      ...
+    1..14
+ok 16 - bounded trust-boundary mutations are rejected without executing any workflow
+  ---
+  duration_ms: 3.50625
+  type: 'test'
+  ...
+# Subtest: emitted module inventory separates real package versions, local/virtual and treeshaken modules
+ok 17 - emitted module inventory separates real package versions, local/virtual and treeshaken modules
+  ---
+  duration_ms: 20.084333
+  type: 'test'
+  ...
+# Subtest: inventory sees final output after later normal Rollup generators rewrite JavaScript
+ok 18 - inventory sees final output after later normal Rollup generators rewrite JavaScript
+  ---
+  duration_ms: 89.734416
+  type: 'test'
+  ...
+# Subtest: unknown owner is counted and cannot satisfy exact bundled release coverage
+ok 19 - unknown owner is counted and cannot satisfy exact bundled release coverage
+  ---
+  duration_ms: 6.781
+  type: 'test'
+  ...
+# Subtest: binary BOM binds actual module/stdLib/target and keeps source dev graph separate
+ok 20 - binary BOM binds actual module/stdLib/target and keeps source dev graph separate
+  ---
+  duration_ms: 7.53925
+  type: 'test'
+  ...
+# Subtest: versioned Go replacements use actual identity; local replacements and target/revision mismatch fail
+ok 21 - versioned Go replacements use actual identity; local replacements and target/revision mismatch fail
+  ---
+  duration_ms: 5.439458
+  type: 'test'
+  ...
+# Subtest: bounded malformed/missing/duplicate/dangling metadata is rejected, not empty clean fallback
+ok 22 - bounded malformed/missing/duplicate/dangling metadata is rejected, not empty clean fallback
+  ---
+  duration_ms: 7.037334
+  type: 'test'
+  ...
+# Subtest: npm collection uses explicit offline/no-script config, bounded executor, cleans temporary config on failure
+ok 23 - npm collection uses explicit offline/no-script config, bounded executor, cleans temporary config on failure
+  ---
+  duration_ms: 5.743917
+  type: 'test'
+  ...
+# Subtest: prepared source/build/public and profiling metadata are current while unconsumed tests do not stale it
+ok 24 - prepared source/build/public and profiling metadata are current while unconsumed tests do not stale it
+  ---
+  duration_ms: 7.126833
+  type: 'test'
+  ...
+1..24
+# tests 38
+# suites 0
+# pass 38
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 680.20975

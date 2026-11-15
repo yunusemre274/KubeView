@@ -1,0 +1,10 @@
+{
+  "conclusion": "success",
+  "databaseId": 42588093195,
+  "event": "pull_request",
+  "headSha": "32a0468ad51516a1bb38aab68760e73984c45ddf",
+  "startedAt": "2026-11-09T08:44:06Z",
+  "status": "completed",
+  "updatedAt": "2026-11-09T08:45:33Z",
+  "url": "https://github.com/yunusemre274/KubeView/actions/runs/42588093195"
+}

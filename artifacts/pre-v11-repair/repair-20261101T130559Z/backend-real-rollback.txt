@@ -1,0 +1,5 @@
+=== RUN   TestOwnedRepairRealDeploymentRollbackRevision
+    repair_lifecycle_integration_test.go:296: REAL Deployment→ReplicaSet UID revision1→revision2→HTTP rollback revision1 template restored; context=kv-repair-1101 namespace=kv-repair-log DeploymentUID=507b677d-5dec-471a-b49a-b21f5562401d; replicas=0, completed Ready rollout intentionally not asserted
+--- PASS: TestOwnedRepairRealDeploymentRollbackRevision (0.23s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	0.674s

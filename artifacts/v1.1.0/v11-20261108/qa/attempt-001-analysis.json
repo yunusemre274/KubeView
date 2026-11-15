@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-08T19:31:12.201344+00:00",
+  "attempt": "2026-11-08T19-26-11-542Z-9e1d9f5f",
+  "status": "FAIL",
+  "firstCaseStarted": "2026-11-08T19:26:12.081Z",
+  "firstCaseFinished": "2026-11-08T19:30:11.848Z",
+  "boundSeconds": 240,
+  "observation": "Entire production page blank teal background, no visible application controls or world; one pageerror.",
+  "sourceUnchanged": true,
+  "buildUnchanged": true,
+  "suiteUnchanged": true,
+  "rootCause": "UNKNOWN_PENDING_SHORT_HEADED_DIAGNOSTIC",
+  "knownInfrastructure": {
+    "runner": "Playwright Chromium headless_shell; --use-angle=metal",
+    "apiVersionAndContexts": "200, ~1-6ms",
+    "assets": "HTML and JavaScript served 200 with valid MIME; normal CSP",
+    "ownedPods": "A/B Running+Ready with different UIDs"
+  },
+  "clock": "System jump preceded first case; 19:26:12 onward UTC and observed process elapsed matched. No performance validity claim.",
+  "evidence": [
+    "runs/2026-11-08T19-26-12-081Z-chromium-0ea3c244/result.json",
+    "browser-artifacts/2026-11-08T19-26-11-542Z-9e1d9f5f/v11-real-cluster-V11-02-V1-09150-ormal-details-and-live-logs-chromium/test-failed-1.png"
+  ],
+  "next": "Preserve failure, finish already-started readonly group, capture redacted startup error in bounded headed probe, guarded fixture cleanup, targeted rerun only after diagnosis."
+}

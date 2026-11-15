@@ -1,0 +1,925 @@
+{
+  "uiElapsedMs": 535,
+  "stages": [
+    {
+      "name": "01-open",
+      "inventory": {
+        "visibility": "visible",
+        "dpr": 1,
+        "rendererPixelRatio": 1,
+        "buffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerSupported": true,
+        "camera": {
+          "position": [
+            155.32070332934842,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.1940594243420255,
+            0.06843554348917547,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "fov": 38,
+          "near": 9.479309145645514,
+          "far": 2000,
+          "target": [
+            6.663204746845622,
+            0,
+            130.86693727996243
+          ],
+          "forward": [
+            -0.3136462716817104,
+            -0.6272925433634212,
+            -0.7128324356402513
+          ]
+        },
+        "projectedVisibleNodeUIDs": [
+          "node-0",
+          "node-1",
+          "node-2",
+          "node-3",
+          "node-4",
+          "node-5",
+          "node-6",
+          "node-7"
+        ],
+        "stats": {
+          "frame": 1813,
+          "calls": 426,
+          "triangles": 71170,
+          "points": 0,
+          "lines": 60,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 32,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        },
+        "connectionStale": false,
+        "contextLost": false,
+        "fleet": [
+          {
+            "uid": "node-0",
+            "name": "worker-001",
+            "slot": 0,
+            "progress": 878.3716694115408,
+            "position": [
+              -54.000000000000114,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "node-1",
+            "name": "worker-002",
+            "slot": 1,
+            "progress": 1051.9645867644256,
+            "position": [
+              -175,
+              0,
+              166.09291735288548
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-2",
+            "name": "worker-003",
+            "slot": 2,
+            "progress": 1225.5575041173113,
+            "position": [
+              -175,
+              0,
+              -7.500000000000227
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-3",
+            "name": "worker-004",
+            "slot": 3,
+            "progress": 10.407082647114976,
+            "position": [
+              -119.59291735288502,
+              0,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-4",
+            "name": "worker-005",
+            "slot": 4,
+            "progress": 184,
+            "position": [
+              54,
+              0,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-5",
+            "name": "worker-006",
+            "slot": 5,
+            "progress": 357.592917352885,
+            "position": [
+              175,
+              0,
+              -73.09291735288531
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-6",
+            "name": "worker-007",
+            "slot": 6,
+            "progress": 531.1858347057703,
+            "position": [
+              175,
+              0,
+              100.49999999999997
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-7",
+            "name": "worker-008",
+            "slot": 7,
+            "progress": 704.7787520586555,
+            "position": [
+              119.59291735288514,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "panel": {
+          "open": true,
+          "title": "worker-001",
+          "tab": "Özet",
+          "uid": "node-0",
+          "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+          "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+        },
+        "inputGuard": null,
+        "logView": null,
+        "lifecycle": null,
+        "heap": {
+          "used": 29410597,
+          "total": 60731313
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 754,
+          "jsEventListeners": 1205
+        }
+      },
+      "selected": {
+        "sameCanvas": true,
+        "marker": "owned-node0-transition",
+        "label": "worker-001Node · Hazır",
+        "labelBorder": "rgb(75, 137, 209)",
+        "nodeTargetUID": "node-0",
+        "outlines": [
+          {
+            "uuid": "f6e51dce-4551-434d-ab9b-f57abdd25091",
+            "visible": true,
+            "color": "4a8bd8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "02-closed",
+      "inventory": {
+        "visibility": "visible",
+        "dpr": 1,
+        "rendererPixelRatio": 1,
+        "buffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerSupported": true,
+        "camera": {
+          "position": [
+            155.32070332934842,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.1940594243420255,
+            0.06843554348917547,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "fov": 38,
+          "near": 9.479309145645514,
+          "far": 2000,
+          "target": [
+            6.663204746845622,
+            0,
+            130.86693727996243
+          ],
+          "forward": [
+            -0.3136462716817104,
+            -0.6272925433634212,
+            -0.7128324356402513
+          ]
+        },
+        "projectedVisibleNodeUIDs": [
+          "node-0",
+          "node-1",
+          "node-2",
+          "node-3",
+          "node-4",
+          "node-5",
+          "node-6",
+          "node-7"
+        ],
+        "stats": {
+          "frame": 1814,
+          "calls": 434,
+          "triangles": 71426,
+          "points": 0,
+          "lines": 60,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 40,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        },
+        "connectionStale": false,
+        "contextLost": false,
+        "fleet": [
+          {
+            "uid": "node-0",
+            "name": "worker-001",
+            "slot": 0,
+            "progress": 878.3716694115408,
+            "position": [
+              -54.000000000000114,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "node-1",
+            "name": "worker-002",
+            "slot": 1,
+            "progress": 1051.9645867644256,
+            "position": [
+              -175,
+              0,
+              166.09291735288548
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-2",
+            "name": "worker-003",
+            "slot": 2,
+            "progress": 1225.5575041173113,
+            "position": [
+              -175,
+              0,
+              -7.500000000000227
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-3",
+            "name": "worker-004",
+            "slot": 3,
+            "progress": 10.407082647114976,
+            "position": [
+              -119.59291735288502,
+              0,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-4",
+            "name": "worker-005",
+            "slot": 4,
+            "progress": 184,
+            "position": [
+              54,
+              0,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-5",
+            "name": "worker-006",
+            "slot": 5,
+            "progress": 357.592917352885,
+            "position": [
+              175,
+              0,
+              -73.09291735288531
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-6",
+            "name": "worker-007",
+            "slot": 6,
+            "progress": 531.1858347057703,
+            "position": [
+              175,
+              0,
+              100.49999999999997
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-7",
+            "name": "worker-008",
+            "slot": 7,
+            "progress": 704.7787520586555,
+            "position": [
+              119.59291735288514,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "panel": {
+          "open": false,
+          "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+        },
+        "inputGuard": null,
+        "logView": null,
+        "lifecycle": null,
+        "heap": {
+          "used": 33319766,
+          "total": 60757366
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 772,
+          "jsEventListeners": 1730
+        }
+      },
+      "selected": {
+        "sameCanvas": true,
+        "marker": "owned-node0-transition",
+        "label": "worker-001Node · Hazır",
+        "labelBorder": "rgb(75, 137, 209)",
+        "nodeTargetUID": "node-0",
+        "outlines": [
+          {
+            "uuid": "f6e51dce-4551-434d-ab9b-f57abdd25091",
+            "visible": true,
+            "color": "4a8bd8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "03-reopened",
+      "inventory": {
+        "visibility": "visible",
+        "dpr": 1,
+        "rendererPixelRatio": 1,
+        "buffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerSupported": true,
+        "camera": {
+          "position": [
+            155.32070332934842,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.1940594243420255,
+            0.06843554348917547,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "fov": 38,
+          "near": 9.479309145645514,
+          "far": 2000,
+          "target": [
+            6.663204746845622,
+            0,
+            130.86693727996243
+          ],
+          "forward": [
+            -0.3136462716817104,
+            -0.6272925433634212,
+            -0.7128324356402513
+          ]
+        },
+        "projectedVisibleNodeUIDs": [
+          "node-0",
+          "node-1",
+          "node-2",
+          "node-3",
+          "node-4",
+          "node-5",
+          "node-6",
+          "node-7"
+        ],
+        "stats": {
+          "frame": 1816,
+          "calls": 434,
+          "triangles": 71426,
+          "points": 0,
+          "lines": 60,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 40,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        },
+        "connectionStale": false,
+        "contextLost": false,
+        "fleet": [
+          {
+            "uid": "node-0",
+            "name": "worker-001",
+            "slot": 0,
+            "progress": 878.3716694115408,
+            "position": [
+              -54.000000000000114,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "node-1",
+            "name": "worker-002",
+            "slot": 1,
+            "progress": 1051.9645867644256,
+            "position": [
+              -175,
+              0,
+              166.09291735288548
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-2",
+            "name": "worker-003",
+            "slot": 2,
+            "progress": 1225.5575041173113,
+            "position": [
+              -175,
+              0,
+              -7.500000000000227
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-3",
+            "name": "worker-004",
+            "slot": 3,
+            "progress": 10.407082647114976,
+            "position": [
+              -119.59291735288502,
+              0,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-4",
+            "name": "worker-005",
+            "slot": 4,
+            "progress": 184,
+            "position": [
+              54,
+              0,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-5",
+            "name": "worker-006",
+            "slot": 5,
+            "progress": 357.592917352885,
+            "position": [
+              175,
+              0,
+              -73.09291735288531
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-6",
+            "name": "worker-007",
+            "slot": 6,
+            "progress": 531.1858347057703,
+            "position": [
+              175,
+              0,
+              100.49999999999997
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-7",
+            "name": "worker-008",
+            "slot": 7,
+            "progress": 704.7787520586555,
+            "position": [
+              119.59291735288514,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "panel": {
+          "open": true,
+          "title": "worker-001",
+          "tab": "Özet",
+          "uid": "node-0",
+          "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+          "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+        },
+        "inputGuard": null,
+        "logView": null,
+        "lifecycle": null,
+        "heap": {
+          "used": 25579686,
+          "total": 60757642
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 1381,
+          "jsEventListeners": 1768
+        }
+      },
+      "selected": {
+        "sameCanvas": true,
+        "marker": "owned-node0-transition",
+        "label": "worker-001Node · Hazır",
+        "labelBorder": "rgb(75, 137, 209)",
+        "nodeTargetUID": "node-0",
+        "outlines": [
+          {
+            "uuid": "f6e51dce-4551-434d-ab9b-f57abdd25091",
+            "visible": true,
+            "color": "4a8bd8"
+          }
+        ]
+      }
+    }
+  ]
+}

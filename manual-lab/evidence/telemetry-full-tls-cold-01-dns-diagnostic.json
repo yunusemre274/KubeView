@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "attempt": "telemetry-full-tls-cold-01",
+  "at": "2026-11-10T09:01:55.140408+00:00",
+  "stage": "diagnostic-before-helm-result",
+  "labId": "kvml-f99e938d3301",
+  "clusterUid": "14c33366-442c-45a4-8ca7-1e56e7251ca5",
+  "coreDns": [
+    {
+      "name": "coredns-7d764666f9-59s8d",
+      "uid": "c3a9b013-5169-465d-a2ee-f529e1406d70",
+      "node": "kvml-f99e938d3301-a",
+      "podIP": "10.244.0.197",
+      "nodePodCIDR": "10.244.0.0/24",
+      "podIpWithinNodePodCidr": true,
+      "ciliumEndpointPresent": true,
+      "ready": "True"
+    }
+  ],
+  "relayStartupErrorClass": "hubble-peer internalDNS UDP timeout",
+  "mutationDuringDiagnosis": false,
+  "secretValuesOrPrivatePathsRecorded": false,
+  "relay": [
+    {
+      "name": "hubble-relay-5bf5d7b77d-br76v",
+      "uid": "2c62f68f-ce8d-450e-95aa-9e11ed721d3e",
+      "node": "kvml-f99e938d3301-a-m02",
+      "podIP": "10.244.0.2",
+      "nodePodCIDR": "10.244.1.0/24",
+      "podIpWithinNodePodCidr": false,
+      "ciliumEndpointPresent": false,
+      "ready": "False"
+    }
+  ]
+}

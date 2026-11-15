@@ -1,0 +1,42 @@
+{
+  "startedAt": "2026-11-14T13:20:37.371505+00:00",
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "scripts/build-release.test.mjs",
+    "scripts/release-ci-policy.test.mjs"
+  ],
+  "status": "PASS",
+  "exitCode": 0,
+  "summary": [
+    "# Subtest: strict argument parsing preserves prepared/clean/target and default targets",
+    "# Subtest: existing explicit output directories and symlinks fail before any command",
+    "# Subtest: default dist rejects every conflicting archive, binary folder or manifest before build",
+    "# Subtest: fresh relative output dry-run preserves prepared flow and packages only manual runtime",
+    "# Subtest: fresh absolute output keeps both default targets isolated from historical dist",
+    "# Subtest: default output preserves unrelated historical files and keeps normal frontend flow",
+    "# Subtest: require-clean rejection never reserves output or invokes frontend/build tools",
+    "# Subtest: require-clean includes the manual runtime, shipped docs and RBAC inputs",
+    "# Subtest: bundle provenance binds shipped inputs and prepared frontend bytes",
+    "# Subtest: missing or symlinked prepared frontend cannot reach embed or compilation",
+    "# Subtest: archive published during build cannot be overwritten and temporary output is removed",
+    "# Subtest: current read-only CI lane has reviewed triggers, grants, pins and data boundaries",
+    "# Subtest: bounded trust-boundary mutations are rejected without executing any workflow",
+    "# tests 26",
+    "# suites 0",
+    "# pass 26",
+    "# fail 0",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0",
+    "# duration_ms 245.006625"
+  ],
+  "sourceAfterMatches": true,
+  "tests": 26,
+  "skip": 0,
+  "fail": 0,
+  "elapsedSeconds": 0.3458713329996499,
+  "completedAt": "2026-11-14T13:20:37.717384+00:00"
+}

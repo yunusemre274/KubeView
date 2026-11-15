@@ -1,0 +1,310 @@
+{
+  "startedAt": "2026-11-12T21:07:55.992112+00:00",
+  "status": "FAIL",
+  "purpose": "owned lab resume prerequisite, NOT cold bootstrap or feature test",
+  "sourceCommit": "15770296056ca2629601dba540c04741e1822e0d",
+  "mainLimitSeconds": 120,
+  "wholeLimitSeconds": 180,
+  "startedContainers": [
+    "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+    "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9"
+  ],
+  "polls": [
+    {
+      "elapsedSeconds": 0.6836729170026956,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 2.863722375001089,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 5.046456500000204,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 7.230597833000502,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 9.412710958000389,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 11.59835304200169,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 13.780791625002166,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 15.966067042001669,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 18.143612708001456,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 20.326059417002398,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 22.50833729200167,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 24.690216292001423,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 26.871319083002163,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 29.053912000003038,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 31.2399683750009,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 33.42226320800182,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 35.60157600000093,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 37.78269720800017,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 39.9648401250015,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 42.10716350000075,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 44.28965395799969,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 46.46997787500004,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 48.651149542001804,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 50.832514375000756,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 53.015900875001535,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 55.19983887499984,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 57.38267037500191,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 59.563592708000215,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 61.75000408300184,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 63.934179167001275,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 66.11220695800148,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 68.29772100000264,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 70.4822294580008,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 72.66506395800025,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 74.84762004200093,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 77.02457200000208,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 79.20869700000185,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 81.38806816700162,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 83.56081350000022,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 85.74317395800244,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 87.92466591700213,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 90.11012391700206,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 92.286686792002,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 94.4704943329998,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 96.65321020800184,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 98.83063775000119,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 101.01167312500183,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 103.19224424999993,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 105.3760453750001,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 107.55688720800026,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 109.73824741700082,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 111.92133137500059,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 114.1059105830027,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 116.28343612500248,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    },
+    {
+      "elapsedSeconds": 118.46514108300107,
+      "apiObjectsAvailable": false,
+      "bothNodesReady": false
+    }
+  ],
+  "powerStart": {
+    "batteryPercent": 34,
+    "batteryPower": true
+  },
+  "stateBeforeSHA256": "345aa6ac8fc6b7284e7709176f90fd4c9a279f82cd26c11dffb2c86b97d72961",
+  "profileBeforeSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "failureCategory": "ready_deadline_not_met",
+  "cleanupActive": true,
+  "cleanup": [
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "stopped": true
+    },
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "stopped": true
+    }
+  ],
+  "elapsedSeconds": 121.61331066700222,
+  "finishedAt": "2026-11-12T21:09:57.605397+00:00",
+  "within180Seconds": true
+}

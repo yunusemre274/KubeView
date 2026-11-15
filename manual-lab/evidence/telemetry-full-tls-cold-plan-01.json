@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "attempt": "telemetry-full-tls-cold-plan-01",
+  "preparedAt": "2026-11-09T17:55:14.202198+00:00",
+  "status": "FS_READY_PENDING_UNIT_AND_MUTATION_LEASE",
+  "sourceSHA256": {
+    "scripts/manual_lab.py": "87e59639ad8a14684c50048f4c49a00e66df91433c36aeed642936317b354ed4",
+    "manual-lab/telemetry.py": "14de490e7aece7b29e148a529f0dca621c885a5d86f6e8c32e55e5dc2c4bf2ff",
+    "manual-lab/templates/telemetry-values.json": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796",
+    "manual-lab/tests/test_telemetry_tls.py": "c805154766b1d96d03af4b22ee6e33bc48f9f5ecedb8dbcda3693e718d33aceb",
+    "MANUAL_TEST_GUIDE.md": "a99da887f8678236446845bc78f81a2aec11ccf59e9728b254b841807dc1f9a2"
+  },
+  "sourceMainChanged": false,
+  "testsStarted": false,
+  "clusterTrafficAppBuildStarted": false,
+  "defaultABSecretRead": false,
+  "privatePathsOrSecretValuesRecorded": false,
+  "dependencies": {
+    "minikube": "1.38.1",
+    "kubernetes": "1.35.1",
+    "kicbase": "0.0.50",
+    "helmInstalled": "4.2.3",
+    "ciliumChartAndApp": "1.20.2",
+    "hubbleCLI": "1.20.2",
+    "hubbleSHA256": "f99c58c404124ee541403839c47976e80920a6ce935e48bf6f63cae9a08b8892",
+    "chartSHA256": "b2afd87b7f75f875f92a14559f14f59b7babbb479d968e3fd625a20bf30ec20e",
+    "ciliumCLIRequired": false,
+    "globalPackageInstall": false,
+    "runtimeRepoDependency": false
+  },
+  "locations": {
+    "normalStateName": "manual-lab-v1",
+    "newSeparateStateName": "manual-lab-telemetry-v1",
+    "standaloneToolsName": "manual-lab-tools",
+    "stateCreatedDuringPreparation": false,
+    "appPort": 19906,
+    "forwardPort": 19908,
+    "basePort": 19900
+  },
+  "fullTLS": {
+    "agentToRelay": "mutualTLS",
+    "relayToBackend": "mutualTLS",
+    "relayTLSRequired": true,
+    "relayClientCertificateRequired": true,
+    "serverName": "ui.hubble-relay.cilium.io",
+    "pinnedChartSAN": "*.hubble-relay.cilium.io",
+    "namespace": "kube-system",
+    "fixedSecrets": [
+      "hubble-relay-client-certs",
+      "hubble-relay-server-certs"
+    ],
+    "extractionGuard": [
+      "explicit separate telemetry A only",
+      "exact clusterUID and kube-systemUID/marker",
+      "recorded fixed SecretUID",
+      "Helm release kv-manual-cilium",
+      "owner and random install-intent labels"
+    ],
+    "privateMaterialModes": {
+      "directory": "0700",
+      "files": "0600",
+      "write": "atomic replace + fsync"
+    },
+    "publicEvidenceFields": [
+      "UID",
+      "certificate fingerprints",
+      "field presence",
+      "mTLS status boolean"
+    ],
+    "plaintextFallback": false,
+    "insecureTLSFlag": false
+  },
+  "unitPreparation": {
+    "file": "manual-lab/tests/test_telemetry_tls.py",
+    "authored": 4,
+    "run": 0,
+    "cases": [
+      "both TLS hops and relay mTLS template",
+      "default vanilla lab rejected before Secret read",
+      "unpinned SecretUID rejected before material write",
+      "backend TLS env without plaintext fallback"
+    ]
+  },
+  "budget": {
+    "maxIntegrationAttempts": 2,
+    "attempt1WallSeconds": 1800,
+    "upSeconds": 1200,
+    "appAndTLSSeconds": 120,
+    "browserAndTrafficSeconds": 300,
+    "cleanupSeconds": 120,
+    "firstFailure": "stop and preserve immutable metadata; no blind retry",
+    "attempt2": "only failed stage after concrete approved narrow fix; never claim a warm recovery as another cold start",
+    "thirdAttempt": false
+  },
+  "stages": [
+    {
+      "order": 1,
+      "leaseRequired": "root mutation lease",
+      "action": "official down normal manual A/B; verify only owned app/PF PIDs and all3 nodes stopped; preserve workspace/config/UID inventory"
+    },
+    {
+      "order": 2,
+      "leaseRequired": "root mutation lease",
+      "action": "fresh separate state06 up --telemetry with explicit installed Hubble copy and base19900; A2 only; no B/T; pinned Cilium install; actual allNodeReady"
+    },
+    {
+      "order": 3,
+      "leaseRequired": "root mutation lease",
+      "action": "record cluster/namespace/resourceUID and Cilium/relay actualReady/version; export no Secret values or private paths"
+    },
+    {
+      "order": 4,
+      "leaseRequired": "root mutation lease",
+      "action": "same CA/clientcert/key full mTLS Hubble status; require unauthenticated-client TLS rejection; no skipverify or plaintext fallback"
+    },
+    {
+      "order": 5,
+      "leaseRequired": "root browser/test lease",
+      "action": "delivered binary from standalone bundle; native06 2harbors; provider configured and available from actual normal UI; no state/payload injection"
+    },
+    {
+      "order": 6,
+      "leaseRequired": "root browser/test lease",
+      "action": "owned real crossNS DNS/HTTP traffic1 to3 to0; fresh measured Hubble source/destination namespace+UID observations in UI; L4 flow count is not HTTP request/byte measurement"
+    },
+    {
+      "order": 7,
+      "leaseRequired": "root mutation lease",
+      "action": "owned down; verify app19906/PF19908 closed, exact A2 stopped, producer0, owned browser/caffeinate0; preserve restartable state and private certificates; default A/B untouched except official prior down"
+    }
+  ],
+  "evidenceSelection": [
+    "safe attempt JSON with source/binary/chart/tool hashes and UID/status allowlist",
+    "at most2 targeted normal UI PNGs without credentials",
+    "failed invocation metadata retained; no trace/video/archive by default"
+  ],
+  "notClaimed": [
+    "real integration PASS before the mutation job",
+    "CPU or memory improvement",
+    "default manual CNI change",
+    "manual user acceptance or stable release"
+  ]
+}

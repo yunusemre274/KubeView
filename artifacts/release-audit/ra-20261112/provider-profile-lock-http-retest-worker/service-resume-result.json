@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "startedAt": "2026-11-12T10:28:29.083290+00:00",
+  "rootClearance": "start existing kubelet unit only on exact CP, after identity+mount checks",
+  "noContainerRestart": true,
+  "noBootstrap": true,
+  "noMinikubeCLI": true,
+  "noWorkerPOST": true,
+  "identity": {
+    "container": {
+      "name": "kvml-d32afbf634e8-a",
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "created": "2026-11-11T12:25:42.786922134Z",
+      "labels": {
+        "created_by.minikube.sigs.k8s.io": "true",
+        "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+        "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+        "role.minikube.sigs.k8s.io": ""
+      },
+      "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+      "IP": "172.29.232.2",
+      "mounts": [
+        {
+          "type": "volume",
+          "name": "kvml-d32afbf634e8-a"
+        },
+        {
+          "type": "bind",
+          "name": null
+        }
+      ]
+    },
+    "networkID": "92dbd77db18d9e5e1ae1ccb0a76fd08a2f336908e1a8fa8469d23cefd50ed002",
+    "networkOwner": "kvml-d32afbf634e8",
+    "mountsEqualStoredReceipt": true,
+    "profileSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c"
+  },
+  "before": {
+    "Result": "success",
+    "ExecMainStatus": "0",
+    "ActiveState": "inactive",
+    "SubState": "dead"
+  },
+  "after": {
+    "Result": "success",
+    "ExecMainStatus": "0",
+    "ActiveState": "active",
+    "SubState": "running"
+  },
+  "completedAt": "2026-11-12T10:28:29.327747+00:00",
+  "elapsedSeconds": 0.24447083473205566,
+  "limitSeconds": 45
+}

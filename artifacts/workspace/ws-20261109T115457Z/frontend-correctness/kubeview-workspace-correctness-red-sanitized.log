@@ -1,0 +1,72 @@
+[bundled-test-module]:319095
+var ResourceDetails_default = import.meta.env.VITE_REACT_PROFILE === "1" ? function ProfiledResourceDetails(props) {
+                                              ^
+
+TypeError: Cannot read properties of undefined (reading 'VITE_REACT_PROFILE')
+    at [bundled-test-module]:319095:47
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async node:internal/modules/esm/loader:633:26
+    at async file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace-app-state.test.js:14:24
+
+Node.js v24.16.0
+✖ tests/workspace-app-state.test.js (596.854625ms)
+✖ two per-harbor UID pins survive marker eviction without masking real DELETE, reentry or a new source (16.078667ms)
+✖ a new canonical metrics sample refreshes the active local view without adding polling or requests (1.728334ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 698.451166
+
+✖ failing tests:
+
+test at tests/workspace-app-state.test.js:1:1
+✖ tests/workspace-app-state.test.js (596.854625ms)
+  'test failed'
+
+test at tests/workspace.test.js:260:1
+✖ two per-harbor UID pins survive marker eviction without masking real DELETE, reentry or a new source (16.078667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'stale'
+  - 'out-of-scope'
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace.test.js:277:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'stale',
+    expected: 'out-of-scope',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/workspace.test.js:293:1
+✖ a new canonical metrics sample refreshes the active local view without adding polling or requests (1.728334ms)
+  AssertionError [ERR_ASSERTION]: old namespace overlay cannot mask a newer canonical sample
+  + actual - expected
+  
+  + '2026-11-09T00:00:00Z'
+  - '2026-11-09T00:00:01Z'
+                       ^
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/frontend/tests/workspace.test.js:312:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '2026-11-09T00:00:00Z',
+    expected: '2026-11-09T00:00:01Z',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

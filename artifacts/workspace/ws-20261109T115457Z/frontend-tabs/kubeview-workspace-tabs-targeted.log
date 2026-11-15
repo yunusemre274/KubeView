@@ -1,0 +1,12 @@
+✔ cold persisted exact UID restores its panel once after the first current snapshot arrives (3.363417ms)
+✔ cold restore never follows a same-name replacement or overrides a newer user panel (0.636375ms)
+✔ empty onboarding has no last-known-view stale label, while a disconnected observed harbor does (0.252333ms)
+✔ resource tab handlers report normal tab clicks and container log routes to the parent (2.510875ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 413.919375

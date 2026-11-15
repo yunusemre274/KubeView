@@ -1,0 +1,42 @@
+{
+  "cilium": {
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "26.04"
+    },
+    "osPackageRows": 124,
+    "gobinaryTargetCount": 13,
+    "gobinaryPackageInventoriesUnchanged": true,
+    "gobinaryTargets": {
+      "cni/loopback": 7,
+      "opt/cni/bin/cilium-cni": 84,
+      "usr/bin/cilium-agent": 186,
+      "usr/bin/cilium-bugtool": 72,
+      "usr/bin/cilium-dbg": 155,
+      "usr/bin/cilium-envoy-bootstrap-locality": 48,
+      "usr/bin/cilium-health": 79,
+      "usr/bin/cilium-health-responder": 6,
+      "usr/bin/cilium-mount": 26,
+      "usr/bin/cilium-sysctlfix": 5,
+      "usr/bin/gops": 9,
+      "usr/bin/hubble": 139,
+      "usr/sbin/iptables-wrapper": 2
+    },
+    "zeroResultCleanClaim": false,
+    "scopeLimit": "Supported OS and Go package inventories; no complete native/source CVE or reachability coverage"
+  },
+  "envoy": {
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "24.04"
+    },
+    "osPackageRows": 95,
+    "gobinaryTargetCount": 1,
+    "gobinaryPackageInventoriesUnchanged": true,
+    "gobinaryTargets": {
+      "usr/bin/cilium-envoy-healthcheck": 1
+    },
+    "zeroResultCleanClaim": false,
+    "scopeLimit": "Supported OS and Go package inventories; no complete native/source CVE or reachability coverage"
+  }
+}

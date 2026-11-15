@@ -1,0 +1,63 @@
+{
+  "verdict": "CURRENT_REVISION_NOT_REVIEWED_AFTER_SOURCE_CHANGE",
+  "recommendation": "Do not opt in until PSA-compatible inert Pod template is corrected and root rechecks the changed revision. No need to weaken namespace policy.",
+  "testActualStatus": "NOT_RUN; root reports compile-only PASS, not verified by running anything in this review.",
+  "reviewedSourceSHA256": "b837c796cc54ab3b5a8997ec039a4625174b2370355fb1405852c7733b173208",
+  "sourceLines": 762,
+  "findings": [
+    {
+      "id": "REAL-WATCH-REVIEW-001",
+      "severity": "execution blocker",
+      "source": "backend/pkg/server/release_active_watch_real_test.go:350",
+      "evidence": "Sealed namespace public receipt records pod-security.kubernetes.io/enforce=restricted; reviewed inert Pod/container template has no SecurityContext.",
+      "effect": "Expected PSA admission rejection before TokenRequest/identity/watch/revocation assertions; not an observed runtime result. Unregistered scheduler prevents scheduling, not admission.",
+      "requiredChange": "Keep namespace PSA unchanged; set runAsNonRoot and RuntimeDefault/Localhost seccomp at applicable Pod/container scope, container allowPrivilegeEscalation=false and capabilities.drop ALL. Root owns source edit/recompile/review."
+    }
+  ],
+  "sourceChecks": {
+    "privateGuardsBeforeInputLoad": true,
+    "staticVerifiedTLSAndLoopbackOnly": true,
+    "sealedClusterMarkerNamespaceUIDGuardsBeforeMutations": true,
+    "actualTwoTokenRequestAndSelfSubjectReviewIdentities": true,
+    "differentCredentialClientIDsAndConfigHashRetained": true,
+    "normalAccessSessionWorkspaceConnectionHarborAndActualWebSocket": true,
+    "sixUniqueOwnedFixturesNoNamespaceDelete": true,
+    "UIDCurrentRVDeleteAndGET404Cleanup": true,
+    "tempDirRegisteredBeforeCustomCleanupLIFOFixed": true,
+    "inertUniqueSchedulerAndNodeNameEmpty": true,
+    "positiveSnapshotAndExactUIDRVAnnotationUpdateBothIdentities": true,
+    "RoleBindingARevokedWithUIDRV": true,
+    "SSARFalseFreshAPI403Gateway403SameClientIDAndPeer200": true,
+    "explicitForbiddenNonAuthoritativeUnsyncedThenTrueClose": true,
+    "timeoutReadErrorNotAcceptedAsClose": true,
+    "canaryPeerUPDATEAndRevokedWatchNoPostKnownFailurePublication": true,
+    "actualUpstreamWatchLifetimeCausalityNotClaimed": true,
+    "PSARestrictedPodSecurityContextPresent": true
+  },
+  "scopeAndCleanupNotes": [
+    "Only six newly generated exact-owner resources:2SA,1Role,2RoleBinding,1Pod; no Namespace or user-resource mutation.",
+    "Synthetic TokenRequest credentials remain in private temp kubeconfig/in memory; no raw response/cookie/token/config logs.",
+    "Normal server-side client creation and HTTP/WS path used; no fake Config=nil/explicitTestOperator substitution in this body.",
+    "Direct API SSAR/GET and same client/config identity distinguish RBAC revoke from context/credential replacement.",
+    "Cleanup is45s shared budget with live UID/owner/seal guard before deletes, UID/currentRV preconditions,404 verification and original2Nodes/profile/state equality.",
+    "Early fatal after partial create must be read as failed test plus cleanup; mainPassed alone is not acceptance. Root runner must require GoPASS, failed=false, mainPassed=true, allSixFixturesAbsent, brokerEmpty and listenerClosed.",
+    "As with any mutating API test, an ambiguous create response may leave an unrecorded fixture; root-owned sealed namespace/manual exact-owner reconciliation is a residual recovery requirement.",
+    "Specifying an unregistered scheduler is inert in this owned lab assumption; no scheduler/workload/provider is created."
+  ],
+  "limits": [
+    "Source-only review, no sensitive input/credential reads, no live API/lab probe, no compile/test/app/browser/build.",
+    "No actual real RBAC/watch/security acceptance follows; upstream may close first, so heartbeat-only causality remains unproven.",
+    "Runtime timing105s+cleanup45s is a proposed budget, not measured execution/SLO evidence."
+  ],
+  "inputSHA256": {
+    "test": "b837c796cc54ab3b5a8997ec039a4625174b2370355fb1405852c7733b173208",
+    "publicNamespaceReceipt": "35a72b752d6837cd1f3bf8e17e7d8798f09cb584b8d93aa479cac30558ff3871",
+    "draftReport": "865d3ce04fea4b3abccc8ffef3fd600eb52c3ed082f81c7cac8673954bd0df88",
+    "normalRequestHelper": "bd26dc88c17163ad371206ed407e0349c3f1262da392faf6a4ebc38113615bfe"
+  },
+  "startedAt": "2026-11-12T21:16:49+00:00",
+  "finishedAt": "2026-11-12T21:19:52.637608+00:00",
+  "elapsedSeconds": 183.637608,
+  "targetWriteBySeconds": 150,
+  "hardStopSeconds": 180
+}

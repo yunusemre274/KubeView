@@ -1,0 +1,27 @@
+{
+  "name": "envoy-candidate-asset-hashes",
+  "argv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "start",
+    "--attach",
+    "2353fba115aa51d5d6579d3422222870cf5bb2e9fe2d91c573437011cd3e2786"
+  ],
+  "startedAt": "2026-11-12T10:41:44.476674+00:00",
+  "maxSeconds": 35,
+  "samples": [
+    {
+      "elapsedSeconds": 17.282,
+      "ownedRSSBytes": 4276224,
+      "ownedPIDs": [
+        12331
+      ],
+      "batteryPercent": 49,
+      "freeDiskBytes": 454494932992
+    }
+  ],
+  "pid": 12331,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:41:45.005372+00:00"
+}

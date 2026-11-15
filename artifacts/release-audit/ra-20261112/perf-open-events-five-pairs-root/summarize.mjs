@@ -1,0 +1,46 @@
+// Offline reduction after the finite family stops; no workload or new samples.
+import {readFile,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {distribution} from '../../../../benchmarks/metrics.mjs';
+const dir=path.dirname(fileURLToPath(import.meta.url));
+const read=async name=>JSON.parse(await readFile(path.join(dir,name),'utf8'));
+const execution=await read('execution.json');
+if(!execution.status.startsWith('PASS')||execution.jobs.length!==10)throw Error('Finite family incomplete; no accepted aggregate');
+const frozen=JSON.parse(await readFile(path.resolve(dir,'../perf-matching-build-worker/frozen-build-manifests.json'),'utf8'));
+const cells=[];
+for(let pair=0;pair<5;pair++)for(const side of ['A','B']){
+  const prefix=`p${pair}-${side}`,report=await read(prefix+'-runner-summary.json'),v=await read(prefix+'-validation.json');
+  if(v.status!=='PASS_WINDOW_REQUIRES_FULL_PAIRED_SET')throw Error('Invalid cell retained; no accepted aggregate');
+  const identity=frozen.frontends[side];
+  const provenance=JSON.parse(await readFile(path.resolve(dir,`../perf-matching-build-worker/frontend-${side}-build-provenance.json`),'utf8'));
+  if(report.manifest.buildTag!==identity.tag||report.manifest.buildIndexSHA256!==identity.indexSHA256||report.manifest.backendBinarySHA256!==identity.backendSHA256||JSON.stringify(report.manifest.buildProvenance)!==JSON.stringify(provenance))throw Error('Frozen frontend source attribution mismatch');
+  const run=report.runs[0],p=v.coverage;
+  cells.push({pair,side,runId:report.manifest.id,metrics:{
+    browserCores:p.browserCores,rendererCores:p.rendererProcessCores,gpuProcessCores:p.gpuProcessCores,browserMainCores:p.browserMainCores,backendFixtureCores:p.backendCores,
+    maxSingleBrowserProcessRSSMiB:p.maxBrowserProcessRSSKiB/1024,backendProcessRSSMiB:p.backendRSSKiB/1024,
+    pageJSHeapUsedMiB:run.after.heap?run.after.heap.used/1048576:null,
+    jsDrawsPerSecond:run.summary.renderedFPS,windowFrameP95Ms:run.summary.renderIntervalMs.p95,windowFrameP99Ms:run.summary.renderIntervalMs.p99,
+    windowCallbackStoreP95Ms:run.loadBands.normal.callbackToStoreMs.p95,windowVisibleDrawProxyP95Ms:run.loadBands.normal.drawProxyMs.p95},
+    dataCorrect:run.consistency.clientMatchesUpstream&&run.consistency.upstreamMatchesPlanned,
+    receivedEvents:run.summary.messages,visibleDrawProxySamples:run.loadBands.normal.drawProxyMs.n,
+    sourceCommit:identity.sourceCommit,invocationCommit:report.manifest.commit,sourceAttributionProtocol:'frozen-matching-manifest-v1',renderer:run.before.renderer,
+    camera:run.before.camera,phaseFleetUIDs:run.before.fleet.map(s=>s.uid),
+    drawFootprint:Object.fromEntries(['calls','triangles','lines','points'].map(k=>[k,run.before.stats[k]]))});
+}
+const rows=[];
+for(const metric of Object.keys(cells[0].metrics)){
+  const before=distribution(cells.filter(c=>c.side==='A').map(c=>c.metrics[metric]));
+  const after=distribution(cells.filter(c=>c.side==='B').map(c=>c.metrics[metric]));
+  const pairs=Array.from({length:5},(_,pair)=>{
+    const a=cells.find(c=>c.pair===pair&&c.side==='A').metrics[metric],b=cells.find(c=>c.pair===pair&&c.side==='B').metrics[metric];
+    return {pair,before:a,after:b,difference:Number.isFinite(a)&&Number.isFinite(b)?b-a:null,percent:Number.isFinite(a)&&Number.isFinite(b)&&a!==0?(b-a)/a*100:null};
+  });
+  rows.push({metric,before,after,pairedDifference:distribution(pairs.map(p=>p.difference)),pairedPercent:distribution(pairs.map(p=>p.percent)),pairs});
+}
+const result={scope:'Frontend-browser/common fixed backend; M38/medium/DPR1/Node0Summary open/5event-s',orders:['AB','BA','AB','BA','AB'],pairs:5,cells,
+  totalPlannedEvents:3000,totalReceivedEvents:cells.reduce((n,c)=>n+c.receivedEvents,0),allCanonicalContentEqual:cells.every(c=>c.dataCorrect),
+  rows,deltaPanel:null,fullRuntimeComparison:false,
+  limitations:['No closed panel/0event condition in this family; no signed delta-panel conclusion.','Backend CPU includes fake upstream tracker/producer; no isolated real Kubernetes gateway claim.','GPU-process CPU is not GPU utilization. Draw cadence is JS submit, not physical presented FPS.','Max single process RSS and pageJSHeap are separate metrics, not total physical application RAM.','Window p95/p99 medians are across repeats; not pooled percentile of all frames/events.','Observed cohort CPU uses second-resolution OS birth and cannot include wholly unsampled short processes.','No energy or nativeSafari/Retina/physical-screen latency measurement.','Only frozen frontend sources differ; no measured product optimization introduced by these harness fixes.']};
+await writeFile(path.join(dir,'paired-summary.json'),JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify({pairs:result.pairs,totalReceivedEvents:result.totalReceivedEvents,allCanonicalContentEqual:result.allCanonicalContentEqual,rows},null,2));

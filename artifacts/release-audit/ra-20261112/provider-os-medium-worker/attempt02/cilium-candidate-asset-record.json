@@ -1,0 +1,528 @@
+{
+  "label": "cilium-candidate",
+  "owner": "kv-os-medium-666e96936fdf402e9094fbf2052327bd-cilium-candidate",
+  "ref": "kubeview-private/cilium:1.20.4-os-security.2",
+  "cid": "28f78c7a4aaa22fa4f0d60e0a27d9ce39b9f6891b0283b97708a9e922a45f487",
+  "baseConfigID": "sha256:10169bb90a60036756c6e5764fe5154bc15987fb6a700d11bc551d7d2730b9d9",
+  "assetSHA256": {
+    "/cni/loopback": "2331ed30195b26f111054dab6aec12f8d9ea3654290f2193ae0ec10dc50d3263",
+    "/opt/cni/bin/cilium-cni": "f150eee8501ccac18eb8a73d12382cd801c39017f21456b2b8cb76f1ebc75384",
+    "/usr/bin/cilium-agent": "0144e472f4f0573684a13a0a2e7d1ff304fb78bc06b5f9cc9d9221dd934ab03e",
+    "/usr/bin/cilium-bugtool": "172757f640066ec8e9d4deedbb5bf8a9ae37e785af6453fa092555c1bb32edfd",
+    "/usr/bin/cilium-dbg": "57e5785aca0239a07261313a5b0797a3f7a5fc7c7f4a37e976e7568557a2142b",
+    "/usr/bin/cilium-envoy-bootstrap-locality": "69c81e396daf71c2830c9b720813915363e0e01ffd94b36be73da7e6b8e201ac",
+    "/usr/bin/cilium-health": "2e0d6464b73c77141e384fc43ee625c775e0d952577cc154c80bdef98b9fa54d",
+    "/usr/bin/cilium-health-responder": "bc583eddbe1338b230ec93e0e98365387fd77e1e2033981fc52d05ee43cb5934",
+    "/usr/bin/cilium-mount": "3165e60bd1a82c283de944062f5288f6984c1400239ef924c809fcea79edb374",
+    "/usr/bin/cilium-sysctlfix": "2c4f4636a498ab3680eec6c96ec9a89437568dfc39ba642ae06db3132734b141",
+    "/usr/bin/gops": "61c61208e84c53b9c617b0781a4936cf1aed39175e098c2d9bd26a6a3d90c3e8",
+    "/usr/bin/hubble": "b0db823658d23310c4d19f0a239cb63873c07f0e0473dbb6a890ab9d4725ec98",
+    "/usr/sbin/iptables-wrapper": "5ceb7e8c42728ea32fabe3eda31d8c2a30ea258dbe69e122220d1fda1846a6e6",
+    "/usr/bin/cilium-envoy": "2b9363871451c54d4c976d6717c232f3e27dc02347de659e7f90daad48a73997",
+    "/usr/bin/cilium-envoy-starter": "1e0baa446c1cdfba5e2c69fdd7e2efad67bb6b8258509f16c76045efc22ea3c6",
+    "/etc/ssl/certs/ca-certificates.crt": "64e7c24b0536b525fb19b145768bd5e6e12ced0df3db837c34553ea789acd143",
+    "/etc/apt/sources.list.d/ubuntu.sources": "7205e1c3c91c602cef8e9b7b966d9896939887dafa3e4f09914904beffed3ccc",
+    "/usr/share/keyrings/ubuntu-archive-keyring.gpg": "80a36b0a6de2f69f49d2df75ef473ccde121e9e190b9ea01d20a4f63778d5c31",
+    "/LICENSE.all": "206adb38da26fe3ab023bb416200502c19fe1a55817bb0a1aa2dcadf74469f13"
+  },
+  "dpkgStatusSHA256": "1f8e8197b1dbcac210b31c105f309e5895523665f914c4a6ba2061a112656fd9",
+  "packages": {
+    "apt": {
+      "version": "3.2.1ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "base-files": {
+      "version": "14ubuntu6.2",
+      "architecture": "arm64"
+    },
+    "base-passwd": {
+      "version": "3.6.8",
+      "architecture": "arm64"
+    },
+    "bash": {
+      "version": "5.3-2ubuntu1",
+      "architecture": "arm64"
+    },
+    "bash-completion": {
+      "version": "1:2.16.0-8build1",
+      "architecture": "all"
+    },
+    "bsdutils": {
+      "version": "1:2.41.3-3ubuntu2.2",
+      "architecture": "arm64"
+    },
+    "ca-certificates": {
+      "version": "20260816ubuntu0.26.04.1",
+      "architecture": "all"
+    },
+    "coreutils": {
+      "version": "9.5-1ubuntu2+0.0.0~ubuntu25",
+      "architecture": "all"
+    },
+    "coreutils-from-uutils": {
+      "version": "0.0.0~ubuntu25",
+      "architecture": "all"
+    },
+    "dash": {
+      "version": "0.5.12-12ubuntu3",
+      "architecture": "arm64"
+    },
+    "debconf": {
+      "version": "1.5.92",
+      "architecture": "all"
+    },
+    "debianutils": {
+      "version": "5.23.2build1",
+      "architecture": "arm64"
+    },
+    "diffutils": {
+      "version": "1:3.12-1ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "dpkg": {
+      "version": "1.23.7ubuntu1",
+      "architecture": "arm64"
+    },
+    "e2fsprogs": {
+      "version": "1.47.2-3ubuntu4",
+      "architecture": "arm64"
+    },
+    "findutils": {
+      "version": "4.10.0-3build2",
+      "architecture": "arm64"
+    },
+    "gcc-16-base": {
+      "version": "16-20260322-1ubuntu1",
+      "architecture": "arm64"
+    },
+    "gnu-coreutils": {
+      "version": "9.7-3ubuntu2.1",
+      "architecture": "arm64"
+    },
+    "gpgv": {
+      "version": "2.4.8-4ubuntu3.1",
+      "architecture": "arm64"
+    },
+    "grep": {
+      "version": "3.12-1",
+      "architecture": "arm64"
+    },
+    "gzip": {
+      "version": "1.14-1~exp2ubuntu1.1",
+      "architecture": "arm64"
+    },
+    "hostname": {
+      "version": "3.25build1",
+      "architecture": "arm64"
+    },
+    "init-system-helpers": {
+      "version": "1.69",
+      "architecture": "all"
+    },
+    "iproute2": {
+      "version": "6.19.0-1ubuntu1.1",
+      "architecture": "arm64"
+    },
+    "ipset": {
+      "version": "7.19-1ubuntu3",
+      "architecture": "arm64"
+    },
+    "iptables": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "jq": {
+      "version": "1.8.1-4ubuntu2",
+      "architecture": "arm64"
+    },
+    "kmod": {
+      "version": "34.2-2ubuntu2",
+      "architecture": "arm64"
+    },
+    "libacl1": {
+      "version": "2.3.2-2",
+      "architecture": "arm64"
+    },
+    "libapt-pkg7.0": {
+      "version": "3.2.1ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "libatomic1": {
+      "version": "16-20260322-1ubuntu1",
+      "architecture": "arm64"
+    },
+    "libattr1": {
+      "version": "1:2.5.2-4ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "libaudit-common": {
+      "version": "1:4.1.2-1ubuntu0.1",
+      "architecture": "all"
+    },
+    "libaudit1": {
+      "version": "1:4.1.2-1ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "libblkid1": {
+      "version": "2.41.3-3ubuntu2.2",
+      "architecture": "arm64"
+    },
+    "libbpf1": {
+      "version": "1:1.6.3-1ubuntu1",
+      "architecture": "arm64"
+    },
+    "libbsd0": {
+      "version": "0.12.2-2build2",
+      "architecture": "arm64"
+    },
+    "libbz2-1.0": {
+      "version": "1.0.8-6ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "libc-bin": {
+      "version": "2.43-2ubuntu2.4",
+      "architecture": "arm64"
+    },
+    "libc-gconv-modules-extra": {
+      "version": "2.43-2ubuntu2.4",
+      "architecture": "arm64"
+    },
+    "libc6": {
+      "version": "2.43-2ubuntu2.4",
+      "architecture": "arm64"
+    },
+    "libcap-ng0": {
+      "version": "0.8.5-4build5",
+      "architecture": "arm64"
+    },
+    "libcap2": {
+      "version": "1:2.75-10ubuntu2",
+      "architecture": "arm64"
+    },
+    "libcap2-bin": {
+      "version": "1:2.75-10ubuntu2",
+      "architecture": "arm64"
+    },
+    "libcom-err2": {
+      "version": "1.47.2-3ubuntu4",
+      "architecture": "arm64"
+    },
+    "libcrypt1": {
+      "version": "1:4.5.1-1",
+      "architecture": "arm64"
+    },
+    "libdb5.3t64": {
+      "version": "5.3.28+dfsg2-10ubuntu1",
+      "architecture": "arm64"
+    },
+    "libdebconfclient0": {
+      "version": "0.280ubuntu1",
+      "architecture": "arm64"
+    },
+    "libelf1t64": {
+      "version": "0.194-4",
+      "architecture": "arm64"
+    },
+    "libext2fs2t64": {
+      "version": "1.47.2-3ubuntu4",
+      "architecture": "arm64"
+    },
+    "libgcc-s1": {
+      "version": "16-20260322-1ubuntu1",
+      "architecture": "arm64"
+    },
+    "libgcrypt20": {
+      "version": "1.12.0-2ubuntu1.1",
+      "architecture": "arm64"
+    },
+    "libgmp10": {
+      "version": "2:6.3.0+dfsg-5ubuntu2",
+      "architecture": "arm64"
+    },
+    "libgpg-error0": {
+      "version": "1.58-2",
+      "architecture": "arm64"
+    },
+    "libgssapi-krb5-2": {
+      "version": "1.22.1-2ubuntu4.1",
+      "architecture": "arm64"
+    },
+    "libip4tc-dev": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "libip4tc2": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "libip6tc-dev": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "libip6tc2": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "libipset13": {
+      "version": "7.19-1ubuntu3",
+      "architecture": "arm64"
+    },
+    "libiptc-dev": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "libiptc0": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "libjq1": {
+      "version": "1.8.1-4ubuntu2",
+      "architecture": "arm64"
+    },
+    "libk5crypto3": {
+      "version": "1.22.1-2ubuntu4.1",
+      "architecture": "arm64"
+    },
+    "libkeyutils1": {
+      "version": "1.6.3-6ubuntu3",
+      "architecture": "arm64"
+    },
+    "libkmod2": {
+      "version": "34.2-2ubuntu2",
+      "architecture": "arm64"
+    },
+    "libkrb5-3": {
+      "version": "1.22.1-2ubuntu4.1",
+      "architecture": "arm64"
+    },
+    "libkrb5support0": {
+      "version": "1.22.1-2ubuntu4.1",
+      "architecture": "arm64"
+    },
+    "liblz4-1": {
+      "version": "1.10.0-8",
+      "architecture": "arm64"
+    },
+    "liblzma5": {
+      "version": "5.8.3-1ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "libmd0": {
+      "version": "1.1.0-2build4",
+      "architecture": "arm64"
+    },
+    "libmnl0": {
+      "version": "1.0.5-3build1",
+      "architecture": "arm64"
+    },
+    "libmount1": {
+      "version": "2.41.3-3ubuntu2.2",
+      "architecture": "arm64"
+    },
+    "libncursesw6": {
+      "version": "6.6+20251231-1",
+      "architecture": "arm64"
+    },
+    "libnetfilter-conntrack3": {
+      "version": "1.1.1-1",
+      "architecture": "arm64"
+    },
+    "libnfnetlink0": {
+      "version": "1.0.2-3build1",
+      "architecture": "arm64"
+    },
+    "libnftnl11": {
+      "version": "1.3.1-1",
+      "architecture": "arm64"
+    },
+    "libonig5": {
+      "version": "6.9.10-1build1",
+      "architecture": "arm64"
+    },
+    "libpam-modules": {
+      "version": "1.7.0-5ubuntu3.2",
+      "architecture": "arm64"
+    },
+    "libpam-modules-bin": {
+      "version": "1.7.0-5ubuntu3.2",
+      "architecture": "arm64"
+    },
+    "libpam-runtime": {
+      "version": "1.7.0-5ubuntu3.2",
+      "architecture": "all"
+    },
+    "libpam0g": {
+      "version": "1.7.0-5ubuntu3.2",
+      "architecture": "arm64"
+    },
+    "libpcre2-8-0": {
+      "version": "10.46-1ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "libproc2-0": {
+      "version": "2:4.0.4-9ubuntu1",
+      "architecture": "arm64"
+    },
+    "libseccomp2": {
+      "version": "2.6.0-2ubuntu5",
+      "architecture": "arm64"
+    },
+    "libselinux1": {
+      "version": "3.9-4build1",
+      "architecture": "arm64"
+    },
+    "libsemanage-common": {
+      "version": "3.9-1build1",
+      "architecture": "all"
+    },
+    "libsemanage2": {
+      "version": "3.9-1build1",
+      "architecture": "arm64"
+    },
+    "libsepol2": {
+      "version": "3.9-2",
+      "architecture": "arm64"
+    },
+    "libsmartcols1": {
+      "version": "2.41.3-3ubuntu2.2",
+      "architecture": "arm64"
+    },
+    "libss2": {
+      "version": "1.47.2-3ubuntu4",
+      "architecture": "arm64"
+    },
+    "libssl3t64": {
+      "version": "3.5.5-1ubuntu3.7",
+      "architecture": "arm64"
+    },
+    "libstdc++6": {
+      "version": "16-20260322-1ubuntu1",
+      "architecture": "arm64"
+    },
+    "libsystemd0": {
+      "version": "259.9-0ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "libtinfo6": {
+      "version": "6.6+20251231-1",
+      "architecture": "arm64"
+    },
+    "libtirpc-common": {
+      "version": "1.3.7-0.1",
+      "architecture": "all"
+    },
+    "libtirpc3t64": {
+      "version": "1.3.7-0.1",
+      "architecture": "arm64"
+    },
+    "libudev1": {
+      "version": "259.9-0ubuntu0.1",
+      "architecture": "arm64"
+    },
+    "libuuid1": {
+      "version": "2.41.3-3ubuntu2.2",
+      "architecture": "arm64"
+    },
+    "libxtables-dev": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "libxtables12": {
+      "version": "1.8.8-1",
+      "architecture": "arm64"
+    },
+    "libxxhash0": {
+      "version": "0.8.3-2build1",
+      "architecture": "arm64"
+    },
+    "libzstd1": {
+      "version": "1.5.7+dfsg-3",
+      "architecture": "arm64"
+    },
+    "login": {
+      "version": "1:4.16.0-2+really2.41.3-3ubuntu2.2",
+      "architecture": "arm64"
+    },
+    "login.defs": {
+      "version": "1:4.17.4-2ubuntu3",
+      "architecture": "all"
+    },
+    "logsave": {
+      "version": "1.47.2-3ubuntu4",
+      "architecture": "arm64"
+    },
+    "mawk": {
+      "version": "1.3.4.20260129-1",
+      "architecture": "arm64"
+    },
+    "mount": {
+      "version": "2.41.3-3ubuntu2.2",
+      "architecture": "arm64"
+    },
+    "ncurses-base": {
+      "version": "6.6+20251231-1",
+      "architecture": "all"
+    },
+    "ncurses-bin": {
+      "version": "6.6+20251231-1",
+      "architecture": "arm64"
+    },
+    "netbase": {
+      "version": "6.5build1",
+      "architecture": "all"
+    },
+    "openssl": {
+      "version": "3.5.5-1ubuntu3.7",
+      "architecture": "arm64"
+    },
+    "openssl-provider-legacy": {
+      "version": "3.5.5-1ubuntu3.7",
+      "architecture": "arm64"
+    },
+    "passwd": {
+      "version": "1:4.17.4-2ubuntu3",
+      "architecture": "arm64"
+    },
+    "perl-base": {
+      "version": "5.40.1-7ubuntu0.3",
+      "architecture": "arm64"
+    },
+    "procps": {
+      "version": "2:4.0.4-9ubuntu1",
+      "architecture": "arm64"
+    },
+    "rust-coreutils": {
+      "version": "0.10.0-1ubuntu2~26.04.1",
+      "architecture": "arm64"
+    },
+    "sed": {
+      "version": "4.9-2ubuntu1",
+      "architecture": "arm64"
+    },
+    "sensible-utils": {
+      "version": "0.0.26build1",
+      "architecture": "all"
+    },
+    "sysvinit-utils": {
+      "version": "3.15-5ubuntu1",
+      "architecture": "arm64"
+    },
+    "tar": {
+      "version": "1.35+dfsg-4ubuntu0.4",
+      "architecture": "arm64"
+    },
+    "ubuntu-keyring": {
+      "version": "2023.11.28.1build1",
+      "architecture": "all"
+    },
+    "util-linux": {
+      "version": "2.41.3-3ubuntu2.2",
+      "architecture": "arm64"
+    },
+    "zlib1g": {
+      "version": "1:1.3.dfsg+really1.3.1-1ubuntu3.2",
+      "architecture": "arm64"
+    }
+  },
+  "removedAndAbsent": true
+}

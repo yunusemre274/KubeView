@@ -1,0 +1,69 @@
+{
+  "status": "FAIL",
+  "classification": "BUILD_BOUNDED_TIMEOUT",
+  "binary_exists": false,
+  "graph_status": "PASS",
+  "build_status": "FAIL",
+  "build_attempt_count": 1,
+  "graph_attempt_count": 1,
+  "source_changes": [
+    {
+      "path": "go.mod",
+      "before_sha256": "bff19d74ac43d1af2e2171de0ff219a724d7aae7a126f0ec3925f64d3a0a9392",
+      "after_sha256": "c38e35d77f19d61403c8fe9aee8507f4b16118e456e07613e6401b1a4792aea9"
+    },
+    {
+      "path": "go.sum",
+      "before_sha256": "7bb13f58b30ff89f0b0c8b17a372d40db9bfb5c9fd7d183fdf80a38cc14dbe11",
+      "after_sha256": "62d7d558528fedd03a23b7b271777772d55512cdaf4b099238139ff7ac263d0b"
+    }
+  ],
+  "vendor_tree_unchanged": true,
+  "old_candidate_and_go_mod_sum_unchanged": true,
+  "old_binary_sha256": "378850e0a4d12bf6657df20e8e3edb4432f316143f391241e605951fe3fb72b2",
+  "skips": {
+    "binary_sha256_buildinfo": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "version": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "top_help": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "status_help": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "observe_help": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "binary_govulncheck": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "binary_buildinfo_sbom": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "same_db_trivy_sbom": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "profile_flag_compatibility": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    },
+    "linked_component_license_inventory": {
+      "status": "SKIP",
+      "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+    }
+  },
+  "free_disk_bytes_end": 452706148352,
+  "completed_at_utc": "2026-11-11T13:47:20.306134+00:00",
+  "time_limit_explanation": "The eight-minute overall job budget began before official-source verification. The monitor reserved 80 seconds for safe CLI/scanner checks, leaving 61 seconds for the single compile. The build was stopped at that per-build remainder, before the overall hard deadline. No second build or extension was attempted. This does not establish an upstream API or dependency incompatibility."
+}

@@ -1,0 +1,34 @@
+{
+  "historicalFuzz": "FuzzWorkspaceDocument",
+  "historicalExecutedCount": 111850,
+  "historicalCommandSHA256": "a5f9870349f857099d4bedc1837a38ce3a2eb00d93044b1e792384ec7e8de30d",
+  "oldSourceCommit": "49999815cf27ca47888fdc5d62cb1f7caf3bbd11",
+  "GoSDK": "go1.26.11",
+  "fourSourceChecks": [
+    {
+      "path": "backend/pkg/workspace/store.go",
+      "historicalSHA256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+      "currentSHA256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/workspace/store_test.go",
+      "historicalSHA256": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+      "currentSHA256": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+      "matches": true
+    },
+    {
+      "path": "backend/go.mod",
+      "historicalSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+      "currentSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+      "matches": true
+    },
+    {
+      "path": "backend/go.sum",
+      "historicalSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+      "currentSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+      "matches": true
+    }
+  ],
+  "interpretation": "Historical target results remain applicable to exact four unchanged bytes only; not rerun, not ImportInto coverage or blanket security acceptance."
+}

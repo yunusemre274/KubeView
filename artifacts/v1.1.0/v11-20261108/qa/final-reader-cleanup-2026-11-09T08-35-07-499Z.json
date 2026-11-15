@@ -1,0 +1,224 @@
+{
+  "startedAt": "2026-11-09T08:35:06.684Z",
+  "status": "PASS",
+  "type": "actual owned UID/RV/owner-guarded cleanup and metadata-only inventory",
+  "processPID": 21267,
+  "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+  "gitHeadStart": "0f5a5ab6b8e52e645b9e2e71dd063112ca105e98",
+  "binarySHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+  "checks": [
+    {
+      "status": "PASS",
+      "kind": "RoleBinding",
+      "name": "v11-reader",
+      "uid": "29e3bd35-547d-4026-8920-e9014a85fae5",
+      "resourceVersionBeforeDelete": "21142",
+      "result": "deleted-and-404-observed"
+    },
+    {
+      "status": "PASS",
+      "kind": "Role",
+      "name": "v11-reader",
+      "uid": "ffce8bc8-9ec6-48e7-a9f8-91ab3ee972a4",
+      "resourceVersionBeforeDelete": "21140",
+      "result": "deleted-and-404-observed"
+    },
+    {
+      "status": "PASS",
+      "kind": "ServiceAccount",
+      "name": "v11-reader",
+      "uid": "40ee58f8-ed2d-4eff-a2ad-f9fa067c79d5",
+      "resourceVersionBeforeDelete": "21139",
+      "result": "deleted-and-404-observed"
+    }
+  ],
+  "inventory": [
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "pods",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "deployments",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "replicasets",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "resourcequotas",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "serviceaccounts",
+      "objects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "default",
+          "uid": "c4959a8a-865c-4cdb-b400-302f324ac6b2",
+          "resourceVersion": "20536",
+          "owned": false
+        }
+      ]
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "roles",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "rolebindings",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "configmaps",
+      "objects": [
+        {
+          "kind": "ConfigMap",
+          "name": "kube-root-ca.crt",
+          "uid": "30d1c6d2-f606-40aa-99ad-f2b5a36d8a8f",
+          "resourceVersion": "20535",
+          "owned": false
+        }
+      ]
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "secrets",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-1101",
+      "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+      "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c",
+      "resource": "horizontalpodautoscalers",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "pods",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "deployments",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "replicasets",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "resourcequotas",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "serviceaccounts",
+      "objects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "default",
+          "uid": "7e2b181c-edc7-4e11-b220-e75f1523a187",
+          "resourceVersion": "394",
+          "owned": false
+        }
+      ]
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "roles",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "rolebindings",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "configmaps",
+      "objects": [
+        {
+          "kind": "ConfigMap",
+          "name": "kube-root-ca.crt",
+          "uid": "8b70c5da-9f63-48eb-af46-7286159b2b11",
+          "resourceVersion": "395",
+          "owned": false
+        }
+      ]
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "secrets",
+      "objects": []
+    },
+    {
+      "context": "kv-repair-v11-b",
+      "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+      "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384",
+      "resource": "horizontalpodautoscalers",
+      "objects": []
+    }
+  ],
+  "credentialValuesRecorded": false,
+  "currentStep": "metadata-only A/B QA namespace inventory",
+  "cleanupGrantRevoked": true,
+  "apiContextDisposed": true,
+  "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+  "gitHeadEnd": "0f5a5ab6b8e52e645b9e2e71dd063112ca105e98",
+  "sourceUnchanged": true,
+  "buildUnchanged": true,
+  "globalKubeconfigUnchanged": true,
+  "clock": {
+    "wallMs": 857,
+    "monotonicMs": 856.486625,
+    "skewMs": 0.5133749999999964
+  },
+  "finishedAt": "2026-11-09T08:35:07.499Z"
+}

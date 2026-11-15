@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-15T10:33:56.297739+00:00",
+  "command": [
+    "python3",
+    "scripts/validate-release-sbom.py",
+    "SYNTHETIC_NOT_OPENED_INPUT.json"
+  ],
+  "scope": "Normal Python dependency-negative CLI probe; no input file read before format fail-closed.",
+  "exitCode": 2,
+  "elapsedSeconds": 0.057648916999823996,
+  "expectedCode": "FORMAT_DEPENDENCY_UNAVAILABLE",
+  "actual": {
+    "status": "ERROR",
+    "code": "FORMAT_DEPENDENCY_UNAVAILABLE",
+    "hint": "Use a separate QA environment with jsonschema[format]==4.26.0 and referencing; pinned schemas must be intact."
+  },
+  "stderrEmpty": true
+}

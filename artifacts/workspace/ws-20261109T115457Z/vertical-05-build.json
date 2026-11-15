@@ -1,0 +1,33 @@
+{
+  "phase": "vertical05 five frontend correctness fixes",
+  "baseCommit": "2d63c67886d0d81ed1cbedf9915a200f29b80b84",
+  "frontendManifest": {
+    "phase": "production-build-after-tab-fix",
+    "exitCode": 0,
+    "seconds": 1.874867999998969,
+    "log": "/tmp/kubeview-workspace-tabs-build.log",
+    "manifest": {
+      "frontend/src": {
+        "files": 90,
+        "sha256": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559"
+      },
+      "frontend/tests": {
+        "files": 11,
+        "sha256": "d17b4b0be3252240946aeb6e53a064cebea2bc525fe636a29067ef3271d8a8ee"
+      },
+      "frontend/dist": {
+        "files": 6,
+        "sha256": "4dd698fb6606a31a7be223ad40551bd06fe3a153fa83517c6f18e8cd9d785a0e"
+      }
+    },
+    "actualUIBeforeFix": "artifacts/workspace/ws-vertical04-cold-view-helper-corrected/result.json",
+    "actualUIAfterFix": "NOT RUN: waiting for new embedded binary",
+    "fullUnitEvidence": "/tmp/kubeview-workspace-tabs-full.json",
+    "unitRed": "/tmp/kubeview-workspace-tabs-red-helper-corrected.log",
+    "unitGreen": "/tmp/kubeview-workspace-tabs-targeted.log",
+    "indexSHA256": "f631b695c418aa865f18d7ec75611a8e097bc52e874b349f0ec52ec683e34585"
+  },
+  "binarySHA256": "2ba3e80a3b6ef604780f3db76087bee066784ae29b81056b663eaa91c645e080",
+  "elapsedSeconds": 1.371,
+  "note": "Dirty candidate, not stable release; backend runtime unchanged from core2d63."
+}

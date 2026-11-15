@@ -1,0 +1,51 @@
+// Temporary read-only main-camera onBeforeRender inventory. Restored in finally.
+async function renderIdentitySnapshot(stage, elapsedMs = null) {
+  const snapshot = await page.evaluate(async ({stage,elapsedMs}) => {
+    const canvas=document.querySelector('canvas'),harbor=canvas.__harbor,rootState=harbor.scene.__r3f.root.getState(),renderer=globalThis.__KUBEVIEW_BENCHMARK__.gl;
+    const target = object => {const t=object?.userData?.harborTarget;return t?Object.fromEntries(['type','uid','name','containerName','id'].filter(k=>t[k]!==undefined).map(k=>[k,t[k]])):null;};
+    const ancestry = object => {const result=[];for(let o=object;o&&result.length<16;o=o.parent)result.push({uuid:o.uuid,type:o.type,name:o.name||null,siblingIndex:o.parent?o.parent.children.indexOf(o):null,target:target(o),selectedProp:typeof o.__r3f?.memoizedProps?.selected==='boolean'?o.__r3f.memoizedProps.selected:null});return result;};
+    const plain=(value,depth=0)=>depth>7?'depth-limit':Array.isArray(value)?value.map(v=>plain(v,depth+1)):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().filter(k=>typeof value[k]!=='function').map(k=>[k,plain(value[k],depth+1)])):typeof value==='number'&&!Number.isFinite(value)?String(value):value;
+    const sha=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
+    const textSha=value=>sha(new TextEncoder().encode(JSON.stringify(value)));
+    const geometries={},materials={},records=[],wrapped=[];let chosenFrame=null;
+    const statsBefore=harbor.stats();
+    try {
+      harbor.scene.traverse(object=>{
+        if(!object.isMesh&&!object.isLine&&!object.isPoints)return;
+        const original=object.onBeforeRender;
+        const wrapper=function(r,s,c,g,m,group){
+          if(c===harbor.camera && !(object.isInstancedMesh&&object.count===0)){
+            const frame=r.info.render.frame;if(chosenFrame===null)chosenFrame=frame;
+            if(frame===chosenFrame)records.push({object,geometry:g,material:m,group:group?{start:group.start,count:group.count,materialIndex:group.materialIndex}:null});
+          }
+          return original.apply(this,arguments);
+        };
+        wrapped.push({object,original,wrapper});object.onBeforeRender=wrapper;
+      });
+      harbor.invalidate();
+      await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+    } finally {for(const {object,original}of wrapped)object.onBeforeRender=original;}
+    const restored=wrapped.every(({object,original})=>object.onBeforeRender===original);
+    const objects=[];
+    for(const {object,geometry:g,material:m,group}of records){
+      if(!geometries[g.uuid]){
+        const attribute=async a=>{const array=a.isInterleavedBufferAttribute?a.data.array:a.array;return{count:a.count,itemSize:a.itemSize,normalized:a.normalized,arrayType:array.constructor.name,sha256:await sha(new Uint8Array(array.buffer,array.byteOffset,array.byteLength))};};
+        const content={type:g.type,parameters:plain(g.parameters||{}),attributes:Object.fromEntries(await Promise.all(Object.entries(g.attributes).sort(([a],[b])=>a.localeCompare(b)).map(async([key,a])=>[key,await attribute(a)]))),index:g.index?await attribute(g.index):null,groups:plain(g.groups),drawRange:plain(g.drawRange)};
+        geometries[g.uuid]={uuid:g.uuid,...content,contentSHA256:await textSha(content)};
+      }
+      if(!materials[m.uuid]){const content={type:m.type,name:m.name||null,color:m.color?.getHexString()||null,wireframe:!!m.wireframe,transparent:m.transparent,opacity:m.opacity,depthTest:m.depthTest,depthWrite:m.depthWrite,side:m.side};materials[m.uuid]={uuid:m.uuid,...content,contentSHA256:await textSha(content)};}
+      const chain=ancestry(object);objects.push({uuid:object.uuid,type:object.type,name:object.name||null,geometryUUID:g.uuid,materialUUID:m.uuid,group,instances:object.isInstancedMesh?object.count:null,position:object.position.toArray(),worldPosition:object.getWorldPosition(object.position.clone()).toArray(),scale:object.scale.toArray(),parentChain:chain,harborTarget:chain.find(x=>x.target)?.target||null,selectedOutlineIdentity:(object.isLineSegments||m.wireframe)?{objectUUID:object.uuid,geometryUUID:g.uuid,materialUUID:m.uuid,color:m.color?.getHexString()||null,wireframe:!!m.wireframe}:null});
+    }
+    const hovered=rootState.internal?.hovered;
+    const hoveredObjects=hovered instanceof Map?[...hovered.entries()].map(([key,event])=>({key,eventObjectUUID:event.eventObject?.uuid,objectUUID:event.object?.uuid,instanceId:event.instanceId??null,eventObjectChain:ancestry(event.eventObject),objectChain:ancestry(event.object)})):null;
+    const last=rootState.events?.lastEvent?.current;
+    const at=document.elementFromPoint(8,8);
+    return{stage,elapsedMs,browserSampleTimeMs:performance.now(),renderer:renderer.getContext().getParameter(renderer.getContext().getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL),mainCameraFrame:chosenFrame,callbackCount:records.length,callbacksRestored:restored,geometryCount:Object.keys(geometries).length,materialCount:Object.keys(materials).length,statsBefore,statsAfter:harbor.stats(),rendererInfo:{render:{...renderer.info.render},memory:{...renderer.info.memory}},camera:{position:harbor.camera.position.toArray(),quaternion:harbor.camera.quaternion.toArray(),target:rootState.controls.target.toArray(),fov:harbor.camera.fov,zoom:harbor.camera.zoom},geometries,materials,objects,pointer:{canvasPointerEvents:canvas.style.pointerEvents,rootPointer:rootState.pointer.toArray(),lastEvent:last?{type:last.type,clientX:last.clientX,clientY:last.clientY}:null,connectedTag:rootState.events?.connected?.tagName||null,elementAt8_8:at?{tag:at.tagName,className:typeof at.className==='string'?at.className:null}:null,hoveredObjects},dom:{hoverChain:[...document.querySelectorAll(':hover')].map(e=>({tag:e.tagName,className:typeof e.className==='string'?e.className:null})),labels:[...document.querySelectorAll('span[title]')].filter(e=>e.closest('canvas')===null&&/^(worker-|app-)/.test(e.title)).map(e=>({title:e.title,text:e.parentElement?.textContent?.replace(/\s+/g,' ').slice(0,160)})),panelUID:[...document.querySelectorAll('.resource-details code')].map(e=>e.textContent).find(t=>/^node-\d+$/.test(t))||null,panelTitle:document.querySelector('.resource-details h2')?.textContent,panelTab:document.querySelector('.details-tabs button.active')?.textContent}};
+  },{stage,elapsedMs});
+  const upstream=await state();snapshot.upstreamEventCountAfterSnapshot=upstream.samples.length;snapshot.clientCanonicalSHA256=hash(JSON.stringify(signature(Object.values(await page.evaluate(()=>globalThis.__KUBEVIEW_BENCHMARK__.resources)))));snapshot.upstreamCanonicalSHA256=hash(JSON.stringify(signature(upstream.resources)));
+  await writeFile(path.join(out,stage+'-render-identity.json'),JSON.stringify(snapshot,null,2));
+  await page.screenshot({path:path.join(out,stage+'.png'),timeout:3000});
+  if(!snapshot.callbacksRestored||!snapshot.callbackCount)throw Error('Render identity callback probe failed or not restored');
+  if(!snapshot.renderer.includes('Metal')||/SwiftShader|software/i.test(snapshot.renderer))throw Error('Actual Metal required');
+  return snapshot;
+}

@@ -1,0 +1,9 @@
+# Read-only snapshot diagnosis — complete
+
+Three raw metadata snapshots were persisted under the same Lab.lock. The first pair differed at exactly4JSONpointer fields: the control-plane host's2recorded mount objects swapped list order (bind/name-null and volume/name-profile). The allowed one additional snapshot equaled the second snapshot; its diff from the first was the same4fields. ProfileSHA256 stayed c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5. All other recorded snapshot fields were equal.
+
+A separate diagnostic deep-copy sorts only the mounts list and finds no remaining differences. This establishes **order-only variation of the recorded mount objects in this pair**, not a changed acceptance policy or evidence about unrecorded mount attributes. Raw list order and exact before/after/third snapshots remain intact. No unknown field was normalized away. The earlier HTTP preflight's cause remains **UNPROVEN**, because its before/after snapshots were lost; this new observation does not reconstruct that failure.
+
+Both exact original NodeUIDs matched, count2 and both Ready. Actual system/marker/namespace guards passed; realCONTROL stayed absent. HelperSHA723af5a6c875588cde14e418e46ba0e681c293f3eaf92029354d56d9c27d677b and RUN_CLEARED=False remained unchanged. There was no app/HTTP-preflight/manager/provider POST, CLIadd/delete/cancel, Labup/down, product/helper edit, Git/index or roadmap action. Reads used the existing bounded guard/snapshot path only. No authdata, environment or kubeconfig body was saved.
+
+Actual snapshot work took4.435389s (<120s). Exact overall finalization elapsed is in manifest.json (<240s). before.json/after.json/additional.json include safe raw snapshot metadata and profile hashes; exact-diff and additional-exact-diff preserve JSONpointer paths and old/new values; mount-order-diagnostic is explicitly diagnostic-only. No new test or live continuation started.

@@ -1,0 +1,35 @@
+{
+  "fields": [
+    "Entrypoint",
+    "Cmd",
+    "User",
+    "Env",
+    "WorkingDir",
+    "Healthcheck",
+    "ExposedPorts",
+    "Volumes",
+    "StopSignal",
+    "Shell"
+  ],
+  "differences": {},
+  "officialConfig": {
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GOPS_CONFIG_DIR=/home/gops"
+    ],
+    "WorkingDir": "/",
+    "Labels": {
+      "maintainer": "maintainer@cilium.io"
+    }
+  },
+  "candidateConfig": {
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GOPS_CONFIG_DIR=/home/gops"
+    ],
+    "Labels": {
+      "maintainer": "maintainer@cilium.io"
+    },
+    "WorkingDir": "/"
+  }
+}

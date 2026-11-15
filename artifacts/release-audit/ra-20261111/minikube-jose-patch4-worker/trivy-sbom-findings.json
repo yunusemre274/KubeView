@@ -1,0 +1,47 @@
+[
+  {
+    "target": "",
+    "id": "CVE-2026-85747",
+    "pkg": "github.com/docker/distribution",
+    "installed": "v2.8.3+incompatible",
+    "fixed": null,
+    "severity": "MEDIUM",
+    "title": "github.com/distribution/distribution: distribution: Arbitrary container manifest substitution via missing digest verification"
+  },
+  {
+    "target": "",
+    "id": "CVE-2026-41567",
+    "pkg": "github.com/docker/docker",
+    "installed": "v28.5.2+incompatible",
+    "fixed": null,
+    "severity": "HIGH",
+    "title": "docker: Moby/Docker Engine: Arbitrary Code Execution via malicious container image and compressed archive upload"
+  },
+  {
+    "target": "",
+    "id": "CVE-2026-42306",
+    "pkg": "github.com/docker/docker",
+    "installed": "v28.5.2+incompatible",
+    "fixed": null,
+    "severity": "HIGH",
+    "title": "github.com/docker/docker: github.com/moby/moby: Moby container framework: Host file overwrite via race condition in docker cp mount setup"
+  },
+  {
+    "target": "",
+    "id": "CVE-2026-33997",
+    "pkg": "github.com/docker/docker",
+    "installed": "v28.5.2+incompatible",
+    "fixed": "29.3.1",
+    "severity": "MEDIUM",
+    "title": "moby: docker: github.com/moby/moby: Moby: Privilege validation bypass during plugin installation"
+  },
+  {
+    "target": "",
+    "id": "CVE-2026-41568",
+    "pkg": "github.com/docker/docker",
+    "installed": "v28.5.2+incompatible",
+    "fixed": null,
+    "severity": "MEDIUM",
+    "title": "github.com/docker/docker: github.com/moby/moby: Moby: Denial of Service via race condition in docker cp mount setup"
+  }
+]

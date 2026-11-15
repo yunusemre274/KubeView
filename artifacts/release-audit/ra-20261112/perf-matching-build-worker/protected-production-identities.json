@@ -1,0 +1,16 @@
+{
+  "baselineCLI": {
+    "path": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/baseline-runtime-36d5b8f/kubeview",
+    "SHA256": "47a5a1b13ec4ec4db19b11c014ff094c7fcff6ffbea5fb2d1a9bf4e87933123d",
+    "unchanged": true
+  },
+  "fixedProductionCLI": {
+    "path": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/candidate-runtime-profilelock10/kubeview",
+    "SHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+    "unchanged": true
+  },
+  "currentProductionUIIndex": {
+    "SHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+    "expected": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3"
+  }
+}

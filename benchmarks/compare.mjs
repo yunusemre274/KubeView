@@ -1,0 +1,218 @@
+import { readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { distribution } from "./metrics.mjs";
+import { processCoverage } from './panel-compare.mjs';
+import { cameraComparisonReasons } from './camera-contract.mjs';
+const [beforeDir, afterDir, outFile] = process.argv.slice(2);
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const interpretation = "Median across repetitions, full min/max range and n. Small differences within run variability are not proof of improvement. CPU/RSS require complete observed process cohorts; RSS must not be summed as unique RAM. Processes entirely between samples remain unobserved.";
+const object = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+async function compare() {
+  if (!beforeDir || !afterDir) return {comparable:false,reasons:['Usage: bench:compare -- BEFORE_DIR AFTER_DIR [OUTPUT.json]'],rows:[],interpretation};
+  const read = async (directory) => ({
+    report: JSON.parse(await readFile(path.resolve(root,directory,'summary.json'),'utf8')),
+    samples: JSON.parse(await readFile(path.resolve(root,directory,'process-samples.json'),'utf8')),
+  });
+  const inputs = [await read(beforeDir),await read(afterDir)];
+  const reject = [];
+  for (const [index,{report,samples}] of inputs.entries()) {
+    const side = index === 0 ? 'before' : 'after';
+    if (!object(report) || !object(report.manifest) || !Array.isArray(report.runs) || !report.runs.length || !Array.isArray(report.errors)) {
+      reject.push(`missing/invalid report body ${side}`); continue;
+    }
+    if (!Array.isArray(samples) || !samples.length || samples.some(s => !object(s) || !Number.isFinite(s.time) || !Array.isArray(s.processes))) {
+      reject.push(`missing/invalid process samples ${side}`); continue;
+    }
+    const m = report.manifest, params = m.params;
+    const names = value => Array.isArray(value) && value.length > 0 && value.every(x => typeof x === 'string' && x.length > 0 && !x.includes('/')) && new Set(value).size === value.length;
+    if (!object(params) || !names(params.profiles) || !names(params.scenarios) || !Number.isSafeInteger(params.repeats) || params.repeats < 3 || !Number.isFinite(params.warmup) || params.warmup < 30 || !Number.isFinite(params.seconds) || params.seconds < 60 || !Number.isSafeInteger(m.repeatOffset ?? 0) || (m.repeatOffset ?? 0) < 0 || !/^[a-f0-9]{64}$/i.test(m.backendBinarySHA256 || '')) {
+      reject.push(`invalid manifest protocol ${side}`); continue;
+    }
+    const expected = new Map(params.profiles.flatMap(profile => params.scenarios.map(scenario => [`${profile}/${scenario}`,new Set()])));
+    for (const run of report.runs) {
+      if (!object(run)) {reject.push(`missing run body ${side}`);continue;}
+      const key = `${run.profile}/${run.scenario}`, repeats = expected.get(key), offset = m.repeatOffset ?? 0;
+      if (!repeats || !Number.isSafeInteger(run.repeat) || run.repeat < offset || run.repeat >= offset+params.repeats || repeats.has(run.repeat)) reject.push(`extra/duplicate run cell ${side}`);
+      else repeats.add(run.repeat);
+      if (!object(run.before) || !object(run.after) || !object(run.summary) || !object(run.before.camera) || !Array.isArray(run.before.fleet) || !object(run.before.stats?.lifecycle)) {reject.push(`missing run body ${side}`);continue;}
+      const interior = samples.filter(sample => sample.time > run.osBefore?.time && sample.time < run.osAfter?.time);
+      run.process = processCoverage(run,samples);
+      if (!interior.length || !run.process.valid || !run.process.complete || ['browserCores','backendCores','maxBrowserProcessRSSKiB','backendRSSKiB'].some(key => !Number.isFinite(run.process[key]) || run.process[key] < 0)) reject.push(`incomplete/invalid CPU coverage ${side}`);
+    }
+    if ([...expected.values()].some(repeats => repeats.size !== params.repeats)) reject.push(`missing declared run group/repetition ${side}`);
+  }
+  if (reject.length) return {comparable:false,reasons:[...new Set(reject)],rows:[],interpretation};
+  const [before,after] = inputs.map(input => input.report);
+  reject.push(...cameraComparisonReasons(before, after));
+  if (
+    Number(before.manifest.logPayloadBytes || 0) !==
+    Number(after.manifest.logPayloadBytes || 0)
+  )
+    reject.push("log payload bytes differ");
+  for (const key of [
+    "fixtureVersion",
+    "scenarioVersion",
+    "snapshotOrder",
+    "replaySHA256",
+    "instrumentationSHA256",
+    "fixtureSHA256",
+    "backendBinarySHA256",
+    "powerSource",
+    "powerSettings",
+    "sleepInhibition",
+    "displayRefreshHz",
+    "params",
+    "browserVersion",
+    "quality",
+    "lockSHA256",
+    "hardware",
+    "os",
+    "profiler",
+    "video",
+    "cpuThrottling",
+    "browserEnergySaver",
+    "lifecycleInstrumentationSHA256",
+    "networkDiagnostic",
+    "deviceScaleFactorOverride",
+  ])
+    if (
+      JSON.stringify(before.manifest[key]) !== JSON.stringify(after.manifest[key])
+    )
+      reject.push(`manifest ${key} differs`);
+  for (const key of ["viewport"])
+    if (
+      JSON.stringify(before.manifest[key]) !== JSON.stringify(after.manifest[key])
+    )
+      reject.push(`manifest ${key} differs`);
+  if (before.manifest.smoke || after.manifest.smoke)
+    reject.push("short/incomplete smoke settings: cannot claim acceptance");
+  if (
+    before.manifest.profiler ||
+    after.manifest.profiler ||
+    before.manifest.gpuProfiler ||
+    after.manifest.gpuProfiler
+  )
+    reject.push("profiler run: diagnostic only");
+  if (before.errors.length || after.errors.length)
+    reject.push("runner errors present");
+  const group = (report) => {
+    const groups = new Map();
+    for (const r of report.runs) {
+      const key = `${r.profile}/${r.scenario}`;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(r);
+    }
+    return groups;
+  };
+  const b = group(before),
+    a = group(after),
+    rows = [];
+  for (const [key, br] of b) {
+    const ar = a.get(key);
+    if (!ar) {
+      reject.push(`missing after group ${key}`);
+      continue;
+    }
+    if (br.concat(ar).some((run) => run.comparabilityOnly)) {
+      reject.push(`comparability-only inventory has no performance window ${key}`);
+      continue;
+    }
+    const bad = br
+      .concat(ar)
+      .some(
+        (r) =>
+          r.producer &&
+          (!r.producer.valid ||
+            !r.consistency?.clientMatchesUpstream ||
+            !r.consistency?.upstreamMatchesPlanned),
+      );
+    if (bad) reject.push(`invalid producer/consistency ${key}`);
+    if (
+      br
+        .concat(ar)
+        .some(
+          (r) =>
+            r.before.connectionStale ||
+            r.after.connectionStale ||
+            r.before.contextLost ||
+            r.after.contextLost,
+        )
+    )
+      reject.push(`stale connection or lost WebGL context ${key}`);
+    if (br.length < 3 || ar.length < 3)
+      reject.push(`fewer than 3 repetitions ${key}`);
+    const settings = (r) => ({
+      prefs: r.before.preferences,
+      dpr: r.before.dpr,
+      rendererPixelRatio: r.before.rendererPixelRatio,
+      buffer: r.before.buffer,
+      renderer: r.before.renderer,
+      // Ignore arithmetic roundoff only; real pose changes remain a hard failure.
+      camera: Object.fromEntries(
+        Object.entries(r.before.camera).map(([key, value]) => [
+          key,
+          Array.isArray(value)
+            ? value.map((number) => Number(number.toFixed(9)))
+            : Number(value.toFixed(9)),
+        ]),
+      ),
+      visibleUIDs: r.before.fleet.map((ship) => ship.uid),
+      visiblePods: r.before.stats.lifecycle.visiblePods,
+    });
+    if (
+      br
+        .concat(ar)
+        .some(
+          (r) => JSON.stringify(settings(br[0])) !== JSON.stringify(settings(r)),
+        )
+    )
+      reject.push(`camera/DPR/preferences differ ${key}`);
+    for (const metric of [
+      "renderedFPS",
+      "renderIntervalMs.p95",
+      "renderIntervalMs.p99",
+      "jsSubmitMs.p50",
+      "jsSubmitMs.p95",
+      "callbackToStoreMs.p95",
+      "drawProxyMs.p95",
+      "panelDomProxyMs.p95",
+      "process.browserCores",
+      "process.backendCores",
+      "process.maxBrowserProcessRSSKiB",
+      "process.backendRSSKiB",
+    ]) {
+      const value = (r) =>
+        metric.split(".").reduce((v, k) => v?.[k], {
+          ...r.summary,
+          process: r.process,
+        });
+      const bd = distribution(br.map(value)),
+        ad = distribution(ar.map(value));
+      rows.push({
+        group: key,
+        metric,
+        before: bd,
+        after: ad,
+        changePercent:
+          bd.p50 && ad.p50 !== null ? ((ad.p50 - bd.p50) / bd.p50) * 100 : null,
+      });
+    }
+  }
+  const result = {
+    comparable: reject.length === 0,
+    reasons: reject,
+    rows,
+    interpretation,
+  };
+  return result;
+}
+let result;
+try { result = await compare(); }
+catch { result = {comparable:false,reasons:['Invalid or unreadable comparator input'],rows:[],interpretation}; }
+if (outFile) {
+  try { await writeFile(path.resolve(root,outFile),JSON.stringify(result,null,2)); }
+  catch { result = {comparable:false,reasons:['Cannot write comparator output'],rows:[],interpretation}; }
+}
+console.log(JSON.stringify(result,null,2));
+if (!result.comparable) process.exitCode = 2;

@@ -1,0 +1,16 @@
+{
+  "reviewer": "root",
+  "source": "vertical03 binary52d256b7 / frontend a8e5636b; before subsequent cold-restore/metrics fixes",
+  "openedImages": [
+    "2-pod-b.png",
+    "3-logs-a.png",
+    "4-world-all-panels-closed.png"
+  ],
+  "observations": [
+    "Single full-viewport world; contextual opaque Soft UI panel and close returns to same world.",
+    "Exact selected Pod UID/namespace/context readable in summary.",
+    "Cross-source log openings and cancellations are HTTP/UID/header evidence, not screenshots alone.",
+    "Log screenshot is filtered and does not prove nonempty log payload; no payload recorded."
+  ],
+  "result": "Visual inspection passed for these captured states; no performance or complete A–O acceptance claim."
+}

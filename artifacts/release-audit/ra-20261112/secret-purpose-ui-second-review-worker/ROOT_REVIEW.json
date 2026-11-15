@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-12T12:25:09.296425+00:00",
+  "reviewer": "root",
+  "workerReviewHashesVerified": 7,
+  "uiWorkerHashesVerified": 20,
+  "imagesOpenedByRoot": [
+    "01-secret-metadata.png",
+    "02-after-hide.png",
+    "03-purpose-dryrun-masked.png",
+    "04-panels-closed.png"
+  ],
+  "visualObservations": [
+    "Real full-screen industrial harbor and two genuine Node ships; no permanent dashboard",
+    "Opaque Soft UI Secret details; hidden-state control visible; no raw values in captured pixels",
+    "YAML capture masked at source; this image does not by itself prove footer controls, which were exercised by UI assertions",
+    "Closed panels return to same canvas, ships and sea; no plaintext reveal screenshot"
+  ],
+  "technicalFunctionalDecision": "VERIFIED normal UI reveal/hide/purposeedit and canonical metadata roundtrip, corroborated by separate real restricted-identity API and frontend unit tests",
+  "processPlanExceptionsRemainOpen": {
+    "uiWorkerFullSeconds": 260.641827,
+    "uiWorkerTargetSeconds": 240,
+    "reviewWorkerSeconds": 198.154,
+    "reviewWorkerTargetSeconds": 180
+  },
+  "timingInterpretation": "Active browser5.337s/controller+cleanup5.898s met browser120/cleanup45 safety limits. Documentation/review job plan targets were missed; neither target is a measured product UI latency or CPU budget and neither is relabelled PASS. No rerun solely to hide these overruns.",
+  "notClaimed": [
+    "secure heap erase",
+    "physical latency/presented FPS",
+    "general admission failure",
+    "full browser restricted-SA flow",
+    "release readiness"
+  ]
+}

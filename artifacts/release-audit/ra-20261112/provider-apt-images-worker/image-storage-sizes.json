@@ -1,0 +1,114 @@
+{
+  "cilium": {
+    "official": {
+      "uncompressedHistoryLayerBytes": 734121984,
+      "nonemptyHistoryLayers": [
+        {
+          "createdBy": "WORKDIR /home/cilium",
+          "uncompressedBytes": 12288
+        },
+        {
+          "createdBy": "COPY /tmp/install/linux/arm64 / # buildkit",
+          "uncompressedBytes": 371634176
+        },
+        {
+          "createdBy": "COPY /usr/bin/cilium-envoy /usr/bin/cilium-envoy-starter /usr/bin/ # buildkit",
+          "uncompressedBytes": 80478208
+        },
+        {
+          "createdBy": "RUN |2 TARGETOS=linux TARGETARCH=arm64 /bin/sh -c echo \". /etc/profile.d/bash_completion.sh\" >> /etc/bash.bashrc # buildkit",
+          "uncompressedBytes": 12288
+        },
+        {
+          "createdBy": "COPY / / # buildkit",
+          "uncompressedBytes": 281985024
+        }
+      ],
+      "engineSizeBytes": 240966361,
+      "localDescriptorDigest": "sha256:1615b8097f64e1461cd55bd2037b817484d3586d1e065b88014463c797d0832a",
+      "localImageID": "sha256:1615b8097f64e1461cd55bd2037b817484d3586d1e065b88014463c797d0832a"
+    },
+    "candidate": {
+      "uncompressedHistoryLayerBytes": 739569664,
+      "nonemptyHistoryLayers": [
+        {
+          "createdBy": "/bin/sh -c set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports resolute-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; };     apt_safe update &&     plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg7.0) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=3.2.1ubuntu0.1 libapt-pkg7.0=3.2.1ubuntu0.1 &&     dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg7.0 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 3.2.1ubuntu0.1 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg7.0)\" ge 3.2.1ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list",
+          "uncompressedBytes": 5447680
+        },
+        {
+          "createdBy": "WORKDIR /home/cilium",
+          "uncompressedBytes": 12288
+        },
+        {
+          "createdBy": "COPY /tmp/install/linux/arm64 / # buildkit",
+          "uncompressedBytes": 371634176
+        },
+        {
+          "createdBy": "COPY /usr/bin/cilium-envoy /usr/bin/cilium-envoy-starter /usr/bin/ # buildkit",
+          "uncompressedBytes": 80478208
+        },
+        {
+          "createdBy": "RUN |2 TARGETOS=linux TARGETARCH=arm64 /bin/sh -c echo \". /etc/profile.d/bash_completion.sh\" >> /etc/bash.bashrc # buildkit",
+          "uncompressedBytes": 12288
+        },
+        {
+          "createdBy": "COPY / / # buildkit",
+          "uncompressedBytes": 281985024
+        }
+      ],
+      "engineSizeBytes": 242813795,
+      "localDescriptorDigest": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+      "localImageID": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a"
+    },
+    "deltaUncompressedHistoryBytes": 5447680,
+    "deltaEngineSizeBytes": 1847434
+  },
+  "envoy": {
+    "official": {
+      "uncompressedHistoryLayerBytes": 230989824,
+      "nonemptyHistoryLayers": [
+        {
+          "createdBy": "COPY /tmp/install / # buildkit",
+          "uncompressedBytes": 114651136
+        },
+        {
+          "createdBy": "RUN /bin/sh -c apt-get update && apt-get upgrade -y     && apt-get install --no-install-recommends -y ca-certificates libatomic1     && apt-get autoremove -y && apt-get clean     && rm -rf /tmp/* /var/tmp/*     && rm -rf /var/lib/apt/lists/* # buildkit",
+          "uncompressedBytes": 5902336
+        },
+        {
+          "createdBy": "/bin/sh -c #(nop) ADD file:41d2e63ceb0b90641106340bc81ee11125254db51ee5a9d49e666bcf0388814f in / ",
+          "uncompressedBytes": 110436352
+        }
+      ],
+      "engineSizeBytes": 75160521,
+      "localDescriptorDigest": "sha256:5a17281b6262e00a8bfe6efa0463f4cbc19aa3d6e0116bc9407ce3c71c629dae",
+      "localImageID": "sha256:5a17281b6262e00a8bfe6efa0463f4cbc19aa3d6e0116bc9407ce3c71c629dae"
+    },
+    "candidate": {
+      "uncompressedHistoryLayerBytes": 236089344,
+      "nonemptyHistoryLayers": [
+        {
+          "createdBy": "/bin/sh -c set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports noble-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; };     apt_safe update &&     plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg6.0t64) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1 &&     dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg6.0t64 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 2.8.4ubuntu0.1 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg6.0t64)\" ge 2.8.4ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list",
+          "uncompressedBytes": 5099520
+        },
+        {
+          "createdBy": "COPY /tmp/install / # buildkit",
+          "uncompressedBytes": 114651136
+        },
+        {
+          "createdBy": "RUN /bin/sh -c apt-get update && apt-get upgrade -y     && apt-get install --no-install-recommends -y ca-certificates libatomic1     && apt-get autoremove -y && apt-get clean     && rm -rf /tmp/* /var/tmp/*     && rm -rf /var/lib/apt/lists/* # buildkit",
+          "uncompressedBytes": 5902336
+        },
+        {
+          "createdBy": "/bin/sh -c #(nop) ADD file:41d2e63ceb0b90641106340bc81ee11125254db51ee5a9d49e666bcf0388814f in / ",
+          "uncompressedBytes": 110436352
+        }
+      ],
+      "engineSizeBytes": 76788578,
+      "localDescriptorDigest": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+      "localImageID": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740"
+    },
+    "deltaUncompressedHistoryBytes": 5099520,
+    "deltaEngineSizeBytes": 1628057
+  }
+}

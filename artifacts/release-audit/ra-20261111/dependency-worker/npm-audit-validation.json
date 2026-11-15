@@ -1,0 +1,22 @@
+{
+  "audit_valid_json": true,
+  "audit_report_version": 2,
+  "audit_error": null,
+  "audit_stderr_empty": true,
+  "audit_metadata_total": 204,
+  "lock_package_path_count": 204,
+  "audit_count_matches_lock": true,
+  "all_dependency_types_included": true,
+  "audit_omission_flags": [],
+  "conclusion": "No npm advisory matches reported for current lock as queried; not proof of absence of unknown vulnerabilities or production exploitation. Includes dev tooling. Registry advisory DB revision is not exposed in npm audit JSON.",
+  "positive_control": {
+    "package": "lodash",
+    "version": "4.17.20",
+    "fixture": ".git/release-audit/npm-positive-control",
+    "no_node_modules": true,
+    "known_advisory_detected": true,
+    "exit_code": 1,
+    "timeout_seconds": 30,
+    "advisory_count": 4
+  }
+}

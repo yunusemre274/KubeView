@@ -1,0 +1,9 @@
+# Native Safari owned blank-tab capability — PASS
+
+One real owned stdio MCP probe negotiated `2024-11-05` with serverInfo `Safari 1.0.0`. It called `create_tab({"url":"about:blank"})` once, parsed the unique handle from that exact response, called `close_tab` once with that handle, and received the matching close acknowledgement. The response and acknowledgement are preserved in `result.json`. No list_tabs or existing-tab read/close occurred.
+
+Actual driver runtime: `0.941306s` (20s limit), `403` bytes (64KiB limit). Start `2026-11-11T18:46:04.620414+00:00`; finish `2026-11-11T18:46:05.561727+00:00`. Direct owned child PID `86590` exited `0` following stdin EOF; no terminate/kill required. No owned tab remains pending. No OS settings, permission enablement, app process, viewport, personal page, console or network data was accessed. No retry occurred.
+
+Source HEAD: `0f5258a34ade49418fd98a76873f6e076c52ec5c`. Executable: `/usr/bin/safaridriver`, resolved `/System/Volumes/Preboot/Cryptexes/App/usr/bin/safaridriver`, SHA256 `0e113cd573e6cfdcf0329107c78c50fca01a15ed448e1b6827042df5335d33e8`. Helper `.git/release-audit/native-safari-blank-tab-worker/probe.py`, SHA256 `178075ab377a89b6c99a9f2323523075de1a609ee60d741196454fac928679a2`. It reused the compatible metadata probe's newline JSON-RPC / owned-stdio mechanics (base helper SHA `f44900d39cc0c86944058de42f56d835c8f2c4d061f8d0292c611769e502cc17`) with precisely the two newly authorized tool calls. Command: `python3 .git/release-audit/native-safari-blank-tab-worker/probe.py`.
+
+This demonstrates actual blank-tab create/close capability, beyond metadata discovery. Remote automation denial was not observed in this probe. Native KubeView UI smoke, app/Retina acceptance, screenshots, user gestures, actual UA/DPR/framebuffer, and performance remain **NOT RUN**. MCP serverInfo version is not a Safari browser version.

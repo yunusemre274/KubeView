@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-11-10T09:22:29.143833+00:00",
+  "purpose": "FS-only candidate after bounded same-PodUID startup wait fix; no third actual integration",
+  "binarySha256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "targetedUnitTests": 12,
+  "targetedUnitPass": true,
+  "actualIntegrationAttemptsUsed": 2,
+  "thirdIntegrationStarted": false,
+  "telemetryE2EStatus": "BLOCKED",
+  "clusterAppTrafficStartedDuringPreparation": false,
+  "runtimeRepoDependency": false,
+  "attempt": "telemetry-startup-wait-fs-freeze-01",
+  "standaloneBundleName": "20261110-tls-v06-source-wait",
+  "sourceSha256": {
+    "scripts/manual_lab.py": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+    "manual-lab/telemetry.py": "71fb19ae92aa9f4adaed79c8469ce2e30e779a8b7342ba7f7cf481a126ddfebf",
+    "manual-lab/tests/test_telemetry_bootstrap.py": "a9cd045afb1d97a86b6ca9952abb4dbe9f1fe814ad30a908914adc8592dfbde7",
+    "MANUAL_TEST_GUIDE.md": "b323f722b682a27f6c4825b4fb2a08dc0896ee07dc0ddc32926b281408c7be04"
+  },
+  "allPriorRuntimeFailuresAndBundlesPreserved": true,
+  "secretRead": false
+}

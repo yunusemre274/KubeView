@@ -1,0 +1,11 @@
+{
+  "sourceSHA256": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+  "sourceFacts": [
+    "New initializes operations with Go zero/nil slice unless existing journal loaded",
+    "New calls persist before return",
+    "persist json.MarshalIndent(m.operations) writes null for nil slice; Snapshot returns make([]Operation,len) so HTTP zero is[]"
+  ],
+  "previousPreflightJournalExists": true,
+  "previousPreflightJournalParsed": null,
+  "readOnlyInspection": true
+}

@@ -1,0 +1,21 @@
+{
+  "disposition": "FALSE_POSITIVE_RECOMPUTED_SOURCE_CHECKSUMS",
+  "findings": [
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-worker/source-before.json:generic-api-key:2",
+      "reason": "exact archived first helper or unchanged public source SHA256 independently recomputed; not credential",
+      "verifiedAgainst": "artifacts/release-audit/ra-20261112/secret-purpose-ui-worker/prepared-browser-source.mjs.txt"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-worker/source-before.json:generic-api-key:5",
+      "reason": "exact archived first helper or unchanged public source SHA256 independently recomputed; not credential",
+      "verifiedAgainst": "frontend/src/workbench/secretPayload.js"
+    },
+    {
+      "fingerprint": "artifacts/release-audit/ra-20261112/secret-purpose-ui-worker/preparation-identities.json:generic-api-key:9",
+      "reason": "exact archived first helper or unchanged public source SHA256 independently recomputed; not credential",
+      "verifiedAgainst": "frontend/src/workbench/secretPayload.js"
+    }
+  ],
+  "globalIgnoreAdded": false
+}

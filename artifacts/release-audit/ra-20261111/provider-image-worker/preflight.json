@@ -1,0 +1,75 @@
+{
+  "started_at_utc": "2026-11-11T12:53:19.341905+00:00",
+  "inventory_path": "artifacts/release-audit/ra-20261111/hubble-cold01/collector-image-inventory.json",
+  "inventory_sha256": "d46af9ed8c432f994360e0226940ff96f26ca49b810e431ffb7bcee5e89d8706",
+  "labId": "kvml-d32afbf634e8",
+  "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+  "targets_in_order": [
+    {
+      "label": "hubble-relay",
+      "ref": "quay.io/cilium/hubble-relay@sha256:d309c977870e9dbede7122a10eee09a4c9d66685e8d52af62d9c3c113f815b0f"
+    },
+    {
+      "label": "cilium",
+      "ref": "quay.io/cilium/cilium@sha256:2939231d0d3e3ebddcd80fffa168b7ddcc78fdf0dc864d1c8c126ff523c54f01"
+    },
+    {
+      "label": "operator-generic",
+      "ref": "quay.io/cilium/operator-generic@sha256:64d8798350e8569b8e7622563fed6e44dce2625f311e4651b774816516c744fc"
+    },
+    {
+      "label": "cilium-envoy",
+      "ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463"
+    }
+  ],
+  "trivy_binary": "/opt/homebrew/bin/trivy",
+  "trivy_resolved_binary": "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+  "trivy_binary_sha256": "5fd45afccbd5efd7a88e6da92a7b3a52c2e3ffd30d5b954f324123d6d1d24469",
+  "platform": "linux/arm64",
+  "cache_dir": ".git/release-audit/trivy-cache",
+  "db_metadata": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  },
+  "help_commands": [
+    {
+      "command": [
+        "/opt/homebrew/bin/trivy",
+        "--cache-dir",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+        "--version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/bin/trivy",
+        "image",
+        "--help"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "GOMAXPROCS": 1,
+  "parallel": 1,
+  "per_image_timeout_seconds": 150,
+  "remaining_job_scan_budget_seconds": 480,
+  "rss_limit_bytes": 1610612736,
+  "minimum_free_bytes": 10737418240,
+  "free_bytes": 458887147520,
+  "image_sources": [
+    "remote"
+  ],
+  "scanners": [
+    "vuln"
+  ],
+  "pkg_types": [
+    "os",
+    "library"
+  ],
+  "automatic_db_update": false,
+  "registry_credentials": "No existing config loaded; empty private Docker/auth paths and credential environment variables removed",
+  "default_cache_version_note": "Initial trivy --version inspected default cache (October metadata); scans explicitly use private cache downloaded November 11, not default cache"
+}

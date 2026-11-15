@@ -1,0 +1,6 @@
+{
+  "benchmarks/run.mjs": "6e1bd7659db63d0d7fe42e1bf41dbdc2cdd953b79e0549914bec40b814fa94bb",
+  "benchmarks/compare.mjs": "398bd71ecdc97989fc3cfcbcd6d0c1c065bb0fb14c8510ff986f42f38923eeae",
+  "benchmarks/camera-contract.mjs": "4d596350426c82841776aab87cf0560b37acead165d9c41ac46f97561bfaade7",
+  "benchmarks/camera-contract.test.mjs": "7f4fa1d650857f8c77f7b9c8089d6f8fd71ac97dab85e8a0596aa9cddb07edf9"
+}

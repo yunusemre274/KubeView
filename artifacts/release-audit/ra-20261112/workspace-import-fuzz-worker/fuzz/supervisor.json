@@ -1,0 +1,5 @@
+{
+  "pid": 65051,
+  "identity": "Fri Nov 13 00:41:09 2026     /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python artifacts/release-audit/ra-20261112/workspace-import-fuzz-worker/fuzz/run.py",
+  "purpose": "SIGTERM/SIGINT triggers owned captured-child cleanup"
+}

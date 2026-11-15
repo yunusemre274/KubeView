@@ -1,0 +1,32 @@
+{
+  "time": "2026-11-01T16:40:40.352413+00:00",
+  "context": "kv-repair-1101",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace": "kv-repair-log",
+  "remainingTestResources": [],
+  "reservedNode": {
+    "name": "kv-repair-1101-m02",
+    "uid": "dd717f7d-1a66-403e-ae96-3799db437fb4",
+    "unschedulable": false
+  },
+  "currentDaemonSetPodsOnReservedNode": [
+    {
+      "namespace": "kube-system",
+      "name": "cilium-envoy-nz5f5",
+      "uid": "7bea3616-b192-432f-928d-651df9edbd0a",
+      "terminating": false
+    },
+    {
+      "namespace": "kube-system",
+      "name": "cilium-xblq2",
+      "uid": "1308b1a4-1096-45bc-ab93-52403612cc2a",
+      "terminating": false
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-proxy-dts8x",
+      "uid": "6df8712b-283d-443c-8290-277255ee00f9",
+      "terminating": false
+    }
+  ]
+}

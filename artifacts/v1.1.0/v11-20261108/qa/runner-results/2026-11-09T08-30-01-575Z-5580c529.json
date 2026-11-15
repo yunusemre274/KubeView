@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-30-01-575Z-5580c529",
+  "startedAt": "2026-11-09T08:30:01.575Z",
+  "tests": [
+    {
+      "title": "V11-07 V11-08 V11-09 V11-10 center dry-run/create/scale/resources/restart/Pod replacement/delete",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 22875,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-30-01-750Z-169b048d/v11-real-cluster-V11-07-V1-5d8a7-tart-Pod-replacement-delete-chromium/attachments/v11-evidence-a7d77a9e47ea729b0d161f55a37f01878e910af5.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:30:24.718Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-30-01-575Z-5580c529.json"
+}

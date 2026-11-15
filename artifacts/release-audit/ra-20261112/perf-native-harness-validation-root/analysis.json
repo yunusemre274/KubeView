@@ -1,0 +1,156 @@
+{
+  "status": "PASS_TOOL_VALIDATION_VISUAL_REVIEW_PENDING",
+  "purpose": "HARNESS_VALIDATION_ONLY_NOT_PERFORMANCE_ACCEPTANCE",
+  "checks": [
+    {
+      "name": "same-explicit-camera-projection",
+      "passed": true
+    },
+    {
+      "name": "same-frozen-common-backend",
+      "passed": true
+    },
+    {
+      "name": "same-actual-render-settings-and-start-fleet",
+      "passed": true
+    },
+    {
+      "name": "same-Node-summary-context-and-content",
+      "passed": true
+    },
+    {
+      "name": "A-one-complete-short-run",
+      "passed": true
+    },
+    {
+      "name": "A-reference-resource-and-draw-scope",
+      "passed": true
+    },
+    {
+      "name": "A-requested-panel",
+      "passed": true
+    },
+    {
+      "name": "A-native-process-cohort",
+      "passed": true
+    },
+    {
+      "name": "A-actual-browser-renderer-GPU-backend-roots",
+      "passed": true
+    },
+    {
+      "name": "A-decorative-ship-motion-resumed",
+      "passed": true
+    },
+    {
+      "name": "B-one-complete-short-run",
+      "passed": true
+    },
+    {
+      "name": "B-reference-resource-and-draw-scope",
+      "passed": true
+    },
+    {
+      "name": "B-requested-panel",
+      "passed": true
+    },
+    {
+      "name": "B-native-process-cohort",
+      "passed": true
+    },
+    {
+      "name": "B-actual-browser-renderer-GPU-backend-roots",
+      "passed": true
+    },
+    {
+      "name": "B-decorative-ship-motion-resumed",
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "side": "A",
+      "cohortValid": true,
+      "cohortReasons": [],
+      "clockWindow": {
+        "wallMs": 3078,
+        "activeMs": 3025.0999999996275,
+        "differenceMs": 52.90000000037253,
+        "toleranceMs": 1000,
+        "valid": true
+      },
+      "roles": [
+        "backend",
+        "browser-gpu",
+        "browser-main",
+        "browser-other",
+        "browser-renderer",
+        "observer"
+      ],
+      "observedProcesses": 11,
+      "projectedRaycastVisibleUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "fleetMovedUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "limitations": "Three-second n1 tool validation; not CPU/FPS/latency acceptance. OS birth has1s resolution; unsampled short children remain a visibility limit. PNGs require separate visual inspection."
+    },
+    {
+      "side": "B",
+      "cohortValid": true,
+      "cohortReasons": [],
+      "clockWindow": {
+        "wallMs": 3085,
+        "activeMs": 3037.9000000003725,
+        "differenceMs": 47.09999999962747,
+        "toleranceMs": 1000,
+        "valid": true
+      },
+      "roles": [
+        "backend",
+        "browser-gpu",
+        "browser-main",
+        "browser-other",
+        "browser-renderer",
+        "observer"
+      ],
+      "observedProcesses": 11,
+      "projectedRaycastVisibleUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "fleetMovedUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "limitations": "Three-second n1 tool validation; not CPU/FPS/latency acceptance. OS birth has1s resolution; unsampled short children remain a visibility limit. PNGs require separate visual inspection."
+    }
+  ]
+}

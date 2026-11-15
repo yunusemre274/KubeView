@@ -1,0 +1,300 @@
+✔ generic CLI preserves valid synthetic positive (26.459334ms)
+✖ generic CLI rejects PID reuse (24.617625ms)
+✖ generic CLI rejects legacy missing birth (23.484292ms)
+✖ generic CLI rejects interior cohort disappearance (23.798584ms)
+✖ generic CLI rejects interior counter regression (23.905917ms)
+✖ generic CLI rejects invalid clock (23.857ms)
+✖ generic CLI rejects missing process samples (23.677708ms)
+✖ generic CLI rejects empty process samples (23.318958ms)
+✖ generic CLI rejects malformed sample body (23.953542ms)
+✖ generic CLI rejects both empty runs (22.151834ms)
+✖ generic CLI rejects missing declared group on both sides (23.286334ms)
+✖ generic CLI rejects extra after group (24.695708ms)
+✔ generic CLI rejects missing after group (23.205625ms)
+✖ generic CLI rejects duplicate repeat (24.532167ms)
+✖ generic CLI rejects missing summary (22.154625ms)
+✖ generic CLI rejects malformed summary JSON (21.712875ms)
+✖ generic CLI rejects missing run body (21.375375ms)
+✖ generic CLI rejects missing errors body (22.248333ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 2
+ℹ fail 16
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 451.518917
+
+✖ failing tests:
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects PID reuse (24.617625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects legacy missing birth (23.484292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects interior cohort disappearance (23.798584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects interior counter regression (23.905917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects invalid clock (23.857ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects missing process samples (23.677708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects empty process samples (23.318958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects malformed sample body (23.953542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects both empty runs (22.151834ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects missing declared group on both sides (23.286334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects extra after group (24.695708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects duplicate repeat (24.532167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects missing summary (22.154625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects malformed summary JSON (21.712875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects missing run body (21.375375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at benchmarks/compare.test.mjs:45:32
+✖ generic CLI rejects missing errors body (22.248333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/benchmarks/compare.test.mjs:45:130)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

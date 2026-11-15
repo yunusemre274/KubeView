@@ -1,0 +1,95 @@
+{
+  "dockerVMDeclaredMemoryBytes": 8321515520,
+  "dockerVMNCPU": 10,
+  "ownedOriginalContainers": [
+    {
+      "id": "97cc52cfe048288a01e4b84284b34e80ab2ea668fbe3a1dcc28309ab62a21599",
+      "name": "kvml-d32afbf634e8-a",
+      "created": "2026-11-11T12:25:42.786922134Z",
+      "running": true,
+      "memoryLimitBytes": 2147483648,
+      "nanoCPUs": 2000000000,
+      "cpuQuota": 0,
+      "cpuPeriod": 0,
+      "labels": {
+        "created_by.minikube.sigs.k8s.io": "true",
+        "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+        "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a",
+        "role.minikube.sigs.k8s.io": ""
+      }
+    },
+    {
+      "id": "c6f18a25a51468412d901a43c31f8e645df9af93a57cf886ac6d632bc52185b9",
+      "name": "kvml-d32afbf634e8-a-m02",
+      "created": "2026-11-11T12:25:55.149367334Z",
+      "running": true,
+      "memoryLimitBytes": 2147483648,
+      "nanoCPUs": 2000000000,
+      "cpuQuota": 0,
+      "cpuPeriod": 0,
+      "labels": {
+        "created_by.minikube.sigs.k8s.io": "true",
+        "mode.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+        "name.minikube.sigs.k8s.io": "kvml-d32afbf634e8-a-m02",
+        "role.minikube.sigs.k8s.io": ""
+      }
+    }
+  ],
+  "actualNodes": [
+    {
+      "name": "kvml-d32afbf634e8-a",
+      "uid": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+      "ready": true,
+      "capacity": {
+        "cpu": "10",
+        "ephemeral-storage": "954925484Ki",
+        "hugepages-1Gi": "0",
+        "hugepages-2Mi": "0",
+        "hugepages-32Mi": "0",
+        "hugepages-64Ki": "0",
+        "memory": "8126480Ki",
+        "pods": "110"
+      },
+      "allocatable": {
+        "cpu": "10",
+        "ephemeral-storage": "954925484Ki",
+        "hugepages-1Gi": "0",
+        "hugepages-2Mi": "0",
+        "hugepages-32Mi": "0",
+        "hugepages-64Ki": "0",
+        "memory": "8126480Ki",
+        "pods": "110"
+      }
+    },
+    {
+      "name": "kvml-d32afbf634e8-a-m02",
+      "uid": "90103b01-6c31-4690-8bd0-31fa968af1ce",
+      "ready": true,
+      "capacity": {
+        "cpu": "10",
+        "ephemeral-storage": "954925484Ki",
+        "hugepages-1Gi": "0",
+        "hugepages-2Mi": "0",
+        "hugepages-32Mi": "0",
+        "hugepages-64Ki": "0",
+        "memory": "8126480Ki",
+        "pods": "110"
+      },
+      "allocatable": {
+        "cpu": "10",
+        "ephemeral-storage": "954925484Ki",
+        "hugepages-1Gi": "0",
+        "hugepages-2Mi": "0",
+        "hugepages-32Mi": "0",
+        "hugepages-64Ki": "0",
+        "memory": "8126480Ki",
+        "pods": "110"
+      }
+    }
+  ],
+  "storedNodes": {
+    "kvml-d32afbf634e8-a": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+    "kvml-d32afbf634e8-a-m02": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+  },
+  "labProcesses": []
+}

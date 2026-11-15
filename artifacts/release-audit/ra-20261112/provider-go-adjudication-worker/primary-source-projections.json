@@ -1,0 +1,113 @@
+[
+  {
+    "URL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "sha256": "443304c129b9540dc46d28392b973a136db90644019dc20c3e25941833d49df3",
+    "modified": "2026-10-27T21:16:18Z",
+    "affected": [
+      {
+        "package": {
+          "name": "golang.org/x/net",
+          "ecosystem": "Go"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "0.62.0"
+              }
+            ]
+          }
+        ],
+        "ecosystem_specific": {
+          "imports": [
+            {
+              "path": "golang.org/x/net/html",
+              "symbols": [
+                "Parse",
+                "ParseFragment",
+                "ParseFragmentWithOptions",
+                "ParseWithOptions",
+                "parser.addText",
+                "parser.fosterParent",
+                "parser.parse"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "URL": "https://vuln.go.dev/ID/GO-2026-5024.json",
+    "sha256": "ec93b4e06338823aff63cebe8aa3bad0d46bc68e16fe226cffaed3846af8b95f",
+    "modified": "2026-05-22T18:28:47Z",
+    "affected": [
+      {
+        "package": {
+          "name": "golang.org/x/sys",
+          "ecosystem": "Go"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "0.44.0"
+              }
+            ]
+          }
+        ],
+        "ecosystem_specific": {
+          "imports": [
+            {
+              "path": "golang.org/x/sys/windows",
+              "goos": [
+                "windows"
+              ],
+              "symbols": [
+                "NewNTUnicodeString"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "URL": "https://raw.githubusercontent.com/golang/sys/v0.30.0/windows/syscall_windows.go",
+    "sha256": "4494535aebf89120fc74e2fc9405750f9e388ff569774abe82af42e23c88c456",
+    "functionLine": 1686,
+    "implicitGOOSConstraint": "windows by _windows.go filename",
+    "overflowGuardPresentInFunction": false,
+    "privateSource": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/x-sys-v0.30.0-syscall_windows.go"
+  },
+  {
+    "URL": "https://raw.githubusercontent.com/golang/sys/v0.44.0/windows/syscall_windows.go",
+    "sha256": "75e8614973a27eaff76c57d213827db5f6c5246c768886e96cb2348eb8fa1e85",
+    "functionLine": 1695,
+    "implicitGOOSConstraint": "windows by _windows.go filename",
+    "overflowGuardPresentInFunction": true,
+    "privateSource": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/x-sys-v0.44.0-syscall_windows.go"
+  },
+  {
+    "installedOfficialGoSource": "/opt/homebrew/Cellar/go/1.26.5/libexec/src/debug/gosym/pclntab.go",
+    "sha256": "8ce99c39406486fd5d380eb99fe28e53375457ee45c87a7b27d505527232ba67",
+    "purpose": "ver120 pclntab layout and inline-call nameOff mapping"
+  },
+  {
+    "installedOfficialGoSource": "/opt/homebrew/Cellar/go/1.26.5/libexec/src/runtime/symtabinl.go",
+    "sha256": "64bbd9ed4f94111659b89fc55c0764fb1f9a4202453ebb8646f7c6aef98c4edf",
+    "purpose": "ver120 pclntab layout and inline-call nameOff mapping"
+  },
+  {
+    "installedGoBuildConstraintHelpSHA256": "a48daef5d249d7079c9fab5f50e250428f6401fbe3482ba86a12fcb7fea6ff55",
+    "implicitFileSuffixConstraintConfirmed": true
+  }
+]

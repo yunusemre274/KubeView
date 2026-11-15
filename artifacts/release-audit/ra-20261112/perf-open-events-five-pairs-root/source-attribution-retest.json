@@ -1,0 +1,11 @@
+{
+  "status": "PASS_OFFLINE_METADATA_CORRECTION",
+  "finding": "Initial reducer referenced absent buildProvenance.commit and produced null sourceCommit. Original result/source preserved.",
+  "changed": "Frozen source identity now linked to recorded manifest tag/index/backend/provenance; invocation commit kept separate.",
+  "allMetricsAndStatisticsByteEquivalentAsJSON": true,
+  "sources": [
+    "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+    "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12"
+  ],
+  "newMeasurements": 0
+}

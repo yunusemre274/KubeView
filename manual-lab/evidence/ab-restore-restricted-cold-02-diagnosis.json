@@ -1,0 +1,27 @@
+{
+  "attempt": "ab-restore-restricted-cold-02-diagnosis",
+  "sourceChanged": false,
+  "expectedSystemUid": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5",
+  "expectedMarkerUid": "aed7f05b-4a89-4286-b878-f4ae5a47a6fb",
+  "containers": {
+    "kvml-ccdfe731dabd-a": {
+      "sameExactId": true,
+      "sameCreation": true,
+      "ownerMinikubeLabel": true,
+      "running": true,
+      "networkId": "65191ab34c27a41dee21e0e0f5de16a5571de2282edcb6ce4a85d33bfd1bb6a6"
+    },
+    "kvml-ccdfe731dabd-a-m02": {
+      "sameExactId": true,
+      "sameCreation": true,
+      "ownerMinikubeLabel": true,
+      "running": true,
+      "networkId": "65191ab34c27a41dee21e0e0f5de16a5571de2282edcb6ce4a85d33bfd1bb6a6"
+    }
+  },
+  "privateServerMatchesMapped8443Port": true,
+  "controlPlaneKubelet": "inactive",
+  "controlPlaneDocker": "active",
+  "controlPlaneAndWorkerAlias": "missing",
+  "mutationPerformed": false
+}

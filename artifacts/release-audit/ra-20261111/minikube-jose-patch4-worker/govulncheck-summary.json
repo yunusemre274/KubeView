@@ -1,0 +1,24 @@
+{
+  "finding_events": 592,
+  "matched_ids": [
+    "GO-2026-4883",
+    "GO-2026-4887",
+    "GO-2026-5617",
+    "GO-2026-5668",
+    "GO-2026-5746",
+    "GO-2026-6778"
+  ],
+  "matched_count": 6,
+  "catalog_count_not_findings": 356,
+  "config": [
+    {
+      "protocol_version": "v1.0.0",
+      "scanner_name": "govulncheck",
+      "scanner_version": "v1.9.0",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-11-11T02:51:11Z",
+      "scan_level": "symbol",
+      "scan_mode": "binary"
+    }
+  ]
+}

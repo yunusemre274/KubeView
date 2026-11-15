@@ -1,0 +1,16 @@
+{
+  "requiredKeys": [
+    "name",
+    "uid",
+    "markerUid",
+    "containers",
+    "network",
+    "nodeUids"
+  ],
+  "allPresent": true,
+  "expectedNodes": 2,
+  "expectedContainers": 2,
+  "correctedPythonKey": "nodeUids",
+  "sourceHelperFault": "previous NodeUIDs casing caused KeyError after API recovery",
+  "cleanupInspectionBothStopped": true
+}

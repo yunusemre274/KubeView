@@ -1,0 +1,27 @@
+[
+  {
+    "path": "artifacts/release-audit/ra-20261111/real-minikube-add-fixed-worker/cleanup-case02/machine-forensic.json",
+    "bytes": 650,
+    "sha256": "af801f5d5cab66da7c9a90f1bb3c434cf4abb4ea66de5bd192e077d6be8160e4"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/real-minikube-add-fixed-worker/cleanup-case02/pre-mutation-guards.json",
+    "bytes": 715,
+    "sha256": "d6fd8c9b54d3f452708b9881a97eb079fc80302add29beed1982f9197c97aed8"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/real-minikube-add-fixed-worker/cleanup-case02/preflight.json",
+    "bytes": 328,
+    "sha256": "fc11ffc01c75af7a208cbf0237664c367fb69d9db5800caf14798ea353d8c990"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/real-minikube-add-fixed-worker/cleanup-case02/result.json",
+    "bytes": 574,
+    "sha256": "635405fcfa38d25f8c6a550c51578bed4091f503ec36ccd3b3c4bf95a6ab7e4b"
+  },
+  {
+    "path": "artifacts/release-audit/ra-20261111/real-minikube-add-fixed-worker/cleanup-case02/run.py",
+    "bytes": 10277,
+    "sha256": "860d36c9f9bb96e60d32215655f55159531c9d128b2da4f10a016bb37d4592e4"
+  }
+]

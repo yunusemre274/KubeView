@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-11T08:35:55.145233+00:00",
+  "baseCommit": "3448dda3c6160e0e87e0945dba4c9504da92fc8d",
+  "branch": "redesign/harbor-workbench",
+  "reference": {
+    "file": "Kubeview_UI_2.0.png",
+    "sha256": "c3506ec7e5b482c99c7756c7ab14ce59c51ce073ae32d56aaa9cbeb5c2a6e69e"
+  },
+  "scope": "UI 2.0 reference, sea/sun/wake, models, neighboring harbor presentation; existing Kubernetes services unchanged",
+  "stableRelease": false
+}

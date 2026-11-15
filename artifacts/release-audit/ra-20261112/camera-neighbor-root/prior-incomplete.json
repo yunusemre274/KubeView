@@ -1,0 +1,6 @@
+{
+  "classification": "NOT_RUN_OR_INTERRUPTED_NO_COMPLETION_RECEIPT",
+  "stdoutBytes": 0,
+  "stderrBytes": 0,
+  "note": "No PASS inferred. No matching process remains. One new bounded invocation follows."
+}

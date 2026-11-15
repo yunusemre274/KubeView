@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-11-14T12:57:56.970353+00:00",
+  "source": "Source review after finite test; no new parser execution",
+  "files": [
+    {
+      "path": "frontend/src/context/ShipyardClusterContext.jsx",
+      "sha256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f"
+    },
+    {
+      "path": "frontend/node_modules/yaml/package.json",
+      "sha256": "1c6441703d8204a23ded0d37ddf57c3b69d821dc392f20852d1f605bb9b8861c"
+    },
+    {
+      "path": "frontend/node_modules/yaml/dist/doc/Document.js",
+      "sha256": "9bc1c9a56de3902d554e77193125b6aadcfaec743073b3417b22c95a8f7d7923"
+    },
+    {
+      "path": "frontend/node_modules/yaml/dist/nodes/Alias.js",
+      "sha256": "139f5fbb3e7727a9cea89e16b2518f9ffe2e3a37cfb46717e60d23da7d6e739e"
+    }
+  ],
+  "yamlVersion": "2.9.1",
+  "maxAliasCountDefault": 100,
+  "productSourceChanged": false
+}

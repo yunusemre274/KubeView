@@ -1,0 +1,3748 @@
+{
+  "manifest": {
+    "id": "cat16-open5-p1-A-20261112T173517Z",
+    "phase": "baseline",
+    "buildTag": "cat16-36d-20261112T113255Z",
+    "date": "2026-11-12T17:35:17.146Z",
+    "fixtureVersion": "kubeview-benchmark-v2",
+    "workspaceMode": true,
+    "registeredHarbors": 1,
+    "workspaceInterpretation": "Same canonical fixture and active detailed world; registered harbors share one compatible connection/scope. Far-harbor render inventory is reported, not silently treated as byte-equivalent work.",
+    "repairScenarioVersion": "pre-v11-visual-repair-v1",
+    "repairHarnessSHA256": "fd5525a58f12a2569d73af63a19dec3f6f7680278386a637f778d984f49628d7",
+    "scenarioVersion": 4,
+    "replaySHA256": "a9fde6d8b62ee228d61a52ea7ee3b46781f34b707228748bdb4c2c8824e6353b",
+    "snapshotOrder": "kind/namespace/name/UID before serialization; deterministic fixture-only initial slot allocation",
+    "instrumentationSHA256": "e707bd87346010856befb5b783268939759e391cf161998b7833f05ad410c6a9",
+    "lifecycleInstrumentationSHA256": null,
+    "sceneInventoryDiagnostic": false,
+    "sceneInventorySHA256": null,
+    "networkDiagnostic": false,
+    "workspaceCycleProbe": false,
+    "visualStartLocked": true,
+    "fixtureSHA256": {
+      "M": "b5cf1d2934a9a1926c5ccad1a7181ce73057c4066e13b35895cef96f43af751b"
+    },
+    "nodeVersion": "v24.16.0",
+    "goVersion": "go version go1.26.11 darwin/arm64",
+    "commit": "3278451bf98cd8fb0c20f85118eccc0a9ba57bf2",
+    "trackedDiffSHA256": "b581bf40d9fe02fde7c45f9f88763c27f7bd4ad535823ba82e3d2454ecf8c80d",
+    "lockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "hardware": "Hardware:\n\n    Hardware Overview:\n\n      Model Name: MacBook Air\n      Model Identifier: Mac17,3\n      Model Number: Z1L8000H1TU/A\n      Chip: Apple M5\n      Total Number of Cores: 10 (4 Super and 6 Efficiency)\n      Memory: 32 GB\n      System Firmware Version: 20457.1.29\n      OS Loader Version: 20457.1.29",
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+    "displays": "Graphics/Displays:\n\n    Apple M5:\n\n      Chipset Model: Apple M5\n      Type: GPU\n      Bus: Built-In\n      Total Number of Cores: 10\n      Vendor: Apple (0x106b)\n      Metal Support: Metal 4\n      Displays:\n        Color LCD:\n          Display Type: Built-in Liquid Retina Display\n          Resolution: 2560 x 1664 Retina\n          Main Display: Yes\n          Mirror: Off\n          Online: Yes\n          Automatically Adjust Brightness: Yes\n          Connection Type: Internal",
+    "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t61%; discharging; 6:51 remaining present: true",
+    "powerSettings": "Battery Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         120\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           1\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         120\n womp                 1\n networkoversleep     0\n sleep                1\n tcpkeepalive         1\n disksleep            10",
+    "displayRefreshHz": 60,
+    "nativeDisplay": {
+      "display": 1,
+      "Width": 1470,
+      "Height": 956,
+      "PixelWidth": 2940,
+      "PixelHeight": 1912,
+      "RefreshRate": 60
+    },
+    "deviceScaleFactorOverride": 1,
+    "panelMatrix": true,
+    "logMatrix": false,
+    "logInitialLines": 1000,
+    "panelTarget": "node",
+    "inputLocked": true,
+    "cameraFovProtocol": "explicit-camera-fov-v1",
+    "cameraFovOverride": 38,
+    "cameraFovSelection": "explicit-CLI",
+    "comparabilitySmoke": false,
+    "measurementPurpose": "historical benchmark protocol",
+    "backendTag": "cat16-common-f32-20261112T113255Z",
+    "repeatOffset": 1,
+    "balancedOrder": "reverse each odd block; same selected Node UID, fresh upstream per cell, reset visual phase at measurement boundary",
+    "displayRefreshNote": "CoreGraphics environment/display.json observation; frame timing and renderer DPR are measured separately",
+    "browserRequested": "chromium",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "quality": "medium",
+    "shadows": true,
+    "water": true,
+    "patrol": true,
+    "fpsCap": null,
+    "adaptiveQuality": false,
+    "logPayloadBytes": 0,
+    "production": true,
+    "profiler": false,
+    "bufferDiagnostic": false,
+    "bufferInstrumentationSHA256": null,
+    "reactProfilingBuild": false,
+    "gpuProfiler": false,
+    "video": false,
+    "cpuThrottling": false,
+    "sleepInhibition": "own caffeinate -di process, benchmark lifetime only",
+    "smoke": true,
+    "params": {
+      "profiles": [
+        "M"
+      ],
+      "scenarios": [
+        "panel-open-events"
+      ],
+      "repeats": 1,
+      "warmup": 30,
+      "seconds": 60,
+      "longSeconds": 1200,
+      "harborCount": 1
+    },
+    "source": "Explicit synthetic read-only upstream using production Go dynamic informers, websocket, frontend store and App; never uses kubeconfig",
+    "backend": "Local test binary; fake Kubernetes tracker/generator lives inside same Go process. Producer apply wall time reported separately; CPU cannot be separated from Go backend CPU in this fixture.",
+    "safari": {
+      "version": "Included with Safari 27.0.1 (22625.1.29.11.28)",
+      "status": "N/A in this runner: native Safari availability and manual production measurements are separate; Playwright WebKit is a separate engine"
+    },
+    "cpuDefinition": "delta process CPU time / wall seconds; 1.0 core = 100% of one core. RSS reported per PID, not summed as unique physical memory.",
+    "instrumentation": "Opt-in on real callback, App commit and renderer.render; no product metrics dashboard. Draw start intervals and next-draw/DOM/rAF are proxies, NOT GPU presentation/INP.",
+    "powerSource": "battery",
+    "experimentFamily": "frontend-browser-common-backend-OPEN_EVENTS_N5",
+    "buildIndexSHA256": "f682f5740ba518542ed6d84e3008b57a4a592e162b093276b4b3354e12e634a5",
+    "buildProvenance": {
+      "tag": "cat16-36d-20261112T113255Z",
+      "source": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-36d-20261112T113255Z-source",
+      "inputSource": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-matching-build/source-A/frontend",
+      "date": "2026-11-12T11:35:22.839Z",
+      "profiling": false,
+      "sourceSHA256": "25c0877480526832445bc61d4b6355cdb89024c0f45556772c2a8109e3ede293",
+      "files": {
+        "index.html": "4c9ace1dead333415e14b20e99d75a3f2a7192d4d3f6e45a8d1831f776aa419a",
+        "package-lock.json": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+        "package.json": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c",
+        "public/favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+        "src/App.jsx": "25d95e1209e12ff3a8ccbab20a5bb8a0c80f78c866616f24cff8186d43a41669",
+        "src/components/ShipyardScene.jsx": "ff434899103e72e072185176b113c0e2c83c5b62646a99257bd585b284a76bd1",
+        "src/constants/descriptions.js": "b52173f3d580fbdca360707c457f62be40f2aa12de9ef9b5b631c1954f851123",
+        "src/constants/dimensions.js": "5e82e1cec2356b30b22cb6ef2a380f98698cbe6317900960a402472b4f4f0231",
+        "src/context/ShipyardClusterContext.jsx": "b05739502b9167915bb4a45d2e8ddcf906f407d93c9e37f026da2ca525446aa4",
+        "src/context/WorkspaceProvider.jsx": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+        "src/context/WorkspaceRegistry.js": "010ae39dec13d12f58547333c9eaa6292e146ddfba41a85fdb2962613de1e59b",
+        "src/data/demo.js": "33bf47d9bc99bbae901fe63804ff7ab4bef1284263fc3b1703dc641a87072b66",
+        "src/data/resourceIndex.js": "8f61be337120d3ae41e1b99840ac3c578ba70da9bfad8c8b62158ba1531fc671",
+        "src/data/resourceScopes.js": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158",
+        "src/data/resourceStore.js": "825a3503c74876ac464a35a2b7c16746a2f41a377f8a7d486716b3d49852f0bd",
+        "src/harbor/ASSETS.md": "c8a371c6d8178749be815f96f73b8b74012679ddb1d3e71dd4a4b552d4183f14",
+        "src/harbor/FacilityResources.jsx": "0c1b6f4d76726ae7bb2036c04dd6aebf177a7e556d8e4fc9fd18d03e41382ad2",
+        "src/harbor/HarborScene.jsx": "8c0130e8944df57dd0c1a7a411e33a9c02bfc99b8746a1325868efdaa264fbac",
+        "src/harbor/LICENSE-assets.txt": "29cc68b3ef679e7cc23856f6bb054b7916fe6d620a0fe01a2e2d40c77092cb48",
+        "src/harbor/LICENSE-font.txt": "35e8279356d7890871c4fce804d157e3f21456a7311ef2caab5cb4705c71b6bd",
+        "src/harbor/LifecycleEffects.jsx": "e68fd8a180a44ae7ea0974a8572c099cf16e6be6642f71dde7831a2e32eb607c",
+        "src/harbor/MeasuredTraffic.jsx": "4c676f06b1ee8ee0d72f29d545b40dd5b2bd911cbe20bd6725f842c5f269e6eb",
+        "src/harbor/Ocean.jsx": "06666379ff5de3c1f1ef2355d0da0b24a3828f8812ad74566798e2ed9650ffbb",
+        "src/harbor/WorkspaceHarbors.jsx": "7f8847617bc3b96fc61d428da4f30211e8a901d64ab7973c8be96f10a0a7cd06",
+        "src/harbor/WorldFacilities.jsx": "b7440e44f580ceb717ea37c273c8e29f0df081b5ce198ba1c4d82e40c0938a9f",
+        "src/harbor/assets.jsx": "dfc512a3baa639c4f0fdd420b69e64014c537c20dd42a5b1b3da58dd1df35a3b",
+        "src/harbor/cameraViews.js": "2397d59b37525002a489faddb9ecd2ae33893b9a3688051c2963c5a3e0d27c24",
+        "src/harbor/cameraViews.test.js": "5eb8de575d762149ac7baf333d8446d352015d4a52a1cd0b4eec3c15cfa5d452",
+        "src/harbor/captions.js": "7d3b646662faa6aaf3a0709f01d8501450c12c7a903270da87003e035da884c8",
+        "src/harbor/cargoTransforms.js": "df856ab15058990e8ec7964dff56ba614bab493b00117de0fbb5ca62ec70de7f",
+        "src/harbor/cargoTransforms.test.js": "6fcb0a537456a7fd425a2e6b3714eff1638b2bb246ae4072e1bdffe2c40d74c1",
+        "src/harbor/fleet.js": "436c3a71d88e7124ce9bb312a0428ba962c2b7c815a80cace9c32294f22b0404",
+        "src/harbor/fleet.test.js": "d33186ee2ce9b51f4432a923bde11389f32710a8684cb1a85db3d53d65f4c7e6",
+        "src/harbor/interactions.js": "29f0784df8d5af8fca2208cf5a9d56b5fa53b9b4e65733830df6a33a07e5d306",
+        "src/harbor/interactions.test.js": "23260636430a94d74e83b7bf1f96272b7577fe747a1f11b0c0acdfdb2c9ee5bb",
+        "src/harbor/layout.js": "43b3c0c3769cd3960368cc1ce571a61e1f944a02ce90dfbaaaf129543ca17022",
+        "src/harbor/layout.test.js": "1d095d824362e729c6f1f43e327169592d281af2667c103d5511a8b34cc269dc",
+        "src/harbor/materials.js": "229e441a54b8a15145746e8ea42cd5f5255b9549f1e4724df991d8cd773388db",
+        "src/harbor/qa.html": "1cf368c573f62e730e1eba91f946902e87c13fa13ad45dbcfe57a489c083334e",
+        "src/harbor/qa.jsx": "f3079ec7c2e56111347b6741e704ad7ff826c0119d2f21ae3585017609e52302",
+        "src/harbor/raycast.browser.spec.js": "86d6a68b3e786afdc11d9ac4f05ab2a1fd234c9ae4956c9da13e8c0c4723d067",
+        "src/harbor/raycast.playwright.config.js": "db194035e6a04ae024f7c9cd092e53b8c00c41652893ba3804aa2d49506deb7e",
+        "src/harbor/resourceRelations.js": "d1c8d9a8eefb0457ce9c842ebab3d36749791e845a76799eaf2289e35372d6e2",
+        "src/harbor/resourceRelations.test.js": "445a1e34b7e54c7312e3006f8e5fd00118019ffb1d2ac65823ea9bd6d04a149d",
+        "src/harbor/visualLifecycle.js": "6936afdb11c5b60e24a1c27392e790de9c5532beace54f60dbb6040ec0025a26",
+        "src/harbor/visualLifecycle.test.js": "a8ce1a257c3e6c0dad25c608909508f91eb41295a8a7185cbfc080eaaeaf429f",
+        "src/harbor/visualViews.js": "cf5ae788210e5569db76dfd3379652fa65564cc00cdd9ce071e55bf7a7f6e4a2",
+        "src/harbor/visualViews.test.js": "6506ab7b5dc2fb7174be20b9db6204263605fd215e95a1d8924289576d2a9845",
+        "src/harbor/waterModel.js": "822eb100b1cd371d7dbe101f684e30d7293dce90b4b4e80d445c0de693483dbc",
+        "src/harbor/waterModel.test.js": "f0b7618c715f4feaa5ee2c3b5e26a3e67c14325e77f003d308d2b9f9b63b3a74",
+        "src/harbor/workspaceLayout.test.js": "499e985c7445e4e89cd7b80991456a156643b80a9cda2d81e10f7e09d3b681f5",
+        "src/hooks/useShipyardWebSocket.js": "23ccad67c2cc62af24d53fc0f64c6d73ac52f380ad7bd9bd155442b03180c2e6",
+        "src/index.css": "9334a44a36b2477dcd0999f2bfa0616b57fb6a04ee9794c5e5602c828294b5fd",
+        "src/main.jsx": "645556582a44a3ff5a84a8822236896c94ec5a3918b9059e3b4ed9d63af33aa2",
+        "src/workbench/MetricsPanel.jsx": "63f86a46d8160a0736875dd55aa3ca5df8d47ee89d6b59925f25034e922b414b",
+        "src/workbench/PodLogs.jsx": "437ad950a11ef92c1ca3308dfecd10761f9d9b6f3543d957f0e8c2ce3e539b56",
+        "src/workbench/PodTerminal.jsx": "c812fc1b98b02bb946aeed5392c9ff961d96968b764b8beaa18be6a95f5bc453",
+        "src/workbench/PortForward.jsx": "24292f68267ce07791fd61177ffb2b2260ee71427d98a879777c6280cf81aecd",
+        "src/workbench/ResourceContents.jsx": "4ee6279c13233e5b08faca2f8c64b8dd0fec31bba91f949bbb8657c3a06f49c7",
+        "src/workbench/ResourceDetails.jsx": "3678fabed089217fe818843de2052ad29954ec2f023e643d5b1a338cb9a5dbb8",
+        "src/workbench/ResourceForms.jsx": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+        "src/workbench/ResourceForms.test.js": "fe342f35bf5459ee70af38e5dc8da660b169a81949ee5e9eb382a56e7ee7b2cb",
+        "src/workbench/ResourceTable.jsx": "6a4f94f10b78aa14362da36f729d9a1504758b125130833ac372da47bab6a80d",
+        "src/workbench/StatusBadge.jsx": "3fa40f2da7cac01794e1e680b43b21331ba104808160463963fce2d8b5b14490",
+        "src/workbench/containerModel.js": "75d5ef9db9d7bf11e839b1bdd23a9c20ebdbe6823ff2c1656f6fef2f7cdd6fed",
+        "src/workbench/containerModel.test.js": "b38d9fdd2b61f014fc72cee947370eb42e6dfb03af2577649ba6d726f4ffc7ce",
+        "src/workbench/formLoading.js": "927ab3e3b8934f9e414e05a869e12f180ed47cc9506dcd38ce4efd51d3e35df5",
+        "src/workbench/formLoading.test.js": "275107a3dde995a188906c0343d1bccd75b07f6c44cf7296395dfb30d38012d4",
+        "src/workbench/logBuffer.js": "13ce6ff7f59a20ab82a6114d53e05bcb6ef9b783bcd83482219c27438c219473",
+        "src/workbench/logBuffer.test.js": "4f497e6043937be2a1668687a4b7dbfd78b908b7689f94b00bf1f2423d12b57b",
+        "src/workbench/logProtocol.js": "ff30b165ccd6d0b13d234efa543a3d7422e236ef46ea3e7eaa378da4e4e2e026",
+        "src/workbench/logProtocol.test.js": "0d6f3d8b6e7db5d74bd3e3a30e0753521e45afe9d4f59227df69882a05bfc0ad",
+        "src/workbench/logView.js": "ec596aeb123dd7aaa5a2b8d841f49b3ed58174093cdb92d89cbd6d95116d9889",
+        "src/workbench/logView.test.js": "41994bda8735bb11bca188a8797935ca8f3e1943cca0315d44964e1243d3c0be",
+        "src/workbench/metricModel.js": "011e1c70433e47e89c27c8ef6acb4a11ec42377dd82a4e37e335e95d3ced5383",
+        "src/workbench/metricModel.test.js": "a1a7b2307626fdf935116c2886285e4566fc72755163cecae1575c74e15171f4",
+        "src/workbench/placement.js": "aad92d16d08477bc67de2249182425f6374ecec94ec74f93f3603ccebbfa3b17",
+        "src/workbench/placement.test.js": "b52238f2cd6989243e262d653e629ce44e177de313d37d0e898f7715fe028895",
+        "src/workbench/resourceUtils.js": "55b4dc602aa52e81a923c4ec312ef37d8ee33f97ed300b7a480a94a38c61f5d3",
+        "src/workbench/resourceUtils.test.js": "5b113fea9e37db706688538c27055a4a052ef07941798a52bdd4ecb39180a988",
+        "src/workbench/secretPayload.js": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+        "src/workbench/secretPayload.test.js": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+        "src/workbench/workbench.css": "4bb3482f07b50e5e707d1732388d6f20b807fc7231d54119b2a87e5b8bca32e2",
+        "src/world/FacilityWindow.jsx": "b0fec821a35a2605b73130ec63cd89fb6e9cc82200eab46048fe77416c857abe",
+        "src/world/ProviderWindows.jsx": "af90820027b73dc186e0568a742e2dddb984019a5ebf67ff63491da6700e0a33",
+        "src/world/UtilityWindows.jsx": "3075f109d49ff0d67498fa810a0151cfc576e392320534dcb73a14f36eba74ce",
+        "src/world/Window.jsx": "b652d992c450118e1607a4310c55af0712ba52e294b0d14774e826c04e3d6f4c",
+        "src/world/WorkspaceWindow.jsx": "a120fcbc262e7026d1bf4e8c48ce096de5f9f5bf5f3da8b29ae361466f6654a5",
+        "src/world/connectionState.js": "2a8f5a234c3f2f46626614c872a03ad379eac7946fb467e328dcf175494d2730",
+        "src/world/focus.js": "f55ed9b3c8bf8abe16799c82fa03a855df83e19f56efde0b314db0475846fb58",
+        "src/world/operations.js": "a471e40fc30e87b33553d00aae19f27a25d0f3bcfd50a5ff471cd0cc334f8996",
+        "src/world/preferences.js": "0eed990f76afc7df8ebd997ed700b7059fbd39987b1a9309314725efd2683aca",
+        "src/world/registry.js": "0c10f51af9a01ac85ed531af8b9ff5ef54b17d3e43118d7e982be590c5f2c98c",
+        "src/world/useWorldProviders.js": "245693610a4dc35c73faaddc9b35d140deb53772a0943a4f6ae06f537ee6f357",
+        "src/world/workspace.css": "28259be2d56e5d9ff2e0fdefe7bdab5edbdd186c2ebdb58341ad36356102b1e6",
+        "src/world/workspace.js": "8bc30c6f259aa26033cc3d4709220630a6912bd8be8f5a03711e875d879c689a",
+        "src/world/workspaceMutations.js": "0c891a2412e5e0b23fc97d7cfd79509ea1b278d4ce0e4d51fe2aefd81e0adfdb",
+        "vite.config.js": "bf549fa06ec7f2e2fba3cb77600ab63fa54ff0566b3008e2b5e4f62cd3cf4b21"
+      }
+    },
+    "harnessLockSHA256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+    "dependencyGraphSHA256": "6f1b0d74ebb5aef567167a508aaca30467d2bc90965ea234cc1f4783e76a0a71",
+    "dependencyComparison": "Exact frozen lock SHA retained; comparison excludes only root version and packages[empty].version release metadata",
+    "buildSourceNote": "With --reuse-build, invocation trackedDiffSHA256 is not the frozen build source hash. See baseline runtime patch/provenance.",
+    "backendBinarySHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+    "browserEnergySaver": {
+      "before": {
+        "key": "performance_tuning.battery_saver_mode.state",
+        "type": "NUMBER",
+        "value": 1
+      },
+      "after": {
+        "key": "performance_tuning.battery_saver_mode.state",
+        "type": "NUMBER",
+        "value": 0
+      },
+      "ok": true,
+      "scope": "Owned temporary benchmark profile only; separate launcher protocol, not comparable to default-state auxiliary runs"
+    },
+    "coldStarts": [
+      {
+        "profile": "M",
+        "firstReadyMs": 267,
+        "canonicalAndCanvasReadyMs": 237,
+        "method": "navigation -> actual Node mesh raycast-visible target; fresh browser context; OS/GPU caches not flushed. Panel interaction measured separately"
+      },
+      {
+        "profile": "M",
+        "firstReadyMs": 246,
+        "canonicalAndCanvasReadyMs": 230,
+        "method": "navigation -> actual Node mesh raycast-visible target; fresh browser context; OS/GPU caches not flushed. Panel interaction measured separately"
+      }
+    ],
+    "actual": {
+      "visibility": "visible",
+      "dpr": 1,
+      "rendererPixelRatio": 1,
+      "buffer": {
+        "width": 1440,
+        "height": 900
+      },
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+      "gpuTimerSupported": true,
+      "camera": {
+        "position": [
+          466.4428009389386,
+          599.9369566145814,
+          713.8961246153245
+        ],
+        "quaternion": [
+          -0.297898894375174,
+          0.285597640102567,
+          0.0939043540434859,
+          0.9060199826657076
+        ],
+        "zoom": 1,
+        "fov": 24,
+        "near": 20.21887651685213,
+        "far": 5054.719129213032,
+        "target": [
+          -0.1748319835135419,
+          0,
+          47.29950615467864
+        ],
+        "forward": [
+          -0.46156633137705083,
+          -0.5934424260562082,
+          -0.6593804733957871
+        ]
+      },
+      "projectedVisibleNodeUIDs": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7"
+      ],
+      "stats": {
+        "frame": 5,
+        "calls": 441,
+        "triangles": 72578,
+        "points": 0,
+        "lines": 0,
+        "measuredTraffic": null,
+        "memory": {
+          "geometries": 39,
+          "textures": 4
+        },
+        "lifecycle": {
+          "canonicalNodes": 20,
+          "visibleNodes": 8,
+          "nodePage": 0,
+          "nodePages": 3,
+          "canonicalPods": 300,
+          "visiblePods": 120,
+          "nodeSlots": 20,
+          "podSlots": 120,
+          "activeTransfers": 0,
+          "queuedTransfers": 0,
+          "visualLoadingUIDs": [],
+          "exitGhosts": 0,
+          "containerTransitions": 0,
+          "visualEvents": {
+            "nodeFaults": 0,
+            "containerFaults": 10,
+            "containerTransitions": 10,
+            "processSignals": 0,
+            "summarized": 0
+          },
+          "summarizedTransfers": 0
+        }
+      },
+      "preferences": {
+        "version": 1,
+        "patrol": true,
+        "speed": "normal",
+        "bob": true,
+        "sea": true,
+        "seaStrength": "light",
+        "sunGlint": true,
+        "wake": true,
+        "operations": "full",
+        "motionPreference": "full",
+        "paused": false,
+        "quality": "medium",
+        "theme": "light",
+        "contrast": "normal"
+      },
+      "connectionStale": false,
+      "contextLost": false,
+      "fleet": [
+        {
+          "uid": "node-0",
+          "name": "worker-001",
+          "slot": 0,
+          "progress": 878.6677694115276,
+          "position": [
+            -54.29609999998695,
+            -0.0020033554841499776,
+            238
+          ],
+          "yaw": -1.5707963267948966,
+          "pitch": -0.00015580342357938008,
+          "roll": -0.00013539207876069872,
+          "state": "patrolling",
+          "speed": 8.999999999997906,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": true
+        },
+        {
+          "uid": "node-1",
+          "name": "worker-002",
+          "slot": 1,
+          "progress": 1052.2606867644124,
+          "position": [
+            -175,
+            -0.003409839097664358,
+            165.79681735289864
+          ],
+          "yaw": 3.141592653589793,
+          "pitch": 0.000026610267646549168,
+          "roll": -0.0002931148069446978,
+          "state": "patrolling",
+          "speed": 8.999999999997906,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-2",
+          "name": "worker-003",
+          "slot": 2,
+          "progress": 1225.8536041172981,
+          "position": [
+            -175,
+            0.0040759391066075125,
+            -7.796099999987035
+          ],
+          "yaw": 3.141592653589793,
+          "pitch": 0.00018070510901576766,
+          "roll": -0.00005243651884840582,
+          "state": "patrolling",
+          "speed": 8.999999999995861,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-3",
+          "name": "worker-004",
+          "slot": 3,
+          "progress": 10.703182647101585,
+          "position": [
+            -119.29681735289842,
+            0.001839474635568347,
+            -145
+          ],
+          "yaw": 1.5707963267948966,
+          "pitch": -0.00020329921513450073,
+          "roll": -0.000021178122715263074,
+          "state": "patrolling",
+          "speed": 8.999999999997906,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-4",
+          "name": "worker-005",
+          "slot": 4,
+          "progress": 184.2960999999866,
+          "position": [
+            54.29609999998661,
+            -0.003210391529027368,
+            -145
+          ],
+          "yaw": 1.5707963267948966,
+          "pitch": -0.0003064233855768213,
+          "roll": 0.000014303132972963524,
+          "state": "patrolling",
+          "speed": 8.999999999997906,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-5",
+          "name": "worker-006",
+          "slot": 5,
+          "progress": 357.88901735287163,
+          "position": [
+            175,
+            -0.002284370331855176,
+            -72.7968173528987
+          ],
+          "yaw": 0,
+          "pitch": 0.00020831007676264438,
+          "roll": -0.00009214150847468102,
+          "state": "patrolling",
+          "speed": 8.999999999997906,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-6",
+          "name": "worker-007",
+          "slot": 6,
+          "progress": 531.4819347057569,
+          "position": [
+            175,
+            0.0039324910458682655,
+            100.79609999998655
+          ],
+          "yaw": 0,
+          "pitch": 0.000007780653701864734,
+          "roll": -0.00022034391980709788,
+          "state": "patrolling",
+          "speed": 8.999999999997906,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        },
+        {
+          "uid": "node-7",
+          "name": "worker-008",
+          "slot": 7,
+          "progress": 705.0748520586419,
+          "position": [
+            119.29681735289876,
+            -0.00024752733624560665,
+            238
+          ],
+          "yaw": -1.5707963267948966,
+          "pitch": -0.00025301344295616606,
+          "roll": -0.000017009189708284583,
+          "state": "patrolling",
+          "speed": 8.999999999997906,
+          "paused": false,
+          "healthy": true,
+          "reason": "",
+          "reservation": null,
+          "eligibleForDock": false
+        }
+      ],
+      "panel": {
+        "open": false,
+        "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+      },
+      "inputGuard": null,
+      "logView": null,
+      "lifecycle": null,
+      "heap": {
+        "used": 15490744,
+        "total": 29717032
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 140,
+        "jsEventListeners": 987
+      }
+    },
+    "finishedAt": "2026-11-12T17:36:49.573Z",
+    "powerAfter": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t61%; discharging; 6:31 remaining present: true"
+  },
+  "runs": [
+    {
+      "profile": "M",
+      "scenario": "panel-open-events",
+      "repeat": 1,
+      "before": {
+        "visibility": "visible",
+        "dpr": 1,
+        "rendererPixelRatio": 1,
+        "buffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerSupported": true,
+        "camera": {
+          "position": [
+            155.32070332934842,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.1940594243420255,
+            0.06843554348917547,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "fov": 38,
+          "near": 9.479309145645514,
+          "far": 2000,
+          "target": [
+            6.663204746845622,
+            0,
+            130.86693727996243
+          ],
+          "forward": [
+            -0.3136462716817104,
+            -0.6272925433634212,
+            -0.7128324356402513
+          ]
+        },
+        "projectedVisibleNodeUIDs": [
+          "node-0",
+          "node-1",
+          "node-2",
+          "node-3",
+          "node-4",
+          "node-5",
+          "node-6",
+          "node-7"
+        ],
+        "stats": {
+          "frame": 1813,
+          "calls": 426,
+          "triangles": 71170,
+          "points": 0,
+          "lines": 60,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 32,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        },
+        "connectionStale": false,
+        "contextLost": false,
+        "fleet": [
+          {
+            "uid": "node-0",
+            "name": "worker-001",
+            "slot": 0,
+            "progress": 878.3716694115408,
+            "position": [
+              -54.000000000000114,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "node-1",
+            "name": "worker-002",
+            "slot": 1,
+            "progress": 1051.9645867644256,
+            "position": [
+              -175,
+              0,
+              166.09291735288548
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-2",
+            "name": "worker-003",
+            "slot": 2,
+            "progress": 1225.5575041173113,
+            "position": [
+              -175,
+              0,
+              -7.500000000000227
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-3",
+            "name": "worker-004",
+            "slot": 3,
+            "progress": 10.407082647114976,
+            "position": [
+              -119.59291735288502,
+              0,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-4",
+            "name": "worker-005",
+            "slot": 4,
+            "progress": 184,
+            "position": [
+              54,
+              0,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-5",
+            "name": "worker-006",
+            "slot": 5,
+            "progress": 357.592917352885,
+            "position": [
+              175,
+              0,
+              -73.09291735288531
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-6",
+            "name": "worker-007",
+            "slot": 6,
+            "progress": 531.1858347057703,
+            "position": [
+              175,
+              0,
+              100.49999999999997
+            ],
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-7",
+            "name": "worker-008",
+            "slot": 7,
+            "progress": 704.7787520586555,
+            "position": [
+              119.59291735288514,
+              0,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": 0,
+            "roll": 0,
+            "state": "patrolling",
+            "speed": 0,
+            "paused": false,
+            "healthy": true,
+            "reason": null,
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "panel": {
+          "open": true,
+          "title": "worker-001",
+          "tab": "Özet",
+          "uid": "node-0",
+          "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+          "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+        },
+        "inputGuard": {},
+        "logView": null,
+        "lifecycle": null,
+        "heap": {
+          "used": 72707520,
+          "total": 104479800
+        },
+        "dom": {
+          "documents": 2,
+          "nodes": 904,
+          "jsEventListeners": 1213
+        }
+      },
+      "after": {
+        "visibility": "visible",
+        "dpr": 1,
+        "rendererPixelRatio": 1,
+        "buffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerSupported": true,
+        "camera": {
+          "position": [
+            155.32070332934842,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.1940594243420255,
+            0.06843554348917547,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "fov": 38,
+          "near": 9.479309145645514,
+          "far": 2000,
+          "target": [
+            6.663204746845622,
+            0,
+            130.86693727996243
+          ],
+          "forward": [
+            -0.3136462716817104,
+            -0.6272925433634212,
+            -0.7128324356402513
+          ]
+        },
+        "projectedVisibleNodeUIDs": [
+          "node-0",
+          "node-1",
+          "node-2",
+          "node-3",
+          "node-4",
+          "node-5",
+          "node-6",
+          "node-7"
+        ],
+        "stats": {
+          "frame": 5422,
+          "calls": 436,
+          "triangles": 72378,
+          "points": 0,
+          "lines": 72,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 35,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 1,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 30,
+              "containerTransitions": 1,
+              "processSignals": 1,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        },
+        "connectionStale": false,
+        "contextLost": false,
+        "fleet": [
+          {
+            "uid": "node-0",
+            "name": "worker-001",
+            "slot": 0,
+            "progress": 31.59213058833734,
+            "position": [
+              -98.40786941166266,
+              -0.031097342064789264,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0.0038692179782507793,
+            "roll": 0.0024886188738656957,
+            "state": "patrolling",
+            "speed": 8.999999999993644,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-1",
+            "name": "worker-002",
+            "slot": 1,
+            "progress": 205.18504794121714,
+            "position": [
+              75.18504794121714,
+              0.025891793592210922,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": 0.0012788613103667831,
+            "roll": 0.003726300386166124,
+            "state": "patrolling",
+            "speed": 8.999999999993644,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-2",
+            "name": "worker-003",
+            "slot": 2,
+            "progress": 378.77796529417833,
+            "position": [
+              175,
+              -0.06425653335681356,
+              -51.907869411592
+            ],
+            "yaw": 0,
+            "pitch": -0.0022074992031205316,
+            "roll": 0.0034337202084728205,
+            "state": "patrolling",
+            "speed": 8.999999999993644,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-3",
+            "name": "worker-004",
+            "slot": 3,
+            "progress": 552.3708826471263,
+            "position": [
+              175,
+              -0.038260756377921624,
+              121.685047941356
+            ],
+            "yaw": 0,
+            "pitch": 0.0013052928734174588,
+            "roll": -0.0006000202979399165,
+            "state": "patrolling",
+            "speed": 8.999999999993644,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-4",
+            "name": "worker-005",
+            "slot": 4,
+            "progress": 725.9638000000448,
+            "position": [
+              98.40786941149588,
+              0.011741173809809132,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.005249249748911923,
+            "roll": 0.000280989608439911,
+            "state": "patrolling",
+            "speed": 8.999999999993644,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-5",
+            "name": "worker-006",
+            "slot": 5,
+            "progress": 899.5567173529305,
+            "position": [
+              -75.18504794138983,
+              -0.07410485677210336,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.002969668434301385,
+            "roll": -0.00009158002845704882,
+            "state": "patrolling",
+            "speed": 8.999999999993644,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-6",
+            "name": "worker-007",
+            "slot": 6,
+            "progress": 1073.1496347057966,
+            "position": [
+              -175,
+              0.030529569724747976,
+              144.9078694115144
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": -0.0008596509890912382,
+            "roll": -0.004848480562978694,
+            "state": "patrolling",
+            "speed": 8.999999999993644,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-7",
+            "name": "worker-008",
+            "slot": 7,
+            "progress": 1246.7425520585978,
+            "position": [
+              -175,
+              0.050285049094319884,
+              -28.68504794128671
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0017599747919072614,
+            "roll": 0.004055553395299424,
+            "state": "patrolling",
+            "speed": 8.999999999993644,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "panel": {
+          "open": true,
+          "title": "worker-001",
+          "tab": "Özet",
+          "uid": "node-0",
+          "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 1 restartCrashLoopBackOffapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 1 restartCrashLoopBackOffGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+          "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+        },
+        "inputGuard": {},
+        "logView": null,
+        "lifecycle": null,
+        "heap": {
+          "used": 43347855,
+          "total": 90362915
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 756,
+          "jsEventListeners": 1175
+        }
+      },
+      "summary": {
+        "durationMs": 60050.599999997765,
+        "renderedFrames": 3604,
+        "renderedFPS": 60.01605312853051,
+        "renderIntervalMs": {
+          "n": 3603,
+          "p50": 16.699999999254942,
+          "p95": 19.399999998509884,
+          "p99": 20.800000000745058,
+          "min": 10.400000002235174,
+          "max": 23.200000002980232
+        },
+        "jsSubmitMs": {
+          "n": 3604,
+          "p50": 2.900000002235174,
+          "p95": 4.100000001490116,
+          "p99": 4.800000000745058,
+          "min": 0.7999999970197678,
+          "max": 14
+        },
+        "gapsOver50Ms": 0,
+        "gapsOver100Ms": 0,
+        "calls": {
+          "n": 3604,
+          "p50": 434,
+          "p95": 439,
+          "p99": 442,
+          "min": 433,
+          "max": 444
+        },
+        "triangles": {
+          "n": 3604,
+          "p50": 72322,
+          "p95": 72574,
+          "p99": 72638,
+          "min": 72290,
+          "max": 72734
+        },
+        "parseMs": {
+          "n": 300,
+          "p50": 0.10000000149011612,
+          "p95": 0.19999999925494194,
+          "p99": 0.20000000298023224,
+          "min": 0,
+          "max": 0.20000000298023224
+        },
+        "storeMs": {
+          "n": 300,
+          "p50": 0.5,
+          "p95": 0.8000000007450581,
+          "p99": 0.9000000022351742,
+          "min": 0.10000000149011612,
+          "max": 1
+        },
+        "callbackToStoreMs": {
+          "n": 300,
+          "p50": 0.5999999977648258,
+          "p95": 0.8999999985098839,
+          "p99": 1,
+          "min": 0.10000000149011612,
+          "max": 1.0999999977648258
+        },
+        "commitProxyMs": {
+          "n": 300,
+          "p50": 3.400000002235174,
+          "p95": 4.400000002235174,
+          "p99": 5,
+          "min": 1.2999999970197678,
+          "max": 5.5
+        },
+        "drawProxyMs": {
+          "n": 121,
+          "p50": 12.400000002235174,
+          "p95": 14.100000001490116,
+          "p99": 22.300000000745058,
+          "min": 5.799999997019768,
+          "max": 22.5
+        },
+        "panelDomProxyMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "panelRafProxyMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "messages": 300,
+        "longTasks": 0,
+        "errors": [],
+        "gpuCompletedMs": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "min": null,
+          "max": null
+        },
+        "presentedFPS": null,
+        "react": {}
+      },
+      "osBefore": {
+        "time": 1794504949242,
+        "processIdentityVersion": "os-birth-cohort-v1",
+        "birthResolutionMs": 1000,
+        "processes": [
+          {
+            "pid": 24583,
+            "ppid": 22493,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.42,
+            "rssKiB": 168624,
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+            "cohort": "observer",
+            "role": "observer"
+          },
+          {
+            "pid": 24700,
+            "ppid": 24583,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0,
+            "rssKiB": 3728,
+            "command": "/usr/bin/caffeinate",
+            "cohort": "observer",
+            "role": "observer"
+          },
+          {
+            "pid": 24701,
+            "ppid": 24583,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.91,
+            "rssKiB": 253088,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+            "cohort": "browser",
+            "role": "browser-main"
+          },
+          {
+            "pid": 24717,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 8.98,
+            "rssKiB": 186272,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)",
+            "cohort": "browser",
+            "role": "browser-gpu"
+          },
+          {
+            "pid": 24718,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.13,
+            "rssKiB": 108624,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper",
+            "cohort": "browser",
+            "role": "browser-other"
+          },
+          {
+            "pid": 24719,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.03,
+            "rssKiB": 82992,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper",
+            "cohort": "browser",
+            "role": "browser-other"
+          },
+          {
+            "pid": 24759,
+            "ppid": 24583,
+            "birth": "2026-11-12T17:35:18.000Z",
+            "birthRaw": "Thu Nov 12 20:35:18 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.06,
+            "rssKiB": 45968,
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common-f32-20261112T113255Z/backend.test",
+            "cohort": "backend",
+            "role": "backend"
+          },
+          {
+            "pid": 24760,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:18.000Z",
+            "birthRaw": "Thu Nov 12 20:35:18 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.17,
+            "rssKiB": 184624,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)",
+            "cohort": "browser",
+            "role": "browser-renderer"
+          },
+          {
+            "pid": 24761,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:18.000Z",
+            "birthRaw": "Thu Nov 12 20:35:18 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.03,
+            "rssKiB": 102304,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)",
+            "cohort": "browser",
+            "role": "browser-renderer"
+          },
+          {
+            "pid": 24762,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:18.000Z",
+            "birthRaw": "Thu Nov 12 20:35:18 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 12.94,
+            "rssKiB": 386928,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)",
+            "cohort": "browser",
+            "role": "browser-renderer"
+          },
+          {
+            "pid": 24820,
+            "ppid": 24583,
+            "birth": "2026-11-12T17:35:49.000Z",
+            "birthRaw": "Thu Nov 12 20:35:49 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0,
+            "rssKiB": 1616,
+            "command": "ps",
+            "cohort": "observer",
+            "role": "observer"
+          }
+        ],
+        "memoryFreePercent": 80,
+        "swap": "total = 1024.00M  used = 189.56M  free = 834.44M  (encrypted)",
+        "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=7602275)\t61%; discharging; 6:41 remaining present: true\n"
+      },
+      "osAfter": {
+        "time": 1794505009432,
+        "processIdentityVersion": "os-birth-cohort-v1",
+        "birthResolutionMs": 1000,
+        "processes": [
+          {
+            "pid": 24583,
+            "ppid": 22493,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.96,
+            "rssKiB": 198928,
+            "command": "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+            "cohort": "observer",
+            "role": "observer"
+          },
+          {
+            "pid": 24700,
+            "ppid": 24583,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0,
+            "rssKiB": 3728,
+            "command": "/usr/bin/caffeinate",
+            "cohort": "observer",
+            "role": "observer"
+          },
+          {
+            "pid": 24701,
+            "ppid": 24583,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 1.11,
+            "rssKiB": 256352,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+            "cohort": "browser",
+            "role": "browser-main"
+          },
+          {
+            "pid": 24717,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 23.51,
+            "rssKiB": 187344,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (GPU).app/Contents/MacOS/Google Chrome for Testing Helper (GPU)",
+            "cohort": "browser",
+            "role": "browser-gpu"
+          },
+          {
+            "pid": 24718,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.2,
+            "rssKiB": 111200,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper",
+            "cohort": "browser",
+            "role": "browser-other"
+          },
+          {
+            "pid": 24719,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:17.000Z",
+            "birthRaw": "Thu Nov 12 20:35:17 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.04,
+            "rssKiB": 83232,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper.app/Contents/MacOS/Google Chrome for Testing Helper",
+            "cohort": "browser",
+            "role": "browser-other"
+          },
+          {
+            "pid": 24759,
+            "ppid": 24583,
+            "birth": "2026-11-12T17:35:18.000Z",
+            "birthRaw": "Thu Nov 12 20:35:18 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.25,
+            "rssKiB": 49728,
+            "command": "/Users/yunusemre/Desktop/KubeView/benchmarks/.build/cat16-common-f32-20261112T113255Z/backend.test",
+            "cohort": "backend",
+            "role": "backend"
+          },
+          {
+            "pid": 24760,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:18.000Z",
+            "birthRaw": "Thu Nov 12 20:35:18 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.19,
+            "rssKiB": 182416,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)",
+            "cohort": "browser",
+            "role": "browser-renderer"
+          },
+          {
+            "pid": 24761,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:18.000Z",
+            "birthRaw": "Thu Nov 12 20:35:18 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0.04,
+            "rssKiB": 102384,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)",
+            "cohort": "browser",
+            "role": "browser-renderer"
+          },
+          {
+            "pid": 24762,
+            "ppid": 24701,
+            "birth": "2026-11-12T17:35:18.000Z",
+            "birthRaw": "Thu Nov 12 20:35:18 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 38.07,
+            "rssKiB": 407568,
+            "command": "/Users/yunusemre/Library/Caches/ms-playwright/chromium-1248/chrome-mac-arm64/Google Chrome for Testing.app/Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/156.0.8078.4/Helpers/Google Chrome for Testing Helper (Renderer).app/Contents/MacOS/Google Chrome for Testing Helper (Renderer)",
+            "cohort": "browser",
+            "role": "browser-renderer"
+          },
+          {
+            "pid": 25188,
+            "ppid": 24583,
+            "birth": "2026-11-12T17:36:49.000Z",
+            "birthRaw": "Thu Nov 12 20:36:49 2026",
+            "birthSource": "darwin-ps-lstart",
+            "birthResolutionMs": 1000,
+            "cpuSeconds": 0,
+            "rssKiB": 1616,
+            "command": "ps",
+            "cohort": "observer",
+            "role": "observer"
+          }
+        ]
+      },
+      "checkpoints": [],
+      "reconnects": 0,
+      "reconnectAtMs": [],
+      "repairPanelCycles": [],
+      "workspaceCycles": [],
+      "interactionSchedule": null,
+      "network": null,
+      "setupBeforeWarm": {
+        "visibility": "visible",
+        "dpr": 1,
+        "rendererPixelRatio": 1,
+        "buffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+        "gpuTimerSupported": true,
+        "camera": {
+          "position": [
+            155.32070332934842,
+            297.3149971650057,
+            468.72488860383254
+          ],
+          "quaternion": [
+            -0.32546078412600804,
+            0.1940594243420255,
+            0.06843554348917547,
+            0.9228937068847457
+          ],
+          "zoom": 1,
+          "fov": 38,
+          "near": 9.479309145645514,
+          "far": 2000,
+          "target": [
+            6.663204746845622,
+            0,
+            130.86693727996243
+          ],
+          "forward": [
+            -0.3136462716817104,
+            -0.6272925433634212,
+            -0.7128324356402513
+          ]
+        },
+        "projectedVisibleNodeUIDs": [
+          "node-0",
+          "node-1",
+          "node-2",
+          "node-3",
+          "node-4",
+          "node-5",
+          "node-6",
+          "node-7"
+        ],
+        "stats": {
+          "frame": 9,
+          "calls": 442,
+          "triangles": 72578,
+          "points": 0,
+          "lines": 60,
+          "measuredTraffic": null,
+          "memory": {
+            "geometries": 40,
+            "textures": 4
+          },
+          "lifecycle": {
+            "canonicalNodes": 20,
+            "visibleNodes": 8,
+            "nodePage": 0,
+            "nodePages": 3,
+            "canonicalPods": 300,
+            "visiblePods": 120,
+            "nodeSlots": 20,
+            "podSlots": 120,
+            "activeTransfers": 0,
+            "queuedTransfers": 0,
+            "visualLoadingUIDs": [],
+            "exitGhosts": 0,
+            "containerTransitions": 0,
+            "visualEvents": {
+              "nodeFaults": 0,
+              "containerFaults": 10,
+              "containerTransitions": 10,
+              "processSignals": 0,
+              "summarized": 0
+            },
+            "summarizedTransfers": 0
+          }
+        },
+        "preferences": {
+          "version": 1,
+          "patrol": true,
+          "speed": "normal",
+          "bob": true,
+          "sea": true,
+          "seaStrength": "light",
+          "sunGlint": true,
+          "wake": true,
+          "operations": "full",
+          "motionPreference": "full",
+          "paused": false,
+          "quality": "medium",
+          "theme": "light",
+          "contrast": "normal"
+        },
+        "connectionStale": false,
+        "contextLost": false,
+        "fleet": [
+          {
+            "uid": "node-0",
+            "name": "worker-001",
+            "slot": 0,
+            "progress": 879.4120694115543,
+            "position": [
+              -55.04040000001362,
+              -0.006595250210770185,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0005394307140987701,
+            "roll": -0.00047943931655117076,
+            "state": "patrolling",
+            "speed": 9.000000000007779,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": true
+          },
+          {
+            "uid": "node-1",
+            "name": "worker-002",
+            "slot": 1,
+            "progress": 1053.004986764439,
+            "position": [
+              -175,
+              -0.012078518398699927,
+              165.05251735287197
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.00007510024447548697,
+            "roll": -0.0010162153078158082,
+            "state": "patrolling",
+            "speed": 9.000000000007779,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-2",
+            "name": "worker-003",
+            "slot": 2,
+            "progress": 1226.5979041173248,
+            "position": [
+              -175,
+              0.013753914470000265,
+              -8.540400000013733
+            ],
+            "yaw": 3.141592653589793,
+            "pitch": 0.0006437916504141874,
+            "roll": -0.00019089519906366627,
+            "state": "patrolling",
+            "speed": 9.000000000007779,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-3",
+            "name": "worker-004",
+            "slot": 3,
+            "progress": 11.447482647128254,
+            "position": [
+              -118.55251735287175,
+              0.006674124252673713,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": -0.0006959868445171224,
+            "roll": -0.0000707258759784636,
+            "state": "patrolling",
+            "speed": 8.999999999993479,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-4",
+            "name": "worker-005",
+            "slot": 4,
+            "progress": 185.04040000001373,
+            "position": [
+              55.04040000001373,
+              -0.010801122580250217,
+              -145
+            ],
+            "yaw": 1.5707963267948966,
+            "pitch": -0.001079000305310558,
+            "roll": 0.00005625860889442296,
+            "state": "patrolling",
+            "speed": 9.000000000007779,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-5",
+            "name": "worker-006",
+            "slot": 5,
+            "progress": 358.63331735289853,
+            "position": [
+              175,
+              -0.008135991417544824,
+              -72.0525173528718
+            ],
+            "yaw": 0,
+            "pitch": 0.0007205277082188699,
+            "roll": -0.00032180117967797175,
+            "state": "patrolling",
+            "speed": 9.000000000007779,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-6",
+            "name": "worker-007",
+            "slot": 6,
+            "progress": 532.2262347057838,
+            "position": [
+              175,
+              0.013801431647827152,
+              101.54040000001342
+            ],
+            "yaw": 0,
+            "pitch": 0.000029193326105943484,
+            "roll": -0.0007680307159715972,
+            "state": "patrolling",
+            "speed": 9.000000000005992,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          },
+          {
+            "uid": "node-7",
+            "name": "worker-008",
+            "slot": 7,
+            "progress": 705.819152058669,
+            "position": [
+              118.55251735287163,
+              -0.0003097865170617263,
+              238
+            ],
+            "yaw": -1.5707963267948966,
+            "pitch": -0.0008706936222917694,
+            "roll": -0.000040429563372665144,
+            "state": "patrolling",
+            "speed": 9.000000000007779,
+            "paused": false,
+            "healthy": true,
+            "reason": "",
+            "reservation": null,
+            "eligibleForDock": false
+          }
+        ],
+        "panel": {
+          "open": true,
+          "title": "worker-001",
+          "tab": "Özet",
+          "uid": "node-0",
+          "summaryContent": "Görsel seyir ve kameraBu geminin hareketiDevriyedeGörsel devriyeyi duraklatGemiyi kamerayla izleBu kontroller yalnız sahneyi etkiler. Node scheduling, Pod yerleşimi ve Kubernetes durumu değiştirilmez.Gemideki Pod’larGerçek spec.nodeName ilişkisi · 14 PodBu gemiye Pod ekleapp-0bench-0 · 2 app container · 0 restartRunningapp-100bench-0 · 1 app container · 0 restartRunningapp-120bench-0 · 1 app container · 0 restartRunningapp-140bench-0 · 2 app container · 0 restartRunningapp-160bench-0 · 1 app container · 0 restartRunningapp-180bench-0 · 1 app container · 0 restartRunningapp-20bench-0 · 1 app container · 0 restartRunningapp-200bench-0 · 1 app container · 0 restartRunningapp-220bench-0 · 1 app container · 0 restartRunningapp-240bench-0 · 1 app container · 0 restartRunningapp-260bench-0 · 1 app container · 0 restartRunningapp-280bench-0 · 2 app container · 0 restartRunningapp-60bench-0 · 1 app container · 0 restartRunningapp-80bench-0 · 1 app container · 0 restartRunningGemi kapasitesiNode · worker-00114 PodCPU— / 7.5 CPU allocatableKullanım ölçümü yokFiziksel kapasite8 CPUApp request toplamı1.4 CPU · 3 tanımsızApp limit toplamı7 CPU · 3 limitsiz / tanımsızBellek— / 15 Gi allocatableKullanım ölçümü yokFiziksel kapasite16 GiApp request toplamı896 Mi · 3 tanımsızApp limit toplamı3.5 Gi · 3 limitsiz / tanımsızRequest ve limit toplamları, bu kapsamda görülen aktif Pod’ların uygulama container’larına aittir. Init, native sidecar ve Pod overhead rezervasyonları bu toplama dahil değildir; container ayrıntılarında ayrıca gösterilir.Taint ve schedulingNode scheduling açık.Gözlenen taint yok.Kaynak bilgileriTürNodeNamespaceKüme kapsamıSahip zinciriBağımsızNode—Oluşturulma23.10.2026 03:00:00UIDnode-0CPU allocatable7.5 CPUBellek allocatable15 GiKubeletfixture-v1.30.0İşletim sistemi—SchedulingAçıkKoşullarReadyTrueLabel’larkubernetes.io/hostname=host-0",
+          "contextLabel": "TEST/REPLAY 01 · benchmark · *"
+        },
+        "inputGuard": {},
+        "logView": null,
+        "lifecycle": null,
+        "heap": {
+          "used": 46897215,
+          "total": 77739531
+        },
+        "dom": {
+          "documents": 2,
+          "nodes": 904,
+          "jsEventListeners": 1189
+        }
+      },
+      "clockWindow": {
+        "wallMs": 60190,
+        "activeMs": 60050.599999997765,
+        "differenceMs": 139.40000000223517,
+        "toleranceMs": 1000,
+        "valid": true
+      },
+      "workloadIntegrity": {
+        "valid": true,
+        "reasons": []
+      },
+      "loadBands": {
+        "normal": {
+          "received": 300,
+          "parseMs": {
+            "n": 300,
+            "p50": 0.10000000149011612,
+            "p95": 0.19999999925494194,
+            "p99": 0.20000000298023224,
+            "min": 0,
+            "max": 0.20000000298023224
+          },
+          "storeMs": {
+            "n": 300,
+            "p50": 0.5,
+            "p95": 0.8000000007450581,
+            "p99": 0.9000000022351742,
+            "min": 0.10000000149011612,
+            "max": 1
+          },
+          "callbackToStoreMs": {
+            "n": 300,
+            "p50": 0.5999999977648258,
+            "p95": 0.8999999985098839,
+            "p99": 1,
+            "min": 0.10000000149011612,
+            "max": 1.0999999977648258
+          },
+          "drawProxyMs": {
+            "n": 121,
+            "p50": 12.400000002235174,
+            "p95": 14.100000001490116,
+            "p99": 22.300000000745058,
+            "min": 5.799999997019768,
+            "max": 22.5
+          }
+        },
+        "burst": {
+          "received": 0,
+          "parseMs": {
+            "n": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "min": null,
+            "max": null
+          },
+          "storeMs": {
+            "n": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "min": null,
+            "max": null
+          },
+          "callbackToStoreMs": {
+            "n": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "min": null,
+            "max": null
+          },
+          "drawProxyMs": {
+            "n": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "min": null,
+            "max": null
+          }
+        }
+      },
+      "producer": {
+        "planned": 300,
+        "completed": 300,
+        "errors": [],
+        "delayMs": {
+          "n": 300,
+          "p50": 1.0789999999979045,
+          "p95": 1.1591670000016165,
+          "p99": 1.1902079999999842,
+          "min": 0.000292,
+          "max": 2.7808750000003783
+        },
+        "applyMs": {
+          "n": 300,
+          "p50": 0.131584,
+          "p95": 0.238667,
+          "p99": 0.354625,
+          "min": 0.042625,
+          "max": 0.427166
+        },
+        "samples": [
+          {
+            "sequence": 10001,
+            "plannedMs": 0,
+            "actualMs": 0.000292,
+            "applyMs": 0.042625
+          },
+          {
+            "sequence": 10002,
+            "plannedMs": 200,
+            "actualMs": 201.06,
+            "applyMs": 0.055875
+          },
+          {
+            "sequence": 10003,
+            "plannedMs": 400,
+            "actualMs": 401.058542,
+            "applyMs": 0.116
+          },
+          {
+            "sequence": 10004,
+            "plannedMs": 600,
+            "actualMs": 601.075875,
+            "applyMs": 0.126625
+          },
+          {
+            "sequence": 10005,
+            "plannedMs": 800,
+            "actualMs": 801.070792,
+            "applyMs": 0.152916
+          },
+          {
+            "sequence": 10006,
+            "plannedMs": 1000,
+            "actualMs": 1001.088208,
+            "applyMs": 0.238667
+          },
+          {
+            "sequence": 10007,
+            "plannedMs": 1200,
+            "actualMs": 1201.0785,
+            "applyMs": 0.137667
+          },
+          {
+            "sequence": 10008,
+            "plannedMs": 1400,
+            "actualMs": 1401.095625,
+            "applyMs": 0.128083
+          },
+          {
+            "sequence": 10009,
+            "plannedMs": 1600,
+            "actualMs": 1601.078,
+            "applyMs": 0.107292
+          },
+          {
+            "sequence": 10010,
+            "plannedMs": 1800,
+            "actualMs": 1801.080667,
+            "applyMs": 0.095375
+          },
+          {
+            "sequence": 10011,
+            "plannedMs": 2000,
+            "actualMs": 2001.091208,
+            "applyMs": 0.137209
+          },
+          {
+            "sequence": 10012,
+            "plannedMs": 2200,
+            "actualMs": 2201.090417,
+            "applyMs": 0.209291
+          },
+          {
+            "sequence": 10013,
+            "plannedMs": 2400,
+            "actualMs": 2401.070333,
+            "applyMs": 0.155584
+          },
+          {
+            "sequence": 10014,
+            "plannedMs": 2600,
+            "actualMs": 2601.09975,
+            "applyMs": 0.169167
+          },
+          {
+            "sequence": 10015,
+            "plannedMs": 2800,
+            "actualMs": 2801.094292,
+            "applyMs": 0.106583
+          },
+          {
+            "sequence": 10016,
+            "plannedMs": 3000,
+            "actualMs": 3001.073167,
+            "applyMs": 0.111083
+          },
+          {
+            "sequence": 10017,
+            "plannedMs": 3200,
+            "actualMs": 3201.08975,
+            "applyMs": 0.129708
+          },
+          {
+            "sequence": 10018,
+            "plannedMs": 3400,
+            "actualMs": 3401.067667,
+            "applyMs": 0.1065
+          },
+          {
+            "sequence": 10019,
+            "plannedMs": 3600,
+            "actualMs": 3601.081208,
+            "applyMs": 0.172042
+          },
+          {
+            "sequence": 10020,
+            "plannedMs": 3800,
+            "actualMs": 3801.064625,
+            "applyMs": 0.082792
+          },
+          {
+            "sequence": 10021,
+            "plannedMs": 4000,
+            "actualMs": 4001.074625,
+            "applyMs": 0.156958
+          },
+          {
+            "sequence": 10022,
+            "plannedMs": 4200,
+            "actualMs": 4201.07825,
+            "applyMs": 0.076583
+          },
+          {
+            "sequence": 10023,
+            "plannedMs": 4400,
+            "actualMs": 4401.076583,
+            "applyMs": 0.156834
+          },
+          {
+            "sequence": 10024,
+            "plannedMs": 4600,
+            "actualMs": 4601.084542,
+            "applyMs": 0.105833
+          },
+          {
+            "sequence": 10025,
+            "plannedMs": 4800,
+            "actualMs": 4801.075208,
+            "applyMs": 0.129417
+          },
+          {
+            "sequence": 10026,
+            "plannedMs": 5000,
+            "actualMs": 5001.090125,
+            "applyMs": 0.123083
+          },
+          {
+            "sequence": 10027,
+            "plannedMs": 5200,
+            "actualMs": 5201.076333,
+            "applyMs": 0.109667
+          },
+          {
+            "sequence": 10028,
+            "plannedMs": 5400,
+            "actualMs": 5401.069042,
+            "applyMs": 0.149375
+          },
+          {
+            "sequence": 10029,
+            "plannedMs": 5600,
+            "actualMs": 5601.080875,
+            "applyMs": 0.081
+          },
+          {
+            "sequence": 10030,
+            "plannedMs": 5800,
+            "actualMs": 5801.082542,
+            "applyMs": 0.159791
+          },
+          {
+            "sequence": 10031,
+            "plannedMs": 6000,
+            "actualMs": 6001.059958,
+            "applyMs": 0.121
+          },
+          {
+            "sequence": 10032,
+            "plannedMs": 6200,
+            "actualMs": 6201.096292,
+            "applyMs": 0.103125
+          },
+          {
+            "sequence": 10033,
+            "plannedMs": 6400,
+            "actualMs": 6401.089583,
+            "applyMs": 0.121375
+          },
+          {
+            "sequence": 10034,
+            "plannedMs": 6600,
+            "actualMs": 6601.075458,
+            "applyMs": 0.157417
+          },
+          {
+            "sequence": 10035,
+            "plannedMs": 6800,
+            "actualMs": 6801.078958,
+            "applyMs": 0.177209
+          },
+          {
+            "sequence": 10036,
+            "plannedMs": 7000,
+            "actualMs": 7001.086667,
+            "applyMs": 0.093
+          },
+          {
+            "sequence": 10037,
+            "plannedMs": 7200,
+            "actualMs": 7201.060625,
+            "applyMs": 0.104708
+          },
+          {
+            "sequence": 10038,
+            "plannedMs": 7400,
+            "actualMs": 7401.08825,
+            "applyMs": 0.119667
+          },
+          {
+            "sequence": 10039,
+            "plannedMs": 7600,
+            "actualMs": 7601.081333,
+            "applyMs": 0.133209
+          },
+          {
+            "sequence": 10040,
+            "plannedMs": 7800,
+            "actualMs": 7800.160667,
+            "applyMs": 0.281541
+          },
+          {
+            "sequence": 10041,
+            "plannedMs": 8000,
+            "actualMs": 8001.076333,
+            "applyMs": 0.111834
+          },
+          {
+            "sequence": 10042,
+            "plannedMs": 8200,
+            "actualMs": 8201.069042,
+            "applyMs": 0.072208
+          },
+          {
+            "sequence": 10043,
+            "plannedMs": 8400,
+            "actualMs": 8401.070458,
+            "applyMs": 0.085792
+          },
+          {
+            "sequence": 10044,
+            "plannedMs": 8600,
+            "actualMs": 8601.0685,
+            "applyMs": 0.108292
+          },
+          {
+            "sequence": 10045,
+            "plannedMs": 8800,
+            "actualMs": 8801.093375,
+            "applyMs": 0.121
+          },
+          {
+            "sequence": 10046,
+            "plannedMs": 9000,
+            "actualMs": 9002.780875,
+            "applyMs": 0.328625
+          },
+          {
+            "sequence": 10047,
+            "plannedMs": 9200,
+            "actualMs": 9201.05775,
+            "applyMs": 0.10325
+          },
+          {
+            "sequence": 10048,
+            "plannedMs": 9400,
+            "actualMs": 9401.076083,
+            "applyMs": 0.154042
+          },
+          {
+            "sequence": 10049,
+            "plannedMs": 9600,
+            "actualMs": 9601.1655,
+            "applyMs": 0.227875
+          },
+          {
+            "sequence": 10050,
+            "plannedMs": 9800,
+            "actualMs": 9801.143083,
+            "applyMs": 0.219917
+          },
+          {
+            "sequence": 10051,
+            "plannedMs": 10000,
+            "actualMs": 10001.0625,
+            "applyMs": 0.1445
+          },
+          {
+            "sequence": 10052,
+            "plannedMs": 10200,
+            "actualMs": 10200.428542,
+            "applyMs": 0.068916
+          },
+          {
+            "sequence": 10053,
+            "plannedMs": 10400,
+            "actualMs": 10401.078833,
+            "applyMs": 0.10825
+          },
+          {
+            "sequence": 10054,
+            "plannedMs": 10600,
+            "actualMs": 10601.09725,
+            "applyMs": 0.11525
+          },
+          {
+            "sequence": 10055,
+            "plannedMs": 10800,
+            "actualMs": 10801.082792,
+            "applyMs": 0.17825
+          },
+          {
+            "sequence": 10056,
+            "plannedMs": 11000,
+            "actualMs": 11001.091833,
+            "applyMs": 0.087125
+          },
+          {
+            "sequence": 10057,
+            "plannedMs": 11200,
+            "actualMs": 11201.084375,
+            "applyMs": 0.102333
+          },
+          {
+            "sequence": 10058,
+            "plannedMs": 11400,
+            "actualMs": 11401.061333,
+            "applyMs": 0.118084
+          },
+          {
+            "sequence": 10059,
+            "plannedMs": 11600,
+            "actualMs": 11601.081708,
+            "applyMs": 0.10025
+          },
+          {
+            "sequence": 10060,
+            "plannedMs": 11800,
+            "actualMs": 11801.078375,
+            "applyMs": 0.106958
+          },
+          {
+            "sequence": 10061,
+            "plannedMs": 12000,
+            "actualMs": 12001.083417,
+            "applyMs": 0.102083
+          },
+          {
+            "sequence": 10062,
+            "plannedMs": 12200,
+            "actualMs": 12201.069583,
+            "applyMs": 0.062
+          },
+          {
+            "sequence": 10063,
+            "plannedMs": 12400,
+            "actualMs": 12401.066417,
+            "applyMs": 0.1265
+          },
+          {
+            "sequence": 10064,
+            "plannedMs": 12600,
+            "actualMs": 12600.901542,
+            "applyMs": 0.097
+          },
+          {
+            "sequence": 10065,
+            "plannedMs": 12800,
+            "actualMs": 12801.078833,
+            "applyMs": 0.142
+          },
+          {
+            "sequence": 10066,
+            "plannedMs": 13000,
+            "actualMs": 13000.61975,
+            "applyMs": 0.14775
+          },
+          {
+            "sequence": 10067,
+            "plannedMs": 13200,
+            "actualMs": 13200.091375,
+            "applyMs": 0.11775
+          },
+          {
+            "sequence": 10068,
+            "plannedMs": 13400,
+            "actualMs": 13401.097917,
+            "applyMs": 0.094291
+          },
+          {
+            "sequence": 10069,
+            "plannedMs": 13600,
+            "actualMs": 13601.14975,
+            "applyMs": 0.142917
+          },
+          {
+            "sequence": 10070,
+            "plannedMs": 13800,
+            "actualMs": 13801.076667,
+            "applyMs": 0.124833
+          },
+          {
+            "sequence": 10071,
+            "plannedMs": 14000,
+            "actualMs": 14001.078208,
+            "applyMs": 0.152459
+          },
+          {
+            "sequence": 10072,
+            "plannedMs": 14200,
+            "actualMs": 14201.109542,
+            "applyMs": 0.354625
+          },
+          {
+            "sequence": 10073,
+            "plannedMs": 14400,
+            "actualMs": 14401.081292,
+            "applyMs": 0.094041
+          },
+          {
+            "sequence": 10074,
+            "plannedMs": 14600,
+            "actualMs": 14600.3965,
+            "applyMs": 0.102792
+          },
+          {
+            "sequence": 10075,
+            "plannedMs": 14800,
+            "actualMs": 14801.063917,
+            "applyMs": 0.145083
+          },
+          {
+            "sequence": 10076,
+            "plannedMs": 15000,
+            "actualMs": 15000.812792,
+            "applyMs": 0.151125
+          },
+          {
+            "sequence": 10077,
+            "plannedMs": 15200,
+            "actualMs": 15201.085542,
+            "applyMs": 0.071
+          },
+          {
+            "sequence": 10078,
+            "plannedMs": 15400,
+            "actualMs": 15401.031875,
+            "applyMs": 0.046708
+          },
+          {
+            "sequence": 10079,
+            "plannedMs": 15600,
+            "actualMs": 15601.095125,
+            "applyMs": 0.171292
+          },
+          {
+            "sequence": 10080,
+            "plannedMs": 15800,
+            "actualMs": 15801.094,
+            "applyMs": 0.13825
+          },
+          {
+            "sequence": 10081,
+            "plannedMs": 16000,
+            "actualMs": 16001.099208,
+            "applyMs": 0.158125
+          },
+          {
+            "sequence": 10082,
+            "plannedMs": 16200,
+            "actualMs": 16201.073333,
+            "applyMs": 0.078667
+          },
+          {
+            "sequence": 10083,
+            "plannedMs": 16400,
+            "actualMs": 16400.086125,
+            "applyMs": 0.1635
+          },
+          {
+            "sequence": 10084,
+            "plannedMs": 16600,
+            "actualMs": 16601.099,
+            "applyMs": 0.193708
+          },
+          {
+            "sequence": 10085,
+            "plannedMs": 16800,
+            "actualMs": 16800.710917,
+            "applyMs": 0.22625
+          },
+          {
+            "sequence": 10086,
+            "plannedMs": 17000,
+            "actualMs": 17001.159167,
+            "applyMs": 0.166125
+          },
+          {
+            "sequence": 10087,
+            "plannedMs": 17200,
+            "actualMs": 17201.075083,
+            "applyMs": 0.109084
+          },
+          {
+            "sequence": 10088,
+            "plannedMs": 17400,
+            "actualMs": 17401.134292,
+            "applyMs": 0.100583
+          },
+          {
+            "sequence": 10089,
+            "plannedMs": 17600,
+            "actualMs": 17601.091458,
+            "applyMs": 0.123167
+          },
+          {
+            "sequence": 10090,
+            "plannedMs": 17800,
+            "actualMs": 17801.088542,
+            "applyMs": 0.140333
+          },
+          {
+            "sequence": 10091,
+            "plannedMs": 18000,
+            "actualMs": 18000.239583,
+            "applyMs": 0.169167
+          },
+          {
+            "sequence": 10092,
+            "plannedMs": 18200,
+            "actualMs": 18201.069583,
+            "applyMs": 0.131625
+          },
+          {
+            "sequence": 10093,
+            "plannedMs": 18400,
+            "actualMs": 18401.069625,
+            "applyMs": 0.100042
+          },
+          {
+            "sequence": 10094,
+            "plannedMs": 18600,
+            "actualMs": 18601.08,
+            "applyMs": 0.072875
+          },
+          {
+            "sequence": 10095,
+            "plannedMs": 18800,
+            "actualMs": 18801.161792,
+            "applyMs": 0.246541
+          },
+          {
+            "sequence": 10096,
+            "plannedMs": 19000,
+            "actualMs": 19001.065833,
+            "applyMs": 0.169209
+          },
+          {
+            "sequence": 10097,
+            "plannedMs": 19200,
+            "actualMs": 19200.648083,
+            "applyMs": 0.165209
+          },
+          {
+            "sequence": 10098,
+            "plannedMs": 19400,
+            "actualMs": 19401.190208,
+            "applyMs": 0.243375
+          },
+          {
+            "sequence": 10099,
+            "plannedMs": 19600,
+            "actualMs": 19601.055375,
+            "applyMs": 0.084583
+          },
+          {
+            "sequence": 10100,
+            "plannedMs": 19800,
+            "actualMs": 19801.0615,
+            "applyMs": 0.100208
+          },
+          {
+            "sequence": 10101,
+            "plannedMs": 20000,
+            "actualMs": 20001.063292,
+            "applyMs": 0.178208
+          },
+          {
+            "sequence": 10102,
+            "plannedMs": 20200,
+            "actualMs": 20200.132292,
+            "applyMs": 0.05075
+          },
+          {
+            "sequence": 10103,
+            "plannedMs": 20400,
+            "actualMs": 20401.059917,
+            "applyMs": 0.091958
+          },
+          {
+            "sequence": 10104,
+            "plannedMs": 20600,
+            "actualMs": 20601.061958,
+            "applyMs": 0.16575
+          },
+          {
+            "sequence": 10105,
+            "plannedMs": 20800,
+            "actualMs": 20801.08475,
+            "applyMs": 0.12375
+          },
+          {
+            "sequence": 10106,
+            "plannedMs": 21000,
+            "actualMs": 21001.081375,
+            "applyMs": 0.113333
+          },
+          {
+            "sequence": 10107,
+            "plannedMs": 21200,
+            "actualMs": 21201.088625,
+            "applyMs": 0.167583
+          },
+          {
+            "sequence": 10108,
+            "plannedMs": 21400,
+            "actualMs": 21401.180958,
+            "applyMs": 0.206584
+          },
+          {
+            "sequence": 10109,
+            "plannedMs": 21600,
+            "actualMs": 21601.076,
+            "applyMs": 0.168708
+          },
+          {
+            "sequence": 10110,
+            "plannedMs": 21800,
+            "actualMs": 21801.08725,
+            "applyMs": 0.081833
+          },
+          {
+            "sequence": 10111,
+            "plannedMs": 22000,
+            "actualMs": 22001.064292,
+            "applyMs": 0.127833
+          },
+          {
+            "sequence": 10112,
+            "plannedMs": 22200,
+            "actualMs": 22201.090542,
+            "applyMs": 0.157458
+          },
+          {
+            "sequence": 10113,
+            "plannedMs": 22400,
+            "actualMs": 22401.097625,
+            "applyMs": 0.129083
+          },
+          {
+            "sequence": 10114,
+            "plannedMs": 22600,
+            "actualMs": 22600.519042,
+            "applyMs": 0.296375
+          },
+          {
+            "sequence": 10115,
+            "plannedMs": 22800,
+            "actualMs": 22801.086167,
+            "applyMs": 0.060375
+          },
+          {
+            "sequence": 10116,
+            "plannedMs": 23000,
+            "actualMs": 23001.047833,
+            "applyMs": 0.08425
+          },
+          {
+            "sequence": 10117,
+            "plannedMs": 23200,
+            "actualMs": 23200.774083,
+            "applyMs": 0.099334
+          },
+          {
+            "sequence": 10118,
+            "plannedMs": 23400,
+            "actualMs": 23401.067042,
+            "applyMs": 0.088708
+          },
+          {
+            "sequence": 10119,
+            "plannedMs": 23600,
+            "actualMs": 23601.089958,
+            "applyMs": 0.12025
+          },
+          {
+            "sequence": 10120,
+            "plannedMs": 23800,
+            "actualMs": 23801.06325,
+            "applyMs": 0.104875
+          },
+          {
+            "sequence": 10121,
+            "plannedMs": 24000,
+            "actualMs": 24001.084167,
+            "applyMs": 0.098666
+          },
+          {
+            "sequence": 10122,
+            "plannedMs": 24200,
+            "actualMs": 24201.101125,
+            "applyMs": 0.153208
+          },
+          {
+            "sequence": 10123,
+            "plannedMs": 24400,
+            "actualMs": 24401.057875,
+            "applyMs": 0.147083
+          },
+          {
+            "sequence": 10124,
+            "plannedMs": 24600,
+            "actualMs": 24601.102875,
+            "applyMs": 0.230208
+          },
+          {
+            "sequence": 10125,
+            "plannedMs": 24800,
+            "actualMs": 24801.081042,
+            "applyMs": 0.127791
+          },
+          {
+            "sequence": 10126,
+            "plannedMs": 25000,
+            "actualMs": 25001.093875,
+            "applyMs": 0.14625
+          },
+          {
+            "sequence": 10127,
+            "plannedMs": 25200,
+            "actualMs": 25201.084333,
+            "applyMs": 0.116792
+          },
+          {
+            "sequence": 10128,
+            "plannedMs": 25400,
+            "actualMs": 25401.083417,
+            "applyMs": 0.150375
+          },
+          {
+            "sequence": 10129,
+            "plannedMs": 25600,
+            "actualMs": 25601.101375,
+            "applyMs": 0.279708
+          },
+          {
+            "sequence": 10130,
+            "plannedMs": 25800,
+            "actualMs": 25801.090917,
+            "applyMs": 0.148333
+          },
+          {
+            "sequence": 10131,
+            "plannedMs": 26000,
+            "actualMs": 26001.089333,
+            "applyMs": 0.079834
+          },
+          {
+            "sequence": 10132,
+            "plannedMs": 26200,
+            "actualMs": 26201.075792,
+            "applyMs": 0.120333
+          },
+          {
+            "sequence": 10133,
+            "plannedMs": 26400,
+            "actualMs": 26401.070083,
+            "applyMs": 0.145459
+          },
+          {
+            "sequence": 10134,
+            "plannedMs": 26600,
+            "actualMs": 26601.06125,
+            "applyMs": 0.134042
+          },
+          {
+            "sequence": 10135,
+            "plannedMs": 26800,
+            "actualMs": 26801.164625,
+            "applyMs": 0.145958
+          },
+          {
+            "sequence": 10136,
+            "plannedMs": 27000,
+            "actualMs": 27001.0555,
+            "applyMs": 0.0475
+          },
+          {
+            "sequence": 10137,
+            "plannedMs": 27200,
+            "actualMs": 27201.055583,
+            "applyMs": 0.164709
+          },
+          {
+            "sequence": 10138,
+            "plannedMs": 27400,
+            "actualMs": 27401.087667,
+            "applyMs": 0.143791
+          },
+          {
+            "sequence": 10139,
+            "plannedMs": 27600,
+            "actualMs": 27600.365542,
+            "applyMs": 0.22325
+          },
+          {
+            "sequence": 10140,
+            "plannedMs": 27800,
+            "actualMs": 27801.102,
+            "applyMs": 0.143583
+          },
+          {
+            "sequence": 10141,
+            "plannedMs": 28000,
+            "actualMs": 28000.67325,
+            "applyMs": 0.152292
+          },
+          {
+            "sequence": 10142,
+            "plannedMs": 28200,
+            "actualMs": 28201.057958,
+            "applyMs": 0.050834
+          },
+          {
+            "sequence": 10143,
+            "plannedMs": 28400,
+            "actualMs": 28401.066458,
+            "applyMs": 0.109167
+          },
+          {
+            "sequence": 10144,
+            "plannedMs": 28600,
+            "actualMs": 28601.093208,
+            "applyMs": 0.167334
+          },
+          {
+            "sequence": 10145,
+            "plannedMs": 28800,
+            "actualMs": 28801.078833,
+            "applyMs": 0.13225
+          },
+          {
+            "sequence": 10146,
+            "plannedMs": 29000,
+            "actualMs": 29001.111542,
+            "applyMs": 0.2555
+          },
+          {
+            "sequence": 10147,
+            "plannedMs": 29200,
+            "actualMs": 29201.064875,
+            "applyMs": 0.132125
+          },
+          {
+            "sequence": 10148,
+            "plannedMs": 29400,
+            "actualMs": 29401.152333,
+            "applyMs": 0.160084
+          },
+          {
+            "sequence": 10149,
+            "plannedMs": 29600,
+            "actualMs": 29600.35125,
+            "applyMs": 0.092
+          },
+          {
+            "sequence": 10150,
+            "plannedMs": 29800,
+            "actualMs": 29801.098208,
+            "applyMs": 0.133084
+          },
+          {
+            "sequence": 10151,
+            "plannedMs": 30000,
+            "actualMs": 30001.072167,
+            "applyMs": 0.140666
+          },
+          {
+            "sequence": 10152,
+            "plannedMs": 30200,
+            "actualMs": 30201.086875,
+            "applyMs": 0.066875
+          },
+          {
+            "sequence": 10153,
+            "plannedMs": 30400,
+            "actualMs": 30401.056708,
+            "applyMs": 0.122292
+          },
+          {
+            "sequence": 10154,
+            "plannedMs": 30600,
+            "actualMs": 30601.162333,
+            "applyMs": 0.156709
+          },
+          {
+            "sequence": 10155,
+            "plannedMs": 30800,
+            "actualMs": 30801.10175,
+            "applyMs": 0.068042
+          },
+          {
+            "sequence": 10156,
+            "plannedMs": 31000,
+            "actualMs": 31001.134958,
+            "applyMs": 0.255209
+          },
+          {
+            "sequence": 10157,
+            "plannedMs": 31200,
+            "actualMs": 31201.067042,
+            "applyMs": 0.091291
+          },
+          {
+            "sequence": 10158,
+            "plannedMs": 31400,
+            "actualMs": 31401.094042,
+            "applyMs": 0.099583
+          },
+          {
+            "sequence": 10159,
+            "plannedMs": 31600,
+            "actualMs": 31601.120125,
+            "applyMs": 0.274417
+          },
+          {
+            "sequence": 10160,
+            "plannedMs": 31800,
+            "actualMs": 31801.085833,
+            "applyMs": 0.138917
+          },
+          {
+            "sequence": 10161,
+            "plannedMs": 32000,
+            "actualMs": 32001.068625,
+            "applyMs": 0.188417
+          },
+          {
+            "sequence": 10162,
+            "plannedMs": 32200,
+            "actualMs": 32200.259542,
+            "applyMs": 0.090291
+          },
+          {
+            "sequence": 10163,
+            "plannedMs": 32400,
+            "actualMs": 32401.081083,
+            "applyMs": 0.099375
+          },
+          {
+            "sequence": 10164,
+            "plannedMs": 32600,
+            "actualMs": 32601.067333,
+            "applyMs": 0.145292
+          },
+          {
+            "sequence": 10165,
+            "plannedMs": 32800,
+            "actualMs": 32801.052708,
+            "applyMs": 0.142167
+          },
+          {
+            "sequence": 10166,
+            "plannedMs": 33000,
+            "actualMs": 33001.075875,
+            "applyMs": 0.139
+          },
+          {
+            "sequence": 10167,
+            "plannedMs": 33200,
+            "actualMs": 33201.195792,
+            "applyMs": 0.128958
+          },
+          {
+            "sequence": 10168,
+            "plannedMs": 33400,
+            "actualMs": 33401.082208,
+            "applyMs": 0.064584
+          },
+          {
+            "sequence": 10169,
+            "plannedMs": 33600,
+            "actualMs": 33601.128125,
+            "applyMs": 0.208958
+          },
+          {
+            "sequence": 10170,
+            "plannedMs": 33800,
+            "actualMs": 33801.116583,
+            "applyMs": 0.2085
+          },
+          {
+            "sequence": 10171,
+            "plannedMs": 34000,
+            "actualMs": 34001.0685,
+            "applyMs": 0.189875
+          },
+          {
+            "sequence": 10172,
+            "plannedMs": 34200,
+            "actualMs": 34201.093583,
+            "applyMs": 0.12925
+          },
+          {
+            "sequence": 10173,
+            "plannedMs": 34400,
+            "actualMs": 34400.624375,
+            "applyMs": 0.049125
+          },
+          {
+            "sequence": 10174,
+            "plannedMs": 34600,
+            "actualMs": 34601.062458,
+            "applyMs": 0.1305
+          },
+          {
+            "sequence": 10175,
+            "plannedMs": 34800,
+            "actualMs": 34800.129875,
+            "applyMs": 0.183125
+          },
+          {
+            "sequence": 10176,
+            "plannedMs": 35000,
+            "actualMs": 35001.09825,
+            "applyMs": 0.169042
+          },
+          {
+            "sequence": 10177,
+            "plannedMs": 35200,
+            "actualMs": 35201.074583,
+            "applyMs": 0.121584
+          },
+          {
+            "sequence": 10178,
+            "plannedMs": 35400,
+            "actualMs": 35401.080042,
+            "applyMs": 0.071041
+          },
+          {
+            "sequence": 10179,
+            "plannedMs": 35600,
+            "actualMs": 35601.061208,
+            "applyMs": 0.08625
+          },
+          {
+            "sequence": 10180,
+            "plannedMs": 35800,
+            "actualMs": 35800.878542,
+            "applyMs": 0.145958
+          },
+          {
+            "sequence": 10181,
+            "plannedMs": 36000,
+            "actualMs": 36001.158708,
+            "applyMs": 0.174334
+          },
+          {
+            "sequence": 10182,
+            "plannedMs": 36200,
+            "actualMs": 36201.099625,
+            "applyMs": 0.112167
+          },
+          {
+            "sequence": 10183,
+            "plannedMs": 36400,
+            "actualMs": 36401.097167,
+            "applyMs": 0.152375
+          },
+          {
+            "sequence": 10184,
+            "plannedMs": 36600,
+            "actualMs": 36601.088333,
+            "applyMs": 0.076417
+          },
+          {
+            "sequence": 10185,
+            "plannedMs": 36800,
+            "actualMs": 36801.081583,
+            "applyMs": 0.182
+          },
+          {
+            "sequence": 10186,
+            "plannedMs": 37000,
+            "actualMs": 37001.071458,
+            "applyMs": 0.099375
+          },
+          {
+            "sequence": 10187,
+            "plannedMs": 37200,
+            "actualMs": 37201.140458,
+            "applyMs": 0.128125
+          },
+          {
+            "sequence": 10188,
+            "plannedMs": 37400,
+            "actualMs": 37401.115375,
+            "applyMs": 0.203292
+          },
+          {
+            "sequence": 10189,
+            "plannedMs": 37600,
+            "actualMs": 37601.068792,
+            "applyMs": 0.142875
+          },
+          {
+            "sequence": 10190,
+            "plannedMs": 37800,
+            "actualMs": 37801.076875,
+            "applyMs": 0.119667
+          },
+          {
+            "sequence": 10191,
+            "plannedMs": 38000,
+            "actualMs": 38001.091292,
+            "applyMs": 0.242583
+          },
+          {
+            "sequence": 10192,
+            "plannedMs": 38200,
+            "actualMs": 38201.093417,
+            "applyMs": 0.164125
+          },
+          {
+            "sequence": 10193,
+            "plannedMs": 38400,
+            "actualMs": 38401.0785,
+            "applyMs": 0.124208
+          },
+          {
+            "sequence": 10194,
+            "plannedMs": 38600,
+            "actualMs": 38601.057167,
+            "applyMs": 0.043458
+          },
+          {
+            "sequence": 10195,
+            "plannedMs": 38800,
+            "actualMs": 38801.072167,
+            "applyMs": 0.157875
+          },
+          {
+            "sequence": 10196,
+            "plannedMs": 39000,
+            "actualMs": 39000.404792,
+            "applyMs": 0.17475
+          },
+          {
+            "sequence": 10197,
+            "plannedMs": 39200,
+            "actualMs": 39201.133042,
+            "applyMs": 0.427166
+          },
+          {
+            "sequence": 10198,
+            "plannedMs": 39400,
+            "actualMs": 39401.084125,
+            "applyMs": 0.218625
+          },
+          {
+            "sequence": 10199,
+            "plannedMs": 39600,
+            "actualMs": 39600.988542,
+            "applyMs": 0.095166
+          },
+          {
+            "sequence": 10200,
+            "plannedMs": 39800,
+            "actualMs": 39801.079208,
+            "applyMs": 0.122709
+          },
+          {
+            "sequence": 10201,
+            "plannedMs": 40000,
+            "actualMs": 40001.109792,
+            "applyMs": 0.212666
+          },
+          {
+            "sequence": 10202,
+            "plannedMs": 40200,
+            "actualMs": 40201.077375,
+            "applyMs": 0.117917
+          },
+          {
+            "sequence": 10203,
+            "plannedMs": 40400,
+            "actualMs": 40401.060417,
+            "applyMs": 0.086541
+          },
+          {
+            "sequence": 10204,
+            "plannedMs": 40600,
+            "actualMs": 40601.079,
+            "applyMs": 0.165042
+          },
+          {
+            "sequence": 10205,
+            "plannedMs": 40800,
+            "actualMs": 40801.081542,
+            "applyMs": 0.200791
+          },
+          {
+            "sequence": 10206,
+            "plannedMs": 41000,
+            "actualMs": 41000.823042,
+            "applyMs": 0.137833
+          },
+          {
+            "sequence": 10207,
+            "plannedMs": 41200,
+            "actualMs": 41201.175292,
+            "applyMs": 0.133208
+          },
+          {
+            "sequence": 10208,
+            "plannedMs": 41400,
+            "actualMs": 41401.082,
+            "applyMs": 0.181792
+          },
+          {
+            "sequence": 10209,
+            "plannedMs": 41600,
+            "actualMs": 41601.101208,
+            "applyMs": 0.171375
+          },
+          {
+            "sequence": 10210,
+            "plannedMs": 41800,
+            "actualMs": 41801.098875,
+            "applyMs": 0.090958
+          },
+          {
+            "sequence": 10211,
+            "plannedMs": 42000,
+            "actualMs": 42001.140583,
+            "applyMs": 0.173542
+          },
+          {
+            "sequence": 10212,
+            "plannedMs": 42200,
+            "actualMs": 42201.0965,
+            "applyMs": 0.214
+          },
+          {
+            "sequence": 10213,
+            "plannedMs": 42400,
+            "actualMs": 42401.069958,
+            "applyMs": 0.134875
+          },
+          {
+            "sequence": 10214,
+            "plannedMs": 42600,
+            "actualMs": 42601.166583,
+            "applyMs": 0.12375
+          },
+          {
+            "sequence": 10215,
+            "plannedMs": 42800,
+            "actualMs": 42801.071417,
+            "applyMs": 0.085
+          },
+          {
+            "sequence": 10216,
+            "plannedMs": 43000,
+            "actualMs": 43001.064458,
+            "applyMs": 0.114042
+          },
+          {
+            "sequence": 10217,
+            "plannedMs": 43200,
+            "actualMs": 43201.102333,
+            "applyMs": 0.136334
+          },
+          {
+            "sequence": 10218,
+            "plannedMs": 43400,
+            "actualMs": 43401.054125,
+            "applyMs": 0.345458
+          },
+          {
+            "sequence": 10219,
+            "plannedMs": 43600,
+            "actualMs": 43601.068125,
+            "applyMs": 0.210292
+          },
+          {
+            "sequence": 10220,
+            "plannedMs": 43800,
+            "actualMs": 43801.087,
+            "applyMs": 0.140833
+          },
+          {
+            "sequence": 10221,
+            "plannedMs": 44000,
+            "actualMs": 44001.093792,
+            "applyMs": 0.091541
+          },
+          {
+            "sequence": 10222,
+            "plannedMs": 44200,
+            "actualMs": 44201.058833,
+            "applyMs": 0.091084
+          },
+          {
+            "sequence": 10223,
+            "plannedMs": 44400,
+            "actualMs": 44401.067042,
+            "applyMs": 0.153
+          },
+          {
+            "sequence": 10224,
+            "plannedMs": 44600,
+            "actualMs": 44600.172417,
+            "applyMs": 0.183458
+          },
+          {
+            "sequence": 10225,
+            "plannedMs": 44800,
+            "actualMs": 44801.077375,
+            "applyMs": 0.130958
+          },
+          {
+            "sequence": 10226,
+            "plannedMs": 45000,
+            "actualMs": 45001.094833,
+            "applyMs": 0.073334
+          },
+          {
+            "sequence": 10227,
+            "plannedMs": 45200,
+            "actualMs": 45201.049208,
+            "applyMs": 0.106459
+          },
+          {
+            "sequence": 10228,
+            "plannedMs": 45400,
+            "actualMs": 45401.159917,
+            "applyMs": 0.125958
+          },
+          {
+            "sequence": 10229,
+            "plannedMs": 45600,
+            "actualMs": 45601.112458,
+            "applyMs": 0.115542
+          },
+          {
+            "sequence": 10230,
+            "plannedMs": 45800,
+            "actualMs": 45801.083958,
+            "applyMs": 0.147209
+          },
+          {
+            "sequence": 10231,
+            "plannedMs": 46000,
+            "actualMs": 46001.047708,
+            "applyMs": 0.069959
+          },
+          {
+            "sequence": 10232,
+            "plannedMs": 46200,
+            "actualMs": 46201.080417,
+            "applyMs": 0.11525
+          },
+          {
+            "sequence": 10233,
+            "plannedMs": 46400,
+            "actualMs": 46400.735833,
+            "applyMs": 0.154667
+          },
+          {
+            "sequence": 10234,
+            "plannedMs": 46600,
+            "actualMs": 46601.077542,
+            "applyMs": 0.13175
+          },
+          {
+            "sequence": 10235,
+            "plannedMs": 46800,
+            "actualMs": 46801.080875,
+            "applyMs": 0.126583
+          },
+          {
+            "sequence": 10236,
+            "plannedMs": 47000,
+            "actualMs": 47000.105792,
+            "applyMs": 0.117791
+          },
+          {
+            "sequence": 10237,
+            "plannedMs": 47200,
+            "actualMs": 47201.085625,
+            "applyMs": 0.091625
+          },
+          {
+            "sequence": 10238,
+            "plannedMs": 47400,
+            "actualMs": 47400.998542,
+            "applyMs": 0.100333
+          },
+          {
+            "sequence": 10239,
+            "plannedMs": 47600,
+            "actualMs": 47600.981958,
+            "applyMs": 0.145209
+          },
+          {
+            "sequence": 10240,
+            "plannedMs": 47800,
+            "actualMs": 47801.084292,
+            "applyMs": 0.168083
+          },
+          {
+            "sequence": 10241,
+            "plannedMs": 48000,
+            "actualMs": 48001.075333,
+            "applyMs": 0.106084
+          },
+          {
+            "sequence": 10242,
+            "plannedMs": 48200,
+            "actualMs": 48201.094,
+            "applyMs": 0.073417
+          },
+          {
+            "sequence": 10243,
+            "plannedMs": 48400,
+            "actualMs": 48401.0725,
+            "applyMs": 0.120292
+          },
+          {
+            "sequence": 10244,
+            "plannedMs": 48600,
+            "actualMs": 48601.099708,
+            "applyMs": 0.188209
+          },
+          {
+            "sequence": 10245,
+            "plannedMs": 48800,
+            "actualMs": 48801.088833,
+            "applyMs": 0.1075
+          },
+          {
+            "sequence": 10246,
+            "plannedMs": 49000,
+            "actualMs": 49001.074042,
+            "applyMs": 0.119958
+          },
+          {
+            "sequence": 10247,
+            "plannedMs": 49200,
+            "actualMs": 49201.093125,
+            "applyMs": 0.073458
+          },
+          {
+            "sequence": 10248,
+            "plannedMs": 49400,
+            "actualMs": 49401.048375,
+            "applyMs": 0.137958
+          },
+          {
+            "sequence": 10249,
+            "plannedMs": 49600,
+            "actualMs": 49601.095292,
+            "applyMs": 0.185125
+          },
+          {
+            "sequence": 10250,
+            "plannedMs": 49800,
+            "actualMs": 49801.084292,
+            "applyMs": 0.123291
+          },
+          {
+            "sequence": 10251,
+            "plannedMs": 50000,
+            "actualMs": 50001.110583,
+            "applyMs": 0.232625
+          },
+          {
+            "sequence": 10252,
+            "plannedMs": 50200,
+            "actualMs": 50201.080375,
+            "applyMs": 0.088667
+          },
+          {
+            "sequence": 10253,
+            "plannedMs": 50400,
+            "actualMs": 50401.096625,
+            "applyMs": 0.148208
+          },
+          {
+            "sequence": 10254,
+            "plannedMs": 50600,
+            "actualMs": 50601.095625,
+            "applyMs": 0.08375
+          },
+          {
+            "sequence": 10255,
+            "plannedMs": 50800,
+            "actualMs": 50801.08625,
+            "applyMs": 0.133375
+          },
+          {
+            "sequence": 10256,
+            "plannedMs": 51000,
+            "actualMs": 51001.088708,
+            "applyMs": 0.131584
+          },
+          {
+            "sequence": 10257,
+            "plannedMs": 51200,
+            "actualMs": 51201.07225,
+            "applyMs": 0.093375
+          },
+          {
+            "sequence": 10258,
+            "plannedMs": 51400,
+            "actualMs": 51400.748625,
+            "applyMs": 0.147
+          },
+          {
+            "sequence": 10259,
+            "plannedMs": 51600,
+            "actualMs": 51601.059208,
+            "applyMs": 0.162417
+          },
+          {
+            "sequence": 10260,
+            "plannedMs": 51800,
+            "actualMs": 51801.082875,
+            "applyMs": 0.166792
+          },
+          {
+            "sequence": 10261,
+            "plannedMs": 52000,
+            "actualMs": 52001.098667,
+            "applyMs": 0.137333
+          },
+          {
+            "sequence": 10262,
+            "plannedMs": 52200,
+            "actualMs": 52201.076042,
+            "applyMs": 0.067125
+          },
+          {
+            "sequence": 10263,
+            "plannedMs": 52400,
+            "actualMs": 52401.037417,
+            "applyMs": 0.083708
+          },
+          {
+            "sequence": 10264,
+            "plannedMs": 52600,
+            "actualMs": 52601.065292,
+            "applyMs": 0.123916
+          },
+          {
+            "sequence": 10265,
+            "plannedMs": 52800,
+            "actualMs": 52801.080875,
+            "applyMs": 0.098958
+          },
+          {
+            "sequence": 10266,
+            "plannedMs": 53000,
+            "actualMs": 53000.329208,
+            "applyMs": 0.171792
+          },
+          {
+            "sequence": 10267,
+            "plannedMs": 53200,
+            "actualMs": 53201.086958,
+            "applyMs": 0.109542
+          },
+          {
+            "sequence": 10268,
+            "plannedMs": 53400,
+            "actualMs": 53401.049708,
+            "applyMs": 0.067584
+          },
+          {
+            "sequence": 10269,
+            "plannedMs": 53600,
+            "actualMs": 53601.076417,
+            "applyMs": 0.155916
+          },
+          {
+            "sequence": 10270,
+            "plannedMs": 53800,
+            "actualMs": 53801.080583,
+            "applyMs": 0.096167
+          },
+          {
+            "sequence": 10271,
+            "plannedMs": 54000,
+            "actualMs": 54001.173917,
+            "applyMs": 0.132625
+          },
+          {
+            "sequence": 10272,
+            "plannedMs": 54200,
+            "actualMs": 54201.111292,
+            "applyMs": 0.229625
+          },
+          {
+            "sequence": 10273,
+            "plannedMs": 54400,
+            "actualMs": 54401.182917,
+            "applyMs": 0.182125
+          },
+          {
+            "sequence": 10274,
+            "plannedMs": 54600,
+            "actualMs": 54601.09125,
+            "applyMs": 0.105292
+          },
+          {
+            "sequence": 10275,
+            "plannedMs": 54800,
+            "actualMs": 54801.132625,
+            "applyMs": 0.399
+          },
+          {
+            "sequence": 10276,
+            "plannedMs": 55000,
+            "actualMs": 55001.104625,
+            "applyMs": 0.163125
+          },
+          {
+            "sequence": 10277,
+            "plannedMs": 55200,
+            "actualMs": 55201.078083,
+            "applyMs": 0.155584
+          },
+          {
+            "sequence": 10278,
+            "plannedMs": 55400,
+            "actualMs": 55401.097208,
+            "applyMs": 0.071334
+          },
+          {
+            "sequence": 10279,
+            "plannedMs": 55600,
+            "actualMs": 55601.072292,
+            "applyMs": 0.087083
+          },
+          {
+            "sequence": 10280,
+            "plannedMs": 55800,
+            "actualMs": 55801.07275,
+            "applyMs": 0.145583
+          },
+          {
+            "sequence": 10281,
+            "plannedMs": 56000,
+            "actualMs": 56001.099917,
+            "applyMs": 0.151375
+          },
+          {
+            "sequence": 10282,
+            "plannedMs": 56200,
+            "actualMs": 56201.146208,
+            "applyMs": 0.161459
+          },
+          {
+            "sequence": 10283,
+            "plannedMs": 56400,
+            "actualMs": 56401.071792,
+            "applyMs": 0.119458
+          },
+          {
+            "sequence": 10284,
+            "plannedMs": 56600,
+            "actualMs": 56601.087958,
+            "applyMs": 0.089334
+          },
+          {
+            "sequence": 10285,
+            "plannedMs": 56800,
+            "actualMs": 56801.072333,
+            "applyMs": 0.156459
+          },
+          {
+            "sequence": 10286,
+            "plannedMs": 57000,
+            "actualMs": 57001.075208,
+            "applyMs": 0.192417
+          },
+          {
+            "sequence": 10287,
+            "plannedMs": 57200,
+            "actualMs": 57201.17025,
+            "applyMs": 0.193417
+          },
+          {
+            "sequence": 10288,
+            "plannedMs": 57400,
+            "actualMs": 57401.10725,
+            "applyMs": 0.165625
+          },
+          {
+            "sequence": 10289,
+            "plannedMs": 57600,
+            "actualMs": 57601.07825,
+            "applyMs": 0.113708
+          },
+          {
+            "sequence": 10290,
+            "plannedMs": 57800,
+            "actualMs": 57801.070375,
+            "applyMs": 0.137375
+          },
+          {
+            "sequence": 10291,
+            "plannedMs": 58000,
+            "actualMs": 58000.713833,
+            "applyMs": 0.081959
+          },
+          {
+            "sequence": 10292,
+            "plannedMs": 58200,
+            "actualMs": 58201.074167,
+            "applyMs": 0.160083
+          },
+          {
+            "sequence": 10293,
+            "plannedMs": 58400,
+            "actualMs": 58401.121,
+            "applyMs": 0.170542
+          },
+          {
+            "sequence": 10294,
+            "plannedMs": 58600,
+            "actualMs": 58601.066208,
+            "applyMs": 0.11325
+          },
+          {
+            "sequence": 10295,
+            "plannedMs": 58800,
+            "actualMs": 58801.093792,
+            "applyMs": 0.162666
+          },
+          {
+            "sequence": 10296,
+            "plannedMs": 59000,
+            "actualMs": 59001.062375,
+            "applyMs": 0.095125
+          },
+          {
+            "sequence": 10297,
+            "plannedMs": 59200,
+            "actualMs": 59201.076208,
+            "applyMs": 0.171792
+          },
+          {
+            "sequence": 10298,
+            "plannedMs": 59400,
+            "actualMs": 59401.092,
+            "applyMs": 0.144667
+          },
+          {
+            "sequence": 10299,
+            "plannedMs": 59600,
+            "actualMs": 59600.071458,
+            "applyMs": 0.116334
+          },
+          {
+            "sequence": 10300,
+            "plannedMs": 59800,
+            "actualMs": 59801.057458,
+            "applyMs": 0.062917
+          }
+        ],
+        "valid": true
+      },
+      "consistency": {
+        "clientMatchesUpstream": true,
+        "upstreamMatchesPlanned": true
+      }
+    }
+  ],
+  "errors": []
+}

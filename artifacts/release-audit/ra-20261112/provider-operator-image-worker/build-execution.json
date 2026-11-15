@@ -1,0 +1,74 @@
+{
+  "name": "build",
+  "argv": [
+    "/usr/local/bin/docker",
+    "--host",
+    "unix:///var/run/docker.sock",
+    "build",
+    "--cpu-period=100000",
+    "--cpu-quota=200000",
+    "--memory=4g",
+    "--memory-swap=4g",
+    "--network=none",
+    "--force-rm",
+    "--platform=linux/arm64",
+    "--pull=false",
+    "--iidfile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02/image-id.txt",
+    "--tag",
+    "kubeview-private/cilium-operator-generic:1.20.4-security.2-image02",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-operator-image02"
+  ],
+  "startedAt": "2026-11-12T10:25:54.907950+00:00",
+  "maxSeconds": 120,
+  "samples": [
+    {
+      "elapsedSeconds": 1.274,
+      "ownedRSSBytes": 4128768,
+      "ownedPIDs": [
+        10795
+      ],
+      "freeDiskBytes": 454701871104,
+      "batteryPercent": 52
+    },
+    {
+      "elapsedSeconds": 1.798,
+      "ownedRSSBytes": 26689536,
+      "ownedPIDs": [
+        10795
+      ],
+      "freeDiskBytes": 454701998080,
+      "batteryPercent": 52
+    },
+    {
+      "elapsedSeconds": 2.339,
+      "ownedRSSBytes": 26771456,
+      "ownedPIDs": [
+        10795
+      ],
+      "freeDiskBytes": 454472175616,
+      "batteryPercent": 52
+    },
+    {
+      "elapsedSeconds": 2.883,
+      "ownedRSSBytes": 26771456,
+      "ownedPIDs": [
+        10795
+      ],
+      "freeDiskBytes": 454472155136,
+      "batteryPercent": 52
+    },
+    {
+      "elapsedSeconds": 3.425,
+      "ownedRSSBytes": 26771456,
+      "ownedPIDs": [
+        10795
+      ],
+      "freeDiskBytes": 454472138752,
+      "batteryPercent": 52
+    }
+  ],
+  "pid": 10795,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:25:57.595790+00:00"
+}

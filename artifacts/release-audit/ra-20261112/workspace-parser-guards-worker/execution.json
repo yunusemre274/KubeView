@@ -1,0 +1,305 @@
+{
+  "startedAt": "2026-11-12T21:40:30.935640+00:00",
+  "finishedAt": "2026-11-12T21:40:33.899468+00:00",
+  "elapsedSeconds": 2.9638517080020392,
+  "exitCode": 1,
+  "stopReason": null,
+  "command": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=60s",
+    "-run",
+    "^TestReleaseWorkspaceParser",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "env": {
+    "GOTOOLCHAIN": "local",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "1GiB",
+    "GOPROXY": "off"
+  },
+  "freeDiskBytesBefore": 452942610432,
+  "peakSampledOwnedRSSKiB": 677600,
+  "rssSamples": [
+    {
+      "elapsedSeconds": 0.011,
+      "rssKiB": 6336,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 6336
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 0.182,
+      "rssKiB": 58304,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 58304
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 0.352,
+      "rssKiB": 155216,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 59968
+        },
+        {
+          "pid": 65016,
+          "ppid": 65011,
+          "rssKiB": 95248
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 0.517,
+      "rssKiB": 227024,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 59968
+        },
+        {
+          "pid": 65016,
+          "ppid": 65011,
+          "rssKiB": 167056
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 0.685,
+      "rssKiB": 289312,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 59968
+        },
+        {
+          "pid": 65016,
+          "ppid": 65011,
+          "rssKiB": 229344
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 0.856,
+      "rssKiB": 373936,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 59968
+        },
+        {
+          "pid": 65016,
+          "ppid": 65011,
+          "rssKiB": 313968
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 1.018,
+      "rssKiB": 385760,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 59968
+        },
+        {
+          "pid": 65016,
+          "ppid": 65011,
+          "rssKiB": 325792
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 1.189,
+      "rssKiB": 429616,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 59968
+        },
+        {
+          "pid": 65016,
+          "ppid": 65011,
+          "rssKiB": 369648
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 1.359,
+      "rssKiB": 60000,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60000
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 1.529,
+      "rssKiB": 467488,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60032
+        },
+        {
+          "pid": 65026,
+          "ppid": 65011,
+          "rssKiB": 407456
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 1.693,
+      "rssKiB": 677600,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60032
+        },
+        {
+          "pid": 65026,
+          "ppid": 65011,
+          "rssKiB": 617568
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 1.857,
+      "rssKiB": 60544,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60544
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 2.028,
+      "rssKiB": 60704,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60672
+        },
+        {
+          "pid": 65035,
+          "ppid": 65011,
+          "rssKiB": 32
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 2.216,
+      "rssKiB": 60704,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60672
+        },
+        {
+          "pid": 65035,
+          "ppid": 65011,
+          "rssKiB": 32
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 2.408,
+      "rssKiB": 60704,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60672
+        },
+        {
+          "pid": 65035,
+          "ppid": 65011,
+          "rssKiB": 32
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 2.597,
+      "rssKiB": 73520,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60672
+        },
+        {
+          "pid": 65035,
+          "ppid": 65011,
+          "rssKiB": 12848
+        }
+      ]
+    },
+    {
+      "elapsedSeconds": 2.783,
+      "rssKiB": 60832,
+      "processes": [
+        {
+          "pid": 65011,
+          "ppid": 65008,
+          "rssKiB": 60832
+        }
+      ]
+    }
+  ],
+  "sourceBefore": {
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+    "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8"
+  },
+  "sourceAfter": {
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+    "backend/pkg/server/server_test.go": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8"
+  },
+  "runtimeSourceUnchanged": true,
+  "testSourceBeforeSHA256": "d7fe179757087e9b5f93864569d593645bf19b7221a70de315f93948ef4bf377",
+  "testSourceAfterSHA256": "d7fe179757087e9b5f93864569d593645bf19b7221a70de315f93948ef4bf377",
+  "testSourceUnchangedDuringRun": true,
+  "cleanup": {
+    "ownedProcessGroup": 65011,
+    "remainingOwnedPIDs": [],
+    "httptestInProcess": true,
+    "networkListenerStarted": false,
+    "privateWorkspaceTempDirs": "testing.TempDir; removed by Go testing cleanup",
+    "serverClose": "existing testServer registers t.Cleanup(s.Close)"
+  }
+}

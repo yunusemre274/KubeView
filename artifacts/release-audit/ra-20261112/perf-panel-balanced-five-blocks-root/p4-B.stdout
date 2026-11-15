@@ -1,0 +1,10 @@
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+{"profile":"M","scenario":"panel-closed","repeat":4,"fps":60.005161376256005,"p95":18.300000000745058,"messages":0}
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+{"profile":"M","scenario":"panel-open","repeat":4,"fps":60.025608706294854,"p95":18.699999999254942,"messages":0}
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+{"profile":"M","scenario":"panel-closed-events","repeat":4,"fps":59.99120861555601,"p95":18.699999999254942,"messages":300}
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+{"profile":"M","scenario":"panel-open-events","repeat":4,"fps":60.02031200572732,"p95":18.600000001490116,"messages":300}
+Results: /Users/yunusemre/Desktop/KubeView/benchmarks/results/cat16-balanced-p4-B-20261112T193853Z

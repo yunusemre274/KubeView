@@ -1,0 +1,15 @@
+--- expected-red-source
++++ final-green-source
+@@ -42,7 +42,11 @@
+       if (match[1] === 'actions/setup-node' && (input.cache !== 'npm' || input['cache-dependency-path'] !== 'frontend/package-lock.json')) issues.push('cache-key-input');
+       if (match[1] === 'actions/upload-artifact') {
+         const paths = String(input.path || '').trim().split(/\s+/).sort();
+-        if (JSON.stringify(paths) !== JSON.stringify(['dist/*.tar.gz', 'dist/SHA256SUMS', 'dist/build.json'].sort()) || input['include-hidden-files'] === true || input.overwrite === true) issues.push('artifact-boundary');
++        // Action inputs can be quoted YAML strings. Only explicitly disabled
++        // flags are allowed in this read-only lane; reject unknown expressions.
++        const disabled = input => input === undefined || input === false
++          || (typeof input === 'string' && /^(false|False|FALSE)$/.test(input));
++        if (JSON.stringify(paths) !== JSON.stringify(['dist/*.tar.gz', 'dist/SHA256SUMS', 'dist/build.json'].sort()) || !disabled(input['include-hidden-files']) || !disabled(input.overwrite)) issues.push('artifact-boundary');
+       }
+     }
+   }

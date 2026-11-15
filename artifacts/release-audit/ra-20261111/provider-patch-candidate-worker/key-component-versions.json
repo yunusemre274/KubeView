@@ -1,0 +1,63 @@
+[
+  {
+    "image": "hubble-relay",
+    "target": "usr/bin/gops",
+    "stdlib_versions": [
+      "v1.26.10"
+    ],
+    "module_versions": {}
+  },
+  {
+    "image": "hubble-relay",
+    "target": "usr/bin/hubble-relay",
+    "stdlib_versions": [
+      "v1.26.10"
+    ],
+    "module_versions": {
+      "golang.org/x/net": "v0.60.0",
+      "golang.org/x/text": "v0.42.0",
+      "google.golang.org/grpc": "v1.83.2"
+    }
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/cilium-agent",
+    "stdlib_versions": [
+      "v1.26.10"
+    ],
+    "module_versions": {
+      "golang.org/x/net": "v0.60.0",
+      "golang.org/x/text": "v0.42.0",
+      "google.golang.org/grpc": "v1.83.2"
+    }
+  },
+  {
+    "image": "cilium",
+    "target": "usr/bin/gops",
+    "stdlib_versions": [
+      "v1.26.10"
+    ],
+    "module_versions": {}
+  },
+  {
+    "image": "operator-generic",
+    "target": "usr/bin/cilium-operator-generic",
+    "stdlib_versions": [
+      "v1.26.10"
+    ],
+    "module_versions": {
+      "github.com/go-jose/go-jose/v4": "v4.1.4",
+      "golang.org/x/net": "v0.60.0",
+      "golang.org/x/text": "v0.42.0",
+      "google.golang.org/grpc": "v1.83.2"
+    }
+  },
+  {
+    "image": "operator-generic",
+    "target": "usr/bin/gops",
+    "stdlib_versions": [
+      "v1.26.10"
+    ],
+    "module_versions": {}
+  }
+]

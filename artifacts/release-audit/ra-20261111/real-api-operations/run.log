@@ -1,0 +1,18 @@
+=== RUN   TestOwnedWorkspaceRealConcurrentOperationsAcceptance
+=== RUN   TestOwnedWorkspaceRealConcurrentOperationsAcceptance/owned_distinct_harbor_fixtures_ready
+    workspace_real_acceptance_test.go:127: REAL Ready deploymentUID=106f621b-1ecc-4344-98ef-a4838db750c7 replicaSetUID=43eda034-d843-48df-b9da-185aa0477dcc podUID=8f6a9dcc-b257-49f2-88a9-c8dc645b2c7b nodeUID=bf794757-0d42-43e7-ab96-465103f5cabf
+    workspace_real_acceptance_test.go:128: REAL Ready deploymentUID=b6f2a88c-365b-49d3-982f-17b8adcb9a44 replicaSetUID=bcdfec19-1308-46f8-9fae-26d46560b8f7 podUID=b1c65568-53c7-4c25-892a-2276510219d9 nodeUID=bf794757-0d42-43e7-ab96-465103f5cabf
+=== RUN   TestOwnedWorkspaceRealConcurrentOperationsAcceptance/concurrent_duplicate_scale_and_other_harbor_update
+    workspace_real_acceptance_test.go:200: READBACK concurrent A generation=2 expected=2; B generation=2 expected=2; BSpecEqual=true BPodUIDsEqual=true
+    workspace_real_acceptance_test.go:222: REAL concurrent dispatch: A identical UID/RV scale accepted1/conflict1; B metadata PUT accepted; exact UID readbacks and B Spec/PodUID isolation verified
+=== RUN   TestOwnedWorkspaceRealConcurrentOperationsAcceptance/known_accepted_response_suppression_reread_without_retry
+    workspace_real_acceptance_test.go:254: READBACK suppressed B generation=3 expected=3; RVChanged=true BSpecEqual=true BPodUIDsEqual=true
+    workspace_real_acceptance_test.go:273: KNOWN_ACCEPTED_RESPONSE_SIMULATION: one upstream200 PUT response intentionally suppressed; exact UID GET reconciled effect; no retry. Real network timeout/cancel remains NOT RUN
+=== RUN   TestOwnedWorkspaceRealConcurrentOperationsAcceptance/default_workspace_records_unchanged
+--- PASS: TestOwnedWorkspaceRealConcurrentOperationsAcceptance (8.51s)
+    --- PASS: TestOwnedWorkspaceRealConcurrentOperationsAcceptance/owned_distinct_harbor_fixtures_ready (2.62s)
+    --- PASS: TestOwnedWorkspaceRealConcurrentOperationsAcceptance/concurrent_duplicate_scale_and_other_harbor_update (2.81s)
+    --- PASS: TestOwnedWorkspaceRealConcurrentOperationsAcceptance/known_accepted_response_suppression_reread_without_retry (0.10s)
+    --- PASS: TestOwnedWorkspaceRealConcurrentOperationsAcceptance/default_workspace_records_unchanged (0.00s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	9.154s

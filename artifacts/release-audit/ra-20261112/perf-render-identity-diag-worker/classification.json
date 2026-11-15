@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-12T20:01:55.346510+00:00",
+  "measurementPurpose": "RENDER_IDENTITY_DIAGNOSTIC_NO_CPU_ACCEPTANCE",
+  "instrumented": true,
+  "profilerClassification": true,
+  "rawManifestPolicy": "A had already started before review steering; preserve raw profiler/measurementPurpose fields and private byte guard. This classification governs both instrumented15s diagnostic runs. No extra run or source change.",
+  "atomicity": "Object/geometry/material UUID references are selected from a single main-camera onBeforeRender frame. Geometry/material properties, instances and transforms are serialized after async SHA operations; they are post-callback sampled properties, not atomic frame pose.",
+  "noCPUAcceptance": true,
+  "transformEqualityClaim": false,
+  "absoluteDeadline": "2026-11-12T20:07:27Z"
+}

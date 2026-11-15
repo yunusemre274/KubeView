@@ -1,0 +1,42 @@
+[
+  {
+    "file": "source-before.json",
+    "line": 2,
+    "field": "frontend/e2e/release-secret-purpose-browser.mjs",
+    "recordedHash": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+    "recomputedFileSHA256": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+    "equalsOrdinarySourceFileSHA256": true,
+    "disposition": "FALSE_POSITIVE_SOURCE_HASH_NOT_CREDENTIAL",
+    "rootFinalTriageRequired": true
+  },
+  {
+    "file": "source-before.json",
+    "line": 5,
+    "field": "frontend/src/workbench/secretPayload.js",
+    "recordedHash": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+    "recomputedFileSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+    "equalsOrdinarySourceFileSHA256": true,
+    "disposition": "FALSE_POSITIVE_SOURCE_HASH_NOT_CREDENTIAL",
+    "rootFinalTriageRequired": true
+  },
+  {
+    "file": "source-after.json",
+    "line": 2,
+    "field": "frontend/e2e/release-secret-purpose-browser.mjs",
+    "recordedHash": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+    "recomputedFileSHA256": "79d3cd8ce7473b02b2dd0d1d17c2391c8ea6fb33f352fdfff4378e68528daa45",
+    "equalsOrdinarySourceFileSHA256": true,
+    "disposition": "FALSE_POSITIVE_SOURCE_HASH_NOT_CREDENTIAL",
+    "rootFinalTriageRequired": true
+  },
+  {
+    "file": "source-after.json",
+    "line": 5,
+    "field": "frontend/src/workbench/secretPayload.js",
+    "recordedHash": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+    "recomputedFileSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+    "equalsOrdinarySourceFileSHA256": true,
+    "disposition": "FALSE_POSITIVE_SOURCE_HASH_NOT_CREDENTIAL",
+    "rootFinalTriageRequired": true
+  }
+]

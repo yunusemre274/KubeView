@@ -1,0 +1,1087 @@
+{
+  "files": {
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/server/workspace_scope.go": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+    "backend/pkg/server/workspace_broker.go": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+    "backend/pkg/server/workspace_membership.go": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+    "backend/pkg/server/workspace_projection.go": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "backend/pkg/server/stream.go": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+    "backend/pkg/server/watch_authorization.go": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+    "backend/pkg/server/resource_scopes.go": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+    "backend/pkg/server/traffic_handlers.go": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "frontend/src/context/WorkspaceRegistry.js": "010ae39dec13d12f58547333c9eaa6292e146ddfba41a85fdb2962613de1e59b",
+    "frontend/src/context/WorkspaceProvider.jsx": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+    "frontend/src/context/ShipyardClusterContext.jsx": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+    "frontend/src/world/workspace.js": "8bc30c6f259aa26033cc3d4709220630a6912bd8be8f5a03711e875d879c689a",
+    "frontend/src/world/workspaceMutations.js": "0c891a2412e5e0b23fc97d7cfd79509ea1b278d4ce0e4d51fe2aefd81e0adfdb",
+    "frontend/src/data/resourceStore.js": "a88fd60b1519c23e622ac986fe6d96caf8a1a8e780bb2f36d603b4eedbdeb525",
+    "frontend/src/data/resourceScopes.js": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158",
+    "frontend/src/App.jsx": "92912b2f27bc4e910e966644588a134997c75ea341ee3d3e4a01305caa67e114",
+    "frontend/src/workbench/ResourceForms.jsx": "d522ed12d62e3363b1f1186b1327c91613c71dca0de5ee4d9c4c963873bf9d66",
+    "backend/pkg/server/workspace_test.go": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+    "backend/pkg/server/release_security_regression_test.go": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+    "backend/pkg/server/release_active_watch_real_test.go": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb",
+    "frontend/tests/workspace.test.js": "1b977cf41716a2225569568adf998242e100620d455d5fd9941a176f7465fe08",
+    "frontend/tests/workspace-app-state.test.js": "89d36463cb8ba3fdad025eaa3228d8db18de881333aeef75b91c6a9af6591d56",
+    "frontend/tests/release-watch-authz.test.js": "de4a2f8741ecf17d90e4a386dbd7f3b47b081f51a2542b37e99f420315c4a215",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+  },
+  "lineInventory": {
+    "backend/pkg/server/workspace.go": [
+      {
+        "line": 56,
+        "code": "func workspaceScopeFrom(ctx context.Context) *workspaceScope {"
+      },
+      {
+        "line": 60,
+        "code": "func (v *workspaceScope) allowsNamespace(ns string) bool {"
+      },
+      {
+        "line": 68,
+        "code": "func scopeValue(r *http.Request, header, query string) string {"
+      },
+      {
+        "line": 74,
+        "code": "func operatorKey(r *http.Request, cookie string) string {"
+      },
+      {
+        "line": 83,
+        "code": "func (s *Server) ConfigureWorkspace(dataDir, legacyContext, legacyNamespace string) error {"
+      },
+      {
+        "line": 102,
+        "code": "func (s *Server) trustedWorkspaceContext(name string) bool {"
+      },
+      {
+        "line": 123,
+        "code": "func (s *Server) bindWorkspaceRequest(w http.ResponseWriter, r *http.Request) (*http.Request, bool) {"
+      },
+      {
+        "line": 166,
+        "code": "func (s *Server) scopedClient(c *Clients, scope *workspaceScope) *Clients {"
+      },
+      {
+        "line": 172,
+        "code": "func safeAuthorizationKey(c *Clients, connectionID string) string {"
+      },
+      {
+        "line": 176,
+        "code": "func (s *Server) workspaceIdentity(ctx context.Context, c *Clients, connectionID string) connectionIdentity {"
+      },
+      {
+        "line": 179,
+        "code": "\tidentity := connectionIdentity{Confidence: \"unknown\", AuthorizationKey: safeAuthorizationKey(&base, connectionID), CredentialGeneration: base.ID}"
+      },
+      {
+        "line": 192,
+        "code": "func (s *Server) workspaceDTO(w http.ResponseWriter, r *http.Request, doc ws.Document) {"
+      },
+      {
+        "line": 220,
+        "code": "\t\t\t\tidentity.AuthorizationKey = safeAuthorizationKey(client, id)"
+      },
+      {
+        "line": 230,
+        "code": "func (s *Server) workspaceCSRF(w http.ResponseWriter, r *http.Request) bool {"
+      },
+      {
+        "line": 246,
+        "code": "func (s *Server) workspaceHandler(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 470,
+        "code": "func (s *Server) invalidateWorkspaceChanges(before, after ws.Document) {"
+      },
+      {
+        "line": 514,
+        "code": "func (s *Server) workspacePreview(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 593,
+        "code": "func workspaceError(message string) error { return fmt.Errorf(\"Liman kapsam\u0131: %s\", message) }"
+      },
+      {
+        "line": 594,
+        "code": "func scopedOperation(r *http.Request, c *Clients, obj interface{}, dry bool) map[string]interface{} {"
+      },
+      {
+        "line": 617,
+        "code": "func availableHarborPosition(harbors []ws.Harbor, preferred [2]float64) [2]float64 {"
+      },
+      {
+        "line": 632,
+        "code": "func (s *Server) retireWorkspaceClient(id string) {"
+      }
+    ],
+    "backend/pkg/server/workspace_scope.go": [
+      {
+        "line": 21,
+        "code": "func schemaGVR(group, version, resource string) schema.GroupVersionResource {"
+      },
+      {
+        "line": 24,
+        "code": "func baseWorkspaceClient(c *Clients) *Clients {"
+      },
+      {
+        "line": 33,
+        "code": "func scopeForbidden(gvr schema.GroupVersionResource, name string) error {"
+      },
+      {
+        "line": 36,
+        "code": "func namespacedResource(c *Clients, gvr schema.GroupVersionResource) (bool, error) {"
+      },
+      {
+        "line": 48,
+        "code": "func selectorObject(scope *workspaceScope, obj *unstructured.Unstructured) bool {"
+      },
+      {
+        "line": 100,
+        "code": "func (s *Server) scopeContains(ctx context.Context, c *Clients, scope *workspaceScope, obj *unstructured.Unstructured, depth int) bool {"
+      },
+      {
+        "line": 184,
+        "code": "func (s *Server) authorizeWorkspace(ctx context.Context, c *Clients, verb, group, res, sub, ns, name string) error {"
+      },
+      {
+        "line": 238,
+        "code": "func (d *workspaceDynamic) Resource(gvr schema.GroupVersionResource) dynamic.NamespaceableResourceInterface {"
+      },
+      {
+        "line": 252,
+        "code": "func (r *workspaceResource) Namespace(ns string) dynamic.ResourceInterface {"
+      },
+      {
+        "line": 257,
+        "code": "func (r *workspaceResource) base() dynamic.ResourceInterface {"
+      },
+      {
+        "line": 263,
+        "code": "func (r *workspaceResource) check() error {"
+      },
+      {
+        "line": 272,
+        "code": "func (r *workspaceResource) allowed(ctx context.Context, obj *unstructured.Unstructured) bool {"
+      },
+      {
+        "line": 275,
+        "code": "func (r *workspaceResource) Get(ctx context.Context, name string, opts metav1.GetOptions, sub ...string) (*unstructured.Unstructured, error) {"
+      },
+      {
+        "line": 291,
+        "code": "func (r *workspaceResource) List(ctx context.Context, opts metav1.ListOptions) (*unstructured.UnstructuredList, error) {"
+      },
+      {
+        "line": 333,
+        "code": "func (r *workspaceResource) writeCheck(ctx context.Context, obj *unstructured.Unstructured) error {"
+      },
+      {
+        "line": 345,
+        "code": "func (r *workspaceResource) Create(ctx context.Context, obj *unstructured.Unstructured, opts metav1.CreateOptions, sub ...string) (*unstructured.Unstructured, error) {"
+      },
+      {
+        "line": 351,
+        "code": "func (r *workspaceResource) Update(ctx context.Context, obj *unstructured.Unstructured, opts metav1.UpdateOptions, sub ...string) (*unstructured.Unstructured, error) {"
+      },
+      {
+        "line": 367,
+        "code": "func (r *workspaceResource) UpdateStatus(ctx context.Context, obj *unstructured.Unstructured, opts metav1.UpdateOptions) (*unstructured.Unstructured, error) {"
+      },
+      {
+        "line": 370,
+        "code": "func (r *workspaceResource) Delete(ctx context.Context, name string, opts metav1.DeleteOptions, sub ...string) error {"
+      },
+      {
+        "line": 376,
+        "code": "func (r *workspaceResource) DeleteCollection(context.Context, metav1.DeleteOptions, metav1.ListOptions) error {"
+      },
+      {
+        "line": 379,
+        "code": "func (r *workspaceResource) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts metav1.PatchOptions, sub ...string) (*unstructured.Unstructured, error) {"
+      },
+      {
+        "line": 395,
+        "code": "func (r *workspaceResource) Apply(context.Context, string, *unstructured.Unstructured, metav1.ApplyOptions, ...string) (*unstructured.Unstructured, error) {"
+      },
+      {
+        "line": 398,
+        "code": "func (r *workspaceResource) ApplyStatus(context.Context, string, *unstructured.Unstructured, metav1.ApplyOptions) (*unstructured.Unstructured, error) {"
+      },
+      {
+        "line": 401,
+        "code": "func (r *workspaceResource) Watch(ctx context.Context, opts metav1.ListOptions) (watch.Interface, error) {"
+      },
+      {
+        "line": 422,
+        "code": "func newScopeWatch(ctx context.Context, source watch.Interface, allowed func(*unstructured.Unstructured) bool) *scopeWatch {"
+      },
+      {
+        "line": 450,
+        "code": "func (w *scopeWatch) Stop()                          { w.once.Do(func() { w.cancel(); w.source.Stop() }) }"
+      },
+      {
+        "line": 451,
+        "code": "func (w *scopeWatch) ResultChan() <-chan watch.Event { return w.out }"
+      }
+    ],
+    "backend/pkg/server/workspace_broker.go": [
+      {
+        "line": 31,
+        "code": "func (b *watchBroker) acquire(c *Clients, scope ResourceScope, onError func(error)) (cache.SharedIndexInformer, func(), error) {"
+      },
+      {
+        "line": 93,
+        "code": "func (b *watchBroker) owner(clientID, apiVersion, kind, namespace, name string) (*unstructured.Unstructured, bool) {"
+      },
+      {
+        "line": 118,
+        "code": "func (b *watchBroker) objects(clientID, kind, namespace string) ([]*unstructured.Unstructured, bool) {"
+      },
+      {
+        "line": 135,
+        "code": "func (b *watchBroker) close() {"
+      },
+      {
+        "line": 145,
+        "code": "func workspaceBindings(bindings []scopeBinding, scope *workspaceScope) []scopeBinding {"
+      }
+    ],
+    "backend/pkg/server/workspace_membership.go": [
+      {
+        "line": 18,
+        "code": "func memberMetadata(u *unstructured.Unstructured) *unstructured.Unstructured {"
+      },
+      {
+        "line": 21,
+        "code": "func (s *Server) beginWorkspaceMembership(r *http.Request, generation string) map[string]workspaceMember {"
+      },
+      {
+        "line": 30,
+        "code": "\t\tsession.streamGeneration = generation"
+      },
+      {
+        "line": 37,
+        "code": "func (s *Server) updateWorkspaceMember(r *http.Request, generation, action string, u *unstructured.Unstructured, scope ResourceScope) bool {"
+      },
+      {
+        "line": 45,
+        "code": "\tif session == nil || session.streamGeneration != generation {"
+      },
+      {
+        "line": 62,
+        "code": "func (s *Server) replaceWorkspaceMembers(r *http.Request, generation string, members map[string]workspaceMember) bool {"
+      },
+      {
+        "line": 73,
+        "code": "\tif session == nil || session.streamGeneration != generation {"
+      }
+    ],
+    "backend/pkg/server/workspace_projection.go": [
+      {
+        "line": 11,
+        "code": "func workspaceMembershipChanged(old, current *unstructured.Unstructured) bool {"
+      },
+      {
+        "line": 24,
+        "code": "func scopedResourceMessage(action string, u *unstructured.Unstructured, scope ResourceScope) envelope {"
+      },
+      {
+        "line": 25,
+        "code": "\tscope.Authoritative = true"
+      }
+    ],
+    "backend/pkg/server/server.go": [
+      {
+        "line": 76,
+        "code": "func New() *Server {"
+      },
+      {
+        "line": 79,
+        "code": "func (s *Server) Register(mux *http.ServeMux) {"
+      },
+      {
+        "line": 93,
+        "code": "func (s *Server) Close() {"
+      },
+      {
+        "line": 114,
+        "code": "func SameOrigin(r *http.Request) bool {"
+      },
+      {
+        "line": 126,
+        "code": "func (s *Server) guard(w http.ResponseWriter, r *http.Request, authenticate bool) bool {"
+      },
+      {
+        "line": 156,
+        "code": "func (s *Server) protect(next http.HandlerFunc) http.HandlerFunc {"
+      },
+      {
+        "line": 197,
+        "code": "func (s *Server) session(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 218,
+        "code": "func jsonResponse(w http.ResponseWriter, status int, v interface{}) {"
+      },
+      {
+        "line": 223,
+        "code": "func problem(w http.ResponseWriter, status int, message string) {"
+      },
+      {
+        "line": 226,
+        "code": "func decode(w http.ResponseWriter, r *http.Request, v interface{}) bool {"
+      },
+      {
+        "line": 244,
+        "code": "func loadingRules() *clientcmd.ClientConfigLoadingRules {"
+      },
+      {
+        "line": 247,
+        "code": "func inClusterNamespace() string {"
+      },
+      {
+        "line": 256,
+        "code": "func (s *Server) contexts(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 307,
+        "code": "func (s *Server) client(name string) (*Clients, error) {"
+      },
+      {
+        "line": 395,
+        "code": "func (s *Server) requestClient(w http.ResponseWriter, r *http.Request) *Clients {"
+      },
+      {
+        "line": 415,
+        "code": "func (s *Server) namespace(r *http.Request) (string, error) {"
+      },
+      {
+        "line": 433,
+        "code": "func discover(c *Clients) ([]Resource, []string) {"
+      },
+      {
+        "line": 457,
+        "code": "func (s *Server) discovery(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 465,
+        "code": "func queryGVR(r *http.Request) schema.GroupVersionResource {"
+      },
+      {
+        "line": 476,
+        "code": "func resourceNamespace(c *Clients, gvr schema.GroupVersionResource, ns string) string {"
+      },
+      {
+        "line": 486,
+        "code": "func (s *Server) resourceClient(c *Clients, gvr schema.GroupVersionResource, ns string) dynamic.ResourceInterface {"
+      },
+      {
+        "line": 494,
+        "code": "func sanitize(obj *unstructured.Unstructured) *unstructured.Unstructured {"
+      },
+      {
+        "line": 512,
+        "code": "func (s *Server) openapi(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 527,
+        "code": "func (s *Server) revealSecret(w http.ResponseWriter, r *http.Request) {"
+      }
+    ],
+    "backend/pkg/server/connection.go": [
+      {
+        "line": 18,
+        "code": "func (s *Server) operatorCookieName() string {"
+      },
+      {
+        "line": 24,
+        "code": "func (s *Server) accessCookieName() string {"
+      },
+      {
+        "line": 35,
+        "code": "\tstreamGeneration                    string"
+      },
+      {
+        "line": 43,
+        "code": "func (s *Server) operator(r *http.Request, w http.ResponseWriter) (string, *operatorSession) {"
+      },
+      {
+        "line": 83,
+        "code": "func resetOperator(session *operatorSession) {"
+      },
+      {
+        "line": 90,
+        "code": "\tsession.streamGeneration = \"\""
+      },
+      {
+        "line": 93,
+        "code": "func (s *Server) managementAllowed(ctx context.Context, c *Clients, ns string) error {"
+      },
+      {
+        "line": 120,
+        "code": "func (s *Server) managementState(r *http.Request, c *Clients, ns string) bool {"
+      },
+      {
+        "line": 137,
+        "code": "func checkResult(err error, message string) connectionCheck {"
+      },
+      {
+        "line": 149,
+        "code": "func (s *Server) connection(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 220,
+        "code": "func (s *Server) management(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 319,
+        "code": "func (s *Server) closeOperatorForwards(id string) {"
+      }
+    ],
+    "backend/pkg/server/resources.go": [
+      {
+        "line": 21,
+        "code": "func (s *Server) authorize(ctx context.Context, c *Clients, verb, group, res, sub, ns, name string) error {"
+      },
+      {
+        "line": 58,
+        "code": "func workspaceNamespacedResource(c *Clients, group, res string) bool {"
+      },
+      {
+        "line": 75,
+        "code": "func accessReview(verb, group, res, sub, ns, name string) *authv1.SelfSubjectAccessReview {"
+      },
+      {
+        "line": 78,
+        "code": "func (s *Server) capabilities(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 183,
+        "code": "func operation(obj interface{}, dry bool) map[string]interface{} {"
+      },
+      {
+        "line": 192,
+        "code": "func (s *Server) resources(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 344,
+        "code": "func checkIdentity(obj *unstructured.Unstructured, uid, rv string) error {"
+      },
+      {
+        "line": 373,
+        "code": "func (s *Server) actions(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 590,
+        "code": "func validateResources(resources map[string]interface{}) error {"
+      }
+    ],
+    "backend/pkg/server/stream.go": [
+      {
+        "line": 22,
+        "code": "func (s *Server) metrics(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 86,
+        "code": "func (s *Server) logs(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 275,
+        "code": "func hasVerb(r Resource, verb string) bool {"
+      },
+      {
+        "line": 283,
+        "code": "func unwrap(obj interface{}) *unstructured.Unstructured {"
+      },
+      {
+        "line": 296,
+        "code": "func currentInformerEvent(store cache.Store, action string, obj *unstructured.Unstructured) bool {"
+      },
+      {
+        "line": 311,
+        "code": "func (s *Server) websocket(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 353,
+        "code": "\tvar authorizationFailure atomic.Pointer[watchAuthorizationFailure]"
+      },
+      {
+        "line": 367,
+        "code": "\t\t\tif authorizationFailure.Load() != nil {"
+      },
+      {
+        "line": 377,
+        "code": "\t\t\tmsg.AuthorizationKey = safeAuthorizationKey(c, scope.connection.ID)"
+      },
+      {
+        "line": 420,
+        "code": "\t\tif !authorizationFailure.CompareAndSwap(nil, failure) {"
+      },
+      {
+        "line": 449,
+        "code": "\t\tif !ready || watchFailed || authorizationFailure.Load() != nil || !currentInformerEvent(binding.informer.GetStore(), action, u) {"
+      },
+      {
+        "line": 454,
+        "code": "\t\tscope.Authoritative = true"
+      },
+      {
+        "line": 503,
+        "code": "\t\tif !ready || watchFailed || authorizationFailure.Load() != nil {"
+      },
+      {
+        "line": 670,
+        "code": "\t\t\tbindings[i].scope.Authoritative = false"
+      },
+      {
+        "line": 697,
+        "code": "\t\t\t\tbinding.scope.Authoritative = true"
+      },
+      {
+        "line": 774,
+        "code": "\t\tif failure := authorizationFailure.Load(); failure != nil {"
+      },
+      {
+        "line": 785,
+        "code": "\t\t\t\t\tscope.Authoritative = false"
+      },
+      {
+        "line": 829,
+        "code": "\t\t\t\tif f := authorizationFailure.Load(); f != nil {"
+      },
+      {
+        "line": 843,
+        "code": "\t\t\t\tif f := authorizationFailure.Load(); f != nil {"
+      },
+      {
+        "line": 854,
+        "code": "\t\tcase <-heartbeat.C:"
+      },
+      {
+        "line": 877,
+        "code": "func validName(name string) bool { return name != \"\" && !strings.ContainsAny(name, \"/\\\\\") }"
+      }
+    ],
+    "backend/pkg/server/watch_authorization.go": [
+      {
+        "line": 16,
+        "code": "func watchAuthorizationBudgetForScopes(scopes []ResourceScope) time.Duration {"
+      },
+      {
+        "line": 28,
+        "code": "func uniqueWatchAuthorizationScopes(scopes []ResourceScope) []ResourceScope {"
+      },
+      {
+        "line": 40,
+        "code": "func reviewWatchAuthorization(ctx context.Context, scopes []ResourceScope, review watchPermissionReview, current func(ResourceScope)) *watchAuthorizationFailure {"
+      },
+      {
+        "line": 62,
+        "code": "func reviewWatchPermission(ctx context.Context, c *Clients, scope ResourceScope, verb string) error {"
+      },
+      {
+        "line": 90,
+        "code": "func startWatchAuthorizationBatch(parent context.Context, scopes []ResourceScope, budget time.Duration, review watchPermissionReview, onFailure func(*watchAuthorizationFailure)) *watchAuthorizationBat"
+      },
+      {
+        "line": 110,
+        "code": "func (b *watchAuthorizationBatch) expired() *watchAuthorizationFailure {"
+      },
+      {
+        "line": 123,
+        "code": "func watchAuthorizationFailureStatus(failure *watchAuthorizationFailure) envelope {"
+      }
+    ],
+    "backend/pkg/server/resource_scopes.go": [
+      {
+        "line": 28,
+        "code": "func (s ResourceScope) key() string {"
+      },
+      {
+        "line": 31,
+        "code": "func (s ResourceScope) gvr() schema.GroupVersionResource {"
+      },
+      {
+        "line": 34,
+        "code": "func scopeFor(resource Resource, namespace string) ResourceScope {"
+      },
+      {
+        "line": 42,
+        "code": "func scopeError(scope *ResourceScope, err error) {"
+      },
+      {
+        "line": 43,
+        "code": "\tscope.Authoritative = false"
+      },
+      {
+        "line": 53,
+        "code": "func requestedScopes(r *http.Request) ([]ResourceScope, error) {"
+      },
+      {
+        "line": 87,
+        "code": "func watchScopeBindings(resources []Resource, namespace, restrictedNamespace string, requested []ResourceScope) []scopeBinding {"
+      }
+    ],
+    "backend/pkg/server/traffic_handlers.go": [
+      {
+        "line": 23,
+        "code": "func providerTransport(config *rest.Config) (string, error) {"
+      },
+      {
+        "line": 46,
+        "code": "func trafficIdentity(config *rest.Config) (string, error) {"
+      },
+      {
+        "line": 80,
+        "code": "func (s *Server) verifyTrafficCluster(ctx context.Context, c *Clients, cfg traffic.Config) error {"
+      },
+      {
+        "line": 99,
+        "code": "func (s *Server) flows(w http.ResponseWriter, r *http.Request) {"
+      }
+    ],
+    "backend/pkg/workspace/store.go": [
+      {
+        "line": 69,
+        "code": "func Open(dir, legacyContext, legacyNamespace string) (*Store, error) {"
+      },
+      {
+        "line": 121,
+        "code": "func readDocumentFile(path string) ([]byte, error) {"
+      },
+      {
+        "line": 150,
+        "code": "func clone(d Document) Document {"
+      },
+      {
+        "line": 156,
+        "code": "func normalizeCollections(d *Document) {"
+      },
+      {
+        "line": 175,
+        "code": "func (s *Store) Snapshot() Document { s.mu.Lock(); defer s.mu.Unlock(); return clone(s.document) }"
+      },
+      {
+        "line": 176,
+        "code": "func (s *Store) Update(revision uint64, change func(*Document) error) (Document, error) {"
+      },
+      {
+        "line": 199,
+        "code": "func atomicWrite(path string, data []byte) error {"
+      },
+      {
+        "line": 218,
+        "code": "func (s *Store) persist(d Document) error {"
+      },
+      {
+        "line": 250,
+        "code": "func validID(id string) bool {"
+      },
+      {
+        "line": 253,
+        "code": "func safeText(s string, n int) bool { return len(s) <= n && !strings.ContainsRune(s, 0) }"
+      },
+      {
+        "line": 257,
+        "code": "func safePreferences(v interface{}, depth int) bool {"
+      },
+      {
+        "line": 299,
+        "code": "func Validate(d Document) error {"
+      },
+      {
+        "line": 367,
+        "code": "func Export(d Document) Document {"
+      },
+      {
+        "line": 376,
+        "code": "func ImportInto(dst *Document, src Document) error {"
+      }
+    ],
+    "frontend/src/context/WorkspaceRegistry.js": [
+      {
+        "line": 6,
+        "code": "export class HarborSession {"
+      },
+      {
+        "line": 69,
+        "code": "  url(path, context) { return singletonManager.url.call(this, path, context ?? this.state.context); }"
+      },
+      {
+        "line": 70,
+        "code": "  request(path, options) {"
+      },
+      {
+        "line": 94,
+        "code": "  activate() {"
+      },
+      {
+        "line": 104,
+        "code": "  deactivate() {"
+      },
+      {
+        "line": 116,
+        "code": "  refreshConnection() { return singletonManager.refreshConnection.call(this); }"
+      },
+      {
+        "line": 122,
+        "code": "  setManagement(enabled) { return singletonManager.setManagement.call(this, enabled); }"
+      },
+      {
+        "line": 123,
+        "code": "  setObservationPin(slot, uid) {"
+      },
+      {
+        "line": 165,
+        "code": "  observeNamespace(namespace = \"all\", expectedSource = this.state.sourceKey) {"
+      },
+      {
+        "line": 183,
+        "code": "  selectSource(context) {"
+      },
+      {
+        "line": 189,
+        "code": "  streamSession() { return { ...this.core.streamSession(), key: `${this.workspaceScope.harborId}:${this.epoch}:${this.core.streamSession().key}`, ready: this.active && this.core.streamSession().ready "
+      },
+      {
+        "line": 191,
+        "code": "  dispose() {"
+      },
+      {
+        "line": 201,
+        "code": "export class WorkspaceRegistry {"
+      },
+      {
+        "line": 213,
+        "code": "  configure(workspace, contexts = []) {"
+      },
+      {
+        "line": 285,
+        "code": "  activate(id) {"
+      },
+      {
+        "line": 293,
+        "code": "  dispose() {"
+      },
+      {
+        "line": 300,
+        "code": "export function emptyWorkspaceManager(contexts = []) {"
+      }
+    ],
+    "frontend/src/context/WorkspaceProvider.jsx": [],
+    "frontend/src/context/ShipyardClusterContext.jsx": [
+      {
+        "line": 68,
+        "code": "  setObservationPin(slot, uid) {"
+      },
+      {
+        "line": 75,
+        "code": "  streamSession() {"
+      },
+      {
+        "line": 92,
+        "code": "        known.authoritative &&"
+      },
+      {
+        "line": 152,
+        "code": "            (known) => known.authoritative && scopeContains(known, resource),"
+      },
+      {
+        "line": 179,
+        "code": "  observeNamespace("
+      },
+      {
+        "line": 236,
+        "code": "  url(path, context = this.state.context) {"
+      },
+      {
+        "line": 647,
+        "code": "  selectSource(context) {"
+      },
+      {
+        "line": 746,
+        "code": "          if (message.workspaceId !== this.workspaceScope.workspaceId || message.harborId !== this.workspaceScope.harborId || message.tabId !== this.workspaceScope.tabId) return;"
+      },
+      {
+        "line": 855,
+        "code": "export function createSourceManager(scope) {"
+      },
+      {
+        "line": 882,
+        "code": "export function ShipyardClusterProvider({ children, manager = singletonManager, workspace }) {"
+      },
+      {
+        "line": 942,
+        "code": "          state.sourceKey === manager.state.sourceKey &&"
+      },
+      {
+        "line": 966,
+        "code": "            state.sourceKey === manager.state.sourceKey,"
+      },
+      {
+        "line": 1047,
+        "code": "export function useClusterConnection() {"
+      }
+    ],
+    "frontend/src/world/workspace.js": [
+      {
+        "line": 8,
+        "code": "export function harborViewNamespace(harbor, preferred) {"
+      },
+      {
+        "line": 14,
+        "code": "export function harborScopeKey(workspace, harbor, connection) {"
+      },
+      {
+        "line": 18,
+        "code": "export function physicalClusterKey(connection) {"
+      },
+      {
+        "line": 24,
+        "code": "export function canonicalResourceKey(connection, resource) {"
+      },
+      {
+        "line": 30,
+        "code": "export function sharedResources(harbors, snapshots, connections) {"
+      },
+      {
+        "line": 55,
+        "code": "export function workspaceRelations(workspace, snapshots, connections) {"
+      },
+      {
+        "line": 94,
+        "code": "export function authorizedFlowHarbors(workspace, activeId) {"
+      },
+      {
+        "line": 98,
+        "code": "export function flowHarborEndpoints(workspace, activeId, snapshots, connections, authorizedHarborIds = []) {"
+      },
+      {
+        "line": 116,
+        "code": "export function safeHarborView(value = {}) {"
+      },
+      {
+        "line": 134,
+        "code": "export function browserTabId(_storage, uuid = () => globalThis.crypto.randomUUID(), documentIdentity = globalThis.document) {"
+      },
+      {
+        "line": 143,
+        "code": "export function harborPosition(harbor, index = 0) {"
+      },
+      {
+        "line": 149,
+        "code": "export function harborWorldPosition(harbor, index = 0) {"
+      },
+      {
+        "line": 155,
+        "code": "export function nearbyHarbors(harbors = [], activeId, limit = W.NEARBY_DETAIL_LIMIT) {"
+      },
+      {
+        "line": 164,
+        "code": "export function nextHarborPosition(harbors) {"
+      },
+      {
+        "line": 173,
+        "code": "export class HarborViewCache {"
+      }
+    ],
+    "frontend/src/world/workspaceMutations.js": [],
+    "frontend/src/data/resourceStore.js": [
+      {
+        "line": 6,
+        "code": "export function initialState(sourceKey = \"\") {"
+      },
+      {
+        "line": 44,
+        "code": "export function reduceMessage(state, message, { pinnedUIDs = [] } = {}) {"
+      },
+      {
+        "line": 89,
+        "code": "              scope.authoritative &&"
+      },
+      {
+        "line": 289,
+        "code": "export function appendMetrics(state, metrics) {"
+      },
+      {
+        "line": 301,
+        "code": "export function quantity(value) {"
+      },
+      {
+        "line": 322,
+        "code": "export function ready(r) {"
+      },
+      {
+        "line": 327,
+        "code": "export function hasProblem(r) {"
+      }
+    ],
+    "frontend/src/data/resourceScopes.js": [
+      {
+        "line": 6,
+        "code": "export function resourceScope(descriptor, namespace = \"all\") {"
+      },
+      {
+        "line": 33,
+        "code": "export function narrowNamespaceState(state, namespace, retainedScopes = []) {"
+      },
+      {
+        "line": 55,
+        "code": "export function scopeCoversScope(outer, inner) {"
+      },
+      {
+        "line": 64,
+        "code": "export function scopeContains(scope, resource) {"
+      },
+      {
+        "line": 76,
+        "code": "export function resourceObservation(state, resource) {"
+      },
+      {
+        "line": 102,
+        "code": "        scope.authoritative &&"
+      },
+      {
+        "line": 106,
+        "code": "    scopes.find((scope) => scope.authoritative && scope.status === \"synced\");"
+      },
+      {
+        "line": 158,
+        "code": "export function mergeResourceList(current, before, items, scope) {"
+      }
+    ],
+    "frontend/src/App.jsx": [
+      {
+        "line": 215,
+        "code": "      const cached = candidate?.sourceKey === sourceKey ? candidate : null;"
+      },
+      {
+        "line": 234,
+        "code": "      setForm(cached?.form?.sourceKey === sourceKey && (!cached.form.resource?.metadata?.uid || byUID.has(cached.form.resource.metadata.uid)) ? { ...cached.form, restoredDraft: cached.draft } : null);"
+      },
+      {
+        "line": 385,
+        "code": "    setObservationPin(\"form\", form?.sourceKey === sourceKey ? form.resource?.metadata?.uid : null);"
+      },
+      {
+        "line": 584,
+        "code": "      submitSource !== currentSource.current ||"
+      },
+      {
+        "line": 1030,
+        "code": "        {form && form.sourceKey === sourceKey && ("
+      }
+    ],
+    "frontend/src/workbench/ResourceForms.jsx": [
+      {
+        "line": 288,
+        "code": "  const resume = restoredDraft && restoredDraft.sourceKey === sourceKey && restoredDraft.uid === resource?.metadata?.uid && restoredDraft.action === actionType && restoredDraft.object?.kind !== \"Secre"
+      },
+      {
+        "line": 456,
+        "code": "      draftTargetRef.current.sourceKey === target.sourceKey &&"
+      }
+    ],
+    "backend/pkg/server/workspace_test.go": [
+      {
+        "line": 35,
+        "code": "func newWorkspaceFixture(t *testing.T, readOnly bool, objects ...runtime.Object) *workspaceFixture {"
+      },
+      {
+        "line": 53,
+        "code": "func (f *workspaceFixture) request(method, path string, body interface{}, nonce, impact string) *httptest.ResponseRecorder {"
+      },
+      {
+        "line": 69,
+        "code": "func (f *workspaceFixture) accept(r *httptest.ResponseRecorder) {"
+      },
+      {
+        "line": 85,
+        "code": "func (f *workspaceFixture) addConnection() string {"
+      },
+      {
+        "line": 94,
+        "code": "func (f *workspaceFixture) addHarbor(connection string, namespaces []string, selector string) string {"
+      },
+      {
+        "line": 103,
+        "code": "func (f *workspaceFixture) scope(harbor, tab string) string {"
+      },
+      {
+        "line": 106,
+        "code": "func (f *workspaceFixture) diagnostic(harbor, tab string) map[string]interface{} {"
+      },
+      {
+        "line": 116,
+        "code": "func labeledPod(name, uid, namespace, app string) *corev1.Pod {"
+      },
+      {
+        "line": 123,
+        "code": "func TestWorkspaceHTTPPersistenceCSRFAndScope(t *testing.T) {"
+      },
+      {
+        "line": 158,
+        "code": "func TestWorkspaceMultiNamespaceAndDistinctConnectionIdentity(t *testing.T) {"
+      },
+      {
+        "line": 182,
+        "code": "func TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes(t *testing.T) {"
+      },
+      {
+        "line": 214,
+        "code": "func TestWorkspaceNodeImpactRequiresAcknowledgement(t *testing.T) {"
+      },
+      {
+        "line": 234,
+        "code": "func TestWorkspaceSharedBrokerSelectorExitAndLastRelease(t *testing.T) {"
+      },
+      {
+        "line": 320,
+        "code": "func TestWorkspaceScopeEnvelopeRejectsWrongWorkspace(t *testing.T) {"
+      },
+      {
+        "line": 330,
+        "code": "func TestWorkspaceClusterCatalogReadsAndPVNamespaceRelation(t *testing.T) {"
+      },
+      {
+        "line": 351,
+        "code": "func TestWorkspaceRemoveMiddleAllocatesFreePosition(t *testing.T) {"
+      }
+    ],
+    "backend/pkg/server/release_security_regression_test.go": [
+      {
+        "line": 19,
+        "code": "func TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource(t *testing.T) {"
+      },
+      {
+        "line": 61,
+        "code": "func (d releaseSecurityDiscovery) ServerGroupsAndResources() ([]*metav1.APIGroup, []*metav1.APIResourceList, error) {"
+      },
+      {
+        "line": 65,
+        "code": "func TestReleaseSecurityTypedSelectorsRequireResolvedDiscovery(t *testing.T) {"
+      }
+    ],
+    "backend/pkg/server/release_active_watch_real_test.go": [
+      {
+        "line": 39,
+        "code": "func TestReleaseOwnedWatchRoleBindingRevocationReal(t *testing.T) {"
+      },
+      {
+        "line": 736,
+        "code": "\t\t\t\t\tif scope.Group == \"\" && scope.Version == \"v1\" && scope.Resource == \"pods\" && scope.Namespace == receipt.Namespace && scope.Status == \"forbidden\" && !scope.Authoritative && !msg.Synced {"
+      }
+    ],
+    "frontend/tests/workspace.test.js": [],
+    "frontend/tests/workspace-app-state.test.js": [],
+    "frontend/tests/release-watch-authz.test.js": [],
+    "backend/go.mod": [],
+    "backend/go.sum": []
+  },
+  "sourceFileCount": 30,
+  "method": "Finite explicit source list and line/symbol reads; no code execution"
+}

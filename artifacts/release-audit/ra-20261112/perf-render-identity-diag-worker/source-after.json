@@ -1,0 +1,18 @@
+{
+  "SHA256": {
+    "benchmarks/run.mjs": "80cc55ad70f65857c5df2fa5eb79155aae5b8a5daec2d21916b8c588e39bb850",
+    "benchmarks/fixtures.mjs": "c53ffc7cab18c06991437fe0f17ebdade10c28bbb56146ee19ba2ee63a45becc",
+    "benchmarks/probe.mjs": "bec5e6362c57c0ce2c2ed2865d6fa7e05fd8446daa153ea7054fdcdb0089d367",
+    "benchmarks/scene-inventory.mjs": "30bacc95832df464502cb9ffa4796fa0b7b3cf14fa00f47d3b32114ce251dbe5",
+    "frontend/src/harbor/HarborScene.jsx": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1",
+    "frontend/src/harbor/assets.jsx": "dfc512a3baa639c4f0fdd420b69e64014c537c20dd42a5b1b3da58dd1df35a3b",
+    "benchmarks/.build/cat16-common-f32-20261112T113255Z/backend.test": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+    "benchmarks/.build/cat16-36d-20261112T113255Z.json": "ee5e15a1831233005624e05c29198a16c2995bd289d241a88ab15ad162380a52",
+    "benchmarks/.build/cat16-f32-20261112T113255Z.json": "fb96c40c0719f5242309a1a7971f244bcf48193628848419904fd60c1b3d0312"
+  },
+  "unchanged": true,
+  "privateRunSHA256": "04dd9113a9e097cefe48a8ca7f94cdd6bb9ce136c31ec51432cc71412e9f84b1",
+  "privateRunUnchanged": true,
+  "helperSHA256": "ec2cbf83c5d2aad493243bcae48cc6a26ba3fdb383aa7a409de9931989f1b5ef",
+  "controllerSHA256": "ebbc457a075b3f11b35a1f37ffe1f65cfdf6fc93cc8548bcd58d6ee63d897356"
+}

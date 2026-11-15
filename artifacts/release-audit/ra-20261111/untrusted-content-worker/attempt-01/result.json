@@ -1,0 +1,52 @@
+{
+  "startedAt": "2026-11-11T13:32:41.481Z",
+  "source": "TEST/REPLAY browser-injected HTTP/WS resource/log/error fixtures; NOT real K8s/SSRF/production data",
+  "status": "FAIL",
+  "uniqueHarmlessPayloads": 7,
+  "maxPayloadBytes": 0,
+  "httpRequests": 21,
+  "canaryRequests": 0,
+  "blockedExternal": 0,
+  "checks": [
+    {
+      "name": "Node normal finder/name and untrusted condition message are text",
+      "status": "PASS"
+    },
+    {
+      "name": "legitimate plain Pod finder and UID positive",
+      "status": "PASS"
+    },
+    {
+      "name": "HTML-like fixture name remains literal; fixture identity only",
+      "status": "PASS"
+    },
+    {
+      "name": "annotation HTML/SVG/script/javascript/data text + plain annotation; copy affordance only",
+      "status": "PASS"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "01-node-condition",
+      "at": "2026-11-11T13:32:57.317Z"
+    },
+    {
+      "name": "02-annotations-literal",
+      "at": "2026-11-11T13:33:32.915Z"
+    },
+    {
+      "name": "FIRST-FAIL",
+      "at": "2026-11-11T13:33:39.376Z"
+    }
+  ],
+  "pageErrors": [],
+  "browser": "156.0.8078.4",
+  "mainDocumentCSPPresent": true,
+  "mainDocumentCSPHasUnsafeInline": false,
+  "failure": {
+    "type": "TimeoutError",
+    "message": "locator.click: Timeout 5000ms exceeded."
+  },
+  "browserClosed": true,
+  "finishedAt": "2026-11-11T13:33:40.539Z"
+}

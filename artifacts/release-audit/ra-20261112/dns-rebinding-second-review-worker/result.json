@@ -1,0 +1,130 @@
+{
+  "reviewStatus": "TECHNICAL_PASS_LIMITED_SCOPE_WITH_HELPER_BOUND_LIMITATION",
+  "reviewedAt": "2026-11-12T17:08:36.536840+00:00",
+  "expectedSourceHEAD": "a773e728",
+  "observedHEAD": "da2dd65c9b872e38c21225cba0940b75fb91ae09",
+  "runtimeCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "binarySHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+  "artifactManifestChecks": [
+    {
+      "path": "artifacts/release-audit/ra-20261112/dns-rebinding-root/REPORT.md",
+      "expectedSHA256": "9a51ff747b793d69cdc535360b21c5a8d0e261ce2f2ae72535a799e1266ee76a",
+      "actualSHA256": "9a51ff747b793d69cdc535360b21c5a8d0e261ce2f2ae72535a799e1266ee76a",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/dns-rebinding-root/probe.py",
+      "expectedSHA256": "48df6d9b879e4f0d5b3a4f35fe7b2b8fb13b8f38f83dc488662be84d8a0bfeb1",
+      "actualSHA256": "48df6d9b879e4f0d5b3a4f35fe7b2b8fb13b8f38f83dc488662be84d8a0bfeb1",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/dns-rebinding-root/result.json",
+      "expectedSHA256": "d66c14595c7bac2e06e636969bb1782c3888f41493a34911dc005b88cdfd6723",
+      "actualSHA256": "d66c14595c7bac2e06e636969bb1782c3888f41493a34911dc005b88cdfd6723",
+      "matches": true
+    }
+  ],
+  "sourceIdentityChecks": [
+    {
+      "path": "backend/main.go",
+      "recordedSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "currentSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "frozenSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "recordedSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "frozenSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "recordedSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "currentSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "frozenSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "matches": true
+    }
+  ],
+  "inputSHA256": {
+    "artifacts/release-audit/ra-20261112/dns-rebinding-root/probe.py": "48df6d9b879e4f0d5b3a4f35fe7b2b8fb13b8f38f83dc488662be84d8a0bfeb1",
+    "artifacts/release-audit/ra-20261112/dns-rebinding-root/result.json": "d66c14595c7bac2e06e636969bb1782c3888f41493a34911dc005b88cdfd6723",
+    "artifacts/release-audit/ra-20261112/dns-rebinding-root/REPORT.md": "9a51ff747b793d69cdc535360b21c5a8d0e261ce2f2ae72535a799e1266ee76a",
+    "artifacts/release-audit/ra-20261112/dns-rebinding-root/SHA256SUMS": "6728db4d5790e2049bfd9dd10dec573580c192fa0d86ee2f8e8441d457422feb"
+  },
+  "checkCount": 30,
+  "statusCounts": {
+    "200": 9,
+    "403": 21
+  },
+  "allExpectedStatusesMatch": true,
+  "positiveNegativeAssessment": {
+    "localContexts200": 8,
+    "localVersion200": 1,
+    "foreignHostOrOrigin403": 21,
+    "localContextsBodySHA256": [
+      "d904973ae9f292c3060ec651c6e68e9ab02462a791a87df01affc76683fe3db3"
+    ],
+    "localPositiveAfterNegativeMatrix": true,
+    "positiveAfterEveryNegativeSubgroup": false,
+    "credentialFreeEmptyScope": "Explicit fresh data directory and absent kubeconfig; environment does not inherit API_TOKEN/KUBECONFIG; providers disabled; eight contexts responses assert contexts=[], configured=false, serverReadOnly=true. Headers contain no Authorization/Cookie. No response bodies persisted."
+  },
+  "policyReview": [
+    {
+      "source": "backend/pkg/server/server.go:129",
+      "assessment": "Token-free raw Host is checked against localhost or net.ParseIP(...).IsLoopback before origin validation; hostile matching Host/Origin and omitted Origin therefore remain denied."
+    },
+    {
+      "source": "backend/pkg/server/server.go:114",
+      "assessment": "Missing Origin is allowed by policy; supplied Origin requires actual request scheme and equal Host, no user/path/query/fragment. Foreign or opaque Origin is denied; forwarded headers do not change r.Host or r.TLS."
+    },
+    {
+      "source": "backend/pkg/server/server.go:79",
+      "assessment": "Contexts/workspace/management/ws use protect; session calls guard(false) itself before method processing. Foreign GET /ws tests guard rejection, not WebSocket upgrade."
+    },
+    {
+      "source": "backend/main.go:204",
+      "assessment": "Public /api/version and /healthz, plus static frontend registration, lie outside gateway guard. Host denial cannot be claimed for all HTTP routes."
+    }
+  ],
+  "helperLimitations": [
+    {
+      "id": "DNS-REVIEW-01",
+      "source": "dns-rebinding-root/probe.py:65-77",
+      "assessment": "Startup health checks are outside checks counter and the pre-request elapsed guard. The 30-second test limit is also checked retrospectively after cleanup. Recorded 3.6504584579997754 seconds meets actual elapsed limit, but this source does not enforce a global 30-second/60-request cap. Fixed 30-case matrix plus up to 40 health polls can issue up to 70 HTTP requests in other executions.",
+      "disposition": "Root acknowledged; separately corrected retest planned. No corrected run reviewed here."
+    },
+    {
+      "id": "DNS-REVIEW-02",
+      "source": "ROADMAP_FOR_TESTS.md:5659",
+      "assessment": "The statement that a positive follows every negative group is stronger than probe.py:87-105: positives precede the negative matrix, then forwarded-local positive and final local positive follow it. Functional liveness after negatives is established, subgroup interleaving is not.",
+      "disposition": "Documentation precision; roadmap remains root-owned."
+    }
+  ],
+  "observedCleanupReceipt": {
+    "app": {
+      "pid": 18590,
+      "birth": "Thu Nov 12 20:01:26 2026",
+      "pgid": 18590
+    },
+    "appExitCode": 0,
+    "originalProcessAbsent": true,
+    "portFree": true,
+    "binaryUnchanged": true,
+    "elapsedSeconds": 3.6504584579997754
+  },
+  "cleanupAssessment": "Recorded exact PID/birth/PGID ownership checks, SIGTERM and bounded fallback; exit0/process-absent/port-free receipt all match PASS. This review did not start processes or re-probe live listener state.",
+  "phase0907Assessment": "Supports only observed token-free default-local protected gateway Host boundary. Retain original narrow PASS with helper-limit qualification; global hard-cap acceptance awaits separate corrected evidence. No full DNS rebinding/browser/IPv6-listener/WebSocket/security/release acceptance.",
+  "excludedClaims": [
+    "real DNS rebinding/resolution",
+    "browser behavior or canonicalization",
+    "IPv6 listener",
+    "WebSocket upgrade",
+    "token-enabled remote mode",
+    "Kubernetes/RBAC/CNI/TLS runtime acceptance",
+    "complete security or release PASS"
+  ],
+  "reviewOperations": "Read source/artifacts and recompute SHA256 only; no app/build/test/scan/lab/DNS/browser/Kubernetes operation; writes limited to three review artifacts."
+}

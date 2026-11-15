@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-12T21:31:21.023520+00:00",
+  "secondReviewEntriesVerified": 10,
+  "secondReviewStatus": "PASS_NARROW_RECORDED_REAL_API_PRODUCTION_HTTP_WS",
+  "finalStopReceiptVerified": true,
+  "finalStopElapsedSeconds": 11.827971791997697,
+  "decision": "CLOSE_TEST10_08_NARROW_RECORDED_REAL_WATCH_AND_CACHE_REVOKE_SCOPE",
+  "remaining": "Periodic revocation timing/API cost risk, browser/finalbinary, other streaming sessions and overall release remain open."
+}

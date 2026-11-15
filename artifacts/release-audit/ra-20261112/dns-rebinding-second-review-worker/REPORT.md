@@ -1,0 +1,16 @@
+# DNS Host boundary second review
+
+The original **30/30 functional PASS is supported within its narrow scope**: token-free default-local protected gateway Host validation. The recorded run took 3.650458458 seconds: nine HTTP 200 responses and twenty-one HTTP 403 responses. This review executed no application, test, build, scan, DNS, browser or Kubernetes operation.
+
+All three entries in [the original SHA manifest](../dns-rebinding-root/SHA256SUMS) match current bytes. The recorded hashes of main.go, server.go and connection.go equal both active source and frozen f32d6b23 source. The current binary independently hashes to `5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097`. Review HEAD advanced to da2dd65c; these runtime source bytes remain unchanged. Detailed hashes are in result.json.
+
+[Probe lines 87–106](../dns-rebinding-root/probe.py) and [recorded results](../dns-rebinding-root/result.json) agree with server.go:114–158. Token-free Host validation precedes SameOrigin, so hostile matching Host/Origin and absent Origin are both denied. Local matching or absent Origin succeeds; foreign/null Origin fails. Forwarded headers cannot authorize a foreign Host and do not poison the local positive. Registration protects contexts/workspace/management/ws; session calls guard itself before method handling. GET /ws proves pre-upgrade rejection only. Eight contexts positives share the same body hash and assert empty contexts, configured=false and read-only=true. A successful local request after the negative matrix rules out an all-denied or dead-server false PASS.
+
+The helper explicitly supplies a fresh private data directory, absent kubeconfig and a non-inherited environment without API_TOKEN/KUBECONFIG, disabling optional providers. GET headers contain no Authorization/Cookie. No response bodies are saved. Recorded PID/birth/PGID ownership, exit0, process absence, free port and unchanged binary receipts support cleanup; this review relies on those receipts rather than a new live probe.
+
+Two limitations require precise reporting:
+
+- **DNS-REVIEW-01:** probe.py:65–77 excludes startup health polling from the request counter and initial elapsed guard; lines120–124 check the 30-second limit retrospectively. The observed run met 30 seconds, but source does not guarantee global 30 seconds/60 requests. The fixed matrix plus up to40 startup polls could make70 requests. Root acknowledged this and plans a separate corrected retest; none was reviewed here.
+- **DNS-REVIEW-02:** ROADMAP_FOR_TESTS.md:5659 says a positive follows every negative group. The helper has positives before the matrix and after it, without subgroup interleaving. The final liveness control is valid; the broader phrasing needs correction by root.
+
+main.go:204–225 registers public /api/version, /healthz and static frontend outside the gateway guard. This evidence supports the protected gateway boundary, not Host rejection on every HTTP route. IPv6 Host acceptance used an IPv4 socket. Real DNS, browser behavior, IPv6 listening, WebSocket upgrades, remote token mode, CNI/TLS and complete security/release acceptance remain outside scope. Narrow functional phase09.07 closure can cite this observed boundary with these qualifications; a global helper hard-cap claim awaits the separate corrected evidence.

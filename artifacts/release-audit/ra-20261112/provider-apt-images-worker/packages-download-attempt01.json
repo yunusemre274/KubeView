@@ -1,0 +1,28 @@
+[
+  {
+    "suite": "resolute-security",
+    "expected": {
+      "sha256": "704204bd6f5d9c7d36bab601c1525c45a87ddaa3752b8def9cadd4589e704dcf",
+      "bytes": 759152,
+      "path": "main/binary-arm64/Packages.xz",
+      "url": "https://ports.ubuntu.com/ubuntu-ports/dists/resolute-security/main/binary-arm64/Packages.xz"
+    },
+    "actualSHA256": "704204bd6f5d9c7d36bab601c1525c45a87ddaa3752b8def9cadd4589e704dcf",
+    "actualBytes": 759152,
+    "matches": true,
+    "decompressedBytes": 4077443
+  },
+  {
+    "suite": "noble-security",
+    "expected": {
+      "sha256": "c276e50af30ba09423e6d10dab1bb67488afc3aa1198028ca3142f4052aa0970",
+      "bytes": 1259536,
+      "path": "main/binary-arm64/Packages.xz",
+      "url": "https://ports.ubuntu.com/ubuntu-ports/dists/noble-security/main/binary-arm64/Packages.xz"
+    },
+    "actualSHA256": "963f919441845c2f810ceff314cb060d42cd316cec0e1cc17974b26435be9170",
+    "actualBytes": 1259928,
+    "matches": false,
+    "decompressedBytes": 7039406
+  }
+]

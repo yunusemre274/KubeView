@@ -1,0 +1,13 @@
+{
+  "go": "go version go1.27.4 darwin/arm64",
+  "govulncheck_path": ".git/release-audit/tools/govulncheck",
+  "govulncheck_sha256": "99b0b6cdb4f4050ede6c564d75e6fd5934d42f314d3c3a300604c4e01f9007dd",
+  "trivy_path": "/opt/homebrew/bin/trivy",
+  "trivy_sha256": "5fd45afccbd5efd7a88e6da92a7b3a52c2e3ffd30d5b954f324123d6d1d24469",
+  "db_metadata": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  }
+}

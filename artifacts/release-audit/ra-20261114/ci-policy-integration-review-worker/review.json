@@ -1,0 +1,50 @@
+{
+  "reviewedAt": "2026-11-14T13:22:19.331127+00:00",
+  "review": "Same agent system second source/evidence review; no tests/network/workflow execution by reviewer",
+  "inputHEAD": "e6ee6678291c6d4fca6b4ca90e3fef66e96912c7",
+  "fileBindings": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "4badd5b47cd3a4d16080d93eaf720129445cf272687f19f7aa2d9dd85df06ad6",
+      "matchesBeforeRun": true
+    },
+    {
+      "path": "scripts/release-ci-policy.test.mjs",
+      "sha256": "13b5fb1c5232a69125c433aaf69bb5daa176e24cf8d20b7cde8c5e283b255ec5",
+      "matchesBeforeRun": true
+    },
+    {
+      "path": "scripts/build-release.test.mjs",
+      "sha256": "020deb3bd364036693df7d8049250cc06421de8181ef59304602b1b413fd1cf7",
+      "matchesBeforeRun": true
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+      "matchesBeforeRun": true
+    }
+  ],
+  "workflowDiff": "one existing Node test command retains packaging and adds policy file; triggers, permissions, actions, sequence otherwise unchanged",
+  "packagingTestSourceUnchanged": true,
+  "rawCounts": {
+    "topLevel": 13,
+    "packagingTopLevel": 11,
+    "policyTopLevel": 2,
+    "policyMutationSubtests": 13,
+    "total": 26,
+    "fail": 0,
+    "skip": 0
+  },
+  "result": "PASS_LOCAL_POLICY_AND_FIXTURE_INTEGRATION_ONLY",
+  "durationSeconds": 0.3458713329996499,
+  "remainingPhaseDecisions": {
+    "TEST-20.11": "IN_PROGRESS",
+    "TEST-20.12": "IN_PROGRESS"
+  },
+  "limits": [
+    "Presence detector is syntactic, not arbitrary shell/control-flow proof or immutable tamper-resistant security enforcement. PR author can edit both workflow and tests.",
+    "Policy step runs after npm/test stages; it cannot substitute for server-enforced fork permissions or secret settings.",
+    "Forty-hex known-action rule checks immutable shape/repository allowlist, not exact version bundle SCA or approved-SHA deny/allowlist.",
+    "Previous no-integration report remains historical; local tests do not prove GitHub server accepted/enforced new workflow."
+  ]
+}

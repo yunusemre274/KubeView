@@ -1,0 +1,12 @@
+{
+  "status": "PREPARED_PREFLIGHT_PENDING",
+  "jobs": 10,
+  "windows": 40,
+  "blocks": 5,
+  "currentControllerSHA256": "6355096b8bafcd40fc58109b9c3b51f316e6ee87442581b204b4736de3b01cd7",
+  "currentValidatorSHA256": "03338df0de79b4c4a6af11e26582b525eda79646b4878853a372f44edd029d2d",
+  "powerUnitCases": 7,
+  "prewriteReentryCases": 2,
+  "actualBenchmarkRuns": 0,
+  "independentReviewScope": "Three power/cleanup/reserve fixes reviewed; final prewrite/live/selfseal additions root-reviewed with focused guards; no professional third-party claim"
+}

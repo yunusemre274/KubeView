@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-12T17:29:43.124461+00:00",
+  "method": "native CoreGraphics via JXA; no browser presentation/latency measurement",
+  "fresh": {
+    "display": 1,
+    "Width": 1470,
+    "Height": 956,
+    "PixelWidth": 2940,
+    "PixelHeight": 1912,
+    "RefreshRate": 60
+  },
+  "equalsExistingHarnessEnvironment": true,
+  "script": "ObjC.import('CoreGraphics');var id=$.CGMainDisplayID();var mode=$.CGDisplayCopyDisplayMode(id);var info={display:Number(id),Width:Number($.CGDisplayModeGetWidth(mode)),Height:Number($.CGDisplayModeGetHeight(mode)),PixelWidth:Number($.CGDisplayModeGetPixelWidth(mode)),PixelHeight:Number($.CGDisplayModeGetPixelHeight(mode)),RefreshRate:Number($.CGDisplayModeGetRefreshRate(mode))};$.CGDisplayModeRelease(mode);JSON.stringify(info);"
+}

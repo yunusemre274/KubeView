@@ -1,0 +1,12 @@
+{
+  "reviewedAt": "2026-11-12T21:00:14.891023+00:00",
+  "rootVerifiedEntries": {
+    "active-watch-frontend-root": 8,
+    "active-watch-frontend-review-worker": 13
+  },
+  "sourceAfterMatches": true,
+  "decision": "ACCEPT_MINIMAL_TYPED_PROTOCOL_FIX_SYNTHETIC_UNIT_SCOPE",
+  "bounds": "Malformed server protocol/parser, real browser, RoleBinding E2E, final package and performance remain outside this checkpoint. No new CPU savings claim.",
+  "reviewTimingLimitExceeded": true,
+  "repeatedTests": false
+}

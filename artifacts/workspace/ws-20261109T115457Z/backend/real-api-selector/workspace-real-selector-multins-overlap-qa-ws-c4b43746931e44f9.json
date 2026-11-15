@@ -1,0 +1,39 @@
+{
+  "kind": "real Kubernetes + immutable HTTP gateway; not normal UI",
+  "phase": "selector-multins-overlap",
+  "runId": "qa-ws-c4b43746931e44f9",
+  "workspaceId": "4d50944a-6f37-4d8a-88b7-4569ea6e1a3e",
+  "clusterUID": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5",
+  "gatewayBinarySHA256": "2ba3e80a3b6ef604780f3db76087bee066784ae29b81056b663eaa91c645e080",
+  "passedSteps": [
+    "owned_selector_multins_harbors_and_real_ready"
+  ],
+  "objects": [
+    {
+      "namespace": "kvml-e731dabd-02-p1",
+      "name": "qa-ws-c4b43746931e44f9-alpha",
+      "uid": "d2279710-7b78-4d51-95d0-525a754abb42",
+      "cleanupGet404": true
+    },
+    {
+      "namespace": "kvml-e731dabd-02-p2",
+      "name": "qa-ws-c4b43746931e44f9-beta",
+      "uid": "5427430b-f71f-4205-ba1d-9f0f696aa54b",
+      "cleanupGet404": true
+    }
+  ],
+  "cleanup": [
+    "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0",
+    "exactUID Deployment GET404 + audited Deployment/ReplicaSet/Pod LIST=0",
+    "created temporary harbor ID removed",
+    "created temporary harbor ID removed",
+    "created temporary harbor ID removed",
+    "original workspace document preserved except revision"
+  ],
+  "failed": true,
+  "temporaryHarborIds": [
+    "676b3004-2d2b-40bd-b447-c6be57dc75b1",
+    "3c9588f6-19ba-4382-a76d-09e4f33283bb",
+    "28bfc443-8f0e-48a6-bad3-5fb00bbdc574"
+  ]
+}

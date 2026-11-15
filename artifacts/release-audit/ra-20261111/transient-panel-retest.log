@@ -1,0 +1,18 @@
+✔ a harbor switch never commits an old Pod panel with the new harbor API before layout restoration (3.849041ms)
+✔ switching namespaces never retains the previous Pod in the new harbor core (1.067916ms)
+✔ closed log panel stays closed across warm harbor return while its UID highlight survives (0.938417ms)
+✔ closed log panel stays closed after a returning harbor's first fresh snapshot (0.624083ms)
+✔ cached facility remains open when a returning selection resolves after its snapshot (0.513875ms)
+✔ an open safe dirty form and resource panel still restore together on harbor return (0.891333ms)
+✔ cold persisted exact UID restores its panel once after the first current snapshot arrives (0.751584ms)
+✔ cold restore never follows a same-name replacement or overrides a newer user panel (3.771ms)
+✔ empty onboarding has no last-known-view stale label, while a disconnected observed harbor does (0.32825ms)
+✔ resource tab handlers report normal tab clicks and container log routes to the parent (3.141ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 577.225583

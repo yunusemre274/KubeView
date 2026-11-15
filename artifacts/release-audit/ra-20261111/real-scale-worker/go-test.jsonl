@@ -1,0 +1,9 @@
+{"Time":"2026-11-11T19:09:17.805083+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/server"}
+{"Time":"2026-11-11T19:09:18.858131+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne"}
+{"Time":"2026-11-11T19:09:18.858342+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne","Output":"=== RUN   TestReleaseOwnedScaleTwoThreeOne\n"}
+{"Time":"2026-11-11T19:09:18.903036+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne","Output":"    release_operations_real_test.go:222: isolated workspace unavailable\n"}
+{"Time":"2026-11-11T19:09:18.904028+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne","Output":"--- FAIL: TestReleaseOwnedScaleTwoThreeOne (0.05s)\n"}
+{"Time":"2026-11-11T19:09:18.904069+03:00","Action":"fail","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedScaleTwoThreeOne","Elapsed":0.05}
+{"Time":"2026-11-11T19:09:18.904119+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"FAIL\n"}
+{"Time":"2026-11-11T19:09:18.905875+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"FAIL\tgithub.com/k8s-tersane/tersane/backend/pkg/server\t1.100s\n"}
+{"Time":"2026-11-11T19:09:18.905931+03:00","Action":"fail","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Elapsed":1.101}

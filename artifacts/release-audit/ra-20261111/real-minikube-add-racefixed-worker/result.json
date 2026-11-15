@@ -1,0 +1,18 @@
+{
+  "status": "FAIL",
+  "mainExitCode": 0,
+  "failure": null,
+  "journalResult": "PASS",
+  "readyVerified": true,
+  "cleanupComplete": true,
+  "pendingCleanup": false,
+  "profileOriginalNodesAndSettingsEqual": true,
+  "profileFullSHAEqual": false,
+  "postCleanupGuardedReads": "FAIL",
+  "helperUnchanged": true,
+  "RUN_CLEAREDSourceStillFalse": true,
+  "RUN_CLEAREDMemoryResetFalse": true,
+  "totalElapsedSeconds": 38.26237201690674,
+  "within720s": true,
+  "completedAt": "2026-11-11T19:29:50.477875+00:00"
+}

@@ -1,0 +1,16 @@
+=== RUN   TestOwnedRepairRealCronJobActionsAndCompletion
+    repair_lifecycle_integration_test.go:111: REAL CronJob suspend/resume/run-now→Job Completed: context=kv-repair-1101 namespace=kv-repair-log CronJobUID=8afb2241-2283-40f2-9431-4ad44c7ef541 JobUID=353934c9-4760-4ce9-a2f9-82a129c36e37; no schedule progress invented
+--- PASS: TestOwnedRepairRealCronJobActionsAndCompletion (2.72s)
+=== RUN   TestOwnedRepairRealNativeSidecarAndResize
+=== RUN   TestOwnedRepairRealNativeSidecarAndResize/native-sidecar-logs
+    repair_lifecycle_integration_test.go:162: REAL native-sidecar spec.initContainers.restartPolicy=Always + running initContainerStatuses and raw-name logs verified; PodUID=0db6858b-8d96-4c89-82f0-e9147cdb4e38 context=kv-repair-1101 namespace=kv-repair-log; 3D role/UI is separate validation
+=== RUN   TestOwnedRepairRealNativeSidecarAndResize/in-place-resize
+    repair_lifecycle_integration_test.go:198: REAL pods/resize accepted then kubelet status.containerStatuses.resources.requests.cpu=40m applied with same PodUID=0db6858b-8d96-4c89-82f0-e9147cdb4e38; owner template unchanged (standalone Pod)
+--- PASS: TestOwnedRepairRealNativeSidecarAndResize (3.96s)
+    --- PASS: TestOwnedRepairRealNativeSidecarAndResize/native-sidecar-logs (0.03s)
+    --- PASS: TestOwnedRepairRealNativeSidecarAndResize/in-place-resize (2.07s)
+=== RUN   TestOwnedRepairRealMetricsAvailability
+    repair_lifecycle_integration_test.go:228: REAL metrics API availability context=kv-repair-1101 namespace=kv-repair-log available=false source=metrics.k8s.io timestamp=2026-11-01T14:10:22Z nodeSamples=0 podSamples=0 errorScopes=2 expected=absent; usage values not replaced by zeros
+--- PASS: TestOwnedRepairRealMetricsAvailability (0.01s)
+PASS
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	7.559s

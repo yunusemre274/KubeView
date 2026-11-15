@@ -1,0 +1,38 @@
+{
+  "target": {
+    "type": "container",
+    "uid": "pod-0",
+    "name": "app-0",
+    "namespace": "bench-0",
+    "containerName": "app",
+    "containerRole": "container",
+    "harborId": "3c4730fe-9393-41f1-a732-c423e89873d7",
+    "x": 307.00058608329584,
+    "y": 534.7299607198095,
+    "visible": true
+  },
+  "canvasHit": true,
+  "pointerEvents": "",
+  "rootPointer": [
+    -0.5736103057861328,
+    -0.18828884548611113
+  ],
+  "hits": [
+    {
+      "objectUUID": "78f59476-cee9-42f6-987b-56bccf611ddf",
+      "eventObjectUUID": "78f59476-cee9-42f6-987b-56bccf611ddf",
+      "instanceId": 0,
+      "instanced": true,
+      "descriptor": {
+        "type": "container",
+        "uid": "pod-0",
+        "name": "app-0",
+        "namespace": "bench-0",
+        "containerName": "app",
+        "containerRole": "container",
+        "instance": 0
+      }
+    }
+  ],
+  "matched": true
+}

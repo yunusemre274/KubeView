@@ -1,0 +1,7 @@
+Sending build context to Docker daemon  114.8MB
+Step 1/2 : FROM quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82
+ ---> 7a7a3489dc66
+Step 2/2 : COPY cilium-operator-generic /usr/bin/cilium-operator-generic
+ ---> 0f5f919c630d
+Successfully built 0f5f919c630d
+Successfully tagged kubeview-private/cilium-operator-generic:1.20.4-security.2-image02

@@ -1,9 +1,9 @@
 apiVersion: v2
 name: tersane
-description: Full 3D Interactive Kubernetes Shipyard Visualization Engine (v1.0.0-3d Release)
+description: Local-first interactive Kubernetes shipyard
 type: application
-version: 1.0.0
-appVersion: "1.0.0-3d"
+version: 1.1.0
+appVersion: "1.1.0"
 keywords:
   - kubernetes
   - 3d

@@ -1,40 +1,55 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "tersane.fullname" . | default .Release.Name }}
+  name: {{ include "tersane.fullname" . }}
   labels:
-    app: {{ .Release.Name }}
+    {{- include "tersane.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      {{- include "tersane.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        {{- include "tersane.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name }}
+      serviceAccountName: {{ include "tersane.serviceAccountName" . }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
       containers:
         - name: tersane
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - name: http
+              containerPort: {{ .Values.env.port | int }}
           env:
             - name: PORT
-              value: "{{ .Values.env.port }}"
+              value: {{ .Values.env.port | quote }}
+            - name: BIND_ADDR
+              value: "0.0.0.0"
             - name: WATCH_NAMESPACE
-              value: "{{ .Values.env.watchNamespace }}"
+              value: {{ .Values.env.watchNamespace | quote }}
+            - name: READ_ONLY
+              value: {{ ternary "false" "true" .Values.rbac.mutations | quote }}
+            - name: API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "tersane.authSecret" . }}
+                  key: token
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
           livenessProbe:
-            httpGet:
-              path: /healthz
-              port: {{ .Values.service.port }}
+            httpGet: {path: /healthz, port: http}
             initialDelaySeconds: 10
           readinessProbe:
-            httpGet:
-              path: /healthz
-              port: {{ .Values.service.port }}
-            initialDelaySeconds: 5
+            httpGet: {path: /healthz, port: http}
+            initialDelaySeconds: 3

@@ -1,0 +1,11 @@
+✔ edit, template resources and Pod resize lock the first render before the fresh GET (0.313458ms)
+✔ readonly, absent API/resource and unsupported Secret paths never wait for a GET that will not run (0.062333ms)
+✔ purposeful Secret edit waits for reveal and does not require a generic resource path (0.049083ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.482625

@@ -1,0 +1,14 @@
+{
+  "trivyPath": "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+  "trivySHA256": "5fd45afccbd5efd7a88e6da92a7b3a52c2e3ffd30d5b954f324123d6d1d24469",
+  "dbMetadata": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  },
+  "dbMetadataSHA256": "62046a71bc29e0ded194e98fe3cde2f51f7179f5ed9d150b7853a33cbe307477",
+  "DBUpdateAllowed": false,
+  "expectedBinaryType": "ELF64 LinuxARM64, verify actual magic/buildinfo after build",
+  "coveragePolicy": "require Type gobinary and nonempty Packages; empty analyzer output is BLOCKED, never clean"
+}

@@ -1,0 +1,595 @@
+[
+  {
+    "target": "opt/cni/bin/cilium-cni",
+    "image": "ciliumAPTcandidate",
+    "ELFSHA256": "f150eee8501ccac18eb8a73d12382cd801c39017f21456b2b8cb76f1ebc75384",
+    "advisory": "GO-2026-6860",
+    "CVE": "CVE-2026-78661",
+    "scannerSeverityUnchanged": "HIGH",
+    "installedModule": "golang.org/x/net",
+    "installedVersion": "v0.60.0",
+    "fixedFloor": "0.62.0",
+    "affectedImport": "golang.org/x/net/html",
+    "affectedGOOS": [],
+    "affectedSymbols": [
+      "Parse",
+      "ParseFragment",
+      "ParseFragmentWithOptions",
+      "ParseWithOptions",
+      "parser.addText",
+      "parser.fosterParent",
+      "parser.parse"
+    ],
+    "symbolChecks": {
+      "Parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragment": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragmentWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.addText": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.fosterParent": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 17426,
+    "fullFuncnameTableNames": 22346,
+    "pclntabSHA256": "714a370e7d008699005aacd3f8fa8e9c5c6c6a216c82c9263e7d85ee5ad2466f",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Affected Go package and all affected functions absent from fully parsed entry/name tables including inlining names; no raw package-path bytes",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/opt/cni/bin/cilium-cni",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/cilium-cni-full-funcname-table.txt",
+    "privateNameTableSHA256": "c9ff684a0807c9bf6ff1ebac62b948ada46f357a766d4757756e7338790b517c"
+  },
+  {
+    "target": "usr/bin/cilium-agent",
+    "image": "ciliumAPTcandidate",
+    "ELFSHA256": "0144e472f4f0573684a13a0a2e7d1ff304fb78bc06b5f9cc9d9221dd934ab03e",
+    "advisory": "GO-2026-6860",
+    "CVE": "CVE-2026-78661",
+    "scannerSeverityUnchanged": "HIGH",
+    "installedModule": "golang.org/x/net",
+    "installedVersion": "v0.60.0",
+    "fixedFloor": "0.62.0",
+    "affectedImport": "golang.org/x/net/html",
+    "affectedGOOS": [],
+    "affectedSymbols": [
+      "Parse",
+      "ParseFragment",
+      "ParseFragmentWithOptions",
+      "ParseWithOptions",
+      "parser.addText",
+      "parser.fosterParent",
+      "parser.parse"
+    ],
+    "symbolChecks": {
+      "Parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragment": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragmentWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.addText": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.fosterParent": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 187842,
+    "fullFuncnameTableNames": 202202,
+    "pclntabSHA256": "e70a7215afa64abf34dbde5fde431fb0542e70df93280892bf51053063c041f0",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Affected Go package and all affected functions absent from fully parsed entry/name tables including inlining names; no raw package-path bytes",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/usr/bin/cilium-agent",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/cilium-agent-full-funcname-table.txt",
+    "privateNameTableSHA256": "c3919ee2cc16809c65dc34e54aff5035442ceeb31702cd0d4964197b8607261e"
+  },
+  {
+    "target": "usr/bin/cilium-bugtool",
+    "image": "ciliumAPTcandidate",
+    "ELFSHA256": "172757f640066ec8e9d4deedbb5bf8a9ae37e785af6453fa092555c1bb32edfd",
+    "advisory": "GO-2026-6860",
+    "CVE": "CVE-2026-78661",
+    "scannerSeverityUnchanged": "HIGH",
+    "installedModule": "golang.org/x/net",
+    "installedVersion": "v0.60.0",
+    "fixedFloor": "0.62.0",
+    "affectedImport": "golang.org/x/net/html",
+    "affectedGOOS": [],
+    "affectedSymbols": [
+      "Parse",
+      "ParseFragment",
+      "ParseFragmentWithOptions",
+      "ParseWithOptions",
+      "parser.addText",
+      "parser.fosterParent",
+      "parser.parse"
+    ],
+    "symbolChecks": {
+      "Parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragment": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragmentWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.addText": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.fosterParent": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 11928,
+    "fullFuncnameTableNames": 15913,
+    "pclntabSHA256": "7140af0ffa4fdd35107045b32af21ed6917bea198f38000486699a7c3c4f081f",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Affected Go package and all affected functions absent from fully parsed entry/name tables including inlining names; no raw package-path bytes",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/usr/bin/cilium-bugtool",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/cilium-bugtool-full-funcname-table.txt",
+    "privateNameTableSHA256": "e5f34ebaaee77f85a20840d2eeeb726abb140a7ecb96df57617c464534fae180"
+  },
+  {
+    "target": "usr/bin/cilium-dbg",
+    "image": "ciliumAPTcandidate",
+    "ELFSHA256": "57e5785aca0239a07261313a5b0797a3f7a5fc7c7f4a37e976e7568557a2142b",
+    "advisory": "GO-2026-6860",
+    "CVE": "CVE-2026-78661",
+    "scannerSeverityUnchanged": "HIGH",
+    "installedModule": "golang.org/x/net",
+    "installedVersion": "v0.60.0",
+    "fixedFloor": "0.62.0",
+    "affectedImport": "golang.org/x/net/html",
+    "affectedGOOS": [],
+    "affectedSymbols": [
+      "Parse",
+      "ParseFragment",
+      "ParseFragmentWithOptions",
+      "ParseWithOptions",
+      "parser.addText",
+      "parser.fosterParent",
+      "parser.parse"
+    ],
+    "symbolChecks": {
+      "Parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragment": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragmentWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.addText": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.fosterParent": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 138077,
+    "fullFuncnameTableNames": 148959,
+    "pclntabSHA256": "140537cbb616546b0081ca20a10ded1463920aca713f6eea10d8c8f198e4b1d6",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Affected Go package and all affected functions absent from fully parsed entry/name tables including inlining names; no raw package-path bytes",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/usr/bin/cilium-dbg",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/cilium-dbg-full-funcname-table.txt",
+    "privateNameTableSHA256": "db6ac9a70ffee6c25f91a063d55642960238d54f9c8a4f9e74962f738efd5e38"
+  },
+  {
+    "target": "usr/bin/cilium-envoy-bootstrap-locality",
+    "image": "ciliumAPTcandidate",
+    "ELFSHA256": "69c81e396daf71c2830c9b720813915363e0e01ffd94b36be73da7e6b8e201ac",
+    "advisory": "GO-2026-6860",
+    "CVE": "CVE-2026-78661",
+    "scannerSeverityUnchanged": "HIGH",
+    "installedModule": "golang.org/x/net",
+    "installedVersion": "v0.60.0",
+    "fixedFloor": "0.62.0",
+    "affectedImport": "golang.org/x/net/html",
+    "affectedGOOS": [],
+    "affectedSymbols": [
+      "Parse",
+      "ParseFragment",
+      "ParseFragmentWithOptions",
+      "ParseWithOptions",
+      "parser.addText",
+      "parser.fosterParent",
+      "parser.parse"
+    ],
+    "symbolChecks": {
+      "Parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragment": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragmentWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.addText": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.fosterParent": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 25100,
+    "fullFuncnameTableNames": 29572,
+    "pclntabSHA256": "0bcb9de2ddedd83ff19e6a19140b8f52d6e6e697cd16311390e248d0dad47a20",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Affected Go package and all affected functions absent from fully parsed entry/name tables including inlining names; no raw package-path bytes",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/usr/bin/cilium-envoy-bootstrap-locality",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/cilium-envoy-bootstrap-locality-full-funcname-table.txt",
+    "privateNameTableSHA256": "7a7805a95f3ecc992609f2fd21bcc4b5c5173f3cb27f04f802df96b06ce4f56f"
+  },
+  {
+    "target": "usr/bin/cilium-health",
+    "image": "ciliumAPTcandidate",
+    "ELFSHA256": "2e0d6464b73c77141e384fc43ee625c775e0d952577cc154c80bdef98b9fa54d",
+    "advisory": "GO-2026-6860",
+    "CVE": "CVE-2026-78661",
+    "scannerSeverityUnchanged": "HIGH",
+    "installedModule": "golang.org/x/net",
+    "installedVersion": "v0.60.0",
+    "fixedFloor": "0.62.0",
+    "affectedImport": "golang.org/x/net/html",
+    "affectedGOOS": [],
+    "affectedSymbols": [
+      "Parse",
+      "ParseFragment",
+      "ParseFragmentWithOptions",
+      "ParseWithOptions",
+      "parser.addText",
+      "parser.fosterParent",
+      "parser.parse"
+    ],
+    "symbolChecks": {
+      "Parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragment": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragmentWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.addText": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.fosterParent": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 13100,
+    "fullFuncnameTableNames": 17231,
+    "pclntabSHA256": "cab450a9540f525d17f212969b8a57387852583267a29d5456d8a9adc9dacb60",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Affected Go package and all affected functions absent from fully parsed entry/name tables including inlining names; no raw package-path bytes",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/usr/bin/cilium-health",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/cilium-health-full-funcname-table.txt",
+    "privateNameTableSHA256": "1a5306267d2e8b75fbd1923596c245fdb5d23daf4887cda8bf179d97924f86af"
+  },
+  {
+    "target": "usr/bin/cilium-mount",
+    "image": "ciliumAPTcandidate",
+    "ELFSHA256": "3165e60bd1a82c283de944062f5288f6984c1400239ef924c809fcea79edb374",
+    "advisory": "GO-2026-6860",
+    "CVE": "CVE-2026-78661",
+    "scannerSeverityUnchanged": "HIGH",
+    "installedModule": "golang.org/x/net",
+    "installedVersion": "v0.60.0",
+    "fixedFloor": "0.62.0",
+    "affectedImport": "golang.org/x/net/html",
+    "affectedGOOS": [],
+    "affectedSymbols": [
+      "Parse",
+      "ParseFragment",
+      "ParseFragmentWithOptions",
+      "ParseWithOptions",
+      "parser.addText",
+      "parser.fosterParent",
+      "parser.parse"
+    ],
+    "symbolChecks": {
+      "Parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragment": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragmentWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.addText": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.fosterParent": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 7700,
+    "fullFuncnameTableNames": 10480,
+    "pclntabSHA256": "bbcc04a2508300c3f858be1395dc8ab3e16599c6e72006ca44a6dc70deb9e795",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Affected Go package and all affected functions absent from fully parsed entry/name tables including inlining names; no raw package-path bytes",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/usr/bin/cilium-mount",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/cilium-mount-full-funcname-table.txt",
+    "privateNameTableSHA256": "664acb86252a37518569f57fa093f18a28528c9e43b78b4019845c70478d3a83"
+  },
+  {
+    "target": "usr/bin/hubble",
+    "image": "ciliumAPTcandidate",
+    "ELFSHA256": "b0db823658d23310c4d19f0a239cb63873c07f0e0473dbb6a890ab9d4725ec98",
+    "advisory": "GO-2026-6860",
+    "CVE": "CVE-2026-78661",
+    "scannerSeverityUnchanged": "HIGH",
+    "installedModule": "golang.org/x/net",
+    "installedVersion": "v0.60.0",
+    "fixedFloor": "0.62.0",
+    "affectedImport": "golang.org/x/net/html",
+    "affectedGOOS": [],
+    "affectedSymbols": [
+      "Parse",
+      "ParseFragment",
+      "ParseFragmentWithOptions",
+      "ParseWithOptions",
+      "parser.addText",
+      "parser.fosterParent",
+      "parser.parse"
+    ],
+    "symbolChecks": {
+      "Parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragment": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseFragmentWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "ParseWithOptions": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.addText": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.fosterParent": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      },
+      "parser.parse": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 106524,
+    "fullFuncnameTableNames": 114833,
+    "pclntabSHA256": "28d6ec68bd83f74710c1553209e8d66c95305f39ca71337bc3997a476ea97433",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Affected Go package and all affected functions absent from fully parsed entry/name tables including inlining names; no raw package-path bytes",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-6860.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/usr/bin/hubble",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/hubble-full-funcname-table.txt",
+    "privateNameTableSHA256": "146a6a67b7842f8c20ca3de3f320d20b3795fed1d40d4c9f1da0efa4ec5c3000"
+  },
+  {
+    "target": "usr/bin/gops",
+    "image": "operatorImage02",
+    "ELFSHA256": "61c61208e84c53b9c617b0781a4936cf1aed39175e098c2d9bd26a6a3d90c3e8",
+    "advisory": "GO-2026-5024",
+    "CVE": "CVE-2026-39824",
+    "scannerSeverityUnchanged": "UNKNOWN",
+    "installedModule": "golang.org/x/sys",
+    "installedVersion": "v0.30.0",
+    "fixedFloor": "0.44.0",
+    "affectedImport": "golang.org/x/sys/windows",
+    "affectedGOOS": [
+      "windows"
+    ],
+    "affectedSymbols": [
+      "NewNTUnicodeString"
+    ],
+    "symbolChecks": {
+      "NewNTUnicodeString": {
+        "entryMatchCount": 0,
+        "completeNameTableMatchCount": 0
+      }
+    },
+    "completePackageFunctionMatches": 0,
+    "rawAffectedPackageBytesPresent": false,
+    "ELFCompleteTableParsed": true,
+    "functionEntries": 4256,
+    "fullFuncnameTableNames": 6089,
+    "pclntabSHA256": "1c821ee146e94c56b9073e37e9f318631fd21e5131783bf37d04d47abba3eba8",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "disposition": "NOT_AFFECTED",
+    "classification": "FALSE_POSITIVE_MODULE_MATCH_FOR_THIS_ELF",
+    "reason": "Advisory restricts affected package to Windows; actual ELF build is linux/arm64; Windows-only source and all Windows package/function names absent",
+    "riskWaiver": false,
+    "moduleVersionRemainsBelowFloor": true,
+    "primaryURL": "https://vuln.go.dev/ID/GO-2026-5024.json",
+    "ELFEvidence": "ELF-pclntab-projections.json#/usr/bin/gops",
+    "privateNameTable": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-go-adjudication/gops-full-funcname-table.txt",
+    "privateNameTableSHA256": "c05c1caf1e32eda7c615fb66e4f9385a072b78605820dd3260dda5128d3562ed"
+  }
+]

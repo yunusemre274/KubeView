@@ -1,0 +1,146 @@
+{
+  "id": "ws-20261110-real03-draft-after-fresh-get",
+  "startedAt": "2026-11-10T08:40:24.293Z",
+  "status": "failed",
+  "checks": [
+    {
+      "name": "dirty-yaml-native-arrows-preserve-body-and-camera",
+      "at": "2026-11-10T08:40:31.352Z",
+      "detail": {
+        "uid": "4ba19cc9-9fbc-44d5-84c5-83d1a01cb6cc",
+        "draftSHA256": "00f332e1f015e905dc3b468b4807887603c5573bcf7ccb673c11eb9538232991",
+        "caret": 2157,
+        "camera": 0,
+        "target": 0,
+        "quaternion": 0,
+        "sourceSHA256": "0de1077d97b7795e992b2ea2bb519f05938cd0aed6237c63d049c83b9cd31d9a"
+      }
+    },
+    {
+      "name": "form-interior-scroll-isolated-from-world",
+      "at": "2026-11-10T08:40:31.543Z",
+      "detail": {
+        "element": "yaml-editor",
+        "top": 1124.5,
+        "height": 519,
+        "total": 1656,
+        "after": 704.5,
+        "camera": 0,
+        "target": 0,
+        "quaternion": 0,
+        "sourceSHA256": "0de1077d97b7795e992b2ea2bb519f05938cd0aed6237c63d049c83b9cd31d9a"
+      }
+    },
+    {
+      "name": "same-name-B-keeps-own-uid-and-no-A-grant",
+      "at": "2026-11-10T08:40:31.867Z",
+      "detail": {
+        "harborId": "e9822c84-b728-4864-8380-2070f3af74e3",
+        "uid": "37f1b711-a541-4dd5-a40d-361b72a203db",
+        "editDisabled": true
+      }
+    },
+    {
+      "name": "A-return-immediate-draft-before-fresh-get-settles",
+      "at": "2026-11-10T08:40:32.090Z",
+      "detail": {
+        "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+        "uid": "4ba19cc9-9fbc-44d5-84c5-83d1a01cb6cc",
+        "draftSHA256": "00f332e1f015e905dc3b468b4807887603c5573bcf7ccb673c11eb9538232991"
+      }
+    },
+    {
+      "name": "A-return-after-completed-fresh-get-keeps-exact-safe-draft-uid-mode-and-panel",
+      "at": "2026-11-10T08:40:32.118Z",
+      "detail": {
+        "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+        "uid": "4ba19cc9-9fbc-44d5-84c5-83d1a01cb6cc",
+        "draftSHA256": "00f332e1f015e905dc3b468b4807887603c5573bcf7ccb673c11eb9538232991",
+        "byteEqual": true,
+        "annotationPresent": true,
+        "canvasPreserved": true,
+        "loading": false,
+        "freshGetCount": 2
+      }
+    }
+  ],
+  "errors": [],
+  "source": "Actual owned A/B Kubernetes profile03 and normal UI; local draft is not applied.",
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "distBefore": "4dd698fb6606a31a7be223ad40551bd06fe3a153fa83517c6f18e8cd9d785a0e",
+  "owned": {
+    "a": {
+      "namespaceUID": "47ee76d0-8641-4d01-9ce9-8a2b2922c732",
+      "deploymentUID": "4ba19cc9-9fbc-44d5-84c5-83d1a01cb6cc",
+      "podUID": "4f2fa62f-b4ad-4b3f-bd3f-678158f85298",
+      "podContainer": "web"
+    },
+    "b": {
+      "namespaceUID": "07d9569e-b138-4f34-a723-39272ec88f8a",
+      "deploymentUID": "37f1b711-a541-4dd5-a40d-361b72a203db",
+      "podUID": "44f6c10f-3db5-41f6-8cfb-5b3566aeabaa",
+      "podContainer": "web"
+    }
+  },
+  "limits": [
+    "No workload mutation or dry-run is submitted.",
+    "No Secret, raw log, complete YAML, nonce or HTTP header is recorded.",
+    "Read-only camera observations are not physical presented latency."
+  ],
+  "scrollObservation": {
+    "element": "yaml-editor",
+    "top": 1124.5,
+    "height": 519,
+    "total": 1656,
+    "after": 704.5
+  },
+  "failure": "Expected values to be strictly equal:\n\n383 !== 2159\n",
+  "kubernetesMutations": [],
+  "management": [
+    {
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "enabled": false
+    },
+    {
+      "harborId": "e9822c84-b728-4864-8380-2070f3af74e3",
+      "enabled": false
+    },
+    {
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "enabled": true
+    }
+  ],
+  "freshResourceGets": [
+    {
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "context": "kvml-ccdfe731dabd-a",
+      "uid": "4ba19cc9-9fbc-44d5-84c5-83d1a01cb6cc",
+      "resourceVersion": "8812",
+      "draftAnnotationPresent": false,
+      "templateSHA256": "e820640827bf1f78f0255e7dfb316b99bca62face23bd8eed3ecb75b271bde41"
+    },
+    {
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "context": "kvml-ccdfe731dabd-a",
+      "uid": "4ba19cc9-9fbc-44d5-84c5-83d1a01cb6cc",
+      "resourceVersion": "8812",
+      "draftAnnotationPresent": false,
+      "templateSHA256": "e820640827bf1f78f0255e7dfb316b99bca62face23bd8eed3ecb75b271bde41"
+    }
+  ],
+  "logRequests": [
+    {
+      "uid": "4a86c047-bf14-45db-8fa4-50db367e58dd",
+      "container": "web",
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "scopePresent": true,
+      "status": 200,
+      "ended": true
+    }
+  ],
+  "socketCount": 2,
+  "socketClosedEvents": 0,
+  "sourceAfter": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "distAfter": "4dd698fb6606a31a7be223ad40551bd06fe3a153fa83517c6f18e8cd9d785a0e",
+  "finishedAt": "2026-11-10T08:40:33.160Z"
+}

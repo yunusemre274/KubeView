@@ -1,0 +1,58 @@
+{
+  "name": "cilium-baseline",
+  "argv": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/trivy.yaml",
+    "image",
+    "--image-src",
+    "docker",
+    "--docker-host",
+    "unix:///var/run/docker.sock",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/cilium-baseline.json",
+    "--timeout",
+    "70s",
+    "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e"
+  ],
+  "startedAt": "2026-11-12T10:41:28.028329+00:00",
+  "maxSeconds": 75,
+  "samples": [
+    {
+      "elapsedSeconds": 0.828,
+      "ownedRSSBytes": 7241728,
+      "ownedPIDs": [
+        12223
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454514946048
+    }
+  ],
+  "pid": 12223,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:41:28.551663+00:00"
+}

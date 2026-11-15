@@ -1,0 +1,240 @@
+{
+  "status": "GO_NARROW_TEST01_01_ENTRYPOINT_INVENTORY",
+  "reviewStartedAt": "2026-11-11T19:01:07+00:00",
+  "reviewFinishedAt": "2026-11-11T19:03:47.599226+00:00",
+  "reviewKind": "Independent second source/evidence inspection by same agent system; not live retest or professional third-party pentest",
+  "currentHEAD": "29e679f24a97c2e199fb56ea1ed951305ef7afa1",
+  "testedRuntimeSource": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "binarySHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "noLiveTestsProcessesBuildsBrowserLab": true,
+  "files": {
+    "backend/main.go": {
+      "currentSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "testedReceiptSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "base4cSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "currentBytesEqualBase4c": true,
+      "currentMatchesReceipt": true
+    },
+    "backend/pkg/server/server.go": {
+      "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "testedReceiptSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "base4cSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "currentBytesEqualBase4c": true,
+      "currentMatchesReceipt": true
+    },
+    "backend/pkg/server/provider_handlers.go": {
+      "currentSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "testedReceiptSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "base4cSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "currentBytesEqualBase4c": true,
+      "currentMatchesReceipt": true
+    },
+    "backend/pkg/server/replay_source.go": {
+      "currentSHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "testedReceiptSHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "base4cSHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "currentBytesEqualBase4c": true,
+      "currentMatchesReceipt": true
+    },
+    "backend/pkg/server/workspace.go": {
+      "currentSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "testedReceiptSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "base4cSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "currentBytesEqualBase4c": true,
+      "currentMatchesReceipt": true
+    }
+  },
+  "evidence": {
+    "first": {
+      "status": "FAIL",
+      "probeCount": 28,
+      "allGET": true,
+      "allExpectedStatusesMatch": true,
+      "appExitCode": 0,
+      "noListenAfter": true,
+      "sourceSHAEqualsNormal": true
+    },
+    "normal": {
+      "status": "PASS",
+      "probeCount": 37,
+      "allGET": true,
+      "allExpectedStatusesMatch": true,
+      "appExitCode": 0,
+      "noListenAfter": true,
+      "sourceSHAEqualsNormal": true
+    },
+    "replay": {
+      "status": "PASS",
+      "probeCount": 7,
+      "allGET": true,
+      "allExpectedStatusesMatch": true,
+      "appExitCode": 0,
+      "noListenAfter": true,
+      "sourceSHAEqualsNormal": true
+    }
+  },
+  "checksums": {
+    "runtime-surface-current": {
+      "entries": 4,
+      "failures": []
+    },
+    "runtime-surface-retest": {
+      "entries": 5,
+      "failures": []
+    },
+    "runtime-surface-replay": {
+      "entries": 4,
+      "failures": []
+    }
+  },
+  "normalPatterns": [
+    {
+      "pattern": "/",
+      "protected": false
+    },
+    {
+      "pattern": "/api/actions",
+      "protected": true
+    },
+    {
+      "pattern": "/api/capabilities",
+      "protected": true
+    },
+    {
+      "pattern": "/api/connection",
+      "protected": true
+    },
+    {
+      "pattern": "/api/contexts",
+      "protected": true
+    },
+    {
+      "pattern": "/api/discovery",
+      "protected": true
+    },
+    {
+      "pattern": "/api/exec",
+      "protected": true
+    },
+    {
+      "pattern": "/api/flows",
+      "protected": true
+    },
+    {
+      "pattern": "/api/logs",
+      "protected": true
+    },
+    {
+      "pattern": "/api/management",
+      "protected": true
+    },
+    {
+      "pattern": "/api/metrics",
+      "protected": true
+    },
+    {
+      "pattern": "/api/openapi",
+      "protected": true
+    },
+    {
+      "pattern": "/api/portforward",
+      "protected": true
+    },
+    {
+      "pattern": "/api/portforward/",
+      "protected": true
+    },
+    {
+      "pattern": "/api/portforwards",
+      "protected": true
+    },
+    {
+      "pattern": "/api/providers",
+      "protected": true
+    },
+    {
+      "pattern": "/api/providers/minikube/workers",
+      "protected": true
+    },
+    {
+      "pattern": "/api/resources",
+      "protected": true
+    },
+    {
+      "pattern": "/api/secrets/reveal",
+      "protected": true
+    },
+    {
+      "pattern": "/api/session",
+      "protected": false
+    },
+    {
+      "pattern": "/api/version",
+      "protected": false
+    },
+    {
+      "pattern": "/api/workspace",
+      "protected": true
+    },
+    {
+      "pattern": "/api/workspace/",
+      "protected": true
+    },
+    {
+      "pattern": "/healthz",
+      "protected": false
+    },
+    {
+      "pattern": "/ws",
+      "protected": true
+    }
+  ],
+  "explicitReplayPatterns": [
+    {
+      "pattern": "/api/replay/status",
+      "protected": true
+    },
+    {
+      "pattern": "/api/replay/scenario",
+      "protected": true
+    }
+  ],
+  "normalCount": 25,
+  "normalUniqueCount": 25,
+  "normalProtectedCount": 21,
+  "explicitReplayCount": 2,
+  "indexSHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+  "debugFallback": {
+    "paths": [
+      "/debug/pprof/",
+      "/debug/vars",
+      "/metrics",
+      "/__benchmark/state",
+      "/__test/control"
+    ],
+    "allStatus200IndexBodySHA": true
+  },
+  "currentIndexFiles": {
+    "frontend/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3",
+    "backend/internal/webui/dist/index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3"
+  },
+  "guardSourceSHA256": {
+    "backend/pkg/server/connection.go": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+    "backend/pkg/server/portforward.go": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+    "backend/internal/webui/webui.go": "b21a4ee604354d8088eb864dc9a4804e60246a0e39b219695738f5b3194776b0"
+  },
+  "primaryReference": {
+    "title": "OWASP WSTG v4.2 Identify Application Entry Points",
+    "id": "WSTG-INFO-06",
+    "url": "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/01-Information_Gathering/06-Identify_Application_Entry_Points/",
+    "scope": "Entry-point inventory only; not complete WSTG/ASVS certification"
+  },
+  "unsupportedClaims": [
+    "GET401 does not establish WebSocket upgrade/stream behavior",
+    "No mutation/exec/forward/provider success or live Kubernetes",
+    "No performance or final release archive acceptance",
+    "No all-methods deny claim; ServeMux patterns have no method prefix and handlers differ",
+    "No whole-HEAD source identity claim",
+    "No complete WSTG or ASVS certification"
+  ]
+}

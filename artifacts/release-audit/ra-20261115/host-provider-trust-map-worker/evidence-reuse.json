@@ -1,0 +1,243 @@
+{
+  "checkedAt": "2026-11-15T09:23:38.224173+00:00",
+  "reports": [
+    {
+      "kind": "kubeconfig-first-fixture-fail",
+      "path": "artifacts/release-audit/ra-20261112/kubeconfig-trust-root/REPORT.md",
+      "bytes": 840,
+      "sha256": "bb6a09c1bbddaaa318c5548d0f2ebe1836f0af10f4ca583fe4a5647e4174c5bf",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "kubeconfig-trust-retest",
+      "path": "artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/REPORT.md",
+      "bytes": 1722,
+      "sha256": "ede19e80e38fbc9792657baa0fb44aa0eeece3764a7c9316cbecac1997224a67",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "provider-cache-initial-red",
+      "path": "artifacts/release-audit/ra-20261111/provider-cache-scope-worker/REPORT.md",
+      "bytes": 4686,
+      "sha256": "e9bef59734f1aeb361f20da5bfc09d102ce6cdeeedac3df876ec853a263717ac",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "provider-cache-retest",
+      "path": "artifacts/release-audit/ra-20261111/provider-cache-scope-retest-worker/REPORT.md",
+      "bytes": 4404,
+      "sha256": "e3ec5a26782b57de7f0a4374fe4f0c6e806868f70cc9c93c89a22e2f61e0cf08",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "physical-lock-initial-red",
+      "path": "artifacts/release-audit/ra-20261111/provider-profile-lock-scope-worker/REPORT.md",
+      "bytes": 2576,
+      "sha256": "be9d3111ca4f393757e6c81096fe8453630dae48d94a19435aabc468c8c9e27e",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "physical-lock-retest",
+      "path": "artifacts/release-audit/ra-20261111/provider-profile-lock-retest-worker/REPORT.md",
+      "bytes": 2394,
+      "sha256": "579c080dca2053293a586d602fed7efd310570f148ee6ff8ac215169798179d6",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "physical-lock-http-retest",
+      "path": "artifacts/release-audit/ra-20261112/provider-profile-lock-http-retest-worker/REPORT.md",
+      "bytes": 5857,
+      "sha256": "e6791d8d5d29ec07bf68a6b60f23ee08eefa8b3d9da90f0f236c1fd79272986c",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "actual-hubble-tls-historical",
+      "path": "artifacts/release-audit/ra-20261111/hubble-tls-worker/REPORT.md",
+      "bytes": 4046,
+      "sha256": "a9d2c2ba3ec1ae698f52c629f14942035045d2c57358ffea6d188d735120acb5",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "actual-watch-rolebinding-revoke",
+      "path": "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/REPORT.md",
+      "bytes": 3847,
+      "sha256": "5e0db646037fcb723fb9b86382ce26cdec569e8492404c4005e7d7f2e1ef4a0a",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    },
+    {
+      "kind": "native-release-debug-surface",
+      "path": "artifacts/release-audit/ra-20261114/native-debug-surface-review-worker/REPORT.md",
+      "bytes": 7008,
+      "sha256": "08529faba472f666933d1d40228c03e7eda2a5d461928a7af02d44c26f74edfe",
+      "usedAs": "Historical result read only, not rerun/new whole-runtime PASS"
+    }
+  ],
+  "sourceApplicability": [
+    {
+      "kind": "kubeconfigTrust",
+      "receipt": "artifacts/release-audit/ra-20261112/kubeconfig-trust-retest-root/manifest.json",
+      "sourceChecks": [
+        {
+          "path": "backend/pkg/server/release_kubeconfig_trust_test.go",
+          "historicalSHA256": "7b39ad28075a041ae0b63e57e4e8f3e38154b65e1c6bdb85e27de8373bb6c612",
+          "currentSHA256": "7b39ad28075a041ae0b63e57e4e8f3e38154b65e1c6bdb85e27de8373bb6c612",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/server.go",
+          "historicalSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace.go",
+          "historicalSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+          "currentSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/workspace/store.go",
+          "historicalSHA256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+          "currentSHA256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+          "equal": true
+        },
+        {
+          "path": "backend/go.mod",
+          "historicalSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+          "currentSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+          "equal": true
+        },
+        {
+          "path": "backend/go.sum",
+          "historicalSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+          "currentSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+          "equal": true
+        }
+      ],
+      "allEqual": true
+    },
+    {
+      "kind": "providerCache",
+      "receipt": "artifacts/release-audit/ra-20261111/provider-cache-scope-retest-worker/combined-result.json",
+      "sourceChecks": [
+        {
+          "path": "backend/pkg/server/release_provider_cache_scope_test.go",
+          "historicalSHA256": "b9e19ca53f28b39808733efa496e6ba74e6fb7bd0d8c62ff067b0cbf8482b223",
+          "currentSHA256": "b9e19ca53f28b39808733efa496e6ba74e6fb7bd0d8c62ff067b0cbf8482b223",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/provider_handlers.go",
+          "historicalSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+          "currentSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/provision/minikube.go",
+          "historicalSHA256": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+          "currentSHA256": "8e57040b6535a530e9bc7f39a80618960984ec0a39ad919eb394279b88a2dfff",
+          "equal": false
+        },
+        {
+          "path": "backend/pkg/provision/lock_unix.go",
+          "historicalSHA256": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+          "currentSHA256": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+          "equal": true
+        }
+      ],
+      "allEqual": false
+    },
+    {
+      "kind": "activeWatchReal",
+      "receipt": "artifacts/release-audit/ra-20261112/active-watch-real-e2e-attempt02-root/plan.json",
+      "sourceChecks": [
+        {
+          "path": "backend/pkg/server/release_active_watch_real_test.go",
+          "historicalSHA256": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb",
+          "currentSHA256": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/stream.go",
+          "historicalSHA256": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+          "currentSHA256": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/watch_authorization.go",
+          "historicalSHA256": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+          "currentSHA256": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace.go",
+          "historicalSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+          "currentSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace_scope.go",
+          "historicalSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+          "currentSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace_broker.go",
+          "historicalSHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+          "currentSHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/workspace_membership.go",
+          "historicalSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+          "currentSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/connection.go",
+          "historicalSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "currentSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/resources.go",
+          "historicalSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+          "currentSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+          "equal": true
+        },
+        {
+          "path": "backend/pkg/server/server.go",
+          "historicalSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+          "equal": true
+        },
+        {
+          "path": "backend/go.mod",
+          "historicalSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+          "currentSHA256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+          "equal": true
+        },
+        {
+          "path": "backend/go.sum",
+          "historicalSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+          "currentSHA256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+          "equal": true
+        }
+      ],
+      "allEqual": true
+    },
+    {
+      "kind": "physicalLock",
+      "receipt": "artifacts/release-audit/ra-20261111/provider-profile-lock-retest-worker/manifest.json",
+      "rootFixSHA256": "8e57040b6535a530e9bc7f39a80618960984ec0a39ad919eb394279b88a2dfff",
+      "currentMinikubeSHA256": "8e57040b6535a530e9bc7f39a80618960984ec0a39ad919eb394279b88a2dfff",
+      "fixEqual": true,
+      "testEqual": true
+    }
+  ],
+  "notes": [
+    "Source equality is an applicability check; no historical test is claimed newly executed.",
+    "Provider cache receipt predates physical-lock addition in manager; unchanged handler/test proof is partial; later manager lock proof is separately linked.",
+    "Hubble TLS result binds historical CLI1.20.2/lab; no new Cilium cold installation or candidate1.20.4/runtime SCA proof."
+  ]
+}

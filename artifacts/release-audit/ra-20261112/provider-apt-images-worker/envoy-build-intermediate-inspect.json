@@ -1,0 +1,201 @@
+{
+  "Id": "426ea862e71b7328aa54ca3be78f5a39e58e6e70f7ca4c876fc54481f3035a3d",
+  "Created": "2026-11-12T10:41:38.838088627Z",
+  "Path": "/bin/sh",
+  "Args": [
+    "-c",
+    "set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports noble-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; };     apt_safe update &&     plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg6.0t64) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1 &&     dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg6.0t64 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 2.8.4ubuntu0.1 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg6.0t64)\" ge 2.8.4ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list"
+  ],
+  "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 19642,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-11-12T10:41:38.852915794Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "Image": "sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+  "ResolvConfPath": "/var/lib/docker/containers/426ea862e71b7328aa54ca3be78f5a39e58e6e70f7ca4c876fc54481f3035a3d/resolv.conf",
+  "HostnamePath": "/var/lib/docker/containers/426ea862e71b7328aa54ca3be78f5a39e58e6e70f7ca4c876fc54481f3035a3d/hostname",
+  "HostsPath": "/var/lib/docker/containers/426ea862e71b7328aa54ca3be78f5a39e58e6e70f7ca4c876fc54481f3035a3d/hosts",
+  "LogPath": "",
+  "Name": "/competent_booth",
+  "RestartCount": 0,
+  "Driver": "overlayfs",
+  "Platform": "linux",
+  "MountLabel": "",
+  "ProcessLabel": "",
+  "AppArmorProfile": "",
+  "ExecIDs": null,
+  "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "none",
+      "Config": {}
+    },
+    "NetworkMode": "bridge",
+    "PortBindings": {},
+    "RestartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "CapAdd": null,
+    "CapDrop": null,
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": null,
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": null,
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 4294967296,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 100000,
+    "CpuQuota": 200000,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 4294967296,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": null,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+      "/proc/acpi",
+      "/proc/asound",
+      "/proc/interrupts",
+      "/proc/kcore",
+      "/proc/keys",
+      "/proc/latency_stats",
+      "/proc/sched_debug",
+      "/proc/scsi",
+      "/proc/timer_list",
+      "/proc/timer_stats",
+      "/sys/devices/virtual/powercap",
+      "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+      "/proc/bus",
+      "/proc/fs",
+      "/proc/irq",
+      "/proc/sys",
+      "/proc/sysrq-trigger"
+    ]
+  },
+  "Storage": {
+    "RootFS": {
+      "Snapshot": {
+        "Name": "overlayfs"
+      }
+    }
+  },
+  "Mounts": [],
+  "Config": {
+    "Hostname": "426ea862e71b",
+    "Domainname": "",
+    "User": "",
+    "AttachStdin": false,
+    "AttachStdout": false,
+    "AttachStderr": false,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    ],
+    "Cmd": [
+      "/bin/sh",
+      "-c",
+      "set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports noble-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; };     apt_safe update &&     plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg6.0t64) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1 &&     dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg6.0t64 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 2.8.4ubuntu0.1 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg6.0t64)\" ge 2.8.4ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list"
+    ],
+    "Healthcheck": {
+      "Test": [
+        "NONE"
+      ]
+    },
+    "Image": "sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+    "Volumes": null,
+    "WorkingDir": "",
+    "Entrypoint": null,
+    "Labels": {
+      "maintainer": "maintainer@cilium.io",
+      "org.opencontainers.image.version": "24.04"
+    }
+  },
+  "NetworkSettings": {
+    "SandboxID": "19c3797b0c10214ffe89ecaa82c0ffbcd0febfa45198da37bbec4f20dbf57d03",
+    "SandboxKey": "/var/run/docker/netns/19c3797b0c10",
+    "Ports": {},
+    "Networks": {
+      "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "55a049de009f35fd061495f8d7da4c84fbfe581333cf715df3595e9c02cecbe9",
+        "EndpointID": "7389bc8d221f389fe29f7e579fd75885d2484c58e0325e4712d66fa34eb97b8a",
+        "Gateway": "172.17.0.1",
+        "IPAddress": "172.17.0.2",
+        "MacAddress": "0a:74:ba:34:3f:77",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+      }
+    }
+  },
+  "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:5a17281b6262e00a8bfe6efa0463f4cbc19aa3d6e0116bc9407ce3c71c629dae",
+    "size": 867,
+    "platform": {
+      "architecture": "arm64",
+      "os": "linux"
+    }
+  }
+}

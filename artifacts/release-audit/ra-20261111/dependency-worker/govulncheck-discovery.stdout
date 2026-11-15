@@ -1,0 +1,8 @@
+{
+	"Path": "golang.org/x/vuln",
+	"Version": "v1.9.0",
+	"Query": "latest",
+	"Time": "2026-10-11T03:39:53Z",
+	"GoMod": "/Users/yunusemre/go/pkg/mod/cache/download/golang.org/x/vuln/@v/v1.9.0.mod",
+	"GoVersion": "1.26.0"
+}

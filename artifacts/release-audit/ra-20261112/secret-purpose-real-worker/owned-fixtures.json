@@ -1,0 +1,65 @@
+[
+  {
+    "GVR": {
+      "Group": "",
+      "Version": "v1",
+      "Resource": "secrets"
+    },
+    "Name": "kv-secret-a2e2f0779d759351",
+    "UID": "bed7eca2-c83b-4e57-bef4-6135260693a6"
+  },
+  {
+    "GVR": {
+      "Group": "",
+      "Version": "v1",
+      "Resource": "serviceaccounts"
+    },
+    "Name": "secret-list-a2e2f0779d759351",
+    "UID": "ea31496e-b462-4d84-bbbf-aa9eeecc3c89"
+  },
+  {
+    "GVR": {
+      "Group": "rbac.authorization.k8s.io",
+      "Version": "v1",
+      "Resource": "roles"
+    },
+    "Name": "secret-list-a2e2f0779d759351",
+    "UID": "2994f567-9cbb-4836-865c-828c87b00ebe"
+  },
+  {
+    "GVR": {
+      "Group": "rbac.authorization.k8s.io",
+      "Version": "v1",
+      "Resource": "rolebindings"
+    },
+    "Name": "secret-list-a2e2f0779d759351",
+    "UID": "205be36e-f824-4c3c-a8b9-4019dcd29641"
+  },
+  {
+    "GVR": {
+      "Group": "",
+      "Version": "v1",
+      "Resource": "serviceaccounts"
+    },
+    "Name": "secret-get-a2e2f0779d759351",
+    "UID": "a5f7a89b-bd20-4c5e-a4cb-81dfd5d2c394"
+  },
+  {
+    "GVR": {
+      "Group": "rbac.authorization.k8s.io",
+      "Version": "v1",
+      "Resource": "roles"
+    },
+    "Name": "secret-get-a2e2f0779d759351",
+    "UID": "0eb78d45-9ed6-461f-b2ab-2adf2dd48855"
+  },
+  {
+    "GVR": {
+      "Group": "rbac.authorization.k8s.io",
+      "Version": "v1",
+      "Resource": "rolebindings"
+    },
+    "Name": "secret-get-a2e2f0779d759351",
+    "UID": "27924754-2ba7-41d5-a58a-b2c9ff67b855"
+  }
+]

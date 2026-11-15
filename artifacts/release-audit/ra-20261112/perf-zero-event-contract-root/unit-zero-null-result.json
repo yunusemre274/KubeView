@@ -1,0 +1,5 @@
+{
+  "exitCode": 0,
+  "elapsedSeconds": 0.07212150000123074,
+  "reason": "Tighten zero-event delay null vs fabricated0; only changed metrics neighbor rerun"
+}

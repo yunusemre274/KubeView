@@ -1,0 +1,17 @@
+✔ legacy runtime default38 and explicit24 remain distinct finite projections (0.402958ms)
+✔ new manifests require actual matching FOV and reject24vs38 (0.315333ms)
+✔ only pinned historical38 source can resolve an omitted legacy field (0.056541ms)
+✔ measurement windows allow boundary IPC overhead and reject sleep/time jumps (0.302875ms)
+✔ render rate is total frames/active wall time; missing metrics stay null (0.178375ms)
+✔ load correlation uses opaque RV equality and handles DELETE's last stored version (0.116041ms)
+✔ process coverage flags even an intermediate browser child that exits before final sample (0.949708ms)
+✔ sleep-diluted CPU is rejected even with stable browser PIDs (0.097917ms)
+✔ paired comparison retains negative deltas and rejects a missing/duplicate cell (1.986417ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100.563917

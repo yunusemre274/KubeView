@@ -1,0 +1,32 @@
+[
+  {
+    "image": "hubble-relay",
+    "raw_offsets": {
+      "golang.org/x/net/html.Parse": -1,
+      "golang.org/x/net/html": -1,
+      "ParseWithOptions": -1,
+      "ParseFragmentWithOptions": -1,
+      "rawJSONWebKey.rsaPrivateKey": -1
+    }
+  },
+  {
+    "image": "cilium",
+    "raw_offsets": {
+      "golang.org/x/net/html.Parse": -1,
+      "golang.org/x/net/html": -1,
+      "ParseWithOptions": -1,
+      "ParseFragmentWithOptions": -1,
+      "rawJSONWebKey.rsaPrivateKey": -1
+    }
+  },
+  {
+    "image": "operator-generic",
+    "raw_offsets": {
+      "golang.org/x/net/html.Parse": -1,
+      "golang.org/x/net/html": -1,
+      "ParseWithOptions": -1,
+      "ParseFragmentWithOptions": -1,
+      "rawJSONWebKey.rsaPrivateKey": 79297438
+    }
+  }
+]

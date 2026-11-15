@@ -1,0 +1,328 @@
+{
+  "source": "REAL Kubernetes; owned manual02; normal UI/pointer",
+  "engine": "chromium",
+  "browser": "156.0.8078.4",
+  "binarySHA": "47a5a1b13ec4ec4db19b11c014ff094c7fcff6ffbea5fb2d1a9bf4e87933123d",
+  "labId": "kvml-aed6bc565b30",
+  "clusterUID": "a51d8e09-b035-4571-a5b3-4f0a40401f91",
+  "startedAt": "2026-11-11T10:36:15.179Z",
+  "status": "FAILED",
+  "checks": [
+    {
+      "name": "two-distinct-visible-harbors-fullscreen",
+      "at": "2026-11-11T10:36:21.763Z",
+      "detail": {
+        "width": 1440,
+        "height": 900,
+        "state": {
+          "rect": [
+            0,
+            0,
+            1440,
+            900
+          ],
+          "viewport": [
+            1440,
+            900
+          ],
+          "canvases": 1,
+          "bodyHeight": 900,
+          "centers": [
+            {
+              "type": "facility",
+              "id": "center",
+              "name": "Liman yönetimi",
+              "harborId": "940ea70a-0b63-4656-8f77-c56620496a4a",
+              "x": 1160.8653907708876,
+              "y": 324.5138638406445,
+              "visible": true
+            },
+            {
+              "type": "facility",
+              "id": "center",
+              "name": "Liman yönetimi",
+              "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+              "x": 480.72764971277616,
+              "y": 324.5138638406445,
+              "visible": true
+            }
+          ],
+          "stats": {
+            "frame": 374,
+            "calls": 373,
+            "triangles": 79148,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 60,
+              "textures": 4
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "camera": [
+            924.621028701073,
+            945.6975850138049,
+            969.8448716089118
+          ]
+        }
+      }
+    },
+    {
+      "name": "physical-center-click-right-harbor",
+      "at": "2026-11-11T10:36:22.999Z",
+      "detail": {
+        "width": 1440,
+        "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+        "expectedPodUID": "6b8f5705-7ae8-4cf8-b311-debaad91e6d9"
+      }
+    },
+    {
+      "name": "physical-center-click-right-harbor",
+      "at": "2026-11-11T10:36:24.515Z",
+      "detail": {
+        "width": 1440,
+        "harborId": "940ea70a-0b63-4656-8f77-c56620496a4a",
+        "expectedPodUID": "124a944e-c096-4672-8075-4e8fab976441"
+      }
+    },
+    {
+      "name": "two-distinct-visible-harbors-fullscreen",
+      "at": "2026-11-11T10:36:25.287Z",
+      "detail": {
+        "width": 1280,
+        "height": 800,
+        "state": {
+          "rect": [
+            0,
+            0,
+            1280,
+            800
+          ],
+          "viewport": [
+            1280,
+            800
+          ],
+          "canvases": 1,
+          "bodyHeight": 800,
+          "centers": [
+            {
+              "type": "facility",
+              "id": "center",
+              "name": "Liman yönetimi",
+              "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+              "x": 409.1819630320046,
+              "y": 307.57332627447437,
+              "visible": true
+            },
+            {
+              "type": "facility",
+              "id": "center",
+              "name": "Liman yönetimi",
+              "harborId": "940ea70a-0b63-4656-8f77-c56620496a4a",
+              "x": 1005.990073485471,
+              "y": 307.5733262744743,
+              "visible": true
+            }
+          ],
+          "stats": {
+            "frame": 564,
+            "calls": 373,
+            "triangles": 79148,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 60,
+              "textures": 4
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "camera": [
+            944.6675899264278,
+            971.4712789888216,
+            965.661879508545
+          ]
+        }
+      }
+    },
+    {
+      "name": "physical-center-click-right-harbor",
+      "at": "2026-11-11T10:36:26.830Z",
+      "detail": {
+        "width": 1280,
+        "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+        "expectedPodUID": "6b8f5705-7ae8-4cf8-b311-debaad91e6d9"
+      }
+    },
+    {
+      "name": "physical-center-click-right-harbor",
+      "at": "2026-11-11T10:36:28.374Z",
+      "detail": {
+        "width": 1280,
+        "harborId": "940ea70a-0b63-4656-8f77-c56620496a4a",
+        "expectedPodUID": "124a944e-c096-4672-8075-4e8fab976441"
+      }
+    },
+    {
+      "name": "two-distinct-visible-harbors-fullscreen",
+      "at": "2026-11-11T10:36:28.962Z",
+      "detail": {
+        "width": 768,
+        "height": 900,
+        "state": {
+          "rect": [
+            0,
+            0,
+            768,
+            900
+          ],
+          "viewport": [
+            768,
+            900
+          ],
+          "canvases": 1,
+          "bodyHeight": 900,
+          "centers": [
+            {
+              "type": "facility",
+              "id": "center",
+              "name": "Liman yönetimi",
+              "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+              "x": 39.98953983466137,
+              "y": 512.8841983880411,
+              "visible": true
+            },
+            {
+              "type": "facility",
+              "id": "center",
+              "name": "Liman yönetimi",
+              "harborId": "940ea70a-0b63-4656-8f77-c56620496a4a",
+              "x": 602.5710217133969,
+              "y": 203.72300457298763,
+              "visible": true
+            }
+          ],
+          "stats": {
+            "frame": 773,
+            "calls": 306,
+            "triangles": 67138,
+            "points": 0,
+            "lines": 0,
+            "measuredTraffic": null,
+            "memory": {
+              "geometries": 60,
+              "textures": 4
+            },
+            "lifecycle": {
+              "canonicalNodes": 2,
+              "visibleNodes": 2,
+              "nodePage": 0,
+              "nodePages": 1,
+              "canonicalPods": 1,
+              "visiblePods": 1,
+              "nodeSlots": 2,
+              "podSlots": 1,
+              "activeTransfers": 0,
+              "queuedTransfers": 0,
+              "visualLoadingUIDs": [],
+              "exitGhosts": 0,
+              "containerTransitions": 0,
+              "visualEvents": {
+                "nodeFaults": 0,
+                "containerFaults": 0,
+                "containerTransitions": 0,
+                "processSignals": 0,
+                "summarized": 0
+              },
+              "summarizedTransfers": 0
+            }
+          },
+          "camera": [
+            220.56244013974165,
+            1361.687320419225,
+            798.7874161956383
+          ]
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "world-1440.png",
+    "center-1440-8a66d537-0eea-4102-af04-c9141006f49e.png",
+    "center-1440-940ea70a-0b63-4656-8f77-c56620496a4a.png",
+    "world-1280.png",
+    "center-1280-8a66d537-0eea-4102-af04-c9141006f49e.png",
+    "center-1280-940ea70a-0b63-4656-8f77-c56620496a4a.png",
+    "world-768.png",
+    "failure.png"
+  ],
+  "limits": [
+    "Video-enabled functional run; not CPU/FPS/physical latency acceptance.",
+    "Projected read-only anchors only guide ordinary pointer clicks; no selection/state injection."
+  ],
+  "indexSHA": "f682f5740ba518542ed6d84e3008b57a4a592e162b093276b4b3354e12e634a5",
+  "harbors": [
+    {
+      "id": "8a66d537-0eea-4102-af04-c9141006f49e",
+      "name": "Proje 1",
+      "namespaces": [
+        "kvml-bc565b30-02-p1"
+      ]
+    },
+    {
+      "id": "940ea70a-0b63-4656-8f77-c56620496a4a",
+      "name": "Proje 2",
+      "namespaces": [
+        "kvml-bc565b30-02-p2"
+      ]
+    }
+  ],
+  "failure": "locator.click: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Proje 1 — limanı aç', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button data-active=\"false\" class=\"harbor-nameplate\" title=\"kvml-bc565b30-02-p1\" aria-label=\"Proje 1 — limanı aç\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    22 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+  "finishedAt": "2026-11-11T10:36:41.714Z"
+}

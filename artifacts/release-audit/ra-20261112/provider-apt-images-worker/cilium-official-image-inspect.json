@@ -1,0 +1,58 @@
+{
+  "Id": "sha256:1615b8097f64e1461cd55bd2037b817484d3586d1e065b88014463c797d0832a",
+  "RepoTags": [
+    "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e"
+  ],
+  "RepoDigests": [
+    "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e"
+  ],
+  "Comment": "buildkit.dockerfile.v0",
+  "Created": "2026-10-23T14:19:33.823746873Z",
+  "Config": {
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "HUBBLE_SERVER=unix:///var/run/cilium/hubble.sock",
+      "INITSYSTEM=SYSTEMD"
+    ],
+    "Cmd": [
+      "/usr/bin/cilium-dbg"
+    ],
+    "WorkingDir": "/home/cilium",
+    "Labels": {
+      "maintainer": "maintainer@cilium.io"
+    },
+    "ArgsEscaped": true
+  },
+  "Architecture": "arm64",
+  "Os": "linux",
+  "Size": 240966361,
+  "RootFS": {
+    "Type": "layers",
+    "Layers": [
+      "sha256:d992b67eeb949fa2c852abc0aa7bd15b8597c796dd959d7f0db58a04f7a5ab94",
+      "sha256:83e50c8b0ef358fc3d32395525d56e3270e8ef484deb3de8064cb213c88ff4c4",
+      "sha256:53bca5db01ebd9bff0a62d14cef846c71e8b8344d1fb2106d38b545978baeb0a",
+      "sha256:bdd8620562c14243e44a9046a174019ad4d8d24d7aba31efbbe294e5c24558dd",
+      "sha256:e53ed60dd113bc5a76584b4e03aa17621a3b2248fdeea07ebb05a446bb48b669"
+    ]
+  },
+  "Metadata": {
+    "LastTagTime": "2026-11-11T13:29:42.293953633Z"
+  },
+  "Descriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:1615b8097f64e1461cd55bd2037b817484d3586d1e065b88014463c797d0832a",
+    "size": 1247,
+    "platform": {
+      "architecture": "arm64",
+      "os": "linux"
+    }
+  },
+  "Identity": {
+    "Pull": [
+      {
+        "Repository": "quay.io/cilium/cilium"
+      }
+    ]
+  }
+}

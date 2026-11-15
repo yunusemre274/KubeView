@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-09T10:47:14.464906+00:00",
+  "actualOwnedClusterUIDGuard": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "ownedNamespaceAbsence": {
+    "kv-repair-v11-focus-caption": true,
+    "kv-repair-v11-exec-focus": true
+  },
+  "gatewayPID": 12083,
+  "gatewayConnectedTCPBeforeStop": 0,
+  "gatewayTerminated": true,
+  "preservedOwnedLabContainers": [
+    {
+      "name": "kv-repair-1101",
+      "id": "4d805a40fcfb9f6ac32fb551642d73685f65bd7210e7ad785cb0d9e5dc5ec851",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "kv-repair-1101-m02",
+      "id": "48896e53ac0b9dd2ff5446886e5b903ee54c698e6cbc7ceabccb25bfd87d1f92",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "kv-repair-1101-m03",
+      "id": "018543c908a7d4ec6066ccc476434bc9ef2561619862ab6144f8b4c7324b2ffc",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "kv-repair-v11-b",
+      "id": "8d282993012be6958ae42309fc4d2f904fb218d27b2303abfc6d82d8bc11463f",
+      "running": false,
+      "status": "exited"
+    }
+  ],
+  "ports": {
+    "18410": "closed",
+    "19493": "closed",
+    "19445": "closed",
+    "5195": "closed",
+    "18511": "closed",
+    "18512": "closed"
+  },
+  "scope": "Only exact pinned three A containerIDs and current owned gateway stopped; B already stopped; no deletion, user projects untouched",
+  "runtimeTrackedDiff": []
+}

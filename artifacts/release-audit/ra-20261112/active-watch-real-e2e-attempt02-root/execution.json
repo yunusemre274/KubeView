@@ -1,0 +1,667 @@
+{
+  "status": "PASS_REAL_ROLEBINDING_GO_TEST_REQUIRES_PROOF_CLEANUP_REVIEW",
+  "startedAt": "2026-11-12T21:25:24.242492+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=160s",
+    "-run",
+    "^TestReleaseOwnedWatchRoleBindingRevocationReal$",
+    "./pkg/server"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "captured": [
+    {
+      "pid": 64418,
+      "identity": "Fri Nov 13 00:25:24 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -json -p 1 -parallel 1 -count=1 -timeout=160s -run ^TestReleaseOwnedWatchRoleBindingRevocationReal$ ./pkg/server",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 64424,
+      "identity": "Fri Nov 13 00:25:24 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/compile -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build153238523/b123/_pkg_.a -trimpath /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build153238523/b123=> -p github.com/k8s-tersane/tersane/backend/pkg/server -lang=go1.26 -complete -buildid hF-6GyoGUBhZ5le0T2t7/hF-6GyoGUBhZ5le0T2t7 -goversion go1.26.11 -c=2 -shared -nolocalimports -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build153238523/b123/importcfg -embedcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build153238523/b123/embedcfg -pack /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection_errors.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/log_session.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/maintenance.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/portforward.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/provider_handlers.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/replay_source.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/resource_scopes.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/resources.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/server.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/sessions.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/stream.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/template_capability.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/traffic_handlers.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/watch_authorization.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_broker.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_membership.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_projection.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_scope.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/benchmark_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/connection_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/correctness_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/placement_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/rbac_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_active_watch_authz_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_active_watch_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_kubeconfig_trust_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_operations_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_origin_preview_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_preview_browser_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_provider_cache_scope_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_readonly_endpoints_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_secret_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_security_regression_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_session_expiry_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/release_session_lifecycle_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_lifecycle_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_maintenance_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_protocol_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_resources_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/repair_traffic_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/replay_source_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/server_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/stream_benchmark_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/traffic_handlers_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_cr_scope_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_hubble_scope_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_log_roles_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/v11_provider_gate_integration_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/watch_authorization_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_cookie_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_acceptance_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_helpers_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_isolation_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_real_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_recovery_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_scope_list_test.go /Users/yunusemre/Desktop/KubeView/backend/pkg/server/workspace_test.go",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 64433,
+      "identity": "Fri Nov 13 00:25:25 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/pkg/tool/darwin_arm64/link -o /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build153238523/b001/server.test -importcfg /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build153238523/b001/importcfg.link -s -w -buildmode=pie -buildid=WG-ZHjCL9Br5pQgY5mcK/D8n3xVZLld9EynrE-7b_/6TVvyXmeyKWHvRTp7YlK/WG-ZHjCL9Br5pQgY5mcK -X testing.testBinary=1 -extld=clang /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build153238523/b001/_pkg_.a",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 64451,
+      "identity": "Fri Nov 13 00:25:26 2026     /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build153238523/b001/server.test -test.paniconexit0 -test.v=test2json -test.parallel=1 -test.count=1 -test.timeout=2m40s -test.run=^TestReleaseOwnedWatchRoleBindingRevocationReal$",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.020374458999867784,
+      "ownedRSSKiB": 5008,
+      "ownedPIDs": [
+        64418
+      ]
+    },
+    {
+      "elapsedSeconds": 0.23764470900277956,
+      "ownedRSSKiB": 59808,
+      "ownedPIDs": [
+        64418
+      ]
+    },
+    {
+      "elapsedSeconds": 0.4600581250015239,
+      "ownedRSSKiB": 208240,
+      "ownedPIDs": [
+        64418,
+        64424
+      ]
+    },
+    {
+      "elapsedSeconds": 0.6801218340006017,
+      "ownedRSSKiB": 296208,
+      "ownedPIDs": [
+        64418,
+        64424
+      ]
+    },
+    {
+      "elapsedSeconds": 0.8985171250023996,
+      "ownedRSSKiB": 364000,
+      "ownedPIDs": [
+        64418,
+        64424
+      ]
+    },
+    {
+      "elapsedSeconds": 1.1108766249999462,
+      "ownedRSSKiB": 435776,
+      "ownedPIDs": [
+        64418,
+        64424
+      ]
+    },
+    {
+      "elapsedSeconds": 1.3307541670001228,
+      "ownedRSSKiB": 60176,
+      "ownedPIDs": [
+        64418
+      ]
+    },
+    {
+      "elapsedSeconds": 1.5478102500019304,
+      "ownedRSSKiB": 526880,
+      "ownedPIDs": [
+        64418,
+        64433
+      ]
+    },
+    {
+      "elapsedSeconds": 1.7676043339997705,
+      "ownedRSSKiB": 60224,
+      "ownedPIDs": [
+        64418
+      ]
+    },
+    {
+      "elapsedSeconds": 1.9862673340030597,
+      "ownedRSSKiB": 61936,
+      "ownedPIDs": [
+        64418
+      ]
+    },
+    {
+      "elapsedSeconds": 2.235499417001847,
+      "ownedRSSKiB": 61968,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 2.4788835420004034,
+      "ownedRSSKiB": 61968,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 2.7128792090006755,
+      "ownedRSSKiB": 98640,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 2.9508510420018865,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 3.1979293340009463,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 3.4447007500020845,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 3.6851130000031844,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 3.930384667000908,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 4.177896667002642,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 4.425723292002658,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 4.674346292002156,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 4.924144500000693,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 5.172458625002037,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 5.418578542001342,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 5.661962625003071,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 5.910828334002872,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 6.163959209003224,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 6.401626542003214,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 6.649741625002207,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 6.884666792000644,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 7.125302125001326,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 7.3702960000009625,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 7.612152084002446,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 7.854304000000411,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 8.10273212500033,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 8.348147167002026,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 8.595255375003035,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 8.83202204200279,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 9.080016584000987,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 9.32201491700107,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 9.568528792002326,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 9.816679958999885,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 10.063642875000369,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 10.312140542002453,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 10.560844999999972,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 10.80950970900085,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 11.056519708999986,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 11.298115667003003,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 11.537857750001422,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 11.785362917002203,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 12.026482084002055,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 12.27141395900253,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 12.5150733340015,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 12.753429834003327,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 12.999189084002865,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 13.24651037500007,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 13.496432375002769,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 13.735306667000259,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 13.97194729200055,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 14.218977792002988,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 14.462710667001375,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 14.70912241699989,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 14.955970834002073,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 15.20516312500331,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 15.453232375002699,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 15.699468667000474,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 15.947307542002818,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 16.18909100000019,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 16.43126766700152,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 16.67909129200052,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 16.91008095900179,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 17.156646709001507,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 17.40444504200059,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 17.650408417001017,
+      "ownedRSSKiB": 104752,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    },
+    {
+      "elapsedSeconds": 17.88623141700009,
+      "ownedRSSKiB": 105440,
+      "ownedPIDs": [
+        64418,
+        64451
+      ]
+    }
+  ],
+  "safety": {
+    "wholeSeconds": 180,
+    "mainSeconds": 105,
+    "cleanupSeconds": 45,
+    "p": 1,
+    "parallel": 1,
+    "GOMAXPROCS": 2,
+    "ownedRSSMiB": 1536,
+    "diskGiB": 10,
+    "fixtureCap": 6,
+    "controlledUpdateCap": 10,
+    "SSARCallCap": 120,
+    "TLSVerify": true,
+    "noAutomaticRetry": true
+  },
+  "limitSeconds": 180,
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "sourceBeforeMatches": true,
+  "exitCode": 0,
+  "topLevelTests": [
+    "TestReleaseOwnedWatchRoleBindingRevocationReal"
+  ],
+  "topLevelPassed": 1,
+  "subtestsPassed": 0,
+  "failures": 0,
+  "skips": 0,
+  "sourceAfterMatches": true,
+  "elapsedSeconds": 18.573919375001424,
+  "finishedAt": "2026-11-12T21:25:42.816372+00:00"
+}

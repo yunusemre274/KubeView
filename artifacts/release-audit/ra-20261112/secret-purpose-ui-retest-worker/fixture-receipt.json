@@ -1,0 +1,9 @@
+{
+  "name": "kv-secret-ui-91c3bce2b5df8b54",
+  "namespace": "kvrel-secret-20261112-21bddadc",
+  "namespaceUID": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d",
+  "UID": "59c5c80a-a03b-4ab0-a7ff-bcf2435cc34e",
+  "labelKey": "kubeview.io/secret-ui-run",
+  "run": "91c3bce2b5df8b54",
+  "createdAt": "2026-11-12T11:27:09.371460+00:00"
+}

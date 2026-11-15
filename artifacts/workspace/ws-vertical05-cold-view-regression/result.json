@@ -1,0 +1,125 @@
+{
+  "id": "ws-vertical05-cold-view-regression",
+  "startedAt": "2026-11-09T17:53:08.255Z",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "empty-onboarding-has-no-last-known-stale-claim",
+      "at": "2026-11-09T17:53:09.018Z",
+      "detail": {
+        "canvasCount": 1,
+        "sockets": 0
+      }
+    },
+    {
+      "name": "normal-log-filter-native-caret-and-stable-world",
+      "at": "2026-11-09T17:53:10.572Z",
+      "detail": {
+        "uid": "pod-0",
+        "containerName": "app",
+        "caret": 21,
+        "cameraDistance": 0,
+        "targetDistance": 0,
+        "quaternionDistance": 0,
+        "canvasCount": 1
+      }
+    },
+    {
+      "name": "workspace-get-confirms-ui-persisted-view",
+      "at": "2026-11-09T17:53:10.884Z",
+      "detail": {
+        "harborId": "986c33c6-9a8c-4823-9c64-a545769b18df",
+        "selection": {
+          "uid": "pod-0",
+          "kind": "Pod",
+          "namespace": "bench-0",
+          "containerName": "app"
+        },
+        "tab": "logs"
+      }
+    },
+    {
+      "name": "cold-reload-restores-exact-uid-container-and-tab",
+      "at": "2026-11-09T17:53:11.157Z",
+      "detail": {
+        "uid": "pod-0",
+        "containerName": "app",
+        "tab": "logs",
+        "canvasCount": 1
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Normal UI and real embedded replay HTTP/WS only; no response mock or product state injection.",
+    "TEST/REPLAY fixtures are synthetic, not actual Kubernetes or Hubble evidence.",
+    "No raw logs, headers, nonce, Secret values or traces saved.",
+    "Caret/camera observations are not physical presented latency."
+  ],
+  "sourceBefore": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "distBefore": "4dd698fb6606a31a7be223ad40551bd06fe3a153fa83517c6f18e8cd9d785a0e",
+  "replayBefore": {
+    "dataSource": "test-replay",
+    "profile": "M",
+    "logOpened": 0,
+    "logClosed": 0
+  },
+  "target": {
+    "harborId": "986c33c6-9a8c-4823-9c64-a545769b18df",
+    "name": "app-0",
+    "uid": "pod-0",
+    "containerName": "app",
+    "tab": "logs"
+  },
+  "persistedViewObserved": {
+    "harborId": "986c33c6-9a8c-4823-9c64-a545769b18df",
+    "selection": {
+      "uid": "pod-0",
+      "kind": "Pod",
+      "namespace": "bench-0",
+      "containerName": "app"
+    },
+    "tab": "logs"
+  },
+  "timedOut": false,
+  "logRequests": [
+    {
+      "uid": "pod-0",
+      "container": "app",
+      "namespace": "bench-0",
+      "scopePresent": true,
+      "noncePresent": true,
+      "status": 200,
+      "phase": "aborted-or-failed"
+    },
+    {
+      "uid": "pod-0",
+      "container": "app",
+      "namespace": "bench-0",
+      "scopePresent": true,
+      "noncePresent": false,
+      "status": 200,
+      "phase": "aborted-or-failed"
+    },
+    {
+      "uid": "pod-0",
+      "container": "app",
+      "namespace": "bench-0",
+      "scopePresent": true,
+      "noncePresent": false,
+      "status": 200,
+      "phase": "aborted-or-failed"
+    }
+  ],
+  "socketCount": 3,
+  "socketClosed": 1,
+  "replayAfter": {
+    "dataSource": "test-replay",
+    "profile": "M",
+    "logOpened": 3,
+    "logClosed": 3
+  },
+  "sourceAfter": "ee974b3b1367777c967ff3cc38d1ffd4853c87ff39e060d6280b65a16194e559",
+  "distAfter": "4dd698fb6606a31a7be223ad40551bd06fe3a153fa83517c6f18e8cd9d785a0e",
+  "finishedAt": "2026-11-09T17:53:13.069Z"
+}

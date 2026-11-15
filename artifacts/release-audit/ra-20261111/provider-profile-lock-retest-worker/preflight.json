@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-11-11T19:52:32.712428+00:00",
+  "deadlineAt": "2026-11-11T19:58:32.712428+00:00",
+  "originalTestSHA256": "2a146f4688e741a26be340a48641602efd11218161f1b5a37aef5b50c1f8f1a2",
+  "rootFixSHA256": "8e57040b6535a530e9bc7f39a80618960984ec0a39ad919eb394279b88a2dfff",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count",
+    "1",
+    "-run",
+    "^TestReleaseProfileLockSpansStateDirs$",
+    "-timeout",
+    "45s",
+    "-v",
+    "./pkg/provision"
+  ],
+  "envOverrides": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local",
+    "GOPROXY": "off",
+    "GOSUMDB": "off"
+  },
+  "noVMCLIOrLiveAPI": true
+}

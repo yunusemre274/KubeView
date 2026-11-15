@@ -1,0 +1,44 @@
+{
+  "command": [
+    "go",
+    "test",
+    "-p=1",
+    "-parallel=1",
+    "-run",
+    "^$",
+    "-fuzz",
+    "^FuzzWorkspaceDocument$",
+    "-fuzztime=10s",
+    "-timeout=60s",
+    "./pkg/workspace"
+  ],
+  "cwd": "backend",
+  "started_at_utc": "2026-11-11T10:50:20.832377+00:00",
+  "finished_at_utc": "2026-11-11T10:51:03.756379+00:00",
+  "duration_seconds": 42.924,
+  "exit_code": 0,
+  "timed_out": false,
+  "outer_timeout_seconds": 90,
+  "test_timeout_seconds": 60,
+  "GOMAXPROCS": 2,
+  "GOTOOLCHAIN": "go1.26.11",
+  "source_commit": "49999815cf27ca47888fdc5d62cb1f7caf3bbd11",
+  "source_files": [
+    {
+      "path": "backend/pkg/workspace/store.go",
+      "sha256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a"
+    },
+    {
+      "path": "backend/pkg/workspace/store_test.go",
+      "sha256": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476"
+    },
+    {
+      "path": "backend/go.mod",
+      "sha256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c"
+    },
+    {
+      "path": "backend/go.sum",
+      "sha256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+    }
+  ]
+}

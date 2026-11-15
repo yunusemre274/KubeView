@@ -1,0 +1,249 @@
+{
+  "startedAt": "2026-11-11T16:19:31.606Z",
+  "source": "Actual same CSP07 binary/PID13278 M5 TEST/REPLAY; diagnostic OFF is browser-only main-document CSP removal, never production bypass or performance evidence",
+  "cases": [
+    {
+      "id": "chromium-pointer-ON",
+      "engine": "chromium",
+      "mode": "pointer",
+      "csp": true,
+      "cspOffDiagnosticOnly": false,
+      "startedAt": "2026-11-11T16:19:31.751Z",
+      "status": "OBSERVED",
+      "steps": [
+        {
+          "name": "main document + world",
+          "at": "2026-11-11T16:19:31.844Z",
+          "elapsedWallMs": 93
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "02-pointer-dialog",
+          "at": "2026-11-11T16:20:03.207Z"
+        }
+      ],
+      "pageErrors": [],
+      "gaps": [],
+      "lastAction": "normal Bul pointer click",
+      "mainCSP": "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; script-src 'self'; worker-src 'self' blob:",
+      "controls": {
+        "dpr": 1,
+        "framebuffer": [
+          1440,
+          940
+        ],
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "quality": "auto",
+        "motionPreference": "system",
+        "pausedButtonPresent": false
+      },
+      "captureFailure": {
+        "name": "01-world",
+        "type": "TimeoutError"
+      },
+      "pointer": {
+        "awaitCompleted": false,
+        "elapsedMs": 7007,
+        "type": "TimeoutError",
+        "actionLog": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Bul', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"world-find\" aria-label=\"Bul\" class=\"world-tool\" aria-pressed=\"false\" title=\"Bul · Cmd/Ctrl+K\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n"
+      },
+      "dialogObservation": {
+        "visible": true,
+        "at": "2026-11-11T16:19:58.076Z"
+      },
+      "dialogVisibleAfterAwait": true,
+      "finalViolations": [],
+      "contextClosed": true,
+      "finishedAt": "2026-11-11T16:20:17.294Z",
+      "wallMs": 45543,
+      "monotonicMs": 45543.000666,
+      "boundedValid": true
+    },
+    {
+      "id": "chromium-pointer-OFF",
+      "engine": "chromium",
+      "mode": "pointer",
+      "csp": false,
+      "cspOffDiagnosticOnly": true,
+      "startedAt": "2026-11-11T16:20:17.295Z",
+      "status": "FAIL",
+      "steps": [
+        {
+          "name": "main document + world",
+          "at": "2026-11-11T16:20:17.374Z",
+          "elapsedWallMs": 79
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "FIRST-FAIL",
+          "at": "2026-11-11T16:20:39.461Z"
+        }
+      ],
+      "pageErrors": [],
+      "gaps": [],
+      "lastAction": "main document + world",
+      "onlyMainDocumentHeaderRemoved": true,
+      "mainCSP": null,
+      "failure": {
+        "type": "TimeoutError",
+        "message": "page.waitForFunction: Timeout 16000ms exceeded.",
+        "stack": "page.waitForFunction: Timeout 16000ms exceeded.\n    at runCase (/Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp-diagnostic.mjs:33:14)\n    at async file:///Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp-diagnostic.mjs:51:90",
+        "lastAction": "main document + world"
+      },
+      "finalViolations": [],
+      "contextClosed": true,
+      "finishedAt": "2026-11-11T16:20:52.394Z",
+      "wallMs": 35099,
+      "monotonicMs": 35098.871167000005,
+      "boundedValid": true
+    },
+    {
+      "id": "chromium-keyboard",
+      "engine": "chromium",
+      "mode": "keyboard",
+      "csp": true,
+      "cspOffDiagnosticOnly": false,
+      "startedAt": "2026-11-11T16:20:52.395Z",
+      "status": "FAIL",
+      "steps": [
+        {
+          "name": "main document + world",
+          "at": "2026-11-11T16:20:52.514Z",
+          "elapsedWallMs": 119
+        },
+        {
+          "name": "keyboard finder Node + exact UID",
+          "at": "2026-11-11T16:21:13.981Z",
+          "elapsedWallMs": 21586
+        }
+      ],
+      "screenshots": [],
+      "pageErrors": [],
+      "gaps": [],
+      "lastAction": "keyboard finder Node + exact UID",
+      "mainCSP": "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; script-src 'self'; worker-src 'self' blob:",
+      "controls": {
+        "dpr": 1,
+        "framebuffer": [
+          1440,
+          940
+        ],
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "quality": "auto",
+        "motionPreference": "system",
+        "pausedButtonPresent": false
+      },
+      "captureFailure": {
+        "name": "FIRST-FAIL",
+        "type": "TimeoutError"
+      },
+      "resourceIdentity": {
+        "node": {
+          "name": "worker-001",
+          "uid": "node-0"
+        },
+        "pod": {
+          "name": "app-0",
+          "uid": "pod-0",
+          "namespace": "bench-0"
+        }
+      },
+      "failure": {
+        "type": "TimeoutError",
+        "message": "locator.scrollIntoViewIfNeeded: Timeout 2679.502999999997ms exceeded.\nCall log:\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m    - waiting for element to be stable\u001b[22m\n",
+        "stack": "locator.scrollIntoViewIfNeeded: Timeout 2679.502999999997ms exceeded.\nCall log:\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m    - waiting for element to be stable\u001b[22m\n\n    at find (/Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp-diagnostic.mjs:23:1003)\n    at async runCase (/Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp-diagnostic.mjs:40:4)\n    at async file:///Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp-diagnostic.mjs:51:132",
+        "lastAction": "keyboard finder Node + exact UID"
+      },
+      "finalViolations": [],
+      "contextClosed": true,
+      "finishedAt": "2026-11-11T16:22:01.902Z",
+      "wallMs": 69507,
+      "monotonicMs": 69506.83841699999,
+      "boundedValid": true
+    },
+    {
+      "id": "webkit-keyboard",
+      "engine": "webkit",
+      "mode": "keyboard",
+      "csp": true,
+      "cspOffDiagnosticOnly": false,
+      "startedAt": "2026-11-11T16:22:02.410Z",
+      "status": "FAIL",
+      "steps": [
+        {
+          "name": "main document + world",
+          "at": "2026-11-11T16:22:03.071Z",
+          "elapsedWallMs": 660
+        },
+        {
+          "name": "keyboard finder Node + exact UID",
+          "at": "2026-11-11T16:22:04.536Z",
+          "elapsedWallMs": 2125
+        },
+        {
+          "name": "keyboard finder Pod + exact UID",
+          "at": "2026-11-11T16:22:05.496Z",
+          "elapsedWallMs": 3085
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "01-world",
+          "at": "2026-11-11T16:22:04.535Z"
+        },
+        {
+          "name": "02-node-uid",
+          "at": "2026-11-11T16:22:05.495Z"
+        },
+        {
+          "name": "FIRST-FAIL",
+          "at": "2026-11-11T16:22:10.891Z"
+        }
+      ],
+      "pageErrors": [],
+      "gaps": [],
+      "lastAction": "keyboard finder Pod + exact UID",
+      "mainCSP": "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; script-src 'self'; worker-src 'self' blob:",
+      "controls": {
+        "dpr": 1,
+        "framebuffer": [
+          1440,
+          940
+        ],
+        "renderer": "Apple GPU",
+        "quality": "auto",
+        "motionPreference": "system",
+        "pausedButtonPresent": false
+      },
+      "resourceIdentity": {
+        "node": {
+          "name": "worker-001",
+          "uid": "node-0"
+        },
+        "pod": {
+          "name": "app-0",
+          "uid": "pod-0",
+          "namespace": "bench-0"
+        }
+      },
+      "NodeUIDVerified": "node-0",
+      "failure": {
+        "type": "Error",
+        "message": "expect(locator).toHaveCount(expected) failed\n\nLocator:  getByRole('dialog', { name: 'Dünyada bul', exact: true }).locator('.finder-result').filter({ has: getByText('app-0', { exact: true }) })\nExpected: 1\nReceived: 2\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveCount\" getByRole('dialog', { name: 'Dünyada bul', exact: true }).locator('.finder-result').filter({ has: getByText('app-0', { exact: true }) }) with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Dünyada bul', exact: true }).locator('.finder-result').filter({ has: getByText('app-0', { exact: true }) })\n    13 × locator resolved to 2 elements\n       - unexpected value \"2\"\n",
+        "stack": "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  getByRole('dialog', { name: 'Dünyada bul', exact: true }).locator('.finder-result').filter({ has: getByText('app-0', { exact: true }) })\nExpected: 1\nReceived: 2\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveCount\" getByRole('dialog', { name: 'Dünyada bul', exact: true }).locator('.finder-result').filter({ has: getByText('app-0', { exact: true }) }) with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Dünyada bul', exact: true }).locator('.finder-result').filter({ has: getByText('app-0', { exact: true }) })\n    13 × locator resolved to 2 elements\n       - unexpected value \"2\"\n\n    at captureRawStack (/Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright-core/lib/coreBundle.js:9282:17)\n    at callMatcherAsStep (/Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/lib/matchers/expect.js:13316:57)\n    at Object.toHaveCount (/Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/lib/matchers/expect.js:13308:23)\n    at find (/Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp-diagnostic.mjs:23:551)\n    at async runCase (/Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp-diagnostic.mjs:40:101)\n    at async file:///Users/yunusemre/Desktop/KubeView/frontend/e2e/release-main-csp-diagnostic.mjs:52:47",
+        "lastAction": "keyboard finder Pod + exact UID"
+      },
+      "finalViolations": [],
+      "contextClosed": true,
+      "finishedAt": "2026-11-11T16:22:13.541Z",
+      "wallMs": 11130,
+      "monotonicMs": 11130.259541999985,
+      "boundedValid": true
+    }
+  ],
+  "allBrowsersClosed": true,
+  "finishedAt": "2026-11-11T16:22:13.570Z",
+  "status": "INCOMPLETE"
+}

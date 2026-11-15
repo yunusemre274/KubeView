@@ -1,0 +1,437 @@
+{
+  "startedAt": "2026-11-01T14:07:40.375Z",
+  "source": "REAL Kubernetes API / scoped production WebSocket / normal catalog UI",
+  "context": "kv-repair-1101",
+  "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+  "namespace": "kv-repair-cr",
+  "cases": [
+    {
+      "name": "real CR normal catalog selection and same-context reconnect preserves same UID",
+      "startedAt": "2026-11-01T14:07:43.789Z",
+      "result": {
+        "before": {
+          "uid": "db77faac-2ee8-4671-9c0c-e319bf652a49",
+          "rv": "1567"
+        },
+        "after": {
+          "uid": "db77faac-2ee8-4671-9c0c-e319bf652a49",
+          "rv": "1567"
+        },
+        "live": {
+          "panel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1567 · 2 sn önce oluşturuldu · Son veri 17:07:44\n\nÖzet\nOlaylar\nYAML\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:42\nUID\ndb77faac-2ee8-4671-9c0c-e319bf652a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil",
+          "uid": "db77faac-2ee8-4671-9c0c-e319bf652a49",
+          "generation": "e5b63a05-528d-4994-b275-d5775caf8b40"
+        },
+        "canonicalBefore": {
+          "canvas": {
+            "engine": "three.js r164"
+          },
+          "bounds": {
+            "w": 1440,
+            "h": 900
+          }
+        }
+      },
+      "status": "PASSED",
+      "endedAt": "2026-11-01T14:07:44.952Z"
+    },
+    {
+      "name": "real watch DELETE marks only the selected UID deleted",
+      "startedAt": "2026-11-01T14:07:44.953Z",
+      "result": {
+        "deletedUID": "db77faac-2ee8-4671-9c0c-e319bf652a49",
+        "matchingWireDELETE": {
+          "at": "2026-11-01T14:07:45.116Z",
+          "type": "RESOURCE_EVENT",
+          "generation": "e5b63a05-528d-4994-b275-d5775caf8b40",
+          "action": "DELETE",
+          "uid": "db77faac-2ee8-4671-9c0c-e319bf652a49",
+          "namespace": "kv-repair-cr",
+          "resourceVersion": "1573"
+        }
+      },
+      "status": "PASSED",
+      "endedAt": "2026-11-01T14:07:45.272Z"
+    },
+    {
+      "name": "same address new UID cannot retarget the old selected panel",
+      "startedAt": "2026-11-01T14:07:45.272Z",
+      "result": {
+        "newUID": "989bf8e8-5edc-402b-a679-8971dca52a49"
+      },
+      "status": "PASSED",
+      "endedAt": "2026-11-01T14:07:46.365Z"
+    },
+    {
+      "name": "offline DELETE is stale until scoped authoritative relist proves absence",
+      "startedAt": "2026-11-01T14:07:46.365Z",
+      "result": {
+        "uid": "989bf8e8-5edc-402b-a679-8971dca52a49",
+        "disconnectedPanel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1574 · 1 sn önce oluşturuldu · Son veri 17:07:45\n\nÖzet\nOlaylar\nYAML\nSon bilinen veri · güncel değil. Yokluk doğrulanmadan kaynak silindi sayılmaz.\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:45\nUID\n989bf8e8-5edc-402b-a679-8971dca52a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil",
+        "authoritativeScopes": [
+          {
+            "group": "audit.kubeview.io",
+            "version": "v1",
+            "resource": "repaircargos",
+            "kind": "RepairCargo",
+            "namespace": "kv-repair-cr",
+            "authoritative": true,
+            "status": "synced"
+          }
+        ]
+      },
+      "status": "PASSED",
+      "endedAt": "2026-11-01T14:07:47.070Z"
+    },
+    {
+      "name": "restricted namespace context works without namespace-list; RBAC loss is forbidden, not deleted; restoration recovers",
+      "startedAt": "2026-11-01T14:07:47.186Z",
+      "result": {
+        "uid": "822dded8-2600-4eac-afdd-1d2d2b669cc2",
+        "upstreamStillPresent": "822dded8-2600-4eac-afdd-1d2d2b669cc2",
+        "namespaceListHTTP": 403,
+        "deniedScopeObserved": true
+      },
+      "status": "PASSED",
+      "endedAt": "2026-11-01T14:07:48.722Z"
+    },
+    {
+      "name": "namespace change retains selected leased CR while context change clears previous selection",
+      "startedAt": "2026-11-01T14:07:48.722Z",
+      "result": {
+        "previousContext": "kv-repair-cr-reader",
+        "nextContext": "kv-repair-1101",
+        "leasedUID": "822dded8-2600-4eac-afdd-1d2d2b669cc2"
+      },
+      "status": "PASSED",
+      "endedAt": "2026-11-01T14:08:04.400Z"
+    }
+  ],
+  "wire": [
+    {
+      "at": "2026-11-01T14:07:43.945Z",
+      "generation": "32d3d6d7-4822-4fcc-95a0-153127663687",
+      "context": "kv-repair-1101",
+      "scopes": [],
+      "resources": []
+    },
+    {
+      "at": "2026-11-01T14:07:44.191Z",
+      "generation": "e97e419b-af40-46ab-b9ed-3fc43cf8dd32",
+      "context": "kv-repair-1101",
+      "scopes": [
+        {
+          "group": "audit.kubeview.io",
+          "version": "v1",
+          "resource": "repaircargos",
+          "kind": "RepairCargo",
+          "namespace": "kv-repair-cr",
+          "authoritative": true,
+          "status": "synced"
+        }
+      ],
+      "resources": [
+        {
+          "uid": "db77faac-2ee8-4671-9c0c-e319bf652a49",
+          "namespace": "kv-repair-cr",
+          "name": "reconnect-cargo",
+          "resourceVersion": "1567"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-01T14:07:44.748Z",
+      "generation": "e5b63a05-528d-4994-b275-d5775caf8b40",
+      "context": "kv-repair-1101",
+      "scopes": [
+        {
+          "group": "audit.kubeview.io",
+          "version": "v1",
+          "resource": "repaircargos",
+          "kind": "RepairCargo",
+          "namespace": "kv-repair-cr",
+          "authoritative": true,
+          "status": "synced"
+        }
+      ],
+      "resources": [
+        {
+          "uid": "db77faac-2ee8-4671-9c0c-e319bf652a49",
+          "namespace": "kv-repair-cr",
+          "name": "reconnect-cargo",
+          "resourceVersion": "1567"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-01T14:07:45.116Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "e5b63a05-528d-4994-b275-d5775caf8b40",
+      "action": "DELETE",
+      "uid": "db77faac-2ee8-4671-9c0c-e319bf652a49",
+      "namespace": "kv-repair-cr",
+      "resourceVersion": "1573"
+    },
+    {
+      "at": "2026-11-01T14:07:45.340Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "e5b63a05-528d-4994-b275-d5775caf8b40",
+      "action": "ADD",
+      "uid": "989bf8e8-5edc-402b-a679-8971dca52a49",
+      "namespace": "kv-repair-cr",
+      "resourceVersion": "1574"
+    },
+    {
+      "at": "2026-11-01T14:07:46.530Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "e5b63a05-528d-4994-b275-d5775caf8b40",
+      "action": "DELETE",
+      "uid": "989bf8e8-5edc-402b-a679-8971dca52a49",
+      "namespace": "kv-repair-cr",
+      "resourceVersion": "1577"
+    },
+    {
+      "at": "2026-11-01T14:07:46.896Z",
+      "generation": "f323d6f4-7bcf-42e6-861f-6628d2030f37",
+      "context": "kv-repair-1101",
+      "scopes": [
+        {
+          "group": "audit.kubeview.io",
+          "version": "v1",
+          "resource": "repaircargos",
+          "kind": "RepairCargo",
+          "namespace": "kv-repair-cr",
+          "authoritative": true,
+          "status": "synced"
+        }
+      ],
+      "resources": []
+    },
+    {
+      "at": "2026-11-01T14:07:47.144Z",
+      "type": "RESOURCE_EVENT",
+      "generation": "f323d6f4-7bcf-42e6-861f-6628d2030f37",
+      "action": "ADD",
+      "uid": "822dded8-2600-4eac-afdd-1d2d2b669cc2",
+      "namespace": "kv-repair-cr",
+      "resourceVersion": "1578"
+    },
+    {
+      "at": "2026-11-01T14:07:47.417Z",
+      "generation": "9476f5c1-785c-492a-bff6-4261ab332445",
+      "context": "kv-repair-cr-reader",
+      "scopes": [
+        {
+          "group": "audit.kubeview.io",
+          "version": "v1",
+          "resource": "repaircargos",
+          "kind": "RepairCargo",
+          "namespace": "kv-repair-cr",
+          "authoritative": true,
+          "status": "synced"
+        }
+      ],
+      "resources": [
+        {
+          "uid": "822dded8-2600-4eac-afdd-1d2d2b669cc2",
+          "namespace": "kv-repair-cr",
+          "name": "reconnect-cargo",
+          "resourceVersion": "1578"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-01T14:07:47.904Z",
+      "generation": "5a0f0338-d6c9-488c-842d-41384e41f70c",
+      "context": "kv-repair-cr-reader",
+      "scopes": [
+        {
+          "group": "audit.kubeview.io",
+          "version": "v1",
+          "resource": "repaircargos",
+          "kind": "RepairCargo",
+          "namespace": "kv-repair-cr",
+          "authoritative": false,
+          "status": "forbidden",
+          "error": "repaircargos.audit.kubeview.io is forbidden: Yetki reddedildi: "
+        }
+      ],
+      "resources": []
+    },
+    {
+      "at": "2026-11-01T14:07:48.469Z",
+      "generation": "b432df2c-67a2-4a7a-9e4d-cab7e2355805",
+      "context": "kv-repair-cr-reader",
+      "scopes": [
+        {
+          "group": "audit.kubeview.io",
+          "version": "v1",
+          "resource": "repaircargos",
+          "kind": "RepairCargo",
+          "namespace": "kv-repair-cr",
+          "authoritative": true,
+          "status": "synced"
+        }
+      ],
+      "resources": [
+        {
+          "uid": "822dded8-2600-4eac-afdd-1d2d2b669cc2",
+          "namespace": "kv-repair-cr",
+          "name": "reconnect-cargo",
+          "resourceVersion": "1578"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-01T14:07:48.903Z",
+      "generation": "a023988e-caad-427f-86dd-aee7c6c8c8e0",
+      "context": "kv-repair-cr-reader",
+      "scopes": [
+        {
+          "group": "audit.kubeview.io",
+          "version": "v1",
+          "resource": "repaircargos",
+          "kind": "RepairCargo",
+          "namespace": "kv-repair-cr",
+          "authoritative": true,
+          "status": "synced"
+        }
+      ],
+      "resources": [
+        {
+          "uid": "822dded8-2600-4eac-afdd-1d2d2b669cc2",
+          "namespace": "kv-repair-cr",
+          "name": "reconnect-cargo",
+          "resourceVersion": "1578"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-01T14:07:49.396Z",
+      "generation": "a0170495-acb4-4d85-b120-016790605a54",
+      "context": "kv-repair-1101",
+      "scopes": [],
+      "resources": []
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "frontend-G00-real-2-01-selected-before-reconnect.png",
+      "at": "2026-11-01T14:07:44.523Z",
+      "label": "selected-before-reconnect",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1567 · 2 sn önce oluşturuldu · Son veri 17:07:44\n\nÖzet\nOlaylar\nYAML\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:42\nUID\ndb77faac-2ee8-4671-9c0c-e319bf652a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-02-same-uid-live-after-reconnect.png",
+      "at": "2026-11-01T14:07:44.951Z",
+      "label": "same-uid-live-after-reconnect",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1567 · 2 sn önce oluşturuldu · Son veri 17:07:44\n\nÖzet\nOlaylar\nYAML\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:42\nUID\ndb77faac-2ee8-4671-9c0c-e319bf652a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-03-real-delete.png",
+      "at": "2026-11-01T14:07:45.271Z",
+      "label": "real-delete",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1567 · 3 sn önce oluşturuldu · Son veri 17:07:45\n\nÖzet\nOlaylar\nYAML\nBu kaynak silindi. Gösterilen bilgiler son gözlenen UID’ye aittir; aynı adla yeni kaynak oluşturulması bu paneli değiştirmez.\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:42\nUID\ndb77faac-2ee8-4671-9c0c-e319bf652a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-04-replacement-old-selection-stays-deleted.png",
+      "at": "2026-11-01T14:07:46.122Z",
+      "label": "replacement-old-selection-stays-deleted",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1567 · 3 sn önce oluşturuldu · Son veri 17:07:45\n\nÖzet\nOlaylar\nYAML\nBu kaynak silindi. Gösterilen bilgiler son gözlenen UID’ye aittir; aynı adla yeni kaynak oluşturulması bu paneli değiştirmez.\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:42\nUID\ndb77faac-2ee8-4671-9c0c-e319bf652a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-05-replacement-explicitly-reselected.png",
+      "at": "2026-11-01T14:07:46.364Z",
+      "label": "replacement-explicitly-reselected",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1574 · 1 sn önce oluşturuldu · Son veri 17:07:45\n\nÖzet\nOlaylar\nYAML\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:45\nUID\n989bf8e8-5edc-402b-a679-8971dca52a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-06-offline-delete-retained-stale.png",
+      "at": "2026-11-01T14:07:46.669Z",
+      "label": "offline-delete-retained-stale",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1574 · 1 sn önce oluşturuldu · Son veri 17:07:45\n\nÖzet\nOlaylar\nYAML\nSon bilinen veri · güncel değil. Yokluk doğrulanmadan kaynak silindi sayılmaz.\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:45\nUID\n989bf8e8-5edc-402b-a679-8971dca52a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-07-offline-delete-confirmed-after-relist.png",
+      "at": "2026-11-01T14:07:47.069Z",
+      "label": "offline-delete-confirmed-after-relist",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-1101\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1574 · 1 sn önce oluşturuldu · Son veri 17:07:46\n\nÖzet\nOlaylar\nYAML\nBu kaynak silindi. Gösterilen bilgiler son gözlenen UID’ye aittir; aynı adla yeni kaynak oluşturulması bu paneli değiştirmez.\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:45\nUID\n989bf8e8-5edc-402b-a679-8971dca52a49\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-08-restricted-context-same-real-cr.png",
+      "at": "2026-11-01T14:07:47.700Z",
+      "label": "restricted-context-same-real-cr",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-cr-reader\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1578 · 0 sn önce oluşturuldu · Son veri 17:07:47\n\nÖzet\nOlaylar\nYAML\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:47\nUID\n822dded8-2600-4eac-afdd-1d2d2b669cc2\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-09-rbac-loss-forbidden-still-real.png",
+      "at": "2026-11-01T14:07:48.254Z",
+      "label": "rbac-loss-forbidden-still-real",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-cr-reader\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1578 · 0 sn önce oluşturuldu · Son veri 17:07:47\n\nÖzet\nOlaylar\nYAML\nBu kaynak kapsamına okuma yetkisi yok. repaircargos.audit.kubeview.io is forbidden: Yetki reddedildi:\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:47\nUID\n822dded8-2600-4eac-afdd-1d2d2b669cc2\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-10-rbac-restored-same-uid-live.png",
+      "at": "2026-11-01T14:07:48.721Z",
+      "label": "rbac-restored-same-uid-live",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-cr-reader\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1578 · 1 sn önce oluşturuldu · Son veri 17:07:48\n\nÖzet\nOlaylar\nYAML\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:47\nUID\n822dded8-2600-4eac-afdd-1d2d2b669cc2\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-11-namespace-change-selected-cr-lease-retained.png",
+      "at": "2026-11-01T14:07:49.154Z",
+      "label": "namespace-change-selected-cr-lease-retained",
+      "panel": "RepairCargo\nreconnect-cargo\nkv-repair-cr-reader\n/\nkv-repair-cr\nGözlendi\n\nresourceVersion 1578 · 1 sn önce oluşturuldu · Son veri 17:07:48\n\nÖzet\nOlaylar\nYAML\nKaynak bilgileri\nTür\nRepairCargo\nNamespace\nkv-repair-cr\nSahip zinciri\nBağımsız\nNode\n—\nOluşturulma\n01.11.2026 17:07:47\nUID\n822dded8-2600-4eac-afdd-1d2d2b669cc2\nLabel’lar\nkubeview.io/repair-run=repair-20261101T130559Z\nDüzenle\nSil"
+    },
+    {
+      "file": "frontend-G00-real-2-12-context-change-cleared-old-selection.png",
+      "at": "2026-11-01T14:07:49.399Z",
+      "label": "context-change-cleared-old-selection",
+      "panel": null
+    },
+    {
+      "file": "frontend-G00-real-2-13-final.png",
+      "at": "2026-11-01T14:08:04.562Z",
+      "label": "final",
+      "panel": null
+    }
+  ],
+  "errors": [],
+  "cleanup": [
+    {
+      "resource": "namespace",
+      "name": "kv-repair-cr",
+      "status": "deleted-owned"
+    },
+    {
+      "resource": "crd",
+      "name": "repaircargos.audit.kubeview.io",
+      "status": "deleted-owned"
+    }
+  ],
+  "status": "PASSED",
+  "endedAt": "2026-11-01T14:08:25.197Z",
+  "visualReview": {
+    "reviewedAt": "2026-11-01T14:09:26.985990+00:00",
+    "openedScreenshots": [
+      "frontend-G00-real-2-06-offline-delete-retained-stale.png",
+      "frontend-G00-real-2-09-rbac-loss-forbidden-still-real.png",
+      "frontend-G00-real-2-11-namespace-change-selected-cr-lease-retained.png"
+    ],
+    "openedVideoFrames": [
+      "frontend-G00-real-2-video-03s.png",
+      "frontend-G00-real-2-video-06s.png",
+      "frontend-G00-real-2-video-09s.png"
+    ],
+    "videoDurationSeconds": 37.08,
+    "finding": "Full-screen world and stable Soft UI panel preserved. Explicit stale versus forbidden messaging visible; original UID retained; context reset leaves world with no persistent dashboard. Video frames show continuous ship progression. No Node failure/traffic animation assertion is made by this G00 recording."
+  },
+  "executionMode": "Normal ./start.sh Vite development frontend at :5173 + real Go API/WebSocket at :18081; functional correctness recording, not production performance measurement.",
+  "sourceIdentityAtReview": {
+    "timing": "Post-test review hash; original build/commit baseline recorded separately by root manifest. Not claimed to be a pre-test hash.",
+    "sha256": {
+      "frontend/src/data/resourceStore.js": "6d9f600f1a807a26bb702cfd000a385d1d657eab26bf159e779ac19e32054dfa",
+      "frontend/src/data/resourceScopes.js": "eab535d56d19a68f3035d9a5f7a3b6d7f8d00754c99092cdac48fab795927015",
+      "frontend/src/context/ShipyardClusterContext.jsx": "d813c30735e42f2cfe72b9af5e7248bb25ac86440aa61ccc37d836688c6d2a7d",
+      "frontend/src/world/FacilityWindow.jsx": "f06ebb4a3e7fe4e96ab51c07b2fb8bcf372ff892a52c6a144ac143abf7064952"
+    }
+  }
+}

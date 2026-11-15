@@ -1,31 +1,69 @@
-# METAPHOR.md — Kubernetes & Tersane Kavram-Nesne Eşleştirme Rehberi
+# Kubernetes ↔ Tersane
 
-Bu belge, Kubernetes bileşenlerinin Tersane 3D simülasyonundaki tam görsel ve davranışsal karşılıklarını tanımlayan **tek resmi referans tablosudur**.
+Tersane uygulamanın tam ekran arayüzüdür. Sabit tesisler, kaynak olmasa da açıkça tanımlı uygulama girişleridir; gerçek Kubernetes toplamına eklenmez. Kaynak kimliği cluster + GVR/kind + UID, API adresi ham namespace/name’dir.
 
----
+| Dünya nesnesi | Gerçek anlamı | Tıklama |
+|---|---|---|
+| Liman bütünü | Seçili cluster | Küçük bağlantı rozeti context/kapsamı açar |
+| Merkez ve kontrol kulesi | Cluster yönetimi / control-plane işlevleri | Geçici Liman Yönetim Merkezi |
+| Kargo gemisi | Gerçek Node; control-plane Node da dahildir | O Node’un koşulları, Pod’ları ve işlemleri |
+| Palet / yük grubu | Pod UID | Pod ve container içeriği |
+| Grup içindeki kutu | Adıyla tanımlı gerçek container | Doğru app/init/sidecar/ephemeral container |
+| Sarı / pas kırmızısı vinç | Gözlenen scheduling ve yükleme | Pending yükler ve gerçek olay gerekçeleri |
+| Sefer panosu / ana hangar | Workload yönetimi | Deployment, StatefulSet, DaemonSet, ReplicaSet, HPA/PDB |
+| Takvim panosu | Job / CronJob | Zamanlama, suspend/resume ve run-now |
+| Depo / ambar | PV ve depolama yönetimi | PVC tahsisleri, PV ve StorageClass |
+| Talimat panosu | ConfigMap ve yapılandırma | ConfigMap, namespace, quota/limit |
+| Kilitli kasa | Secret | Metadata; ayrı yetkili içerik akışı |
+| Ağ tesisi | Service / EndpointSlice / NetworkPolicy | Gerçek selector ve endpoint ilişkileri |
+| Giriş feneri | Ingress ve kurulu Gateway API | Discovery tabanlı dış erişim kaynakları |
+| Personel bölümü | ServiceAccount / Role / Binding | Gerçek kural ve özne ilişkileri |
+| Gemi radarı | Aynı Node/kubelet gözlemi | Aynı Node UID’sinin sağlık bilgileri |
 
-## ⚓ Temel ve Genişletilmiş Kavram Tablosu
+Deployment veya StatefulSet replica’ları yeni gemi üretmez. StatefulSet ordinal kimliği gerçek Pod yükündedir; DaemonSet Node’lar üzerinde çalışan gerçek Pod’larla ilişkilidir. Namespace farklı gemilere yayılabilir; fiziksel olarak tek geminin ambarı değildir.
 
-| Kubernetes Kavramı | Tersanedeki Karşılığı | 3D Sahne Temsili & Görsel Davranış | Faz |
-|---|---|---|---|
-| **Cluster (Küme)** | **Tersane Havzası / Liman Bütünü** | Tüm deniz, rıhtım, liman binaları mevkileri | Faz 3 |
-| **Worker Node** | **Kargo Gemisi (Filo Üyesi)** | Rıhtıma yanaşan, konteynır (Pod) taşıyan ve vinçle yüklenen yük gemisi | Faz 3 |
-| **Control Plane (Master Node)** | **Yönetim Binası & Kontrol Kulesi** | Kırmızı çatılı, kuleli ve dönebilen radar sistemi olan ana kontrol binası | Faz 9 |
-| **Pod / Container** | **Kargo Konteynırı (Palet)** | Gemi güvertesinde veya karada üst üste dizili renkli çelik konteynır kutusu | Faz 3 |
-| **Standalone Pod** | **Bağımsız Palet (Tekli Serbest Yük)** | Herhangi bir Sefer Sipariş Kartı (Deployment/StatefulSet) sahibi olmayan, doğrudan rıhtıma bırakılmış bağımsız konteynır | Faz 32 |
-| **Deployment** | **Sefer Sipariş Kartı / Filo Siparişi** | Aynı tipteki gemi ve konteynır gruplarının toplu üretim ve yükleme emri | Faz 6 |
-| **StatefulSet** | **Numaralı Sabit Gemi Filosu** | Limanda sabit demirli, devriye yapmayan, üzerinde `#0`, `#1` sıra numarası rozeti olan gemiler | Faz 24 |
-| **DaemonSet** | **Gemi Direği Ekipmanı** | Her Worker Node gemisinin direğinde otomatik olarak beliren 3D dönen anten/fener ikonu | Faz 24 |
-| **Job** | **Geçici Görev Şalupası** | Limanda belirip işini yapan, tamamlanınca yumuşakça süzülen 3D görev teknesi | Faz 24 |
-| **CronJob** | **Sefer Tarifesi & Zamanlayıcı** | Yönetim Binası Sefer Tarifesi tablosundaki saat zamanlaması ve sahnede Job üreten zamanlayıcı | Faz 24 |
-| **ServiceAccount** | **Gemi Adamı / Mürettebat Kimlik Kartı** | Pod müfettiş kartında tıklanabilir `🪪 KİMLİK KARTI`, bağlı olduğu Role/Binding ilişkisi | Faz 25 |
-| **Role / ClusterRole** | **Yetki Rozeti & İzin Listesi** | Namespace veya küme genelinde tanımlı izinler tablosu (`Resource` ➔ `Allowed Verbs`) | Faz 25 |
-| **Metrik Trend Grafiği** | **Gemi Yük & Seyir Grafiği** | Node kartında mini sparkline çizelgeleri ve detaylı zaman serisi trend modalı | Faz 26 |
-| **ConfigMap** | **Sevkiyat Föyü / Talimat Panosu** | Rıhtımda dikili, üzeri iğneli talimat kağıtlarıyla dolu tahta/çelik pano (tüm içerik açık) | Faz 22 |
-| **Secret** | **Kilitli Emniyet Kasası** | Rıhtımda sabitlenmiş, altın kilitli ve sinyal fenerli çelik kasa (sadece key ismi, değerler gizli) | Faz 22 |
-| **PersistentVolumeClaim (PVC)** | **Depo Tahsis Sözleşmesi** | Kiralanmış depolama alanının istenen kapasite (10Gi) ve erişim modları belgesi | Faz 23 |
-| **PersistentVolume (PV)** | **Kiralanmış Depo Ambarı Yapısı** | Karada gemilerden bağımsız duran, çelik çatılı, 3D kapasite rozetli sanayi ambarı | Faz 23 |
-| **Service (ClusterIP / NodePort)** | **Liman Danışma & Ağ Yönlendirme Binası** | Kube-proxy sinyal fenerli ağ binası ve yönlendirme ışık kanalları | Faz 10 |
-| **Kubelet** | **Gemi Direğindeki Dönen Radar / Dümenci** | Gemi güvertesinde sürekli dönen ve node sağlığını bildiren radar | Faz 15 |
-| **kube-scheduler** | **Sarı Liman Gantry Vinci** | Konteynırları karadan gemilere sevk eden ve yükleme kararı veren vinç | Faz 13 |
-| **Ingress / Gateway API** | **Uluslararası Giriş Rıhtımı & Fener** | Liman ağzındaki deniz feneri mevkii | Faz 18 |
+Gemiden oluşturma, seçilen Node’a zorunlu veya tercih edilen affinity ekleyebilir. `spec.nodeName` ile scheduler atlanmaz. Merkezden oluşturma scheduler seçimini varsayılan bırakır. Gerçek nodeName gözlenmeden yük gemiye taşınmaz. Animasyon hiçbir kaynak veya işlem başarısı üretmez.
+
+Tarihsel “numaralı StatefulSet gemi filosu”, “namespace = gemi ambarı” ve kalıcı dashboard eşleştirmeleri 2026-10-24 ürün kararıyla geçersizdir.
+
+## Görsel filo hareketi
+
+Node kimliği sabittir, geminin dünya dönüşümü hareket eder. Güverte yükleri gerçek nodeName ilişkisini korur; başka gemiye fiziksel olarak sürüklenmek bir Kubernetes scheduling olayı değildir. Sağlıklı geminin varsayılan hâli seyirdir; eski sürekli rıhtımda park kararı bu ek ürün kararıyla değişmiştir. Node arızası veya görsel kullanıcı duraklatması son konumu korur. Backend bağlantısı kesilmesi Node arızası değildir.
+
+Yanaşma/vinç işlemi yalnız gözlenen Pod atamasının geçici sunumudur. İlk snapshot/relist yük kuyruğu üretmez. Görsel yükleme sürerken kaynak atanmış/Running/Ready olabilir; panel gerçek durumu gösterir. Uzak veya meşgul gemide kısa varış, gerçek yanaşma yapılmış iddiası taşımaz. Her bölge8 gemi kapasitelidir; namespace hâlâ gemiler arasında ortaktır.
+
+## 1 Kasım 2026 — Gözlenen arıza ve ölçülmüş ağ
+
+Ready=False olan mevcut Node gemisi kısa fren, kontrollü alev/duman ve zamana yayılan yatma/alçalma gösterir; bir üst bölüm/işaret seçilebilir kalır. Bu bir durum metaforudur, fiziksel sunucunun yandığının ölçümü değildir. Ready=Unknown iletişim kaybıdır; uygulama bağlantı kaybı yalnız stale'dir. Aynı UID toparlanır; gerçek DELETE ayrı çıkış izidir. Node kaydı yokken API'de kalan Pod'un nodeName/phase'i değiştirilmez; kıyı işareti ve bulucudan erişilebilir.
+
+Arızalanan kutu gerçek Pod UID + container adı/rolü + restart/termination dönemine bağlıdır. Sağlıklı diğer kutular kalır; başarılı Job/init düşmez. Aynı UID recovery yeniden yükleme, yeni UID yeni yüktür. Normal silmenin SIGTERM/137 sonucu yeni bir arıza sekansı başlatmaz.
+
+Kızak, merkezden istenen gerçek yerel worker sağlamanın girişidir. İstek taslağı Node sayılmaz; yalnız sağlayıcının doğruladığı gerçek Node UID'siyle eşleşir. Scheduler worker sağlamaz. Merkez/API/controller/scheduler/kubelet işaretleri gerçek kaynak/owner/nodeName/Ready gözlemlerinden türetilmiş temsili süreçtir; iç RPC mesajı ölçülmez.
+
+Ağ katmanları ayrıdır: selector/EndpointSlice topolojisi, Hubble ölçülmüş flow olayları ve temsili kontrol düzlemi. Flow sayısı paket/byte/bant genişliği değildir. Hubble1.20.2 Pod UID veya container adı vermediğinden zamana bağlı doğrulanmış IP/Pod aralıkları kullanılır; belirsiz eşleşme bilinmiyor kalır ve yanlış kutuya çizilmez. Namespace/küme yetkisi dışında endpoint metadata'sı gönderilmez. Trafik penceresi sona erince iz durur; provider kesilmesi Node arızası değildir.
+
+## 9 Kasım 2026 — durum ve yönetim sunumu
+
+Takvim panosundaki askıdaki Job **Askıya alındı** görünür; gerçek Complete/Failed koşulları önceliklidir. Job askısı yeni gemi yaratmaz ve görsel seyri durdurma düğmesiyle aynı işlem değildir. DaemonSet için eksik sayılar sağlıklı filo anlamına gelmez: bilinen desired/ready ve güncel observedGeneration gerekir. Gerçek 1/1 Ready DS **Hazır** kalır. [Son kaynakta normal UI kanıtı](artifacts/v1.1.0/v11-20261108/frontend/status-resume/REVIEW.md).
+
+Workload formu yalnız backend'in doğruladığı gerçek owner UID hedefine gider. D/STS/DS template düzenleme yeni Pod/Ready sonucundan ayrıdır; standalone RS/Job/CronJob sessizce başka workload'a çevrilmez. Pod silme controller replacement'ına yol açabilir; yeni UID ayrı bir yük olarak seçilir. Aynı UID'deki kullanıcı taslağı reconnect GET'iyle ezilmez, RV farkı görünür gözden geçirme ister. Kasa yalnız metadata gösterir; değer reveal/edit'i ayrı yetkili yerel akıştır ve maskeli içerik gerçek Secret yerine yazılmaz.
+
+Context/namespace/stream değişince eski trafik callback'i yeni limana çizilemez. Geç yanıtların reddi ve eski scope lease'inin bırakılması gerçek hook'un sentetik unit testleriyle ayrıca sınanır; bu, gerçek Hubble ölçümünün yerine geçmez. App/init/ephemeral/previous log seçimi gerçek Pod UID ve container adına bağlıdır; pause akışı kapatır, resume seçili tail'i yeniden okur. Bir log veya provider kopması geminin fiziksel ölüm kanıtı değildir.
+
+Güncel aday tam ekran liman ve opak Soft UI pencereleri kullanır. Önceki gerçek Node arızası/worker/vinç kanıtları tarihsel kaynaklarıyla korunur; yeni caption ve bağlantı akışı için incelenmiş kaynak uygulanabilirliği [ayrı kayıttır](artifacts/v1.1.0/v11-20261108/harbor-source-applicability.json). Yayımlama durumu ve test edilmiş aday kimlikleri [release notlarında](docs/RELEASE_NOTES_v1.1.0.md) izlenir.
+
+## 9 Kasım 2026 — proje limanları ve ortak altyapı
+
+Deniz dünyası artık bir workspace içindeki proje limanlarını kapsar. **Liman** tek bir güvenilir Kubernetes bağlantısında seçilmiş namespace kümesi ve isteğe bağlı label kapsamıdır; yeni cluster, namespace veya fiziksel Node değildir. **Workspace** bu limanların kayıtlı koleksiyonu/düzenidir. Küçük Limanlar pusulası ya da merkez liman ekleme ve harita geçişini açar; kalıcı dashboard oluşmaz.
+
+Bir Node gemisi küme kapsamındadır. Aynı doğrulanmış cluster+Node UID, iki projenin limanında o projenin yükleriyle gösterilebilir. **Paylaşılan Node** işareti, iki gemi görünümünün iki sunucu olmadığını anlatır. İzin verilmeyen diğer proje yükleri görünmez. Bilinmeyen cluster kimliği iki context'i aynı altyapı kabul ettirmez. Farklı cluster'ların aynı adlı gemileri ayrı kaynaklardır; bir limana geçmek gerçek Node/Pod taşımaz.
+
+Ortak altyapı çizgisi aynı doğrulanmış kaynağı; yapılandırılmış çizgi gözlenen/elle belirtilen bağımlılığı; ölçülmüş akış yalnız sağlayıcının zamanlı gözlemini anlatır. İlk ikisi canlı paket veya bant genişliği kanıtı değildir. Harita üzerinde ilişki eklemek ağ erişimi yaratmaz. Tek-cluster Hubble gözlemi cross-cluster bağlantı sağladığımız anlamına gelmez.
+
+Yakındaki liman ayrıntılı, diğerleri hafif uzak temsildir; tek Canvas, paylaşılan deniz ve mevcut deniz/seyir/vinç/arıza davranışları korunur. Görsel uyku canonical state'i geciktirmez. Liman kaldırmak yalnız uygulama kaydını ve aboneliği bırakır; Kubernetes kaynağı silmez. TEST/REPLAY yük profili açıkça sentetiktir; gerçek scheduler, worker sağlama veya trafik ölçümü yerine sayılmaz.
+
+## 11 Kasım 2026 — referans görünümü ve komşu liman
+
+Aktif proje ve en yakın komşu aynı denizde ayrıntılı gösterilir; daha uzak projeler hafif tesis siluetidir. Levhalardaki adlar workspace kayıtlarından, gemi ve yükler her limanın kendi yetkili oturumundan gelir. Aynı fiziksel Node'un iki projede görünmesi iki sunucu yaratmaz. Komşu kutuya tıklama önce doğru proje bağlamına geçer, sonra gerçek Pod UID/container panelini açar.
+
+Güneş parlaması, küçük dalgalar ve hızla değişen kıç izi dekoratif deniz anlatımıdır; metrik veya ağ trafiği değildir. Deniz, seyir, salınım, iz ve güneş yansıması ayrı tercihlerdir. Kayıtlı yerleşim koordinatları değiştirilmeden görsel haritaya dönüştürülür; kapsam, UID ve gerçek Kubernetes yerleşimi değişmez. Ayrıntı ve kanıt: [UI 2.0](docs/UI_2_0.md).

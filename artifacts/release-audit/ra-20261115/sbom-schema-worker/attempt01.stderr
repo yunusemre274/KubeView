@@ -1,0 +1,17 @@
+setUpClass (__main__.SchemaGuardTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (__main__.SchemaGuardTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yunusemre/Desktop/KubeView/scripts/test_validate_release_sbom.py", line 29, in setUpClass
+    cls.bundle = qa.build_validator()
+                 ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/yunusemre/Desktop/KubeView/scripts/validate-release-sbom.py", line 145, in build_validator
+    raise GuardError("FORMAT_DEPENDENCY_UNAVAILABLE")
+kubeview_release_schema.GuardError: FORMAT_DEPENDENCY_UNAVAILABLE
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.002s
+
+FAILED (errors=1)

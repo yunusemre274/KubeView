@@ -1,0 +1,106 @@
+{
+  "status": "ROOT_BUILD_CLEARANCE_RECEIVED",
+  "proposedSequence": [
+    {
+      "image": "cilium",
+      "inputMutableTag": "kubeview-private/cilium:1.20.4-apt-security.1",
+      "guardedInputLocalDescriptorDigest": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+      "FROM": "kubeview-private/cilium@sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a",
+      "localCandidateTag": "kubeview-private/cilium:1.20.4-os-security.2",
+      "pinnedUpgradePackages": {
+        "libpcre2-8-0": "10.46-1ubuntu0.1",
+        "zlib1g": "1:1.3.dfsg+really1.3.1-1ubuntu3.2"
+      },
+      "expectedRemovedMediumRows": 9,
+      "mandatoryAdditionalDependenciesExpected": 0,
+      "dependencyFloorEvidence": {
+        "libpcre2-8-0": {
+          "Depends": "libc6 (>= 2.34)",
+          "installedLibc6Version": "2.43-2ubuntu2.4"
+        },
+        "zlib1g": {
+          "Depends": "libc6 (>= 2.17)",
+          "installedLibc6Version": "2.43-2ubuntu2.4"
+        }
+      },
+      "networkDuringRUN": "none",
+      "packageMetadataDownloadsDuringBuild": 0,
+      "packagePayloadBytes": 299074,
+      "COPYLayerCost": "Downloaded deb payloads remain in a lower COPY layer after active filesystem cleanup; disclose exact history/engine delta; preserve base layers",
+      "baselinePolicy": "Exact local descriptor/config/layers match the already-scanned candidate; previous raw scan hash and artifact manifest verified; no APT/fullimage baseline rerun needed",
+      "buildContext": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/cilium",
+      "DockerfileSHA256": "069e5eb8c43c1bb05b9cfb0db2270b5c82b7a0ceedeecc23716946dc85ef94d8"
+    },
+    {
+      "image": "envoy",
+      "inputMutableTag": "kubeview-private/cilium-envoy:1.20.4-apt-security.1",
+      "guardedInputLocalDescriptorDigest": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+      "FROM": "kubeview-private/cilium-envoy@sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+      "localCandidateTag": "kubeview-private/cilium-envoy:1.20.4-os-security.2",
+      "pinnedUpgradePackages": {
+        "libpcre2-8-0": "10.42-4ubuntu2.2"
+      },
+      "expectedRemovedMediumRows": 7,
+      "mandatoryAdditionalDependenciesExpected": 0,
+      "dependencyFloorEvidence": {
+        "libpcre2-8-0": {
+          "Depends": "libc6 (>= 2.34)",
+          "installedLibc6Version": "2.39-0ubuntu8.9"
+        }
+      },
+      "networkDuringRUN": "none",
+      "packageMetadataDownloadsDuringBuild": 0,
+      "packagePayloadBytes": 213218,
+      "COPYLayerCost": "Downloaded deb payloads remain in a lower COPY layer after active filesystem cleanup; disclose exact history/engine delta; preserve base layers",
+      "baselinePolicy": "Exact local descriptor/config/layers match the already-scanned candidate; previous raw scan hash and artifact manifest verified; no APT/fullimage baseline rerun needed",
+      "buildContext": "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-os-medium/envoy",
+      "DockerfileSHA256": "377d81779c22d414b9d372664e49611a5344b76d1f4de4c235f1fa93d12a7e1a"
+    }
+  ],
+  "metadataReuse": "Previously signature-verified InRelease/Packages snapshots only; no new metadata download",
+  "threePayloadGETsVerified": [
+    {
+      "image": "cilium",
+      "URL": "https://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre2/libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb",
+      "filename": "libpcre2-8-0_10.46-1ubuntu0.1_arm64.deb",
+      "bytes": 237450,
+      "SHA256": "ea8b1bcdd9b045227f3a1252d1dc1ff1579cf5a32abb7d03988c74d5fcfa5df4",
+      "matchesSignedSnapshot": true
+    },
+    {
+      "image": "cilium",
+      "URL": "https://ports.ubuntu.com/ubuntu-ports/pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb",
+      "filename": "zlib1g_1.3.dfsg+really1.3.1-1ubuntu3.2_arm64.deb",
+      "bytes": 61624,
+      "SHA256": "b9b5ce1528ac7f885c8ff7dc2314c89c2ba5dd973c2a793dc4cf5d02d74b3810",
+      "matchesSignedSnapshot": true
+    },
+    {
+      "image": "envoy",
+      "URL": "https://ports.ubuntu.com/ubuntu-ports/pool/main/p/pcre2/libpcre2-8-0_10.42-4ubuntu2.2_arm64.deb",
+      "filename": "libpcre2-8-0_10.42-4ubuntu2.2_arm64.deb",
+      "bytes": 213218,
+      "SHA256": "3209171ab2f528843351af0cb51fced4eab5b5f3456f3f2b025c40bec70bf7a0",
+      "matchesSignedSnapshot": true
+    }
+  ],
+  "totalExpectedMediumRowsRemoved": 16,
+  "executorBasis": ".git/release-audit/provider-apt-images/run-apt-images.py",
+  "executorRequiredAdaptations": [
+    "Use previous candidate raw scans as baselines; validate same descriptor/config/layers and raw bytes against artifact hashes",
+    "Stream DB hashes instead of loading entire DB; monitor supervisor plus owned clients for4GiB RSS",
+    "Guard exact local descriptor parent before build; no mutable tag as content identity",
+    "Strict two/one package Inst allowlist, zero removals, no missing-dependency expansion",
+    "Discover own RUN CID from build stdout; normalized command plus COPY-parent rootfs-layer-prefix/parent linkage verification and actual CPU/memory/network limits; timeout cleans exact daemon RUN and client",
+    "New image full OS+Go scan same DB; preserve all severities and raw findings; compare package inventory, runtime config, original layer prefix, CLI/native binary/CA/license/key/source bytes+mode",
+    "Use600s total execution/finalization deadline with reserved reporting time; stop new data collection before deadline"
+  ],
+  "executionDeadlineSeconds": 600,
+  "CPUQuota": 2,
+  "memoryLimitBytes": 4294967296,
+  "minimumBatteryPercent": 30,
+  "minimumFreeDiskBytes": 10737418240,
+  "rootBuildClearanceRequired": true,
+  "noRegistryPublicationOrLabInstall": true,
+  "rootClearanceAt": "2026-11-12T11:05:08.037884+00:00"
+}

@@ -1,0 +1,33 @@
+{
+  "reviewedAt": "2026-11-12T21:01:03.696819+00:00",
+  "verified": [
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-frontend-root/green.json",
+      "line": 17,
+      "rule": "generic-api-key",
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-frontend-root/green.json:generic-api-key:17",
+      "publicSource": "frontend/tests/release-watch-authz.test.js",
+      "classification": "PUBLIC_SOURCE_SHA256_NOT_CREDENTIAL",
+      "verifiedAgainst": "exact staged source or immutable HEAD source"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-frontend-review-worker/result.json",
+      "line": 10,
+      "rule": "generic-api-key",
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-frontend-review-worker/result.json:generic-api-key:10",
+      "publicSource": "frontend/tests/release-watch-authz.test.js",
+      "classification": "PUBLIC_SOURCE_SHA256_NOT_CREDENTIAL",
+      "verifiedAgainst": "exact staged source or immutable HEAD source"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/active-watch-frontend-review-worker/result.json",
+      "line": 56,
+      "rule": "generic-api-key",
+      "fingerprint": "artifacts/release-audit/ra-20261112/active-watch-frontend-review-worker/result.json:generic-api-key:56",
+      "publicSource": "frontend/tests/release-watch-authz.test.js",
+      "classification": "PUBLIC_SOURCE_SHA256_NOT_CREDENTIAL",
+      "verifiedAgainst": "exact staged source or immutable HEAD source"
+    }
+  ],
+  "globalIgnoreAdded": false
+}

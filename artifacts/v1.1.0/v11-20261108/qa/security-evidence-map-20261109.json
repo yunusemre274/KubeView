@@ -1,0 +1,372 @@
+{
+  "at": "2026-11-09T08:13:24.212117+00:00",
+  "scope": "Evidence-type mapping only; not a new test or whole-scenario signoff",
+  "references": {
+    "server-unit-final-corrected-metadata.json": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/server-unit-final-corrected-metadata.json",
+      "runtimeFilesCompared": 14,
+      "runtimeSourceEqual": true,
+      "changedRuntimeFiles": [],
+      "testResults": [
+        {
+          "test": "TestManagementStartsReadOnlyAndCannotBypassSession",
+          "status": "PASS"
+        },
+        {
+          "test": "TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList",
+          "status": "PASS"
+        },
+        {
+          "test": "TestOriginHostJSONAndSessionNegatives",
+          "status": "PASS"
+        },
+        {
+          "test": "TestConnectionErrorsDoNotExposeCredentials",
+          "status": "PASS"
+        },
+        {
+          "test": "TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence",
+          "status": "PASS"
+        },
+        {
+          "test": "TestForbiddenCustomScopeIsNotAuthoritativeDeletion",
+          "status": "PASS"
+        },
+        {
+          "test": "TestLogUIDGuardInterposesReplacementAtOpeningBoundaries",
+          "status": "PASS"
+        },
+        {
+          "test": "TestLogGuardRequiresUIDAndEchoesSessionIdentity",
+          "status": "PASS"
+        },
+        {
+          "test": "TestLogWatchCancelsStreamOnSameNameNewUID",
+          "status": "PASS"
+        },
+        {
+          "test": "TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak",
+          "status": "PASS"
+        },
+        {
+          "test": "TestTemplateCapabilityResolvesVerifiedOwnerAndRejectsUnsupportedKinds",
+          "status": "PASS"
+        },
+        {
+          "test": "TestTemplateCapabilityPreservesControllerStrategyAndReadOnly",
+          "status": "PASS"
+        },
+        {
+          "test": "TestTemplateCapabilityDoesNotReadSecretBodies",
+          "status": "PASS"
+        },
+        {
+          "test": "TestOwnedRepairRealLogUIDReplacement",
+          "status": "SKIP"
+        },
+        {
+          "test": "TestOwnedRepairRealSyntheticSecretMetadataRoundTrip",
+          "status": "SKIP"
+        },
+        {
+          "test": "TestOwnedRepairRealTemplateCapabilityTargets",
+          "status": "SKIP"
+        },
+        {
+          "test": "TestReadOnlyAndNamespaceEnforced",
+          "status": "PASS"
+        },
+        {
+          "test": "TestSecretSanitizationDoesNotMutateSource",
+          "status": "PASS"
+        },
+        {
+          "test": "TestOriginAndAuthentication",
+          "status": "PASS"
+        },
+        {
+          "test": "TestReadOnlyDrainRejectedBeforeEviction",
+          "status": "PASS"
+        },
+        {
+          "test": "TestLogPermissionErrorNeverBecomesSampleOutput",
+          "status": "PASS"
+        },
+        {
+          "test": "TestPurposefulSecretRevealIncludesGVKAndIdentity",
+          "status": "PASS"
+        }
+      ]
+    },
+    "server-targeted-race-metadata.json": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/server-targeted-race-metadata.json",
+      "runtimeFilesCompared": 14,
+      "runtimeSourceEqual": true,
+      "changedRuntimeFiles": [],
+      "testResults": [
+        {
+          "test": "TestManagementStartsReadOnlyAndCannotBypassSession",
+          "status": "PASS"
+        },
+        {
+          "test": "TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList",
+          "status": "PASS"
+        },
+        {
+          "test": "TestOriginHostJSONAndSessionNegatives",
+          "status": "PASS"
+        },
+        {
+          "test": "TestConnectionErrorsDoNotExposeCredentials",
+          "status": "PASS"
+        },
+        {
+          "test": "TestScopedCustomResourceWatchReconnectAndAuthoritativeAbsence",
+          "status": "PASS"
+        },
+        {
+          "test": "TestLogUIDGuardInterposesReplacementAtOpeningBoundaries",
+          "status": "PASS"
+        }
+      ]
+    },
+    "live-owned-ten-metadata.json": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-owned-ten-metadata.json",
+      "runtimeFilesCompared": 14,
+      "runtimeSourceEqual": true,
+      "changedRuntimeFiles": [],
+      "testResults": [
+        {
+          "test": "TestOwnedRepairRealLogUIDReplacement/before-open",
+          "status": "PASS",
+          "elapsed_seconds": 2.31
+        },
+        {
+          "test": "TestOwnedRepairRealLogUIDReplacement/before-first-publish",
+          "status": "PASS",
+          "elapsed_seconds": 2.29
+        },
+        {
+          "test": "TestOwnedRepairRealLogUIDReplacement",
+          "status": "PASS",
+          "elapsed_seconds": 4.62
+        },
+        {
+          "test": "TestOwnedRepairRealSyntheticSecretMetadataRoundTrip",
+          "status": "PASS",
+          "elapsed_seconds": 0.07
+        },
+        {
+          "test": "TestOwnedRepairRealTemplateCapabilityTargets/Deployment",
+          "status": "PASS",
+          "elapsed_seconds": 0.13
+        },
+        {
+          "test": "TestOwnedRepairRealTemplateCapabilityTargets/StatefulSet",
+          "status": "PASS",
+          "elapsed_seconds": 1.63
+        },
+        {
+          "test": "TestOwnedRepairRealTemplateCapabilityTargets/DaemonSet",
+          "status": "PASS",
+          "elapsed_seconds": 1.6
+        },
+        {
+          "test": "TestOwnedRepairRealTemplateCapabilityTargets/ReplicaSet",
+          "status": "PASS",
+          "elapsed_seconds": 0.66
+        },
+        {
+          "test": "TestOwnedRepairRealTemplateCapabilityTargets/Job",
+          "status": "PASS",
+          "elapsed_seconds": 0.63
+        },
+        {
+          "test": "TestOwnedRepairRealTemplateCapabilityTargets/CronJob",
+          "status": "PASS",
+          "elapsed_seconds": 0.67
+        },
+        {
+          "test": "TestOwnedRepairRealTemplateCapabilityTargets",
+          "status": "PASS",
+          "elapsed_seconds": 5.35
+        }
+      ]
+    },
+    "live-log-roles-metadata.json": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-log-roles-metadata.json",
+      "runtimeFilesCompared": 14,
+      "runtimeSourceEqual": true,
+      "changedRuntimeFiles": [],
+      "testResults": [
+        {
+          "test": "TestOwnedV11RealLogRoles/app-current",
+          "status": "PASS",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "test": "TestOwnedV11RealLogRoles/init-completed",
+          "status": "PASS",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "test": "TestOwnedV11RealLogRoles/ephemeral-current",
+          "status": "PASS",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "test": "TestOwnedV11RealLogRoles/restarted-app-current",
+          "status": "PASS",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "test": "TestOwnedV11RealLogRoles/app-previous",
+          "status": "PASS",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "test": "TestOwnedV11RealLogRoles",
+          "status": "PASS",
+          "elapsed_seconds": 5.23
+        }
+      ]
+    },
+    "live-cr-scope-metadata.json": {
+      "path": "artifacts/v1.1.0/v11-20261108/backend/live-cr-scope-metadata.json",
+      "runtimeFilesCompared": 33,
+      "runtimeSourceEqual": true,
+      "changedRuntimeFiles": [],
+      "testResults": [
+        {
+          "test": "TestOwnedV11RealCustomScope/read-only-session-and-same-UID-reconnect",
+          "status": "PASS",
+          "elapsed_seconds": 1.49
+        },
+        {
+          "test": "TestOwnedV11RealCustomScope/live-update-and-DELETE",
+          "status": "PASS",
+          "elapsed_seconds": 0.09
+        },
+        {
+          "test": "TestOwnedV11RealCustomScope/same-name-new-UID",
+          "status": "PASS",
+          "elapsed_seconds": 0.06
+        },
+        {
+          "test": "TestOwnedV11RealCustomScope/offline-DELETE-authoritative-relist",
+          "status": "PASS",
+          "elapsed_seconds": 1.78
+        },
+        {
+          "test": "TestOwnedV11RealCustomScope/outside-namespace-scope-is-forbidden",
+          "status": "PASS",
+          "elapsed_seconds": 1.6
+        },
+        {
+          "test": "TestOwnedV11RealCustomScope/real-RBAC-loss-forbidden-and-restore-same-UID",
+          "status": "PASS",
+          "elapsed_seconds": 1.57
+        },
+        {
+          "test": "TestOwnedV11RealCustomScope",
+          "status": "PASS",
+          "elapsed_seconds": 8.91
+        }
+      ]
+    }
+  },
+  "clauses": [
+    {
+      "clause": "server READ_ONLY=true cannot mutate",
+      "evidenceType": "Current root18414 exact frozen production binary normal UI readonly mode/disabled enable/form plus direct403/404; backend separate actual production readonly/auth/WS negatives",
+      "status": "PASS_CURRENT_REAL_PRODUCTION_UI_AND_API",
+      "tests": [
+        "TestReadOnlyAndNamespaceEnforced",
+        "TestReadOnlyDrainRejectedBeforeEviction",
+        "TestManagementStartsReadOnlyAndCannotBypassSession"
+      ],
+      "limit": "Root owns gateway18414 lifecycle. QA did not stop or reconfigure it.",
+      "normalUI": "runs/2026-11-09T08-28-13-727Z-chromium-ab74e076/result.json"
+    },
+    {
+      "clause": "Origin/Host/CSRF/browser nonce/stale scope",
+      "evidenceType": "Final frozen primary browser/API negatives plus separate actual production WebSocket same-origin101/SNAPSHOT and hostile/opaque/wrong-scheme403",
+      "status": "PASS_CURRENT_REAL_BROWSER_AND_PRODUCTION_HTTP_WS",
+      "tests": [
+        "TestOriginHostJSONAndSessionNegatives",
+        "TestOriginAndAuthentication"
+      ],
+      "limit": "Actual negative status and source/build identities are retained; no physical performance or generic multitenant identity claim."
+    },
+    {
+      "clause": "401/token authentication",
+      "evidenceType": "Current frozen production binary actual missing/wrong HTTP+WebSocket401, proper Bearer200, session login and cookie-only read/WS",
+      "status": "PASS_REAL_PRODUCTION_HTTP_WS",
+      "limit": "No token/cookie value recorded. Secure=false is direct loopback HTTP behavior, not actual TLS evidence; authentication did not bypass Origin403."
+    },
+    {
+      "clause": "Secret bulk redaction, metadata preservation and masked-write rejection",
+      "evidenceType": "real API/gateway synthetic Secret roundtrip plus unit/race sanitization",
+      "status": "PASS_CURRENT_NORMAL_UI_REAL_API_AND_UNIT",
+      "tests": [
+        "TestOwnedRepairRealSyntheticSecretMetadataRoundTrip",
+        "TestSecretPurposeEditorPreservesMetadataWithoutBulkLeak",
+        "TestSecretSanitizationDoesNotMutateSource",
+        "TestPurposefulSecretRevealIncludesGVKAndIdentity"
+      ],
+      "limit": "Synthetic values remain RAM-only; normal purpose reveal/edit is explicit. No raw Secret value is recorded. Job/DS display branch fix is a separate future delta.",
+      "normalUI": "../frontend/forms-resume/runs/2026-11-09T08-28-50-268Z/result.json"
+    },
+    {
+      "clause": "app/init/ephemeral/current/previous logs",
+      "evidenceType": "five real API/gateway log role leaf cases; current normal UI A/B pause/resume subchecks separately",
+      "status": "PASS_CURRENT_NORMAL_UI_FUNCTIONAL_AND_REAL_API",
+      "limit": "Seven UI functional cases PASS, whole helper FAIL retained for missing Playwright WS close-event within10s. Actual kernel zero connected TCP endpoints qualifies transport cleanup only; not close-frame, heap or goroutine proof.",
+      "normalUI": "../frontend/logs-resume/runs/2026-11-09T08-37-27-546Z/result.json",
+      "transportCleanup": "../frontend/logs-resume/kernel-socket-close-20261109.json"
+    },
+    {
+      "clause": "G00 same UID, live/offline DELETE, new UID, scope/RBAC forbidden",
+      "evidenceType": "six current real backend WebSocket/API leaves plus historical six-group normal UI reference",
+      "status": "PASS_REAL_API_AND_CURRENT_NORMAL_UI_TARGETED",
+      "limit": "Current normal catalog sameUID and offline old/newUID/stale/authoritative snapshot proof complements six current real backend API/WS leaves; no unsafe historical helper invocation or all-six-new-UI claim.",
+      "normalUI": "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json"
+    }
+  ],
+  "updatedAt": "2026-11-09T08:47:23.665872+00:00",
+  "currentRealProductionSecurity": {
+    "path": "artifacts/v1.1.0/v11-20261108/backend/prod-security-result.json",
+    "status": "PASS",
+    "counts": {
+      "PASS": 5,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "runtimeSourceUnchanged": true,
+    "binarySHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+    "credentialValuesLogged": false,
+    "allOwnedGatewayPIDsStopped": true,
+    "checks": [
+      {
+        "name": "current binary version and readonly server diagnostics/direct mutation denial",
+        "status": "PASS"
+      },
+      {
+        "name": "actual readonly WebSocket same-origin SNAPSHOT and three hostile Origin handshakes",
+        "status": "PASS"
+      },
+      {
+        "name": "actual API_TOKEN absent/wrong HTTP and WebSocket401; proper Bearer200",
+        "status": "PASS"
+      },
+      {
+        "name": "actual token session login and HttpOnly SameSiteStrict cookie read/WS flow",
+        "status": "PASS"
+      },
+      {
+        "name": "proper authentication does not bypass actual WebSocket Origin boundary",
+        "status": "PASS"
+      }
+    ]
+  }
+}

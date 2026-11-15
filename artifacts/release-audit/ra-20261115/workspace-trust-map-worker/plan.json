@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-11-15T09:20:38.754401+00:00",
+  "startedUnix": 1794734438.7545211,
+  "auditHEAD": "2d5aced373b609aa012a7a4f80ed9dfe0410e29f",
+  "runtimeSource": "15770296056ca2629601dba540c04741e1822e0d",
+  "scope": "TEST01.03 source trust boundary map; no product/test/workflow edits and no execution/build/browser/cluster/scan/subagents",
+  "limits": {
+    "seconds": 300,
+    "sourceFiles": 60,
+    "outputBytes": 1048576
+  },
+  "owner": "workspace-trust-map-worker evidence directory only"
+}

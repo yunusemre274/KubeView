@@ -1,0 +1,19 @@
+{
+  "phaseStartedAt": "2026-11-12T20:48:21Z",
+  "absoluteDeadline": "2026-11-12T21:03:21Z",
+  "phaseLimitSeconds": 900,
+  "sequence": [
+    "strict unchanged-product RED",
+    "bounded implementation and focused tests",
+    "one focused GREEN",
+    "necessary narrow race",
+    "report"
+  ],
+  "ownedSources": [
+    "backend/pkg/server/stream.go",
+    "backend/pkg/server/watch_authorization.go",
+    "backend/pkg/server/watch_authorization_test.go",
+    "backend/pkg/server/release_active_watch_authz_test.go"
+  ],
+  "noRealCluster": true
+}

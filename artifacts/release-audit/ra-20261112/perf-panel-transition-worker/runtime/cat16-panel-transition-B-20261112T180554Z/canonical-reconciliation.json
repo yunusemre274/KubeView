@@ -1,0 +1,8 @@
+{
+  "initialSHA256": "a8960f86f0c7d28e9d8d80701e816bf62701181f551396396dfebb285ebbb237",
+  "upstreamSHA256": "a8960f86f0c7d28e9d8d80701e816bf62701181f551396396dfebb285ebbb237",
+  "clientSHA256": "a8960f86f0c7d28e9d8d80701e816bf62701181f551396396dfebb285ebbb237",
+  "initialEqualsUpstream": true,
+  "clientEqualsUpstream": true,
+  "eventCount": 0
+}

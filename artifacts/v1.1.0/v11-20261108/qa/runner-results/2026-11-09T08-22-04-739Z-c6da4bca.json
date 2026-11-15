@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-22-04-739Z-c6da4bca",
+  "startedAt": "2026-11-09T08:22:04.739Z",
+  "tests": [
+    {
+      "title": "V11-06 normal on-demand CR panel preserves same UID and reconciles offline same-name replacement only after real snapshot",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 25749,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-22-04-902Z-96ca76fb/v11-cr-scope-V11-06-normal-233e6-nt-only-after-real-snapshot-chromium/attachments/v11-evidence-4bff34e7647794c5f5992394f0eb0a6924ae27f0.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:22:30.736Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-22-04-739Z-c6da4bca.json"
+}

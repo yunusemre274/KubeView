@@ -1,0 +1,52 @@
+Sending build context to Docker daemon  4.608kB
+Step 1/2 : FROM quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629
+ ---> 547ab45f6092
+Step 2/2 : RUN set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports noble-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false "$@"; };     apt_safe update &&     plan="$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1)" &&     printf '%s\n' "$plan" &&     printf '%s\n' "$plan" | while IFS=' ' read -r action package rest; do if [ "$action" = Inst ]; then case "$package" in apt|libapt-pkg6.0t64) ;; *) printf 'Unexpected package change: %s\n' "$package" >&2; exit 81 ;; esac; elif [ "$action" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1 &&     dpkg-query -W -f='${Package}\t${Version}\n' apt libapt-pkg6.0t64 &&     dpkg --compare-versions "$(dpkg-query -W -f='${Version}' apt)" ge 2.8.4ubuntu0.1 &&     dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libapt-pkg6.0t64)" ge 2.8.4ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list
+ ---> Running in 426ea862e71b
+Get:1 https://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+Get:2 https://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1541 kB]
+Fetched 1667 kB in 2s (1085 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  apt-doc aptitude | synaptic | wajig dpkg-dev gnupg | gnupg2 | gnupg1
+  powermgmt-base
+The following packages will be upgraded:
+  apt libapt-pkg6.0t64
+2 upgraded, 0 newly installed, 0 to remove and 3 not upgraded.
+Inst libapt-pkg6.0t64 [2.8.3] (2.8.4ubuntu0.1 Ubuntu:24.04/noble-security [arm64])
+Conf libapt-pkg6.0t64 (2.8.4ubuntu0.1 Ubuntu:24.04/noble-security [arm64])
+Inst apt [2.8.3] (2.8.4ubuntu0.1 Ubuntu:24.04/noble-security [arm64])
+Conf apt (2.8.4ubuntu0.1 Ubuntu:24.04/noble-security [arm64])
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  apt-doc aptitude | synaptic | wajig dpkg-dev gnupg | gnupg2 | gnupg1
+  powermgmt-base
+The following packages will be upgraded:
+  apt libapt-pkg6.0t64
+2 upgraded, 0 newly installed, 0 to remove and 3 not upgraded.
+Need to get 2294 kB of archives.
+After this operation, 1024 B of additional disk space will be used.
+Get:1 https://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 libapt-pkg6.0t64 arm64 2.8.4ubuntu0.1 [937 kB]
+Get:2 https://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 apt arm64 2.8.4ubuntu0.1 [1357 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 2294 kB in 2s (1476 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4834 files and directories currently installed.)
+Preparing to unpack .../libapt-pkg6.0t64_2.8.4ubuntu0.1_arm64.deb ...
+Unpacking libapt-pkg6.0t64:arm64 (2.8.4ubuntu0.1) over (2.8.3) ...
+Setting up libapt-pkg6.0t64:arm64 (2.8.4ubuntu0.1) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4834 files and directories currently installed.)
+Preparing to unpack .../apt_2.8.4ubuntu0.1_arm64.deb ...
+Unpacking apt (2.8.4ubuntu0.1) over (2.8.3) ...
+Setting up apt (2.8.4ubuntu0.1) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+apt	2.8.4ubuntu0.1
+libapt-pkg6.0t64	2.8.4ubuntu0.1
+ ---> Removed intermediate container 426ea862e71b
+ ---> 5872d9d1c44f
+Successfully built 5872d9d1c44f
+Successfully tagged kubeview-private/cilium-envoy:1.20.4-apt-security.1

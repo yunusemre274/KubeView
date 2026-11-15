@@ -1,0 +1,14 @@
+{
+  "scope": "Corrected real HTTP physical-profile exclusion and restart/reacquisition; aggregate phase plan overrun",
+  "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "appSHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+  "buildReceiptSHA256": "18cd745218e4520aaed75cec681632ecbc9b399cbab1046a5c2cb05003adf341",
+  "helperSHA256": "4613d23a1efc216c4de4c2027cf164de77593e902fdb6ddc66da560b8aedbab5",
+  "REPORTSHA256": "e6791d8d5d29ec07bf68a6b60f23ee08eefa8b3d9da90f0f236c1fd79272986c",
+  "HTTPResultSHA256": "d53a6621884eecf3567fb9748915cc4345d5a6a13de6b7936df16406d4f26e07",
+  "sourceComparisonSHA256": "1be42b6ec2a27e1c3c959c4edf56d2ffa54c1c9795bf7bb05a090c22c20aca47",
+  "phaseWallReceiptSHA256": "4131f67aeaf0490140ad60ee3b8c3b567924830d3090116b637d5d42422dbf62",
+  "priorFailuresPreserved": true,
+  "allArtifactsTextOrJSON": true,
+  "noPrivateCredentialsCopied": true
+}

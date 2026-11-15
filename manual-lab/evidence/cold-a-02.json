@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "startedAt": 1794227629.375371,
+  "command": "up --profile 02-ortak-kume",
+  "cwd": "outside bundle /tmp",
+  "attempt": "cold-a-02",
+  "fix": "kindnet CNI and owned unique Docker network; old failed lab stopped/preserved",
+  "exitCode": 1,
+  "elapsedSeconds": 0.206,
+  "output": "Traceback (most recent call last):\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 1065, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 1054, in main\n    getattr(lab, args.command)()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 594, in up\n    self.ensure_cluster(key)\n    ~~~~~~~~~~~~~~~~~~~^^^^^\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 326, in ensure_cluster\n    network = self.ensure_network(cluster)\n  File \"/Users/yunusemre/Desktop/KubeView/scripts/manual_lab.py\", line 299, in ensure_network\n    networks += [ipaddress.ip_network(item[\"Subnet\"], strict=False) for item in net.get(\"IPAM\", {}).get(\"Config\", []) if item.get(\"Subnet\")]\n                                                                                ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nTypeError: 'NoneType' object is not iterable\n"
+}

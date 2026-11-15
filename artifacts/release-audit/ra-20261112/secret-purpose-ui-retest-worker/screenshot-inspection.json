@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-12T11:29:36.947945+00:00",
+  "method": "all four PNGs opened with view_image after capture",
+  "screenshots": [
+    {
+      "file": "01-secret-metadata.png",
+      "maskProof": true,
+      "privateOutsideMask": false,
+      "visuallyInspected": true,
+      "rawSecretValueVisible": false
+    },
+    {
+      "file": "02-after-hide.png",
+      "maskProof": true,
+      "privateOutsideMask": false,
+      "visuallyInspected": true,
+      "rawSecretValueVisible": false
+    },
+    {
+      "file": "03-purpose-dryrun-masked.png",
+      "maskProof": true,
+      "privateOutsideMask": false,
+      "visuallyInspected": true,
+      "rawSecretValueVisible": false
+    },
+    {
+      "file": "04-panels-closed.png",
+      "maskProof": true,
+      "privateOutsideMask": false,
+      "visuallyInspected": true,
+      "rawSecretValueVisible": false
+    }
+  ],
+  "revealActiveScreenshotCount": 0,
+  "notes": [
+    "01 exact Secret metadata panel, data hidden",
+    "02 after hide, ordinary reveal control restored, no data output",
+    "03 purpose edit YAML/preview surfaces and metadata code masked at capture time; viewport does not display every dry-run control, those have separate response/DOM assertions",
+    "04 panels closed and original canvas/world visible"
+  ]
+}

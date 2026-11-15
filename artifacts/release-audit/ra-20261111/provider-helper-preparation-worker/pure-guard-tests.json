@@ -1,0 +1,1 @@
+{"status": "PASS", "pureCases": ["exact_new_identity_allowed", "original_worker_rejected", "wrong_network_rejected", "original_Node_UID_rejected", "unknown_Pod_rejected", "wrong_DaemonSet_UID_rejected", "misbound_context_rejected", "misbound_system_UID_rejected"], "runtimeActions": false}

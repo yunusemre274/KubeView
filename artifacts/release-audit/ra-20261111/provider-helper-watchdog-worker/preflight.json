@@ -1,0 +1,10 @@
+{
+  "startedAt": "2026-11-11T18:27:40.444243+00:00",
+  "deadlineAt": "2026-11-11T18:35:40.444243+00:00",
+  "budgetSeconds": 480,
+  "implementationOnly": true,
+  "originalHelperSHA256": "5406f4807281b53f406178010e5ad7f5d1e6b15c2be0d76c674339704304312d",
+  "approvedRuntime": ".git/release-audit/candidate-runtime-provider09/kubeview",
+  "approvedRuntimeSHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "runtimeRunMustRemainLocked": true
+}

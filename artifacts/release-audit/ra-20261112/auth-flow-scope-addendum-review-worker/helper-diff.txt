@@ -1,0 +1,20 @@
+--- prior17/run.py
++++ fresh6/run.py
+@@ -10,7 +10,7 @@
+ started = time.monotonic()
+ utc = lambda: datetime.datetime.now(datetime.timezone.utc).isoformat()
+ sdk = Path.home() / 'go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go'
+-environment = dict(os.environ, KUBECONFIG='/dev/null', GOMAXPROCS='2', GOMEMLIMIT='1GiB')
++environment = dict(os.environ, KUBECONFIG='/dev/null', GOMAXPROCS='2', GOMEMLIMIT='1GiB', KV_MINIKUBE_ENABLED='false', KV_HUBBLE_ENABLED='false', API_TOKEN='')
+ argv = [str(sdk), 'test', '-json', '-p', '1', '-parallel', '1', '-count=1', '-timeout=90s', '-run', plan['regex'], './pkg/server']
+ receipt = {'status': 'FAIL', 'startedAt': utc(), 'argv': argv, 'cwd': str(root / 'backend'), 'captured': [], 'samples': [], 'safety': plan['safety'], 'limitSeconds': 150}
+ captured = {}
+@@ -63,7 +63,7 @@
+     need(receipt['exitCode'] == 0, 'Go guard assertion/compile failure')
+     events = [json.loads(line) for line in (directory / 'go-test.jsonl').read_text().splitlines() if line]
+     top = [event['Test'] for event in events if event.get('Action') == 'pass' and event.get('Test') and '/' not in event['Test']]
+-    need(len(top) == 17 and set(top) == set(plan['tests']), 'exact17 top-level tests required')
++    need(len(top) == 6 and set(top) == set(plan['tests']), 'exact6 top-level tests required')
+     need(not any(event.get('Action') in ['fail', 'skip'] for event in events), 'failure/skip is not PASS')
+     need(any(event.get('Action') == 'pass' and not event.get('Test') for event in events), 'package finalPASS required')
+     receipt.update(topLevelTests=top, topLevelPassed=len(top), subtestsPassed=sum(event.get('Action') == 'pass' and '/' in event.get('Test', '') for event in events), failures=0, skips=0)

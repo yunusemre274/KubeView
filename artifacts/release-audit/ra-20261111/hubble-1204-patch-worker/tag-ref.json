@@ -1,0 +1,10 @@
+{
+  "ref": "refs/tags/v1.20.4",
+  "node_id": "MDM6UmVmMjIyNjEyMDYyOnJlZnMvdGFncy92MS4yMC40",
+  "url": "https://api.github.com/repos/cilium/hubble/git/refs/tags/v1.20.4",
+  "object": {
+    "sha": "e5e724791fb50c23194f21dd6214ac9a5fc93e02",
+    "type": "tag",
+    "url": "https://api.github.com/repos/cilium/hubble/git/tags/e5e724791fb50c23194f21dd6214ac9a5fc93e02"
+  }
+}

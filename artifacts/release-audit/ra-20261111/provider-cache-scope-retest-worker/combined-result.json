@@ -1,0 +1,39 @@
+{
+  "startedAt": "2026-11-11T18:14:03.509878+00:00",
+  "stage": "strengthened scope/API error plus existing read-only/provider unit group",
+  "sourceHEAD": "d82bd7c2023bf2c72e17702e66aa82184d8191c0",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "-C",
+    "backend",
+    "test",
+    "./pkg/server",
+    "./pkg/provision",
+    "-run",
+    "^Test(ReleaseProviderCachedKeyRemainsBoundToLiveCluster|ReleaseProviderCachedKeyNamespaceReadErrors|ReleaseReadOnlyEndpointsRetainedGrant|ReleaseReadOnlySecretReadAndUnsupportedPatch|ManagementStartsReadOnlyAndCannotBypassSession|ReadOnlyAndNamespaceEnforced|ReadOnlyDrainRejectedBeforeEviction|TemplateCapabilityPreservesControllerStrategyAndReadOnly|ReleaseOriginPreviewCreationReadOnlyAndGrant|WrongContextOrProfileClusterNeverRuns|ProfileLockAndRestartNeverBlindlyRetry|DoubleRequestAndRealObservationAssociation)$",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-timeout",
+    "45s",
+    "-count",
+    "1",
+    "-v"
+  ],
+  "env": {
+    "GOMAXPROCS": "1",
+    "GOTOOLCHAIN": "local"
+  },
+  "sourceSHA256": {
+    "backend/pkg/server/release_provider_cache_scope_test.go": "b9e19ca53f28b39808733efa496e6ba74e6fb7bd0d8c62ff067b0cbf8482b223",
+    "backend/pkg/server/provider_handlers.go": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+    "backend/pkg/provision/minikube.go": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+    "backend/pkg/provision/lock_unix.go": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b"
+  },
+  "exitCode": 0,
+  "finishedAt": "2026-11-11T18:14:11.193823+00:00",
+  "topPASS": 12,
+  "subPASS": 33,
+  "SKIP": 0
+}

@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-12T10:34:43.698892+00:00",
+  "noOwnedAppOrCLIProcesses": true,
+  "ownedProcessesRemaining": [],
+  "capturedAppPIDsAbsent": true,
+  "ports": [
+    {
+      "port": 19846,
+      "noListener": true
+    },
+    {
+      "port": 19847,
+      "noListener": true
+    }
+  ],
+  "HTTPControlStateLeftPrivate": true,
+  "originalTwoContainersLeftRunningForRoot": true,
+  "noAdditionalMutationAfterHTTP": true,
+  "helperSHA256": "4613d23a1efc216c4de4c2027cf164de77593e902fdb6ddc66da560b8aedbab5",
+  "finalPortProbeAt": "2026-11-12T10:36:06.850159+00:00",
+  "finalPorts": [
+    {
+      "port": 19846,
+      "noListener": true
+    },
+    {
+      "port": 19847,
+      "noListener": true
+    }
+  ]
+}

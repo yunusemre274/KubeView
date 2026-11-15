@@ -1,0 +1,9 @@
+52761837
+sigs.k8s.io/network-policy-api v0.2.0 h1:W/f0Y9VoeQdOWjX/h2gZyLH6gZ5LLEXmh/9wy9mQWKw=
+sigs.k8s.io/network-policy-api v0.2.0/go.mod h1:hECyJyGmQo8QJBcOO2YzlLMcHACJ9hbRs1qS+Tmo1Yc=
+
+go.sum database tree
+71239592
+7Ipx/+kZC2SLna/qtaCyM3qNQl7osBWNr4qubEsfh5o=
+
+— sum.golang.org Az3grq3H5/tn6jTWCr6xMl54bX8X+IGkHKuTNDvv+H27ZDsvY3D+LfqhmOdJmuJ7UvpBF8b3gXbxTiqyIRip+fBNAQQ=

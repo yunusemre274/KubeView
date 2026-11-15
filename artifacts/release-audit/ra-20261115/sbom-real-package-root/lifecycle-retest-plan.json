@@ -1,0 +1,17 @@
+{
+  "time": "2026-11-15T10:32:57.364811+00:00",
+  "reason": "Actual Vite output differs from generateBundle normal-hook digest; installed Rollup4.62.3 supports post hook after normal Vite rewrites",
+  "reference": "https://rollupjs.org/plugin-development/#build-hooks",
+  "source": {
+    "frontend/build/package-inventory.mjs": "1b4f4d7c50b153dffe00a5547695c701eb83a645514a876062b61817ec3933d3",
+    "scripts/release-sbom.test.mjs": "b756182e1ec0c88fe8deb8f6aa69657ff18a078976dfad12ae6e6588499b29c6"
+  },
+  "newTargetedSuite": {
+    "pass": 38,
+    "fail": 0,
+    "skip": 0
+  },
+  "boundedRetry": 1,
+  "originalFailurePreserved": true,
+  "budgetsUnchanged": true
+}

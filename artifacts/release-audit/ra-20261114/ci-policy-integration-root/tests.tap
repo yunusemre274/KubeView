@@ -1,0 +1,167 @@
+TAP version 13
+# Subtest: strict argument parsing preserves prepared/clean/target and default targets
+ok 1 - strict argument parsing preserves prepared/clean/target and default targets
+  ---
+  duration_ms: 0.870375
+  type: 'test'
+  ...
+# Subtest: existing explicit output directories and symlinks fail before any command
+ok 2 - existing explicit output directories and symlinks fail before any command
+  ---
+  duration_ms: 5.871792
+  type: 'test'
+  ...
+# Subtest: default dist rejects every conflicting archive, binary folder or manifest before build
+ok 3 - default dist rejects every conflicting archive, binary folder or manifest before build
+  ---
+  duration_ms: 16.484834
+  type: 'test'
+  ...
+# Subtest: fresh relative output dry-run preserves prepared flow and packages only manual runtime
+ok 4 - fresh relative output dry-run preserves prepared flow and packages only manual runtime
+  ---
+  duration_ms: 12.568125
+  type: 'test'
+  ...
+# Subtest: fresh absolute output keeps both default targets isolated from historical dist
+ok 5 - fresh absolute output keeps both default targets isolated from historical dist
+  ---
+  duration_ms: 11.768458
+  type: 'test'
+  ...
+# Subtest: default output preserves unrelated historical files and keeps normal frontend flow
+ok 6 - default output preserves unrelated historical files and keeps normal frontend flow
+  ---
+  duration_ms: 9.048416
+  type: 'test'
+  ...
+# Subtest: require-clean rejection never reserves output or invokes frontend/build tools
+ok 7 - require-clean rejection never reserves output or invokes frontend/build tools
+  ---
+  duration_ms: 3.095625
+  type: 'test'
+  ...
+# Subtest: require-clean includes the manual runtime, shipped docs and RBAC inputs
+ok 8 - require-clean includes the manual runtime, shipped docs and RBAC inputs
+  ---
+  duration_ms: 21.518959
+  type: 'test'
+  ...
+# Subtest: bundle provenance binds shipped inputs and prepared frontend bytes
+ok 9 - bundle provenance binds shipped inputs and prepared frontend bytes
+  ---
+  duration_ms: 17.856458
+  type: 'test'
+  ...
+# Subtest: missing or symlinked prepared frontend cannot reach embed or compilation
+ok 10 - missing or symlinked prepared frontend cannot reach embed or compilation
+  ---
+  duration_ms: 7.033416
+  type: 'test'
+  ...
+# Subtest: archive published during build cannot be overwritten and temporary output is removed
+ok 11 - archive published during build cannot be overwritten and temporary output is removed
+  ---
+  duration_ms: 6.309166
+  type: 'test'
+  ...
+# Subtest: current read-only CI lane has reviewed triggers, grants, pins and data boundaries
+ok 12 - current read-only CI lane has reviewed triggers, grants, pins and data boundaries
+  ---
+  duration_ms: 1.031208
+  type: 'test'
+  ...
+# Subtest: bounded trust-boundary mutations are rejected without executing any workflow
+    # Subtest: privileged pull-request trigger
+    ok 1 - privileged pull-request trigger
+      ---
+      duration_ms: 0.198709
+      type: 'test'
+      ...
+    # Subtest: privileged workflow consumer
+    ok 2 - privileged workflow consumer
+      ---
+      duration_ms: 0.091291
+      type: 'test'
+      ...
+    # Subtest: global write grant
+    ok 3 - global write grant
+      ---
+      duration_ms: 0.076125
+      type: 'test'
+      ...
+    # Subtest: job write override
+    ok 4 - job write override
+      ---
+      duration_ms: 0.078083
+      type: 'test'
+      ...
+    # Subtest: persisted checkout token
+    ok 5 - persisted checkout token
+      ---
+      duration_ms: 0.086625
+      type: 'test'
+      ...
+    # Subtest: mutable action tag
+    ok 6 - mutable action tag
+      ---
+      duration_ms: 0.063375
+      type: 'test'
+      ...
+    # Subtest: alternate attacker checkout
+    ok 7 - alternate attacker checkout
+      ---
+      duration_ms: 0.086167
+      type: 'test'
+      ...
+    # Subtest: PR expression to shell
+    ok 8 - PR expression to shell
+      ---
+      duration_ms: 0.112917
+      type: 'test'
+      ...
+    # Subtest: secret injected into job
+    ok 9 - secret injected into job
+      ---
+      duration_ms: 0.186792
+      type: 'test'
+      ...
+    # Subtest: dependency cache key input changed
+    ok 10 - dependency cache key input changed
+      ---
+      duration_ms: 0.122125
+      type: 'test'
+      ...
+    # Subtest: hidden or unrestricted artifact payload
+    ok 11 - hidden or unrestricted artifact payload
+      ---
+      duration_ms: 0.0875
+      type: 'test'
+      ...
+    # Subtest: unreviewed reusable job
+    ok 12 - unreviewed reusable job
+      ---
+      duration_ms: 0.064
+      type: 'test'
+      ...
+    # Subtest: security guard omitted from CI
+    ok 13 - security guard omitted from CI
+      ---
+      duration_ms: 0.06775
+      type: 'test'
+      ...
+    1..13
+ok 13 - bounded trust-boundary mutations are rejected without executing any workflow
+  ---
+  duration_ms: 2.228667
+  type: 'test'
+  ...
+1..13
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 245.006625

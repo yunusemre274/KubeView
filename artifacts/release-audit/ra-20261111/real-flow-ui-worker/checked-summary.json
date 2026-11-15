@@ -1,0 +1,301 @@
+{
+  "startedAt": "2026-11-11T13:20:52.944Z",
+  "finishedAt": "2026-11-11T13:24:27.476Z",
+  "status": "PASS",
+  "trafficWallUpperBoundSeconds": 181,
+  "browsers": [
+    {
+      "engine": "chromium",
+      "version": "156.0.8078.4",
+      "normalEnablePass": true,
+      "normalUIFailures": 0,
+      "realClientUIDs": [
+        "50cfc0bf-ad79-4138-b9c9-9e97c480fd9f",
+        "7d782a36-0aeb-4d15-b89f-0f57a503b38a",
+        "7b4a4ea1-88b0-49ec-8e95-65092a87a9f5"
+      ],
+      "serverUID": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+      "observedKnownSourceDestinationPairs": [
+        [
+          "50cfc0bf-ad79-4138-b9c9-9e97c480fd9f",
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ],
+        [
+          "7b4a4ea1-88b0-49ec-8e95-65092a87a9f5",
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ],
+        [
+          "7d782a36-0aeb-4d15-b89f-0f57a503b38a",
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ]
+      ],
+      "sceneAtWorldPNG": {
+        "provider": "hubble",
+        "status": "live",
+        "windowSeconds": 10,
+        "inputFlows": 38,
+        "renderedFlows": 20,
+        "unresolved": 0,
+        "otherRegion": 0,
+        "outsideNamespace": 0,
+        "expired": 18,
+        "aggregatedOutOfView": 0,
+        "providerDropped": 0,
+        "providerSummarized": 117
+      },
+      "commonFlowMotionExamples": [
+        {
+          "flowId": "4885611e146a7c806f4dc84a",
+          "positionDisplacementWorldUnits": 105.069,
+          "forwardXZDot": 693.317,
+          "sameInstanceIndex": false
+        },
+        {
+          "flowId": "cb3576874d16d7625bb49027",
+          "positionDisplacementWorldUnits": 411.821,
+          "forwardXZDot": 695.677,
+          "sameInstanceIndex": false
+        },
+        {
+          "flowId": "ebf07bd3bae18884f3a64525",
+          "positionDisplacementWorldUnits": 109.711,
+          "forwardXZDot": 698.45,
+          "sameInstanceIndex": false
+        },
+        {
+          "flowId": "ee1e5309666e373c664f0d66",
+          "positionDisplacementWorldUnits": 99.026,
+          "forwardXZDot": 695.304,
+          "sameInstanceIndex": false
+        }
+      ],
+      "motionLimit": "Matrices and anchors move with the live scene; flow ordering may change. Positive arrow local-Y XZ dot verifies orientation from recorded source toward destination. This does not isolate renderer timing or measure FPS.",
+      "stopAt": "2026-11-11T13:22:50.914Z",
+      "drainedAt": "2026-11-11T13:23:00.413Z",
+      "stopReturnToDrainSeconds": 9.499,
+      "drainedStage": {
+        "provider": "hubble",
+        "status": "live",
+        "windowSeconds": 10,
+        "inputFlows": 0,
+        "renderedFlows": 0,
+        "unresolved": 0,
+        "otherRegion": 0,
+        "outsideNamespace": 0,
+        "expired": 0,
+        "aggregatedOutOfView": 0,
+        "providerDropped": 0,
+        "providerSummarized": 0
+      },
+      "flowHTTP200": 51,
+      "flowOtherStatuses": [],
+      "subscriptionDeletes": [
+        {
+          "at": "2026-11-11T13:23:35.436Z",
+          "status": 200
+        }
+      ],
+      "cleanup": {
+        "guardedStop": true,
+        "clientPodLISTZero": true,
+        "appPID": 80336,
+        "relayPID": 80393,
+        "flowPairDrained": true,
+        "subscriptionReleased": true
+      },
+      "browserClosed": true,
+      "videoFiles": [
+        "page@7762309577a3d29bc3f11319fc638c57.webm"
+      ],
+      "knownUIDDirectedMotionExamples": [
+        {
+          "flowId": "cb3576874d16d7625bb49027",
+          "positionDisplacementWorldUnits": 411.821,
+          "forwardXZDot": 695.677,
+          "sameInstanceIndex": false,
+          "sourceUID": "7b4a4ea1-88b0-49ec-8e95-65092a87a9f5",
+          "destinationUID": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "sourceNamespace": "kvml-fbf634e8-06-client",
+          "destinationNamespace": "kvml-fbf634e8-06-server"
+        },
+        {
+          "flowId": "ee1e5309666e373c664f0d66",
+          "positionDisplacementWorldUnits": 99.026,
+          "forwardXZDot": 695.304,
+          "sameInstanceIndex": false,
+          "sourceUID": "7d782a36-0aeb-4d15-b89f-0f57a503b38a",
+          "destinationUID": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "sourceNamespace": "kvml-fbf634e8-06-client",
+          "destinationNamespace": "kvml-fbf634e8-06-server"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "version": "27.2",
+      "normalEnablePass": true,
+      "normalUIFailures": 0,
+      "realClientUIDs": [
+        "db446eea-bd27-4d16-9f27-45557e3415b2",
+        "09529c8d-e4f5-4e8c-ac95-14baea0dae3a",
+        "1dcbdab9-e529-431f-bc40-0fdc45327fa3"
+      ],
+      "serverUID": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+      "observedKnownSourceDestinationPairs": [
+        [
+          "09529c8d-e4f5-4e8c-ac95-14baea0dae3a",
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ],
+        [
+          "1dcbdab9-e529-431f-bc40-0fdc45327fa3",
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ],
+        [
+          "db446eea-bd27-4d16-9f27-45557e3415b2",
+          "bf81944b-e0b4-46e9-af8e-b5560881bd39"
+        ]
+      ],
+      "sceneAtWorldPNG": {
+        "provider": "hubble",
+        "status": "live",
+        "windowSeconds": 10,
+        "inputFlows": 37,
+        "renderedFlows": 27,
+        "unresolved": 8,
+        "otherRegion": 0,
+        "outsideNamespace": 0,
+        "expired": 2,
+        "aggregatedOutOfView": 0,
+        "providerDropped": 0,
+        "providerSummarized": 118
+      },
+      "commonFlowMotionExamples": [
+        {
+          "flowId": "109ad7905bcfc5e8ef96f084",
+          "positionDisplacementWorldUnits": 390.309,
+          "forwardXZDot": 1071.432,
+          "sameInstanceIndex": false
+        },
+        {
+          "flowId": "1656dd9334786af8162d23a2",
+          "positionDisplacementWorldUnits": 372.679,
+          "forwardXZDot": 1099.165,
+          "sameInstanceIndex": false
+        },
+        {
+          "flowId": "1794e5af7d7fa10808b4567f",
+          "positionDisplacementWorldUnits": 164.705,
+          "forwardXZDot": 1092.959,
+          "sameInstanceIndex": false
+        },
+        {
+          "flowId": "1a11f8f6cf52e7f730b5cfd5",
+          "positionDisplacementWorldUnits": 369.781,
+          "forwardXZDot": 1091.322,
+          "sameInstanceIndex": false
+        }
+      ],
+      "motionLimit": "Matrices and anchors move with the live scene; flow ordering may change. Positive arrow local-Y XZ dot verifies orientation from recorded source toward destination. This does not isolate renderer timing or measure FPS.",
+      "stopAt": "2026-11-11T13:24:16.836Z",
+      "drainedAt": "2026-11-11T13:24:23.681Z",
+      "stopReturnToDrainSeconds": 6.845,
+      "drainedStage": {
+        "provider": "hubble",
+        "status": "live",
+        "windowSeconds": 10,
+        "inputFlows": 0,
+        "renderedFlows": 0,
+        "unresolved": 0,
+        "otherRegion": 0,
+        "outsideNamespace": 0,
+        "expired": 0,
+        "aggregatedOutOfView": 0,
+        "providerDropped": 0,
+        "providerSummarized": 0
+      },
+      "flowHTTP200": 29,
+      "flowOtherStatuses": [],
+      "subscriptionDeletes": [
+        {
+          "at": "2026-11-11T13:24:25.563Z",
+          "status": 200
+        }
+      ],
+      "cleanup": {
+        "guardedStop": true,
+        "clientPodLISTZero": true,
+        "appPID": 80336,
+        "relayPID": 80393,
+        "flowPairDrained": true,
+        "subscriptionReleased": true
+      },
+      "browserClosed": true,
+      "videoFiles": [
+        "page@11e6a81cb2942b503be253d555c1dab7.webm"
+      ],
+      "knownUIDDirectedMotionExamples": [
+        {
+          "flowId": "1656dd9334786af8162d23a2",
+          "positionDisplacementWorldUnits": 372.679,
+          "forwardXZDot": 1099.165,
+          "sameInstanceIndex": false,
+          "sourceUID": "db446eea-bd27-4d16-9f27-45557e3415b2",
+          "destinationUID": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "sourceNamespace": "kvml-fbf634e8-06-client",
+          "destinationNamespace": "kvml-fbf634e8-06-server"
+        },
+        {
+          "flowId": "1794e5af7d7fa10808b4567f",
+          "positionDisplacementWorldUnits": 164.705,
+          "forwardXZDot": 1092.959,
+          "sameInstanceIndex": false,
+          "sourceUID": "1dcbdab9-e529-431f-bc40-0fdc45327fa3",
+          "destinationUID": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "sourceNamespace": "kvml-fbf634e8-06-client",
+          "destinationNamespace": "kvml-fbf634e8-06-server"
+        },
+        {
+          "flowId": "1a11f8f6cf52e7f730b5cfd5",
+          "positionDisplacementWorldUnits": 369.781,
+          "forwardXZDot": 1091.322,
+          "sameInstanceIndex": false,
+          "sourceUID": "1dcbdab9-e529-431f-bc40-0fdc45327fa3",
+          "destinationUID": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+          "sourceNamespace": "kvml-fbf634e8-06-client",
+          "destinationNamespace": "kvml-fbf634e8-06-server"
+        }
+      ]
+    }
+  ],
+  "finalGuard": {
+    "at": "2026-11-11T13:24:27.468841+00:00",
+    "action": "traffic-stop",
+    "guarded": true,
+    "clusterUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+    "labId": "kvml-d32afbf634e8",
+    "appPID": 80336,
+    "binarySHA256": "08bd0cee5a5dfc03b8df6b24b778d9f779266cfc2c09a0bbda0f03049e970c7d",
+    "relayPID": 80393,
+    "namespaces": [
+      {
+        "name": "kvml-fbf634e8-06-client",
+        "uid": "863e13d5-da6d-481d-9484-64eb088d8df8"
+      },
+      {
+        "name": "kvml-fbf634e8-06-server",
+        "uid": "f383d95d-46b9-4332-b2e7-ad13d180dfc0"
+      }
+    ],
+    "pods": [
+      {
+        "uid": "bf81944b-e0b4-46e9-af8e-b5560881bd39",
+        "name": "http-server-5985dcddc-mglc4",
+        "namespace": "kvml-fbf634e8-06-server",
+        "nodeName": "kvml-d32afbf634e8-a-m02",
+        "terminating": false,
+        "ready": true
+      }
+    ]
+  },
+  "maxAuthoritativeClientPodLIST": 3
+}

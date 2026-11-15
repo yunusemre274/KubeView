@@ -1,0 +1,22 @@
+{
+  "htmlMatchesBuildFrontendIndex": true,
+  "assets": [
+    {
+      "path": "/assets/index-DDfzt6ML.js",
+      "sha256": "b48977d352b3f17f8e2e2987f5ac04d98c89f593c2fcce6479b01aa110562313",
+      "matchesBuildFrontendAsset": true
+    },
+    {
+      "path": "/assets/three-BKmXRbXN.js",
+      "sha256": "ae8abffe62705761201d89ce6d388d0abd1ddce5ecb6f1cdb5813032ef1f102f",
+      "matchesBuildFrontendAsset": true
+    },
+    {
+      "path": "/assets/index-CCZQtIvj.css",
+      "sha256": "e98773c82f58289154cdaf76f28cd1014606cf27f794c68fe89f0c909a95d329",
+      "matchesBuildFrontendAsset": true
+    }
+  ],
+  "sourceManifest": "ci-package-inspection-worker/outer-build.json",
+  "sourceManifestSHA256": "f5c581ec34c44014e4e2b28183d98f73b19c31f71df668316546093ecf2f9475"
+}

@@ -1,0 +1,74 @@
+{
+  "officialSourceCommit": "beb276d2f38d4aadfda14710acf8d14a0f1ba723",
+  "candidateSourceProvenanceFile": "artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/source.json",
+  "candidateSourceProvenanceSHA256": "e8844d20ea495ac87762afdb98f7c33ba368cd6ece874e97bf642d50959de0f2",
+  "recipeFiles": {
+    "operator/Makefile": {
+      "sha256": "6463539714c0cc0d2b684a25d7772e9b4bff693a909de99ed2db526af43b67b7",
+      "matchesPriorOfficialArchiveRecordedHash": true
+    },
+    "Makefile.defs": {
+      "sha256": "dc82054e06f2e6506ad058c7a5b193751515904f67bb4e0b29ab09cbef3438b9",
+      "matchesPriorOfficialArchiveRecordedHash": true
+    },
+    "images/operator/Dockerfile": {
+      "sha256": "02099189b727438e5314f571d5b2c7f813ef2a39da4062d10addf4d2a7021e77",
+      "matchesPriorOfficialArchiveRecordedHash": true
+    },
+    "images/cilium/Dockerfile": {
+      "sha256": "286d81cde702902c112d2ee9815332ad716e1bad07a60a8fbb93319edcc11201",
+      "matchesPriorOfficialArchiveRecordedHash": true
+    },
+    ".github/workflows/build-images-releases.yaml": {
+      "sha256": "c8234fd67587b5306ac06507747f5e0555c258d41eeeebf0c5b01245f010caab",
+      "releaseBuildArgs": [
+        "CILIUM_RUNTIME_IMAGE",
+        "OPERATOR_VARIANT"
+      ],
+      "BASE_IMAGEOverridePresent": false
+    }
+  },
+  "trivy": {
+    "binary": "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "sha256": "5fd45afccbd5efd7a88e6da92a7b3a52c2e3ffd30d5b954f324123d6d1d24469",
+    "version": "0.74.0",
+    "metadata.json": {
+      "sha256": "62046a71bc29e0ded194e98fe3cde2f51f7179f5ed9d150b7853a33cbe307477",
+      "bytes": 150
+    },
+    "metadata": {
+      "Version": 2,
+      "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+      "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+      "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+    },
+    "trivy.db": {
+      "sha256": "cf7fa3086682e8f77298ca8178419a530f97d7c4bd3ac203a64f2977f82e94a6",
+      "bytes": 1759350784
+    }
+  },
+  "priorExactOfficialImageScan": {
+    "sha256": "3d58df03d01ebc595d8f60f4b601dca9bafa38a3700bc1056ee6b6b6d9d4cbef",
+    "OS": null,
+    "results": [
+      {
+        "Target": "usr/bin/cilium-operator-generic",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 165,
+        "findings": 7
+      },
+      {
+        "Target": "usr/bin/gops",
+        "Class": "lang-pkgs",
+        "Type": "gobinary",
+        "packages": 9,
+        "findings": 1
+      }
+    ]
+  },
+  "candidateBinary": {
+    "sha256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+    "bytes": 114819234
+  }
+}

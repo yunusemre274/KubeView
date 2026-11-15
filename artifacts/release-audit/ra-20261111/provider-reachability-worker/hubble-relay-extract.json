@@ -1,0 +1,191 @@
+{
+  "image": "hubble-relay",
+  "digest": "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1",
+  "started_at_utc": "2026-11-11T13:28:34.520888+00:00",
+  "never_started": true,
+  "files": [
+    {
+      "path_in_image": "/usr/bin/hubble-relay",
+      "local_path": ".git/release-audit/provider-reachability-worker/hubble-relay/hubble-relay",
+      "sha256": "849470e7b06c960cb1fcdcf31a507698235ff68ae06659935943d9d1fbbd7fd9",
+      "bytes": 68354210,
+      "execution": false
+    }
+  ],
+  "already_cached_before_pull": false,
+  "image_identity": {
+    "Id": "sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1",
+    "RepoDigests": [
+      "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1"
+    ],
+    "Size": 21911285,
+    "Architecture": "arm64",
+    "Os": "linux"
+  },
+  "original_entrypoint": [
+    "/usr/bin/hubble-relay"
+  ],
+  "original_cmd": [
+    "serve"
+  ],
+  "image_config_user": "65532:65532",
+  "image_history_not_runtime": "See prior exact-image Trivy config; no image command executed",
+  "container_id": "c144c8b33d0dff1fb80b33b9742001ff05a79488f94aa39ab521b72fcd8bea81",
+  "owner_label": "8db44b025ec04f618618605b0c7adc75",
+  "status": "EXTRACTED_NEVER_RUN",
+  "owned_stopped_container_removed": true,
+  "finished_at_utc": "2026-11-11T13:28:41.075474+00:00",
+  "commands": [
+    {
+      "stage": "pre-inspect",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "image",
+        "inspect",
+        "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1",
+        "--format",
+        "{{json .}}"
+      ],
+      "exit_code": 1,
+      "stop_reason": null,
+      "duration_seconds": 0.109,
+      "peak_cli_rss_bytes": 4096000
+    },
+    {
+      "stage": "pull",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "pull",
+        "--platform",
+        "linux/arm64",
+        "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 3.963,
+      "peak_cli_rss_bytes": 24477696
+    },
+    {
+      "stage": "image-inspect",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "image",
+        "inspect",
+        "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1",
+        "--format",
+        "{{json .}}"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.108,
+      "peak_cli_rss_bytes": 3293184
+    },
+    {
+      "stage": "create",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "create",
+        "--network",
+        "none",
+        "--read-only",
+        "--label",
+        "kubeview.release-audit.owner=8db44b025ec04f618618605b0c7adc75",
+        "--entrypoint",
+        "/__kubeview_audit_never_execute__",
+        "quay.io/cilium/hubble-relay@sha256:cb23408209697ed30d2bc462e1f01eb622ea4423a891458f78bc88d7255bbfc1"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.108,
+      "peak_cli_rss_bytes": 3244032
+    },
+    {
+      "stage": "state-before",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "c144c8b33d0dff1fb80b33b9742001ff05a79488f94aa39ab521b72fcd8bea81",
+        "--format",
+        "{{.State.Status}} {{.State.Running}} {{index .Config.Labels \"kubeview.release-audit.owner\"}}"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.109,
+      "peak_cli_rss_bytes": 3162112
+    },
+    {
+      "stage": "cp-0",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "cp",
+        "-L",
+        "c144c8b33d0dff1fb80b33b9742001ff05a79488f94aa39ab521b72fcd8bea81:/usr/bin/hubble-relay",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/hubble-relay/hubble-relay"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.423,
+      "peak_cli_rss_bytes": 24363008
+    },
+    {
+      "stage": "state-final",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "c144c8b33d0dff1fb80b33b9742001ff05a79488f94aa39ab521b72fcd8bea81",
+        "--format",
+        "{{.State.Status}} {{.State.Running}} {{index .Config.Labels \"kubeview.release-audit.owner\"}}"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 0.107,
+      "peak_cli_rss_bytes": 2752512
+    },
+    {
+      "stage": "remove-owned",
+      "command": [
+        "/usr/local/bin/docker",
+        "--config",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-reachability-worker/auth",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "rm",
+        "c144c8b33d0dff1fb80b33b9742001ff05a79488f94aa39ab521b72fcd8bea81"
+      ],
+      "exit_code": 0,
+      "stop_reason": null,
+      "duration_seconds": 1.582,
+      "peak_cli_rss_bytes": 24379392
+    }
+  ]
+}

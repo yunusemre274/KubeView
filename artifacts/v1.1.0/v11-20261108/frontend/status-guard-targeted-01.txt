@@ -1,0 +1,17 @@
+✔ Running is distinct from Ready and terminating remains visible (0.55325ms)
+✔ Unknown Node is not healthy and UID recreation does not alias (0.290333ms)
+✔ a suspended Job with no terminal condition is suspended instead of running (0.073125ms)
+✔ Job terminal conditions retain priority over suspend and normal running stays unchanged (0.066708ms)
+✔ DaemonSet missing, partial or stale observations never imply healthy readiness (0.088542ms)
+✔ DaemonSet known counts and current observed generation preserve real Ready including zero eligible Nodes (0.050292ms)
+✔ CPU and binary memory quantity parse without invented defaults (0.207208ms)
+✔ editable object preserves unknown fields and resourceVersion without mutating observed state (0.077667ms)
+✔ metrics are matched by raw namespace/name and missing data stays missing (0.125292ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.9195

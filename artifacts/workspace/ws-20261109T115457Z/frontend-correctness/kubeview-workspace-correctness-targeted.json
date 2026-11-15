@@ -1,0 +1,20 @@
+{
+  "phase": "targeted-after-runtime-fix",
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-name-pattern=cold persisted|cold restore|empty onboarding|two per-harbor UID pins|a new canonical metrics sample",
+    "tests/workspace-app-state.test.js",
+    "tests/workspace.test.js"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 0.5385443750019476,
+  "runtimeSourceSHA256": "8ee8bf29e8b08feacfbd35b7343dc43a0d21c9e9ef8a042eaf566977402c899f",
+  "testSHA256": {
+    "frontend/tests/workspace-app-state.test.js": "19b52e30269f013943476b775677c0857d5dbec72899574eaf6f30e3c7d77a81",
+    "frontend/tests/workspace.test.js": "715c600fabe6d4a7bc8aadfca67acea068c3fce94c22fd10b76e8fb9c3da7a26"
+  },
+  "log": "/tmp/kubeview-workspace-correctness-targeted.log",
+  "actualClusterEvidence": false
+}

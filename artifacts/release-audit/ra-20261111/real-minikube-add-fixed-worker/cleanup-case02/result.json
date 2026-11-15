@@ -1,0 +1,17 @@
+{
+  "status": "EXACT_CLEANUP_PASS_OPERATION_FAIL",
+  "operationRemainsFAIL": true,
+  "containerStopped": true,
+  "containerRemoved": true,
+  "volumeRemoved": true,
+  "profileRestored": true,
+  "profileSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+  "originalBaselineEqual": true,
+  "newNodeAbsentPods0": true,
+  "newLabelTargetsEmpty": true,
+  "residualMachineDirectory": true,
+  "machineDirectoryNotDeleted": true,
+  "completedAt": "2026-11-11T19:20:34.512891+00:00",
+  "operationalElapsedSeconds": 102.59969186782837,
+  "within120s": true
+}

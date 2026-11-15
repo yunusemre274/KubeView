@@ -1,0 +1,18 @@
+{
+  "status": "FAIL",
+  "startedAt": "2026-11-15T10:10:32.466306+00:00",
+  "argv": [
+    "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "scripts/build-release.test.mjs",
+    "scripts/release-sbom.test.mjs"
+  ],
+  "peakOwnedGroupRSSMiB": 114.25,
+  "stop": null,
+  "exitCode": 1,
+  "elapsedSeconds": 0.35014349999983096,
+  "completedAt": "2026-11-15T10:10:32.816449+00:00",
+  "sourceAfterMatches": true
+}

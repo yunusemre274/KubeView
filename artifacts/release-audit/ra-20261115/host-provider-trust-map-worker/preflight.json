@@ -1,0 +1,226 @@
+{
+  "startedAt": "2026-11-15T09:20:50.770288+00:00",
+  "auditHEAD": "2d5aced373b609aa012a7a4f80ed9dfe0410e29f",
+  "runtime": "15770296056ca2629601dba540c04741e1822e0d",
+  "task": "TEST-01.04 source trust-boundary map and historical evidence applicability only",
+  "limits": {
+    "sourceFiles": 60,
+    "outputBytes": 1048576,
+    "readOnlyTargetSeconds": 300,
+    "noNewTestsNetworkBrowserBuildCluster": true
+  },
+  "sources": [
+    {
+      "path": "backend/main.go",
+      "bytes": 9102,
+      "sha256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892"
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "bytes": 17391,
+      "sha256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7"
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "bytes": 12194,
+      "sha256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4"
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "bytes": 20477,
+      "sha256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78"
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "bytes": 15979,
+      "sha256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d"
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "bytes": 2653,
+      "sha256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6"
+    },
+    {
+      "path": "backend/pkg/server/resource_scopes.go",
+      "bytes": 5287,
+      "sha256": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e"
+    },
+    {
+      "path": "backend/pkg/server/provider_handlers.go",
+      "bytes": 6370,
+      "sha256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94"
+    },
+    {
+      "path": "backend/pkg/server/traffic_handlers.go",
+      "bytes": 7937,
+      "sha256": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755"
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "bytes": 3523,
+      "sha256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5"
+    },
+    {
+      "path": "backend/pkg/server/portforward.go",
+      "bytes": 12463,
+      "sha256": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be"
+    },
+    {
+      "path": "backend/pkg/server/log_session.go",
+      "bytes": 5893,
+      "sha256": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b"
+    },
+    {
+      "path": "backend/pkg/server/watch_authorization.go",
+      "bytes": 4723,
+      "sha256": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a"
+    },
+    {
+      "path": "backend/pkg/server/stream.go",
+      "bytes": 28029,
+      "sha256": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b"
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "bytes": 21606,
+      "sha256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe"
+    },
+    {
+      "path": "backend/pkg/traffic/config.go",
+      "bytes": 4420,
+      "sha256": "752b3caca8081b3ea8e42107165d7b237dbe2f64baaa9e74061fafa175884f06"
+    },
+    {
+      "path": "backend/pkg/traffic/hub.go",
+      "bytes": 23657,
+      "sha256": "12f33d33e53ae3972cfb7939c373e9e4378cb2f5b7e2dc00176980a6f77884a9"
+    },
+    {
+      "path": "backend/pkg/traffic/history.go",
+      "bytes": 2892,
+      "sha256": "92510d00d3044e1a4a9022bd0b374fbf2f92caedb4ceb94c8589ba463f28b09b"
+    },
+    {
+      "path": "backend/pkg/traffic/flow.go",
+      "bytes": 9131,
+      "sha256": "7b251ae645bc7cc509df10d2a8ba0f287533779092180148c833ceaaa8a419b7"
+    },
+    {
+      "path": "backend/pkg/traffic/process_unix.go",
+      "bytes": 560,
+      "sha256": "3924ed3c81482a69a67ea2e479fb1289840a31d4eb7cb99968be7cb5ac9d26b4"
+    },
+    {
+      "path": "backend/pkg/provision/minikube.go",
+      "bytes": 17234,
+      "sha256": "8e57040b6535a530e9bc7f39a80618960984ec0a39ad919eb394279b88a2dfff"
+    },
+    {
+      "path": "backend/pkg/provision/cli.go",
+      "bytes": 3694,
+      "sha256": "a98674ee47c27ce4e919ceeac8f5fe113dcce6caa4d715a9696e243da905814f"
+    },
+    {
+      "path": "backend/pkg/provision/lock_unix.go",
+      "bytes": 601,
+      "sha256": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b"
+    },
+    {
+      "path": "backend/pkg/provision/lock_windows.go",
+      "bytes": 223,
+      "sha256": "fb3fd946a2aa60fbfc20005dc4766f1e62867841f538b149815a8c6d97b57a9b"
+    },
+    {
+      "path": "frontend/src/context/ShipyardClusterContext.jsx",
+      "bytes": 35974,
+      "sha256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f"
+    },
+    {
+      "path": "frontend/src/context/WorkspaceProvider.jsx",
+      "bytes": 7282,
+      "sha256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc"
+    },
+    {
+      "path": "frontend/src/context/WorkspaceRegistry.js",
+      "bytes": 15925,
+      "sha256": "010ae39dec13d12f58547333c9eaa6292e146ddfba41a85fdb2962613de1e59b"
+    },
+    {
+      "path": "backend/pkg/workspace/store.go",
+      "bytes": 12016,
+      "sha256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a"
+    },
+    {
+      "path": "backend/go.mod",
+      "bytes": 2175,
+      "sha256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c"
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "bytes": 17982,
+      "sha256": "8b3284afe93a860306960b741b96e6b23a5b456538b66abf6fc02a53c3c8b595"
+    },
+    {
+      "path": "docs/RELEASE_THREAT_MODEL.md",
+      "bytes": 7130,
+      "sha256": "86e33bfc6805a712b62095158454205ff2358f73910d3d0aa04853b2b77c4026"
+    },
+    {
+      "path": "backend/pkg/server/release_kubeconfig_trust_test.go",
+      "bytes": 6520,
+      "sha256": "7b39ad28075a041ae0b63e57e4e8f3e38154b65e1c6bdb85e27de8373bb6c612"
+    },
+    {
+      "path": "backend/pkg/provision/release_profile_lock_scope_test.go",
+      "bytes": 6517,
+      "sha256": "e1576b460be3e4487e8c5b2b984c21ea31a5936d2daa0ac361ccb1e375f4c6af"
+    },
+    {
+      "path": "backend/pkg/server/release_provider_cache_scope_test.go",
+      "bytes": 10024,
+      "sha256": "b9e19ca53f28b39808733efa496e6ba74e6fb7bd0d8c62ff067b0cbf8482b223"
+    },
+    {
+      "path": "backend/pkg/traffic/namespace_scopes_test.go",
+      "bytes": 4703,
+      "sha256": "70707c6401cbf08a645ca3531eb2b480d1ce54dbdd4a8a61b88f3791dc44bb5d"
+    },
+    {
+      "path": "backend/pkg/traffic/traffic_test.go",
+      "bytes": 16675,
+      "sha256": "13f082a51a3fa67bc035c54268940efcffea08503d5cd80c9e17d68c9ea5175c"
+    },
+    {
+      "path": "backend/pkg/provision/cli_test.go",
+      "bytes": 898,
+      "sha256": "d0da83268f33a3b50352aa1586534f6a47891f82b594382f13f7b9911b477bf7"
+    },
+    {
+      "path": "backend/pkg/provision/minikube_test.go",
+      "bytes": 6731,
+      "sha256": "36c803e6ab0766b968fd274043ed66f1090d16b29d5349837ad8affbe15c0287"
+    },
+    {
+      "path": "backend/pkg/server/release_origin_preview_test.go",
+      "bytes": 12310,
+      "sha256": "8714457eefdb67c710b14a4ed29adb261ba433ef0c96bc01d93d1367a9a65a34"
+    },
+    {
+      "path": "backend/pkg/server/release_session_expiry_test.go",
+      "bytes": 1497,
+      "sha256": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6"
+    },
+    {
+      "path": "backend/pkg/server/release_active_watch_authz_test.go",
+      "bytes": 8715,
+      "sha256": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+    },
+    {
+      "path": "backend/pkg/server/release_active_watch_real_test.go",
+      "bytes": 30621,
+      "sha256": "d667e550f8d4c53595585d6e5a03f8e38c356089ebef09fa4a7a1a019b1811cb"
+    }
+  ],
+  "sourceCount": 42,
+  "scope": "No credential/private state read; no runtime tests rerun; final phase recommendation requires root second review"
+}

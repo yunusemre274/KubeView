@@ -1,0 +1,31 @@
+{
+  "reviewedAt": "2026-11-12T21:05:09.224249+00:00",
+  "parentHEAD": "e73cb0da3a051c332b2c15092648bfdd42ce0f00",
+  "decision": "ACCEPT_BOUNDED_RUNTIME_FIX_WITH_REAL_E2E_AND_RESOURCE_GATES_OPEN",
+  "finalSourceMatchesFinalGreen": true,
+  "workerManifestEntriesVerified": 36,
+  "sourceSHA256": {
+    "backend/pkg/server/stream.go": "e9f922392ff8777c2530ea5d2f8e60d5221b8a7109faa810ea1b41428a07627b",
+    "backend/pkg/server/watch_authorization.go": "52aa0d5e46b4cf35a68052daeae7766bb2880743845ffdfaa49c79915593889a",
+    "backend/pkg/server/watch_authorization_test.go": "b1440b71afb5642c6a5797aab8f92db895af6fda15df123b4cce5d3d2f5a6415",
+    "backend/pkg/server/release_active_watch_authz_test.go": "fe8313c93df69548e9577864cdb9a05bbb16e9af2b59e6f1a5c927ea8142fa72"
+  },
+  "concurrencyReview": "Writer-local pending batch; one async review; atomic failure at publication admission; short gate state change; no network under gate; direct failed status/consumer cleanup. In-flight bytes cannot be recalled. Race source excludes subsequent pure reachability helper; final non-race covers its classes.",
+  "capacityReview": "5s fixed candidate superseded, configured30QPS/60Burst unchanged. 129exact scopes/258actual client-go rate-limiter waits passed8.6s under13.6s budget. Not actual HTTP SSAR performance. Wholebudget5s+2N/30s; no timer reset/per-event review.",
+  "securityLimit": "Periodic review, not instantaneous revocation. At512scopes budget39.133s, conservative scheduling envelope2B+15s before runtime/in-flight effects, not a measured SLO. Shared-client contention and real API load unmeasured; release acceptance remains open.",
+  "rootRegressions": {
+    "authTop": 23,
+    "authSub": 31,
+    "snapshotWatchTop": 6,
+    "skip": 0
+  },
+  "workerOverrunSeconds": 56.7,
+  "overrunRetained": true,
+  "notClaimed": [
+    "real Kubernetes RoleBinding E2E",
+    "final release package",
+    "CPU decrease",
+    "atomic revocation",
+    "all existing streaming endpoints fixed"
+  ]
+}

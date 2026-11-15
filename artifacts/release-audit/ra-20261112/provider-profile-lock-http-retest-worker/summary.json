@@ -1,0 +1,44 @@
+{
+  "status": "HTTP_PASS_WITH_PHASE_PLAN_OVERRUN",
+  "HTTPAssertions": "PASS",
+  "sourceCommit": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "observedHEAD": "94d48dea0cdf959af56e56541430a49e68ec265e",
+  "binarySHA256": "5f1c22b90297f6ab870ce235faaa73e1591d324ff77bf9cc4d8b4ed18cefb097",
+  "availableSequence": [
+    true,
+    false,
+    true
+  ],
+  "workersHTTPSequence": [
+    200,
+    503,
+    200
+  ],
+  "HTTPRuntimeSeconds": 4.549313068389893,
+  "HTTPRequestsTotal": 19,
+  "maxRequestsAnyOneSecond": 8,
+  "actualHTTPConcurrency": 1,
+  "workerPOST": 0,
+  "providerCLI": 0,
+  "originalBaselineEqual": true,
+  "originalStableNodeMetadataEqual": true,
+  "originalTwoReady": true,
+  "profileUnchanged": true,
+  "globalConfigStatEqual": true,
+  "globalConfigContentsNotRead": true,
+  "providerJournalOperationCount": 0,
+  "capturedAppsAbsent": true,
+  "portsFree": [
+    19846,
+    19847
+  ],
+  "ownedAppOrCLIProcessesRemaining": [],
+  "originalContainersLeftRunningForRoot": true,
+  "firstHTTPFailurePreserved": true,
+  "firstResumeHarnessFailurePreserved": true,
+  "postServiceTransportFailurePreserved": true,
+  "intentionalReadOnlyGuardInterruptionPreserved": true,
+  "aggregatePhasePlanExceeded": true,
+  "phaseWallReceipt": "phase-wall-receipt.json",
+  "noReleaseFinalPackageNewNodeAddOrBroadProviderAcceptance": true
+}

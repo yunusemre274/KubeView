@@ -1,0 +1,77 @@
+{
+  "status": "PASS_OPERATOR_LOCAL_IMAGE_SCAN_AND_VERSION_SCOPED",
+  "candidateLocalTag": "kubeview-private/cilium-operator-generic:1.20.4-security.2-image02",
+  "localDescriptorDigest": "sha256:0f5f919c630deb02c84c3301f61efe4b6b4aece5bde2dbbcc771e48e8aac7352",
+  "registryPublished": false,
+  "remoteImmutableIdentityVerified": false,
+  "officialIndexReference": "quay.io/cilium/operator-generic@sha256:7a7a3489dc66ad67e420d285c8a8d2e169b0957ad15e120f593d27081bf38d82",
+  "officialARM64ManifestDigest": "sha256:f72cbe831147c52dd5fd3c8ec06fe3e913dfe32490113b9462480ccc21a02cdb",
+  "candidateBinarySHA256": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "derivedOperatorFindings": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 0,
+    "LOW": 0,
+    "UNKNOWN": 0
+  },
+  "completeDerivedImageFindings": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 0,
+    "LOW": 0,
+    "UNKNOWN": 1
+  },
+  "baselineCompleteImageFindings": {
+    "HIGH": 2,
+    "MEDIUM": 4,
+    "UNKNOWN": 2
+  },
+  "remainingFinding": {
+    "target": "usr/bin/gops",
+    "class": "lang-pkgs",
+    "type": "gobinary",
+    "id": "CVE-2026-39824",
+    "package": "golang.org/x/sys",
+    "installed": "v0.30.0",
+    "fixed": "0.44.0",
+    "severity": "UNKNOWN",
+    "status": "fixed",
+    "primaryURL": "https://avd.aquasec.com/nvd/cve-2026-39824",
+    "dataSource": {
+      "ID": "govulndb",
+      "Name": "The Go Vulnerability Database",
+      "URL": "https://pkg.go.dev/vuln/"
+    }
+  },
+  "operatorVersionedPackages": 164,
+  "operatorUnversionedMainModule": [
+    {
+      "name": "github.com/cilium/cilium",
+      "relationship": "root",
+      "purl": "pkg:golang/github.com/cilium/cilium"
+    }
+  ],
+  "OSInventoryPresent": false,
+  "APTApplicableToOperatorImage": false,
+  "APTUpgradePerformed": false,
+  "runtimeConfigDifferences": {},
+  "assetsAndModesPreserved": true,
+  "originalLayersPreserved": true,
+  "oldPublisherOperatorStillInLowerLayer": true,
+  "copyLayerBytes": 114819234,
+  "engineImageSizeBytes": 97330699,
+  "versionOnlyExitCode": 0,
+  "versionOnlyContainerRemovedAndAbsent": true,
+  "allImage02OwnedContainersAbsent": true,
+  "runtimeImageExecutedOnlyForVersion": true,
+  "buildScanVersionSessionSeconds": 6.97,
+  "dbBytesUnchanged": true,
+  "otherProviderAPTGateStillOpen": true,
+  "CiliumMainModuleCVECoverageEstablished": false,
+  "licenseClosureRegenerated": false,
+  "riskAccepted": false,
+  "fullProviderGateClosed": false,
+  "rootProvidedStartingHead": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+  "currentObservedRootHeadAtEvidenceFinalization": "fbc7dbcbdf43742fb782ce6140985450f5aef9d7",
+  "workerGitIndexRoadmapChanges": false
+}

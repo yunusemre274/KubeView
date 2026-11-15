@@ -1,0 +1,24 @@
+✔ 50 interrupted switches save each harbor's intended destination rather than the previous interpolated camera (0.823583ms)
+✔ active camera fit samples are translation invariant including fleet route and exclude remote LOD (0.871333ms)
+✔ empty harbor fit fallback and user camera capture retain the correct coordinate frame (0.091209ms)
+✔ UI2 camera fit frames two ports without near-plane runaway on desktop and narrow screens (0.727875ms)
+✔ legacy 38-degree view migrates to 24 degrees without cropping or changing target and viewing angle (0.21475ms)
+✔ captured effective FOV respects camera zoom and repeated restores do not drift (0.223208ms)
+✔ camera FOV validation rejects degenerate lenses while unversioned captures remain compatible (0.087209ms)
+✔ calm analytic sea stays within height and slope budgets for every quality strength (1.423ms)
+✔ analytic gradients and vessel pitch/roll agree with displaced water derivatives (0.076583ms)
+✔ sea off freezes phase immediately and eases geometry and vessel pose to the same flat endpoint (0.346041ms)
+✔ paused/hidden dt=0 freezes all shared state and background resume has no wall-clock catchup (0.052417ms)
+✔ disabled sea does not evaluate trigonometry and invalid inputs remain finite (0.067917ms)
+✔ GPU shader coefficients come from the exact shared vessel wave model (0.052208ms)
+✔ Ocean owns finite static geometry and material disposal; uniforms stay stable over animation (45.943416ms)
+✔ sun reflection toggles preserve texture, geometry, material and the held water phase (6.655166ms)
+✔ wake is bounded aft geometry and disposes its own resources without touching shared assets (0.358334ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.594833

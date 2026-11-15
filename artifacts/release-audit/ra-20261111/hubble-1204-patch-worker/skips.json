@@ -1,0 +1,42 @@
+{
+  "binary_sha256_buildinfo": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "version": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "top_help": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "status_help": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "observe_help": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "binary_govulncheck": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "binary_buildinfo_sbom": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "same_db_trivy_sbom": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "profile_flag_compatibility": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  },
+  "linked_component_license_inventory": {
+    "status": "SKIP",
+    "reason": "Single authorized build was terminated by its finite remaining-time budget; no candidate binary exists."
+  }
+}

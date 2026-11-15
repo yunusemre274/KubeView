@@ -1,0 +1,303 @@
+{
+  "SecretUID": "b685d1bf-0514-4101-9079-2f252bd08f2b",
+  "allExactFixturesAbsent": true,
+  "assertionsPassed": true,
+  "cleanup": [
+    {
+      "UID": "6cf45e0e-6701-4f49-ac3c-38fcfe27c9b4",
+      "absent": true
+    },
+    {
+      "UID": "666b1f86-4438-408b-a6ce-de72d5404045",
+      "absent": true
+    },
+    {
+      "UID": "595c8693-5eb8-4f43-bf9a-43c2dfbcde58",
+      "absent": true
+    },
+    {
+      "UID": "47f4ff65-4923-4713-be90-81431ba6f2b5",
+      "absent": true
+    },
+    {
+      "UID": "017a4ad2-b98c-4ce1-a055-15d01f6a0a1b",
+      "absent": true
+    },
+    {
+      "UID": "15a67cdc-6f37-491b-bb74-2d3c574e6752",
+      "absent": true
+    },
+    {
+      "UID": "b685d1bf-0514-4101-9079-2f252bd08f2b",
+      "absent": true
+    }
+  ],
+  "elapsedSeconds": 2.340327667,
+  "events": [
+    {
+      "at": "2026-11-12T11:00:17.489392Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "GET",
+        "path": "/api/secrets/reveal",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:17.494046Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "knownMalformedJSONMessage": false,
+        "knownMaskedWriteMessage": false,
+        "method": "PUT",
+        "path": "/api/resources",
+        "safeErrorCategory": "other_or_absent",
+        "status": 403
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:17.498742Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "POST",
+        "path": "/api/management",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:17.655537Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "PUT",
+        "path": "/api/resources",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:17.88961Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "GET",
+        "path": "/api/resources",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:17.989854Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "method": "GET",
+        "path": "/api/resources",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.000714Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": true,
+        "identity": "secret-list-0d9a814cde1f3321",
+        "verb": "list"
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.002082Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": false,
+        "identity": "secret-list-0d9a814cde1f3321",
+        "verb": "get"
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.003163Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": false,
+        "identity": "secret-list-0d9a814cde1f3321",
+        "verb": "update"
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.090983Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-list-0d9a814cde1f3321",
+        "method": "POST",
+        "path": "/api/management",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.095879Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-list-0d9a814cde1f3321",
+        "knownMalformedJSONMessage": false,
+        "knownMaskedWriteMessage": false,
+        "method": "GET",
+        "path": "/api/secrets/reveal",
+        "safeErrorCategory": "forbidden",
+        "status": 403
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.105998Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-list-0d9a814cde1f3321",
+        "method": "GET",
+        "path": "/api/resources",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.106139Z",
+      "event": "restricted_PUT_envelope",
+      "proof": {
+        "RVMatches": true,
+        "UIDMatches": true,
+        "hasApiVersion": true,
+        "hasKind": true,
+        "identity": "secret-list-0d9a814cde1f3321"
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.195019Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-list-0d9a814cde1f3321",
+        "knownMalformedJSONMessage": false,
+        "knownMaskedWriteMessage": false,
+        "method": "PUT",
+        "path": "/api/resources",
+        "safeErrorCategory": "forbidden",
+        "status": 403
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.326892Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": false,
+        "identity": "secret-get-0d9a814cde1f3321",
+        "verb": "list"
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.328124Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": true,
+        "identity": "secret-get-0d9a814cde1f3321",
+        "verb": "get"
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.329249Z",
+      "event": "real_SA_RBAC",
+      "proof": {
+        "allowed": false,
+        "identity": "secret-get-0d9a814cde1f3321",
+        "verb": "update"
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.424801Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-get-0d9a814cde1f3321",
+        "method": "POST",
+        "path": "/api/management",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.42944Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-get-0d9a814cde1f3321",
+        "method": "GET",
+        "path": "/api/secrets/reveal",
+        "status": 200
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.435066Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-get-0d9a814cde1f3321",
+        "knownMalformedJSONMessage": false,
+        "knownMaskedWriteMessage": false,
+        "method": "GET",
+        "path": "/api/resources",
+        "safeErrorCategory": "forbidden",
+        "status": 403
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.435103Z",
+      "event": "restricted_PUT_envelope",
+      "proof": {
+        "RVMatches": true,
+        "UIDMatches": true,
+        "hasApiVersion": true,
+        "hasKind": true,
+        "identity": "secret-get-0d9a814cde1f3321"
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.529249Z",
+      "event": "handler",
+      "proof": {
+        "identity": "secret-get-0d9a814cde1f3321",
+        "knownMalformedJSONMessage": false,
+        "knownMaskedWriteMessage": false,
+        "method": "PUT",
+        "path": "/api/resources",
+        "safeErrorCategory": "forbidden",
+        "status": 403
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:18.88704Z",
+      "event": "handler",
+      "proof": {
+        "identity": "kvml-d32afbf634e8-a",
+        "knownMalformedJSONMessage": false,
+        "knownMaskedWriteMessage": true,
+        "method": "PUT",
+        "path": "/api/resources",
+        "safeErrorCategory": "other_or_absent",
+        "status": 422
+      }
+    },
+    {
+      "at": "2026-11-12T11:00:19.021388Z",
+      "event": "purpose_metadata_redaction_masked_and_restricted_complete",
+      "proof": {
+        "SecretUID": "b685d1bf-0514-4101-9079-2f252bd08f2b",
+        "dataEqual": true,
+        "maskedWriteStatus": 422,
+        "nonPurposeNoLeak": true,
+        "restrictedIdentities": 2,
+        "unknownMetadataPreserved": true
+      }
+    }
+  ],
+  "failed": false,
+  "mode": "PRODUCTION_HANDLER_REAL_KUBERNETES_SYNTHETIC_SECRET_NOT_BROWSER_UI",
+  "namespaceNotDeleted": true,
+  "namespaceUID": "56a3bd1d-cc63-4f7e-a3d0-b0114c99b58d",
+  "profileLabAndOriginalNodesUnchanged": true,
+  "startedAt": "2026-11-12T11:00:17.412074Z",
+  "syntheticDataHash": "baf5a27f2f3d31e323e73a27fe56b1997b1d34a8ab46c008a65eda4676b6b661",
+  "valuesRecorded": false,
+  "within180Seconds": true
+}

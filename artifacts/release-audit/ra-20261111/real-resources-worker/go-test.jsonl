@@ -1,0 +1,9 @@
+{"Time":"2026-11-11T19:28:20.198555+03:00","Action":"start","Package":"github.com/k8s-tersane/tersane/backend/pkg/server"}
+{"Time":"2026-11-11T19:28:20.99213+03:00","Action":"run","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedResourcesTemplate"}
+{"Time":"2026-11-11T19:28:20.99254+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedResourcesTemplate","Output":"=== RUN   TestReleaseOwnedResourcesTemplate\n"}
+{"Time":"2026-11-11T19:28:25.46886+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedResourcesTemplate","Output":"    release_operations_real_test.go:408: more than3ownedPods\n"}
+{"Time":"2026-11-11T19:28:27.253521+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedResourcesTemplate","Output":"--- FAIL: TestReleaseOwnedResourcesTemplate (6.26s)\n"}
+{"Time":"2026-11-11T19:28:27.253579+03:00","Action":"fail","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Test":"TestReleaseOwnedResourcesTemplate","Elapsed":6.26}
+{"Time":"2026-11-11T19:28:27.253876+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"FAIL\n"}
+{"Time":"2026-11-11T19:28:27.257005+03:00","Action":"output","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Output":"FAIL\tgithub.com/k8s-tersane/tersane/backend/pkg/server\t7.058s\n"}
+{"Time":"2026-11-11T19:28:27.257079+03:00","Action":"fail","Package":"github.com/k8s-tersane/tersane/backend/pkg/server","Elapsed":7.059}

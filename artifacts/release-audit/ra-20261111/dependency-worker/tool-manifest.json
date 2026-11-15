@@ -1,0 +1,11 @@
+{
+  "generated_at_utc": "2026-11-11T10:29:51.600705+00:00",
+  "tool": "govulncheck",
+  "version": "v1.9.0",
+  "install_location": ".git/release-audit/tools/govulncheck",
+  "source": "golang.org/x/vuln/cmd/govulncheck@v1.9.0",
+  "binary_sha256": "99b0b6cdb4f4050ede6c564d75e6fd5934d42f314d3c3a300604c4e01f9007dd",
+  "official_docs": "https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck",
+  "globally_installed": false,
+  "project_dependency": false
+}

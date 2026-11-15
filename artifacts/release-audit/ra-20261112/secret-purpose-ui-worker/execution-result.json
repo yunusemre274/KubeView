@@ -1,0 +1,26 @@
+{
+  "status": "FAIL",
+  "phaseStartedAt": "2026-11-12T11:18:36Z",
+  "phaseLimitSeconds": 480,
+  "events": [],
+  "valuesExported": false,
+  "appCleanup": [],
+  "powerBefore": {
+    "batteryPercent": 44,
+    "freeDiskBytes": 454354821120
+  },
+  "firstFailure": {
+    "step": "preflight",
+    "class": "RuntimeError",
+    "safeCategory": "fresh_namespace_metadata_only_Secret_inventory"
+  },
+  "cleanupStartedAt": "2026-11-12T11:23:42.731124+00:00",
+  "privateFilesRemoved": true,
+  "port19843Free": true,
+  "cleanupSeconds": 0.031219005584716797,
+  "completedAt": "2026-11-12T11:23:42.762343+00:00",
+  "phaseElapsedSeconds": 306.76235485076904,
+  "appPIDAbsent": true,
+  "browserProcessExited": true,
+  "appBinaryUnchanged": true
+}

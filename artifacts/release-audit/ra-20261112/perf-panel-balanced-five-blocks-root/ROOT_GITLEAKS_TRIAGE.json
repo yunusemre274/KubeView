@@ -1,0 +1,186 @@
+{
+  "count": 20,
+  "scope": "Exact staged fingerprints only; no global rule ignore; all values verified against immutable Git source blobs.",
+  "rows": [
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-A-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-A-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-B-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p0-B-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-A-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-A-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-B-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p1-B-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-A-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-A-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-B-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p2-B-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-A-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-A-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-A-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-A-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-B-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p3-B-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-B-runner-summary.json",
+      "line": 198,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "f7a0e9145b72057be8d8fc50bb885177a259d5e6f103d7a5977f737d2e7414f1",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    },
+    {
+      "file": "artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/p4-B-runner-summary.json",
+      "line": 199,
+      "rule": "generic-api-key",
+      "sourcePath": "src/workbench/secretPayload.test.js",
+      "immutableSource": "f32d6b2345c0e9fcf350b83ec9a5e9d3fc651e12",
+      "verifiedSHA256": "0fbcc8e3d37bb969fe95cdff25647f08a8dad73e5d0181eb45d3c9e28190954e",
+      "classification": "EXACT_SOURCE_HASH_FALSE_POSITIVE"
+    }
+  ]
+}

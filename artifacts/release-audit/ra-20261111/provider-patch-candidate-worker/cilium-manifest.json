@@ -1,0 +1,94 @@
+{
+  "label": "cilium",
+  "target": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+  "command": [
+    "/opt/homebrew/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-patch-candidate-worker/trivy.yaml",
+    "image",
+    "--image-src",
+    "remote",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-patch-candidate-worker/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-patch-candidate-worker/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-patch-candidate-worker/cilium.json",
+    "--timeout",
+    "150s",
+    "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e"
+  ],
+  "started_at_utc": "2026-11-11T13:06:17.832628+00:00",
+  "timeout_seconds": 150,
+  "rss_limit_bytes": 1610612736,
+  "minimum_free_bytes": 10737418240,
+  "GOMAXPROCS": 1,
+  "GOMEMLIMIT": "1024MiB",
+  "parallel": 1,
+  "image_executed": false,
+  "credentials": "empty private config; credential environment removed",
+  "finished_at_utc": "2026-11-11T13:06:34.381760+00:00",
+  "duration_seconds": 16.549,
+  "exit_code": 0,
+  "stop_reason": null,
+  "peak_owned_rss_bytes": 437518336,
+  "minimum_observed_free_bytes": 458490675200,
+  "status": "PASS_SCAN_WITH_OR_WITHOUT_FINDINGS",
+  "platform_observed": {
+    "os": "linux",
+    "architecture": "arm64"
+  },
+  "metadata": {
+    "ImageID": "sha256:2b6c65a9d6388212bb4d36834201ad7f307852ffd134552486da33313a068b2a",
+    "DiffIDs": [
+      "sha256:d992b67eeb949fa2c852abc0aa7bd15b8597c796dd959d7f0db58a04f7a5ab94",
+      "sha256:83e50c8b0ef358fc3d32395525d56e3270e8ef484deb3de8064cb213c88ff4c4",
+      "sha256:53bca5db01ebd9bff0a62d14cef846c71e8b8344d1fb2106d38b545978baeb0a",
+      "sha256:bdd8620562c14243e44a9046a174019ad4d8d24d7aba31efbbe294e5c24558dd",
+      "sha256:e53ed60dd113bc5a76584b4e03aa17621a3b2248fdeea07ebb05a446bb48b669"
+    ],
+    "RepoTags": null,
+    "RepoDigests": [
+      "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e"
+    ],
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "26.04"
+    },
+    "Size": 720571904
+  },
+  "scanner_created_at": "2026-11-11T16:06:33.536613+03:00",
+  "raw_json_sha256": "30b270fbe480b688c8ab1241a5f285f1e9f5610f660e49bc00b9c255b0ccd26b",
+  "package_advisory_rows": 84,
+  "unique_advisory_ids": 50,
+  "row_severity_counts": {
+    "HIGH": 10,
+    "MEDIUM": 64,
+    "LOW": 6,
+    "UNKNOWN": 4
+  },
+  "high_critical_unique_ids": [
+    "CVE-2026-109518",
+    "CVE-2026-78661"
+  ]
+}

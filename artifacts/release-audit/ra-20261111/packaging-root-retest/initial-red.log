@@ -1,0 +1,49 @@
+✔ strict argument parsing preserves prepared/clean/target and default targets (0.748167ms)
+✔ existing explicit output directories and symlinks fail before any command (3.64875ms)
+✔ default dist rejects every conflicting archive, binary folder or manifest before build (11.829041ms)
+✔ fresh relative output dry-run preserves prepared flow and packages only manual runtime (6.522167ms)
+✔ fresh absolute output keeps both default targets isolated from historical dist (7.626792ms)
+✔ default output preserves unrelated historical files and keeps normal frontend flow (5.922625ms)
+✔ require-clean rejection never reserves output or invokes frontend/build tools (2.403792ms)
+✖ require-clean includes the manual runtime, shipped docs and RBAC inputs (5.508791ms)
+✖ bundle provenance binds shipped inputs and prepared frontend bytes (5.523667ms)
+✔ archive published during build cannot be overwritten and temporary output is removed (5.272625ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 8
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92.567375
+
+✖ failing tests:
+
+test at scripts/build-release.test.mjs:127:1
+✖ require-clean includes the manual runtime, shipped docs and RBAC inputs (5.508791ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: manual-lab/telemetry.py
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/scripts/build-release.test.mjs:137:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /must be committed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at scripts/build-release.test.mjs:144:1
+✖ bundle provenance binds shipped inputs and prepared frontend bytes (5.523667ms)
+  TypeError: Cannot read properties of undefined (reading 'manual-lab/telemetry.py')
+      at TestContext.<anonymous> (file:///Users/yunusemre/Desktop/KubeView/scripts/build-release.test.mjs:151:31)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7)

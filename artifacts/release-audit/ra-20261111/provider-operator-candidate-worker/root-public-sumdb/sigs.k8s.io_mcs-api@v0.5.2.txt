@@ -1,0 +1,9 @@
+57315855
+sigs.k8s.io/mcs-api v0.5.2 h1:N+vrRiCIb0WJ0dxbBo7VfNv2WJigOHEo4gsLXpffVs8=
+sigs.k8s.io/mcs-api v0.5.2/go.mod h1:zZ5CK8uS6HaLkxY4HqsmcBHfzHuNMrY2uJy8T7jffK4=
+
+go.sum database tree
+71239644
+rotKSsJLhT9MWiEdkazIrS2WQeraN6SGqG2k1Zf5PQI=
+
+— sum.golang.org Az3grgczgALowrKIcgjvsYwn/ZZmPVzoqDIkiXxH8Nxqd92l0/sb1lRB917NNmIKewDoE8ziz7YR/wjh+aXpJxSWqwI=

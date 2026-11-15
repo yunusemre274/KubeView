@@ -1,0 +1,167 @@
+{
+  "attempt": "a-owned-worker-host-repair-02",
+  "upExitCode": 0,
+  "statusExitCode": 0,
+  "elapsedSeconds": 2.351,
+  "sourceSHA256": "c4261507939d6cae021e9bb92fc6b87ec0b04eb5e3e62b77f962a09755b46d8b",
+  "output": "Küme A: Ready; 0 exact-owned container açıldı; adres onarımı=False\nHazır: 02-ortak-kume; labId=kvml-ccdfe731dabd; 2 kayıt planı. app komutu ayrı çalıştırılır.\nVarsayılan fixture sağlığı için status; kullanıcının önceki scenario değişiklikleri up ile sıfırlanmaz.\n",
+  "statusError": "",
+  "fullMinikubeStartInvoked": false,
+  "globalKubeconfigUnchanged": true,
+  "inventory": {
+    "labId": "kvml-ccdfe731dabd",
+    "stateDir": "/Users/yunusemre/Library/Application Support/KubeView/manual-lab-v1",
+    "clusters": {
+      "a": {
+        "name": "kvml-ccdfe731dabd-a",
+        "systemUid": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5",
+        "nodesExpected": 2,
+        "containers": [
+          {
+            "id": "ad4df28f50725a6cfc3b66455a217e44e598dd059af39c8ef873499877a8a77b",
+            "name": "kvml-ccdfe731dabd-a",
+            "running": true
+          },
+          {
+            "id": "3a2953aea628ceecd4bde2fa52c2306a1f5dcb8610ac785e9f3a20d32cd66b6f",
+            "name": "kvml-ccdfe731dabd-a-m02",
+            "running": true
+          }
+        ],
+        "actualNodes": [
+          {
+            "name": "kvml-ccdfe731dabd-a",
+            "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+            "ready": true
+          },
+          {
+            "name": "kvml-ccdfe731dabd-a-m02",
+            "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+            "ready": true
+          }
+        ]
+      }
+    },
+    "apps": {},
+    "profiles": {
+      "02-ortak-kume": {
+        "registeredHarborPlan": 2,
+        "namespaces": [
+          {
+            "cluster": "a",
+            "name": "kvml-e731dabd-02-p1",
+            "uid": "9b04c056-f008-4e91-bd94-dacdb40258e6"
+          },
+          {
+            "cluster": "a",
+            "name": "kvml-e731dabd-02-p2",
+            "uid": "99d01a63-e670-43ef-a455-94d98c87de90"
+          }
+        ],
+        "fixtureObjects": 2,
+        "pods": [
+          {
+            "cluster": "a",
+            "namespace": "kvml-e731dabd-02-p1",
+            "name": "web-5f76b8f75f-5d5dl",
+            "uid": "da4fe582-6fce-40d6-a7d2-2f363fd1f6a1",
+            "node": "kvml-ccdfe731dabd-a-m02",
+            "phase": "Running",
+            "readyContainers": 1,
+            "containerCount": 1
+          },
+          {
+            "cluster": "a",
+            "namespace": "kvml-e731dabd-02-p2",
+            "name": "web-5f76b8f75f-dgn9c",
+            "uid": "d6e8d2cc-bd0c-4248-8b3f-471605b4a486",
+            "node": "kvml-ccdfe731dabd-a-m02",
+            "phase": "Running",
+            "readyContainers": 1,
+            "containerCount": 1
+          }
+        ],
+        "readerTokenRefreshBefore": null
+      },
+      "04-kisitli-yetki": {
+        "registeredHarborPlan": 2,
+        "namespaces": [
+          {
+            "cluster": "a",
+            "name": "kvml-e731dabd-04-restricted",
+            "uid": "20b92777-2024-48c5-94fb-8d10d1beb7e9"
+          }
+        ],
+        "fixtureObjects": 4,
+        "pods": [
+          {
+            "cluster": "a",
+            "namespace": "kvml-e731dabd-04-restricted",
+            "name": "web-5f68f9fd69-82x68",
+            "uid": "7cd27e68-e986-4047-9dcc-f37bf8b34704",
+            "node": "kvml-ccdfe731dabd-a-m02",
+            "phase": "Running",
+            "readyContainers": 1,
+            "containerCount": 1
+          }
+        ],
+        "readerTokenRefreshBefore": "2026-11-09T13:31:25.526436+00:00"
+      },
+      "05-ariza-toparlanma": {
+        "registeredHarborPlan": 1,
+        "namespaces": [
+          {
+            "cluster": "a",
+            "name": "kvml-e731dabd-05-fault",
+            "uid": "4e89e4f5-eec6-4696-a867-9908a2acef97"
+          }
+        ],
+        "fixtureObjects": 3,
+        "pods": [
+          {
+            "cluster": "a",
+            "namespace": "kvml-e731dabd-05-fault",
+            "name": "two-containers-698996bf57-4dzdm",
+            "uid": "4f89afc8-7893-4235-be53-1f054b44e8cc",
+            "node": "kvml-ccdfe731dabd-a-m02",
+            "phase": "Running",
+            "readyContainers": 2,
+            "containerCount": 2
+          }
+        ],
+        "readerTokenRefreshBefore": null
+      },
+      "06-limanlar-arasi-ag": {
+        "registeredHarborPlan": 2,
+        "namespaces": [
+          {
+            "cluster": "a",
+            "name": "kvml-e731dabd-06-client",
+            "uid": "2c3a11bf-821a-46e8-a4d5-c76537efd20b"
+          },
+          {
+            "cluster": "a",
+            "name": "kvml-e731dabd-06-server",
+            "uid": "b1a7e774-4512-4e36-a998-ed0685a4e732"
+          }
+        ],
+        "fixtureObjects": 3,
+        "pods": [
+          {
+            "cluster": "a",
+            "namespace": "kvml-e731dabd-06-server",
+            "name": "http-server-79578f575f-jtjjk",
+            "uid": "88cf283f-8275-4da3-922b-56067150e8ad",
+            "node": "kvml-ccdfe731dabd-a-m02",
+            "phase": "Running",
+            "readyContainers": 1,
+            "containerCount": 1
+          }
+        ],
+        "readerTokenRefreshBefore": null
+      }
+    }
+  },
+  "systemUIDUnchanged": true,
+  "pass": true
+}

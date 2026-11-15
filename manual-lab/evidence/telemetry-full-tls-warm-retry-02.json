@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "attempt": "telemetry-full-tls-warm-retry-02",
+  "startedAt": "2026-11-10T09:11:40.063965+00:00",
+  "status": "FAIL_STOPPED_AT_WARM_UP",
+  "binarySha256": "ce72f9ddd776764572198111625da75264468452f58efc22dd21f30b5637d9a4",
+  "sourceModuleSha256": "2a6c9b31e4411f8b24e2c7a9833a7245c7e3b3b62f8ca48b4e2acc7dec71247a",
+  "sourceMainSha256": "098b5008fe24279ae008de3e3708bf5058b42dc2cbfc7e1248d5ec8b1c7fbbbf",
+  "basePort": 19900,
+  "appPort": 19906,
+  "forwardPort": 19908,
+  "coldStart": false,
+  "previousColdFailurePreserved": true,
+  "maxWallSeconds": 1800,
+  "maxActualIntegrationAttempts": 2,
+  "thirdAttemptAllowed": false,
+  "expectedIdentity": {
+    "clusterUid": "14c33366-442c-45a4-8ca7-1e56e7251ca5",
+    "nodeUids": {
+      "kvml-f99e938d3301-a": "c5bc395a-2168-487b-9df2-7b8bdea6c3ce",
+      "kvml-f99e938d3301-a-m02": "a6e4eaa7-2ee7-42aa-8193-3a07c5436d69"
+    }
+  },
+  "stages": [
+    {
+      "name": "same-identity-warm-up-relay-bootstrap-repair",
+      "exitCode": 2,
+      "elapsedSeconds": 6.15,
+      "pass": false
+    },
+    {
+      "name": "official-down-after-last-failure",
+      "exitCode": 0,
+      "elapsedSeconds": 21.57,
+      "pass": true
+    }
+  ],
+  "defaultABSecretRead": false,
+  "secretValuesOrPrivatePathsRecorded": false,
+  "identityPreserved": true,
+  "labId": "kvml-f99e938d3301",
+  "telemetry": {
+    "enabled": true,
+    "version": "1.20.2",
+    "mode": "separate-A-only",
+    "resourceUids": {
+      "DaemonSet/cilium": "dbe1eb88-8c12-40f8-98df-d42675e045be",
+      "Deployment/cilium-operator": "3a638b9e-80ba-4133-97d4-e90ff745596c",
+      "Deployment/hubble-relay": "9c0897a0-a118-4cc8-92bd-98988015bfc2",
+      "Service/hubble-relay": "b1ea18c8-764c-4fcf-bd1f-fe668ae19f2d",
+      "Secret/hubble-relay-client-certs": "e0fa0825-3dfb-42e8-b8aa-64050a92c8ab",
+      "Secret/hubble-relay-server-certs": "d5da742e-492a-482e-87f7-25778873561a"
+    },
+    "chartSha256": "b2afd87b7f75f875f92a14559f14f59b7babbb479d968e3fd625a20bf30ec20e",
+    "cniReadyProof": {
+      "kvml-f99e938d3301-a": {
+        "nodeUid": "c5bc395a-2168-487b-9df2-7b8bdea6c3ce",
+        "podCIDR": "10.244.0.0/24",
+        "pluginNames": [
+          "cilium-cni"
+        ]
+      },
+      "kvml-f99e938d3301-a-m02": {
+        "nodeUid": "a6e4eaa7-2ee7-42aa-8193-3a07c5436d69",
+        "podCIDR": "10.244.1.0/24",
+        "pluginNames": [
+          "cilium-cni"
+        ]
+      }
+    }
+  },
+  "elapsedSeconds": 27.72,
+  "failureClass": "RelayPodIPUnavailableDuringWarmStartup",
+  "safeFailureMessage": "Relay PodIP do\u011frulanamad\u0131; silme yok",
+  "relayPodDeleteOccurred": false,
+  "appStarted": false,
+  "tlsMaterialExtracted": false,
+  "realTrafficStarted": false,
+  "readerFixturesCreated": false,
+  "thirdAttemptStarted": false,
+  "finalStoppedVerifiedAt": "2026-11-10T09:13:06.548530+00:00",
+  "finalContainers": [
+    {
+      "lab": "telemetry",
+      "cluster": "a",
+      "name": "kvml-f99e938d3301-a",
+      "id": "39252f220ab78bec54f75b42ca16cad98b6ee00d9fc89a3d53431830e3376f3f",
+      "running": false
+    },
+    {
+      "lab": "telemetry",
+      "cluster": "a",
+      "name": "kvml-f99e938d3301-a-m02",
+      "id": "6ba2921a596bd441d08d706af59d7828625d30c309603b3300ac1ec89682ed32",
+      "running": false
+    },
+    {
+      "lab": "default",
+      "cluster": "a",
+      "name": "kvml-ccdfe731dabd-a",
+      "id": "ad4df28f50725a6cfc3b66455a217e44e598dd059af39c8ef873499877a8a77b",
+      "running": false
+    },
+    {
+      "lab": "default",
+      "cluster": "a",
+      "name": "kvml-ccdfe731dabd-a-m02",
+      "id": "3a2953aea628ceecd4bde2fa52c2306a1f5dcb8610ac785e9f3a20d32cd66b6f",
+      "running": false
+    },
+    {
+      "lab": "default",
+      "cluster": "b",
+      "name": "kvml-ccdfe731dabd-b",
+      "id": "483a18e0026c94c7297fbb8b3509ce6aeff6b31bcdc528522268ccf1a276104b",
+      "running": false
+    }
+  ],
+  "finalProcessLedgerEmpty": true,
+  "finalPorts": {
+    "19906": {
+      "connectable": false,
+      "listening": false
+    },
+    "19908": {
+      "connectable": false,
+      "listening": false
+    }
+  },
+  "finalAllOwnedContainersStopped": true,
+  "defaultABRemainStopped": true
+}

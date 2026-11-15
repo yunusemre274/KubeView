@@ -1,0 +1,5 @@
+FAIL 2026-11-08 backend unit/fake test harness, not real Kubernetes.
+Command: go test ./pkg/server -run 'Test(ManagementStarts|DelayedManagement|ConnectionRestricted|OriginHost|ConnectionErrors|MergedKubeconfig|ReadOnlyAnd|PodLogPermission)' -count=1 -p=1 -timeout=60s
+Result: panic: test timed out after 1m0s while TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip ran.
+Cause: new test interposed inside kubefake's reactor; kubefake holds its global mutex during reactor execution, blocking concurrent diagnostic ServerVersion/SSAR calls. This cannot model the intended HTTP scheduling race.
+Correction: interpose with nil-in-production managementBeforeGrant hook immediately after permission/API check and before the locked final nonce/config/context validation. Product guard remains unchanged. Initial FAIL preserved; corrected targeted rerun is separate.

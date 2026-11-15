@@ -1,0 +1,176 @@
+{
+  "status": "PLANNED_NOT_RUN_AWAITING_ROOT_CLEARANCE",
+  "at": "2026-11-12T10:45:16.757268+00:00",
+  "tests": [
+    "TEST-05.07 backend reveal/edit authority only",
+    "TEST-05.08 unknown metadata and data preservation",
+    "TEST-05.09 masked-data write rejection"
+  ],
+  "implementationOwner": "backend/pkg/server/release_secret_real_test.go, not created yet",
+  "newTestName": "TestReleaseOwnedSecretPurposeReal",
+  "whyNewTest": [
+    "legacy real helper explicitly permits only kv-repair-* context/namespace and backend-manager namespace label; current kvml target must not be smuggled into it",
+    "legacy real test has no real restricted-identity Secret checks and weak cleanup absence proof",
+    "current unit tests cover metadata/redaction and SEC-001 discovery omission, but are not current real Kubernetes evidence"
+  ],
+  "runtimeChangeRequested": false,
+  "target": {
+    "state": "/Users/yunusemre/Library/Application Support/KubeView/release-audit-hubble-20261111-cold01",
+    "privateAdminConfig": "STATE/private/admin.json; read in process only, never copied into evidence",
+    "context": "kvml-d32afbf634e8-a",
+    "labId": "kvml-d32afbf634e8",
+    "systemUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+    "ownerMarkerUID": "0cded75c-bc00-472f-b69f-39dfd43251f3",
+    "originalNodeUIDs": [
+      "a80b27ed-deed-43de-9554-8309fe9b03b3",
+      "90103b01-6c31-4690-8bd0-31fa968af1ce"
+    ],
+    "namespace": "fresh root-sealed namespace name/UID/run seal supplied at clearance; worker must not adopt an existing namespace by name",
+    "namespaceLifecycle": "root owns namespace creation/disposition; this worker deletes only its exact UID-recorded fixtures"
+  },
+  "fixtures": {
+    "Secret": 1,
+    "ServiceAccounts": 2,
+    "Roles": 2,
+    "RoleBindings": 2,
+    "PodsDeploymentsNodesImagesVMs": 0,
+    "identity1": "actual TokenRequest list-only Secret reader; get/update denied",
+    "identity2": "actual TokenRequest get-only reader bound to the exact synthetic Secret name; update/list denied",
+    "tokens": "short-lived, no Secret-backed token object; only process memory/private 0700 temp kubeconfig0600, never evidence",
+    "secretValues": "crypto-random synthetic payload plus synthetic private annotation; raw/base64 values never stdout/log/artifact"
+  },
+  "guards": [
+    "explicit state/config/context/cluster UID/marker UID; static private TLS auth only, loopback https and verification enabled",
+    "before each Kubernetes mutation: live system UID+marker UID/lab label+root supplied namespace UID/owner/run-seal",
+    "all created object names/labels/run seal/creation intent/UID captured immediately; cleanup refuses any identity mismatch",
+    "metadata-only Secret inventory and server labelSelector=unique run label prevent reading other Secret values; purpose/direct gets target only created exact Secret",
+    "original two Node UIDs/Ready and fixture-neutral identity baseline recorded; no provider/lifecycle action"
+  ],
+  "matrix": [
+    {
+      "identity": "admin, initial browser management disabled",
+      "method": "GET reveal exact own Secret",
+      "expected": 200,
+      "proof": "real Kubernetes get permission permits purpose reveal independently of write grant; decoded payload/annotations equal, values stay private"
+    },
+    {
+      "identity": "admin before browser management enable",
+      "method": "PUT resources purpose object",
+      "expected": 403,
+      "proof": "real admin can update by RBAC but public management grant is absent; exact synthetic object UID/RV/data+metadata hashes remain unchanged"
+    },
+    {
+      "identity": "admin, management enabled through production diagnostic/nonce/management handler",
+      "method": "PUT resources purpose object",
+      "expected": 200,
+      "proof": "only intended new label/annotation edits change; unknown labels/annotations, data/type/immutable/UID preserved in direct readback"
+    },
+    {
+      "identity": "admin and list-only SA",
+      "method": "GET resources list with namespace+unique run selector",
+      "expected": 200,
+      "proof": "exact owned UID only; data/stringData/annotations absent, keyNames correct; plain/base64 synthetic value and private annotation canaries absent"
+    },
+    {
+      "identity": "admin",
+      "method": "GET resources name and PUT result metadata",
+      "expected": 200,
+      "proof": "both sanitized, no data/stringData/private annotation values in shared/operation output"
+    },
+    {
+      "identity": "list-only SA, explicit management enabled",
+      "method": "GET reveal / PUT resources",
+      "expected": [
+        403,
+        403
+      ],
+      "proof": "SSAR true list/false get+update on real identity; negative response has no canary, exact Secret UID/RV/data+metadata hashes unchanged"
+    },
+    {
+      "identity": "get-only SA, explicit management enabled",
+      "method": "GET reveal / GET resources list / PUT resources",
+      "expected": [
+        200,
+        403,
+        403
+      ],
+      "proof": "real SSAR get true/update+list false; authorized reveal equality private, denied mutation leaves exact Secret unchanged"
+    },
+    {
+      "identity": "admin, current valid UID/RV",
+      "method": "PUT masked Secret containing keyNames",
+      "expected": 422,
+      "proof": "current UID/RV avoids conflating stale conflict with masked guard; readback UID/RV/data+metadata hashes equal before rejection"
+    }
+  ],
+  "SEC001Scope": "trace unchanged fail-closed discovery/selector functions and reference existing unit evidence; no synthetic discovery outage injected into real API test and no claim that it was exercised live",
+  "frontendHideScope": "existing ResourceForms/secretPayload unit source references only; no rerun or browser hide/UI acceptance claimed",
+  "handlerMode": "production protected handlers via httptest recorder plus actual client-go Kubernetes network clients; not a browser UI run or separate app binary",
+  "metrics": "no metrics/flow/performance scenario; production connection diagnostic may perform its normal one-item metrics probe; no metric result required for acceptance",
+  "budgets": {
+    "phaseSeconds": 360,
+    "phaseStarts": "root clearance and explicit execution start; pre-clearance preparation recorded separately",
+    "goTestTimeoutSeconds": 150,
+    "outerSingleTestCommandSeconds": 180,
+    "testWorkContextSeconds": 105,
+    "cleanupReserveSeconds": 30,
+    "remainingGoTimeoutReserveSeconds": 15,
+    "parallel": 1,
+    "GOMAXPROCS": 2,
+    "GOMEMLIMIT": "2GiB",
+    "retries": "one test job only; no rerun after failure; bounded permission propagation polling <=10s included in work budget",
+    "power": "battery>=25 and free disk>=10GiB before execution; no CPU benchmark",
+    "phaseAllocationSeconds": {
+      "single_go_test_command_including_compile": 180,
+      "artifact_report_review": 105,
+      "reserve": 30,
+      "source_and_static_preflight": 45
+    },
+    "compilation": "only within the single go test command; no separate build/test preflight job"
+  },
+  "proposedCommand": {
+    "cwd": "backend",
+    "argv": [
+      "go",
+      "test",
+      "-json",
+      "-count=1",
+      "-p=1",
+      "-parallel=1",
+      "-timeout=150s",
+      "-run",
+      "^TestReleaseOwnedSecretPurposeReal$",
+      "./pkg/server"
+    ],
+    "environment": {
+      "GOTOOLCHAIN": "go1.26.11",
+      "GOMAXPROCS": "2",
+      "GOMEMLIMIT": "2GiB",
+      "KUBEVIEW_RELEASE_REAL_SECRET": "owned-secret-purpose-v1",
+      "KUBEVIEW_RELEASE_REAL_STATE": "explicit STATE/lab.json",
+      "KUBEVIEW_RELEASE_REAL_KUBECONFIG": "explicit STATE/private/admin.json",
+      "KUBEVIEW_RELEASE_REAL_SECRET_NAMESPACE": "root-supplied sealed namespace",
+      "KUBEVIEW_RELEASE_REAL_SECRET_NAMESPACE_UID": "root-supplied exact UID",
+      "KUBEVIEW_RELEASE_REAL_SECRET_SEAL": "root-supplied run seal",
+      "KUBEVIEW_RELEASE_REAL_OUTPUT": "this artifact directory"
+    }
+  },
+  "cleanup": [
+    "register cleanup immediately after each successful create",
+    "recheck live cluster/namespace seal and object exact UID/owner before deletion; delete RoleBindings, Roles, ServiceAccounts and Secret with UID/RV preconditions",
+    "finite direct GET404 for each exact fixture, then metadata-only run-selector inventory empty; no namespace delete and no deletion of root/default ServiceAccount",
+    "tokens/private temp kubeconfig and operator sessions closed; no raw credentials persisted; app/CLI none",
+    "baseline profile bytes/original Node identities unchanged; unrelated owned resources not mutated",
+    "on timeout/incomplete cleanup preserve durable exact name/UID/owner receipt and mark pending; no broad cleanup or automatic second test job"
+  ],
+  "evidence": [
+    "method/status/identity-role/UID, SSAR booleans and equality/hash assertions only",
+    "no raw Secret/reveal/HTTP body/token output, no values in failure formatting",
+    "runtime and new test source before/after hashes, precise argv/budgets, noSkip result, first FAIL retained, REPORT+JSON+SHA256SUMS"
+  ],
+  "clearanceNeeds": [
+    "root confirms this single new test source/fixture scope and execution",
+    "root supplies or creates fresh sealed namespace with exact UID+owner labels+run seal, or explicitly authorizes separate namespace creation; this plan defaults to root provisioned namespace",
+    "no Kubernetes mutation before clearance"
+  ]
+}

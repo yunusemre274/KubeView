@@ -1,0 +1,2025 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-11-08T14:10:52.596578+00:00",
+  "scope": "19 mandatory v1.1 scenarios; BLOCKED is not PASS; no execution yet",
+  "headAtInventory": "2b76e215fdbe201be1611ccea4c40dcd547b2ba7",
+  "statuses": [
+    "PASS",
+    "FAIL",
+    "SKIP",
+    "BLOCKED"
+  ],
+  "releaseGate": "ALL required evidence required; no automatic promotion from historical results",
+  "rows": [
+    {
+      "id": "V11-01",
+      "mandatoryScenario": "Temiz production kurulum; uygulamanın açılması ve normal kullanıcıdan merkez bağlantısı.",
+      "status": "BLOCKED",
+      "reason": "Current installed same-origin binary startup and real connection UI PASS. Root clean-install/platform/CI/final asset gate remains distinct.",
+      "owner": "root+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-08T19-26-12-081Z-chromium-0ea3c244/result.json",
+        "startup-2026-11-08T19-33-54-667Z.json",
+        "attempt-001-analysis.json",
+        "runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "Root/other owner gate; see qa-plan.md"
+      ],
+      "earlierFailure": {
+        "id": "V11-01",
+        "mandatoryScenario": "Temiz production kurulum; uygulamanın açılması ve normal kullanıcıdan merkez bağlantısı.",
+        "status": "FAIL",
+        "reason": "Production React startup fails in both headless and headed Chromium: observeNamespace calls .then on undefined; no world or controls mounted. Target scenario could not proceed.",
+        "owner": "root+QA",
+        "testType": "real normal production UI startup failure + independent real API fixture setup",
+        "command": "KV_V11_CONFIG_FILE=/private/config.env KV_V11_TEST_LEASE=v11-20261108-qa npx playwright test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only'",
+        "environment": {
+          "os": "darwin 27.0.0 arm64",
+          "browser": "chromium",
+          "browserVersion": "156.0.8078.4",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "baseURL": "http://127.0.0.1:18410",
+          "namespace": "kv-repair-v11-qa",
+          "owner": "v11-20261108",
+          "clusters": [
+            {
+              "context": "kv-repair-1101",
+              "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+              "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+            },
+            {
+              "context": "kv-repair-v11-b",
+              "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+              "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+            }
+          ]
+        },
+        "sourceStart": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+        "sourceEnd": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+        "buildSHA256": "8e51d8c2b2831dbf8a6b30fae73c2d7d597dc116e80701a80deb9deff7f76790",
+        "clusterUIDs": [
+          "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+          "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+        ],
+        "evidence": [
+          "runs/2026-11-08T19-26-12-081Z-chromium-0ea3c244/result.json",
+          "startup-2026-11-08T19-33-54-667Z.json",
+          "attempt-001-analysis.json"
+        ],
+        "historicalReuse": null,
+        "plannedCoverage": [
+          "Root/other owner gate; see qa-plan.md"
+        ]
+      },
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "subclauses": [
+        {
+          "name": "Current production world startup and center/scoped connection",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json"
+          ]
+        },
+        {
+          "name": "Final clean installation and platform/distribution signoff",
+          "status": "BLOCKED",
+          "evidence": [],
+          "limit": "Root-owned packaging/platform/CI gate"
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json",
+      "priorCheckpointSourceMetadata": [
+        {
+          "sourceStart": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+          "sourceEnd": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+          "buildSHA256": "8e51d8c2b2831dbf8a6b30fae73c2d7d597dc116e80701a80deb9deff7f76790",
+          "command": "KV_V11_CONFIG_FILE=/private/config.env KV_V11_TEST_LEASE=v11-20261108-qa npx playwright test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only'"
+        }
+      ]
+    },
+    {
+      "id": "V11-02",
+      "mandatoryScenario": "Güvenilir kubeconfig; çoklu dosya standardı gerekiyorsa doğru merge; context dropdown, namespace seçimi; global current-context dosyasına değişiklik yok.",
+      "status": "PASS",
+      "reason": "Current trusted merged A/B/restricted configuration, real context/namespace backend snapshots and global configuration invariance PASS.",
+      "owner": "backend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-08T20-57-16-719Z-chromium-8aa121fc/result.json",
+        "runs/2026-11-08T20-58-47-728Z-chromium-983103c1/result.json",
+        "runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json",
+        "final-owned-processes-20261109.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: same-name A→B→A; kubeconfig bytes unchanged"
+      ],
+      "earlierFailure": {
+        "id": "V11-02",
+        "mandatoryScenario": "Güvenilir kubeconfig; çoklu dosya standardı gerekiyorsa doğru merge; context dropdown, namespace seçimi; global current-context dosyasına değişiklik yok.",
+        "status": "FAIL",
+        "reason": "Production React startup fails in both headless and headed Chromium: observeNamespace calls .then on undefined; no world or controls mounted. Target scenario could not proceed.",
+        "owner": "backend+QA",
+        "testType": "real normal production UI startup failure + independent real API fixture setup",
+        "command": "KV_V11_CONFIG_FILE=/private/config.env KV_V11_TEST_LEASE=v11-20261108-qa npx playwright test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only'",
+        "environment": {
+          "os": "darwin 27.0.0 arm64",
+          "browser": "chromium",
+          "browserVersion": "156.0.8078.4",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "baseURL": "http://127.0.0.1:18410",
+          "namespace": "kv-repair-v11-qa",
+          "owner": "v11-20261108",
+          "clusters": [
+            {
+              "context": "kv-repair-1101",
+              "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+              "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+            },
+            {
+              "context": "kv-repair-v11-b",
+              "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+              "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+            }
+          ]
+        },
+        "sourceStart": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+        "sourceEnd": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+        "buildSHA256": "8e51d8c2b2831dbf8a6b30fae73c2d7d597dc116e80701a80deb9deff7f76790",
+        "clusterUIDs": [
+          "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+          "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+        ],
+        "evidence": [
+          "runs/2026-11-08T19-26-12-081Z-chromium-0ea3c244/result.json",
+          "startup-2026-11-08T19-33-54-667Z.json",
+          "attempt-001-analysis.json"
+        ],
+        "historicalReuse": null,
+        "plannedCoverage": [
+          "v11-real-cluster.spec.js: same-name A→B→A; kubeconfig bytes unchanged"
+        ]
+      },
+      "subclauses": [
+        {
+          "name": "Actual A/B contexts and scoped backend/WebSocket snapshots",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json"
+          ]
+        },
+        {
+          "name": "Global/user/app kubeconfig bytes unchanged and PID idle assertion exited",
+          "status": "PASS",
+          "evidence": [
+            "final-owned-processes-20261109.json"
+          ]
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json",
+      "priorCheckpointSourceMetadata": [
+        {
+          "sourceStart": "f3650f009320ef54342dc0cf9c7b1f8f644eed756b168bafe5560bcb2693b01d",
+          "sourceEnd": "f3650f009320ef54342dc0cf9c7b1f8f644eed756b168bafe5560bcb2693b01d",
+          "buildSHA256": "739477b43d3b762dc58532ca52e94f410566e4c7a840ff1e876ff302934443d2",
+          "command": "KV_V11_CONFIG_FILE=/private/config.env KV_V11_TEST_LEASE=v11-20261108-qa npx playwright test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only'"
+        }
+      ]
+    },
+    {
+      "id": "V11-03",
+      "mandatoryScenario": "İki farklı test cluster/context arasında aynı namespace, Pod adı ve farklı UID; hızlı A→B→A; eski watcher, metrics, log, CR, Hubble ve pending operation yeni sahneye sızmaz.",
+      "status": "BLOCKED",
+      "reason": "Actual A/B same-name distinctUID, rapid intent, live log/WS scope closure PASS. Remaining all-provider and delayed-operation applicability is root-owned; do not promote the log subset to every provider.",
+      "owner": "backend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-08T20-57-16-719Z-chromium-8aa121fc/result.json",
+        "runs/2026-11-08T20-58-47-728Z-chromium-983103c1/result.json",
+        "runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json",
+        "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json",
+        "../backend/live-hubble-scope-corrected2-metadata.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: visible UID/log A→B→A; rapid selector intent",
+        "Remaining: metrics/CR/Hubble/pending-operation delayed response scenarios"
+      ],
+      "earlierFailure": {
+        "id": "V11-03",
+        "mandatoryScenario": "İki farklı test cluster/context arasında aynı namespace, Pod adı ve farklı UID; hızlı A→B→A; eski watcher, metrics, log, CR, Hubble ve pending operation yeni sahneye sızmaz.",
+        "status": "FAIL",
+        "reason": "Production React startup fails in both headless and headed Chromium: observeNamespace calls .then on undefined; no world or controls mounted. Target scenario could not proceed.",
+        "owner": "backend+QA",
+        "testType": "real normal production UI startup failure + independent real API fixture setup",
+        "command": "KV_V11_CONFIG_FILE=/private/config.env KV_V11_TEST_LEASE=v11-20261108-qa npx playwright test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only'",
+        "environment": {
+          "os": "darwin 27.0.0 arm64",
+          "browser": "chromium",
+          "browserVersion": "156.0.8078.4",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "baseURL": "http://127.0.0.1:18410",
+          "namespace": "kv-repair-v11-qa",
+          "owner": "v11-20261108",
+          "clusters": [
+            {
+              "context": "kv-repair-1101",
+              "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+              "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+            },
+            {
+              "context": "kv-repair-v11-b",
+              "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+              "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+            }
+          ]
+        },
+        "sourceStart": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+        "sourceEnd": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+        "buildSHA256": "8e51d8c2b2831dbf8a6b30fae73c2d7d597dc116e80701a80deb9deff7f76790",
+        "clusterUIDs": [
+          "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+          "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+        ],
+        "evidence": [
+          "runs/2026-11-08T19-26-12-081Z-chromium-0ea3c244/result.json",
+          "startup-2026-11-08T19-33-54-667Z.json",
+          "attempt-001-analysis.json"
+        ],
+        "historicalReuse": null,
+        "plannedCoverage": [
+          "v11-real-cluster.spec.js: visible UID/log A→B→A; rapid selector intent",
+          "Remaining: metrics/CR/Hubble/pending-operation delayed response scenarios"
+        ]
+      },
+      "subclauses": [
+        {
+          "name": "Same-name distinct UID, rapid A/B intent, correct visible logs and real stream closure",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json"
+          ]
+        },
+        {
+          "name": "Actual scoped CR reconnect/newUID and old-selection isolation",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json"
+          ]
+        },
+        {
+          "name": "Actual Hubble API other-cluster binding and A/B intent",
+          "status": "PASS",
+          "evidence": [
+            "../backend/live-hubble-scope-corrected2-metadata.json"
+          ]
+        },
+        {
+          "name": "Complete metrics/CR/Hubble/pending-operation isolation source/current-UI reconciliation",
+          "status": "BLOCKED",
+          "evidence": [],
+          "limit": "Root must bind unit/race and real provider evidence with exact scope; no manufactured in-flight cancellation claim"
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json",
+      "priorCheckpointSourceMetadata": [
+        {
+          "sourceStart": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+          "sourceEnd": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+          "buildSHA256": "8e51d8c2b2831dbf8a6b30fae73c2d7d597dc116e80701a80deb9deff7f76790",
+          "command": "KV_V11_CONFIG_FILE=/private/config.env KV_V11_TEST_LEASE=v11-20261108-qa npx playwright test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only'"
+        }
+      ]
+    },
+    {
+      "id": "V11-04",
+      "mandatoryScenario": "Namespace `list` veya cluster-scope Node `list` izni olmayan restricted kullanıcı izinli kapsamı kullanabilir; namespace filtresi RBAC yetki kazandırmaz.",
+      "status": "PASS",
+      "reason": "Permitted manual namespace without Namespace/Node LIST, real outside-scope403 and actual restricted Deployment preview/create403 with management intent enabled PASS.",
+      "owner": "backend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'actual restricted identity cannot preview or create' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-09T08-05-39-229Z-chromium-56ab4a46/result.json",
+        "runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-scope-security.spec.js: restricted manual namespace and actual403 checks"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "subclauses": [
+        {
+          "name": "Manual namespace real Pod access; Namespace/Node LIST and other namespace403",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-05-39-229Z-chromium-56ab4a46/result.json"
+          ]
+        },
+        {
+          "name": "Actual restricted Deployment normal UI preview403/direct create403/GET404 with server writable and grant enabled",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json"
+          ]
+        }
+      ],
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-05",
+      "mandatoryScenario": "Boş namespace ve gerçek 0 Pod; bağlantı/yetki hatasında canlıymış gibi mock gemi/log/metrik oluşmaz. Demo açık seçilmedikçe ayrıdır.",
+      "status": "PASS",
+      "reason": "Current Chromium/WebKit real empty0Pod, trusted unavailable context without Demo fallback, explicit Demo choice PASS.",
+      "owner": "frontend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=webkit --grep 'normal finder/form keyboard|finder mouse versus keyboard|empty scope and unreachable context' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "webkit",
+        "browserVersion": "27.2",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-09T08-06-43-939Z-chromium-5fefc332/result.json",
+        "runs/2026-11-09T08-18-47-650Z-webkit-03cd11ac/result.json",
+        "source-applicability-0f5a5ab.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-scope-security.spec.js: real empty scope/unavailable trusted context/explicit Demo"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "subclauses": [
+        {
+          "name": "Actual empty/error/explicit Demo separation in current WebKit",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-18-47-650Z-webkit-03cd11ac/result.json"
+          ]
+        },
+        {
+          "name": "Chromium equivalent",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-06-43-939Z-chromium-5fefc332/result.json"
+          ]
+        },
+        {
+          "name": "Source applicability for unchanged data/render branches",
+          "status": "PASS",
+          "evidence": [
+            "source-applicability-0f5a5ab.json"
+          ]
+        }
+      ],
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-06",
+      "mandatoryScenario": "G00 on-demand custom resource reconnect; aynı UID korunur, gerçek DELETE/offline DELETE, forbidden, yeni UID ve stale durumu doğru; log UID replacement yarışı regresyonu.",
+      "status": "PASS",
+      "reason": "Current normal catalog actual on-demand CR sameUID/stale/reconnect/offline replacement, current backend six CR leaves and real log UID replacement races PASS with test types kept separate.",
+      "owner": "backend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'normal on-demand CR panel' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json",
+        "../backend/live-cr-scope-metadata.json",
+        "../backend/live-owned-ten-metadata.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: finalizer/same-name replacement/old selection",
+        "Remaining: scoped on-demand CR all G00 cases and backend log replacement race"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "subclauses": [
+        {
+          "name": "Normal UI sameUID reconnect and offline old/newUID separation after authoritative scope",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json"
+          ]
+        },
+        {
+          "name": "Current real backend liveDELETE/offlineDELETE/newUID/outsideScope/RBAC loss+restore six leaves",
+          "status": "PASS",
+          "evidence": [
+            "../backend/live-cr-scope-metadata.json"
+          ]
+        },
+        {
+          "name": "Actual log UID opening/first-publish replacement races",
+          "status": "PASS",
+          "evidence": [
+            "../backend/live-owned-ten-metadata.json"
+          ]
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-07",
+      "mandatoryScenario": "Deployment server dry-run GET404; gerçek create → owner chain, Pending/assigned/Ready, doğru gemi ve vinç; yanlış image/unschedulable/admission/Quota/Forbidden.",
+      "status": "PASS",
+      "reason": "Fresh current normal UI dry-run404/create2Ready plus actual unschedulable/image/quota/RBAC negatives and unsent draft context boundary PASS. Crane visual core remains qualified historical evidence, not a new crane run.",
+      "owner": "frontend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'center dry-run/create/scale/resources/restart/Pod replacement/delete' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-08T20-59-31-344Z-chromium-f3b766b2/result.json",
+        "workload-historical-evidence-boundaries-20261109.json",
+        "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+        "runs/2026-11-09T08-26-55-502Z-chromium-23a5484e/result.json",
+        "runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json",
+        "../harbor-source-applicability.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: normal center create/dryrun/404 and observedReady",
+        "Remaining: image/unschedulable/admission/quota/Forbidden failure groups"
+      ],
+      "subclauses": [
+        {
+          "name": "Fresh current center create/dryrun/observed2Ready",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json"
+          ]
+        },
+        {
+          "name": "Actual scheduler Unschedulable, image waiting/nonReady, quota403 after preview, unsent context draft boundary",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-26-55-502Z-chromium-23a5484e/result.json"
+          ],
+          "limit": "Prior Unschedulable completed subcheck is reused only at identical product source/binary; compound FAIL preserved. No accepted operation is claimed cancelled."
+        },
+        {
+          "name": "Actual permission403 normal UI/direct Deployment create",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json"
+          ]
+        },
+        {
+          "name": "Qualified existing crane/placement visual core",
+          "status": "PASS",
+          "evidence": [
+            "../harbor-source-applicability.json"
+          ],
+          "limit": "Historical actual crane proof with source applicability; no newly executed crane/provider event is claimed"
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-08",
+      "mandatoryScenario": "Replica 2→3→1; Pod silme + controller replacement; UID ve desired/current/ready doğru. HPA varsa belirgin açıklama ve sağlam davranış.",
+      "status": "PASS",
+      "reason": "Fresh current actual2Ready→scale3→1 desired/liveReady and Pod delete/controller newUID PASS. No HPA existed in the tested QA fixture scope; existing-HPA management is not claimed live-tested.",
+      "owner": "frontend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'center dry-run/create/scale/resources/restart/Pod replacement/delete' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-08T20-59-31-344Z-chromium-f3b766b2/result.json",
+        "runs/2026-11-09T07-49-09-654Z-chromium-3e964047/result.json",
+        "workload-historical-evidence-boundaries-20261109.json",
+        "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+        "final-reader-cleanup-2026-11-09T08-35-07-499Z.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: normal scale2→3→1 and Pod replacement",
+        "Remaining: HPA explanation actual/fixture coverage"
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "subclauses": [
+        {
+          "name": "Fresh current2→3→1 and controller Pod replacement",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json"
+          ]
+        },
+        {
+          "name": "Actual final QA namespace HPA inventory0",
+          "status": "PASS",
+          "evidence": [
+            "final-reader-cleanup-2026-11-09T08-35-07-499Z.json"
+          ],
+          "limit": "Conditional HPA clause is N/A for this fixture; no existing-HPA live management claim"
+        }
+      ],
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-09",
+      "mandatoryScenario": "D/STS/DS template CPU/RAM değişimi; desteklenmeyen owner için açık UX/422; ilgili rollout/in-place status ayrımı. Multi-container metadata korunur.",
+      "status": "PASS",
+      "reason": "Current Deployment and frontend-owner normal STS/DS RollingUpdate CPU/RAM plus multi-container metadata, actual unsupported RS/Job/CronJob UX/422 PASS. Separate Job/empty-DS display truth defect is globally pending a new build/UI check.",
+      "owner": "backend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'center dry-run/create/scale/resources/restart/Pod replacement/delete' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-08T20-59-31-344Z-chromium-f3b766b2/result.json",
+        "runs/2026-11-08T21-03-25-376Z-chromium-da5ac96e/result.json",
+        "runs/2026-11-09T07-49-09-654Z-chromium-3e964047/result.json",
+        "runs/2026-11-09T07-54-11-952Z-chromium-fce93bc0/result.json",
+        "runs/2026-11-09T08-03-50-519Z-chromium-f787d296/result.json",
+        "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+        "../frontend/forms-resume/runs/2026-11-09T08-26-30-255Z/result.json",
+        "../frontend/forms-resume/runs/2026-11-09T08-28-50-268Z/result.json",
+        "source-applicability-0f5a5ab.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: Deployment template resources/preserve metadata",
+        "Remaining: STS/DS multi-container semantics+unsupported owner422"
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "subclauses": [
+        {
+          "name": "Current Deployment four quantities+unrelated metadata preservation assertions",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json"
+          ]
+        },
+        {
+          "name": "StatefulSet passed subcheck on same frozen source/build",
+          "status": "PASS",
+          "evidence": [
+            "../frontend/forms-resume/runs/2026-11-09T08-26-30-255Z/result.json"
+          ],
+          "limit": "Original compound FAIL preserved; passed STS subcheck reused, not blindly repeated"
+        },
+        {
+          "name": "DaemonSet two-container resource edit, unsupported ownership UX, synthetic Secret boundary",
+          "status": "PASS",
+          "evidence": [
+            "../frontend/forms-resume/runs/2026-11-09T08-28-50-268Z/result.json"
+          ]
+        },
+        {
+          "name": "Dirty draft actual reconnect + real revoked-grant UI fixed probe",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-03-50-519Z-chromium-f787d296/result.json"
+          ]
+        },
+        {
+          "name": "Relevant module applicability plus changed focus separately revalidated",
+          "status": "PASS",
+          "evidence": [
+            "source-applicability-0f5a5ab.json"
+          ]
+        }
+      ],
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-10",
+      "mandatoryScenario": "Rollout restart ve Deployment delete; eski terminating UID, yeni UID, doğru Node; finalizer durumları; gerçek kaynak kaybı ile animasyon ayrı.",
+      "status": "PASS",
+      "reason": "Fresh current normal restart→newRS/newReadyUID, Pod replacement, Deployment404 and exact oldUID finalizer/newUID explicit reselection PASS. Physical animation is not canonical deletion proof.",
+      "owner": "frontend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'center dry-run/create/scale/resources/restart/Pod replacement/delete' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-09T07-49-09-654Z-chromium-3e964047/result.json",
+        "runs/2026-11-09T08-07-07-947Z-chromium-338db7dd/result.json",
+        "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+        "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json",
+        "source-applicability-0f5a5ab.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: restart/newRS+UID, finalizer, Deployment delete404"
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "subclauses": [
+        {
+          "name": "Current restart/newRS/newReadyUID and actual Pod/Deployment deletion",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json"
+          ]
+        },
+        {
+          "name": "Actual finalizer-held oldUID then404/newUID explicit selection",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-07-07-947Z-chromium-338db7dd/result.json"
+          ]
+        },
+        {
+          "name": "Current fresh scoped old/newUID deletion separation",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json"
+          ]
+        },
+        {
+          "name": "UID/store/panel/delete module applicability",
+          "status": "PASS",
+          "evidence": [
+            "source-applicability-0f5a5ab.json"
+          ]
+        }
+      ],
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-11",
+      "mandatoryScenario": "Backend READ_ONLY=true → UI ve doğrudan HTTP mutation reddi; 403, 409 conflict, 404 not-found, validation, auth failure ve CSRF/Origin/WebSocket negatif testleri.",
+      "status": "PASS",
+      "reason": "Current browser nonce/Origin/cross-site/stale409, actual production READ_ONLY/API_TOKEN/auth/WS negatives, normal readonly UI, actual RBAC and admission403 PASS. Unit validation invariants retain their own test type.",
+      "owner": "backend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "KV_V11_READONLY_GATE=1 KV_V11_CONFIG_FILE=/private/qa-config-readonly.env node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'explicit readonly production gateway normal UI' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18414",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-08T20-57-16-719Z-chromium-8aa121fc/result.json",
+        "runs/2026-11-08T20-58-47-728Z-chromium-983103c1/result.json",
+        "runs/2026-11-09T07-54-11-952Z-chromium-fce93bc0/result.json",
+        "runs/2026-11-09T08-03-50-519Z-chromium-f787d296/result.json",
+        "security-evidence-map-20261109.json",
+        "runs/2026-11-09T08-21-35-843Z-chromium-13299d31/result.json",
+        "runs/2026-11-09T08-28-13-727Z-chromium-ab74e076/result.json",
+        "../backend/prod-security-result.json",
+        "runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json",
+        "runs/2026-11-09T08-26-55-502Z-chromium-23a5484e/result.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-scope-security.spec.js: initial write gate/nonce/Origin403/stale409",
+        "Remaining: READ_ONLY=true server/WebSocket/404/409/validation/auth full negatives"
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "subclauses": [
+        {
+          "name": "Current primary real browser/HTTP missing nonce/Origin/cross-site403/stale409",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-21-35-843Z-chromium-13299d31/result.json"
+          ]
+        },
+        {
+          "name": "Actual separate readonly production normal UI and direct management/create403/GET404",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-28-13-727Z-chromium-ab74e076/result.json"
+          ]
+        },
+        {
+          "name": "Current production security five leaves:401/auth cookie/WS101+snapshot/hostile Origin403",
+          "status": "PASS",
+          "evidence": [
+            "../backend/prod-security-result.json"
+          ]
+        },
+        {
+          "name": "Actual RBAC403 with server writable and scoped grant enabled",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json"
+          ]
+        },
+        {
+          "name": "Actual quota admission403 and stored absence404",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-26-55-502Z-chromium-23a5484e/result.json"
+          ]
+        },
+        {
+          "name": "Source-equal unit/race validation/error/UID conflict and real-vs-unit mapping",
+          "status": "PASS",
+          "evidence": [
+            "security-evidence-map-20261109.json"
+          ]
+        }
+      ],
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-12",
+      "mandatoryScenario": "Gerçek Pod logs: current/init/ephemeral/previous uygun izin; container seçimi, pause/resume, close/abort, double-open; doğru UID; Secret değerleri frontend/kanıta sızmaz.",
+      "status": "PASS",
+      "reason": "Current frontend-owner seven functional app/init/ephemeral/current/previous/pause/resume/double-open/close cases PASS, alongside primary A/B UID logs, real API role/race and synthetic Secret boundary proof. Whole log helper remains FAIL for unobserved Playwright WS close event; independent kernel TCP absence qualifies actual transport cleanup only.",
+      "owner": "backend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-08T20-57-16-719Z-chromium-8aa121fc/result.json",
+        "runs/2026-11-08T20-58-47-728Z-chromium-983103c1/result.json",
+        "runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json",
+        "../frontend/logs-resume/runs/2026-11-09T08-37-27-546Z/result.json",
+        "../frontend/logs-resume/kernel-socket-close-20261109.json",
+        "../backend/live-log-roles-metadata.json",
+        "../backend/live-owned-ten-metadata.json",
+        "../frontend/forms-resume/runs/2026-11-09T08-28-50-268Z/result.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: current logs/pause/resume/A-B isolation",
+        "Remaining: app/init/ephemeral/previous, abort/double-open and Secret boundary"
+      ],
+      "earlierFailure": {
+        "id": "V11-12",
+        "mandatoryScenario": "Gerçek Pod logs: current/init/ephemeral/previous uygun izin; container seçimi, pause/resume, close/abort, double-open; doğru UID; Secret değerleri frontend/kanıta sızmaz.",
+        "status": "FAIL",
+        "reason": "Production React startup fails in both headless and headed Chromium: observeNamespace calls .then on undefined; no world or controls mounted. Target scenario could not proceed.",
+        "owner": "backend+QA",
+        "testType": "real normal production UI startup failure + independent real API fixture setup",
+        "command": "KV_V11_CONFIG_FILE=/private/config.env KV_V11_TEST_LEASE=v11-20261108-qa npx playwright test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only'",
+        "environment": {
+          "os": "darwin 27.0.0 arm64",
+          "browser": "chromium",
+          "browserVersion": "156.0.8078.4",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "baseURL": "http://127.0.0.1:18410",
+          "namespace": "kv-repair-v11-qa",
+          "owner": "v11-20261108",
+          "clusters": [
+            {
+              "context": "kv-repair-1101",
+              "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+              "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+            },
+            {
+              "context": "kv-repair-v11-b",
+              "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+              "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+            }
+          ]
+        },
+        "sourceStart": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+        "sourceEnd": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+        "buildSHA256": "8e51d8c2b2831dbf8a6b30fae73c2d7d597dc116e80701a80deb9deff7f76790",
+        "clusterUIDs": [
+          "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+          "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+        ],
+        "evidence": [
+          "runs/2026-11-08T19-26-12-081Z-chromium-0ea3c244/result.json",
+          "startup-2026-11-08T19-33-54-667Z.json",
+          "attempt-001-analysis.json"
+        ],
+        "historicalReuse": null,
+        "plannedCoverage": [
+          "v11-real-cluster.spec.js: current logs/pause/resume/A-B isolation",
+          "Remaining: app/init/ephemeral/previous, abort/double-open and Secret boundary"
+        ]
+      },
+      "subclauses": [
+        {
+          "name": "Current primary actual log UID/scope pause/resume and source-switch closure",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-20-00-750Z-chromium-6bfe683c/result.json"
+          ]
+        },
+        {
+          "name": "Current seven normal UI log functional cases",
+          "status": "PASS",
+          "evidence": [
+            "../frontend/logs-resume/runs/2026-11-09T08-37-27-546Z/result.json"
+          ],
+          "limit": "All seven cases PASS; original whole helper FAIL is retained because Playwright did not observe a WS close event within10s"
+        },
+        {
+          "name": "Independent actual kernel gateway LISTEN only / zero connected TCP endpoints and own browsers closed",
+          "status": "PASS",
+          "evidence": [
+            "../frontend/logs-resume/kernel-socket-close-20261109.json"
+          ],
+          "limit": "Actual transport cleanup; not a WS protocol close-frame or Go heap/goroutine proof"
+        },
+        {
+          "name": "Current real API log role leaves and UID opening races",
+          "status": "PASS",
+          "evidence": [
+            "../backend/live-log-roles-metadata.json",
+            "../backend/live-owned-ten-metadata.json"
+          ]
+        },
+        {
+          "name": "Current normal synthetic Secret reveal/edit and default/masked boundaries",
+          "status": "PASS",
+          "evidence": [
+            "../frontend/forms-resume/runs/2026-11-09T08-28-50-268Z/result.json"
+          ]
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json",
+      "priorCheckpointSourceMetadata": [
+        {
+          "sourceStart": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+          "sourceEnd": "48448c82fb444961e9e3c4823dc09482d9303c8c6423c417cef14d266638d92b",
+          "buildSHA256": "8e51d8c2b2831dbf8a6b30fae73c2d7d597dc116e80701a80deb9deff7f76790",
+          "command": "KV_V11_CONFIG_FILE=/private/config.env KV_V11_TEST_LEASE=v11-20261108-qa npx playwright test -c e2e/v11-playwright.config.js --project=chromium --grep 'same-name different-UID|initial read-only'"
+        }
+      ]
+    },
+    {
+      "id": "V11-13",
+      "mandatoryScenario": "Metrics API mevcut/yok/Forbidden; Node ve Pod gerçek CPU/RAM verisinin normal UI'daki doğru timestamp/unit/görünür grafik; random 0 yok.",
+      "status": "PASS",
+      "reason": "Actual filled Node+Pod CPU/RAM SVG/source/timestamp/unit/raw quantity matching in Chromium/WebKit, restricted403 and reachable B actual missing Metrics API with no fabricated series PASS. Unchanged metrics modules/focus-only delta applicability is explicit.",
+      "owner": "frontend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=webkit --grep 'normal finder/form keyboard|empty scope and unreachable context|filled real Node and Pod' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "webkit",
+        "browserVersion": "27.2",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "sourceEnd": "4f1038c5ab37d802b8590c0c1ca89f3bd212615aaed1a9d73f3964c5c3ec98a4",
+      "buildSHA256": "60eb0ebd63c1fcd6c4ec072d229ab042c36efb6605865937dbab4ccfcd5fb74e",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-09T07-49-44-587Z-chromium-f4224ad6/result.json",
+        "runs/2026-11-09T08-05-39-229Z-chromium-56ab4a46/result.json",
+        "runs/2026-11-09T08-09-02-605Z-chromium-e0514610/result.json",
+        "runs/2026-11-09T08-10-37-722Z-webkit-d3caf439/result.json",
+        "source-applicability-0f5a5ab.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: filled actual Node+Pod graphs/timestamp/unit",
+        "Remaining: unavailable/forbidden provider UI states"
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "subclauses": [
+        {
+          "name": "Filled actual Chromium Node/Pod graphs",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T07-49-44-587Z-chromium-f4224ad6/result.json"
+          ]
+        },
+        {
+          "name": "Filled actual WebKit Node/Pod graphs",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-10-37-722Z-webkit-d3caf439/result.json"
+          ]
+        },
+        {
+          "name": "Actual restricted provider/no-series",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-05-39-229Z-chromium-56ab4a46/result.json"
+          ]
+        },
+        {
+          "name": "Reachable B actual APIService absent; normal Node/Pod empty charts",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-09-02-605Z-chromium-e0514610/result.json"
+          ]
+        },
+        {
+          "name": "Explicit metrics module equality and current focus revalidation",
+          "status": "PASS",
+          "evidence": [
+            "source-applicability-0f5a5ab.json"
+          ]
+        }
+      ],
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-14",
+      "mandatoryScenario": "Hubble mevcut/erişilemiyor/stale/geri geliyor; ölçülmüş trafik ve topoloji ayrımı; mevcut gerçek provider flow UID ve protokol ayırma korunur. Production cluster'a CNI/agent kurma.",
+      "status": "BLOCKED",
+      "reason": "Current actual Hubble API/identity/namespace/mTLS/lease/stale/recover proof exists. Root must finalize normal UI traffic/topology/protocol/expiry/provider applicability without promoting API-only proof to UI.",
+      "owner": "root+backend+QA",
+      "testType": null,
+      "command": null,
+      "environment": null,
+      "sourceStart": null,
+      "sourceEnd": null,
+      "buildSHA256": null,
+      "clusterUIDs": [],
+      "evidence": [
+        "../backend/live-hubble-scope-corrected2-metadata.json",
+        "../harbor-source-applicability.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "Root/other owner gate; see qa-plan.md"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "subclauses": [
+        {
+          "name": "Current real Hubble read-only/namespace/binding/collector-interruption7leaf API proof",
+          "status": "PASS",
+          "evidence": [
+            "../backend/live-hubble-scope-corrected2-metadata.json"
+          ]
+        },
+        {
+          "name": "Caption/traffic core source applicability and actual changed caption proof qualification",
+          "status": "PASS",
+          "evidence": [
+            "../harbor-source-applicability.json"
+          ]
+        },
+        {
+          "name": "Full current UI/provider/protocol acceptance reconciliation",
+          "status": "BLOCKED",
+          "evidence": [],
+          "limit": "Root provider/visual owner"
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-15",
+      "mandatoryScenario": "Önceki sekiz görsel davranışın kritik regresyonları: Node health Fire/sink/repair, tek container fall/reload, gerçek worker launch (provider yalnız own lab), crane, controlplane temsili işaret, actual flow arrows. Doğru nesneye gidiyor mu, dedup ve cleanup doğru mu?",
+      "status": "BLOCKED",
+      "reason": "Qualified historical actual Node fault/worker/crane/core behavior and changed caption real video/flow proof are linked. Root owns complete visual acceptance; no new Node stop/worker add is claimed by QA.",
+      "owner": "root+frontend+QA",
+      "testType": null,
+      "command": null,
+      "environment": null,
+      "sourceStart": null,
+      "sourceEnd": null,
+      "buildSHA256": null,
+      "clusterUIDs": [],
+      "evidence": [
+        "../harbor-source-applicability.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "Root/other owner gate; see qa-plan.md"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "subclauses": [
+        {
+          "name": "13/16 harbor modules byteequal; caption-only differences and new helper",
+          "status": "PASS",
+          "evidence": [
+            "../harbor-source-applicability.json"
+          ],
+          "limit": "Complete application is not source-identical; qualified historical core evidence only"
+        },
+        {
+          "name": "Full eight-behavior current-source visual acceptance",
+          "status": "BLOCKED",
+          "evidence": [],
+          "limit": "Root visual owner"
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-16",
+      "mandatoryScenario": "Kısa olay fırtınası, reconnect, kaynak churn, aynı ad-yeni UID, arkaplan document.hidden, reduced-motion, kamera/panel/form odak, arama/finder, 768/1280/1440 ekran; keyifle çalışan demo testi gerçek E2E yerine geçmez.",
+      "status": "BLOCKED",
+      "reason": "Current WebKit mouse/keyboard focus, finder arrows/camera isolation, single canvas768/1280/1440 and reduced-motion flow PASS. Actual native hidden/event storm/churn and broader form/terminal claims remain root-owned.",
+      "owner": "frontend+QA",
+      "testType": "real normal production UI + independent actual Kubernetes API assertions",
+      "command": "node /Users/yunusemre/Desktop/KubeView/frontend/node_modules/playwright/cli.js test -c e2e/v11-playwright.config.js --project=webkit --grep 'normal finder/form keyboard|finder mouse versus keyboard|empty scope and unreachable context' --max-failures=1",
+      "environment": {
+        "os": "darwin 27.0.0 arm64",
+        "browser": "webkit",
+        "browserVersion": "27.2",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "baseURL": "http://127.0.0.1:18410",
+        "namespace": "kv-repair-v11-qa",
+        "owner": "v11-20261108",
+        "clusters": [
+          {
+            "context": "kv-repair-1101",
+            "clusterUID": "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+            "namespaceUID": "9e5b54f8-34fa-421d-9748-c5500224660c"
+          },
+          {
+            "context": "kv-repair-v11-b",
+            "clusterUID": "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32",
+            "namespaceUID": "f083c6a8-99f4-4fe3-8cb3-980820f5d384"
+          }
+        ]
+      },
+      "sourceStart": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "sourceEnd": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+      "buildSHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+      "clusterUIDs": [
+        "a24740ba-cf3e-461d-b5b3-250deeb060d7",
+        "4ae1d47a-d5dc-4e51-aa4d-b84c0a021d32"
+      ],
+      "evidence": [
+        "runs/2026-11-09T08-11-29-227Z-webkit-8a1ca969/result.json",
+        "runs/2026-11-09T08-12-49-626Z-webkit-1f58e562/result.json",
+        "runs/2026-11-09T08-18-33-823Z-webkit-af6bfa0b/result.json",
+        "runs/2026-11-09T08-18-40-595Z-webkit-e2a03f35/result.json",
+        "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "v11-real-cluster.spec.js: finder/arrows/focus/reduced-motion/768-1280-1440",
+        "Remaining: actual document.hidden, bounded event churn/reconnect"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "subclauses": [
+        {
+          "name": "Current mouse+keyboard finder return focus",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-18-33-823Z-webkit-af6bfa0b/result.json"
+          ]
+        },
+        {
+          "name": "Three viewports/finder arrows/reduced motion/single full canvas",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-18-40-595Z-webkit-e2a03f35/result.json"
+          ]
+        },
+        {
+          "name": "Actual transport faults/reconnect and same-name newUID",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-22-05-119Z-chromium-2cfbe23f/result.json"
+          ]
+        },
+        {
+          "name": "Actual native document.hidden/minimize and full churn/focus scope",
+          "status": "BLOCKED",
+          "evidence": [],
+          "limit": "Root exclusive functional/performance gate; synthetic visibility is not a substitute"
+        }
+      ],
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-17",
+      "mandatoryScenario": "Provisioning idempotency/lock ve context UID; yalnız owned minikube; aynı key aynı işlem, farklı eşzamanlı key conflict. Elde var olan kanıt uygun source eşitliğinde kullanılabilir; uyumsuz test türünü yeniden koş.",
+      "status": "BLOCKED",
+      "reason": "Current minikube authorization gate and provider source applicability are available. Root owns idempotency/lock/provider actual launch reconciliation; no new worker was added by QA.",
+      "owner": "root+backend",
+      "testType": null,
+      "command": null,
+      "environment": null,
+      "sourceStart": null,
+      "sourceEnd": null,
+      "buildSHA256": null,
+      "clusterUIDs": [],
+      "evidence": [
+        "../backend/live-minikube-gate-metadata.json",
+        "../harbor-source-applicability.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "Root/other owner gate; see qa-plan.md"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "subclauses": [
+        {
+          "name": "Current owned minikube write/identity authorization gate",
+          "status": "PASS",
+          "evidence": [
+            "../backend/live-minikube-gate-metadata.json"
+          ]
+        },
+        {
+          "name": "Qualified existing actual worker launch/source core",
+          "status": "PASS",
+          "evidence": [
+            "../harbor-source-applicability.json"
+          ],
+          "limit": "Historical real worker proof, not a new current worker-add run"
+        },
+        {
+          "name": "Complete current provider idempotency/lock scope signoff",
+          "status": "BLOCKED",
+          "evidence": [],
+          "limit": "Root provider owner"
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-18",
+      "mandatoryScenario": "Namespace değişimi, yetki güncellemesi ve API watch kopması sırasında snapshot tam içerik eşitliği; open log stream, observer, material/geometry/interval cleanup; 20 panel aç/kapat.",
+      "status": "BLOCKED",
+      "reason": "Owned functional streams/resources cleanup and process0 PASS. Full20-minute/20-panel/multi-reconnect/signature/material/interval/observer gate has not run in QA and stays root-owned.",
+      "owner": "root+backend+QA",
+      "testType": null,
+      "command": null,
+      "environment": null,
+      "sourceStart": null,
+      "sourceEnd": null,
+      "buildSHA256": null,
+      "clusterUIDs": [],
+      "evidence": [
+        "final-reader-cleanup-2026-11-09T08-35-07-499Z.json",
+        "final-owned-processes-20261109.json",
+        "../frontend/logs-resume/kernel-socket-close-20261109.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "Root owns full20panel/multi-reconnect/20minute cleanup",
+        "QA suite tears down own resources through UID/RV API +404"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "subclauses": [
+        {
+          "name": "All QA owned resources gone, exact readerUID/RV cleanup and API context disposed",
+          "status": "PASS",
+          "evidence": [
+            "final-reader-cleanup-2026-11-09T08-35-07-499Z.json"
+          ]
+        },
+        {
+          "name": "Owned QA runner0, all resumed caffeinate children exited/config unchanged",
+          "status": "PASS",
+          "evidence": [
+            "final-owned-processes-20261109.json"
+          ]
+        },
+        {
+          "name": "Log real TCP transport cleanup qualification",
+          "status": "PASS",
+          "evidence": [
+            "../frontend/logs-resume/kernel-socket-close-20261109.json"
+          ]
+        },
+        {
+          "name": "Exclusive20minute/20panel/multi-reconnect/full canonical signature cleanup",
+          "status": "BLOCKED",
+          "evidence": [],
+          "limit": "Root exclusive performance/stability queue"
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    },
+    {
+      "id": "V11-19",
+      "mandatoryScenario": "Temiz local dağıtım, build/test, örnek manifest Helm (varsa), kurulum sonrasında bir geliştiricinin kod düzenlemeden bağlanması.",
+      "status": "BLOCKED",
+      "reason": "Current installed same-origin production browser operation is real. Final macOS/Linux packages, docs/manifest/Helm/CI/release source and platform matrix remain root-owned.",
+      "owner": "root+QA",
+      "testType": null,
+      "command": null,
+      "environment": null,
+      "sourceStart": null,
+      "sourceEnd": null,
+      "buildSHA256": null,
+      "clusterUIDs": [],
+      "evidence": [
+        "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json"
+      ],
+      "historicalReuse": null,
+      "plannedCoverage": [
+        "Root/other owner gate; see qa-plan.md"
+      ],
+      "priorPauseReason": "Paused by explicit user request; complete mandatory scenario evidence remains incomplete.",
+      "subclauses": [
+        {
+          "name": "Current installed binary normal UI full user workload",
+          "status": "PASS",
+          "evidence": [
+            "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json"
+          ]
+        },
+        {
+          "name": "Final clean distribution/platform/CI/manifests/docs acceptance",
+          "status": "BLOCKED",
+          "evidence": [],
+          "limit": "Root distribution owner; no untested platform/native Safari guarantee"
+        }
+      ],
+      "latestResumeEvidenceAt": "2026-11-09T08:45:50.599511+00:00",
+      "candidateApplicability": "source-applicability-0f5a5ab.json"
+    }
+  ],
+  "updatedAt": "2026-11-09T08:47:23.665872+00:00",
+  "runnerCounts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "currentBlocker": "Root/frontend suspended-Job and empty/partial/stale-DaemonSet status branch fix has160unit PASS reported but a new embedded build/normal UI validation is separate and pending. Root visual/provider/full isolation/hidden/performance/20minute/platform/distribution gates remain open.",
+  "status": "QA_FUNCTIONAL_CHECKPOINT_0F5_FREEZE_RELEASE_OPEN",
+  "historicalRunnerCounts": {
+    "PASS": 20,
+    "FAIL": 14,
+    "SKIP": 0
+  },
+  "runnerAttempts": [
+    {
+      "file": "runner-results/2026-11-08T19-26-11-359Z-9d602f3c.json",
+      "runID": "2026-11-08T19-26-11-359Z-9d602f3c",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 2,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 2,
+      "executedTests": 2
+    },
+    {
+      "file": "runner-results/2026-11-08T20-44-21-943Z-19c8a203.json",
+      "runID": "2026-11-08T20-44-21-943Z-19c8a203",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 2,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-08T20-48-44-520Z-8f5cc921.json",
+      "runID": "2026-11-08T20-48-44-520Z-8f5cc921",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 2,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-08T20-54-37-846Z-6cc5b9a6.json",
+      "runID": "2026-11-08T20-54-37-846Z-6cc5b9a6",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 2,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-08T20-57-16-288Z-e5ca0734.json",
+      "runID": "2026-11-08T20-57-16-288Z-e5ca0734",
+      "counts": {
+        "PASS": 2,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 2,
+      "executedTests": 2
+    },
+    {
+      "file": "runner-results/2026-11-08T20-59-30-932Z-e79e7c24.json",
+      "runID": "2026-11-08T20-59-30-932Z-e79e7c24",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 6,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-08T21-03-24-876Z-0dd5445c.json",
+      "runID": "2026-11-08T21-03-24-876Z-0dd5445c",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T07-48-14-997Z-5842398a.json",
+      "runID": "2026-11-09T07-48-14-997Z-5842398a",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T07-49-09-262Z-3b144428.json",
+      "runID": "2026-11-09T07-49-09-262Z-3b144428",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T07-49-44-197Z-30862c8b.json",
+      "runID": "2026-11-09T07-49-44-197Z-30862c8b",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T07-53-02-447Z-37e80104.json",
+      "runID": "2026-11-09T07-53-02-447Z-37e80104",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T07-54-11-558Z-ea28c85d.json",
+      "runID": "2026-11-09T07-54-11-558Z-ea28c85d",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-03-50-142Z-01179d5e.json",
+      "runID": "2026-11-09T08-03-50-142Z-01179d5e",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-04-28-615Z-49690813.json",
+      "runID": "2026-11-09T08-04-28-615Z-49690813",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-05-38-838Z-4097544c.json",
+      "runID": "2026-11-09T08-05-38-838Z-4097544c",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-06-43-563Z-1e2c7e8b.json",
+      "runID": "2026-11-09T08-06-43-563Z-1e2c7e8b",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-07-07-584Z-1cceaba9.json",
+      "runID": "2026-11-09T08-07-07-584Z-1cceaba9",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-09-02-231Z-331eda9f.json",
+      "runID": "2026-11-09T08-09-02-231Z-331eda9f",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-10-36-868Z-7bbd1f60.json",
+      "runID": "2026-11-09T08-10-36-868Z-7bbd1f60",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 3,
+      "executedTests": 2
+    },
+    {
+      "file": "runner-results/2026-11-09T08-12-49-037Z-4be1ed71.json",
+      "runID": "2026-11-09T08-12-49-037Z-4be1ed71",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-18-33-199Z-cdf37bd2.json",
+      "runID": "2026-11-09T08-18-33-199Z-cdf37bd2",
+      "counts": {
+        "PASS": 3,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 3,
+      "executedTests": 3
+    },
+    {
+      "file": "runner-results/2026-11-09T08-20-00-261Z-464181b9.json",
+      "runID": "2026-11-09T08-20-00-261Z-464181b9",
+      "counts": {
+        "PASS": 2,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 2,
+      "executedTests": 2
+    },
+    {
+      "file": "runner-results/2026-11-09T08-22-04-739Z-c6da4bca.json",
+      "runID": "2026-11-09T08-22-04-739Z-c6da4bca",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-25-10-184Z-6dbcecc3.json",
+      "runID": "2026-11-09T08-25-10-184Z-6dbcecc3",
+      "counts": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "runnerStatus": "failed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-26-55-074Z-2f6b40e2.json",
+      "runID": "2026-11-09T08-26-55-074Z-2f6b40e2",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-28-13-318Z-2d0d1b5e.json",
+      "runID": "2026-11-09T08-28-13-318Z-2d0d1b5e",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-30-01-575Z-5580c529.json",
+      "runID": "2026-11-09T08-30-01-575Z-5580c529",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    },
+    {
+      "file": "runner-results/2026-11-09T08-32-38-354Z-c9ebfe38.json",
+      "runID": "2026-11-09T08-32-38-354Z-c9ebfe38",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "runnerStatus": "passed",
+      "expectedTests": 1,
+      "executedTests": 1
+    }
+  ],
+  "pauseCheckpoint": {
+    "updatedAt": "2026-11-08T21:08:50.873121+00:00",
+    "status": "PAUSED_AT_USER_REQUEST",
+    "historicalRunnerCounts": {
+      "PASS": 2,
+      "FAIL": 7,
+      "SKIP": 0
+    },
+    "currentBlocker": "User pause. ResourceForms loading/busy guard source changed after last served build; final rebuild and delayed actual-GET validation required."
+  },
+  "resumedRunnerCounts": {
+    "PASS": 18,
+    "FAIL": 7,
+    "SKIP": 0
+  },
+  "scenarioCounts": {
+    "BLOCKED": 8,
+    "PASS": 11
+  },
+  "releaseEligible": false,
+  "proofFreeze": {
+    "gitHead": "0f5a5ab6b8e52e645b9e2e71dd063112ca105e98",
+    "sourceSHA256": "8a1b9d69cdb53607c4064063b9c1239c76237ba5aa8b51ef8931cb5928304448",
+    "binarySHA256": "b7417ea5216a88de16e3a2307df55a32470f756a958681eac08643858fdc87cf",
+    "staticSHA256": "7cb5d75f94045dbe7ba549db66ab56175f0425a5683927680c2e0233565a8f49",
+    "freshFullPositive": "runs/2026-11-09T08-30-01-963Z-chromium-f6afdbe9/result.json",
+    "lastPrimaryRbac": "runs/2026-11-09T08-32-38-782Z-chromium-253c965c/result.json",
+    "scope": "Immutable0f5/b741 checkpoint. Future Job/DS branch build must receive a new explicit delta/targeted UI record."
+  },
+  "knownPendingProductDelta": {
+    "owner": "root+frontend",
+    "paths": [
+      "frontend/src/workbench/resourceUtils.js",
+      "frontend/src/workbench/resourceUtils.test.js"
+    ],
+    "scope": "Suspended Job/terminal precedence and empty/partial/stale DaemonSet display truth. Source edit/unit160PASS reported; new embedded runtime/UI proof remains separate.",
+    "wholeReleasePASS": false,
+    "status": "SOURCE_FIXED_UNIT160_PASS_NEW_EMBED_AND_NORMAL_UI_PENDING"
+  },
+  "cleanup": {
+    "ownedResources": "final-reader-cleanup-2026-11-09T08-35-07-499Z.json",
+    "ownedProcesses": "final-owned-processes-20261109.json",
+    "readerRemoved": true,
+    "rerunPrerequisite": "Restricted/RBAC reruns require new owned reader setup/new UID provenance and private token between invocations. Removed resources must not be adopted or assumed still present."
+  },
+  "externalProofAccounting": {
+    "forms": "StatefulSet completed subcheck from preserved first FAIL; corrected current three-case run PASS. Do not count reused STS as newly rerun.",
+    "logs": "Latest seven functional cases PASS; whole helper FAIL retained for Playwright WS close-event observability. Independent actual kernel connected TCP endpoints0 qualifies transport cleanup only.",
+    "backend": "Top-level and leaf Go counts are separate; do not sum both or relabel unit/fake-client tests as real integration."
+  }
+}

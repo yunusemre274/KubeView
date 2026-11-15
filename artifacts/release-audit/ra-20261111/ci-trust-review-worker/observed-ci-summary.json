@@ -1,0 +1,29 @@
+{
+  "historical": [
+    {
+      "run_id": 43059785493,
+      "job_id": 130658873437,
+      "conclusion": "failure"
+    },
+    {
+      "run_id": 43058817820,
+      "job_id": 130655472761,
+      "conclusion": "failure"
+    },
+    {
+      "run_id": 43057610046,
+      "job_id": 130651169093,
+      "conclusion": "failure"
+    }
+  ],
+  "fresh": {
+    "source": "Root supplied current connector receipt in task message; not independently fetched here",
+    "commit": "3bdb7c0c41eff0b45aec169fef89ff6b99f9db8c",
+    "run_id": 43062361657,
+    "job_id": 130668033624,
+    "conclusion": "success",
+    "cleanLinuxSmoke": "success",
+    "artifactUpload": "success"
+  },
+  "limit": "No external-PR trial or repository settings verification"
+}

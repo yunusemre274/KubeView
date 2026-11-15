@@ -1,0 +1,50 @@
+{
+  "sourceChangesAtoB": {
+    "src/App.jsx": {
+      "A": "25d95e1209e12ff3a8ccbab20a5bb8a0c80f78c866616f24cff8186d43a41669",
+      "B": "92912b2f27bc4e910e966644588a134997c75ea341ee3d3e4a01305caa67e114"
+    },
+    "src/context/ShipyardClusterContext.jsx": {
+      "A": "b05739502b9167915bb4a45d2e8ddcf906f407d93c9e37f026da2ca525446aa4",
+      "B": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f"
+    },
+    "src/harbor/HarborScene.jsx": {
+      "A": "8c0130e8944df57dd0c1a7a411e33a9c02bfc99b8746a1325868efdaa264fbac",
+      "B": "8904d477fac541df6d0b2b595055ef9cef0bbc0060bb7577e0d26d1b10dad7c1"
+    },
+    "src/harbor/cameraViews.js": {
+      "A": "2397d59b37525002a489faddb9ecd2ae33893b9a3688051c2963c5a3e0d27c24",
+      "B": "3fdeec14417762d221fee20270c7de9574f90e1ab5d377456f387077faacce97"
+    },
+    "src/harbor/cameraViews.test.js": {
+      "A": "5eb8de575d762149ac7baf333d8446d352015d4a52a1cd0b4eec3c15cfa5d452",
+      "B": "a647900c87e76aef8ae5246df84d7979125e3eb0e00c1ca6aaa0a682add59b10"
+    },
+    "src/harbor/interactions.js": {
+      "A": "29f0784df8d5af8fca2208cf5a9d56b5fa53b9b4e65733830df6a33a07e5d306",
+      "B": "829b5e5846ebe5fcc46a5500abe148c1ce990d191352332d769bd43488b2e157"
+    },
+    "src/harbor/interactions.test.js": {
+      "A": "23260636430a94d74e83b7bf1f96272b7577fe747a1f11b0c0acdfdb2c9ee5bb",
+      "B": "385bfdd7d2581a0328ffb0e2a1ba324e4000377d84708bcc7c4a3bd270f40702"
+    }
+  },
+  "sourcePublicAssets": {
+    "A": {
+      "public/favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345"
+    },
+    "B": {
+      "public/favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345"
+    }
+  },
+  "buildPublicAssets": {
+    "A": {
+      "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+      "index.html": "f682f5740ba518542ed6d84e3008b57a4a592e162b093276b4b3354e12e634a5"
+    },
+    "B": {
+      "favicon.svg": "f1ab2f813b16c603e4fea3e250063b713be54712ea303e4e02ca0c440faa3345",
+      "index.html": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3"
+    }
+  }
+}

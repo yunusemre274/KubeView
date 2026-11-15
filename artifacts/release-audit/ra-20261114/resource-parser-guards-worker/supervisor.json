@@ -1,0 +1,5 @@
+{
+  "pid": 5619,
+  "identity": "Sat Nov 14 16:01:31 2026     /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python artifacts/release-audit/ra-20261114/resource-parser-guards-worker/run.py",
+  "purpose": "SIGTERM/SIGINT triggers owned captured-child cleanup"
+}

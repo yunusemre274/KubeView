@@ -1,0 +1,57 @@
+{
+  "httpErrors": [
+    {
+      "path": "/api/workspace/harbors/8a66d537-0eea-4102-af04-c9141006f49e",
+      "status": 403,
+      "target": {}
+    },
+    {
+      "path": "/api/workspace/harbors/940ea70a-0b63-4656-8f77-c56620496a4a",
+      "status": 403,
+      "target": {}
+    }
+  ],
+  "streamErrors": [
+    {
+      "type": "SNAPSHOT",
+      "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+      "errors": [
+        "Abonelik liman namespace kapsamı dışında"
+      ],
+      "scopes": [
+        {
+          "namespace": "kvml-bc565b30-02-p2",
+          "resource": "pods",
+          "status": "forbidden",
+          "error": "Abonelik liman namespace kapsamı dışında"
+        }
+      ]
+    },
+    {
+      "type": "SNAPSHOT_READY",
+      "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+      "errors": [
+        "Abonelik liman namespace kapsamı dışında"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+      "brand": "KubeView\nProje 1 · kvml-aed6bc565b30-a · kvml-bc565b30-02-p1\nAPI bekleniyor",
+      "errors": []
+    },
+    {
+      "harborId": "940ea70a-0b63-4656-8f77-c56620496a4a",
+      "brand": "KubeView\nProje 2 · kvml-aed6bc565b30-a · kvml-bc565b30-02-p2\nCanlı",
+      "errors": []
+    },
+    {
+      "harborId": "8a66d537-0eea-4102-af04-c9141006f49e",
+      "brand": "KubeView\nProje 1 · kvml-aed6bc565b30-a · kvml-bc565b30-02-p1\nKısmi erişim",
+      "errors": [
+        "Abonelik liman namespace kapsamı dışında"
+      ]
+    }
+  ]
+}

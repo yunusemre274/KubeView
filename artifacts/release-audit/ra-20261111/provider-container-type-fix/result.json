@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-11T19:09:35.673619+00:00",
+  "currentParent": "e67ca001dced1357252c4ff59eb6dc7bc8e1ea2b",
+  "helperSHA256": "884ece74325d3145d09be26e8503abf31ddffe718a84f1704908168d69601a56",
+  "syntax": "PASS in-memory compile",
+  "pureCases": 23,
+  "exitCode": 0,
+  "dataSource": "PURE_FAKE_PROCESS_METADATA; NO REAL TRANSACTION OR CLI",
+  "runtimeUnchanged": "provider09 binary f9 / source4c; only test helper changed",
+  "narrowFix": "typed docker container inspect; incomplete NetworkSettings becomes unready metadata; all ownership/adoption guards unchanged",
+  "RUN_CLEARED": false,
+  "earlierConsoleRun": "Same23pure cases also passed in tool chunkecf7e4; this second run captures deliverable raw output, no expensive matrix repeated"
+}

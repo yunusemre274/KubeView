@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "startedAt": "2026-11-12T10:33:18.302215+00:00",
+  "mode": "read-only post-alias guard; no mutation",
+  "priorResumeResultPreserved": "resume-result.json",
+  "priorHarnessError": "except tuple m.mod.LabError; helper module has no mod attribute, correct owner is tx.mod",
+  "mutations": false,
+  "powerBefore": {
+    "batteryPercent": 51,
+    "freeDiskBytes": 454551470080
+  },
+  "systemUID": "e84bb50e-8d64-4bc2-905c-9b5ba193e53a",
+  "ownerMarkerUID": "0cded75c-bc00-472f-b69f-39dfd43251f3",
+  "originalNodeUIDs": {
+    "kvml-d32afbf634e8-a": "a80b27ed-deed-43de-9554-8309fe9b03b3",
+    "kvml-d32afbf634e8-a-m02": "90103b01-6c31-4690-8bd0-31fa968af1ce"
+  },
+  "originalTwoReady": true,
+  "profileSHA256": "4733b8f4870354b6bd0404dfe3d912dca704d1e5f392eb9fe3f397516db8da1c",
+  "powerAfter": {
+    "batteryPercent": 51,
+    "freeDiskBytes": 454551814144
+  },
+  "completedAt": "2026-11-12T10:33:22.068306+00:00",
+  "elapsedSeconds": 3.7661020755767822,
+  "limitSeconds": 60
+}

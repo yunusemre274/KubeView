@@ -1,0 +1,20 @@
+{
+  "status": "EXACT_CLEANUP_PASS_OPERATION_FAIL",
+  "startedAt": "2026-11-11T19:18:51.913340+00:00",
+  "completedAt": "2026-11-11T19:22:56.000231+00:00",
+  "operationalElapsedSeconds": 102.59969186782837,
+  "totalElapsedSecondsAtReceipt": 244.086891,
+  "operationalLimitSeconds": 120,
+  "phaseLimitSeconds": 240,
+  "withinOperationalLimit": true,
+  "withinPhaseLimitAtReceipt": false,
+  "case02OriginalHelperSHA256": "8645fc24fa959835970f2576ef3b1794b59c0d67fc7b2d5813024cc46676d9e1",
+  "operationID": "0aab9c6d-1a75-4e24-9c23-5a7548d922bc",
+  "operationRemainsFAIL": true,
+  "noFurtherAPICallsAfterCleanup": true,
+  "historicalSourceDirectoryFrozen": "artifacts/release-audit/ra-20261111/real-minikube-add-fixed-worker/cleanup-case02",
+  "privateForensicDirectory": ".git/release-audit/real-minikube-add-fixed-worker/machine-forensic-before/",
+  "privateOriginalProfile": ".git/release-audit/real-minikube-add-fixed-worker/profile-before-full.json",
+  "originalProfileSHA256": "c8266879d0e6ae53f2b6d9d255e2a8bfedf550a918f4d0988f2e447a1e7cc1a5",
+  "scope": "Root-authorized exact partial cleanup only; no add/retry, no Node API delete, no general minikube command."
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "Path": "golang.org/x/net",
+    "Version": "v0.62.0",
+    "GoVersion": "1.26.0",
+    "Time": "2026-10-27T19:00:16Z",
+    "module_manifest_file": "golang.org_x_net_v0.62.0.mod"
+  },
+  {
+    "Path": "golang.org/x/text",
+    "Version": "v0.41.0",
+    "GoVersion": "1.25.0",
+    "Time": "2026-08-11T15:22:47Z",
+    "module_manifest_file": "golang.org_x_text_v0.41.0.mod"
+  },
+  {
+    "Path": "golang.org/x/sys",
+    "Version": "v0.44.0",
+    "GoVersion": "1.25.0",
+    "Time": "2026-04-23T15:37:02Z",
+    "module_manifest_file": "golang.org_x_sys_v0.44.0.mod"
+  },
+  {
+    "Path": "golang.org/x/oauth2",
+    "Version": "v0.27.0",
+    "GoVersion": "1.23.0",
+    "Time": "2025-02-24T17:56:26Z",
+    "module_manifest_file": "golang.org_x_oauth2_v0.27.0.mod"
+  },
+  {
+    "Path": "github.com/moby/spdystream",
+    "Version": "v0.5.1",
+    "GoVersion": "1.13",
+    "Time": "2026-04-13T17:36:51Z",
+    "module_manifest_file": "github.com_moby_spdystream_v0.5.1.mod"
+  },
+  {
+    "Path": "github.com/gorilla/websocket",
+    "Version": "v1.5.3",
+    "GoVersion": "1.12",
+    "Time": "2024-06-14T03:18:03Z",
+    "module_manifest_file": "github.com_gorilla_websocket_v1.5.3.mod"
+  }
+]

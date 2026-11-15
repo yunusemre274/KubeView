@@ -1,0 +1,18 @@
+{
+  "reviewer": "root",
+  "imagesActuallyOpened": [
+    "closed.png",
+    "form-open.png"
+  ],
+  "scope": "Actual native Safari empty landing and first harbor form",
+  "observed": [
+    "Full-viewport teal sea and fixed harbor facilities; no invented Node ships",
+    "No permanent dashboard/sidebar",
+    "Opaque readable contextual form; typed harbor name visible and close control present"
+  ],
+  "limits": [
+    "No real pointer/keyboard or Kubernetes mutation in this case",
+    "Screenshot pixel dimensions and reportedDPR2 do not prove physical screen latency or renderDPR2",
+    "Form lower content requires its own scroll; full form usability/latency not accepted from this image"
+  ]
+}

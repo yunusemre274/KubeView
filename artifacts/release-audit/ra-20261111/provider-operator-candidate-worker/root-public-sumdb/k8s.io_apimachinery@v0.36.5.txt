@@ -1,0 +1,9 @@
+64834701
+k8s.io/apimachinery v0.36.5 h1:X5Xbg6G4om0ma6LOcGbmUmo+B5Nq7mmIpAWhk+tgCh8=
+k8s.io/apimachinery v0.36.5/go.mod h1:oPTSicSaDHDdoGwOs5DFPo6YS2wdTnzFHIYMEglfJ7I=
+
+go.sum database tree
+71239581
+7xePq7sE4O3ge2cjEkB+eOFkDq/0yRoz4y7k85s09wM=
+
+— sum.golang.org Az3grgvF9C+tBW7Z7nTsrTIcCmPY1FxttPjrXkJONJm7qQnMW6/qHUISiYPm5GN1SAJo4ExfZJMbau67TPinKLtkxQg=

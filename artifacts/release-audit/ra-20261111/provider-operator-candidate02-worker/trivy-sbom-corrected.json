@@ -1,0 +1,71 @@
+{
+  "startedAt": "2026-11-11T20:09:00.102146+00:00",
+  "command": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate-02/trivy.yaml",
+    "sbom",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "library",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate-02/empty.ignore",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/cilium-operator-security-candidate-02/trivy-sbom-corrected.json",
+    "--timeout",
+    "60s",
+    "/Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261111/provider-operator-candidate02-worker/binary-dependencies.cdx.json"
+  ],
+  "GOMAXPROCS": 1,
+  "parallel": 1,
+  "maxSeconds": 60,
+  "rssLimitBytes": 1610612736,
+  "dbMetadataBefore": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  },
+  "dbMetadataSHA256Before": "62046a71bc29e0ded194e98fe3cde2f51f7179f5ed9d150b7853a33cbe307477",
+  "inputSHA256Before": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "peakOwnedRSSBytes": 4210688,
+  "samples": [
+    {
+      "elapsed": 0.056,
+      "rssBytes": 4210688,
+      "freeDiskBytes": 453676347392
+    }
+  ],
+  "ownedScanPID": 5161,
+  "exitCode": 0,
+  "ownedScanExited": true,
+  "status": "SBOM_DEPENDENCY_COVERAGE",
+  "analyzerCoverage": [
+    {
+      "target": "",
+      "type": "gobinary",
+      "packageCount": 164
+    }
+  ],
+  "findingCount": 0,
+  "severityCounts": {},
+  "highCriticalIDs": [],
+  "rawJSONSHA256": "268f8cb84fc426e47838ab9eb4485c843c34d6acaaae6ad7d102353a3a17fe50",
+  "inputSHA256After": "9cde6566ecb775195173d76148e156a5cd6aa96e86b579d8c6176fadcfe0cb09",
+  "dbMetadataSHA256After": "62046a71bc29e0ded194e98fe3cde2f51f7179f5ed9d150b7853a33cbe307477",
+  "elapsedSeconds": 0.6558208749993355,
+  "finishedAt": "2026-11-11T20:09:00.757952+00:00",
+  "helperSHA256": "5d7a56b7ee72ffc25f9ed54aea3c14ebf2661f7071c24940ceb67ff04b0b3f54"
+}

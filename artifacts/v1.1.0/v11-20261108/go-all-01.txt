@@ -1,0 +1,10 @@
+ok  	github.com/k8s-tersane/tersane/backend	0.498s
+?   	github.com/k8s-tersane/tersane/backend/internal/webui	[no test files]
+?   	github.com/k8s-tersane/tersane/backend/pkg/api	[no test files]
+ok  	github.com/k8s-tersane/tersane/backend/pkg/k8s	0.446s
+?   	github.com/k8s-tersane/tersane/backend/pkg/metrics	[no test files]
+?   	github.com/k8s-tersane/tersane/backend/pkg/netutils	[no test files]
+ok  	github.com/k8s-tersane/tersane/backend/pkg/provision	0.461s
+ok  	github.com/k8s-tersane/tersane/backend/pkg/server	0.731s
+ok  	github.com/k8s-tersane/tersane/backend/pkg/traffic	6.099s
+?   	github.com/k8s-tersane/tersane/backend/pkg/websocket	[no test files]

@@ -1,0 +1,59 @@
+diff --git a/scripts/release-provider-lab.py b/scripts/release-provider-lab.py
+index 9ced4555..5378a41e 100644
+--- a/scripts/release-provider-lab.py
++++ b/scripts/release-provider-lab.py
+@@ -98,12 +98,30 @@ class DeadlineBudget:
+         self.halt.set()
+         if self.thread:self.thread.join(timeout=2)
+ 
++def capture_running_child(group, process):
++    # A short command may finish between ps and getpgid. Its Popen exit status
++    # is authoritative; completed children need no future group signalling.
++    if process.poll() is not None:return False
++    try:group.capture(process.pid,process_birth(process.pid))
++    except (Guard,ProcessLookupError):
++        if process.poll() is not None:return False
++        raise
++    return True
++
+ def bounded_process(argv,timeout=5,env=None,deadline=None,controller=None):
+     """Finite I/O (2MiB total); terminate only this new command's PID group."""
+     end=min(time.time()+timeout,deadline if deadline is not None else float('inf'))
+     require(end>time.time(),'I_O_deadline_expired')
+     p=subprocess.Popen([str(x)for x in argv],stdin=subprocess.DEVNULL,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=env,start_new_session=True)
+-    owned=OwnedGroup(p.pid);owned.capture(p.pid,process_birth(p.pid))
++    owned=OwnedGroup(p.pid)
++    try:capture_running_child(owned,p)
++    except BaseException:
++        # Only this freshly created Popen child, never an unverified group.
++        p.terminate()
++        try:p.wait(timeout=1)
++        except subprocess.TimeoutExpired:p.kill();p.wait(timeout=1)
++        p.stdout.close();p.stderr.close()
++        raise
+     if controller:controller.add_io_group(owned)
+     sel=selectors.DefaultSelector();sel.register(p.stdout,selectors.EVENT_READ,0);sel.register(p.stderr,selectors.EVENT_READ,1);buffers=[bytearray(),bytearray()]
+     try:
+@@ -221,6 +239,22 @@ def self_test():
+         require(observed['id']==pending['Id'] and observed['networkID'] is None and observed['IP'] is None,'pending_container_network_assumed_ready')
+         cases.append('not_yet_networked_container_remains_unadopted')
+     finally:globals()['bounded_process']=original_process
++    original_birth=globals()['process_birth'];globals()['process_birth']=lambda pid:'fixture-birth'
++    class ShortChild:
++        pid=9
++        def __init__(self,states):self.states=iter(states)
++        def poll(self):return next(self.states)
++    class ExitedDuringCapture:
++        def capture(self,*args):raise ProcessLookupError()
++    class InvalidLiveIdentity:
++        def capture(self,*args):raise Guard('live_identity_unverified')
++    try:
++        require(capture_running_child(ExitedDuringCapture(),ShortChild([0])) is False,'already_exited_child_probed')
++        cases.append('completed_child_needs_no_group_capture')
++        require(capture_running_child(ExitedDuringCapture(),ShortChild([None,0])) is False,'short_child_exit_race_not_tolerated')
++        cases.append('exit_during_identity_probe_is_normal_completion')
++        reject('live_unverified_child_still_rejected',lambda:capture_running_child(InvalidLiveIdentity(),ShortChild([None,None])))
++    finally:globals()['process_birth']=original_birth
+     print(json.dumps({"status":"PASS","pureCases":cases,"runtimeActions":False}))
+ 
+ class Transaction:

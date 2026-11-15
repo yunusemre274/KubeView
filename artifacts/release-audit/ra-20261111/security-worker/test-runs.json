@@ -1,0 +1,120 @@
+[
+  {
+    "source_sha": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "1",
+      "-parallel",
+      "2",
+      "-timeout",
+      "90s",
+      "-count=1",
+      "-v",
+      "./pkg/server",
+      "-run",
+      "^Test(ManagementStartsReadOnlyAndCannotBypassSession|DelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|ConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|OriginHostJSONAndSessionNegatives|ConnectionErrorsDoNotExposeCredentials|MergedKubeconfigSelectionReloadAndNoGlobalMutation|ScopeSwitchCancelsInFlightStreams|PortForwardSandboxStripsGatewayCredentialsAndBindsOperator|ReadOnlyAndNamespaceEnforced|DeletePreconditionsAndUIDRecreation|SecretSanitizationDoesNotMutateSource|OriginAndAuthentication|NamespaceScopeBlocksClusterCRUD|PortforwardScopeUIDAndPortValidation|LocalServerRejectsDNSRebindingHost|ClusterScopedReviewsIgnoreWatchNamespace|PurposefulSecretRevealIncludesGVKAndIdentity|WorkspaceHTTPPersistenceCSRFAndScope|WorkspaceMultiNamespaceAndDistinctConnectionIdentity|WorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|WorkspaceNodeImpactRequiresAcknowledgement|WorkspaceScopeEnvelopeRejectsWrongWorkspace|WorkspaceClusterCatalogReadsAndPVNamespaceRelation|WorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache|WorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|WorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts|WorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant|WorkspaceCookieNamesKeepLegacyGatewayContract|TrafficIdentityScopeAndCredentialRotation|SecretPurposeEditorPreservesMetadataWithoutBulkLeak|TemplateCapabilityDoesNotReadSecretBodies|LogGuardRequiresUIDAndEchoesSessionIdentity|OwnedV11RealMinikubeManagementGate|DedicatedClusterRestrictedRBAC|OwnedWorkspaceRealAPIIsolation)$"
+    ],
+    "start_utc": "2026-11-11T10:21:18.084036+00:00",
+    "end_utc": "2026-11-11T10:21:21.546741+00:00",
+    "exit_code": 0,
+    "log": "existing-tests-1.log"
+  },
+  {
+    "source_sha": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "1",
+      "-parallel",
+      "2",
+      "-timeout",
+      "90s",
+      "-count=1",
+      "-v",
+      ".",
+      "-run",
+      "^Test(ProductionFrontendRoutesAndBoundary|CLIContextDoesNotRewriteKubeconfig|CLIWorkspaceAndReplayBoundary|CLIVersionDoesNotLoadConfigOrCreateDirectory)$"
+    ],
+    "start_utc": "2026-11-11T10:21:21.546887+00:00",
+    "end_utc": "2026-11-11T10:21:23.408819+00:00",
+    "exit_code": 0,
+    "log": "existing-tests-2.log"
+  },
+  {
+    "source_sha": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "1",
+      "-parallel",
+      "2",
+      "-timeout",
+      "90s",
+      "-count=1",
+      "-v",
+      "./pkg/workspace",
+      "./pkg/provision",
+      "./pkg/traffic",
+      "-run",
+      "^Test(WorkspaceExportImportNeverRestoresContextOrIDs|WorkspaceRejectsSymlinkOversizeAndPublicDirectory|WorkspaceExternalFutureReplacementNotOverwritten|WrongContextOrProfileClusterNeverRuns|ProfileLockAndRestartNeverBlindlyRetry|UnsupportedDriverAndInvalidIdempotency|TLSConfigAndEnvironmentIsolation|LeasesIdentityIsolationAndCollectorCleanup|ExplicitNamespaceScopesFilterBothEndpointsWithoutAllNamespaceRead|ProviderClusterBindingAndUnknownEndpointIdentityGate)$"
+    ],
+    "start_utc": "2026-11-11T10:23:24.879156+00:00",
+    "end_utc": "2026-11-11T10:23:28.667806+00:00",
+    "exit_code": 0,
+    "log": "existing-tests-3.log"
+  },
+  {
+    "source_sha": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+    "source_delta": "new regression test only",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "1",
+      "-parallel",
+      "2",
+      "-timeout",
+      "90s",
+      "-count=1",
+      "-v",
+      "./pkg/server",
+      "-run",
+      "^TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource$"
+    ],
+    "start_utc": "2026-11-11T10:25:42.728838+00:00",
+    "end_utc": "2026-11-11T10:25:45.079135+00:00",
+    "exit_code": 1,
+    "log": "regression-secret-discovery.log"
+  },
+  {
+    "source_sha": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+    "source_delta": "SEC-001 fix + related regression test matrix",
+    "source_sha256": {
+      "backend/pkg/server/workspace_scope.go": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "backend/pkg/server/release_security_regression_test.go": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca"
+    },
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "1",
+      "-parallel",
+      "2",
+      "-timeout",
+      "90s",
+      "-count=1",
+      "-v",
+      "./pkg/server",
+      "-run",
+      "^Test(ManagementStartsReadOnlyAndCannotBypassSession|DelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip|ConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList|OriginHostJSONAndSessionNegatives|ConnectionErrorsDoNotExposeCredentials|MergedKubeconfigSelectionReloadAndNoGlobalMutation|ScopeSwitchCancelsInFlightStreams|PortForwardSandboxStripsGatewayCredentialsAndBindsOperator|ReadOnlyAndNamespaceEnforced|DeletePreconditionsAndUIDRecreation|SecretSanitizationDoesNotMutateSource|OriginAndAuthentication|NamespaceScopeBlocksClusterCRUD|PortforwardScopeUIDAndPortValidation|LocalServerRejectsDNSRebindingHost|ClusterScopedReviewsIgnoreWatchNamespace|PurposefulSecretRevealIncludesGVKAndIdentity|WorkspaceHTTPPersistenceCSRFAndScope|WorkspaceMultiNamespaceAndDistinctConnectionIdentity|WorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes|WorkspaceNodeImpactRequiresAcknowledgement|WorkspaceScopeEnvelopeRejectsWrongWorkspace|WorkspaceClusterCatalogReadsAndPVNamespaceRelation|WorkspaceOfflineScopeExitAndRevokedSubscriberCannotReadPeerCache|WorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity|WorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts|WorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant|WorkspaceCookieNamesKeepLegacyGatewayContract|TrafficIdentityScopeAndCredentialRotation|SecretPurposeEditorPreservesMetadataWithoutBulkLeak|TemplateCapabilityDoesNotReadSecretBodies|LogGuardRequiresUIDAndEchoesSessionIdentity|OwnedV11RealMinikubeManagementGate|DedicatedClusterRestrictedRBAC|OwnedWorkspaceRealAPIIsolation|ReleaseSecurity.*)$"
+    ],
+    "start_utc": "2026-11-11T10:30:41.531913+00:00",
+    "end_utc": "2026-11-11T10:30:45.134300+00:00",
+    "exit_code": 0,
+    "log": "retest-sec001.log"
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "Comment": "",
+    "Created": 1794480102,
+    "CreatedBy": "/bin/sh -c set -eu &&     export DEBIAN_FRONTEND=noninteractive &&     printf '%s\\n' 'deb [arch=arm64 signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://ports.ubuntu.com/ubuntu-ports noble-security main' > /tmp/kubeview-apt-security.list &&     apt_safe() { apt-get -o Dir::Etc::sourcelist=/tmp/kubeview-apt-security.list -o Dir::Etc::sourceparts=- -o Acquire::Languages=none -o Acquire::Retries=0 -o Acquire::https::Timeout=15 -o Acquire::By-Hash=true -o Acquire::AllowInsecureRepositories=false -o Acquire::AllowDowngradeToInsecureRepositories=false \"$@\"; };     apt_safe update &&     plan=\"$(apt_safe --simulate --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1)\" &&     printf '%s\\n' \"$plan\" &&     printf '%s\\n' \"$plan\" | while IFS=' ' read -r action package rest; do if [ \"$action\" = Inst ]; then case \"$package\" in apt|libapt-pkg6.0t64) ;; *) printf 'Unexpected package change: %s\\n' \"$package\" >&2; exit 81 ;; esac; elif [ \"$action\" = Remv ]; then exit 82; fi; done &&     apt_safe -y --no-install-recommends --only-upgrade --no-remove install apt=2.8.4ubuntu0.1 libapt-pkg6.0t64=2.8.4ubuntu0.1 &&     dpkg-query -W -f='${Package}\\t${Version}\\n' apt libapt-pkg6.0t64 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' apt)\" ge 2.8.4ubuntu0.1 &&     dpkg --compare-versions \"$(dpkg-query -W -f='${Version}' libapt-pkg6.0t64)\" ge 2.8.4ubuntu0.1 &&     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/kubeview-apt-security.list",
+    "Id": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740",
+    "Size": 5099520,
+    "Tags": [
+      "kubeview-private/cilium-envoy:1.20.4-apt-security.1"
+    ]
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792741086,
+    "CreatedBy": "COPY /tmp/install / # buildkit",
+    "Id": "sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+    "Size": 114651136,
+    "Tags": [
+      "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+    ]
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792741086,
+    "CreatedBy": "RUN /bin/sh -c apt-get update && apt-get upgrade -y     && apt-get install --no-install-recommends -y ca-certificates libatomic1     && apt-get autoremove -y && apt-get clean     && rm -rf /tmp/* /var/tmp/*     && rm -rf /var/lib/apt/lists/* # buildkit",
+    "Id": "<missing>",
+    "Size": 5902336,
+    "Tags": null
+  },
+  {
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": 1792741086,
+    "CreatedBy": "LABEL maintainer=maintainer@cilium.io",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "",
+    "Created": 1790928626,
+    "CreatedBy": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "",
+    "Created": 1790928625,
+    "CreatedBy": "/bin/sh -c #(nop) ADD file:41d2e63ceb0b90641106340bc81ee11125254db51ee5a9d49e666bcf0388814f in / ",
+    "Id": "<missing>",
+    "Size": 110436352,
+    "Tags": null
+  },
+  {
+    "Comment": "",
+    "Created": 1790928623,
+    "CreatedBy": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.version=24.04",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "",
+    "Created": 1790928623,
+    "CreatedBy": "/bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  },
+  {
+    "Comment": "",
+    "Created": 1790928623,
+    "CreatedBy": "/bin/sh -c #(nop)  ARG RELEASE",
+    "Id": "<missing>",
+    "Size": 0,
+    "Tags": null
+  }
+]

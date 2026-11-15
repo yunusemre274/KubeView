@@ -1,0 +1,42 @@
+{
+  "started_at_utc": "2026-11-11T10:38:54.446774+00:00",
+  "finished_at_utc": "2026-11-11T10:42:14.380048+00:00",
+  "input_files": [
+    {
+      "path": "artifacts/release-audit/ra-20261111/secrets-worktree-redacted.json",
+      "sha256": "fe51067a8aef2f2d6c2bae3b2829b11e3be6bef701af99cee12affe33243ab1a"
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/secrets-worktree.log",
+      "sha256": "00583ba57794cb3fd93b359633591ffe7c6dcb7aa4e8d279e7722cd38ae3be32"
+    }
+  ],
+  "input_findings": 1451,
+  "classified_findings": 1451,
+  "input_paths": 512,
+  "classes": {
+    "source-or-asset-sha256": 1161,
+    "idempotency-digest": 13,
+    "kubernetes-resource-uid-log": 2,
+    "public-git-object-metadata": 189,
+    "client-generation-identifier": 10,
+    "benchmark-grouping-label": 76
+  },
+  "scopes": {
+    "audit-test-artifact": 565,
+    "generated-build-provenance": 38,
+    "benchmark-output": 848
+  },
+  "digest_context_verified_count": 1174,
+  "scanner_coverage_from_coordinator": {
+    "bytes": "509.82 MB",
+    "duration_seconds": 24.6,
+    "max_file_bytes": 4194304,
+    "skip_log_lines": 98,
+    "coverage_gap_preserved": true
+  },
+  "unresolved": [],
+  "sensitive_values_written": false,
+  "ignore_rules_created": false,
+  "git_history_mutated": false
+}

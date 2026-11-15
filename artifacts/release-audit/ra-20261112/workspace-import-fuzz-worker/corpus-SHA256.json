@@ -1,0 +1,95 @@
+{
+  "baselineSeeds": 8,
+  "newInterestingReported": 17,
+  "totalCorpusReported": 25,
+  "retainedInterestingCacheFileCount": 17,
+  "files": [
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/198327597dd8ded2",
+      "bytes": 507,
+      "SHA256": "198327597dd8ded2c52a39cdc7aff29abc194b6cbac8dcf6d4be6f84ace3b0ba"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/19981bffc2abbaf1",
+      "bytes": 28,
+      "SHA256": "19981bffc2abbaf1dbf340525460fe7b2435cf273d347c491d6e2d74fc3680bd"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/19bfb2278ecfafd1",
+      "bytes": 28,
+      "SHA256": "19bfb2278ecfafd1a9b00be4a9a2ebe1694955958600348128d0c1d8a6c8011e"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/2b5ae89d1e7a2baa",
+      "bytes": 79,
+      "SHA256": "2b5ae89d1e7a2baab6ae14078fd7d79e2657c13e695ab31c7db5ff84cc425ca8"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/34564772f6002875",
+      "bytes": 31,
+      "SHA256": "34564772f6002875be70a3a9c98f634b32ef3386e7444ed6c8b97cac90c8aae0"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/3a9de1852b8ffab2",
+      "bytes": 476,
+      "SHA256": "3a9de1852b8ffab2e65b46de7625839844e83d33f921296df34273374e2de1e8"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/499eba404bd2f511",
+      "bytes": 156,
+      "SHA256": "499eba404bd2f511620c1caae32f72e0beff9ec06735b975a930688162767a3a"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/6485cd8b482db4ce",
+      "bytes": 30,
+      "SHA256": "6485cd8b482db4cedacec95326e96dd54608e6645c82f21eaf3b0d28991f56d7"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/8727b16d337d7b81",
+      "bytes": 29,
+      "SHA256": "8727b16d337d7b8187433233f3a90099024e580a6ba319ea2bf539880c50bd7c"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/9a15ff0c3faf6867",
+      "bytes": 76,
+      "SHA256": "9a15ff0c3faf68671587c912f3db2f4db3602169bf3f1cfcad4aef81247d7683"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/9cc52906ed53ef5f",
+      "bytes": 29,
+      "SHA256": "9cc52906ed53ef5fbe2cf9e8e8f134ec69489cca8a4cc8d0e4ec82e499179bc4"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/a87d6c0077a9a55c",
+      "bytes": 30,
+      "SHA256": "a87d6c0077a9a55c4357dfc04894523243345c4949017debbcc2a0376fe85169"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/bb7702bc8401ab8c",
+      "bytes": 59,
+      "SHA256": "bb7702bc8401ab8c87e274b268849d74c2c772b7564eae993453aed5a6febe42"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/d49b2338d6369a09",
+      "bytes": 38,
+      "SHA256": "d49b2338d6369a094537074b9a28722462da2404cd12e41f3707d0fba919d636"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/d6ae6a9d8112ab1c",
+      "bytes": 38,
+      "SHA256": "d6ae6a9d8112ab1cf0d732d24ffce373d68edcb7a2c42d2b0ace724c428e97bb"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/f9938266d588e567",
+      "bytes": 180,
+      "SHA256": "f9938266d588e567d2df440ae3b3d66dedeef5ebdf2e3b407b374dc6df1ad9d8"
+    },
+    {
+      "path": "fuzz-cache/FuzzReleaseImportInto/fbab04f43516aa5e",
+      "bytes": 29,
+      "SHA256": "fbab04f43516aa5e2b159a4081fcca5a99a50f57e96df8ce95d58ffff75b9902"
+    }
+  ],
+  "minimalFailureCase": null,
+  "reason": "No assertion/panic/failure; interesting corpus is not a failure corpus."
+}

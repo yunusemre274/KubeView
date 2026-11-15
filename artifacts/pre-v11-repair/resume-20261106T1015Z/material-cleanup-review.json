@@ -1,0 +1,292 @@
+{
+  "id": "repair-material-long-battery-20261106",
+  "at": "2026-11-06T12:41:10.643Z",
+  "status": "PASSED_SCOPED_DIAGNOSTIC",
+  "reasons": [],
+  "mainComparison": "repair-final-battery-20261106 valid=true, unchanged",
+  "sourceAndBuildIdentityMatched": true,
+  "CPUProcessCoverage": true,
+  "summary": {
+    "durationMs": 1200101.1000000006,
+    "renderedFrames": 72003,
+    "renderedFPS": 59.99744521524059,
+    "renderIntervalMs": {
+      "n": 72002,
+      "p50": 16.699999999254942,
+      "p95": 18.90000000037253,
+      "p99": 21.5,
+      "min": 3.800000000745058,
+      "max": 48.69999999925494
+    },
+    "jsSubmitMs": {
+      "n": 72003,
+      "p50": 3.299999998882413,
+      "p95": 5.2999999998137355,
+      "p99": 5.599999999627471,
+      "min": 0.599999999627471,
+      "max": 22.200000001117587
+    },
+    "gapsOver50Ms": 0,
+    "gapsOver100Ms": 0,
+    "calls": {
+      "n": 72003,
+      "p50": 428,
+      "p95": 438,
+      "p99": 444,
+      "min": 408,
+      "max": 451
+    },
+    "triangles": {
+      "n": 72003,
+      "p50": 61804,
+      "p95": 62256,
+      "p99": 62506,
+      "min": 60890,
+      "max": 62790
+    },
+    "parseMs": {
+      "n": 5567,
+      "p50": 0.09999999962747097,
+      "p95": 0.20000000018626451,
+      "p99": 0.2000000011175871,
+      "min": 0,
+      "max": 0.30000000074505806
+    },
+    "storeMs": {
+      "n": 5567,
+      "p50": 1,
+      "p95": 1.300000000745058,
+      "p99": 1.400000000372529,
+      "min": 0.09999999962747097,
+      "max": 2.5
+    },
+    "callbackToStoreMs": {
+      "n": 5567,
+      "p50": 1.099999999627471,
+      "p95": 1.400000000372529,
+      "p99": 1.5,
+      "min": 0.09999999962747097,
+      "max": 2.5
+    },
+    "commitProxyMs": {
+      "n": 5567,
+      "p50": 2.6000000005587935,
+      "p95": 3.5,
+      "p99": 4.199999999254942,
+      "min": 0.7999999998137355,
+      "max": 7.099999999627471
+    },
+    "drawProxyMs": {
+      "n": 2282,
+      "p50": 14.400000000372529,
+      "p95": 18.699999999254942,
+      "p99": 22.09999999962747,
+      "min": 5.5,
+      "max": 37.10000000055879
+    },
+    "panelDomProxyMs": {
+      "n": 40,
+      "p50": 7.600000001490116,
+      "p95": 19.199999999254942,
+      "p99": 21,
+      "min": 2.200000001117587,
+      "max": 21
+    },
+    "panelRafProxyMs": {
+      "n": 40,
+      "p50": 15.199999999254942,
+      "p95": 21.59999999962747,
+      "p99": 24.799999998882413,
+      "min": 10.400000000372529,
+      "max": 24.799999998882413
+    },
+    "messages": 5567,
+    "longTasks": 0,
+    "errors": [],
+    "gpuCompletedMs": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "min": null,
+      "max": null
+    },
+    "presentedFPS": null,
+    "react": {}
+  },
+  "consistency": {
+    "clientMatchesUpstream": true,
+    "upstreamMatchesPlanned": true
+  },
+  "producer": {
+    "planned": 5600,
+    "completed": 5600,
+    "valid": true
+  },
+  "cycles": 20,
+  "reconnects": 3,
+  "resyncs": 329,
+  "logs": {
+    "opened": 24,
+    "closed": 24,
+    "remaining": 0
+  },
+  "all40": {
+    "materials": {
+      "min": 40,
+      "max": 44,
+      "n": 40
+    },
+    "sceneGeometries": {
+      "min": 35,
+      "max": 43,
+      "n": 40
+    },
+    "gpuGeometries": {
+      "min": 33,
+      "max": 41,
+      "n": 40
+    },
+    "textures": {
+      "min": 3,
+      "max": 3,
+      "n": 40
+    },
+    "programs": {
+      "min": 21,
+      "max": 22,
+      "n": 40
+    },
+    "heapUsedMiB": {
+      "min": 17.714359283447266,
+      "max": 89.89495468139648,
+      "n": 40
+    },
+    "DOMNodes": {
+      "min": 524,
+      "max": 756,
+      "n": 40
+    },
+    "logRows": {
+      "min": 267,
+      "max": 3567,
+      "n": 40
+    }
+  },
+  "equalBufferLate19": {
+    "materials": {
+      "min": 40,
+      "max": 44,
+      "n": 19
+    },
+    "sceneGeometries": {
+      "min": 35,
+      "max": 43,
+      "n": 19
+    },
+    "gpuGeometries": {
+      "min": 33,
+      "max": 41,
+      "n": 19
+    },
+    "textures": {
+      "min": 3,
+      "max": 3,
+      "n": 19
+    },
+    "programs": {
+      "min": 21,
+      "max": 22,
+      "n": 19
+    },
+    "heapUsedMiB": {
+      "min": 19.429973602294922,
+      "max": 44.2962760925293,
+      "n": 19
+    },
+    "DOMNodes": {
+      "min": 526,
+      "max": 544,
+      "n": 19
+    },
+    "logRows": {
+      "min": 295,
+      "max": 296,
+      "n": 19
+    }
+  },
+  "before": {
+    "version": "scene-inventory-v1",
+    "sampledAtMs": 30419,
+    "sceneReachable": {
+      "objects": 383,
+      "geometries": 43,
+      "materials": 44
+    },
+    "gpuRendererInfo": {
+      "geometries": 38,
+      "textures": 3,
+      "programs": 18
+    },
+    "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+  },
+  "after": {
+    "version": "scene-inventory-v1",
+    "sampledAtMs": 1230575.1999999993,
+    "sceneReachable": {
+      "objects": 373,
+      "geometries": 38,
+      "materials": 42
+    },
+    "gpuRendererInfo": {
+      "geometries": 37,
+      "textures": 3,
+      "programs": 22
+    },
+    "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+  },
+  "closed": {
+    "scene": {
+      "version": "scene-inventory-v1",
+      "sampledAtMs": 1231194.6999999993,
+      "sceneReachable": {
+        "objects": 373,
+        "geometries": 38,
+        "materials": 42
+      },
+      "gpuRendererInfo": {
+        "geometries": 37,
+        "textures": 3,
+        "programs": 22
+      },
+      "scope": "Distinct identities reachable from the current scene, including hidden/offscreen meshes, shared/material arrays and custom depth/distance/scene-override materials. Temporary identity sets are released after this call. GPU renderer info is a different inventory of allocated objects/cached programs, not bytes or VRAM. Renderer-generated and off-scene materials are excluded; no retained-resource/GC-completion or leak-proof claim."
+    },
+    "lifecycle": {
+      "intervals": 1,
+      "timeouts": 0,
+      "observers": {
+        "MutationObserver": 2,
+        "ResizeObserver": 1
+      },
+      "observerInstances": {
+        "MutationObserver": 2,
+        "ResizeObserver": 1
+      },
+      "callbacks": {
+        "timeout": 12396,
+        "interval": 82,
+        "MutationObserver": 2116,
+        "ResizeObserver": 1
+      },
+      "overflow": false,
+      "scope": "Page JS API counts; observers with live observed targets, plus live observer instances. Includes benchmark collector; weak references do not force GC. No worker/native scheduler claim."
+    },
+    "DOM": {
+      "documents": 1,
+      "nodes": 1710,
+      "jsEventListeners": 1421
+    },
+    "logView": null
+  },
+  "limits": "Pure checkpoint scene-reachable inventory, including hidden objects. Renderer-generated/off-scene materials excluded. Natural heap/listener counts include GC timing; bounded observed counts are not proof of absolute leak absence. Diagnostic overhead not pooled into primary CPU pairs."
+}

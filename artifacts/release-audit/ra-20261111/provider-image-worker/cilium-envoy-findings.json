@@ -1,0 +1,2218 @@
+[
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-109518",
+    "pkg": "apt",
+    "pkg_path": null,
+    "installed": "2.8.3",
+    "fixed": "2.8.4ubuntu0.1",
+    "status": "fixed",
+    "severity": "HIGH",
+    "severity_source": "ubuntu",
+    "title": "apt: apt: Remote code execution via hard link reuse during package download retries",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-109518",
+    "references": [
+      "http://www.openwall.com/lists/oss-security/2026/11/04/12",
+      "https://access.redhat.com/security/cve/CVE-2026-109518",
+      "https://lists.debian.org/debian-lts-announce/2026/11/msg00004.html",
+      "https://lists.debian.org/debian-security-announce/2026/msg00526.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-109518",
+      "https://ubuntu.com/blog/apt-vulnerability-fixes-available",
+      "https://ubuntu.com/security/notices/USN-8996-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-109518"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 8.1
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-76642",
+    "pkg": "bsdutils",
+    "pkg_path": null,
+    "installed": "1:2.39.3-9ubuntu6.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-76642",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:93461",
+      "https://access.redhat.com/security/cve/CVE-2026-76642",
+      "https://bugzilla.redhat.com/2454956",
+      "https://bugzilla.redhat.com/2494101",
+      "https://bugzilla.redhat.com/2519646",
+      "https://bugzilla.redhat.com/2519647",
+      "https://bugzilla.redhat.com/2519648",
+      "https://bugzilla.redhat.com/2521999",
+      "https://bugzilla.redhat.com/2522497",
+      "https://bugzilla.redhat.com/2522684",
+      "https://bugzilla.redhat.com/2552551",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2454956",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2494101",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519646",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519647",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519648",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2521999",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522497",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522684",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2552551",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13595",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27456",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53612",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53613",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53614",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53615",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-76642",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78408",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78410",
+      "https://errata.almalinux.org/10/ALSA-2026-93461.html",
+      "https://errata.rockylinux.org/RLSA-2026:93461",
+      "https://github.com/util-linux/util-linux",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L476",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L892",
+      "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
+      "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc",
+      "https://github.com/util-linux/util-linux/commit/f57cea130839c0af8dc0525274267ae4cfd66bbf",
+      "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
+      "https://linux.oracle.com/cve/CVE-2026-76642.html",
+      "https://linux.oracle.com/errata/ELSA-2026-93461.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
+      "https://www.cve.org/CVERecord?id=CVE-2026-76642",
+      "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.8
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-102473",
+    "pkg": "dash",
+    "pkg_path": null,
+    "installed": "0.5.12-6ubuntu5",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "dash: dash: Super-polynomial backtracking in pmatch when libc fnmatch is disabled",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-102473",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-102473",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543005",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-102473",
+      "https://www.cve.org/CVERecord?id=CVE-2026-102473"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 5.5
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-102474",
+    "pkg": "dash",
+    "pkg_path": null,
+    "installed": "0.5.12-6ubuntu5",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "dash: dash: Heap out-of-bounds write in conv_escape via undersized Unicode escape reservation",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-102474",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-102474",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543004",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-102474",
+      "https://www.cve.org/CVERecord?id=CVE-2026-102474"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+        "V3Score": 4
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-109518",
+    "pkg": "libapt-pkg6.0t64",
+    "pkg_path": null,
+    "installed": "2.8.3",
+    "fixed": "2.8.4ubuntu0.1",
+    "status": "fixed",
+    "severity": "HIGH",
+    "severity_source": "ubuntu",
+    "title": "apt: apt: Remote code execution via hard link reuse during package download retries",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-109518",
+    "references": [
+      "http://www.openwall.com/lists/oss-security/2026/11/04/12",
+      "https://access.redhat.com/security/cve/CVE-2026-109518",
+      "https://lists.debian.org/debian-lts-announce/2026/11/msg00004.html",
+      "https://lists.debian.org/debian-security-announce/2026/msg00526.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-109518",
+      "https://ubuntu.com/blog/apt-vulnerability-fixes-available",
+      "https://ubuntu.com/security/notices/USN-8996-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-109518"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 8.1
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-76642",
+    "pkg": "libblkid1",
+    "pkg_path": null,
+    "installed": "2.39.3-9ubuntu6.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-76642",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:93461",
+      "https://access.redhat.com/security/cve/CVE-2026-76642",
+      "https://bugzilla.redhat.com/2454956",
+      "https://bugzilla.redhat.com/2494101",
+      "https://bugzilla.redhat.com/2519646",
+      "https://bugzilla.redhat.com/2519647",
+      "https://bugzilla.redhat.com/2519648",
+      "https://bugzilla.redhat.com/2521999",
+      "https://bugzilla.redhat.com/2522497",
+      "https://bugzilla.redhat.com/2522684",
+      "https://bugzilla.redhat.com/2552551",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2454956",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2494101",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519646",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519647",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519648",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2521999",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522497",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522684",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2552551",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13595",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27456",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53612",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53613",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53614",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53615",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-76642",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78408",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78410",
+      "https://errata.almalinux.org/10/ALSA-2026-93461.html",
+      "https://errata.rockylinux.org/RLSA-2026:93461",
+      "https://github.com/util-linux/util-linux",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L476",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L892",
+      "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
+      "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc",
+      "https://github.com/util-linux/util-linux/commit/f57cea130839c0af8dc0525274267ae4cfd66bbf",
+      "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
+      "https://linux.oracle.com/cve/CVE-2026-76642.html",
+      "https://linux.oracle.com/errata/ELSA-2026-93461.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
+      "https://www.cve.org/CVERecord?id=CVE-2026-76642",
+      "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.8
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-67693",
+    "pkg": "libgnutls30t64",
+    "pkg_path": null,
+    "installed": "3.8.3-1.1ubuntu3.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "gnutls: gnutls: Information disclosure via contradictory Key Usage and Extended Key Usage extensions",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-67693",
+    "references": [
+      "http://gnutls.com",
+      "https://access.redhat.com/security/cve/CVE-2026-67693",
+      "https://gist.github.com/lkloliver/6fbfc191bc6163942c8017551ac3f238",
+      "https://github.com/lkloliver/poc/tree/main/CVE-2026-67693",
+      "https://gitlab.com/gnutls/gnutls/-/blob/3.8.13/lib/x509/verify.c#L1119-1178",
+      "https://gitlab.com/gnutls/gnutls/-/blob/e2169a87c7fb91935c2845088204b102baed4c5f/SECURITY.md",
+      "https://gitlab.com/gnutls/gnutls/-/work_items/1642",
+      "https://gitlab.com/gnutls/gnutls/-/work_items/1965",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-67693",
+      "https://www.cve.org/CVERecord?id=CVE-2026-67693"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "V3Score": 5.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-88647",
+    "pkg": "libgnutls30t64",
+    "pkg_path": null,
+    "installed": "3.8.3-1.1ubuntu3.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "gnutls: gnutls: Information disclosure via hostname verification bypass",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-88647",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-88647",
+      "https://gist.github.com/lkloliver/f98ec3de1a871fdfc02b70b8b9ba7642",
+      "https://github.com/lkloliver/poc/tree/main/CVE-2026-88647",
+      "https://gitlab.com/gnutls/gnutls/-/blob/e2169a87c7fb91935c2845088204b102baed4c5f/SECURITY.md",
+      "https://gitlab.com/gnutls/gnutls/-/issues/1802",
+      "https://gitlab.com/gnutls/gnutls/-/work_items/1965",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-88647",
+      "https://www.cve.org/CVERecord?id=CVE-2026-88647"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+        "V3Score": 7.4
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-88648",
+    "pkg": "libgnutls30t64",
+    "pkg_path": null,
+    "installed": "3.8.3-1.1ubuntu3.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "gnutls: gnutls: Cross-domain certificate restriction bypass via incomplete X.509 validation",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-88648",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-88648",
+      "https://gist.github.com/lkloliver/1f2a97cb8d0b31aa27b6bd0354358d7d",
+      "https://github.com/lkloliver/poc/tree/main/CVE-2026-88648",
+      "https://gitlab.com/gnutls/gnutls/-/blob/e2169a87c7fb91935c2845088204b102baed4c5f/SECURITY.md",
+      "https://gitlab.com/gnutls/gnutls/-/work_items/1965",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-88648",
+      "https://www.cve.org/CVERecord?id=CVE-2026-88648",
+      "https://www.rfc-editor.org/rfc/rfc5280#section-4.2.1.10",
+      "https://www.rfc-editor.org/rfc/rfc5280#section-6.1.4"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+        "V3Score": 7.4
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-95184",
+    "pkg": "libgnutls30t64",
+    "pkg_path": null,
+    "installed": "3.8.3-1.1ubuntu3.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "gnutls: gnutls: legitimate user certificates incorrectly rejected causing denial of service",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-95184",
+    "references": [
+      "http://gnutls.com",
+      "https://access.redhat.com/security/cve/CVE-2026-95184",
+      "https://evil.com",
+      "https://gist.github.com/lkloliver/0c8b47fa75a0958fa88587665b82ae15",
+      "https://github.com/lkloliver/poc/tree/main/CVE-2026-95184",
+      "https://gitlab.com/gnutls/gnutls/-/blob/e2169a87c7fb91935c2845088204b102baed4c5f/SECURITY.md",
+      "https://gitlab.com/gnutls/gnutls/-/work_items/1965",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-95184",
+      "https://www.cve.org/CVERecord?id=CVE-2026-95184",
+      "https://www.gnutls.org"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+        "V3Score": 5.3
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-95210",
+    "pkg": "libgnutls30t64",
+    "pkg_path": null,
+    "installed": "3.8.3-1.1ubuntu3.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "gnutls: gnutls: certificates with invalid extensions incorrectly accepted",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-95210",
+    "references": [
+      "http://gnutls.com",
+      "https://access.redhat.com/security/cve/CVE-2026-95210",
+      "https://gist.github.com/lkloliver/4aad23689202720c4068f43b3c6069c7",
+      "https://github.com/lkloliver/poc/tree/main/CVE-2026-95210",
+      "https://gitlab.com/gnutls/gnutls/-/blob/e2169a87c7fb91935c2845088204b102baed4c5f/SECURITY.md",
+      "https://gitlab.com/gnutls/gnutls/-/work_items/1965",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-95210",
+      "https://www.cve.org/CVERecord?id=CVE-2026-95210"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": null
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-76642",
+    "pkg": "libmount1",
+    "pkg_path": null,
+    "installed": "2.39.3-9ubuntu6.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-76642",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:93461",
+      "https://access.redhat.com/security/cve/CVE-2026-76642",
+      "https://bugzilla.redhat.com/2454956",
+      "https://bugzilla.redhat.com/2494101",
+      "https://bugzilla.redhat.com/2519646",
+      "https://bugzilla.redhat.com/2519647",
+      "https://bugzilla.redhat.com/2519648",
+      "https://bugzilla.redhat.com/2521999",
+      "https://bugzilla.redhat.com/2522497",
+      "https://bugzilla.redhat.com/2522684",
+      "https://bugzilla.redhat.com/2552551",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2454956",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2494101",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519646",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519647",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519648",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2521999",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522497",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522684",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2552551",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13595",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27456",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53612",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53613",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53614",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53615",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-76642",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78408",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78410",
+      "https://errata.almalinux.org/10/ALSA-2026-93461.html",
+      "https://errata.rockylinux.org/RLSA-2026:93461",
+      "https://github.com/util-linux/util-linux",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L476",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L892",
+      "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
+      "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc",
+      "https://github.com/util-linux/util-linux/commit/f57cea130839c0af8dc0525274267ae4cfd66bbf",
+      "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
+      "https://linux.oracle.com/cve/CVE-2026-76642.html",
+      "https://linux.oracle.com/errata/ELSA-2026-93461.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
+      "https://www.cve.org/CVERecord?id=CVE-2026-76642",
+      "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.8
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-103111",
+    "pkg": "libpcre2-8-0",
+    "pkg_path": null,
+    "installed": "10.42-4ubuntu2.1",
+    "fixed": "10.42-4ubuntu2.2",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "pcre2: pcre2: Out-of-bounds write via crafted regular expression",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-103111",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:81532",
+      "https://access.redhat.com/errata/RHSA-2026:81613",
+      "https://access.redhat.com/security/cve/CVE-2026-103111",
+      "https://bugzilla.redhat.com/2528993",
+      "https://bugzilla.redhat.com/2531743",
+      "https://bugzilla.redhat.com/2531744",
+      "https://bugzilla.redhat.com/2531745",
+      "https://bugzilla.redhat.com/2531746",
+      "https://bugzilla.redhat.com/2531747",
+      "https://bugzilla.redhat.com/2543797",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2528993",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531744",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531746",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543797",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-103111",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-86145",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89157",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89158",
+      "https://errata.almalinux.org/9/ALSA-2026-81532.html",
+      "https://errata.rockylinux.org/RLSA-2026:81613",
+      "https://github.com/PCRE2Project/pcre2/security/advisories/GHSA-r9hj-j2rw-4q3m",
+      "https://linux.oracle.com/cve/CVE-2026-103111.html",
+      "https://linux.oracle.com/errata/ELSA-2026-84799.html",
+      "https://lists.debian.org/debian-lts-announce/2026/10/msg00008.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-103111",
+      "https://ubuntu.com/security/notices/USN-8974-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-103111"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:L",
+        "V3Score": 7.6
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-86145",
+    "pkg": "libpcre2-8-0",
+    "pkg_path": null,
+    "installed": "10.42-4ubuntu2.1",
+    "fixed": "10.42-4ubuntu2.2",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "pcre2: PCRE2: Out-of-bounds write allows arbitrary code execution via crafted regular expressions",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-86145",
+    "references": [
+      "http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-86145",
+      "http://www.openwall.com/lists/oss-security/2026/09/05/3",
+      "https://access.redhat.com/errata/RHSA-2026:81532",
+      "https://access.redhat.com/errata/RHSA-2026:81613",
+      "https://access.redhat.com/security/cve/CVE-2026-86145",
+      "https://bugzilla.redhat.com/2528993",
+      "https://bugzilla.redhat.com/2531743",
+      "https://bugzilla.redhat.com/2531744",
+      "https://bugzilla.redhat.com/2531745",
+      "https://bugzilla.redhat.com/2531746",
+      "https://bugzilla.redhat.com/2531747",
+      "https://bugzilla.redhat.com/2543797",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2528993",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531744",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531746",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543797",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-103111",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-86145",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89157",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89158",
+      "https://errata.almalinux.org/9/ALSA-2026-81532.html",
+      "https://errata.rockylinux.org/RLSA-2026:81613",
+      "https://github.com/PCRE2Project/pcre2/releases/tag/pcre2-10.48",
+      "https://github.com/PCRE2Project/pcre2/security/advisories/GHSA-3r4p-g7gg-ppmf",
+      "https://github.com/bottlerocket-os/bottlerocket-core-kit/blob/develop/advisories/17.1.0/BRSA-xqvt0yt0g9rb.toml",
+      "https://github.com/bottlerocket-os/bottlerocket/security/advisories/GHSA-3r4p-g7gg-ppmf",
+      "https://linux.oracle.com/cve/CVE-2026-86145.html",
+      "https://linux.oracle.com/errata/ELSA-2026-84799.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-86145",
+      "https://ubuntu.com/security/notices/USN-8974-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-86145"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:L",
+        "V3Score": 8.2
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-89156",
+    "pkg": "libpcre2-8-0",
+    "pkg_path": null,
+    "installed": "10.42-4ubuntu2.1",
+    "fixed": "10.42-4ubuntu2.2",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "PCRE2: PCRE2: Out-of-bounds read via invalid UTF data during JIT fallback",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-89156",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:81522",
+      "https://access.redhat.com/errata/RHSA-2026:81532",
+      "https://access.redhat.com/security/cve/CVE-2026-89156",
+      "https://bugzilla.redhat.com/2528993",
+      "https://bugzilla.redhat.com/2531743",
+      "https://bugzilla.redhat.com/2531744",
+      "https://bugzilla.redhat.com/2531745",
+      "https://bugzilla.redhat.com/2531746",
+      "https://bugzilla.redhat.com/2531747",
+      "https://bugzilla.redhat.com/2543797",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2528993",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531743",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531744",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531745",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531746",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531747",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543797",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-103111",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-86145",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89156",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89157",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89158",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89160",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89161",
+      "https://errata.almalinux.org/9/ALSA-2026-81532.html",
+      "https://errata.rockylinux.org/RLSA-2026:81522",
+      "https://github.com/PCRE2Project/pcre2/releases/tag/pcre2-10.48",
+      "https://github.com/PCRE2Project/pcre2/security/advisories/GHSA-2p8c-ff85-vh9x",
+      "https://linux.oracle.com/cve/CVE-2026-89156.html",
+      "https://linux.oracle.com/errata/ELSA-2026-81532.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-89156",
+      "https://ubuntu.com/security/notices/USN-8974-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-89156"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 5.9
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+        "V3Score": 2.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-89157",
+    "pkg": "libpcre2-8-0",
+    "pkg_path": null,
+    "installed": "10.42-4ubuntu2.1",
+    "fixed": "10.42-4ubuntu2.2",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "pcre2: PCRE2: Out-of-bounds write via large pattern input",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-89157",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:81532",
+      "https://access.redhat.com/errata/RHSA-2026:81613",
+      "https://access.redhat.com/security/cve/CVE-2026-89157",
+      "https://bugzilla.redhat.com/2528993",
+      "https://bugzilla.redhat.com/2531743",
+      "https://bugzilla.redhat.com/2531744",
+      "https://bugzilla.redhat.com/2531745",
+      "https://bugzilla.redhat.com/2531746",
+      "https://bugzilla.redhat.com/2531747",
+      "https://bugzilla.redhat.com/2543797",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2528993",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531744",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531746",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543797",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-103111",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-86145",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89157",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89158",
+      "https://errata.almalinux.org/9/ALSA-2026-81532.html",
+      "https://errata.rockylinux.org/RLSA-2026:81613",
+      "https://github.com/PCRE2Project/pcre2/releases/tag/pcre2-10.48",
+      "https://github.com/PCRE2Project/pcre2/security/advisories/GHSA-q8g2-wprr-34m9",
+      "https://linux.oracle.com/cve/CVE-2026-89157.html",
+      "https://linux.oracle.com/errata/ELSA-2026-81613.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-89157",
+      "https://ubuntu.com/security/notices/USN-8974-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-89157"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H",
+        "V3Score": 7.4
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:L",
+        "V3Score": 5.7
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-89158",
+    "pkg": "libpcre2-8-0",
+    "pkg_path": null,
+    "installed": "10.42-4ubuntu2.1",
+    "fixed": "10.42-4ubuntu2.2",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "PCRE2: PCRE2: Out-of-bounds write via integer overflow on 32-bit platforms",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-89158",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:81532",
+      "https://access.redhat.com/errata/RHSA-2026:81613",
+      "https://access.redhat.com/security/cve/CVE-2026-89158",
+      "https://bugzilla.redhat.com/2528993",
+      "https://bugzilla.redhat.com/2531743",
+      "https://bugzilla.redhat.com/2531744",
+      "https://bugzilla.redhat.com/2531745",
+      "https://bugzilla.redhat.com/2531746",
+      "https://bugzilla.redhat.com/2531747",
+      "https://bugzilla.redhat.com/2543797",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2528993",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531744",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531746",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543797",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-103111",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-86145",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89157",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89158",
+      "https://errata.almalinux.org/9/ALSA-2026-81532.html",
+      "https://errata.rockylinux.org/RLSA-2026:81613",
+      "https://github.com/PCRE2Project/pcre2/releases/tag/pcre2-10.48",
+      "https://github.com/PCRE2Project/pcre2/security/advisories/GHSA-fmgr-6ggq-9859",
+      "https://linux.oracle.com/cve/CVE-2026-89158.html",
+      "https://linux.oracle.com/errata/ELSA-2026-81613.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-89158",
+      "https://ubuntu.com/security/notices/USN-8974-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-89158"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:L",
+        "V3Score": 6.5
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:L",
+        "V3Score": 6.5
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-89160",
+    "pkg": "libpcre2-8-0",
+    "pkg_path": null,
+    "installed": "10.42-4ubuntu2.1",
+    "fixed": "10.42-4ubuntu2.2",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "pcre2: PCRE2: Denial of Service via out-of-bounds read during invalid UTF matching",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-89160",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:81522",
+      "https://access.redhat.com/errata/RHSA-2026:81532",
+      "https://access.redhat.com/security/cve/CVE-2026-89160",
+      "https://bugzilla.redhat.com/2528993",
+      "https://bugzilla.redhat.com/2531743",
+      "https://bugzilla.redhat.com/2531744",
+      "https://bugzilla.redhat.com/2531745",
+      "https://bugzilla.redhat.com/2531746",
+      "https://bugzilla.redhat.com/2531747",
+      "https://bugzilla.redhat.com/2543797",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2528993",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531743",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531744",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531745",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531746",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531747",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543797",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-103111",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-86145",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89156",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89157",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89158",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89160",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89161",
+      "https://errata.almalinux.org/9/ALSA-2026-81532.html",
+      "https://errata.rockylinux.org/RLSA-2026:81522",
+      "https://github.com/PCRE2Project/pcre2/releases/tag/pcre2-10.48",
+      "https://github.com/PCRE2Project/pcre2/security/advisories/GHSA-9qww-pwc4-77qq",
+      "https://linux.oracle.com/cve/CVE-2026-89160.html",
+      "https://linux.oracle.com/errata/ELSA-2026-81532.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-89160",
+      "https://ubuntu.com/security/notices/USN-8974-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-89160"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:L",
+        "V3Score": 6.5
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+        "V3Score": 3.7
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-89161",
+    "pkg": "libpcre2-8-0",
+    "pkg_path": null,
+    "installed": "10.42-4ubuntu2.1",
+    "fixed": "10.42-4ubuntu2.2",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "pcre2: PCRE2: Memory corruption vulnerability in pcre2_jit_match",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-89161",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:81522",
+      "https://access.redhat.com/errata/RHSA-2026:81532",
+      "https://access.redhat.com/security/cve/CVE-2026-89161",
+      "https://bugzilla.redhat.com/2528993",
+      "https://bugzilla.redhat.com/2531743",
+      "https://bugzilla.redhat.com/2531744",
+      "https://bugzilla.redhat.com/2531745",
+      "https://bugzilla.redhat.com/2531746",
+      "https://bugzilla.redhat.com/2531747",
+      "https://bugzilla.redhat.com/2543797",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2528993",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531743",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531744",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531745",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531746",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2531747",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2543797",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-103111",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-86145",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89156",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89157",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89158",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89160",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-89161",
+      "https://errata.almalinux.org/9/ALSA-2026-81532.html",
+      "https://errata.rockylinux.org/RLSA-2026:81522",
+      "https://github.com/PCRE2Project/pcre2/commit/1dcd0cf42a6a7cb62cc9a7c024196733abcfda95%20%28pcre2-10.48-RC1%29",
+      "https://github.com/PCRE2Project/pcre2/pull/937",
+      "https://github.com/PCRE2Project/pcre2/releases/tag/pcre2-10.48",
+      "https://linux.oracle.com/cve/CVE-2026-89161.html",
+      "https://linux.oracle.com/errata/ELSA-2026-84799.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-89161",
+      "https://ubuntu.com/security/notices/USN-8974-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-89161"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.8
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.4
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-76642",
+    "pkg": "libsmartcols1",
+    "pkg_path": null,
+    "installed": "2.39.3-9ubuntu6.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-76642",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:93461",
+      "https://access.redhat.com/security/cve/CVE-2026-76642",
+      "https://bugzilla.redhat.com/2454956",
+      "https://bugzilla.redhat.com/2494101",
+      "https://bugzilla.redhat.com/2519646",
+      "https://bugzilla.redhat.com/2519647",
+      "https://bugzilla.redhat.com/2519648",
+      "https://bugzilla.redhat.com/2521999",
+      "https://bugzilla.redhat.com/2522497",
+      "https://bugzilla.redhat.com/2522684",
+      "https://bugzilla.redhat.com/2552551",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2454956",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2494101",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519646",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519647",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519648",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2521999",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522497",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522684",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2552551",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13595",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27456",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53612",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53613",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53614",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53615",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-76642",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78408",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78410",
+      "https://errata.almalinux.org/10/ALSA-2026-93461.html",
+      "https://errata.rockylinux.org/RLSA-2026:93461",
+      "https://github.com/util-linux/util-linux",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L476",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L892",
+      "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
+      "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc",
+      "https://github.com/util-linux/util-linux/commit/f57cea130839c0af8dc0525274267ae4cfd66bbf",
+      "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
+      "https://linux.oracle.com/cve/CVE-2026-76642.html",
+      "https://linux.oracle.com/errata/ELSA-2026-93461.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
+      "https://www.cve.org/CVERecord?id=CVE-2026-76642",
+      "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.8
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-84782",
+    "pkg": "libssl3t64",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "HIGH",
+    "severity_source": "ubuntu",
+    "title": "openssl: compat-openssl: openssl: Information disclosure via DTLS handshake retransmission",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-84782",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:80510",
+      "https://access.redhat.com/errata/RHSA-2026:80514",
+      "https://access.redhat.com/security/cve/CVE-2026-84782",
+      "https://bugzilla.redhat.com/2517560",
+      "https://bugzilla.redhat.com/2537080",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2537080",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-84782",
+      "https://errata.almalinux.org/9/ALSA-2026-80514.html",
+      "https://errata.rockylinux.org/RLSA-2026:80510",
+      "https://github.com/openssl/openssl/commit/906cf0ef1c85ca40ce69163e9086d6d3fe292943",
+      "https://github.com/openssl/openssl/commit/9f6b34422af7eb5dac61322e33dac1ae989fa628",
+      "https://github.com/openssl/openssl/commit/a383dafdd754eb5b22bf45e37e1bff9d07277a58",
+      "https://github.com/openssl/openssl/commit/d951e02ede8f6a6ff8150546db44b34f0518192c",
+      "https://linux.oracle.com/cve/CVE-2026-84782.html",
+      "https://linux.oracle.com/errata/ELSA-2026-85968.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-84782",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://openssl-library.org/news/vulnerabilities/#CVE-2026-84782",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://ubuntu.com/security/notices/USN-8847-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-84782"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:H",
+        "V3Score": 7.4
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-35189",
+    "pkg": "libssl3t64",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: openssl: Denial of Service via excessive memory allocation in CRL distribution point processing",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-35189",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-35189",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/2b93c73b2c70ddc4c61c5e4bfaaa6bd71379eb84",
+      "https://github.com/openssl/openssl/commit/3842516cc15e8b2cf55747011045e77547e71d89",
+      "https://github.com/openssl/openssl/commit/8e0efc7549b7ff8246d40e585e3fd604f728473f",
+      "https://github.com/openssl/openssl/commit/c72ae182cac17a82e4246c6ecd4e9c4ec3586ec9",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-35189",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://ubuntu.com/security/notices/USN-8847-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-35189"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+        "V3Score": 3.7
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-54872",
+    "pkg": "libssl3t64",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: OpenSSL: Private key recovery via timing side-channel in generic elliptic curve operations",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-54872",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-54872",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/1a5bee8dc57430a2be69cd1ffe7fec6a62f4f179",
+      "https://github.com/openssl/openssl/commit/3f7e1363dccec6f7732bb9e9fa471bb6e4aa68cb",
+      "https://github.com/openssl/openssl/commit/7d83bc7764999dfd91b83b4f0815b45390422afd",
+      "https://github.com/openssl/openssl/commit/8166827a78aad164a07aa86dea2b425403ced471",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-54872",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://ubuntu.com/security/notices/USN-8847-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-54872"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "V3Score": 5.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-75805",
+    "pkg": "libssl3t64",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: openssl: Denial of Service via crafted CMP certificate revocation response",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-75805",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-75805",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/7588db7fef14209c3caa3a101d11a02006b19166",
+      "https://github.com/openssl/openssl/commit/7ca0ccb5172a577e9b87267d77bfe21e5481a5e7",
+      "https://github.com/openssl/openssl/commit/9eb2a8a9b86136cdb39d6d7d50644dd66941cdc3",
+      "https://github.com/openssl/openssl/commit/abf02872a4b71767ecc72293424420f5b009190f",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-75805",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-75805"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 5.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-75806",
+    "pkg": "libssl3t64",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: OpenSSL: Denial of Service via undersized DTLS record",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-75806",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-75806",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/04728a289a823e68137f88da016cb9ede307217d",
+      "https://github.com/openssl/openssl/commit/050b275cd671a6eed1d6457642d41a5a77aab972",
+      "https://github.com/openssl/openssl/commit/3a4589d015a9049d47b66f186cf50a8711343a1d",
+      "https://github.com/openssl/openssl/commit/5af82fefbaf2b5fec2fc0e1d87f112844902f01d",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-75806",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-75806"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+        "V3Score": 5.3
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-77696",
+    "pkg": "libssl3t64",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: OpenSSL: Private key recovery via SM2 timing side-channel",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-77696",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-77696",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/1c4aed808a7aea32d2d013049c2e0d9fef164fc9",
+      "https://github.com/openssl/openssl/commit/20b20628d39b2dcc4677194bd68c7c060fa598cb",
+      "https://github.com/openssl/openssl/commit/419f5cb519721dceed393dbc524d79e487c72e64",
+      "https://github.com/openssl/openssl/commit/6b90445a56b99a328ac1feba058abf976504f440",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-77696",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://ubuntu.com/security/notices/USN-8847-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-77696"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "V3Score": 5.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-40228",
+    "pkg": "libsystemd0",
+    "pkg_path": null,
+    "installed": "255.4-1ubuntu8.17",
+    "fixed": null,
+    "status": "affected",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "systemd: systemd-journald: Unintended output to user terminals via logger command",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-40228",
+    "references": [
+      "http://www.openwall.com/lists/oss-security/2026/05/05/1",
+      "https://access.redhat.com/security/cve/CVE-2026-40228",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-40228",
+      "https://www.cve.org/CVERecord?id=CVE-2026-40228",
+      "https://www.openwall.com/lists/oss-security/2026/04/08/1"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+        "V3Score": 3.3
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+        "V3Score": 2.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-40228",
+    "pkg": "libudev1",
+    "pkg_path": null,
+    "installed": "255.4-1ubuntu8.17",
+    "fixed": null,
+    "status": "affected",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "systemd: systemd-journald: Unintended output to user terminals via logger command",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-40228",
+    "references": [
+      "http://www.openwall.com/lists/oss-security/2026/05/05/1",
+      "https://access.redhat.com/security/cve/CVE-2026-40228",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-40228",
+      "https://www.cve.org/CVERecord?id=CVE-2026-40228",
+      "https://www.openwall.com/lists/oss-security/2026/04/08/1"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+        "V3Score": 3.3
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+        "V3Score": 2.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-76642",
+    "pkg": "libuuid1",
+    "pkg_path": null,
+    "installed": "2.39.3-9ubuntu6.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-76642",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:93461",
+      "https://access.redhat.com/security/cve/CVE-2026-76642",
+      "https://bugzilla.redhat.com/2454956",
+      "https://bugzilla.redhat.com/2494101",
+      "https://bugzilla.redhat.com/2519646",
+      "https://bugzilla.redhat.com/2519647",
+      "https://bugzilla.redhat.com/2519648",
+      "https://bugzilla.redhat.com/2521999",
+      "https://bugzilla.redhat.com/2522497",
+      "https://bugzilla.redhat.com/2522684",
+      "https://bugzilla.redhat.com/2552551",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2454956",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2494101",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519646",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519647",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519648",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2521999",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522497",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522684",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2552551",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13595",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27456",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53612",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53613",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53614",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53615",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-76642",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78408",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78410",
+      "https://errata.almalinux.org/10/ALSA-2026-93461.html",
+      "https://errata.rockylinux.org/RLSA-2026:93461",
+      "https://github.com/util-linux/util-linux",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L476",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L892",
+      "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
+      "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc",
+      "https://github.com/util-linux/util-linux/commit/f57cea130839c0af8dc0525274267ae4cfd66bbf",
+      "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
+      "https://linux.oracle.com/cve/CVE-2026-76642.html",
+      "https://linux.oracle.com/errata/ELSA-2026-93461.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
+      "https://www.cve.org/CVERecord?id=CVE-2026-76642",
+      "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.8
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2024-56433",
+    "pkg": "login",
+    "pkg_path": null,
+    "installed": "1:4.13+dfsg1-4ubuntu3.2",
+    "fixed": null,
+    "status": "affected",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2024-56433",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2025:20145",
+      "https://access.redhat.com/errata/RHSA-2025:20559",
+      "https://access.redhat.com/security/cve/CVE-2024-56433",
+      "https://bugzilla.redhat.com/2334165",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2334165",
+      "https://cert-portal.siemens.com/productcert/html/ssa-398330.html",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433",
+      "https://errata.almalinux.org/9/ALSA-2025-20559.html",
+      "https://errata.rockylinux.org/RLSA-2025:20145",
+      "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241",
+      "https://github.com/shadow-maint/shadow/issues/1157",
+      "https://github.com/shadow-maint/shadow/releases/tag/4.4",
+      "https://linux.oracle.com/cve/CVE-2024-56433.html",
+      "https://linux.oracle.com/errata/ELSA-2025-20559-0.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2024-56433",
+      "https://www.cve.org/CVERecord?id=CVE-2024-56433"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+        "V3Score": 3.6
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-76642",
+    "pkg": "mount",
+    "pkg_path": null,
+    "installed": "2.39.3-9ubuntu6.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-76642",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:93461",
+      "https://access.redhat.com/security/cve/CVE-2026-76642",
+      "https://bugzilla.redhat.com/2454956",
+      "https://bugzilla.redhat.com/2494101",
+      "https://bugzilla.redhat.com/2519646",
+      "https://bugzilla.redhat.com/2519647",
+      "https://bugzilla.redhat.com/2519648",
+      "https://bugzilla.redhat.com/2521999",
+      "https://bugzilla.redhat.com/2522497",
+      "https://bugzilla.redhat.com/2522684",
+      "https://bugzilla.redhat.com/2552551",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2454956",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2494101",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519646",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519647",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519648",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2521999",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522497",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522684",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2552551",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13595",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27456",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53612",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53613",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53614",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53615",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-76642",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78408",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78410",
+      "https://errata.almalinux.org/10/ALSA-2026-93461.html",
+      "https://errata.rockylinux.org/RLSA-2026:93461",
+      "https://github.com/util-linux/util-linux",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L476",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L892",
+      "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
+      "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc",
+      "https://github.com/util-linux/util-linux/commit/f57cea130839c0af8dc0525274267ae4cfd66bbf",
+      "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
+      "https://linux.oracle.com/cve/CVE-2026-76642.html",
+      "https://linux.oracle.com/errata/ELSA-2026-93461.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
+      "https://www.cve.org/CVERecord?id=CVE-2026-76642",
+      "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.8
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-84782",
+    "pkg": "openssl",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "HIGH",
+    "severity_source": "ubuntu",
+    "title": "openssl: compat-openssl: openssl: Information disclosure via DTLS handshake retransmission",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-84782",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:80510",
+      "https://access.redhat.com/errata/RHSA-2026:80514",
+      "https://access.redhat.com/security/cve/CVE-2026-84782",
+      "https://bugzilla.redhat.com/2517560",
+      "https://bugzilla.redhat.com/2537080",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2537080",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-84782",
+      "https://errata.almalinux.org/9/ALSA-2026-80514.html",
+      "https://errata.rockylinux.org/RLSA-2026:80510",
+      "https://github.com/openssl/openssl/commit/906cf0ef1c85ca40ce69163e9086d6d3fe292943",
+      "https://github.com/openssl/openssl/commit/9f6b34422af7eb5dac61322e33dac1ae989fa628",
+      "https://github.com/openssl/openssl/commit/a383dafdd754eb5b22bf45e37e1bff9d07277a58",
+      "https://github.com/openssl/openssl/commit/d951e02ede8f6a6ff8150546db44b34f0518192c",
+      "https://linux.oracle.com/cve/CVE-2026-84782.html",
+      "https://linux.oracle.com/errata/ELSA-2026-85968.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-84782",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://openssl-library.org/news/vulnerabilities/#CVE-2026-84782",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://ubuntu.com/security/notices/USN-8847-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-84782"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:H",
+        "V3Score": 7.4
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-35189",
+    "pkg": "openssl",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: openssl: Denial of Service via excessive memory allocation in CRL distribution point processing",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-35189",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-35189",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/2b93c73b2c70ddc4c61c5e4bfaaa6bd71379eb84",
+      "https://github.com/openssl/openssl/commit/3842516cc15e8b2cf55747011045e77547e71d89",
+      "https://github.com/openssl/openssl/commit/8e0efc7549b7ff8246d40e585e3fd604f728473f",
+      "https://github.com/openssl/openssl/commit/c72ae182cac17a82e4246c6ecd4e9c4ec3586ec9",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-35189",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://ubuntu.com/security/notices/USN-8847-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-35189"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+        "V3Score": 3.7
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-54872",
+    "pkg": "openssl",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: OpenSSL: Private key recovery via timing side-channel in generic elliptic curve operations",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-54872",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-54872",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/1a5bee8dc57430a2be69cd1ffe7fec6a62f4f179",
+      "https://github.com/openssl/openssl/commit/3f7e1363dccec6f7732bb9e9fa471bb6e4aa68cb",
+      "https://github.com/openssl/openssl/commit/7d83bc7764999dfd91b83b4f0815b45390422afd",
+      "https://github.com/openssl/openssl/commit/8166827a78aad164a07aa86dea2b425403ced471",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-54872",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://ubuntu.com/security/notices/USN-8847-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-54872"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "V3Score": 5.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-75805",
+    "pkg": "openssl",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: openssl: Denial of Service via crafted CMP certificate revocation response",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-75805",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-75805",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/7588db7fef14209c3caa3a101d11a02006b19166",
+      "https://github.com/openssl/openssl/commit/7ca0ccb5172a577e9b87267d77bfe21e5481a5e7",
+      "https://github.com/openssl/openssl/commit/9eb2a8a9b86136cdb39d6d7d50644dd66941cdc3",
+      "https://github.com/openssl/openssl/commit/abf02872a4b71767ecc72293424420f5b009190f",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-75805",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-75805"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "V3Score": 5.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-75806",
+    "pkg": "openssl",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: OpenSSL: Denial of Service via undersized DTLS record",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-75806",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-75806",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/04728a289a823e68137f88da016cb9ede307217d",
+      "https://github.com/openssl/openssl/commit/050b275cd671a6eed1d6457642d41a5a77aab972",
+      "https://github.com/openssl/openssl/commit/3a4589d015a9049d47b66f186cf50a8711343a1d",
+      "https://github.com/openssl/openssl/commit/5af82fefbaf2b5fec2fc0e1d87f112844902f01d",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-75806",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-75806"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+        "V3Score": 5.3
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-77696",
+    "pkg": "openssl",
+    "pkg_path": null,
+    "installed": "3.0.13-0ubuntu3.15",
+    "fixed": "3.0.13-0ubuntu3.16",
+    "status": "fixed",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "openssl: OpenSSL: Private key recovery via SM2 timing side-channel",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-77696",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-77696",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/openssl/openssl/commit/1c4aed808a7aea32d2d013049c2e0d9fef164fc9",
+      "https://github.com/openssl/openssl/commit/20b20628d39b2dcc4677194bd68c7c060fa598cb",
+      "https://github.com/openssl/openssl/commit/419f5cb519721dceed393dbc524d79e487c72e64",
+      "https://github.com/openssl/openssl/commit/6b90445a56b99a328ac1feba058abf976504f440",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-77696",
+      "https://openssl-library.org/news/secadv/20260929.txt",
+      "https://ubuntu.com/security/notices/USN-8847-1",
+      "https://ubuntu.com/security/notices/USN-8847-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-77696"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "V3Score": 5.9
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2024-56433",
+    "pkg": "passwd",
+    "pkg_path": null,
+    "installed": "1:4.13+dfsg1-4ubuntu3.2",
+    "fixed": null,
+    "status": "affected",
+    "severity": "LOW",
+    "severity_source": "ubuntu",
+    "title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2024-56433",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2025:20145",
+      "https://access.redhat.com/errata/RHSA-2025:20559",
+      "https://access.redhat.com/security/cve/CVE-2024-56433",
+      "https://bugzilla.redhat.com/2334165",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2334165",
+      "https://cert-portal.siemens.com/productcert/html/ssa-398330.html",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433",
+      "https://errata.almalinux.org/9/ALSA-2025-20559.html",
+      "https://errata.rockylinux.org/RLSA-2025:20145",
+      "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241",
+      "https://github.com/shadow-maint/shadow/issues/1157",
+      "https://github.com/shadow-maint/shadow/releases/tag/4.4",
+      "https://linux.oracle.com/cve/CVE-2024-56433.html",
+      "https://linux.oracle.com/errata/ELSA-2025-20559-0.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2024-56433",
+      "https://www.cve.org/CVERecord?id=CVE-2024-56433"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+        "V3Score": 3.6
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-15534",
+    "pkg": "perl-base",
+    "pkg_path": null,
+    "installed": "5.38.2-3.2ubuntu0.4",
+    "fixed": "5.38.2-3.2ubuntu0.6",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "perl: Perl: Arbitrary code execution via out-of-bounds memory access in regular expression engine.",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-15534",
+    "references": [
+      "http://www.openwall.com/lists/oss-security/2026/08/09/12",
+      "http://www.openwall.com/lists/oss-security/2026/08/09/13",
+      "https://access.redhat.com/security/cve/CVE-2026-15534",
+      "https://github.com/Perl/perl5/commit/54cf3d44cbbedd17d774e9a37921963e8fd5d0cb.patch",
+      "https://github.com/Perl/perl5/commit/568e6fd238867bb9e99fa3f47cba3169009239e0.patch",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-15534",
+      "https://ubuntu.com/security/notices/USN-8736-1",
+      "https://ubuntu.com/security/notices/USN-8736-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-15534"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:H",
+        "V3Score": 5.7
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-19487",
+    "pkg": "perl-base",
+    "pkg_path": null,
+    "installed": "5.38.2-3.2ubuntu0.4",
+    "fixed": "5.38.2-3.2ubuntu0.6",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "perl: Perl: Incorrect regular expression matching can lead to wrong access or filtering decisions.",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-19487",
+    "references": [
+      "http://www.openwall.com/lists/oss-security/2026/08/13/8",
+      "https://access.redhat.com/security/cve/CVE-2026-19487",
+      "https://cert-portal.siemens.com/productcert/html/ssa-457936.html",
+      "https://github.com/Perl/perl5/commit/1a21abacaf6f684928bae8baaa153733c8c238eb.patch",
+      "https://github.com/Perl/perl5/issues/22892",
+      "https://lists.security.metacpan.org/cve-announce/msg/42658992/",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-19487",
+      "https://ubuntu.com/security/notices/USN-8736-1",
+      "https://ubuntu.com/security/notices/USN-8736-2",
+      "https://www.cve.org/CVERecord?id=CVE-2026-19487"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+        "V3Score": 6.5
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-18477",
+    "pkg": "tar",
+    "pkg_path": null,
+    "installed": "1.35+dfsg-3ubuntu0.4",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "tar: tar: TOCTOU in incremental dumpdir 'X' rename handling allows restore path escape",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-18477",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:49361",
+      "https://access.redhat.com/errata/RHSA-2026:61581",
+      "https://access.redhat.com/errata/RHSA-2026:61586",
+      "https://access.redhat.com/errata/RHSA-2026:61783",
+      "https://access.redhat.com/errata/RHSA-2026:66018",
+      "https://access.redhat.com/errata/RHSA-2026:70390",
+      "https://access.redhat.com/security/cve/CVE-2026-18477",
+      "https://bugzilla.redhat.com/2455360",
+      "https://bugzilla.redhat.com/2509735",
+      "https://bugzilla.redhat.com/2509843",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2379592",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2455360",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2509735",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2509843",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-45582",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-18477",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-18508",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-5704",
+      "https://errata.almalinux.org/9/ALSA-2026-61581.html",
+      "https://errata.rockylinux.org/RLSA-2026:70390",
+      "https://linux.oracle.com/cve/CVE-2026-18477.html",
+      "https://linux.oracle.com/errata/ELSA-2026-70390.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-18477",
+      "https://www.cve.org/CVERecord?id=CVE-2026-18477"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "julia": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N",
+        "V3Score": 4.4
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N",
+        "V3Score": 4.4
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-18508",
+    "pkg": "tar",
+    "pkg_path": null,
+    "installed": "1.35+dfsg-3ubuntu0.4",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "tar: tar: --one-top-level hardlink targets not confined to top-level directory enabling arbitrary file overwrite",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-18508",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:50807",
+      "https://access.redhat.com/errata/RHSA-2026:61581",
+      "https://access.redhat.com/errata/RHSA-2026:61586",
+      "https://access.redhat.com/errata/RHSA-2026:61783",
+      "https://access.redhat.com/errata/RHSA-2026:66018",
+      "https://access.redhat.com/errata/RHSA-2026:70390",
+      "https://access.redhat.com/security/cve/CVE-2026-18508",
+      "https://bugzilla.redhat.com/2455360",
+      "https://bugzilla.redhat.com/2509735",
+      "https://bugzilla.redhat.com/2509843",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2379592",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2455360",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2509735",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2509843",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-45582",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-18477",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-18508",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-5704",
+      "https://errata.almalinux.org/9/ALSA-2026-61581.html",
+      "https://errata.rockylinux.org/RLSA-2026:70390",
+      "https://linux.oracle.com/cve/CVE-2026-18508.html",
+      "https://linux.oracle.com/errata/ELSA-2026-70390.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-18508",
+      "https://www.cve.org/CVERecord?id=CVE-2026-18508"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+        "V3Score": 4.4
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-76642",
+    "pkg": "util-linux",
+    "pkg_path": null,
+    "installed": "2.39.3-9ubuntu6.6",
+    "fixed": null,
+    "status": "affected",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-76642",
+    "references": [
+      "https://access.redhat.com/errata/RHSA-2026:93461",
+      "https://access.redhat.com/security/cve/CVE-2026-76642",
+      "https://bugzilla.redhat.com/2454956",
+      "https://bugzilla.redhat.com/2494101",
+      "https://bugzilla.redhat.com/2519646",
+      "https://bugzilla.redhat.com/2519647",
+      "https://bugzilla.redhat.com/2519648",
+      "https://bugzilla.redhat.com/2521999",
+      "https://bugzilla.redhat.com/2522497",
+      "https://bugzilla.redhat.com/2522684",
+      "https://bugzilla.redhat.com/2552551",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2454956",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2494101",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519646",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519647",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2519648",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2521999",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522497",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2522684",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2552551",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13595",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27456",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53612",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53613",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53614",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-53615",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-76642",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78408",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-78410",
+      "https://errata.almalinux.org/10/ALSA-2026-93461.html",
+      "https://errata.rockylinux.org/RLSA-2026:93461",
+      "https://github.com/util-linux/util-linux",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L476",
+      "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L892",
+      "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
+      "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc",
+      "https://github.com/util-linux/util-linux/commit/f57cea130839c0af8dc0525274267ae4cfd66bbf",
+      "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
+      "https://linux.oracle.com/cve/CVE-2026-76642.html",
+      "https://linux.oracle.com/errata/ELSA-2026-93461.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
+      "https://www.cve.org/CVERecord?id=CVE-2026-76642",
+      "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 7.8
+      }
+    }
+  },
+  {
+    "image": "cilium-envoy",
+    "digest_ref": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463",
+    "target": "quay.io/cilium/cilium-envoy@sha256:af7382699576b9e65e9184efa52eeca0b58aea70ad6e511bf260c91d9f740463 (ubuntu 24.04)",
+    "class": "os-pkgs",
+    "type": "ubuntu",
+    "id": "CVE-2026-85091",
+    "pkg": "zlib1g",
+    "pkg_path": null,
+    "installed": "1:1.3.dfsg-3.1ubuntu2.2",
+    "fixed": "1:1.3.dfsg-3.1ubuntu2.3",
+    "status": "fixed",
+    "severity": "MEDIUM",
+    "severity_source": "ubuntu",
+    "title": "zlib: zlib: Heap buffer overflow in gz_vacate() allows arbitrary code execution",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2026-85091",
+    "references": [
+      "https://access.redhat.com/security/cve/CVE-2026-85091",
+      "https://gist.github.com/thesmartshadow/e0b9481792afb7c31e86fee1ff084490",
+      "https://github.com/madler/zlib",
+      "https://github.com/madler/zlib/blob/v1.3.2/gzwrite.c#L393",
+      "https://nvd.nist.gov/vuln/detail/CVE-2026-85091",
+      "https://ubuntu.com/security/notices/USN-8954-1",
+      "https://www.cve.org/CVERecord?id=CVE-2026-85091",
+      "https://www.vulncheck.com/advisories/zlib-1.3.1.2-through-1.3.2-heap-buffer-overflow-via-gz-vacate"
+    ],
+    "data_source": {
+      "ID": "ubuntu",
+      "Name": "Ubuntu CVE Tracker",
+      "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+    },
+    "cvss": {
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 8.1
+      }
+    }
+  }
+]

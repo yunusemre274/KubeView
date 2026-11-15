@@ -1,0 +1,301 @@
+{
+  "at": "2026-11-11T12:20:57.046235+00:00",
+  "exitCode": 0,
+  "files": [
+    {
+      "path": "ROADMAP_FOR_TESTS.md",
+      "sha256": "c2904e21b8408f5b9c31e6a4f26fadea32af5e8553acbc47703dd8a543bbdfc0",
+      "bytes": 662318
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/bind-surface/normal-lan-first-driver-error.md",
+      "sha256": "558be857cbbde9a8a8bbcc63ba90c04eeefd681ec3b38342de8d7d61ae4b60c5",
+      "bytes": 416
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/bind-surface/normal-lan-no-token-retest.json",
+      "sha256": "d020961a3b750d46e22be3d924dd5faad44085bc99447f5539bdebd9bffb796e",
+      "bytes": 289
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/bind-surface/result.json",
+      "sha256": "484e4159904ce0e4658eaa0419841586ffdf4b0d80bad397ed091c7a00485609",
+      "bytes": 847
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/candidate03-binary.json",
+      "sha256": "f1c61bcc96be7e318f604166013d0228489dbd7ecc4150f9aa49cf1a5deb4060",
+      "bytes": 1303
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/candidate03-build.log",
+      "sha256": "ad9fc95e1296535f2e7797dfee6339b3214ab129cf4dab7077661f18d9ca2232",
+      "bytes": 24271
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/candidate04-binary.json",
+      "sha256": "75393d1fae9d3666f391d9e2ebed985e59f1482a26383fa71cbf116c8e8f30ab",
+      "bytes": 1399
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/candidate04-build.log",
+      "sha256": "d5b49390cd0b87f2cc56e8526a02584477d511ec879419d3253aec58d3475f2e",
+      "bytes": 24473
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/label-fit-unit.log",
+      "sha256": "3fcad546716600e8dfa0c22fa6957d71555360e677e8b37867416c8c9da03de6",
+      "bytes": 878
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/REPORT.md",
+      "sha256": "8562c66183aad1362db81b9d191f61954a355731881afad1fc74d1e340694bdf",
+      "bytes": 13278
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/existing-security-tests.log",
+      "sha256": "015d4058c7eac7c2b0f2dac3b339b53831ad7dbac7545b9134fee364d1aef902",
+      "bytes": 3418
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/preview-creation-grant-test.log",
+      "sha256": "6a2806e718bfccb0d5d8ae58771b29019af4a60d8b0811c79da069a25e12840a",
+      "bytes": 1496
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/preview-final-tests.log",
+      "sha256": "d6a560a3510656427662baa68cc3ac083b42293b3995f0e944f93448dba9600f",
+      "bytes": 6098
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions-initial.log",
+      "sha256": "67617939febfe692eff5b1372ab6063894402566822959fa91cdf0d6e79179fe",
+      "bytes": 5064
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/preview-inprocess-regressions.log",
+      "sha256": "a1f62fd96c2bb03f0e5e3bce87210bf880cfe1f27751dcbc7b6561660fedb6ab",
+      "bytes": 5026
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/source-identity.json",
+      "sha256": "e1a2b0d3529e86352bfd800f4092e5004868b7b523ea42ccc7ceeae051306aa5",
+      "bytes": 1195
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/static-route-test.log",
+      "sha256": "fe8af5bb8fc36fa88b1ac2f4827973f0b21371b85201d1316d6b234d2ecc233a",
+      "bytes": 1723
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/test-runs.json",
+      "sha256": "be736f28aa7362d3d6e0574d0483d15fbb64a74b4c6987c3cd64281ca8190858",
+      "bytes": 4207
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/origin-preview-worker/test-summary.json",
+      "sha256": "6b5a1da820733321c1ccd1c7c3657a9a41e924bee0e5f5260150585983e8c1e5",
+      "bytes": 1389
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-isolation04/run.json",
+      "sha256": "a7c379c61a24a40aeafa531e666daee21490e6883fc5077bff4ccfd99e24a738",
+      "bytes": 556
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-isolation04/run.log",
+      "sha256": "4e6cfc20c69710b32325b280ce2860e4db9f6c47d14f8e2c9f8cf856d4984ac4",
+      "bytes": 1634
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-isolation04/workspace-real-isolation-qa-ws-ee6c402dc8204c8f.json",
+      "sha256": "e6fe9e74955d8c829dc3b98929cbc9e09f96c411e9c7c93d931747d059d34619",
+      "bytes": 1115
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-operations/run.json",
+      "sha256": "422caebb0559c7785e2c89efe12eb904851d298e31c834e2e386db953ad0a416",
+      "bytes": 480
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-operations/run.log",
+      "sha256": "c58ea9caee83b0c11fc012036ea6067254d238ac70eb7f88a96291eba797d056",
+      "bytes": 2315
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-operations/workspace-real-operations-acceptance-qa-ws-ef3aea9006c44d15.json",
+      "sha256": "3f0657e2a92534621c17fedd7fbf70465b2d4707ae5317df3279a97e85226776",
+      "bytes": 1172
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-records-preparation/ready.json",
+      "sha256": "68f3181858f5b6733ced9222f563560349d6e870718e05e5153ecfbb28d26cc9",
+      "bytes": 355
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-records-retest/run.json",
+      "sha256": "c41615f6964b61ef82596119f958f1e3cb14ef3b4378a0a2c0f3968f8e344c8c",
+      "bytes": 475
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-records-retest/run.log",
+      "sha256": "d8dcc92f89b7e4f59aa8fb6208cbf44bdd96380f6bc7dbad9a9a441632f191d3",
+      "bytes": 1820
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-records-retest/workspace-real-workspace-record-acceptance-qa-ws-3527b7e6872d4915.json",
+      "sha256": "ffac217b8fd533b06067231d69e4c563f7b0d4655e25237b1cf638cc7a4884d9",
+      "bytes": 1273
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-records/run.json",
+      "sha256": "aa5277d3cc87ec9affb8a792ad8bf53680eda2fc33bd2925aefcb6d57b087b1a",
+      "bytes": 464
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-records/run.log",
+      "sha256": "8256b439a07ae216e8d9eafcd52265a36c41e1d236fac4a590f4de426fc5107b",
+      "bytes": 290
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-records/workspace-real-workspace-record-acceptance-qa-ws-391bcecc12d14d0c.json",
+      "sha256": "c6cbfd120acf0b4ec79c09af3585160bb81ad5c794fe8836e3c319e87284e153",
+      "bytes": 430
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-selector/run.log",
+      "sha256": "ce2933a03fb8bcfdea2f1fc4864094bcc73f669ecddfe67192be05555c60ba5d",
+      "bytes": 2266
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/real-api-selector/workspace-real-selector-multins-overlap-qa-ws-471a793fc34f49d8.json",
+      "sha256": "50bb750de328cb973f7c78fb8699f87eb4e2c104d1fb50c69db98f7ffa5bb74f",
+      "bytes": 1715
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/transient-panel-red.log",
+      "sha256": "7a1873dcf677fc78bee7ed3aa52dad93419cd9c7bee7132be4712fc0e8595779",
+      "bytes": 1341
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/transient-panel-retest.log",
+      "sha256": "79ae950f5ab9d13a16eedaff43bc37ad12e9129eccbdf7456813cd25d4302410",
+      "bytes": 1140
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui03-cycles-preflight-capture/result.json",
+      "sha256": "837ddc8d193f31316f34ef741908e16d8acfbee71602ed55b15e2da605fc03f2",
+      "bytes": 4021
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui03-cycles-preflight/result.json",
+      "sha256": "680e1beca445dadac0c6b06bea08eb84c266d1bfc1d727f15e414b2ea150ee93",
+      "bytes": 1636
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-cycles-preflight/result.json",
+      "sha256": "d090ab53c6bee9806b4bb1c90b50d0b3f07bf8074895ee8030d01cc61611f933",
+      "bytes": 3321
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-cycles50/after-cycles.png",
+      "sha256": "8b343dccfcc494f794ce5e48c5e2a11dbb0e36846eb703a0a4ba64dfe31ea59c",
+      "bytes": 1229533
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-cycles50/result.json",
+      "sha256": "66aeceea81fb80537ed6a3a43781e36a4da631545714dd616b6b38aa63f0edd4",
+      "bytes": 118366
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-label-webkit/result.json",
+      "sha256": "ad8e10726868355aea0213bf8d0e6515ffd9dbdbbe46316c641af8fb560d66bf",
+      "bytes": 11865
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-label-webkit/world-768.png",
+      "sha256": "062196931ea202f1fb4ac95e5efd6b80824db93daa02882fc5e734d2a2ac502f",
+      "bytes": 867580
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-phone-chromium/failure.png",
+      "sha256": "bc27cff9b8514b5d116a50ed44ebedf270de3b5c2a4ea07a51db2439ccfde0d6",
+      "bytes": 123165
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-phone-chromium/result.json",
+      "sha256": "b576d610c94c2bcf5cdb993eda735a9dcad34268ffdc605da5072fbb485e14a9",
+      "bytes": 3719
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-phone-framing-chromium/center-390-940ea70a-0b63-4656-8f77-c56620496a4a.png",
+      "sha256": "513db4e261a3d9db6dfbed021527bd00865e768d893aa2f953c80b68380630f9",
+      "bytes": 147273
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-phone-framing-chromium/result.json",
+      "sha256": "943b44580a970fcebc2a1b486da82036b122114644a64a3349284e2f27d3c395",
+      "bytes": 4680
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/ui04-phone-framing-chromium/world-390.png",
+      "sha256": "9e50f3c9edd8ebf66999c46b3ad41834d114fa96aa6d90708ec08a5fdbe38aa1",
+      "bytes": 262305
+    },
+    {
+      "path": "backend/pkg/server/release_origin_preview_test.go",
+      "sha256": "8714457eefdb67c710b14a4ed29adb261ba433ef0c96bc01d93d1367a9a65a34",
+      "bytes": 12310
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "sha256": "1a8faaf4f08bdf092d9c66b2c7ad68716c2e93d34868505914fbb42b43fd5146",
+      "bytes": 34446
+    },
+    {
+      "path": "docs/LESSONS.md",
+      "sha256": "8a6b0bec60660c80cfb9b16ec96fc3b9928579be6a47ab4272c6a49a306b0975",
+      "bytes": 36727
+    },
+    {
+      "path": "docs/RELEASE_SECURITY_FINDINGS.md",
+      "sha256": "d77c7e0237f82e82dc6edeb45942589bcc9e86ec402f3b94ba7ac088ca195a4d",
+      "bytes": 4786
+    },
+    {
+      "path": "docs/TODO.md",
+      "sha256": "b4267bd09d6b81712fc49940be2d4aab6acbaf51d9f1bd7b40e5bbc395f760e6",
+      "bytes": 23998
+    },
+    {
+      "path": "frontend/e2e/release-real-harbors.mjs",
+      "sha256": "b99072275a3036a7104d19fb61027713815f7a1a9bd26809942a210d285674eb",
+      "bytes": 15816
+    },
+    {
+      "path": "frontend/src/App.jsx",
+      "sha256": "92912b2f27bc4e910e966644588a134997c75ea341ee3d3e4a01305caa67e114",
+      "bytes": 43312
+    },
+    {
+      "path": "frontend/src/harbor/HarborScene.jsx",
+      "sha256": "5092be31dd1c9711b33d8878c41087ad99f7c93165103eafc35a4953b0d4c82c",
+      "bytes": 108505
+    },
+    {
+      "path": "frontend/src/harbor/interactions.js",
+      "sha256": "245b74c2d2f51bd074c03d9a79b624e2f3213e1f297a9b0833cbdbed44fed86b",
+      "bytes": 3592
+    },
+    {
+      "path": "frontend/src/harbor/interactions.test.js",
+      "sha256": "fe14ccc52502b6feab4c8850d87f4b95c4e1e06194c263325c35ee5d8fa3f8b0",
+      "bytes": 5026
+    },
+    {
+      "path": "frontend/tests/workspace-app-state.test.js",
+      "sha256": "89d36463cb8ba3fdad025eaa3228d8db18de881333aeef75b91c6a9af6591d56",
+      "bytes": 18287
+    }
+  ]
+}

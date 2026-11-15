@@ -1,0 +1,5 @@
+{
+  "pid": 33479,
+  "identity": "Thu Nov 12 21:43:44 2026     /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python artifacts/release-audit/ra-20261112/perf-panel-balanced-five-blocks-root/run.py",
+  "purpose": "owned finite family; SIGINT or SIGTERM enters exact child cleanup"
+}

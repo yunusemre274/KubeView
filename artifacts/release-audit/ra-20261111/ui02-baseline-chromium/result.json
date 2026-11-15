@@ -1,0 +1,38 @@
+{
+  "source": "REAL Kubernetes; owned manual02; normal UI/pointer",
+  "engine": "chromium",
+  "browser": "156.0.8078.4",
+  "binarySHA": "47a5a1b13ec4ec4db19b11c014ff094c7fcff6ffbea5fb2d1a9bf4e87933123d",
+  "labId": "kvml-aed6bc565b30",
+  "clusterUID": "a51d8e09-b035-4571-a5b3-4f0a40401f91",
+  "startedAt": "2026-11-11T10:31:31.894Z",
+  "status": "FAILED",
+  "checks": [],
+  "errors": [],
+  "screenshots": [
+    "failure.png"
+  ],
+  "limits": [
+    "Video-enabled functional run; not CPU/FPS/physical latency acceptance.",
+    "Projected read-only anchors only guide ordinary pointer clicks; no selection/state injection."
+  ],
+  "indexSHA": "f682f5740ba518542ed6d84e3008b57a4a592e162b093276b4b3354e12e634a5",
+  "harbors": [
+    {
+      "id": "8a66d537-0eea-4102-af04-c9141006f49e",
+      "name": "Proje 1",
+      "namespaces": [
+        "kvml-bc565b30-02-p1"
+      ]
+    },
+    {
+      "id": "940ea70a-0b63-4656-8f77-c56620496a4a",
+      "name": "Proje 2",
+      "namespaces": [
+        "kvml-bc565b30-02-p2"
+      ]
+    }
+  ],
+  "failure": "expect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 3\nReceived:    0\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate",
+  "finishedAt": "2026-11-11T10:31:43.272Z"
+}

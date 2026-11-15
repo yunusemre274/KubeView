@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-09T08:23:29.635902+00:00",
+  "method": "Actual CoreGraphics current display mode; not inferred from JS rAF",
+  "nativeDisplay": {
+    "display": 1,
+    "Width": 1470,
+    "Height": 956,
+    "PixelWidth": 2940,
+    "PixelHeight": 1912,
+    "RefreshRate": 60.0
+  },
+  "previousManifestDisplay": {
+    "display": 1,
+    "Width": 1470,
+    "Height": 956,
+    "PixelWidth": 2940,
+    "PixelHeight": 1912,
+    "RefreshRate": 60.0
+  },
+  "identicalToHarnessMetadata": true
+}

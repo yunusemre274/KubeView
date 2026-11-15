@@ -1,0 +1,3 @@
+*
+!Dockerfile
+!cilium-operator-generic

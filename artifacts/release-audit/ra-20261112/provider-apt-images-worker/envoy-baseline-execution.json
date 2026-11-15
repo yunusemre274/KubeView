@@ -1,0 +1,58 @@
+{
+  "name": "envoy-baseline",
+  "argv": [
+    "/opt/homebrew/Cellar/trivy/0.74.0/bin/trivy",
+    "--cache-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/trivy-cache",
+    "--config",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/trivy.yaml",
+    "image",
+    "--image-src",
+    "docker",
+    "--docker-host",
+    "unix:///var/run/docker.sock",
+    "--platform",
+    "linux/arm64",
+    "--scanners",
+    "vuln",
+    "--pkg-types",
+    "os,library",
+    "--parallel",
+    "1",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--skip-check-update",
+    "--skip-version-check",
+    "--skip-vex-repo-update",
+    "--disable-telemetry",
+    "--offline-scan",
+    "--no-progress",
+    "--ignorefile",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/empty.ignore",
+    "--module-dir",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/modules",
+    "--format",
+    "json",
+    "--output",
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/provider-apt-images/envoy-baseline.json",
+    "--timeout",
+    "70s",
+    "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629"
+  ],
+  "startedAt": "2026-11-12T10:41:37.427862+00:00",
+  "maxSeconds": 75,
+  "samples": [
+    {
+      "elapsedSeconds": 10.237,
+      "ownedRSSBytes": 5062656,
+      "ownedPIDs": [
+        12289
+      ],
+      "batteryPercent": 50,
+      "freeDiskBytes": 454503006208
+    }
+  ],
+  "pid": 12289,
+  "returncode": 0,
+  "finishedAt": "2026-11-12T10:41:37.956645+00:00"
+}

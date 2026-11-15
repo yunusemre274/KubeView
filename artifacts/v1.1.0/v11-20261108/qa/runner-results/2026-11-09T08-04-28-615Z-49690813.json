@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-04-28-615Z-49690813",
+  "startedAt": "2026-11-09T08:04:28.615Z",
+  "tests": [
+    {
+      "title": "V11-04 V11-13 restricted operator manually enters permitted namespace without Namespace/Node/metrics LIST",
+      "project": "chromium",
+      "status": "FAIL",
+      "durationMs": 51295,
+      "retry": 0,
+      "errors": [
+        {
+          "name": "Error",
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.resource-details .metrics-panel').locator('svg')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  15000ms\n"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-04-28-769Z-916afa69/v11-scope-security-V11-04--4f7cf-Namespace-Node-metrics-LIST-chromium/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-04-28-769Z-916afa69/v11-scope-security-V11-04--4f7cf-Namespace-Node-metrics-LIST-chromium/attachments/v11-evidence-99fbd5c2830c0f6ce475d63b663892dc3e627135.json",
+          "contentType": "application/json"
+        },
+        {
+          "name": "error-context",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-04-28-769Z-916afa69/v11-scope-security-V11-04--4f7cf-Namespace-Node-metrics-LIST-chromium/error-context.md",
+          "contentType": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "Error",
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:05:20.150Z",
+  "runnerStatus": "failed",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-04-28-615Z-49690813.json"
+}

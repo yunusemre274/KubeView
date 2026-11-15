@@ -1,0 +1,73 @@
+{
+  "status": "PASS_TARGETED_SYNTHETIC_AUTH_GROUP",
+  "startedAt": "2026-11-12T21:39:27.965192+00:00",
+  "argv": [
+    "/Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-count=1",
+    "-timeout=60s",
+    "-run",
+    "^(TestReleaseImportRejectsInvalidWithoutMutation|TestReleaseImportRemapsAuthorityIDsAndRelations|TestReleaseImportTransactionCapacityPreservesDisk)$",
+    "./pkg/workspace"
+  ],
+  "cwd": "/Users/yunusemre/Desktop/KubeView/backend",
+  "captured": [
+    {
+      "pid": 64957,
+      "identity": "Fri Nov 13 00:39:27 2026     /Users/yunusemre/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin/go test -json -p 1 -parallel 1 -count=1 -timeout=60s -run ^(TestReleaseImportRejectsInvalidWithoutMutation|TestReleaseImportRemapsAuthorityIDsAndRelations|TestReleaseImportTransactionCapacityPreservesDisk)$ ./pkg/workspace",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 64968,
+      "identity": "Fri Nov 13 00:39:28 2026     /var/folders/4w/3l5_jnq16853t_kj_7266xhc0000gn/T/go-build4174272649/b001/workspace.test -test.paniconexit0 -test.v=test2json -test.parallel=1 -test.count=1 -test.timeout=1m0s -test.run=^(TestReleaseImportRejectsInvalidWithoutMutation|TestReleaseImportRemapsAuthorityIDsAndRelations|TestReleaseImportTransactionCapacityPreservesDisk)$",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "samples": [
+    {
+      "elapsedSeconds": 0.020770209001057083,
+      "ownedRSSKiB": 4736,
+      "ownedPIDs": [
+        64957
+      ]
+    },
+    {
+      "elapsedSeconds": 0.24218770900188247,
+      "ownedRSSKiB": 30944,
+      "ownedPIDs": [
+        64957,
+        64968
+      ]
+    },
+    {
+      "elapsedSeconds": 0.4859086249998654,
+      "ownedRSSKiB": 30944,
+      "ownedPIDs": [
+        64957,
+        64968
+      ]
+    }
+  ],
+  "safety": "deterministic ImportInto tests only; p1/parallel1/GOMAXPROCS2; Go60/wall90; RSS1.5GiB/disk10GiB; no credentials/K8s",
+  "limitSeconds": 90,
+  "goVersion": "go version go1.26.11 darwin/arm64",
+  "sourceBeforeMatches": true,
+  "exitCode": 0,
+  "topLevelTests": [
+    "TestReleaseImportRejectsInvalidWithoutMutation",
+    "TestReleaseImportRemapsAuthorityIDsAndRelations",
+    "TestReleaseImportTransactionCapacityPreservesDisk"
+  ],
+  "topLevelPassed": 3,
+  "subtestsPassed": 9,
+  "failures": 0,
+  "skips": 0,
+  "sourceAfterMatches": true,
+  "elapsedSeconds": 1.1571301670010143,
+  "finishedAt": "2026-11-12T21:39:29.122299+00:00"
+}

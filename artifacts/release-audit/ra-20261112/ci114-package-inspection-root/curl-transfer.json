@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-12T21:39:58.785191+00:00",
+  "transport": "system curl, certificate verification ON, HTTPS-only redirects",
+  "earlierAttempt": "Python3.13 defaultCA verification failed; no insecure context/fallback",
+  "exitCode": 28,
+  "elapsedSeconds": 20.024722209000174,
+  "downloadBytes": 4620288,
+  "signedURLRecorded": false
+}

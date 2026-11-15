@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-11-08T19:37:18.864718+00:00",
+  "baseHEAD": "7eaddde75067c28237488d0b4107e4b86573219f",
+  "kind": "frontend unit regression; production browser smoke requires rebuilt candidate",
+  "result": "PASS",
+  "counts": {
+    "pass": 143,
+    "fail": 0,
+    "skip": 0
+  },
+  "command": "cd frontend && node --test --test-concurrency=1 tests/*.test.js src/harbor/*.test.js src/workbench/*.test.js",
+  "changedFiles": {
+    "frontend/src/context/ShipyardClusterContext.jsx": "9b47e1b5ed956af6628e34f78ef6cb47a850568f09d24077ef99a5965058f2b8",
+    "frontend/tests/connection.test.js": "d4a7e07200b941c30b9dfceeeb95a3fac717727c0daa953adcb5020877ee1533"
+  },
+  "log": "startup-regression-unit-02.txt",
+  "logSHA256": "f21bbf0ac3d8925585e094d5dcaadb444b5ca6e0ed53210783a3dc82959b4052",
+  "fixedRuntimeFailure": "resetManagement returned undefined before /api/contexts completed; observeNamespace called .then during initial App mount",
+  "guards": [
+    "all resetManagement branches return Promise",
+    "unconfigured namespace observation remains readOnly and starts no stream/metrics or authoritative scope",
+    "demo revoke remains fail-closed"
+  ]
+}

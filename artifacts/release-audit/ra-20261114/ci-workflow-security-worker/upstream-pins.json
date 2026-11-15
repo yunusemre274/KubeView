@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-11-14T13:18:34.998493+00:00",
+  "method": "web official raw GitHub pinned package.json/action.yml/source and official repository security advisory pages; no third-party source",
+  "pins": [
+    {
+      "repo": "actions/checkout",
+      "sha": "fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09",
+      "packageVersion": "5.0.0",
+      "declaredRuntime": "node24",
+      "declaredLicense": "MIT",
+      "packageURL": "https://raw.githubusercontent.com/actions/checkout/fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09/package.json",
+      "actionURL": "https://raw.githubusercontent.com/actions/checkout/fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09/action.yml",
+      "advisoryURL": "https://github.com/actions/checkout/security/advisories",
+      "publicAdvisoryPageObservation": "No published security advisories shown; not a transitive/bundled vulnerability scan"
+    },
+    {
+      "repo": "actions/setup-go",
+      "sha": "924ae3a1cded613372ab5595356fb5720e22ba16",
+      "packageVersion": "6.5.0",
+      "declaredRuntime": "node24",
+      "declaredLicense": "MIT",
+      "packageURL": "https://raw.githubusercontent.com/actions/setup-go/924ae3a1cded613372ab5595356fb5720e22ba16/package.json",
+      "actionURL": "https://raw.githubusercontent.com/actions/setup-go/924ae3a1cded613372ab5595356fb5720e22ba16/action.yml",
+      "advisoryURL": "https://github.com/actions/setup-go/security/advisories",
+      "publicAdvisoryPageObservation": "No published security advisories shown; not a transitive/bundled vulnerability scan"
+    },
+    {
+      "repo": "actions/setup-node",
+      "sha": "a0853c24544627f65ddf259abe73b1d18a591444",
+      "packageVersion": "5.0.0",
+      "declaredRuntime": "node24",
+      "declaredLicense": "MIT",
+      "packageURL": "https://raw.githubusercontent.com/actions/setup-node/a0853c24544627f65ddf259abe73b1d18a591444/package.json",
+      "actionURL": "https://raw.githubusercontent.com/actions/setup-node/a0853c24544627f65ddf259abe73b1d18a591444/action.yml",
+      "advisoryURL": "https://github.com/actions/setup-node/security/advisories",
+      "publicAdvisoryPageObservation": "No published security advisories shown; not a transitive/bundled vulnerability scan"
+    },
+    {
+      "repo": "actions/upload-artifact",
+      "sha": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "packageVersion": "4.6.2",
+      "declaredRuntime": "node20",
+      "declaredLicense": "MIT",
+      "packageURL": "https://raw.githubusercontent.com/actions/upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02/package.json",
+      "actionURL": "https://raw.githubusercontent.com/actions/upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02/action.yml",
+      "advisoryURL": "https://github.com/actions/upload-artifact/security/advisories",
+      "publicAdvisoryPageObservation": "No published security advisories shown; not a transitive/bundled vulnerability scan"
+    }
+  ],
+  "sourceLinks": [
+    "https://docs.github.com/en/actions/reference/security/secure-use",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching",
+    "https://raw.githubusercontent.com/actions/checkout/fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09/src/git-source-provider.ts",
+    "https://raw.githubusercontent.com/actions/setup-go/924ae3a1cded613372ab5595356fb5720e22ba16/src/cache-restore.ts",
+    "https://raw.githubusercontent.com/actions/setup-go/924ae3a1cded613372ab5595356fb5720e22ba16/src/cache-utils.ts",
+    "https://raw.githubusercontent.com/actions/setup-node/a0853c24544627f65ddf259abe73b1d18a591444/src/cache-restore.ts",
+    "https://raw.githubusercontent.com/actions/setup-node/a0853c24544627f65ddf259abe73b1d18a591444/src/cache-utils.ts",
+    "https://raw.githubusercontent.com/actions/upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02/src/upload/upload-artifact.ts"
+  ],
+  "limits": [
+    "Package version label is not independent bundle build provenance or tag-signature verification",
+    "No entire dist/node_modules/transitive security audit",
+    "Public advisory page emptiness is not proof of no vulnerabilities",
+    "Mutable hosted runner/Node major/download/toolchain infrastructure is not frozen by action SHA"
+  ]
+}

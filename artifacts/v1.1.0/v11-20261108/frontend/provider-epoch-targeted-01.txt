@@ -1,0 +1,13 @@
+✔ actual provider hook rejects late nonempty A/B flows after A to B to A and accepts current A (2.59725ms)
+✔ actual provider hook rejects an alpha flow callback after namespace beta and releases the alpha lease (0.452042ms)
+✔ actual provider hook stream-session change aborts old flow poll and accepts only the new session result (0.364792ms)
+✔ actual provider hook cancels scheduled polling, aborts status reads and removes listeners on unmount (0.20325ms)
+✔ actual provider hook discards a nonempty response that resolves after pending-flow unmount (0.128417ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.715584

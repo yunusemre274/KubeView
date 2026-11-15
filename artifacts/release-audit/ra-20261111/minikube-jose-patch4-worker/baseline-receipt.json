@@ -1,0 +1,26 @@
+{
+  "started_at_utc": "2026-11-11T13:17:33.183709+00:00",
+  "source_path": ".git/release-audit/patched-minikube-v1.38.1/source/kubernetes-minikube-c93a4cb",
+  "source_copy_path": ".git/release-audit/minikube-jose-patch4/source",
+  "copy_method": "macOS cp -cR copy-on-write clone",
+  "old_binary_path": ".git/release-audit/patched-minikube-v1.38.1/minikube-v1.38.1-kubeview-patched.3",
+  "old_binary_preserved_copy": ".git/release-audit/minikube-jose-patch4/baseline/minikube-patched.3",
+  "old_binary_sha256": "0ea47b1aa27343751614b25f427771974bca6534365ab8ddee4bf7aee8ce0371",
+  "preserved_binary_sha256": "0ea47b1aa27343751614b25f427771974bca6534365ab8ddee4bf7aee8ce0371",
+  "go_mod_sha256": "75a315e5da2aa926c9645c32f00a82177c5c34053817afb8d7bf075021d8ebde",
+  "go_sum_sha256": "66a66602b94995203d9cf832546356634bdaa464b1e40b330f8c0fc4bd701bd0",
+  "vendor_modules_sha256": "f19b7e1b0c0b8fc854c6c0e9c5036cf627f7edffcef66a23962c53085f928606",
+  "vendor_tree_digest": "f5b107267ac40ce524a67b0654c72e525df83d77f6ab84a20c312ee40a84c920",
+  "vendor_tree_digest_recipe": "SHA256 sorted relative_path + NUL + file_sha256 + newline",
+  "vendor_regular_files": 10325,
+  "sdk_alias_file_sha256": "c3a2fcd7bab86793ba247516a792e83e454724068a14b55784d7adf31196b420",
+  "upstream_commit": "c93a4cb9311efc66b90d33ea03f75f2c4120e9b0",
+  "iso_version": "v1.38.0",
+  "storage_version": "v5",
+  "db_metadata": {
+    "Version": 2,
+    "NextUpdate": "2026-11-11T19:01:23.081218965Z",
+    "UpdatedAt": "2026-11-10T19:01:23.081219346Z",
+    "DownloadedAt": "2026-11-11T10:50:41.795823Z"
+  }
+}

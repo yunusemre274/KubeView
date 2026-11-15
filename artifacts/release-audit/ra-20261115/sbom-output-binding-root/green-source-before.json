@@ -1,0 +1,10 @@
+{
+  "time": "2026-11-15T10:26:50.986767+00:00",
+  "files": {
+    "scripts/build-release.mjs": "3dc598b31bcf402d4e9c3bcd5ed897733afe76a43024dfb2d3634771b763e57e",
+    "scripts/build-release.test.mjs": "2b1e113527e1875c0d4abf557451c37ba5874ce458367f5064e58a8398b7479f",
+    "scripts/release-sbom.mjs": "67633f23985bdd6d79ebdc8a6ff225339301a63c0d4b2811703c52cfae0e3340",
+    "frontend/build/package-inventory.mjs": "fbeb25148c7c0edc204f15fd889ebcb4e436a87c3368810f22d38340e9a74dbe",
+    ".github/workflows/ci.yml": "4438c58da548d05790aecb362269f3de54b508cfe46b26380f5c7addb36707cc"
+  }
+}

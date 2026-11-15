@@ -1,0 +1,2 @@
+BENCHMARK FIXTURE ready http://127.0.0.1:5192; synthetic, read-only, no kubeconfig
+Results: /Users/yunusemre/Desktop/KubeView/artifacts/release-audit/ra-20261115/perf-hover-order-worker/runtime/hover-order-0-20261115T101142Z

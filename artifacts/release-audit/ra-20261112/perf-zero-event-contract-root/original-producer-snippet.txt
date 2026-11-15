@@ -1,0 +1,3 @@
+result.producer.completed === events.length &&
+      !result.producer.errors.length &&
+      result.producer.delayMs.p95 < 100

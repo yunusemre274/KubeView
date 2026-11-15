@@ -1,0 +1,29 @@
+{
+  "source_sha": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+  "recorded_utc": "2026-11-11T10:26:22.510841+00:00",
+  "source_files": {
+    "backend/main.go": "d6e6ca96084c62447df46cf55c7837d40dac89d1f4a6a90bc1201d00fb91e4e5",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/connection.go": "7acef504111b489c3822be4c076fbd11f34935872d4a4a445a2660c91668e6f6",
+    "backend/pkg/server/sessions.go": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+    "backend/pkg/server/workspace_scope.go": "13cee96a6793fee156e72d0539331b15a2bd7edb2e11f8faf62dd25416a423b5",
+    "backend/pkg/server/workspace_membership.go": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+    "backend/pkg/server/workspace_projection.go": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+    "backend/pkg/server/workspace_broker.go": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+    "backend/pkg/server/portforward.go": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+    "backend/pkg/server/provider_handlers.go": "b1963e2803f06a7d21b1a465abde292c63710c7f0431303df1fd51e3a61a97b8",
+    "backend/pkg/server/traffic_handlers.go": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+    "backend/pkg/server/resources.go": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+    "backend/pkg/server/maintenance.go": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+    "backend/pkg/server/stream.go": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+    "backend/pkg/server/log_session.go": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+    "backend/pkg/server/connection_errors.go": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+    "backend/pkg/server/replay_source.go": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+    "backend/pkg/workspace/store.go": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+    "backend/pkg/provision/cli.go": "a98674ee47c27ce4e919ceeac8f5fe113dcce6caa4d715a9696e243da905814f",
+    "backend/pkg/provision/minikube.go": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+    "backend/pkg/traffic/config.go": "752b3caca8081b3ea8e42107165d7b237dbe2f64baaa9e74061fafa175884f06"
+  },
+  "regression_test_sha256": "6492835c8dcd5002060bf58888e63f461f139947667492697290f4ac493b29e0"
+}

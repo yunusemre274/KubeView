@@ -1,0 +1,9 @@
+{
+  "syntax": "PASS",
+  "planGrid": "PASS_5x2x4",
+  "reversal": "run.mjs exactly once; per-block order equal for A/B",
+  "startThresholdInCode50": true,
+  "all6FrozenAssetsGuarded": true,
+  "runtimeHarnessFixtureLockHashesGuarded": 11,
+  "noActualRun": true
+}

@@ -1,0 +1,379 @@
+{
+  "scope": "Read-only metadata/hash checks only, no provider binary invocation",
+  "images": {
+    "cilium": {
+      "official": {
+        "owner": "kv-apt-final-433a607d7f204c7facdc014685cd7695",
+        "ref": "quay.io/cilium/cilium@sha256:20fe92e4c86641233a450098c158d2d29085f3419931ab6bf681d2485dedf16e",
+        "cid": "b18cd4a07fba485a56ab957c8b600ac7b794bae43a61453626e49190ec64fca6",
+        "returncode": 0,
+        "stdout": "755|0|0|2883746|/cni/loopback\n755|0|0|16210424|/opt/cni/bin/cilium-cni\n755|0|0|125730200|/usr/bin/cilium-agent\n755|0|0|10803368|/usr/bin/cilium-bugtool\n755|0|0|92797488|/usr/bin/cilium-dbg\n755|0|0|24685208|/usr/bin/cilium-envoy-bootstrap-locality\n755|0|0|11993216|/usr/bin/cilium-health\n755|0|0|5481552|/usr/bin/cilium-health-responder\n755|0|0|7098560|/usr/bin/cilium-mount\n755|0|0|2810280|/usr/bin/cilium-sysctlfix\n755|0|0|3735714|/usr/bin/gops\n755|0|0|70116352|/usr/bin/hubble\n755|0|0|2228386|/usr/sbin/iptables-wrapper\n755|1337|1337|79745496|/usr/bin/cilium-envoy\n755|1337|1337|715608|/usr/bin/cilium-envoy-starter\n644|0|0|180744|/etc/ssl/certs/ca-certificates.crt\n644|0|0|2571|/etc/apt/sources.list.d/ubuntu.sources\n644|0|0|3607|/usr/share/keyrings/ubuntu-archive-keyring.gpg\n644|0|0|1885503|/LICENSE.all\n\nAPT_FILE_HASHES\nc14d73d510fc73656cdd6bb81eaafad9edafa1bc8f9f43c6a67c71ecc9409fd1  /usr/bin/apt\n620b68c91166ed3abb81d6f24d8eaf16cb6d8b01d107d4b8543fb7be729b1782  /usr/bin/apt-get\n76d6d77c339b58d4cc2d4ed2a412112cef63428ce479dd17befc9fe5127b780c  /usr/lib/aarch64-linux-gnu/libapt-pkg.so.7.0.0\n",
+        "stderr": "",
+        "assetModesAndOwnership": {
+          "/cni/loopback": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2883746
+          },
+          "/opt/cni/bin/cilium-cni": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 16210424
+          },
+          "/usr/bin/cilium-agent": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 125730200
+          },
+          "/usr/bin/cilium-bugtool": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 10803368
+          },
+          "/usr/bin/cilium-dbg": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 92797488
+          },
+          "/usr/bin/cilium-envoy-bootstrap-locality": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 24685208
+          },
+          "/usr/bin/cilium-health": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 11993216
+          },
+          "/usr/bin/cilium-health-responder": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 5481552
+          },
+          "/usr/bin/cilium-mount": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 7098560
+          },
+          "/usr/bin/cilium-sysctlfix": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2810280
+          },
+          "/usr/bin/gops": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 3735714
+          },
+          "/usr/bin/hubble": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 70116352
+          },
+          "/usr/sbin/iptables-wrapper": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2228386
+          },
+          "/usr/bin/cilium-envoy": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 79745496
+          },
+          "/usr/bin/cilium-envoy-starter": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 715608
+          },
+          "/etc/ssl/certs/ca-certificates.crt": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 180744
+          },
+          "/etc/apt/sources.list.d/ubuntu.sources": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2571
+          },
+          "/usr/share/keyrings/ubuntu-archive-keyring.gpg": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 3607
+          },
+          "/LICENSE.all": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 1885503
+          }
+        },
+        "aptFileSHA256": {
+          "/usr/bin/apt": "c14d73d510fc73656cdd6bb81eaafad9edafa1bc8f9f43c6a67c71ecc9409fd1",
+          "/usr/bin/apt-get": "620b68c91166ed3abb81d6f24d8eaf16cb6d8b01d107d4b8543fb7be729b1782",
+          "/usr/lib/aarch64-linux-gnu/libapt-pkg.so.7.0.0": "76d6d77c339b58d4cc2d4ed2a412112cef63428ce479dd17befc9fe5127b780c"
+        },
+        "candidateAPTTemporaryFilesAbsent": false,
+        "removedAndAbsent": true
+      },
+      "candidate": {
+        "owner": "kv-apt-final-8f026e12708747359bb41c6e3f815128",
+        "ref": "kubeview-private/cilium:1.20.4-apt-security.1",
+        "cid": "880403d35a7deb163aabd07f4e88f6192c49994aa0d9674d4ba7e8e7d68fea63",
+        "returncode": 0,
+        "stdout": "755|0|0|2883746|/cni/loopback\n755|0|0|16210424|/opt/cni/bin/cilium-cni\n755|0|0|125730200|/usr/bin/cilium-agent\n755|0|0|10803368|/usr/bin/cilium-bugtool\n755|0|0|92797488|/usr/bin/cilium-dbg\n755|0|0|24685208|/usr/bin/cilium-envoy-bootstrap-locality\n755|0|0|11993216|/usr/bin/cilium-health\n755|0|0|5481552|/usr/bin/cilium-health-responder\n755|0|0|7098560|/usr/bin/cilium-mount\n755|0|0|2810280|/usr/bin/cilium-sysctlfix\n755|0|0|3735714|/usr/bin/gops\n755|0|0|70116352|/usr/bin/hubble\n755|0|0|2228386|/usr/sbin/iptables-wrapper\n755|1337|1337|79745496|/usr/bin/cilium-envoy\n755|1337|1337|715608|/usr/bin/cilium-envoy-starter\n644|0|0|180744|/etc/ssl/certs/ca-certificates.crt\n644|0|0|2571|/etc/apt/sources.list.d/ubuntu.sources\n644|0|0|3607|/usr/share/keyrings/ubuntu-archive-keyring.gpg\n644|0|0|1885503|/LICENSE.all\n\nAPT_FILE_HASHES\nc61fdd7ddf33d3925f478e2effb3ed258933291e34966d93b28b8decd3d5c90e  /usr/bin/apt\n3898721ff839b76855f0ce4b95a9abf08c3ef8e154a2f762c3c97fbed55497ee  /usr/bin/apt-get\nad5cb675d29ae00429bac398934c7a0852513d9847cca0eed1ec2f083e1f1f13  /usr/lib/aarch64-linux-gnu/libapt-pkg.so.7.0.0\n\nCACHE_CHECK\nlists_empty_no_archived_deb_no_temporary_source\n",
+        "stderr": "",
+        "assetModesAndOwnership": {
+          "/cni/loopback": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2883746
+          },
+          "/opt/cni/bin/cilium-cni": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 16210424
+          },
+          "/usr/bin/cilium-agent": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 125730200
+          },
+          "/usr/bin/cilium-bugtool": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 10803368
+          },
+          "/usr/bin/cilium-dbg": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 92797488
+          },
+          "/usr/bin/cilium-envoy-bootstrap-locality": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 24685208
+          },
+          "/usr/bin/cilium-health": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 11993216
+          },
+          "/usr/bin/cilium-health-responder": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 5481552
+          },
+          "/usr/bin/cilium-mount": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 7098560
+          },
+          "/usr/bin/cilium-sysctlfix": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2810280
+          },
+          "/usr/bin/gops": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 3735714
+          },
+          "/usr/bin/hubble": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 70116352
+          },
+          "/usr/sbin/iptables-wrapper": {
+            "mode": "755",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2228386
+          },
+          "/usr/bin/cilium-envoy": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 79745496
+          },
+          "/usr/bin/cilium-envoy-starter": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 715608
+          },
+          "/etc/ssl/certs/ca-certificates.crt": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 180744
+          },
+          "/etc/apt/sources.list.d/ubuntu.sources": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2571
+          },
+          "/usr/share/keyrings/ubuntu-archive-keyring.gpg": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 3607
+          },
+          "/LICENSE.all": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 1885503
+          }
+        },
+        "aptFileSHA256": {
+          "/usr/bin/apt": "c61fdd7ddf33d3925f478e2effb3ed258933291e34966d93b28b8decd3d5c90e",
+          "/usr/bin/apt-get": "3898721ff839b76855f0ce4b95a9abf08c3ef8e154a2f762c3c97fbed55497ee",
+          "/usr/lib/aarch64-linux-gnu/libapt-pkg.so.7.0.0": "ad5cb675d29ae00429bac398934c7a0852513d9847cca0eed1ec2f083e1f1f13"
+        },
+        "candidateAPTTemporaryFilesAbsent": true,
+        "removedAndAbsent": true
+      },
+      "assetModesAndOwnershipUnchanged": true
+    },
+    "envoy": {
+      "official": {
+        "owner": "kv-apt-final-a190d6f41053495890e8c77125904728",
+        "ref": "quay.io/cilium/cilium-envoy@sha256:547ab45f6092f681d9f54f3be9fa8fb1e705c9c5dc2df388efe3a52aa6965629",
+        "cid": "4f816696f727e24cc6364705c1d1e8b9f0a25b7e93628091fa87a49ad4010009",
+        "returncode": 0,
+        "stdout": "755|1337|1337|8117861|/usr/bin/cilium-envoy-healthcheck\n755|1337|1337|79745496|/usr/bin/cilium-envoy\n755|1337|1337|715608|/usr/bin/cilium-envoy-starter\n644|0|0|180744|/etc/ssl/certs/ca-certificates.crt\n644|0|0|2559|/etc/apt/sources.list.d/ubuntu.sources\n644|0|0|3607|/usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nAPT_FILE_HASHES\n25091d790a7f2e44a0df654d985bb555976e0cfb54eade2a7cb81f81d7c45345  /usr/bin/apt\n72a25a79b0549eddd159182c427e9f65a60a2e393232524687b7cbe9b163232d  /usr/bin/apt-get\nafb9a0d2c2b476ae312e5b13efa4065feeb99a19a723a98fd4a339100474e8c9  /usr/lib/aarch64-linux-gnu/libapt-pkg.so.6.0.0\n",
+        "stderr": "",
+        "assetModesAndOwnership": {
+          "/usr/bin/cilium-envoy-healthcheck": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 8117861
+          },
+          "/usr/bin/cilium-envoy": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 79745496
+          },
+          "/usr/bin/cilium-envoy-starter": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 715608
+          },
+          "/etc/ssl/certs/ca-certificates.crt": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 180744
+          },
+          "/etc/apt/sources.list.d/ubuntu.sources": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2559
+          },
+          "/usr/share/keyrings/ubuntu-archive-keyring.gpg": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 3607
+          }
+        },
+        "aptFileSHA256": {
+          "/usr/bin/apt": "25091d790a7f2e44a0df654d985bb555976e0cfb54eade2a7cb81f81d7c45345",
+          "/usr/bin/apt-get": "72a25a79b0549eddd159182c427e9f65a60a2e393232524687b7cbe9b163232d",
+          "/usr/lib/aarch64-linux-gnu/libapt-pkg.so.6.0.0": "afb9a0d2c2b476ae312e5b13efa4065feeb99a19a723a98fd4a339100474e8c9"
+        },
+        "candidateAPTTemporaryFilesAbsent": false,
+        "removedAndAbsent": true
+      },
+      "candidate": {
+        "owner": "kv-apt-final-b3623b9944a8448ca5ed7cc4ac301d17",
+        "ref": "kubeview-private/cilium-envoy:1.20.4-apt-security.1",
+        "cid": "f8da6c3d3648d4b30bb3493b5a8474b007535b636b52557780fd985cf95088b5",
+        "returncode": 0,
+        "stdout": "755|1337|1337|8117861|/usr/bin/cilium-envoy-healthcheck\n755|1337|1337|79745496|/usr/bin/cilium-envoy\n755|1337|1337|715608|/usr/bin/cilium-envoy-starter\n644|0|0|180744|/etc/ssl/certs/ca-certificates.crt\n644|0|0|2559|/etc/apt/sources.list.d/ubuntu.sources\n644|0|0|3607|/usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nAPT_FILE_HASHES\n83ecc278c77ef74feee5eca0de6c94ca9ca657ac1167eda8c1b4a7a888a08e01  /usr/bin/apt\n72b29af53586c32a444186ee5768975b33bf3d551f41b4e9d75f958f1c84527e  /usr/bin/apt-get\n26d69b1b4d5dafbaebc2ec403a8dd372004fe5bf41ef290c9bd5f8ea65766f0c  /usr/lib/aarch64-linux-gnu/libapt-pkg.so.6.0.0\n\nCACHE_CHECK\nlists_empty_no_archived_deb_no_temporary_source\n",
+        "stderr": "",
+        "assetModesAndOwnership": {
+          "/usr/bin/cilium-envoy-healthcheck": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 8117861
+          },
+          "/usr/bin/cilium-envoy": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 79745496
+          },
+          "/usr/bin/cilium-envoy-starter": {
+            "mode": "755",
+            "uid": 1337,
+            "gid": 1337,
+            "bytes": 715608
+          },
+          "/etc/ssl/certs/ca-certificates.crt": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 180744
+          },
+          "/etc/apt/sources.list.d/ubuntu.sources": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 2559
+          },
+          "/usr/share/keyrings/ubuntu-archive-keyring.gpg": {
+            "mode": "644",
+            "uid": 0,
+            "gid": 0,
+            "bytes": 3607
+          }
+        },
+        "aptFileSHA256": {
+          "/usr/bin/apt": "83ecc278c77ef74feee5eca0de6c94ca9ca657ac1167eda8c1b4a7a888a08e01",
+          "/usr/bin/apt-get": "72b29af53586c32a444186ee5768975b33bf3d551f41b4e9d75f958f1c84527e",
+          "/usr/lib/aarch64-linux-gnu/libapt-pkg.so.6.0.0": "26d69b1b4d5dafbaebc2ec403a8dd372004fe5bf41ef290c9bd5f8ea65766f0c"
+        },
+        "candidateAPTTemporaryFilesAbsent": true,
+        "removedAndAbsent": true
+      },
+      "assetModesAndOwnershipUnchanged": true
+    }
+  }
+}

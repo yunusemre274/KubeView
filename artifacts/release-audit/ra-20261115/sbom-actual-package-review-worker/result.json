@@ -1,0 +1,303 @@
+{
+  "status": "PASS_BOUNDED_ACTUAL_PACKAGE_BINDING_REVIEW",
+  "checks": [
+    {
+      "name": "darwin-arm64 sbom.binary.cdx.json schema receipt and provenance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 sbom.frontend-source.cdx.json schema receipt and provenance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 actual binary hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 embedded version/compiler/stdlib",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 embedded module identity set",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 module h1 values",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 embedded target/CGO/revision",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 separate Go-vcs and runtime dirty",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 actual archive hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 bounded safe archive members",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 archived kubeview byte identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 archived sbom.binary.cdx.json byte identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 archived sbom.frontend-source.cdx.json byte identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 archived build-provenance.json byte identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 provenance source/input/frontend/target consistency",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "darwin-arm64 coverage distinction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 sbom.binary.cdx.json schema receipt and provenance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 sbom.frontend-source.cdx.json schema receipt and provenance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 actual binary hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 embedded version/compiler/stdlib",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 embedded module identity set",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 module h1 values",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 embedded target/CGO/revision",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 separate Go-vcs and runtime dirty",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 actual archive hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 bounded safe archive members",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 archived kubeview byte identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 archived sbom.binary.cdx.json byte identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 archived sbom.frontend-source.cdx.json byte identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 archived build-provenance.json byte identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 provenance source/input/frontend/target consistency",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linux-amd64 coverage distinction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source archive SHA receipt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all declared source input hashes match source archive",
+      "pass": true,
+      "detail": {
+        "count": 27,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "current source frontend/build/package-inventory.mjs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "current source scripts/release-sbom.mjs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "current source scripts/build-release.mjs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "actual inventory hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "full producer outputset/digest",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rendered package ownership 15",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "checksum file",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "producer consumed/build/public input hashes match committed source archive",
+      "pass": true,
+      "detail": {
+        "count": 70,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "source archive global PAX commit matches package commit",
+      "pass": true,
+      "detail": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43"
+    }
+  ],
+  "errors": [],
+  "targets": {
+    "darwin-arm64": {
+      "binarySHA256": "819658d5b7044a5ad69eb534e698d3e8d7b0d588f43b4ead87c59a7e699f57af",
+      "archiveSHA256": "8eb2d9b954b916ce043241437fbf8c3950fd198191ad00226449627b5a1b148c",
+      "GoVersion": "go1.26.11",
+      "GoModules": 45,
+      "stdlibComponents": 1,
+      "renderedNpmPackages": 15,
+      "sourceGraphPackages": 203,
+      "sourceGraphEdges": 204,
+      "developmentSourcePackages": 118,
+      "goVcsModified": "true",
+      "runtimeInputsDirty": false,
+      "archiveMembers": 30,
+      "rawGoJSONHashIndependentlyReconstructed": false,
+      "rawGoJSONReceipt": "a06fe2fe85fb35316baedc08eaa9f577e22bd1d99ae40a38013296357e5de2de"
+    },
+    "linux-amd64": {
+      "binarySHA256": "3dcbe1b1247ceed0e6960996ca68f796694026523f28d4d3cbc434f1e55ec543",
+      "archiveSHA256": "5e4231e928b31f663d1656d21b9ed564aa62adb4318162a2ce4187c751ea3549",
+      "GoVersion": "go1.26.11",
+      "GoModules": 45,
+      "stdlibComponents": 1,
+      "renderedNpmPackages": 15,
+      "sourceGraphPackages": 203,
+      "sourceGraphEdges": 204,
+      "developmentSourcePackages": 118,
+      "goVcsModified": "true",
+      "runtimeInputsDirty": false,
+      "archiveMembers": 30,
+      "rawGoJSONHashIndependentlyReconstructed": false,
+      "rawGoJSONReceipt": "8ea0564864a1e139ba0e4961b31fed331d6994855f732fca6342a8dd2cdd3f34"
+    }
+  },
+  "hashes": {
+    "darwin-arm64-sbom.binary.cdx.json": "899a2e416f5cfc359637957e089b2fb410fa5886b8b902a61fe200783291af88",
+    "darwin-arm64-sbom.frontend-source.cdx.json": "f405243cd711d01afc85c82af7baa822db3f30c1556c331ed86fa5bb8622edb8",
+    "darwin-arm64-archive": "8eb2d9b954b916ce043241437fbf8c3950fd198191ad00226449627b5a1b148c",
+    "darwin-arm64-binary": "819658d5b7044a5ad69eb534e698d3e8d7b0d588f43b4ead87c59a7e699f57af",
+    "linux-amd64-sbom.binary.cdx.json": "32c21efa9939d695acc1c476696eee3e36bb6eb9277bde69e66a4ecf06d9c61e",
+    "linux-amd64-sbom.frontend-source.cdx.json": "f405243cd711d01afc85c82af7baa822db3f30c1556c331ed86fa5bb8622edb8",
+    "linux-amd64-archive": "5e4231e928b31f663d1656d21b9ed564aa62adb4318162a2ce4187c751ea3549",
+    "linux-amd64-binary": "3dcbe1b1247ceed0e6960996ca68f796694026523f28d4d3cbc434f1e55ec543",
+    "sourceArchive": "562963733cd08f9351202a2e7bce7d420d35fb0f24ad242f7e1511c9c78ed8d0",
+    "frontend/build/package-inventory.mjs": "1b4f4d7c50b153dffe00a5547695c701eb83a645514a876062b61817ec3933d3",
+    "scripts/release-sbom.mjs": "67633f23985bdd6d79ebdc8a6ff225339301a63c0d4b2811703c52cfae0e3340",
+    "scripts/build-release.mjs": "3dc598b31bcf402d4e9c3bcd5ed897733afe76a43024dfb2d3634771b763e57e",
+    "package-result.json": "7d6f191463cde1455404eb0ecd0bc47f8b977060e44f835387b111f3ceebe742",
+    "package-build.json": "2c457799bd02c43e55b7f46d80644b5145a60f8646d4c5ea89c2f41e4bd0e6e5",
+    "actual-schema-result.json": "85b3d02fc33588a11e67a07082381594c5b334c83e02be081fee0c809c15708a",
+    "frontend-retest-result.json": "29d813a016b502507adbb8e17553f47059c32466b1119d7ec0a6d8ea554e9846",
+    "darwin-arm64-build-provenance.json": "88da53c4759ac6fe9af865ec5a3d07f5bdcb37cf20ed17d7040c85d15bd02af5",
+    "linux-amd64-build-provenance.json": "a71df12299d2682af184d7ca0dd742afd16bea30fc73e4216155a09769857c96",
+    "package-SHA256SUMS": "de4597519d149a5aa23a726c9b5dc890bd900109ae6276a9d8e952a149bad8f1",
+    "producer-package-inventory.json": "a05fde1291b34410a189cfeb5c46d73c9f07b18a0adae1afbba210fc38040408"
+  },
+  "sourceInputsMatched": 27,
+  "rawByteReadsUniquePhysicalFiles": 20,
+  "readBudgetNote": "20 unique physical evidence/current-source/package files; source archive27 declared-input member hashes and each binary archive4 checked members are bounded logical reads within those physical archives. Repeated reads for metadata/header diagnostics occurred; no executable was invoked.",
+  "finishedAt": "2026-11-15T10:46:05.735453+00:00",
+  "elapsedSinceReviewStartSeconds": 160.18412804603577,
+  "sourceArchiveGitComment": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+  "sourceProducerInputs": {
+    "count": 70,
+    "mismatches": [],
+    "consumedFirstPartyCount": 65,
+    "publicCount": 1
+  },
+  "finalizedAt": "2026-11-15T10:47:34.587379+00:00",
+  "elapsedSeconds": 249.03605198860168,
+  "within300Seconds": true,
+  "currentHEADAtFinish": "4a3e3a17552e9ef35091c37070a8bc19c00f3b43",
+  "sameAgentSystemSecondReview": true,
+  "externalProfessionalAudit": false,
+  "newExecutionBuildBrowserScannerTests": 0,
+  "nativeCIUpdate": "Root separately reports native darwin startup PASS and CI121 job success; those new receipts not read in this bounded20-file review, not independently adjudicated here."
+}

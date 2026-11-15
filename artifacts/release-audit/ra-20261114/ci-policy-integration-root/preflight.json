@@ -1,0 +1,31 @@
+{
+  "preparedAt": "2026-11-14T13:20:37.343217+00:00",
+  "inputHEAD": "e6ee6678291c6d4fca6b4ca90e3fef66e96912c7",
+  "change": "preserve build-release test; add CI policy test to same step; assert guard invoked and 13negativefixtures; fix cache-key-input terminology",
+  "fileSHA256": {
+    ".github/workflows/ci.yml": "4badd5b47cd3a4d16080d93eaf720129445cf272687f19f7aa2d9dd85df06ad6",
+    "scripts/release-ci-policy.test.mjs": "13b5fb1c5232a69125c433aaf69bb5daa176e24cf8d20b7cde8c5e283b255ec5",
+    "scripts/build-release.test.mjs": "020deb3bd364036693df7d8049250cc06421de8181ef59304602b1b413fd1cf7",
+    "frontend/package-lock.json": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+  },
+  "limits": {
+    "childSeconds": 15,
+    "maxPolicyFixtures": 15,
+    "maxFixtureBytes": 65536,
+    "processes": 1
+  },
+  "expected": {
+    "tests": 26,
+    "topLevel": 13,
+    "subtests": 13,
+    "fail": 0,
+    "skip": 0
+  },
+  "notClaimed": [
+    "actualfork/admin/cachepoisoning",
+    "allactionbundleSCA",
+    "realKubernetes",
+    "CPU/performance",
+    "generalrelease"
+  ]
+}

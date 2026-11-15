@@ -1,0 +1,114 @@
+{
+  "startedAt": "2026-11-11T18:52:24.835611+00:00",
+  "status": "PASS",
+  "sourceCommit": "4c6c2ac57edc3b6634aecd86f6c927782de01f37",
+  "binarySHA256": "f9e70b607c1689800f253ccaa6841d05e3a6951e6c032f837b7cf78f1dd4ecd4",
+  "routeCount": 25,
+  "protectedRouteCount": 21,
+  "sourceSHA256": {
+    "backend/main.go": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+    "backend/pkg/server/server.go": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+    "backend/pkg/server/provider_handlers.go": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+    "backend/pkg/server/replay_source.go": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+    "backend/pkg/server/workspace.go": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78"
+  },
+  "probes": [
+    {
+      "path": "/",
+      "method": "GET",
+      "authenticatedSyntheticKey": false,
+      "originKind": "owned",
+      "status": 200,
+      "expectedStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bodyBytes": 587,
+      "bodySHA256": "0e478e0c9241d599e651eedcb65b10b31f37e0be1a89e380434a239a817032a3"
+    },
+    {
+      "path": "/healthz",
+      "method": "GET",
+      "authenticatedSyntheticKey": false,
+      "originKind": "owned",
+      "status": 200,
+      "expectedStatus": 200,
+      "contentType": "text/plain",
+      "bodyBytes": 2,
+      "bodySHA256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3"
+    },
+    {
+      "path": "/api/version",
+      "method": "GET",
+      "authenticatedSyntheticKey": false,
+      "originKind": "owned",
+      "status": 200,
+      "expectedStatus": 200,
+      "contentType": "application/json",
+      "bodyBytes": 119,
+      "bodySHA256": "1f74a3f56b1ceb2c9d7c8a764e4f8a72396d4cbfa7e81a3fb34086d6e0f96be7"
+    },
+    {
+      "path": "/api/replay/status",
+      "method": "GET",
+      "authenticatedSyntheticKey": false,
+      "originKind": "owned",
+      "status": 401,
+      "expectedStatus": 401,
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 52,
+      "bodySHA256": "6fcfdba9c68cfa98154b055b4c87762f6d665263bc67a0b463ad3bf19dd89f45"
+    },
+    {
+      "path": "/api/replay/scenario",
+      "method": "GET",
+      "authenticatedSyntheticKey": false,
+      "originKind": "owned",
+      "status": 401,
+      "expectedStatus": 401,
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 52,
+      "bodySHA256": "6fcfdba9c68cfa98154b055b4c87762f6d665263bc67a0b463ad3bf19dd89f45"
+    },
+    {
+      "path": "/api/replay/status",
+      "method": "GET",
+      "authenticatedSyntheticKey": true,
+      "originKind": "owned",
+      "status": 200,
+      "expectedStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 234,
+      "bodySHA256": "2f6ca83ccd6ecde12b14c6f40ce790c8f943b8d585f42cda038cd4b2ae0e3874"
+    },
+    {
+      "path": "/api/replay/scenario",
+      "method": "GET",
+      "authenticatedSyntheticKey": true,
+      "originKind": "owned",
+      "status": 405,
+      "expectedStatus": 405,
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 37,
+      "bodySHA256": "4fa9a4e062b4082e82d412682ec02ca2c853d55f17bb1c710e77bdd5c859a08b"
+    }
+  ],
+  "dataSource": "EXPLICIT_TEST_REPLAY; no Kubernetes/traffic/scenario mutation",
+  "app": {
+    "pid": 88960,
+    "birth": "Wed Nov 11 21:52:24 2026",
+    "PGID": 88960,
+    "bind": "127.0.0.1:19844"
+  },
+  "replay": {
+    "explicitFlag": "M",
+    "dataSource": "test-replay",
+    "profile": "M",
+    "running": false,
+    "controlNoncePresentNotRetained": true,
+    "additionalPatterns": 2,
+    "scenarioInvoked": false
+  },
+  "appExitCode": 0,
+  "noListenAfter": true,
+  "elapsedSeconds": 0.13590045800083317,
+  "finishedAt": "2026-11-11T18:52:24.971922+00:00"
+}

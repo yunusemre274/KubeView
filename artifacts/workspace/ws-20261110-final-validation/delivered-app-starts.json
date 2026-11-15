@@ -1,0 +1,29 @@
+{
+  "time": "2026-11-10T12:18:33.934789+00:00",
+  "cwd": "/tmp",
+  "runner": "/Users/yunusemre/Library/Application Support/KubeView/manual-lab-bundles/20261110-workspace-ca3b9ec/scripts/manual-lab.sh",
+  "note": "normal-user immutable bundle; no Go/Node/dev server started by runner",
+  "runs": [
+    {
+      "profile": "02-ortak-kume",
+      "returncode": 0,
+      "stdout": "A\u00e7\u0131ld\u0131: http://127.0.0.1:19702/\nProfil veri dizini: /Users/yunusemre/Library/Application Support/KubeView/manual-lab-v1/profiles/02-ortak-kume/app-data/real\nGer\u00e7ek Kubernetes. Taray\u0131c\u0131 y\u00f6netim izni ayr\u0131ca a\u00e7\u0131k kullan\u0131c\u0131 eylemi ve ger\u00e7ek RBAC gerektirir.\n",
+      "stderr": "",
+      "writeOptIn": true
+    },
+    {
+      "profile": "05-ariza-toparlanma",
+      "returncode": 0,
+      "stdout": "A\u00e7\u0131ld\u0131: http://127.0.0.1:19705/\nProfil veri dizini: /Users/yunusemre/Library/Application Support/KubeView/manual-lab-v1/profiles/05-ariza-toparlanma/app-data/real\nGer\u00e7ek Kubernetes. Taray\u0131c\u0131 y\u00f6netim izni ayr\u0131ca a\u00e7\u0131k kullan\u0131c\u0131 eylemi ve ger\u00e7ek RBAC gerektirir.\n",
+      "stderr": "",
+      "writeOptIn": true
+    },
+    {
+      "profile": "06-limanlar-arasi-ag",
+      "returncode": 0,
+      "stdout": "A\u00e7\u0131ld\u0131: http://127.0.0.1:19706/\nProfil veri dizini: /Users/yunusemre/Library/Application Support/KubeView/manual-lab-v1/profiles/06-limanlar-arasi-ag/app-data/real\nGer\u00e7ek Kubernetes. Taray\u0131c\u0131 y\u00f6netim izni ayr\u0131ca a\u00e7\u0131k kullan\u0131c\u0131 eylemi ve ger\u00e7ek RBAC gerektirir.\n",
+      "stderr": "",
+      "writeOptIn": false
+    }
+  ]
+}

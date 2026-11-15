@@ -1,0 +1,67 @@
+{
+  "started_at_utc": "2026-11-11T10:50:20.832377+00:00",
+  "finished_at_utc": "2026-11-11T10:53:35.745330+00:00",
+  "source_commit": "49999815cf27ca47888fdc5d62cb1f7caf3bbd11",
+  "source_commit_at_end": "49999815cf27ca47888fdc5d62cb1f7caf3bbd11",
+  "tool_versions": {
+    "node": "v24.16.0",
+    "go": "go version go1.26.11 darwin/arm64"
+  },
+  "source_integrity_checks": [
+    {
+      "path": "frontend/src/data/resourceStore.js",
+      "sha256_before": "825a3503c74876ac464a35a2b7c16746a2f41a377f8a7d486716b3d49852f0bd",
+      "sha256_after": "825a3503c74876ac464a35a2b7c16746a2f41a377f8a7d486716b3d49852f0bd",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/data/resourceScopes.js",
+      "sha256_before": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158",
+      "sha256_after": "023d43d3d06d1c40225aeb701a6ed76970fc00a4ad989701877105449d063158",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/tests/store.test.js",
+      "sha256_before": "e0602bb6627b32a2ae15999d4a457ddee6116f3d2ba5a69ca05c8f5c4239ab27",
+      "sha256_after": "e0602bb6627b32a2ae15999d4a457ddee6116f3d2ba5a69ca05c8f5c4239ab27",
+      "unchanged": true
+    },
+    {
+      "path": "backend/pkg/workspace/store.go",
+      "sha256_before": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+      "sha256_after": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a",
+      "unchanged": true
+    },
+    {
+      "path": "backend/pkg/workspace/store_test.go",
+      "sha256_before": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+      "sha256_after": "02537cf4dfbc43de552889479433f2035b443dfaae0b3dab2d2a1a9b3172d476",
+      "unchanged": true
+    },
+    {
+      "path": "backend/go.mod",
+      "sha256_before": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+      "sha256_after": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+      "unchanged": true
+    },
+    {
+      "path": "backend/go.sum",
+      "sha256_before": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+      "sha256_after": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b",
+      "unchanged": true
+    }
+  ],
+  "all_reviewed_production_sources_unchanged": true,
+  "concurrent_test_jobs_maximum": 1,
+  "isolated_mutation_location": ".git/release-audit/fuzz-mutation-49999815",
+  "mutants_killed": 2,
+  "equivalent_controls": 1,
+  "syntax_error_mutants_counted": 0,
+  "production_bug_found": false,
+  "limitations": [
+    "Only existing FuzzWorkspaceDocument target and store.test.js file sampled",
+    "No global mutation coverage percentage claimed",
+    "No browser/cluster/build/framework run",
+    "Fuzz invalid inputs are not independent rejection assertions"
+  ]
+}

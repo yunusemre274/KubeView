@@ -1,0 +1,206 @@
+{
+  "cryptoFixedMod": {
+    "url": "https://proxy.golang.org/golang.org/x/crypto/@v/v0.58.1-0.20261009181718-2f1f834330b2.mod",
+    "exitCode": 0,
+    "bytes": 192,
+    "sha256": "938883ec4a74e7fc05c46269e924dda334c2b7ca7ca219e4d27ca56d1891ccd3",
+    "goDirective": "1.26.0",
+    "requires": "module golang.org/x/crypto\n\ngo 1.26.0\n\nrequire (\n\tgolang.org/x/net v0.60.0 // tagx:ignore\n\tgolang.org/x/sys v0.49.0\n\tgolang.org/x/term v0.47.0\n)\n\nrequire golang.org/x/text v0.43.0 // indirect\n"
+  },
+  "cryptoFixedInfo": {
+    "url": "https://proxy.golang.org/golang.org/x/crypto/@v/v0.58.1-0.20261009181718-2f1f834330b2.info",
+    "exitCode": 0,
+    "bytes": 197,
+    "sha256": "99a8593e9d355bc2a0cf36bd89dd39e28603a2ad1e7df12c2f9fc2f7e0082414",
+    "info": {
+      "Version": "v0.58.1-0.20261009181718-2f1f834330b2",
+      "Time": "2026-10-09T18:17:18Z",
+      "Origin": {
+        "VCS": "git",
+        "URL": "https://go.googlesource.com/crypto",
+        "Hash": "2f1f834330b2d36ab3db8bfb33aaa1ac16794588"
+      }
+    }
+  },
+  "gopacketFixedMod": {
+    "url": "https://proxy.golang.org/github.com/gopacket/gopacket/@v/v1.7.2.mod",
+    "exitCode": 0,
+    "bytes": 216,
+    "sha256": "3c8d4ff1bd4e11cbb222b4afe71c8364a0dcd9d809c5af32ad9d3fd7bc04df5a",
+    "goDirective": "1.25.0",
+    "requires": "module github.com/gopacket/gopacket\n\ngo 1.25.0\n\nrequire (\n\tgithub.com/vishvananda/netlink v1.1.0\n\tgithub.com/vishvananda/netns v0.0.0-20211101163701-50045581ed74\n\tgolang.org/x/net v0.55.0\n\tgolang.org/x/sys v0.45.0\n)\n"
+  },
+  "gopacketFixedInfo": {
+    "url": "https://proxy.golang.org/github.com/gopacket/gopacket/@v/v1.7.2.info",
+    "exitCode": 0,
+    "bytes": 193,
+    "sha256": "ebf4665f8745eca2dba3250963a6d652abc5013116fc0a9780979e433cbdbbfa",
+    "info": {
+      "Version": "v1.7.2",
+      "Time": "2026-09-15T01:04:03Z",
+      "Origin": {
+        "VCS": "git",
+        "URL": "https://github.com/gopacket/gopacket",
+        "Hash": "508044327cc2c065b3db753c010a027e7d1ca621",
+        "Ref": "refs/tags/v1.7.2"
+      }
+    }
+  },
+  "cryptoAdvisory": {
+    "url": "https://vuln.go.dev/ID/GO-2026-5932.json",
+    "exitCode": 0,
+    "bytes": 1827,
+    "sha256": "bde8769150ec1368d9a8dbd61fbbde52296de692c57147e02e3ae295e1981f11",
+    "advisory": {
+      "schema_version": "1.3.1",
+      "id": "GO-2026-5932",
+      "modified": "2026-11-02T22:01:43Z",
+      "published": "2026-07-07T22:15:29Z",
+      "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+      "details": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used.\n\nIf you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained fork that aims to be a drop-in replacement for this package.",
+      "affected": [
+        {
+          "package": {
+            "name": "golang.org/x/crypto",
+            "ecosystem": "Go"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "0.58.1-0.20261009181718-2f1f834330b2"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "imports": [
+              {
+                "path": "golang.org/x/crypto/openpgp"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/packet"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/armor"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/clearsign"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/errors"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/elgamal"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/s2k"
+              }
+            ]
+          }
+        },
+        {
+          "package": {
+            "name": "golang.org/x/crypto/openpgp",
+            "ecosystem": "Go"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "imports": [
+              {
+                "path": "golang.org/x/crypto/openpgp"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/packet"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/armor"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/clearsign"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/errors"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/elgamal"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/s2k"
+              }
+            ]
+          }
+        }
+      ],
+      "references": [
+        {
+          "type": "REPORT",
+          "url": "https://go.dev/issue/44226"
+        },
+        {
+          "type": "WEB",
+          "url": "https://go.dev/issue/81227"
+        }
+      ],
+      "database_specific": {
+        "url": "https://pkg.go.dev/vuln/GO-2026-5932",
+        "review_status": "REVIEWED"
+      }
+    }
+  },
+  "gopacketAdvisory": {
+    "url": "https://api.github.com/repos/gopacket/gopacket/security-advisories/GHSA-358w-w75h-x6rx",
+    "exitCode": 0,
+    "bytes": 23218,
+    "sha256": "1f84401d49bd7aed93fb78f3b180a37f603c7a137f751f3267998b0fccc4879c",
+    "advisory": {
+      "ghsa_id": "GHSA-358w-w75h-x6rx",
+      "cve_id": "CVE-2026-119299",
+      "summary": "SCTP chunk sub-decoder out-of-bounds panics on crafted segments",
+      "severity": "medium",
+      "cvss": {
+        "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "score": 5.9
+      },
+      "cvss_severities": {
+        "cvss_v3": {
+          "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "score": 5.9
+        },
+        "cvss_v4": {
+          "vector_string": null,
+          "score": null
+        }
+      },
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "go",
+            "name": "github.com/gopacket/gopacket"
+          },
+          "vulnerable_version_range": "<= 1.7.1",
+          "patched_versions": "1.7.2",
+          "vulnerable_functions": []
+        }
+      ],
+      "published_at": "2026-09-15T01:09:22Z",
+      "updated_at": "2026-10-30T16:23:04Z",
+      "html_url": "https://github.com/gopacket/gopacket/security/advisories/GHSA-358w-w75h-x6rx",
+      "references": null,
+      "bodySHA256": "30d5fe183331a2b2aa9f096a336e076ea8df5c29b343de77ef937d4d7a016d28"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/Users/yunusemre/Desktop/KubeView/.git/release-audit/tools/govulncheck",
+    "-version"
+  ],
+  "cwd_relative_to_repository": "backend",
+  "started_at_utc": "2026-11-11T10:21:09.222402+00:00",
+  "finished_at_utc": "2026-11-11T10:21:10.323553+00:00",
+  "duration_seconds": 1.101,
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "resource_limit": "GOMAXPROCS=2; Go commands explicitly -p=1 where applicable",
+  "stdout_file": "govulncheck-version.stdout",
+  "stderr_file": "govulncheck-version.stderr"
+}

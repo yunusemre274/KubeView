@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-11-11T16:52:42.984342+00:00",
+  "rule": "sourcegraph-access-token",
+  "findings": 397,
+  "classifications": {
+    "public_go_build_vcs_revision": 3,
+    "public_github_commit_url": 167,
+    "public_googlesource_commit_url": 227
+  },
+  "method": "Every entire source line matched only an exact public Git commit URL or Go build vcs.revision SHA; no credential fields. Exact redacted finding fingerprints only are the private staged baseline. No global rule suppression.",
+  "inputReportSHA256": "feb585ecadba03e1dc01eab01bfa2a9aac729a2aacae29b74c3a4d5e7173a57a",
+  "falsePositiveDecision": "Public 40-hex source identities; not Sourcegraph access tokens."
+}

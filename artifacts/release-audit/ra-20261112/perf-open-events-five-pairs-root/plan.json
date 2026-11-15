@@ -1,0 +1,52 @@
+{
+  "status": "PLANNED_NOT_STARTED",
+  "scope": "Frontend-browser-common-backend controlled M38 Node summary open /5events per second; NOT full-runtime A/B or delta-panel matrix",
+  "orders": [
+    "AB",
+    "BA",
+    "AB",
+    "BA",
+    "AB"
+  ],
+  "pairsRequired": 5,
+  "maximumPairsAttempted": 5,
+  "automaticRetries": 0,
+  "warmupSeconds": 30,
+  "measureSeconds": 60,
+  "pureWindowsMinutes": 15,
+  "jobMaximumSeconds": 1800,
+  "perRunnerMaximumMinutes": 3,
+  "power": "Current Battery only; source/settings change invalidates pair; no next window below40%, abort below30%",
+  "quality": "medium; shadows/sea/patrol on; noFPScap/adaptivequality; DPR1/1440x900; controlledFOV38 sameoldpose; canonical20Node/300Pod, startingdetailed8Node/120Pod",
+  "references": [
+    "../perf-native-harness-validation-root/REPORT.md",
+    "../perf-process-identity-worker/REPORT.md"
+  ],
+  "frozenFrontendA": "cat16-36d-20261112T113255Z",
+  "frozenFrontendB": "cat16-f32-20261112T113255Z",
+  "commonBackend": "cat16-common-f32-20261112T113255Z",
+  "backendSHA256": "9d35acc901bcbe6f8488042dd093a83e8a74c2d62cc77a9ef744f6ed48ee84a8",
+  "locksAndSeed": "unchanged frozenlock/fixture20261024; exacthashes from each manifest",
+  "port": 5192,
+  "resources": {
+    "appRSSGiB": 2,
+    "summedOwnedBrowserRSSGiB": 6,
+    "diskFreeGiB": 10,
+    "unownedProcesses": "never killed/stopped; record preflight comm-only CPU"
+  },
+  "validity": [
+    "same known source/build/harness/quality/camera/phase/selection before each window",
+    "per-window sampled PIDbirth/cohort/clock coverage; unknown invalid, no cherry-picking",
+    "producer planned/applied/received and full final canonical signatures all match",
+    "actual30+60 windows, no profiling/video/PNG capture in main family",
+    "both per-run cleanup and final owned process/port absence",
+    "all independent workers idle; no build/scanner/other owned benchmark/provider or lab workload"
+  ],
+  "decisionRule": "All5fixedpairs retained, medians/min-max/pairdiffs. Practical +5% median and paired ranges trigger investigation, not automatic waiver. Frame/dataproxy budgets unchanged. No \u0394panel before closed/open0/5matrix. No total full-runtime CPU/provider/energy/nativeSafari/physicalpresentation claim.",
+  "failurePolicy": "Stop first invalid/failed attempt, preserve entirepair including any completed side; do not replace with a favorable repeat. New finite plan only for concrete cause.",
+  "blockedUntil": [
+    "generic comparator firstfailure/retest reviewed and committed",
+    "root is sole active worker for actual windows",
+    "fresh power/lowpower/owned lab stopped/source and binary hashes confirmed"
+  ]
+}

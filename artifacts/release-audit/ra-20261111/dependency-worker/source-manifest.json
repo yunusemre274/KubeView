@@ -1,0 +1,51 @@
+{
+  "created_at_utc": "2026-11-11T10:20:24.525033+00:00",
+  "source_commit": "36d5b8f90c8afdec437bdb6e5516541b5bb859bd",
+  "branch": "redesign/harbor-workbench",
+  "host": {
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "versions": {
+    "node": "v24.16.0",
+    "npm": "11.13.0",
+    "go": "go version go1.26.5 darwin/arm64"
+  },
+  "source_files": [
+    {
+      "path": "AGENTS/AGENTS.md",
+      "sha256": "bfc5be3dd42357bd0b3128f48785bee028bf03e4e0f27cf1447a51d702fb0b3d"
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "sha256": "f5155a4ed21f9710de441736cb9e8966e344d50a3a50e7a7e47e918a5845bdcb"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "c4aca42e3f022873d5436b45d5bec7cb65fb2b8c2186764498f26f79d06f035c"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+    },
+    {
+      "path": "backend/go.mod",
+      "sha256": "9063188102dfa5ed6f60be6b7f34adaf150fdf87fc54cbecb9be0a3501a5344f"
+    },
+    {
+      "path": "backend/go.sum",
+      "sha256": "9b3181f96a3e08d824d0b8861442f07353806b27b358b8a30f3fb5b9631c0679"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "4ba1f8e9aee05b1bfadc22493b711b0e90ab360480a6cba9817d5d6000758e7a"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "166ea04f639f5237d12214d4f663e89a6e19b0307d5874e5b936b84203cc4102"
+    }
+  ],
+  "scope": "CAT07 read-only dependency/security audit; no production or lockfile edits; no cluster or container scan",
+  "lockfile_version": 3,
+  "npm_locked_package_count": 204
+}

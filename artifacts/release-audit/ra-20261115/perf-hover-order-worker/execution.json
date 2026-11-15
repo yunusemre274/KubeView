@@ -1,0 +1,1338 @@
+{
+  "status": "TWO_CONTROLLED_HOVER_JOBS_EXECUTED_REVIEW_PENDING",
+  "startedAt": "2026-11-15T10:11:42.588163+00:00",
+  "scope": "INSTRUMENTED_SYNTHETIC_FIXTURE_HOVER_ORDER_NOT_NORMAL_CPU_ACCEPTANCE",
+  "actualDataDeadlineEpoch": 1794737712.5881028,
+  "actualFinalDeadlineEpoch": 1794737772.5881028,
+  "jobs": [
+    {
+      "order": "leave-before-guard",
+      "id": "hover-order-0-20261115T101142Z",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-hover-order-20261115/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "cat16-current157-20261115T095801Z",
+        "--backend-tag",
+        "cat16-common157-20261115T095801Z",
+        "--reuse-build",
+        "--reuse-binary",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "panel-open",
+        "--panel-matrix",
+        "--panel-target",
+        "node",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "5",
+        "--seconds",
+        "10",
+        "--camera-fov",
+        "38",
+        "--dpr",
+        "1",
+        "--harbors",
+        "1",
+        "--lock-input",
+        "--lock-visual-start",
+        "--scene-inventory",
+        "--disable-browser-energy-saver",
+        "--max-minutes",
+        "1.4",
+        "--port",
+        "5192",
+        "--experiment-family",
+        "INSTRUMENTED_HOVER_ORDER_NOT_CPU_ACCEPTANCE",
+        "--id",
+        "hover-order-0-20261115T101142Z"
+      ],
+      "startedAt": "2026-11-15T10:11:42.694016+00:00",
+      "powerBefore": {
+        "at": "2026-11-15T10:11:42.706456+00:00",
+        "source": "AC",
+        "batteryPercent": 48,
+        "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+      },
+      "pid": 10673,
+      "lastPower": {
+        "at": "2026-11-15T10:11:58.311301+00:00",
+        "source": "AC",
+        "batteryPercent": 48,
+        "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+      },
+      "exitCode": 0,
+      "cleanup": [
+        {
+          "pid": 10673,
+          "identitySHA256": "5b4e46becac9c04afb458612d4d92b5c5e2654cffd6ed33f2500c80c01c27dd6",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10725,
+          "identitySHA256": "dcb7bbe4a5004d2df47b2b32e6440a7775b04659c6d3646e070f8de8ee894c9a",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10794,
+          "identitySHA256": "89a2ca902be4ef460a0d20d93c9c40264530ad2e0e208778860320106f4a4534",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10793,
+          "identitySHA256": "7602c5117a2d0b9c675e94964d14bf54074d48b527538a3f5860ec3ba14b37a7",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10806,
+          "identitySHA256": "b95e4ca60a680eff20f13b18a716a5c00ea183c4b752630f7c3e158d4a7ad286",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10807,
+          "identitySHA256": "9fc2f3d3657b1cec507d4e8bfd0bf193d61481dcfeb751c216b18995b0220f7b",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10808,
+          "identitySHA256": "6c320a420f83a409304103cc518c406f77284ccd95862d545ecbc07581efbbeb",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10810,
+          "identitySHA256": "c990874b9ff6a54453e715af96feb99fdef829f8ab396cd04e8be1ade57e9333",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10812,
+          "identitySHA256": "a698da7f6924aa0f8a1839389915f3a325c3c7fcefb317a2fe1a4cb3da1751e2",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10813,
+          "identitySHA256": "9115e98a932444a23fa6ba6b2d477e0ce05dda08e2b01d635b21170ad5d87fc3",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10823,
+          "identitySHA256": "b79aaeb82f4efa75eead4b8ed04197339e1b5dc64f084172cb49658397dd15f6",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10840,
+          "identitySHA256": "2c3b2c40e34beffa61b0313d051cdd6779ef1f3e70958dd85ff8269206581e93",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10848,
+          "identitySHA256": "39994c681c5215572c9a33b666497fc34bb2d1c29b2ae9c4ce9a19c8b048207b",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10849,
+          "identitySHA256": "eda17cd93ab3c16989ac084287055a6842fb5de976809b81a3b4f83535a9bfd0",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10847,
+          "identitySHA256": "f6c3a77311f90cde1edec16d835d256d282a1bdb09310ec53b33350dce2b40c7",
+          "capturedIdentityAbsent": true
+        }
+      ],
+      "portFree": true,
+      "elapsedSecondsIncludingCleanup": 21.0667781829834,
+      "finishedAt": "2026-11-15T10:12:03.760713+00:00",
+      "scope": "INSTRUMENTED_SYNTHETIC_NOT_CPU_ACCEPTANCE",
+      "flowStatus": "PASS_INSTRUMENTED_HOVER_FLOW"
+    },
+    {
+      "order": "guard-before-leave",
+      "id": "hover-order-1-20261115T101203Z",
+      "argv": [
+        "/Users/yunusemre/.nvm/versions/node/v24.16.0/bin/node",
+        "/Users/yunusemre/Desktop/KubeView/.git/release-audit/perf-hover-order-20261115/run.mjs",
+        "--phase",
+        "optimized",
+        "--build-tag",
+        "cat16-current157-20261115T095801Z",
+        "--backend-tag",
+        "cat16-common157-20261115T095801Z",
+        "--reuse-build",
+        "--reuse-binary",
+        "--profiles",
+        "M",
+        "--scenarios",
+        "panel-open",
+        "--panel-matrix",
+        "--panel-target",
+        "node",
+        "--repeats",
+        "1",
+        "--repeat-offset",
+        "0",
+        "--warmup",
+        "5",
+        "--seconds",
+        "10",
+        "--camera-fov",
+        "38",
+        "--dpr",
+        "1",
+        "--harbors",
+        "1",
+        "--lock-input",
+        "--lock-visual-start",
+        "--scene-inventory",
+        "--disable-browser-energy-saver",
+        "--max-minutes",
+        "1.4",
+        "--port",
+        "5192",
+        "--experiment-family",
+        "INSTRUMENTED_HOVER_ORDER_NOT_CPU_ACCEPTANCE",
+        "--id",
+        "hover-order-1-20261115T101203Z"
+      ],
+      "startedAt": "2026-11-15T10:12:03.794828+00:00",
+      "powerBefore": {
+        "at": "2026-11-15T10:12:03.807348+00:00",
+        "source": "AC",
+        "batteryPercent": 48,
+        "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+      },
+      "pid": 10996,
+      "lastPower": {
+        "at": "2026-11-15T10:12:19.483624+00:00",
+        "source": "AC",
+        "batteryPercent": 48,
+        "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+      },
+      "exitCode": 0,
+      "cleanup": [
+        {
+          "pid": 10673,
+          "identitySHA256": "5b4e46becac9c04afb458612d4d92b5c5e2654cffd6ed33f2500c80c01c27dd6",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10725,
+          "identitySHA256": "dcb7bbe4a5004d2df47b2b32e6440a7775b04659c6d3646e070f8de8ee894c9a",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10794,
+          "identitySHA256": "89a2ca902be4ef460a0d20d93c9c40264530ad2e0e208778860320106f4a4534",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10793,
+          "identitySHA256": "7602c5117a2d0b9c675e94964d14bf54074d48b527538a3f5860ec3ba14b37a7",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10806,
+          "identitySHA256": "b95e4ca60a680eff20f13b18a716a5c00ea183c4b752630f7c3e158d4a7ad286",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10807,
+          "identitySHA256": "9fc2f3d3657b1cec507d4e8bfd0bf193d61481dcfeb751c216b18995b0220f7b",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10808,
+          "identitySHA256": "6c320a420f83a409304103cc518c406f77284ccd95862d545ecbc07581efbbeb",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10810,
+          "identitySHA256": "c990874b9ff6a54453e715af96feb99fdef829f8ab396cd04e8be1ade57e9333",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10812,
+          "identitySHA256": "a698da7f6924aa0f8a1839389915f3a325c3c7fcefb317a2fe1a4cb3da1751e2",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10813,
+          "identitySHA256": "9115e98a932444a23fa6ba6b2d477e0ce05dda08e2b01d635b21170ad5d87fc3",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10823,
+          "identitySHA256": "b79aaeb82f4efa75eead4b8ed04197339e1b5dc64f084172cb49658397dd15f6",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10840,
+          "identitySHA256": "2c3b2c40e34beffa61b0313d051cdd6779ef1f3e70958dd85ff8269206581e93",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10848,
+          "identitySHA256": "39994c681c5215572c9a33b666497fc34bb2d1c29b2ae9c4ce9a19c8b048207b",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10849,
+          "identitySHA256": "eda17cd93ab3c16989ac084287055a6842fb5de976809b81a3b4f83535a9bfd0",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10847,
+          "identitySHA256": "f6c3a77311f90cde1edec16d835d256d282a1bdb09310ec53b33350dce2b40c7",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 10996,
+          "identitySHA256": "b157afadde737756c74499f0434a0758b2bec4efb2ac2ce8a3a5f3fb3abbb928",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11081,
+          "identitySHA256": "3e85a7492df12a2a72558db3f2abd292790875b4b13b0c78e49e6ef8e63cdaf0",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11116,
+          "identitySHA256": "b237aa1f05ad52269361def009e0f132ede8b4e2022bc8f213c0bbbb7b61e349",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11117,
+          "identitySHA256": "026d793d42676c03b26b2c53baabfac2a37de0ddd333c721d103fe8788314681",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11124,
+          "identitySHA256": "096673a1add697e77ba402c879e68157d05e2c328429eeb93793500e23aecdbc",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11125,
+          "identitySHA256": "b583ef0ae04472f7db1ad4dd0cbd6f19e08855be3eedd3a75b90fdeb55406cf7",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11137,
+          "identitySHA256": "f5b30aa53fb267be3e8d3191352feaeb14901607f9547c6ca3c7801a5fe76da9",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11127,
+          "identitySHA256": "9cf5fd12765f77b73f73398d0246f422face38aa60504d60229a480499e08a15",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11156,
+          "identitySHA256": "bc50c9a5c5eb3fc366e161ebec5baae7b3fda5c63bd7069bd0d97e91f2e4a280",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11161,
+          "identitySHA256": "f139b5305b05a113a567b5cbf0e9cfcdfef658d23bf8a28effffbf983f6b50f3",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11162,
+          "identitySHA256": "8f69adeaa11a06e9c1394c3b2fef064bbeb962789f4cc2552977f3abc47b563d",
+          "capturedIdentityAbsent": true
+        },
+        {
+          "pid": 11163,
+          "identitySHA256": "50342fb30d75efb0018e273154649e1fd922ae50e8bb989af8d3c67a361580ff",
+          "capturedIdentityAbsent": true
+        }
+      ],
+      "portFree": true,
+      "elapsedSecondsIncludingCleanup": 19.74333691596985,
+      "finishedAt": "2026-11-15T10:12:23.538083+00:00",
+      "scope": "INSTRUMENTED_SYNTHETIC_NOT_CPU_ACCEPTANCE",
+      "flowStatus": "PASS_INSTRUMENTED_HOVER_FLOW"
+    }
+  ],
+  "samples": [
+    {
+      "at": "2026-11-15T10:11:42.731646+00:00",
+      "browserSummedProcessRSSBytes": 0,
+      "appRSSBytes": 0,
+      "ownedCount": 1
+    },
+    {
+      "at": "2026-11-15T10:11:43.024172+00:00",
+      "browserSummedProcessRSSBytes": 0,
+      "appRSSBytes": 0,
+      "ownedCount": 2
+    },
+    {
+      "at": "2026-11-15T10:11:43.303086+00:00",
+      "browserSummedProcessRSSBytes": 3784704,
+      "appRSSBytes": 0,
+      "ownedCount": 3
+    },
+    {
+      "at": "2026-11-15T10:11:43.583698+00:00",
+      "browserSummedProcessRSSBytes": 115654656,
+      "appRSSBytes": 0,
+      "ownedCount": 3
+    },
+    {
+      "at": "2026-11-15T10:11:43.892443+00:00",
+      "browserSummedProcessRSSBytes": 834879488,
+      "appRSSBytes": 0,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:44.176818+00:00",
+      "browserSummedProcessRSSBytes": 687947776,
+      "appRSSBytes": 32768,
+      "ownedCount": 8
+    },
+    {
+      "at": "2026-11-15T10:11:44.464012+00:00",
+      "browserSummedProcessRSSBytes": 687964160,
+      "appRSSBytes": 32768,
+      "ownedCount": 8
+    },
+    {
+      "at": "2026-11-15T10:11:44.752365+00:00",
+      "browserSummedProcessRSSBytes": 688553984,
+      "appRSSBytes": 32768,
+      "ownedCount": 8
+    },
+    {
+      "at": "2026-11-15T10:11:45.039820+00:00",
+      "browserSummedProcessRSSBytes": 688553984,
+      "appRSSBytes": 25460736,
+      "ownedCount": 8
+    },
+    {
+      "at": "2026-11-15T10:11:45.324564+00:00",
+      "browserSummedProcessRSSBytes": 1093713920,
+      "appRSSBytes": 43597824,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:45.598903+00:00",
+      "browserSummedProcessRSSBytes": 1177223168,
+      "appRSSBytes": 47104000,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:45.873247+00:00",
+      "browserSummedProcessRSSBytes": 1272807424,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:46.155651+00:00",
+      "browserSummedProcessRSSBytes": 1274691584,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:46.439905+00:00",
+      "browserSummedProcessRSSBytes": 1282637824,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:46.728893+00:00",
+      "browserSummedProcessRSSBytes": 1284390912,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:47.017984+00:00",
+      "browserSummedProcessRSSBytes": 1285029888,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:47.310464+00:00",
+      "browserSummedProcessRSSBytes": 1287618560,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:47.595538+00:00",
+      "browserSummedProcessRSSBytes": 1289043968,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:47.881223+00:00",
+      "browserSummedProcessRSSBytes": 1289682944,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:48.191792+00:00",
+      "browserSummedProcessRSSBytes": 1292009472,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:48.478633+00:00",
+      "browserSummedProcessRSSBytes": 1293500416,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:48.775156+00:00",
+      "browserSummedProcessRSSBytes": 1294368768,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:49.066227+00:00",
+      "browserSummedProcessRSSBytes": 1294729216,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:49.351746+00:00",
+      "browserSummedProcessRSSBytes": 1295286272,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:49.644348+00:00",
+      "browserSummedProcessRSSBytes": 1295826944,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:49.933786+00:00",
+      "browserSummedProcessRSSBytes": 1296498688,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:50.225602+00:00",
+      "browserSummedProcessRSSBytes": 1297104896,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:50.511398+00:00",
+      "browserSummedProcessRSSBytes": 1297645568,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:50.803761+00:00",
+      "browserSummedProcessRSSBytes": 1297563648,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:51.079475+00:00",
+      "browserSummedProcessRSSBytes": 1346420736,
+      "appRSSBytes": 47529984,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:51.356169+00:00",
+      "browserSummedProcessRSSBytes": 1363509248,
+      "appRSSBytes": 49053696,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:51.635748+00:00",
+      "browserSummedProcessRSSBytes": 1361330176,
+      "appRSSBytes": 50495488,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:51.910251+00:00",
+      "browserSummedProcessRSSBytes": 1363951616,
+      "appRSSBytes": 51773440,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:52.184770+00:00",
+      "browserSummedProcessRSSBytes": 1383825408,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:52.460300+00:00",
+      "browserSummedProcessRSSBytes": 1386627072,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:52.748773+00:00",
+      "browserSummedProcessRSSBytes": 1387249664,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:53.038244+00:00",
+      "browserSummedProcessRSSBytes": 1389019136,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:53.345760+00:00",
+      "browserSummedProcessRSSBytes": 1389723648,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:53.628798+00:00",
+      "browserSummedProcessRSSBytes": 1390919680,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:53.917553+00:00",
+      "browserSummedProcessRSSBytes": 1391689728,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:54.207999+00:00",
+      "browserSummedProcessRSSBytes": 1392345088,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:54.504315+00:00",
+      "browserSummedProcessRSSBytes": 1393131520,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:54.792824+00:00",
+      "browserSummedProcessRSSBytes": 1393885184,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:55.083193+00:00",
+      "browserSummedProcessRSSBytes": 1394917376,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:55.370700+00:00",
+      "browserSummedProcessRSSBytes": 1395752960,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:55.661729+00:00",
+      "browserSummedProcessRSSBytes": 1396424704,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:55.956113+00:00",
+      "browserSummedProcessRSSBytes": 1397145600,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:56.246994+00:00",
+      "browserSummedProcessRSSBytes": 1397882880,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:56.540862+00:00",
+      "browserSummedProcessRSSBytes": 1398259712,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:56.832117+00:00",
+      "browserSummedProcessRSSBytes": 1398931456,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:57.126483+00:00",
+      "browserSummedProcessRSSBytes": 1399619584,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:57.419800+00:00",
+      "browserSummedProcessRSSBytes": 1394900992,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:57.711424+00:00",
+      "browserSummedProcessRSSBytes": 1394999296,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:58.001357+00:00",
+      "browserSummedProcessRSSBytes": 1392345088,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:58.293916+00:00",
+      "browserSummedProcessRSSBytes": 1393049600,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:58.600608+00:00",
+      "browserSummedProcessRSSBytes": 1393836032,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:58.893798+00:00",
+      "browserSummedProcessRSSBytes": 1394556928,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:59.188186+00:00",
+      "browserSummedProcessRSSBytes": 1395261440,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:59.480536+00:00",
+      "browserSummedProcessRSSBytes": 1395949568,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:11:59.768955+00:00",
+      "browserSummedProcessRSSBytes": 1396621312,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:00.060178+00:00",
+      "browserSummedProcessRSSBytes": 1397342208,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:00.352756+00:00",
+      "browserSummedProcessRSSBytes": 1398013952,
+      "appRSSBytes": 55918592,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:00.639794+00:00",
+      "browserSummedProcessRSSBytes": 1398947840,
+      "appRSSBytes": 55951360,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:00.931910+00:00",
+      "browserSummedProcessRSSBytes": 1399652352,
+      "appRSSBytes": 56049664,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:01.224334+00:00",
+      "browserSummedProcessRSSBytes": 1400438784,
+      "appRSSBytes": 56049664,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:01.514178+00:00",
+      "browserSummedProcessRSSBytes": 1401126912,
+      "appRSSBytes": 56049664,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:01.801802+00:00",
+      "browserSummedProcessRSSBytes": 1401847808,
+      "appRSSBytes": 56049664,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:02.094151+00:00",
+      "browserSummedProcessRSSBytes": 1402503168,
+      "appRSSBytes": 56049664,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:02.381910+00:00",
+      "browserSummedProcessRSSBytes": 1403781120,
+      "appRSSBytes": 56049664,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:02.661881+00:00",
+      "browserSummedProcessRSSBytes": 1417084928,
+      "appRSSBytes": 56049664,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:02.936812+00:00",
+      "browserSummedProcessRSSBytes": 1432469504,
+      "appRSSBytes": 56066048,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:03.832146+00:00",
+      "browserSummedProcessRSSBytes": 0,
+      "appRSSBytes": 0,
+      "ownedCount": 1
+    },
+    {
+      "at": "2026-11-15T10:12:04.123673+00:00",
+      "browserSummedProcessRSSBytes": 0,
+      "appRSSBytes": 0,
+      "ownedCount": 2
+    },
+    {
+      "at": "2026-11-15T10:12:04.426354+00:00",
+      "browserSummedProcessRSSBytes": 139739136,
+      "appRSSBytes": 0,
+      "ownedCount": 5
+    },
+    {
+      "at": "2026-11-15T10:12:04.726087+00:00",
+      "browserSummedProcessRSSBytes": 882868224,
+      "appRSSBytes": 0,
+      "ownedCount": 9
+    },
+    {
+      "at": "2026-11-15T10:12:05.010359+00:00",
+      "browserSummedProcessRSSBytes": 1098317824,
+      "appRSSBytes": 43958272,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:05.293029+00:00",
+      "browserSummedProcessRSSBytes": 1177419776,
+      "appRSSBytes": 47497216,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:05.573189+00:00",
+      "browserSummedProcessRSSBytes": 1259913216,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:05.859091+00:00",
+      "browserSummedProcessRSSBytes": 1262370816,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:06.143936+00:00",
+      "browserSummedProcessRSSBytes": 1271660544,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:06.433067+00:00",
+      "browserSummedProcessRSSBytes": 1272479744,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:06.725185+00:00",
+      "browserSummedProcessRSSBytes": 1273036800,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:07.018133+00:00",
+      "browserSummedProcessRSSBytes": 1275838464,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:07.302047+00:00",
+      "browserSummedProcessRSSBytes": 1277231104,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:07.591612+00:00",
+      "browserSummedProcessRSSBytes": 1278754816,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:07.881612+00:00",
+      "browserSummedProcessRSSBytes": 1279442944,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:08.168805+00:00",
+      "browserSummedProcessRSSBytes": 1280786432,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:08.458531+00:00",
+      "browserSummedProcessRSSBytes": 1281409024,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:08.745999+00:00",
+      "browserSummedProcessRSSBytes": 1281966080,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:09.037006+00:00",
+      "browserSummedProcessRSSBytes": 1282457600,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:09.345376+00:00",
+      "browserSummedProcessRSSBytes": 1283047424,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:09.636870+00:00",
+      "browserSummedProcessRSSBytes": 1283981312,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:09.929199+00:00",
+      "browserSummedProcessRSSBytes": 1284669440,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:10.226649+00:00",
+      "browserSummedProcessRSSBytes": 1285259264,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:10.521751+00:00",
+      "browserSummedProcessRSSBytes": 1285095424,
+      "appRSSBytes": 47923200,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:10.796356+00:00",
+      "browserSummedProcessRSSBytes": 1336541184,
+      "appRSSBytes": 48840704,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:11.069689+00:00",
+      "browserSummedProcessRSSBytes": 1349419008,
+      "appRSSBytes": 48840704,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:11.347529+00:00",
+      "browserSummedProcessRSSBytes": 1382219776,
+      "appRSSBytes": 51462144,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:11.629415+00:00",
+      "browserSummedProcessRSSBytes": 1388642304,
+      "appRSSBytes": 51462144,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:11.906809+00:00",
+      "browserSummedProcessRSSBytes": 1393573888,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:12.190009+00:00",
+      "browserSummedProcessRSSBytes": 1395277824,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:12.481429+00:00",
+      "browserSummedProcessRSSBytes": 1397227520,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:12.774815+00:00",
+      "browserSummedProcessRSSBytes": 1398030336,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:13.061984+00:00",
+      "browserSummedProcessRSSBytes": 1398898688,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:13.350702+00:00",
+      "browserSummedProcessRSSBytes": 1400176640,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:13.637919+00:00",
+      "browserSummedProcessRSSBytes": 1401028608,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:13.928984+00:00",
+      "browserSummedProcessRSSBytes": 1401831424,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:14.214212+00:00",
+      "browserSummedProcessRSSBytes": 1402568704,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:14.522728+00:00",
+      "browserSummedProcessRSSBytes": 1403518976,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:14.814570+00:00",
+      "browserSummedProcessRSSBytes": 1404534784,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:15.109471+00:00",
+      "browserSummedProcessRSSBytes": 1405370368,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:15.401491+00:00",
+      "browserSummedProcessRSSBytes": 1406058496,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:15.694602+00:00",
+      "browserSummedProcessRSSBytes": 1406910464,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:15.989868+00:00",
+      "browserSummedProcessRSSBytes": 1407221760,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:16.283199+00:00",
+      "browserSummedProcessRSSBytes": 1407975424,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:16.571668+00:00",
+      "browserSummedProcessRSSBytes": 1408827392,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:16.859882+00:00",
+      "browserSummedProcessRSSBytes": 1409531904,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:17.151106+00:00",
+      "browserSummedProcessRSSBytes": 1404338176,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:17.435421+00:00",
+      "browserSummedProcessRSSBytes": 1405140992,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:17.720970+00:00",
+      "browserSummedProcessRSSBytes": 1402339328,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:18.009100+00:00",
+      "browserSummedProcessRSSBytes": 1403060224,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:18.302559+00:00",
+      "browserSummedProcessRSSBytes": 1403846656,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:18.591060+00:00",
+      "browserSummedProcessRSSBytes": 1404633088,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:18.884981+00:00",
+      "browserSummedProcessRSSBytes": 1405419520,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:19.173884+00:00",
+      "browserSummedProcessRSSBytes": 1406205952,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:19.466199+00:00",
+      "browserSummedProcessRSSBytes": 1407025152,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:19.772046+00:00",
+      "browserSummedProcessRSSBytes": 1407942656,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:20.068666+00:00",
+      "browserSummedProcessRSSBytes": 1408679936,
+      "appRSSBytes": 55820288,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:20.355220+00:00",
+      "browserSummedProcessRSSBytes": 1409728512,
+      "appRSSBytes": 55984128,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:20.641182+00:00",
+      "browserSummedProcessRSSBytes": 1410482176,
+      "appRSSBytes": 55984128,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:20.932402+00:00",
+      "browserSummedProcessRSSBytes": 1411268608,
+      "appRSSBytes": 55984128,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:21.221592+00:00",
+      "browserSummedProcessRSSBytes": 1412055040,
+      "appRSSBytes": 55984128,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:21.513336+00:00",
+      "browserSummedProcessRSSBytes": 1412825088,
+      "appRSSBytes": 55984128,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:21.802527+00:00",
+      "browserSummedProcessRSSBytes": 1413627904,
+      "appRSSBytes": 55984128,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:22.087308+00:00",
+      "browserSummedProcessRSSBytes": 1414922240,
+      "appRSSBytes": 55984128,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:22.366795+00:00",
+      "browserSummedProcessRSSBytes": 1428471808,
+      "appRSSBytes": 55984128,
+      "ownedCount": 10
+    },
+    {
+      "at": "2026-11-15T10:12:22.642275+00:00",
+      "browserSummedProcessRSSBytes": 1437810688,
+      "appRSSBytes": 56475648,
+      "ownedCount": 10
+    }
+  ],
+  "newProductChanges": false,
+  "realKubernetes": false,
+  "automaticRetries": 0,
+  "powerBefore": {
+    "at": "2026-11-15T10:11:42.601474+00:00",
+    "source": "AC",
+    "batteryPercent": 48,
+    "settingsSHA256": "290e2b2175a45b1aaec6864e66ce521fdf1b0148031086c0b5a8127dddbf7008"
+  },
+  "allAssetsAndBinaryVerified": true,
+  "cleanup": [
+    {
+      "pid": 10673,
+      "identitySHA256": "5b4e46becac9c04afb458612d4d92b5c5e2654cffd6ed33f2500c80c01c27dd6",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10725,
+      "identitySHA256": "dcb7bbe4a5004d2df47b2b32e6440a7775b04659c6d3646e070f8de8ee894c9a",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10794,
+      "identitySHA256": "89a2ca902be4ef460a0d20d93c9c40264530ad2e0e208778860320106f4a4534",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10793,
+      "identitySHA256": "7602c5117a2d0b9c675e94964d14bf54074d48b527538a3f5860ec3ba14b37a7",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10806,
+      "identitySHA256": "b95e4ca60a680eff20f13b18a716a5c00ea183c4b752630f7c3e158d4a7ad286",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10807,
+      "identitySHA256": "9fc2f3d3657b1cec507d4e8bfd0bf193d61481dcfeb751c216b18995b0220f7b",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10808,
+      "identitySHA256": "6c320a420f83a409304103cc518c406f77284ccd95862d545ecbc07581efbbeb",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10810,
+      "identitySHA256": "c990874b9ff6a54453e715af96feb99fdef829f8ab396cd04e8be1ade57e9333",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10812,
+      "identitySHA256": "a698da7f6924aa0f8a1839389915f3a325c3c7fcefb317a2fe1a4cb3da1751e2",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10813,
+      "identitySHA256": "9115e98a932444a23fa6ba6b2d477e0ce05dda08e2b01d635b21170ad5d87fc3",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10823,
+      "identitySHA256": "b79aaeb82f4efa75eead4b8ed04197339e1b5dc64f084172cb49658397dd15f6",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10840,
+      "identitySHA256": "2c3b2c40e34beffa61b0313d051cdd6779ef1f3e70958dd85ff8269206581e93",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10848,
+      "identitySHA256": "39994c681c5215572c9a33b666497fc34bb2d1c29b2ae9c4ce9a19c8b048207b",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10849,
+      "identitySHA256": "eda17cd93ab3c16989ac084287055a6842fb5de976809b81a3b4f83535a9bfd0",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10847,
+      "identitySHA256": "f6c3a77311f90cde1edec16d835d256d282a1bdb09310ec53b33350dce2b40c7",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 10996,
+      "identitySHA256": "b157afadde737756c74499f0434a0758b2bec4efb2ac2ce8a3a5f3fb3abbb928",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11081,
+      "identitySHA256": "3e85a7492df12a2a72558db3f2abd292790875b4b13b0c78e49e6ef8e63cdaf0",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11116,
+      "identitySHA256": "b237aa1f05ad52269361def009e0f132ede8b4e2022bc8f213c0bbbb7b61e349",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11117,
+      "identitySHA256": "026d793d42676c03b26b2c53baabfac2a37de0ddd333c721d103fe8788314681",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11124,
+      "identitySHA256": "096673a1add697e77ba402c879e68157d05e2c328429eeb93793500e23aecdbc",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11125,
+      "identitySHA256": "b583ef0ae04472f7db1ad4dd0cbd6f19e08855be3eedd3a75b90fdeb55406cf7",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11137,
+      "identitySHA256": "f5b30aa53fb267be3e8d3191352feaeb14901607f9547c6ca3c7801a5fe76da9",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11127,
+      "identitySHA256": "9cf5fd12765f77b73f73398d0246f422face38aa60504d60229a480499e08a15",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11156,
+      "identitySHA256": "bc50c9a5c5eb3fc366e161ebec5baae7b3fda5c63bd7069bd0d97e91f2e4a280",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11161,
+      "identitySHA256": "f139b5305b05a113a567b5cbf0e9cfcdfef658d23bf8a28effffbf983f6b50f3",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11162,
+      "identitySHA256": "8f69adeaa11a06e9c1394c3b2fef064bbeb962789f4cc2552977f3abc47b563d",
+      "capturedIdentityAbsent": true
+    },
+    {
+      "pid": 11163,
+      "identitySHA256": "50342fb30d75efb0018e273154649e1fd922ae50e8bb989af8d3c67a361580ff",
+      "capturedIdentityAbsent": true
+    }
+  ],
+  "port5192Free": true,
+  "helperUnchanged": true,
+  "repositoryRunUnchanged": true,
+  "elapsedSeconds": 41.59819531440735,
+  "finishedAt": "2026-11-15T10:12:24.186302+00:00",
+  "within270Seconds": true
+}

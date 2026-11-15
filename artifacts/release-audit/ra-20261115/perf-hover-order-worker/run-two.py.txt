@@ -1,0 +1,57 @@
+from pathlib import Path
+import os,subprocess,json,time,datetime,hashlib,signal,re,shutil
+R=Path('/Users/yunusemre/Desktop/KubeView');A=R/'artifacts/release-audit/ra-20261115/perf-hover-order-worker';P=R/'.git/release-audit/perf-hover-order-20261115';PLAN=json.loads((A/'plan.json').read_text());BUILD=PLAN['build'];start=time.time();dataDeadline=start+210;finalDeadline=start+270;captured={};proc=None
+NODE=Path.home()/'.nvm/versions/node/v24.16.0/bin/node';GO=Path.home()/'go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.11.darwin-arm64/bin';ENV=dict(os.environ,PATH=str(GO)+':'+str(NODE.parent)+':'+os.environ['PATH'],KUBECONFIG='/dev/null',KV_HUBBLE_ENABLED='false',KV_MINIKUBE_ENABLED='false',GOTOOLCHAIN='local',GOMAXPROCS='2',GOMEMLIMIT='2GiB')
+REC={'status':'FAIL','startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scope':PLAN['scope'],'actualDataDeadlineEpoch':dataDeadline,'actualFinalDeadlineEpoch':finalDeadline,'jobs':[],'samples':[],'newProductChanges':False,'realKubernetes':False,'automaticRetries':0};stamp=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
+def need(ok,msg):
+ if not ok:raise RuntimeError(msg)
+def sha(p):
+ with p.open('rb')as f:return hashlib.file_digest(f,'sha256').hexdigest()
+def ident(pid):
+ p=subprocess.run(['/bin/ps','-p',str(pid),'-o','lstart=','-o','command='],capture_output=True,text=True,timeout=2);return p.stdout.strip()if p.returncode==0 else None
+def collect(anchor):
+ rows={}
+ for line in subprocess.check_output(['/bin/ps','-axo','pid=,ppid=,rss=,comm='],text=True,timeout=2).splitlines():
+  s=line.strip().split(None,3)
+  if len(s)==4:rows[int(s[0])]=(int(s[1]),int(s[2]),Path(s[3]).name)
+ owned={anchor}
+ while True:
+  old=len(owned);owned.update(pid for pid,row in rows.items()if row[0]in owned)
+  if len(owned)==old:break
+ for pid in owned:
+  if pid not in captured:
+   i=ident(pid)
+   if i:captured[pid]=i
+ browserRSS=sum(rows[pid][1]*1024 for pid in owned if pid in rows and re.search('Chrome|Chromium|chrome|chromium',rows[pid][2]));appRSS=sum(rows[pid][1]*1024 for pid in owned if pid in rows and rows[pid][2]=='backend.test');need(browserRSS<=6<<30 and appRSS<=2<<30,'RSS ceiling browser6GiB app2GiB');REC['samples'].append({'at':stamp(),'browserSummedProcessRSSBytes':browserRSS,'appRSSBytes':appRSS,'ownedCount':len(owned)})
+def power():
+ text=subprocess.check_output(['/usr/bin/pmset','-g','batt'],text=True,timeout=2);m=re.search(r'(\d+)%',text);settings=subprocess.check_output(['/usr/bin/pmset','-g','custom'],text=True,timeout=2);modes=re.findall(r'lowpowermode\s+(\d+)',settings);need('AC Power'in text and m and int(m[1])>=30 and modes==['0','0'],'AC/battery30/lowpower0 guard');need(shutil.disk_usage(R).free>=10<<30,'disk10GiB guard');return {'at':stamp(),'source':'AC','batteryPercent':int(m[1]),'settingsSHA256':hashlib.sha256(settings.encode()).hexdigest()}
+def portFree():
+ x=subprocess.run(['/usr/sbin/lsof','-nP','-iTCP:5192','-sTCP:LISTEN','-t'],capture_output=True,timeout=2);return x.returncode==1 and not x.stdout
+def cleanup():
+ for sig in [signal.SIGTERM,signal.SIGKILL]:
+  for pid,birth in reversed(list(captured.items())):
+   if ident(pid)==birth:
+    try:os.kill(pid,sig)
+    except ProcessLookupError:pass
+  time.sleep(.2)
+ return [{'pid':pid,'identitySHA256':hashlib.sha256(birth.encode()).hexdigest(),'capturedIdentityAbsent':ident(pid)!=birth}for pid,birth in captured.items()]
+try:
+ need(not(A/'execution.json').exists(),'one-shot execution exists');need(sha(P/'run.mjs')==PLAN['privateHelperSHA256']and sha(R/'benchmarks/run.mjs')==PLAN['repositoryRunSHA256'],'helper/repositorysource guard');REC['powerBefore']=power();need(portFree(),'ownedport5192free')
+ common=R/'benchmarks/.build'/BUILD['backend']['tag']/'backend.test';need(sha(common)==BUILD['backend']['sha256'],'newcommonbinarySHA');fe=R/'benchmarks/.build'/BUILD['frontend']['tag'];need(all(sha(fe/p)==h for p,h in BUILD['frontend']['assets'].items()),'frozennewB sixassetSHA');REC['allAssetsAndBinaryVerified']=True
+ for index,order in enumerate(PLAN['orders']):
+  need(time.time()<dataDeadline-90,'210s globaldata reserve next90sjob');need(portFree(),'priorownedport cleanup');jobstart=time.time();runid='hover-order-'+str(index)+'-'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ');argv=[str(NODE),str(P/'run.mjs'),'--phase','optimized','--build-tag',BUILD['frontend']['tag'],'--backend-tag',BUILD['backend']['tag'],'--reuse-build','--reuse-binary','--profiles','M','--scenarios','panel-open','--panel-matrix','--panel-target','node','--repeats','1','--repeat-offset','0','--warmup','5','--seconds','10','--camera-fov','38','--dpr','1','--harbors','1','--lock-input','--lock-visual-start','--scene-inventory','--disable-browser-energy-saver','--max-minutes','1.4','--port','5192','--experiment-family','INSTRUMENTED_HOVER_ORDER_NOT_CPU_ACCEPTANCE','--id',runid];job={'order':order,'id':runid,'argv':argv,'startedAt':stamp(),'powerBefore':power()};REC['jobs'].append(job);env=dict(ENV,KV_HOVER_ORDER=order)
+  with(A/(str(index)+'.stdout')).open('xb')as out,(A/(str(index)+'.stderr')).open('xb')as err:
+   proc=subprocess.Popen(argv,cwd=R,env=env,stdout=out,stderr=err,start_new_session=True);job['pid']=proc.pid;lastpower=0
+   while proc.poll()is None:
+    need(time.time()<min(dataDeadline,jobstart+75),'job90 with15s cleanup reserve/globaldata210');collect(proc.pid)
+    if time.time()-lastpower>5:job['lastPower']=power();lastpower=time.time()
+    time.sleep(.25)
+   job['exitCode']=proc.wait()
+  job['cleanup']=cleanup();job['portFree']=portFree();job['elapsedSecondsIncludingCleanup']=time.time()-jobstart;job['finishedAt']=stamp();need(all(x['capturedIdentityAbsent']for x in job['cleanup'])and job['portFree']and job['elapsedSecondsIncludingCleanup']<=90,'perjob cleanup guard');need(job['exitCode']==0,'first runnerfail/block stops no retry');folder=A/'runtime'/runid;summary=json.loads((folder/'summary.json').read_text());result=json.loads((folder/'hover-result.json').read_text());need(not summary['errors']and summary['manifest']['profiler']and result['canonicalEqual'],'instrumented flow+canonical guard');need(len(list(folder.glob('*-render-identity.json')))==4 and len(list(folder.glob('*.png')))==4,'exact4stageJSON+PNG');job['scope']='INSTRUMENTED_SYNTHETIC_NOT_CPU_ACCEPTANCE';job['flowStatus']=result['status'];(A/'progress.json').write_text(json.dumps({'at':stamp(),'completedJobs':len(REC['jobs']),'lastJob':job},indent=2)+'\n')
+ REC['status']='TWO_CONTROLLED_HOVER_JOBS_EXECUTED_REVIEW_PENDING'
+except BaseException as e:REC['failure']=str(e);REC['status']='BLOCKED_OR_FAILED_PRESERVED_NO_RETRY'
+finally:
+ REC['cleanup']=cleanup();REC['port5192Free']=portFree();REC['helperUnchanged']=sha(P/'run.mjs')==PLAN['privateHelperSHA256'];REC['repositoryRunUnchanged']=sha(R/'benchmarks/run.mjs')==PLAN['repositoryRunSHA256'];REC['elapsedSeconds']=time.time()-start;REC['finishedAt']=stamp();REC['within270Seconds']=time.time()<=finalDeadline
+ if not REC['port5192Free']or not all(x['capturedIdentityAbsent']for x in REC['cleanup'])or not REC['within270Seconds']:REC['status']='FAILED_CLEANUP_OR_LIMIT'
+ (A/'execution.json').write_text(json.dumps(REC,indent=2)+'\n');print(json.dumps({k:REC.get(k)for k in ['status','failure','elapsedSeconds','port5192Free','within270Seconds']}))
+raise SystemExit(0 if REC['status'].startswith('TWO_')else 1)

@@ -1,0 +1,11 @@
+{
+  "matchingKeyMetadataOnly": [
+    {
+      "file": "artifacts/pre-v11-repair/repair-20261101T130559Z/runtime.json",
+      "field": "/kubeconfig",
+      "type": "str",
+      "length": 67
+    }
+  ],
+  "valuesPrinted": false
+}

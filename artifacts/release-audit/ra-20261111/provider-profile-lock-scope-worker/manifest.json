@@ -1,0 +1,38 @@
+{
+  "status": "RED_REPRODUCED",
+  "receiptAt": "2026-11-11T19:45:00.913888+00:00",
+  "recordedArtifactPhaseSeconds": 86.302452,
+  "sourcePreparationBeforeArtifactStart": "Not separately timestamped; focused local reads and one test-file edit only.",
+  "firstAttempt": "pre-compilation toolchain setup failure, exact stdout/stderr/result preserved",
+  "actualFocusedTest": {
+    "status": "RED_REPRODUCED",
+    "exitCode": 1,
+    "timeout": false,
+    "elapsedSeconds": 4.274874925613403,
+    "completedAt": "2026-11-11T19:44:13.884923+00:00",
+    "GoVersion": "go version go1.26.11 darwin/arm64",
+    "testSHA256": "2a146f4688e741a26be340a48641602efd11218161f1b5a37aef5b50c1f8f1a2",
+    "noProductFix": true
+  },
+  "originalSourceIdentity": {
+    "backend/pkg/provision/minikube.go": "7928d8c7b501aa06e0f27afede3e9c9204bf702fe81d803a129d6db43c17c9f5",
+    "backend/pkg/provision/lock_unix.go": "6c827b10f9ab8542f04bc92f3c9c79c999b0d73d8bb0e92b0b96fc44c10dc09b",
+    "backend/pkg/provision/cli.go": "a98674ee47c27ce4e919ceeac8f5fe113dcce6caa4d715a9696e243da905814f",
+    "backend/pkg/provision/minikube_test.go": "36c803e6ab0766b968fd274043ed66f1090d16b29d5349837ad8affbe15c0287",
+    "backend/pkg/provision/release_profile_lock_scope_test.go": "2a146f4688e741a26be340a48641602efd11218161f1b5a37aef5b50c1f8f1a2",
+    "backend/go.mod": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c",
+    "backend/go.sum": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+  },
+  "runtimeSourceStillEqualToInitial": {
+    "backend/pkg/provision/minikube.go": true,
+    "backend/pkg/provision/lock_unix.go": true,
+    "backend/pkg/provision/cli.go": true,
+    "backend/pkg/provision/minikube_test.go": true,
+    "backend/go.mod": true,
+    "backend/go.sum": true
+  },
+  "changedProductFiles": [],
+  "authorizedNewTest": "backend/pkg/provision/release_profile_lock_scope_test.go",
+  "noDownloads": true,
+  "noVMCLIRealClusterOrKubeconfig": true
+}

@@ -1,0 +1,72 @@
+{
+  "preparedAt": "2026-11-14T13:15:27.311435+00:00",
+  "sourceHEAD": "ae7aebc51984a144f10b4780989a6d1a8f19197e",
+  "runtime": "15770296056ca2629601dba540c04741e1822e0d",
+  "scope": "Registered production workspace/auth/management handlers via owned httptest TCP HTTP; fake Kubernetes/private cache/synthetic Secret only; not real K8s/native package",
+  "limits": {
+    "subtests": 8,
+    "oneGoGroup": true,
+    "goTimeoutSeconds": 60,
+    "outerWorkTimeoutSeconds": 60,
+    "p": 1,
+    "parallel": 1,
+    "GOMAXPROCS": 2,
+    "maxGoTreeRSSMiB": 1536,
+    "minFreeDiskGiB": 10,
+    "maxHTTPResponseBytes": 2097152,
+    "clientTimeoutSeconds": 3,
+    "noExternalTargets": true
+  },
+  "files": [
+    {
+      "path": "backend/pkg/server/release_workspace_export_test.go",
+      "bytes": 14138,
+      "sha256": "ca0f91743bbe16420238eb21cb0e262a213f1268c3978948533f021e14742d80"
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "bytes": 20477,
+      "sha256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78"
+    },
+    {
+      "path": "backend/pkg/workspace/store.go",
+      "bytes": 12016,
+      "sha256": "6868d396e5c8afe97f39e13ba4039f84d9f39ffc0d6ed7ced79afbe94475a29a"
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "bytes": 12194,
+      "sha256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4"
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "bytes": 17391,
+      "sha256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7"
+    },
+    {
+      "path": "backend/pkg/server/workspace_cookie_test.go",
+      "bytes": 8698,
+      "sha256": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061"
+    },
+    {
+      "path": "backend/pkg/server/repair_resources_integration_test.go",
+      "bytes": 15905,
+      "sha256": "9dc445506e2e2e5009c2604bef8bcb00dc02a5d7240f435219a2ae66e21f3bce"
+    },
+    {
+      "path": "backend/pkg/server/server_test.go",
+      "bytes": 22430,
+      "sha256": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8"
+    },
+    {
+      "path": "backend/go.mod",
+      "bytes": 2175,
+      "sha256": "50185ea970ae5f3a22361be1f211ed26ef0a3f63bd5a6eb072bcb3847d44fc9c"
+    },
+    {
+      "path": "backend/go.sum",
+      "bytes": 14603,
+      "sha256": "037198d8789b883e4318dc7dc5dbf4068553a4dd4d55e5a658be22e5e74d553b"
+    }
+  ]
+}

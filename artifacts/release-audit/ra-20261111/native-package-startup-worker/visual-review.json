@@ -1,0 +1,11 @@
+{
+  "imagesOpenedAndInspected": [
+    "01-empty-onboarding.png",
+    "02-first-harbor-form.png"
+  ],
+  "observations": [
+    "Empty first-harbor onboarding visible over rendered single3Dscene; disconnected state explicit",
+    "Add-harbor form and close control visible; only synthetic name typed; no credentials/nonce/API JSON in PNGs"
+  ],
+  "scope": "Visual spot check at1365x900; not exhaustive responsive/accessibility/manual acceptance"
+}

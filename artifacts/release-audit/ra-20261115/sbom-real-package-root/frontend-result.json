@@ -1,0 +1,14 @@
+{
+  "stage": "actual Vite frontend build",
+  "startedAt": "2026-11-15T10:31:14.920514+00:00",
+  "sourceSnapshotSHA256": "6db0418704dfce486d8156a58476adf3d4ce71022169bd468ceaacc1581ee3ad",
+  "status": "FAIL",
+  "automaticRetries": 0,
+  "ownedPID": 15565,
+  "exitCode": 0,
+  "failure": "",
+  "finishedAt": "2026-11-15T10:31:18.934936+00:00",
+  "seconds": 4.014439458000197,
+  "sampledOwnedGroupPeakRSSBytes": 1262452736,
+  "childExitCode": 0
+}

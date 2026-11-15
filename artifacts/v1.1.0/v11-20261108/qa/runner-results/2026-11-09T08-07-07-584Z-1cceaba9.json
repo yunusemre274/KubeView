@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runID": "2026-11-09T08-07-07-584Z-1cceaba9",
+  "startedAt": "2026-11-09T08:07:07.584Z",
+  "tests": [
+    {
+      "title": "V11-06 V11-10 finalizer holds the real old UID and same-name replacement needs explicit reselection",
+      "project": "chromium",
+      "status": "PASS",
+      "durationMs": 79820,
+      "retry": 0,
+      "errors": [],
+      "attachments": [
+        {
+          "name": "v11-evidence",
+          "path": "/Users/yunusemre/Desktop/KubeView/artifacts/v1.1.0/v11-20261108/qa/browser-artifacts/2026-11-09T08-07-07-736Z-18f691de/v11-real-cluster-V11-06-V1-144f2--needs-explicit-reselection-chromium/attachments/v11-evidence-9ffba72afb93ab5100a86cddb2467d140f62307a.json",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "expectedTests": 1,
+  "finishedAt": "2026-11-09T08:08:27.641Z",
+  "runnerStatus": "passed",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "immutableResult": "runner-results/2026-11-09T08-07-07-584Z-1cceaba9.json"
+}

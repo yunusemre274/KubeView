@@ -1,0 +1,60 @@
+     1	name: CI
+     2	on:
+     3	  push:
+     4	    branches: [main]
+     5	  pull_request:
+     6	  workflow_dispatch:
+     7	permissions:
+     8	  contents: read
+     9	jobs:
+    10	  test-build:
+    11	    runs-on: ubuntu-latest
+    12	    timeout-minutes: 20
+    13	    steps:
+    14	      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+    15	        with:
+    16	          persist-credentials: false
+    17	      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+    18	        with:
+    19	          go-version: '1.26.11'
+    20	          cache-dependency-path: backend/go.sum
+    21	      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+    22	        with:
+    23	          node-version: '24'
+    24	          cache: npm
+    25	          cache-dependency-path: frontend/package-lock.json
+    26	      - run: npm ci
+    27	        working-directory: frontend
+    28	      - run: node --test --test-concurrency=1 tests/*.test.js src/harbor/*.test.js src/workbench/*.test.js
+    29	        working-directory: frontend
+    30	      - run: go test -p 2 -timeout 180s ./...
+    31	        working-directory: backend
+    32	      - run: node --test benchmarks/*.test.mjs
+    33	      - run: node --test scripts/build-release.test.mjs
+    34	      - run: npm run build
+    35	        working-directory: frontend
+    36	      - run: node scripts/build-release.mjs --prepared --require-clean darwin-arm64 linux-amd64
+    37	      - run: npx playwright install --with-deps chromium
+    38	        working-directory: frontend
+    39	      - name: Clean Linux binary startup (no source tree)
+    40	        run: |
+    41	          work=$(mktemp -d)
+    42	          cp dist/kubeview_*_linux-amd64/kubeview "$work/kubeview"
+    43	          cd "$work"
+    44	          ./kubeview --version
+    45	          KUBECONFIG="$work/absent-kubeconfig" ./kubeview --data-dir "$work/data" --port 18081 > startup.txt 2>&1 &
+    46	          app_pid=$!
+    47	          trap 'kill "$app_pid" 2>/dev/null || true' EXIT
+    48	          for attempt in $(seq 1 30); do curl -fsS http://127.0.0.1:18081/healthz && break || sleep 1; done
+    49	          curl -fsS http://127.0.0.1:18081/ | grep -q '<html'
+    50	          curl -fsS http://127.0.0.1:18081/api/version
+    51	          cd "$GITHUB_WORKSPACE/frontend"
+    52	          npx playwright test -c e2e/production-smoke.config.js
+    53	      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+    54	        with:
+    55	          name: tested-builds
+    56	          path: |
+    57	            dist/*.tar.gz
+    58	            dist/SHA256SUMS
+    59	            dist/build.json
+    60	          retention-days: 14

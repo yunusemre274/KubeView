@@ -1,0 +1,334 @@
+{
+  "id": "ws-20261110-final-manual05-06-ui",
+  "startedAt": "2026-11-10T12:20:36.699Z",
+  "status": "passed",
+  "deliveredBinarySHA256": "2aefef7fcc92c18203be09c0d90c8d038b2f48df676c8c185da61566c3403565",
+  "expectedIndexSHA256": "a31eb27ddbaa942db8420bc6d6509abe14449ce7ea1cc17826989eda9ff2b471",
+  "rootReceiptSHA256": "d48b2cfc25b58acdff8a02cdc23b10806754e8e7cb5ec61a08090ed67f701827",
+  "cases": [
+    {
+      "profile": "05-ariza-toparlanma",
+      "startedAt": "2026-11-10T12:20:36.910Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "native-workspace-exact-registration-and-real-cluster-identity",
+          "detail": {
+            "workspaceId": "74c22f90-e9a6-4ae2-aa92-5d8fe19734b8",
+            "harborCount": 1,
+            "context": "kvml-ccdfe731dabd-a",
+            "clusterUID": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5"
+          }
+        },
+        {
+          "name": "actual-snapshot-exact-node-and-pod-UIDs",
+          "detail": {
+            "harborId": "4ad9c091-222a-48d2-be65-e41ec779b768",
+            "namespace": "kvml-e731dabd-05-fault",
+            "nodeUIDs": [
+              "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+              "607adac0-75e9-4de1-9903-8e6422f77564"
+            ],
+            "podUIDs": [
+              "4f89afc8-7893-4235-be53-1f054b44e8cc"
+            ],
+            "canonicalNodes": 2,
+            "canonicalPods": 1
+          }
+        },
+        {
+          "name": "normal-node-panel-open-close-preserves-full-canvas",
+          "detail": {
+            "harborId": "4ad9c091-222a-48d2-be65-e41ec779b768",
+            "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59"
+          }
+        },
+        {
+          "name": "normal-pod-panel-open-close-preserves-full-canvas",
+          "detail": {
+            "harborId": "4ad9c091-222a-48d2-be65-e41ec779b768",
+            "uid": "4f89afc8-7893-4235-be53-1f054b44e8cc",
+            "namespace": "kvml-e731dabd-05-fault"
+          }
+        },
+        {
+          "name": "normal-facility-panel-open-close-preserves-full-canvas",
+          "detail": {
+            "harborId": "4ad9c091-222a-48d2-be65-e41ec779b768",
+            "facility": "center"
+          }
+        },
+        {
+          "name": "focused-canvas-horizontal-arrowright-and-keyup-stop",
+          "detail": {
+            "status": "PASS",
+            "heldMs": 124,
+            "cameraDelta": [
+              6.8648627431707325,
+              0,
+              -3.0205396069951007
+            ],
+            "targetDelta": [
+              6.864862743170741,
+              0,
+              -3.020539606995129
+            ],
+            "angleDelta": 0,
+            "zoomDelta": 0,
+            "sourceSHA256": "b79c6bc98585c0d642ab5ceed2b1cbe72e16c2ede7256d72706a9f6b4fc6343a",
+            "stopped": {
+              "camera": 0,
+              "target": 0,
+              "angle": 8.441528768080323e-17,
+              "zoom": 0
+            }
+          }
+        },
+        {
+          "name": "focused-canvas-horizontal-arrowup-and-blur-clears-held-key",
+          "detail": {
+            "status": "PASS",
+            "heldMs": 168,
+            "cameraDelta": [
+              -1.987515061425313,
+              0,
+              -4.517079685057524
+            ],
+            "targetDelta": [
+              -1.987515061425297,
+              0,
+              -4.517079685057496
+            ],
+            "angleDelta": 0,
+            "zoomDelta": 0,
+            "sourceSHA256": "b79c6bc98585c0d642ab5ceed2b1cbe72e16c2ede7256d72706a9f6b4fc6343a",
+            "blurStop": {
+              "camera": 0,
+              "target": 0,
+              "angle": 1.038518545263806e-16,
+              "zoom": 0
+            },
+            "refocusStop": {
+              "camera": 0,
+              "target": 0,
+              "angle": 1.038518545263806e-16,
+              "zoom": 0
+            },
+            "keyupStop": {
+              "camera": 0,
+              "target": 0,
+              "angle": 1.038518545263806e-16,
+              "zoom": 0
+            }
+          }
+        },
+        {
+          "name": "finder-native-caret-arrows-keep-camera-and-target",
+          "detail": {
+            "status": "PASS",
+            "caret": 10,
+            "camera": 0,
+            "target": 0,
+            "angle": 0,
+            "zoom": 0
+          }
+        }
+      ],
+      "screenshots": [
+        "05-ariza-toparlanma-closed-world.png",
+        "05-ariza-toparlanma-pod-exact-UID.png"
+      ],
+      "errors": [],
+      "consoleErrors": [],
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "harborId": "4ad9c091-222a-48d2-be65-e41ec779b768",
+          "enabled": false
+        }
+      ],
+      "workspaceViewWrites": [],
+      "snapshots": [
+        {
+          "harborId": "4ad9c091-222a-48d2-be65-e41ec779b768",
+          "nodes": [
+            {
+              "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+              "name": "kvml-ccdfe731dabd-a"
+            },
+            {
+              "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+              "name": "kvml-ccdfe731dabd-a-m02"
+            }
+          ],
+          "pods": [
+            {
+              "uid": "4f89afc8-7893-4235-be53-1f054b44e8cc",
+              "name": "two-containers-698996bf57-4dzdm",
+              "namespace": "kvml-e731dabd-05-fault",
+              "ownedLab": true,
+              "ownedProfile": true
+            }
+          ]
+        }
+      ],
+      "keyboard": {
+        "status": "PASS",
+        "cases": 3,
+        "probe": "Existing canvas.__harbor.camera and R3F controls.target; no product-state injection"
+      },
+      "finishedAt": "2026-11-10T12:20:41.525Z"
+    },
+    {
+      "profile": "06-limanlar-arasi-ag",
+      "startedAt": "2026-11-10T12:20:41.530Z",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "native-workspace-exact-registration-and-real-cluster-identity",
+          "detail": {
+            "workspaceId": "47993f24-eeea-4d1c-9a11-f97badcc7dbd",
+            "harborCount": 2,
+            "context": "kvml-ccdfe731dabd-a",
+            "clusterUID": "b9a17b7b-b14a-4678-9b88-d5554e5d9ea5"
+          }
+        },
+        {
+          "name": "actual-snapshot-exact-node-and-pod-UIDs",
+          "detail": {
+            "harborId": "62ffb4bd-fdfc-49f6-805e-434d3d31280a",
+            "namespace": "kvml-e731dabd-06-client",
+            "nodeUIDs": [
+              "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+              "607adac0-75e9-4de1-9903-8e6422f77564"
+            ],
+            "podUIDs": [],
+            "canonicalNodes": 2,
+            "canonicalPods": 0
+          }
+        },
+        {
+          "name": "normal-node-panel-open-close-preserves-full-canvas",
+          "detail": {
+            "harborId": "62ffb4bd-fdfc-49f6-805e-434d3d31280a",
+            "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59"
+          }
+        },
+        {
+          "name": "normal-facility-panel-open-close-preserves-full-canvas",
+          "detail": {
+            "harborId": "62ffb4bd-fdfc-49f6-805e-434d3d31280a",
+            "facility": "center"
+          }
+        },
+        {
+          "name": "actual-snapshot-exact-node-and-pod-UIDs",
+          "detail": {
+            "harborId": "bffc08e8-b799-45b8-b42f-9632cd2b75b8",
+            "namespace": "kvml-e731dabd-06-server",
+            "nodeUIDs": [
+              "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+              "607adac0-75e9-4de1-9903-8e6422f77564"
+            ],
+            "podUIDs": [
+              "88cf283f-8275-4da3-922b-56067150e8ad"
+            ],
+            "canonicalNodes": 2,
+            "canonicalPods": 1
+          }
+        },
+        {
+          "name": "normal-node-panel-open-close-preserves-full-canvas",
+          "detail": {
+            "harborId": "bffc08e8-b799-45b8-b42f-9632cd2b75b8",
+            "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59"
+          }
+        },
+        {
+          "name": "normal-pod-panel-open-close-preserves-full-canvas",
+          "detail": {
+            "harborId": "bffc08e8-b799-45b8-b42f-9632cd2b75b8",
+            "uid": "88cf283f-8275-4da3-922b-56067150e8ad",
+            "namespace": "kvml-e731dabd-06-server"
+          }
+        },
+        {
+          "name": "normal-facility-panel-open-close-preserves-full-canvas",
+          "detail": {
+            "harborId": "bffc08e8-b799-45b8-b42f-9632cd2b75b8",
+            "facility": "center"
+          }
+        }
+      ],
+      "screenshots": [
+        "06-limanlar-arasi-ag-closed-world.png",
+        "06-limanlar-arasi-ag-pod-exact-UID.png"
+      ],
+      "errors": [],
+      "consoleErrors": [],
+      "prohibitedWrites": [],
+      "readOnlyResets": [
+        {
+          "harborId": "62ffb4bd-fdfc-49f6-805e-434d3d31280a",
+          "enabled": false
+        },
+        {
+          "harborId": "bffc08e8-b799-45b8-b42f-9632cd2b75b8",
+          "enabled": false
+        }
+      ],
+      "workspaceViewWrites": [
+        {
+          "method": "PATCH"
+        }
+      ],
+      "snapshots": [
+        {
+          "harborId": "bffc08e8-b799-45b8-b42f-9632cd2b75b8",
+          "nodes": [
+            {
+              "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+              "name": "kvml-ccdfe731dabd-a"
+            },
+            {
+              "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+              "name": "kvml-ccdfe731dabd-a-m02"
+            }
+          ],
+          "pods": [
+            {
+              "uid": "88cf283f-8275-4da3-922b-56067150e8ad",
+              "name": "http-server-79578f575f-jtjjk",
+              "namespace": "kvml-e731dabd-06-server",
+              "ownedLab": true,
+              "ownedProfile": true
+            }
+          ]
+        },
+        {
+          "harborId": "62ffb4bd-fdfc-49f6-805e-434d3d31280a",
+          "nodes": [
+            {
+              "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59",
+              "name": "kvml-ccdfe731dabd-a"
+            },
+            {
+              "uid": "607adac0-75e9-4de1-9903-8e6422f77564",
+              "name": "kvml-ccdfe731dabd-a-m02"
+            }
+          ],
+          "pods": []
+        }
+      ],
+      "finishedAt": "2026-11-10T12:20:49.498Z"
+    }
+  ],
+  "limits": [
+    "Root owns actual cluster restoration, namespace ownership guards and app lifecycle; this helper starts or mutates none.",
+    "Fresh Root status receipt is the expected Node/Pod/namespace UID authority; browser evidence uses actual public workspace GET and WebSocket snapshots.",
+    "Normal UI smoke only; no crash/recovery/traffic scenario, Hubble, performance or user manual-acceptance claim.",
+    "Native caret/camera observations do not measure physical presented latency or performance.",
+    "No kubeconfig, credentials, raw frames, log/YAML bodies, nonce or HTTP headers are recorded."
+  ],
+  "finishedAt": "2026-11-10T12:20:49.549Z"
+}

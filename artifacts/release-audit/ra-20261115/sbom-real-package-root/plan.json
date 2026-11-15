@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-11-15T10:30:34.534754+00:00",
+  "sourceHEAD": "e48604e2dfbbba3711a1aa64122b22b31d7c4e40",
+  "runtimeBase": "15770296056ca2629601dba540c04741e1822e0d",
+  "purpose": "Actual frontend outputs, npm SBOM, Go binaries, official schema, archive hash/extract/native startup. Not CPU benchmark or release acceptance.",
+  "scope": "owned private copy of committed source plus explicitly hashed SBOM/build source delta; no cluster/provider/credentials; root tree/generated assets untouched",
+  "limits": {
+    "buildStageSeconds": 180,
+    "packageStageSeconds": 240,
+    "ownedProcessRSSGiB": 4,
+    "diskFloorGiB": 10,
+    "automaticRetries": 0
+  },
+  "isolation": "No performance benchmark, scanner, Docker or lab bootstrap. Small source-only/schema fixture jobs may finish; not performance comparison.",
+  "targets": [
+    "darwin-arm64",
+    "linux-amd64"
+  ],
+  "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7602275)\t61%; charging; 1:53 remaining present: true\n",
+  "copiedDelta": [
+    "frontend/vite.config.js",
+    "frontend/build/package-inventory.mjs",
+    "scripts/build-release.mjs",
+    "scripts/build-release.test.mjs",
+    "scripts/release-sbom.mjs",
+    "scripts/release-sbom.test.mjs"
+  ],
+  "deltaSHA256": {
+    "frontend/vite.config.js": "24a1a0f38919c46e3f7af01a4c72693c1bae5d11933c34d8cd8b9f4853c223cd",
+    "frontend/build/package-inventory.mjs": "fbeb25148c7c0edc204f15fd889ebcb4e436a87c3368810f22d38340e9a74dbe",
+    "scripts/build-release.mjs": "3dc598b31bcf402d4e9c3bcd5ed897733afe76a43024dfb2d3634771b763e57e",
+    "scripts/build-release.test.mjs": "2b1e113527e1875c0d4abf557451c37ba5874ce458367f5064e58a8398b7479f",
+    "scripts/release-sbom.mjs": "67633f23985bdd6d79ebdc8a6ff225339301a63c0d4b2811703c52cfae0e3340",
+    "scripts/release-sbom.test.mjs": "bd0f268f8a1d8dc5105fd99afa184d8d448e2c5463ab30e90e7a149889b98f78"
+  }
+}

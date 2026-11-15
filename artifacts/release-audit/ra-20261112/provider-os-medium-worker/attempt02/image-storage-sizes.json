@@ -1,0 +1,30 @@
+{
+  "cilium": {
+    "parent": {
+      "uncompressedHistoryBytes": 739569664,
+      "engineSizeBytes": 242813795,
+      "descriptorDigest": "sha256:107f572571a14f7c7cb37b44dc9887b79b11925f1102f0d48db7d7f39335587a"
+    },
+    "candidate": {
+      "uncompressedHistoryBytes": 741298176,
+      "engineSizeBytes": 243535568,
+      "descriptorDigest": "sha256:10169bb90a60036756c6e5764fe5154bc15987fb6a700d11bc551d7d2730b9d9"
+    },
+    "uncompressedDeltaBytes": 1728512,
+    "engineDeltaBytes": 721773
+  },
+  "envoy": {
+    "parent": {
+      "uncompressedHistoryBytes": 236089344,
+      "engineSizeBytes": 76788578,
+      "descriptorDigest": "sha256:5872d9d1c44f90bbed712e6a0f07c1c876788aca67ceabeb782e97b9a6c75740"
+    },
+    "candidate": {
+      "uncompressedHistoryBytes": 237469696,
+      "engineSizeBytes": 77322037,
+      "descriptorDigest": "sha256:4e6caf599bb5162a1d0a60feaf0e3b5d196a6f8815a4581f9c251aec87e22bbc"
+    },
+    "uncompressedDeltaBytes": 1380352,
+    "engineDeltaBytes": 533459
+  }
+}

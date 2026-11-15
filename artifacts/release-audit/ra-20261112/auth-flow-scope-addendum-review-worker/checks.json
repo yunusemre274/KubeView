@@ -1,0 +1,440 @@
+{
+  "verdict": "PASS_BOUNDED_TEST01_02_SOURCE_AND_GUARD_PHASE",
+  "checks": [
+    {
+      "label": "exact6 unique planned top passes",
+      "pass": true
+    },
+    {
+      "label": "exact18 subtest leaves passed",
+      "pass": true
+    },
+    {
+      "label": "zero fail/skip events",
+      "pass": true
+    },
+    {
+      "label": "all24 named starts ended in pass",
+      "pass": true
+    },
+    {
+      "label": "one correct package pass",
+      "pass": true
+    },
+    {
+      "label": "empty stderr",
+      "pass": true
+    },
+    {
+      "label": "two disjoint top groups union23 top31 leaf",
+      "pass": true
+    },
+    {
+      "label": "all18 proposed source controls now covered across two executions",
+      "pass": true
+    },
+    {
+      "label": "fresh6 exactly prior missing6; none waived",
+      "pass": true
+    },
+    {
+      "label": "bounded fixed SDK successful execution",
+      "pass": true
+    },
+    {
+      "label": "recorded before/after bytes match",
+      "pass": true
+    },
+    {
+      "label": "three recorded captured identities absent, not census",
+      "pass": true
+    },
+    {
+      "label": "declared root checkpoint bound",
+      "pass": true
+    },
+    {
+      "label": "helper exact planned SHA",
+      "pass": true
+    },
+    {
+      "label": "helper only reviewed count17to6 plus isolated provider/token env changes",
+      "pass": true
+    },
+    {
+      "label": "all17 new planned source/test hashes current match",
+      "pass": true
+    },
+    {
+      "label": "23 runtime files independently still frozen f32 equal",
+      "pass": true
+    },
+    {
+      "label": "prior17/source evidence files unchanged from peer-review hashes",
+      "pass": true
+    }
+  ],
+  "freshTopPassNames": [
+    "TestReleaseReadOnlyEndpointsRetainedGrant",
+    "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource",
+    "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+    "TestWorkspaceHTTPPersistenceCSRFAndScope",
+    "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+    "TestWorkspaceNodeImpactRequiresAcknowledgement"
+  ],
+  "freshSubtestPassNames": [
+    "TestReleaseReadOnlyEndpointsRetainedGrant/create/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/create/global-read-only",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/replace/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/replace/global-read-only",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/delete/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/delete/global-read-only",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/restart-action/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/restart-action/global-read-only",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/resize-patch-action/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/resize-patch-action/global-read-only",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/exec/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/exec/global-read-only",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/preview-create/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/preview-create/global-read-only",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/raw-forward/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/raw-forward/global-read-only",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/provision/write-enabled",
+    "TestReleaseReadOnlyEndpointsRetainedGrant/provision/global-read-only"
+  ],
+  "packagePass": [
+    {
+      "Time": "2026-11-12T23:13:28.142513+03:00",
+      "Action": "pass",
+      "Package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+      "Elapsed": 0.762
+    }
+  ],
+  "JSONActionCounts": {
+    "start": 1,
+    "run": 24,
+    "output": 50,
+    "pass": 25
+  },
+  "union": {
+    "topUnique": 23,
+    "subtestUnique": 31,
+    "allTopNames": [
+      "TestClusterScopedReviewsIgnoreWatchNamespace",
+      "TestConnectionErrorsDoNotExposeCredentials",
+      "TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList",
+      "TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip",
+      "TestLocalServerRejectsDNSRebindingHost",
+      "TestManagementStartsReadOnlyAndCannotBypassSession",
+      "TestOriginAndAuthentication",
+      "TestOriginHostJSONAndSessionNegatives",
+      "TestReadOnlyAndNamespaceEnforced",
+      "TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry",
+      "TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest",
+      "TestReleaseReadOnlyEndpointsRetainedGrant",
+      "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource",
+      "TestReleaseSessionCreationShapeFreshnessAndCookieFlags",
+      "TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant",
+      "TestScopeSwitchCancelsInFlightStreams",
+      "TestWorkspaceCookieNamesKeepLegacyGatewayContract",
+      "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+      "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+      "TestWorkspaceHTTPPersistenceCSRFAndScope",
+      "TestWorkspaceNodeImpactRequiresAcknowledgement",
+      "TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant",
+      "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts"
+    ],
+    "sourceProposed18Covered": [
+      "TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip",
+      "TestLocalServerRejectsDNSRebindingHost",
+      "TestManagementStartsReadOnlyAndCannotBypassSession",
+      "TestOriginAndAuthentication",
+      "TestOriginHostJSONAndSessionNegatives",
+      "TestReadOnlyAndNamespaceEnforced",
+      "TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry",
+      "TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest",
+      "TestReleaseReadOnlyEndpointsRetainedGrant",
+      "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource",
+      "TestReleaseSessionCreationShapeFreshnessAndCookieFlags",
+      "TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant",
+      "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+      "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+      "TestWorkspaceHTTPPersistenceCSRFAndScope",
+      "TestWorkspaceNodeImpactRequiresAcknowledgement",
+      "TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant",
+      "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts"
+    ],
+    "missingSourceProposedControls": [],
+    "executionSeparation": "Prior17 + fresh6 are distinct executions, not a single18-test run; source-only report NOT_RUN history remains unchanged."
+  },
+  "sourceChecks": [
+    {
+      "path": "backend/pkg/server/server.go",
+      "expected": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "current": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "expected": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "current": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "expected": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "current": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "expected": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "current": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "expected": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "current": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "expected": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "current": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_broker.go",
+      "expected": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "current": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "expected": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "current": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server_test.go",
+      "expected": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+      "current": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection_test.go",
+      "expected": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+      "current": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_cookie_test.go",
+      "expected": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+      "current": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_expiry_test.go",
+      "expected": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "current": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_lifecycle_test.go",
+      "expected": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+      "current": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_test.go",
+      "expected": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+      "current": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_recovery_test.go",
+      "expected": "cc1a8b1f925ee350e4290f10a97474d92cd76d3f88acb48bce30e2077fe98f10",
+      "current": "cc1a8b1f925ee350e4290f10a97474d92cd76d3f88acb48bce30e2077fe98f10",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_readonly_endpoints_test.go",
+      "expected": "13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e",
+      "current": "13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_security_regression_test.go",
+      "expected": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+      "current": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+      "matches": true
+    }
+  ],
+  "frozenRuntimeChecks": [
+    {
+      "path": "backend/main.go",
+      "current": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "frozen": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "current": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "frozen": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resource_scopes.go",
+      "current": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "frozen": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "current": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "frozen": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "current": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "frozen": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/stream.go",
+      "current": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "frozen": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "current": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "frozen": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/template_capability.go",
+      "current": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "frozen": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_projection.go",
+      "current": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "frozen": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection_errors.go",
+      "current": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "frozen": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/maintenance.go",
+      "current": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "frozen": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "current": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "frozen": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_broker.go",
+      "current": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "frozen": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/traffic_handlers.go",
+      "current": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "frozen": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "current": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "frozen": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/replay_source.go",
+      "current": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "frozen": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/log_session.go",
+      "current": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "frozen": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/provider_handlers.go",
+      "current": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "frozen": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "current": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "frozen": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/portforward.go",
+      "current": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "frozen": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/placement.go",
+      "current": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "frozen": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "matches": true
+    },
+    {
+      "path": "frontend/src/context/ShipyardClusterContext.jsx",
+      "current": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "frozen": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "matches": true
+    },
+    {
+      "path": "frontend/src/context/WorkspaceProvider.jsx",
+      "current": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "frozen": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "matches": true
+    }
+  ],
+  "helperSHA256": "7abb6166a1675b8c21dde0cef2161cc9bf7a8cbe291f2aae6c00e8d90f91a195",
+  "cleanupScope": "Three captured OS birth+command identities recorded absent; not exhaustive sampled/unsampled PID census and no new probe.",
+  "recommendation": {
+    "boundedTEST0102ClosureSupported": true,
+    "level": "SOURCE auth/session/grant/RBAC dataflow mapping + exact targeted fake/in-process guard evidence only; root decides and edits phase state.",
+    "remainingMissingFromProposed18": [],
+    "separateAcceptance": [
+      "Real Kubernetes RBAC/admission/authorization",
+      "Real TLS/CA/remote deployments",
+      "Browser/WebSocket/DNS-rebinding transport races",
+      "Actual exec/forward/provider sessions",
+      "Whole endpoint/security categories and final package acceptance"
+    ]
+  },
+  "interpretationLimits": [
+    "newWorkspaceFixture uses fake clients and private t.TempDir workspace; credential reload constructs clients from a synthetic temporary kubeconfig, not actual API traffic.",
+    "Retained-grant readonly exec/forward positive503 reaches synthetic typed-Pod transport preflight; it does not demonstrate established exec/forward sessions.",
+    "Mutation positives reach fake mutations; read-only negatives verify403/no fake mutations or typed-Pod preflight.",
+    "Node acknowledgement positive202 is fake dry-run action; discovery-omitted Secret negative403 is fake scoped reveal.",
+    "Cleanup keeps OS lstart second-resolution and sampling blind spots.",
+    "Original source review350.073s/300s remains a workflow timing miss, not application SLO proof."
+  ],
+  "startedAt": "2026-11-12T20:14:38+00:00",
+  "finishedAt": "2026-11-12T20:16:07.733168+00:00",
+  "elapsedSeconds": 89.733168,
+  "noWorkloadsOrSourceChanges": true
+}

@@ -1,0 +1,1007 @@
+{
+  "verdict": "FAIL_EVIDENCE_REVIEW",
+  "checks": [
+    {
+      "label": "exact17 unique planned top-level passes",
+      "pass": true
+    },
+    {
+      "label": "exact13 unique subtest leaf passes",
+      "pass": true
+    },
+    {
+      "label": "every started named test has terminal pass",
+      "pass": true
+    },
+    {
+      "label": "zero skip/fail JSON events",
+      "pass": true
+    },
+    {
+      "label": "one correct final package pass",
+      "pass": true
+    },
+    {
+      "label": "stderr empty",
+      "pass": true
+    },
+    {
+      "label": "fixed SDK bounded passing invocation",
+      "pass": true
+    },
+    {
+      "label": "recorded before/after source equality",
+      "pass": true
+    },
+    {
+      "label": "four recorded captured identities absent",
+      "pass": true
+    },
+    {
+      "label": "source18 selection split12 executed6 unrun plus5 neighbors",
+      "pass": true
+    },
+    {
+      "label": "source-only18 selection remains historically NOT_RUN",
+      "pass": true
+    },
+    {
+      "label": "source-worker SHA256SUMS all entries match",
+      "pass": true
+    },
+    {
+      "label": "45 source/evidence SHA current bytes match",
+      "pass": false
+    },
+    {
+      "label": "23 runtime sources independently match frozen f32 archive",
+      "pass": true
+    },
+    {
+      "label": "root13 planned source/test hashes match current files",
+      "pass": true
+    },
+    {
+      "label": "auth run started after both GPU jobs completed and recorded port free",
+      "pass": true
+    }
+  ],
+  "topLevelPassedNames": [
+    "TestManagementStartsReadOnlyAndCannotBypassSession",
+    "TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip",
+    "TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList",
+    "TestOriginHostJSONAndSessionNegatives",
+    "TestConnectionErrorsDoNotExposeCredentials",
+    "TestScopeSwitchCancelsInFlightStreams",
+    "TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry",
+    "TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest",
+    "TestReleaseSessionCreationShapeFreshnessAndCookieFlags",
+    "TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant",
+    "TestReadOnlyAndNamespaceEnforced",
+    "TestOriginAndAuthentication",
+    "TestLocalServerRejectsDNSRebindingHost",
+    "TestClusterScopedReviewsIgnoreWatchNamespace",
+    "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts",
+    "TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant",
+    "TestWorkspaceCookieNamesKeepLegacyGatewayContract"
+  ],
+  "subtestLeafPassedNames": [
+    "TestOriginHostJSONAndSessionNegatives/foreign-origin",
+    "TestOriginHostJSONAndSessionNegatives/wrong-scheme",
+    "TestOriginHostJSONAndSessionNegatives/opaque-origin",
+    "TestOriginHostJSONAndSessionNegatives/origin-userinfo",
+    "TestOriginHostJSONAndSessionNegatives/dns-rebind",
+    "TestOriginHostJSONAndSessionNegatives/fetch-site",
+    "TestOriginHostJSONAndSessionNegatives/form-json-substring",
+    "TestOriginHostJSONAndSessionNegatives/multiple-json",
+    "TestOriginHostJSONAndSessionNegatives/tls-downgrade",
+    "TestReleaseSessionCreationShapeFreshnessAndCookieFlags/http",
+    "TestReleaseSessionCreationShapeFreshnessAndCookieFlags/tls",
+    "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/operator_nonce_and_grant",
+    "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts/independent_access_tokens"
+  ],
+  "packagePass": [
+    {
+      "Time": "2026-11-12T23:05:12.086909+03:00",
+      "Action": "pass",
+      "Package": "github.com/k8s-tersane/tersane/backend/pkg/server",
+      "Elapsed": 1.028
+    }
+  ],
+  "JSONActionCounts": {
+    "start": 1,
+    "run": 30,
+    "output": 62,
+    "pass": 31
+  },
+  "sourceSelectionExecutedNames": [
+    "TestOriginAndAuthentication",
+    "TestLocalServerRejectsDNSRebindingHost",
+    "TestOriginHostJSONAndSessionNegatives",
+    "TestManagementStartsReadOnlyAndCannotBypassSession",
+    "TestDelayedManagementEnableCannotSurviveRevokeAndContextRoundTrip",
+    "TestReleaseSessionCreationShapeFreshnessAndCookieFlags",
+    "TestReleaseSessionExpiredCookieCannotReplayOrRestoreGrant",
+    "TestReleaseNewOperatorContextUsesCookieAbsoluteExpiry",
+    "TestReleaseOperatorResetCancelsAtAbsoluteExpiryWithoutAnotherRequest",
+    "TestWorkspaceProfileCookiesDoNotCollideAcrossSameHostPorts",
+    "TestWorkspaceProfileCookieNamesStableAcrossRestartWithoutGrant",
+    "TestReadOnlyAndNamespaceEnforced"
+  ],
+  "sourceSelectionUnrunControls": [
+    {
+      "name": "TestWorkspaceHTTPPersistenceCSRFAndScope",
+      "file": "backend/pkg/server/workspace_test.go",
+      "line": 123,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+      "file": "backend/pkg/server/workspace_test.go",
+      "line": 182,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Grant retained in correct harbor/tab; denied crossing tab/harbor; selector edit revokes stale intent.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceNodeImpactRequiresAcknowledgement",
+      "file": "backend/pkg/server/workspace_test.go",
+      "line": 214,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+      "file": "backend/pkg/server/workspace_recovery_test.go",
+      "line": 183,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Synthetic temporary kubeconfig credential change rotates clientID, cancels old scoped grant/stream and removes old identity.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReleaseReadOnlyEndpointsRetainedGrant",
+      "file": "backend/pkg/server/release_readonly_endpoints_test.go",
+      "line": 34,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Fake endpoint matrix keeps retained operator grant but global ReadOnly blocks CRUD/action/exec/forward/provider mutation paths.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    },
+    {
+      "name": "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource",
+      "file": "backend/pkg/server/release_security_regression_test.go",
+      "line": 19,
+      "status": "NOT_RUN_SOURCE_SELECTION_ONLY",
+      "control": "Existing named positive/negative fixture control; see source at recorded line. No execution in this job.",
+      "prerequisites": "Go1.26.11/cached modules; temporary fixture data; fake clients/recorders and explicit synthetic config only. No real-cluster opt-in; root waits for GPU diagnostics to end."
+    }
+  ],
+  "fiveExecutedNeighbors": [
+    "TestConnectionRestrictedNamespaceDoesNotRequireNodeOrNamespaceList",
+    "TestConnectionErrorsDoNotExposeCredentials",
+    "TestScopeSwitchCancelsInFlightStreams",
+    "TestClusterScopedReviewsIgnoreWatchNamespace",
+    "TestWorkspaceCookieNamesKeepLegacyGatewayContract"
+  ],
+  "sourceManifestChecks": [
+    {
+      "path": "artifacts/release-audit/ra-20261112/auth-flow-source-review-worker/REPORT.md",
+      "expected": "4006a4d6b56a9436c99b8befa1ca274ed2b5c42d28d9488f86c7325feab0990e",
+      "actual": "4006a4d6b56a9436c99b8befa1ca274ed2b5c42d28d9488f86c7325feab0990e",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/auth-flow-source-review-worker/result.json",
+      "expected": "0b48bd232b12d3b47ffe719ac840fba14f00489bf5f13443f1dc9f49955163d4",
+      "actual": "0b48bd232b12d3b47ffe719ac840fba14f00489bf5f13443f1dc9f49955163d4",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/session-lifecycle-worker/REPORT.md",
+      "expected": "949c414f483c45f0692b84fc19423c836276d5b9ddafb3b5e54df3877ef80087",
+      "actual": "949c414f483c45f0692b84fc19423c836276d5b9ddafb3b5e54df3877ef80087",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/session-lifecycle-worker/result.json",
+      "expected": "17922288e7697fb83576405124ddea944eb2a4a4403d3a5de47f0c0d7b103b1b",
+      "actual": "17922288e7697fb83576405124ddea944eb2a4a4403d3a5de47f0c0d7b103b1b",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root/REPORT.md",
+      "expected": "3e720633e3b39305568e3391ee2d45932adf183c0a3712ebac31a819b5bd3906",
+      "actual": "3e720633e3b39305568e3391ee2d45932adf183c0a3712ebac31a819b5bd3906",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root/result.json",
+      "expected": "b0b6bd819eb96dda155e5c8e635fe67d12a8adb57d0ec1f209e6f9af32820e30",
+      "actual": "b0b6bd819eb96dda155e5c8e635fe67d12a8adb57d0ec1f209e6f9af32820e30",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/REPORT.md",
+      "expected": "fc876161aa264f7c99fc37602457f2b9e8753df10577633b2dc492324cec6ccc",
+      "actual": "fc876161aa264f7c99fc37602457f2b9e8753df10577633b2dc492324cec6ccc",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/source-before.json",
+      "expected": "1c3382e8560f3af07ffc046209bb9b5fdf7ba66b347afa10bc35aa5875d7ab95",
+      "actual": "1c3382e8560f3af07ffc046209bb9b5fdf7ba66b347afa10bc35aa5875d7ab95",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/REPORT.md",
+      "expected": "31c12c4deafaac2227ef0cf93e359c4a0487fceb50c59b4db29728deb02c08c6",
+      "actual": "31c12c4deafaac2227ef0cf93e359c4a0487fceb50c59b4db29728deb02c08c6",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/source-before.json",
+      "expected": "1cd26a20d85e96e1e5f85769757eb1717303433a105904f4b981cf0a8e1798cd",
+      "actual": "1cd26a20d85e96e1e5f85769757eb1717303433a105904f4b981cf0a8e1798cd",
+      "matches": true
+    },
+    {
+      "path": "backend/main.go",
+      "expected": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "actual": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "expected": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "actual": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection_errors.go",
+      "expected": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "actual": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection_test.go",
+      "expected": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+      "actual": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/log_session.go",
+      "expected": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "actual": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/maintenance.go",
+      "expected": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "actual": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/placement.go",
+      "expected": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "actual": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/portforward.go",
+      "expected": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "actual": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/provider_handlers.go",
+      "expected": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "actual": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/rbac_integration_test.go",
+      "expected": "71fdd90c8f95cafe809c14fde7cf772827d9991a041abf51008267bdd38492e7",
+      "actual": "71fdd90c8f95cafe809c14fde7cf772827d9991a041abf51008267bdd38492e7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_readonly_endpoints_test.go",
+      "expected": "13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e",
+      "actual": "13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_secret_real_test.go",
+      "expected": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+      "actual": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_security_regression_test.go",
+      "expected": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+      "actual": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_expiry_test.go",
+      "expected": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "actual": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_lifecycle_test.go",
+      "expected": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+      "actual": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/replay_source.go",
+      "expected": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "actual": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resource_scopes.go",
+      "expected": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "actual": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "expected": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "actual": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "expected": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "actual": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server_test.go",
+      "expected": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+      "actual": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "expected": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "actual": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/stream.go",
+      "expected": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "actual": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/template_capability.go",
+      "expected": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "actual": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/traffic_handlers.go",
+      "expected": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "actual": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "expected": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "actual": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_broker.go",
+      "expected": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "actual": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_cookie_test.go",
+      "expected": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+      "actual": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "expected": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "actual": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_projection.go",
+      "expected": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "actual": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_recovery_test.go",
+      "expected": "cc1a8b1f925ee350e4290f10a97474d92cd76d3f88acb48bce30e2077fe98f10",
+      "actual": "cc1a8b1f925ee350e4290f10a97474d92cd76d3f88acb48bce30e2077fe98f10",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "expected": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "actual": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_test.go",
+      "expected": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+      "actual": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+      "matches": true
+    },
+    {
+      "path": "docs/RELEASE_THREAT_MODEL.md",
+      "expected": "81df8248855088b9483ebe6cba43c86cedcdc871d9b64e7679efa8b0f62fc251",
+      "actual": "81df8248855088b9483ebe6cba43c86cedcdc871d9b64e7679efa8b0f62fc251",
+      "matches": true
+    },
+    {
+      "path": "frontend/src/context/ShipyardClusterContext.jsx",
+      "expected": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "actual": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "matches": true
+    },
+    {
+      "path": "frontend/src/context/WorkspaceProvider.jsx",
+      "expected": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "actual": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "matches": true
+    }
+  ],
+  "source45Checks": [
+    {
+      "path": "artifacts/release-audit/ra-20261111/session-lifecycle-worker/REPORT.md",
+      "expected": "949c414f483c45f0692b84fc19423c836276d5b9ddafb3b5e54df3877ef80087",
+      "actual": "949c414f483c45f0692b84fc19423c836276d5b9ddafb3b5e54df3877ef80087",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261111/session-lifecycle-worker/result.json",
+      "expected": "17922288e7697fb83576405124ddea944eb2a4a4403d3a5de47f0c0d7b103b1b",
+      "actual": "17922288e7697fb83576405124ddea944eb2a4a4403d3a5de47f0c0d7b103b1b",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root/REPORT.md",
+      "expected": "3e720633e3b39305568e3391ee2d45932adf183c0a3712ebac31a819b5bd3906",
+      "actual": "3e720633e3b39305568e3391ee2d45932adf183c0a3712ebac31a819b5bd3906",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/dns-rebinding-bounded-retest-root/result.json",
+      "expected": "b0b6bd819eb96dda155e5c8e635fe67d12a8adb57d0ec1f209e6f9af32820e30",
+      "actual": "b0b6bd819eb96dda155e5c8e635fe67d12a8adb57d0ec1f209e6f9af32820e30",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/REPORT.md",
+      "expected": "fc876161aa264f7c99fc37602457f2b9e8753df10577633b2dc492324cec6ccc",
+      "actual": "fc876161aa264f7c99fc37602457f2b9e8753df10577633b2dc492324cec6ccc",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/secret-purpose-real-retest-worker/source-before.json",
+      "expected": "1c3382e8560f3af07ffc046209bb9b5fdf7ba66b347afa10bc35aa5875d7ab95",
+      "actual": "1c3382e8560f3af07ffc046209bb9b5fdf7ba66b347afa10bc35aa5875d7ab95",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/REPORT.md",
+      "expected": "31c12c4deafaac2227ef0cf93e359c4a0487fceb50c59b4db29728deb02c08c6",
+      "actual": "31c12c4deafaac2227ef0cf93e359c4a0487fceb50c59b4db29728deb02c08c6",
+      "matches": true
+    },
+    {
+      "path": "artifacts/release-audit/ra-20261112/secret-purpose-ui-retest-worker/source-before.json",
+      "expected": "1cd26a20d85e96e1e5f85769757eb1717303433a105904f4b981cf0a8e1798cd",
+      "actual": "1cd26a20d85e96e1e5f85769757eb1717303433a105904f4b981cf0a8e1798cd",
+      "matches": true
+    },
+    {
+      "path": "backend/main.go",
+      "expected": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "actual": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "expected": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "actual": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection_errors.go",
+      "expected": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "actual": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection_test.go",
+      "expected": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+      "actual": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/log_session.go",
+      "expected": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "actual": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/maintenance.go",
+      "expected": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "actual": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/placement.go",
+      "expected": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "actual": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/portforward.go",
+      "expected": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "actual": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/provider_handlers.go",
+      "expected": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "actual": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/rbac_integration_test.go",
+      "expected": "71fdd90c8f95cafe809c14fde7cf772827d9991a041abf51008267bdd38492e7",
+      "actual": "71fdd90c8f95cafe809c14fde7cf772827d9991a041abf51008267bdd38492e7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_readonly_endpoints_test.go",
+      "expected": "13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e",
+      "actual": "13c1c574e79918849c3da6f9f8bdd680ea946a91915b8fcef70c29f6b1adc96e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_secret_real_test.go",
+      "expected": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+      "actual": "9ac2ded84ead0ca6765d7d4acec80e224eb83afd5cde7f700979071e3916a9e4",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_security_regression_test.go",
+      "expected": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+      "actual": "4a721a240b592577e70c305083afa9cf0361808293c2c23bb2926e4968f890ca",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_expiry_test.go",
+      "expected": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "actual": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_lifecycle_test.go",
+      "expected": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+      "actual": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/replay_source.go",
+      "expected": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "actual": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resource_scopes.go",
+      "expected": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "actual": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "expected": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "actual": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "expected": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "actual": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server_test.go",
+      "expected": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+      "actual": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "expected": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "actual": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/stream.go",
+      "expected": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "actual": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/template_capability.go",
+      "expected": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "actual": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/traffic_handlers.go",
+      "expected": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "actual": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "expected": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "actual": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_broker.go",
+      "expected": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "actual": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_cookie_test.go",
+      "expected": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+      "actual": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "expected": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "actual": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_projection.go",
+      "expected": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "actual": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_recovery_test.go",
+      "expected": "cc1a8b1f925ee350e4290f10a97474d92cd76d3f88acb48bce30e2077fe98f10",
+      "actual": "cc1a8b1f925ee350e4290f10a97474d92cd76d3f88acb48bce30e2077fe98f10",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "expected": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "actual": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_test.go",
+      "expected": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+      "actual": "25620dfad592134a1210b4e926d6617b43f606a1e670e0462cee6ae7b0a9f94c",
+      "matches": true
+    },
+    {
+      "path": "docs/RELEASE_THREAT_MODEL.md",
+      "expected": "81df8248855088b9483ebe6cba43c86cedcdc871d9b64e7679efa8b0f62fc251",
+      "actual": "81df8248855088b9483ebe6cba43c86cedcdc871d9b64e7679efa8b0f62fc251",
+      "matches": true
+    },
+    {
+      "path": "frontend/src/context/ShipyardClusterContext.jsx",
+      "expected": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "actual": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "matches": true
+    },
+    {
+      "path": "frontend/src/context/WorkspaceProvider.jsx",
+      "expected": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "actual": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "matches": true
+    }
+  ],
+  "frozenRuntime23Checks": [
+    {
+      "path": "backend/main.go",
+      "currentSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "recordedSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "frozenArchiveSHA256": "5374d1c078836e903be4b07cd42604d1dfbff9974852b4ffaeb6821ee1886892",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "currentSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "recordedSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "frozenArchiveSHA256": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resource_scopes.go",
+      "currentSHA256": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "recordedSHA256": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "frozenArchiveSHA256": "0c89612845ce83d92256187ce1aba3ac185a7cbff4553c20915f92fbdafb368e",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server.go",
+      "currentSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "recordedSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "frozenArchiveSHA256": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "currentSHA256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "recordedSHA256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "frozenArchiveSHA256": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/stream.go",
+      "currentSHA256": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "recordedSHA256": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "frozenArchiveSHA256": "1406db1bdf50cdfb2f4730671e8ec9d8e2b8158f96110af55add88e2049e95f0",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "currentSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "recordedSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "frozenArchiveSHA256": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/template_capability.go",
+      "currentSHA256": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "recordedSHA256": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "frozenArchiveSHA256": "b8df4fdf4ca0a3b610ed1f9614e72175c540034c2945229df3275fa21a2ba1c6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_projection.go",
+      "currentSHA256": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "recordedSHA256": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "frozenArchiveSHA256": "a38f7e3b0867249b4d427dc4e0392b63580d11f3c591fc07cade90bfe51d2f5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection_errors.go",
+      "currentSHA256": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "recordedSHA256": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "frozenArchiveSHA256": "14ab359603ff680d9f87d1494eb87e7c47984148858c0ffe709c30e3d0d6dc6f",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/maintenance.go",
+      "currentSHA256": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "recordedSHA256": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "frozenArchiveSHA256": "294e24c6160bf2279e9226122aa4289345dcdc6cdf986337118cfd449b55403c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "currentSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "recordedSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "frozenArchiveSHA256": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_broker.go",
+      "currentSHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "recordedSHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "frozenArchiveSHA256": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/traffic_handlers.go",
+      "currentSHA256": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "recordedSHA256": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "frozenArchiveSHA256": "15f1a4c3033183473dc10ea4661e589b6bb5fa5d50f36d7d32c37b953f54f755",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "currentSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "recordedSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "frozenArchiveSHA256": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/replay_source.go",
+      "currentSHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "recordedSHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "frozenArchiveSHA256": "9e8d7dc7f6d824861c21a479dda8d5aac1e1f7c4157d4327198e2beb86168780",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/log_session.go",
+      "currentSHA256": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "recordedSHA256": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "frozenArchiveSHA256": "241333ee9e7a4217161d30ba358f8de13133235195153d454d3a1ca4167aaf9b",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/provider_handlers.go",
+      "currentSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "recordedSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "frozenArchiveSHA256": "34759e715cccdb0f0248b80e79ccbfa63415fd89735766db66c5d2f025d51d94",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "currentSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "recordedSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "frozenArchiveSHA256": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/portforward.go",
+      "currentSHA256": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "recordedSHA256": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "frozenArchiveSHA256": "42a3beacf20686da12f626ed590eff8fb07bec9dd09c218dc3bd47d4422511be",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/placement.go",
+      "currentSHA256": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "recordedSHA256": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "frozenArchiveSHA256": "c96d3f14d0709e4373a25ddbb97cb7917d438e65747b3665eb850a6217022d2e",
+      "matches": true
+    },
+    {
+      "path": "frontend/src/context/ShipyardClusterContext.jsx",
+      "currentSHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "recordedSHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "frozenArchiveSHA256": "131199dc6b294ca5a6b714a7c0f0d8bfd5fc9a99ff4bddaef09cb4647933731f",
+      "matches": true
+    },
+    {
+      "path": "frontend/src/context/WorkspaceProvider.jsx",
+      "currentSHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "recordedSHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "frozenArchiveSHA256": "a91f853aff8764c8bb7e1635906db06a9f45e329b9b1f0ab31158777a6b051fc",
+      "matches": true
+    }
+  ],
+  "targetedSource13Checks": [
+    {
+      "path": "backend/pkg/server/server.go",
+      "expected": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "current": "72f6fbee9d716dc8607aedc764ff2459ba657dcecfbd858031dd106fb02853f7",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection.go",
+      "expected": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "current": "60fb482cebbeae6ae2c67a6852da4a546fec907159c3b91e8cf4130e5b01fbf4",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/sessions.go",
+      "expected": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "current": "639ce1fc8cdfd4406bb9c772c0022859f541a0fcdccf5e44bdfba7a9b9b344c5",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace.go",
+      "expected": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "current": "e2577523977c8747a9f02c2babd402e41001a098247fc41014e7f6e298ae4b78",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_scope.go",
+      "expected": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "current": "4b838de64aa1339b7541fcf631f14191ade824da4a50fd0ba5cc13d242940a5d",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_membership.go",
+      "expected": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "current": "4d341fd8ba6c8a95918b4e6f96d6d9fad06439ffcc9e2875126c9a341a7585d6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_broker.go",
+      "expected": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "current": "13cfdd125a14403dd319ca8878fe0d3cca40ec33de64b2e54486b15c78daa377",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/resources.go",
+      "expected": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "current": "5167e4e071544e2264f07c620418c8ff603015b4a682972e8a134569cf876bbe",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/server_test.go",
+      "expected": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+      "current": "3f60f82efc1b3e0ddfb5f5de75bc0136b59f28ab7f6c699f592e0c9d9b5bc0e8",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/connection_test.go",
+      "expected": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+      "current": "697018b7b50b4b811499e2fd2e17ff2d33ce2be2666eb3076bf978e5c9823d7c",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/workspace_cookie_test.go",
+      "expected": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+      "current": "af1349eda33909691a1bdfe849544ad32a4ee02acd9be9e4e9783cbfeb426061",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_expiry_test.go",
+      "expected": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "current": "11857b3eb1b3b95dcae3f4c864c7187ff9b3e7dc756ad97cb1e4c337623ba3f6",
+      "matches": true
+    },
+    {
+      "path": "backend/pkg/server/release_session_lifecycle_test.go",
+      "expected": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+      "current": "8cbb0e03a58ea10e8401861fbeefc96ff27adb147a6211a562f9b0b6f17c9568",
+      "matches": true
+    }
+  ],
+  "cleanupLimits": {
+    "capturedIdentitiesAbsent": 4,
+    "observedPIDsWithoutCapturedBirth": [
+      60251,
+      60258
+    ],
+    "explanation": "Short-lived children appeared in RSS snapshots but exited before identity lookup; four captured identities are not proof of complete process census. No new process probe was run. Cleanup only signals while exact ps birth+command still matches; lstart is second-resolution."
+  },
+  "sourceReviewTiming": {
+    "targetSeconds": 300,
+    "elapsedAtFinalizationSeconds": 350.073,
+    "withinTarget": false
+  },
+  "closureBoundary": {
+    "supported": "Only bounded SOURCE dataflow mapping plus this exact17 synthetic guard audit.",
+    "notSupported": "All18 proposed controls passed, runtime workspace authorization closure, all read-only endpoints/RBAC/TLS/security acceptance.",
+    "requiredBeforeBroaderWorkspaceOrEndpointClosure": [
+      "TestWorkspaceHTTPPersistenceCSRFAndScope",
+      "TestWorkspaceGrantsAreHarborTabBoundAndScopeEditRevokes",
+      "TestWorkspaceNodeImpactRequiresAcknowledgement",
+      "TestWorkspaceCredentialReloadCancelsGrantsAndDropsOldVerifiedIdentity",
+      "TestReleaseReadOnlyEndpointsRetainedGrant",
+      "TestReleaseSecuritySecretRevealFailsClosedWhenDiscoveryOmitsResource"
+    ],
+    "interpretation": "Workspace CSRF/persistence/scope, harbor-tab grant separation/scope-edit revocation, Node-impact acknowledgement, credential reload and retained-grant direct endpoint checks remain unrun in this fresh group; discovery-omits-resource Secret guard also remains unrun."
+  },
+  "sourcePathReview": [
+    "server.go protect inserts operatorRequest after Host/Origin/access authentication and workspace binding.",
+    "connection.go enforces session/nonce/context/clientID/namespace, ReadOnly at enable, late-grant revalidation and revoke cancellation.",
+    "resources.go authorize checks workspace scope, backend ReadOnly/live management intent, then exact SSAR Status.Allowed.",
+    "Management enable tests only SSAR transport success; application intent is not Kubernetes admin authorization.",
+    "testServer supplies fake dynamic/typed clients and SSAR default Allowed=true; lifecycle tls subtest injects tls.ConnectionState into httptest request, not a real TLS handshake."
+  ],
+  "remainingRisks": [
+    "No real Kubernetes/RBAC/admission, browser/WS/DNS-rebinding transport race, remote deployment or TLS handshake acceptance.",
+    "Static configured access-token cookie and absolute operator grant expiry are distinct; token MaxAge is browser retention.",
+    "Cancellation does not prove rollback of writes already accepted upstream.",
+    "Workspace/profile/tab isolation is same-operator intent, not multitenant identity.",
+    "Original source-only review exceeded300second target; exact350.073 seconds, not application SLO evidence."
+  ],
+  "startedAt": "2026-11-12T20:07:40+00:00",
+  "finishedAt": "2026-11-12T20:09:54.211487+00:00",
+  "elapsedSeconds": 134.211487,
+  "noRetestOrRuntimeStarted": true
+}

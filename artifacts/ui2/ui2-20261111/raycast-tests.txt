@@ -1,0 +1,65 @@
+
+Running 2 tests using 1 worker
+
+(node:13421) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 src/harbor/raycast.browser.spec.js:7:1 › all deck slots0..20 return exact UID through real canvas raycasts, including newly uncovered lower boxes (7.8s)
+(node:13428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 src/harbor/raycast.browser.spec.js:23:1 › scheduled arrival releases its load and its exact container remains clickable after crane completion (7.3s)
+
+
+  1) src/harbor/raycast.browser.spec.js:7:1 › all deck slots0..20 return exact UID through real canvas raycasts, including newly uncovered lower boxes 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "containerName": "app",
+        "containerRole": "container",
+        "type": "resource",
+    -   "uid": "fixture-pod-4",
+    +   "uid": "fixture-pod-3",
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      3 | async function clickAndCheck(page,target){
+      4 |   await page.mouse.click(target.x,target.y)
+    > 5 |   await expect.poll(()=>page.evaluate(()=>window.harborQA.picks.at(-1))).toEqual({type:'resource',uid:target.uid,containerName:target.containerName,containerRole:target.containerRole})
+        |                                                                          ^
+      6 | }
+      7 | test('all deck slots0..20 return exact UID through real canvas raycasts, including newly uncovered lower boxes',async({page})=>{
+      8 |   await page.goto('/src/harbor/qa.html?nodes=1&pods=21')
+        at clickAndCheck (/Users/yunusemre/Desktop/KubeView/frontend/src/harbor/raycast.browser.spec.js:5:74)
+        at /Users/yunusemre/Desktop/KubeView/frontend/src/harbor/raycast.browser.spec.js:12:63
+
+    Error Context: ../../../../../tmp/kubeview-harbor-raycast/raycast.browser-all-deck-s-7840a-newly-uncovered-lower-boxes/error-context.md
+
+  2) src/harbor/raycast.browser.spec.js:23:1 › scheduled arrival releases its load and its exact container remains clickable after crane completion 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      27 |   await expect.poll(()=>page.evaluate(()=>window.harborQA.stats().lifecycle.canonicalPods)).toBe(22)
+      28 |   await page.evaluate(()=>window.harborQA.schedule('arriving-exact-uid','worker-01'))
+    > 29 |   await expect.poll(()=>page.evaluate(()=>window.harborQA.stats().lifecycle.activeTransfers)).toBeGreaterThan(0)
+         |                                                                                               ^
+      30 |   await expect.poll(()=>page.evaluate(()=>window.harborQA.stats().lifecycle.activeTransfers)).toBe(0)
+      31 |   const target=(await page.locator('canvas').evaluate(canvas=>canvas.__harbor.projectTargets({type:'container',uid:'arriving-exact-uid'})))[0]
+      32 |   expect(target.visible).toBe(true)
+        at /Users/yunusemre/Desktop/KubeView/frontend/src/harbor/raycast.browser.spec.js:29:95
+
+    Error Context: ../../../../../tmp/kubeview-harbor-raycast/raycast.browser-scheduled--d1e53-able-after-crane-completion/error-context.md
+
+  2 failed
+    src/harbor/raycast.browser.spec.js:7:1 › all deck slots0..20 return exact UID through real canvas raycasts, including newly uncovered lower boxes 
+    src/harbor/raycast.browser.spec.js:23:1 › scheduled arrival releases its load and its exact container remains clickable after crane completion 

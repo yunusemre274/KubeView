@@ -1,0 +1,272 @@
+{
+  "id": "ws-vertical03-real03-settled-uid-logs",
+  "profile": "03-bagimsiz-kumeler",
+  "source": "Real Kubernetes; normal DOM/pointer UI, read-only diagnostic observations",
+  "startedAt": "2026-11-09T17:38:53.886Z",
+  "browser": "chromium",
+  "version": "156.0.8078.4",
+  "checks": [
+    {
+      "name": "exact-active-resource-counts",
+      "at": "2026-11-09T17:38:56.223Z",
+      "detail": {
+        "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+        "nodes": 2,
+        "pods": 2
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:38:56.764Z",
+      "detail": "1-pod-a.png"
+    },
+    {
+      "name": "actual-log-opening-guard",
+      "at": "2026-11-09T17:38:57.159Z",
+      "detail": {
+        "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+        "context": "kvml-ccdfe731dabd-a",
+        "namespace": "kvml-e731dabd-03-same",
+        "name": "same-pod",
+        "uid": "4f2fa62f-b4ad-4b3f-bd3f-678158f85298",
+        "container": "web",
+        "payloadRecorded": false
+      }
+    },
+    {
+      "name": "text-input-arrow-does-not-pan",
+      "at": "2026-11-09T17:38:57.170Z",
+      "detail": {
+        "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:38:57.318Z",
+      "detail": "1-logs-a.png"
+    },
+    {
+      "name": "exact-active-resource-counts",
+      "at": "2026-11-09T17:38:57.415Z",
+      "detail": {
+        "harborId": "e9822c84-b728-4864-8380-2070f3af74e3",
+        "nodes": 1,
+        "pods": 2
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:38:58.383Z",
+      "detail": "2-pod-b.png"
+    },
+    {
+      "name": "actual-log-opening-guard",
+      "at": "2026-11-09T17:38:58.520Z",
+      "detail": {
+        "harborId": "e9822c84-b728-4864-8380-2070f3af74e3",
+        "context": "kvml-ccdfe731dabd-b",
+        "namespace": "kvml-e731dabd-03-same",
+        "name": "same-pod",
+        "uid": "44f6c10f-3db5-41f6-8cfb-5b3566aeabaa",
+        "container": "web",
+        "payloadRecorded": false
+      }
+    },
+    {
+      "name": "text-input-arrow-does-not-pan",
+      "at": "2026-11-09T17:38:58.526Z",
+      "detail": {
+        "harborId": "e9822c84-b728-4864-8380-2070f3af74e3"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:38:58.665Z",
+      "detail": "2-logs-b.png"
+    },
+    {
+      "name": "exact-active-resource-counts",
+      "at": "2026-11-09T17:38:58.765Z",
+      "detail": {
+        "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+        "nodes": 2,
+        "pods": 2
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:38:59.731Z",
+      "detail": "3-pod-a.png"
+    },
+    {
+      "name": "actual-log-opening-guard",
+      "at": "2026-11-09T17:38:59.792Z",
+      "detail": {
+        "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+        "context": "kvml-ccdfe731dabd-a",
+        "namespace": "kvml-e731dabd-03-same",
+        "name": "same-pod",
+        "uid": "4f2fa62f-b4ad-4b3f-bd3f-678158f85298",
+        "container": "web",
+        "payloadRecorded": false
+      }
+    },
+    {
+      "name": "text-input-arrow-does-not-pan",
+      "at": "2026-11-09T17:38:59.799Z",
+      "detail": {
+        "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b"
+      }
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:38:59.948Z",
+      "detail": "3-logs-a.png"
+    },
+    {
+      "name": "screenshot",
+      "at": "2026-11-09T17:39:00.262Z",
+      "detail": "4-world-all-panels-closed.png"
+    },
+    {
+      "name": "closed-log-cleanup",
+      "at": "2026-11-09T17:39:00.262Z",
+      "detail": {
+        "requests": 3,
+        "active": 0
+      }
+    }
+  ],
+  "streams": [
+    {
+      "opened": "2026-11-09T17:38:56.801Z",
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "context": "kvml-ccdfe731dabd-a",
+      "namespace": "kvml-e731dabd-03-same",
+      "pod": "same-pod",
+      "container": "web",
+      "uid": "4f2fa62f-b4ad-4b3f-bd3f-678158f85298",
+      "ended": true,
+      "status": 200,
+      "openingUID": "4f2fa62f-b4ad-4b3f-bd3f-678158f85298",
+      "protocol": "guarded-text-v1",
+      "closed": "2026-11-09T17:38:57.398Z"
+    },
+    {
+      "opened": "2026-11-09T17:38:58.416Z",
+      "harborId": "e9822c84-b728-4864-8380-2070f3af74e3",
+      "context": "kvml-ccdfe731dabd-b",
+      "namespace": "kvml-e731dabd-03-same",
+      "pod": "same-pod",
+      "container": "web",
+      "uid": "44f6c10f-3db5-41f6-8cfb-5b3566aeabaa",
+      "ended": true,
+      "status": 200,
+      "openingUID": "44f6c10f-3db5-41f6-8cfb-5b3566aeabaa",
+      "protocol": "guarded-text-v1",
+      "closed": "2026-11-09T17:38:58.747Z"
+    },
+    {
+      "opened": "2026-11-09T17:38:59.767Z",
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "context": "kvml-ccdfe731dabd-a",
+      "namespace": "kvml-e731dabd-03-same",
+      "pod": "same-pod",
+      "container": "web",
+      "uid": "4f2fa62f-b4ad-4b3f-bd3f-678158f85298",
+      "ended": true,
+      "status": 200,
+      "openingUID": "4f2fa62f-b4ad-4b3f-bd3f-678158f85298",
+      "protocol": "guarded-text-v1",
+      "closed": "2026-11-09T17:38:59.999Z"
+    }
+  ],
+  "sockets": [
+    {
+      "harborId": "e9822c84-b728-4864-8380-2070f3af74e3",
+      "context": "kvml-ccdfe731dabd-b",
+      "namespaces": "kvml-e731dabd-03-same",
+      "snapshots": [
+        {
+          "at": "2026-11-09T17:38:55.803Z",
+          "pods": [
+            {
+              "name": "same-app-6f6d5d6c8f-hg6bm",
+              "uid": "5fe00f0b-3054-4eed-8e22-68b085656901",
+              "namespace": "kvml-e731dabd-03-same"
+            },
+            {
+              "name": "same-pod",
+              "uid": "44f6c10f-3db5-41f6-8cfb-5b3566aeabaa",
+              "namespace": "kvml-e731dabd-03-same"
+            }
+          ],
+          "nodes": [
+            {
+              "name": "kvml-ccdfe731dabd-b",
+              "uid": "576baf40-e3e4-4c11-99be-5a5d9b22cec4"
+            }
+          ]
+        }
+      ],
+      "closed": false
+    },
+    {
+      "harborId": "722f2ed6-1961-47b1-87a2-a9571415400b",
+      "context": "kvml-ccdfe731dabd-a",
+      "namespaces": "kvml-e731dabd-03-same",
+      "snapshots": [
+        {
+          "at": "2026-11-09T17:38:56.195Z",
+          "pods": [
+            {
+              "name": "same-app-6f6d5d6c8f-plzc9",
+              "uid": "4a86c047-bf14-45db-8fa4-50db367e58dd",
+              "namespace": "kvml-e731dabd-03-same"
+            },
+            {
+              "name": "same-pod",
+              "uid": "4f2fa62f-b4ad-4b3f-bd3f-678158f85298",
+              "namespace": "kvml-e731dabd-03-same"
+            }
+          ],
+          "nodes": [
+            {
+              "name": "kvml-ccdfe731dabd-a",
+              "uid": "2ea6db0f-2cec-4eb6-9a13-abe5425f1d59"
+            },
+            {
+              "name": "kvml-ccdfe731dabd-a-m02",
+              "uid": "607adac0-75e9-4de1-9903-8e6422f77564"
+            }
+          ]
+        }
+      ],
+      "closed": false
+    }
+  ],
+  "errors": [],
+  "status": "passed",
+  "workspace": {
+    "id": "ae9a01f3-df40-49bd-b553-5948591c62ca",
+    "harbors": [
+      {
+        "id": "722f2ed6-1961-47b1-87a2-a9571415400b",
+        "name": "Bağımsız A",
+        "connectionRef": "0fc2344b-de2b-4c8a-9dd6-0553f04fea81",
+        "namespaces": [
+          "kvml-e731dabd-03-same"
+        ]
+      },
+      {
+        "id": "e9822c84-b728-4864-8380-2070f3af74e3",
+        "name": "Bağımsız B",
+        "connectionRef": "d812c9ee-54eb-4e1e-b856-a47dd7fc7205",
+        "namespaces": [
+          "kvml-e731dabd-03-same"
+        ]
+      }
+    ]
+  },
+  "finishedAt": "2026-11-09T17:39:00.262Z"
+}

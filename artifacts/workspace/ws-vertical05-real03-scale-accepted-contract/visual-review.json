@@ -1,0 +1,12 @@
+{
+  "openedImages": [
+    "scale-form-2.png",
+    "B-stays-readonly-and-unchanged.png"
+  ],
+  "observations": [
+    "Scale form target includes harbor/context/namespace; Soft UI, readable form and unchanged full-viewport Canvas.",
+    "B screenshot is during the independent camera flight, so it is not final B framing evidence. Its selected source/UID/read-only controls are readable.",
+    "Actual scale/Ready and B unchanged assertions use live Kubernetes receipts; screenshot alone is not their proof."
+  ],
+  "status": "Form visual inspection passed; final B framing covered separately by settled camera test."
+}

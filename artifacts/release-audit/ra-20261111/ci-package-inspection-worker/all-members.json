@@ -1,0 +1,458 @@
+[
+  {
+    "container": "ZIP",
+    "path": "SHA256SUMS",
+    "bytes": 201,
+    "sha256": "f1b127c58a8799f3fb632de251c7ba48496a17b27b2bfa24c56ba0eb028d14e0"
+  },
+  {
+    "container": "ZIP",
+    "path": "build.json",
+    "bytes": 3152,
+    "sha256": "f5c581ec34c44014e4e2b28183d98f73b19c31f71df668316546093ecf2f9475"
+  },
+  {
+    "container": "ZIP",
+    "path": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "bytes": 12712272,
+    "sha256": "de6936063230347aaef5e1841fe4e7591f715ea59587e8d6bf3d3c4b1c7312f1"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/MANUAL_TEST_GUIDE.md",
+    "bytes": 26007,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "af02d98410e7c01568bb19bfe35edac9a81529e6c6457ef7872a05d8a946b788"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/build-provenance.json",
+    "bytes": 3202,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "4d2cbce885aa1f24085b0ea110507cea5800940f9f96a4e3f92fc317edaed469"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/README.md",
+    "bytes": 35859,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "42dff19c4c3064c7a9f1fa6494a05c3e2c318c98998865a98578ce52df4c5609"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/deploy",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/deploy/rbac-node-observability.yaml",
+    "bytes": 725,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "541d5a50ebd4a600a16da3c436882add3c0986d188cad15add5ada703a2a74d0"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-readonly.yaml",
+    "bytes": 1478,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "600ed9252890a7a4d76c6194611d7033786c2872ce43ad825a800e5b13ed2fed"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-observability.yaml",
+    "bytes": 669,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "21c38465624cb0372b68f4a51519543f1a364252cdccb6baf15877f69218647a"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/deploy/rbac-namespace-write.yaml",
+    "bytes": 898,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "e61cdfffcbc5c0300fdd4c1426fe321b416e5dea76aa3dc1ba60bd97f85f4ec2"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/kubeview",
+    "bytes": 45094514,
+    "mode": "0o755",
+    "directory": false,
+    "sha256": "191fb0ca99a4f1b4327a92f04681edd93b74d1cd22236dcdedbb20be1d32c406"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/evidence",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/profiles.json",
+    "bytes": 1122,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "2a93d43b62551511e023d9636bb557dbc4f2047f0436e067f31a85bdfdeb3699"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/tests",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/tests/real_scenarios.py",
+    "bytes": 12272,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "3d37ce98ef4b092ea109cc4d7b5c695a2f53ee78b6e0894ac8dfd1cad83e64cb"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/templates",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/templates/README.md",
+    "bytes": 818,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "51dcb40c1667d6a150619b3cf511a9822889d42b2a0486f51d7ab3a7aa61ff0d"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/templates/telemetry-values.json",
+    "bytes": 488,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/DEPENDENCIES.md",
+    "bytes": 2169,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "00b4f5e40c88993c65e09362582294d0243dd88044b782351d12aa7f502ce6e7"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/manual-lab/telemetry.py",
+    "bytes": 27561,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "71fb19ae92aa9f4adaed79c8469ce2e30e779a8b7342ba7f7cf481a126ddfebf"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/scripts",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/scripts/manual_lab.py",
+    "bytes": 87319,
+    "mode": "0o755",
+    "directory": false,
+    "sha256": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/scripts/manual-lab.sh",
+    "bytes": 214,
+    "mode": "0o755",
+    "directory": false,
+    "sha256": "c6ad10b2a4497774f35a45f174a3e028c44c7f3b4fe36634a5e9d3c96f613d7a"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/docs",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/docs/V11_ACCEPTANCE_REPORT.md",
+    "bytes": 23335,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "0ee9f141c78fe7e5b88419ae2ee5b8eb2c30ca0a6cafa3259b985af137c10cdb"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/docs/WORKSPACE_ACCEPTANCE.md",
+    "bytes": 28532,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "b06f092b296b45db027db2051c5bd3b23a8adb3be80f553309aa907e5733c105"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/docs/RELEASE_NOTES_v1.1.0.md",
+    "bytes": 10194,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "2fce1a7c1e8054a494969f3fa79e230c922647ff599c07695257fa6b72448e9b"
+  },
+  {
+    "container": "kubeview_1.1.0_darwin-arm64.tar.gz",
+    "path": "kubeview_1.1.0_darwin-arm64/docs/SECURITY.md",
+    "bytes": 15986,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "e23752be7a9c3b6d741ac57bf059dd92dc70699a50a1aa1b1b6a2360208a1b7d"
+  },
+  {
+    "container": "ZIP",
+    "path": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "bytes": 13727706,
+    "sha256": "7969d008d7d4e3f69d5dc94687c620ddf011db4cce6859437cf8b997112d94d4"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/MANUAL_TEST_GUIDE.md",
+    "bytes": 26007,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "af02d98410e7c01568bb19bfe35edac9a81529e6c6457ef7872a05d8a946b788"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/build-provenance.json",
+    "bytes": 3201,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "820512bf777caee06ef7e04e656bef9b4e5c1570936628300a2826182d4fee13"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/README.md",
+    "bytes": 35859,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "42dff19c4c3064c7a9f1fa6494a05c3e2c318c98998865a98578ce52df4c5609"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/deploy",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/deploy/rbac-node-observability.yaml",
+    "bytes": 725,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "541d5a50ebd4a600a16da3c436882add3c0986d188cad15add5ada703a2a74d0"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/deploy/rbac-namespace-readonly.yaml",
+    "bytes": 1478,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "600ed9252890a7a4d76c6194611d7033786c2872ce43ad825a800e5b13ed2fed"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/deploy/rbac-namespace-observability.yaml",
+    "bytes": 669,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "21c38465624cb0372b68f4a51519543f1a364252cdccb6baf15877f69218647a"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/deploy/rbac-namespace-write.yaml",
+    "bytes": 898,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "e61cdfffcbc5c0300fdd4c1426fe321b416e5dea76aa3dc1ba60bd97f85f4ec2"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/kubeview",
+    "bytes": 46682274,
+    "mode": "0o755",
+    "directory": false,
+    "sha256": "7d9f8d4509f288f3c0ee2a62177309ab52872189677c78270ef6adf9d9422ad9"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/evidence",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/profiles.json",
+    "bytes": 1122,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "2a93d43b62551511e023d9636bb557dbc4f2047f0436e067f31a85bdfdeb3699"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/tests",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/tests/real_scenarios.py",
+    "bytes": 12272,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "3d37ce98ef4b092ea109cc4d7b5c695a2f53ee78b6e0894ac8dfd1cad83e64cb"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/templates",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/templates/README.md",
+    "bytes": 818,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "51dcb40c1667d6a150619b3cf511a9822889d42b2a0486f51d7ab3a7aa61ff0d"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/templates/telemetry-values.json",
+    "bytes": 488,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "1a3db8f169c8df435f7a1f068c3bf0a8bae3dfa1c537205aa6863c2ff7e2d796"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/DEPENDENCIES.md",
+    "bytes": 2169,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "00b4f5e40c88993c65e09362582294d0243dd88044b782351d12aa7f502ce6e7"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/manual-lab/telemetry.py",
+    "bytes": 27561,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "71fb19ae92aa9f4adaed79c8469ce2e30e779a8b7342ba7f7cf481a126ddfebf"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/scripts",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/scripts/manual_lab.py",
+    "bytes": 87319,
+    "mode": "0o755",
+    "directory": false,
+    "sha256": "6562bf3ba52d489996eb2c545991535bfa11da31a71aec87259abc611f539bd5"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/scripts/manual-lab.sh",
+    "bytes": 214,
+    "mode": "0o755",
+    "directory": false,
+    "sha256": "c6ad10b2a4497774f35a45f174a3e028c44c7f3b4fe36634a5e9d3c96f613d7a"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/docs",
+    "bytes": 0,
+    "mode": "0o755",
+    "directory": true
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/docs/V11_ACCEPTANCE_REPORT.md",
+    "bytes": 23335,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "0ee9f141c78fe7e5b88419ae2ee5b8eb2c30ca0a6cafa3259b985af137c10cdb"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/docs/WORKSPACE_ACCEPTANCE.md",
+    "bytes": 28532,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "b06f092b296b45db027db2051c5bd3b23a8adb3be80f553309aa907e5733c105"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/docs/RELEASE_NOTES_v1.1.0.md",
+    "bytes": 10194,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "2fce1a7c1e8054a494969f3fa79e230c922647ff599c07695257fa6b72448e9b"
+  },
+  {
+    "container": "kubeview_1.1.0_linux-amd64.tar.gz",
+    "path": "kubeview_1.1.0_linux-amd64/docs/SECURITY.md",
+    "bytes": 15986,
+    "mode": "0o644",
+    "directory": false,
+    "sha256": "e23752be7a9c3b6d741ac57bf059dd92dc70699a50a1aa1b1b6a2360208a1b7d"
+  }
+]

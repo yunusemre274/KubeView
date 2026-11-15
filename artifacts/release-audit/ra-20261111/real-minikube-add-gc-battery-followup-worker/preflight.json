@@ -1,0 +1,10 @@
+{
+  "startedAt": "2026-11-11T19:36:00.102318+00:00",
+  "workLimitSeconds": 45,
+  "phaseLimitSeconds": 120,
+  "singleReadOnlyObservation": true,
+  "helperSHA256": "1a0db67621ed41059632bc246c23891d497cb02c8e23ab84c9f5bc415953d2e8",
+  "privatePowerPolicyOverrideOnly": true,
+  "minimumBatteryPercent": 25,
+  "minimumFreeDiskBytes": 10737418240
+}

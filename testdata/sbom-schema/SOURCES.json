@@ -1,0 +1,110 @@
+{
+  "sourceCommit": "c320fc0f0b46873864927d9d5684eea7ba439728",
+  "sourceTag": "1.5",
+  "schemaBlobIdentities": [
+    {
+      "path": "bom-1.5.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c149728127117c39317b795032ed6e9a92e2f950",
+      "size": 164769,
+      "url": "https://api.github.com/repos/CycloneDX/specification/git/blobs/c149728127117c39317b795032ed6e9a92e2f950"
+    },
+    {
+      "path": "jsf-0.82.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f46bfb1e52731ad1280123ff3e2bd29bd18d4bc2",
+      "size": 8058,
+      "url": "https://api.github.com/repos/CycloneDX/specification/git/blobs/f46bfb1e52731ad1280123ff3e2bd29bd18d4bc2"
+    },
+    {
+      "path": "spdx.schema.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f04d013c74c48de35726e93e367f0f738f51135d",
+      "size": 12322,
+      "url": "https://api.github.com/repos/CycloneDX/specification/git/blobs/f04d013c74c48de35726e93e367f0f738f51135d"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0808751c23d827d483dc3673d6e3f49514e49d1f",
+      "size": 11341,
+      "url": "https://api.github.com/repos/CycloneDX/specification/git/blobs/0808751c23d827d483dc3673d6e3f49514e49d1f"
+    }
+  ],
+  "sources": [
+    {
+      "file": "testdata/sbom-schema/bom-1.5.schema.json",
+      "url": "https://raw.githubusercontent.com/CycloneDX/specification/c320fc0f0b46873864927d9d5684eea7ba439728/schema/bom-1.5.schema.json",
+      "characters": 164769
+    },
+    {
+      "file": "testdata/sbom-schema/spdx.schema.json",
+      "url": "https://raw.githubusercontent.com/CycloneDX/specification/c320fc0f0b46873864927d9d5684eea7ba439728/schema/spdx.schema.json",
+      "characters": 12322
+    },
+    {
+      "file": "testdata/sbom-schema/jsf-0.82.schema.json",
+      "url": "https://raw.githubusercontent.com/CycloneDX/specification/c320fc0f0b46873864927d9d5684eea7ba439728/schema/jsf-0.82.schema.json",
+      "characters": 8058
+    },
+    {
+      "file": "testdata/sbom-schema/LICENSE",
+      "url": "https://raw.githubusercontent.com/CycloneDX/specification/c320fc0f0b46873864927d9d5684eea7ba439728/LICENSE",
+      "characters": 11341
+    }
+  ],
+  "verification": [
+    {
+      "file": "bom-1.5.schema.json",
+      "upstreamGitBlob": "c149728127117c39317b795032ed6e9a92e2f950",
+      "bytes": 164769,
+      "sha256": "067f7824b08653839ea050ae9e09ca48375eadc2652b0e2a299476e7db90335b",
+      "exactPinnedGitBlobMatch": true,
+      "initialTransfer": {
+        "bytes": 164770,
+        "gitBlob": "0668e618995388969f085eee78cbb2d9704bb395"
+      },
+      "normalization": "removed only patchtransport extra terminal newline when needed, exactGitblobchecked"
+    },
+    {
+      "file": "jsf-0.82.schema.json",
+      "upstreamGitBlob": "f46bfb1e52731ad1280123ff3e2bd29bd18d4bc2",
+      "bytes": 8058,
+      "sha256": "8bae002c25e723db7ee1f26afde680ae1a2b1a8f6b4b4b0fd65dc3becb090aae",
+      "exactPinnedGitBlobMatch": true,
+      "initialTransfer": {
+        "bytes": 8059,
+        "gitBlob": "54d201b344ae396824d97b7e5546850ab5f44d1d"
+      },
+      "normalization": "removed only patchtransport extra terminal newline when needed, exactGitblobchecked"
+    },
+    {
+      "file": "spdx.schema.json",
+      "upstreamGitBlob": "f04d013c74c48de35726e93e367f0f738f51135d",
+      "bytes": 12322,
+      "sha256": "4f6e2b05c05d26a4f2dc5879fbc2fca94b0a28db46289d0c51345621b71cfbfc",
+      "exactPinnedGitBlobMatch": true,
+      "initialTransfer": {
+        "bytes": 12323,
+        "gitBlob": "03bc6cc0bb706bd7a34fa5206a824361960c1e07"
+      },
+      "normalization": "removed only patchtransport extra terminal newline when needed, exactGitblobchecked"
+    },
+    {
+      "file": "LICENSE",
+      "upstreamGitBlob": "0808751c23d827d483dc3673d6e3f49514e49d1f",
+      "bytes": 11341,
+      "sha256": "6c29f22a4a7385285c6f579ec9f33c5e989f00739d6b257243a0b082ec9447ae",
+      "exactPinnedGitBlobMatch": true,
+      "initialTransfer": {
+        "bytes": 11342,
+        "gitBlob": "407aa07b1e6887f3544e2d236bf66cfe5294653e"
+      },
+      "normalization": "removed only patchtransport extra terminal newline when needed, exactGitblobchecked"
+    }
+  ]
+}
