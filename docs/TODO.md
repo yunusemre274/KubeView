@@ -589,3 +589,8 @@ Gerçek Safari donanımı, geniş ölçekli çok kullanıcılı backend watch ha
 
 - [x] TEST-12.06: gerçek yerel HTTP oturum/yönetim izniyle export→import; metadata korunumu, credential/grant yokluğu, orijinal kaynak değişmezliği ve sekiz pozitif/negatif kontrol geçti. Root kaynak/ham kanıt incelemesi tamamlandı.
 - [ ] Gerçek Kubernetes, native paket/download, genel hassas arşiv taraması ve CI/fork/admin kabulü ayrı açık. Toplam42/200 faz; NOT_RELEASE_READY.
+
+## 15 Kasım — CI güvenlik guard entegrasyonu
+
+- [x] Read-only CI lane policy testi mevcut paket test komutuna bağlandı; 14 negatif fixture ve değişmeyen11pakettestiyle27PASS. Quotedboolean guard eksikliği EXPECTED_RED→fix→PASS; ilkkanıt korunur.
+- [ ] ExactyeniCI sonucu, gerçekfork/admin/cache/token ve actionbundleSCA; TEST20.11/20.12 hâlâIN_PROGRESS. Ürünruntime/kalite/işlemkapsamı değişmedi.

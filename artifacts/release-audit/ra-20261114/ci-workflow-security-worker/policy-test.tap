@@ -1,0 +1,23 @@
+✔ current read-only CI lane has reviewed triggers, grants, pins and data boundaries (2.036791ms)
+▶ bounded trust-boundary mutations are rejected without executing any workflow
+  ✔ privileged pull-request trigger (0.402125ms)
+  ✔ privileged workflow consumer (0.087916ms)
+  ✔ global write grant (0.064167ms)
+  ✔ job write override (0.062291ms)
+  ✔ persisted checkout token (0.073125ms)
+  ✔ mutable action tag (0.053834ms)
+  ✔ alternate attacker checkout (0.055625ms)
+  ✔ PR expression to shell (0.084ms)
+  ✔ secret injected into job (0.086208ms)
+  ✔ credential path in dependency cache (0.051333ms)
+  ✔ hidden or unrestricted artifact payload (0.053708ms)
+  ✔ unreviewed reusable job (0.044541ms)
+✔ bounded trust-boundary mutations are rejected without executing any workflow (1.653708ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65.399625

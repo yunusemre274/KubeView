@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-15T09:14:07.265037+00:00",
+  "question": "GitHub action boolean inputs may be quoted strings; old===true policy must reject them too, without changing active job grants/actions",
+  "limits": {
+    "fixtures": 15,
+    "fixtureBytes": 65536,
+    "childSeconds": 15,
+    "workSeconds": 60
+  },
+  "beforeSHA256": {
+    ".github/workflows/ci.yml": "4badd5b47cd3a4d16080d93eaf720129445cf272687f19f7aa2d9dd85df06ad6",
+    "scripts/release-ci-policy.test.mjs": "0ce10d9a9479a6399aea2356643f8e02a2fc951a6d7cd3c88001bf888651a135"
+  }
+}

@@ -360,3 +360,7 @@ Explicit rest.Config.Timeout client-goisteğine timeoutquery ekleyebilir; fixtur
 ## 14 Kasım — SPA ve test ortam anahtarları
 
 UnknownextensionlessGET200 SPAfallback debugendpoint varlığı değildir; exactindexbytehash ve yöntemyanıtını doğrula. frontendmethodguard APIpathguardındanönceyse absentPOST405/GET404 normaldir. Fixtureenv anahtarını gerçek kaynaktanbul: KUBEVIEW_BENCH_ADDR yerine varsayılanPORTadı uydurmak ilgili koşulu testetmez. Beklenenportukontroletmek yerine yalnızownedPIDnin bütünTCPLISTENadreslerini assertet; başkaprojeportlarına dokunma.
+
+## 15 Kasım — action input tipleri ve reporter
+
+YAML action girdileri quotedstring olabilir; yalnız ===true kontrolü yeterli değildir. Bu read-onlylane açıkfalse dışında girdi kabul etmez; actualworkflow değişmese de gelecekteki güvensizkonfigürasyonguardını testet. Node24defaultreporter spec olabilir; TAPbekleyenhelper açık --test-reporter=tap seçmeli. Başarılıhamçıktıyı formatyanlışlığı yüzünden tekrarçalıştırmak yerine ilkreceipt/çıktıyı koruyup offlinekanıtı ayrı kaydet.

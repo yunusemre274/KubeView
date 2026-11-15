@@ -642,3 +642,7 @@ Defaultveactualbenchmarkfixtureenv, releasebinaryde test-onlyroutes/pprof/expvar
 ## 14 Kasım — workspace export regresyonu
 
 Yeni1ana/8alt test, production HTTP login/grant/export/import yolunda credential/session/Secret markerlarının taşınmadığını ve içe aktarılan bağlantının unbound kaldığını doğrular. Kaynak workspace ve açık yönetim izni korunur. Kubernetes istemcileri sentetik; runtime ürün değişmedi. TEST-12.06 dar kapsamda kapandı.
+
+## 15 Kasım — CI policy testi
+
+CI mevcutpakettestlerine güvenlikpolicytestini ekler. Son guard event/token/checkout/expression/artifact/cachekey ve kendi çağrısının kaldırılmasını sınırlıfixturelerle denetler. Quotedtrue input bypassı yalnızguardda yenidenüretildi ve açıkfalseallowlistiyle kapandı.27yerelkontrol/ikinciinceleme; gerçekGitHubyetki ve supplychain kabulü değildir.

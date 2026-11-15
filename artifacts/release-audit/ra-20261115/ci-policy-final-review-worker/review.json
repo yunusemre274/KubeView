@@ -1,0 +1,56 @@
+{
+  "reviewedAt": "2026-11-15T09:16:51.077304+00:00",
+  "kind": "Same agent system read-only second review; no tests/network/workflows run by reviewer",
+  "inputHEAD": "e6ee6678291c6d4fca6b4ca90e3fef66e96912c7",
+  "bindings": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "4badd5b47cd3a4d16080d93eaf720129445cf272687f19f7aa2d9dd85df06ad6",
+      "matchesPreflight": true
+    },
+    {
+      "path": "scripts/release-ci-policy.test.mjs",
+      "sha256": "f29a818ccaea8ad9e71f530289adf0d14358627cd01a9874ed78cd0552f73b0f",
+      "matchesPreflight": true
+    },
+    {
+      "path": "scripts/build-release.test.mjs",
+      "sha256": "020deb3bd364036693df7d8049250cc06421de8181ef59304602b1b413fd1cf7",
+      "matchesPreflight": true
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90",
+      "matchesPreflight": true
+    }
+  ],
+  "redSnapshotSHA256": "0ce10d9a9479a6399aea2356643f8e02a2fc951a6d7cd3c88001bf888651a135",
+  "red": {
+    "status": "EXPECTED_RED",
+    "wallSeconds": 0.07784345800018855,
+    "failedLeafOnly": [
+      "quoted artifact flags are still enabled inputs"
+    ],
+    "propagatedParentFailCount": 1,
+    "notTwoIndependentBugs": true
+  },
+  "green": {
+    "status": "PASS",
+    "wallSeconds": 0.18770062500016138,
+    "topLevel": 13,
+    "packagingUnchangedPass": 11,
+    "policyTop": 2,
+    "mutantSubPass": 14,
+    "totalPass": 27,
+    "fail": 0,
+    "skip": 0,
+    "sourceAfterMatches": true
+  },
+  "decision": "Small guard fix supported; TEST20.11 and20.12 stay IN_PROGRESS",
+  "limits": [
+    "Both quoted flags changed in one mutant; not independent branch coverage for each flag.",
+    "Local policy allows only undefined, false boolean, false/False/FALSE string; not universal vendor input compatibility.",
+    "No action bundle SCA, effective GitHub fork permissions/cache enforcement, privileged publish or general release acceptance.",
+    "Existing invocation detection/tamperability/late-step limitations from previous review still apply."
+  ]
+}

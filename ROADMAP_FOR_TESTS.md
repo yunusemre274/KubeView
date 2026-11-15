@@ -1,7 +1,7 @@
 # KubeView — yayın öncesi canlı test ve kabul kaydı
 
-- Son güncelleme: 2026-11-14T16:19:01.754654+03:00 — Europe/Istanbul (UTC+03:00).
-- Aktif ürün kaynağı: 15770296056ca2629601dba540c04741e1822e0d; denetimHEAD6ffd1b22. NativeCI114binary build71b40983;22shippedinput/118runtime eşitliği kanıtlı. Test/belge commitleri binaryyenidenbuild iddiası değildir.
+- Son güncelleme: 2026-11-15T12:18:37.449570+03:00 — Europe/Istanbul (UTC+03:00).
+- Aktif ürün kaynağı: 15770296056ca2629601dba540c04741e1822e0d; kayda giriş denetim HEAD e6ee6678. Bu kontrol noktası test/CI/doküman değişikliğidir; native CI114 binary kimliği71b40983 olarak kalır. Final paket/manuel kabul açık.
 - Build/paket: CI114candidate: ZIP15b43aef…/nativea0f7f82d…/binary24ef0ce3…; darstartup14Kasım doğrulandı. Finalbütünpaket/SBOM/manuelgate açık; eskiprofilelock10binary tarihsel.
 - Ortam: MacM5/32GiB/macOS27.0.1; Chromium156/ANGLE Metal/medium/DPR1/1440×900/M38. Dengeli matris Battery53% başlangıç/lowpower0; canlı güç/RSS/disk sınırları denetlenir. Owned2Node lab ölçüm için durdu.
 - Dağıtım modeli: local-first tek yerel operatör; loopback varsayılan, uzak erişimde açık token/TLS/tünel sınırı. İnternete açık çok kullanıcılı SaaS kapsamı yok. Hubble/minikube opsiyonel fakat sunulan yollar zorunlu test kapsamındadır.
@@ -9,9 +9,9 @@
 - Kullanıcı kararı bekleyenler: stable yayın/merge/milestone için manuel onay; V11-16 fiziksel ekran kabulünün yerine proxy kabulü istenirse ayrıca açık karar gerekir. Henüz karar değiştirilmedi.
 - Güvenlik bulguları: SEC001/002 ve PROV-CACHE/LOCK darfix/retestleri kayıtlı; finalpaket açık. Kurulu1.20.2 tarihi bulguları korunur. Yereloperator0High/1Unknown; OSsecurity2Cilium8High/55Medium/6Low/4Unknown, Envoy16Medium/4Low;16Mediumgiderildi. Exact8CiliumHigh+operatorWindowsUnknown NOT_AFFECTED analizi ayrı, rawtarama silinmedi. Yereladaylar kurulmadı; kalanseverity/native/source/TLS/lisans/paketkapıları açık.
 - Eski kapılar: V11-16 BLOCKED (fiziksel sunum kanıtı yok); V11-18 BLOCKED (CPU karşılaştırması/final matris eksik); V11-19 BLOCKED (önkoşullar+manuel kabul). FullTLS/cold bootstrap ve kesilmiş uzun koşu yeniden doğrulanacak; eski PASS yeni kaynağa taşınmadı.
-- Son tamamlanan faz: TEST-12.06 — HTTP workspace export güven sınırı; 42/200 VERIFIED_DONE, 158 faz açık. Genel karar NOT_RELEASE_READY.
-- Süreç/lab: Kısa export ve CI guard grupları tamamlanıyor; owned native uygulamalar kapalı, 19849 LISTEN yok. Docker daemon erişilemiyor; son lab STOPPED kaydı canlı yeniden doğrulama değildir. Manuel profiller ve dış bundle korunur. Pil düşük; yeni uzun test/cluster bootstrap başlatılmıyor.
-- Devam: Parser+debugsurface test/kanıt/docs→secret-scan/commit/push. Conditionalmainmerge read-onlyincelendi(0behind/133ahead,CI116success), açıkprovider/TLS/render/kararlılık nedeniyle main değişmedi. TEST12.03/UIbudget ve diğerbağımsızkapılara devam. Stabletag/release/manualgate açık.
+- Son tamamlanan faz: TEST-12.06 — HTTP export güven sınırı; 42/200 VERIFIED_DONE,158 faz açık. CI20.11/20.12 yerel27kontrolle ilerledi, bütün fazlar kapanmadı. Genel NOT_RELEASE_READY.
+- Süreç/lab: Kısa27Nodekontrol tamam/child exit0; nativeownedappkapalı,19849sonkontroldeLISTENyok. İkiworkerincelemesitamam; yeni lab başlatılmadı. Docker daemon sonkontrolde erişilemiyor, manuelprofiller/dışbundle korunur.15KasımAC/5%charging; uzunkoşu düşükpilde başlatılmadı.
+- Devam: CIguard/invocation+kanıt/docs secret-scan→commit/push ve exactremoteCI doğrulama. Sonra source/ortam önkoşulu uygun bağımsızfazlar; provider/TLS/render/RSS/60dk/V11-16/18/19/manualkapıları açık. Conditionalmainmerge engeller nedeniyle yapılmadı.
 - **Çalışma: AKTİF — kullanıcı devam talimatı; tamamlanmış testler tekrar edilmeden sonuçlar birleştiriliyor.**
 - **Genel karar: NOT_RELEASE_READY**.
 
@@ -12007,9 +12007,9 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 - İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR + package_evidence_review/CIworkflow worker.
-- Kaynak / build / paket kimliği: Currentae7aebc5; actualCI116/57ad606e success ayrı normalpozitifkaynak. Workflow/sourcebeforehash yeniden bağlanacak.
-- Ortam / kullanılan kimlik ve yetki: Salt okunur yerel kaynak incelemesi ve resmi GitHub güvenlik dokümanları; admin/fork ayarları ve gerçek external PR deneyi erişilmedi.
+- Sorumlu: ANA MÜDÜR; package_evidence_review CI kaynak/guard worker ve yaml_parser_guards ayrı ikinci inceleme.
+- Kaynak / build / paket kimliği: Kayda giriş HEAD e6ee6678/runtime15770296; workflow tek komutta yeni guard çağrısı; final4sourcehash ra-20261115/ci-policy-final-root/preflight.json. EskiCI116/117 ayrı kayıttır.
+- Ortam / kullanılan kimlik ve yetki: Kaynak/officialactionrefs ve readonlyCI metadata; localNode27guard/packagerkontrolü,15fixture≤64KiB/child15sn. Actualfork/admin/token/cache/SCAgenelkanıtı yok.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
 - Durum: IN_PROGRESS
@@ -12021,29 +12021,44 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 
 14 Kasım: aktifworkflowevent/PRtrust/token/jobpermissions/checkout/expressioninjection veartifact/cache/releaseboundaries için read-onlykaynak/kanıtincelemesi; varsa≤15boundedfixture15s/60s tekgrup. Workflowrerun/build/cluster yok. Repo/orgsettings/dışforkgerçekişlem ölçülmedenPASSdeğil.
 
+15 Kasım: eski source SHA/6source reuse ve exactaction package/action.yml/version/runtime/license/cache/upload kaynakları yeniden bağlandı. Yeni guard CI komutuna eklendi; eski11pakettesti/izinler/event/pinler değişmedi.
+
 #### TEST-20.11-S2 — Normal kullanım / pozitif kontrol
 - [x] Kaynakta contents:read, full SHA action pinleri ve persist-credentials:false doğrulandı; shell'e doğrudan untrusted expression yok. Yeni exact3bdb7c0c CI normal test/build/clean-Linux smoke/upload adımları başarıyla çalıştı.
 - Sınır: gerçek runner token yetkilerinin tamamı veya fork/organizasyon politikası bu gözlemden çıkarılmadı.
 
+- [x] İlk14PASS guard, actualCI11618success+artifactmetadata source/binary kabulüyle karıştırılmadı. CI enforcement26PASS sonrası yeniquotedflagsRED→sharedfalseallowlistfix→final27PASS0skip/0fail. Test komutu ve bütünraw/source kimlikleri son raporda.
+
 #### TEST-20.11-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Gerçek kontrollü external PR/token/cache poisoning deneyi ve repository/org admin ayarları NOT RUN/BLOCKED. Secret isim/değerleri istenmedi.
 - Statik incelemede pull_request_target, ayrıcalıklı workflow_run tüketicisi, doğrudan expression-to-shell veya publish/release adımı bulunmadı. Bu sınır bütün olası saldırıların yokluğu değildir.
+
+- [x] Son14negatiffixture privilegedevent/writeoverride/checkoutpersist/expressionshell/secretenv/cachekey/artifact/reusablejob/guardomission/quotedflags durumlarını policy düzeyinde yakalar.
+- [ ] GerçekGitHubfork/admin/token/cachepoisoning ve fullbundle/transitive/runner/promotion kontrolleri ölçülmedi; syntheticret bu externalserverkapılarını kapatmaz.
 
 #### TEST-20.11-S4 — Bulgular ve düzeltme
 - CI-TRUST-01 informational: imzasız tested-builds artifact adı güvenilir yayıncı veya promotion kanıtı değildir. Mevcut ayrıcalıklı consumer bulunmadığı için gösterilmiş escalation yok.
 - CI-TRUST-02: admin/fork/token ayarlarının ve gerçek dış PR denemesinin kanıt boşluğu. CI-TRUST-03: action/transitive/runner provenance incelemesi tamamlanmadı.
 - Ürün/workflow değişikliği veya risk kabulü yok; root rapor ve kaynak sınırını doğruladı.
 
+CI-POLICY-BOOL-001: yeni policy testinin ===true kontrolü quotedtrue girdileri kaçırdı; aktifworkflowflagyok, gösterilmiş ürünescalation yok. İlkEXPECTED_RED korundu; yalnız açıkfalse kabul eden ortakguard ile düzeltildi. İlkreporterformatwrapperFAIL offline14PASSsayımıyla ayrıldı; test tekrarlanmadı.
+
 #### TEST-20.11-S5 — Tekrar test ve regresyon
 - NOT_APPLICABLE: doğrulanmış exploit/düzeltme olmadığı için PoC red→green tekrarı yok. Dinamik/admin negatifleri ayrıca yapılmalı; statik inceleme onların PASS sonucu değildir.
+
+- [x] Sonactualcommand iki dosyayla27PASS(11packaging+2policyana+14alt)/0FAIL/0SKIP,0,187701sn. Sonraw/count/4sourceSHA ve unchangedpackagingrootHEAD ikinciincelemele doğrulandı. İlk26PASS ve RED ayrı tarihlerinde kalır. Yeni commit remoteCI pushsonrası ayrıca okunacak.
 
 #### TEST-20.11-S6 — Temizlik ve inceleme
 - [x] Yeni yalnız rapor dizini üretildi; worker test/browser/build/lab/credential/Git işlemi yapmadı. Root4checksum ve ilgili workflow/script sınırlarını okudu.
 - Aynı ajan sistemi ikinci incelemesidir; profesyonel bağımsız pentest veya sertifika değildir.
 
+- [x] Source/manifest/checksum/hamsonuç/root+ayrıworkerincelemeleri tamam; Node child exit0 ve ownedtempfixturecleanup. Browser/lab/kubeconfig/secret/networkscan yok. Profesyonelüçüncütarafpentest veya exhaustiveprocesscensus değildir.
+
 #### TEST-20.11-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
 - IN_PROGRESS: bounded statik trust incelemesi tamamlandı; admin/fork/token/cache dinamik kapıları ve action/transitive provenance açık. Exact kaynak CI smoke sonucu ayrı kaydedildi. İlgili workflow/runner/permissions/consumer değişince retest gerekir.
+
+IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. Actualfork/admin/token/cache/SCA/promotion sınırları açık; envanter/kaynak bulgusuzluğu fullCIgüvenliği değildir. Kanıt: artifacts/release-audit/ra-20261115/ci-policy-final-root/REPORT.md ve bağlıikiworker. Genel NOT_RELEASE_READY.
 
 ### TEST-20.12 — Action pin/cache/artifact/release yetkisi
 
@@ -12052,9 +12067,9 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 - İlgili gereksinim / güvenlik standardı kontrolü: GitHubActions secure-use; NIST SSDF1.1 süreç çerçevesi; CAT20 exactpackage/provenance. Sürüm/kimlik kanıtı docs/RELEASE_THREAT_MODEL.md; fazın uygulanabilirliği sonuçla ayrı değerlendirilir.
 - Öncelik: P1.
 - Önkoşullar ve bağımlılıklar: TEST-01.01; owned allowlist ve ortam doğrulaması; runtime/build freeze; ağır işlerin izolasyonu.
-- Sorumlu: ANA MÜDÜR + package_evidence_review/CIworkflow worker.
-- Kaynak / build / paket kimliği: Currentae7aebc5; activeworkflow/buildreleasepinnedreferences kaynak incelemesi.
-- Ortam / kullanılan kimlik ve yetki: henüz atanmadı; üretim/kullanıcı credential'ı test hedefi değildir.
+- Sorumlu: ANA MÜDÜR; package_evidence_review CI kaynak/guard worker ve yaml_parser_guards ayrı ikinci inceleme.
+- Kaynak / build / paket kimliği: Kayda giriş HEAD e6ee6678/runtime15770296; workflow tek komutta yeni guard çağrısı; final4sourcehash ra-20261115/ci-policy-final-root/preflight.json. EskiCI116/117 ayrı kayıttır.
+- Ortam / kullanılan kimlik ve yetki: Kaynak/officialactionrefs ve readonlyCI metadata; localNode27guard/packagerkontrolü,15fixture≤64KiB/child15sn. Actualfork/admin/token/cache/SCAgenelkanıtı yok.
 - Başlangıç zamanı: —
 - Bitiş zamanı: —
 - Durum: IN_PROGRESS
@@ -12071,6 +12086,8 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 
 14 Kasım: actionSHAkimliği ve cache/artifact/releaseyetki güveni aynı sonluCIincelemesinde ayrıaltkarar alacak. Aktifpinler/commitprovenance/actualnormalCI kayıtları görülmeden kapatılmaz; dışsettingskanıtı yoksa açıkçaayrılır.
 
+15 Kasım: eski source SHA/6source reuse ve exactaction package/action.yml/version/runtime/license/cache/upload kaynakları yeniden bağlandı. Yeni guard CI komutuna eklendi; eski11pakettesti/izinler/event/pinler değişmedi.
+
 #### TEST-20.12-S2 — Normal kullanım / pozitif kontrol
 - [ ] Yetkili normal davranış doğrulandı.
 - Yapılan: henüz çalışılmadı.
@@ -12078,6 +12095,8 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 - Gözlenen: —
 - Kanıt: —
 - Sonuç: NOT_STARTED
+
+- [x] İlk14PASS guard, actualCI11618success+artifactmetadata source/binary kabulüyle karıştırılmadı. CI enforcement26PASS sonrası yeniquotedflagsRED→sharedfalseallowlistfix→final27PASS0skip/0fail. Test komutu ve bütünraw/source kimlikleri son raporda.
 
 #### TEST-20.12-S3 — Negatif / sınır / arıza kontrolü
 - [ ] Riskli veya hatalı durum kontrollü sınandı.
@@ -12087,6 +12106,9 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 - Kanıt: —
 - Sonuç: NOT_STARTED
 
+- [x] Son14negatiffixture privilegedevent/writeoverride/checkoutpersist/expressionshell/secretenv/cachekey/artifact/reusablejob/guardomission/quotedflags durumlarını policy düzeyinde yakalar.
+- [ ] GerçekGitHubfork/admin/token/cachepoisoning ve fullbundle/transitive/runner/promotion kontrolleri ölçülmedi; syntheticret bu externalserverkapılarını kapatmaz.
+
 #### TEST-20.12-S4 — Bulgular ve düzeltme
 - Bulgu kimliği: henüz değerlendirilmedi.
 - Önem derecesi ve gerekçesi: —
@@ -12095,11 +12117,15 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 - Düzeltme commit'i veya çalışma farkı: —
 - Kapsam notu: bulgu yok kararı henüz verilmedi.
 
+CI-POLICY-BOOL-001: yeni policy testinin ===true kontrolü quotedtrue girdileri kaçırdı; aktifworkflowflagyok, gösterilmiş ürünescalation yok. İlkEXPECTED_RED korundu; yalnız açıkfalse kabul eden ortakguard ile düzeltildi. İlkreporterformatwrapperFAIL offline14PASSsayımıyla ayrıldı; test tekrarlanmadı.
+
 #### TEST-20.12-S5 — Tekrar test ve regresyon
 - [ ] İlk sorunu üreten test yeniden çalıştırıldı.
 - [ ] İlgili normal kullanım hâlâ çalışıyor.
 - [ ] Komşu davranışlar gerektiği ölçüde sınandı.
 - Sonuç ve kanıt: NOT_STARTED; bulgu oluşmazsa ilk-PoC retest gerekçeli NOT_APPLICABLE olabilir.
+
+- [x] Sonactualcommand iki dosyayla27PASS(11packaging+2policyana+14alt)/0FAIL/0SKIP,0,187701sn. Sonraw/count/4sourceSHA ve unchangedpackagingrootHEAD ikinciincelemele doğrulandı. İlk26PASS ve RED ayrı tarihlerinde kalır. Yeni commit remoteCI pushsonrası ayrıca okunacak.
 
 #### TEST-20.12-S6 — Temizlik ve inceleme
 - [ ] Test kaynakları doğru biçimde temizlendi veya manuel teslim için korundu.
@@ -12108,10 +12134,14 @@ Tek hedefli retest: initialCanvas1440×900 normalyerleşimi beklenir, sonra poin
 - İnceleyen: henüz atanmadı; aynı ajan sistemi profesyonel üçüncü taraf pentest değildir.
 - Kalan sınırlar: henüz test edilmedi.
 
+- [x] Source/manifest/checksum/hamsonuç/root+ayrıworkerincelemeleri tamam; Node child exit0 ve ownedtempfixturecleanup. Browser/lab/kubeconfig/secret/networkscan yok. Profesyonelüçüncütarafpentest veya exhaustiveprocesscensus değildir.
+
 #### TEST-20.12-K — Faz kararı
 - [ ] BİTTİ / DOĞRULANDI
 - Karar gerekçesi: NOT_STARTED; hiçbir alt adım geçilmiş sayılmadı.
 - Yeniden çalıştırılmasını gerektirecek değişiklikler: ilgili runtime/dependency/paketleme veya güven sınırı değişikliği.
+
+IN_PROGRESS: CI source/policy/invocation/quotedflagfix ve yerel27kontrol tamam. Actualfork/admin/token/cache/SCA/promotion sınırları açık; envanter/kaynak bulgusuzluğu fullCIgüvenliği değildir. Kanıt: artifacts/release-audit/ra-20261115/ci-policy-final-root/REPORT.md ve bağlıikiworker. Genel NOT_RELEASE_READY.
 
 ### TEST-20.13 — SBOM/checksum/provenance
 

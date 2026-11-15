@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-15T09:15:02.802581+00:00",
+  "inputHEAD": "e6ee6678291c6d4fca6b4ca90e3fef66e96912c7",
+  "question": "Final CI invocation and quoted action-boolean guard after one preserved expected RED",
+  "limits": {
+    "childSeconds": 15,
+    "fixtures": 15,
+    "fixtureBytes": 65536,
+    "processes": 1
+  },
+  "fileSHA256": {
+    ".github/workflows/ci.yml": "4badd5b47cd3a4d16080d93eaf720129445cf272687f19f7aa2d9dd85df06ad6",
+    "scripts/release-ci-policy.test.mjs": "f29a818ccaea8ad9e71f530289adf0d14358627cd01a9874ed78cd0552f73b0f",
+    "scripts/build-release.test.mjs": "020deb3bd364036693df7d8049250cc06421de8181ef59304602b1b413fd1cf7",
+    "frontend/package-lock.json": "ecbd67c765f1e244df703e5e1f13c95fa32bd94abf4e9e278bec4b15f34f5d90"
+  },
+  "expected": {
+    "tests": 27,
+    "topLevel": 13,
+    "subtests": 14,
+    "fail": 0,
+    "skip": 0
+  },
+  "power": "AC Power/5percent charging; short functional group, not performance or long soak"
+}
